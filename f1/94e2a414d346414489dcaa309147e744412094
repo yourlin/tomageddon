@@ -1,0 +1,27 @@
+src/data/balance.ts
+  s_b200a2907eaa8e::t_b977a7e048f91c 82-85
+src/scenes/ShopScene.ts
+  s_b200a2907eaa8e::t_b977a7e048f91c 309
+src/scenes/LevelUpScene.ts
+  s_b200a2907eaa8e::t_b977a7e048f91c 98
+docs/GDD.md
+  s_b200a2907eaa8e::t_18f55f5c3acbba 185
+docs/en/GDD.md
+  s_b200a2907eaa8e::t_638dcd3f17a8d6 184
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f194e2a414d346414489dcaa309147e744412094",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
