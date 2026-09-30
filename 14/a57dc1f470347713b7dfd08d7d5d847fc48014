@@ -1,0 +1,46 @@
+src/systems/RunState.ts
+  s_b200a2907eaa8e::t_9fabe8ce56d08e 12,18-21,294,300-302,314
+src/systems/SkillSystem.ts
+  s_b200a2907eaa8e::t_9fabe8ce56d08e 56
+src/systems/WeaponSystem.ts
+  s_b200a2907eaa8e::t_f81c6809f79141 7
+  s_b200a2907eaa8e::t_9fabe8ce56d08e 12,26-27,34,38,40,43-44,106,160,166,172,181-182,185-190,195-196
+docs/en/WEAPONS.md
+  s_b200a2907eaa8e::t_f0b96209702c07 16,64-86
+  s_b200a2907eaa8e::t_2f8c34303d28ac 87
+src/scenes/ShopScene.ts
+  s_b200a2907eaa8e::t_cc1f7f86daca54 303-305,308,310,313-318,325-326,332-421,427-430,435,439,445-448,458-459,463,469-472
+  s_b200a2907eaa8e::t_68aa0a6cb206c7 215
+  s_b200a2907eaa8e::t_b02c77de4b5079 18-28,30,148-149
+  s_b200a2907eaa8e::t_6c05002408c470 29
+scripts/docs/pages-a.ts
+  s_b200a2907eaa8e::t_f0b96209702c07 10-11,197-219
+docs/WEAPONS.md
+  s_b200a2907eaa8e::t_f0b96209702c07 16,64-86
+  s_b200a2907eaa8e::t_ab077522443446 87
+src/systems/WeaponMods.ts
+  s_b200a2907eaa8e::t_aa46aef176eee3 1-37,40-105
+  s_b200a2907eaa8e::t_397f65bbef77ab 38-39
+src/data/weaponAffixes.ts
+  s_b200a2907eaa8e::t_44a73482acb6a6 1-31
+README.en.md
+  s_b200a2907eaa8e::t_81dc3b8b99dbbb 63
+README.md
+  s_b200a2907eaa8e::t_8e85db322b6e56 63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "14a57dc1f470347713b7dfd08d7d5d847fc48014",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
