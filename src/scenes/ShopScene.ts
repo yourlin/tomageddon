@@ -306,7 +306,7 @@ export class ShopScene extends Phaser.Scene {
   private rerollCost(): number {
     if (freeFirstReroll(run.charId) && run.rerolls === 0) return 0;
     const left = run.shop.filter((x) => !x.sold && !x.locked).length;
-    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls) * (0.4 + 0.2 * left)));
+    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * (0.4 + 0.2 * left)));
   }
 
   private weaponPopup(w: OwnedWeapon, x: number, y: number): void {

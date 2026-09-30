@@ -95,7 +95,7 @@ export class LevelUpScene extends Phaser.Scene {
       const b = button(this, x + cw / 2, y + ch - 40, cw - 40, 52, tx('选择', 'Pick'), pick, COLORS.green, 22);
       L.add(b);
     });
-    const price = rerollPrice(run.wave, this.rerolls);
+    const price = rerollPrice(run.wave, this.rerolls, run.chapterId);
     const rb = button(
       this,
       W / 2,

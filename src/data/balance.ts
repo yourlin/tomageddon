@@ -79,8 +79,10 @@ export function shopPrice(base: number, wave: number): number {
   return Math.max(1, Math.round(base * priceInflation(wave) + wave * 0.5));
 }
 
-export function rerollPrice(wave: number, rerolls: number): number {
-  return BALANCE.rerollBase + Math.floor(wave * 0.75) + rerolls * Math.max(1, Math.ceil(wave / 2));
+/** 刷新价格：随波次、本波已刷新次数与章节上涨，避免后期靠反复刷新轻易凑齐高级武器 */
+export function rerollPrice(wave: number, rerolls: number, chapterId = 1): number {
+  const chapterMult = 1 + 0.25 * (chapterId - 1);
+  return Math.round((BALANCE.rerollBase + 1 + wave * 1.2 + rerolls * (1 + wave * 0.6)) * chapterMult);
 }
 
 /** 出售价格 = 25% 购买价 */
