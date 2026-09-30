@@ -1,0 +1,87 @@
+import Phaser from 'phaser';
+import { BootScene } from './scenes/BootScene';
+import { MenuScene } from './scenes/MenuScene';
+import { CharSelectScene } from './scenes/CharSelectScene';
+import { GameScene } from './scenes/GameScene';
+import { HudScene } from './scenes/HudScene';
+import { LevelUpScene } from './scenes/LevelUpScene';
+import { ShopScene } from './scenes/ShopScene';
+import { PauseScene } from './scenes/PauseScene';
+import { ResultScene } from './scenes/ResultScene';
+import { CodexScene } from './scenes/CodexScene';
+import { SettingsScene } from './scenes/SettingsScene';
+import { run } from './systems/RunState';
+import { controls } from './systems/Controls';
+import { CHARACTERS, CHARACTER_MAP } from './data/characters';
+import { WEAPON_MAP } from './data/weapons';
+import { ITEM_MAP, LEVELUP_OPTIONS } from './data/items';
+import { rerollPrice } from './data/balance';
+import { save } from './systems/Save';
+import { applyPerfSettings } from './systems/Perf';
+import { applyLanguage } from './i18n/apply';
+import { lang, tx } from './i18n';
+
+// 按语言写入数据文本，必须在创建游戏前执行
+applyLanguage();
+document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+document.title = tx('番茄酱 Tomageddon', 'Tomageddon');
+
+// ?headless=1：测试模式（隐藏战斗画面、不进菜单），仅用于自动化平衡测试
+export const HEADLESS = new URLSearchParams(location.search).has('headless');
+
+const game = new Phaser.Game({
+  type: HEADLESS ? Phaser.CANVAS : Phaser.AUTO, // 测试模式不绘制，用 Canvas 避免占用 WebGL 上下文
+  parent: 'game',
+  backgroundColor: '#1a0a0c',
+  scale: {
+    mode: Phaser.Scale.EXPAND,
+    width: 1280,
+    height: 720,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
+  render: { antialias: true, powerPreference: 'high-performance', roundPixels: false },
+  input: { activePointers: 3 },
+  // 测试模式：用 setTimeout 驱动循环，不受显示器刷新率限制
+  fps: HEADLESS
+    ? { target: 250, smoothStep: false, forceSetTimeOut: true }
+    : { target: 60, smoothStep: true, limit: save.settings.fpsLimit },
+  disableContextMenu: true,
+  scene: [
+    BootScene,
+    MenuScene,
+    CharSelectScene,
+    GameScene,
+    HudScene,
+    LevelUpScene,
+    ShopScene,
+    PauseScene,
+    ResultScene,
+    CodexScene,
+    SettingsScene,
+  ],
+});
+
+if (HEADLESS) {
+  // 测试模式不渲染：主循环只更新不绘制（loop.start 绑定的是 this.step，启动前覆盖即可）
+  game.step = game.headlessStep;
+} else {
+  applyPerfSettings(game);
+}
+
+// 切到后台时自动暂停战斗
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && game.scene.isActive('Game')) {
+    game.scene.pause('Game');
+    game.scene.pause('Hud');
+    if (!game.scene.isActive('Pause')) game.scene.start('Pause');
+  }
+});
+
+// 调试用
+Object.assign(window, {
+  game,
+  run,
+  controls,
+  GameScene,
+  __dev: { CHARACTERS, CHARACTER_MAP, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, rerollPrice },
+});

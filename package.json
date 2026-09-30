@@ -1,0 +1,41 @@
+{
+  "name": "tomageddon",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "release": "npm version patch --no-git-tag-version && vite build",
+    "release:minor": "npm version minor --no-git-tag-version && vite build",
+    "release:major": "npm version major --no-git-tag-version && vite build",
+    "preview": "vite preview --host",
+    "typecheck": "tsc --noEmit",
+    "docs": "tsx scripts/gen-docs.ts",
+    "docs:images": "node scripts/export-images.mjs",
+    "balance": "vite build && node scripts/batch.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.9",
+    "puppeteer-core": "^25.12.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.71.0",
+    "vite": "^8.3.1"
+  },
+  "private": true
+}

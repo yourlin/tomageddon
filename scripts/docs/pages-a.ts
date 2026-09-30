@@ -1,0 +1,234 @@
+// 文档页：角色、技能与状态、武器
+import { tx } from '../../src/i18n';
+import { CHARACTERS } from '../../src/data/characters';
+import { WEAPONS, TIER_PRICE_MULT } from '../../src/data/weapons';
+import { STATUSES } from '../../src/data/statuses';
+import { STAT_INFO, type StatKey } from '../../src/data/stats';
+import { SKILL_TYPE_NAME } from '../../src/data/skills';
+import { tagName } from '../../src/i18n/apply';
+import { Doc, lnk, stApply, mods, sep, img, CLS_NAME, KIND_NAME } from './common';
+
+export function charactersDoc(): void {
+  const CLS = CLS_NAME();
+  const d = new Doc('CHARACTERS.md', tx(`角色（${CHARACTERS.length} 名）`, `Characters (${CHARACTERS.length})`), [
+    tx(
+      '每名角色 = 属性修正 + 初始武器 + 被动特性 + 主动技能 + 独特外观。默认解锁 4 名，其余通过「通关章节 / 累计击杀 / 通关次数」解锁。',
+      'Each character = stat modifiers + starting weapons + passive traits + an active skill + a unique look. 4 are unlocked by default; the rest unlock by clearing chapters, total kills or number of clears.',
+    ),
+    '',
+    tx('技能详情见 [技能](SKILLS.md)，武器详情见 [武器](WEAPONS.md)。', 'See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.'),
+  ]);
+  const unlock = (c: (typeof CHARACTERS)[number]) => c.unlock?.text ?? tx('默认解锁', 'Unlocked by default');
+  d.h2(tx('角色一览', 'Overview'), 'overview');
+  d.table(
+    [tx('角色', 'Character'), tx('定位', 'Role'), tx('初始武器', 'Starting weapons'), tx('技能', 'Skill'), tx('解锁条件', 'Unlock')],
+    CHARACTERS.map((c) => [
+      `${img('char', c.id)} ${lnk.char(c, '')}`,
+      c.title,
+      c.startWeapons.map((w) => lnk.weapon(w)).join(sep()),
+      `${lnk.skill(c)} ${tx(`（${SKILL_TYPE_NAME[c.skill.type]}）`, `(${SKILL_TYPE_NAME[c.skill.type]})`)}`,
+      unlock(c),
+    ]),
+  );
+  d.h2(tx('角色详情', 'Details'), 'details');
+  for (const c of CHARACTERS) {
+    d.h3(`${c.name} · ${c.title}`, `char-${c.id}`);
+    const extra = [
+      c.classMult
+        ? Object.entries(c.classMult)
+            .map(([k, v]) => tx(`${CLS[k as keyof typeof CLS]}伤害 ×${v}`, `${CLS[k as keyof typeof CLS]} damage ×${v}`))
+            .join(tx('，', ', '))
+        : '',
+      c.maxWeapons ? tx(`武器栏 ${c.maxWeapons}`, `${c.maxWeapons} weapon slots`) : '',
+      c.dodgeCap ? tx(`闪避上限 ${c.dodgeCap}%`, `Dodge cap ${c.dodgeCap}%`) : '',
+      c.shopDiscount ? tx(`商店折扣 ${c.shopDiscount}%`, `Shop discount ${c.shopDiscount}%`) : '',
+      c.levelUpChoices ? tx(`升级选项 ${c.levelUpChoices} 个`, `${c.levelUpChoices} level-up choices`) : '',
+    ]
+      .filter(Boolean)
+      .join(tx('，', ', '));
+    d.p(img('char', c.id, 96), '', `> ${c.desc}`);
+    d.table(
+      [tx('项目', 'Field'), tx('内容', 'Value')],
+      [
+        [tx('被动特性', 'Traits'), c.traits.join(tx('；', '; '))],
+        [tx('属性修正', 'Stat modifiers'), [mods(c.mods), extra].filter(Boolean).join(tx('，', ', ')) || tx('无', 'None')],
+        [tx('初始武器', 'Starting weapons'), c.startWeapons.map((w) => lnk.weapon(w)).join(sep())],
+        [
+          tx('主动技能', 'Active skill'),
+          tx(
+            `${lnk.skill(c)}【${SKILL_TYPE_NAME[c.skill.type]}】冷却 ${c.skill.cd}s — ${c.skill.desc}`,
+            `${lnk.skill(c)} [${SKILL_TYPE_NAME[c.skill.type]}] cooldown ${c.skill.cd}s — ${c.skill.desc}`,
+          ),
+        ],
+        [tx('解锁条件', 'Unlock'), unlock(c)],
+      ],
+    );
+  }
+  d.write();
+}
+
+export function skillsDoc(): void {
+  const d = new Doc('SKILLS.md', tx('技能与状态效果', 'Skills & Status Effects'), [
+    tx(
+      '每名[角色](CHARACTERS.md)拥有一个主动技能（PC 空格 / 移动端右下按钮）。技能分 13 种形态，冷却按威力自动计算。',
+      'Every [character](CHARACTERS.md) has one active skill (Space on PC / bottom-right button on mobile). Skills come in 13 forms; cooldowns are computed automatically from their power.',
+    ),
+    '',
+    tx(
+      '怪物攻击、道具和武器施加的 Buff / Debuff 与技能共用同一套[状态效果](#statuses)。',
+      'Buffs and debuffs from monsters, items and weapons share the same [status effects](#statuses) as skills.',
+    ),
+  ]);
+  d.h2(tx('技能规则', 'Rules'), 'rules');
+  d.p(
+    tx('- 伤害 = 当前所有武器平均单次伤害 × 招式系数 × (1 + 技能伤害%)', '- Damage = average hit damage of all current weapons × skill multiplier × (1 + Skill Damage%)'),
+    tx('- 范围 = 基础半径 × (1 + 射程/600，限制 0.8~1.4) × (1 + 技能范围%)', '- Area = base radius × (1 + Range/600, clamped 0.8–1.4) × (1 + Skill Area%)'),
+    tx(
+      '- 持续时间（领域/增益/无敌/分身/施加的状态）× (1 + 技能持续%)',
+      '- Durations (fields, buffs, invulnerability, clones, applied statuses) × (1 + Skill Duration%)',
+    ),
+    tx(
+      '- 冷却 × (1 − 技能冷却缩减%，最多 −70%)；每波开局需等待 40% 冷却才能首次释放',
+      '- Cooldown × (1 − Skill Cooldown%, at most −70%); at the start of each wave you must wait 40% of the cooldown before the first cast',
+    ),
+    tx(
+      '- 冷却按威力自动计算：`冷却 = 8 + 0.9×伤害分 + 控制分 + 增益分`，限制 12~45 秒（`src/data/skills.ts`）',
+      '- Cooldown is computed from power: `cooldown = 8 + 0.9×damage score + control score + buff score`, clamped to 12–45s (`src/data/skills.ts`)',
+    ),
+    tx(
+      '- 技能强化属性「技能伤害 / 技能范围 / 技能持续 / 技能冷却缩减」来自[道具](ITEMS.md)（技能秘籍、技能法器系列）与升级选项',
+      '- Skill stats (Skill Damage / Area / Duration / Cooldown) come from [items](ITEMS.md) (the skill book and skill talisman series) and level-up choices',
+    ),
+  );
+  d.h2(tx('技能形态', 'Skill Forms'), 'forms');
+  d.table(
+    [tx('形态', 'Form'), tx('角色', 'Characters')],
+    Object.entries(SKILL_TYPE_NAME).map(([t, n]) => [
+      `${n} \`${t}\``,
+      CHARACTERS.filter((c) => c.skill.type === t)
+        .map((c) => lnk.skill(c, ''))
+        .join(sep()) || '-',
+    ]),
+  );
+  d.h2(tx('角色技能', 'Character Skills'), 'skills');
+  for (const c of CHARACTERS) {
+    const s = c.skill;
+    d.h3(tx(`${s.name}（${c.name}）`, `${s.name} (${c.name})`), `skill-${c.id}`);
+    d.p(img('char', c.id, 64), '', `> ${s.desc}`);
+    const rows: [string, string | number][] = [
+      [tx('角色', 'Character'), lnk.char(c)],
+      [tx('形态', 'Form'), SKILL_TYPE_NAME[s.type]],
+      [tx('冷却', 'Cooldown'), `${s.cd}s`],
+    ];
+    if (s.mult) rows.push([tx('伤害系数', 'Damage multiplier'), `×${s.mult}`]);
+    if (s.radius) rows.push([tx('半径', 'Radius'), s.radius]);
+    if (s.count) rows.push([tx('数量', 'Count'), s.count]);
+    if (s.distance) rows.push([tx('冲刺距离', 'Dash distance'), s.distance]);
+    if (s.duration) rows.push([tx('持续', 'Duration'), `${s.duration}s`]);
+    if (s.status?.length) rows.push([tx('对敌施加', 'Inflicts'), stApply(s.status, '')]);
+    if (s.selfStatus?.length) rows.push([tx('自身获得', 'Self gains'), stApply(s.selfStatus, '')]);
+    if (s.mods) rows.push([tx('属性增益', 'Stat boost'), mods(s.mods)]);
+    if (s.heal) rows.push([tx('回复', 'Heal'), tx(`${Math.round(s.heal * 100)}% 最大生命`, `${Math.round(s.heal * 100)}% Max HP`)]);
+    if (s.xp) rows.push([tx('经验', 'XP'), `+${s.xp}`]);
+    d.table([tx('项目', 'Field'), tx('数值', 'Value')], rows);
+  }
+  d.h2(tx(`状态效果（${Object.keys(STATUSES).length} 种）`, `Status Effects (${Object.keys(STATUSES).length})`), 'statuses');
+  d.p(
+    tx(
+      '玩家与敌人共用。Boss 对控制类减益有 75% 抗性（精英 50%）；玩家受到的眩晕/冰冻最长 0.8 秒，之后 1.5 秒免疫。',
+      'Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elites 50%); Stun/Freeze on the player lasts at most 0.8s, followed by 1.5s of immunity.',
+    ),
+  );
+  for (const kind of ['debuff', 'buff'] as const) {
+    d.h3(kind === 'debuff' ? tx('减益', 'Debuffs') : tx('增益', 'Buffs'), `statuses-${kind}`);
+    d.table(
+      [tx('状态', 'Status'), tx('最大层数', 'Max stacks'), tx('效果', 'Effect')],
+      Object.values(STATUSES)
+        .filter((s) => s.kind === kind)
+        .map((s) => [`<a id="status-${s.id}"></a>${s.name}`, s.maxStacks, s.desc]),
+    );
+  }
+  d.write();
+}
+
+export function weaponsDoc(): void {
+  const CLS = CLS_NAME(),
+    KIND = KIND_NAME();
+  const d = new Doc('WEAPONS.md', tx(`武器（${WEAPONS.length} 把）`, `Weapons (${WEAPONS.length})`), [
+    tx(
+      '武器自动索敌、自动攻击，每名角色最多携带 6 把（部分[角色](CHARACTERS.md)例外）。每把武器有 T1~T4 四个品质，两把同名同品质可在商店合成升一级。',
+      'Weapons aim and attack automatically; each character carries up to 6 (some [characters](CHARACTERS.md) differ). Every weapon has tiers T1–T4; two identical weapons of the same tier combine into the next tier in the shop.',
+    ),
+    '',
+    tx(
+      `价格：T1 基础价 × [${TIER_PRICE_MULT.join(', ')}]，再随波次上涨。伤害 = (基础 + Σ属性×系数) × (1+伤害%) × 类别倍率。`,
+      `Price: T1 base price × [${TIER_PRICE_MULT.join(', ')}], rising with waves. Damage = (base + Σ stat × scaling) × (1 + Damage%) × class multiplier.`,
+    ),
+  ]);
+  d.h2(tx('武器一览', 'Overview'), 'overview');
+  d.table(
+    [
+      tx('武器', 'Weapon'),
+      tx('类别', 'Class'),
+      tx('攻击方式', 'Attack'),
+      tx('标签', 'Tags'),
+      tx('伤害 T1~T4', 'Damage T1–T4'),
+      tx('冷却 T1~T4', 'Cooldown T1–T4'),
+      tx('射程', 'Range'),
+      tx('价格', 'Price'),
+    ],
+    WEAPONS.map((w) => [
+      `${img('weapon', w.id)} [${w.name}](#weapon-${w.id})`,
+      CLS[w.cls],
+      KIND[w.kind] ?? w.kind,
+      w.tags.map(tagName).join('/'),
+      w.damage.join(' / '),
+      w.cooldown.join(' / '),
+      w.range,
+      w.price,
+    ]),
+  );
+  for (const cls of ['melee', 'ranged', 'elemental'] as const) {
+    d.h2(tx(`${CLS[cls]}武器`, `${CLS[cls]} Weapons`), `class-${cls}`);
+    for (const w of WEAPONS.filter((x) => x.cls === cls)) {
+      d.h3(w.name, `weapon-${w.id}`);
+      d.p(img('weapon', w.id, 64), '', `> ${w.desc}`);
+      const e = w.effect ?? {};
+      const effects = [
+        e.burn ? tx(`灼烧 ${e.burn.dps}/秒 ${e.burn.dur}s`, `Burn ${e.burn.dps}/s for ${e.burn.dur}s`) : '',
+        e.slow ? tx(`减速 ${e.slow.pct}% ${e.slow.dur}s`, `Slow ${e.slow.pct}% for ${e.slow.dur}s`) : '',
+        e.stun ? tx(`眩晕 ${e.stun}s`, `Stun ${e.stun}s`) : '',
+        e.explode ? tx(`爆炸半径 ${e.explode}`, `Explosion radius ${e.explode}`) : '',
+        e.chain ? tx(`连锁 ${e.chain.join('/')} 次`, `Chains ${e.chain.join('/')} times`) : '',
+        e.lifeSteal ? tx(`额外吸血 ${e.lifeSteal}%`, `+${e.lifeSteal}% Life Steal`) : '',
+        w.pierce ? tx(`穿透 ${w.pierce.join('/')}`, `Pierce ${w.pierce.join('/')}`) : '',
+        w.bounce ? tx(`弹射 ${w.bounce.join('/')}`, `Bounce ${w.bounce.join('/')}`) : '',
+        w.count ? tx(`弹丸 ${w.count.join('/')}`, `Projectiles ${w.count.join('/')}`) : '',
+        w.knockback ? tx(`击退 ${w.knockback}`, `Knockback ${w.knockback}`) : '',
+        w.critBonus ? tx(`额外暴击 ${w.critBonus}%`, `+${w.critBonus}% Crit Chance`) : '',
+      ].filter(Boolean);
+      const users = CHARACTERS.filter((c) => c.startWeapons.includes(w.id));
+      d.table(
+        [tx('项目', 'Field'), tx('数值', 'Value')],
+        [
+          [tx('类别 / 方式', 'Class / attack'), `${CLS[w.cls]} / ${KIND[w.kind] ?? w.kind}`],
+          [tx('标签', 'Tags'), w.tags.map(tagName).join(sep())],
+          [tx('伤害 T1~T4', 'Damage T1–T4'), w.damage.join(' / ')],
+          [tx('冷却 T1~T4', 'Cooldown T1–T4'), w.cooldown.map((c) => c + 's').join(' / ')],
+          [tx('射程', 'Range'), w.range],
+          [
+            tx('属性加成', 'Scaling'),
+            Object.entries(w.scaling)
+              .map(([k, v]) => `${STAT_INFO[k as StatKey]?.name ?? k} ×${v}`)
+              .join(tx('，', ', ')) || '-',
+          ],
+          [tx('暴击倍率', 'Crit multiplier'), `×${w.critMult}`],
+          [tx('特效', 'Effects'), effects.join(tx('，', ', ')) || '-'],
+          [tx('T1 价格', 'T1 price'), w.price],
+          [tx('初始携带', 'Starting weapon of'), users.map((c) => lnk.char(c)).join(sep()) || '-'],
+        ],
+      );
+    }
+  }
+  d.write();
+}
