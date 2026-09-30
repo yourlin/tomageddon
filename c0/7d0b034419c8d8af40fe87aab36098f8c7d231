@@ -1,0 +1,36 @@
+src/scenes/GameScene.ts
+  s_b200a2907eaa8e::t_3367d5d792345c 141-143,176-177,553-562,611,616,620-625
+  s_b200a2907eaa8e::t_cba1e3ebbc8d46 626
+.github/workflows/pages.yml
+  s_b200a2907eaa8e::t_d92604f2a7c33a 22-23,25,31,43
+docs/en/GDD.md
+  s_b200a2907eaa8e::t_48928e1b572274 138
+docs/en/MONSTERS.md
+  s_b200a2907eaa8e::t_48928e1b572274 1078
+docs/GDD.md
+  s_b200a2907eaa8e::t_48928e1b572274 139
+docs/MONSTERS.md
+  s_b200a2907eaa8e::t_48928e1b572274 1078
+README.md
+  s_b200a2907eaa8e::t_48928e1b572274 39
+scripts/docs/pages-b.ts
+  s_b200a2907eaa8e::t_48928e1b572274 164-165
+README.en.md
+  s_b200a2907eaa8e::t_48928e1b572274 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c07d0b034419c8d8af40fe87aab36098f8c7d231",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
