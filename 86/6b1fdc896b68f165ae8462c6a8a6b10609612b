@@ -1,0 +1,35 @@
+src/data/balance.ts
+  s_b200a2907eaa8e::t_7ab93ad11bdbff 120
+src/scenes/ShopScene.ts
+  s_b200a2907eaa8e::t_335b1406612924 260,297-301,305-309
+  s_b200a2907eaa8e::t_5d93212a8face2 310-311
+src/objects/Enemy.ts
+  s_b200a2907eaa8e::t_eb564cc47a011c 15-26,118-120
+scripts/bot2.js
+  s_b200a2907eaa8e::t_e974c161f5e71a 4
+  s_b200a2907eaa8e::t_5f8a7350752e91 223
+src/systems/Terrain.ts
+  s_b200a2907eaa8e::t_7ab93ad11bdbff 198
+src/scenes/GameScene.ts
+  s_b200a2907eaa8e::t_7ab93ad11bdbff 1145
+docs/GDD.md
+  s_b200a2907eaa8e::t_efb6f82185ccac 145,186
+docs/en/GDD.md
+  s_b200a2907eaa8e::t_90e23e9f87c951 185
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "866b1fdc896b68f165ae8462c6a8a6b10609612b",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
