@@ -315,6 +315,15 @@ export class ShopScene extends Phaser.Scene {
     const PW = 340,
       PH = 312;
     const c = this.add.container(Math.min(x, this.scale.width * 0.7 - PW - 10), Math.max(10, y - PH - 10));
+    // 点击弹窗以外的区域关闭弹窗：全屏透明底层（最先加入，位于按钮之下）；弹窗面板本身吸收点击
+    const close = () => {
+      c.destroy();
+      if (this.popup === c) this.popup = null;
+    };
+    const backdrop = this.add.rectangle(-c.x, -c.y, this.scale.width, this.scale.height, 0x000000, 0.001).setOrigin(0, 0).setInteractive();
+    backdrop.on('pointerdown', close);
+    c.add(backdrop);
+    c.add(this.add.rectangle(0, 0, PW, PH, 0x000000, 0.001).setOrigin(0, 0).setInteractive());
     const g = this.add.graphics();
     g.fillStyle(COLORS.panelLight, 0.98)
       .fillRoundedRect(0, 0, PW, PH, 12)

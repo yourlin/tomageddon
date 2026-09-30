@@ -80,7 +80,7 @@ Each character = stat modifiers + starting weapons + passive traits + a **signat
 | Economy / growth | Captain Pineapple, Lychee Princess, Strawberry Idol, Sprout Apprentice |
 | Explosives / frenzy | Dr. Avocado, Wasabi Bomber, Beet Berserker, Grape Magician |
 
-4 are unlocked by default; the rest are bought with achievement points (30–160), and some pricier characters also require a specific achievement (e.g. clearing a chapter or defeating a boss). See [Achievements](ACHIEVEMENTS.md).
+4 are unlocked by default; the rest are bought with achievement points (70–200, in starter / mid / advanced tiers), and some pricier characters also require a specific achievement (e.g. clearing a chapter or defeating a boss). See [Achievements](ACHIEVEMENTS.md).
 
 **Ultimate forms (13)**
 

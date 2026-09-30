@@ -32,35 +32,35 @@
 | <img src="images/char/carrot.png" width="32" height="32" alt=""> [胡萝卜骑士](CHARACTERS.md#char-carrot) | 默认解锁 |
 | <img src="images/char/chili.png" width="32" height="32" alt=""> [辣椒姐](CHARACTERS.md#char-chili) | 默认解锁 |
 | <img src="images/char/corn.png" width="32" height="32" alt=""> [玉米枪手](CHARACTERS.md#char-corn) | 默认解锁 |
-| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](CHARACTERS.md#char-mushroom) | 30 成就点 |
-| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](CHARACTERS.md#char-watermelon) | 40 成就点 |
-| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](CHARACTERS.md#char-lemon) | 40 成就点 |
-| <img src="images/char/eggplant.png" width="32" height="32" alt=""> [茄子法师](CHARACTERS.md#char-eggplant) | 40 成就点 |
-| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](CHARACTERS.md#char-pineapple) | 40 成就点 |
-| <img src="images/char/coconut.png" width="32" height="32" alt=""> [椰子拳师](CHARACTERS.md#char-coconut) | 40 成就点 |
-| <img src="images/char/cherry.png" width="32" height="32" alt=""> [樱桃双枪](CHARACTERS.md#char-cherry) | 40 成就点 |
-| <img src="images/char/sweetpotato.png" width="32" height="32" alt=""> [红薯厨神](CHARACTERS.md#char-sweetpotato) | 40 成就点 |
-| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](CHARACTERS.md#char-grape) | 60 成就点 |
-| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](CHARACTERS.md#char-pea) | 60 成就点 |
-| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](CHARACTERS.md#char-kiwi) | 60 成就点 |
-| <img src="images/char/garlic.png" width="32" height="32" alt=""> [大蒜伯爵](CHARACTERS.md#char-garlic) | 80 成就点 |
-| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](CHARACTERS.md#char-blueberry) | 80 成就点 |
-| <img src="images/char/strawberry.png" width="32" height="32" alt=""> [草莓偶像](CHARACTERS.md#char-strawberry) | 80 成就点 |
-| <img src="images/char/peach.png" width="32" height="32" alt=""> [蜜桃天使](CHARACTERS.md#char-peach) | 80 成就点 |
-| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](CHARACTERS.md#char-beet) | 80 成就点 |
-| <img src="images/char/asparagus.png" width="32" height="32" alt=""> [芦笋弓手](CHARACTERS.md#char-asparagus) | 80 成就点 |
-| <img src="images/char/sprout.png" width="32" height="32" alt=""> [豆芽学徒](CHARACTERS.md#char-sprout) | 80 成就点 |
-| <img src="images/char/pumpkin.png" width="32" height="32" alt=""> [南瓜幽灵](CHARACTERS.md#char-pumpkin) | 100 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](CHARACTERS.md#char-ginger) | 100 成就点，需先达成 [番茄酱风暴（银）](#ach-kills) |
-| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](CHARACTERS.md#char-dragonfruit) | 100 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](CHARACTERS.md#char-lychee) | 100 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/bittermelon.png" width="32" height="32" alt=""> [苦瓜冰法](CHARACTERS.md#char-bittermelon) | 100 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](CHARACTERS.md#char-avocado) | 130 成就点，需先达成 [破冰者](#ach-clear_3) |
-| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](CHARACTERS.md#char-durian) | 130 成就点，需先达成 [破冰者](#ach-clear_3) |
-| <img src="images/char/bellpepper.png" width="32" height="32" alt=""> [青椒机甲](CHARACTERS.md#char-bellpepper) | 130 成就点，需先达成 [破冰者](#ach-clear_3) |
-| <img src="images/char/wintermelon.png" width="32" height="32" alt=""> [冬瓜和尚](CHARACTERS.md#char-wintermelon) | 130 成就点，需先达成 [Boss 终结者（铜）](#ach-bosses) |
-| <img src="images/char/onion.png" width="32" height="32" alt=""> [洋葱大叔](CHARACTERS.md#char-onion) | 160 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
-| <img src="images/char/wasabi.png" width="32" height="32" alt=""> [山葵爆破手](CHARACTERS.md#char-wasabi) | 160 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
+| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](CHARACTERS.md#char-mushroom) | 70 成就点 |
+| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](CHARACTERS.md#char-watermelon) | 80 成就点 |
+| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](CHARACTERS.md#char-lemon) | 80 成就点 |
+| <img src="images/char/eggplant.png" width="32" height="32" alt=""> [茄子法师](CHARACTERS.md#char-eggplant) | 80 成就点 |
+| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](CHARACTERS.md#char-pineapple) | 80 成就点 |
+| <img src="images/char/coconut.png" width="32" height="32" alt=""> [椰子拳师](CHARACTERS.md#char-coconut) | 80 成就点 |
+| <img src="images/char/cherry.png" width="32" height="32" alt=""> [樱桃双枪](CHARACTERS.md#char-cherry) | 80 成就点 |
+| <img src="images/char/sweetpotato.png" width="32" height="32" alt=""> [红薯厨神](CHARACTERS.md#char-sweetpotato) | 80 成就点 |
+| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](CHARACTERS.md#char-grape) | 140 成就点 |
+| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](CHARACTERS.md#char-pea) | 140 成就点 |
+| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](CHARACTERS.md#char-kiwi) | 140 成就点 |
+| <img src="images/char/garlic.png" width="32" height="32" alt=""> [大蒜伯爵](CHARACTERS.md#char-garlic) | 170 成就点 |
+| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](CHARACTERS.md#char-blueberry) | 170 成就点 |
+| <img src="images/char/strawberry.png" width="32" height="32" alt=""> [草莓偶像](CHARACTERS.md#char-strawberry) | 170 成就点 |
+| <img src="images/char/peach.png" width="32" height="32" alt=""> [蜜桃天使](CHARACTERS.md#char-peach) | 170 成就点 |
+| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](CHARACTERS.md#char-beet) | 170 成就点 |
+| <img src="images/char/asparagus.png" width="32" height="32" alt=""> [芦笋弓手](CHARACTERS.md#char-asparagus) | 170 成就点 |
+| <img src="images/char/sprout.png" width="32" height="32" alt=""> [豆芽学徒](CHARACTERS.md#char-sprout) | 170 成就点 |
+| <img src="images/char/pumpkin.png" width="32" height="32" alt=""> [南瓜幽灵](CHARACTERS.md#char-pumpkin) | 175 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](CHARACTERS.md#char-ginger) | 175 成就点，需先达成 [番茄酱风暴（银）](#ach-kills) |
+| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](CHARACTERS.md#char-dragonfruit) | 175 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](CHARACTERS.md#char-lychee) | 175 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/bittermelon.png" width="32" height="32" alt=""> [苦瓜冰法](CHARACTERS.md#char-bittermelon) | 175 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](CHARACTERS.md#char-avocado) | 190 成就点，需先达成 [破冰者](#ach-clear_3) |
+| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](CHARACTERS.md#char-durian) | 190 成就点，需先达成 [破冰者](#ach-clear_3) |
+| <img src="images/char/bellpepper.png" width="32" height="32" alt=""> [青椒机甲](CHARACTERS.md#char-bellpepper) | 190 成就点，需先达成 [破冰者](#ach-clear_3) |
+| <img src="images/char/wintermelon.png" width="32" height="32" alt=""> [冬瓜和尚](CHARACTERS.md#char-wintermelon) | 190 成就点，需先达成 [Boss 终结者（铜）](#ach-bosses) |
+| <img src="images/char/onion.png" width="32" height="32" alt=""> [洋葱大叔](CHARACTERS.md#char-onion) | 200 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
+| <img src="images/char/wasabi.png" width="32" height="32" alt=""> [山葵爆破手](CHARACTERS.md#char-wasabi) | 200 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
 
 <a id="cat-combat"></a>
 

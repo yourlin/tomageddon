@@ -32,35 +32,35 @@ Points buy [characters](CHARACTERS.md) on the character select screen; some char
 | <img src="../images/char/carrot.png" width="32" height="32" alt=""> [Carrot Knight](CHARACTERS.md#char-carrot) | Unlocked by default |
 | <img src="../images/char/chili.png" width="32" height="32" alt=""> [Chili Sis](CHARACTERS.md#char-chili) | Unlocked by default |
 | <img src="../images/char/corn.png" width="32" height="32" alt=""> [Corn Gunner](CHARACTERS.md#char-corn) | Unlocked by default |
-| <img src="../images/char/mushroom.png" width="32" height="32" alt=""> [Mushroom Shaman](CHARACTERS.md#char-mushroom) | 30 pts |
-| <img src="../images/char/watermelon.png" width="32" height="32" alt=""> [Chubby Melon](CHARACTERS.md#char-watermelon) | 40 pts |
-| <img src="../images/char/lemon.png" width="32" height="32" alt=""> [Lemon Assassin](CHARACTERS.md#char-lemon) | 40 pts |
-| <img src="../images/char/eggplant.png" width="32" height="32" alt=""> [Eggplant Mage](CHARACTERS.md#char-eggplant) | 40 pts |
-| <img src="../images/char/pineapple.png" width="32" height="32" alt=""> [Captain Pineapple](CHARACTERS.md#char-pineapple) | 40 pts |
-| <img src="../images/char/coconut.png" width="32" height="32" alt=""> [Coconut Boxer](CHARACTERS.md#char-coconut) | 40 pts |
-| <img src="../images/char/cherry.png" width="32" height="32" alt=""> [Cherry Gunslinger](CHARACTERS.md#char-cherry) | 40 pts |
-| <img src="../images/char/sweetpotato.png" width="32" height="32" alt=""> [Chef Yam](CHARACTERS.md#char-sweetpotato) | 40 pts |
-| <img src="../images/char/grape.png" width="32" height="32" alt=""> [Grape Magician](CHARACTERS.md#char-grape) | 60 pts |
-| <img src="../images/char/pea.png" width="32" height="32" alt=""> [Pea Soldier](CHARACTERS.md#char-pea) | 60 pts |
-| <img src="../images/char/kiwi.png" width="32" height="32" alt=""> [Kiwi Detective](CHARACTERS.md#char-kiwi) | 60 pts |
-| <img src="../images/char/garlic.png" width="32" height="32" alt=""> [Count Garlic](CHARACTERS.md#char-garlic) | 80 pts |
-| <img src="../images/char/blueberry.png" width="32" height="32" alt=""> [Blueberry Twins](CHARACTERS.md#char-blueberry) | 80 pts |
-| <img src="../images/char/strawberry.png" width="32" height="32" alt=""> [Strawberry Idol](CHARACTERS.md#char-strawberry) | 80 pts |
-| <img src="../images/char/peach.png" width="32" height="32" alt=""> [Peach Angel](CHARACTERS.md#char-peach) | 80 pts |
-| <img src="../images/char/beet.png" width="32" height="32" alt=""> [Beet Berserker](CHARACTERS.md#char-beet) | 80 pts |
-| <img src="../images/char/asparagus.png" width="32" height="32" alt=""> [Asparagus Archer](CHARACTERS.md#char-asparagus) | 80 pts |
-| <img src="../images/char/sprout.png" width="32" height="32" alt=""> [Sprout Apprentice](CHARACTERS.md#char-sprout) | 80 pts |
-| <img src="../images/char/pumpkin.png" width="32" height="32" alt=""> [Pumpkin Ghost](CHARACTERS.md#char-pumpkin) | 100 pts, requires [Garden Keeper](#ach-clear_2) |
-| <img src="../images/char/ginger.png" width="32" height="32" alt=""> [Ginger Ninja](CHARACTERS.md#char-ginger) | 100 pts, requires [Ketchup Storm（Silver）](#ach-kills) |
-| <img src="../images/char/dragonfruit.png" width="32" height="32" alt=""> [Dragonfruit Rider](CHARACTERS.md#char-dragonfruit) | 100 pts, requires [Garden Keeper](#ach-clear_2) |
-| <img src="../images/char/lychee.png" width="32" height="32" alt=""> [Lychee Princess](CHARACTERS.md#char-lychee) | 100 pts, requires [Garden Keeper](#ach-clear_2) |
-| <img src="../images/char/bittermelon.png" width="32" height="32" alt=""> [Bitter Melon Mage](CHARACTERS.md#char-bittermelon) | 100 pts, requires [Garden Keeper](#ach-clear_2) |
-| <img src="../images/char/avocado.png" width="32" height="32" alt=""> [Dr. Avocado](CHARACTERS.md#char-avocado) | 130 pts, requires [Icebreaker](#ach-clear_3) |
-| <img src="../images/char/durian.png" width="32" height="32" alt=""> [Durian Overlord](CHARACTERS.md#char-durian) | 130 pts, requires [Icebreaker](#ach-clear_3) |
-| <img src="../images/char/bellpepper.png" width="32" height="32" alt=""> [Pepper Mech](CHARACTERS.md#char-bellpepper) | 130 pts, requires [Icebreaker](#ach-clear_3) |
-| <img src="../images/char/wintermelon.png" width="32" height="32" alt=""> [Monk Gourd](CHARACTERS.md#char-wintermelon) | 130 pts, requires [Boss Terminator（Bronze）](#ach-bosses) |
-| <img src="../images/char/onion.png" width="32" height="32" alt=""> [Uncle Onion](CHARACTERS.md#char-onion) | 160 pts, requires [Junkyard King](#ach-clear_4) |
-| <img src="../images/char/wasabi.png" width="32" height="32" alt=""> [Wasabi Bomber](CHARACTERS.md#char-wasabi) | 160 pts, requires [Junkyard King](#ach-clear_4) |
+| <img src="../images/char/mushroom.png" width="32" height="32" alt=""> [Mushroom Shaman](CHARACTERS.md#char-mushroom) | 70 pts |
+| <img src="../images/char/watermelon.png" width="32" height="32" alt=""> [Chubby Melon](CHARACTERS.md#char-watermelon) | 80 pts |
+| <img src="../images/char/lemon.png" width="32" height="32" alt=""> [Lemon Assassin](CHARACTERS.md#char-lemon) | 80 pts |
+| <img src="../images/char/eggplant.png" width="32" height="32" alt=""> [Eggplant Mage](CHARACTERS.md#char-eggplant) | 80 pts |
+| <img src="../images/char/pineapple.png" width="32" height="32" alt=""> [Captain Pineapple](CHARACTERS.md#char-pineapple) | 80 pts |
+| <img src="../images/char/coconut.png" width="32" height="32" alt=""> [Coconut Boxer](CHARACTERS.md#char-coconut) | 80 pts |
+| <img src="../images/char/cherry.png" width="32" height="32" alt=""> [Cherry Gunslinger](CHARACTERS.md#char-cherry) | 80 pts |
+| <img src="../images/char/sweetpotato.png" width="32" height="32" alt=""> [Chef Yam](CHARACTERS.md#char-sweetpotato) | 80 pts |
+| <img src="../images/char/grape.png" width="32" height="32" alt=""> [Grape Magician](CHARACTERS.md#char-grape) | 140 pts |
+| <img src="../images/char/pea.png" width="32" height="32" alt=""> [Pea Soldier](CHARACTERS.md#char-pea) | 140 pts |
+| <img src="../images/char/kiwi.png" width="32" height="32" alt=""> [Kiwi Detective](CHARACTERS.md#char-kiwi) | 140 pts |
+| <img src="../images/char/garlic.png" width="32" height="32" alt=""> [Count Garlic](CHARACTERS.md#char-garlic) | 170 pts |
+| <img src="../images/char/blueberry.png" width="32" height="32" alt=""> [Blueberry Twins](CHARACTERS.md#char-blueberry) | 170 pts |
+| <img src="../images/char/strawberry.png" width="32" height="32" alt=""> [Strawberry Idol](CHARACTERS.md#char-strawberry) | 170 pts |
+| <img src="../images/char/peach.png" width="32" height="32" alt=""> [Peach Angel](CHARACTERS.md#char-peach) | 170 pts |
+| <img src="../images/char/beet.png" width="32" height="32" alt=""> [Beet Berserker](CHARACTERS.md#char-beet) | 170 pts |
+| <img src="../images/char/asparagus.png" width="32" height="32" alt=""> [Asparagus Archer](CHARACTERS.md#char-asparagus) | 170 pts |
+| <img src="../images/char/sprout.png" width="32" height="32" alt=""> [Sprout Apprentice](CHARACTERS.md#char-sprout) | 170 pts |
+| <img src="../images/char/pumpkin.png" width="32" height="32" alt=""> [Pumpkin Ghost](CHARACTERS.md#char-pumpkin) | 175 pts, requires [Garden Keeper](#ach-clear_2) |
+| <img src="../images/char/ginger.png" width="32" height="32" alt=""> [Ginger Ninja](CHARACTERS.md#char-ginger) | 175 pts, requires [Ketchup Storm（Silver）](#ach-kills) |
+| <img src="../images/char/dragonfruit.png" width="32" height="32" alt=""> [Dragonfruit Rider](CHARACTERS.md#char-dragonfruit) | 175 pts, requires [Garden Keeper](#ach-clear_2) |
+| <img src="../images/char/lychee.png" width="32" height="32" alt=""> [Lychee Princess](CHARACTERS.md#char-lychee) | 175 pts, requires [Garden Keeper](#ach-clear_2) |
+| <img src="../images/char/bittermelon.png" width="32" height="32" alt=""> [Bitter Melon Mage](CHARACTERS.md#char-bittermelon) | 175 pts, requires [Garden Keeper](#ach-clear_2) |
+| <img src="../images/char/avocado.png" width="32" height="32" alt=""> [Dr. Avocado](CHARACTERS.md#char-avocado) | 190 pts, requires [Icebreaker](#ach-clear_3) |
+| <img src="../images/char/durian.png" width="32" height="32" alt=""> [Durian Overlord](CHARACTERS.md#char-durian) | 190 pts, requires [Icebreaker](#ach-clear_3) |
+| <img src="../images/char/bellpepper.png" width="32" height="32" alt=""> [Pepper Mech](CHARACTERS.md#char-bellpepper) | 190 pts, requires [Icebreaker](#ach-clear_3) |
+| <img src="../images/char/wintermelon.png" width="32" height="32" alt=""> [Monk Gourd](CHARACTERS.md#char-wintermelon) | 190 pts, requires [Boss Terminator（Bronze）](#ach-bosses) |
+| <img src="../images/char/onion.png" width="32" height="32" alt=""> [Uncle Onion](CHARACTERS.md#char-onion) | 200 pts, requires [Junkyard King](#ach-clear_4) |
+| <img src="../images/char/wasabi.png" width="32" height="32" alt=""> [Wasabi Bomber](CHARACTERS.md#char-wasabi) | 200 pts, requires [Junkyard King](#ach-clear_4) |
 
 <a id="cat-combat"></a>
 

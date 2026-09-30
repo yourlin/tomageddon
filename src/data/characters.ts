@@ -225,7 +225,7 @@ export const CHARACTERS: CharacterDef[] = [
       heal: 0.1,
       color: 0x2ec4b6,
     },
-    cost: 40,
+    cost: 80,
   },
   {
     id: 'lemon',
@@ -265,7 +265,7 @@ export const CHARACTERS: CharacterDef[] = [
       mods: { crit: 50, speed: 20 },
       color: 0xf7ec59,
     },
-    cost: 40,
+    cost: 80,
   },
   {
     id: 'eggplant',
@@ -303,7 +303,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 0.4)],
       color: 0xc77dff,
     },
-    cost: 40,
+    cost: 80,
   },
   {
     id: 'garlic',
@@ -341,7 +341,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 3)],
       color: 0x9d0208,
     },
-    cost: 80,
+    cost: 170,
   },
   {
     id: 'blueberry',
@@ -371,7 +371,7 @@ export const CHARACTERS: CharacterDef[] = [
     talent: { name: '双生默契', desc: '每持有一对同名武器，伤害 +5%' },
     traits: ['武器栏 8 格', '-10% 伤害'],
     skill: { name: '双子分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x3a86ff },
-    cost: 80,
+    cost: 170,
   },
   {
     id: 'pineapple',
@@ -409,7 +409,7 @@ export const CHARACTERS: CharacterDef[] = [
       radius: 150,
       color: 0xffd700,
     },
-    cost: 40,
+    cost: 80,
   },
   {
     id: 'pumpkin',
@@ -438,7 +438,7 @@ export const CHARACTERS: CharacterDef[] = [
     talent: { name: '幽灵突袭', desc: '闪避成功后 1.5 秒内伤害 +40%' },
     traits: ['+25% 闪避', '闪避上限 75%', '-4 最大生命'],
     skill: { name: '灵体化', desc: '无敌 2.5 秒并大幅加速。', type: 'ghost', cd: 0, duration: 2.5, mods: { speed: 60 }, color: 0xffb4a2 },
-    cost: 100,
+    cost: 175,
     requires: { ach: 'clear_2', tier: 1 },
   },
   {
@@ -481,7 +481,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 6, 3), S('rage', 6, 5)],
       color: 0xff70a6,
     },
-    cost: 80,
+    cost: 170,
   },
   {
     id: 'ginger',
@@ -519,7 +519,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 2)],
       color: 0xe9c46a,
     },
-    cost: 100,
+    cost: 175,
     requires: { ach: 'kills', tier: 2 },
   },
   {
@@ -547,7 +547,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+2 元素伤害', '+5% 伤害', '击杀 15% 概率爆炸'],
     special: { explodeOnKill: { chance: 15, dmg: 20 } },
     skill: { name: '核心过载', desc: '连环爆炸 5 次。', type: 'strikes', cd: 0, mult: 1.6, count: 5, radius: 90, color: 0xa7c957 },
-    cost: 130,
+    cost: 190,
     requires: { ach: 'clear_3', tier: 1 },
   },
   {
@@ -590,7 +590,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('blind', 1)],
       color: 0xe0aaff,
     },
-    cost: 160,
+    cost: 200,
     requires: { ach: 'clear_4', tier: 1 },
   },
   // ---------------- 新角色 ----------------
@@ -629,7 +629,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 6, 5), S('weaken', 5, 2)],
       color: 0x70e000,
     },
-    cost: 30,
+    cost: 70,
   },
   {
     id: 'coconut',
@@ -666,7 +666,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 1.2), S('armorBreak', 6, 3)],
       color: 0xbc6c25,
     },
-    cost: 40,
+    cost: 80,
   },
   {
     id: 'grape',
@@ -698,7 +698,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+10 幸运', '+3 最大生命', '受到攻击 20% 概率使敌人混乱'],
     special: { onHurtEnemy: [S('confuse', 3, 1, 20)] },
     skill: { name: '葡萄分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0xb5179e },
-    cost: 60,
+    cost: 140,
   },
   {
     id: 'cherry',
@@ -729,7 +729,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+20% 攻速', '-8% 伤害', '射击时 10% 概率获得急速'],
     special: { onHitSelf: [S('haste', 2, 1, 10)] },
     skill: { name: '双枪连射', desc: '对最近的敌人连续射出 12 发子弹。', type: 'barrage', cd: 0, mult: 0.9, count: 12, color: 0xff4d6d },
-    cost: 40,
+    cost: 80,
   },
   {
     id: 'pea',
@@ -755,7 +755,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+2 远程伤害', '初始 2 把豌豆枪', '每把同名武器 +3% 伤害'],
     special: { sameWeaponBonus: 3 },
     skill: { name: '豌豆炮台', desc: '对最近的敌人高速连发 16 颗豌豆。', type: 'barrage', cd: 0, mult: 0.6, count: 16, color: 0x70e000 },
-    cost: 60,
+    cost: 140,
   },
   {
     id: 'peach',
@@ -794,7 +794,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('invuln', 1.5)],
       color: 0xffd6e0,
     },
-    cost: 80,
+    cost: 170,
   },
   {
     id: 'dragonfruit',
@@ -832,7 +832,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 4)],
       color: 0xff5400,
     },
-    cost: 100,
+    cost: 175,
     requires: { ach: 'clear_2', tier: 1 },
   },
   {
@@ -871,7 +871,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('enrage', 6), S('vampiric', 6, 3)],
       color: 0xd00000,
     },
-    cost: 80,
+    cost: 170,
   },
   {
     id: 'asparagus',
@@ -910,7 +910,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 4)],
       color: 0xb5e48c,
     },
-    cost: 80,
+    cost: 170,
   },
   {
     id: 'sweetpotato',
@@ -951,7 +951,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('regen', 6, 5)],
       color: 0xffb703,
     },
-    cost: 40,
+    cost: 80,
   },
   {
     id: 'kiwi',
@@ -989,7 +989,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 6), S('vulnerable', 6, 2)],
       color: 0xffd166,
     },
-    cost: 60,
+    cost: 140,
   },
   {
     id: 'lychee',
@@ -1027,7 +1027,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('lucky', 6, 5), S('focus', 6, 3)],
       color: 0xffc2d1,
     },
-    cost: 100,
+    cost: 175,
     requires: { ach: 'clear_2', tier: 1 },
   },
   {
@@ -1065,7 +1065,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 5, 4), S('weaken', 5, 3), S('confuse', 3)],
       color: 0xc9a227,
     },
-    cost: 130,
+    cost: 190,
     requires: { ach: 'clear_3', tier: 1 },
   },
   {
@@ -1094,7 +1094,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+5 护甲', '+10 生命', '-10% 闪避', '每 12 秒获得 20 点护盾'],
     special: { periodicSelf: { every: 12, status: [{ id: 'shield', dur: 12, value: 20 }] } },
     skill: { name: '无人机支援', desc: '部署无人机 8 秒。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x4cc9f0 },
-    cost: 130,
+    cost: 190,
     requires: { ach: 'clear_3', tier: 1 },
   },
   {
@@ -1131,7 +1131,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('fortify', 8, 5)],
       color: 0xffd166,
     },
-    cost: 130,
+    cost: 190,
     requires: { ach: 'bosses', tier: 1 },
   },
   {
@@ -1169,7 +1169,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('freeze', 0.8, 1, 25)],
       color: 0xa9def9,
     },
-    cost: 100,
+    cost: 175,
     requires: { ach: 'clear_2', tier: 1 },
   },
   {
@@ -1206,7 +1206,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 5, 2)],
       color: 0x80b918,
     },
-    cost: 80,
+    cost: 170,
   },
   {
     id: 'wasabi',
@@ -1244,7 +1244,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 3)],
       color: 0xb5e48c,
     },
-    cost: 160,
+    cost: 200,
     requires: { ach: 'clear_4', tier: 1 },
   },
 ];
