@@ -13,6 +13,7 @@ Price: T1 base price × [1, 2, 4, 8], rising with waves. Damage = (base + Σ sta
 ## Contents
 
 - [Overview](#overview)
+- [Affixes & Forging](#affixes)
 - [Melee Weapons](#class-melee)
   - [Tomato Fork](#weapon-fork)
   - [Rolling Pin](#weapon-rolling_pin)
@@ -59,6 +60,30 @@ Price: T1 base price × [1, 2, 4, 8], rising with waves. Damage = (base + Σ sta
 | <img src="../images/weapon/broccoli_staff.png" width="32" height="32" alt=""> [Broccoli Staff](#weapon-broccoli_staff) | Elemental | Chain Lightning | Produce/Elemental | 10 / 17 / 26 / 40 | 1.1 / 1 / 0.92 / 0.84 | 420 | 30 |
 | <img src="../images/weapon/sauce_gatling.png" width="32" height="32" alt=""> [Sauce Gatling](#weapon-sauce_gatling) | Ranged | Bullet | Firearm/Sauce | 4 / 6 / 8 / 11 | 0.16 / 0.14 / 0.12 / 0.1 | 420 | 40 |
 | <img src="../images/weapon/cleaver.png" width="32" height="32" alt=""> [Meat Cleaver](#weapon-cleaver) | Melee | Sweep | Kitchenware/Sharp | 13 / 22 / 35 / 54 | 1.1 / 1.05 / 1 / 0.9 | 125 | 26 |
+
+<a id="affixes"></a>
+
+## Affixes & Forging
+
+- T3 weapons roll 1 random affix and T4 weapons roll 2; affixes have tiers I–IV (I common, IV rare; higher Luck favours higher tiers)
+- Reroll affixes in the shop: all at once costs `8 + 2×wave`, a single affix costs 2.5× that
+- T4 weapons can be forged for +8% damage per level, up to +10; each level costs 1.45× more, and a failed forge only costs the fee
+
+| Affix | I | II | III | IV |
+| --- | --- | --- | --- | --- |
+| Damage +N% | 8 | 14 | 22 | 32 |
+| Attack Speed +N% | 6 | 10 | 15 | 22 |
+| Crit Chance +N% | 4 | 7 | 11 | 16 |
+| Crit Damage +N% | 15 | 25 | 40 | 60 |
+| Range +N | 20 | 35 | 55 | 80 |
+| Life Steal +N% | 1 | 2 | 3 | 5 |
+| N% chance to Burn | 8 | 14 | 22 | 32 |
+| N% chance to Poison | 8 | 14 | 22 | 32 |
+| N% chance to Slow | 10 | 18 | 28 | 40 |
+
+| Forge level | +1 | +2 | +3 | +4 | +5 | +6 | +7 | +8 | +9 | +10 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Success | 95% | 90% | 82% | 74% | 65% | 56% | 48% | 40% | 34% | 30% |
 
 <a id="class-melee"></a>
 

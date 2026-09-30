@@ -4,10 +4,12 @@ import type { GameScene, HitInfo } from '../scenes/GameScene';
 import type { Enemy } from '../objects/Enemy';
 import { WEAPON_MAP, type WeaponDef } from '../data/weapons';
 import type { OwnedWeapon } from './RunState';
+import type { StatusApply } from '../data/statuses';
 import { run } from './RunState';
 import type { Stats } from '../data/stats';
 import { attackSpeedMultiplier } from '../data/balance';
 import { audio } from './Audio';
+import { affixTotals } from './WeaponMods';
 
 const PROJ_KEY: Record<string, string> = {
   slingshot: 'proj_tomato',
@@ -21,23 +23,25 @@ const PROJ_KEY: Record<string, string> = {
   sauce_gatling: 'proj_ketchup',
 };
 
-export function weaponDamage(def: WeaponDef, tier: number, s: Stats): number {
+/** 武器伤害；传入持有的武器时计入词条与打造加成 */
+export function weaponDamage(def: WeaponDef, tier: number, s: Stats, ow?: OwnedWeapon): number {
   let d = def.damage[tier];
   const sc = def.scaling;
   d += (sc.melee ?? 0) * s.melee + (sc.ranged ?? 0) * s.ranged + (sc.elemental ?? 0) * s.elemental;
   d += (sc.maxHp ?? 0) * s.maxHp + (sc.armor ?? 0) * s.armor + (sc.speed ?? 0) * s.speed;
   const classMult = run.char.classMult?.[def.cls] ?? 1;
   d *= (1 + s.damage / 100) * classMult;
+  d *= 1 + affixTotals(ow).dmg / 100;
   return Math.max(1, d);
 }
 
-export function weaponRange(def: WeaponDef, s: Stats): number {
+export function weaponRange(def: WeaponDef, s: Stats, ow?: OwnedWeapon): number {
   const bonus = def.cls === 'melee' ? s.range * 0.5 : s.range;
-  return Math.max(def.cls === 'melee' ? 70 : 120, def.range + bonus);
+  return Math.max(def.cls === 'melee' ? 70 : 120, def.range + bonus + affixTotals(ow).range);
 }
 
-export function weaponCooldown(def: WeaponDef, tier: number, s: Stats): number {
-  return Math.max(0.06, def.cooldown[tier] * attackSpeedMultiplier(s.attackSpeed));
+export function weaponCooldown(def: WeaponDef, tier: number, s: Stats, ow?: OwnedWeapon): number {
+  return Math.max(0.06, def.cooldown[tier] * attackSpeedMultiplier(s.attackSpeed + affixTotals(ow).speed));
 }
 
 interface Mine {
@@ -99,7 +103,7 @@ export class WeaponSystem {
     this.list.forEach((w, i) => {
       const def = w.def;
       const tier = w.owned.tier;
-      const range = weaponRange(def, s) * g.rangeMult;
+      const range = weaponRange(def, s, w.owned) * g.rangeMult;
       // 武器环绕排布
       const slotA = (i / Math.max(1, n)) * Math.PI * 2 - Math.PI / 2;
       const hx = p.x + Math.cos(slotA) * 34;
@@ -153,19 +157,19 @@ export class WeaponSystem {
       w.cd -= dt;
       if (w.cd > 0) return;
       if (def.kind === 'aura') {
-        w.cd = weaponCooldown(def, tier, s);
+        w.cd = weaponCooldown(def, tier, s, w.owned);
         this.fireAura(w, range);
         return;
       }
       if (def.kind === 'mine') {
         if (g.enemies.some((e) => e.alive)) {
-          w.cd = weaponCooldown(def, tier, s);
+          w.cd = weaponCooldown(def, tier, s, w.owned);
           this.placeMine(w, range);
         }
         return;
       }
       if (!t) return;
-      w.cd = weaponCooldown(def, tier, s);
+      w.cd = weaponCooldown(def, tier, s, w.owned);
       w.animAngle = Math.atan2(t.y - hy, t.x - hx);
       w.anim = w.animDur = def.cls === 'melee' ? Math.min(0.26, w.cd * 0.8) : 0.1;
       this.fire(w, hx, hy, t, range);
@@ -174,16 +178,22 @@ export class WeaponSystem {
 
   private info(w: WRun, s: Stats): HitInfo {
     const def = w.def;
-    let dmg = weaponDamage(def, w.owned.tier, s);
+    let dmg = weaponDamage(def, w.owned.tier, s, w.owned);
+    const ax = affixTotals(w.owned);
     const same = run.specials.sameWeaponBonus;
     if (same) dmg *= 1 + (same * run.weapons.filter((x) => x.id === def.id).length) / 100;
-    const crit = Math.random() * 100 < s.crit + (def.critBonus ?? 0);
-    if (crit) dmg *= def.critMult;
+    const crit = Math.random() * 100 < s.crit + (def.critBonus ?? 0) + ax.crit;
+    if (crit) dmg *= def.critMult * (1 + ax.critDmg / 100);
+    const status: StatusApply[] = [];
+    if (ax.burn) status.push({ id: 'burn', dur: 3, stacks: 1, chance: ax.burn });
+    if (ax.poison) status.push({ id: 'poison', dur: 4, stacks: 1, chance: ax.poison });
+    if (ax.slow) status.push({ id: 'slow', dur: 2, stacks: 1, chance: ax.slow });
     return {
       crit,
       knockback: def.knockback ?? 0,
       effect: def.effect,
-      lifeSteal: def.effect?.lifeSteal ?? 0,
+      lifeSteal: (def.effect?.lifeSteal ?? 0) + ax.lifeSteal,
+      status: status.length ? status : undefined,
       dmg,
       weaponId: def.id,
       cls: def.cls,

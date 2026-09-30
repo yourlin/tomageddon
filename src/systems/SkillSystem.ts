@@ -53,7 +53,7 @@ export class SkillSystem {
     const ws = run.weapons;
     if (!ws.length) return 8;
     let sum = 0;
-    for (const w of ws) sum += weaponDamage(WEAPON_MAP[w.id], w.tier, s);
+    for (const w of ws) sum += weaponDamage(WEAPON_MAP[w.id], w.tier, s, w);
     return sum / ws.length;
   }
 

@@ -9,11 +9,16 @@ import { elitePool, bossPool } from '../data/bosses';
 import { BALANCE, xpToNext } from '../data/balance';
 import { markSeen, save } from './Save';
 import { levelGrowthMods } from './Talents';
+import { ensureAffixes, type WeaponAffix } from './WeaponMods';
 
 export interface OwnedWeapon {
   uid: number;
   id: string;
   tier: number;
+  /** 随机词条（T3 1 条、T4 2 条） */
+  affixes?: WeaponAffix[];
+  /** 打造等级（仅 T4，0~10） */
+  forge?: number;
 }
 
 export interface ShopOffer {
@@ -286,12 +291,15 @@ export class RunState {
       const same = this.weapons.find((w) => w.id === id && w.tier === tier && tier < 3);
       if (same) {
         same.tier++;
+        ensureAffixes(same, this.stats.luck);
         this.dirty();
         return;
       }
       return;
     }
-    this.weapons.push({ uid: uidSeq++, id, tier });
+    const w: OwnedWeapon = { uid: uidSeq++, id, tier };
+    ensureAffixes(w, this.stats.luck);
+    this.weapons.push(w);
     this.dirty();
   }
 
@@ -303,6 +311,7 @@ export class RunState {
     if (!other) return false;
     this.weapons = this.weapons.filter((x) => x.uid !== other.uid);
     w.tier++;
+    ensureAffixes(w, this.stats.luck);
     if (w.tier === 3) save.stats.t4Crafted++;
     this.dirty();
     return true;

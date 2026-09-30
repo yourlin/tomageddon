@@ -60,6 +60,7 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 - Kills drop **Seeds** (XP + currency), fruit (healing) and crates (items)
 - 21 stats: Max HP, HP Regen, Life Steal, Damage, Melee/Ranged/Elemental Damage, Attack Speed, Crit, Range, Armor, Dodge, Move Speed, Luck, Harvest, Pickup Range, XP Gain, Skill Cooldown/Damage/Area/Duration
 - Two identical weapons of the same tier combine into the next tier (T1–T4); items stack (some have caps)
+- T3 / T4 weapons roll random affixes (tiers I–IV) that can be rerolled in the shop, all at once or one by one; T4 weapons can be forged (+1 to +10) — higher levels cost more and succeed less often
 - Piggy-bank items pay interest; HP refills at the start of every wave
 - Local browser save: permanent progress + mid-run save; pause and "Save & Quit" to resume from the current wave later
 - The result screen can generate a share poster (character, stats, QR code) — long-press to send it in WeChat; scanning opens the game

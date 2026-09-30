@@ -15,6 +15,19 @@ import { tx } from '../i18n';
 import { tagName } from '../i18n/apply';
 import { checkAchievements, setInRun } from '../systems/Achievements';
 import { freeFirstReroll } from '../systems/Talents';
+import {
+  affixSlots,
+  affixText,
+  AFFIX_TIER_COLOR,
+  rerollAll,
+  rerollOne,
+  rerollAllCost,
+  rerollOneCost,
+  forge,
+  forgeCost,
+  forgeChance,
+  canForge,
+} from '../systems/WeaponMods';
 
 export class ShopScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
@@ -132,6 +145,8 @@ export class ShopScene extends Phaser.Scene {
           ),
           d.desc,
         ];
+        if (affixSlots(o.tier))
+          lines.push(tx(`★ 购买后随机 ${affixSlots(o.tier)} 条词条`, `★ Rolls ${affixSlots(o.tier)} random affix(es)`));
       } else {
         const it = ITEM_MAP[o.id];
         name = it.name;
@@ -197,6 +212,7 @@ export class ShopScene extends Phaser.Scene {
         ),
       );
       L.add(text(this, x + ws - 6, y + ws - 4, TIER_NAMES[w.tier], 13, rc.css).setOrigin(1, 1));
+      if (w.forge) L.add(text(this, x + 6, y + 4, `+${w.forge}`, 14, '#ffd166', { stroke: '#000000', strokeThickness: 3 }));
       L.add(hitArea(this, x, y, ws, ws, () => this.weaponPopup(w, x, y)));
     });
 
@@ -284,56 +300,152 @@ export class ShopScene extends Phaser.Scene {
   private weaponPopup(w: OwnedWeapon, x: number, y: number): void {
     this.popup?.destroy();
     const d = WEAPON_MAP[w.id];
-    const c = this.add.container(Math.min(x, this.scale.width * 0.7 - 280), y - 190);
+    const PW = 340,
+      PH = 312;
+    const c = this.add.container(Math.min(x, this.scale.width * 0.7 - PW - 10), Math.max(10, y - PH - 10));
     const g = this.add.graphics();
     g.fillStyle(COLORS.panelLight, 0.98)
-      .fillRoundedRect(0, 0, 270, 180, 12)
+      .fillRoundedRect(0, 0, PW, PH, 12)
       .lineStyle(3, RARITY[w.tier].color, 1)
-      .strokeRoundedRect(0, 0, 270, 180, 12);
+      .strokeRoundedRect(0, 0, PW, PH, 12);
     c.add(g);
     const s = run.stats;
-    c.add(text(this, 14, 10, `${d.name} ${TIER_NAMES[w.tier]}`, 20, RARITY[w.tier].css));
+    const redraw = () => {
+      this.draw();
+      this.weaponPopup(w, x, y);
+    };
+    const forgeLv = w.forge ?? 0;
+    c.add(text(this, 14, 10, `${d.name} ${TIER_NAMES[w.tier]}${forgeLv ? ` +${forgeLv}` : ''}`, 20, RARITY[w.tier].css));
     c.add(
       text(
         this,
         14,
         40,
         tx(
-          `伤害 ${Math.round(weaponDamage(d, w.tier, s))} · 冷却 ${weaponCooldown(d, w.tier, s).toFixed(2)}s · 射程 ${Math.round(weaponRange(d, s))}`,
-          `DMG ${Math.round(weaponDamage(d, w.tier, s))} · CD ${weaponCooldown(d, w.tier, s).toFixed(2)}s · Range ${Math.round(weaponRange(d, s))}`,
+          `伤害 ${Math.round(weaponDamage(d, w.tier, s, w))} · 冷却 ${weaponCooldown(d, w.tier, s, w).toFixed(2)}s · 射程 ${Math.round(weaponRange(d, s, w))}`,
+          `DMG ${Math.round(weaponDamage(d, w.tier, s, w))} · CD ${weaponCooldown(d, w.tier, s, w).toFixed(2)}s · Range ${Math.round(weaponRange(d, s, w))}`,
         ),
         14,
         '#fff4ea',
       ),
     );
-    c.add(text(this, 14, 62, d.desc, 13, COLORS.textDim, { wordWrap: { width: 240 } }));
+    c.add(text(this, 14, 62, d.desc, 13, COLORS.textDim, { wordWrap: { width: PW - 28, useAdvancedWrap: true } }));
+    // 词条（T3 / T4）：逐条显示，可单独洗练
+    const affixes = w.affixes ?? [];
+    const one = rerollOneCost(run.wave);
+    if (!affixes.length)
+      c.add(text(this, 14, 110, tx('T3 / T4 武器会获得随机词条', 'T3 / T4 weapons roll random affixes'), 14, COLORS.textDim));
+    affixes.forEach((a, i) => {
+      const ay = 106 + i * 34;
+      c.add(text(this, 14, ay + 6, affixText(a), 16, AFFIX_TIER_COLOR[a.tier - 1]));
+      c.add(
+        button(
+          this,
+          PW - 58,
+          ay + 16,
+          92,
+          30,
+          tx(`洗 🌱${one}`, `Reroll 🌱${one}`),
+          () => {
+            if (run.seeds < one) return;
+            run.seeds -= one;
+            rerollOne(w, i, s.luck);
+            run.dirty();
+            audio.play(this, 'buy');
+            redraw();
+          },
+          0x6d597a,
+          13,
+        ).setEnabled(run.seeds >= one),
+      );
+    });
+    // 打造（T4）：成功率随等级下降，失败只扣费用
+    if (w.tier >= 3)
+      c.add(
+        text(
+          this,
+          14,
+          178,
+          canForge(w)
+            ? tx(
+                `打造 +${forgeLv} → +${forgeLv + 1}：伤害 +8% · 成功率 ${Math.round(forgeChance(w) * 100)}%`,
+                `Forge +${forgeLv} → +${forgeLv + 1}: +8% damage · ${Math.round(forgeChance(w) * 100)}% success`,
+              )
+            : tx('已打造至满级 +10', 'Fully forged (+10)'),
+          14,
+          '#ffd166',
+        ),
+      );
+    const all = rerollAllCost(run.wave),
+      fc = forgeCost(w);
+    c.add(
+      button(
+        this,
+        88,
+        222,
+        150,
+        40,
+        tx(`洗全部 🌱${all}`, `Reroll all 🌱${all}`),
+        () => {
+          if (run.seeds < all) return;
+          run.seeds -= all;
+          rerollAll(w, s.luck);
+          run.dirty();
+          audio.play(this, 'buy');
+          redraw();
+        },
+        0x6d597a,
+        16,
+      ).setEnabled(affixes.length > 0 && run.seeds >= all),
+    );
+    c.add(
+      button(
+        this,
+        PW - 88,
+        222,
+        150,
+        40,
+        tx(`打造 🌱${fc}`, `Forge 🌱${fc}`),
+        () => {
+          if (run.seeds < fc || !canForge(w)) return;
+          run.seeds -= fc;
+          const ok = forge(w);
+          run.dirty();
+          audio.play(this, ok ? 'levelup' : 'hurt');
+          toast(this, ok ? tx(`打造成功！+${w.forge}`, `Forged! +${w.forge}`) : tx('打造失败', 'Forge failed'), ok ? '#52ff8a' : '#ff6b6b');
+          redraw();
+        },
+        0xb07d2b,
+        16,
+      ).setEnabled(canForge(w) && run.seeds >= fc),
+    );
     const canCombine = w.tier < 3 && run.weapons.some((o) => o.uid !== w.uid && o.id === w.id && o.tier === w.tier);
     const sp = sellPrice(this.price(d.price * TIER_PRICE_MULT[w.tier]));
     c.add(
       button(
         this,
-        50,
-        145,
-        84,
-        44,
+        62,
+        274,
+        100,
+        40,
         tx('合成', 'Combine'),
         () => {
           if (run.combine(w.uid)) {
             audio.play(this, 'levelup');
-            this.draw();
+            redraw();
           }
         },
         COLORS.green,
-        18,
+        17,
       ).setEnabled(canCombine),
     );
     c.add(
       button(
         this,
-        138,
-        145,
-        84,
-        44,
+        170,
+        274,
+        100,
+        40,
         tx(`卖 ${sp}`, `Sell ${sp}`),
         () => {
           if (run.weapons.length <= 1) {
@@ -343,19 +455,21 @@ export class ShopScene extends Phaser.Scene {
           run.removeWeapon(w.uid);
           run.seeds += sp;
           audio.play(this, 'buy');
+          c.destroy();
+          this.popup = null;
           this.draw();
         },
         0x7a2e35,
-        18,
+        17,
       ),
     );
     c.add(
       button(
         this,
-        226,
-        145,
-        70,
-        44,
+        278,
+        274,
+        100,
+        40,
         tx('关闭', 'Close'),
         () => {
           c.destroy();

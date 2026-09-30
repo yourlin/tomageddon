@@ -7,6 +7,8 @@ import { STAT_INFO, type StatKey } from '../../src/data/stats';
 import { SKILL_TYPE_NAME } from '../../src/data/skills';
 import { tagName } from '../../src/i18n/apply';
 import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
+import { WEAPON_AFFIXES, FORGE } from '../../src/data/weaponAffixes';
+import { pick } from '../../src/systems/Achievements';
 
 export function charactersDoc(): void {
   const CLS = CLS_NAME();
@@ -191,6 +193,29 @@ export function weaponsDoc(): void {
       w.range,
       w.price,
     ]),
+  );
+  d.h2(tx('随机词条与打造', 'Affixes & Forging'), 'affixes');
+  d.p(
+    tx(
+      '- T3 武器随机 1 条词条、T4 武器 2 条；词条分 I~IV 级（I 常见、IV 稀有，幸运越高越容易出高等级）',
+      '- T3 weapons roll 1 random affix and T4 weapons roll 2; affixes have tiers I–IV (I common, IV rare; higher Luck favours higher tiers)',
+    ),
+    tx(
+      `- 商店中可花番茄籽洗练：全部重洗 \`8 + 2×波次\`，单条重洗为其 2.5 倍`,
+      `- Reroll affixes in the shop: all at once costs \`8 + 2×wave\`, a single affix costs 2.5× that`,
+    ),
+    tx(
+      `- T4 武器可打造，每级伤害 +${FORGE.dmgPerLevel * 100}%，最高 +${FORGE.maxLevel}；费用随等级 ×1.45 递增，失败只扣费用不降级`,
+      `- T4 weapons can be forged for +${FORGE.dmgPerLevel * 100}% damage per level, up to +${FORGE.maxLevel}; each level costs 1.45× more, and a failed forge only costs the fee`,
+    ),
+  );
+  d.table(
+    [tx('词条', 'Affix'), 'I', 'II', 'III', 'IV'],
+    WEAPON_AFFIXES.map((a) => [pick(a.name).replace('{v}', 'N'), ...a.values.map(String)]),
+  );
+  d.table(
+    [tx('打造等级', 'Forge level'), ...FORGE.chance.map((_, i) => `+${i + 1}`)],
+    [[tx('成功率', 'Success'), ...FORGE.chance.map((c) => `${Math.round(c * 100)}%`)]],
   );
   for (const cls of ['melee', 'ranged', 'elemental'] as const) {
     d.h2(tx(`${CLS[cls]}武器`, `${CLS[cls]} Weapons`), `class-${cls}`);
