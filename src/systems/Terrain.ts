@@ -121,7 +121,9 @@ export class Terrain {
   }
 
   private dmg(base: number): number {
-    return base * (1 + 0.1 * (run.wave - 1)) * chapterScale(run.chapter.dmgMult, run.wave);
+    // 地形伤害随波次明显成长（二次项），后期热油、坠物等也有威胁
+    const w = run.wave - 1;
+    return base * (1 + 0.3 * w + 0.02 * w * w) * chapterScale(run.chapter.dmgMult, run.wave);
   }
 
   private tick(key: string, dt: number, every: number, minWave = 1): boolean {
@@ -266,7 +268,7 @@ export class Terrain {
               g.fx.explosion(x, y, 55, 0x6c757d);
               if (Phaser.Math.Distance.Between(x, y, p.x, p.y) < 60)
                 g.damagePlayer(this.dmg(3), undefined, [{ id: 'stun', dur: 0.4, chance: 40 }]);
-              for (const e of g.grid.query(x, y, 55, g.tmp2)) g.damageEnemy(e, 20 + run.wave * 3);
+              for (const e of g.grid.query(x, y, 55, g.tmp2)) g.damageEnemy(e, 20 + run.wave * 6);
             });
           }
           g.terrainNotice(tx('垃圾坠落！', 'Falling junk!'));
@@ -289,7 +291,7 @@ export class Terrain {
             for (let i = 0; i < 8; i++) this.puff(h.x + Phaser.Math.Between(-30, 30), h.y + Phaser.Math.Between(-30, 30), 1);
             if (Phaser.Math.Distance.Between(h.x, h.y, p.x, p.y) < 85)
               g.damagePlayer(this.dmg(3), undefined, [{ id: 'burn', dur: 2, stacks: 2 }]);
-            for (const e of g.grid.query(h.x, h.y, 80, g.tmp2)) g.damageEnemy(e, 15 + run.wave * 3);
+            for (const e of g.grid.query(h.x, h.y, 80, g.tmp2)) g.damageEnemy(e, 15 + run.wave * 6);
           });
         }
         break;

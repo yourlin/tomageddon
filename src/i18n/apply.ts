@@ -32,6 +32,7 @@ export function applyLanguage(l: Lang = lang): void {
     c.talent = { ...e.talent };
   }
   for (const w of WEAPONS) Object.assign(w, EN_WEAPONS[w.id] ?? {});
+  for (const it of ALL_ITEMS) it.nameZh ??= it.name;
   for (const it of ITEMS) Object.assign(it, EN_ITEMS[it.id] ?? {});
   for (const it of ALL_ITEMS) {
     const m = /^(.+)_(\d+)$/.exec(it.id);

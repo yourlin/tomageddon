@@ -238,9 +238,9 @@ Price: T1 base × [1, 2.2, 4.5, 10], rising with waves.
 | Chapter | HP mult | Damage mult | Speed mult | Monster pool (waves) |
 | --- | --- | --- | --- | --- |
 | Chapter 1 · Midnight Kitchen | 1 | 1 | 1 | Mold Blob(1+) Fruit Fly(2+) Rotten Apple(3+) Maggot(4+) Army Ant(6+) Cockroach(7+) Bomb Beetle(9+) Split Mold(11+) |
-| Chapter 2 · Wild Garden | 4.6 | 1.6 | 1.05 | Mold Blob(1~8) Army Ant(3+) Fruit Fly(1+) Snot Snail(2+) Venom Spider(5+) Toxic Shroom(5+) Split Mold(6+) Brood Mother(8+) Bomb Beetle(10+) Venom Bee(4+) Mud Worm(4+) |
-| Chapter 3 · Frozen Fridge | 4 | 1.55 | 1.1 | Mold Blob(1~6) Fruit Fly(1+) Ice Cube(3+) Sewer Rat(7+) Maggot(3+) Venom Spider(6+) Cockroach(5+) Toxic Shroom(7+) Split Mold(9+) Frost Mosquito(4+) Frozen Shrimp(6+) |
-| Chapter 4 · City Junkyard | 4 | 1.65 | 1.15 | Mold Blob(1~5) Sewer Rat(5+) Cockroach(3+) Trash Bag(5+) Bomb Beetle(6+) Brood Mother(5+) Rotten Apple(2+) Snot Snail(6+) Toxic Shroom(8+) Can Crab(7+) Rag Ghost(5+) Grease Blob(6+) |
+| Chapter 2 · Wild Garden | 4.6 | 1.4 | 1.05 | Mold Blob(1~8) Army Ant(3+) Fruit Fly(1+) Snot Snail(2+) Venom Spider(5+) Toxic Shroom(5+) Split Mold(6+) Brood Mother(8+) Bomb Beetle(10+) Venom Bee(4+) Mud Worm(4+) |
+| Chapter 3 · Frozen Fridge | 3.8 | 1.45 | 1.1 | Mold Blob(1~6) Fruit Fly(1+) Ice Cube(3+) Sewer Rat(7+) Maggot(3+) Venom Spider(6+) Cockroach(5+) Toxic Shroom(7+) Split Mold(9+) Frost Mosquito(4+) Frozen Shrimp(6+) |
+| Chapter 4 · City Junkyard | 3.5 | 1.5 | 1.15 | Mold Blob(1~5) Sewer Rat(5+) Cockroach(3+) Trash Bag(5+) Bomb Beetle(6+) Brood Mother(5+) Rotten Apple(2+) Snot Snail(6+) Toxic Shroom(8+) Can Crab(7+) Rag Ghost(5+) Grease Blob(6+) |
 | Chapter 5 · Ketchup Factory | 5 | 1.8 | 1.2 | Mold Blob(1~4) Fruit Fly(1~6) Can Bot(3+) Sewer Rat(5+) Bomb Beetle(6+) Venom Spider(5+) Trash Bag(5+) Ice Cube(4+) Toxic Shroom(5+) Brood Mother(6+) Split Mold(7+) Gear Bug(4+) Curse Doll(5+) |
 
 <a id="waves"></a>
@@ -250,20 +250,20 @@ Price: T1 base × [1, 2.2, 4.5, 10], rising with waves.
 | Wave | Length (s) | Spawn interval (s) | Batch | HP | Damage | XP to level |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 20 | 2.40 | 2 | 5 | 1 | 16 |
-| 2 | 25 | 2.40 | 2 | 8 | 1 | 25 |
+| 2 | 25 | 2.40 | 2 | 8 | 2 | 25 |
 | 3 | 30 | 1.88 | 3 | 10 | 2 | 36 |
 | 4 | 35 | 1.80 | 4 | 12 | 2 | 49 |
-| 5 | 40 | 1.73 | 5 | 15 | 2 | 64 |
+| 5 | 40 | 1.73 | 5 | 15 | 3 | 64 |
 | 6 | 45 | 1.65 | 5 | 17 | 3 | 81 |
-| 7 | 50 | 1.58 | 5 | 19 | 3 | 100 |
-| 8 | 55 | 1.50 | 6 | 21 | 4 | 121 |
-| 9 | 60 | 1.43 | 6 | 23 | 4 | 144 |
-| 10 | 60 | 1.35 | 7 | 25 | 5 | 169 |
-| 11 | 60 | 1.28 | 7 | 27 | 5 | 196 |
-| 12 | 60 | 1.20 | 7 | 29 | 6 | 225 |
-| 13 | 60 | 1.13 | 8 | 31 | 6 | 256 |
-| 14 | 60 | 1.05 | 8 | 33 | 7 | 289 |
-| 15 | 90 | 1.00 | 9 | 35 | 8 | 324 |
+| 7 | 50 | 1.58 | 5 | 19 | 4 | 100 |
+| 8 | 55 | 1.50 | 6 | 21 | 5 | 121 |
+| 9 | 60 | 1.43 | 6 | 23 | 5 | 144 |
+| 10 | 60 | 1.35 | 7 | 25 | 6 | 169 |
+| 11 | 60 | 1.28 | 7 | 27 | 7 | 196 |
+| 12 | 60 | 1.20 | 7 | 29 | 8 | 225 |
+| 13 | 60 | 1.13 | 8 | 31 | 9 | 256 |
+| 14 | 60 | 1.05 | 8 | 33 | 10 | 289 |
+| 15 | 90 | 1.00 | 9 | 35 | 11 | 324 |
 
 <a id="items"></a>
 

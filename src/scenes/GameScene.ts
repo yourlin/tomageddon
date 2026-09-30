@@ -785,7 +785,7 @@ export class GameScene extends Phaser.Scene {
     markSeen('bosses', id);
     const ch = run.chapter;
     const hp = Math.round(def.hp * chapterScale(ch.bossHpMult, run.wave) * (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3));
-    const dmg = Math.round(def.dmg * chapterScale(ch.dmgMult, run.wave) * (def.elite ? 1 + (run.wave - 5) * 0.08 : 1));
+    const dmg = Math.round(def.dmg * 1.2 * chapterScale(ch.dmgMult, run.wave) * (def.elite ? 1 + (run.wave - 5) * 0.08 : 1));
     // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加
     const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
     const affixes = def.elite ? this.rollAffixes(nAffix).filter((a) => !(def.affixes ?? []).includes(a)) : [];

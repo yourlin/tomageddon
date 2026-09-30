@@ -671,20 +671,111 @@ const SHAPES: Record<string, Shape> = {
   },
 };
 
+/** 名字中的颜色关键词 → 图标主色（按顺序匹配第一个） */
+const NAME_COLORS: [RegExp, number][] = [
+  [/红宝石|红|赤|血|火|烈|熔岩|辣|凤凰/, 0xe63946],
+  [/蓝宝石|蓝|深海|海王/, 0x3a86ff],
+  [/冰|雪|寒|霜|冻|极地/, 0x90e0ef],
+  [/翡翠|绿|翠|草|叶|薄荷|毒|抹茶/, 0x2dc653],
+  [/紫水晶|紫|魔|暗|混沌|虚空|深渊/, 0x9d4edd],
+  [/黄金|金|黄|太阳|星|光明|神/, 0xffc300],
+  [/银|钢|铁|铝/, 0xadb5bd],
+  [/黑|影|夜|乌/, 0x3d3d4e],
+  [/石英|钻石|水晶|白|圣|珍珠|玻璃/, 0xe8f4ff],
+  [/粉|樱|桃|草莓|爱心/, 0xff8fab],
+  [/橙|橘|南瓜|胡萝卜/, 0xff9f1c],
+  [/玛瑙|棕|木|咖啡|巧克力|面包|吐司/, 0xb5651d],
+];
+
+/** 色相旋转（度） */
+function hueRotate(c: number, deg: number): number {
+  const r = ((c >> 16) & 255) / 255,
+    g = ((c >> 8) & 255) / 255,
+    b = (c & 255) / 255;
+  const max = Math.max(r, g, b),
+    min = Math.min(r, g, b),
+    l = (max + min) / 2;
+  let h = 0,
+    sat = 0;
+  if (max !== min) {
+    const d = max - min;
+    sat = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    h *= 60;
+  }
+  h = (h + deg + 360) % 360;
+  const f = (n: number) => {
+    const k = (n + h / 30) % 12;
+    const a = sat * Math.min(l, 1 - l);
+    return Math.round(255 * (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))));
+  };
+  return (f(0) << 16) | (f(8) << 8) | f(4);
+}
+
+/** 叠加在造型内部的花纹（source-atop 只画在已有像素上） */
+function overlayPattern(ctx: Ctx, kind: number, c2: number): void {
+  ctx.save();
+  ctx.globalCompositeOperation = 'source-atop';
+  if (kind === 1) {
+    ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+    ctx.lineWidth = 9;
+    for (let x = -40; x < 170; x += 30) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x - 60, 128);
+      ctx.stroke();
+    }
+  } else if (kind === 2) {
+    ctx.fillStyle = rgb(c2, 0.45);
+    for (let y = 18; y < 128; y += 22)
+      for (let x = (y / 22) % 2 ? 18 : 29; x < 128; x += 22) {
+        ellipsePath(ctx, x, y, 4.5, 4.5);
+        ctx.fill();
+      }
+  } else if (kind === 3) {
+    const gr = ctx.createRadialGradient(40, 36, 4, 40, 36, 70);
+    gr.addColorStop(0, 'rgba(255,255,255,0.55)');
+    gr.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = gr;
+    ctx.fillRect(0, 0, 128, 128);
+  }
+  ctx.restore();
+}
+
 export function itemIconKey(scene: Phaser.Scene, it: ItemDef): string {
   const key = `itemicon_${it.id}`;
   if (scene.textures.exists(`item_${it.id}`)) return `item_${it.id}`; // 外部美术覆盖
   return paint(scene, key, 128, 128, (ctx) => {
-    const [shape, c, c2] = it.icon ? [it.icon.shape, it.icon.color, it.icon.color2] : (HAND_ICONS[it.id] ?? ['orb', 0xffd166, 0xffffff]);
+    const [shape, c0, c2] = it.icon ? [it.icon.shape, it.icon.color, it.icon.color2] : (HAND_ICONS[it.id] ?? ['orb', 0xffd166, 0xffffff]);
+    // 同系列 10 件共用造型：按名字关键词或序号换主色，并按序号叠加不同花纹、角度与大小，保证每件图标都不同
+    const m = /^(.+)_(\d+)$/.exec(it.id);
+    const idx = m ? Number(m[2]) : hashStr(it.id) % 10;
+    // 系列偏移：共用同一造型的不同系列，同序号道具也会得到不同的角度/花纹/大小/色相
+    const sv = m ? hashStr(m[1]) : hashStr(it.id);
+    const nameColor = NAME_COLORS.find(([re]) => re.test(it.nameZh ?? it.name))?.[1];
+    const base = nameColor !== undefined ? hueRotate(nameColor, (idx - 4.5) * 6) : it.series ? hueRotate(c0, (idx - 4.5) * 16) : c0;
+    const c = hueRotate(base, ((sv % 7) - 3) * 12);
     ctx.save();
+    ctx.translate(64, 64);
+    ctx.rotate((((idx * 37 + sv) % 9) - 4) * 0.06);
+    const sc = 0.84 + ((idx + sv) % 4) * 0.055;
+    // 奇偶系列镜像，进一步区分共用造型的系列
+    ctx.scale((sv >> 3) % 2 ? -sc : sc, sc);
+    ctx.translate(-64, -64);
     ctx.shadowColor = 'rgba(0,0,0,0.35)';
     ctx.shadowOffsetY = 4;
     ctx.shadowBlur = 4;
     (SHAPES[shape] ?? SHAPES.orb)(ctx, c, c2, rng(hashStr(it.id)));
     ctx.restore();
+    overlayPattern(ctx, (idx + sv) % 4, c2);
+    // 稀有度闪光：稀有 1 颗、史诗 2 颗、传说另有大星
+    ctx.fillStyle = '#fff';
+    for (let k = 0; k < Math.min(it.rarity, 2); k++) {
+      starPath(ctx, 104 - k * 16, 20 + k * 10, 6 - k, 2.4, 4);
+      ctx.fill();
+    }
     if (it.rarity === 3) {
       starPath(ctx, 106, 22, 10, 4, 4);
-      ctx.fillStyle = '#fff';
       ctx.fill();
       starPath(ctx, 22, 104, 7, 3, 4);
       ctx.fill();

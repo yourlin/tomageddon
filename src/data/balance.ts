@@ -55,7 +55,7 @@ export function enemyHp(base: number, growth: number, wave: number, chapterMult:
 
 export function enemyDamage(base: number, growth: number, wave: number, chapterMult: number): number {
   const w = wave - 1;
-  return Math.max(1, Math.round((base + growth * (0.4 * w + 0.03 * w * w)) * chapterScale(chapterMult, wave)));
+  return Math.max(1, Math.round((base + growth * (0.5 * w + 0.035 * w * w)) * 1.15 * chapterScale(chapterMult, wave)));
 }
 
 /** 刷怪节奏：每波的刷新间隔（秒）与每批数量 */

@@ -43,6 +43,8 @@ export interface ItemDef {
   max?: number; // 最多持有数量
   icon?: { shape: string; color: number; color2: number; glyph?: string };
   series?: string;
+  /** 原始中文名（切换英文后仍用于图标配色，保证两种语言图标一致） */
+  nameZh?: string;
 }
 
 export const ITEMS: ItemDef[] = [

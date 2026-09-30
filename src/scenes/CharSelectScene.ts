@@ -7,7 +7,16 @@ import { WEAPON_MAP } from '../data/weapons';
 import { SKILL_TYPE_NAME } from '../data/skills';
 import { describeMods } from '../data/stats';
 import { save, persist, isUnlocked } from '../systems/Save';
-import { pointsBalance, missingRequirement, unlockHint, tryBuyCharacter, checkAchievements } from '../systems/Achievements';
+import {
+  pointsBalance,
+  missingRequirement,
+  unlockHint,
+  tryBuyCharacter,
+  checkAchievements,
+  achTier,
+  medalOf,
+} from '../systems/Achievements';
+import { ACH_MAP } from '../data/achievements';
 import { run, clearRun } from '../systems/RunState';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast } from '../ui/UI';
 import { tx } from '../i18n';
@@ -52,6 +61,10 @@ export class CharSelectScene extends Phaser.Scene {
       this.cards.push({ c, g, x, y, s });
       const unlocked = isUnlocked(c);
       const img = fitImage(this.add.image(x + s / 2, y + s / 2, portraitKey(this, 'char', c.id)), s * 0.95);
+      // 角色成就角标：左上为开局次数奖章（铜/银/金），右上为通关奖杯
+      const runsAch = ACH_MAP[`char_runs_${c.id}`];
+      if (runsAch && achTier(runsAch.id) > 0) text(this, x + 3, y + 1, medalOf(runsAch), 17).setOrigin(0, 0);
+      if (achTier(`char_wins_${c.id}`) > 0) text(this, x + s - 3, y + 1, '🏆', 15).setOrigin(1, 0);
       if (!unlocked) {
         // 未拥有：半透明显示本体，角标为价格（有未满足的前置成就时显示锁）
         img.setAlpha(0.45);
