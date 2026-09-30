@@ -1,0 +1,223 @@
+.editorconfig
+  s_b200a2907eaa8e::t_e6c669b7447705 1-9
+.github/workflows/pages.yml
+  s_b200a2907eaa8e::t_ad35f22bbe301e 1-43
+.gitignore
+  s_b200a2907eaa8e::t_7e986c78d02236 1-12
+.prettierignore
+  s_b200a2907eaa8e::t_18f4f6192693d7 1-5
+.prettierrc.json
+  s_b200a2907eaa8e::t_f4fe0451c4c902 1-8
+LICENSE
+  s_b200a2907eaa8e::t_a999094bd8f284 1-21
+README.en.md
+  s_b200a2907eaa8e::t_447107e75eb1de 1-158
+README.md
+  s_b200a2907eaa8e::t_633649be090068 1-159
+docs/CHAPTERS.md
+  s_b200a2907eaa8e::t_1244f60c598239 1-198
+docs/CHARACTERS.md
+  s_b200a2907eaa8e::t_27c7fe966cc5cf 1-625
+docs/DATA_TABLES.md
+  s_b200a2907eaa8e::t_c888a7573ea823 1-864
+docs/GDD.md
+  s_b200a2907eaa8e::t_569d87e15caa1c 1-251
+docs/ITEMS.md
+  s_b200a2907eaa8e::t_1dac07cd8b95d8 1-1053
+docs/MONSTERS.md
+  s_b200a2907eaa8e::t_6745a445d8fc2f 1-1381
+docs/SKILLS.md
+  s_b200a2907eaa8e::t_e0886ee8dec4db 1-691
+docs/WEAPONS.md
+  s_b200a2907eaa8e::t_83beabf5b22a64 1-455
+docs/en/CHAPTERS.md
+  s_b200a2907eaa8e::t_a90fac7d59ec4b 1-198
+docs/en/CHARACTERS.md
+  s_b200a2907eaa8e::t_b55c2ea824bc28 1-625
+docs/en/DATA_TABLES.md
+  s_b200a2907eaa8e::t_a0a56e3e3a46ac 1-864
+docs/en/GDD.md
+  s_b200a2907eaa8e::t_69c5b2cb1eee9f 1-250
+docs/en/ITEMS.md
+  s_b200a2907eaa8e::t_07b83c8e813dc5 1-1053
+docs/en/MONSTERS.md
+  s_b200a2907eaa8e::t_ef23e35fa26409 1-1381
+docs/en/SKILLS.md
+  s_b200a2907eaa8e::t_81737f92545a80 1-691
+docs/en/WEAPONS.md
+  s_b200a2907eaa8e::t_38b10becc470ef 1-455
+eslint.config.js
+  s_b200a2907eaa8e::t_e184448ae68a55 1-42
+index.html
+  s_b200a2907eaa8e::t_9af82e787e8638 1-69
+package-lock.json
+  s_b200a2907eaa8e::t_3c59103aeadd2e 1-3015
+package.json
+  s_b200a2907eaa8e::t_ff891fc23fda76 1-41
+scripts/batch.mjs
+  s_b200a2907eaa8e::t_2c8fbcffa1b0cf 1-225
+scripts/bot.js
+  s_b200a2907eaa8e::t_02e56a22ddab3d 1-115
+scripts/bot2.js
+  s_b200a2907eaa8e::t_b1a27ace8fc8f3 1-265
+scripts/docs/common.ts
+  s_b200a2907eaa8e::t_37b98f0ee8023d 1-144
+scripts/docs/pages-a.ts
+  s_b200a2907eaa8e::t_8a9aff2c2125bb 1-234
+scripts/docs/pages-b.ts
+  s_b200a2907eaa8e::t_d74e9a165f20ec 1-229
+scripts/docs/tables.ts
+  s_b200a2907eaa8e::t_2046a339da5f9e 1-98
+scripts/export-images.mjs
+  s_b200a2907eaa8e::t_e68dd922d03f86 1-75
+scripts/gen-docs.ts
+  s_b200a2907eaa8e::t_6264d645570186 1-22
+scripts/report.mjs
+  s_b200a2907eaa8e::t_723a6f397ba878 1-194
+src/art/ArenaArt.ts
+  s_b200a2907eaa8e::t_e0b5311aaa4678 1-302
+src/art/ItemArt.ts
+  s_b200a2907eaa8e::t_e76bce3d587871 1-695
+src/art/Painter.ts
+  s_b200a2907eaa8e::t_f22f000f9cbae0 1-198
+src/art/RigAcc.ts
+  s_b200a2907eaa8e::t_82c8da4eb12693 1-576
+src/art/RigBody.ts
+  s_b200a2907eaa8e::t_86b083de42c156 1-483
+src/art/RigParts.ts
+  s_b200a2907eaa8e::t_2f2dd852f51f07 1-497
+src/art/RigSpec.ts
+  s_b200a2907eaa8e::t_d67d175728e36a 1-118
+src/art/WeaponArt.ts
+  s_b200a2907eaa8e::t_d80dbc98bedb05 1-360
+src/data/balance.ts
+  s_b200a2907eaa8e::t_fd98343b4956f6 1-122
+src/data/bosses.ts
+  s_b200a2907eaa8e::t_e3f5acd18585a4 1-1497
+src/data/chapters.ts
+  s_b200a2907eaa8e::t_edaed2f9427a80 1-164
+src/data/characters.ts
+  s_b200a2907eaa8e::t_0586cb624e168d 1-1203
+src/data/describe.ts
+  s_b200a2907eaa8e::t_916938a2828393 1-64
+src/data/enemies.ts
+  s_b200a2907eaa8e::t_0cb81b6252ec6a 1-866
+src/data/itemGen.ts
+  s_b200a2907eaa8e::t_0dbe912fc60157 1-800
+src/data/items.ts
+  s_b200a2907eaa8e::t_cf44a76929c7db 1-188
+src/data/skills.ts
+  s_b200a2907eaa8e::t_98b5a8d3f4b8eb 1-103
+src/data/stats.ts
+  s_b200a2907eaa8e::t_faa711e458e54c 1-117
+src/data/statuses.ts
+  s_b200a2907eaa8e::t_8af101367c3c57 1-212
+src/data/weapons.ts
+  s_b200a2907eaa8e::t_eaa251eda9f7af 1-356
+src/env.d.ts
+  s_b200a2907eaa8e::t_f8d1d0b70f7827 1-2
+src/i18n/apply.ts
+  s_b200a2907eaa8e::t_d0aef6e2dca280 1-57
+src/i18n/en/items.ts
+  s_b200a2907eaa8e::t_cfd3841ad81eeb 1-813
+src/i18n/en/misc.ts
+  s_b200a2907eaa8e::t_0af7aafd31e4cc 1-141
+src/i18n/en/monsters.ts
+  s_b200a2907eaa8e::t_92a4627470785c 1-97
+src/i18n/index.ts
+  s_b200a2907eaa8e::t_49f6889df1ff9c 1-28
+src/i18n/types.ts
+  s_b200a2907eaa8e::t_687afe5f96e985 1-44
+src/main.ts
+  s_b200a2907eaa8e::t_9bf097e9f308b6 1-87
+src/objects/Bullet.ts
+  s_b200a2907eaa8e::t_dd9bbf268db3d7 1-66
+src/objects/Enemy.ts
+  s_b200a2907eaa8e::t_681885bff1b422 1-497
+src/objects/Rig.ts
+  s_b200a2907eaa8e::t_8d0c80251a7ace 1-486
+src/scenes/BootScene.ts
+  s_b200a2907eaa8e::t_7b73311d52f703 1-39
+src/scenes/CharSelectScene.ts
+  s_b200a2907eaa8e::t_096d1bab98e2cd 1-178
+src/scenes/CodexScene.ts
+  s_b200a2907eaa8e::t_f1aa460993dca6 1-296
+src/scenes/GameScene.ts
+  s_b200a2907eaa8e::t_3432386c9a546d 1-1446
+src/scenes/HudScene.ts
+  s_b200a2907eaa8e::t_677389726f129c 1-278
+src/scenes/LevelUpScene.ts
+  s_b200a2907eaa8e::t_b83069b698661a 1-185
+src/scenes/MenuScene.ts
+  s_b200a2907eaa8e::t_929db932eed572 1-135
+src/scenes/PauseScene.ts
+  s_b200a2907eaa8e::t_44dc04a778d840 1-86
+src/scenes/ResultScene.ts
+  s_b200a2907eaa8e::t_9602df0f6dc2e1 1-120
+src/scenes/SettingsScene.ts
+  s_b200a2907eaa8e::t_d1368abac23cc8 1-138
+src/scenes/ShopScene.ts
+  s_b200a2907eaa8e::t_db4400e4ec105c 1-375
+src/systems/Assets.ts
+  s_b200a2907eaa8e::t_bcb2d312eb11d7 1-34
+src/systems/Audio.ts
+  s_b200a2907eaa8e::t_1b8048ed3cb429 1-130
+src/systems/Controls.ts
+  s_b200a2907eaa8e::t_f22fe58e89bbf6 1-13
+src/systems/Fx.ts
+  s_b200a2907eaa8e::t_3962157eac98d9 1-279
+src/systems/Grid.ts
+  s_b200a2907eaa8e::t_ea0d6eda7e7e40 1-87
+src/systems/Music.ts
+  s_b200a2907eaa8e::t_dc05e2cbe2fb0a 1-513
+src/systems/Perf.ts
+  s_b200a2907eaa8e::t_a603448f0effe0 1-79
+src/systems/RigPool.ts
+  s_b200a2907eaa8e::t_922e57783f68ea 1-39
+src/systems/RunState.ts
+  s_b200a2907eaa8e::t_87f307340ac67d 1-396
+src/systems/Save.ts
+  s_b200a2907eaa8e::t_021e799c4f768c 1-85
+src/systems/SkillSystem.ts
+  s_b200a2907eaa8e::t_898b162d33a25c 1-405
+src/systems/Status.ts
+  s_b200a2907eaa8e::t_033e36c1d701c8 1-182
+src/systems/Terrain.ts
+  s_b200a2907eaa8e::t_a0ca8191cce69f 1-312
+src/systems/Textures.ts
+  s_b200a2907eaa8e::t_aff709ad7c4dba 1-897
+src/systems/WeaponSystem.ts
+  s_b200a2907eaa8e::t_15e14e579a7752 1-345
+src/ui/Portrait.ts
+  s_b200a2907eaa8e::t_fe3ef93742e0a0 1-55
+src/ui/UI.ts
+  s_b200a2907eaa8e::t_2080cb48674985 1-152
+tsconfig.json
+  s_02d40312409c8e::t_194e7583199b88 1-13
+vite.config.ts
+  s_b200a2907eaa8e::t_752404e58b0533 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "055a3235f02602f27005af8c5415a296ff068307",
+  "prompts": {},
+  "sessions": {
+    "s_02d40312409c8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5b8d749f-26d0-47ce-84ec-f7027e00aeb5",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    },
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
