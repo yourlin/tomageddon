@@ -35,7 +35,7 @@ export class SkillSystem {
 
   constructor(private g: GameScene) {
     this.skill = run.char.skill;
-    this.cd = this.skill.cd * 0.4; // 每波开局需要等待一段时间才能释放
+    this.cd = 0; // 每波开局技能冷却重置
   }
 
   get maxCd(): number {
@@ -91,6 +91,36 @@ export class SkillSystem {
       }
     }
     return best ? { x: best.x, y: best.y } : null;
+  }
+
+  /** 自动释放判断：按技能形态选择时机（范围伤害等敌人扎堆、回复等掉血、保命技能等危险） */
+  autoWants(): boolean {
+    const g = this.g,
+      p = g.player;
+    let near = 0,
+      nearest = 1e9,
+      bossNear = false;
+    for (const e of g.enemies) {
+      if (!e.alive) continue;
+      const d = Math.hypot(e.x - p.x, e.y - p.y);
+      if (d < 260) near++;
+      if (d < nearest) nearest = d;
+      if (e.isBoss && d < 450) bossNear = true;
+    }
+    const hpPct = run.hp / g.stats.maxHp;
+    switch (this.skill.type) {
+      case 'heal':
+        return hpPct < 0.6 || near >= 8;
+      case 'ghost':
+      case 'dash':
+        return (hpPct < 0.5 && nearest < 140) || near >= 8 || bossNear;
+      case 'buff':
+        return near >= 4 || bossNear;
+      case 'clone':
+        return near >= 3 || bossNear;
+      default:
+        return near >= 5 || bossNear;
+    }
   }
 
   use(): void {

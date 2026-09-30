@@ -7,7 +7,7 @@ import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
 import { BALANCE, xpToNext } from '../data/balance';
-import { markSeen } from './Save';
+import { markSeen, save } from './Save';
 
 export interface OwnedWeapon {
   uid: number;
@@ -72,12 +72,15 @@ export class RunState {
   rerolls = 0;
   shop: ShopOffer[] = [];
   revivesUsed = 0;
+  /** 本局获得的成就点（结算界面展示） */
+  achPoints = 0;
   harvestBonus = 0; // 收获随波次成长的累计值
   bossId = ''; // 本局 Boss
   /** 调试：每波各来源番茄籽收入 */
   income: Record<number, Record<string, number>> = {};
   earn(v: number, src: string): void {
     this.seeds += v;
+    if (v > 0) save.stats.seedsEarned += v;
     const w = (this.income[this.wave] ??= {});
     w[src] = (w[src] ?? 0) + v;
   }
@@ -93,6 +96,7 @@ export class RunState {
   }
 
   start(charId: string, chapterId: number): void {
+    this.achPoints = 0;
     this.charId = charId;
     this.chapterId = chapterId;
     this.wave = 1;
@@ -295,6 +299,7 @@ export class RunState {
     if (!other) return false;
     this.weapons = this.weapons.filter((x) => x.uid !== other.uid);
     w.tier++;
+    if (w.tier === 3) save.stats.t4Crafted++;
     this.dirty();
     return true;
   }

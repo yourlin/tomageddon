@@ -25,7 +25,7 @@ Pick a character + chapter (each run randomly draws 2 elites and 1 boss)
        └─ Kills drop Seeds (XP + currency), fruit (healing), chests (items)
   └─ Wave end: Harvest, interest → level up and pick stats → open chests → shop (buy/sell, combine, reroll, lock)
   └─ Elites on waves 5/10, random "affixed elite monsters" from wave 7, boss on wave 15
-Clearing a chapter unlocks the next chapter and new characters; total kills / clear count also unlock characters
+Clearing a chapter unlocks the next one; achievements grant points that buy new characters
 ```
 
 ## 3. Controls
@@ -80,7 +80,7 @@ Each character = stat modifiers + starting weapon + passive trait + active skill
 | Economy / growth | Captain Pineapple, Lychee Princess, Strawberry Idol, Sprout Apprentice |
 | Explosives / frenzy | Dr. Avocado, Wasabi Bomber, Beet Berserker, Grape Magician |
 
-4 are unlocked by default; the rest unlock via "chapter clears / total kills / clear count".
+4 are unlocked by default; the rest are bought with achievement points (30–160), and some pricier characters also require a specific achievement (e.g. clearing a chapter or defeating a boss). See [Achievements](ACHIEVEMENTS.md).
 
 **Ultimate forms (13)**
 
@@ -104,9 +104,10 @@ Each character = stat modifiers + starting weapon + passive trait + active skill
 - Damage = average per-hit damage of all current weapons × skill coefficient × (1 + Skill Damage%)
 - Area = base radius × (1 + Range/600, clamped to 0.8~1.4) × (1 + Skill Area%)
 - Duration (field/buff/invulnerability/clone/applied statuses) × (1 + Skill Duration%)
-- Cooldown × (1 − Skill Cooldown%, at most −70%); at the start of each wave 40% of the CD must elapse before the first cast
+- Cooldown × (1 − Skill Cooldown%, at most −70%); cooldowns reset at the start of every wave
+- Skills auto-cast by default (timed by skill form); switch to manual in Settings
 - **CD is computed automatically from power** (`src/data/skills.ts`):
-  `CD = 8 + 0.9×damage score + control score + buff score`, clamped to 12~45 s
+  `CD = (8 + 0.9×damage score + control score + buff score) × 0.65`, clamped to 8–30 s
   - Damage score = coefficient × estimated hit count (larger area and more projectiles mean more hits)
   - Control score = status strength (Stun/Freeze 4/s, Vulnerable 0.6/s, Slow 0.4/stack·s...) × hit count × 0.16
   - Buff score = self status strength + invulnerability duration×3 + heal ratio×30

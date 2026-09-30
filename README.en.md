@@ -38,7 +38,7 @@ Ketchup Town is being eaten away by "the Rot": mold, pests and possessed kitchen
 2. **Fight waves**: 15 waves per chapter, 20–60 seconds each. Weapons aim and fire on their own; you dodge bullets, telegraphed zones, lasers and charges, and time your [skill](docs/en/SKILLS.md).
 3. **Elites and bosses**: [elites](docs/en/MONSTERS.md#elites) on waves 5 and 10, a [boss](docs/en/MONSTERS.md#bosses) on wave 15 (after 90 seconds it enrages, with damage stacking until the fight is decided). Each run draws them at random from the chapter pool.
 4. **Between waves**: harvest & interest → level-up choices → open crates → shop for [weapons](docs/en/WEAPONS.md) and [items](docs/en/ITEMS.md), combine, reroll, lock.
-5. **Unlocks**: clearing a [chapter](docs/en/CHAPTERS.md) unlocks the next one and new characters; total kills and clears unlock more.
+5. **Achievements & unlocks**: clearing a [chapter](docs/en/CHAPTERS.md) unlocks the next one; [achievements](docs/en/ACHIEVEMENTS.md) (Bronze/Silver/Gold/Diamond tiers) grant points that buy new characters, and some characters also require a specific achievement.
 
 Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statuses): Poison, Freeze, Curse, Armor Break… versus Shield, Rage, Haste, Regen.
 
@@ -68,6 +68,7 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 | Items           | 562          | 42 classic items + 52 themed series × 10, power-budgeted per rarity                                                                                                            | [Items](docs/en/ITEMS.md)                                                   |
 | Monsters        | 25 + 2       | 25 monsters (10 AI behaviors) + 2 terrain critters                                                                                                                             | [Monsters](docs/en/MONSTERS.md)                                             |
 | Elites / Bosses | 30 / 15      | 11 attack patterns, phase two, enrage; 12 elite affixes                                                                                                                        | [Elites](docs/en/MONSTERS.md#elites) · [Bosses](docs/en/MONSTERS.md#bosses) |
+| Achievements    | 91           | Tiered medals (Bronze/Silver/Gold/Diamond); points buy characters; every character has run and clear achievements                                                              | [Achievements](docs/en/ACHIEVEMENTS.md)                                     |
 | Chapters        | 5 × 15 waves | Midnight Kitchen, Wild Garden, Frozen Fridge, City Junkyard, Ketchup Factory; 2–3 terrain hazards each                                                                         | [Chapters](docs/en/CHAPTERS.md)                                             |
 
 Procedural art: Canvas cartoon shading + part-based rigs + 12 animation states (idle/move/attack/hurt/windup/charge/stun/freeze/cast/spawn/death/victory).
@@ -76,16 +77,17 @@ Procedural music: electronic loops synthesized live with WebAudio. The main menu
 
 ## Documentation
 
-| Doc                                    | Contents                                                                            |
-| -------------------------------------- | ----------------------------------------------------------------------------------- |
-| [Characters](docs/en/CHARACTERS.md)    | Every character's role, traits, stats, starting weapons, skill and unlock condition |
-| [Skills & Statuses](docs/en/SKILLS.md) | Skill rules, the 13 forms, per-skill numbers; all buffs and debuffs                 |
-| [Weapons](docs/en/WEAPONS.md)          | Attack types, tier values and effects of every weapon                               |
-| [Items](docs/en/ITEMS.md)              | Rarity and power budget, level-up choices, classic items and every series           |
-| [Monsters](docs/en/MONSTERS.md)        | Behaviors, attack patterns, phase two and affixes of monsters, elites and bosses    |
-| [Chapters](docs/en/CHAPTERS.md)        | Wave rules, chapter difficulty, terrain hazards, monster/elite/boss pools           |
-| [Design Doc](docs/en/GDD.md)           | Systems, formulas, art & animation, balancing method, architecture                  |
-| [Data Tables](docs/en/DATA_TABLES.md)  | All numbers in one place                                                            |
+| Doc                                     | Contents                                                                         |
+| --------------------------------------- | -------------------------------------------------------------------------------- |
+| [Characters](docs/en/CHARACTERS.md)     | Every character's role, traits, stats, starting weapons, skill and how to unlock |
+| [Skills & Statuses](docs/en/SKILLS.md)  | Skill rules, the 13 forms, per-skill numbers; all buffs and debuffs              |
+| [Weapons](docs/en/WEAPONS.md)           | Attack types, tier values and effects of every weapon                            |
+| [Items](docs/en/ITEMS.md)               | Rarity and power budget, level-up choices, classic items and every series        |
+| [Monsters](docs/en/MONSTERS.md)         | Behaviors, attack patterns, phase two and affixes of monsters, elites and bosses |
+| [Chapters](docs/en/CHAPTERS.md)         | Wave rules, chapter difficulty, terrain hazards, monster/elite/boss pools        |
+| [Achievements](docs/en/ACHIEVEMENTS.md) | Tier goals and points of every achievement, character prices and prerequisites   |
+| [Design Doc](docs/en/GDD.md)            | Systems, formulas, art & animation, balancing method, architecture               |
+| [Data Tables](docs/en/DATA_TABLES.md)   | All numbers in one place                                                         |
 
 Everything except the design doc is generated from `src/data/` by `npm run docs`, in both languages, with cross-links between docs. Characters, weapons, items, monsters, elites and bosses come with images exported by `npm run docs:images`, which runs the game's own procedural drawing code; re-export after changing any look.
 

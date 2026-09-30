@@ -7,9 +7,38 @@ export interface SaveData {
   wins: number;
   bestWave: Record<string, number>; // `${charId}_${chapter}` -> 最佳波次
   charWins: Record<string, number>;
-  settings: { sfx: number; music: number; shake: boolean; showDmg: boolean; showFps: boolean; fpsLimit: number; lang?: 'zh' | 'en' };
+  settings: {
+    sfx: number;
+    music: number;
+    shake: boolean;
+    showDmg: boolean;
+    showFps: boolean;
+    fpsLimit: number;
+    lang?: 'zh' | 'en';
+    autoSkill: boolean;
+  };
   /** 图鉴发现记录 */
   seen: { items: string[]; weapons: string[]; enemies: string[]; bosses: string[] };
+  /** 成就：id → 已达成的最高等级（1 起）与达成时间 */
+  achievements: Record<string, { tier: number; t: number }>;
+  /** 已用成就点购买的角色 */
+  ownedChars: string[];
+  /** 已花费的成就点 */
+  pointsSpent: number;
+  /** 每名角色开局次数 */
+  charRuns: Record<string, number>;
+  /** 成就用累计统计 */
+  stats: AchStats;
+}
+
+export interface AchStats {
+  eliteKills: number;
+  bossKills: number;
+  overtimeWins: number; // Boss 狂暴后仍将其击败
+  perfectWaves: number; // 未受伤完成的波次
+  revives: number;
+  t4Crafted: number;
+  seedsEarned: number;
 }
 
 const KEY = 'tomato_sister_save_v1';
@@ -20,9 +49,21 @@ const DEFAULT: SaveData = {
   wins: 0,
   bestWave: {},
   charWins: {},
-  settings: { sfx: 0.7, music: 0.5, shake: true, showDmg: true, showFps: false, fpsLimit: 60 },
+  settings: { sfx: 0.7, music: 0.5, shake: true, showDmg: true, showFps: false, fpsLimit: 60, autoSkill: true },
   seen: { items: [], weapons: [], enemies: [], bosses: [] },
+  achievements: {},
+  ownedChars: [],
+  pointsSpent: 0,
+  charRuns: {},
+  stats: { eliteKills: 0, bossKills: 0, overtimeWins: 0, perfectWaves: 0, revives: 0, t4Crafted: 0, seedsEarned: 0 },
 };
+
+/** 旧存档迁移：改为成就点购买前，玩过或通关过的角色保留使用权 */
+function legacyOwned(d: Partial<SaveData>): string[] {
+  const played = new Set(Object.keys(d.bestWave ?? {}).map((k) => k.replace(/_\d+$/, '')));
+  for (const id of Object.keys(d.charWins ?? {})) played.add(id);
+  return CHARACTERS.filter((c) => c.cost && played.has(c.id)).map((c) => c.id);
+}
 
 function load(): SaveData {
   try {
@@ -34,6 +75,11 @@ function load(): SaveData {
       ...d,
       settings: { ...DEFAULT.settings, ...(d.settings ?? {}) },
       seen: { ...structuredClone(DEFAULT.seen), ...(d.seen ?? {}) },
+      // 旧版成就记录为时间戳，格式不兼容，丢弃后按新规则重新评定
+      achievements: Object.fromEntries(Object.entries(d.achievements ?? {}).filter(([, v]) => typeof v === 'object')),
+      ownedChars: d.ownedChars ?? legacyOwned(d),
+      charRuns: { ...(d.charRuns ?? {}) },
+      stats: { ...DEFAULT.stats, ...(d.stats ?? {}) },
     };
   } catch {
     return structuredClone(DEFAULT);
@@ -50,13 +96,18 @@ export function persist(): void {
   }
 }
 
+/** 角色是否可用：默认角色，或已用成就点购买 */
 export function isUnlocked(c: CharacterDef): boolean {
-  const u = c.unlock;
-  if (!u) return true;
-  if (u.chapter !== undefined && save.clearedChapters >= u.chapter) return true;
-  if (u.kills !== undefined && save.totalKills >= u.kills) return true;
-  if (u.wins !== undefined && save.wins >= u.wins) return true;
-  return false;
+  return !c.cost || save.ownedChars.includes(c.id);
+}
+
+/** 用成就点购买角色；余额由成就系统计算后传入 */
+export function buyCharacter(c: CharacterDef, balance: number): boolean {
+  if (isUnlocked(c) || !c.cost || balance < c.cost) return false;
+  save.ownedChars.push(c.id);
+  save.pointsSpent += c.cost;
+  persist();
+  return true;
 }
 
 export function unlockedCount(): number {

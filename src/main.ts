@@ -10,6 +10,7 @@ import { PauseScene } from './scenes/PauseScene';
 import { ResultScene } from './scenes/ResultScene';
 import { CodexScene } from './scenes/CodexScene';
 import { SettingsScene } from './scenes/SettingsScene';
+import { AchievementScene } from './scenes/AchievementScene';
 import { run } from './systems/RunState';
 import { controls } from './systems/Controls';
 import { CHARACTERS, CHARACTER_MAP } from './data/characters';
@@ -58,6 +59,7 @@ const game = new Phaser.Game({
     ResultScene,
     CodexScene,
     SettingsScene,
+    AchievementScene,
   ],
 });
 

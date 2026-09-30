@@ -8,6 +8,7 @@ import { CHARACTERS } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
+import { checkAchievements, setInRun, missingRequirement, pointsBalance } from '../systems/Achievements';
 
 export class ResultScene extends Phaser.Scene {
   constructor() {
@@ -21,7 +22,6 @@ export class ResultScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor(COLORS.bg);
     audio.stopMusic();
     clearRun();
-    const before = new Set(CHARACTERS.filter(isUnlocked).map((c) => c.id));
     if (data.win && !data.counted) {
       data.counted = true;
       save.wins++;
@@ -30,7 +30,9 @@ export class ResultScene extends Phaser.Scene {
       persist();
       audio.play(this, 'levelup');
     }
-    const newly = CHARACTERS.filter((c) => isUnlocked(c) && !before.has(c.id));
+    checkAchievements();
+    setInRun(false);
+    const affordable = CHARACTERS.filter((c) => !isUnlocked(c) && !missingRequirement(c) && (c.cost ?? 0) <= pointsBalance());
 
     panel(this, W / 2 - 400, 40, 800, H - 80);
     text(
@@ -74,32 +76,28 @@ export class ResultScene extends Phaser.Scene {
       ).setOrigin(0.5);
       y += 34;
     }
-    // 一次解锁多名角色时合并成一行名单，避免遮挡按钮
-    if (newly.length === 1) {
-      const c = newly[0];
+    // 本局获得的成就点；有买得起的角色时提示去选角界面购买
+    text(
+      this,
+      W / 2,
+      y,
+      tx(
+        `本局获得成就点 +${run.achPoints}（可用 🏅${pointsBalance()}）`,
+        `Achievement points this run +${run.achPoints} (available 🏅${pointsBalance()})`,
+      ),
+      22,
+      '#ffd166',
+    ).setOrigin(0.5);
+    if (affordable.length)
       text(
         this,
         W / 2,
-        y,
-        tx(`解锁新角色：${c.name}（${c.title}）`, `New character unlocked: ${c.name} (${c.title})`),
-        22,
+        y + 34,
+        tx(`可以购买新角色：${affordable.map((c) => c.name).join('、')}`, `You can buy: ${affordable.map((c) => c.name).join(', ')}`),
+        18,
         '#52ff8a',
-      ).setOrigin(0.5);
-    } else if (newly.length > 1) {
-      const names = newly.map((c) => c.name).join(tx('、', ', '));
-      text(
-        this,
-        W / 2,
-        y,
-        tx(`解锁${newly.length}名新角色：${names}`, `${newly.length} new characters unlocked: ${names}`),
-        20,
-        '#52ff8a',
-        {
-          wordWrap: { width: 720, useAdvancedWrap: true },
-          align: 'center',
-        },
+        { wordWrap: { width: 720, useAdvancedWrap: true }, align: 'center' },
       ).setOrigin(0.5, 0);
-    }
 
     button(
       this,

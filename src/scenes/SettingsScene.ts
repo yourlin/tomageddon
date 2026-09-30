@@ -74,6 +74,13 @@ export class SettingsScene extends Phaser.Scene {
         },
       ],
     ];
+    rows.splice(2, 0, [
+      tx('技能释放', 'Skill Cast'),
+      () => (st.autoSkill ? tx('自动', 'Auto') : tx('手动', 'Manual')),
+      () => {
+        st.autoSkill = !st.autoSkill;
+      },
+    ]);
     // 切换语言需要重新加载（数据文本在启动时按语言写入）；战斗中暂停时不提供，避免丢失本波进度
     if (!this.fromPause)
       rows.push([
@@ -86,14 +93,14 @@ export class SettingsScene extends Phaser.Scene {
         },
       ]);
     rows.forEach(([name, val, act], i) => {
-      const y = 145 + i * 54;
+      const y = 140 + i * 50;
       text(this, W / 2 - 230, y, name, 26).setOrigin(0, 0.5);
       const b = button(
         this,
         W / 2 + 140,
         y,
         200,
-        50,
+        44,
         val(),
         () => {
           act();

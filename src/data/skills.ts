@@ -80,10 +80,10 @@ export function skillPower(sk: SkillDef): { dmg: number; ctrl: number; buff: num
   return { dmg, ctrl, buff };
 }
 
-/** 冷却 = 8 + 0.9×伤害分 + 控制分 + 增益分，限制在 12~45 秒 */
+/** 冷却 = (8 + 0.9×伤害分 + 控制分 + 增益分) × 0.65，限制在 8~30 秒 */
 export function skillCooldown(sk: SkillDef): number {
   const p = skillPower(sk);
-  return Math.round(Math.min(45, Math.max(12, 8 + p.dmg * 0.9 + p.ctrl + p.buff)));
+  return Math.round(Math.min(30, Math.max(8, (8 + p.dmg * 0.9 + p.ctrl + p.buff) * 0.65)));
 }
 
 export const SKILL_TYPE_NAME: Record<string, string> = {

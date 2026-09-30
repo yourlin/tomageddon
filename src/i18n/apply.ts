@@ -29,7 +29,6 @@ export function applyLanguage(l: Lang = lang): void {
     Object.assign(c, { name: e.name, title: e.title, desc: e.desc, traits: e.traits });
     c.skill.name = e.skill.name;
     c.skill.desc = e.skill.desc;
-    if (c.unlock && e.unlock) c.unlock.text = e.unlock;
   }
   for (const w of WEAPONS) Object.assign(w, EN_WEAPONS[w.id] ?? {});
   for (const it of ITEMS) Object.assign(it, EN_ITEMS[it.id] ?? {});

@@ -13,6 +13,7 @@ import { BOSSES } from '../data/bosses';
 import { STATUSES } from '../data/statuses';
 import { RARITY } from '../data/balance';
 import { isUnlocked, isSeen } from '../systems/Save';
+import { unlockHint } from '../systems/Achievements';
 import { tx } from '../i18n';
 
 const PATTERN_NAME: Record<string, string> = {
@@ -105,7 +106,7 @@ export class CodexScene extends Phaser.Scene {
                   tx(`技能【${c.skill.name}】${c.skill.desc}`, `Skill [${c.skill.name}] ${c.skill.desc}`),
                 ],
               }
-            : { key: portraitKey(this, 'char', c.id), name: '？？？', color: '#888888', lines: [c.unlock?.text ?? ''] },
+            : { key: portraitKey(this, 'char', c.id), name: '？？？', color: '#888888', lines: [unlockHint(c)] },
         );
       case 'weapon':
         return WEAPONS.map((w) =>

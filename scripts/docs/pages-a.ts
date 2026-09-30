@@ -6,19 +6,19 @@ import { STATUSES } from '../../src/data/statuses';
 import { STAT_INFO, type StatKey } from '../../src/data/stats';
 import { SKILL_TYPE_NAME } from '../../src/data/skills';
 import { tagName } from '../../src/i18n/apply';
-import { Doc, lnk, stApply, mods, sep, img, CLS_NAME, KIND_NAME } from './common';
+import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
 
 export function charactersDoc(): void {
   const CLS = CLS_NAME();
   const d = new Doc('CHARACTERS.md', tx(`角色（${CHARACTERS.length} 名）`, `Characters (${CHARACTERS.length})`), [
     tx(
-      '每名角色 = 属性修正 + 初始武器 + 被动特性 + 主动技能 + 独特外观。默认解锁 4 名，其余通过「通关章节 / 累计击杀 / 通关次数」解锁。',
-      'Each character = stat modifiers + starting weapons + passive traits + an active skill + a unique look. 4 are unlocked by default; the rest unlock by clearing chapters, total kills or number of clears.',
+      '每名角色 = 属性修正 + 初始武器 + 被动特性 + 主动技能 + 独特外观。默认解锁 4 名，其余用[成就](ACHIEVEMENTS.md)获得的成就点购买，部分角色需先达成指定成就。',
+      'Each character = stat modifiers + starting weapons + passive traits + an active skill + a unique look. 4 are unlocked by default; the rest are bought with points earned from [achievements](ACHIEVEMENTS.md), and some require a specific achievement first.',
     ),
     '',
     tx('技能详情见 [技能](SKILLS.md)，武器详情见 [武器](WEAPONS.md)。', 'See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.'),
   ]);
-  const unlock = (c: (typeof CHARACTERS)[number]) => c.unlock?.text ?? tx('默认解锁', 'Unlocked by default');
+  const unlock = (c: (typeof CHARACTERS)[number]) => unlockText(c);
   d.h2(tx('角色一览', 'Overview'), 'overview');
   d.table(
     [tx('角色', 'Character'), tx('定位', 'Role'), tx('初始武器', 'Starting weapons'), tx('技能', 'Skill'), tx('解锁条件', 'Unlock')],
@@ -88,12 +88,14 @@ export function skillsDoc(): void {
       '- Durations (fields, buffs, invulnerability, clones, applied statuses) × (1 + Skill Duration%)',
     ),
     tx(
-      '- 冷却 × (1 − 技能冷却缩减%，最多 −70%)；每波开局需等待 40% 冷却才能首次释放',
-      '- Cooldown × (1 − Skill Cooldown%, at most −70%); at the start of each wave you must wait 40% of the cooldown before the first cast',
+      '- 冷却 × (1 − 技能冷却缩减%，最多 −70%)；每波开始时冷却重置，技能立即可用',
+      '- Cooldown × (1 − Skill Cooldown%, at most −70%); cooldowns reset at the start of every wave',
     ),
     tx(
-      '- 冷却按威力自动计算：`冷却 = 8 + 0.9×伤害分 + 控制分 + 增益分`，限制 12~45 秒（`src/data/skills.ts`）',
-      '- Cooldown is computed from power: `cooldown = 8 + 0.9×damage score + control score + buff score`, clamped to 12–45s (`src/data/skills.ts`)',
+      '- 冷却按威力自动计算：`冷却 = (8 + 0.9×伤害分 + 控制分 + 增益分) × 0.65`，限制 8~30 秒（`src/data/skills.ts`）',
+      '- 默认自动释放：按技能形态判断时机（范围伤害等敌人扎堆、回复等掉血、保命技能等危险时）；可在设置中切换为手动，自动模式下也能手动释放',
+      '- Cooldown is computed from power: `cooldown = (8 + 0.9×damage score + control score + buff score) × 0.65`, clamped to 8–30s (`src/data/skills.ts`)',
+      '- Skills auto-cast by default, timed by form (area skills when enemies cluster, heals when hurt, defensive skills in danger); switch to manual in Settings — you can still cast manually in auto mode',
     ),
     tx(
       '- 技能强化属性「技能伤害 / 技能范围 / 技能持续 / 技能冷却缩减」来自[道具](ITEMS.md)（技能秘籍、技能法器系列）与升级选项',

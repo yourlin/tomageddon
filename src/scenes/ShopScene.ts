@@ -13,6 +13,7 @@ import { audio } from '../systems/Audio';
 import { markSeen, persist } from '../systems/Save';
 import { tx } from '../i18n';
 import { tagName } from '../i18n/apply';
+import { checkAchievements, setInRun } from '../systems/Achievements';
 
 export class ShopScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
@@ -23,6 +24,7 @@ export class ShopScene extends Phaser.Scene {
   }
 
   create(data?: { keep?: boolean }): void {
+    setInRun(true);
     autoRelayout(this, { keep: true });
     this.cameras.main.setBackgroundColor(COLORS.bg);
     audio.playMusic(this, 'bgm_shop');
@@ -72,6 +74,7 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private draw(): void {
+    checkAchievements();
     const W = this.scale.width,
       H = this.scale.height;
     const L = this.layer;

@@ -10,6 +10,7 @@ import { STATUSES } from '../data/statuses';
 import { AFFIXES } from '../data/bosses';
 import { FONT } from '../systems/Textures';
 import { tx } from '../i18n';
+import { save } from '../systems/Save';
 
 export class HudScene extends Phaser.Scene {
   private g!: GameScene;
@@ -96,7 +97,8 @@ export class HudScene extends Phaser.Scene {
       ? this.add.image(0, -8, `skill_${run.charId}`).setDisplaySize(56, 56)
       : text(this, 0, -12, '★', 34, '#ffffff').setOrigin(0.5);
     this.skillCdText = text(this, 0, -8, '', 30).setOrigin(0.5);
-    const keyHint = text(this, 0, 64, this.isTouch ? '' : tx('[空格]', '[Space]'), 14, '#c9a9a6').setOrigin(0.5);
+    const hint = save.settings.autoSkill ? tx('自动', 'AUTO') : this.isTouch ? '' : tx('[空格]', '[Space]');
+    const keyHint = text(this, 0, 64, hint, 14, save.settings.autoSkill ? '#52ff8a' : '#c9a9a6').setOrigin(0.5);
     this.skillBtn.add([this.skillGfx, icon, skName, this.skillCdText, keyHint]);
     this.skillBtn.setSize(130, 130).setInteractive();
     this.skillBtn.on('pointerdown', (p: Phaser.Input.Pointer) => {

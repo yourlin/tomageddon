@@ -34,6 +34,7 @@ import { save, persist, markSeen } from '../systems/Save';
 import { paintArena } from '../art/ArenaArt';
 import { Terrain, TERRAIN_INFO } from '../systems/Terrain';
 import { tx } from '../i18n';
+import { checkAchievements, setInRun } from '../systems/Achievements';
 
 export interface HitInfo {
   dmg: number;
@@ -50,6 +51,8 @@ interface Pickup {
   img: Phaser.GameObjects.Image;
   kind: 'seed' | 'fruit' | 'crate';
   value: number;
+  /** 番茄籽附带的经验（与货币分开计算） */
+  xp: number;
   alive: boolean;
   magnet: boolean;
   t: number;
@@ -138,6 +141,8 @@ export class GameScene extends Phaser.Scene {
   ccImmuneUntil = 0;
   terrain!: Terrain;
   overtime = 0;
+  /** 本波是否受过伤（无伤成就） */
+  tookDamage = false;
   /** Boss 加时层数与狂暴威压计时 */
   enrageStacks = 0;
   private pressureT = 0;
@@ -173,6 +178,8 @@ export class GameScene extends Phaser.Scene {
     this.statusVer = -1;
     this.cratesDropped = 0;
     this.overtime = 0;
+    this.tookDamage = false;
+    setInRun(true);
     this.enrageStacks = 0;
     this.pressureT = 0;
     this.pstatus = new StatusSet();
@@ -423,10 +430,11 @@ export class GameScene extends Phaser.Scene {
     this.moveX = mx;
     this.moveY = my;
 
+    const canCast = !this.waveOver && !tot.disable && !this.pstatus.has('silence');
     if (Phaser.Input.Keyboard.JustDown(k.SPACE) || controls.skillPressed) {
       controls.skillPressed = false;
-      if (!this.waveOver && !tot.disable && !this.pstatus.has('silence')) this.skill.use();
-    }
+      if (canCast) this.skill.use();
+    } else if (canCast && save.settings.autoSkill && this.skill.ready && this.skill.autoWants()) this.skill.use();
 
     const p = this.player;
     if (!this.skill.dash) {
@@ -497,6 +505,7 @@ export class GameScene extends Phaser.Scene {
     const dmg = this.pstatus.absorb(amount);
     if (dmg <= 0) return;
     run.hp -= dmg;
+    this.tookDamage = true;
     DEBUG_DMG?.push([run.wave, Math.round(this.timeLeft), 'dot:' + color, Math.round(dmg * 10) / 10]);
     if (dmg >= 1) this.fx.number(this.player.x, this.player.y - 10, dmg, color);
     if (run.hp <= 0) this.onPlayerDeath();
@@ -528,6 +537,7 @@ export class GameScene extends Phaser.Scene {
     }
     dmg = Math.max(1, Math.round(dmg));
     run.hp -= dmg;
+    this.tookDamage = true;
     DEBUG_DMG?.push([
       run.wave,
       Math.round(this.timeLeft),
@@ -555,6 +565,7 @@ export class GameScene extends Phaser.Scene {
     if (this.waveOver || this.dead) return;
     const dmg = Math.max(1, Math.round(amount));
     run.hp -= dmg;
+    this.tookDamage = true;
     DEBUG_DMG?.push([run.wave, 0, 'enrage-pressure', dmg]);
     this.fx.number(this.player.x, this.player.y - 10, dmg, '#ff3b30');
     if (run.hp <= 0) this.onPlayerDeath();
@@ -564,6 +575,7 @@ export class GameScene extends Phaser.Scene {
     if (this.dead) return;
     if (run.specials.revive > run.revivesUsed) {
       run.revivesUsed++;
+      save.stats.revives++;
       run.hp = Math.ceil(this.stats.maxHp * 0.5);
       this.iframes = 2;
       this.pstatus.cleanse();
@@ -797,7 +809,9 @@ export class GameScene extends Phaser.Scene {
     if (interest > 0) run.earn(Math.min(run.wave * 6, Math.floor((run.seeds * interest) / 100)), 'interest'); // 利息有上限，防止滚雪球
     save.totalKills += this.killCounter;
     this.killCounter = 0;
+    if (!this.tookDamage) save.stats.perfectWaves++;
     persist();
+    checkAchievements();
     this.events.emit('waveEnd');
     this.time.delayedCall(1500, () => {
       for (const p of this.pickups) if (p.alive) this.collect(p);
@@ -1062,12 +1076,27 @@ export class GameScene extends Phaser.Scene {
     this.fx.burst(e.x, e.y, color, e.isBoss ? 40 : 8);
     this.fx.splat(e.x, e.y, color, e.radius);
     this.applyPlayerStatus(sp.onKillSelf);
-    let seeds = e.isBoss || e.isElite ? e.seeds : Math.floor(e.seeds * (run.wave <= 5 ? 1 : BALANCE.seedMult) + Math.random());
-    if (sp.doubleSeed && Math.random() * 100 < sp.doubleSeed) seeds *= 2;
-    const n = Math.min(seeds, e.isBoss ? 25 : 5);
-    for (let i = 0; i < n && seeds > 0; i++) {
+    // 经验沿用原公式；货币按怪物血量成长放大（血越厚掉得越多），避免后期买不起
+    if (e.boss) {
+      if (e.boss.elite) save.stats.eliteKills++;
+      else {
+        save.stats.bossKills++;
+        if (e.enraged) save.stats.overtimeWins++;
+      }
+    }
+    const boss = e.isBoss || e.isElite;
+    let xp = boss ? e.seeds : Math.floor(e.seeds * (run.wave <= 5 ? 1 : BALANCE.seedMult) + Math.random());
+    let seeds = Math.floor(e.seeds * e.lootMult + Math.random());
+    if (sp.doubleSeed && Math.random() * 100 < sp.doubleSeed) {
+      seeds *= 2;
+      xp *= 2;
+    }
+    const n = Math.min(Math.max(seeds, xp), e.isBoss ? 25 : 5);
+    for (let i = 0; i < n; i++) {
       const v = Math.floor(seeds / n) + (i < seeds % n ? 1 : 0);
-      this.dropPickup('seed', e.x + Phaser.Math.Between(-e.radius, e.radius), e.y + Phaser.Math.Between(-e.radius, e.radius), v);
+      const x = Math.floor(xp / n) + (i < xp % n ? 1 : 0);
+      if (v > 0 || x > 0)
+        this.dropPickup('seed', e.x + Phaser.Math.Between(-e.radius, e.radius), e.y + Phaser.Math.Between(-e.radius, e.radius), v, x);
     }
     if (e.isBoss) {
       this.dropPickup('crate', e.x, e.y, 1);
@@ -1394,18 +1423,19 @@ export class GameScene extends Phaser.Scene {
   }
 
   // ---------------- 掉落物 ----------------
-  private dropPickup(kind: Pickup['kind'], x: number, y: number, value: number): void {
+  private dropPickup(kind: Pickup['kind'], x: number, y: number, value: number, xp = value): void {
     const key = kind === 'seed' ? 'pickup_seed' : kind === 'fruit' ? 'pickup_fruit' : 'pickup_crate';
     let p = this.pickups.find((q) => !q.alive && q.kind === kind);
     if (p) {
       p.img.setPosition(x, y).setVisible(true).setAlpha(1);
       p.alive = true;
       p.value = value;
+      p.xp = xp;
       p.magnet = this.waveOver;
       p.t = 0;
     } else {
       const img = this.add.image(x, y, key).setDepth(5);
-      p = { img, kind, value, alive: true, magnet: this.waveOver, t: 0 };
+      p = { img, kind, value, xp, alive: true, magnet: this.waveOver, t: 0 };
       this.pickups.push(p);
     }
     p.img.setScale(kind === 'seed' ? (value > 1 ? 1.25 : 1) : 1);
@@ -1443,7 +1473,7 @@ export class GameScene extends Phaser.Scene {
     p.img.setVisible(false);
     if (p.kind === 'seed') {
       run.earn(p.value, 'pickup');
-      run.addXp(p.value);
+      run.addXp(p.xp);
       audio.play(this, 'pickup', 0.03);
     } else if (p.kind === 'fruit') {
       this.heal(Math.max(3, Math.round(this.stats.maxHp * 0.08 * (1 + run.specials.fruitHeal / 100))));

@@ -43,7 +43,10 @@ export interface CharacterDef {
   levelUpChoices?: number;
   special?: ItemSpecial;
   skill: SkillDef;
-  unlock?: { chapter?: number; kills?: number; wins?: number; text: string };
+  /** 解锁价格（成就点）；不填表示默认解锁 */
+  cost?: number;
+  /** 购买前需要先达成的成就（id 与最低等级，等级从 1 起） */
+  requires?: { ach: string; tier: number };
 }
 
 const S = (id: StatusApply['id'], dur: number, stacks = 1, chance?: number): StatusApply => ({ id, dur, stacks, chance });
@@ -215,7 +218,7 @@ export const CHARACTERS: CharacterDef[] = [
       heal: 0.1,
       color: 0x2ec4b6,
     },
-    unlock: { chapter: 1, text: '通关第 1 章解锁' },
+    cost: 40,
   },
   {
     id: 'lemon',
@@ -253,7 +256,7 @@ export const CHARACTERS: CharacterDef[] = [
       mods: { crit: 50, speed: 20 },
       color: 0xf7ec59,
     },
-    unlock: { kills: 1000, text: '累计击杀 1000 个敌人解锁' },
+    cost: 40,
   },
   {
     id: 'eggplant',
@@ -289,7 +292,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 0.4)],
       color: 0xc77dff,
     },
-    unlock: { chapter: 1, text: '通关第 1 章解锁' },
+    cost: 40,
   },
   {
     id: 'garlic',
@@ -326,7 +329,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 3)],
       color: 0x9d0208,
     },
-    unlock: { kills: 3000, text: '累计击杀 3000 个敌人解锁' },
+    cost: 80,
   },
   {
     id: 'blueberry',
@@ -355,7 +358,7 @@ export const CHARACTERS: CharacterDef[] = [
     startWeapons: ['pea_shooter', 'knife'],
     traits: ['武器栏 8 格', '-10% 伤害'],
     skill: { name: '双子分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x3a86ff },
-    unlock: { chapter: 2, text: '通关第 2 章解锁' },
+    cost: 80,
   },
   {
     id: 'pineapple',
@@ -391,7 +394,7 @@ export const CHARACTERS: CharacterDef[] = [
       radius: 150,
       color: 0xffd700,
     },
-    unlock: { wins: 1, text: '任意角色通关 1 次解锁' },
+    cost: 40,
   },
   {
     id: 'pumpkin',
@@ -419,7 +422,8 @@ export const CHARACTERS: CharacterDef[] = [
     startWeapons: ['soda'],
     traits: ['+25% 闪避', '闪避上限 75%', '-4 最大生命'],
     skill: { name: '灵体化', desc: '无敌 2.5 秒并大幅加速。', type: 'ghost', cd: 0, duration: 2.5, mods: { speed: 60 }, color: 0xffb4a2 },
-    unlock: { chapter: 3, text: '通关第 3 章解锁' },
+    cost: 100,
+    requires: { ach: 'clear_2', tier: 1 },
   },
   {
     id: 'strawberry',
@@ -460,7 +464,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 6, 3), S('rage', 6, 5)],
       color: 0xff70a6,
     },
-    unlock: { chapter: 2, text: '通关第 2 章解锁' },
+    cost: 80,
   },
   {
     id: 'ginger',
@@ -497,7 +501,8 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 2)],
       color: 0xe9c46a,
     },
-    unlock: { kills: 6000, text: '累计击杀 6000 个敌人解锁' },
+    cost: 100,
+    requires: { ach: 'kills', tier: 2 },
   },
   {
     id: 'avocado',
@@ -523,7 +528,8 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+2 元素伤害', '+5% 伤害', '击杀 15% 概率爆炸'],
     special: { explodeOnKill: { chance: 15, dmg: 20 } },
     skill: { name: '核心过载', desc: '连环爆炸 5 次。', type: 'strikes', cd: 0, mult: 1.6, count: 5, radius: 90, color: 0xa7c957 },
-    unlock: { chapter: 4, text: '通关第 4 章解锁' },
+    cost: 130,
+    requires: { ach: 'clear_3', tier: 1 },
   },
   {
     id: 'onion',
@@ -564,7 +570,8 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('blind', 1)],
       color: 0xe0aaff,
     },
-    unlock: { chapter: 5, text: '通关第 5 章解锁' },
+    cost: 160,
+    requires: { ach: 'clear_4', tier: 1 },
   },
   // ---------------- 新角色 ----------------
   {
@@ -601,7 +608,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 6, 5), S('weaken', 5, 2)],
       color: 0x70e000,
     },
-    unlock: { kills: 500, text: '累计击杀 500 个敌人解锁' },
+    cost: 30,
   },
   {
     id: 'coconut',
@@ -637,7 +644,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 1.2), S('armorBreak', 6, 3)],
       color: 0xbc6c25,
     },
-    unlock: { chapter: 1, text: '通关第 1 章解锁' },
+    cost: 40,
   },
   {
     id: 'grape',
@@ -668,7 +675,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+10 幸运', '+3 最大生命', '受到攻击 20% 概率使敌人混乱'],
     special: { onHurtEnemy: [S('confuse', 3, 1, 20)] },
     skill: { name: '葡萄分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0xb5179e },
-    unlock: { kills: 1500, text: '累计击杀 1500 个敌人解锁' },
+    cost: 60,
   },
   {
     id: 'cherry',
@@ -698,7 +705,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+20% 攻速', '-8% 伤害', '射击时 10% 概率获得急速'],
     special: { onHitSelf: [S('haste', 2, 1, 10)] },
     skill: { name: '双枪连射', desc: '对最近的敌人连续射出 12 发子弹。', type: 'barrage', cd: 0, mult: 0.9, count: 12, color: 0xff4d6d },
-    unlock: { chapter: 1, text: '通关第 1 章解锁' },
+    cost: 40,
   },
   {
     id: 'pea',
@@ -723,7 +730,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+2 远程伤害', '初始 2 把豌豆枪', '每把同名武器 +3% 伤害'],
     special: { sameWeaponBonus: 3 },
     skill: { name: '豌豆炮台', desc: '对最近的敌人高速连发 16 颗豌豆。', type: 'barrage', cd: 0, mult: 0.6, count: 16, color: 0x70e000 },
-    unlock: { wins: 2, text: '通关 2 次解锁' },
+    cost: 60,
   },
   {
     id: 'peach',
@@ -761,7 +768,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('invuln', 1.5)],
       color: 0xffd6e0,
     },
-    unlock: { chapter: 2, text: '通关第 2 章解锁' },
+    cost: 80,
   },
   {
     id: 'dragonfruit',
@@ -798,7 +805,8 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 4)],
       color: 0xff5400,
     },
-    unlock: { chapter: 3, text: '通关第 3 章解锁' },
+    cost: 100,
+    requires: { ach: 'clear_2', tier: 1 },
   },
   {
     id: 'beet',
@@ -835,7 +843,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('enrage', 6), S('vampiric', 6, 3)],
       color: 0xd00000,
     },
-    unlock: { kills: 4000, text: '累计击杀 4000 个敌人解锁' },
+    cost: 80,
   },
   {
     id: 'asparagus',
@@ -873,7 +881,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 4)],
       color: 0xb5e48c,
     },
-    unlock: { chapter: 2, text: '通关第 2 章解锁' },
+    cost: 80,
   },
   {
     id: 'sweetpotato',
@@ -913,7 +921,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('regen', 6, 5)],
       color: 0xffb703,
     },
-    unlock: { wins: 1, text: '任意角色通关 1 次解锁' },
+    cost: 40,
   },
   {
     id: 'kiwi',
@@ -950,7 +958,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 6), S('vulnerable', 6, 2)],
       color: 0xffd166,
     },
-    unlock: { kills: 2000, text: '累计击杀 2000 个敌人解锁' },
+    cost: 60,
   },
   {
     id: 'lychee',
@@ -987,7 +995,8 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('lucky', 6, 5), S('focus', 6, 3)],
       color: 0xffc2d1,
     },
-    unlock: { chapter: 3, text: '通关第 3 章解锁' },
+    cost: 100,
+    requires: { ach: 'clear_2', tier: 1 },
   },
   {
     id: 'durian',
@@ -1023,7 +1032,8 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 5, 4), S('weaken', 5, 3), S('confuse', 3)],
       color: 0xc9a227,
     },
-    unlock: { chapter: 4, text: '通关第 4 章解锁' },
+    cost: 130,
+    requires: { ach: 'clear_3', tier: 1 },
   },
   {
     id: 'bellpepper',
@@ -1050,7 +1060,8 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+5 护甲', '+10 生命', '-10% 闪避', '每 12 秒获得 20 点护盾'],
     special: { periodicSelf: { every: 12, status: [{ id: 'shield', dur: 12, value: 20 }] } },
     skill: { name: '无人机支援', desc: '部署无人机 8 秒。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x4cc9f0 },
-    unlock: { chapter: 4, text: '通关第 4 章解锁' },
+    cost: 130,
+    requires: { ach: 'clear_3', tier: 1 },
   },
   {
     id: 'wintermelon',
@@ -1085,7 +1096,8 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('fortify', 8, 5)],
       color: 0xffd166,
     },
-    unlock: { kills: 8000, text: '累计击杀 8000 个敌人解锁' },
+    cost: 130,
+    requires: { ach: 'bosses', tier: 1 },
   },
   {
     id: 'bittermelon',
@@ -1121,7 +1133,8 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('freeze', 0.8, 1, 25)],
       color: 0xa9def9,
     },
-    unlock: { chapter: 3, text: '通关第 3 章解锁' },
+    cost: 100,
+    requires: { ach: 'clear_2', tier: 1 },
   },
   {
     id: 'sprout',
@@ -1156,7 +1169,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 5, 2)],
       color: 0x80b918,
     },
-    unlock: { wins: 3, text: '通关 3 次解锁' },
+    cost: 80,
   },
   {
     id: 'wasabi',
@@ -1193,7 +1206,8 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 3)],
       color: 0xb5e48c,
     },
-    unlock: { chapter: 5, text: '通关第 5 章解锁' },
+    cost: 160,
+    requires: { ach: 'clear_4', tier: 1 },
   },
 ];
 

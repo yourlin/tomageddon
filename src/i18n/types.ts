@@ -9,7 +9,6 @@ export interface CharacterEn {
   desc: string;
   traits: string[]; // 与中文 traits 一一对应
   skill: { name: string; desc: string };
-  unlock?: string; // 解锁条件文字（中文数据有 unlock 时必填）
 }
 export type CharactersEn = Record<string, CharacterEn>;
 

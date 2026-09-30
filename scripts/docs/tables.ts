@@ -11,7 +11,7 @@ import { describeMods } from '../../src/data/stats';
 import { describeItem } from '../../src/data/describe';
 import { SKILL_TYPE_NAME } from '../../src/data/skills';
 import { RARITY, waveDuration, xpToNext, enemyHp, enemyDamage, spawnInterval, spawnBatch } from '../../src/data/balance';
-import { Doc, ELITES, BOSS_ONLY, CLS_NAME, KIND_NAME, BEHAVIOR_NAME, sep, waveRange } from './common';
+import { Doc, ELITES, BOSS_ONLY, CLS_NAME, KIND_NAME, BEHAVIOR_NAME, sep, waveRange, unlockText } from './common';
 
 export function tablesDoc(): void {
   const CLS = CLS_NAME(),
@@ -34,7 +34,7 @@ export function tablesDoc(): void {
       c.traits.join(tx('；', '; ')),
       `${c.skill.name} [${SKILL_TYPE_NAME[c.skill.type]}] ${c.skill.desc}`,
       `${c.skill.cd}s`,
-      c.unlock?.text ?? tx('默认', 'Default'),
+      unlockText(c),
     ]),
   );
   d.h2('Buff / Debuff', 'statuses');

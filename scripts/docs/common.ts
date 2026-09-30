@@ -8,6 +8,8 @@ import { WEAPONS, type WeaponDef } from '../../src/data/weapons';
 import { STATUSES, type StatusApply, type StatusId } from '../../src/data/statuses';
 import { describeMods } from '../../src/data/stats';
 import type { CharacterDef } from '../../src/data/characters';
+import { ACH_MAP } from '../../src/data/achievements';
+import { achText, tierLabel } from '../../src/systems/Achievements';
 
 export const outDir = () => (lang === 'en' ? 'docs/en' : 'docs');
 
@@ -20,6 +22,7 @@ const docs = () =>
     [tx('道具', 'Items'), 'ITEMS.md'],
     [tx('怪物', 'Monsters'), 'MONSTERS.md'],
     [tx('关卡', 'Chapters'), 'CHAPTERS.md'],
+    [tx('成就', 'Achievements'), 'ACHIEVEMENTS.md'],
     [tx('设计文档', 'Design Doc'), 'GDD.md'],
     [tx('数值表', 'Data Tables'), 'DATA_TABLES.md'],
   ] as const;
@@ -81,6 +84,16 @@ export const lnk = {
 };
 
 export const sep = () => tx('、', ', ');
+/** 角色解锁方式：默认 / 成就点价格（+ 前置成就链接） */
+export function unlockText(c: CharacterDef, f = 'ACHIEVEMENTS.md'): string {
+  if (!c.cost) return tx('默认解锁', 'Unlocked by default');
+  const price = tx(`${c.cost} 成就点`, `${c.cost} pts`);
+  if (!c.requires) return price;
+  const a = ACH_MAP[c.requires.ach];
+  const tl = tierLabel(a, c.requires.tier);
+  const req = `[${achText(a, 'name', c.requires.tier - 1)}${tl ? `（${tl}）` : ''}](${f}#ach-${a.id})`;
+  return tx(`${price}，需先达成 ${req}`, `${price}, requires ${req}`);
+}
 /** 状态施加：3层[减速](..) 3s（30%） */
 export const stApply = (l: StatusApply[] | undefined, f?: string) =>
   (l ?? [])

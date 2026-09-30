@@ -28,6 +28,8 @@ export class Enemy {
   dmg = 1;
   speed = 80;
   seeds = 1;
+  /** 番茄籽（货币）掉落倍率：随本体血量成长，√(当前血量 / 基础血量) */
+  lootMult = 1;
   knockResist = 0;
   kvx = 0;
   kvy = 0;
@@ -108,6 +110,7 @@ export class Enemy {
     this.dmg = Math.round(dmg * (affixes.length ? 1.3 : 1));
     this.speed = def.speed * speedMult * Phaser.Math.FloatBetween(0.9, 1.1);
     this.seeds = def.seeds * (affixes.length ? 4 : 1);
+    this.lootMult = Math.sqrt(Math.max(1, hp / def.hp));
     this.knockResist = def.knockResist ?? 0;
     this.actT = Phaser.Math.FloatBetween(0.5, def.shootCd ?? def.chargeCd ?? def.summonCd ?? def.healCd ?? 1.5);
     this.lifeT = def.life ?? 0;
@@ -123,6 +126,7 @@ export class Enemy {
     this.dmg = dmg;
     this.speed = def.speed;
     this.seeds = def.seeds;
+    this.lootMult = Math.sqrt(Math.max(1, hp / def.hp));
     this.knockResist = 0.95;
     this.status.ccResist = def.elite ? 0.5 : 0.75;
     this.patterns = [...def.patterns];

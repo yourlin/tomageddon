@@ -8,6 +8,7 @@ import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { run, hasSavedRun, loadRun } from '../systems/RunState';
 import { save, unlockedCount } from '../systems/Save';
 import { tx } from '../i18n';
+import { checkAchievements, setInRun, pointsBalance } from '../systems/Achievements';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -15,6 +16,8 @@ export class MenuScene extends Phaser.Scene {
   }
 
   create(): void {
+    setInRun(false);
+    checkAchievements();
     autoRelayout(this);
     const W = this.scale.width,
       H = this.scale.height;
@@ -98,7 +101,8 @@ export class MenuScene extends Phaser.Scene {
       ).setOrigin(0, 0.5);
     }
     button(this, W / 2, by, 320, 72, tx('开始游戏', 'Start'), () => this.scene.start('CharSelect'), COLORS.primary, 32);
-    button(this, W / 2, by + 90, 320, 60, tx('图鉴', 'Codex'), () => this.scene.start('Codex'), 0x8d5a97, 26);
+    button(this, W / 2 - 82, by + 90, 156, 60, tx('图鉴', 'Codex'), () => this.scene.start('Codex'), 0x8d5a97, 26);
+    button(this, W / 2 + 82, by + 90, 156, 60, tx('成就', 'Awards'), () => this.scene.start('Achievements'), 0xb07d2b, 26);
     button(this, W / 2, by + 165, 320, 60, tx('设置', 'Settings'), () => this.scene.start('Settings'), 0x4a6fa5, 26);
     button(
       this,
@@ -124,8 +128,8 @@ export class MenuScene extends Phaser.Scene {
       W - 20,
       H - 20,
       tx(
-        `已解锁角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
-        `Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
+        `成就点 🏅${pointsBalance()} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
+        `Points 🏅${pointsBalance()} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
       ),
       16,
       COLORS.textDim,

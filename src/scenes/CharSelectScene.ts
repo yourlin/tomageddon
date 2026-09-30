@@ -6,9 +6,10 @@ import { CHAPTERS } from '../data/chapters';
 import { WEAPON_MAP } from '../data/weapons';
 import { SKILL_TYPE_NAME } from '../data/skills';
 import { describeMods } from '../data/stats';
-import { save, isUnlocked } from '../systems/Save';
+import { save, persist, isUnlocked } from '../systems/Save';
+import { pointsBalance, missingRequirement, unlockHint, tryBuyCharacter, checkAchievements } from '../systems/Achievements';
 import { run, clearRun } from '../systems/RunState';
-import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast } from '../ui/UI';
 import { tx } from '../i18n';
 
 export class CharSelectScene extends Phaser.Scene {
@@ -37,6 +38,7 @@ export class CharSelectScene extends Phaser.Scene {
 
     text(this, 30, 20, tx('选择角色', 'Choose Character'), 36).setOrigin(0, 0);
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
+    text(this, W - 180, 44, tx(`成就点 🏅 ${pointsBalance()}`, `Points 🏅 ${pointsBalance()}`), 22, '#ffd166').setOrigin(1, 0.5);
 
     // 角色网格
     const cols = 8,
@@ -51,8 +53,10 @@ export class CharSelectScene extends Phaser.Scene {
       const unlocked = isUnlocked(c);
       const img = fitImage(this.add.image(x + s / 2, y + s / 2, portraitKey(this, 'char', c.id)), s * 0.95);
       if (!unlocked) {
-        img.setTint(0x000000).setAlpha(0.6);
-        text(this, x + s / 2, y + s / 2, '?', 40).setOrigin(0.5);
+        // 未拥有：半透明显示本体，角标为价格（有未满足的前置成就时显示锁）
+        img.setAlpha(0.45);
+        const tag = missingRequirement(c) ? '🔒' : `🏅${c.cost}`;
+        text(this, x + s - 4, y + s - 2, tag, 15, '#ffd166', { stroke: '#000000', strokeThickness: 4 }).setOrigin(1, 1);
       }
       hitArea(this, x, y, s, s, () => {
         this.selected = c;
@@ -119,12 +123,17 @@ export class CharSelectScene extends Phaser.Scene {
     const pw = this.scale.width * 0.5 - 40;
     this.showcase?.destroy();
     this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62);
-    if (!unlocked) this.showcase.setStatusTint(0x000000);
+    if (!unlocked) this.showcase.setAlpha(0.55);
     this.showcase.setDepth(10);
-    d.add(text(this, 180, 24, unlocked ? c.name : '？？？', 34, '#ffffff'));
-    d.add(text(this, 180, 70, unlocked ? c.title : (c.unlock?.text ?? ''), 20, unlocked ? '#ffd166' : '#ff6b6b'));
-    if (unlocked) {
-      d.add(text(this, 180, 104, c.desc, 17, COLORS.textDim, { wordWrap: { width: pw - 200 } }));
+    d.add(text(this, 180, 24, c.name, 34, '#ffffff'));
+    d.add(text(this, 180, 70, c.title, 20, '#ffd166'));
+    {
+      const hint = unlocked ? c.desc : unlockHint(c);
+      d.add(
+        text(this, 180, 104, hint, 17, unlocked ? COLORS.textDim : missingRequirement(c) ? '#ff6b6b' : '#ffd166', {
+          wordWrap: { width: pw - 200, useAdvancedWrap: true },
+        }),
+      );
       let y = 190;
       d.add(text(this, 20, y, tx('特性', 'Traits'), 22, '#ffb347'));
       y += 32;
@@ -167,11 +176,29 @@ export class CharSelectScene extends Phaser.Scene {
       `${ch.name}  ${chUnlocked ? '' : '🔒'}  ${tx(`（怪物生命 x${ch.hpMult} 伤害 x${ch.dmgMult}）`, `(HP x${ch.hpMult} · DMG x${ch.dmgMult})`)}`,
     );
     this.chapterDesc.setText(chUnlocked ? ch.desc : tx(`通关第 ${this.chapter - 1} 章解锁`, `Clear Chapter ${this.chapter - 1} to unlock`));
-    this.startBtn.setEnabled(unlocked && chUnlocked);
+    if (unlocked) {
+      this.startBtn.setLabel(tx('出发！', 'Go!'));
+      this.startBtn.setEnabled(chUnlocked);
+    } else {
+      this.startBtn.setLabel(tx(`购买 🏅${c.cost}`, `Buy 🏅${c.cost}`));
+      this.startBtn.setEnabled(!missingRequirement(c) && pointsBalance() >= (c.cost ?? 0));
+    }
   }
 
   private start(): void {
+    const c = this.selected;
+    if (!isUnlocked(c)) {
+      const r = tryBuyCharacter(c);
+      if (r === 'ok') {
+        toast(this, tx(`获得新角色：${c.name}`, `New character: ${c.name}`), '#52ff8a');
+        this.time.delayedCall(700, () => this.scene.restart());
+      } else toast(this, r === 'poor' ? tx('成就点不足', 'Not enough points') : tx('尚未满足解锁条件', 'Requirement not met'), '#ff6b6b');
+      return;
+    }
     clearRun();
+    save.charRuns[this.selected.id] = (save.charRuns[this.selected.id] ?? 0) + 1;
+    persist();
+    checkAchievements();
     run.start(this.selected.id, this.chapter);
     this.scene.start('Game');
   }

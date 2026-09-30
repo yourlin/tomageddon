@@ -8,7 +8,7 @@ export const BALANCE = {
   pickup: { baseRadius: 90, magnetSpeed: 700 },
   maxEnemies: 260,
   harvestGrowth: 0.05,
-  seedMult: 0.5, // 小怪番茄籽掉落倍率
+  seedMult: 0.5, // 第 6 波起小怪番茄籽的经验倍率（货币掉落另按血量成长放大，见 Enemy.lootMult）
   cratesPerWave: 3, // 每波最多掉落宝箱（精英/Boss 不计）
   rerollBase: 2,
   shopSlots: 4,

@@ -35,7 +35,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A big, round bruiser with a seriously thick rind.',
     traits: ['+25 Max HP', '+2 Armor', '-12% Move Speed', '-10% Attack Speed'],
     skill: { name: 'Melon Roll', desc: 'Roll into enemies and restore 10% HP.' },
-    unlock: 'Clear Chapter 1 to unlock',
   },
   lemon: {
     name: 'Lemon Assassin',
@@ -43,7 +42,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A sour little assassin who kills in a single strike.',
     traits: ['+20% Crit Chance', '+10% Dodge', '-4 Max HP'],
     skill: { name: 'Sour Mist', desc: 'Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance.' },
-    unlock: 'Defeat 1000 enemies in total to unlock',
   },
   eggplant: {
     name: 'Eggplant Mage',
@@ -51,7 +49,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A purple-robed mage who calls down lightning to punish pests.',
     traits: ['+4 Elemental Damage', '+10 Luck', '+3 Max HP', 'Melee Damage -70%'],
     skill: { name: 'Purple Thunder', desc: 'Lightning blankets the screen, striking every enemy and briefly Stunning them.' },
-    unlock: 'Clear Chapter 1 to unlock',
   },
   garlic: {
     name: 'Count Garlic',
@@ -59,7 +56,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'An ancient vampire... made entirely of garlic.',
     traits: ['+10% Life Steal', '-3 HP Regen', '+5% Damage'],
     skill: { name: 'Blood Domain', desc: 'Drain life from nearby enemies and inflict Bleed.' },
-    unlock: 'Defeat 3000 enemies in total to unlock',
   },
   blueberry: {
     name: 'Blueberry Twins',
@@ -67,7 +63,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Inseparable twins who can carry more weapons.',
     traits: ['8 weapon slots', '-10% Damage'],
     skill: { name: 'Twin Clone', desc: 'Summon a clone that auto-fires for 8s.' },
-    unlock: 'Clear Chapter 2 to unlock',
   },
   pineapple: {
     name: 'Captain Pineapple',
@@ -78,7 +73,6 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Golden Cannon',
       desc: 'Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds.',
     },
-    unlock: 'Complete a run with any character to unlock',
   },
   pumpkin: {
     name: 'Pumpkin Ghost',
@@ -86,7 +80,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A little Halloween ghost, always floating about.',
     traits: ['+25% Dodge', 'Dodge cap 75%', '-4 Max HP'],
     skill: { name: 'Spirit Form', desc: 'Become Invulnerable for 2.5s and gain a big speed boost.' },
-    unlock: 'Clear Chapter 3 to unlock',
   },
   strawberry: {
     name: 'Strawberry Idol',
@@ -94,7 +87,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A superstar idol who levels up at an amazing pace.',
     traits: ['+40% XP Gain', '5 choices on level up'],
     skill: { name: 'Fan Cheer', desc: 'Gain 3 stacks of Haste + 5 stacks of Rage for 6s.' },
-    unlock: 'Clear Chapter 2 to unlock',
   },
   ginger: {
     name: 'Ginger Ninja',
@@ -102,7 +94,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A ginger ninja who comes and goes without a trace.',
     traits: ['+20% Move Speed', '+15% Attack Speed', '-1 Armor'],
     skill: { name: 'Shadow Slash', desc: 'Dash forward with a slash that inflicts Bleed.' },
-    unlock: 'Defeat 6000 enemies in total to unlock',
   },
   avocado: {
     name: 'Dr. Avocado',
@@ -110,7 +101,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A mad scientist obsessed with explosive experiments.',
     traits: ['+2 Elemental Damage', '+5% Damage', 'Kills have a 15% chance to explode'],
     skill: { name: 'Core Overload', desc: 'Trigger 5 chain explosions.' },
-    unlock: 'Clear Chapter 4 to unlock',
   },
   onion: {
     name: 'Uncle Onion',
@@ -118,7 +108,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A tough guy with many layers who brings enemies to tears.',
     traits: ['+4 Armor', '+10 Max HP', 'Reflect 15 damage when hit'],
     skill: { name: 'Tear Gas Zone', desc: 'Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside.' },
-    unlock: 'Clear Chapter 5 to unlock',
   },
   mushroom: {
     name: 'Mushroom Shaman',
@@ -126,7 +115,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A witch doctor from deep in the forest who fells foes with toxic spores.',
     traits: ['+2 Elemental Damage', 'All hits have a 30% chance to Poison'],
     skill: { name: 'Spore Cloud', desc: 'Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area.' },
-    unlock: 'Defeat 500 enemies in total to unlock',
   },
   coconut: {
     name: 'Coconut Boxer',
@@ -134,7 +122,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Beneath the hard shell beats a fiery fighter’s heart.',
     traits: ['+4 Melee Damage', '+2 Armor', '+5 Max HP', 'Kills stack Rage (+4% Damage each)'],
     skill: { name: 'Ground Pound', desc: 'Slam the ground to Stun enemies and inflict Armor Break.' },
-    unlock: 'Clear Chapter 1 to unlock',
   },
   grape: {
     name: 'Grape Magician',
@@ -142,7 +129,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A magician made of a bunch of grapes — which one is real?',
     traits: ['+10 Luck', '+3 Max HP', '20% chance to Confuse enemies when attacked'],
     skill: { name: 'Grape Clone', desc: 'Summon a clone that auto-fires for 8s.' },
-    unlock: 'Defeat 1500 enemies in total to unlock',
   },
   cherry: {
     name: 'Cherry Gunslinger',
@@ -150,7 +136,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Two cherries on one stem, with lightning-fast trigger fingers.',
     traits: ['+20% Attack Speed', '-8% Damage', '10% chance to gain Haste when shooting'],
     skill: { name: 'Dual Barrage', desc: 'Fire 12 bullets in a row at the nearest enemy.' },
-    unlock: 'Clear Chapter 1 to unlock',
   },
   pea: {
     name: 'Pea Soldier',
@@ -158,7 +143,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Little soldiers fresh out of the pod — strength in numbers.',
     traits: ['+2 Ranged Damage', 'Start with 2 Pea Shooters', '+3% Damage per duplicate weapon'],
     skill: { name: 'Pea Turret', desc: 'Rapid-fire 16 peas at the nearest enemy.' },
-    unlock: 'Complete 2 runs to unlock',
   },
   peach: {
     name: 'Peach Angel',
@@ -166,7 +150,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A gentle angel who watches over every friend.',
     traits: ['+5 HP Regen', 'Gain 15 Shield at the start of each wave', '-10% Damage'],
     skill: { name: 'Angel’s Blessing', desc: 'Restore 20% HP and become Invulnerable for 1.5s.' },
-    unlock: 'Clear Chapter 2 to unlock',
   },
   dragonfruit: {
     name: 'Dragonfruit Rider',
@@ -174,7 +157,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A knight with dragon blood — flames follow every charge.',
     traits: ['+2 Melee/Elemental Damage', '+5 Max HP', 'Melee hits have a 20% chance to Burn'],
     skill: { name: 'Dragonflame Charge', desc: 'Charge forward, applying 4 stacks of Burn along the path.' },
-    unlock: 'Clear Chapter 3 to unlock',
   },
   beet: {
     name: 'Beet Berserker',
@@ -182,7 +164,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A blood-red beet who gets stronger the longer the fight goes.',
     traits: ['+15% Damage', '+3% Life Steal', '-1 Armor', 'Gain Rage when damaged'],
     skill: { name: 'Frenzy', desc: 'Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s.' },
-    unlock: 'Defeat 4000 enemies in total to unlock',
   },
   asparagus: {
     name: 'Asparagus Archer',
@@ -190,7 +171,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A tall, slender asparagus who never misses.',
     traits: ['+80 Range', '+10% Crit Chance', 'Hits have a 15% chance to Mark enemies (next hit always crits)'],
     skill: { name: 'Heartpiercer', desc: 'Fire 8 piercing arrows at the enemy with the highest HP and Mark the target.' },
-    unlock: 'Clear Chapter 2 to unlock',
   },
   sweetpotato: {
     name: 'Chef Yam',
@@ -198,7 +178,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'The smell of roasted sweet potato perks everyone right up.',
     traits: ['+20 Harvest', 'Fruit healing doubled', '-5% Damage'],
     skill: { name: 'Roast Yam Feast', desc: 'Restore 20% HP and gain 5 stacks of Regen.' },
-    unlock: 'Complete a run with any character to unlock',
   },
   kiwi: {
     name: 'Kiwi Detective',
@@ -206,7 +185,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A fuzzy detective who spots an enemy’s weakness at a glance.',
     traits: ['+8% Crit Chance', '+3 Max HP', '+1 Melee Damage', 'Hits have a 20% chance to apply Vulnerable', 'Crit Damage +30%'],
     skill: { name: 'One Truth', desc: 'See through every enemy on screen: apply Mark and 2 stacks of Vulnerable.' },
-    unlock: 'Defeat 2000 enemies in total to unlock',
   },
   lychee: {
     name: 'Lychee Princess',
@@ -214,7 +192,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Peel back the red shell to find a crystal-clear princess.',
     traits: ['+40 Luck', 'Crate drop rate doubled'],
     skill: { name: 'Princess’s Luck', desc: 'Gain 5 stacks of Lucky + 3 stacks of Focus for 6s.' },
-    unlock: 'Clear Chapter 3 to unlock',
   },
   durian: {
     name: 'Durian Overlord',
@@ -222,7 +199,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Covered in spikes and infamous for the stench. Who dares come close?',
     traits: ['+3 Armor', '+10 Max HP', '-4% Move Speed', 'Reflect 10 damage', 'Nearby enemies are constantly Weakened'],
     skill: { name: 'Stink Bomb', desc: 'Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies.' },
-    unlock: 'Clear Chapter 4 to unlock',
   },
   bellpepper: {
     name: 'Pepper Mech',
@@ -230,7 +206,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A kid piloting a custom-built bell pepper mech.',
     traits: ['+5 Armor', '+10 Max HP', '-10% Dodge', 'Gain 20 Shield every 12s'],
     skill: { name: 'Drone Support', desc: 'Deploy a drone for 8s.' },
-    unlock: 'Clear Chapter 4 to unlock',
   },
   wintermelon: {
     name: 'Monk Gourd',
@@ -238,7 +213,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A monk with a mind like still water, mastering stillness over motion.',
     traits: ['+15% Dodge', '+3 HP Regen', 'Gain Focus on successful dodge'],
     skill: { name: 'Golden Bell', desc: 'Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify.' },
-    unlock: 'Defeat 8000 enemies in total to unlock',
   },
   bittermelon: {
     name: 'Bitter Melon Mage',
@@ -246,7 +220,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A bitter-looking ice mage who freezes everything in sight.',
     traits: ['+3 Elemental Damage', '+3 Max HP', 'Hits have an 8% chance to Freeze enemies for 1s'],
     skill: { name: 'Frozen Domain', desc: 'Unleash a 5s frost field around you that Slows and Freezes enemies who enter.' },
-    unlock: 'Clear Chapter 3 to unlock',
   },
   sprout: {
     name: 'Sprout Apprentice',
@@ -254,7 +227,6 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A tiny bean sprout with limitless potential.',
     traits: ['+80% XP Gain', '-8% Damage', '-3 Max HP', '5 choices on level up'],
     skill: { name: 'Growth Spurt', desc: 'Gain 12 XP and 5s of Haste.' },
-    unlock: 'Complete 3 runs to unlock',
   },
   wasabi: {
     name: 'Wasabi Bomber',
@@ -262,6 +234,5 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A hair-trigger wasabi — it goes right up your nose, and it’s deadly.',
     traits: ['+8% Damage', 'Kills have a 25% chance to explode', 'Explosions inflict Burn'],
     skill: { name: 'Wasabi Nuke', desc: 'Launch a wasabi nuke at the enemy horde for a massive, burning explosion.' },
-    unlock: 'Clear Chapter 5 to unlock',
   },
 };
