@@ -1075,7 +1075,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 
 ## Boss
 
-Appear on wave 15. The wave lasts 90 seconds, after which the boss enrages. At half HP it enters phase two.
+Appear on wave 15 and enter phase two at half HP. The wave lasts 90 seconds; after that the boss enrages: every 10 seconds its damage ×1.25 and one stack of enrage pressure is added (the player loses 3% Max HP × 1.25^stacks per second, ignoring dodge, armor and invulnerability, uncapped), so the fight always ends.
 
 | Chapter | Boss |
 | --- | --- |

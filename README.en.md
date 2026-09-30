@@ -36,7 +36,7 @@ Ketchup Town is being eaten away by "the Rot": mold, pests and possessed kitchen
 
 1. **Pick a character and chapter**: every [character](docs/en/CHARACTERS.md) has unique stats, traits, starting weapons and an active skill.
 2. **Fight waves**: 15 waves per chapter, 20–60 seconds each. Weapons aim and fire on their own; you dodge bullets, telegraphed zones, lasers and charges, and time your [skill](docs/en/SKILLS.md).
-3. **Elites and bosses**: [elites](docs/en/MONSTERS.md#elites) on waves 5 and 10, a [boss](docs/en/MONSTERS.md#bosses) on wave 15 (90 seconds, then it enrages). Each run draws them at random from the chapter pool.
+3. **Elites and bosses**: [elites](docs/en/MONSTERS.md#elites) on waves 5 and 10, a [boss](docs/en/MONSTERS.md#bosses) on wave 15 (after 90 seconds it enrages, with damage stacking until the fight is decided). Each run draws them at random from the chapter pool.
 4. **Between waves**: harvest & interest → level-up choices → open crates → shop for [weapons](docs/en/WEAPONS.md) and [items](docs/en/ITEMS.md), combine, reroll, lock.
 5. **Unlocks**: clearing a [chapter](docs/en/CHAPTERS.md) unlocks the next one and new characters; total kills and clears unlock more.
 

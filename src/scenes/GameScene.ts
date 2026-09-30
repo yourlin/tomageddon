@@ -138,6 +138,9 @@ export class GameScene extends Phaser.Scene {
   ccImmuneUntil = 0;
   terrain!: Terrain;
   overtime = 0;
+  /** Boss 加时层数与狂暴威压计时 */
+  enrageStacks = 0;
+  private pressureT = 0;
   envVX = 0;
   envVY = 0;
   slippery = false;
@@ -170,6 +173,8 @@ export class GameScene extends Phaser.Scene {
     this.statusVer = -1;
     this.cratesDropped = 0;
     this.overtime = 0;
+    this.enrageStacks = 0;
+    this.pressureT = 0;
     this.pstatus = new StatusSet();
     controls.reset();
 
@@ -545,6 +550,16 @@ export class GameScene extends Phaser.Scene {
     if (run.hp <= 0) this.onPlayerDeath();
   }
 
+  /** 狂暴威压伤害：直接扣血，不可闪避/格挡 */
+  private enragePressure(amount: number): void {
+    if (this.waveOver || this.dead) return;
+    const dmg = Math.max(1, Math.round(amount));
+    run.hp -= dmg;
+    DEBUG_DMG?.push([run.wave, 0, 'enrage-pressure', dmg]);
+    this.fx.number(this.player.x, this.player.y - 10, dmg, '#ff3b30');
+    if (run.hp <= 0) this.onPlayerDeath();
+  }
+
   private onPlayerDeath(): void {
     if (this.dead) return;
     if (run.specials.revive > run.revivesUsed) {
@@ -593,13 +608,21 @@ export class GameScene extends Phaser.Scene {
         this.fx.label(this.boss.x, this.boss.y - 60, tx('狂暴！', 'Enraged!'), '#ff3b30');
         this.shake(0.01, 400);
       }
-      // 加时：每 10 秒 Boss 伤害 +25%，保证战斗一定会结束
+      // 加时：每 10 秒 Boss 伤害 ×1.25 并叠一层狂暴威压，不设上限
       if (this.timeLeft <= 0 && this.boss?.alive) {
         this.overtime += dt;
         if (this.overtime >= 10) {
           this.overtime = 0;
+          this.enrageStacks++;
           this.boss.dmg *= 1.25;
           this.fx.label(this.boss.x, this.boss.y - 60, tx('越来越狂暴！', 'Growing more furious!'), '#ff3b30');
+        }
+        // 狂暴威压：Boss 打不中时也能结束战斗（高闪避/高回复的僵局）。
+        // 每秒 3% 最大生命 × 1.25^层数，无视闪避、护甲与无敌帧；复活道具仍然生效
+        this.pressureT += dt;
+        if (this.pressureT >= 1) {
+          this.pressureT -= 1;
+          this.enragePressure(this.stats.maxHp * 0.03 * 1.25 ** this.enrageStacks);
         }
       }
       this.timeLeft = Math.max(0, this.timeLeft);

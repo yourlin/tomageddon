@@ -135,7 +135,7 @@ Chase, wander, wind-up charge, keep distance and shoot, self-destruct, split, he
 - Each chapter has 6 elites + 3 bosses, randomly drawn per run → replayability
 - 11 attack patterns: `ring` bullet ring, `spiral` spiral, `aimed` aimed fan, `scatter` scatter shot, `charge` telegraphed charge, `slam` telegraphed ground slam, `hazard` persistent hazard zone, `laser` telegraphed laser, `teleport` teleport, `summon` summon, `buff` empower allies
 - Attacks can carry debuffs (applied when they hit the player) or buffs (for itself and nearby monsters)
-- Bosses enter phase two at ≤ 50% HP (faster, shorter cooldowns, new attacks, some gain Enrage/Barrier); boss waves enrage after 90 seconds
+- Bosses enter phase two at ≤ 50% HP (faster, shorter cooldowns, new attacks, some gain Enrage/Barrier); boss waves enrage after 90 seconds: every 10 seconds boss damage ×1.25 and one stack of enrage pressure is added (3% Max HP × 1.25^stacks per second, ignoring dodge/armor/invulnerability, uncapped), so fights can never stall
 
 ### 8.3 Elite Affixes (12)
 

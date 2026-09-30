@@ -161,8 +161,8 @@ export function monstersDoc(): void {
   d.h2('Boss', 'bosses');
   d.p(
     tx(
-      '第 15 波出现，波次持续 90 秒，超时后狂暴。生命降到一半进入第二阶段。',
-      'Appear on wave 15. The wave lasts 90 seconds, after which the boss enrages. At half HP it enters phase two.',
+      '第 15 波出现，生命降到一半进入第二阶段。波次持续 90 秒，超时后 Boss 狂暴：此后每 10 秒 Boss 伤害 ×1.25，并叠加一层狂暴威压（每秒扣除玩家 3% 最大生命 × 1.25^层数，无视闪避、护甲与无敌帧，不设上限），保证战斗一定会结束。',
+      'Appear on wave 15 and enter phase two at half HP. The wave lasts 90 seconds; after that the boss enrages: every 10 seconds its damage ×1.25 and one stack of enrage pressure is added (the player loses 3% Max HP × 1.25^stacks per second, ignoring dodge, armor and invulnerability, uncapped), so the fight always ends.',
     ),
   );
   d.table([tx('章节', 'Chapter'), 'Boss'], pool(false));
