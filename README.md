@@ -4,11 +4,9 @@
 
 🎮 **在线试玩：<https://yourlin.github.io/tomageddon/>**（推送到 main 后由 GitHub Actions 自动发布）
 
-<video src="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm" poster="docs/images/promo-poster-zh.jpg" controls playsinline width="100%">
-  <a href="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm"><img src="docs/images/promo-poster-zh.jpg" alt="番茄酱宣传片（点击播放）" width="100%" /></a>
-</video>
+[![番茄酱宣传片（点击播放）](docs/images/promo-poster-zh.jpg)](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm)
 
-[▶ 30 秒宣传片](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm)
+<sub>▶ 点击封面观看 30 秒宣传片</sub>
 
 俯视角 2D 割草生存 Roguelite 浏览器游戏。Phaser 3（WebGL）+ TypeScript + Vite，支持 PC 与移动端横屏，**中英双语**。**美术与背景音乐全部程序生成**，无需任何图片或音频资源即可运行。
 
@@ -161,7 +159,7 @@ npm run promo:record     # 无头 Chrome 按脚本操作游戏并录制各段素
 npm run promo:edit       # ffmpeg 卡点剪辑，输出 promo/tomageddon-promo.mp4 与 -en.mp4
 ```
 
-素材与成片在 `promo/`（不提交）；README 中嵌入的 WebM 版本放在 `public/promo/`，随 GitHub Pages 一起发布。
+素材与成片在 `promo/`（不提交）；README 顶部的封面图链接到 `public/promo/` 中的 WebM 版本（随 GitHub Pages 发布；GitHub 会过滤 README 里的 `<video>` 标签，因此用封面图跳转播放）。
 
 ### 版本号
 

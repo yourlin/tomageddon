@@ -4,11 +4,9 @@
 
 🎮 **Play online: <https://yourlin.github.io/tomageddon/>** (auto-deployed by GitHub Actions on every push to main)
 
-<video src="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm" poster="docs/images/promo-poster-en.jpg" controls playsinline width="100%">
-  <a href="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm"><img src="docs/images/promo-poster-en.jpg" alt="Tomageddon trailer (click to play)" width="100%" /></a>
-</video>
+[![Tomageddon trailer (click to play)](docs/images/promo-poster-en.jpg)](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm)
 
-[▶ 30-second trailer](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm)
+<sub>▶ Click the cover to watch the 30-second trailer</sub>
 
 A top-down 2D arena survival roguelite for the browser. Phaser 3 (WebGL) + TypeScript + Vite, PC and landscape mobile, **Chinese and English**. **All art and background music are generated procedurally** — no image or audio assets are needed to run it.
 
@@ -161,7 +159,7 @@ npm run promo:record     # headless Chrome plays the game from a script and reco
 npm run promo:edit       # beat-synced ffmpeg edit → promo/tomageddon-promo.mp4 and -en.mp4
 ```
 
-Footage and renders live in `promo/` (not committed); the WebM versions embedded in the READMEs live in `public/promo/` and ship with GitHub Pages.
+Footage and renders live in `promo/` (not committed); the cover image at the top of each README links to the WebM version in `public/promo/`, served by GitHub Pages (GitHub strips `<video>` tags from READMEs, so the cover links to the video instead).
 
 ### Versioning
 
