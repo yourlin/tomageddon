@@ -4,6 +4,7 @@ import { CHARACTERS } from '../../src/data/characters';
 import { ACHIEVEMENTS, ACH_CATEGORY_NAME, TIER_MEDALS, type AchCategory, type AchievementDef } from '../../src/data/achievements';
 import { achText, tierGoal, pick, pointsTotal } from '../../src/systems/Achievements';
 import { Doc, lnk, img, unlockText } from './common';
+import { BOSS_MAP } from '../../src/data/bosses';
 
 /** 各等级：🥉 100（+10 点） */
 function tiersText(a: AchievementDef): string {
@@ -35,7 +36,7 @@ export function achievementsDoc(): void {
     [...CHARACTERS].sort((a, b) => (a.cost ?? 0) - (b.cost ?? 0)).map((c) => [`${img('char', c.id)} ${lnk.char(c)}`, unlockText(c, '')]),
   );
   for (const cat of Object.keys(ACH_CATEGORY_NAME) as AchCategory[]) {
-    if (cat === 'character') continue;
+    if (cat === 'character' || cat === 'slayer') continue;
     d.h2(pick(ACH_CATEGORY_NAME[cat]), `cat-${cat}`);
     d.table(
       [tx('成就', 'Achievement'), tx('条件', 'Condition'), tx('等级目标与奖励', 'Tier goals & points')],
@@ -44,6 +45,15 @@ export function achievementsDoc(): void {
         .map((a) => [`<a id="ach-${a.id}"></a>${a.icon} ${achText(a, 'name', 0)}`, achText(a, 'desc', 0).replace(/[\d,]+/, 'N'), tiersText(a)]),
     );
   }
+  d.h2(pick(ACH_CATEGORY_NAME.slayer), 'cat-slayer');
+  d.p(tx('每名精英与 Boss 首次击败时解锁，精英 +10 点，Boss +20 点。', 'Unlocked the first time you defeat each elite and boss: +10 pts per elite, +20 per boss.'));
+  d.table(
+    [tx('精英 / Boss', 'Elite / Boss'), tx('章节', 'Chapter'), tx('成就', 'Achievement'), tx('奖励', 'Reward')],
+    ACHIEVEMENTS.filter((a) => a.category === 'slayer').map((a) => {
+      const b = BOSS_MAP[a.bossId!];
+      return [`${img('boss', b.id)} ${lnk.boss(b)}<a id="ach-${a.id}"></a>`, lnk.chapter(b.chapter), achText(a, 'name', 0), `+${a.tiers[0].points}`];
+    }),
+  );
   d.h2(pick(ACH_CATEGORY_NAME.character), 'cat-character');
   const [r0, w0] = perChar[0];
   d.p(

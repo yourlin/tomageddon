@@ -22,6 +22,7 @@ import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
 import { lang, tx } from './i18n';
 import { autoFullscreenOnFirstTouch } from './systems/Fullscreen';
+import { installForceLandscape } from './systems/ForceLandscape';
 
 // 按语言写入数据文本，必须在创建游戏前执行
 applyLanguage();
@@ -39,7 +40,10 @@ const game = new Phaser.Game({
     mode: Phaser.Scale.EXPAND,
     width: 1280,
     height: 720,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
+    // EXPAND 模式画布始终铺满容器，无需居中（居中计算会被强制横屏的旋转干扰）
+    autoCenter: Phaser.Scale.NO_CENTER,
+    // 全屏外层容器，内部 #game 可在竖屏时旋转为横屏
+    fullscreenTarget: 'stage',
   },
   render: { antialias: true, powerPreference: 'high-performance', roundPixels: false },
   input: { activePointers: 3 },
@@ -70,6 +74,7 @@ if (HEADLESS) {
 } else {
   applyPerfSettings(game);
   autoFullscreenOnFirstTouch(game);
+  installForceLandscape(game);
 }
 
 // 切到后台时自动暂停战斗

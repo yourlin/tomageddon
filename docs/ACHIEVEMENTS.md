@@ -1,4 +1,4 @@
-# 成就（91 项）
+# 成就（136 项）
 
 **中文** · [English](en/ACHIEVEMENTS.md)
 
@@ -6,7 +6,7 @@
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 5495 点。
+成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 6095 点。
 
 成就点用于在选角界面购买[角色](CHARACTERS.md)；部分角色需要先达成指定成就才能购买。解锁时屏幕顶部会弹出提示，主菜单「成就」可查看全部进度。
 
@@ -19,6 +19,7 @@
 - [构筑](#cat-build)
 - [经济](#cat-economy)
 - [图鉴](#cat-codex)
+- [首杀](#cat-slayer)
 - [角色](#cat-character)
 
 <a id="prices"></a>
@@ -127,6 +128,60 @@
 | <a id="ach-codex_items"></a>📦 道具百科 | 在图鉴中发现 N 件道具 | 🥉 50（+10 点）<br>🥈 200（+25 点）<br>🥇 562（+50 点） |
 | <a id="ach-codex_monsters"></a>🔬 怪物学者 | 在图鉴中发现 N 种小怪 | 🥇 25（+25 点） |
 | <a id="ach-codex_bosses"></a>📜 猎魔名录 | 在图鉴中发现 N 名精英与 Boss | 🥉 15（+15 点）<br>🥈 45（+40 点） |
+
+<a id="cat-slayer"></a>
+
+## 首杀
+
+每名精英与 Boss 首次击败时解锁，精英 +10 点，Boss +20 点。
+
+| 精英 / Boss | 章节 | 成就 | 奖励 |
+| --- | --- | --- | --- |
+| <img src="images/boss/roach_general.png" width="32" height="32" alt=""> [蟑螂将军](MONSTERS.md#boss-roach_general)<a id="ach-slay_roach_general"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 蟑螂将军克星 | +10 |
+| <img src="images/boss/mold_elder.png" width="32" height="32" alt=""> [霉菌长老](MONSTERS.md#boss-mold_elder)<a id="ach-slay_mold_elder"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 霉菌长老克星 | +10 |
+| <img src="images/boss/greasy_pan.png" width="32" height="32" alt=""> [油腻平底锅](MONSTERS.md#boss-greasy_pan)<a id="ach-slay_greasy_pan"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 油腻平底锅克星 | +10 |
+| <img src="images/boss/fork_knight.png" width="32" height="32" alt=""> [叉子骑士](MONSTERS.md#boss-fork_knight)<a id="ach-slay_fork_knight"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 叉子骑士克星 | +10 |
+| <img src="images/boss/fly_swarm_king.png" width="32" height="32" alt=""> [蝇群之主](MONSTERS.md#boss-fly_swarm_king)<a id="ach-slay_fly_swarm_king"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 蝇群之主克星 | +10 |
+| <img src="images/boss/rotten_onion.png" width="32" height="32" alt=""> [腐烂洋葱](MONSTERS.md#boss-rotten_onion)<a id="ach-slay_rotten_onion"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 腐烂洋葱克星 | +10 |
+| <img src="images/boss/rat_captain.png" width="32" height="32" alt=""> [鼠队长](MONSTERS.md#boss-rat_captain)<a id="ach-slay_rat_captain"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 鼠队长克星 | +10 |
+| <img src="images/boss/snail_tank.png" width="32" height="32" alt=""> [装甲蜗牛](MONSTERS.md#boss-snail_tank)<a id="ach-slay_snail_tank"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 装甲蜗牛克星 | +10 |
+| <img src="images/boss/queen_bee.png" width="32" height="32" alt=""> [蜂后](MONSTERS.md#boss-queen_bee)<a id="ach-slay_queen_bee"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 蜂后克星 | +10 |
+| <img src="images/boss/scarecrow.png" width="32" height="32" alt=""> [邪恶稻草人](MONSTERS.md#boss-scarecrow)<a id="ach-slay_scarecrow"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 邪恶稻草人克星 | +10 |
+| <img src="images/boss/spider_matron.png" width="32" height="32" alt=""> [蛛后](MONSTERS.md#boss-spider_matron)<a id="ach-slay_spider_matron"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 蛛后克星 | +10 |
+| <img src="images/boss/mushroom_king.png" width="32" height="32" alt=""> [毒菇王](MONSTERS.md#boss-mushroom_king)<a id="ach-slay_mushroom_king"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 毒菇王克星 | +10 |
+| <img src="images/boss/ice_golem.png" width="32" height="32" alt=""> [冰晶傀儡](MONSTERS.md#boss-ice_golem)<a id="ach-slay_ice_golem"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 冰晶傀儡克星 | +10 |
+| <img src="images/boss/popsicle_twins.png" width="32" height="32" alt=""> [冰棍双子](MONSTERS.md#boss-popsicle_twins)<a id="ach-slay_popsicle_twins"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 冰棍双子克星 | +10 |
+| <img src="images/boss/frozen_fish.png" width="32" height="32" alt=""> [冻鱼武士](MONSTERS.md#boss-frozen_fish)<a id="ach-slay_frozen_fish"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 冻鱼武士克星 | +10 |
+| <img src="images/boss/snow_rat.png" width="32" height="32" alt=""> [雪鼠刺客](MONSTERS.md#boss-snow_rat)<a id="ach-slay_snow_rat"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 雪鼠刺客克星 | +10 |
+| <img src="images/boss/milk_slime.png" width="32" height="32" alt=""> [变质牛奶怪](MONSTERS.md#boss-milk_slime)<a id="ach-slay_milk_slime"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 变质牛奶怪克星 | +10 |
+| <img src="images/boss/frost_penguin.png" width="32" height="32" alt=""> [冰霜企鹅](MONSTERS.md#boss-frost_penguin)<a id="ach-slay_frost_penguin"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 冰霜企鹅克星 | +10 |
+| <img src="images/boss/tire_beast.png" width="32" height="32" alt=""> [轮胎兽](MONSTERS.md#boss-tire_beast)<a id="ach-slay_tire_beast"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 轮胎兽克星 | +10 |
+| <img src="images/boss/can_king.png" width="32" height="32" alt=""> [易拉罐之王](MONSTERS.md#boss-can_king)<a id="ach-slay_can_king"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 易拉罐之王克星 | +10 |
+| <img src="images/boss/rag_wraith.png" width="32" height="32" alt=""> [抹布怨灵](MONSTERS.md#boss-rag_wraith)<a id="ach-slay_rag_wraith"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 抹布怨灵克星 | +10 |
+| <img src="images/boss/battery_bug.png" width="32" height="32" alt=""> [漏电电池虫](MONSTERS.md#boss-battery_bug)<a id="ach-slay_battery_bug"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 漏电电池虫克星 | +10 |
+| <img src="images/boss/garbage_rat.png" width="32" height="32" alt=""> [垃圾鼠王](MONSTERS.md#boss-garbage_rat)<a id="ach-slay_garbage_rat"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 垃圾鼠王克星 | +10 |
+| <img src="images/boss/oil_titan.png" width="32" height="32" alt=""> [石油泰坦](MONSTERS.md#boss-oil_titan)<a id="ach-slay_oil_titan"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 石油泰坦克星 | +10 |
+| <img src="images/boss/conveyor_worm.png" width="32" height="32" alt=""> [传送带蠕虫](MONSTERS.md#boss-conveyor_worm)<a id="ach-slay_conveyor_worm"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 传送带蠕虫克星 | +10 |
+| <img src="images/boss/ketchup_golem.png" width="32" height="32" alt=""> [番茄酱傀儡](MONSTERS.md#boss-ketchup_golem)<a id="ach-slay_ketchup_golem"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 番茄酱傀儡克星 | +10 |
+| <img src="images/boss/security_bot.png" width="32" height="32" alt=""> [保安机器人](MONSTERS.md#boss-security_bot)<a id="ach-slay_security_bot"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 保安机器人克星 | +10 |
+| <img src="images/boss/press_machine.png" width="32" height="32" alt=""> [冲压机](MONSTERS.md#boss-press_machine)<a id="ach-slay_press_machine"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 冲压机克星 | +10 |
+| <img src="images/boss/chef_minion.png" width="32" height="32" alt=""> [腐烂副厨](MONSTERS.md#boss-chef_minion)<a id="ach-slay_chef_minion"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 腐烂副厨克星 | +10 |
+| <img src="images/boss/furnace_imp.png" width="32" height="32" alt=""> [熔炉小鬼](MONSTERS.md#boss-furnace_imp)<a id="ach-slay_furnace_imp"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 熔炉小鬼克星 | +10 |
+| <img src="images/boss/mold_king.png" width="32" height="32" alt=""> [霉菌大王](MONSTERS.md#boss-mold_king)<a id="ach-slay_mold_king"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 霉菌大王克星 | +20 |
+| <img src="images/boss/grease_chef.png" width="32" height="32" alt=""> [油烟怪厨](MONSTERS.md#boss-grease_chef)<a id="ach-slay_grease_chef"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 油烟怪厨克星 | +20 |
+| <img src="images/boss/cockroach_emperor.png" width="32" height="32" alt=""> [蟑螂皇帝](MONSTERS.md#boss-cockroach_emperor)<a id="ach-slay_cockroach_emperor"></a> | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | 蟑螂皇帝克星 | +20 |
+| <img src="images/boss/locust_queen.png" width="32" height="32" alt=""> [蝗虫女皇](MONSTERS.md#boss-locust_queen)<a id="ach-slay_locust_queen"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 蝗虫女皇克星 | +20 |
+| <img src="images/boss/rotten_pumpkin.png" width="32" height="32" alt=""> [腐烂南瓜王](MONSTERS.md#boss-rotten_pumpkin)<a id="ach-slay_rotten_pumpkin"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 腐烂南瓜王克星 | +20 |
+| <img src="images/boss/mole_general.png" width="32" height="32" alt=""> [鼹鼠大将](MONSTERS.md#boss-mole_general)<a id="ach-slay_mole_general"></a> | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | 鼹鼠大将克星 | +20 |
+| <img src="images/boss/frost_rat_king.png" width="32" height="32" alt=""> [冰霜鼠王](MONSTERS.md#boss-frost_rat_king)<a id="ach-slay_frost_rat_king"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 冰霜鼠王克星 | +20 |
+| <img src="images/boss/ice_cream_tyrant.png" width="32" height="32" alt=""> [冰淇淋暴君](MONSTERS.md#boss-ice_cream_tyrant)<a id="ach-slay_ice_cream_tyrant"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 冰淇淋暴君克星 | +20 |
+| <img src="images/boss/freezer_heart.png" width="32" height="32" alt=""> [冰柜之心](MONSTERS.md#boss-freezer_heart)<a id="ach-slay_freezer_heart"></a> | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | 冰柜之心克星 | +20 |
+| <img src="images/boss/trash_golem.png" width="32" height="32" alt=""> [垃圾巨像](MONSTERS.md#boss-trash_golem)<a id="ach-slay_trash_golem"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 垃圾巨像克星 | +20 |
+| <img src="images/boss/toxic_barrel.png" width="32" height="32" alt=""> [毒液桶魔](MONSTERS.md#boss-toxic_barrel)<a id="ach-slay_toxic_barrel"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 毒液桶魔克星 | +20 |
+| <img src="images/boss/scrap_dragon.png" width="32" height="32" alt=""> [废铁巨龙](MONSTERS.md#boss-scrap_dragon)<a id="ach-slay_scrap_dragon"></a> | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | 废铁巨龙克星 | +20 |
+| <img src="images/boss/rotten_chef.png" width="32" height="32" alt=""> [腐烂大厨](MONSTERS.md#boss-rotten_chef)<a id="ach-slay_rotten_chef"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 腐烂大厨克星 | +20 |
+| <img src="images/boss/factory_core.png" width="32" height="32" alt=""> [工厂主脑](MONSTERS.md#boss-factory_core)<a id="ach-slay_factory_core"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 工厂主脑克星 | +20 |
+| <img src="images/boss/ketchup_leviathan.png" width="32" height="32" alt=""> [番茄酱海怪](MONSTERS.md#boss-ketchup_leviathan)<a id="ach-slay_ketchup_leviathan"></a> | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | 番茄酱海怪克星 | +20 |
 
 <a id="cat-character"></a>
 

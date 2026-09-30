@@ -1,6 +1,7 @@
 // 帧率上限与帧数显示
 import Phaser from 'phaser';
 import { save } from './Save';
+import { overlayRoot } from './ForceLandscape';
 
 export const FPS_OPTIONS = [30, 60, 90, 120];
 
@@ -55,7 +56,7 @@ export function setFpsDisplay(game: Phaser.Game, on: boolean): void {
   el = document.createElement('div');
   el.style.cssText =
     'position:fixed;left:6px;bottom:6px;z-index:20;padding:2px 8px;border-radius:6px;background:rgba(0,0,0,0.55);color:#9ef01a;font:bold 13px monospace;pointer-events:none;';
-  document.body.appendChild(el);
+  overlayRoot().appendChild(el);
   // 统计真实渲染帧
   frames = 0;
   let last = performance.now();

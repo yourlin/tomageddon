@@ -25,50 +25,23 @@
         -webkit-user-select: none;
         user-select: none;
       }
-      #game {
-        width: 100%;
-        height: 100%;
-      }
-      #rotate {
-        display: none;
+      #stage {
         position: fixed;
         inset: 0;
-        z-index: 10;
+        overflow: hidden;
         background: #1a0a0c;
-        color: #ffd9c7;
-        font: bold 22px sans-serif;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
       }
-      #rotate .icon {
-        font-size: 64px;
-        animation: spin 2s infinite ease-in-out;
-      }
-      @keyframes spin {
-        0%,
-        20% {
-          transform: rotate(0);
-        }
-        60%,
-        100% {
-          transform: rotate(90deg);
-        }
-      }
-      @media (orientation: portrait) and (pointer: coarse) {
-        #rotate {
-          display: flex;
-        }
+      #game {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>
   <body>
-    <div id="game"></div>
-    <div id="rotate">
-      <div class="icon">📱</div>
-      <p>请将设备横屏游玩<br />Rotate to landscape</p>
-    </div>
+    <div id="stage"><div id="game"></div></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

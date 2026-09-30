@@ -27,6 +27,8 @@ export interface SaveData {
   pointsSpent: number;
   /** 每名角色开局次数 */
   charRuns: Record<string, number>;
+  /** 每名精英 / Boss 被击败次数 */
+  killedBosses: Record<string, number>;
   /** 成就用累计统计 */
   stats: AchStats;
 }
@@ -55,6 +57,7 @@ const DEFAULT: SaveData = {
   ownedChars: [],
   pointsSpent: 0,
   charRuns: {},
+  killedBosses: {},
   stats: { eliteKills: 0, bossKills: 0, overtimeWins: 0, perfectWaves: 0, revives: 0, t4Crafted: 0, seedsEarned: 0 },
 };
 
@@ -79,6 +82,7 @@ function load(): SaveData {
       achievements: Object.fromEntries(Object.entries(d.achievements ?? {}).filter(([, v]) => typeof v === 'object')),
       ownedChars: d.ownedChars ?? legacyOwned(d),
       charRuns: { ...(d.charRuns ?? {}) },
+      killedBosses: { ...(d.killedBosses ?? {}) },
       stats: { ...DEFAULT.stats, ...(d.stats ?? {}) },
     };
   } catch {

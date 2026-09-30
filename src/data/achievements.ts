@@ -2,8 +2,9 @@
 // 每达到一级获得成就点，成就点可在选角界面购买角色。
 // 文字自带中英文（[中文, English]）；{n} 替换为当前等级目标值，{char} 替换为角色名。
 import { CHARACTERS } from './characters';
+import { BOSSES } from './bosses';
 
-export type AchCategory = 'combat' | 'boss' | 'progress' | 'build' | 'economy' | 'codex' | 'character';
+export type AchCategory = 'combat' | 'boss' | 'progress' | 'build' | 'economy' | 'codex' | 'character' | 'slayer';
 
 export type AchMetric =
   | 'totalKills'
@@ -28,7 +29,8 @@ export type AchMetric =
   | 'seenEnemies'
   | 'seenBosses'
   | 'charRuns'
-  | 'charWins';
+  | 'charWins'
+  | 'bossDefeated';
 
 export interface AchTier {
   /** 目标值；'all' 表示该类内容全部（运行时按数据总量计算） */
@@ -46,6 +48,8 @@ export interface AchievementDef {
   metric: AchMetric;
   /** 角色类成就对应的角色 */
   charId?: string;
+  /** 首杀成就对应的精英 / Boss */
+  bossId?: string;
   tiers: AchTier[];
 }
 
@@ -259,7 +263,23 @@ const PER_CHARACTER: AchievementDef[] = CHARACTERS.flatMap((c) => [
   },
 ]);
 
-export const ACHIEVEMENTS: AchievementDef[] = [...GLOBAL, ...PER_CHARACTER];
+/** 每名精英与 Boss 的首杀成就 */
+const PER_BOSS: AchievementDef[] = BOSSES.map((b) => ({
+  ...A(
+    `slay_${b.id}`,
+    'slayer',
+    b.elite ? '🎯' : '👑',
+    ['{boss}克星', '{boss} Slayer'],
+    b.elite
+      ? ['首次击败精英{boss}', 'Defeat the elite {boss} for the first time']
+      : ['首次击败 Boss {boss}', 'Defeat the boss {boss} for the first time'],
+    'bossDefeated',
+    [[1, b.elite ? 10 : 20]],
+  ),
+  bossId: b.id,
+}));
+
+export const ACHIEVEMENTS: AchievementDef[] = [...GLOBAL, ...PER_BOSS, ...PER_CHARACTER];
 export const ACH_MAP: Record<string, AchievementDef> = Object.fromEntries(ACHIEVEMENTS.map((a) => [a.id, a]));
 
 export const ACH_CATEGORY_NAME: Record<AchCategory, [string, string]> = {
@@ -270,6 +290,7 @@ export const ACH_CATEGORY_NAME: Record<AchCategory, [string, string]> = {
   economy: ['经济', 'Economy'],
   codex: ['图鉴', 'Codex'],
   character: ['角色', 'Characters'],
+  slayer: ['首杀', 'First Kills'],
 };
 
 /** 等级奖章：单级成就只有金牌 */

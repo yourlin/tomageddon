@@ -54,9 +54,9 @@ export class AchievementScene extends Phaser.Scene {
     tabs.forEach(([f, n], i) =>
       button(
         this,
-        24 + 66 + i * 140,
+        24 + 62 + i * 134,
         100,
-        132,
+        126,
         42,
         n,
         () => {

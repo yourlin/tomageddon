@@ -3,11 +3,12 @@ import { ACHIEVEMENTS, ACH_MAP, TIER_MEDALS, TIER_NAME, type AchievementDef, typ
 import { CHARACTERS, CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPONS } from '../data/weapons';
 import { ENEMIES } from '../data/enemies';
-import { BOSSES } from '../data/bosses';
+import { BOSSES, BOSS_MAP } from '../data/bosses';
 import { ALL_ITEMS } from '../data/items';
 import { save, persist, isUnlocked, isSeen, buyCharacter } from './Save';
 import { run } from './RunState';
 import { lang, tx } from '../i18n';
+import { overlayRoot } from './ForceLandscape';
 
 /** 是否处于对局中（对局类指标只在对局中统计） */
 let inRun = false;
@@ -40,6 +41,7 @@ const METRICS: Record<AchMetric, (charId?: string) => number> = {
   seenBosses: () => BOSSES.filter((b) => isSeen('bosses', b.id)).length,
   charRuns: (id) => save.charRuns[id!] ?? 0,
   charWins: (id) => save.charWins[id!] ?? 0,
+  bossDefeated: (id) => save.killedBosses[id!] ?? 0,
 };
 
 const TOTALS: Partial<Record<AchMetric, () => number>> = {
@@ -57,7 +59,7 @@ export function tierGoal(a: AchievementDef, i: number): number {
   return g === 'all' ? (TOTALS[a.metric]?.() ?? 1) : g;
 }
 
-export const achValue = (a: AchievementDef): number => METRICS[a.metric](a.charId);
+export const achValue = (a: AchievementDef): number => METRICS[a.metric](a.charId ?? a.bossId);
 /** 已达成的等级数（0 = 未解锁） */
 export const achTier = (id: string): number => save.achievements[id]?.tier ?? 0;
 export const isMaxed = (a: AchievementDef): boolean => achTier(a.id) >= a.tiers.length;
@@ -66,7 +68,10 @@ export const isMaxed = (a: AchievementDef): boolean => achTier(a.id) >= a.tiers.
 export function achText(a: AchievementDef, field: 'name' | 'desc', tierIdx?: number): string {
   const t = a[field][lang === 'en' ? 1 : 0];
   const i = tierIdx ?? Math.min(achTier(a.id), a.tiers.length - 1);
-  return t.replace('{n}', tierGoal(a, i).toLocaleString()).replace('{char}', a.charId ? CHARACTER_MAP[a.charId].name : '');
+  return t
+    .replace('{n}', tierGoal(a, i).toLocaleString())
+    .replace('{char}', a.charId ? CHARACTER_MAP[a.charId].name : '')
+    .replace('{boss}', a.bossId ? BOSS_MAP[a.bossId].name : '');
 }
 export const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
 
@@ -156,7 +161,7 @@ function notify(a: AchievementDef, tier: number, points: number): void {
       `<div style="color:#ffd166;font-size:12px">${tx('成就解锁', 'Achievement unlocked')}${tl ? ` · ${tl}` : ''} · +${points} ${tx('成就点', 'pts')}</div>` +
       `<div style="font-weight:bold;font-size:17px">${achText(a, 'name', tier - 1)}</div>` +
       `<div style="opacity:.75;font-size:12px">${achText(a, 'desc', tier - 1)}</div></span>`;
-    document.body.appendChild(el);
+    overlayRoot().appendChild(el);
     requestAnimationFrame(() => (el.style.transform = 'translate(-50%,0)'));
     setTimeout(() => (el.style.transform = 'translate(-50%,-130%)'), 3000);
     setTimeout(() => {

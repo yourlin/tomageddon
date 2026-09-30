@@ -1,6 +1,7 @@
 // 全屏：支持时进入全屏并锁定横屏；不支持的环境（iPhone Safari、iPhone 微信等）弹出操作指引
 import Phaser from 'phaser';
 import { tx } from '../i18n';
+import { overlayRoot } from './ForceLandscape';
 
 const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
 export const IS_WECHAT = /MicroMessenger/i.test(ua);
@@ -84,5 +85,5 @@ function showGuide(): void {
     guide?.remove();
     guide = null;
   });
-  document.body.appendChild(guide);
+  overlayRoot().appendChild(guide);
 }

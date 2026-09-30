@@ -1078,6 +1078,7 @@ export class GameScene extends Phaser.Scene {
     this.applyPlayerStatus(sp.onKillSelf);
     // 经验沿用原公式；货币按怪物血量成长放大（血越厚掉得越多），避免后期买不起
     if (e.boss) {
+      save.killedBosses[e.boss.id] = (save.killedBosses[e.boss.id] ?? 0) + 1;
       if (e.boss.elite) save.stats.eliteKills++;
       else {
         save.stats.bossKills++;
