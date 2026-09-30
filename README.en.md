@@ -4,6 +4,12 @@
 
 🎮 **Play online: <https://yourlin.github.io/tomageddon/>** (auto-deployed by GitHub Actions on every push to main)
 
+<video src="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm" poster="docs/images/promo-poster-en.jpg" controls playsinline width="100%">
+  <a href="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm"><img src="docs/images/promo-poster-en.jpg" alt="Tomageddon trailer (click to play)" width="100%" /></a>
+</video>
+
+[▶ 30-second trailer](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm)
+
 A top-down 2D arena survival roguelite for the browser. Phaser 3 (WebGL) + TypeScript + Vite, PC and landscape mobile, **Chinese and English**. **All art and background music are generated procedurally** — no image or audio assets are needed to run it.
 
 ## Contents
@@ -21,6 +27,7 @@ A top-down 2D arena survival roguelite for the browser. Phaser 3 (WebGL) + TypeS
   - [Localization](#localization)
   - [Code style](#code-style)
   - [Balance testing](#balance-testing)
+  - [Trailer](#trailer)
   - [Versioning](#versioning)
   - [Replacing art (optional)](#replacing-art-optional)
   - [Debugging](#debugging)
@@ -145,6 +152,16 @@ npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [-
 - Every run writes an HTML report: `docs/reports/balance-<time>.html` (unfinished runs get a `-partial` suffix); `docs/BALANCE_REPORT.html` / `.md` is the latest. Reports are not committed
 - Progress is saved to `scripts/.batch-progress.json` after every game; after an interruption (Ctrl+C, crash, power loss) **rerun with the same options to resume**; `--fresh` starts over
 - Regenerate a report manually: `node scripts/report.mjs`
+
+### Trailer
+
+```bash
+npm run promo:overlays   # QR code, title, captions and end card overlays (Chinese and English)
+npm run promo:record     # headless Chrome plays the game from a script and records each clip (both UIs) plus the music
+npm run promo:edit       # beat-synced ffmpeg edit → promo/tomageddon-promo.mp4 and -en.mp4
+```
+
+Footage and renders live in `promo/` (not committed); the WebM versions embedded in the READMEs live in `public/promo/` and ship with GitHub Pages.
 
 ### Versioning
 

@@ -4,6 +4,12 @@
 
 🎮 **在线试玩：<https://yourlin.github.io/tomageddon/>**（推送到 main 后由 GitHub Actions 自动发布）
 
+<video src="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm" poster="docs/images/promo-poster-zh.jpg" controls playsinline width="100%">
+  <a href="https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm"><img src="docs/images/promo-poster-zh.jpg" alt="番茄酱宣传片（点击播放）" width="100%" /></a>
+</video>
+
+[▶ 30 秒宣传片](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm)
+
 俯视角 2D 割草生存 Roguelite 浏览器游戏。Phaser 3（WebGL）+ TypeScript + Vite，支持 PC 与移动端横屏，**中英双语**。**美术与背景音乐全部程序生成**，无需任何图片或音频资源即可运行。
 
 ## 目录
@@ -21,6 +27,7 @@
   - [多语言](#多语言)
   - [代码规范](#代码规范)
   - [平衡测试](#平衡测试)
+  - [宣传片](#宣传片)
   - [版本号](#版本号)
   - [替换美术（可选）](#替换美术可选)
   - [调试](#调试)
@@ -145,6 +152,16 @@ npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [-
 - 每次产出 HTML 报告：`docs/reports/balance-<时间>.html`（未跑完的带 `-partial` 后缀），`docs/BALANCE_REPORT.html` / `.md` 为最新一次；报告不提交到仓库
 - 每局完成即写入 `scripts/.batch-progress.json`；中断（Ctrl+C、崩溃、断电）后**用相同参数重新运行即自动续跑**，`--fresh` 从头开始
 - 手动重新生成报告：`node scripts/report.mjs`
+
+### 宣传片
+
+```bash
+npm run promo:overlays   # 生成二维码、标题、字幕与片尾叠加层（中英两套）
+npm run promo:record     # 无头 Chrome 按脚本操作游戏并录制各段素材（中英界面各一套）与配乐
+npm run promo:edit       # ffmpeg 卡点剪辑，输出 promo/tomageddon-promo.mp4 与 -en.mp4
+```
+
+素材与成片在 `promo/`（不提交）；README 中嵌入的 WebM 版本放在 `public/promo/`，随 GitHub Pages 一起发布。
 
 ### 版本号
 
