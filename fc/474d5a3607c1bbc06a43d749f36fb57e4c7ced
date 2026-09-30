@@ -1,0 +1,37 @@
+docs/en/GDD.md
+  s_b200a2907eaa8e::t_aefd19d1c6803c 83
+docs/GDD.md
+  s_b200a2907eaa8e::t_aefd19d1c6803c 84
+src/scenes/ShopScene.ts
+  s_b200a2907eaa8e::t_42386691c56154 318-326
+src/data/characters.ts
+  s_b200a2907eaa8e::t_aefd19d1c6803c 228,268,306,344,374,412,441,484,522,550,593,632,669,701,732,758,797,835,874,913,954,992,1030,1068,1097,1134,1172,1209,1247
+docs/ACHIEVEMENTS.md
+  s_b200a2907eaa8e::t_0363008535dd19 35-63
+docs/CHARACTERS.md
+  s_b200a2907eaa8e::t_19feb4885a2f50 61-89,178,195,212,229,246,263,280,297,314,331,348,365,382,399,416,433,450,467,484,501,518,535,552,569,586,603,620,637,654
+docs/DATA_TABLES.md
+  s_b200a2907eaa8e::t_b4cb5a6a66cfce 37-65
+docs/en/ACHIEVEMENTS.md
+  s_b200a2907eaa8e::t_e4171021699af1 35-63
+docs/en/CHARACTERS.md
+  s_b200a2907eaa8e::t_e26f356ec4d653 61-89,178,195,212,229,246,263,280,297,314,331,348,365,382,399,416,433,450,467,484,501,518,535,552,569,586,603,620,637,654
+docs/en/DATA_TABLES.md
+  s_b200a2907eaa8e::t_777d06fdf4c23e 37-65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "fc474d5a3607c1bbc06a43d749f36fb57e4c7ced",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
