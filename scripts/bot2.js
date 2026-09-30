@@ -261,5 +261,13 @@ export async function runBatch(ids, ch, speed = 16) {
 }
 
 window.startBot2 = startBot2;
+/** 只接管战斗走位与技能（录制宣传视频用，不处理菜单） */
+window.botAutopilot = (charId) => {
+  const P = profile(charId);
+  let k = 0;
+  GameScene.onStep = () => {
+    if (k++ % 6 === 0) move(P);
+  };
+};
 window.runBatch = runBatch;
 window.ALL_CHARS = CHARACTERS.map((c) => c.id);

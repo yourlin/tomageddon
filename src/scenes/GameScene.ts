@@ -306,6 +306,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.time.timeScale = 1;
     this.tweens.timeScale = 1;
+    if (!this.dead) GameScene.onStep?.(this);
     this.step(Math.min(dms / 1000, 1 / 20));
   }
 

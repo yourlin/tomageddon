@@ -21,7 +21,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "promo:record": "node scripts/promo/record.mjs",
+    "promo:edit": "bash scripts/promo/edit.sh"
   },
   "keywords": [],
   "author": "",
