@@ -809,7 +809,8 @@ export class GameScene extends Phaser.Scene {
     this.marks = [];
     for (const h of this.hazards) h.img.destroy();
     this.hazards = [];
-    for (const p of this.pickups) if (p.alive) p.magnet = true;
+    // 番茄籽不自动吸取：留在地上的计入加成池（下一波拾取时双倍）；宝箱与果实照常吸取
+    for (const p of this.pickups) if (p.alive && p.kind !== 'seed') p.magnet = true;
     this.pstatus.cleanse();
     this.player.play('victory', true);
     const s = this.stats;
@@ -833,7 +834,15 @@ export class GameScene extends Phaser.Scene {
     checkAchievements();
     this.events.emit('waveEnd');
     this.time.delayedCall(1500, () => {
-      for (const p of this.pickups) if (p.alive) this.collect(p);
+      for (const p of this.pickups) {
+        if (!p.alive) continue;
+        if (p.kind === 'seed') {
+          run.bonusSeeds += p.value;
+          run.bonusXp += p.xp;
+          p.alive = false;
+          p.img.setVisible(false);
+        } else this.collect(p);
+      }
       this.scene.stop('Hud');
       if (run.isBossWave()) {
         this.recordProgress();
@@ -1497,8 +1506,14 @@ export class GameScene extends Phaser.Scene {
     p.alive = false;
     p.img.setVisible(false);
     if (p.kind === 'seed') {
-      run.earn(p.value, 'pickup');
-      run.addXp(p.xp);
+      // 加成池：上一波没捡的番茄籽，本波每拾取一个就额外给同等数量（直到用完）
+      const bonus = Math.min(p.value, run.bonusSeeds),
+        bonusXp = Math.min(p.xp, run.bonusXp);
+      run.bonusSeeds -= bonus;
+      run.bonusXp -= bonusXp;
+      run.earn(p.value + bonus, 'pickup');
+      run.addXp(p.xp + bonusXp);
+      if (bonus) this.fx.label(p.img.x, p.img.y - 10, '×2', '#52ff8a');
       audio.play(this, 'pickup', 0.03);
     } else if (p.kind === 'fruit') {
       const bonus = this.talent.fruitSeeds();

@@ -27,7 +27,7 @@ import { installForceLandscape } from './systems/ForceLandscape';
 // 按语言写入数据文本，必须在创建游戏前执行
 applyLanguage();
 document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
-document.title = tx('番茄酱 Tomageddon', 'Tomageddon');
+document.title = tx('番茄酱 Tomageddon｜肉鸽割草，一局就上头', 'Tomageddon | Roguelike survivor — just one more run');
 
 // ?headless=1：测试模式（隐藏战斗画面、不进菜单），仅用于自动化平衡测试
 export const HEADLESS = new URLSearchParams(location.search).has('headless');

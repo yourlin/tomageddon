@@ -139,7 +139,7 @@ details{margin-top:28px}summary{cursor:pointer;font-weight:600;font-size:16px}
     ${meta.version ? `<span>游戏版本：v${esc(meta.version)}</span>` : ''}
     <span>生成时间：${esc(stamp(new Date(meta.finishedAt)))}</span>
     <span>章节：${meta.chapters.join(' / ')}</span>
-    <span>每角色每章 ${meta.runs} 局</span><span>${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · ${meta.workers} 并行</span>
+    <span>每角色每章 ${meta.runs} 局</span><span>${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · 最多 ${meta.workers} 并行</span>
     <span>完成 ${done}/${total} 局</span><span>累计用时 ${dur(meta.elapsedMs)}</span>
     ${meta.resumed ? `<span>续跑 ${meta.resumed} 次</span>` : ''}
   </div>

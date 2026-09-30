@@ -24,6 +24,7 @@ A top-down 2D arena survival roguelite for the browser. Phaser 3 (WebGL) + TypeS
   - [Versioning](#versioning)
   - [Replacing art (optional)](#replacing-art-optional)
   - [Debugging](#debugging)
+- [Support the Author](#support-the-author)
 - [License](#license)
 
 ## Story
@@ -61,6 +62,7 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 - 21 stats: Max HP, HP Regen, Life Steal, Damage, Melee/Ranged/Elemental Damage, Attack Speed, Crit, Range, Armor, Dodge, Move Speed, Luck, Harvest, Pickup Range, XP Gain, Skill Cooldown/Damage/Area/Duration
 - Two identical weapons of the same tier combine into the next tier (T1–T4); items stack (some have caps)
 - T3 / T4 weapons roll random affixes (tiers I–IV) that can be rerolled in the shop, all at once or one by one; T4 weapons can be forged (+1 to +10) — higher levels cost more and succeed less often
+- Seeds left on the ground at wave end aren't auto-collected; they go into a bonus pool, and next wave every Seed you pick up is doubled until the pool runs out
 - Piggy-bank items pay interest; HP refills at the start of every wave
 - Local browser save: permanent progress + mid-run save; pause and "Save & Quit" to resume from the current wave later
 - The result screen can generate a share poster (character, stats, QR code) — long-press to send it in WeChat; scanning opens the game
@@ -136,10 +138,10 @@ All numbers live in `src/data/`: `balance.ts` (global formulas), `characters.ts`
 ### Balance testing
 
 ```bash
-npm run balance -- --chapters 1,2,3 --runs 2 [--workers 8] [--speed max] [--chars corn,tomato] [--timeout 240] [--fresh]
+npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [--cpu 80] [--speed max] [--chars corn,tomato] [--timeout 240] [--fresh]
 ```
 
-- Runs many headless Chrome pages in parallel (default: one per CPU core). Test mode skips rendering; `--speed max` (default) simulates as many steps per frame as fit in the time budget
+- Runs headless Chrome pages in parallel; concurrency adapts to whole-machine CPU load (target `--cpu`, default 80%, between `--min-workers` and `--workers`, default 40% of cores to cores−1), at low process priority, with a progress bar showing elapsed and estimated remaining time. Test mode skips rendering; `--speed max` (default) simulates as many steps per frame as fit in the time budget
 - Every run writes an HTML report: `docs/reports/balance-<time>.html` (unfinished runs get a `-partial` suffix); `docs/BALANCE_REPORT.html` / `.md` is the latest. Reports are not committed
 - Progress is saved to `scripts/.batch-progress.json` after every game; after an interruption (Ctrl+C, crash, power loss) **rerun with the same options to resume**; `--fresh` starts over
 - Regenerate a report manually: `node scripts/report.mjs`
@@ -162,6 +164,14 @@ await import('/scripts/bot.js');
 startBot('corn', 1); // automated balance-test bot
 run.seeds += 500; // add Seeds
 ```
+
+## Support the Author
+
+If Tomageddon made you smile, consider buying the author a coffee ☕
+
+Tomageddon is a free game made in spare time. Your support turns into more characters, more bosses and more new mechanics. Alipay and WeChat Pay both work.
+
+<img src="docs/images/donate/donate-en.jpg" alt="Buy me a coffee: Alipay / WeChat Pay QR codes" width="600" />
 
 ## License
 

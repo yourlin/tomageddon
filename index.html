@@ -13,24 +13,25 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
     <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
-    <title>番茄酱 Tomageddon</title>
-    <!-- 分享卡片：微信读取 description / og / itemprop 与页面首张图片；其他平台读取 og / twitter -->
-    <meta name="description" content="蔬果大战腐烂！33 名角色、564 件道具、45 名精英与 Boss，打开浏览器就能玩的割草生存 Roguelite。" />
+    <title>番茄酱 Tomageddon｜肉鸽割草，一局就上头</title>
+    <!-- 分享卡片：微信读取 description / og / itemprop 与页面首张图片；其他平台读取 og / twitter。
+         缩略图用小于 30KB 的方图：浏览器经微信 SDK 分享时缩略图超过约 32KB 会显示为空白 -->
+    <meta name="description" content="肉鸽割草爽游！一刀清屏、越打越强，打完这局还想再来一局。" />
     <meta name="keywords" content="番茄酱,Tomageddon,割草,Roguelite,网页游戏,小游戏" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="番茄酱 Tomageddon" />
-    <meta property="og:title" content="番茄酱 Tomageddon · 蔬果大战腐烂" />
-    <meta property="og:description" content="33 名角色、564 件道具、45 名精英与 Boss，打开浏览器就能玩的割草生存 Roguelite。" />
+    <meta property="og:title" content="番茄酱 Tomageddon｜肉鸽割草，一局就上头" />
+    <meta property="og:description" content="肉鸽割草爽游！一刀清屏、越打越强，打完这局还想再来一局。" />
     <meta property="og:url" content="%SITE_URL%" />
-    <meta property="og:image" content="%SITE_URL%icons/icon-512.png" />
+    <meta property="og:image" content="%SITE_URL%icons/share-thumb.jpg" />
     <meta property="og:image" content="%SITE_URL%icons/share-card.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="%SITE_URL%icons/share-card.png" />
-    <meta itemprop="name" content="番茄酱 Tomageddon · 蔬果大战腐烂" />
-    <meta itemprop="description" content="33 名角色、564 件道具、45 名精英与 Boss，打开浏览器就能玩的割草生存 Roguelite。" />
-    <meta itemprop="image" content="%SITE_URL%icons/icon-512.png" />
+    <meta itemprop="name" content="番茄酱 Tomageddon｜肉鸽割草，一局就上头" />
+    <meta itemprop="description" content="肉鸽割草爽游！一刀清屏、越打越强，打完这局还想再来一局。" />
+    <meta itemprop="image" content="%SITE_URL%icons/share-thumb.jpg" />
     <link rel="canonical" href="%SITE_URL%" />
     <style>
       html,
@@ -62,7 +63,7 @@
   </head>
   <body>
     <!-- 旧版微信取页面首张大于 300px 的图片作为分享缩略图（移出可视区，不影响页面） -->
-    <img src="./icons/icon-512.png" alt="番茄酱 Tomageddon" width="300" height="300" style="position: absolute; left: -9999px; top: 0" />
+    <img src="./icons/share-thumb.jpg" alt="番茄酱 Tomageddon" width="300" height="300" style="position: absolute; left: -9999px; top: 0" />
     <div id="stage"><div id="game"></div></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

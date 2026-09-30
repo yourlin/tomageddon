@@ -7,7 +7,7 @@ import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { run, hasSavedRun, loadRun } from '../systems/RunState';
 import { save, unlockedCount } from '../systems/Save';
-import { tx } from '../i18n';
+import { lang, tx } from '../i18n';
 import { checkAchievements, setInRun, pointsBalance } from '../systems/Achievements';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { paint } from '../art/Painter';
@@ -97,6 +97,19 @@ export class MenuScene extends Phaser.Scene {
     gh.on('pointerover', () => gh.setAlpha(1));
     gh.on('pointerout', () => gh.setAlpha(0.85));
     gh.on('pointerup', () => window.open(__REPO_URL__, '_blank', 'noopener'));
+    // 请作者喝杯咖啡：跳转到 README 的收款码章节
+    const donateUrl = lang === 'en' ? `${__REPO_URL__}/blob/main/README.en.md#support-the-author` : `${__REPO_URL__}#支持作者`;
+    button(
+      this,
+      W - 175,
+      44,
+      190,
+      46,
+      tx('☕ 请作者喝杯咖啡', '☕ Buy me a coffee'),
+      () => window.open(donateUrl, '_blank', 'noopener'),
+      0x8a5a2b,
+      17,
+    );
 
     const by = H * 0.52;
     const saved = hasSavedRun();

@@ -80,6 +80,9 @@ export class RunState {
   revivesUsed = 0;
   /** 本局获得的成就点（结算界面展示） */
   achPoints = 0;
+  /** 加成池：上一波留在地上的番茄籽与经验，本波拾取时双倍返还 */
+  bonusSeeds = 0;
+  bonusXp = 0;
   harvestBonus = 0; // 收获随波次成长的累计值
   bossId = ''; // 本局 Boss
   /** 调试：每波各来源番茄籽收入 */
@@ -103,6 +106,8 @@ export class RunState {
 
   start(charId: string, chapterId: number): void {
     this.achPoints = 0;
+    this.bonusSeeds = 0;
+    this.bonusXp = 0;
     this.charId = charId;
     this.chapterId = chapterId;
     this.wave = 1;
@@ -354,6 +359,8 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       shop: run.shop,
       revivesUsed: run.revivesUsed,
       harvestBonus: run.harvestBonus,
+      bonusSeeds: run.bonusSeeds,
+      bonusXp: run.bonusXp,
       bossId: run.bossId,
       eliteIds: run.eliteIds,
       savedAt: Date.now(),
@@ -395,6 +402,8 @@ export function loadRun(): boolean {
     shop: d.shop,
     revivesUsed: d.revivesUsed,
     harvestBonus: d.harvestBonus,
+    bonusSeeds: d.bonusSeeds ?? 0,
+    bonusXp: d.bonusXp ?? 0,
     bossId: d.bossId,
     eliteIds: d.eliteIds,
     rerolls: 0,

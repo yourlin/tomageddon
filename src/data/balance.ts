@@ -5,7 +5,7 @@ export const BALANCE = {
   arena: { width: 1920, height: 1200, margin: 40 },
   player: { baseSpeed: 230, radius: 22, iframes: 0.5, dodgeCap: 60, maxWeapons: 6 },
   waves: { count: 15, eliteWaves: [5, 10], bossWave: 15 },
-  pickup: { baseRadius: 150, magnetSpeed: 700 },
+  pickup: { baseRadius: 110, magnetSpeed: 700 },
   maxEnemies: 260,
   harvestGrowth: 0.05,
   seedMult: 0.5, // 第 6 波起小怪番茄籽的经验倍率（货币掉落另按血量成长放大，见 Enemy.lootMult）

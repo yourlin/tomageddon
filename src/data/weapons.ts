@@ -40,11 +40,11 @@ export interface WeaponDef {
   count?: number[]; // T1..T4 弹丸数量
   spread?: number; // 散射角（度）
   effect?: WeaponEffect;
-  price: number; // T1 基础价格，T2/T3/T4 = x2 / x4 / x8
+  price: number; // T1 基础价格，T2/T3/T4 = x2.2 / x4.5 / x10（见 TIER_PRICE_MULT）
   minTier?: number; // 商店最低出现品质（0 起）
 }
 
-export const TIER_PRICE_MULT = [1, 2, 4, 8];
+export const TIER_PRICE_MULT = [1, 2.2, 4.5, 10];
 export const TIER_NAMES = ['I', 'II', 'III', 'IV'];
 
 export const WEAPONS: WeaponDef[] = [

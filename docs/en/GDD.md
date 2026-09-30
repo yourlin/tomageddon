@@ -148,10 +148,10 @@ Elites: +1 random affix from wave 10, +1 from chapter 3, and another +1 from cha
 | Chapter | Scene | HP | Damage | Features |
 | --- | --- | --- | --- | --- |
 | 1 Midnight Kitchen | Wooden floor, breadcrumbs, ketchup stains | ×1.0 | ×1.0 | Tutorial difficulty |
-| 2 Wild Garden | Dirt beds, weeds, pebbles | ×1.45 | ×1.3 | Venom Bees, Toxic Shrooms, Brood Mothers |
-| 3 Frozen Fridge | Frosted shelves, ice crystals | ×1.6 | ×1.35 | Lots of Slow and Freeze |
-| 4 City Junkyard | Cracked concrete, oil stains, garbage | ×2.1 | ×1.55 | Blind, Armor Break, splitting |
-| 5 Ketchup Factory | Metal plates, hazard stripes, sauce pools | ×2.6 | ×1.8 | All monsters mixed + Curse |
+| 2 Wild Garden | Dirt beds, weeds, pebbles | ×4.6 (elites/bosses ×2.3) | ×1.6 | Venom Bees, Toxic Shrooms, Brood Mothers |
+| 3 Frozen Fridge | Frosted shelves, ice crystals | ×4.0 (elites/bosses ×2.1) | ×1.55 | Lots of Slow and Freeze |
+| 4 City Junkyard | Cracked concrete, oil stains, garbage | ×4.0 (elites/bosses ×2.2) | ×1.65 | Blind, Armor Break, splitting |
+| 5 Ketchup Factory | Metal plates, hazard stripes, sauce pools | ×5.0 (elites/bosses ×3.0) | ×1.8 | All monsters mixed + Curse |
 
 - Chapter multipliers **ramp in gradually**: `1 + (multiplier−1) × (0.1 + 0.9 × (wave−1)/14)`, since every chapter starts from level 0
 - Let w = wave−1: HP `base × (1 + growth × w^0.9) × chapter factor` (sublinear, fast early and slower later; elites/bosses use a separate chapter multiplier); damage `(base + growth×(0.4w + 0.03w²)) × chapter factor` (gentle early, accelerating late)
@@ -184,6 +184,7 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 | Reroll price | `2 + 0.75×wave + rerolls so far × ceil(wave/2)` |
 | Rarity | Improves with wave and Luck; Legendary appears from wave 7 |
 | Interest | 10% per Piggy Bank, capped at 6×wave per wave (prevents snowballing) |
+| Uncollected Seeds | Not auto-collected at wave end; they go into a bonus pool, and next wave every Seed you pick up grants the same amount again until the pool runs out |
 | HP | Fully restored at the start of each wave; 0.5 s invulnerability after being hit |
 | CC protection | Stun/Freeze on the player lasts at most 0.8 s, followed by 1.5 s of immunity |
 | Early pacing | Waves 1~2 spawn 2 per batch at 2.4 s intervals; the starting weapon kills early monsters in 1~2 hits |

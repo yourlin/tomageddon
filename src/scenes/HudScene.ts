@@ -18,6 +18,7 @@ export class HudScene extends Phaser.Scene {
   private hpText!: Phaser.GameObjects.Text;
   private lvText!: Phaser.GameObjects.Text;
   private seedText!: Phaser.GameObjects.Text;
+  private bonusText!: Phaser.GameObjects.Text;
   private waveText!: Phaser.GameObjects.Text;
   private timeText!: Phaser.GameObjects.Text;
   private bossName!: Phaser.GameObjects.Text;
@@ -55,6 +56,7 @@ export class HudScene extends Phaser.Scene {
     this.lvText = text(this, 30 + 150, 66, '', 16).setOrigin(0.5);
     this.add.image(40, 104, 'ui_seed_icon');
     this.seedText = text(this, 60, 104, '0', 24, '#ffe066').setOrigin(0, 0.5);
+    this.bonusText = text(this, 60, 104, '', 15, '#52ff8a').setOrigin(0, 0.5);
     this.waveText = text(this, W / 2, 24, '', 26).setOrigin(0.5, 0);
     this.timeText = text(this, W / 2, 58, '', 40).setOrigin(0.5, 0);
     this.bossName = text(this, W / 2, H - 70, '', 20, '#ffb4a2')
@@ -219,6 +221,8 @@ export class HudScene extends Phaser.Scene {
     b.fillStyle(0x52b788, 1).fillRoundedRect(30, 58, 300 * Phaser.Math.Clamp(run.xp / need, 0, 1), 18, 7);
     this.lvText.setText(`LV.${run.level}`);
     this.seedText.setText(String(run.seeds));
+    this.bonusText.setText(run.bonusSeeds > 0 ? tx(`拾取翻倍 剩余 ${run.bonusSeeds}`, `Double pickup · ${run.bonusSeeds} left`) : '');
+    this.bonusText.setX(this.seedText.x + this.seedText.width + 14);
     this.timeText.setText(run.isBossWave() && g.boss?.enraged ? tx('狂暴', 'ENRAGED') : String(Math.ceil(g.timeLeft)));
     this.timeText.setColor(g.timeLeft <= 5 && !run.isBossWave() ? '#ff6b6b' : '#fff4ea');
 

@@ -8,7 +8,7 @@
 
 Weapons aim and attack automatically; each character carries up to 6 (some [characters](CHARACTERS.md) differ). Every weapon has tiers T1–T4; two identical weapons of the same tier combine into the next tier in the shop.
 
-Price: T1 base price × [1, 2, 4, 8], rising with waves. Damage = (base + Σ stat × scaling) × (1 + Damage%) × class multiplier.
+Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + Σ stat × scaling) × (1 + Damage%) × class multiplier.
 
 ## Contents
 

@@ -122,7 +122,7 @@ Content: 33 characters · 18 weapons · 564 items · 27 monsters · 30 elites ·
 
 ## Weapons
 
-Price: T1 base × [1, 2, 4, 8], rising with waves.
+Price: T1 base × [1, 2.2, 4.5, 10], rising with waves.
 
 | Weapon | Type | Damage T1–T4 | Cooldown T1–T4 | Range | Crit mult | Price |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -238,10 +238,10 @@ Price: T1 base × [1, 2, 4, 8], rising with waves.
 | Chapter | HP mult | Damage mult | Speed mult | Monster pool (waves) |
 | --- | --- | --- | --- | --- |
 | Chapter 1 · Midnight Kitchen | 1 | 1 | 1 | Mold Blob(1+) Fruit Fly(2+) Rotten Apple(3+) Maggot(4+) Army Ant(6+) Cockroach(7+) Bomb Beetle(9+) Split Mold(11+) |
-| Chapter 2 · Wild Garden | 2.9 | 1.3 | 1.05 | Mold Blob(1~8) Army Ant(3+) Fruit Fly(1+) Snot Snail(2+) Venom Spider(5+) Toxic Shroom(5+) Split Mold(6+) Brood Mother(8+) Bomb Beetle(10+) Venom Bee(4+) Mud Worm(4+) |
-| Chapter 3 · Frozen Fridge | 3.2 | 1.35 | 1.1 | Mold Blob(1~6) Fruit Fly(1+) Ice Cube(3+) Sewer Rat(7+) Maggot(3+) Venom Spider(6+) Cockroach(5+) Toxic Shroom(7+) Split Mold(9+) Frost Mosquito(4+) Frozen Shrimp(6+) |
-| Chapter 4 · City Junkyard | 4.2 | 1.55 | 1.15 | Mold Blob(1~5) Sewer Rat(5+) Cockroach(3+) Trash Bag(5+) Bomb Beetle(6+) Brood Mother(5+) Rotten Apple(2+) Snot Snail(6+) Toxic Shroom(8+) Can Crab(7+) Rag Ghost(5+) Grease Blob(6+) |
-| Chapter 5 · Ketchup Factory | 5.2 | 1.8 | 1.2 | Mold Blob(1~4) Fruit Fly(1~6) Can Bot(3+) Sewer Rat(5+) Bomb Beetle(6+) Venom Spider(5+) Trash Bag(5+) Ice Cube(4+) Toxic Shroom(5+) Brood Mother(6+) Split Mold(7+) Gear Bug(4+) Curse Doll(5+) |
+| Chapter 2 · Wild Garden | 4.6 | 1.6 | 1.05 | Mold Blob(1~8) Army Ant(3+) Fruit Fly(1+) Snot Snail(2+) Venom Spider(5+) Toxic Shroom(5+) Split Mold(6+) Brood Mother(8+) Bomb Beetle(10+) Venom Bee(4+) Mud Worm(4+) |
+| Chapter 3 · Frozen Fridge | 4 | 1.55 | 1.1 | Mold Blob(1~6) Fruit Fly(1+) Ice Cube(3+) Sewer Rat(7+) Maggot(3+) Venom Spider(6+) Cockroach(5+) Toxic Shroom(7+) Split Mold(9+) Frost Mosquito(4+) Frozen Shrimp(6+) |
+| Chapter 4 · City Junkyard | 4 | 1.65 | 1.15 | Mold Blob(1~5) Sewer Rat(5+) Cockroach(3+) Trash Bag(5+) Bomb Beetle(6+) Brood Mother(5+) Rotten Apple(2+) Snot Snail(6+) Toxic Shroom(8+) Can Crab(7+) Rag Ghost(5+) Grease Blob(6+) |
+| Chapter 5 · Ketchup Factory | 5 | 1.8 | 1.2 | Mold Blob(1~4) Fruit Fly(1~6) Can Bot(3+) Sewer Rat(5+) Bomb Beetle(6+) Venom Spider(5+) Trash Bag(5+) Ice Cube(4+) Toxic Shroom(5+) Brood Mother(6+) Split Mold(7+) Gear Bug(4+) Curse Doll(5+) |
 
 <a id="waves"></a>
 
