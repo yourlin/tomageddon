@@ -2,13 +2,14 @@
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { paintArena } from '../art/ArenaArt';
-import { text, button, COLORS, toast, autoRelayout } from '../ui/UI';
+import { text, button, COLORS, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { run, hasSavedRun, loadRun } from '../systems/RunState';
 import { save, unlockedCount } from '../systems/Save';
 import { tx } from '../i18n';
 import { checkAchievements, setInRun, pointsBalance } from '../systems/Achievements';
+import { toggleFullscreen } from '../systems/Fullscreen';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -112,12 +113,7 @@ export class MenuScene extends Phaser.Scene {
       60,
       tx('全屏', 'Fullscreen'),
       () => {
-        if (this.scale.isFullscreen) this.scale.stopFullscreen();
-        else {
-          this.scale.startFullscreen();
-          const o = screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> };
-          o?.lock?.('landscape').catch(() => toast(this, tx('请手动横屏', 'Please rotate to landscape')));
-        }
+        toggleFullscreen(this);
       },
       0x3a7d44,
       26,

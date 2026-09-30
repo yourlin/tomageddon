@@ -21,6 +21,7 @@ import { save } from './systems/Save';
 import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
 import { lang, tx } from './i18n';
+import { autoFullscreenOnFirstTouch } from './systems/Fullscreen';
 
 // 按语言写入数据文本，必须在创建游戏前执行
 applyLanguage();
@@ -68,6 +69,7 @@ if (HEADLESS) {
   game.step = game.headlessStep;
 } else {
   applyPerfSettings(game);
+  autoFullscreenOnFirstTouch(game);
 }
 
 // 切到后台时自动暂停战斗

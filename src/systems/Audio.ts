@@ -117,6 +117,8 @@ class AudioManager {
   install(): void {
     if (MUTED) return;
     const unlock = () => this.unlock();
+    // iPhone 微信：需在 WeixinJSBridgeReady 回调中恢复音频
+    document.addEventListener('WeixinJSBridgeReady', unlock, false);
     for (const ev of ['pointerdown', 'keydown', 'touchstart']) window.addEventListener(ev, unlock, { capture: true, passive: true });
     document.addEventListener('visibilitychange', () => {
       if (!this.ctx) return;

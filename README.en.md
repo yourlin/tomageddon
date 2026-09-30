@@ -49,6 +49,12 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 | PC       | WASD / arrow keys                           | Space                     | ESC / P          |
 | Mobile   | Floating joystick anywhere on the left half | Skill button bottom-right | Top-right button |
 
+**Phones & WeChat**
+
+- The main menu and pause menu have a Fullscreen button; on phones the first tap automatically tries fullscreen and locks landscape
+- iPhone Safari and WeChat can’t make web pages fullscreen; the button shows a guide instead. In Safari use Share → “Add to Home Screen” and launch from the icon for fullscreen landscape; in WeChat tap “···” → “Open in Browser”
+- Android WeChat can usually go fullscreen directly
+
 ### Progression & economy
 
 - Kills drop **Seeds** (XP + currency), fruit (healing) and crates (items)

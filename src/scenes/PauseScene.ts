@@ -6,6 +6,7 @@ import { STAT_ORDER, STAT_INFO } from '../data/stats';
 import { WEAPON_MAP, TIER_NAMES } from '../data/weapons';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
+import { toggleFullscreen } from '../systems/Fullscreen';
 
 export class PauseScene extends Phaser.Scene {
   constructor() {
@@ -42,12 +43,12 @@ export class PauseScene extends Phaser.Scene {
     );
 
     const by = H - 110;
-    button(this, W / 2 - 250, by, 220, 64, tx('继续', 'Resume'), () => this.resume(), COLORS.green, 26);
+    button(this, W / 2 - 345, by, 210, 64, tx('继续', 'Resume'), () => this.resume(), COLORS.green, 26);
     button(
       this,
-      W / 2,
+      W / 2 - 115,
       by,
-      220,
+      210,
       64,
       tx('设置', 'Settings'),
       () => {
@@ -58,11 +59,12 @@ export class PauseScene extends Phaser.Scene {
       0x4a6fa5,
       24,
     );
+    button(this, W / 2 + 115, by, 210, 64, tx('全屏', 'Fullscreen'), () => toggleFullscreen(this), 0x3a7d44, 24);
     button(
       this,
-      W / 2 + 250,
+      W / 2 + 345,
       by,
-      220,
+      210,
       64,
       tx('放弃本局', 'Abandon Run'),
       () => {
