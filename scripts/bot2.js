@@ -1,7 +1,7 @@
 // 自动化平衡测试机器人 v2（开发用）
 // 用法：await import('/scripts/bot2.js'); runBatch(['tomato','carrot'], 2, 16)
 // 按角色流派：近战贴近敌人、远程保持距离；按流派评估道具/升级/武器价值
-const { CHARACTER_MAP, CHARACTERS, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS } = window.__dev;
+const { CHARACTER_MAP, CHARACTERS, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, TIER_PRICE_MULT, sellPrice } = window.__dev;
 
 function profile(charId) {
   const c = CHARACTER_MAP[charId];
@@ -11,12 +11,18 @@ function profile(charId) {
     cls[d.cls] = (cls[d.cls] ?? 0) + 1;
   }
   const main = Object.entries(cls).sort((a, b) => b[1] - a[1])[0][0];
+  const hasAura = c.startWeapons.some((w) => WEAPON_MAP[w].kind === 'aura');
   const statOf = { melee: 'melee', ranged: 'ranged', elemental: 'elemental' };
   const W = {
     maxHp: 1,
     regen: 1.1,
     lifeSteal: 1.2,
     damage: 1.6,
+    meleePct: main === 'melee' ? 1.4 : 0.15,
+    rangedPct: main === 'ranged' ? 1.4 : 0.15,
+    elementalPct: main === 'elemental' ? 1.4 : 0.15,
+    auraPct: hasAura ? 1.2 : 0.05,
+    auraSize: hasAura ? 0.5 : 0,
     melee: 0,
     ranged: 0,
     elemental: 0,
@@ -57,8 +63,9 @@ function itemValue(it, P) {
 
 function weaponValue(o, P) {
   const d = WEAPON_MAP[o.id];
-  let v = (d.cls === P.main ? 10 : 4) * (1 + o.tier);
+  let v = (d.cls === P.main ? 10 : 4) * [1, 2.1, 4, 8][o.tier]; // 高品质按实际战力估值，不因单价高而被忽略
   if (run.weapons.some((w) => w.id === o.id && w.tier === o.tier)) v *= 1.4; // 可合成
+  if (run.char.favored.includes(o.id)) v *= 1.5; // 契合武器
   return v;
 }
 
@@ -84,6 +91,8 @@ export function startBot2(charId, ch, speed = 16) {
   game.scene.getScenes(true).forEach((s) => s.scene.stop());
   game.scene.start('Game');
   window.__botState = { done: false, win: false, charId, ch, t0: performance.now() };
+  window.__log = [];
+  window.__econ = { spent: 0, reroll: 0, rerolls: 0, t4Seen: 0, t4Bought: 0, seen: new WeakSet() };
   let lastFrame = -1;
   window.__bot = setInterval(() => {
     // 每个渲染帧最多操作一次（高倍速时一帧可能超过 30ms，避免重复点击）
@@ -117,6 +126,8 @@ export function startBot2(charId, ch, speed = 16) {
         items: Object.values(run.items).reduce((a, b) => a + b, 0),
         weapons: run.weapons.map((w) => w.id + w.tier).join(','),
         sec: Math.round((performance.now() - window.__botState.t0) / 1000),
+        final: snapshot(),
+        waves: window.__log,
       };
     }
   }, 4);
@@ -199,6 +210,11 @@ function move(P) {
 
 function shop(P) {
   const s = game.scene.getScene('Shop');
+  for (const o of run.shop)
+    if (o.kind === 'weapon' && o.tier === 3 && !window.__econ.seen.has(o)) {
+      window.__econ.seen.add(o);
+      window.__econ.t4Seen++;
+    }
   const cand = run.shop
     .filter((o) => !o.sold && o.price <= run.seeds && (o.kind === 'item' || run.canAddWeapon(o.id, o.tier)))
     .map((o) => ({
@@ -209,7 +225,40 @@ function shop(P) {
     }))
     .filter((x) => x.v > 0.04)
     .sort((a, b) => b.v - a.v);
+  // 满栏时：卖掉最弱的低品质武器，给买得起的 T3+ 主流派 / 契合武器腾位置（真人玩家的常见操作）
+  const worth = (w) => weaponValue(w, P) + (run.weapons.some((b) => b.uid !== w.uid && b.id === w.id && b.tier === w.tier) ? 5 : 0);
+  const weakest = (o) => run.weapons.filter((w) => w.tier < o.tier && worth(w) < weaponValue(o, P)).sort((a, b) => worth(a) - worth(b))[0];
+  const sellOf = (w) => sellPrice(s.price(WEAPON_MAP[w.id].price * TIER_PRICE_MULT[w.tier]));
+  const want = (o) => !o.sold && o.kind === 'weapon' && o.tier >= 2 && (WEAPON_MAP[o.id].cls === P.main || run.char.favored.includes(o.id));
+  const swap = run.shop.find((o) => want(o) && !run.canAddWeapon(o.id, o.tier) && weakest(o) && o.price <= run.seeds + sellOf(weakest(o)));
+  if (swap) {
+    const w = weakest(swap);
+    run.seeds += sellOf(w);
+    run.removeWeapon(w.uid);
+    s.draw();
+    return;
+  }
+  // 攒钱：主流派 / 契合的 T3+ 武器暂时买不起、但下一波收入后买得起 → 锁定并留钱
+  const lastInc = Object.values(run.income[run.wave] ?? {}).reduce((a, b) => a + b, 0);
+  const goal = run.shop.find(
+    (o) =>
+      !o.sold &&
+      o.kind === 'weapon' &&
+      o.tier >= 2 &&
+      o.price > run.seeds &&
+      o.price <= run.seeds + lastInc * 1.1 &&
+      (WEAPON_MAP[o.id].cls === P.main || run.char.favored.includes(o.id)) &&
+      (run.canAddWeapon(o.id, o.tier) || weakest(o)),
+  );
+  if (goal) {
+    goal.locked = true;
+    window.__log.push(snapshot());
+    s.nextWave();
+    return;
+  }
   if (cand.length) {
+    window.__econ.spent += cand[0].o.price;
+    if (cand[0].o.kind === 'weapon' && cand[0].o.tier === 3) window.__econ.t4Bought++;
     s.buy(cand[0].o);
     return;
   }
@@ -221,24 +270,65 @@ function shop(P) {
   }
   // 满栏时卖掉非主流派的最低品质武器，给主流派腾位置
   const rp = s.rerollCost();
-  if (run.rerolls < 5 && run.seeds > rp * 3) {
+  if (run.rerolls < run.maxRerolls && run.seeds > rp * 3) {
     run.seeds -= rp;
+    window.__econ.reroll += rp;
+    window.__econ.rerolls++;
     run.rerolls++;
     s.rollShop(true);
     s.draw();
     return;
   }
-  window.__log.push({
-    wave: run.wave,
-    lvl: run.level,
-    seeds: run.seeds,
-    hp: g2().maxHp,
-    w: run.weapons.length,
-    items: Object.values(run.items).reduce((a, b) => a + b, 0),
-  });
+  window.__log.push(snapshot());
   s.nextWave();
 }
-const g2 = () => run.stats;
+const STAT_KEYS = [
+  'maxHp',
+  'damage',
+  'meleePct',
+  'rangedPct',
+  'elementalPct',
+  'auraPct',
+  'attackSpeed',
+  'crit',
+  'armor',
+  'dodge',
+  'speed',
+  'luck',
+  'harvest',
+  'pickup',
+  'regen',
+  'lifeSteal',
+  'range',
+];
+/** 当前构筑快照：经济、属性、道具、武器品质（每次离开商店与结算时记录） */
+function snapshot() {
+  const st = run.stats;
+  const earned = Object.values(run.income).reduce((a, w) => a + Object.values(w).reduce((x, y) => x + Math.max(0, y), 0), 0);
+  const wt = [0, 0, 0, 0];
+  for (const w of run.weapons) wt[w.tier]++;
+  const ir = [0, 0, 0, 0];
+  for (const [id, n] of Object.entries(run.items)) ir[ITEM_MAP[id]?.rarity ?? 0] += n;
+  return {
+    wave: run.wave,
+    lvl: run.level,
+    kills: run.kills,
+    seeds: run.seeds,
+    earned: Math.round(earned),
+    inc: Object.fromEntries(Object.entries(run.income[run.wave] ?? {}).map(([k, v]) => [k, Math.round(v)])),
+    spent: window.__econ.spent,
+    reroll: window.__econ.reroll,
+    rerolls: window.__econ.rerolls,
+    t4Seen: window.__econ.t4Seen,
+    t4Bought: window.__econ.t4Bought,
+    items: ir.reduce((a, b) => a + b, 0),
+    itemRarity: ir,
+    weapons: run.weapons.length,
+    wTier: wt,
+    forge: Math.max(0, ...run.weapons.map((w) => w.forge ?? 0)),
+    stats: Object.fromEntries(STAT_KEYS.map((k) => [k, Math.round(st[k] ?? 0)])),
+  };
+}
 
 /** 依次测试多个角色，结果写入 window.__results 与 localStorage */
 export async function runBatch(ids, ch, speed = 16) {

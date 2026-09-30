@@ -6,7 +6,7 @@
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-小怪 25 种 · 地形生物 2 种 · 精英 30 名 · Boss 15 名 · 精英词缀 12 种。
+小怪 75 种 · 地形生物 2 种 · 精英 30 名 · Boss 15 名 · 精英词缀 12 种。
 
 每章第 5、10 波出现精英，第 15 波为 Boss，均从该章的池子中随机抽取。各章出现哪些怪物见[关卡](CHAPTERS.md)。
 
@@ -50,6 +50,56 @@
 | <img src="images/enemy/oil_blob.png" width="32" height="32" alt=""> [油污怪](#enemy-oil_blob) | 留下黏液 | 20（每波 +70%） | 2（每波 +0.6） | 70 | 2 | [虚弱](SKILLS.md#status-weaken) 3s |
 | <img src="images/enemy/gear_bug.png" width="32" height="32" alt=""> [齿轮虫](#enemy-gear_bug) | 远程射击 | 16（每波 +70%） | 2（每波 +0.7） | 95 | 2 | [破甲](SKILLS.md#status-armorBreak) 4s |
 | <img src="images/enemy/curse_doll.png" width="32" height="32" alt=""> [诅咒娃娃](#enemy-curse_doll) | 远程射击 | 12（每波 +65%） | 2（每波 +0.6） | 90 | 3 | [诅咒](SKILLS.md#status-curse) 3s |
+| <img src="images/enemy/burnt_toast.png" width="32" height="32" alt=""> [焦吐司](#enemy-burnt_toast) | 追击 | 8（每波 +55%） | 1（每波 +0.6） | 90 | 1 | [灼烧](SKILLS.md#status-burn) 2s（40%） |
+| <img src="images/enemy/grease_drop.png" width="32" height="32" alt=""> [油滴精](#enemy-grease_drop) | 游荡 | 3（每波 +45%） | 1（每波 +0.5） | 155 | 1 | - |
+| <img src="images/enemy/dust_bunny.png" width="32" height="32" alt=""> [灰尘团](#enemy-dust_bunny) | 游荡 | 4（每波 +50%） | 1（每波 +0.5） | 120 | 1 | - |
+| <img src="images/enemy/sour_milk.png" width="32" height="32" alt=""> [酸奶盒](#enemy-sour_milk) | 远程射击 | 6（每波 +55%） | 1（每波 +0.5） | 75 | 2 | - |
+| <img src="images/enemy/crumb_mite.png" width="32" height="32" alt=""> [面包屑螨](#enemy-crumb_mite) | 追击 | 2（每波 +40%） | 1（每波 +0.4） | 140 | 1 | - |
+| <img src="images/enemy/moldy_bread.png" width="32" height="32" alt=""> [发霉面包](#enemy-moldy_bread) | 死亡分裂 | 14（每波 +65%） | 2（每波 +0.6） | 70 | 2 | - |
+| <img src="images/enemy/stink_egg.png" width="32" height="32" alt=""> [臭鸡蛋](#enemy-stink_egg) | 自爆 | 5（每波 +50%） | 3（每波 +0.8） | 130 | 1 | 2层[中毒](SKILLS.md#status-poison) 3s |
+| <img src="images/enemy/sponge_slug.png" width="32" height="32" alt=""> [洗碗海绵](#enemy-sponge_slug) | 留下黏液 | 12（每波 +60%） | 1（每波 +0.5） | 60 | 2 | [黏液](SKILLS.md#status-sticky) 2s |
+| <img src="images/enemy/teabag_ghost.png" width="32" height="32" alt=""> [茶包幽灵](#enemy-teabag_ghost) | 治疗同伴 | 10（每波 +60%） | 1（每波 +0.4） | 65 | 3 | - |
+| <img src="images/enemy/pan_beetle.png" width="32" height="32" alt=""> [锅底甲虫](#enemy-pan_beetle) | 蓄力冲撞 | 10（每波 +60%） | 2（每波 +0.7） | 80 | 1 | - |
+| <img src="images/enemy/aphid.png" width="32" height="32" alt=""> [蚜虫](#enemy-aphid) | 追击 | 2（每波 +45%） | 1（每波 +0.4） | 135 | 1 | - |
+| <img src="images/enemy/garden_slug.png" width="32" height="32" alt=""> [菜园蛞蝓](#enemy-garden_slug) | 留下黏液 | 14（每波 +65%） | 2（每波 +0.6） | 55 | 2 | [黏液](SKILLS.md#status-sticky) 2s |
+| <img src="images/enemy/weevil.png" width="32" height="32" alt=""> [象鼻虫](#enemy-weevil) | 蓄力冲撞 | 11（每波 +60%） | 2（每波 +0.7） | 85 | 2 | - |
+| <img src="images/enemy/thorn_weed.png" width="32" height="32" alt=""> [荆棘杂草](#enemy-thorn_weed) | 远程射击 | 8（每波 +55%） | 1（每波 +0.5） | 60 | 2 | [流血](SKILLS.md#status-bleed) 3s（35%） |
+| <img src="images/enemy/caterpillar.png" width="32" height="32" alt=""> [菜青虫](#enemy-caterpillar) | 追击 | 9（每波 +60%） | 1（每波 +0.6） | 90 | 1 | - |
+| <img src="images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [爆爆瓢虫](#enemy-ladybug_bomb) | 自爆 | 6（每波 +55%） | 4（每波 +0.85） | 125 | 1 | - |
+| <img src="images/enemy/rotten_potato.png" width="32" height="32" alt=""> [烂土豆](#enemy-rotten_potato) | 死亡分裂 | 20（每波 +70%） | 2（每波 +0.6） | 60 | 3 | - |
+| <img src="images/enemy/locust.png" width="32" height="32" alt=""> [飞蝗](#enemy-locust) | 游荡 | 4（每波 +50%） | 1（每波 +0.5） | 165 | 1 | - |
+| <img src="images/enemy/mantis.png" width="32" height="32" alt=""> [刀螳螂](#enemy-mantis) | 蓄力冲撞 | 12（每波 +65%） | 2（每波 +0.7） | 95 | 2 | [流血](SKILLS.md#status-bleed) 3s（40%） |
+| <img src="images/enemy/pollen_bloom.png" width="32" height="32" alt=""> [毒花苞](#enemy-pollen_bloom) | 远程射击 | 7（每波 +55%） | 1（每波 +0.5） | 55 | 2 | [中毒](SKILLS.md#status-poison) 3s |
+| <img src="images/enemy/frost_mite.png" width="32" height="32" alt=""> [霜螨](#enemy-frost_mite) | 追击 | 3（每波 +45%） | 1（每波 +0.4） | 135 | 1 | - |
+| <img src="images/enemy/freezer_burn.png" width="32" height="32" alt=""> [冻伤肉块](#enemy-freezer_burn) | 追击 | 24（每波 +75%） | 3（每波 +0.7） | 65 | 3 | - |
+| <img src="images/enemy/ice_slime.png" width="32" height="32" alt=""> [冰史莱姆](#enemy-ice_slime) | 死亡分裂 | 16（每波 +65%） | 2（每波 +0.6） | 75 | 2 | - |
+| <img src="images/enemy/moldy_cheese.png" width="32" height="32" alt=""> [霉奶酪](#enemy-moldy_cheese) | 留下黏液 | 14（每波 +65%） | 2（每波 +0.6） | 60 | 2 | [中毒](SKILLS.md#status-poison) 3s |
+| <img src="images/enemy/popsicle_bat.png" width="32" height="32" alt=""> [冰棍蝙蝠](#enemy-popsicle_bat) | 游荡 | 6（每波 +55%） | 1（每波 +0.5） | 150 | 1 | - |
+| <img src="images/enemy/frozen_pea.png" width="32" height="32" alt=""> [冻豌豆](#enemy-frozen_pea) | 远程射击 | 6（每波 +55%） | 1（每波 +0.5） | 85 | 1 | - |
+| <img src="images/enemy/leftover_box.png" width="32" height="32" alt=""> [剩饭盒](#enemy-leftover_box) | 召唤 | 26（每波 +75%） | 2（每波 +0.6） | 45 | 4 | - |
+| <img src="images/enemy/jelly_cube.png" width="32" height="32" alt=""> [果冻方块](#enemy-jelly_cube) | 蓄力冲撞 | 14（每波 +65%） | 2（每波 +0.65） | 80 | 2 | - |
+| <img src="images/enemy/icicle_imp.png" width="32" height="32" alt=""> [冰锥小鬼](#enemy-icicle_imp) | 远程射击 | 9（每波 +60%） | 2（每波 +0.55） | 90 | 2 | [减速](SKILLS.md#status-slow) 2s |
+| <img src="images/enemy/frozen_soda.png" width="32" height="32" alt=""> [冻爆汽水](#enemy-frozen_soda) | 自爆 | 7（每波 +55%） | 4（每波 +0.85） | 120 | 1 | [冰冻](SKILLS.md#status-freeze) 0.6s（30%） |
+| <img src="images/enemy/rust_crab.png" width="32" height="32" alt=""> [锈铁蟹](#enemy-rust_crab) | 蓄力冲撞 | 22（每波 +70%） | 3（每波 +0.7） | 75 | 2 | - |
+| <img src="images/enemy/oil_slick.png" width="32" height="32" alt=""> [油膜怪](#enemy-oil_slick) | 留下黏液 | 16（每波 +65%） | 2（每波 +0.6） | 75 | 2 | [黏液](SKILLS.md#status-sticky) 2s |
+| <img src="images/enemy/bag_ghost.png" width="32" height="32" alt=""> [塑料袋幽灵](#enemy-bag_ghost) | 游荡 | 10（每波 +60%） | 2（每波 +0.55） | 115 | 2 | [致盲](SKILLS.md#status-blind) 2s |
+| <img src="images/enemy/battery_mite.png" width="32" height="32" alt=""> [漏电电池](#enemy-battery_mite) | 自爆 | 8（每波 +55%） | 4（每波 +0.85） | 125 | 1 | [眩晕](SKILLS.md#status-stun) 0.5s（35%） |
+| <img src="images/enemy/tire_roller.png" width="32" height="32" alt=""> [滚轮胎](#enemy-tire_roller) | 蓄力冲撞 | 24（每波 +75%） | 3（每波 +0.75） | 70 | 2 | - |
+| <img src="images/enemy/scrap_drone.png" width="32" height="32" alt=""> [废铁无人机](#enemy-scrap_drone) | 远程射击 | 10（每波 +60%） | 2（每波 +0.6） | 110 | 2 | - |
+| <img src="images/enemy/glass_shard.png" width="32" height="32" alt=""> [碎玻璃怪](#enemy-glass_shard) | 追击 | 12（每波 +60%） | 2（每波 +0.7） | 100 | 2 | [流血](SKILLS.md#status-bleed) 3s（40%） |
+| <img src="images/enemy/rusty_nail.png" width="32" height="32" alt=""> [锈钉虫](#enemy-rusty_nail) | 追击 | 4（每波 +45%） | 1（每波 +0.5） | 140 | 1 | - |
+| <img src="images/enemy/junk_heap.png" width="32" height="32" alt=""> [垃圾堆](#enemy-junk_heap) | 召唤 | 32（每波 +80%） | 3（每波 +0.65） | 40 | 4 | - |
+| <img src="images/enemy/junk_radio.png" width="32" height="32" alt=""> [破收音机](#enemy-junk_radio) | 治疗同伴 | 16（每波 +65%） | 1（每波 +0.4） | 55 | 3 | - |
+| <img src="images/enemy/conveyor_gremlin.png" width="32" height="32" alt=""> [传送带小妖](#enemy-conveyor_gremlin) | 游荡 | 12（每波 +60%） | 2（每波 +0.45） | 125 | 2 | - |
+| <img src="images/enemy/sauce_drip.png" width="32" height="32" alt=""> [酱汁滴](#enemy-sauce_drip) | 追击 | 5（每波 +50%） | 1（每波 +0.5） | 130 | 1 | - |
+| <img src="images/enemy/cap_drone.png" width="32" height="32" alt=""> [瓶盖无人机](#enemy-cap_drone) | 远程射击 | 12（每波 +65%） | 2（每波 +0.65） | 115 | 2 | - |
+| <img src="images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [番茄酱史莱姆](#enemy-ketchup_slime) | 死亡分裂 | 28（每波 +75%） | 3（每波 +0.7） | 70 | 3 | - |
+| <img src="images/enemy/steam_imp.png" width="32" height="32" alt=""> [蒸汽小鬼](#enemy-steam_imp) | 自爆 | 10（每波 +60%） | 4（每波 +0.9） | 135 | 2 | 2层[灼烧](SKILLS.md#status-burn) 3s |
+| <img src="images/enemy/rivet_bot.png" width="32" height="32" alt=""> [铆钉机器人](#enemy-rivet_bot) | 追击 | 32（每波 +80%） | 3（每波 +0.75） | 75 | 3 | [破甲](SKILLS.md#status-armorBreak) 4s |
+| <img src="images/enemy/label_ghost.png" width="32" height="32" alt=""> [标签幽灵](#enemy-label_ghost) | 游荡 | 14（每波 +65%） | 2（每波 +0.6） | 110 | 2 | [诅咒](SKILLS.md#status-curse) 3s |
+| <img src="images/enemy/bottling_bot.png" width="32" height="32" alt=""> [灌装机器人](#enemy-bottling_bot) | 召唤 | 34（每波 +80%） | 3（每波 +0.65） | 45 | 4 | - |
+| <img src="images/enemy/welder_bug.png" width="32" height="32" alt=""> [焊枪虫](#enemy-welder_bug) | 远程射击 | 14（每波 +65%） | 2（每波 +0.65） | 95 | 2 | [灼烧](SKILLS.md#status-burn) 2s |
+| <img src="images/enemy/press_piston.png" width="32" height="32" alt=""> [冲压活塞](#enemy-press_piston) | 蓄力冲撞 | 26（每波 +75%） | 3（每波 +0.8） | 70 | 3 | - |
 
 <a id="enemy-mold"></a>
 
@@ -502,6 +552,903 @@
 | 攻击附带 | [诅咒](SKILLS.md#status-curse) 3s |
 | 特殊 | 每 3s 射击 |
 | 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波 |
+
+<a id="enemy-burnt_toast"></a>
+
+### 焦吐司
+
+<img src="images/enemy/burnt_toast.png" width="96" height="96" alt="">
+
+> 烤糊的吐司，碰到会被烫伤。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 8（每波 +55%） |
+| 伤害 | 1（每波 +0.6） |
+| 速度 | 90 |
+| 掉落番茄籽 | 1 |
+| 攻击附带 | [灼烧](SKILLS.md#status-burn) 2s（40%） |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 3+ 波 |
+
+<a id="enemy-grease_drop"></a>
+
+### 油滴精
+
+<img src="images/enemy/grease_drop.png" width="96" height="96" alt="">
+
+> 四处乱溅的热油滴。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 3（每波 +45%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 155 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 2+ 波 |
+
+<a id="enemy-dust_bunny"></a>
+
+### 灰尘团
+
+<img src="images/enemy/dust_bunny.png" width="96" height="96" alt="">
+
+> 床底滚出的灰球，飘忽不定。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 4（每波 +50%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 120 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 3+ 波 |
+
+<a id="enemy-sour_milk"></a>
+
+### 酸奶盒
+
+<img src="images/enemy/sour_milk.png" width="96" height="96" alt="">
+
+> 过期牛奶盒，远远喷出酸奶。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 6（每波 +55%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 75 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 每 2.8s 射击 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 4+ 波 |
+
+<a id="enemy-crumb_mite"></a>
+
+### 面包屑螨
+
+<img src="images/enemy/crumb_mite.png" width="96" height="96" alt="">
+
+> 聚在面包屑里的小螨虫。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 2（每波 +40%） |
+| 伤害 | 1（每波 +0.4） |
+| 速度 | 140 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 2+ 波 |
+
+<a id="enemy-moldy_bread"></a>
+
+### 发霉面包
+
+<img src="images/enemy/moldy_bread.png" width="96" height="96" alt="">
+
+> 被打碎后洒出一群面包屑螨。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 死亡分裂 |
+| 生命 | 14（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 70 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 死亡分裂为 3 只[面包屑螨](#enemy-crumb_mite) |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 9+ 波 |
+
+<a id="enemy-stink_egg"></a>
+
+### 臭鸡蛋
+
+<img src="images/enemy/stink_egg.png" width="96" height="96" alt="">
+
+> 滚到脚边就炸开，臭气带毒。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 自爆 |
+| 生命 | 5（每波 +50%） |
+| 伤害 | 3（每波 +0.8） |
+| 速度 | 130 |
+| 掉落番茄籽 | 1 |
+| 攻击附带 | 2层[中毒](SKILLS.md#status-poison) 3s |
+| 特殊 | 自爆半径 80 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 8+ 波 |
+
+<a id="enemy-sponge_slug"></a>
+
+### 洗碗海绵
+
+<img src="images/enemy/sponge_slug.png" width="96" height="96" alt="">
+
+> 吸饱脏水的海绵，留下黏滑水渍。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 留下黏液 |
+| 生命 | 12（每波 +60%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 60 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [黏液](SKILLS.md#status-sticky) 2s |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 6+ 波 |
+
+<a id="enemy-teabag_ghost"></a>
+
+### 茶包幽灵
+
+<img src="images/enemy/teabag_ghost.png" width="96" height="96" alt="">
+
+> 泡烂的茶包，为同伴回血。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 治疗同伴 |
+| 生命 | 10（每波 +60%） |
+| 伤害 | 1（每波 +0.4） |
+| 速度 | 65 |
+| 掉落番茄籽 | 3 |
+| 特殊 | 治疗半径 170 内同伴 0.15 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 10+ 波 |
+
+<a id="enemy-pan_beetle"></a>
+
+### 锅底甲虫
+
+<img src="images/enemy/pan_beetle.png" width="96" height="96" alt="">
+
+> 躲在锅底的甲虫，猛然冲撞。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 10（每波 +60%） |
+| 伤害 | 2（每波 +0.7） |
+| 速度 | 80 |
+| 掉落番茄籽 | 1 |
+| 特殊 | 每 3s 冲撞 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 5+ 波 |
+
+<a id="enemy-aphid"></a>
+
+### 蚜虫
+
+<img src="images/enemy/aphid.png" width="96" height="96" alt="">
+
+> 密密麻麻的小绿虫。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 2（每波 +45%） |
+| 伤害 | 1（每波 +0.4） |
+| 速度 | 135 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 2+ 波 |
+
+<a id="enemy-garden_slug"></a>
+
+### 菜园蛞蝓
+
+<img src="images/enemy/garden_slug.png" width="96" height="96" alt="">
+
+> 滑溜溜的蛞蝓，所过之处满是黏液。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 留下黏液 |
+| 生命 | 14（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 55 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [黏液](SKILLS.md#status-sticky) 2s |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 4+ 波 |
+
+<a id="enemy-weevil"></a>
+
+### 象鼻虫
+
+<img src="images/enemy/weevil.png" width="96" height="96" alt="">
+
+> 长鼻子的甲虫，低头猛冲。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 11（每波 +60%） |
+| 伤害 | 2（每波 +0.7） |
+| 速度 | 85 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 每 2.8s 冲撞 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 5+ 波 |
+
+<a id="enemy-thorn_weed"></a>
+
+### 荆棘杂草
+
+<img src="images/enemy/thorn_weed.png" width="96" height="96" alt="">
+
+> 甩出尖刺，划伤流血。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 8（每波 +55%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 60 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [流血](SKILLS.md#status-bleed) 3s（35%） |
+| 特殊 | 每 2.8s 射击 3 发 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 6+ 波 |
+
+<a id="enemy-caterpillar"></a>
+
+### 菜青虫
+
+<img src="images/enemy/caterpillar.png" width="96" height="96" alt="">
+
+> 啃菜叶长大的肥虫子。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 9（每波 +60%） |
+| 伤害 | 1（每波 +0.6） |
+| 速度 | 90 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 2+ 波 |
+
+<a id="enemy-ladybug_bomb"></a>
+
+### 爆爆瓢虫
+
+<img src="images/enemy/ladybug_bomb.png" width="96" height="96" alt="">
+
+> 背上的斑点其实是引信。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 自爆 |
+| 生命 | 6（每波 +55%） |
+| 伤害 | 4（每波 +0.85） |
+| 速度 | 125 |
+| 掉落番茄籽 | 1 |
+| 特殊 | 自爆半径 85 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 8+ 波 |
+
+<a id="enemy-rotten_potato"></a>
+
+### 烂土豆
+
+<img src="images/enemy/rotten_potato.png" width="96" height="96" alt="">
+
+> 被虫蛀空的土豆，里面全是蚜虫。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 死亡分裂 |
+| 生命 | 20（每波 +70%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 60 |
+| 掉落番茄籽 | 3 |
+| 特殊 | 死亡分裂为 4 只[蚜虫](#enemy-aphid) |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 10+ 波 |
+
+<a id="enemy-locust"></a>
+
+### 飞蝗
+
+<img src="images/enemy/locust.png" width="96" height="96" alt="">
+
+> 一阵风似地掠过菜园。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 4（每波 +50%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 165 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 3+ 波 |
+
+<a id="enemy-mantis"></a>
+
+### 刀螳螂
+
+<img src="images/enemy/mantis.png" width="96" height="96" alt="">
+
+> 镰刀般的前臂，冲刺割伤。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 12（每波 +65%） |
+| 伤害 | 2（每波 +0.7） |
+| 速度 | 95 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [流血](SKILLS.md#status-bleed) 3s（40%） |
+| 特殊 | 每 3.2s 冲撞 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 9+ 波 |
+
+<a id="enemy-pollen_bloom"></a>
+
+### 毒花苞
+
+<img src="images/enemy/pollen_bloom.png" width="96" height="96" alt="">
+
+> 喷射有毒花粉团。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 7（每波 +55%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 55 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [中毒](SKILLS.md#status-poison) 3s |
+| 特殊 | 每 3s 射击 2 发 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 7+ 波 |
+
+<a id="enemy-frost_mite"></a>
+
+### 霜螨
+
+<img src="images/enemy/frost_mite.png" width="96" height="96" alt="">
+
+> 藏在霜层里的小虫，叮咬冰凉。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 3（每波 +45%） |
+| 伤害 | 1（每波 +0.4） |
+| 速度 | 135 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 2+ 波 |
+
+<a id="enemy-freezer_burn"></a>
+
+### 冻伤肉块
+
+<img src="images/enemy/freezer_burn.png" width="96" height="96" alt="">
+
+> 冻得硬邦邦的肉块，推都推不动。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 24（每波 +75%） |
+| 伤害 | 3（每波 +0.7） |
+| 速度 | 65 |
+| 掉落番茄籽 | 3 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 9+ 波 |
+
+<a id="enemy-ice_slime"></a>
+
+### 冰史莱姆
+
+<img src="images/enemy/ice_slime.png" width="96" height="96" alt="">
+
+> 死亡时碎成一群霜螨。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 死亡分裂 |
+| 生命 | 16（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 75 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 死亡分裂为 3 只[霜螨](#enemy-frost_mite) |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 7+ 波 |
+
+<a id="enemy-moldy_cheese"></a>
+
+### 霉奶酪
+
+<img src="images/enemy/moldy_cheese.png" width="96" height="96" alt="">
+
+> 长毛的奶酪，一路滴着毒霉汁。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 留下黏液 |
+| 生命 | 14（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 60 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [中毒](SKILLS.md#status-poison) 3s |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 5+ 波 |
+
+<a id="enemy-popsicle_bat"></a>
+
+### 冰棍蝙蝠
+
+<img src="images/enemy/popsicle_bat.png" width="96" height="96" alt="">
+
+> 冰棍变的蝙蝠，成对乱飞。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 6（每波 +55%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 150 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 2+ 波 |
+
+<a id="enemy-frozen_pea"></a>
+
+### 冻豌豆
+
+<img src="images/enemy/frozen_pea.png" width="96" height="96" alt="">
+
+> 从冷冻袋里弹出冰豆子。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 6（每波 +55%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 85 |
+| 掉落番茄籽 | 1 |
+| 特殊 | 每 2.4s 射击 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 3+ 波 |
+
+<a id="enemy-leftover_box"></a>
+
+### 剩饭盒
+
+<img src="images/enemy/leftover_box.png" width="96" height="96" alt="">
+
+> 忘在冰箱深处的饭盒，不断滋生霜螨。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 召唤 |
+| 生命 | 26（每波 +75%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 45 |
+| 掉落番茄籽 | 4 |
+| 特殊 | 召唤 3 只[霜螨](#enemy-frost_mite) |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 10+ 波 |
+
+<a id="enemy-jelly_cube"></a>
+
+### 果冻方块
+
+<img src="images/enemy/jelly_cube.png" width="96" height="96" alt="">
+
+> 冻硬的果冻，蹦跳着撞过来。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 14（每波 +65%） |
+| 伤害 | 2（每波 +0.65） |
+| 速度 | 80 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 每 2.6s 冲撞 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 4+ 波 |
+
+<a id="enemy-icicle_imp"></a>
+
+### 冰锥小鬼
+
+<img src="images/enemy/icicle_imp.png" width="96" height="96" alt="">
+
+> 扇形射出尖利冰锥。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 9（每波 +60%） |
+| 伤害 | 2（每波 +0.55） |
+| 速度 | 90 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [减速](SKILLS.md#status-slow) 2s |
+| 特殊 | 每 3s 射击 3 发 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 6+ 波 |
+
+<a id="enemy-frozen_soda"></a>
+
+### 冻爆汽水
+
+<img src="images/enemy/frozen_soda.png" width="96" height="96" alt="">
+
+> 冻胀的汽水罐，靠近就爆出冰渣。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 自爆 |
+| 生命 | 7（每波 +55%） |
+| 伤害 | 4（每波 +0.85） |
+| 速度 | 120 |
+| 掉落番茄籽 | 1 |
+| 攻击附带 | [冰冻](SKILLS.md#status-freeze) 0.6s（30%） |
+| 特殊 | 自爆半径 90 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 8+ 波 |
+
+<a id="enemy-rust_crab"></a>
+
+### 锈铁蟹
+
+<img src="images/enemy/rust_crab.png" width="96" height="96" alt="">
+
+> 锈迹斑斑的铁皮蟹，横冲直撞。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 22（每波 +70%） |
+| 伤害 | 3（每波 +0.7） |
+| 速度 | 75 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 每 3s 冲撞 |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 7+ 波 |
+
+<a id="enemy-oil_slick"></a>
+
+### 油膜怪
+
+<img src="images/enemy/oil_slick.png" width="96" height="96" alt="">
+
+> 薄薄一层机油，拖出黏腻油迹。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 留下黏液 |
+| 生命 | 16（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 75 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [黏液](SKILLS.md#status-sticky) 2s |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 5+ 波 |
+
+<a id="enemy-bag_ghost"></a>
+
+### 塑料袋幽灵
+
+<img src="images/enemy/bag_ghost.png" width="96" height="96" alt="">
+
+> 随风飘荡的塑料袋，蒙住你的眼睛。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 10（每波 +60%） |
+| 伤害 | 2（每波 +0.55） |
+| 速度 | 115 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [致盲](SKILLS.md#status-blind) 2s |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 3+ 波 |
+
+<a id="enemy-battery_mite"></a>
+
+### 漏电电池
+
+<img src="images/enemy/battery_mite.png" width="96" height="96" alt="">
+
+> 鼓包的电池，爆炸时电得人发麻。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 自爆 |
+| 生命 | 8（每波 +55%） |
+| 伤害 | 4（每波 +0.85） |
+| 速度 | 125 |
+| 掉落番茄籽 | 1 |
+| 攻击附带 | [眩晕](SKILLS.md#status-stun) 0.5s（35%） |
+| 特殊 | 自爆半径 90 |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 6+ 波 |
+
+<a id="enemy-tire_roller"></a>
+
+### 滚轮胎
+
+<img src="images/enemy/tire_roller.png" width="96" height="96" alt="">
+
+> 废轮胎滚滚而来，撞飞一切。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 24（每波 +75%） |
+| 伤害 | 3（每波 +0.75） |
+| 速度 | 70 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 每 3.4s 冲撞 |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 8+ 波 |
+
+<a id="enemy-scrap_drone"></a>
+
+### 废铁无人机
+
+<img src="images/enemy/scrap_drone.png" width="96" height="96" alt="">
+
+> 拼凑的无人机，投掷废铁块。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 10（每波 +60%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 110 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 每 2.5s 射击 |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 4+ 波 |
+
+<a id="enemy-glass_shard"></a>
+
+### 碎玻璃怪
+
+<img src="images/enemy/glass_shard.png" width="96" height="96" alt="">
+
+> 锋利的碎玻璃，蹭一下就流血。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 12（每波 +60%） |
+| 伤害 | 2（每波 +0.7） |
+| 速度 | 100 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [流血](SKILLS.md#status-bleed) 3s（40%） |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 3+ 波 |
+
+<a id="enemy-rusty_nail"></a>
+
+### 锈钉虫
+
+<img src="images/enemy/rusty_nail.png" width="96" height="96" alt="">
+
+> 成群爬行的锈钉子。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 4（每波 +45%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 140 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 2+ 波 |
+
+<a id="enemy-junk_heap"></a>
+
+### 垃圾堆
+
+<img src="images/enemy/junk_heap.png" width="96" height="96" alt="">
+
+> 会蠕动的垃圾堆，不断抖出锈钉虫。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 召唤 |
+| 生命 | 32（每波 +80%） |
+| 伤害 | 3（每波 +0.65） |
+| 速度 | 40 |
+| 掉落番茄籽 | 4 |
+| 特殊 | 召唤 3 只[锈钉虫](#enemy-rusty_nail) |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 11+ 波 |
+
+<a id="enemy-junk_radio"></a>
+
+### 破收音机
+
+<img src="images/enemy/junk_radio.png" width="96" height="96" alt="">
+
+> 播放刺耳噪音，为周围怪物回血。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 治疗同伴 |
+| 生命 | 16（每波 +65%） |
+| 伤害 | 1（每波 +0.4） |
+| 速度 | 55 |
+| 掉落番茄籽 | 3 |
+| 特殊 | 治疗半径 180 内同伴 0.2 |
+| 出现 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 9+ 波 |
+
+<a id="enemy-conveyor_gremlin"></a>
+
+### 传送带小妖
+
+<img src="images/enemy/conveyor_gremlin.png" width="96" height="96" alt="">
+
+> 在流水线上窜来窜去捣乱。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 12（每波 +60%） |
+| 伤害 | 2（每波 +0.45） |
+| 速度 | 125 |
+| 掉落番茄籽 | 2 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 2+ 波 |
+
+<a id="enemy-sauce_drip"></a>
+
+### 酱汁滴
+
+<img src="images/enemy/sauce_drip.png" width="96" height="96" alt="">
+
+> 滴落的番茄酱，成群涌来。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 5（每波 +50%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 130 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 2+ 波 |
+
+<a id="enemy-cap_drone"></a>
+
+### 瓶盖无人机
+
+<img src="images/enemy/cap_drone.png" width="96" height="96" alt="">
+
+> 旋转的瓶盖，连射汽水弹。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 12（每波 +65%） |
+| 伤害 | 2（每波 +0.65） |
+| 速度 | 115 |
+| 掉落番茄籽 | 2 |
+| 特殊 | 每 2.2s 射击 2 发 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 3+ 波 |
+
+<a id="enemy-ketchup_slime"></a>
+
+### 番茄酱史莱姆
+
+<img src="images/enemy/ketchup_slime.png" width="96" height="96" alt="">
+
+> 被腐化的番茄酱，死后溅成酱汁滴。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 死亡分裂 |
+| 生命 | 28（每波 +75%） |
+| 伤害 | 3（每波 +0.7） |
+| 速度 | 70 |
+| 掉落番茄籽 | 3 |
+| 特殊 | 死亡分裂为 3 只[酱汁滴](#enemy-sauce_drip) |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 8+ 波 |
+
+<a id="enemy-steam_imp"></a>
+
+### 蒸汽小鬼
+
+<img src="images/enemy/steam_imp.png" width="96" height="96" alt="">
+
+> 冲到身边喷发滚烫蒸汽。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 自爆 |
+| 生命 | 10（每波 +60%） |
+| 伤害 | 4（每波 +0.9） |
+| 速度 | 135 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | 2层[灼烧](SKILLS.md#status-burn) 3s |
+| 特殊 | 自爆半径 95 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 4+ 波 |
+
+<a id="enemy-rivet_bot"></a>
+
+### 铆钉机器人
+
+<img src="images/enemy/rivet_bot.png" width="96" height="96" alt="">
+
+> 全身铆钉的重型机器人，拳拳破甲。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 32（每波 +80%） |
+| 伤害 | 3（每波 +0.75） |
+| 速度 | 75 |
+| 掉落番茄籽 | 3 |
+| 攻击附带 | [破甲](SKILLS.md#status-armorBreak) 4s |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 7+ 波 |
+
+<a id="enemy-label_ghost"></a>
+
+### 标签幽灵
+
+<img src="images/enemy/label_ghost.png" width="96" height="96" alt="">
+
+> 撕下的商标纸，诅咒使人无法回血。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 14（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 110 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [诅咒](SKILLS.md#status-curse) 3s |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波 |
+
+<a id="enemy-bottling_bot"></a>
+
+### 灌装机器人
+
+<img src="images/enemy/bottling_bot.png" width="96" height="96" alt="">
+
+> 失控的灌装机，源源不断灌出酱汁滴。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 召唤 |
+| 生命 | 34（每波 +80%） |
+| 伤害 | 3（每波 +0.65） |
+| 速度 | 45 |
+| 掉落番茄籽 | 4 |
+| 特殊 | 召唤 3 只[酱汁滴](#enemy-sauce_drip) |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 11+ 波 |
+
+<a id="enemy-welder_bug"></a>
+
+### 焊枪虫
+
+<img src="images/enemy/welder_bug.png" width="96" height="96" alt="">
+
+> 喷射焊接火花，灼烧目标。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 14（每波 +65%） |
+| 伤害 | 2（每波 +0.65） |
+| 速度 | 95 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [灼烧](SKILLS.md#status-burn) 2s |
+| 特殊 | 每 2.6s 射击 3 发 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 6+ 波 |
+
+<a id="enemy-press_piston"></a>
+
+### 冲压活塞
+
+<img src="images/enemy/press_piston.png" width="96" height="96" alt="">
+
+> 蓄力后猛冲，势大力沉。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 26（每波 +75%） |
+| 伤害 | 3（每波 +0.8） |
+| 速度 | 70 |
+| 掉落番茄籽 | 3 |
+| 特殊 | 每 3.4s 冲撞 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 9+ 波 |
 
 <a id="enemy-rabbit"></a>
 

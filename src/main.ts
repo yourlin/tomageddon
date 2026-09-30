@@ -14,9 +14,9 @@ import { AchievementScene } from './scenes/AchievementScene';
 import { run } from './systems/RunState';
 import { controls } from './systems/Controls';
 import { CHARACTERS, CHARACTER_MAP } from './data/characters';
-import { WEAPON_MAP } from './data/weapons';
+import { WEAPON_MAP, TIER_PRICE_MULT } from './data/weapons';
 import { ITEM_MAP, LEVELUP_OPTIONS } from './data/items';
-import { rerollPrice } from './data/balance';
+import { rerollPrice, sellPrice } from './data/balance';
 import { save } from './systems/Save';
 import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
@@ -92,5 +92,5 @@ Object.assign(window, {
   run,
   controls,
   GameScene,
-  __dev: { CHARACTERS, CHARACTER_MAP, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, rerollPrice },
+  __dev: { CHARACTERS, CHARACTER_MAP, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, rerollPrice, TIER_PRICE_MULT, sellPrice },
 });

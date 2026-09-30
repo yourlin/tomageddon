@@ -2,7 +2,7 @@
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout } from '../ui/UI';
 import { CHARACTERS } from '../data/characters';
-import { WEAPONS } from '../data/weapons';
+import { WEAPONS, WEAPON_MAP } from '../data/weapons';
 import { ALL_ITEMS } from '../data/items';
 import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
@@ -103,6 +103,7 @@ export class CodexScene extends Phaser.Scene {
                   c.title,
                   c.desc,
                   tx(`天赋【${c.talent.name}】${c.talent.desc}`, `Talent [${c.talent.name}] ${c.talent.desc}`),
+                  tx('契合武器：', 'Synergy weapons: ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
                   ...c.traits,
                   tx(`技能【${c.skill.name}】${c.skill.desc}`, `Skill [${c.skill.name}] ${c.skill.desc}`),
                 ],

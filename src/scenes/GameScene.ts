@@ -1483,7 +1483,7 @@ export class GameScene extends Phaser.Scene {
 
   private updatePickups(dt: number): void {
     const pl = this.player;
-    const r = BALANCE.pickup.baseRadius * (1 + this.stats.pickup / 100);
+    const r = BALANCE.pickup.baseRadius + Math.max(0, this.stats.pickup); // 拾取范围为像素数值
     const r2 = r * r;
     for (const p of this.pickups) {
       if (!p.alive) continue;

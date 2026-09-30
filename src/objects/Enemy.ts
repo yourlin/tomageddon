@@ -7,10 +7,12 @@ import type { GameScene } from '../scenes/GameScene';
 import { StatusSet } from '../systems/Status';
 import type { Rig } from './Rig';
 import { tx } from '../i18n';
-import { priceInflation } from '../data/balance';
+import { seedValue } from '../data/balance';
 import { run } from '../systems/RunState';
 
 let enemySeq = 1;
+
+/** 前两波掉落加成：保证第一波结束就能买得起道具 */
 
 /** 词缀精英配色：金色身体、红色花纹，保留原造型与五官 */
 function championLook(look: EnemyDef['look']): EnemyDef['look'] {
@@ -126,7 +128,7 @@ export class Enemy {
     this.dmg = Math.round(dmg * (affixes.length ? 1.3 : 1));
     this.speed = def.speed * speedMult * Phaser.Math.FloatBetween(0.9, 1.1);
     this.seeds = def.seeds * (affixes.length ? 4 : 1);
-    this.lootMult = Math.pow(Math.max(1, hp / def.hp) * priceInflation(run.wave), 0.42) * run.chapter.lootMult;
+    this.lootMult = seedValue(run.wave) * run.chapter.lootMult;
     this.knockResist = def.knockResist ?? 0;
     this.actT = Phaser.Math.FloatBetween(0.5, def.shootCd ?? def.chargeCd ?? def.summonCd ?? def.healCd ?? 1.5);
     this.lifeT = def.life ?? 0;
@@ -142,7 +144,7 @@ export class Enemy {
     this.dmg = dmg;
     this.speed = def.speed;
     this.seeds = def.seeds;
-    this.lootMult = Math.pow(Math.max(1, hp / def.hp) * priceInflation(run.wave), 0.42) * run.chapter.lootMult;
+    this.lootMult = seedValue(run.wave) * run.chapter.lootMult;
     this.knockResist = 0.95;
     this.status.ccResist = def.elite ? 0.5 : 0.75;
     this.patterns = [...def.patterns];

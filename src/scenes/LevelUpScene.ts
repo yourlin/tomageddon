@@ -4,6 +4,7 @@ import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { run, saveRun } from '../systems/RunState';
 import { LEVELUP_OPTIONS, ALL_ITEMS, type ItemDef } from '../data/items';
+import { WEAPON_MAP } from '../data/weapons';
 import { formatMod, type StatKey } from '../data/stats';
 import { BALANCE, RARITY, pickRarity, rerollPrice, shopPrice, sellPrice } from '../data/balance';
 import { text, button, panel, COLORS, fitImage, autoRelayout } from '../ui/UI';
@@ -65,7 +66,12 @@ export class LevelUpScene extends Phaser.Scene {
       ).setOrigin(0.5),
     );
     const n = run.char.levelUpChoices ?? BALANCE.levelUpChoices;
-    const opts = Phaser.Utils.Array.Shuffle([...LEVELUP_OPTIONS]).slice(0, n);
+    // 只提供当前武器涉及的流派伤害选项（否则 4 种流派会把有用选项稀释掉）
+    const cls = new Set(run.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => (d.kind === 'aura' ? 'aura' : d.cls)));
+    const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };
+    const own = new Set([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
+    const pool = LEVELUP_OPTIONS.filter((o) => !Object.values(CLASS_KEY).includes(o.key) || own.has(o.key));
+    const opts = Phaser.Utils.Array.Shuffle([...pool]).slice(0, n);
     const cw = Math.min(230, (W - 60) / n - 16),
       ch = 280;
     const x0 = W / 2 - (n * (cw + 16) - 16) / 2;

@@ -10,6 +10,11 @@ export const STAT_COST: Partial<Record<StatKey, number>> = {
   regen: 4.5,
   lifeSteal: 5.5,
   damage: 1.8,
+  meleePct: 1.4,
+  rangedPct: 1.4,
+  elementalPct: 1.4,
+  auraPct: 1.3,
+  auraSize: 0.8,
   melee: 4.5,
   ranged: 4.5,
   elemental: 4.5,
@@ -171,7 +176,7 @@ const SERIES: Series[] = [
   [
     'spices',
     '香料',
-    ['damage', 'crit'],
+    ['elementalPct', 'crit'],
     'jar',
     0xbc6c25,
     0xffd166,
@@ -193,7 +198,7 @@ const SERIES: Series[] = [
   [
     'knives',
     '刀具',
-    ['melee', 'crit'],
+    ['meleePct', 'crit'],
     'blade',
     0xadb5bd,
     0x6b4226,
@@ -237,7 +242,7 @@ const SERIES: Series[] = [
   [
     'ammo',
     '弹药',
-    ['ranged', 'attackSpeed'],
+    ['rangedPct', 'attackSpeed'],
     'can',
     0xb08968,
     0xffd166,
@@ -248,7 +253,7 @@ const SERIES: Series[] = [
   [
     'fire',
     '火焰',
-    ['elemental', 'damage'],
+    ['elemental', 'elementalPct'],
     'orb',
     0xff7b00,
     0xffd166,
@@ -490,7 +495,7 @@ const SERIES: Series[] = [
   [
     'rings',
     '戒指',
-    ['crit', 'damage'],
+    ['crit', 'rangedPct'],
     'ring',
     0xffd166,
     0xe63946,
@@ -622,7 +627,7 @@ const SERIES: Series[] = [
   [
     'dark',
     '暗黑',
-    ['damage', 'lifeSteal'],
+    ['auraPct', 'lifeSteal'],
     'orb',
     0x3c096c,
     0xff006e,
@@ -688,7 +693,7 @@ const SERIES: Series[] = [
   [
     'rot',
     '腐败',
-    ['damage', 'elemental'],
+    ['auraPct', 'auraSize'],
     'jar',
     0x6a994e,
     0x3d2c2e,

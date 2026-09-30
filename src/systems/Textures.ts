@@ -50,6 +50,7 @@ function statGlyph(ctx: Ctx, k: StatKey, c: number): void {
       toon(ctx, c, cx - 34, cy - 34, 68, 68);
       break;
     case 'melee':
+    case 'meleePct':
       for (const d of [-1, 1]) {
         ctx.save();
         ctx.translate(cx, cy);
@@ -62,6 +63,7 @@ function statGlyph(ctx: Ctx, k: StatKey, c: number): void {
       }
       break;
     case 'ranged':
+    case 'rangedPct':
     case 'range':
     case 'skillRange':
       ctx.beginPath();
@@ -89,6 +91,9 @@ function statGlyph(ctx: Ctx, k: StatKey, c: number): void {
       ctx.stroke();
       break;
     case 'elemental':
+    case 'elementalPct':
+    case 'auraPct':
+    case 'auraSize':
       ctx.beginPath();
       ctx.moveTo(cx, cy - 36);
       ctx.bezierCurveTo(cx + 34, cy - 6, cx + 26, cy + 34, cx, cy + 34);
@@ -703,7 +708,22 @@ export function generateTextures(scene: Phaser.Scene): void {
   });
   for (const k of STAT_ORDER) {
     const c = Phaser.Display.Color.HexStringToColor(STAT_INFO[k].color).color;
-    paint(s, `stat_${k}`, 96, 96, (ctx) => statGlyph(ctx, k, c));
+    paint(s, `stat_${k}`, 96, 96, (ctx) => {
+      statGlyph(ctx, k, c);
+      // 百分比类与光环类属性：角标区分于同类的数值属性
+      const badge = k === 'auraSize' ? '◎' : k.endsWith('Pct') ? '%' : '';
+      if (badge) {
+        ctx.fillStyle = '#1a0a0c';
+        ctx.beginPath();
+        ctx.arc(76, 76, 16, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 20px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(badge, 76, 77);
+      }
+    });
   }
   // 技能图标
   for (const ch of CHARACTERS) {

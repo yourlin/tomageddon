@@ -104,7 +104,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Heart of Tomato**：After each wave, permanently gain +1 Max HP and +1% Damage |
 | Traits | +5% Damage; +1 HP Regen |
-| Stat modifiers | +1 HP Regen, +5% Damage |
+| Stat modifiers | +1 HP Regen, +5% All Damage |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
 | Active skill | [Ketchup Burst](SKILLS.md#skill-tomato) [Nova Burst] cooldown 17s — Splatter ketchup everywhere, damaging and slowing enemies. |
 | Unlock | Unlocked by default |
@@ -223,7 +223,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Blood Feast**：Life Steal is doubled below 50% HP |
 | Traits | +10% Life Steal; -3 HP Regen; +5% Damage |
-| Stat modifiers | -3 HP Regen, +10% Life Steal, +5% Damage |
+| Stat modifiers | -3 HP Regen, +10% Life Steal, +5% All Damage |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
 | Active skill | [Blood Domain](SKILLS.md#skill-garlic) [Drain Heal] cooldown 14s — Drain life from nearby enemies and inflict Bleed. |
 | Unlock | 170 pts |
@@ -240,7 +240,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Twin Bond**：+5% damage per pair of identical weapons |
 | Traits | 8 weapon slots; -10% Damage |
-| Stat modifiers | -10% Damage, 8 weapon slots |
+| Stat modifiers | -10% All Damage, 8 weapon slots |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) |
 | Active skill | [Twin Clone](SKILLS.md#skill-blueberry) [Summon Clone] cooldown 10s — Summon a clone that auto-fires for 8s. |
 | Unlock | 170 pts |
@@ -325,7 +325,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Blast Science**：Explosion damage +10% per wave |
 | Traits | +2 Elemental Damage; +5% Damage; Kills have a 15% chance to explode |
-| Stat modifiers | +5% Damage, +2 Elemental Damage, +30 Range |
+| Stat modifiers | +5% All Damage, +2 Elemental Damage, +30 Range |
 | Starting weapons | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |
 | Active skill | [Core Overload](SKILLS.md#skill-avocado) [Multi-Strike] cooldown 11s — Trigger 5 chain explosions. |
 | Unlock | 190 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
@@ -410,7 +410,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Rapid Volley**：+2% damage per 10% Attack Speed |
 | Traits | +20% Attack Speed; -8% Damage; 10% chance to gain Haste when shooting |
-| Stat modifiers | -8% Damage, +1 Ranged Damage, +20% Attack Speed |
+| Stat modifiers | -8% All Damage, +1 Ranged Damage, +20% Attack Speed |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) |
 | Active skill | [Dual Barrage](SKILLS.md#skill-cherry) [Focused Barrage] cooldown 11s — Fire 12 bullets in a row at the nearest enemy. |
 | Unlock | 80 pts |
@@ -444,7 +444,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Angel's Grace**：Once per wave, survive a lethal hit with 1 HP and 2s of invulnerability |
 | Traits | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage |
-| Stat modifiers | +5 Max HP, +5 HP Regen, -10% Damage |
+| Stat modifiers | +5 Max HP, +5 HP Regen, -10% All Damage |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
 | Active skill | [Angel’s Blessing](SKILLS.md#skill-peach) [Drain Heal] cooldown 15s — Restore 20% HP and become Invulnerable for 1.5s. |
 | Unlock | 170 pts |
@@ -478,7 +478,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Berserker Blood**：+6% damage per 10% HP missing |
 | Traits | +15% Damage; +3% Life Steal; -1 Armor; Gain Rage when damaged |
-| Stat modifiers | +3% Life Steal, +15% Damage, -1 Armor |
+| Stat modifiers | +3% Life Steal, +15% All Damage, -1 Armor |
 | Starting weapons | [Meat Cleaver](WEAPONS.md#weapon-cleaver) |
 | Active skill | [Frenzy](SKILLS.md#skill-beet) [Self Buff] cooldown 13s — Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s. |
 | Unlock | 170 pts |
@@ -512,7 +512,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Gourmet**：Picking up fruit also grants Seeds (more in later waves) |
 | Traits | +20 Harvest; Fruit healing doubled; -5% Damage |
-| Stat modifiers | +5 Max HP, -5% Damage, +20 Harvest |
+| Stat modifiers | +5 Max HP, -5% All Damage, +20 Harvest |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
 | Active skill | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) [Drain Heal] cooldown 18s — Restore 20% HP and gain 5 stacks of Regen. |
 | Unlock | 80 pts |
@@ -631,7 +631,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Late Bloomer**：+1.5% damage per level |
 | Traits | +80% XP Gain; -8% Damage; -3 Max HP; 5 choices on level up |
-| Stat modifiers | -3 Max HP, -8% Damage, +80% XP Gain, 5 level-up choices |
+| Stat modifiers | -3 Max HP, -8% All Damage, +80% XP Gain, 5 level-up choices |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
 | Active skill | [Growth Spurt](SKILLS.md#skill-sprout) [Self Buff] cooldown 10s — Gain 12 XP and 5s of Haste. |
 | Unlock | 170 pts |
@@ -648,7 +648,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Chain Reaction**：Enemies killed by explosions have a 40% chance to explode again |
 | Traits | +8% Damage; Kills have a 25% chance to explode; Explosions inflict Burn |
-| Stat modifiers | -5 Max HP, +8% Damage, +2 Elemental Damage |
+| Stat modifiers | -5 Max HP, +8% All Damage, +2 Elemental Damage |
 | Starting weapons | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |
 | Active skill | [Wasabi Nuke](SKILLS.md#skill-wasabi) [AOE Missile] cooldown 23s — Launch a wasabi nuke at the enemy horde for a massive, burning explosion. |
 | Unlock | 200 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |

@@ -3,7 +3,12 @@ export interface Stats {
   maxHp: number; // 最大生命
   regen: number; // 生命再生：每 5 秒回复 regen 点
   lifeSteal: number; // 吸血 %：每次命中有该概率回复 1 点生命
-  damage: number; // 伤害 %：所有伤害乘算
+  damage: number; // 全伤害 %：所有武器伤害乘算（少量来源：部分角色、天赋与经典道具）
+  meleePct: number; // 近战武器伤害 %
+  rangedPct: number; // 远程武器伤害 %
+  elementalPct: number; // 元素武器伤害 %
+  auraPct: number; // 光环武器伤害 %（光环不吃元素/近战/远程伤害 %）
+  auraSize: number; // 光环范围 %（射程不影响光环）
   melee: number; // 近战伤害（加成数值，按武器系数计入）
   ranged: number; // 远程伤害
   elemental: number; // 元素伤害
@@ -15,7 +20,7 @@ export interface Stats {
   speed: number; // 移速 %
   luck: number; // 幸运：影响商店稀有度、掉落
   harvest: number; // 收获：每波结束获得等量番茄籽与经验，每波 +5%
-  pickup: number; // 拾取范围 %
+  pickup: number; // 拾取范围（像素，加在基础半径上）
   xpGain: number; // 经验获取 %
   skillCd: number; // 技能冷却缩减 %
   skillDmg: number; // 技能伤害 %
@@ -31,6 +36,11 @@ export const BASE_STATS: Stats = {
   regen: 0,
   lifeSteal: 0,
   damage: 0,
+  meleePct: 0,
+  rangedPct: 0,
+  elementalPct: 0,
+  auraPct: 0,
+  auraSize: 0,
   melee: 0,
   ranged: 0,
   elemental: 0,
@@ -54,7 +64,12 @@ export const STAT_INFO: Record<StatKey, { name: string; pct?: boolean; color: st
   maxHp: { name: '最大生命', color: '#ff6b6b' },
   regen: { name: '生命再生', color: '#ff9f9f' },
   lifeSteal: { name: '吸血', pct: true, color: '#ff4d6d' },
-  damage: { name: '伤害', pct: true, color: '#ffb347' },
+  damage: { name: '全伤害', pct: true, color: '#ffb347' },
+  meleePct: { name: '近战武器伤害', pct: true, color: '#ffd166' },
+  rangedPct: { name: '远程武器伤害', pct: true, color: '#9be564' },
+  elementalPct: { name: '元素武器伤害', pct: true, color: '#6ec6ff' },
+  auraPct: { name: '光环伤害', pct: true, color: '#c77dff' },
+  auraSize: { name: '光环范围', pct: true, color: '#e0aaff' },
   melee: { name: '近战伤害', color: '#ffd166' },
   ranged: { name: '远程伤害', color: '#9be564' },
   elemental: { name: '元素伤害', color: '#6ec6ff' },
@@ -66,7 +81,7 @@ export const STAT_INFO: Record<StatKey, { name: string; pct?: boolean; color: st
   speed: { name: '移动速度', pct: true, color: '#55efc4' },
   luck: { name: '幸运', color: '#fdcb6e' },
   harvest: { name: '收获', color: '#e17055' },
-  pickup: { name: '拾取范围', pct: true, color: '#74b9ff' },
+  pickup: { name: '拾取范围', color: '#74b9ff' },
   xpGain: { name: '经验获取', pct: true, color: '#c39bd3' },
   skillCd: { name: '技能冷却缩减', pct: true, color: '#a0e7e5' },
   skillDmg: { name: '技能伤害', pct: true, color: '#ff70a6' },
@@ -79,6 +94,11 @@ export const STAT_ORDER: StatKey[] = [
   'regen',
   'lifeSteal',
   'damage',
+  'meleePct',
+  'rangedPct',
+  'elementalPct',
+  'auraPct',
+  'auraSize',
   'melee',
   'ranged',
   'elemental',

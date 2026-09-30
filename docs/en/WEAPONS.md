@@ -1,4 +1,4 @@
-# Weapons (18)
+# Weapons (50)
 
 [中文](../WEAPONS.md) · **English**
 
@@ -8,7 +8,7 @@
 
 Weapons aim and attack automatically; each character carries up to 6 (some [characters](CHARACTERS.md) differ). Every weapon has tiers T1–T4; two identical weapons of the same tier combine into the next tier in the shop.
 
-Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + Σ stat × scaling) × (1 + Damage%) × class multiplier.
+Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ stat × scaling) × (1 + Damage%) × class multiplier.
 
 ## Contents
 
@@ -21,6 +21,17 @@ Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + �
   - [Frying Pan](#weapon-pan)
   - [Melon Hammer](#weapon-watermelon_hammer)
   - [Meat Cleaver](#weapon-cleaver)
+  - [Spatula](#weapon-spatula)
+  - [Whirl Whisk](#weapon-whisk_spin)
+  - [Meat Tenderizer](#weapon-meat_tenderizer)
+  - [BBQ Skewer](#weapon-skewer)
+  - [Soup Ladle](#weapon-ladle)
+  - [Baguette Blade](#weapon-baguette_sword)
+  - [Cucumber Katana](#weapon-cucumber_katana)
+  - [Pizza Cutter](#weapon-pizza_cutter)
+  - [Chopsticks](#weapon-chopsticks)
+  - [Bamboo Spear](#weapon-bamboo_spear)
+  - [Pineapple Mace](#weapon-pineapple_mace)
 - [Ranged Weapons](#class-ranged)
   - [Tomato Slingshot](#weapon-slingshot)
   - [Pea Shooter](#weapon-pea_shooter)
@@ -29,12 +40,33 @@ Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + �
   - [Ketchup Bottle](#weapon-ketchup)
   - [Onion Boomerang](#weapon-onion_boomerang)
   - [Sauce Gatling](#weapon-sauce_gatling)
+  - [Olive Launcher](#weapon-olive_launcher)
+  - [Popcorn Popper](#weapon-popcorn_machine)
+  - [Grape Shotgun](#weapon-grape_shotgun)
+  - [Bean Bazooka](#weapon-bean_bazooka)
+  - [Cherry Bombs](#weapon-cherry_bomb)
+  - [Blueberry Sniper](#weapon-blueberry_sniper)
+  - [Plate Frisbee](#weapon-plate_frisbee)
+  - [Seed Spitter](#weapon-seed_spitter)
+  - [Carrot Crossbow](#weapon-carrot_crossbow)
+  - [Honey Blaster](#weapon-honey_blaster)
+  - [Soy Pistol](#weapon-soy_pistol)
 - [Elemental Weapons](#class-elemental)
   - [Mustard Flamer](#weapon-mustard_flamer)
   - [Iced Soda](#weapon-soda)
   - [Garlic Aura](#weapon-garlic_aura)
   - [Pepper Mine](#weapon-pepper_mine)
   - [Broccoli Staff](#weapon-broccoli_staff)
+  - [Ice Cube Tray](#weapon-ice_cube_tray)
+  - [Zap Whisk](#weapon-lightning_whisk)
+  - [Steam Kettle](#weapon-steam_kettle)
+  - [Curry Aura](#weapon-curry_aura)
+  - [Pepper Spray](#weapon-pepper_spray)
+  - [Mint Frost Mine](#weapon-mint_frost_mine)
+  - [Thunder Durian](#weapon-thunder_durian)
+  - [Dragonfruit Orb](#weapon-dragonfruit_orb)
+  - [Star Anise Star](#weapon-star_anise_shuriken)
+  - [Lemon Battery](#weapon-lemon_battery)
 
 <a id="overview"></a>
 
@@ -60,6 +92,38 @@ Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + �
 | <img src="../images/weapon/broccoli_staff.png" width="32" height="32" alt=""> [Broccoli Staff](#weapon-broccoli_staff) | Elemental | Chain Lightning | Produce/Elemental | 10 / 17 / 26 / 40 | 1.1 / 1 / 0.92 / 0.84 | 420 | 30 |
 | <img src="../images/weapon/sauce_gatling.png" width="32" height="32" alt=""> [Sauce Gatling](#weapon-sauce_gatling) | Ranged | Bullet | Firearm/Sauce | 4 / 6 / 8 / 11 | 0.16 / 0.14 / 0.12 / 0.1 | 420 | 40 |
 | <img src="../images/weapon/cleaver.png" width="32" height="32" alt=""> [Meat Cleaver](#weapon-cleaver) | Melee | Sweep | Kitchenware/Sharp | 13 / 22 / 35 / 54 | 1.1 / 1.05 / 1 / 0.9 | 125 | 26 |
+| <img src="../images/weapon/spatula.png" width="32" height="32" alt=""> [Spatula](#weapon-spatula) | Melee | Sweep | Kitchenware | 7 / 12 / 19 / 29 | 0.8 / 0.76 / 0.7 / 0.64 | 115 | 16 |
+| <img src="../images/weapon/whisk_spin.png" width="32" height="32" alt=""> [Whirl Whisk](#weapon-whisk_spin) | Melee | Aura | Kitchenware | 3 / 5 / 8 / 12 | 0.45 / 0.45 / 0.42 / 0.4 | 90 | 22 |
+| <img src="../images/weapon/meat_tenderizer.png" width="32" height="32" alt=""> [Meat Tenderizer](#weapon-meat_tenderizer) | Melee | Sweep | Kitchenware | 22 / 36 / 56 / 84 | 1.9 / 1.8 / 1.7 / 1.55 | 110 | 30 |
+| <img src="../images/weapon/skewer.png" width="32" height="32" alt=""> [BBQ Skewer](#weapon-skewer) | Melee | Thrust | Kitchenware/Sharp | 8 / 14 / 22 / 34 | 1.05 / 1 / 0.92 / 0.84 | 185 | 24 |
+| <img src="../images/weapon/ladle.png" width="32" height="32" alt=""> [Soup Ladle](#weapon-ladle) | Melee | Sweep | Kitchenware/Sauce | 10 / 17 / 27 / 41 | 1.15 / 1.1 / 1.02 / 0.94 | 120 | 20 |
+| <img src="../images/weapon/baguette_sword.png" width="32" height="32" alt=""> [Baguette Blade](#weapon-baguette_sword) | Melee | Sweep | Produce | 11 / 19 / 30 / 46 | 1.3 / 1.22 / 1.14 / 1.04 | 150 | 22 |
+| <img src="../images/weapon/cucumber_katana.png" width="32" height="32" alt=""> [Cucumber Katana](#weapon-cucumber_katana) | Melee | Thrust | Produce/Sharp | 9 / 15 / 24 / 36 | 0.8 / 0.75 / 0.69 / 0.62 | 140 | 24 |
+| <img src="../images/weapon/pizza_cutter.png" width="32" height="32" alt=""> [Pizza Cutter](#weapon-pizza_cutter) | Melee | Boomerang | Kitchenware/Sharp | 9 / 15 / 24 / 36 | 1.3 / 1.2 / 1.1 / 1 | 230 | 26 |
+| <img src="../images/weapon/chopsticks.png" width="32" height="32" alt=""> [Chopsticks](#weapon-chopsticks) | Melee | Thrust | Kitchenware | 5 / 9 / 14 / 21 | 0.5 / 0.46 / 0.42 / 0.38 | 155 | 18 |
+| <img src="../images/weapon/bamboo_spear.png" width="32" height="32" alt=""> [Bamboo Spear](#weapon-bamboo_spear) | Melee | Thrust | Produce | 16 / 27 / 42 / 64 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | 28 |
+| <img src="../images/weapon/pineapple_mace.png" width="32" height="32" alt=""> [Pineapple Mace](#weapon-pineapple_mace) | Melee | Sweep | Produce | 20 / 34 / 53 / 80 | 1.8 / 1.7 / 1.6 / 1.45 | 130 | 32 |
+| <img src="../images/weapon/olive_launcher.png" width="32" height="32" alt=""> [Olive Launcher](#weapon-olive_launcher) | Ranged | Bullet | Firearm/Produce | 6 / 10 / 15 / 23 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 22 |
+| <img src="../images/weapon/popcorn_machine.png" width="32" height="32" alt=""> [Popcorn Popper](#weapon-popcorn_machine) | Ranged | Mine | Firearm | 14 / 24 / 37 / 56 | 2 / 1.9 / 1.75 / 1.6 | 220 | 24 |
+| <img src="../images/weapon/grape_shotgun.png" width="32" height="32" alt=""> [Grape Shotgun](#weapon-grape_shotgun) | Ranged | Bullet | Firearm/Produce | 4 / 7 / 10 / 15 | 1 / 0.95 / 0.88 / 0.8 | 240 | 26 |
+| <img src="../images/weapon/bean_bazooka.png" width="32" height="32" alt=""> [Bean Bazooka](#weapon-bean_bazooka) | Ranged | Rocket | Firearm | 22 / 36 / 56 / 84 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 34 |
+| <img src="../images/weapon/cherry_bomb.png" width="32" height="32" alt=""> [Cherry Bombs](#weapon-cherry_bomb) | Ranged | Rocket | Produce | 10 / 17 / 26 / 40 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 28 |
+| <img src="../images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [Blueberry Sniper](#weapon-blueberry_sniper) | Ranged | Bullet | Firearm/Produce | 26 / 44 / 68 / 100 | 1.9 / 1.8 / 1.65 / 1.5 | 650 | 32 |
+| <img src="../images/weapon/plate_frisbee.png" width="32" height="32" alt=""> [Plate Frisbee](#weapon-plate_frisbee) | Ranged | Boomerang | Kitchenware | 12 / 20 / 31 / 47 | 1.5 / 1.4 / 1.3 / 1.2 | 330 | 24 |
+| <img src="../images/weapon/seed_spitter.png" width="32" height="32" alt=""> [Seed Spitter](#weapon-seed_spitter) | Ranged | Bullet | Firearm/Produce | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | 26 |
+| <img src="../images/weapon/carrot_crossbow.png" width="32" height="32" alt=""> [Carrot Crossbow](#weapon-carrot_crossbow) | Ranged | Bullet | Produce | 12 / 20 / 31 / 47 | 1.05 / 1 / 0.92 / 0.84 | 460 | 25 |
+| <img src="../images/weapon/honey_blaster.png" width="32" height="32" alt=""> [Honey Blaster](#weapon-honey_blaster) | Ranged | Bullet | Sauce | 6 / 10 / 15 / 22 | 0.7 / 0.66 / 0.6 / 0.54 | 360 | 22 |
+| <img src="../images/weapon/soy_pistol.png" width="32" height="32" alt=""> [Soy Pistol](#weapon-soy_pistol) | Ranged | Bullet | Firearm/Sauce | 7 / 12 / 18 / 27 | 0.55 / 0.5 / 0.46 / 0.42 | 380 | 20 |
+| <img src="../images/weapon/ice_cube_tray.png" width="32" height="32" alt=""> [Ice Cube Tray](#weapon-ice_cube_tray) | Elemental | Bullet | Kitchenware/Elemental | 5 / 8 / 12 / 18 | 1 / 0.95 / 0.88 / 0.8 | 340 | 26 |
+| <img src="../images/weapon/lightning_whisk.png" width="32" height="32" alt=""> [Zap Whisk](#weapon-lightning_whisk) | Elemental | Chain Lightning | Kitchenware/Elemental | 7 / 12 / 18 / 27 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | 30 |
+| <img src="../images/weapon/steam_kettle.png" width="32" height="32" alt=""> [Steam Kettle](#weapon-steam_kettle) | Elemental | Flame | Kitchenware/Elemental | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | 28 |
+| <img src="../images/weapon/curry_aura.png" width="32" height="32" alt=""> [Curry Aura](#weapon-curry_aura) | Elemental | Aura | Sauce/Elemental | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 120 | 32 |
+| <img src="../images/weapon/pepper_spray.png" width="32" height="32" alt=""> [Pepper Spray](#weapon-pepper_spray) | Elemental | Flame | Elemental | 2 / 4 / 6 / 9 | 0.18 / 0.16 / 0.14 / 0.12 | 150 | 26 |
+| <img src="../images/weapon/mint_frost_mine.png" width="32" height="32" alt=""> [Mint Frost Mine](#weapon-mint_frost_mine) | Elemental | Mine | Produce/Elemental | 16 / 27 / 42 / 64 | 2.6 / 2.4 / 2.2 / 1.9 | 220 | 26 |
+| <img src="../images/weapon/thunder_durian.png" width="32" height="32" alt=""> [Thunder Durian](#weapon-thunder_durian) | Elemental | Rocket | Produce/Elemental | 16 / 27 / 42 / 64 | 2.2 / 2.1 / 1.95 / 1.75 | 400 | 32 |
+| <img src="../images/weapon/dragonfruit_orb.png" width="32" height="32" alt=""> [Dragonfruit Orb](#weapon-dragonfruit_orb) | Elemental | Bullet | Produce/Elemental | 8 / 13 / 20 / 30 | 1 / 0.95 / 0.88 / 0.8 | 400 | 28 |
+| <img src="../images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [Star Anise Star](#weapon-star_anise_shuriken) | Elemental | Boomerang | Sharp/Elemental | 9 / 15 / 23 / 35 | 1.3 / 1.2 / 1.1 / 1 | 320 | 28 |
+| <img src="../images/weapon/lemon_battery.png" width="32" height="32" alt=""> [Lemon Battery](#weapon-lemon_battery) | Elemental | Chain Lightning | Produce/Elemental | 12 / 20 / 31 / 47 | 1.3 / 1.2 / 1.1 / 1 | 360 | 30 |
 
 <a id="affixes"></a>
 
@@ -215,6 +279,237 @@ Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + �
 | T1 price | 26 |
 | Starting weapon of | [Beet Berserker](CHARACTERS.md#char-beet) |
 
+<a id="weapon-spatula"></a>
+
+### Spatula
+
+<img src="../images/weapon/spatula.png" width="64" height="64" alt="">
+
+> Quick, light sweep that flips enemies far away.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Sweep |
+| Tags | Kitchenware |
+| Damage T1–T4 | 7 / 12 / 19 / 29 |
+| Cooldown T1–T4 | 0.8s / 0.76s / 0.7s / 0.64s |
+| Range | 115 |
+| Scaling | Melee Damage ×0.8 |
+| Crit multiplier | ×1.5 |
+| Effects | Knockback 38 |
+| T1 price | 16 |
+| Starting weapon of | - |
+
+<a id="weapon-whisk_spin"></a>
+
+### Whirl Whisk
+
+<img src="../images/weapon/whisk_spin.png" width="64" height="64" alt="">
+
+> Whisks around you, damaging and slowing nearby enemies.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Aura |
+| Tags | Kitchenware |
+| Damage T1–T4 | 3 / 5 / 8 / 12 |
+| Cooldown T1–T4 | 0.45s / 0.45s / 0.42s / 0.4s |
+| Range | 90 |
+| Scaling | Melee Damage ×0.4 |
+| Crit multiplier | ×1.5 |
+| Effects | Slow 20% for 0.6s |
+| T1 price | 22 |
+| Starting weapon of | - |
+
+<a id="weapon-meat_tenderizer"></a>
+
+### Meat Tenderizer
+
+<img src="../images/weapon/meat_tenderizer.png" width="64" height="64" alt="">
+
+> Heavy smash that stuns for 0.6s. Scales with Armor.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Sweep |
+| Tags | Kitchenware |
+| Damage T1–T4 | 22 / 36 / 56 / 84 |
+| Cooldown T1–T4 | 1.9s / 1.8s / 1.7s / 1.55s |
+| Range | 110 |
+| Scaling | Melee Damage ×1.3, Armor ×0.5 |
+| Crit multiplier | ×1.5 |
+| Effects | Stun 0.6s, Knockback 25 |
+| T1 price | 30 |
+| Starting weapon of | - |
+
+<a id="weapon-skewer"></a>
+
+### BBQ Skewer
+
+<img src="../images/weapon/skewer.png" width="64" height="64" alt="">
+
+> Long-reach thrust that leaves enemies sizzling.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Thrust |
+| Tags | Kitchenware, Sharp |
+| Damage T1–T4 | 8 / 14 / 22 / 34 |
+| Cooldown T1–T4 | 1.05s / 1s / 0.92s / 0.84s |
+| Range | 185 |
+| Scaling | Melee Damage ×0.9 |
+| Crit multiplier | ×2 |
+| Effects | Burn 2/s for 2s |
+| T1 price | 24 |
+| Starting weapon of | - |
+
+<a id="weapon-ladle"></a>
+
+### Soup Ladle
+
+<img src="../images/weapon/ladle.png" width="64" height="64" alt="">
+
+> A sweep of hot soup. Hits grant extra Life Steal.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Sweep |
+| Tags | Kitchenware, Sauce |
+| Damage T1–T4 | 10 / 17 / 27 / 41 |
+| Cooldown T1–T4 | 1.15s / 1.1s / 1.02s / 0.94s |
+| Range | 120 |
+| Scaling | Melee Damage ×0.9, Max HP ×0.05 |
+| Crit multiplier | ×1.5 |
+| Effects | +3% Life Steal, Knockback 20 |
+| T1 price | 20 |
+| Starting weapon of | - |
+
+<a id="weapon-baguette_sword"></a>
+
+### Baguette Blade
+
+<img src="../images/weapon/baguette_sword.png" width="64" height="64" alt="">
+
+> Huge-reach bread sweep. Scales with Max HP.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Sweep |
+| Tags | Produce |
+| Damage T1–T4 | 11 / 19 / 30 / 46 |
+| Cooldown T1–T4 | 1.3s / 1.22s / 1.14s / 1.04s |
+| Range | 150 |
+| Scaling | Melee Damage ×1, Max HP ×0.15 |
+| Crit multiplier | ×1.5 |
+| Effects | Knockback 25 |
+| T1 price | 22 |
+| Starting weapon of | - |
+
+<a id="weapon-cucumber_katana"></a>
+
+### Cucumber Katana
+
+<img src="../images/weapon/cucumber_katana.png" width="64" height="64" alt="">
+
+> A crisp slash with very high crit.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Thrust |
+| Tags | Produce, Sharp |
+| Damage T1–T4 | 9 / 15 / 24 / 36 |
+| Cooldown T1–T4 | 0.8s / 0.75s / 0.69s / 0.62s |
+| Range | 140 |
+| Scaling | Melee Damage ×0.9 |
+| Crit multiplier | ×2.5 |
+| Effects | +10% Crit Chance |
+| T1 price | 24 |
+| Starting weapon of | - |
+
+<a id="weapon-pizza_cutter"></a>
+
+### Pizza Cutter
+
+<img src="../images/weapon/pizza_cutter.png" width="64" height="64" alt="">
+
+> Flung out and pulled back, slicing everything en route.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Boomerang |
+| Tags | Kitchenware, Sharp |
+| Damage T1–T4 | 9 / 15 / 24 / 36 |
+| Cooldown T1–T4 | 1.3s / 1.2s / 1.1s / 1s |
+| Range | 230 |
+| Scaling | Melee Damage ×0.8 |
+| Crit multiplier | ×2 |
+| Effects | - |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-chopsticks"></a>
+
+### Chopsticks
+
+<img src="../images/weapon/chopsticks.png" width="64" height="64" alt="">
+
+> Lightning-fast pokes. Quick and precise.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Thrust |
+| Tags | Kitchenware |
+| Damage T1–T4 | 5 / 9 / 14 / 21 |
+| Cooldown T1–T4 | 0.5s / 0.46s / 0.42s / 0.38s |
+| Range | 155 |
+| Scaling | Melee Damage ×0.7 |
+| Crit multiplier | ×2 |
+| Effects | +5% Crit Chance |
+| T1 price | 18 |
+| Starting weapon of | - |
+
+<a id="weapon-bamboo_spear"></a>
+
+### Bamboo Spear
+
+<img src="../images/weapon/bamboo_spear.png" width="64" height="64" alt="">
+
+> Slow but mighty thrust with extra-long reach.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Thrust |
+| Tags | Produce |
+| Damage T1–T4 | 16 / 27 / 42 / 64 |
+| Cooldown T1–T4 | 1.5s / 1.42s / 1.32s / 1.2s |
+| Range | 200 |
+| Scaling | Melee Damage ×1.2 |
+| Crit multiplier | ×2 |
+| Effects | Knockback 20 |
+| T1 price | 28 |
+| Starting weapon of | - |
+
+<a id="weapon-pineapple_mace"></a>
+
+### Pineapple Mace
+
+<img src="../images/weapon/pineapple_mace.png" width="64" height="64" alt="">
+
+> A spiky pineapple slam that sets off a small blast.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Sweep |
+| Tags | Produce |
+| Damage T1–T4 | 20 / 34 / 53 / 80 |
+| Cooldown T1–T4 | 1.8s / 1.7s / 1.6s / 1.45s |
+| Range | 130 |
+| Scaling | Melee Damage ×1.3 |
+| Crit multiplier | ×1.5 |
+| Effects | Explosion radius 60, Knockback 30 |
+| T1 price | 32 |
+| Starting weapon of | - |
+
 <a id="class-ranged"></a>
 
 ## Ranged Weapons
@@ -366,6 +661,237 @@ Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + �
 | T1 price | 40 |
 | Starting weapon of | [Pepper Mech](CHARACTERS.md#char-bellpepper) |
 
+<a id="weapon-olive_launcher"></a>
+
+### Olive Launcher
+
+<img src="../images/weapon/olive_launcher.png" width="64" height="64" alt="">
+
+> Slippery olives bounce between enemies again and again.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Firearm, Produce |
+| Damage T1–T4 | 6 / 10 / 15 / 23 |
+| Cooldown T1–T4 | 0.8s / 0.75s / 0.7s / 0.62s |
+| Range | 400 |
+| Scaling | Ranged Damage ×0.8 |
+| Crit multiplier | ×1.5 |
+| Effects | Bounce 2/2/3/4 |
+| T1 price | 22 |
+| Starting weapon of | - |
+
+<a id="weapon-popcorn_machine"></a>
+
+### Popcorn Popper
+
+<img src="../images/weapon/popcorn_machine.png" width="64" height="64" alt="">
+
+> Scatters kernels that POP when enemies get close.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Mine |
+| Tags | Firearm |
+| Damage T1–T4 | 14 / 24 / 37 / 56 |
+| Cooldown T1–T4 | 2s / 1.9s / 1.75s / 1.6s |
+| Range | 220 |
+| Scaling | Ranged Damage ×0.9 |
+| Crit multiplier | ×1.5 |
+| Effects | Explosion radius 60 |
+| T1 price | 24 |
+| Starting weapon of | - |
+
+<a id="weapon-grape_shotgun"></a>
+
+### Grape Shotgun
+
+<img src="../images/weapon/grape_shotgun.png" width="64" height="64" alt="">
+
+> Blasts a close-range bunch of grapes with knockback.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Firearm, Produce |
+| Damage T1–T4 | 4 / 7 / 10 / 15 |
+| Cooldown T1–T4 | 1s / 0.95s / 0.88s / 0.8s |
+| Range | 240 |
+| Scaling | Ranged Damage ×0.5 |
+| Crit multiplier | ×1.5 |
+| Effects | Projectiles 5/5/6/7, Knockback 12 |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-bean_bazooka"></a>
+
+### Bean Bazooka
+
+<img src="../images/weapon/bean_bazooka.png" width="64" height="64" alt="">
+
+> Fires a giant bean pod for a massive explosion.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Rocket |
+| Tags | Firearm |
+| Damage T1–T4 | 22 / 36 / 56 / 84 |
+| Cooldown T1–T4 | 2.4s / 2.25s / 2.1s / 1.9s |
+| Range | 480 |
+| Scaling | Ranged Damage ×1.3 |
+| Crit multiplier | ×1.5 |
+| Effects | Explosion radius 90, Knockback 30 |
+| T1 price | 34 |
+| Starting weapon of | - |
+
+<a id="weapon-cherry_bomb"></a>
+
+### Cherry Bombs
+
+<img src="../images/weapon/cherry_bomb.png" width="64" height="64" alt="">
+
+> Lobs cherries in pairs, each one exploding.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Rocket |
+| Tags | Produce |
+| Damage T1–T4 | 10 / 17 / 26 / 40 |
+| Cooldown T1–T4 | 1.6s / 1.5s / 1.4s / 1.3s |
+| Range | 360 |
+| Scaling | Ranged Damage ×0.8 |
+| Crit multiplier | ×1.5 |
+| Effects | Explosion radius 55, Projectiles 2/2/2/3 |
+| T1 price | 28 |
+| Starting weapon of | - |
+
+<a id="weapon-blueberry_sniper"></a>
+
+### Blueberry Sniper
+
+<img src="../images/weapon/blueberry_sniper.png" width="64" height="64" alt="">
+
+> Ultra-long-range precision shots with high crit.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Firearm, Produce |
+| Damage T1–T4 | 26 / 44 / 68 / 100 |
+| Cooldown T1–T4 | 1.9s / 1.8s / 1.65s / 1.5s |
+| Range | 650 |
+| Scaling | Ranged Damage ×1.5 |
+| Crit multiplier | ×2.5 |
+| Effects | Pierce 1/1/2/2, +10% Crit Chance |
+| T1 price | 32 |
+| Starting weapon of | - |
+
+<a id="weapon-plate_frisbee"></a>
+
+### Plate Frisbee
+
+<img src="../images/weapon/plate_frisbee.png" width="64" height="64" alt="">
+
+> A thrown plate that smacks enemies again on the way back.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Boomerang |
+| Tags | Kitchenware |
+| Damage T1–T4 | 12 / 20 / 31 / 47 |
+| Cooldown T1–T4 | 1.5s / 1.4s / 1.3s / 1.2s |
+| Range | 330 |
+| Scaling | Ranged Damage ×1 |
+| Crit multiplier | ×1.5 |
+| Effects | Knockback 15 |
+| T1 price | 24 |
+| Starting weapon of | - |
+
+<a id="weapon-seed_spitter"></a>
+
+### Seed Spitter
+
+<img src="../images/weapon/seed_spitter.png" width="64" height="64" alt="">
+
+> Pew-pew-pew! Rapid-fire melon seeds.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Firearm, Produce |
+| Damage T1–T4 | 3 / 5 / 7 / 10 |
+| Cooldown T1–T4 | 0.22s / 0.2s / 0.18s / 0.16s |
+| Range | 360 |
+| Scaling | Ranged Damage ×0.45 |
+| Crit multiplier | ×1.5 |
+| Effects | - |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-carrot_crossbow"></a>
+
+### Carrot Crossbow
+
+<img src="../images/weapon/carrot_crossbow.png" width="64" height="64" alt="">
+
+> Pointy carrot bolts pierce a whole line of enemies.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Produce |
+| Damage T1–T4 | 12 / 20 / 31 / 47 |
+| Cooldown T1–T4 | 1.05s / 1s / 0.92s / 0.84s |
+| Range | 460 |
+| Scaling | Ranged Damage ×1 |
+| Crit multiplier | ×2 |
+| Effects | Pierce 2/3/3/4 |
+| T1 price | 25 |
+| Starting weapon of | - |
+
+<a id="weapon-honey_blaster"></a>
+
+### Honey Blaster
+
+<img src="../images/weapon/honey_blaster.png" width="64" height="64" alt="">
+
+> Sticky honey shots slow enemies by 35%.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Sauce |
+| Damage T1–T4 | 6 / 10 / 15 / 22 |
+| Cooldown T1–T4 | 0.7s / 0.66s / 0.6s / 0.54s |
+| Range | 360 |
+| Scaling | Ranged Damage ×0.7 |
+| Crit multiplier | ×1.5 |
+| Effects | Slow 35% for 1.5s |
+| T1 price | 22 |
+| Starting weapon of | - |
+
+<a id="weapon-soy_pistol"></a>
+
+### Soy Pistol
+
+<img src="../images/weapon/soy_pistol.png" width="64" height="64" alt="">
+
+> Steady sidearm. Hits grant extra Life Steal.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Firearm, Sauce |
+| Damage T1–T4 | 7 / 12 / 18 / 27 |
+| Cooldown T1–T4 | 0.55s / 0.5s / 0.46s / 0.42s |
+| Range | 380 |
+| Scaling | Ranged Damage ×0.7 |
+| Crit multiplier | ×1.5 |
+| Effects | +2% Life Steal |
+| T1 price | 20 |
+| Starting weapon of | - |
+
 <a id="class-elemental"></a>
 
 ## Elemental Weapons
@@ -474,6 +1000,216 @@ Price: T1 base price × [1, 2.2, 4.5, 10], rising with waves. Damage = (base + �
 | Effects | Chains 2/3/4/6 times |
 | T1 price | 30 |
 | Starting weapon of | [Eggplant Mage](CHARACTERS.md#char-eggplant) |
+
+<a id="weapon-ice_cube_tray"></a>
+
+### Ice Cube Tray
+
+<img src="../images/weapon/ice_cube_tray.png" width="64" height="64" alt="">
+
+> Flings a row of ice cubes that heavily slow enemies.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Bullet |
+| Tags | Kitchenware, Elemental |
+| Damage T1–T4 | 5 / 8 / 12 / 18 |
+| Cooldown T1–T4 | 1s / 0.95s / 0.88s / 0.8s |
+| Range | 340 |
+| Scaling | Elemental Damage ×0.6 |
+| Crit multiplier | ×1.5 |
+| Effects | Slow 50% for 1.2s, Projectiles 3/3/4/4 |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-lightning_whisk"></a>
+
+### Zap Whisk
+
+<img src="../images/weapon/lightning_whisk.png" width="64" height="64" alt="">
+
+> Whips up current that jumps between even more enemies.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Chain Lightning |
+| Tags | Kitchenware, Elemental |
+| Damage T1–T4 | 7 / 12 / 18 / 27 |
+| Cooldown T1–T4 | 0.95s / 0.9s / 0.82s / 0.74s |
+| Range | 380 |
+| Scaling | Elemental Damage ×0.8 |
+| Crit multiplier | ×1.5 |
+| Effects | Chains 3/4/5/7 times |
+| T1 price | 30 |
+| Starting weapon of | - |
+
+<a id="weapon-steam_kettle"></a>
+
+### Steam Kettle
+
+<img src="../images/weapon/steam_kettle.png" width="64" height="64" alt="">
+
+> A wide blast of steam that pierces and slows.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Flame |
+| Tags | Kitchenware, Elemental |
+| Damage T1–T4 | 3 / 5 / 7 / 11 |
+| Cooldown T1–T4 | 0.26s / 0.24s / 0.21s / 0.18s |
+| Range | 170 |
+| Scaling | Elemental Damage ×0.3 |
+| Crit multiplier | ×1.5 |
+| Effects | Slow 20% for 1s, Knockback 4 |
+| T1 price | 28 |
+| Starting weapon of | - |
+
+<a id="weapon-curry_aura"></a>
+
+### Curry Aura
+
+<img src="../images/weapon/curry_aura.png" width="64" height="64" alt="">
+
+> Rich curry fumes burn all nearby enemies.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Aura |
+| Tags | Sauce, Elemental |
+| Damage T1–T4 | 3 / 5 / 7 / 11 |
+| Cooldown T1–T4 | 0.5s / 0.5s / 0.5s / 0.5s |
+| Range | 120 |
+| Scaling | Elemental Damage ×0.4 |
+| Crit multiplier | ×1.5 |
+| Effects | Burn 2/s for 2s |
+| T1 price | 32 |
+| Starting weapon of | - |
+
+<a id="weapon-pepper_spray"></a>
+
+### Pepper Spray
+
+<img src="../images/weapon/pepper_spray.png" width="64" height="64" alt="">
+
+> Point-blank spicy powder that burns hard.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Flame |
+| Tags | Elemental |
+| Damage T1–T4 | 2 / 4 / 6 / 9 |
+| Cooldown T1–T4 | 0.18s / 0.16s / 0.14s / 0.12s |
+| Range | 150 |
+| Scaling | Elemental Damage ×0.25 |
+| Crit multiplier | ×1.5 |
+| Effects | Burn 3/s for 1.5s |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-mint_frost_mine"></a>
+
+### Mint Frost Mine
+
+<img src="../images/weapon/mint_frost_mine.png" width="64" height="64" alt="">
+
+> Cool minty mines whose blast leaves enemies crawling.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Mine |
+| Tags | Produce, Elemental |
+| Damage T1–T4 | 16 / 27 / 42 / 64 |
+| Cooldown T1–T4 | 2.6s / 2.4s / 2.2s / 1.9s |
+| Range | 220 |
+| Scaling | Elemental Damage ×0.9 |
+| Crit multiplier | ×1.5 |
+| Effects | Slow 50% for 2s, Explosion radius 100 |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-thunder_durian"></a>
+
+### Thunder Durian
+
+<img src="../images/weapon/thunder_durian.png" width="64" height="64" alt="">
+
+> Hurls a charged durian that explodes and stuns.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Rocket |
+| Tags | Produce, Elemental |
+| Damage T1–T4 | 16 / 27 / 42 / 64 |
+| Cooldown T1–T4 | 2.2s / 2.1s / 1.95s / 1.75s |
+| Range | 400 |
+| Scaling | Elemental Damage ×1 |
+| Crit multiplier | ×1.5 |
+| Effects | Stun 0.35s, Explosion radius 80 |
+| T1 price | 32 |
+| Starting weapon of | - |
+
+<a id="weapon-dragonfruit_orb"></a>
+
+### Dragonfruit Orb
+
+<img src="../images/weapon/dragonfruit_orb.png" width="64" height="64" alt="">
+
+> A blazing dragonfruit that bounces and ignites enemies.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Bullet |
+| Tags | Produce, Elemental |
+| Damage T1–T4 | 8 / 13 / 20 / 30 |
+| Cooldown T1–T4 | 1s / 0.95s / 0.88s / 0.8s |
+| Range | 400 |
+| Scaling | Elemental Damage ×0.8 |
+| Crit multiplier | ×1.5 |
+| Effects | Burn 3/s for 2s, Bounce 1/2/2/3 |
+| T1 price | 28 |
+| Starting weapon of | - |
+
+<a id="weapon-star_anise_shuriken"></a>
+
+### Star Anise Star
+
+<img src="../images/weapon/star_anise_shuriken.png" width="64" height="64" alt="">
+
+> A spice shuriken that boomerangs back, burning foes.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Boomerang |
+| Tags | Sharp, Elemental |
+| Damage T1–T4 | 9 / 15 / 23 / 35 |
+| Cooldown T1–T4 | 1.3s / 1.2s / 1.1s / 1s |
+| Range | 320 |
+| Scaling | Elemental Damage ×0.8 |
+| Crit multiplier | ×2 |
+| Effects | Burn 2/s for 1.5s |
+| T1 price | 28 |
+| Starting weapon of | - |
+
+<a id="weapon-lemon_battery"></a>
+
+### Lemon Battery
+
+<img src="../images/weapon/lemon_battery.png" width="64" height="64" alt="">
+
+> Powerful shock with fewer jumps, but it stuns.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Chain Lightning |
+| Tags | Produce, Elemental |
+| Damage T1–T4 | 12 / 20 / 31 / 47 |
+| Cooldown T1–T4 | 1.3s / 1.2s / 1.1s / 1s |
+| Range | 360 |
+| Scaling | Elemental Damage ×1.1 |
+| Crit multiplier | ×1.5 |
+| Effects | Stun 0.25s, Chains 1/2/2/3 times |
+| T1 price | 30 |
+| Starting weapon of | - |
 
 ---
 

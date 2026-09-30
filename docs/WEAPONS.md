@@ -1,4 +1,4 @@
-# 武器（18 把）
+# 武器（50 把）
 
 **中文** · [English](en/WEAPONS.md)
 
@@ -8,7 +8,7 @@
 
 武器自动索敌、自动攻击，每名角色最多携带 6 把（部分[角色](CHARACTERS.md)例外）。每把武器有 T1~T4 四个品质，两把同名同品质可在商店合成升一级。
 
-价格：T1 基础价 × [1, 2.2, 4.5, 10]，再随波次上涨。伤害 = (基础 + Σ属性×系数) × (1+伤害%) × 类别倍率。
+价格：T1 基础价 × [1, 2.1, 4, 7.5]，再随波次上涨。伤害 = (基础 + Σ属性×系数) × (1+伤害%) × 类别倍率。
 
 ## 目录
 
@@ -21,6 +21,17 @@
   - [平底锅](#weapon-pan)
   - [西瓜锤](#weapon-watermelon_hammer)
   - [剁骨刀](#weapon-cleaver)
+  - [锅铲](#weapon-spatula)
+  - [旋风打蛋器](#weapon-whisk_spin)
+  - [松肉锤](#weapon-meat_tenderizer)
+  - [烤串签](#weapon-skewer)
+  - [汤勺](#weapon-ladle)
+  - [法棍剑](#weapon-baguette_sword)
+  - [黄瓜武士刀](#weapon-cucumber_katana)
+  - [披萨滚刀](#weapon-pizza_cutter)
+  - [竹筷](#weapon-chopsticks)
+  - [竹笋长矛](#weapon-bamboo_spear)
+  - [菠萝流星锤](#weapon-pineapple_mace)
 - [远程武器](#class-ranged)
   - [番茄弹弓](#weapon-slingshot)
   - [豌豆枪](#weapon-pea_shooter)
@@ -29,12 +40,33 @@
   - [番茄酱瓶](#weapon-ketchup)
   - [洋葱回旋镖](#weapon-onion_boomerang)
   - [酱料加特林](#weapon-sauce_gatling)
+  - [橄榄发射器](#weapon-olive_launcher)
+  - [爆米花机](#weapon-popcorn_machine)
+  - [葡萄霰弹枪](#weapon-grape_shotgun)
+  - [豆子火箭筒](#weapon-bean_bazooka)
+  - [樱桃炸弹](#weapon-cherry_bomb)
+  - [蓝莓狙击枪](#weapon-blueberry_sniper)
+  - [餐盘飞碟](#weapon-plate_frisbee)
+  - [瓜子机枪](#weapon-seed_spitter)
+  - [胡萝卜弩](#weapon-carrot_crossbow)
+  - [蜂蜜喷枪](#weapon-honey_blaster)
+  - [酱油手枪](#weapon-soy_pistol)
 - [元素武器](#class-elemental)
   - [芥末喷枪](#weapon-mustard_flamer)
   - [冰镇汽水](#weapon-soda)
   - [大蒜光环](#weapon-garlic_aura)
   - [胡椒雷](#weapon-pepper_mine)
   - [西兰花法杖](#weapon-broccoli_staff)
+  - [冰块格](#weapon-ice_cube_tray)
+  - [闪电打蛋器](#weapon-lightning_whisk)
+  - [蒸汽水壶](#weapon-steam_kettle)
+  - [咖喱光环](#weapon-curry_aura)
+  - [胡椒喷雾](#weapon-pepper_spray)
+  - [薄荷冰雷](#weapon-mint_frost_mine)
+  - [雷霆榴莲](#weapon-thunder_durian)
+  - [火龙果法球](#weapon-dragonfruit_orb)
+  - [八角飞镖](#weapon-star_anise_shuriken)
+  - [柠檬电池](#weapon-lemon_battery)
 
 <a id="overview"></a>
 
@@ -60,6 +92,38 @@
 | <img src="images/weapon/broccoli_staff.png" width="32" height="32" alt=""> [西兰花法杖](#weapon-broccoli_staff) | 元素 | 连锁闪电 | 蔬果/元素 | 10 / 17 / 26 / 40 | 1.1 / 1 / 0.92 / 0.84 | 420 | 30 |
 | <img src="images/weapon/sauce_gatling.png" width="32" height="32" alt=""> [酱料加特林](#weapon-sauce_gatling) | 远程 | 子弹 | 枪械/酱料 | 4 / 6 / 8 / 11 | 0.16 / 0.14 / 0.12 / 0.1 | 420 | 40 |
 | <img src="images/weapon/cleaver.png" width="32" height="32" alt=""> [剁骨刀](#weapon-cleaver) | 近战 | 横扫 | 厨具/锋利 | 13 / 22 / 35 / 54 | 1.1 / 1.05 / 1 / 0.9 | 125 | 26 |
+| <img src="images/weapon/spatula.png" width="32" height="32" alt=""> [锅铲](#weapon-spatula) | 近战 | 横扫 | 厨具 | 7 / 12 / 19 / 29 | 0.8 / 0.76 / 0.7 / 0.64 | 115 | 16 |
+| <img src="images/weapon/whisk_spin.png" width="32" height="32" alt=""> [旋风打蛋器](#weapon-whisk_spin) | 近战 | 光环 | 厨具 | 3 / 5 / 8 / 12 | 0.45 / 0.45 / 0.42 / 0.4 | 90 | 22 |
+| <img src="images/weapon/meat_tenderizer.png" width="32" height="32" alt=""> [松肉锤](#weapon-meat_tenderizer) | 近战 | 横扫 | 厨具 | 22 / 36 / 56 / 84 | 1.9 / 1.8 / 1.7 / 1.55 | 110 | 30 |
+| <img src="images/weapon/skewer.png" width="32" height="32" alt=""> [烤串签](#weapon-skewer) | 近战 | 直刺 | 厨具/锋利 | 8 / 14 / 22 / 34 | 1.05 / 1 / 0.92 / 0.84 | 185 | 24 |
+| <img src="images/weapon/ladle.png" width="32" height="32" alt=""> [汤勺](#weapon-ladle) | 近战 | 横扫 | 厨具/酱料 | 10 / 17 / 27 / 41 | 1.15 / 1.1 / 1.02 / 0.94 | 120 | 20 |
+| <img src="images/weapon/baguette_sword.png" width="32" height="32" alt=""> [法棍剑](#weapon-baguette_sword) | 近战 | 横扫 | 蔬果 | 11 / 19 / 30 / 46 | 1.3 / 1.22 / 1.14 / 1.04 | 150 | 22 |
+| <img src="images/weapon/cucumber_katana.png" width="32" height="32" alt=""> [黄瓜武士刀](#weapon-cucumber_katana) | 近战 | 直刺 | 蔬果/锋利 | 9 / 15 / 24 / 36 | 0.8 / 0.75 / 0.69 / 0.62 | 140 | 24 |
+| <img src="images/weapon/pizza_cutter.png" width="32" height="32" alt=""> [披萨滚刀](#weapon-pizza_cutter) | 近战 | 回旋镖 | 厨具/锋利 | 9 / 15 / 24 / 36 | 1.3 / 1.2 / 1.1 / 1 | 230 | 26 |
+| <img src="images/weapon/chopsticks.png" width="32" height="32" alt=""> [竹筷](#weapon-chopsticks) | 近战 | 直刺 | 厨具 | 5 / 9 / 14 / 21 | 0.5 / 0.46 / 0.42 / 0.38 | 155 | 18 |
+| <img src="images/weapon/bamboo_spear.png" width="32" height="32" alt=""> [竹笋长矛](#weapon-bamboo_spear) | 近战 | 直刺 | 蔬果 | 16 / 27 / 42 / 64 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | 28 |
+| <img src="images/weapon/pineapple_mace.png" width="32" height="32" alt=""> [菠萝流星锤](#weapon-pineapple_mace) | 近战 | 横扫 | 蔬果 | 20 / 34 / 53 / 80 | 1.8 / 1.7 / 1.6 / 1.45 | 130 | 32 |
+| <img src="images/weapon/olive_launcher.png" width="32" height="32" alt=""> [橄榄发射器](#weapon-olive_launcher) | 远程 | 子弹 | 枪械/蔬果 | 6 / 10 / 15 / 23 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 22 |
+| <img src="images/weapon/popcorn_machine.png" width="32" height="32" alt=""> [爆米花机](#weapon-popcorn_machine) | 远程 | 地雷 | 枪械 | 14 / 24 / 37 / 56 | 2 / 1.9 / 1.75 / 1.6 | 220 | 24 |
+| <img src="images/weapon/grape_shotgun.png" width="32" height="32" alt=""> [葡萄霰弹枪](#weapon-grape_shotgun) | 远程 | 子弹 | 枪械/蔬果 | 4 / 7 / 10 / 15 | 1 / 0.95 / 0.88 / 0.8 | 240 | 26 |
+| <img src="images/weapon/bean_bazooka.png" width="32" height="32" alt=""> [豆子火箭筒](#weapon-bean_bazooka) | 远程 | 爆炸弹 | 枪械 | 22 / 36 / 56 / 84 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 34 |
+| <img src="images/weapon/cherry_bomb.png" width="32" height="32" alt=""> [樱桃炸弹](#weapon-cherry_bomb) | 远程 | 爆炸弹 | 蔬果 | 10 / 17 / 26 / 40 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 28 |
+| <img src="images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [蓝莓狙击枪](#weapon-blueberry_sniper) | 远程 | 子弹 | 枪械/蔬果 | 26 / 44 / 68 / 100 | 1.9 / 1.8 / 1.65 / 1.5 | 650 | 32 |
+| <img src="images/weapon/plate_frisbee.png" width="32" height="32" alt=""> [餐盘飞碟](#weapon-plate_frisbee) | 远程 | 回旋镖 | 厨具 | 12 / 20 / 31 / 47 | 1.5 / 1.4 / 1.3 / 1.2 | 330 | 24 |
+| <img src="images/weapon/seed_spitter.png" width="32" height="32" alt=""> [瓜子机枪](#weapon-seed_spitter) | 远程 | 子弹 | 枪械/蔬果 | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | 26 |
+| <img src="images/weapon/carrot_crossbow.png" width="32" height="32" alt=""> [胡萝卜弩](#weapon-carrot_crossbow) | 远程 | 子弹 | 蔬果 | 12 / 20 / 31 / 47 | 1.05 / 1 / 0.92 / 0.84 | 460 | 25 |
+| <img src="images/weapon/honey_blaster.png" width="32" height="32" alt=""> [蜂蜜喷枪](#weapon-honey_blaster) | 远程 | 子弹 | 酱料 | 6 / 10 / 15 / 22 | 0.7 / 0.66 / 0.6 / 0.54 | 360 | 22 |
+| <img src="images/weapon/soy_pistol.png" width="32" height="32" alt=""> [酱油手枪](#weapon-soy_pistol) | 远程 | 子弹 | 枪械/酱料 | 7 / 12 / 18 / 27 | 0.55 / 0.5 / 0.46 / 0.42 | 380 | 20 |
+| <img src="images/weapon/ice_cube_tray.png" width="32" height="32" alt=""> [冰块格](#weapon-ice_cube_tray) | 元素 | 子弹 | 厨具/元素 | 5 / 8 / 12 / 18 | 1 / 0.95 / 0.88 / 0.8 | 340 | 26 |
+| <img src="images/weapon/lightning_whisk.png" width="32" height="32" alt=""> [闪电打蛋器](#weapon-lightning_whisk) | 元素 | 连锁闪电 | 厨具/元素 | 7 / 12 / 18 / 27 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | 30 |
+| <img src="images/weapon/steam_kettle.png" width="32" height="32" alt=""> [蒸汽水壶](#weapon-steam_kettle) | 元素 | 喷火 | 厨具/元素 | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | 28 |
+| <img src="images/weapon/curry_aura.png" width="32" height="32" alt=""> [咖喱光环](#weapon-curry_aura) | 元素 | 光环 | 酱料/元素 | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 120 | 32 |
+| <img src="images/weapon/pepper_spray.png" width="32" height="32" alt=""> [胡椒喷雾](#weapon-pepper_spray) | 元素 | 喷火 | 元素 | 2 / 4 / 6 / 9 | 0.18 / 0.16 / 0.14 / 0.12 | 150 | 26 |
+| <img src="images/weapon/mint_frost_mine.png" width="32" height="32" alt=""> [薄荷冰雷](#weapon-mint_frost_mine) | 元素 | 地雷 | 蔬果/元素 | 16 / 27 / 42 / 64 | 2.6 / 2.4 / 2.2 / 1.9 | 220 | 26 |
+| <img src="images/weapon/thunder_durian.png" width="32" height="32" alt=""> [雷霆榴莲](#weapon-thunder_durian) | 元素 | 爆炸弹 | 蔬果/元素 | 16 / 27 / 42 / 64 | 2.2 / 2.1 / 1.95 / 1.75 | 400 | 32 |
+| <img src="images/weapon/dragonfruit_orb.png" width="32" height="32" alt=""> [火龙果法球](#weapon-dragonfruit_orb) | 元素 | 子弹 | 蔬果/元素 | 8 / 13 / 20 / 30 | 1 / 0.95 / 0.88 / 0.8 | 400 | 28 |
+| <img src="images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [八角飞镖](#weapon-star_anise_shuriken) | 元素 | 回旋镖 | 锋利/元素 | 9 / 15 / 23 / 35 | 1.3 / 1.2 / 1.1 / 1 | 320 | 28 |
+| <img src="images/weapon/lemon_battery.png" width="32" height="32" alt=""> [柠檬电池](#weapon-lemon_battery) | 元素 | 连锁闪电 | 蔬果/元素 | 12 / 20 / 31 / 47 | 1.3 / 1.2 / 1.1 / 1 | 360 | 30 |
 
 <a id="affixes"></a>
 
@@ -215,6 +279,237 @@
 | T1 价格 | 26 |
 | 初始携带 | [甜菜狂战士](CHARACTERS.md#char-beet) |
 
+<a id="weapon-spatula"></a>
+
+### 锅铲
+
+<img src="images/weapon/spatula.png" width="64" height="64" alt="">
+
+> 轻快横扫，把敌人铲飞老远。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 横扫 |
+| 标签 | 厨具 |
+| 伤害 T1~T4 | 7 / 12 / 19 / 29 |
+| 冷却 T1~T4 | 0.8s / 0.76s / 0.7s / 0.64s |
+| 射程 | 115 |
+| 属性加成 | 近战伤害 ×0.8 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 击退 38 |
+| T1 价格 | 16 |
+| 初始携带 | - |
+
+<a id="weapon-whisk_spin"></a>
+
+### 旋风打蛋器
+
+<img src="images/weapon/whisk_spin.png" width="64" height="64" alt="">
+
+> 在身边高速搅拌，持续伤害并减速周围敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 光环 |
+| 标签 | 厨具 |
+| 伤害 T1~T4 | 3 / 5 / 8 / 12 |
+| 冷却 T1~T4 | 0.45s / 0.45s / 0.42s / 0.4s |
+| 射程 | 90 |
+| 属性加成 | 近战伤害 ×0.4 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 减速 20% 0.6s |
+| T1 价格 | 22 |
+| 初始携带 | - |
+
+<a id="weapon-meat_tenderizer"></a>
+
+### 松肉锤
+
+<img src="images/weapon/meat_tenderizer.png" width="64" height="64" alt="">
+
+> 沉重一锤，眩晕敌人 0.6 秒。受护甲加成。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 横扫 |
+| 标签 | 厨具 |
+| 伤害 T1~T4 | 22 / 36 / 56 / 84 |
+| 冷却 T1~T4 | 1.9s / 1.8s / 1.7s / 1.55s |
+| 射程 | 110 |
+| 属性加成 | 近战伤害 ×1.3，护甲 ×0.5 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 眩晕 0.6s，击退 25 |
+| T1 价格 | 30 |
+| 初始携带 | - |
+
+<a id="weapon-skewer"></a>
+
+### 烤串签
+
+<img src="images/weapon/skewer.png" width="64" height="64" alt="">
+
+> 长距离直刺，烤得敌人滋滋冒烟。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 直刺 |
+| 标签 | 厨具、锋利 |
+| 伤害 T1~T4 | 8 / 14 / 22 / 34 |
+| 冷却 T1~T4 | 1.05s / 1s / 0.92s / 0.84s |
+| 射程 | 185 |
+| 属性加成 | 近战伤害 ×0.9 |
+| 暴击倍率 | ×2 |
+| 特效 | 灼烧 2/秒 2s |
+| T1 价格 | 24 |
+| 初始携带 | - |
+
+<a id="weapon-ladle"></a>
+
+### 汤勺
+
+<img src="images/weapon/ladle.png" width="64" height="64" alt="">
+
+> 舀一勺热汤横扫，命中额外吸血。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 横扫 |
+| 标签 | 厨具、酱料 |
+| 伤害 T1~T4 | 10 / 17 / 27 / 41 |
+| 冷却 T1~T4 | 1.15s / 1.1s / 1.02s / 0.94s |
+| 射程 | 120 |
+| 属性加成 | 近战伤害 ×0.9，最大生命 ×0.05 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 额外吸血 3%，击退 20 |
+| T1 价格 | 20 |
+| 初始携带 | - |
+
+<a id="weapon-baguette_sword"></a>
+
+### 法棍剑
+
+<img src="images/weapon/baguette_sword.png" width="64" height="64" alt="">
+
+> 超长法棍大范围横扫。受最大生命加成。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 横扫 |
+| 标签 | 蔬果 |
+| 伤害 T1~T4 | 11 / 19 / 30 / 46 |
+| 冷却 T1~T4 | 1.3s / 1.22s / 1.14s / 1.04s |
+| 射程 | 150 |
+| 属性加成 | 近战伤害 ×1，最大生命 ×0.15 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 击退 25 |
+| T1 价格 | 22 |
+| 初始携带 | - |
+
+<a id="weapon-cucumber_katana"></a>
+
+### 黄瓜武士刀
+
+<img src="images/weapon/cucumber_katana.png" width="64" height="64" alt="">
+
+> 清脆一斩，暴击率极高。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 直刺 |
+| 标签 | 蔬果、锋利 |
+| 伤害 T1~T4 | 9 / 15 / 24 / 36 |
+| 冷却 T1~T4 | 0.8s / 0.75s / 0.69s / 0.62s |
+| 射程 | 140 |
+| 属性加成 | 近战伤害 ×0.9 |
+| 暴击倍率 | ×2.5 |
+| 特效 | 额外暴击 10% |
+| T1 价格 | 24 |
+| 初始携带 | - |
+
+<a id="weapon-pizza_cutter"></a>
+
+### 披萨滚刀
+
+<img src="images/weapon/pizza_cutter.png" width="64" height="64" alt="">
+
+> 甩出滚刀再收回，沿途切开一切。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 回旋镖 |
+| 标签 | 厨具、锋利 |
+| 伤害 T1~T4 | 9 / 15 / 24 / 36 |
+| 冷却 T1~T4 | 1.3s / 1.2s / 1.1s / 1s |
+| 射程 | 230 |
+| 属性加成 | 近战伤害 ×0.8 |
+| 暴击倍率 | ×2 |
+| 特效 | - |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-chopsticks"></a>
+
+### 竹筷
+
+<img src="images/weapon/chopsticks.png" width="64" height="64" alt="">
+
+> 闪电般连戳，快准狠。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 直刺 |
+| 标签 | 厨具 |
+| 伤害 T1~T4 | 5 / 9 / 14 / 21 |
+| 冷却 T1~T4 | 0.5s / 0.46s / 0.42s / 0.38s |
+| 射程 | 155 |
+| 属性加成 | 近战伤害 ×0.7 |
+| 暴击倍率 | ×2 |
+| 特效 | 额外暴击 5% |
+| T1 价格 | 18 |
+| 初始携带 | - |
+
+<a id="weapon-bamboo_spear"></a>
+
+### 竹笋长矛
+
+<img src="images/weapon/bamboo_spear.png" width="64" height="64" alt="">
+
+> 缓慢而有力的超远直刺。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 直刺 |
+| 标签 | 蔬果 |
+| 伤害 T1~T4 | 16 / 27 / 42 / 64 |
+| 冷却 T1~T4 | 1.5s / 1.42s / 1.32s / 1.2s |
+| 射程 | 200 |
+| 属性加成 | 近战伤害 ×1.2 |
+| 暴击倍率 | ×2 |
+| 特效 | 击退 20 |
+| T1 价格 | 28 |
+| 初始携带 | - |
+
+<a id="weapon-pineapple_mace"></a>
+
+### 菠萝流星锤
+
+<img src="images/weapon/pineapple_mace.png" width="64" height="64" alt="">
+
+> 带刺的菠萝砸下，引发小范围爆炸。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 横扫 |
+| 标签 | 蔬果 |
+| 伤害 T1~T4 | 20 / 34 / 53 / 80 |
+| 冷却 T1~T4 | 1.8s / 1.7s / 1.6s / 1.45s |
+| 射程 | 130 |
+| 属性加成 | 近战伤害 ×1.3 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 爆炸半径 60，击退 30 |
+| T1 价格 | 32 |
+| 初始携带 | - |
+
 <a id="class-ranged"></a>
 
 ## 远程武器
@@ -366,6 +661,237 @@
 | T1 价格 | 40 |
 | 初始携带 | [青椒机甲](CHARACTERS.md#char-bellpepper) |
 
+<a id="weapon-olive_launcher"></a>
+
+### 橄榄发射器
+
+<img src="images/weapon/olive_launcher.png" width="64" height="64" alt="">
+
+> 滑溜溜的橄榄可在敌人间多次弹射。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 枪械、蔬果 |
+| 伤害 T1~T4 | 6 / 10 / 15 / 23 |
+| 冷却 T1~T4 | 0.8s / 0.75s / 0.7s / 0.62s |
+| 射程 | 400 |
+| 属性加成 | 远程伤害 ×0.8 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 弹射 2/2/3/4 |
+| T1 价格 | 22 |
+| 初始携带 | - |
+
+<a id="weapon-popcorn_machine"></a>
+
+### 爆米花机
+
+<img src="images/weapon/popcorn_machine.png" width="64" height="64" alt="">
+
+> 撒出玉米粒，敌人靠近时砰地爆开。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 地雷 |
+| 标签 | 枪械 |
+| 伤害 T1~T4 | 14 / 24 / 37 / 56 |
+| 冷却 T1~T4 | 2s / 1.9s / 1.75s / 1.6s |
+| 射程 | 220 |
+| 属性加成 | 远程伤害 ×0.9 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 爆炸半径 60 |
+| T1 价格 | 24 |
+| 初始携带 | - |
+
+<a id="weapon-grape_shotgun"></a>
+
+### 葡萄霰弹枪
+
+<img src="images/weapon/grape_shotgun.png" width="64" height="64" alt="">
+
+> 近距离喷出一串葡萄，击退敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 枪械、蔬果 |
+| 伤害 T1~T4 | 4 / 7 / 10 / 15 |
+| 冷却 T1~T4 | 1s / 0.95s / 0.88s / 0.8s |
+| 射程 | 240 |
+| 属性加成 | 远程伤害 ×0.5 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 弹丸 5/5/6/7，击退 12 |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-bean_bazooka"></a>
+
+### 豆子火箭筒
+
+<img src="images/weapon/bean_bazooka.png" width="64" height="64" alt="">
+
+> 发射巨型豆荚，造成大范围爆炸。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 爆炸弹 |
+| 标签 | 枪械 |
+| 伤害 T1~T4 | 22 / 36 / 56 / 84 |
+| 冷却 T1~T4 | 2.4s / 2.25s / 2.1s / 1.9s |
+| 射程 | 480 |
+| 属性加成 | 远程伤害 ×1.3 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 爆炸半径 90，击退 30 |
+| T1 价格 | 34 |
+| 初始携带 | - |
+
+<a id="weapon-cherry_bomb"></a>
+
+### 樱桃炸弹
+
+<img src="images/weapon/cherry_bomb.png" width="64" height="64" alt="">
+
+> 一次抛出成对樱桃，各自爆炸。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 爆炸弹 |
+| 标签 | 蔬果 |
+| 伤害 T1~T4 | 10 / 17 / 26 / 40 |
+| 冷却 T1~T4 | 1.6s / 1.5s / 1.4s / 1.3s |
+| 射程 | 360 |
+| 属性加成 | 远程伤害 ×0.8 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 爆炸半径 55，弹丸 2/2/2/3 |
+| T1 价格 | 28 |
+| 初始携带 | - |
+
+<a id="weapon-blueberry_sniper"></a>
+
+### 蓝莓狙击枪
+
+<img src="images/weapon/blueberry_sniper.png" width="64" height="64" alt="">
+
+> 超远距离精准狙击，高暴击。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 枪械、蔬果 |
+| 伤害 T1~T4 | 26 / 44 / 68 / 100 |
+| 冷却 T1~T4 | 1.9s / 1.8s / 1.65s / 1.5s |
+| 射程 | 650 |
+| 属性加成 | 远程伤害 ×1.5 |
+| 暴击倍率 | ×2.5 |
+| 特效 | 穿透 1/1/2/2，额外暴击 10% |
+| T1 价格 | 32 |
+| 初始携带 | - |
+
+<a id="weapon-plate_frisbee"></a>
+
+### 餐盘飞碟
+
+<img src="images/weapon/plate_frisbee.png" width="64" height="64" alt="">
+
+> 掷出餐盘，飞回时再撞一次。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 回旋镖 |
+| 标签 | 厨具 |
+| 伤害 T1~T4 | 12 / 20 / 31 / 47 |
+| 冷却 T1~T4 | 1.5s / 1.4s / 1.3s / 1.2s |
+| 射程 | 330 |
+| 属性加成 | 远程伤害 ×1 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 击退 15 |
+| T1 价格 | 24 |
+| 初始携带 | - |
+
+<a id="weapon-seed_spitter"></a>
+
+### 瓜子机枪
+
+<img src="images/weapon/seed_spitter.png" width="64" height="64" alt="">
+
+> 噗噗噗！高速连射西瓜籽。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 枪械、蔬果 |
+| 伤害 T1~T4 | 3 / 5 / 7 / 10 |
+| 冷却 T1~T4 | 0.22s / 0.2s / 0.18s / 0.16s |
+| 射程 | 360 |
+| 属性加成 | 远程伤害 ×0.45 |
+| 暴击倍率 | ×1.5 |
+| 特效 | - |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-carrot_crossbow"></a>
+
+### 胡萝卜弩
+
+<img src="images/weapon/carrot_crossbow.png" width="64" height="64" alt="">
+
+> 尖尖的胡萝卜箭穿透一排敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 蔬果 |
+| 伤害 T1~T4 | 12 / 20 / 31 / 47 |
+| 冷却 T1~T4 | 1.05s / 1s / 0.92s / 0.84s |
+| 射程 | 460 |
+| 属性加成 | 远程伤害 ×1 |
+| 暴击倍率 | ×2 |
+| 特效 | 穿透 2/3/3/4 |
+| T1 价格 | 25 |
+| 初始携带 | - |
+
+<a id="weapon-honey_blaster"></a>
+
+### 蜂蜜喷枪
+
+<img src="images/weapon/honey_blaster.png" width="64" height="64" alt="">
+
+> 黏糊糊的蜂蜜弹，减速敌人 35%。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 酱料 |
+| 伤害 T1~T4 | 6 / 10 / 15 / 22 |
+| 冷却 T1~T4 | 0.7s / 0.66s / 0.6s / 0.54s |
+| 射程 | 360 |
+| 属性加成 | 远程伤害 ×0.7 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 减速 35% 1.5s |
+| T1 价格 | 22 |
+| 初始携带 | - |
+
+<a id="weapon-soy_pistol"></a>
+
+### 酱油手枪
+
+<img src="images/weapon/soy_pistol.png" width="64" height="64" alt="">
+
+> 稳定的点射手枪，命中额外吸血。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 枪械、酱料 |
+| 伤害 T1~T4 | 7 / 12 / 18 / 27 |
+| 冷却 T1~T4 | 0.55s / 0.5s / 0.46s / 0.42s |
+| 射程 | 380 |
+| 属性加成 | 远程伤害 ×0.7 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 额外吸血 2% |
+| T1 价格 | 20 |
+| 初始携带 | - |
+
 <a id="class-elemental"></a>
 
 ## 元素武器
@@ -474,6 +1000,216 @@
 | 特效 | 连锁 2/3/4/6 次 |
 | T1 价格 | 30 |
 | 初始携带 | [茄子法师](CHARACTERS.md#char-eggplant) |
+
+<a id="weapon-ice_cube_tray"></a>
+
+### 冰块格
+
+<img src="images/weapon/ice_cube_tray.png" width="64" height="64" alt="">
+
+> 甩出一排冰块，大幅减速敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 子弹 |
+| 标签 | 厨具、元素 |
+| 伤害 T1~T4 | 5 / 8 / 12 / 18 |
+| 冷却 T1~T4 | 1s / 0.95s / 0.88s / 0.8s |
+| 射程 | 340 |
+| 属性加成 | 元素伤害 ×0.6 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 减速 50% 1.2s，弹丸 3/3/4/4 |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-lightning_whisk"></a>
+
+### 闪电打蛋器
+
+<img src="images/weapon/lightning_whisk.png" width="64" height="64" alt="">
+
+> 搅出电流，在更多敌人间跳跃。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 连锁闪电 |
+| 标签 | 厨具、元素 |
+| 伤害 T1~T4 | 7 / 12 / 18 / 27 |
+| 冷却 T1~T4 | 0.95s / 0.9s / 0.82s / 0.74s |
+| 射程 | 380 |
+| 属性加成 | 元素伤害 ×0.8 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 连锁 3/4/5/7 次 |
+| T1 价格 | 30 |
+| 初始携带 | - |
+
+<a id="weapon-steam_kettle"></a>
+
+### 蒸汽水壶
+
+<img src="images/weapon/steam_kettle.png" width="64" height="64" alt="">
+
+> 喷出宽幅蒸汽，穿透并减速敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 喷火 |
+| 标签 | 厨具、元素 |
+| 伤害 T1~T4 | 3 / 5 / 7 / 11 |
+| 冷却 T1~T4 | 0.26s / 0.24s / 0.21s / 0.18s |
+| 射程 | 170 |
+| 属性加成 | 元素伤害 ×0.3 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 减速 20% 1s，击退 4 |
+| T1 价格 | 28 |
+| 初始携带 | - |
+
+<a id="weapon-curry_aura"></a>
+
+### 咖喱光环
+
+<img src="images/weapon/curry_aura.png" width="64" height="64" alt="">
+
+> 浓郁的咖喱香气灼烧周围敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 光环 |
+| 标签 | 酱料、元素 |
+| 伤害 T1~T4 | 3 / 5 / 7 / 11 |
+| 冷却 T1~T4 | 0.5s / 0.5s / 0.5s / 0.5s |
+| 射程 | 120 |
+| 属性加成 | 元素伤害 ×0.4 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 灼烧 2/秒 2s |
+| T1 价格 | 32 |
+| 初始携带 | - |
+
+<a id="weapon-pepper_spray"></a>
+
+### 胡椒喷雾
+
+<img src="images/weapon/pepper_spray.png" width="64" height="64" alt="">
+
+> 极近距离喷出辛辣粉末，强力灼烧。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 喷火 |
+| 标签 | 元素 |
+| 伤害 T1~T4 | 2 / 4 / 6 / 9 |
+| 冷却 T1~T4 | 0.18s / 0.16s / 0.14s / 0.12s |
+| 射程 | 150 |
+| 属性加成 | 元素伤害 ×0.25 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 灼烧 3/秒 1.5s |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-mint_frost_mine"></a>
+
+### 薄荷冰雷
+
+<img src="images/weapon/mint_frost_mine.png" width="64" height="64" alt="">
+
+> 清凉薄荷雷，爆炸冻得敌人走不动。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 地雷 |
+| 标签 | 蔬果、元素 |
+| 伤害 T1~T4 | 16 / 27 / 42 / 64 |
+| 冷却 T1~T4 | 2.6s / 2.4s / 2.2s / 1.9s |
+| 射程 | 220 |
+| 属性加成 | 元素伤害 ×0.9 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 减速 50% 2s，爆炸半径 100 |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-thunder_durian"></a>
+
+### 雷霆榴莲
+
+<img src="images/weapon/thunder_durian.png" width="64" height="64" alt="">
+
+> 扔出带电榴莲，爆炸并眩晕敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 爆炸弹 |
+| 标签 | 蔬果、元素 |
+| 伤害 T1~T4 | 16 / 27 / 42 / 64 |
+| 冷却 T1~T4 | 2.2s / 2.1s / 1.95s / 1.75s |
+| 射程 | 400 |
+| 属性加成 | 元素伤害 ×1 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 眩晕 0.35s，爆炸半径 80 |
+| T1 价格 | 32 |
+| 初始携带 | - |
+
+<a id="weapon-dragonfruit_orb"></a>
+
+### 火龙果法球
+
+<img src="images/weapon/dragonfruit_orb.png" width="64" height="64" alt="">
+
+> 燃烧的火龙果弹射并点燃敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 子弹 |
+| 标签 | 蔬果、元素 |
+| 伤害 T1~T4 | 8 / 13 / 20 / 30 |
+| 冷却 T1~T4 | 1s / 0.95s / 0.88s / 0.8s |
+| 射程 | 400 |
+| 属性加成 | 元素伤害 ×0.8 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 灼烧 3/秒 2s，弹射 1/2/2/3 |
+| T1 价格 | 28 |
+| 初始携带 | - |
+
+<a id="weapon-star_anise_shuriken"></a>
+
+### 八角飞镖
+
+<img src="images/weapon/star_anise_shuriken.png" width="64" height="64" alt="">
+
+> 香料飞镖回旋而归，灼烧沿途敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 回旋镖 |
+| 标签 | 锋利、元素 |
+| 伤害 T1~T4 | 9 / 15 / 23 / 35 |
+| 冷却 T1~T4 | 1.3s / 1.2s / 1.1s / 1s |
+| 射程 | 320 |
+| 属性加成 | 元素伤害 ×0.8 |
+| 暴击倍率 | ×2 |
+| 特效 | 灼烧 2/秒 1.5s |
+| T1 价格 | 28 |
+| 初始携带 | - |
+
+<a id="weapon-lemon_battery"></a>
+
+### 柠檬电池
+
+<img src="images/weapon/lemon_battery.png" width="64" height="64" alt="">
+
+> 强力电击，跳跃较少但会眩晕敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 连锁闪电 |
+| 标签 | 蔬果、元素 |
+| 伤害 T1~T4 | 12 / 20 / 31 / 47 |
+| 冷却 T1~T4 | 1.3s / 1.2s / 1.1s / 1s |
+| 射程 | 360 |
+| 属性加成 | 元素伤害 ×1.1 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 眩晕 0.25s，连锁 1/2/2/3 次 |
+| T1 价格 | 30 |
+| 初始携带 | - |
 
 ---
 

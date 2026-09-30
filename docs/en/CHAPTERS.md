@@ -65,14 +65,24 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Monster | Waves | Weight |
 | --- | --- | --- |
-| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1+ | 10 (29%) |
-| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 2+ | 5 (15%) |
-| <img src="../images/enemy/rotten_apple.png" width="32" height="32" alt=""> [Rotten Apple](MONSTERS.md#enemy-rotten_apple) | 3+ | 4 (12%) |
-| <img src="../images/enemy/maggot.png" width="32" height="32" alt=""> [Maggot](MONSTERS.md#enemy-maggot) | 4+ | 4 (12%) |
-| <img src="../images/enemy/ant.png" width="32" height="32" alt=""> [Army Ant](MONSTERS.md#enemy-ant) | 6+ | 3 (9%) |
-| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 7+ | 3 (9%) |
-| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 9+ | 3 (9%) |
-| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 11+ | 2 (6%) |
+| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1+ | 10 (16%) |
+| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 2+ | 5 (8%) |
+| <img src="../images/enemy/rotten_apple.png" width="32" height="32" alt=""> [Rotten Apple](MONSTERS.md#enemy-rotten_apple) | 3+ | 4 (7%) |
+| <img src="../images/enemy/maggot.png" width="32" height="32" alt=""> [Maggot](MONSTERS.md#enemy-maggot) | 4+ | 4 (7%) |
+| <img src="../images/enemy/ant.png" width="32" height="32" alt=""> [Army Ant](MONSTERS.md#enemy-ant) | 6+ | 3 (5%) |
+| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 7+ | 3 (5%) |
+| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 9+ | 3 (5%) |
+| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 11+ | 2 (3%) |
+| <img src="../images/enemy/crumb_mite.png" width="32" height="32" alt=""> [Crumb Mite](MONSTERS.md#enemy-crumb_mite) | 2+ | 3 (5%) |
+| <img src="../images/enemy/grease_drop.png" width="32" height="32" alt=""> [Grease Drop](MONSTERS.md#enemy-grease_drop) | 2+ | 3 (5%) |
+| <img src="../images/enemy/burnt_toast.png" width="32" height="32" alt=""> [Burnt Toast](MONSTERS.md#enemy-burnt_toast) | 3+ | 3 (5%) |
+| <img src="../images/enemy/dust_bunny.png" width="32" height="32" alt=""> [Dust Bunny](MONSTERS.md#enemy-dust_bunny) | 3+ | 3 (5%) |
+| <img src="../images/enemy/sour_milk.png" width="32" height="32" alt=""> [Sour Milk Carton](MONSTERS.md#enemy-sour_milk) | 4+ | 3 (5%) |
+| <img src="../images/enemy/pan_beetle.png" width="32" height="32" alt=""> [Pan Beetle](MONSTERS.md#enemy-pan_beetle) | 5+ | 3 (5%) |
+| <img src="../images/enemy/sponge_slug.png" width="32" height="32" alt=""> [Dish Sponge](MONSTERS.md#enemy-sponge_slug) | 6+ | 2 (3%) |
+| <img src="../images/enemy/stink_egg.png" width="32" height="32" alt=""> [Stink Egg](MONSTERS.md#enemy-stink_egg) | 8+ | 3 (5%) |
+| <img src="../images/enemy/moldy_bread.png" width="32" height="32" alt=""> [Moldy Bread](MONSTERS.md#enemy-moldy_bread) | 9+ | 2 (3%) |
+| <img src="../images/enemy/teabag_ghost.png" width="32" height="32" alt=""> [Teabag Ghost](MONSTERS.md#enemy-teabag_ghost) | 10+ | 2 (3%) |
 
 <a id="chapter-2"></a>
 
@@ -82,7 +92,7 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×4.6 · damage ×1.4 · speed ×1.05 |
+| Difficulty | HP ×2.9 · damage ×1.4 · speed ×1.05 |
 | Terrain | Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit<br>Gophers: Pop out of burrows to throw rocks |
 | Elite pool | <img src="../images/boss/rat_captain.png" width="24" height="24" alt=""> [Captain Rat](MONSTERS.md#boss-rat_captain), <img src="../images/boss/snail_tank.png" width="24" height="24" alt=""> [Tank Snail](MONSTERS.md#boss-snail_tank), <img src="../images/boss/queen_bee.png" width="24" height="24" alt=""> [Queen Bee](MONSTERS.md#boss-queen_bee), <img src="../images/boss/scarecrow.png" width="24" height="24" alt=""> [Evil Scarecrow](MONSTERS.md#boss-scarecrow), <img src="../images/boss/spider_matron.png" width="24" height="24" alt=""> [Spider Matron](MONSTERS.md#boss-spider_matron), <img src="../images/boss/mushroom_king.png" width="24" height="24" alt=""> [Shroom King](MONSTERS.md#boss-mushroom_king) |
 | Boss pool | <img src="../images/boss/locust_queen.png" width="24" height="24" alt=""> [Locust Queen](MONSTERS.md#boss-locust_queen), <img src="../images/boss/rotten_pumpkin.png" width="24" height="24" alt=""> [Rotten Pumpkin King](MONSTERS.md#boss-rotten_pumpkin), <img src="../images/boss/mole_general.png" width="24" height="24" alt=""> [General Mole](MONSTERS.md#boss-mole_general) |
@@ -91,17 +101,27 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Monster | Waves | Weight |
 | --- | --- | --- |
-| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~8 | 8 (20%) |
-| <img src="../images/enemy/ant.png" width="32" height="32" alt=""> [Army Ant](MONSTERS.md#enemy-ant) | 3+ | 4 (10%) |
-| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1+ | 5 (13%) |
-| <img src="../images/enemy/snail.png" width="32" height="32" alt=""> [Snot Snail](MONSTERS.md#enemy-snail) | 2+ | 4 (10%) |
-| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 5+ | 3 (8%) |
-| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 5+ | 2 (5%) |
-| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 6+ | 3 (8%) |
-| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 8+ | 2 (5%) |
-| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 10+ | 3 (8%) |
-| <img src="../images/enemy/bee.png" width="32" height="32" alt=""> [Venom Bee](MONSTERS.md#enemy-bee) | 4+ | 3 (8%) |
-| <img src="../images/enemy/worm.png" width="32" height="32" alt=""> [Mud Worm](MONSTERS.md#enemy-worm) | 4+ | 3 (8%) |
+| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~8 | 8 (12%) |
+| <img src="../images/enemy/ant.png" width="32" height="32" alt=""> [Army Ant](MONSTERS.md#enemy-ant) | 3+ | 4 (6%) |
+| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1+ | 5 (7%) |
+| <img src="../images/enemy/snail.png" width="32" height="32" alt=""> [Snot Snail](MONSTERS.md#enemy-snail) | 2+ | 4 (6%) |
+| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 5+ | 3 (4%) |
+| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 5+ | 2 (3%) |
+| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 6+ | 3 (4%) |
+| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 8+ | 2 (3%) |
+| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 10+ | 3 (4%) |
+| <img src="../images/enemy/bee.png" width="32" height="32" alt=""> [Venom Bee](MONSTERS.md#enemy-bee) | 4+ | 3 (4%) |
+| <img src="../images/enemy/worm.png" width="32" height="32" alt=""> [Mud Worm](MONSTERS.md#enemy-worm) | 4+ | 3 (4%) |
+| <img src="../images/enemy/aphid.png" width="32" height="32" alt=""> [Aphid](MONSTERS.md#enemy-aphid) | 2+ | 4 (6%) |
+| <img src="../images/enemy/caterpillar.png" width="32" height="32" alt=""> [Cabbage Worm](MONSTERS.md#enemy-caterpillar) | 2+ | 3 (4%) |
+| <img src="../images/enemy/locust.png" width="32" height="32" alt=""> [Locust](MONSTERS.md#enemy-locust) | 3+ | 3 (4%) |
+| <img src="../images/enemy/garden_slug.png" width="32" height="32" alt=""> [Garden Slug](MONSTERS.md#enemy-garden_slug) | 4+ | 3 (4%) |
+| <img src="../images/enemy/weevil.png" width="32" height="32" alt=""> [Weevil](MONSTERS.md#enemy-weevil) | 5+ | 3 (4%) |
+| <img src="../images/enemy/thorn_weed.png" width="32" height="32" alt=""> [Thorn Weed](MONSTERS.md#enemy-thorn_weed) | 6+ | 3 (4%) |
+| <img src="../images/enemy/pollen_bloom.png" width="32" height="32" alt=""> [Toxic Bloom](MONSTERS.md#enemy-pollen_bloom) | 7+ | 2 (3%) |
+| <img src="../images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [Boom Ladybug](MONSTERS.md#enemy-ladybug_bomb) | 8+ | 3 (4%) |
+| <img src="../images/enemy/mantis.png" width="32" height="32" alt=""> [Blade Mantis](MONSTERS.md#enemy-mantis) | 9+ | 3 (4%) |
+| <img src="../images/enemy/rotten_potato.png" width="32" height="32" alt=""> [Rotten Potato](MONSTERS.md#enemy-rotten_potato) | 10+ | 2 (3%) |
 
 <a id="chapter-3"></a>
 
@@ -111,7 +131,7 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×3.8 · damage ×1.45 · speed ×1.1 |
+| Difficulty | HP ×3.1 · damage ×1.45 · speed ×1.1 |
 | Terrain | Ice Floor: Slippery on ice, but you move faster<br>Cold Wind: Periodic gusts push all units and slow them |
 | Elite pool | <img src="../images/boss/ice_golem.png" width="24" height="24" alt=""> [Ice Golem](MONSTERS.md#boss-ice_golem), <img src="../images/boss/popsicle_twins.png" width="24" height="24" alt=""> [Popsicle Twins](MONSTERS.md#boss-popsicle_twins), <img src="../images/boss/frozen_fish.png" width="24" height="24" alt=""> [Frozen Fish Samurai](MONSTERS.md#boss-frozen_fish), <img src="../images/boss/snow_rat.png" width="24" height="24" alt=""> [Snow Rat Assassin](MONSTERS.md#boss-snow_rat), <img src="../images/boss/milk_slime.png" width="24" height="24" alt=""> [Spoiled Milk Slime](MONSTERS.md#boss-milk_slime), <img src="../images/boss/frost_penguin.png" width="24" height="24" alt=""> [Frost Penguin](MONSTERS.md#boss-frost_penguin) |
 | Boss pool | <img src="../images/boss/frost_rat_king.png" width="24" height="24" alt=""> [Frost Rat King](MONSTERS.md#boss-frost_rat_king), <img src="../images/boss/ice_cream_tyrant.png" width="24" height="24" alt=""> [Ice Cream Tyrant](MONSTERS.md#boss-ice_cream_tyrant), <img src="../images/boss/freezer_heart.png" width="24" height="24" alt=""> [Freezer Heart](MONSTERS.md#boss-freezer_heart) |
@@ -120,17 +140,27 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Monster | Waves | Weight |
 | --- | --- | --- |
-| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~6 | 8 (21%) |
-| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1+ | 4 (10%) |
-| <img src="../images/enemy/ice_cube.png" width="32" height="32" alt=""> [Ice Cube](MONSTERS.md#enemy-ice_cube) | 3+ | 3 (8%) |
-| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 7+ | 3 (8%) |
-| <img src="../images/enemy/maggot.png" width="32" height="32" alt=""> [Maggot](MONSTERS.md#enemy-maggot) | 3+ | 4 (10%) |
-| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 6+ | 3 (8%) |
-| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 5+ | 3 (8%) |
-| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 7+ | 2 (5%) |
-| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 9+ | 3 (8%) |
-| <img src="../images/enemy/frost_mosquito.png" width="32" height="32" alt=""> [Frost Mosquito](MONSTERS.md#enemy-frost_mosquito) | 4+ | 3 (8%) |
-| <img src="../images/enemy/frozen_shrimp.png" width="32" height="32" alt=""> [Frozen Shrimp](MONSTERS.md#enemy-frozen_shrimp) | 6+ | 3 (8%) |
+| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~6 | 8 (12%) |
+| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1+ | 4 (6%) |
+| <img src="../images/enemy/ice_cube.png" width="32" height="32" alt=""> [Ice Cube](MONSTERS.md#enemy-ice_cube) | 3+ | 3 (4%) |
+| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 7+ | 3 (4%) |
+| <img src="../images/enemy/maggot.png" width="32" height="32" alt=""> [Maggot](MONSTERS.md#enemy-maggot) | 3+ | 4 (6%) |
+| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 6+ | 3 (4%) |
+| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 5+ | 3 (4%) |
+| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 7+ | 2 (3%) |
+| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 9+ | 3 (4%) |
+| <img src="../images/enemy/frost_mosquito.png" width="32" height="32" alt=""> [Frost Mosquito](MONSTERS.md#enemy-frost_mosquito) | 4+ | 3 (4%) |
+| <img src="../images/enemy/frozen_shrimp.png" width="32" height="32" alt=""> [Frozen Shrimp](MONSTERS.md#enemy-frozen_shrimp) | 6+ | 3 (4%) |
+| <img src="../images/enemy/frost_mite.png" width="32" height="32" alt=""> [Frost Mite](MONSTERS.md#enemy-frost_mite) | 2+ | 4 (6%) |
+| <img src="../images/enemy/popsicle_bat.png" width="32" height="32" alt=""> [Popsicle Bat](MONSTERS.md#enemy-popsicle_bat) | 2+ | 3 (4%) |
+| <img src="../images/enemy/frozen_pea.png" width="32" height="32" alt=""> [Frozen Pea](MONSTERS.md#enemy-frozen_pea) | 3+ | 3 (4%) |
+| <img src="../images/enemy/jelly_cube.png" width="32" height="32" alt=""> [Jelly Cube](MONSTERS.md#enemy-jelly_cube) | 4+ | 3 (4%) |
+| <img src="../images/enemy/moldy_cheese.png" width="32" height="32" alt=""> [Moldy Cheese](MONSTERS.md#enemy-moldy_cheese) | 5+ | 3 (4%) |
+| <img src="../images/enemy/icicle_imp.png" width="32" height="32" alt=""> [Icicle Imp](MONSTERS.md#enemy-icicle_imp) | 6+ | 3 (4%) |
+| <img src="../images/enemy/ice_slime.png" width="32" height="32" alt=""> [Ice Slime](MONSTERS.md#enemy-ice_slime) | 7+ | 3 (4%) |
+| <img src="../images/enemy/frozen_soda.png" width="32" height="32" alt=""> [Frozen Soda](MONSTERS.md#enemy-frozen_soda) | 8+ | 3 (4%) |
+| <img src="../images/enemy/freezer_burn.png" width="32" height="32" alt=""> [Freezer Burn](MONSTERS.md#enemy-freezer_burn) | 9+ | 2 (3%) |
+| <img src="../images/enemy/leftover_box.png" width="32" height="32" alt=""> [Leftover Box](MONSTERS.md#enemy-leftover_box) | 10+ | 2 (3%) |
 
 <a id="chapter-4"></a>
 
@@ -140,7 +170,7 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×3.5 · damage ×1.5 · speed ×1.15 |
+| Difficulty | HP ×3 · damage ×1.5 · speed ×1.15 |
 | Terrain | Quicksand Pit: Pulls players and monsters toward the center and deals damage<br>Falling Trash: Watch for warning circles on the ground |
 | Elite pool | <img src="../images/boss/tire_beast.png" width="24" height="24" alt=""> [Tire Beast](MONSTERS.md#boss-tire_beast), <img src="../images/boss/can_king.png" width="24" height="24" alt=""> [Can King](MONSTERS.md#boss-can_king), <img src="../images/boss/rag_wraith.png" width="24" height="24" alt=""> [Rag Wraith](MONSTERS.md#boss-rag_wraith), <img src="../images/boss/battery_bug.png" width="24" height="24" alt=""> [Leaky Battery Bug](MONSTERS.md#boss-battery_bug), <img src="../images/boss/garbage_rat.png" width="24" height="24" alt=""> [Garbage Rat King](MONSTERS.md#boss-garbage_rat), <img src="../images/boss/oil_titan.png" width="24" height="24" alt=""> [Oil Titan](MONSTERS.md#boss-oil_titan) |
 | Boss pool | <img src="../images/boss/trash_golem.png" width="24" height="24" alt=""> [Trash Colossus](MONSTERS.md#boss-trash_golem), <img src="../images/boss/toxic_barrel.png" width="24" height="24" alt=""> [Toxic Barrel Fiend](MONSTERS.md#boss-toxic_barrel), <img src="../images/boss/scrap_dragon.png" width="24" height="24" alt=""> [Scrap Dragon](MONSTERS.md#boss-scrap_dragon) |
@@ -149,18 +179,28 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Monster | Waves | Weight |
 | --- | --- | --- |
-| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~5 | 8 (18%) |
-| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 5+ | 5 (11%) |
-| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 3+ | 4 (9%) |
-| <img src="../images/enemy/trash_bag.png" width="32" height="32" alt=""> [Trash Bag](MONSTERS.md#enemy-trash_bag) | 5+ | 4 (9%) |
-| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 6+ | 4 (9%) |
-| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 5+ | 2 (5%) |
-| <img src="../images/enemy/rotten_apple.png" width="32" height="32" alt=""> [Rotten Apple](MONSTERS.md#enemy-rotten_apple) | 2+ | 3 (7%) |
-| <img src="../images/enemy/snail.png" width="32" height="32" alt=""> [Snot Snail](MONSTERS.md#enemy-snail) | 6+ | 3 (7%) |
-| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 8+ | 2 (5%) |
-| <img src="../images/enemy/can_crab.png" width="32" height="32" alt=""> [Can Crab](MONSTERS.md#enemy-can_crab) | 7+ | 3 (7%) |
-| <img src="../images/enemy/rag_ghost.png" width="32" height="32" alt=""> [Rag Ghost](MONSTERS.md#enemy-rag_ghost) | 5+ | 3 (7%) |
-| <img src="../images/enemy/oil_blob.png" width="32" height="32" alt=""> [Grease Blob](MONSTERS.md#enemy-oil_blob) | 6+ | 3 (7%) |
+| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~5 | 8 (11%) |
+| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 5+ | 5 (7%) |
+| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 3+ | 4 (5%) |
+| <img src="../images/enemy/trash_bag.png" width="32" height="32" alt=""> [Trash Bag](MONSTERS.md#enemy-trash_bag) | 5+ | 4 (5%) |
+| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 6+ | 4 (5%) |
+| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 5+ | 2 (3%) |
+| <img src="../images/enemy/rotten_apple.png" width="32" height="32" alt=""> [Rotten Apple](MONSTERS.md#enemy-rotten_apple) | 2+ | 3 (4%) |
+| <img src="../images/enemy/snail.png" width="32" height="32" alt=""> [Snot Snail](MONSTERS.md#enemy-snail) | 6+ | 3 (4%) |
+| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 8+ | 2 (3%) |
+| <img src="../images/enemy/can_crab.png" width="32" height="32" alt=""> [Can Crab](MONSTERS.md#enemy-can_crab) | 7+ | 3 (4%) |
+| <img src="../images/enemy/rag_ghost.png" width="32" height="32" alt=""> [Rag Ghost](MONSTERS.md#enemy-rag_ghost) | 5+ | 3 (4%) |
+| <img src="../images/enemy/oil_blob.png" width="32" height="32" alt=""> [Grease Blob](MONSTERS.md#enemy-oil_blob) | 6+ | 3 (4%) |
+| <img src="../images/enemy/rusty_nail.png" width="32" height="32" alt=""> [Rusty Nail](MONSTERS.md#enemy-rusty_nail) | 2+ | 4 (5%) |
+| <img src="../images/enemy/bag_ghost.png" width="32" height="32" alt=""> [Bag Ghost](MONSTERS.md#enemy-bag_ghost) | 3+ | 3 (4%) |
+| <img src="../images/enemy/glass_shard.png" width="32" height="32" alt=""> [Glass Shard](MONSTERS.md#enemy-glass_shard) | 3+ | 3 (4%) |
+| <img src="../images/enemy/scrap_drone.png" width="32" height="32" alt=""> [Scrap Drone](MONSTERS.md#enemy-scrap_drone) | 4+ | 3 (4%) |
+| <img src="../images/enemy/oil_slick.png" width="32" height="32" alt=""> [Oil Slick](MONSTERS.md#enemy-oil_slick) | 5+ | 3 (4%) |
+| <img src="../images/enemy/battery_mite.png" width="32" height="32" alt=""> [Leaky Battery](MONSTERS.md#enemy-battery_mite) | 6+ | 3 (4%) |
+| <img src="../images/enemy/rust_crab.png" width="32" height="32" alt=""> [Rust Crab](MONSTERS.md#enemy-rust_crab) | 7+ | 3 (4%) |
+| <img src="../images/enemy/tire_roller.png" width="32" height="32" alt=""> [Tire Roller](MONSTERS.md#enemy-tire_roller) | 8+ | 3 (4%) |
+| <img src="../images/enemy/junk_radio.png" width="32" height="32" alt=""> [Busted Radio](MONSTERS.md#enemy-junk_radio) | 9+ | 2 (3%) |
+| <img src="../images/enemy/junk_heap.png" width="32" height="32" alt=""> [Junk Heap](MONSTERS.md#enemy-junk_heap) | 11+ | 2 (3%) |
 
 <a id="chapter-5"></a>
 
@@ -170,7 +210,7 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×5 · damage ×1.8 · speed ×1.2 |
+| Difficulty | HP ×3.7 · damage ×1.75 · speed ×1.2 |
 | Terrain | Conveyor Belts: Push all units standing on them<br>Steam Valves: Periodically blast scalding steam |
 | Elite pool | <img src="../images/boss/conveyor_worm.png" width="24" height="24" alt=""> [Conveyor Worm](MONSTERS.md#boss-conveyor_worm), <img src="../images/boss/ketchup_golem.png" width="24" height="24" alt=""> [Ketchup Golem](MONSTERS.md#boss-ketchup_golem), <img src="../images/boss/security_bot.png" width="24" height="24" alt=""> [Security Bot](MONSTERS.md#boss-security_bot), <img src="../images/boss/press_machine.png" width="24" height="24" alt=""> [Stamping Press](MONSTERS.md#boss-press_machine), <img src="../images/boss/chef_minion.png" width="24" height="24" alt=""> [Rotten Sous Chef](MONSTERS.md#boss-chef_minion), <img src="../images/boss/furnace_imp.png" width="24" height="24" alt=""> [Furnace Imp](MONSTERS.md#boss-furnace_imp) |
 | Boss pool | <img src="../images/boss/rotten_chef.png" width="24" height="24" alt=""> [Rotten Chef](MONSTERS.md#boss-rotten_chef), <img src="../images/boss/factory_core.png" width="24" height="24" alt=""> [Factory Core](MONSTERS.md#boss-factory_core), <img src="../images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [Ketchup Leviathan](MONSTERS.md#boss-ketchup_leviathan) |
@@ -179,19 +219,29 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 
 | Monster | Waves | Weight |
 | --- | --- | --- |
-| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~4 | 8 (17%) |
-| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1~6 | 4 (9%) |
-| <img src="../images/enemy/robot_can.png" width="32" height="32" alt=""> [Can Bot](MONSTERS.md#enemy-robot_can) | 3+ | 4 (9%) |
-| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 5+ | 5 (11%) |
-| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 6+ | 4 (9%) |
-| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 5+ | 3 (6%) |
-| <img src="../images/enemy/trash_bag.png" width="32" height="32" alt=""> [Trash Bag](MONSTERS.md#enemy-trash_bag) | 5+ | 3 (6%) |
-| <img src="../images/enemy/ice_cube.png" width="32" height="32" alt=""> [Ice Cube](MONSTERS.md#enemy-ice_cube) | 4+ | 3 (6%) |
-| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 5+ | 2 (4%) |
-| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 6+ | 2 (4%) |
-| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 7+ | 3 (6%) |
-| <img src="../images/enemy/gear_bug.png" width="32" height="32" alt=""> [Gear Bug](MONSTERS.md#enemy-gear_bug) | 4+ | 3 (6%) |
-| <img src="../images/enemy/curse_doll.png" width="32" height="32" alt=""> [Curse Doll](MONSTERS.md#enemy-curse_doll) | 5+ | 3 (6%) |
+| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~4 | 8 (10%) |
+| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1~6 | 4 (5%) |
+| <img src="../images/enemy/robot_can.png" width="32" height="32" alt=""> [Can Bot](MONSTERS.md#enemy-robot_can) | 3+ | 4 (5%) |
+| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 5+ | 5 (6%) |
+| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 6+ | 4 (5%) |
+| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 5+ | 3 (4%) |
+| <img src="../images/enemy/trash_bag.png" width="32" height="32" alt=""> [Trash Bag](MONSTERS.md#enemy-trash_bag) | 5+ | 3 (4%) |
+| <img src="../images/enemy/ice_cube.png" width="32" height="32" alt=""> [Ice Cube](MONSTERS.md#enemy-ice_cube) | 4+ | 3 (4%) |
+| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 5+ | 2 (3%) |
+| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 6+ | 2 (3%) |
+| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 7+ | 3 (4%) |
+| <img src="../images/enemy/gear_bug.png" width="32" height="32" alt=""> [Gear Bug](MONSTERS.md#enemy-gear_bug) | 4+ | 3 (4%) |
+| <img src="../images/enemy/curse_doll.png" width="32" height="32" alt=""> [Curse Doll](MONSTERS.md#enemy-curse_doll) | 5+ | 3 (4%) |
+| <img src="../images/enemy/sauce_drip.png" width="32" height="32" alt=""> [Sauce Drip](MONSTERS.md#enemy-sauce_drip) | 2+ | 4 (5%) |
+| <img src="../images/enemy/conveyor_gremlin.png" width="32" height="32" alt=""> [Belt Gremlin](MONSTERS.md#enemy-conveyor_gremlin) | 2+ | 3 (4%) |
+| <img src="../images/enemy/cap_drone.png" width="32" height="32" alt=""> [Cap Drone](MONSTERS.md#enemy-cap_drone) | 3+ | 3 (4%) |
+| <img src="../images/enemy/steam_imp.png" width="32" height="32" alt=""> [Steam Imp](MONSTERS.md#enemy-steam_imp) | 4+ | 3 (4%) |
+| <img src="../images/enemy/label_ghost.png" width="32" height="32" alt=""> [Label Ghost](MONSTERS.md#enemy-label_ghost) | 5+ | 3 (4%) |
+| <img src="../images/enemy/welder_bug.png" width="32" height="32" alt=""> [Welder Bug](MONSTERS.md#enemy-welder_bug) | 6+ | 3 (4%) |
+| <img src="../images/enemy/rivet_bot.png" width="32" height="32" alt=""> [Rivet Bot](MONSTERS.md#enemy-rivet_bot) | 7+ | 3 (4%) |
+| <img src="../images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [Ketchup Slime](MONSTERS.md#enemy-ketchup_slime) | 8+ | 3 (4%) |
+| <img src="../images/enemy/press_piston.png" width="32" height="32" alt=""> [Press Piston](MONSTERS.md#enemy-press_piston) | 9+ | 3 (4%) |
+| <img src="../images/enemy/bottling_bot.png" width="32" height="32" alt=""> [Bottling Bot](MONSTERS.md#enemy-bottling_bot) | 11+ | 2 (3%) |
 
 ---
 

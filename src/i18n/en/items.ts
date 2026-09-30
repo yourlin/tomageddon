@@ -3,6 +3,8 @@ import type { ItemsEn, SeriesEn } from '../types';
 
 export const EN_ITEMS: ItemsEn = {
   big_magnet: { name: 'Power Magnet' },
+  reroll_ticket: { name: 'Reroll Ticket' },
+  vip_card: { name: 'VIP Card' },
   vacuum: { name: 'Vacuum Cleaner' },
   // ---------- Common ----------
   band_aid: { name: 'Band-Aid' },

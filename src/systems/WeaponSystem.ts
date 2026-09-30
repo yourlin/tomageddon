@@ -30,12 +30,17 @@ export function weaponDamage(def: WeaponDef, tier: number, s: Stats, ow?: OwnedW
   d += (sc.melee ?? 0) * s.melee + (sc.ranged ?? 0) * s.ranged + (sc.elemental ?? 0) * s.elemental;
   d += (sc.maxHp ?? 0) * s.maxHp + (sc.armor ?? 0) * s.armor + (sc.speed ?? 0) * s.speed;
   const classMult = run.char.classMult?.[def.cls] ?? 1;
-  d *= (1 + s.damage / 100) * classMult;
+  // 分类伤害 %：光环武器只吃光环伤害 %，其余按武器类别
+  const pct = def.kind === 'aura' ? s.auraPct : def.cls === 'melee' ? s.meleePct : def.cls === 'ranged' ? s.rangedPct : s.elementalPct;
+  d *= (1 + (s.damage + pct) / 100) * classMult;
   d *= 1 + affixTotals(ow).dmg / 100;
+  if (run.char.favored.includes(def.id)) d *= 1.2; // 契合武器
   return Math.max(1, d);
 }
 
 export function weaponRange(def: WeaponDef, s: Stats, ow?: OwnedWeapon): number {
+  // 光环范围只受光环范围属性影响（不吃射程）
+  if (def.kind === 'aura') return Math.max(60, def.range * (1 + s.auraSize / 100) + affixTotals(ow).range);
   const bonus = def.cls === 'melee' ? s.range * 0.5 : s.range;
   return Math.max(def.cls === 'melee' ? 70 : 120, def.range + bonus + affixTotals(ow).range);
 }

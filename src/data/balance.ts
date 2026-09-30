@@ -8,6 +8,10 @@ export const BALANCE = {
   pickup: { baseRadius: 110, magnetSpeed: 700 },
   maxEnemies: 260,
   harvestGrowth: 0.05,
+  /** 番茄籽收入曲线：base × (1 + linear·w + quad·w²)，calib 为实测拾取率校准 */
+  income: { base: 34, linear: 0.5, quad: 0.035, calib: 0.75 },
+  /** 商店 T4 武器概率：rate × (波次 − fromWave)^1.6，再乘幸运与章节 t4Mult */
+  t4: { rate: 0.003, fromWave: 7 },
   seedMult: 0.5, // 第 6 波起小怪番茄籽的经验倍率（货币掉落另按血量成长放大，见 Enemy.lootMult）
   cratesPerWave: 3, // 每波最多掉落宝箱（精英/Boss 不计）
   rerollBase: 2,
@@ -70,6 +74,44 @@ export function spawnBatch(wave: number): number {
   return 3 + Math.floor(wave * 0.4);
 }
 
+/** 每波期望刷怪数（按刷怪节奏估算，用于把番茄籽收入归一到目标曲线） */
+export function expectedSpawns(wave: number): number {
+  return (waveDuration(wave) / spawnInterval(wave)) * spawnBatch(wave);
+}
+
+/** 每波番茄籽收入目标（第 1 章基准；章节再乘 lootMult）：第 1 波约 30，第 14 波约 330 */
+export function incomeTarget(wave: number): number {
+  const w = wave - 1;
+  return BALANCE.income.base * (1 + BALANCE.income.linear * w + BALANCE.income.quad * w * w);
+}
+
+/** 单只小怪（seeds = 1）的番茄籽价值：收入目标 ÷ 期望刷怪数 × 实测校准
+ *  第 1 波怪死得晚、籽大多来不及捡（留到下一波翻倍），所以放大；后期分裂/召唤/精英使实际击杀多于估算，所以压低 */
+export function seedValue(wave: number): number {
+  const w = Math.min(wave, 14);
+  const calib = wave === 1 ? 2.5 : wave === 2 ? 1 : BALANCE.income.calib;
+  return (incomeTarget(w) / expectedSpawns(w)) * calib;
+}
+
+/** 商店武器品质权重 [T1, T2, T3, T4]：受波次、幸运与章节 T4 系数影响 */
+export function weaponTierWeights(wave: number, luck: number, t4Mult = 1): number[] {
+  const l = 1 + Math.max(-0.9, luck / 100);
+  const t2 = Math.min(0.5, 0.07 * (wave - 1) * l);
+  const t3 = Math.min(0.2, Math.max(0, 0.02 * (wave - 5)) * l);
+  const t4 = Math.min(0.25, BALANCE.t4.rate * Math.max(0, wave - BALANCE.t4.fromWave) ** 1.6 * l * t4Mult); // 前期稀有、后期陡增
+  return [Math.max(0, 1 - t2 - t3 - t4), t2, t3, t4];
+}
+
+export function pickWeaponTier(wave: number, luck: number, t4Mult = 1): number {
+  const w = weaponTierWeights(wave, luck, t4Mult);
+  let r = Math.random();
+  for (let i = 3; i >= 1; i--) {
+    if (r < w[i]) return i;
+    r -= w[i];
+  }
+  return 0;
+}
+
 /** 商店价格：随波次上涨 */
 /** 商店涨价倍率（番茄籽掉落也参考它，保证后期买得起） */
 export function priceInflation(wave: number): number {
@@ -81,8 +123,8 @@ export function shopPrice(base: number, wave: number): number {
 
 /** 刷新价格：随波次、本波已刷新次数与章节上涨，避免后期靠反复刷新轻易凑齐高级武器 */
 export function rerollPrice(wave: number, rerolls: number, chapterId = 1): number {
-  const chapterMult = 1 + 0.25 * (chapterId - 1);
-  return Math.round((BALANCE.rerollBase + 1 + wave * 1.2 + rerolls * (1 + wave * 0.6)) * chapterMult);
+  const chapterMult = 1 + 0.3 * (chapterId - 1);
+  return Math.round((BALANCE.rerollBase + 3 + wave * 2 + rerolls * (2 + wave * 0.8)) * chapterMult);
 }
 
 /** 出售价格 = 25% 购买价 */

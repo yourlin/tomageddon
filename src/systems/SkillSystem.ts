@@ -11,6 +11,7 @@ import type { Enemy } from '../objects/Enemy';
 import { Rig } from '../objects/Rig';
 import { weaponDamage } from './WeaponSystem';
 import { WEAPON_MAP } from '../data/weapons';
+import { castFx, drainLines } from './SkillFx';
 
 interface Field {
   x: number;
@@ -132,6 +133,7 @@ export class SkillSystem {
     this.cd = this.maxCd;
     audio.play(g, 'skill');
     p.play('cast', true);
+    castFx(g, sk, sk.type === 'buff' || sk.type === 'ghost' ? this.dur(sk.duration ?? 3) : 0, Math.atan2(g.moveY || 0.0001, g.moveX || 1));
     const status = this.statuses(sk.status);
     const info: HitInfo = { dmg: this.damage(s), crit: false, knockback: 30, lifeSteal: 0, status };
     if (sk.selfStatus) g.applyPlayerStatus(this.statuses(sk.selfStatus));
@@ -305,6 +307,7 @@ export class SkillSystem {
       case 'heal': {
         const r = this.radius(sk.radius ?? 180);
         const hits = [...g.grid.query(p.x, p.y, r, g.tmp)];
+        drainLines(g, hits);
         g.fx.nova(p.x, p.y, r, sk.color);
         for (const e of hits) {
           g.weaponHit(e, info, p.x, p.y);

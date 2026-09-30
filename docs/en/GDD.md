@@ -148,10 +148,10 @@ Elites: +1 random affix from wave 10, +1 from chapter 3, and another +1 from cha
 | Chapter | Scene | HP | Damage | Features |
 | --- | --- | --- | --- | --- |
 | 1 Midnight Kitchen | Wooden floor, breadcrumbs, ketchup stains | ×1.0 | ×1.0 | Tutorial difficulty |
-| 2 Wild Garden | Dirt beds, weeds, pebbles | ×4.6 (elites/bosses ×2.3) | ×1.6 | Venom Bees, Toxic Shrooms, Brood Mothers |
-| 3 Frozen Fridge | Frosted shelves, ice crystals | ×4.0 (elites/bosses ×2.1) | ×1.55 | Lots of Slow and Freeze |
-| 4 City Junkyard | Cracked concrete, oil stains, garbage | ×4.0 (elites/bosses ×2.2) | ×1.65 | Blind, Armor Break, splitting |
-| 5 Ketchup Factory | Metal plates, hazard stripes, sauce pools | ×5.0 (elites/bosses ×3.0) | ×1.8 | All monsters mixed + Curse |
+| 2 Wild Garden | Dirt beds, weeds, pebbles | ×3.2 (elites/bosses ×1.85) | ×1.4 | Venom Bees, Toxic Shrooms, Brood Mothers |
+| 3 Frozen Fridge | Frosted shelves, ice crystals | ×3.0 (elites/bosses ×1.7) | ×1.45 | Lots of Slow and Freeze |
+| 4 City Junkyard | Cracked concrete, oil stains, garbage | ×2.6 (elites/bosses ×1.6) | ×1.5 | Blind, Armor Break, splitting |
+| 5 Ketchup Factory | Metal plates, hazard stripes, sauce pools | ×3.2 (elites/bosses ×2.4) | ×1.65 | All monsters mixed + Curse |
 
 - Chapter multipliers **ramp in gradually**: `1 + (multiplier−1) × (0.1 + 0.9 × (wave−1)/14)`, since every chapter starts from level 0
 - Let w = wave−1: HP `base × (1 + growth × w^0.9) × chapter factor` (sublinear, fast early and slower later; elites/bosses use a separate chapter multiplier); damage `(base + growth×(0.4w + 0.03w²)) × chapter factor` (gentle early, accelerating late)
@@ -180,10 +180,12 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 | Item | Rule |
 | --- | --- |
 | Level-up XP | `(level+3)²` |
-| Shop price | `base × (1 + 0.12(wave−1)) + 0.5×wave`, then multiplied by discount (capped at 50%) |
-| Reroll price | `(3 + 1.2×wave + rerolls this wave × (1 + 0.6×wave)) × (1 + 0.25×(chapter−1))`, then × the stock factor |
-| Reroll scaling | The more unbought, unlocked items remain, the pricier a reroll: 4 left ×1.2 … 1 left ×0.6; buying everything restocks for free |
+| Seed income | Per-wave income target `34 × (1 + 0.5w + 0.035w²)` (w = wave−1; ~34 on wave 1, ~480 on wave 14), converted into a per-monster value using the expected spawn count; later chapters ×1~1.5 |
+| Shop price | `base × (1 + 0.2(wave−1)) + 0.5×wave`, then multiplied by discount (capped at 50%); weapon T2/T3/T4 = T1 × 2.1 / 4 / 7.5 |
+| Reroll limit | Up to 3 rerolls per shop by default; the Reroll Ticket and VIP Card items raise it, up to 10; buying everything restocks for free (not counted) |
+| Reroll price | `(5 + 2×wave + rerolls this wave × (2 + 0.8×wave)) × (1 + 0.3×(chapter−1))`, −25% for every item bought in this shop |
 | Rarity | Improves with wave and Luck; Legendary appears from wave 7 |
+| Weapon tiers | Separate tier table: T3 from wave 6; T4 chance `0.003 × (wave−7)^1.6 × Luck × chapter factor` (chapters 1~5: ×1 / 1.1 / 1.25 / 1.4 / 1.55). Target at wave 15: ~50% of players own 1 T4, 30% own 2, 10% own 3 |
 | Interest | 10% per Piggy Bank, capped at 6×wave per wave (prevents snowballing) |
 | Uncollected Seeds | Not auto-collected at wave end; they go into a bonus pool, and next wave every Seed you pick up grants the same amount again until the pool runs out |
 | HP | Fully restored at the start of each wave; 0.5 s invulnerability after being hit |

@@ -50,6 +50,7 @@ export function describeSpecial(s: ItemSpecial | undefined): string[] {
   if (s.lightningOnHit) out.push(tx(`命中 ${s.lightningOnHit}% 概率落雷`, `${s.lightningOnHit}% chance to call lightning on hit`));
   if (s.killHeal) out.push(tx(`每击杀 ${s.killHeal} 个敌人回复 1 生命`, `Heal 1 HP every ${s.killHeal} kills`));
   if (s.shopDiscount) out.push(tx(`商店价格 -${s.shopDiscount}%`, `Shop prices -${s.shopDiscount}%`));
+  if (s.rerolls) out.push(tx(`每波商店刷新次数 +${s.rerolls}`, `+${s.rerolls} shop reroll(s) per wave`));
   if (s.sameWeaponBonus) out.push(tx(`每把同名武器 +${s.sameWeaponBonus}% 伤害`, `+${s.sameWeaponBonus}% damage per duplicate weapon`));
   if (s.fruitHeal) out.push(tx(`果实回血 +${s.fruitHeal}%`, `Fruit healing +${s.fruitHeal}%`));
   if (s.crateMult) out.push(tx(`宝箱掉率 x${s.crateMult}`, `Crate drop rate x${s.crateMult}`));

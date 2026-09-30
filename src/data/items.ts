@@ -15,6 +15,7 @@ export interface ItemSpecial {
   lightningOnHit?: number; // 命中时概率触发闪电 %
   killHeal?: number; // 每击杀 N 个敌人回复 1 生命
   shopDiscount?: number; // 商店折扣 %
+  rerolls?: number; // 每波商店刷新次数上限 +N（总上限 10）
   onHit?: StatusApply[]; // 命中时对敌人施加
   onHitSelf?: StatusApply[]; // 命中时对自己施加
   onKillSelf?: StatusApply[]; // 击杀时对自己施加
@@ -64,6 +65,16 @@ export const ITEMS: ItemDef[] = [
   { id: 'feather', name: '羽毛', rarity: 0, price: 14, mods: { dodge: 3 } },
   { id: 'hot_sauce', name: '辣酱包', rarity: 0, price: 14, mods: { damage: 5 } },
   { id: 'notebook', name: '食谱笔记', rarity: 0, price: 14, mods: { xpGain: 10 } },
+  {
+    id: 'reroll_ticket',
+    name: '刷新券',
+    rarity: 0,
+    price: 18,
+    mods: {},
+    special: { rerolls: 1 },
+    max: 3,
+    icon: { shape: 'scroll', color: 0xffd166, color2: 0xe63946 },
+  },
   // ---------- 稀有 ----------
   {
     id: 'big_magnet',
@@ -120,6 +131,16 @@ export const ITEMS: ItemDef[] = [
     desc: '每击杀 25 个敌人回复 1 生命',
   },
   // ---------- 史诗 ----------
+  {
+    id: 'vip_card',
+    name: '会员卡',
+    rarity: 2,
+    price: 55,
+    mods: { luck: 5 },
+    special: { rerolls: 2 },
+    max: 2,
+    icon: { shape: 'book', color: 0x9d4edd, color2: 0xffd166 },
+  },
   {
     id: 'vacuum',
     name: '吸尘器',
@@ -184,12 +205,16 @@ export const ALL_ITEMS: ItemDef[] = [...ITEMS, ...GENERATED_ITEMS];
 
 export const ITEM_MAP: Record<string, ItemDef> = Object.fromEntries(ALL_ITEMS.map((i) => [i.id, i]));
 
-/** 升级时的属性选项（按稀有度数值不同） */
+/** 升级时的属性选项（按稀有度数值不同）。attackClass 为 null 表示所有流派通用 */
 export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }[] = [
   { key: 'maxHp', values: [3, 6, 9, 12] },
   { key: 'regen', values: [2, 3, 4, 5] },
   { key: 'lifeSteal', values: [1, 2, 3, 4] },
-  { key: 'damage', values: [5, 8, 12, 16] },
+  { key: 'meleePct', values: [6, 10, 14, 19] },
+  { key: 'rangedPct', values: [6, 10, 14, 19] },
+  { key: 'elementalPct', values: [6, 10, 14, 19] },
+  { key: 'auraPct', values: [7, 11, 16, 21] },
+  { key: 'auraSize', values: [6, 10, 14, 20] },
   { key: 'melee', values: [2, 3, 4, 5] },
   { key: 'ranged', values: [1, 2, 3, 4] },
   { key: 'elemental', values: [1, 2, 3, 4] },
@@ -198,7 +223,7 @@ export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }
   { key: 'range', values: [15, 30, 45, 60] },
   { key: 'armor', values: [1, 2, 3, 4] },
   { key: 'dodge', values: [3, 6, 9, 12] },
-  { key: 'pickup', values: [15, 25, 35, 50] },
+  { key: 'pickup', values: [15, 25, 40, 60] },
   { key: 'speed', values: [3, 6, 9, 12] },
   { key: 'luck', values: [5, 10, 15, 20] },
   { key: 'harvest', values: [5, 8, 10, 12] },

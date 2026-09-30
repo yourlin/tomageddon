@@ -42,6 +42,7 @@ export interface Specials {
   lightningOnHit: number;
   killHeal: number;
   shopDiscount: number;
+  rerolls: number;
   onHit: StatusApply[];
   onHitSelf: StatusApply[];
   onKillSelf: StatusApply[];
@@ -115,6 +116,7 @@ export class RunState {
     this.xp = 0;
     this.seeds = 0;
     this.kills = 0;
+    this.income = {};
     this.items = {};
     this.levelMods = {};
     this.pendingLevelUps = 0;
@@ -172,6 +174,7 @@ export class RunState {
       lightningOnHit: 0,
       killHeal: 0,
       shopDiscount: this.char.shopDiscount ?? 0,
+      rerolls: 0,
       onHit: [],
       onHitSelf: [],
       onKillSelf: [],
@@ -201,6 +204,7 @@ export class RunState {
       sp.lightningOnHit += (x.lightningOnHit ?? 0) * n;
       if (x.killHeal) sp.killHeal = sp.killHeal ? Math.min(sp.killHeal, x.killHeal) : x.killHeal;
       sp.shopDiscount += (x.shopDiscount ?? 0) * n;
+      sp.rerolls += (x.rerolls ?? 0) * n;
       for (let i = 0; i < n; i++) {
         if (x.onHit) sp.onHit.push(...x.onHit);
         if (x.onHitSelf) sp.onHitSelf.push(...x.onHitSelf);
@@ -325,6 +329,11 @@ export class RunState {
   removeWeapon(uid: number): void {
     this.weapons = this.weapons.filter((x) => x.uid !== uid);
     this.dirty();
+  }
+
+  /** 每波商店刷新次数上限：默认 3，道具可增加，最多 10 */
+  get maxRerolls(): number {
+    return Math.min(10, 3 + this.specials.rerolls);
   }
 
   isBossWave(): boolean {

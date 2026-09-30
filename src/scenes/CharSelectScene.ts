@@ -206,6 +206,15 @@ export class CharSelectScene extends Phaser.Scene {
           tx('初始武器：', 'Starting weapons: ') + c.startWeapons.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
           17,
           '#9be564',
+        ) + 2;
+      y +=
+        add(
+          20,
+          y,
+          tx('契合武器（伤害 +20%）：', 'Synergy weapons (+20% dmg): ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
+          16,
+          '#ffd166',
+          pw - 40,
         ) + 4;
       const best = save.bestWave[`${c.id}_${this.chapter}`];
       if (best) add(20, y, tx(`本章最佳：第 ${best} 波`, `Best this chapter: wave ${best}`), 15, COLORS.textDim);

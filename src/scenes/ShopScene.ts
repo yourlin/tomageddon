@@ -6,7 +6,7 @@ import { run, saveRun, type ShopOffer, type OwnedWeapon } from '../systems/RunSt
 import { WEAPONS, WEAPON_MAP, TIER_PRICE_MULT, TIER_NAMES, WEAPON_SETS } from '../data/weapons';
 import { ALL_ITEMS, ITEM_MAP } from '../data/items';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
-import { BALANCE, RARITY, pickRarity, rerollPrice, shopPrice, sellPrice } from '../data/balance';
+import { BALANCE, RARITY, pickRarity, rerollPrice, pickWeaponTier, shopPrice, sellPrice } from '../data/balance';
 import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
 import { text, button, panel, COLORS, fitImage, hitArea, toast, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
@@ -63,9 +63,10 @@ export class ShopScene extends Phaser.Scene {
     while (offers.length < BALANCE.shopSlots) {
       const wantWeapon = Math.random() < (run.weapons.length < run.maxWeapons ? 0.4 : 0.25);
       if (wantWeapon) {
-        let def = Phaser.Utils.Array.GetRandom(WEAPONS);
+        // 约 3 倍权重出现角色的契合武器
+        let def = Math.random() < 0.18 ? WEAPON_MAP[Phaser.Utils.Array.GetRandom(run.char.favored)] : Phaser.Utils.Array.GetRandom(WEAPONS);
         if (run.weapons.length && Math.random() < 0.25) def = WEAPON_MAP[Phaser.Utils.Array.GetRandom(run.weapons).id];
-        const tier = Math.max(def.minTier ?? 0, Math.min(3, pickRarity(wave, luck)));
+        const tier = Math.max(def.minTier ?? 0, pickWeaponTier(wave, luck, run.chapter.t4Mult));
         offers.push({ kind: 'weapon', id: def.id, tier, price: this.price(def.price * TIER_PRICE_MULT[tier]), locked: false, sold: false });
       } else {
         const rar = pickRarity(wave, luck);
@@ -145,6 +146,7 @@ export class ShopScene extends Phaser.Scene {
           ),
           d.desc,
         ];
+        if (run.char.favored.includes(d.id)) lines.unshift(tx('★ 契合武器 · 伤害 +20%', '★ Synergy · +20% damage'));
         if (affixSlots(o.tier))
           lines.push(tx(`★ 购买后随机 ${affixSlots(o.tier)} 条词条`, `★ Rolls ${affixSlots(o.tier)} random affix(es)`));
       } else {
@@ -258,6 +260,8 @@ export class ShopScene extends Phaser.Scene {
 
     // 底部按钮
     const rp = this.rerollCost();
+    const left = run.maxRerolls - run.rerolls,
+      canReroll = left > 0;
     L.add(
       button(
         this,
@@ -265,9 +269,9 @@ export class ShopScene extends Phaser.Scene {
         H - 82,
         sw,
         50,
-        tx(`刷新 🌱${rp}`, `Reroll 🌱${rp}`),
+        canReroll ? tx(`刷新 🌱${rp}（剩 ${left} 次）`, `Reroll 🌱${rp} (${left} left)`) : tx('本波刷新次数已用完', 'No rerolls left'),
         () => {
-          if (run.seeds < rp) return;
+          if (run.seeds < rp || !canReroll) return;
           run.seeds -= rp;
           run.rerolls++;
           this.rollShop(true);
@@ -276,7 +280,7 @@ export class ShopScene extends Phaser.Scene {
         },
         0x7a2e35,
         20,
-      ).setEnabled(run.seeds >= rp),
+      ).setEnabled(canReroll && run.seeds >= rp),
     );
     L.add(button(this, sx + sw / 2, H - 30, sw, 52, tx('下一波 ▶', 'Next Wave ▶'), () => this.nextWave(), COLORS.primary, 24));
   }
@@ -302,11 +306,11 @@ export class ShopScene extends Phaser.Scene {
     this.draw();
   }
 
-  /** 刷新价格：货架上剩余（未买、未锁定）的商品越多越贵：4 件 ×1.2 … 1 件 ×0.6 */
+  /** 刷新价格：随章节与波次上涨；当前货架每买走一件，价格 ×0.75 */
   private rerollCost(): number {
     if (freeFirstReroll(run.charId) && run.rerolls === 0) return 0;
-    const left = run.shop.filter((x) => !x.sold && !x.locked).length;
-    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * (0.4 + 0.2 * left)));
+    const bought = run.shop.filter((x) => x.sold).length;
+    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * Math.pow(0.75, bought)));
   }
 
   private weaponPopup(w: OwnedWeapon, x: number, y: number): void {
