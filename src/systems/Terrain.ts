@@ -195,7 +195,7 @@ export class Terrain {
           this.pulse(h);
           for (let i = 0; i < 3; i++) g.time.delayedCall(i * 250, () => g.spawnEnemyNow(run.wave >= 6 ? 'cockroach' : 'mold', h.x, h.y));
         }
-        if (this.tick('tomato', dt, 20, 2)) {
+        if (this.tick('tomato', dt, 35, 2)) {
           const A = g.arena;
           const x = Phaser.Math.Between(A.x + 120, A.right - 120),
             y = Phaser.Math.Between(A.y + 120, A.bottom - 120);

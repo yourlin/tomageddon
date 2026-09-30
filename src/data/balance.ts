@@ -117,7 +117,7 @@ export const RARITY = [
 
 /** 每波结束时击杀敌人掉落果实（回血）的概率 */
 export function fruitDropChance(luck: number): number {
-  return Math.min(0.25, 0.04 * (1 + luck / 100));
+  return Math.min(0.12, 0.02 * (1 + luck / 100));
 }
 
 /** 宝箱掉落概率（精英必掉） */

@@ -12,6 +12,18 @@ import { run } from '../systems/RunState';
 
 let enemySeq = 1;
 
+/** 词缀精英配色：金色身体、红色花纹，保留原造型与五官 */
+function championLook(look: EnemyDef['look']): EnemyDef['look'] {
+  return {
+    ...look,
+    color: 0xffc300,
+    color2: 0xfff1b8,
+    patternColor: 0xc1121f,
+    ...(look.limbColor !== undefined ? { limbColor: 0xb5651d } : {}),
+    ...(look.topColor !== undefined ? { topColor: 0xe85d04 } : {}),
+  };
+}
+
 export class Enemy {
   uid = 0;
   x = 0;
@@ -103,7 +115,9 @@ export class Enemy {
     affixes: AffixId[] = [],
   ): void {
     const r = def.radius * (affixes.length ? 1.25 : 1);
-    this.reset(g, x, y, `enemy_${def.id}`, def.look, r);
+    // 词缀精英：同一造型换成金色配色（独立缓存键），怪多时也一眼能认出
+    if (affixes.length) this.reset(g, x, y, `enemy_${def.id}_champ`, championLook(def.look), r);
+    else this.reset(g, x, y, `enemy_${def.id}`, def.look, r);
     this.def = def;
     this.boss = null;
     this.affixes = affixes;

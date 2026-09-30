@@ -1,7 +1,7 @@
 // 自动化平衡测试机器人 v2（开发用）
 // 用法：await import('/scripts/bot2.js'); runBatch(['tomato','carrot'], 2, 16)
 // 按角色流派：近战贴近敌人、远程保持距离；按流派评估道具/升级/武器价值
-const { CHARACTER_MAP, CHARACTERS, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, rerollPrice } = window.__dev;
+const { CHARACTER_MAP, CHARACTERS, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS } = window.__dev;
 
 function profile(charId) {
   const c = CHARACTER_MAP[charId];
@@ -220,7 +220,7 @@ function shop(P) {
     return;
   }
   // 满栏时卖掉非主流派的最低品质武器，给主流派腾位置
-  const rp = rerollPrice(run.wave, run.rerolls);
+  const rp = s.rerollCost();
   if (run.rerolls < 5 && run.seeds > rp * 3) {
     run.seeds -= rp;
     run.rerolls++;

@@ -1142,7 +1142,7 @@ export class GameScene extends Phaser.Scene {
       if (this.cratesDropped < BALANCE.cratesPerWave + 1 && Math.random() < 0.25) {
         this.cratesDropped++;
         this.dropPickup('crate', e.x, e.y, 1);
-      } else this.dropPickup('fruit', e.x, e.y, 1);
+      } else if (Math.random() < 0.3) this.dropPickup('fruit', e.x, e.y, 1);
     } else {
       if (Math.random() < fruitDropChance(s.luck)) this.dropPickup('fruit', e.x, e.y, 1);
       else if (

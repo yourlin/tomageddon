@@ -182,6 +182,7 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 | Level-up XP | `(level+3)²` |
 | Shop price | `base × (1 + 0.12(wave−1)) + 0.5×wave`, then multiplied by discount (capped at 50%) |
 | Reroll price | `2 + 0.75×wave + rerolls so far × ceil(wave/2)` |
+| Reroll scaling | The more unbought, unlocked items remain, the pricier a reroll: 4 left ×1.2 … 1 left ×0.6; buying everything restocks for free |
 | Rarity | Improves with wave and Luck; Legendary appears from wave 7 |
 | Interest | 10% per Piggy Bank, capped at 6×wave per wave (prevents snowballing) |
 | Uncollected Seeds | Not auto-collected at wave end; they go into a bonus pool, and next wave every Seed you pick up grants the same amount again until the pool runs out |

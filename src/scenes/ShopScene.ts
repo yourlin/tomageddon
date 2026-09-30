@@ -257,7 +257,7 @@ export class ShopScene extends Phaser.Scene {
     });
 
     // 底部按钮
-    const rp = freeFirstReroll(run.charId) && run.rerolls === 0 ? 0 : rerollPrice(run.wave, run.rerolls);
+    const rp = this.rerollCost();
     L.add(
       button(
         this,
@@ -294,7 +294,19 @@ export class ShopScene extends Phaser.Scene {
     o.sold = true;
     o.locked = false;
     audio.play(this, 'buy');
+    // 全部买光：免费补货（不计入刷新次数）
+    if (run.shop.every((x) => x.sold)) {
+      this.rollShop(true);
+      toast(this, tx('商品已售罄，免费补货！', 'Sold out — free restock!'), '#52ff8a');
+    }
     this.draw();
+  }
+
+  /** 刷新价格：货架上剩余（未买、未锁定）的商品越多越贵：4 件 ×1.2 … 1 件 ×0.6 */
+  private rerollCost(): number {
+    if (freeFirstReroll(run.charId) && run.rerolls === 0) return 0;
+    const left = run.shop.filter((x) => !x.sold && !x.locked).length;
+    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls) * (0.4 + 0.2 * left)));
   }
 
   private weaponPopup(w: OwnedWeapon, x: number, y: number): void {
