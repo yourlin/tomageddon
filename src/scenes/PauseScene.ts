@@ -45,6 +45,16 @@ export class PauseScene extends Phaser.Scene {
       17,
       COLORS.textDim,
     );
+    // 专属天赋与特性
+    const c = run.char;
+    const colW = 280;
+    let ty = 440;
+    ty += text(this, W / 2 + 120, ty, tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 18, '#ffd166').height + 2;
+    ty += text(this, W / 2 + 120, ty, c.talent.desc, 14, '#fff4ea', { wordWrap: { width: colW, useAdvancedWrap: true } }).height + 8;
+    if (c.traits.length)
+      text(this, W / 2 + 120, ty, `${tx('特性', 'Traits')}：${c.traits.join(tx('；', '; '))}`, 14, COLORS.textDim, {
+        wordWrap: { width: colW, useAdvancedWrap: true },
+      });
 
     const by = H - 110;
     button(this, W / 2 - 380, by, 180, 64, tx('继续', 'Resume'), () => this.resume(), COLORS.green, 26);
