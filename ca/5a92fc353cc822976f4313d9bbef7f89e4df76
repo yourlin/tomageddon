@@ -1,0 +1,52 @@
+src/data/achievements.ts
+  s_b200a2907eaa8e::t_f6e361c22db6c3 5,7,32-33,51-52,266-280
+  s_b200a2907eaa8e::t_7d22ebf8b420d4 281-282,293
+src/main.ts
+  s_b200a2907eaa8e::t_710a0d1f1d8ac3 43-44
+  s_b200a2907eaa8e::t_be52c46afd96fe 25,45-46,77
+src/systems/ForceLandscape.ts
+  s_b200a2907eaa8e::t_dd223da7fd2e92 1-68
+index.html
+  s_b200a2907eaa8e::t_be52c46afd96fe 28,31,34-39,44
+src/systems/Fullscreen.ts
+  s_b200a2907eaa8e::t_be52c46afd96fe 4,88
+src/systems/Perf.ts
+  s_b200a2907eaa8e::t_be52c46afd96fe 4,59
+src/scenes/GameScene.ts
+  s_b200a2907eaa8e::t_f6e361c22db6c3 1081
+README.md
+  s_b200a2907eaa8e::t_a25c92cc638042 77
+docs/ACHIEVEMENTS.md
+  s_b200a2907eaa8e::t_2d719e1fad1352 1,9,22,132-184
+  s_b200a2907eaa8e::t_a61d4ea5fbbfb1 185
+README.en.md
+  s_b200a2907eaa8e::t_a25c92cc638042 77
+scripts/docs/pages-c.ts
+  s_b200a2907eaa8e::t_2d719e1fad1352 7,39,48-56
+docs/en/ACHIEVEMENTS.md
+  s_b200a2907eaa8e::t_2d719e1fad1352 1,9,22,132-184
+  s_b200a2907eaa8e::t_2177655e72e2b5 185
+src/systems/Save.ts
+  s_b200a2907eaa8e::t_f6e361c22db6c3 30-31,60,85
+src/systems/Achievements.ts
+  s_b200a2907eaa8e::t_f6e361c22db6c3 6,44,62,71-74
+  s_b200a2907eaa8e::t_be52c46afd96fe 11,164
+src/scenes/AchievementScene.ts
+  s_b200a2907eaa8e::t_2d719e1fad1352 57,59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ca5a92fc353cc822976f4313d9bbef7f89e4df76",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
