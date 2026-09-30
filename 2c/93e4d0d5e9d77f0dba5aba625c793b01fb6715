@@ -1,0 +1,23 @@
+README.md
+  s_b200a2907eaa8e::t_c4119030a83aea 7-12
+  s_b200a2907eaa8e::t_1dff6315e91061 30,156-165
+README.en.md
+  s_b200a2907eaa8e::t_c4119030a83aea 7-12
+  s_b200a2907eaa8e::t_caaa91ec4c858e 30,156-165
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "2c93e4d0d5e9d77f0dba5aba625c793b01fb6715",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
