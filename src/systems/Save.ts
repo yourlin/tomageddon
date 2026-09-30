@@ -29,6 +29,8 @@ export interface SaveData {
   charRuns: Record<string, number>;
   /** 每名精英 / Boss 被击败次数 */
   killedBosses: Record<string, number>;
+  /** 已阅读过更新日志的版本号（用于主菜单红点） */
+  seenVersion?: string;
   /** 成就用累计统计 */
   stats: AchStats;
 }

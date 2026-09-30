@@ -2,7 +2,7 @@
 
 **中文** · [English](en/CHAPTERS.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
@@ -170,7 +170,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 难度倍率 | 生命 ×3 · 伤害 ×1.5 · 速度 ×1.15 |
+| 难度倍率 | 生命 ×2.7 · 伤害 ×1.5 · 速度 ×1.15 |
 | 地形机关 | 流沙坑：会把人和怪物吸入中心，并造成伤害<br>垃圾坠落：注意地面的预警圈 |
 | 精英池 | <img src="images/boss/tire_beast.png" width="24" height="24" alt=""> [轮胎兽](MONSTERS.md#boss-tire_beast)、<img src="images/boss/can_king.png" width="24" height="24" alt=""> [易拉罐之王](MONSTERS.md#boss-can_king)、<img src="images/boss/rag_wraith.png" width="24" height="24" alt=""> [抹布怨灵](MONSTERS.md#boss-rag_wraith)、<img src="images/boss/battery_bug.png" width="24" height="24" alt=""> [漏电电池虫](MONSTERS.md#boss-battery_bug)、<img src="images/boss/garbage_rat.png" width="24" height="24" alt=""> [垃圾鼠王](MONSTERS.md#boss-garbage_rat)、<img src="images/boss/oil_titan.png" width="24" height="24" alt=""> [石油泰坦](MONSTERS.md#boss-oil_titan) |
 | Boss 池 | <img src="images/boss/trash_golem.png" width="24" height="24" alt=""> [垃圾巨像](MONSTERS.md#boss-trash_golem)、<img src="images/boss/toxic_barrel.png" width="24" height="24" alt=""> [毒液桶魔](MONSTERS.md#boss-toxic_barrel)、<img src="images/boss/scrap_dragon.png" width="24" height="24" alt=""> [废铁巨龙](MONSTERS.md#boss-scrap_dragon) |
@@ -210,7 +210,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 难度倍率 | 生命 ×3.7 · 伤害 ×1.75 · 速度 ×1.2 |
+| 难度倍率 | 生命 ×3.4 · 伤害 ×1.7 · 速度 ×1.2 |
 | 地形机关 | 传送带：推动站在上面的所有单位<br>蒸汽阀门：周期性喷出灼热蒸汽 |
 | 精英池 | <img src="images/boss/conveyor_worm.png" width="24" height="24" alt=""> [传送带蠕虫](MONSTERS.md#boss-conveyor_worm)、<img src="images/boss/ketchup_golem.png" width="24" height="24" alt=""> [番茄酱傀儡](MONSTERS.md#boss-ketchup_golem)、<img src="images/boss/security_bot.png" width="24" height="24" alt=""> [保安机器人](MONSTERS.md#boss-security_bot)、<img src="images/boss/press_machine.png" width="24" height="24" alt=""> [冲压机](MONSTERS.md#boss-press_machine)、<img src="images/boss/chef_minion.png" width="24" height="24" alt=""> [腐烂副厨](MONSTERS.md#boss-chef_minion)、<img src="images/boss/furnace_imp.png" width="24" height="24" alt=""> [熔炉小鬼](MONSTERS.md#boss-furnace_imp) |
 | Boss 池 | <img src="images/boss/rotten_chef.png" width="24" height="24" alt=""> [腐烂大厨](MONSTERS.md#boss-rotten_chef)、<img src="images/boss/factory_core.png" width="24" height="24" alt=""> [工厂主脑](MONSTERS.md#boss-factory_core)、<img src="images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [番茄酱海怪](MONSTERS.md#boss-ketchup_leviathan) |
@@ -245,4 +245,4 @@
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)

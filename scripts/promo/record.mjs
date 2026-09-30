@@ -176,13 +176,21 @@ const spawnRing = (p, ids, n, radius) =>
   );
 
 const BUILD = [
-  ['knife', 3],
   ['fork', 3],
+  ['baguette_sword', 3],
   ['ketchup', 2],
-  ['pea_shooter', 3],
-  ['chili_rocket', 2],
-  ['cleaver', 2],
+  ['lightning_whisk', 3],
+  ['bean_bazooka', 2],
+  ['star_anise_shuriken', 2],
 ];
+
+/** 强制释放技能（展示技能动画） */
+const castSkill = (p) =>
+  p.evaluate(() => {
+    const g = game.scene.getScene('Game');
+    g.skill.cd = 0;
+    g.skill.use();
+  });
 
 // ---------------- 片段 ----------------
 {
@@ -194,9 +202,13 @@ const BUILD = [
   await sleep(1800);
   await spawnRing(p, ['mold', 'fly', 'cockroach', 'maggot', 'rotten_apple'], 70, 420);
   await record(p, 'combat', async () => {
-    await sleep(2500);
+    await sleep(1200);
+    await castSkill(p); // 技能动画：名称横幅 + 光芒 + 冲击波
+    await sleep(2300);
     await spawnRing(p, ['mold', 'fly', 'cockroach', 'ant'], 60, 460);
-    await sleep(6500);
+    await sleep(2200);
+    await castSkill(p);
+    await sleep(3300);
   });
   await p.close();
 }
@@ -208,7 +220,9 @@ const BUILD = [
   await godMode(p);
   await sleep(3500);
   await record(p, 'boss', async () => {
-    await sleep(9000);
+    await sleep(2500);
+    await castSkill(p);
+    await sleep(6500);
   });
   await p.close();
 }

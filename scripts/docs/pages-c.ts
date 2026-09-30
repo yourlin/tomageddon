@@ -1,10 +1,11 @@
-// 文档页：成就与角色购买
+// 文档页：成就与角色购买、更新日志
 import { tx } from '../../src/i18n';
 import { CHARACTERS } from '../../src/data/characters';
 import { ACHIEVEMENTS, ACH_CATEGORY_NAME, TIER_MEDALS, type AchCategory, type AchievementDef } from '../../src/data/achievements';
 import { achText, tierGoal, pick, pointsTotal } from '../../src/systems/Achievements';
 import { Doc, lnk, img, unlockText } from './common';
 import { BOSS_MAP } from '../../src/data/bosses';
+import { CHANGELOG } from '../../src/data/changelog';
 
 /** 各等级：🥉 100（+10 点） */
 function tiersText(a: AchievementDef): string {
@@ -70,5 +71,21 @@ export function achievementsDoc(): void {
       tiersText(w),
     ]),
   );
+  d.write();
+}
+
+/** 更新日志：与游戏内「更新日志」同一份数据 */
+export function changelogDoc(): void {
+  const d = new Doc('CHANGELOG.md', tx('更新日志', 'Changelog'), [
+    tx(
+      '面向玩家的版本变化，与游戏内主菜单「更新日志」同一份数据（`src/data/changelog.ts`）。逐条代码改动见 [提交历史](../../commits/main)。',
+      'Player-facing release notes, from the same data as the in-game "What\'s New" screen (`src/data/changelog.ts`). For change-by-change detail see the [commit history](../../commits/main).',
+    ),
+  ]);
+  for (const e of CHANGELOG) {
+    d.h2(`v${e.version} · ${e.date}`, `v${e.version.replace(/\./g, '-')}`);
+    d.p(`**${pick(e.highlight)}**`, '');
+    d.p(...e.items.map((it) => `- ${pick(it)}`));
+  }
   d.write();
 }

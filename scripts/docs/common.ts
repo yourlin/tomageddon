@@ -25,6 +25,7 @@ const docs = () =>
     [tx('成就', 'Achievements'), 'ACHIEVEMENTS.md'],
     [tx('设计文档', 'Design Doc'), 'GDD.md'],
     [tx('数值表', 'Data Tables'), 'DATA_TABLES.md'],
+    [tx('更新日志', 'Changelog'), 'CHANGELOG.md'],
   ] as const;
 
 export const navLine = (file: string) => docs().map(([n, f]) => (f === file ? `**${n}**` : `[${n}](${f})`)).join(' · ');

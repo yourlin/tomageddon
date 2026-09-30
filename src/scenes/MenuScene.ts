@@ -62,7 +62,25 @@ export class MenuScene extends Phaser.Scene {
       text(this, W / 2, H * 0.2, '番茄酱', 110, '#ff4b3e', { strokeThickness: 14, fontStyle: 'bold' }).setOrigin(0.5);
       text(this, W / 2, H * 0.2 + 80, 'TOMAGEDDON', 34, '#ffd166', { strokeThickness: 6 }).setOrigin(0.5);
     }
-    text(this, W / 2, titleBottom + 14, `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''}`, 16, COLORS.textDim).setOrigin(0.5);
+    // 版本号点击进入更新日志；未读过本版本时带红点
+    const vLabel = text(
+      this,
+      W / 2,
+      titleBottom + 14,
+      tx(
+        `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''} · 更新日志`,
+        `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''} · What's New`,
+      ),
+      16,
+      COLORS.textDim,
+    ).setOrigin(0.5);
+    vLabel.setInteractive({ useHandCursor: true }).on('pointerup', () => this.scene.start('Changelog'));
+    vLabel.on('pointerover', () => vLabel.setColor(COLORS.text));
+    vLabel.on('pointerout', () => vLabel.setColor(COLORS.textDim));
+    if (save.seenVersion !== __APP_VERSION__) {
+      const dot = this.add.circle(vLabel.getBounds().right + 10, titleBottom + 14, 5, 0xff4b3e);
+      this.tweens.add({ targets: dot, alpha: 0.25, duration: 700, yoyo: true, repeat: -1 });
+    }
     if (this.textures.exists('art_hero')) {
       const hero = this.add.image(W * 0.18, H * 0.62, 'art_hero');
       hero.setScale((H * 0.45) / hero.height);

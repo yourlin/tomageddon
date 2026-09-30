@@ -19,6 +19,7 @@ A top-down 2D arena survival roguelite for the browser. Phaser 3 (WebGL) + TypeS
   - [Progression & economy](#progression--economy)
 - [Content](#content)
 - [Documentation](#documentation)
+- [Changelog](docs/en/CHANGELOG.md)
 - [Development](#development)
   - [Running](#running)
   - [Tuning values](#tuning-values)
@@ -103,6 +104,7 @@ Procedural music: electronic loops synthesized live with WebAudio. The main menu
 | [Achievements](docs/en/ACHIEVEMENTS.md) | Tier goals and points of every achievement, character prices and prerequisites   |
 | [Design Doc](docs/en/GDD.md)            | Systems, formulas, art & animation, balancing method, architecture               |
 | [Data Tables](docs/en/DATA_TABLES.md)   | All numbers in one place                                                         |
+| [Changelog](docs/en/CHANGELOG.md)       | Player-facing release notes (also in the game's main menu)                       |
 
 Everything except the design doc is generated from `src/data/` by `npm run docs`, in both languages, with cross-links between docs. Characters, weapons, items, monsters, elites and bosses come with images exported by `npm run docs:images`, which runs the game's own procedural drawing code; re-export after changing any look.
 
