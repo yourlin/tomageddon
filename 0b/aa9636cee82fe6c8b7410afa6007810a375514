@@ -1,0 +1,29 @@
+scripts/promo/edit.sh
+  s_b200a2907eaa8e::t_761d9a02b99c69 2-3,8-10,32,61-62
+scripts/promo/overlays.py
+  s_b200a2907eaa8e::t_739d1e7c484d75 102
+  s_b200a2907eaa8e::t_aa6aa22e6ebeee 98-101
+  s_b200a2907eaa8e::t_de443ffa089c58 1-2,4-97,103-123
+  s_b200a2907eaa8e::t_761d9a02b99c69 3
+scripts/promo/record.mjs
+  s_b200a2907eaa8e::t_d1fb7851b6da91 2,9-10,39,229,231,290,292,295,339,353
+  s_b200a2907eaa8e::t_c53e0be363d7da 386
+package.json
+  s_b200a2907eaa8e::t_761d9a02b99c69 25-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "0baa9636cee82fe6c8b7410afa6007810a375514",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
