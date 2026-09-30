@@ -21,10 +21,11 @@ export function charactersDoc(): void {
   const unlock = (c: (typeof CHARACTERS)[number]) => unlockText(c);
   d.h2(tx('角色一览', 'Overview'), 'overview');
   d.table(
-    [tx('角色', 'Character'), tx('定位', 'Role'), tx('初始武器', 'Starting weapons'), tx('技能', 'Skill'), tx('解锁条件', 'Unlock')],
+    [tx('角色', 'Character'), tx('定位', 'Role'), tx('天赋', 'Talent'), tx('初始武器', 'Starting weapons'), tx('技能', 'Skill'), tx('解锁条件', 'Unlock')],
     CHARACTERS.map((c) => [
       `${img('char', c.id)} ${lnk.char(c, '')}`,
       c.title,
+      c.talent.name,
       c.startWeapons.map((w) => lnk.weapon(w)).join(sep()),
       `${lnk.skill(c)} ${tx(`（${SKILL_TYPE_NAME[c.skill.type]}）`, `(${SKILL_TYPE_NAME[c.skill.type]})`)}`,
       unlock(c),
@@ -50,6 +51,7 @@ export function charactersDoc(): void {
     d.table(
       [tx('项目', 'Field'), tx('内容', 'Value')],
       [
+        [tx('专属天赋', 'Talent'), `**${c.talent.name}**：${c.talent.desc}`],
         [tx('被动特性', 'Traits'), c.traits.join(tx('；', '; '))],
         [tx('属性修正', 'Stat modifiers'), [mods(c.mods), extra].filter(Boolean).join(tx('，', ', ')) || tx('无', 'None')],
         [tx('初始武器', 'Starting weapons'), c.startWeapons.map((w) => lnk.weapon(w)).join(sep())],

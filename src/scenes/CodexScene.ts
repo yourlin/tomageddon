@@ -102,6 +102,7 @@ export class CodexScene extends Phaser.Scene {
                 lines: [
                   c.title,
                   c.desc,
+                  tx(`天赋【${c.talent.name}】${c.talent.desc}`, `Talent [${c.talent.name}] ${c.talent.desc}`),
                   ...c.traits,
                   tx(`技能【${c.skill.name}】${c.skill.desc}`, `Skill [${c.skill.name}] ${c.skill.desc}`),
                 ],

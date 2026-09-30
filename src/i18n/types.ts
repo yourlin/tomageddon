@@ -9,6 +9,7 @@ export interface CharacterEn {
   desc: string;
   traits: string[]; // 与中文 traits 一一对应
   skill: { name: string; desc: string };
+  talent: { name: string; desc: string };
 }
 export type CharactersEn = Record<string, CharacterEn>;
 

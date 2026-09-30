@@ -52,41 +52,41 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 ## Overview
 
-| Character | Role | Starting weapons | Skill | Unlock |
-| --- | --- | --- | --- | --- |
-| <img src="../images/char/tomato.png" width="32" height="32" alt=""> [Tomato Sister](#char-tomato) | All-Rounder | [Tomato Fork](WEAPONS.md#weapon-fork) | [Ketchup Burst](SKILLS.md#skill-tomato) (Nova Burst) | Unlocked by default |
-| <img src="../images/char/carrot.png" width="32" height="32" alt=""> [Carrot Knight](#char-carrot) | Melee Tank | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Knight Charge](SKILLS.md#skill-carrot) (Dash) | Unlocked by default |
-| <img src="../images/char/chili.png" width="32" height="32" alt=""> [Chili Sis](#char-chili) | Fire Expert | [Mustard Flamer](WEAPONS.md#weapon-mustard_flamer) | [Flame Nova](SKILLS.md#skill-chili) (Nova Burst) | Unlocked by default |
-| <img src="../images/char/corn.png" width="32" height="32" alt=""> [Corn Gunner](#char-corn) | Sharpshooter | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) | [Popcorn Barrage](SKILLS.md#skill-corn) (Ring Barrage) | Unlocked by default |
-| <img src="../images/char/watermelon.png" width="32" height="32" alt=""> [Chubby Melon](#char-watermelon) | Heavy Tank | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) | [Melon Roll](SKILLS.md#skill-watermelon) (Dash) | 40 pts |
-| <img src="../images/char/lemon.png" width="32" height="32" alt=""> [Lemon Assassin](#char-lemon) | Crit Assassin | [Chef's Knife](WEAPONS.md#weapon-knife) | [Sour Mist](SKILLS.md#skill-lemon) (Stealth) | 40 pts |
-| <img src="../images/char/eggplant.png" width="32" height="32" alt=""> [Eggplant Mage](#char-eggplant) | Thunder Mage | [Broccoli Staff](WEAPONS.md#weapon-broccoli_staff) | [Purple Thunder](SKILLS.md#skill-eggplant) (Screen Clear) | 40 pts |
-| <img src="../images/char/garlic.png" width="32" height="32" alt=""> [Count Garlic](#char-garlic) | Vampire Noble | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Blood Domain](SKILLS.md#skill-garlic) (Drain Heal) | 80 pts |
-| <img src="../images/char/blueberry.png" width="32" height="32" alt=""> [Blueberry Twins](#char-blueberry) | Weapon Master | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) | [Twin Clone](SKILLS.md#skill-blueberry) (Summon Clone) | 80 pts |
-| <img src="../images/char/pineapple.png" width="32" height="32" alt=""> [Captain Pineapple](#char-pineapple) | Merchant Pirate | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Golden Cannon](SKILLS.md#skill-pineapple) (AOE Missile) | 40 pts |
-| <img src="../images/char/pumpkin.png" width="32" height="32" alt=""> [Pumpkin Ghost](#char-pumpkin) | Dodge Master | [Iced Soda](WEAPONS.md#weapon-soda) | [Spirit Form](SKILLS.md#skill-pumpkin) (Stealth) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/strawberry.png" width="32" height="32" alt=""> [Strawberry Idol](#char-strawberry) | Rising Star | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Fan Cheer](SKILLS.md#skill-strawberry) (Self Buff) | 80 pts |
-| <img src="../images/char/ginger.png" width="32" height="32" alt=""> [Ginger Ninja](#char-ginger) | Wind Ninja | [Onion Boomerang](WEAPONS.md#weapon-onion_boomerang) | [Shadow Slash](SKILLS.md#skill-ginger) (Dash) | 100 pts, requires [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills) |
-| <img src="../images/char/avocado.png" width="32" height="32" alt=""> [Dr. Avocado](#char-avocado) | Bomb Expert | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Core Overload](SKILLS.md#skill-avocado) (Multi-Strike) | 130 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="../images/char/onion.png" width="32" height="32" alt=""> [Uncle Onion](#char-onion) | Tearjerker | [Frying Pan](WEAPONS.md#weapon-pan) | [Tear Gas Zone](SKILLS.md#skill-onion) (Binding Field) | 160 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
-| <img src="../images/char/mushroom.png" width="32" height="32" alt=""> [Mushroom Shaman](#char-mushroom) | Poison Expert | [Iced Soda](WEAPONS.md#weapon-soda) | [Spore Cloud](SKILLS.md#skill-mushroom) (Mass Debuff) | 30 pts |
-| <img src="../images/char/coconut.png" width="32" height="32" alt=""> [Coconut Boxer](#char-coconut) | Heavy Hitter | [Frying Pan](WEAPONS.md#weapon-pan) | [Ground Pound](SKILLS.md#skill-coconut) (Nova Burst) | 40 pts |
-| <img src="../images/char/grape.png" width="32" height="32" alt=""> [Grape Magician](#char-grape) | Illusionist | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Grape Clone](SKILLS.md#skill-grape) (Summon Clone) | 60 pts |
-| <img src="../images/char/cherry.png" width="32" height="32" alt=""> [Cherry Gunslinger](#char-cherry) | Rapid Shooter | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Dual Barrage](SKILLS.md#skill-cherry) (Focused Barrage) | 40 pts |
-| <img src="../images/char/pea.png" width="32" height="32" alt=""> [Pea Soldier](#char-pea) | Legionnaire | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Pea Turret](SKILLS.md#skill-pea) (Focused Barrage) | 60 pts |
-| <img src="../images/char/peach.png" width="32" height="32" alt=""> [Peach Angel](#char-peach) | Healer | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Angel’s Blessing](SKILLS.md#skill-peach) (Drain Heal) | 80 pts |
-| <img src="../images/char/dragonfruit.png" width="32" height="32" alt=""> [Dragonfruit Rider](#char-dragonfruit) | Flame Knight | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Dragonflame Charge](SKILLS.md#skill-dragonfruit) (Dash) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/beet.png" width="32" height="32" alt=""> [Beet Berserker](#char-beet) | Berserker | [Meat Cleaver](WEAPONS.md#weapon-cleaver) | [Frenzy](SKILLS.md#skill-beet) (Self Buff) | 80 pts |
-| <img src="../images/char/asparagus.png" width="32" height="32" alt=""> [Asparagus Archer](#char-asparagus) | Marksman | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) | [Heartpiercer](SKILLS.md#skill-asparagus) (Focused Barrage) | 80 pts |
-| <img src="../images/char/sweetpotato.png" width="32" height="32" alt=""> [Chef Yam](#char-sweetpotato) | Gourmet | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) (Drain Heal) | 40 pts |
-| <img src="../images/char/kiwi.png" width="32" height="32" alt=""> [Kiwi Detective](#char-kiwi) | Weakness Seeker | [Chef's Knife](WEAPONS.md#weapon-knife) | [One Truth](SKILLS.md#skill-kiwi) (Mass Debuff) | 60 pts |
-| <img src="../images/char/lychee.png" width="32" height="32" alt=""> [Lychee Princess](#char-lychee) | Lucky Princess | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Princess’s Luck](SKILLS.md#skill-lychee) (Self Buff) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/durian.png" width="32" height="32" alt=""> [Durian Overlord](#char-durian) | Spiked Tyrant | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Stink Bomb](SKILLS.md#skill-durian) (Mass Debuff) | 130 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="../images/char/bellpepper.png" width="32" height="32" alt=""> [Pepper Mech](#char-bellpepper) | Mech Pilot | [Sauce Gatling](WEAPONS.md#weapon-sauce_gatling) | [Drone Support](SKILLS.md#skill-bellpepper) (Summon Clone) | 130 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="../images/char/wintermelon.png" width="32" height="32" alt=""> [Monk Gourd](#char-wintermelon) | Zen Monk | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Golden Bell](SKILLS.md#skill-wintermelon) (Stealth) | 130 pts, requires [Boss Terminator（Bronze）](ACHIEVEMENTS.md#ach-bosses) |
-| <img src="../images/char/bittermelon.png" width="32" height="32" alt=""> [Bitter Melon Mage](#char-bittermelon) | Frost Mage | [Iced Soda](WEAPONS.md#weapon-soda) | [Frozen Domain](SKILLS.md#skill-bittermelon) (Binding Field) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/sprout.png" width="32" height="32" alt=""> [Sprout Apprentice](#char-sprout) | Rising Talent | [Tomato Fork](WEAPONS.md#weapon-fork) | [Growth Spurt](SKILLS.md#skill-sprout) (Self Buff) | 80 pts |
-| <img src="../images/char/wasabi.png" width="32" height="32" alt=""> [Wasabi Bomber](#char-wasabi) | Demolition Maniac | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Wasabi Nuke](SKILLS.md#skill-wasabi) (AOE Missile) | 160 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
+| Character | Role | Talent | Starting weapons | Skill | Unlock |
+| --- | --- | --- | --- | --- | --- |
+| <img src="../images/char/tomato.png" width="32" height="32" alt=""> [Tomato Sister](#char-tomato) | All-Rounder | Heart of Tomato | [Tomato Fork](WEAPONS.md#weapon-fork) | [Ketchup Burst](SKILLS.md#skill-tomato) (Nova Burst) | Unlocked by default |
+| <img src="../images/char/carrot.png" width="32" height="32" alt=""> [Carrot Knight](#char-carrot) | Melee Tank | Knight's Shield | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Knight Charge](SKILLS.md#skill-carrot) (Dash) | Unlocked by default |
+| <img src="../images/char/chili.png" width="32" height="32" alt=""> [Chili Sis](#char-chili) | Fire Expert | Fuel the Fire | [Mustard Flamer](WEAPONS.md#weapon-mustard_flamer) | [Flame Nova](SKILLS.md#skill-chili) (Nova Burst) | Unlocked by default |
+| <img src="../images/char/corn.png" width="32" height="32" alt=""> [Corn Gunner](#char-corn) | Sharpshooter | Suppressing Fire | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) | [Popcorn Barrage](SKILLS.md#skill-corn) (Ring Barrage) | Unlocked by default |
+| <img src="../images/char/watermelon.png" width="32" height="32" alt=""> [Chubby Melon](#char-watermelon) | Heavy Tank | Thick Rind | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) | [Melon Roll](SKILLS.md#skill-watermelon) (Dash) | 40 pts |
+| <img src="../images/char/lemon.png" width="32" height="32" alt=""> [Lemon Assassin](#char-lemon) | Crit Assassin | Sour Strike | [Chef's Knife](WEAPONS.md#weapon-knife) | [Sour Mist](SKILLS.md#skill-lemon) (Stealth) | 40 pts |
+| <img src="../images/char/eggplant.png" width="32" height="32" alt=""> [Eggplant Mage](#char-eggplant) | Thunder Mage | Thunder Power | [Broccoli Staff](WEAPONS.md#weapon-broccoli_staff) | [Purple Thunder](SKILLS.md#skill-eggplant) (Screen Clear) | 40 pts |
+| <img src="../images/char/garlic.png" width="32" height="32" alt=""> [Count Garlic](#char-garlic) | Vampire Noble | Blood Feast | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Blood Domain](SKILLS.md#skill-garlic) (Drain Heal) | 80 pts |
+| <img src="../images/char/blueberry.png" width="32" height="32" alt=""> [Blueberry Twins](#char-blueberry) | Weapon Master | Twin Bond | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) | [Twin Clone](SKILLS.md#skill-blueberry) (Summon Clone) | 80 pts |
+| <img src="../images/char/pineapple.png" width="32" height="32" alt=""> [Captain Pineapple](#char-pineapple) | Merchant Pirate | Pirate's Share | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Golden Cannon](SKILLS.md#skill-pineapple) (AOE Missile) | 40 pts |
+| <img src="../images/char/pumpkin.png" width="32" height="32" alt=""> [Pumpkin Ghost](#char-pumpkin) | Dodge Master | Ghost Ambush | [Iced Soda](WEAPONS.md#weapon-soda) | [Spirit Form](SKILLS.md#skill-pumpkin) (Stealth) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="../images/char/strawberry.png" width="32" height="32" alt=""> [Strawberry Idol](#char-strawberry) | Rising Star | Rising Star | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Fan Cheer](SKILLS.md#skill-strawberry) (Self Buff) | 80 pts |
+| <img src="../images/char/ginger.png" width="32" height="32" alt=""> [Ginger Ninja](#char-ginger) | Wind Ninja | Gale Step | [Onion Boomerang](WEAPONS.md#weapon-onion_boomerang) | [Shadow Slash](SKILLS.md#skill-ginger) (Dash) | 100 pts, requires [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills) |
+| <img src="../images/char/avocado.png" width="32" height="32" alt=""> [Dr. Avocado](#char-avocado) | Bomb Expert | Blast Science | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Core Overload](SKILLS.md#skill-avocado) (Multi-Strike) | 130 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| <img src="../images/char/onion.png" width="32" height="32" alt=""> [Uncle Onion](#char-onion) | Tearjerker | Tear Gas | [Frying Pan](WEAPONS.md#weapon-pan) | [Tear Gas Zone](SKILLS.md#skill-onion) (Binding Field) | 160 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
+| <img src="../images/char/mushroom.png" width="32" height="32" alt=""> [Mushroom Shaman](#char-mushroom) | Poison Expert | Spore Burst | [Iced Soda](WEAPONS.md#weapon-soda) | [Spore Cloud](SKILLS.md#skill-mushroom) (Mass Debuff) | 30 pts |
+| <img src="../images/char/coconut.png" width="32" height="32" alt=""> [Coconut Boxer](#char-coconut) | Heavy Hitter | Knockout Punch | [Frying Pan](WEAPONS.md#weapon-pan) | [Ground Pound](SKILLS.md#skill-coconut) (Nova Burst) | 40 pts |
+| <img src="../images/char/grape.png" width="32" height="32" alt=""> [Grape Magician](#char-grape) | Illusionist | Sleight of Hand | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Grape Clone](SKILLS.md#skill-grape) (Summon Clone) | 60 pts |
+| <img src="../images/char/cherry.png" width="32" height="32" alt=""> [Cherry Gunslinger](#char-cherry) | Rapid Shooter | Rapid Volley | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Dual Barrage](SKILLS.md#skill-cherry) (Focused Barrage) | 40 pts |
+| <img src="../images/char/pea.png" width="32" height="32" alt=""> [Pea Soldier](#char-pea) | Legionnaire | Pea Legion | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Pea Turret](SKILLS.md#skill-pea) (Focused Barrage) | 60 pts |
+| <img src="../images/char/peach.png" width="32" height="32" alt=""> [Peach Angel](#char-peach) | Healer | Angel's Grace | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Angel’s Blessing](SKILLS.md#skill-peach) (Drain Heal) | 80 pts |
+| <img src="../images/char/dragonfruit.png" width="32" height="32" alt=""> [Dragonfruit Rider](#char-dragonfruit) | Flame Knight | Dragon Breath | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Dragonflame Charge](SKILLS.md#skill-dragonfruit) (Dash) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="../images/char/beet.png" width="32" height="32" alt=""> [Beet Berserker](#char-beet) | Berserker | Berserker Blood | [Meat Cleaver](WEAPONS.md#weapon-cleaver) | [Frenzy](SKILLS.md#skill-beet) (Self Buff) | 80 pts |
+| <img src="../images/char/asparagus.png" width="32" height="32" alt=""> [Asparagus Archer](#char-asparagus) | Marksman | Heartpiercer | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) | [Heartpiercer](SKILLS.md#skill-asparagus) (Focused Barrage) | 80 pts |
+| <img src="../images/char/sweetpotato.png" width="32" height="32" alt=""> [Chef Yam](#char-sweetpotato) | Gourmet | Gourmet | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) (Drain Heal) | 40 pts |
+| <img src="../images/char/kiwi.png" width="32" height="32" alt=""> [Kiwi Detective](#char-kiwi) | Weakness Seeker | Weak Spot | [Chef's Knife](WEAPONS.md#weapon-knife) | [One Truth](SKILLS.md#skill-kiwi) (Mass Debuff) | 60 pts |
+| <img src="../images/char/lychee.png" width="32" height="32" alt=""> [Lychee Princess](#char-lychee) | Lucky Princess | Lucky Streak | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Princess’s Luck](SKILLS.md#skill-lychee) (Self Buff) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="../images/char/durian.png" width="32" height="32" alt=""> [Durian Overlord](#char-durian) | Spiked Tyrant | Stench Aura | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Stink Bomb](SKILLS.md#skill-durian) (Mass Debuff) | 130 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| <img src="../images/char/bellpepper.png" width="32" height="32" alt=""> [Pepper Mech](#char-bellpepper) | Mech Pilot | Mech Plating | [Sauce Gatling](WEAPONS.md#weapon-sauce_gatling) | [Drone Support](SKILLS.md#skill-bellpepper) (Summon Clone) | 130 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| <img src="../images/char/wintermelon.png" width="32" height="32" alt=""> [Monk Gourd](#char-wintermelon) | Zen Monk | Zen Stillness | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Golden Bell](SKILLS.md#skill-wintermelon) (Stealth) | 130 pts, requires [Boss Terminator（Bronze）](ACHIEVEMENTS.md#ach-bosses) |
+| <img src="../images/char/bittermelon.png" width="32" height="32" alt=""> [Bitter Melon Mage](#char-bittermelon) | Frost Mage | Frostbite | [Iced Soda](WEAPONS.md#weapon-soda) | [Frozen Domain](SKILLS.md#skill-bittermelon) (Binding Field) | 100 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="../images/char/sprout.png" width="32" height="32" alt=""> [Sprout Apprentice](#char-sprout) | Rising Talent | Late Bloomer | [Tomato Fork](WEAPONS.md#weapon-fork) | [Growth Spurt](SKILLS.md#skill-sprout) (Self Buff) | 80 pts |
+| <img src="../images/char/wasabi.png" width="32" height="32" alt=""> [Wasabi Bomber](#char-wasabi) | Demolition Maniac | Chain Reaction | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Wasabi Nuke](SKILLS.md#skill-wasabi) (AOE Missile) | 160 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
 
 <a id="details"></a>
 
@@ -102,6 +102,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Heart of Tomato**：After each wave, permanently gain +1 Max HP and +1% Damage |
 | Traits | +5% Damage; +1 HP Regen |
 | Stat modifiers | +1 HP Regen, +5% Damage |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
@@ -118,6 +119,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Knight's Shield**：Each point of Armor grants +1.5% melee damage |
 | Traits | +3 Armor; +3 Melee Damage; Ranged Damage -50% |
 | Stat modifiers | +5 Max HP, +3 Melee Damage, +3 Armor, Ranged damage ×0.5 |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
@@ -134,6 +136,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Fuel the Fire**：+30% damage to Burning enemies |
 | Traits | +3 Elemental Damage; -2 Max HP; All hits have a 25% chance to Burn |
 | Stat modifiers | -2 Max HP, +3 Elemental Damage |
 | Starting weapons | [Mustard Flamer](WEAPONS.md#weapon-mustard_flamer) |
@@ -150,6 +153,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Suppressing Fire**：+6% damage per 100 distance to the target (max +30%) |
 | Traits | +3 Ranged Damage; +50 Range; +3 Max HP; Melee Damage -50% |
 | Stat modifiers | +3 Max HP, +3 Ranged Damage, +50 Range, Melee damage ×0.5 |
 | Starting weapons | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) |
@@ -166,6 +170,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Thick Rind**：Take 10% less damage; +1% damage per 10 Max HP |
 | Traits | +25 Max HP; +2 Armor; -12% Move Speed; -10% Attack Speed |
 | Stat modifiers | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed |
 | Starting weapons | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) |
@@ -182,6 +187,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Sour Strike**：+40% Crit Damage; crit kills heal 1 HP |
 | Traits | +20% Crit Chance; +10% Dodge; -4 Max HP |
 | Stat modifiers | -4 Max HP, +20% Crit Chance, +10% Dodge, +5% Move Speed |
 | Starting weapons | [Chef's Knife](WEAPONS.md#weapon-knife) |
@@ -198,6 +204,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Thunder Power**：10% chance on hit to call lightning; scales with Elemental Damage |
 | Traits | +4 Elemental Damage; +10 Luck; +3 Max HP; Melee Damage -70% |
 | Stat modifiers | +3 Max HP, +4 Elemental Damage, +10 Luck, Melee damage ×0.3 |
 | Starting weapons | [Broccoli Staff](WEAPONS.md#weapon-broccoli_staff) |
@@ -214,6 +221,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Blood Feast**：Life Steal is doubled below 50% HP |
 | Traits | +10% Life Steal; -3 HP Regen; +5% Damage |
 | Stat modifiers | -3 HP Regen, +10% Life Steal, +5% Damage |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
@@ -230,6 +238,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Twin Bond**：+5% damage per pair of identical weapons |
 | Traits | 8 weapon slots; -10% Damage |
 | Stat modifiers | -10% Damage, 8 weapon slots |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) |
@@ -246,6 +255,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Pirate's Share**：Earn 8% interest on your Seeds after each wave (cap rises with waves) |
 | Traits | Shop prices -15%; +20 Luck; +10 Harvest |
 | Stat modifiers | -3 Max HP, +20 Luck, +10 Harvest, Shop discount 15% |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
@@ -262,6 +272,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Ghost Ambush**：+40% damage for 1.5s after a dodge |
 | Traits | +25% Dodge; Dodge cap 75%; -4 Max HP |
 | Stat modifiers | -4 Max HP, +25% Dodge, +8% Move Speed, Dodge cap 75% |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
@@ -278,6 +289,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Rising Star**：Each level-up also grants +1% Damage and +1 Max HP permanently |
 | Traits | +40% XP Gain; 5 choices on level up |
 | Stat modifiers | -3 Max HP, +40% XP Gain, 5 level-up choices |
 | Starting weapons | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) |
@@ -294,6 +306,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Gale Step**：+4% damage per 10% bonus Move Speed |
 | Traits | +20% Move Speed; +15% Attack Speed; -1 Armor |
 | Stat modifiers | +15% Attack Speed, -1 Armor, +20% Move Speed |
 | Starting weapons | [Onion Boomerang](WEAPONS.md#weapon-onion_boomerang) |
@@ -310,6 +323,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Blast Science**：Explosion damage +10% per wave |
 | Traits | +2 Elemental Damage; +5% Damage; Kills have a 15% chance to explode |
 | Stat modifiers | +5% Damage, +2 Elemental Damage, +30 Range |
 | Starting weapons | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |
@@ -326,6 +340,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Tear Gas**：When hit, Blind nearby enemies for 2s (at most once per 3s) |
 | Traits | +4 Armor; +10 Max HP; Reflect 15 damage when hit |
 | Stat modifiers | +10 Max HP, +2 HP Regen, +4 Armor, -5% Move Speed |
 | Starting weapons | [Frying Pan](WEAPONS.md#weapon-pan) |
@@ -342,6 +357,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Spore Burst**：Poisoned enemies spread 3 Poison stacks to nearby enemies on death |
 | Traits | +2 Elemental Damage; All hits have a 30% chance to Poison |
 | Stat modifiers | +2 Elemental Damage, +5 Luck |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
@@ -358,6 +374,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Knockout Punch**：Melee hits have a 12% chance to Stun for 0.6s |
 | Traits | +4 Melee Damage; +2 Armor; +5 Max HP; Kills stack Rage (+4% Damage each) |
 | Stat modifiers | +5 Max HP, +4 Melee Damage, +2 Armor, Elemental damage ×0.5 |
 | Starting weapons | [Frying Pan](WEAPONS.md#weapon-pan) |
@@ -374,6 +391,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Sleight of Hand**：Become Invulnerable for 1s every 8s |
 | Traits | +10 Luck; +3 Max HP; 20% chance to Confuse enemies when attacked |
 | Stat modifiers | +3 Max HP, +1 Ranged Damage, +1 Elemental Damage, +10 Luck |
 | Starting weapons | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) |
@@ -390,6 +408,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Rapid Volley**：+2% damage per 10% Attack Speed |
 | Traits | +20% Attack Speed; -8% Damage; 10% chance to gain Haste when shooting |
 | Stat modifiers | -8% Damage, +1 Ranged Damage, +20% Attack Speed |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) |
@@ -406,6 +425,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Pea Legion**：+3% damage per weapon held |
 | Traits | +2 Ranged Damage; Start with 2 Pea Shooters; +3% Damage per duplicate weapon |
 | Stat modifiers | +3 Max HP, +2 Ranged Damage |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Pea Shooter](WEAPONS.md#weapon-pea_shooter) |
@@ -422,6 +442,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Angel's Grace**：Once per wave, survive a lethal hit with 1 HP and 2s of invulnerability |
 | Traits | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage |
 | Stat modifiers | +5 Max HP, +5 HP Regen, -10% Damage |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
@@ -438,6 +459,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Dragon Breath**：+40% damage over time (Burn, Poison, etc.) |
 | Traits | +2 Melee/Elemental Damage; +5 Max HP; Melee hits have a 20% chance to Burn |
 | Stat modifiers | +5 Max HP, +2 Melee Damage, +2 Elemental Damage, +5% Move Speed |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
@@ -454,6 +476,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Berserker Blood**：+6% damage per 10% HP missing |
 | Traits | +15% Damage; +3% Life Steal; -1 Armor; Gain Rage when damaged |
 | Stat modifiers | +3% Life Steal, +15% Damage, -1 Armor |
 | Starting weapons | [Meat Cleaver](WEAPONS.md#weapon-cleaver) |
@@ -470,6 +493,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Heartpiercer**：+40% damage to enemies above 80% HP |
 | Traits | +80 Range; +10% Crit Chance; Hits have a 15% chance to Mark enemies (next hit always crits) |
 | Stat modifiers | +1 Ranged Damage, +10% Crit Chance, +80 Range, Melee damage ×0.6 |
 | Starting weapons | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) |
@@ -486,6 +510,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Gourmet**：Picking up fruit also grants Seeds (more in later waves) |
 | Traits | +20 Harvest; Fruit healing doubled; -5% Damage |
 | Stat modifiers | +5 Max HP, -5% Damage, +20 Harvest |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
@@ -502,6 +527,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Weak Spot**：+20% damage to enemies with any debuff |
 | Traits | +8% Crit Chance; +3 Max HP; +1 Melee Damage; Hits have a 20% chance to apply Vulnerable; Crit Damage +30% |
 | Stat modifiers | +3 Max HP, +1 Melee Damage, +8% Crit Chance, +10 Luck |
 | Starting weapons | [Chef's Knife](WEAPONS.md#weapon-knife) |
@@ -518,6 +544,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Lucky Streak**：+1% damage per 10 Luck; the first shop reroll each wave is free |
 | Traits | +40 Luck; Crate drop rate doubled |
 | Stat modifiers | +40 Luck |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
@@ -534,6 +561,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Stench Aura**：Nearby enemies are constantly Vulnerable |
 | Traits | +3 Armor; +10 Max HP; -4% Move Speed; Reflect 10 damage; Nearby enemies are constantly Weakened |
 | Stat modifiers | +10 Max HP, +3 Armor, -4% Move Speed |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
@@ -550,6 +578,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Mech Plating**：Take 15% less damage |
 | Traits | +5 Armor; +10 Max HP; -10% Dodge; Gain 20 Shield every 12s |
 | Stat modifiers | +10 Max HP, +5 Armor, -10% Dodge, -10% Move Speed |
 | Starting weapons | [Sauce Gatling](WEAPONS.md#weapon-sauce_gatling) |
@@ -566,6 +595,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Zen Stillness**：While standing still, take 25% less damage and heal 2% Max HP per second |
 | Traits | +15% Dodge; +3 HP Regen; Gain Focus on successful dodge |
 | Stat modifiers | +3 HP Regen, +15% Dodge, +5% Move Speed, Ranged damage ×0.7 |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
@@ -582,6 +612,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Frostbite**：+35% damage to Slowed or Frozen enemies |
 | Traits | +3 Elemental Damage; +3 Max HP; Hits have an 8% chance to Freeze enemies for 1s |
 | Stat modifiers | +3 Max HP, +3 Elemental Damage, +5% Attack Speed |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
@@ -598,6 +629,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Late Bloomer**：+1.5% damage per level |
 | Traits | +80% XP Gain; -8% Damage; -3 Max HP; 5 choices on level up |
 | Stat modifiers | -3 Max HP, -8% Damage, +80% XP Gain, 5 level-up choices |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
@@ -614,6 +646,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
+| Talent | **Chain Reaction**：Enemies killed by explosions have a 40% chance to explode again |
 | Traits | +8% Damage; Kills have a 25% chance to explode; Explosions inflict Burn |
 | Stat modifiers | -5 Max HP, +8% Damage, +2 Elemental Damage |
 | Starting weapons | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |

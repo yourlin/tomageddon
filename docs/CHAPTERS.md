@@ -22,7 +22,7 @@
 
 ## 波次规则
 
-- 每章都从 0 级开局，章节倍率渐进生效：`1 + (倍率−1) × (0.1 + 0.9 × (波次−1)/14)`
+- 小怪生命 `基础 × (1 + 成长 × w^0.9) × 章节系数`（w = 波次−1），随波次先快后慢，与玩家成长节奏匹配；精英 / Boss 使用单独的章节倍率
 - 波次时长 `min(20 + 5×(波次−1), 60)` 秒，Boss 波 90 秒；每波开始生命回满
 - 波次结束：结算收获与利息 → 升级选属性 → 开宝箱 → 商店（买卖、合成、刷新、锁定）
 
@@ -82,7 +82,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 难度倍率 | 生命 ×1.45 · 伤害 ×1.3 · 速度 ×1.05 |
+| 难度倍率 | 生命 ×2.9 · 伤害 ×1.3 · 速度 ×1.05 |
 | 地形机关 | 兔子洞：兔子四处逃窜，击败掉落番茄籽与果实<br>土拨鼠：从地洞探头扔石头 |
 | 精英池 | <img src="images/boss/rat_captain.png" width="24" height="24" alt=""> [鼠队长](MONSTERS.md#boss-rat_captain)、<img src="images/boss/snail_tank.png" width="24" height="24" alt=""> [装甲蜗牛](MONSTERS.md#boss-snail_tank)、<img src="images/boss/queen_bee.png" width="24" height="24" alt=""> [蜂后](MONSTERS.md#boss-queen_bee)、<img src="images/boss/scarecrow.png" width="24" height="24" alt=""> [邪恶稻草人](MONSTERS.md#boss-scarecrow)、<img src="images/boss/spider_matron.png" width="24" height="24" alt=""> [蛛后](MONSTERS.md#boss-spider_matron)、<img src="images/boss/mushroom_king.png" width="24" height="24" alt=""> [毒菇王](MONSTERS.md#boss-mushroom_king) |
 | Boss 池 | <img src="images/boss/locust_queen.png" width="24" height="24" alt=""> [蝗虫女皇](MONSTERS.md#boss-locust_queen)、<img src="images/boss/rotten_pumpkin.png" width="24" height="24" alt=""> [腐烂南瓜王](MONSTERS.md#boss-rotten_pumpkin)、<img src="images/boss/mole_general.png" width="24" height="24" alt=""> [鼹鼠大将](MONSTERS.md#boss-mole_general) |
@@ -111,7 +111,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 难度倍率 | 生命 ×1.6 · 伤害 ×1.35 · 速度 ×1.1 |
+| 难度倍率 | 生命 ×3.2 · 伤害 ×1.35 · 速度 ×1.1 |
 | 地形机关 | 冰面：在冰上会打滑，但速度更快<br>冷风：周期性狂风吹动所有单位并减速 |
 | 精英池 | <img src="images/boss/ice_golem.png" width="24" height="24" alt=""> [冰晶傀儡](MONSTERS.md#boss-ice_golem)、<img src="images/boss/popsicle_twins.png" width="24" height="24" alt=""> [冰棍双子](MONSTERS.md#boss-popsicle_twins)、<img src="images/boss/frozen_fish.png" width="24" height="24" alt=""> [冻鱼武士](MONSTERS.md#boss-frozen_fish)、<img src="images/boss/snow_rat.png" width="24" height="24" alt=""> [雪鼠刺客](MONSTERS.md#boss-snow_rat)、<img src="images/boss/milk_slime.png" width="24" height="24" alt=""> [变质牛奶怪](MONSTERS.md#boss-milk_slime)、<img src="images/boss/frost_penguin.png" width="24" height="24" alt=""> [冰霜企鹅](MONSTERS.md#boss-frost_penguin) |
 | Boss 池 | <img src="images/boss/frost_rat_king.png" width="24" height="24" alt=""> [冰霜鼠王](MONSTERS.md#boss-frost_rat_king)、<img src="images/boss/ice_cream_tyrant.png" width="24" height="24" alt=""> [冰淇淋暴君](MONSTERS.md#boss-ice_cream_tyrant)、<img src="images/boss/freezer_heart.png" width="24" height="24" alt=""> [冰柜之心](MONSTERS.md#boss-freezer_heart) |
@@ -140,7 +140,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 难度倍率 | 生命 ×2.1 · 伤害 ×1.55 · 速度 ×1.15 |
+| 难度倍率 | 生命 ×4.2 · 伤害 ×1.55 · 速度 ×1.15 |
 | 地形机关 | 流沙坑：会把人和怪物吸入中心，并造成伤害<br>垃圾坠落：注意地面的预警圈 |
 | 精英池 | <img src="images/boss/tire_beast.png" width="24" height="24" alt=""> [轮胎兽](MONSTERS.md#boss-tire_beast)、<img src="images/boss/can_king.png" width="24" height="24" alt=""> [易拉罐之王](MONSTERS.md#boss-can_king)、<img src="images/boss/rag_wraith.png" width="24" height="24" alt=""> [抹布怨灵](MONSTERS.md#boss-rag_wraith)、<img src="images/boss/battery_bug.png" width="24" height="24" alt=""> [漏电电池虫](MONSTERS.md#boss-battery_bug)、<img src="images/boss/garbage_rat.png" width="24" height="24" alt=""> [垃圾鼠王](MONSTERS.md#boss-garbage_rat)、<img src="images/boss/oil_titan.png" width="24" height="24" alt=""> [石油泰坦](MONSTERS.md#boss-oil_titan) |
 | Boss 池 | <img src="images/boss/trash_golem.png" width="24" height="24" alt=""> [垃圾巨像](MONSTERS.md#boss-trash_golem)、<img src="images/boss/toxic_barrel.png" width="24" height="24" alt=""> [毒液桶魔](MONSTERS.md#boss-toxic_barrel)、<img src="images/boss/scrap_dragon.png" width="24" height="24" alt=""> [废铁巨龙](MONSTERS.md#boss-scrap_dragon) |
@@ -170,7 +170,7 @@
 
 | 项目 | 内容 |
 | --- | --- |
-| 难度倍率 | 生命 ×2.6 · 伤害 ×1.8 · 速度 ×1.2 |
+| 难度倍率 | 生命 ×5.2 · 伤害 ×1.8 · 速度 ×1.2 |
 | 地形机关 | 传送带：推动站在上面的所有单位<br>蒸汽阀门：周期性喷出灼热蒸汽 |
 | 精英池 | <img src="images/boss/conveyor_worm.png" width="24" height="24" alt=""> [传送带蠕虫](MONSTERS.md#boss-conveyor_worm)、<img src="images/boss/ketchup_golem.png" width="24" height="24" alt=""> [番茄酱傀儡](MONSTERS.md#boss-ketchup_golem)、<img src="images/boss/security_bot.png" width="24" height="24" alt=""> [保安机器人](MONSTERS.md#boss-security_bot)、<img src="images/boss/press_machine.png" width="24" height="24" alt=""> [冲压机](MONSTERS.md#boss-press_machine)、<img src="images/boss/chef_minion.png" width="24" height="24" alt=""> [腐烂副厨](MONSTERS.md#boss-chef_minion)、<img src="images/boss/furnace_imp.png" width="24" height="24" alt=""> [熔炉小鬼](MONSTERS.md#boss-furnace_imp) |
 | Boss 池 | <img src="images/boss/rotten_chef.png" width="24" height="24" alt=""> [腐烂大厨](MONSTERS.md#boss-rotten_chef)、<img src="images/boss/factory_core.png" width="24" height="24" alt=""> [工厂主脑](MONSTERS.md#boss-factory_core)、<img src="images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [番茄酱海怪](MONSTERS.md#boss-ketchup_leviathan) |

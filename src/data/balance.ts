@@ -5,7 +5,7 @@ export const BALANCE = {
   arena: { width: 1920, height: 1200, margin: 40 },
   player: { baseSpeed: 230, radius: 22, iframes: 0.5, dodgeCap: 60, maxWeapons: 6 },
   waves: { count: 15, eliteWaves: [5, 10], bossWave: 15 },
-  pickup: { baseRadius: 90, magnetSpeed: 700 },
+  pickup: { baseRadius: 150, magnetSpeed: 700 },
   maxEnemies: 260,
   harvestGrowth: 0.05,
   seedMult: 0.5, // 第 6 波起小怪番茄籽的经验倍率（货币掉落另按血量成长放大，见 Enemy.lootMult）
@@ -47,10 +47,10 @@ export function chapterScale(mult: number, wave: number): number {
   return 1 + (mult - 1) * k;
 }
 
-/** 敌人生命成长：线性 hpGrowth + 轻微二次项（后期压力），再乘关卡倍率 */
+/** 敌人血量：随波次次线性增长（w^0.9，先快后慢），与玩家越往后越慢的成长相匹配；章节难度由章节倍率体现 */
 export function enemyHp(base: number, growth: number, wave: number, chapterMult: number): number {
   const w = wave - 1;
-  return Math.round(base * (1 + growth * w + 0.03 * w * w) * chapterScale(chapterMult, wave));
+  return Math.round(base * (1 + growth * Math.pow(w, 0.9)) * chapterScale(chapterMult, wave));
 }
 
 export function enemyDamage(base: number, growth: number, wave: number, chapterMult: number): number {
@@ -71,8 +71,12 @@ export function spawnBatch(wave: number): number {
 }
 
 /** 商店价格：随波次上涨 */
+/** 商店涨价倍率（番茄籽掉落也参考它，保证后期买得起） */
+export function priceInflation(wave: number): number {
+  return 1 + 0.2 * (wave - 1);
+}
 export function shopPrice(base: number, wave: number): number {
-  return Math.max(1, Math.round(base * (1 + 0.2 * (wave - 1)) + wave * 0.5));
+  return Math.max(1, Math.round(base * priceInflation(wave) + wave * 0.5));
 }
 
 export function rerollPrice(wave: number, rerolls: number): number {

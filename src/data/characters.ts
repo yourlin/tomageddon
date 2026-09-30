@@ -37,6 +37,8 @@ export interface CharacterDef {
   classMult?: Partial<Record<'melee' | 'ranged' | 'elemental', number>>;
   startWeapons: string[];
   traits: string[];
+  /** 专属天赋（机制见 systems/Talents.ts；部分通过 special 实现） */
+  talent: { name: string; desc: string };
   maxWeapons?: number;
   dodgeCap?: number;
   shopDiscount?: number;
@@ -74,6 +76,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { damage: 5, regen: 1 },
     startWeapons: ['fork'],
+    talent: { name: '番茄之心', desc: '每完成一波，永久获得 +1 最大生命与 +1% 伤害' },
     traits: ['+5% 伤害', '+1 生命再生'],
     skill: {
       name: '番茄酱爆',
@@ -112,6 +115,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { armor: 3, melee: 3, maxHp: 5 },
     classMult: { ranged: 0.5 },
     startWeapons: ['rolling_pin'],
+    talent: { name: '骑士之盾', desc: '每 1 点护甲使近战伤害 +1.5%' },
     traits: ['+3 护甲', '+3 近战伤害', '远程伤害 -50%'],
     skill: {
       name: '骑士冲锋',
@@ -146,6 +150,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 3, maxHp: -2 },
     startWeapons: ['mustard_flamer'],
+    talent: { name: '火上浇油', desc: '对灼烧中的敌人伤害 +30%' },
     traits: ['+3 元素伤害', '-2 最大生命', '所有命中 25% 概率灼烧'],
     special: { burnChance: 25 },
     skill: {
@@ -182,6 +187,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { ranged: 3, range: 50, maxHp: 3 },
     classMult: { melee: 0.5 },
     startWeapons: ['corn_cannon'],
+    talent: { name: '远程压制', desc: '与目标每相距 100，伤害 +6%（最多 +30%）' },
     traits: ['+3 远程伤害', '+50 射程', '+3 最大生命', '近战伤害 -50%'],
     skill: { name: '爆米花弹幕', desc: '向四周发射 18 发爆米花。', type: 'ring', cd: 0, mult: 0.7, count: 18, color: 0xfff3b0 },
   },
@@ -207,6 +213,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { maxHp: 25, armor: 2, speed: -12, attackSpeed: -10 },
     startWeapons: ['watermelon_hammer'],
+    talent: { name: '皮糙肉厚', desc: '受到的伤害 -10%；每 10 点最大生命使伤害 +1%' },
     traits: ['+25 最大生命', '+2 护甲', '-12% 移速', '-10% 攻速'],
     skill: {
       name: '西瓜翻滚',
@@ -246,7 +253,9 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { crit: 20, dodge: 10, maxHp: -4, speed: 5 },
     startWeapons: ['knife'],
+    talent: { name: '酸爽一击', desc: '暴击伤害 +40%；暴击击杀回复 1 生命' },
     traits: ['+20% 暴击', '+10% 闪避', '-4 最大生命'],
+    special: { critDmg: 40 },
     skill: {
       name: '酸雾隐身',
       desc: '隐身 3 秒（无敌），暴击 +50%。',
@@ -282,7 +291,9 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { elemental: 4, luck: 10, maxHp: 3 },
     classMult: { melee: 0.3 },
     startWeapons: ['broccoli_staff'],
+    talent: { name: '雷霆之力', desc: '命中 10% 概率召唤落雷，雷击伤害随元素伤害成长' },
     traits: ['+4 元素伤害', '+10 幸运', '+3 最大生命', '近战伤害 -70%'],
+    special: { lightningOnHit: 10 },
     skill: {
       name: '紫雷天罚',
       desc: '天雷覆盖全屏，劈中所有敌人并短暂眩晕。',
@@ -318,6 +329,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { lifeSteal: 10, regen: -3, damage: 5 },
     startWeapons: ['garlic_aura'],
+    talent: { name: '血之盛宴', desc: '生命低于 50% 时吸血效果翻倍' },
     traits: ['+10% 吸血', '-3 生命再生', '+5% 伤害'],
     skill: {
       name: '血之领域',
@@ -356,6 +368,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { damage: -10 },
     maxWeapons: 8,
     startWeapons: ['pea_shooter', 'knife'],
+    talent: { name: '双生默契', desc: '每持有一对同名武器，伤害 +5%' },
     traits: ['武器栏 8 格', '-10% 伤害'],
     skill: { name: '双子分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x3a86ff },
     cost: 80,
@@ -384,7 +397,9 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { luck: 20, harvest: 10, maxHp: -3 },
     shopDiscount: 15,
     startWeapons: ['slingshot'],
+    talent: { name: '海盗分赃', desc: '每波结束获得当前番茄籽 8% 的利息（上限随波次提高）' },
     traits: ['商店价格 -15%', '+20 幸运', '+10 收获'],
+    special: { interest: 8 },
     skill: {
       name: '黄金炮击',
       desc: '向敌群最密集处发射黄金炮弹，大范围爆炸，击杀必掉番茄籽。',
@@ -420,6 +435,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { dodge: 25, maxHp: -4, speed: 8 },
     dodgeCap: 75,
     startWeapons: ['soda'],
+    talent: { name: '幽灵突袭', desc: '闪避成功后 1.5 秒内伤害 +40%' },
     traits: ['+25% 闪避', '闪避上限 75%', '-4 最大生命'],
     skill: { name: '灵体化', desc: '无敌 2.5 秒并大幅加速。', type: 'ghost', cd: 0, duration: 2.5, mods: { speed: 60 }, color: 0xffb4a2 },
     cost: 100,
@@ -454,6 +470,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { xpGain: 40, maxHp: -3 },
     levelUpChoices: 5,
     startWeapons: ['ketchup'],
+    talent: { name: '人气飙升', desc: '每次升级额外永久获得 +1% 伤害与 +1 最大生命' },
     traits: ['+40% 经验获取', '升级时 5 个选项'],
     skill: {
       name: '应援打 Call',
@@ -490,6 +507,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { speed: 20, attackSpeed: 15, armor: -1 },
     startWeapons: ['onion_boomerang'],
+    talent: { name: '疾风步', desc: '移速每高出 10%，伤害 +4%' },
     traits: ['+20% 移速', '+15% 攻速', '-1 护甲'],
     skill: {
       name: '瞬影斩',
@@ -525,6 +543,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 2, range: 30, damage: 5 },
     startWeapons: ['pepper_mine', 'chili_rocket'],
+    talent: { name: '连环爆破', desc: '爆炸伤害每波 +10%' },
     traits: ['+2 元素伤害', '+5% 伤害', '击杀 15% 概率爆炸'],
     special: { explodeOnKill: { chance: 15, dmg: 20 } },
     skill: { name: '核心过载', desc: '连环爆炸 5 次。', type: 'strikes', cd: 0, mult: 1.6, count: 5, radius: 90, color: 0xa7c957 },
@@ -557,6 +576,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { armor: 4, maxHp: 10, speed: -5, regen: 2 },
     startWeapons: ['pan'],
+    talent: { name: '催泪弹', desc: '受击时使周围敌人致盲 2 秒（每 3 秒最多一次）' },
     traits: ['+4 护甲', '+10 最大生命', '受击时反弹 15 点伤害'],
     special: { thorns: 15 },
     skill: {
@@ -596,6 +616,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 2, luck: 5 },
     startWeapons: ['soda'],
+    talent: { name: '孢子扩散', desc: '中毒的敌人死亡时，使周围敌人中毒 3 层' },
     traits: ['+2 元素伤害', '所有命中 30% 概率中毒'],
     special: { onHit: [S('poison', 5, 1, 30)] },
     skill: {
@@ -632,6 +653,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { melee: 4, armor: 2, maxHp: 5 },
     classMult: { elemental: 0.5 },
     startWeapons: ['pan'],
+    talent: { name: '重拳出击', desc: '近战命中 12% 概率眩晕敌人 0.6 秒' },
     traits: ['+4 近战伤害', '+2 护甲', '+5 最大生命', '击杀叠加怒气（每层 +4% 伤害）'],
     special: { onKillSelf: [S('rage', 4, 1)] },
     skill: {
@@ -672,6 +694,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { luck: 10, elemental: 1, ranged: 1, maxHp: 3 },
     startWeapons: ['ketchup'],
+    talent: { name: '障眼法', desc: '每 8 秒获得 1 秒无敌' },
     traits: ['+10 幸运', '+3 最大生命', '受到攻击 20% 概率使敌人混乱'],
     special: { onHurtEnemy: [S('confuse', 3, 1, 20)] },
     skill: { name: '葡萄分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0xb5179e },
@@ -702,6 +725,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { attackSpeed: 20, ranged: 1, damage: -8 },
     startWeapons: ['pea_shooter'],
+    talent: { name: '连珠炮', desc: '攻速每 +10%，伤害额外 +2%' },
     traits: ['+20% 攻速', '-8% 伤害', '射击时 10% 概率获得急速'],
     special: { onHitSelf: [S('haste', 2, 1, 10)] },
     skill: { name: '双枪连射', desc: '对最近的敌人连续射出 12 发子弹。', type: 'barrage', cd: 0, mult: 0.9, count: 12, color: 0xff4d6d },
@@ -727,6 +751,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { ranged: 2, maxHp: 3 },
     startWeapons: ['pea_shooter', 'pea_shooter'],
+    talent: { name: '豌豆军团', desc: '每持有 1 把武器，伤害 +3%' },
     traits: ['+2 远程伤害', '初始 2 把豌豆枪', '每把同名武器 +3% 伤害'],
     special: { sameWeaponBonus: 3 },
     skill: { name: '豌豆炮台', desc: '对最近的敌人高速连发 16 颗豌豆。', type: 'barrage', cd: 0, mult: 0.6, count: 16, color: 0x70e000 },
@@ -755,6 +780,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { regen: 5, maxHp: 5, damage: -10 },
     startWeapons: ['slingshot'],
+    talent: { name: '天使庇护', desc: '每波首次受到致命伤害时保留 1 点生命，并获得 2 秒无敌' },
     traits: ['+5 生命再生', '每波开始获得 15 点护盾', '-10% 伤害'],
     special: { waveStartSelf: [{ id: 'shield', dur: 999, value: 15 }] },
     skill: {
@@ -793,8 +819,9 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { melee: 2, elemental: 2, speed: 5, maxHp: 5 },
     startWeapons: ['rolling_pin'],
+    talent: { name: '龙息', desc: '持续伤害（灼烧、中毒等）+40%' },
     traits: ['+2 近战/元素伤害', '+5 最大生命', '近战命中 20% 概率灼烧'],
-    special: { onHit: [S('burn', 3, 1, 20)] },
+    special: { statusDmg: 40, onHit: [S('burn', 3, 1, 20)] },
     skill: {
       name: '龙焰冲锋',
       desc: '冲锋并在路径上叠加 4 层灼烧。',
@@ -832,6 +859,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { damage: 15, armor: -1, lifeSteal: 3 },
     startWeapons: ['cleaver'],
+    talent: { name: '狂战之血', desc: '每损失 10% 生命，伤害 +6%' },
     traits: ['+15% 伤害', '+3% 吸血', '-1 护甲', '受伤时获得怒气'],
     special: { onHurtSelf: [S('rage', 5, 2)] },
     skill: {
@@ -869,6 +897,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { range: 80, crit: 10, ranged: 1 },
     classMult: { melee: 0.6 },
     startWeapons: ['corn_cannon'],
+    talent: { name: '一箭穿心', desc: '对生命高于 80% 的敌人伤害 +40%' },
     traits: ['+80 射程', '+10% 暴击', '命中 15% 概率标记敌人（下次必暴击）'],
     special: { onHit: [S('mark', 4, 1, 15)] },
     skill: {
@@ -908,6 +937,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { harvest: 20, maxHp: 5, damage: -5 },
     startWeapons: ['rolling_pin'],
+    talent: { name: '美食家', desc: '拾取果实时额外获得番茄籽（随波次增加）' },
     traits: ['+20 收获', '果实回血翻倍', '-5% 伤害'],
     special: { fruitHeal: 100 },
     skill: {
@@ -946,6 +976,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { crit: 8, luck: 10, maxHp: 3, melee: 1 },
     startWeapons: ['knife'],
+    talent: { name: '弱点洞察', desc: '对带有减益的敌人伤害 +20%' },
     traits: ['+8% 暴击', '+3 最大生命', '+1 近战伤害', '命中 20% 概率易伤', '暴击伤害 +30%'],
     special: { onHit: [S('vulnerable', 4, 1, 20)], critDmg: 30 },
     skill: {
@@ -984,6 +1015,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { luck: 40 },
     startWeapons: ['slingshot'],
+    talent: { name: '好运连连', desc: '每 10 点幸运使伤害 +1%；每波第一次商店刷新免费' },
     traits: ['+40 幸运', '宝箱掉率翻倍'],
     special: { crateMult: 2 },
     skill: {
@@ -1020,6 +1052,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { armor: 3, maxHp: 10, speed: -4 },
     startWeapons: ['garlic_aura'],
+    talent: { name: '臭气熏天', desc: '周围敌人持续易伤' },
     traits: ['+3 护甲', '+10 最大生命', '-4% 移速', '反弹 10 伤害', '周围敌人持续虚弱'],
     special: { thorns: 10, aura: { radius: 140, every: 1, status: [S('weaken', 1.5, 1)] } },
     skill: {
@@ -1057,6 +1090,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { armor: 5, maxHp: 10, speed: -10, dodge: -10 },
     startWeapons: ['sauce_gatling'],
+    talent: { name: '机甲装甲', desc: '受到的伤害 -15%' },
     traits: ['+5 护甲', '+10 生命', '-10% 闪避', '每 12 秒获得 20 点护盾'],
     special: { periodicSelf: { every: 12, status: [{ id: 'shield', dur: 12, value: 20 }] } },
     skill: { name: '无人机支援', desc: '部署无人机 8 秒。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x4cc9f0 },
@@ -1085,6 +1119,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { dodge: 15, regen: 3, speed: 5 },
     classMult: { ranged: 0.7 },
     startWeapons: ['rolling_pin'],
+    talent: { name: '禅定', desc: '静止不动时受到的伤害 -25%，并每秒回复 2% 最大生命' },
     traits: ['+15% 闪避', '+3 再生', '闪避成功时获得专注'],
     special: { onDodgeSelf: [S('focus', 3, 1)] },
     skill: {
@@ -1120,6 +1155,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 3, attackSpeed: 5, maxHp: 3 },
     startWeapons: ['soda'],
+    talent: { name: '寒霜侵袭', desc: '对减速或冰冻的敌人伤害 +35%' },
     traits: ['+3 元素伤害', '+3 最大生命', '命中 8% 概率冰冻敌人 1 秒'],
     special: { onHit: [S('freeze', 1, 1, 8)] },
     skill: {
@@ -1158,6 +1194,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { xpGain: 80, maxHp: -3, damage: -8 },
     levelUpChoices: 5,
     startWeapons: ['fork'],
+    talent: { name: '厚积薄发', desc: '每升 1 级，伤害 +1.5%' },
     traits: ['+80% 经验获取', '-8% 伤害', '-3 最大生命', '升级时 5 个选项'],
     skill: {
       name: '拔苗助长',
@@ -1194,6 +1231,7 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 2, damage: 8, maxHp: -5 },
     startWeapons: ['chili_rocket'],
+    talent: { name: '连锁反应', desc: '被爆炸击杀的敌人 40% 概率再次爆炸' },
     traits: ['+8% 伤害', '击杀 25% 概率爆炸', '爆炸施加灼烧'],
     special: { explodeOnKill: { chance: 25, dmg: 18 } },
     skill: {

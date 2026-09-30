@@ -35,6 +35,8 @@ import { paintArena } from '../art/ArenaArt';
 import { Terrain, TERRAIN_INFO } from '../systems/Terrain';
 import { tx } from '../i18n';
 import { checkAchievements, setInRun } from '../systems/Achievements';
+import { TalentSystem, waveGrowthMods } from '../systems/Talents';
+import { saveRun } from '../systems/RunState';
 
 export interface HitInfo {
   dmg: number;
@@ -45,6 +47,8 @@ export interface HitInfo {
   weaponId?: string;
   cls?: WeaponClass;
   status?: StatusApply[];
+  /** 爆炸造成的伤害（部分天赋按此判断） */
+  explosion?: boolean;
 }
 
 interface Pickup {
@@ -124,6 +128,9 @@ export class GameScene extends Phaser.Scene {
   boss: Enemy | null = null;
   spawnT = 1;
   iframes = 0;
+  talent!: TalentSystem;
+  /** 最近一次武器命中的信息（击杀类天赋使用） */
+  private lastHit = { crit: false, explosion: false };
   regenAcc = 0;
   shieldT = 0;
   shieldUp = false;
@@ -180,6 +187,8 @@ export class GameScene extends Phaser.Scene {
     this.overtime = 0;
     this.tookDamage = false;
     setInRun(true);
+    // 每波开始时自动保存，暂停后可“保存并退出”，下次从本波开始继续
+    if (!HEADLESS_MODE) saveRun('wave');
     this.enrageStacks = 0;
     this.pressureT = 0;
     this.pstatus = new StatusSet();
@@ -208,6 +217,7 @@ export class GameScene extends Phaser.Scene {
     this.recalcStats();
     this.weapons = new WeaponSystem(this);
     this.skill = new SkillSystem(this);
+    this.talent = new TalentSystem(this);
     run.hp = this.stats.maxHp; // 每波开始回满生命
     const sp = run.specials;
     for (const s of sp.waveStartSelf) this.pstatus.apply(s);
@@ -328,6 +338,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.weapons.update(dt);
     this.skill.update(dt);
+    this.talent.update(dt);
     for (const e of this.enemies) if (e.alive) e.tick(dt, this);
     if (this.dying.length) {
       for (const r of this.dying) r.tick(dt, 0, 0);
@@ -519,6 +530,7 @@ export class GameScene extends Phaser.Scene {
       this.fx.label(this.player.x, this.player.y, tx('闪避', 'Dodge'), '#81ecec');
       this.iframes = 0.15;
       this.applyPlayerStatus(sp.onDodgeSelf);
+      this.talent.onDodge();
       return;
     }
     if (this.shieldUp) {
@@ -527,7 +539,7 @@ export class GameScene extends Phaser.Scene {
       this.iframes = 0.3;
       return;
     }
-    let dmg = amount * armorMultiplier(s.armor) * (1 + this.pstatus.totals.dmgTaken / 100);
+    let dmg = amount * armorMultiplier(s.armor) * (1 + this.pstatus.totals.dmgTaken / 100) * this.talent.takenMult();
     dmg = this.pstatus.absorb(dmg);
     this.applyPlayerStatus(debuffs);
     if (dmg <= 0) {
@@ -551,6 +563,7 @@ export class GameScene extends Phaser.Scene {
     this.shake(0.008, 120);
     this.cameras.main.flash(80, 120, 0, 0, false);
     this.applyPlayerStatus(sp.onHurtSelf);
+    this.talent.onHurt();
     if (source?.alive) {
       for (const d of sp.onHurtEnemy) source.status.apply(d);
       const th = sp.thorns + this.pstatus.totals.reflect;
@@ -573,6 +586,7 @@ export class GameScene extends Phaser.Scene {
 
   private onPlayerDeath(): void {
     if (this.dead) return;
+    if (this.talent.preventDeath()) return;
     if (run.specials.revive > run.revivesUsed) {
       run.revivesUsed++;
       save.stats.revives++;
@@ -770,7 +784,7 @@ export class GameScene extends Phaser.Scene {
     const def = BOSS_MAP[id];
     markSeen('bosses', id);
     const ch = run.chapter;
-    const hp = Math.round(def.hp * chapterScale(ch.hpMult, run.wave) * (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3));
+    const hp = Math.round(def.hp * chapterScale(ch.bossHpMult, run.wave) * (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3));
     const dmg = Math.round(def.dmg * chapterScale(ch.dmgMult, run.wave) * (def.elite ? 1 + (run.wave - 5) * 0.08 : 1));
     // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加
     const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
@@ -807,6 +821,11 @@ export class GameScene extends Phaser.Scene {
     }
     const interest = run.specials.interest;
     if (interest > 0) run.earn(Math.min(run.wave * 6, Math.floor((run.seeds * interest) / 100)), 'interest'); // 利息有上限，防止滚雪球
+    const growth = waveGrowthMods(run.charId);
+    if (growth) {
+      for (const [k, v] of Object.entries(growth) as [keyof typeof growth, number][]) run.levelMods[k] = (run.levelMods[k] ?? 0) + v;
+      run.dirty();
+    }
     save.totalKills += this.killCounter;
     this.killCounter = 0;
     if (!this.tookDamage) save.stats.perfectWaves++;
@@ -1027,13 +1046,17 @@ export class GameScene extends Phaser.Scene {
     this.applyPlayerStatus(sp.onHitSelf);
     // 荆棘词缀反伤
     if (info.cls === 'melee' && e.affixes.includes('thorny')) this.hurtDirect(Math.max(1, dmg * 0.05), '#6a994e');
-    const ls = s.lifeSteal + (info.lifeSteal ?? 0);
+    const ls = (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult();
     if (ls > 0 && this.lsCd <= 0 && Math.random() * 100 < ls) {
       this.lsCd = 0.1;
       this.heal(1, false);
     }
     const lh = sp.lightningOnHit;
+    dmg *= this.talent.dmgMult(e, info);
+    this.talent.onHit(e, info);
+    this.lastHit = { crit, explosion: !!info.explosion };
     const alive = this.damageEnemy(e, dmg, { crit });
+    this.lastHit = { crit: false, explosion: false };
     if (lh && Math.random() * 100 < lh) {
       const t = alive ? e : this.grid.nearest(e.x, e.y, 200);
       if (t?.alive) {
@@ -1150,6 +1173,7 @@ export class GameScene extends Phaser.Scene {
       }
     }
     if (sp.killHeal && run.kills % sp.killHeal === 0) this.heal(1);
+    this.talent.onKill(e, this.lastHit.crit, this.lastHit.explosion);
   }
 
   explode(x: number, y: number, r: number, dmg: number, info: HitInfo, color: number, goldDrop = false): void {
@@ -1157,7 +1181,7 @@ export class GameScene extends Phaser.Scene {
     audio.play(this, 'explode', 0.08);
     const hits = [...this.grid.query(x, y, r, this.tmp2)];
     for (const e of hits) {
-      this.weaponHit(e, { ...info, dmg, knockback: 25 }, x, y);
+      this.weaponHit(e, { ...info, dmg, knockback: 25, explosion: true }, x, y);
       if (goldDrop && !e.alive) this.dropPickup('seed', e.x, e.y, 1);
     }
   }
@@ -1477,6 +1501,8 @@ export class GameScene extends Phaser.Scene {
       run.addXp(p.xp);
       audio.play(this, 'pickup', 0.03);
     } else if (p.kind === 'fruit') {
+      const bonus = this.talent.fruitSeeds();
+      if (bonus) run.earn(bonus, 'talent');
       this.heal(Math.max(3, Math.round(this.stats.maxHp * 0.08 * (1 + run.specials.fruitHeal / 100))));
       this.fx.ring(this.player.x, this.player.y, 50, 0x52ff8a, 300);
       audio.play(this, 'pickup');

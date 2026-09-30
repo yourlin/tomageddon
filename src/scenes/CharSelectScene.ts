@@ -134,41 +134,68 @@ export class CharSelectScene extends Phaser.Scene {
           wordWrap: { width: pw - 200, useAdvancedWrap: true },
         }),
       );
-      let y = 190;
-      d.add(text(this, 20, y, tx('特性', 'Traits'), 22, '#ffb347'));
-      y += 32;
+      // 各段按实际文字高度依次排列，特性分两列，避免长文本溢出面板
+      const add = (x: number, yy: number, str: string, size: number, color: string, wrap = 0) => {
+        const t = text(this, x, yy, str, size, color, wrap ? { wordWrap: { width: wrap, useAdvancedWrap: true } } : {});
+        d.add(t);
+        return t.height;
+      };
+      let y = 172;
+      y += add(20, y, tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 21, '#ffd166') + 4;
+      y += add(30, y, c.talent.desc, 16, '#fff4ea', pw - 60) + 10;
+      y += add(20, y, tx('特性', 'Traits'), 21, '#ffb347') + 4;
       const traits = [...c.traits];
       if (!traits.length) traits.push(...describeMods(c.mods));
-      d.add(text(this, 30, y, traits.map((t) => '• ' + t).join('\n'), 18, '#fff4ea', { lineSpacing: 4 }));
-      y += traits.length * 26 + 12;
-      d.add(
-        text(
-          this,
+      const half = Math.ceil(traits.length / 2);
+      const colW = (pw - 60) / 2;
+      const hL = add(
+        30,
+        y,
+        traits
+          .slice(0, half)
+          .map((t) => '• ' + t)
+          .join('\n'),
+        16,
+        '#fff4ea',
+        colW - 10,
+      );
+      const hR =
+        traits.length > 1
+          ? add(
+              30 + colW,
+              y,
+              traits
+                .slice(half)
+                .map((t) => '• ' + t)
+                .join('\n'),
+              16,
+              '#fff4ea',
+              colW - 10,
+            )
+          : 0;
+      y += Math.max(hL, hR) + 10;
+      y +=
+        add(
           20,
           y,
           tx(
             `技能：${c.skill.name}【${SKILL_TYPE_NAME[c.skill.type]}】冷却 ${c.skill.cd} 秒`,
             `Skill: ${c.skill.name} [${SKILL_TYPE_NAME[c.skill.type]}] cooldown ${c.skill.cd}s`,
           ),
-          20,
+          19,
           '#6ec6ff',
-        ),
-      );
-      y += 30;
-      d.add(text(this, 30, y, c.skill.desc, 17, '#fff4ea', { wordWrap: { width: pw - 60 } }));
-      y += 50;
-      d.add(
-        text(
-          this,
+        ) + 4;
+      y += add(30, y, c.skill.desc, 16, '#fff4ea', pw - 60) + 8;
+      y +=
+        add(
           20,
           y,
           tx('初始武器：', 'Starting weapons: ') + c.startWeapons.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
-          18,
+          17,
           '#9be564',
-        ),
-      );
+        ) + 4;
       const best = save.bestWave[`${c.id}_${this.chapter}`];
-      if (best) d.add(text(this, 20, y + 30, tx(`本章最佳：第 ${best} 波`, `Best this chapter: wave ${best}`), 16, COLORS.textDim));
+      if (best) add(20, y, tx(`本章最佳：第 ${best} 波`, `Best this chapter: wave ${best}`), 15, COLORS.textDim);
     }
     const ch = CHAPTERS[this.chapter - 1];
     const chUnlocked = save.clearedChapters >= this.chapter - 1;

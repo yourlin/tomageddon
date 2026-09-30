@@ -2,6 +2,8 @@
 import type { ItemsEn, SeriesEn } from '../types';
 
 export const EN_ITEMS: ItemsEn = {
+  big_magnet: { name: 'Power Magnet' },
+  vacuum: { name: 'Vacuum Cleaner' },
   // ---------- Common ----------
   band_aid: { name: 'Band-Aid' },
   tomato_juice: { name: 'Tomato Juice' },

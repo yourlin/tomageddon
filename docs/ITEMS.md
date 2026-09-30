@@ -1,4 +1,4 @@
-# 道具（562 件）
+# 道具（564 件）
 
 **中文** · [English](en/ITEMS.md)
 
@@ -6,7 +6,7 @@
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-道具是在商店购买或从宝箱获得的被动物品，可叠加。共 42 件经典道具 + 52 个主题系列 × 10 件。
+道具是在商店购买或从宝箱获得的被动物品，可叠加。共 44 件经典道具 + 52 个主题系列 × 10 件。
 
 效果中的 Buff / Debuff 见[状态效果](SKILLS.md#statuses)，属性说明见[设计文档](GDD.md)。
 
@@ -14,7 +14,7 @@
 
 - [稀有度与强度预算](#rarity)
 - [升级属性选项](#levelup)
-- [经典道具（42）](#classic)
+- [经典道具（44）](#classic)
 - [系列道具（52 个系列）](#series)
 
 <a id="rarity"></a>
@@ -26,8 +26,8 @@
 | 稀有度 | 数量 | 强度预算 |
 | --- | --- | --- |
 | 普通 | 223 | 10 |
-| 稀有 | 169 | 22 |
-| 史诗 | 112 | 40 |
+| 稀有 | 170 | 22 |
+| 史诗 | 113 | 40 |
 | 传说 | 58 | 75 |
 
 <a id="levelup"></a>
@@ -50,6 +50,7 @@
 | 射程 | 15 / 30 / 45 / 60 |
 | 护甲 | 1 / 2 / 3 / 4 |
 | 闪避 | 3 / 6 / 9 / 12 |
+| 拾取范围 | 15 / 25 / 35 / 50 |
 | 移动速度 | 3 / 6 / 9 / 12 |
 | 幸运 | 5 / 10 / 15 / 20 |
 | 收获 | 5 / 8 / 10 / 12 |
@@ -58,7 +59,7 @@
 
 <a id="classic"></a>
 
-## 经典道具（42）
+## 经典道具（44）
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
@@ -77,6 +78,7 @@
 | <img src="images/item/feather.png" width="32" height="32" alt=""> 羽毛 | 普通 | +3% 闪避 | 14 | ∞ |
 | <img src="images/item/hot_sauce.png" width="32" height="32" alt=""> 辣酱包 | 普通 | +5% 伤害 | 14 | ∞ |
 | <img src="images/item/notebook.png" width="32" height="32" alt=""> 食谱笔记 | 普通 | +10% 经验获取 | 14 | ∞ |
+| <img src="images/item/big_magnet.png" width="32" height="32" alt=""> 强力磁铁 | 稀有 | +3 收获，+80% 拾取范围 | 30 | ∞ |
 | <img src="images/item/chef_hat.png" width="32" height="32" alt=""> 厨师帽 | 稀有 | +3 最大生命，+3 近战伤害，+1 护甲 | 35 | ∞ |
 | <img src="images/item/scope.png" width="32" height="32" alt=""> 瞄准镜 | 稀有 | +3 远程伤害，+3% 暴击率，+40 射程 | 38 | ∞ |
 | <img src="images/item/battery.png" width="32" height="32" alt=""> 电池 | 稀有 | +3 元素伤害，+5% 攻击速度 | 36 | ∞ |
@@ -90,6 +92,7 @@
 | <img src="images/item/running_shoes.png" width="32" height="32" alt=""> 跑鞋 | 稀有 | +2% 闪避，+10% 移动速度 | 38 | ∞ |
 | <img src="images/item/lemonade.png" width="32" height="32" alt=""> 柠檬水 | 稀有 | +3 最大生命，+3 生命再生 | 36 | ∞ |
 | <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | 稀有 | +5 最大生命，+1 生命再生，每击杀 25 个敌人回复 1 生命 | 40 | ∞ |
+| <img src="images/item/vacuum.png" width="32" height="32" alt=""> 吸尘器 | 史诗 | +5 幸运，+150% 拾取范围 | 60 | ∞ |
 | <img src="images/item/iron_wok.png" width="32" height="32" alt=""> 铁锅盾 | 史诗 | +5 最大生命，+5 护甲，-5% 移动速度 | 70 | ∞ |
 | <img src="images/item/sharpener.png" width="32" height="32" alt=""> 磨刀石 | 史诗 | +3 近战伤害，+10% 暴击率 | 72 | ∞ |
 | <img src="images/item/tesla_coil.png" width="32" height="32" alt=""> 特斯拉线圈 | 史诗 | +4 元素伤害，命中时 10% 概率召唤闪电 | 75 | ∞ |

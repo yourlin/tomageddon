@@ -10,6 +10,7 @@ import { save, unlockedCount } from '../systems/Save';
 import { tx } from '../i18n';
 import { checkAchievements, setInRun, pointsBalance } from '../systems/Achievements';
 import { toggleFullscreen } from '../systems/Fullscreen';
+import { paint } from '../art/Painter';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -75,6 +76,28 @@ export class MenuScene extends Phaser.Scene {
       });
     }
 
+    // GitHub 主页入口（右上角图标）
+    const GITHUB_MARK =
+      'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z';
+    const ghKey = paint(this, 'ui_github', 64, 64, (ctx) => {
+      ctx.fillStyle = 'rgba(0,0,0,0.35)';
+      ctx.beginPath();
+      ctx.arc(32, 32, 31, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.translate(12, 12);
+      ctx.scale(2.5, 2.5);
+      ctx.fillStyle = '#fff4ea';
+      ctx.fill(new Path2D(GITHUB_MARK));
+    });
+    const gh = this.add
+      .image(W - 44, 44, ghKey)
+      .setDisplaySize(52, 52)
+      .setAlpha(0.85)
+      .setInteractive({ useHandCursor: true });
+    gh.on('pointerover', () => gh.setAlpha(1));
+    gh.on('pointerout', () => gh.setAlpha(0.85));
+    gh.on('pointerup', () => window.open(__REPO_URL__, '_blank', 'noopener'));
+
     const by = H * 0.52;
     const saved = hasSavedRun();
     if (saved) {
@@ -87,7 +110,10 @@ export class MenuScene extends Phaser.Scene {
         72,
         tx('继续游戏', 'Continue'),
         () => {
-          if (loadRun()) this.scene.start(run.pendingLevelUps || run.pendingCrates ? 'LevelUp' : 'Shop', { keep: true });
+          const phase = saved.phase;
+          if (!loadRun()) return;
+          if (phase === 'wave') this.scene.start('Game');
+          else this.scene.start(run.pendingLevelUps || run.pendingCrates ? 'LevelUp' : 'Shop', { keep: true });
         },
         0xe09f3e,
         30,

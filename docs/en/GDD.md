@@ -67,7 +67,7 @@ The top-left HUD shows all player status icons, stack counts and remaining-time 
 
 ## 6. Characters (33)
 
-Each character = stat modifiers + starting weapon + passive trait + active skill + unique look. Skill types: `nova` area burst / `dash` dash / `buff` self buff / `ghost` invulnerability / `ring` ring of bullets / `heal` drain heal / `strikes` lightning strikes / `clone` clone.
+Each character = stat modifiers + starting weapons + passive traits + a **signature talent** + an active skill + a unique look. Talents are unique mechanics that change how a character plays (e.g. Tomato Sister grows every wave, Pumpkin Ghost hits harder after dodging, Peach Angel survives one lethal hit per wave); see [Characters](CHARACTERS.md). Skill types: `nova` area burst / `dash` dash / `buff` self buff / `ghost` invulnerability / `ring` ring of bullets / `heal` drain heal / `strikes` lightning strikes / `clone` clone.
 
 | Archetype | Characters |
 | --- | --- |
@@ -154,7 +154,7 @@ Elites: +1 random affix from wave 10, +1 from chapter 3, and another +1 from cha
 | 5 Ketchup Factory | Metal plates, hazard stripes, sauce pools | ×2.6 | ×1.8 | All monsters mixed + Curse |
 
 - Chapter multipliers **ramp in gradually**: `1 + (multiplier−1) × (0.1 + 0.9 × (wave−1)/14)`, since every chapter starts from level 0
-- Let w = wave−1: HP `base × (1 + growth×w + 0.03w²) × chapter factor`; damage `(base + growth×(0.4w + 0.03w²)) × chapter factor` (gentle early, accelerating late)
+- Let w = wave−1: HP `base × (1 + growth × w^0.9) × chapter factor` (sublinear, fast early and slower later; elites/bosses use a separate chapter multiplier); damage `(base + growth×(0.4w + 0.03w²)) × chapter factor` (gentle early, accelerating late)
 - Wave duration `min(20+5w, 60)`; spawn interval `max(1.0, 2.1−0.075×wave)`; per batch `3 + 0.4×wave`; on-screen cap 260
 
 ### 9.1 Terrain Hazards

@@ -125,7 +125,7 @@ Points buy [characters](CHARACTERS.md) on the character select screen; some char
 | Achievement | Condition | Tier goals & points |
 | --- | --- | --- |
 | <a id="ach-codex_weapons"></a>🗡️ Arsenal | Discover N weapons in the codex | 🥉 9 (+10 pts)<br>🥈 18 (+25 pts) |
-| <a id="ach-codex_items"></a>📦 Item Encyclopedia | Discover N items in the codex | 🥉 50 (+10 pts)<br>🥈 200 (+25 pts)<br>🥇 562 (+50 pts) |
+| <a id="ach-codex_items"></a>📦 Item Encyclopedia | Discover N items in the codex | 🥉 50 (+10 pts)<br>🥈 200 (+25 pts)<br>🥇 564 (+50 pts) |
 | <a id="ach-codex_monsters"></a>🔬 Monster Scholar | Discover N monsters in the codex | 🥇 25 (+25 pts) |
 | <a id="ach-codex_bosses"></a>📜 Bestiary of Bosses | Discover N elites and bosses in the codex | 🥉 15 (+15 pts)<br>🥈 45 (+40 pts) |
 

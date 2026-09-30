@@ -34,7 +34,7 @@ Ketchup Town is being eaten away by "the Rot": mold, pests and possessed kitchen
 
 ### Core loop
 
-1. **Pick a character and chapter**: every [character](docs/en/CHARACTERS.md) has unique stats, traits, starting weapons and an active skill.
+1. **Pick a character and chapter**: every [character](docs/en/CHARACTERS.md) has unique stats, traits, a **signature talent** (a unique mechanic that changes how they play), starting weapons and an active skill.
 2. **Fight waves**: 15 waves per chapter, 20–60 seconds each. Weapons aim and fire on their own; you dodge bullets, telegraphed zones, lasers and charges, and time your [skill](docs/en/SKILLS.md).
 3. **Elites and bosses**: [elites](docs/en/MONSTERS.md#elites) on waves 5 and 10, a [boss](docs/en/MONSTERS.md#bosses) on wave 15 (after 90 seconds it enrages, with damage stacking until the fight is decided). Each run draws them at random from the chapter pool.
 4. **Between waves**: harvest & interest → level-up choices → open crates → shop for [weapons](docs/en/WEAPONS.md) and [items](docs/en/ITEMS.md), combine, reroll, lock.
@@ -61,7 +61,8 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 - 21 stats: Max HP, HP Regen, Life Steal, Damage, Melee/Ranged/Elemental Damage, Attack Speed, Crit, Range, Armor, Dodge, Move Speed, Luck, Harvest, Pickup Range, XP Gain, Skill Cooldown/Damage/Area/Duration
 - Two identical weapons of the same tier combine into the next tier (T1–T4); items stack (some have caps)
 - Piggy-bank items pay interest; HP refills at the start of every wave
-- Local browser save: permanent progress + mid-run save ("Continue" on the main menu)
+- Local browser save: permanent progress + mid-run save; pause and "Save & Quit" to resume from the current wave later
+- The result screen can generate a share poster (character, stats, QR code) — long-press to send it in WeChat; scanning opens the game
 
 ## Content
 
@@ -71,7 +72,7 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 | Skills          | 33           | 13 forms: nova, missile, screen clear, focused barrage, binding field, mass debuff, self buff, stealth, dash, strikes, ring, drain heal, clones; cooldowns computed from power | [Skills](docs/en/SKILLS.md)                                                 |
 | Statuses        | 28           | 16 debuffs + 12 buffs, shared by players and enemies                                                                                                                           | [Status effects](docs/en/SKILLS.md#statuses)                                |
 | Weapons         | 18           | Melee / ranged / elemental, 9 attack types, 4 tiers                                                                                                                            | [Weapons](docs/en/WEAPONS.md)                                               |
-| Items           | 562          | 42 classic items + 52 themed series × 10, power-budgeted per rarity                                                                                                            | [Items](docs/en/ITEMS.md)                                                   |
+| Items           | 564          | 44 classic items + 52 themed series × 10, power-budgeted per rarity                                                                                                            | [Items](docs/en/ITEMS.md)                                                   |
 | Monsters        | 25 + 2       | 25 monsters (10 AI behaviors) + 2 terrain critters                                                                                                                             | [Monsters](docs/en/MONSTERS.md)                                             |
 | Elites / Bosses | 30 / 15      | 11 attack patterns, phase two, enrage; 12 elite affixes                                                                                                                        | [Elites](docs/en/MONSTERS.md#elites) · [Bosses](docs/en/MONSTERS.md#bosses) |
 | Achievements    | 136          | Tiered medals (Bronze/Silver/Gold/Diamond); points buy characters; run and clear achievements for every character, first-kill achievements for every elite and boss            | [Achievements](docs/en/ACHIEVEMENTS.md)                                     |

@@ -189,7 +189,9 @@ export function chaptersDoc(): void {
   d.h2(tx('波次规则', 'Wave Rules'), 'waves');
   d.p(
     tx(
+      '- 小怪生命 `基础 × (1 + 成长 × w^0.9) × 章节系数`（w = 波次−1），随波次先快后慢，与玩家成长节奏匹配；精英 / Boss 使用单独的章节倍率',
       '- 每章都从 0 级开局，章节倍率渐进生效：`1 + (倍率−1) × (0.1 + 0.9 × (波次−1)/14)`',
+      '- Monster HP `base × (1 + growth × w^0.9) × chapter factor` (w = wave−1) grows fast early and slower later, matching player growth; elites/bosses use their own chapter multiplier',
       '- Every chapter starts at level 0, so chapter multipliers ramp in: `1 + (mult−1) × (0.1 + 0.9 × (wave−1)/14)`',
     ),
     tx(

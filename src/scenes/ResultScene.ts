@@ -9,6 +9,7 @@ import { CHAPTERS } from '../data/chapters';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { checkAchievements, setInRun, missingRequirement, pointsBalance } from '../systems/Achievements';
+import { showSharePoster } from '../systems/SharePoster';
 
 export class ResultScene extends Phaser.Scene {
   constructor() {
@@ -101,18 +102,21 @@ export class ResultScene extends Phaser.Scene {
 
     button(
       this,
-      W / 2 - 150,
+      W / 2 - 260,
       H - 110,
-      260,
+      230,
       68,
       tx('再来一局', 'Play Again'),
       () => {
+        save.charRuns[run.charId] = (save.charRuns[run.charId] ?? 0) + 1;
+        persist();
         run.start(run.charId, run.chapterId);
         this.scene.start('Game');
       },
       COLORS.primary,
       26,
     );
-    button(this, W / 2 + 150, H - 110, 260, 68, tx('返回菜单', 'Main Menu'), () => this.scene.start('Menu'), 0x555555, 26);
+    button(this, W / 2, H - 110, 230, 68, tx('分享战绩', 'Share'), () => void showSharePoster(this, data.win), 0xb07d2b, 26);
+    button(this, W / 2 + 260, H - 110, 230, 68, tx('返回菜单', 'Main Menu'), () => this.scene.start('Menu'), 0x555555, 26);
   }
 }

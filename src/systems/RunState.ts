@@ -8,6 +8,7 @@ import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
 import { BALANCE, xpToNext } from '../data/balance';
 import { markSeen, save } from './Save';
+import { levelGrowthMods } from './Talents';
 
 export interface OwnedWeapon {
   uid: number;
@@ -247,6 +248,9 @@ export class RunState {
       this.level++;
       this.pendingLevelUps++;
       this.levelMods.maxHp = (this.levelMods.maxHp ?? 0) + 1;
+      const growth = levelGrowthMods(this.charId);
+      if (growth)
+        for (const [k, v] of Object.entries(growth) as [keyof StatMods, number][]) this.levelMods[k] = (this.levelMods[k] ?? 0) + v;
       this.dirty();
       this.hp += 1;
     }
@@ -320,10 +324,12 @@ export class RunState {
 const RUN_KEY = 'tomato_sister_run_v1';
 
 /** 局内存档：每波结束时保存，刷新页面后可继续 */
-export function saveRun(): void {
+/** 保存对局；phase = 'wave' 表示保存于某一波开始时（继续游戏将直接从该波开始） */
+export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
   try {
     const d = {
       v: 1,
+      phase,
       charId: run.charId,
       chapterId: run.chapterId,
       wave: run.wave,
@@ -349,7 +355,7 @@ export function saveRun(): void {
   }
 }
 
-export function hasSavedRun(): { charId: string; chapterId: number; wave: number } | null {
+export function hasSavedRun(): { charId: string; chapterId: number; wave: number; phase?: 'shop' | 'wave' } | null {
   try {
     const raw = localStorage.getItem(RUN_KEY);
     if (!raw) return null;

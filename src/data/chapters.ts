@@ -14,7 +14,10 @@ export interface ChapterDef {
   bgColor: number;
   floorColor: number;
   lineColor: number;
+  /** 小怪血量倍率（随波次渐进生效） */
   hpMult: number;
+  /** 精英 / Boss 血量倍率（它们没有波次成长，单独设定） */
+  bossHpMult: number;
   dmgMult: number;
   speedMult: number;
   pool: SpawnEntry[];
@@ -31,6 +34,7 @@ export const CHAPTERS: ChapterDef[] = [
     floorColor: 0x7a5236,
     lineColor: 0x5e3d27,
     hpMult: 1,
+    bossHpMult: 1,
     dmgMult: 1,
     speedMult: 1,
     pool: [
@@ -53,7 +57,8 @@ export const CHAPTERS: ChapterDef[] = [
     bgColor: 0x1f3d1c,
     floorColor: 0x4f7a3a,
     lineColor: 0x3d632c,
-    hpMult: 1.45,
+    hpMult: 2.9,
+    bossHpMult: 1.45,
     dmgMult: 1.3,
     speedMult: 1.05,
     pool: [
@@ -79,7 +84,8 @@ export const CHAPTERS: ChapterDef[] = [
     bgColor: 0x14304a,
     floorColor: 0x7fb3d5,
     lineColor: 0x5d95ba,
-    hpMult: 1.6,
+    hpMult: 3.2,
+    bossHpMult: 1.6,
     dmgMult: 1.35,
     speedMult: 1.1,
     pool: [
@@ -105,7 +111,8 @@ export const CHAPTERS: ChapterDef[] = [
     bgColor: 0x2b2b2b,
     floorColor: 0x6b6b5a,
     lineColor: 0x565646,
-    hpMult: 2.1,
+    hpMult: 4.2,
+    bossHpMult: 2.1,
     dmgMult: 1.55,
     speedMult: 1.15,
     pool: [
@@ -132,7 +139,8 @@ export const CHAPTERS: ChapterDef[] = [
     bgColor: 0x3a0d12,
     floorColor: 0x8a3b3b,
     lineColor: 0x6e2b2b,
-    hpMult: 2.6,
+    hpMult: 5.2,
+    bossHpMult: 2.6,
     dmgMult: 1.8,
     speedMult: 1.2,
     pool: [

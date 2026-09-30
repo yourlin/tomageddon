@@ -14,6 +14,7 @@ import { markSeen, persist } from '../systems/Save';
 import { tx } from '../i18n';
 import { tagName } from '../i18n/apply';
 import { checkAchievements, setInRun } from '../systems/Achievements';
+import { freeFirstReroll } from '../systems/Talents';
 
 export class ShopScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
@@ -240,7 +241,7 @@ export class ShopScene extends Phaser.Scene {
     });
 
     // 底部按钮
-    const rp = rerollPrice(run.wave, run.rerolls);
+    const rp = freeFirstReroll(run.charId) && run.rerolls === 0 ? 0 : rerollPrice(run.wave, run.rerolls);
     L.add(
       button(
         this,

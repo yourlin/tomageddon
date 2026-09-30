@@ -1,7 +1,12 @@
 {
   "name": "tomageddon",
   "version": "1.0.0",
-  "description": "",
+  "description": "番茄酱 Tomageddon：蔬果大战腐烂的浏览器割草生存 Roguelite",
+  "homepage": "https://yourlin.github.io/tomageddon/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourlin/tomageddon"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
@@ -23,10 +28,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "phaser": "^3.90.0"
+    "phaser": "^3.90.0",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/qrcode": "^1.5.6",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.12.0",

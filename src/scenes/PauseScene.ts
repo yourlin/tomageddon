@@ -7,6 +7,7 @@ import { WEAPON_MAP, TIER_NAMES } from '../data/weapons';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { toggleFullscreen } from '../systems/Fullscreen';
+import { save, persist } from '../systems/Save';
 
 export class PauseScene extends Phaser.Scene {
   constructor() {
@@ -15,6 +16,9 @@ export class PauseScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
+    // 战斗界面（HUD）每波会被置顶，暂停界面需盖在它之上
+    this.scene.bringToTop();
+    this.scene.setVisible(false, 'Hud'); // 暂停时隐藏战斗界面（技能按钮、血条等）
     const W = this.scale.width,
       H = this.scale.height;
     this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.6).setInteractive();
@@ -43,12 +47,12 @@ export class PauseScene extends Phaser.Scene {
     );
 
     const by = H - 110;
-    button(this, W / 2 - 345, by, 210, 64, tx('继续', 'Resume'), () => this.resume(), COLORS.green, 26);
+    button(this, W / 2 - 380, by, 180, 64, tx('继续', 'Resume'), () => this.resume(), COLORS.green, 26);
     button(
       this,
-      W / 2 - 115,
+      W / 2 - 190,
       by,
-      210,
+      180,
       64,
       tx('设置', 'Settings'),
       () => {
@@ -59,12 +63,13 @@ export class PauseScene extends Phaser.Scene {
       0x4a6fa5,
       24,
     );
-    button(this, W / 2 + 115, by, 210, 64, tx('全屏', 'Fullscreen'), () => toggleFullscreen(this), 0x3a7d44, 24);
+    button(this, W / 2, by, 180, 64, tx('全屏', 'Fullscreen'), () => toggleFullscreen(this), 0x3a7d44, 22);
+    button(this, W / 2 + 190, by, 180, 64, tx('保存退出', 'Save & Quit'), () => this.saveAndQuit(), 0xb07d2b, 22);
     button(
       this,
-      W / 2 + 345,
+      W / 2 + 380,
       by,
-      210,
+      180,
       64,
       tx('放弃本局', 'Abandon Run'),
       () => {
@@ -83,6 +88,19 @@ export class PauseScene extends Phaser.Scene {
   private resume(): void {
     this.scene.resume('Game');
     this.scene.resume('Hud');
+    this.scene.setVisible(true, 'Hud');
     this.scene.stop();
+  }
+
+  /** 保存并退出：对局已在本波开始时自动保存，下次从本波开始继续 */
+  private saveAndQuit(): void {
+    const g = this.scene.get('Game') as unknown as { killCounter: number };
+    save.totalKills += g.killCounter ?? 0;
+    g.killCounter = 0;
+    persist();
+    audio.stopMusic();
+    this.scene.stop('Hud');
+    this.scene.stop('Game');
+    this.scene.start('Menu');
   }
 }

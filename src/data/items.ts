@@ -63,6 +63,14 @@ export const ITEMS: ItemDef[] = [
   { id: 'hot_sauce', name: '辣酱包', rarity: 0, price: 14, mods: { damage: 5 } },
   { id: 'notebook', name: '食谱笔记', rarity: 0, price: 14, mods: { xpGain: 10 } },
   // ---------- 稀有 ----------
+  {
+    id: 'big_magnet',
+    name: '强力磁铁',
+    rarity: 1,
+    price: 30,
+    mods: { pickup: 80, harvest: 3 },
+    icon: { shape: 'heart', color: 0x4361ee, color2: 0xadb5bd },
+  },
   { id: 'chef_hat', name: '厨师帽', rarity: 1, price: 35, mods: { melee: 3, armor: 1, maxHp: 3 } },
   { id: 'scope', name: '瞄准镜', rarity: 1, price: 38, mods: { ranged: 3, range: 40, crit: 3 } },
   { id: 'battery', name: '电池', rarity: 1, price: 36, mods: { elemental: 3, attackSpeed: 5 } },
@@ -110,6 +118,14 @@ export const ITEMS: ItemDef[] = [
     desc: '每击杀 25 个敌人回复 1 生命',
   },
   // ---------- 史诗 ----------
+  {
+    id: 'vacuum',
+    name: '吸尘器',
+    rarity: 2,
+    price: 60,
+    mods: { pickup: 150, luck: 5 },
+    icon: { shape: 'box', color: 0x2ec4b6, color2: 0xe9ecef },
+  },
   { id: 'iron_wok', name: '铁锅盾', rarity: 2, price: 70, mods: { armor: 5, maxHp: 5, speed: -5 } },
   { id: 'sharpener', name: '磨刀石', rarity: 2, price: 72, mods: { crit: 10, melee: 3 } },
   {
@@ -180,6 +196,7 @@ export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }
   { key: 'range', values: [15, 30, 45, 60] },
   { key: 'armor', values: [1, 2, 3, 4] },
   { key: 'dodge', values: [3, 6, 9, 12] },
+  { key: 'pickup', values: [15, 25, 35, 50] },
   { key: 'speed', values: [3, 6, 9, 12] },
   { key: 'luck', values: [5, 10, 15, 20] },
   { key: 'harvest', values: [5, 8, 10, 12] },
