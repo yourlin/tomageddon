@@ -1,0 +1,77 @@
+docs/en/CHAPTERS.md
+  s_b200a2907eaa8e::t_9d8f1b97fee10b 85,114,143,173
+src/scenes/MenuScene.ts
+  s_b200a2907eaa8e::t_94b995a7ea9eb9 10,100-102
+  s_b200a2907eaa8e::t_9d243db00a9c31 103-112
+src/data/chapters.ts
+  s_b200a2907eaa8e::t_6303631a5b5deb 21-22,40,65,93,121,150
+  s_b200a2907eaa8e::t_bbe6c6cf600dfb 91-92,94,119-120,122,148-149
+  s_b200a2907eaa8e::t_dd40952fea571a 63-64
+  s_b200a2907eaa8e::t_9442257917b295 66
+src/objects/Enemy.ts
+  s_b200a2907eaa8e::t_5db0a03f437379 33
+  s_b200a2907eaa8e::t_6303631a5b5deb 115,131
+README.en.md
+  s_b200a2907eaa8e::t_ddc86b0af61d10 65,141,144
+  s_b200a2907eaa8e::t_36825b8da81a33 27,168-171,173-174
+  s_b200a2907eaa8e::t_913ab4c27ea1da 172
+  s_b200a2907eaa8e::t_673b9e929a7a65 175
+docs/DATA_TABLES.md
+  s_b200a2907eaa8e::t_9d8f1b97fee10b 125,241-244
+docs/en/WEAPONS.md
+  s_b200a2907eaa8e::t_9d8f1b97fee10b 11
+docs/en/DATA_TABLES.md
+  s_b200a2907eaa8e::t_9d8f1b97fee10b 125,241-244
+src/scenes/GameScene.ts
+  s_b200a2907eaa8e::t_02d1e33fce0899 812-813,837-845,1509-1516
+README.md
+  s_b200a2907eaa8e::t_36825b8da81a33 27,169-172,174-175
+  s_b200a2907eaa8e::t_913ab4c27ea1da 173
+  s_b200a2907eaa8e::t_ddc86b0af61d10 65,141,144
+  s_b200a2907eaa8e::t_af6799cfb34645 176
+src/data/balance.ts
+  s_b200a2907eaa8e::t_d5822ee8b8dc8f 8
+src/systems/RunState.ts
+  s_b200a2907eaa8e::t_02d1e33fce0899 83-85,109-110,362-363,405-406
+scripts/report.mjs
+  s_b200a2907eaa8e::t_bdb05d4b13e447 142
+docs/en/GDD.md
+  s_b200a2907eaa8e::t_4c043aa43eb635 151
+  s_b200a2907eaa8e::t_ddc86b0af61d10 152-154,187
+docs/GDD.md
+  s_b200a2907eaa8e::t_4c043aa43eb635 152
+  s_b200a2907eaa8e::t_ddc86b0af61d10 153-155,188
+src/data/weapons.ts
+  s_b200a2907eaa8e::t_5db0a03f437379 43,47
+docs/CHAPTERS.md
+  s_b200a2907eaa8e::t_9d8f1b97fee10b 85,114,143,173
+scripts/batch.mjs
+  s_b200a2907eaa8e::t_bbe6c6cf600dfb 205-223,267,272-273
+  s_b200a2907eaa8e::t_b8722700c2a35c 4-5,22,24-26,143,184,200
+  s_b200a2907eaa8e::t_fde275f8b2a9ae 3,12,23,64-71,84-86,183,185-199,201-204,224-225,227-237,239,270-271
+index.html
+  s_b200a2907eaa8e::t_aba8b18e6fc40d 16-19,23-24,26,32-34,66
+src/main.ts
+  s_b200a2907eaa8e::t_aba8b18e6fc40d 30
+src/scenes/HudScene.ts
+  s_b200a2907eaa8e::t_02d1e33fce0899 21,224
+  s_b200a2907eaa8e::t_54a90b1042107e 59,225
+docs/WEAPONS.md
+  s_b200a2907eaa8e::t_9d8f1b97fee10b 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f3af9b412472f3ad9b7efb9a3300db18c0661920",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
