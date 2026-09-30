@@ -1,12 +1,13 @@
 // 宣传视频素材录制：在无头 Chrome 中按脚本操作游戏，逐段录屏到 promo/raw/，并录制配乐到 promo/raw/music.webm
-// 用法：node scripts/promo/record.mjs [片段名...]（不传则录制全部）
+// 用法：node scripts/promo/record.mjs [片段名...]（不传则录制全部）；PROMO_LANG=en 录制英文界面（输出到 promo/raw-en/）
 import puppeteer from 'puppeteer-core';
 import { spawn } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
 const PORT = 5191;
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const OUT = new URL('../../promo/raw/', import.meta.url);
+const LANG = process.env.PROMO_LANG === 'en' ? 'en' : 'zh';
+const OUT = new URL(LANG === 'en' ? '../../promo/raw-en/' : '../../promo/raw/', import.meta.url);
 mkdirSync(OUT, { recursive: true });
 const only = process.argv.slice(2);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -35,7 +36,7 @@ async function openPage(saveData = {}) {
   await p.setViewport({ width: 1280, height: 720 });
   p.on('pageerror', (e) => console.error('[页面错误]', e.message));
   await p.evaluateOnNewDocument((d) => localStorage.setItem('tomato_sister_save_v1', JSON.stringify(d)), saveData);
-  await p.goto(`http://localhost:${PORT}/?lang=zh`);
+  await p.goto(`http://localhost:${PORT}/?lang=${LANG}`);
   await p.waitForFunction(() => window.game?.scene.isActive('Menu'), { timeout: 120000 });
   await p.addScriptTag({ type: 'module', content: bot });
   await p.waitForFunction(() => typeof window.botAutopilot === 'function');
@@ -225,9 +226,9 @@ const BUILD = [
   await record(p, 'levelup', async () => {
     await p.evaluate(() => window.__cursor.show(640, 650));
     await sleep(500);
-    await tapButton(p, 'LevelUp', /选择/);
+    await tapButton(p, 'LevelUp', /选择|Pick/);
     await sleep(900);
-    await tapButton(p, 'LevelUp', /选择/);
+    await tapButton(p, 'LevelUp', /选择|Pick/);
     await sleep(1200);
   });
   await p.close();
@@ -286,12 +287,12 @@ const BUILD = [
     });
     void pos;
     await sleep(700);
-    await tapButton(p, 'Shop', /洗全部/, { inPopup: true });
+    await tapButton(p, 'Shop', /洗全部|Reroll all/, { inPopup: true });
     await sleep(700);
-    await tapButton(p, 'Shop', /洗全部/, { inPopup: true });
+    await tapButton(p, 'Shop', /洗全部|Reroll all/, { inPopup: true });
     await sleep(700);
     for (let i = 0; i < 3; i++) {
-      await tapButton(p, 'Shop', /打造/, { inPopup: true });
+      await tapButton(p, 'Shop', /打造|Forge/, { inPopup: true });
       await sleep(800);
     }
     await sleep(600);
@@ -335,7 +336,7 @@ const BUILD = [
       pos.y,
     );
     await sleep(900);
-    await tapButton(p, 'CharSelect', /购买/);
+    await tapButton(p, 'CharSelect', /购买|Buy/);
     await sleep(2200);
   });
   // G. 片尾背景：主菜单
@@ -349,7 +350,7 @@ const BUILD = [
   });
   await p.close();
 }
-if (!only.length || only.includes('music')) {
+if (LANG === 'zh' && (!only.length || only.includes('music'))) {
   // 配乐：实时录制 Boss 战程序化电子乐 32 秒
   console.log('录制 music');
   const p = await browser.newPage();
@@ -382,4 +383,4 @@ if (!only.length || only.includes('music')) {
 }
 await browser.close();
 server.kill();
-console.log('完成，素材在 promo/raw/');
+console.log(`完成，素材在 ${OUT.pathname.replace(/.*\/promo\//, 'promo/')}`);

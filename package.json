@@ -22,8 +22,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "promo:record": "node scripts/promo/record.mjs",
-    "promo:edit": "bash scripts/promo/edit.sh"
+    "promo:record": "node scripts/promo/record.mjs && PROMO_LANG=en node scripts/promo/record.mjs",
+    "promo:edit": "bash scripts/promo/edit.sh zh && bash scripts/promo/edit.sh en",
+    "promo:overlays": "node -e \"import('qrcode').then((Q) => Q.default.toFile('promo/overlay/qr.png', require('./package.json').homepage, { width: 420, margin: 1 }))\" && python3 scripts/promo/overlays.py zh && python3 scripts/promo/overlays.py en"
   },
   "keywords": [],
   "author": "",

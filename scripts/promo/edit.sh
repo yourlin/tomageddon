@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-# 宣传视频剪辑：promo/raw 素材 + promo/overlay 字幕 → promo/tomageddon-promo.mp4（1920×1080 · 30fps · 30 秒）
+# 宣传视频剪辑：素材 + 字幕叠加层 → 成片（1920×1080 · 30fps · 30 秒）
+# 用法：bash scripts/promo/edit.sh [zh|en]   zh → promo/tomageddon-promo.mp4，en → promo/tomageddon-promo-en.mp4
 # 配乐 140 BPM，每 2 小节（≈3.43s）一刀，卡点剪辑。
 set -euo pipefail
 cd "$(dirname "$0")/../../promo"
 BAR2=3.4286 # 2 小节
-R=raw
-O=overlay
+PL=${1:-zh}
+if [ "$PL" = en ]; then R=raw-en O=overlay-en OUTFILE=tomageddon-promo-en.mp4; else R=raw O=overlay OUTFILE=tomageddon-promo.mp4; fi
+MUSIC=raw/music.webm # 两个语言版本共用配乐
 
 # 片段：输入, 源起点, 时长
 seg() { echo "trim=start=$1:duration=$2,setpts=PTS-STARTPTS,fps=30,scale=1920:1080:flags=lanczos,setsar=1"; }
@@ -27,7 +29,7 @@ END=30
 
 ffmpeg -v error -y \
   -i $R/combat.webm -i $R/boss.webm -i $R/levelup.webm -i $R/shop.webm -i $R/forge.webm -i $R/unlock.webm -i $R/menu.webm \
-  -i $R/music.webm \
+  -i $MUSIC \
   -loop 1 -t $END -i $O/title.png \
   -loop 1 -t $END -i $O/cap_combat.png -loop 1 -t $END -i $O/cap_boss.png -loop 1 -t $END -i $O/cap_levelup.png \
   -loop 1 -t $END -i $O/cap_shop.png -loop 1 -t $END -i $O/cap_forge.png -loop 1 -t $END -i $O/cap_unlock.png \
@@ -56,5 +58,5 @@ ffmpeg -v error -y \
     [7:a]atrim=0:$END,asetpts=PTS-STARTPTS,afade=t=in:d=0.2,afade=t=out:st=$(python3 -c "print($END-1.8)"):d=1.8,alimiter=limit=0.89:level=false[aout]
   " \
   -map "[vout]" -map "[aout]" -t $END -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -c:a aac -b:a 192k -movflags +faststart \
-  tomageddon-promo.mp4
-echo "成片：promo/tomageddon-promo.mp4"
+  "$OUTFILE"
+echo "成片：promo/$OUTFILE"
