@@ -1,0 +1,106 @@
+src/data/challenges.ts
+  s_b200a2907eaa8e::t_ef2513e9be280c 47-70,76-82,133-136
+  s_b200a2907eaa8e::t_c5210183df141b 1-46,71-75,83-132,137-171
+src/data/balance.ts
+  s_b200a2907eaa8e::t_11603aed939bb3 118,120,158,160
+src/systems/RunState.ts
+  s_b200a2907eaa8e::t_ef2513e9be280c 551-556
+  s_b200a2907eaa8e::t_8d0ec73f5d7ef0 2-3,6,206,402,545-550,557-569
+  s_b200a2907eaa8e::t_342c15d47eb8d4 4,385-399
+  s_b200a2907eaa8e::t_0498d6ed5e5cf0 96-98,147
+  s_b200a2907eaa8e::t_e4167416dd5bce 15,523-544,570-572
+  s_b200a2907eaa8e::t_33036b7a35c60d 99-120,146,201-205,400,411,464,512
+  s_b200a2907eaa8e::t_f0f27fceaa9cd8 123-126,159-160,465-467,514-516
+  s_b200a2907eaa8e::t_8602930c6adaec 401,403,573-574
+scripts/econ.mjs
+  s_b200a2907eaa8e::t_bfca57d46a33df 75-76
+src/art/WeaponArt.ts
+  s_b200a2907eaa8e::t_f7ccd960ae0fb6 30-77,79-80
+src/systems/WeaponSystem.ts
+  s_b200a2907eaa8e::t_d0b4c15b548bc2 244-245
+  s_b200a2907eaa8e::t_f0f27fceaa9cd8 259
+src/data/weapons.ts
+  s_b200a2907eaa8e::t_bcb988152973f6 45-46
+src/main.ts
+  s_b200a2907eaa8e::t_5690d785f6e96e 17-18,77-78
+  s_b200a2907eaa8e::t_14b15d696f2212 2,108
+  s_b200a2907eaa8e::t_ef2513e9be280c 19,79
+src/systems/Textures.ts
+  s_b200a2907eaa8e::t_d0b4c15b548bc2 3,191
+src/scenes/RunStatsScene.ts
+  s_b200a2907eaa8e::t_d1fb96891d26cd 1-75,84,93-96,103-133,138-142
+  s_b200a2907eaa8e::t_bf1103951abc88 76-83,85-92,97-102,134-137
+src/objects/Bullet.ts
+  s_b200a2907eaa8e::t_f0f27fceaa9cd8 28-29,57
+src/systems/Save.ts
+  s_b200a2907eaa8e::t_8d0ec73f5d7ef0 42-43,96,125
+  s_b200a2907eaa8e::t_e4167416dd5bce 40-41,46-64,95,124
+  s_b200a2907eaa8e::t_4482836c49f8ad 44-45
+src/data/evolutions.ts
+  s_b200a2907eaa8e::t_bcb988152973f6 1-2,4-138
+  s_b200a2907eaa8e::t_d0b4c15b548bc2 3,139-140
+src/scenes/HistoryScene.ts
+  s_b200a2907eaa8e::t_0a8d4a94ff0b6c 1-33,38-48,51-78,82,86-90,95-99,102-107,122-125,140-143
+  s_b200a2907eaa8e::t_bf1103951abc88 34-37,49-50,79-81,83-85,91-94,100-101,108-121,126-139
+src/systems/Rng.ts
+  s_b200a2907eaa8e::t_c5210183df141b 1-49
+src/data/achievements.ts
+  s_b200a2907eaa8e::t_07b8db4acdd9cf 311-366
+  s_b200a2907eaa8e::t_bf1103951abc88 13,712-735,1002
+src/scenes/CodexScene.ts
+  s_b200a2907eaa8e::t_5617b51ea09ea7 7
+  s_b200a2907eaa8e::t_2f7882f86c4818 2,115,128-133,138,141-146
+  s_b200a2907eaa8e::t_ef2513e9be280c 134-137
+src/scenes/ChallengeScene.ts
+  s_b200a2907eaa8e::t_4c681bf980a56d 1-19,23-25,29-77,82-83,92-114,116-122,124-158
+  s_b200a2907eaa8e::t_51dbf343eed177 115,123
+  s_b200a2907eaa8e::t_ef2513e9be280c 20-22,26-28,78-81,84-91
+src/systems/SkillSystem.ts
+  s_b200a2907eaa8e::t_f0f27fceaa9cd8 151
+src/scenes/MenuScene.ts
+  s_b200a2907eaa8e::t_43e2a5794b8d78 163-170,176,178,180-181
+  s_b200a2907eaa8e::t_bf1103951abc88 171-173
+src/i18n/apply.ts
+  s_b200a2907eaa8e::t_c56ebead6c98f2 2,35
+src/scenes/GameScene.ts
+  s_b200a2907eaa8e::t_babcfa830f40b7 698,715-717,786,788
+  s_b200a2907eaa8e::t_ef2513e9be280c 801-805
+  s_b200a2907eaa8e::t_f0f27fceaa9cd8 128-129,940,1013,1051,1086,1159-1161
+src/i18n/en/misc.ts
+  s_b200a2907eaa8e::t_c56ebead6c98f2 5-17
+scripts/bot2.js
+  s_b200a2907eaa8e::t_14b15d696f2212 4,60-61,218-223,340
+src/scenes/LevelUpScene.ts
+  s_b200a2907eaa8e::t_0498d6ed5e5cf0 2,77-78,83,135-136,138
+src/scenes/ResultScene.ts
+  s_b200a2907eaa8e::t_8d0ec73f5d7ef0 159-160
+  s_b200a2907eaa8e::t_bf1103951abc88 167-177
+  s_b200a2907eaa8e::t_4ae04c2687e036 99-114
+  s_b200a2907eaa8e::t_e4167416dd5bce 7-8,53-57
+  s_b200a2907eaa8e::t_2bd4b6dbad898e 17-18,23
+src/scenes/ShopScene.ts
+  s_b200a2907eaa8e::t_342c15d47eb8d4 3,393,395,574-598
+  s_b200a2907eaa8e::t_ef2513e9be280c 69-72
+  s_b200a2907eaa8e::t_c9d3ab48f744ba 89-92,95-103,110-111
+  s_b200a2907eaa8e::t_0498d6ed5e5cf0 78-82
+  s_b200a2907eaa8e::t_fc69ee170b566a 273-277
+  s_b200a2907eaa8e::t_11603aed939bb3 2,77,83-85,93-94,105,108-109,112-113,116,119,384
+  s_b200a2907eaa8e::t_995111283f6281 194-195,203-204
+  s_b200a2907eaa8e::t_bf1103951abc88 205-211,278-284
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "f3b941fb33e91046fd51245bba2f18efc15c3583",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
