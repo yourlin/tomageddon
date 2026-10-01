@@ -67,6 +67,7 @@
   - [火龙果法球](#weapon-dragonfruit_orb)
   - [八角飞镖](#weapon-star_anise_shuriken)
   - [柠檬电池](#weapon-lemon_battery)
+- [武器进化（12 把超武）](#evolution)
 
 <a id="overview"></a>
 
@@ -1210,6 +1211,27 @@
 | 特效 | 眩晕 0.25s，连锁 1/2/2/3 次 |
 | T1 价格 | 30 |
 | 初始携带 | - |
+
+<a id="evolution"></a>
+
+## 武器进化（12 把超武）
+
+T4 武器 + 持有指定的经典道具时，在商店点开武器即可进化为超武：伤害、冷却、射程整体强化并获得专属效果，原有词条与打造等级保留，道具不会被消耗。超武不进商店池；持有可进化武器但还没有对应道具时，商店每次上架有 20% 概率直接出现该道具。
+
+| 原武器 | 进化道具 | 超武 | T4 伤害 / 冷却 / 射程 | 说明 |
+| --- | --- | --- | --- | --- |
+| <img src="images/weapon/fork.png" width="32" height="32" alt=""> [番茄叉](#weapon-fork) | <img src="images/item/hot_sauce.png" width="32" height="32" alt=""> 辣酱包 | <img src="images/weapon/hell_trident.png" width="32" height="32" alt=""> **地狱三叉戟** | 34→**58** / 0.7s→**0.6s** / 150→**173** | 浸过辣酱的三叉戟，刺中即燃。 |
+| <img src="images/weapon/rolling_pin.png" width="32" height="32" alt=""> [擀面杖](#weapon-rolling_pin) | <img src="images/item/iron_wok.png" width="32" height="32" alt=""> 铁锅盾 | <img src="images/weapon/titan_pin.png" width="32" height="32" alt=""> **擎天擀面柱** | 48→**82** / 1s→**0.85s** / 130→**176** | 铁锅做的配重，一扫震晕一片。 |
+| <img src="images/weapon/knife.png" width="32" height="32" alt=""> [菜刀](#weapon-knife) | <img src="images/item/sharpener.png" width="32" height="32" alt=""> 磨刀石 | <img src="images/weapon/paoding_blade.png" width="32" height="32" alt=""> **庖丁神刀** | 25→**40** / 0.44s→**0.33s** / 130→**150** | 游刃有余，刀刀致命。 |
+| <img src="images/weapon/cleaver.png" width="32" height="32" alt=""> [剁骨刀](#weapon-cleaver) | <img src="images/item/chef_knife_set.png" width="32" height="32" alt=""> 大厨刀具套装 | <img src="images/weapon/dragon_cleaver.png" width="32" height="32" alt=""> **屠龙菜刀** | 54→**103** / 0.9s→**0.77s** / 125→**163** | 整套刀具熔铸而成，劈开一切。 |
+| <img src="images/weapon/pea_shooter.png" width="32" height="32" alt=""> [豌豆枪](#weapon-pea_shooter) | <img src="images/item/seed_bag.png" width="32" height="32" alt=""> 种子袋 | <img src="images/weapon/pea_gatling.png" width="32" height="32" alt=""> **豌豆加特林** | 13→**18** / 0.22s→**0.12s** / 400→**460** | 一整袋豌豆，扫射不停。 |
+| <img src="images/weapon/ketchup.png" width="32" height="32" alt=""> [番茄酱瓶](#weapon-ketchup) | <img src="images/item/tomato_juice.png" width="32" height="32" alt=""> 番茄汁 | <img src="images/weapon/ketchup_flood.png" width="32" height="32" alt=""> **番茄酱洪流** | 17→**26** / 0.6s→**0.36s** / 280→**322** | 源源不断的番茄酱，淹没一切。 |
+| <img src="images/weapon/chili_rocket.png" width="32" height="32" alt=""> [辣椒火箭](#weapon-chili_rocket) | <img src="images/item/fire_pepper.png" width="32" height="32" alt=""> 魔鬼椒 | <img src="images/weapon/devil_missile.png" width="32" height="32" alt=""> **魔鬼椒导弹** | 58→**104** / 1.4s→**1.19s** / 450→**518** | 辣度破表，爆炸范围翻倍。 |
+| <img src="images/weapon/lightning_whisk.png" width="32" height="32" alt=""> [闪电打蛋器](#weapon-lightning_whisk) | <img src="images/item/tesla_coil.png" width="32" height="32" alt=""> 特斯拉线圈 | <img src="images/weapon/thor_whisk.png" width="32" height="32" alt=""> **雷神打蛋器** | 27→**46** / 0.74s→**0.63s** / 380→**437** | 特斯拉线圈加持，雷电在怪群里跳个不停。 |
+| <img src="images/weapon/garlic_aura.png" width="32" height="32" alt=""> [大蒜光环](#weapon-garlic_aura) | <img src="images/item/vampire_cape.png" width="32" height="32" alt=""> 吸血鬼披风 | <img src="images/weapon/vampire_garlic.png" width="32" height="32" alt=""> **吸血鬼大蒜** | 13→**23** / 0.5s→**0.43s** / 110→**143** | 吸血鬼也爱上了大蒜：光环吸取生命。 |
+| <img src="images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [蓝莓狙击枪](#weapon-blueberry_sniper) | <img src="images/item/railgun_core.png" width="32" height="32" alt=""> 电磁核心 | <img src="images/weapon/blueberry_railgun.png" width="32" height="32" alt=""> **蓝莓电磁炮** | 100→**200** / 1.5s→**1.2s** / 650→**910** | 电磁加速的蓝莓，贯穿整列敌人。 |
+| <img src="images/weapon/corn_cannon.png" width="32" height="32" alt=""> [玉米加农](#weapon-corn_cannon) | <img src="images/item/golden_tomato.png" width="32" height="32" alt=""> 黄金番茄 | <img src="images/weapon/golden_corn.png" width="32" height="32" alt=""> **黄金爆米花炮** | 68→**116** / 0.84s→**0.71s** / 520→**598** | 金色爆米花四散炸开。 |
+| <img src="images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [八角飞镖](#weapon-star_anise_shuriken) | <img src="images/item/feather.png" width="32" height="32" alt=""> 羽毛 | <img src="images/weapon/anise_storm.png" width="32" height="32" alt=""> **八角风暴** | 35→**53** / 1s→**0.7s** / 320→**368** | 轻如羽毛的八角，弹来弹去停不下来。 |
 
 ---
 

@@ -1,4 +1,5 @@
 // 设置
+import { resetTutorial } from '../systems/Tutorial';
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { save, persist, resetSave } from '../systems/Save';
@@ -92,8 +93,14 @@ export class SettingsScene extends Phaser.Scene {
           location.reload();
         },
       ]);
+    if (!this.fromPause)
+      rows.push([
+        tx('新手引导', 'Tutorial tips'),
+        () => (Object.keys(save.tutorial).length ? tx('重新显示', 'Show again') : tx('会显示', 'On')),
+        () => resetTutorial(),
+      ]);
     rows.forEach(([name, val, act], i) => {
-      const y = 140 + i * 50;
+      const y = 130 + i * 45;
       text(this, W / 2 - 230, y, name, 26).setOrigin(0, 0.5);
       const b = button(
         this,

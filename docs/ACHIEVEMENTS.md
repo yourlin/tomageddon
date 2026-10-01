@@ -1,4 +1,4 @@
-# 成就（847 项）
+# 成就（865 项）
 
 **中文** · [English](en/ACHIEVEMENTS.md)
 
@@ -6,7 +6,7 @@
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 29262 点。
+成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 29855 点。
 
 成就点用于在选角界面购买[角色](CHARACTERS.md)；部分角色需要先达成指定成就才能购买。解锁时屏幕顶部会弹出提示，主菜单「成就」可查看全部进度。
 
@@ -38,35 +38,35 @@
 | <img src="images/char/carrot.png" width="32" height="32" alt=""> [胡萝卜骑士](CHARACTERS.md#char-carrot) | 默认解锁 |
 | <img src="images/char/chili.png" width="32" height="32" alt=""> [辣椒姐](CHARACTERS.md#char-chili) | 默认解锁 |
 | <img src="images/char/corn.png" width="32" height="32" alt=""> [玉米枪手](CHARACTERS.md#char-corn) | 默认解锁 |
-| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](CHARACTERS.md#char-mushroom) | 335 成就点 |
-| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](CHARACTERS.md#char-watermelon) | 385 成就点 |
-| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](CHARACTERS.md#char-lemon) | 385 成就点 |
-| <img src="images/char/eggplant.png" width="32" height="32" alt=""> [茄子法师](CHARACTERS.md#char-eggplant) | 385 成就点 |
-| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](CHARACTERS.md#char-pineapple) | 385 成就点 |
-| <img src="images/char/coconut.png" width="32" height="32" alt=""> [椰子拳师](CHARACTERS.md#char-coconut) | 385 成就点 |
-| <img src="images/char/cherry.png" width="32" height="32" alt=""> [樱桃双枪](CHARACTERS.md#char-cherry) | 385 成就点 |
-| <img src="images/char/sweetpotato.png" width="32" height="32" alt=""> [红薯厨神](CHARACTERS.md#char-sweetpotato) | 385 成就点 |
-| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](CHARACTERS.md#char-grape) | 670 成就点 |
-| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](CHARACTERS.md#char-pea) | 670 成就点 |
-| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](CHARACTERS.md#char-kiwi) | 670 成就点 |
-| <img src="images/char/garlic.png" width="32" height="32" alt=""> [大蒜伯爵](CHARACTERS.md#char-garlic) | 815 成就点 |
-| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](CHARACTERS.md#char-blueberry) | 815 成就点 |
-| <img src="images/char/strawberry.png" width="32" height="32" alt=""> [草莓偶像](CHARACTERS.md#char-strawberry) | 815 成就点 |
-| <img src="images/char/peach.png" width="32" height="32" alt=""> [蜜桃天使](CHARACTERS.md#char-peach) | 815 成就点 |
-| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](CHARACTERS.md#char-beet) | 815 成就点 |
-| <img src="images/char/asparagus.png" width="32" height="32" alt=""> [芦笋弓手](CHARACTERS.md#char-asparagus) | 815 成就点 |
-| <img src="images/char/sprout.png" width="32" height="32" alt=""> [豆芽学徒](CHARACTERS.md#char-sprout) | 815 成就点 |
-| <img src="images/char/pumpkin.png" width="32" height="32" alt=""> [南瓜幽灵](CHARACTERS.md#char-pumpkin) | 840 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](CHARACTERS.md#char-ginger) | 840 成就点，需先达成 [番茄酱风暴（银）](#ach-kills) |
-| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](CHARACTERS.md#char-dragonfruit) | 840 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](CHARACTERS.md#char-lychee) | 840 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/bittermelon.png" width="32" height="32" alt=""> [苦瓜冰法](CHARACTERS.md#char-bittermelon) | 840 成就点，需先达成 [菜园守护者](#ach-clear_2) |
-| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](CHARACTERS.md#char-avocado) | 910 成就点，需先达成 [破冰者](#ach-clear_3) |
-| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](CHARACTERS.md#char-durian) | 910 成就点，需先达成 [破冰者](#ach-clear_3) |
-| <img src="images/char/bellpepper.png" width="32" height="32" alt=""> [青椒机甲](CHARACTERS.md#char-bellpepper) | 910 成就点，需先达成 [破冰者](#ach-clear_3) |
-| <img src="images/char/wintermelon.png" width="32" height="32" alt=""> [冬瓜和尚](CHARACTERS.md#char-wintermelon) | 910 成就点，需先达成 [Boss 终结者（铜）](#ach-bosses) |
-| <img src="images/char/onion.png" width="32" height="32" alt=""> [洋葱大叔](CHARACTERS.md#char-onion) | 960 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
-| <img src="images/char/wasabi.png" width="32" height="32" alt=""> [山葵爆破手](CHARACTERS.md#char-wasabi) | 960 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
+| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](CHARACTERS.md#char-mushroom) | 340 成就点 |
+| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](CHARACTERS.md#char-watermelon) | 390 成就点 |
+| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](CHARACTERS.md#char-lemon) | 390 成就点 |
+| <img src="images/char/eggplant.png" width="32" height="32" alt=""> [茄子法师](CHARACTERS.md#char-eggplant) | 390 成就点 |
+| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](CHARACTERS.md#char-pineapple) | 390 成就点 |
+| <img src="images/char/coconut.png" width="32" height="32" alt=""> [椰子拳师](CHARACTERS.md#char-coconut) | 390 成就点 |
+| <img src="images/char/cherry.png" width="32" height="32" alt=""> [樱桃双枪](CHARACTERS.md#char-cherry) | 390 成就点 |
+| <img src="images/char/sweetpotato.png" width="32" height="32" alt=""> [红薯厨神](CHARACTERS.md#char-sweetpotato) | 390 成就点 |
+| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](CHARACTERS.md#char-grape) | 685 成就点 |
+| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](CHARACTERS.md#char-pea) | 685 成就点 |
+| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](CHARACTERS.md#char-kiwi) | 685 成就点 |
+| <img src="images/char/garlic.png" width="32" height="32" alt=""> [大蒜伯爵](CHARACTERS.md#char-garlic) | 830 成就点 |
+| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](CHARACTERS.md#char-blueberry) | 830 成就点 |
+| <img src="images/char/strawberry.png" width="32" height="32" alt=""> [草莓偶像](CHARACTERS.md#char-strawberry) | 830 成就点 |
+| <img src="images/char/peach.png" width="32" height="32" alt=""> [蜜桃天使](CHARACTERS.md#char-peach) | 830 成就点 |
+| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](CHARACTERS.md#char-beet) | 830 成就点 |
+| <img src="images/char/asparagus.png" width="32" height="32" alt=""> [芦笋弓手](CHARACTERS.md#char-asparagus) | 830 成就点 |
+| <img src="images/char/sprout.png" width="32" height="32" alt=""> [豆芽学徒](CHARACTERS.md#char-sprout) | 830 成就点 |
+| <img src="images/char/pumpkin.png" width="32" height="32" alt=""> [南瓜幽灵](CHARACTERS.md#char-pumpkin) | 855 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](CHARACTERS.md#char-ginger) | 855 成就点，需先达成 [番茄酱风暴（银）](#ach-kills) |
+| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](CHARACTERS.md#char-dragonfruit) | 855 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](CHARACTERS.md#char-lychee) | 855 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/bittermelon.png" width="32" height="32" alt=""> [苦瓜冰法](CHARACTERS.md#char-bittermelon) | 855 成就点，需先达成 [菜园守护者](#ach-clear_2) |
+| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](CHARACTERS.md#char-avocado) | 930 成就点，需先达成 [破冰者](#ach-clear_3) |
+| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](CHARACTERS.md#char-durian) | 930 成就点，需先达成 [破冰者](#ach-clear_3) |
+| <img src="images/char/bellpepper.png" width="32" height="32" alt=""> [青椒机甲](CHARACTERS.md#char-bellpepper) | 930 成就点，需先达成 [破冰者](#ach-clear_3) |
+| <img src="images/char/wintermelon.png" width="32" height="32" alt=""> [冬瓜和尚](CHARACTERS.md#char-wintermelon) | 930 成就点，需先达成 [Boss 终结者（铜）](#ach-bosses) |
+| <img src="images/char/onion.png" width="32" height="32" alt=""> [洋葱大叔](CHARACTERS.md#char-onion) | 980 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
+| <img src="images/char/wasabi.png" width="32" height="32" alt=""> [山葵爆破手](CHARACTERS.md#char-wasabi) | 980 成就点，需先达成 [垃圾场之王](#ach-clear_4) |
 
 <a id="cat-combat"></a>
 
@@ -235,6 +235,11 @@
 | <a id="ach-win_pure_elemental"></a>🔮 纯粹元素 | 只用元素武器（至少 4 把）通关 | 🥇 1（+25 点 · 天赋点 +1） |
 | <a id="ach-win_all_t4"></a>👑 全副神兵 | 通关时持有 6 把 T4 武器 | 🥇 1（+120 点 · 天赋点 +2） |
 | <a id="ach-win_hoarder"></a>🎒 满载而归 | 通关时持有 60 件道具 | 🥇 1（+40 点 · 天赋点 +1） |
+| <a id="ach-daily_runs"></a>🗓️ 每日打卡 | 参加 N 次每日挑战 | 🥉 1（+2 点）<br>🥈 10（+8 点）<br>🥇 50（+25 点） |
+| <a id="ach-daily_wins"></a>🏆 今日之星 | 通关 N 次每日挑战 | 🥉 1（+5 点）<br>🥈 10（+20 点）<br>🥇 30（+50 点） |
+| <a id="ach-daily_streak"></a>🔥 风雨无阻 | 连续 N 天参加每日挑战 | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 30（+60 点） |
+| <a id="ach-weekly_runs"></a>♾️ 周末战士 | 参加 N 次每周挑战 | 🥉 1（+3 点）<br>🥈 10（+15 点） |
+| <a id="ach-weekly_best"></a>🏔️ 本周之巅 | 每周挑战中完成第 N 波 | 🥉 20（+5 点）<br>🥈 30（+15 点）<br>🥇 45（+40 点） |
 
 <a id="cat-build"></a>
 
@@ -408,6 +413,19 @@
 | <a id="ach-wpn_got_lemon_battery"></a>🗡️ 柠檬电池收藏者 | 累计获得 N 次柠檬电池 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
 | <a id="ach-wpn_t4_lemon_battery"></a>💎 神兵·柠檬电池 | 获得 N 把 T4 柠檬电池 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
 | <a id="ach-wpn_forge_lemon_battery"></a>🔨 柠檬电池匠心 | 将柠檬电池打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-evolutions"></a>✨ 进化论 | 累计进化武器 N 次 | 🥉 1（+5 点）<br>🥈 10（+20 点）<br>🥇 50（+60 点） |
+| <a id="ach-evolve_hell_trident"></a>🌟 地狱三叉戟诞生 | 首次进化出「地狱三叉戟」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_titan_pin"></a>🌟 擎天擀面柱诞生 | 首次进化出「擎天擀面柱」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_paoding_blade"></a>🌟 庖丁神刀诞生 | 首次进化出「庖丁神刀」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_dragon_cleaver"></a>🌟 屠龙菜刀诞生 | 首次进化出「屠龙菜刀」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_pea_gatling"></a>🌟 豌豆加特林诞生 | 首次进化出「豌豆加特林」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_ketchup_flood"></a>🌟 番茄酱洪流诞生 | 首次进化出「番茄酱洪流」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_devil_missile"></a>🌟 魔鬼椒导弹诞生 | 首次进化出「魔鬼椒导弹」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_thor_whisk"></a>🌟 雷神打蛋器诞生 | 首次进化出「雷神打蛋器」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_vampire_garlic"></a>🌟 吸血鬼大蒜诞生 | 首次进化出「吸血鬼大蒜」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_blueberry_railgun"></a>🌟 蓝莓电磁炮诞生 | 首次进化出「蓝莓电磁炮」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_golden_corn"></a>🌟 黄金爆米花炮诞生 | 首次进化出「黄金爆米花炮」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_anise_storm"></a>🌟 八角风暴诞生 | 首次进化出「八角风暴」 | 🥇 1（+20 点） |
 
 <a id="cat-collection"></a>
 

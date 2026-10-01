@@ -1,4 +1,5 @@
 // 玩家武器：自动索敌、自动攻击
+import { AuraFx, AURA_LOOK } from './AuraFx';
 import Phaser from 'phaser';
 import type { GameScene, HitInfo } from '../scenes/GameScene';
 import type { Enemy } from '../objects/Enemy';
@@ -67,7 +68,7 @@ interface WRun {
   target: Enemy | null;
   retarget: number;
   mines: Mine[];
-  aura?: Phaser.GameObjects.Image;
+  aura?: AuraFx;
 }
 
 export class WeaponSystem {
@@ -94,7 +95,8 @@ export class WeaponSystem {
         mines: [],
       };
       if (def.kind === 'aura') {
-        wr.aura = g.add.image(0, 0, 'fx_ring').setTint(0xc8f7c5).setAlpha(0.35).setDepth(1);
+        const look = AURA_LOOK[def.id] ?? AURA_LOOK[def.evolvedFrom ?? ''] ?? { color: 0xc8f7c5, style: 'spark' as const };
+        wr.aura = new AuraFx(g, look.color, look.style);
       }
       this.list.push(wr);
     });
@@ -149,12 +151,7 @@ export class WeaponSystem {
       w.sprite.setPosition(hx + ox, hy + oy).setRotation(rot);
       w.sprite.setFlipY(Math.cos(rot) < 0);
       w.sprite.setDepth(11001);
-      if (w.aura) {
-        w.aura
-          .setPosition(p.x, p.y)
-          .setScale((range * 2) / 128)
-          .setRotation(w.aura.rotation + dt);
-      }
+      w.aura?.update(p.x, p.y, range, dt);
 
       // 地雷
       if (w.mines.length) this.updateMines(w, dt);
@@ -305,12 +302,9 @@ export class WeaponSystem {
   private fireAura(w: WRun, range: number): void {
     const g = this.g;
     const s = g.stats;
-    const hits = g.grid.query(g.player.x, g.player.y, range, g.tmp);
-    for (const e of [...hits]) this.hit(e, w, s, g.player.x, g.player.y);
-    if (w.aura && hits.length) {
-      w.aura.setAlpha(0.7);
-      g.tweens.add({ targets: w.aura, alpha: 0.35, duration: 250 });
-    }
+    const hits = [...g.grid.query(g.player.x, g.player.y, range, g.tmp)];
+    for (const e of hits) this.hit(e, w, s, g.player.x, g.player.y);
+    if (w.aura && hits.length) w.aura.pulse(hits);
   }
 
   private placeMine(w: WRun, range: number): void {

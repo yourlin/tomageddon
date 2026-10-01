@@ -54,6 +54,12 @@ export function lower(n: TalentNode): boolean {
   changed();
   return true;
 }
+/** 直接写入一套天赋（测试用：平衡测试按预设加点，不检查天赋点） */
+export function setTalents(t: Record<string, number>): void {
+  save.talents = { ...t };
+  changed();
+}
+
 /** 重置：免费、随时可用 */
 export function resetBranch(b?: BranchId): void {
   for (const n of TALENT_NODES) if (!b || n.branch === b) delete save.talents[n.id];
@@ -75,6 +81,8 @@ export interface TreeTotals {
   bossDmg: number;
   levelChoices: number;
   execute: number;
+  cheatDeath: number;
+  killRage: number;
   critHeal: number;
   killSeeds: number;
 }
@@ -95,6 +103,8 @@ const NUM_KEYS = [
   'bossDmg',
   'levelChoices',
   'execute',
+  'cheatDeath',
+  'killRage',
   'critHeal',
   'killSeeds',
 ] as const satisfies readonly (keyof TreeFx & keyof TreeTotals)[];
@@ -114,6 +124,8 @@ export function treeTotals(): TreeTotals {
     bossDmg: 0,
     levelChoices: 0,
     execute: 0,
+    cheatDeath: 0,
+    killRage: 0,
     critHeal: 0,
     killSeeds: 0,
   };

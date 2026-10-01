@@ -1,3 +1,4 @@
+import { tx } from '../i18n';
 // 角色属性系统（属性面板）
 export interface Stats {
   maxHp: number; // 最大生命
@@ -129,6 +130,7 @@ export function formatMod(key: StatKey, v: number): string {
   const info = STAT_INFO[key];
   const sign = v > 0 ? '+' : '';
   const num = Number.isInteger(v) ? String(v) : v.toFixed(1);
+  if (key === 'regen') return tx(`${sign}${num} 生命再生（每 5 秒）`, `${sign}${num} HP Regen (per 5s)`);
   return `${sign}${num}${info.pct ? '%' : ''} ${info.name}`;
 }
 

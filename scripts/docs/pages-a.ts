@@ -9,6 +9,8 @@ import { tagName } from '../../src/i18n/apply';
 import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
 import { WEAPON_AFFIXES, FORGE } from '../../src/data/weaponAffixes';
 import { pick } from '../../src/systems/Achievements';
+import { EVOLUTIONS } from '../../src/data/evolutions';
+import { ITEM_MAP } from '../../src/data/items';
 
 export function charactersDoc(): void {
   const CLS = CLS_NAME();
@@ -259,5 +261,26 @@ export function weaponsDoc(): void {
       );
     }
   }
+  d.h2(tx(`武器进化（${EVOLUTIONS.length} 把超武）`, `Weapon Evolution (${EVOLUTIONS.length} super weapons)`), 'evolution');
+  d.p(
+    tx(
+      'T4 武器 + 持有指定的经典道具时，在商店点开武器即可进化为超武：伤害、冷却、射程整体强化并获得专属效果，原有词条与打造等级保留，道具不会被消耗。超武不进商店池；持有可进化武器但还没有对应道具时，商店每次上架有 20% 概率直接出现该道具。',
+      'A T4 weapon plus a specific classic item can evolve in the shop (tap the weapon): damage, cooldown and range improve and it gains a signature effect, keeping its affixes and forge level; the item is not consumed. Super weapons never appear in the shop; while you hold an evolvable weapon without its item, each shop roll has a 20% chance to offer that item.',
+    ),
+  );
+  d.table(
+    [tx('原武器', 'Base'), tx('进化道具', 'Item'), tx('超武', 'Super weapon'), tx('T4 伤害 / 冷却 / 射程', 'T4 dmg / cd / range'), tx('说明', 'Description')],
+    EVOLUTIONS.map((e) => {
+      const b = WEAPONS.find((w) => w.id === e.from)!;
+      const t = e.to;
+      return [
+        `${img('weapon', b.id)} ${lnk.weapon(b.id, '')}`,
+        `${img('item', e.item)} ${ITEM_MAP[e.item].name}`,
+        `${img('weapon', t.id)} **${t.name}**`,
+        `${b.damage[3]}→**${t.damage[3]}** / ${b.cooldown[3]}s→**${t.cooldown[3]}s** / ${b.range}→**${t.range}**`,
+        t.desc,
+      ];
+    }),
+  );
   d.write();
 }

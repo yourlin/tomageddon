@@ -72,7 +72,7 @@ export function skillPower(sk: SkillDef): { dmg: number; ctrl: number; buff: num
   const T = skillTargets(sk);
   const dmg = (sk.mult ?? 0) * T * (sk.type === 'field' ? (sk.duration ?? 5) * 0.4 : 1);
   const ctrl = statusScore(sk.status) * Math.min(T, 8) * 0.16 * (sk.type === 'field' ? (sk.duration ?? 5) * 0.5 : 1);
-  let buff = statusScore(sk.selfStatus) + (sk.heal ?? 0) * 30 + (sk.xp ?? 0) * 0.3;
+  let buff = statusScore(sk.selfStatus) + (sk.heal ?? 0) * 75 + (sk.xp ?? 0) * 0.3;
   const d = sk.duration ?? 0;
   if (sk.type === 'ghost') buff += d * 3;
   if (sk.type === 'buff' || sk.type === 'ghost')

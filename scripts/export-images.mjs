@@ -36,6 +36,7 @@ try {
     const { itemIconKey } = await import('/src/art/ItemArt.ts');
     const { CHARACTERS } = await import('/src/data/characters.ts');
     const { WEAPONS } = await import('/src/data/weapons.ts');
+    const { EVOLVED_WEAPONS } = await import('/src/data/evolutions.ts');
     const { ALL_ITEMS } = await import('/src/data/items.ts');
     const { ENEMIES } = await import('/src/data/enemies.ts');
     const { BOSSES } = await import('/src/data/bosses.ts');
@@ -57,7 +58,7 @@ try {
     for (const c of CHARACTERS) out.push(['char', c.id, await snap(portraitKey(scene, 'char', c.id), 128)]);
     for (const e of ENEMIES) out.push(['enemy', e.id, await snap(portraitKey(scene, 'enemy', e.id), 128)]);
     for (const b of BOSSES) out.push(['boss', b.id, await snap(portraitKey(scene, 'boss', b.id), 128)]);
-    for (const w of WEAPONS) out.push(['weapon', w.id, await snap(`icon_weapon_${w.id}`, 96)]);
+    for (const w of [...WEAPONS, ...EVOLVED_WEAPONS]) out.push(['weapon', w.id, await snap(`icon_weapon_${w.id}`, 96)]);
     for (const it of ALL_ITEMS) out.push(['item', it.id, await snap(itemIconKey(scene, it), 64)]);
     return out;
   });

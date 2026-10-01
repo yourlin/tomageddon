@@ -67,6 +67,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
   - [Dragonfruit Orb](#weapon-dragonfruit_orb)
   - [Star Anise Star](#weapon-star_anise_shuriken)
   - [Lemon Battery](#weapon-lemon_battery)
+- [Weapon Evolution (12 super weapons)](#evolution)
 
 <a id="overview"></a>
 
@@ -1210,6 +1211,27 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Effects | Stun 0.25s, Chains 1/2/2/3 times |
 | T1 price | 30 |
 | Starting weapon of | - |
+
+<a id="evolution"></a>
+
+## Weapon Evolution (12 super weapons)
+
+A T4 weapon plus a specific classic item can evolve in the shop (tap the weapon): damage, cooldown and range improve and it gains a signature effect, keeping its affixes and forge level; the item is not consumed. Super weapons never appear in the shop; while you hold an evolvable weapon without its item, each shop roll has a 20% chance to offer that item.
+
+| Base | Item | Super weapon | T4 dmg / cd / range | Description |
+| --- | --- | --- | --- | --- |
+| <img src="../images/weapon/fork.png" width="32" height="32" alt=""> [Tomato Fork](#weapon-fork) | <img src="../images/item/hot_sauce.png" width="32" height="32" alt=""> Hot Sauce Packet | <img src="../images/weapon/hell_trident.png" width="32" height="32" alt=""> **Hell Trident** | 34→**58** / 0.7s→**0.6s** / 150→**173** | A trident soaked in hot sauce — it sets whatever it pierces ablaze. |
+| <img src="../images/weapon/rolling_pin.png" width="32" height="32" alt=""> [Rolling Pin](#weapon-rolling_pin) | <img src="../images/item/iron_wok.png" width="32" height="32" alt=""> Iron Wok Shield | <img src="../images/weapon/titan_pin.png" width="32" height="32" alt=""> **Titan Pin** | 48→**82** / 1s→**0.85s** / 130→**176** | Weighted with an iron wok; every sweep stuns a crowd. |
+| <img src="../images/weapon/knife.png" width="32" height="32" alt=""> [Chef's Knife](#weapon-knife) | <img src="../images/item/sharpener.png" width="32" height="32" alt=""> Whetstone | <img src="../images/weapon/paoding_blade.png" width="32" height="32" alt=""> **Master Chef Blade** | 25→**40** / 0.44s→**0.33s** / 130→**150** | Cuts through effortlessly — every slice is lethal. |
+| <img src="../images/weapon/cleaver.png" width="32" height="32" alt=""> [Meat Cleaver](#weapon-cleaver) | <img src="../images/item/chef_knife_set.png" width="32" height="32" alt=""> Master Knife Set | <img src="../images/weapon/dragon_cleaver.png" width="32" height="32" alt=""> **Dragon Cleaver** | 54→**103** / 0.9s→**0.77s** / 125→**163** | Forged from a whole knife set; it cleaves through anything. |
+| <img src="../images/weapon/pea_shooter.png" width="32" height="32" alt=""> [Pea Shooter](#weapon-pea_shooter) | <img src="../images/item/seed_bag.png" width="32" height="32" alt=""> Seed Pouch | <img src="../images/weapon/pea_gatling.png" width="32" height="32" alt=""> **Pea Gatling** | 13→**18** / 0.22s→**0.12s** / 400→**460** | A whole sack of peas, fired nonstop. |
+| <img src="../images/weapon/ketchup.png" width="32" height="32" alt=""> [Ketchup Bottle](#weapon-ketchup) | <img src="../images/item/tomato_juice.png" width="32" height="32" alt=""> Tomato Juice | <img src="../images/weapon/ketchup_flood.png" width="32" height="32" alt=""> **Ketchup Flood** | 17→**26** / 0.6s→**0.36s** / 280→**322** | An endless torrent of ketchup that drowns everything. |
+| <img src="../images/weapon/chili_rocket.png" width="32" height="32" alt=""> [Chili Rocket](#weapon-chili_rocket) | <img src="../images/item/fire_pepper.png" width="32" height="32" alt=""> Ghost Pepper | <img src="../images/weapon/devil_missile.png" width="32" height="32" alt=""> **Devil Pepper Missile** | 58→**104** / 1.4s→**1.19s** / 450→**518** | Off the heat scale — double the blast radius. |
+| <img src="../images/weapon/lightning_whisk.png" width="32" height="32" alt=""> [Zap Whisk](#weapon-lightning_whisk) | <img src="../images/item/tesla_coil.png" width="32" height="32" alt=""> Tesla Coil | <img src="../images/weapon/thor_whisk.png" width="32" height="32" alt=""> **Thunder Whisk** | 27→**46** / 0.74s→**0.63s** / 380→**437** | Tesla-charged lightning that keeps jumping through the horde. |
+| <img src="../images/weapon/garlic_aura.png" width="32" height="32" alt=""> [Garlic Aura](#weapon-garlic_aura) | <img src="../images/item/vampire_cape.png" width="32" height="32" alt=""> Vampire Cape | <img src="../images/weapon/vampire_garlic.png" width="32" height="32" alt=""> **Vampire Garlic** | 13→**23** / 0.5s→**0.43s** / 110→**143** | Even vampires love garlic now: the aura drains life. |
+| <img src="../images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [Blueberry Sniper](#weapon-blueberry_sniper) | <img src="../images/item/railgun_core.png" width="32" height="32" alt=""> Railgun Core | <img src="../images/weapon/blueberry_railgun.png" width="32" height="32" alt=""> **Blueberry Railgun** | 100→**200** / 1.5s→**1.2s** / 650→**910** | Magnetically accelerated blueberries pierce whole lines of enemies. |
+| <img src="../images/weapon/corn_cannon.png" width="32" height="32" alt=""> [Corn Cannon](#weapon-corn_cannon) | <img src="../images/item/golden_tomato.png" width="32" height="32" alt=""> Golden Tomato | <img src="../images/weapon/golden_corn.png" width="32" height="32" alt=""> **Golden Popcorn Cannon** | 68→**116** / 0.84s→**0.71s** / 520→**598** | Golden popcorn that bursts in every direction. |
+| <img src="../images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [Star Anise Star](#weapon-star_anise_shuriken) | <img src="../images/item/feather.png" width="32" height="32" alt=""> Feather | <img src="../images/weapon/anise_storm.png" width="32" height="32" alt=""> **Anise Storm** | 35→**53** / 1s→**0.7s** / 320→**368** | Feather-light star anise that never stops bouncing. |
 
 ---
 

@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import { TALENT_NODES } from './data/talentTree';
+import { setTalents } from './systems/TalentTree';
 import { EVOLUTIONS } from './data/evolutions';
 import { BootScene } from './scenes/BootScene';
 import { MenuScene } from './scenes/MenuScene';
@@ -106,6 +108,8 @@ Object.assign(window, {
   GameScene,
   __dev: {
     EVOLUTIONS,
+    TALENT_NODES,
+    setTalents,
     CHARACTERS,
     CHARACTER_MAP,
     WEAPON_MAP,

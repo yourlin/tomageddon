@@ -10,9 +10,27 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v1.3.0 · 2026-10-01](#v1-3-0)
 - [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-3-0"></a>
+
+## v1.3.0 · 2026-10-01
+
+**Weapon evolution, daily / weekly challenges, run stats and history — plus tips for new players**
+
+
+- Weapon evolution: a T4 weapon plus a specific item evolves in the shop into one of 12 super weapons, keeping affixes and forge level; the shop shows recipes
+- Daily / weekly challenges: a fixed character, chapter, ruleset and shop every day and every week, 15 rule modifiers; personal bests and streaks are tracked
+- Run stats: damage by source (each weapon, skill, damage over time…) and seeds per wave; new "History" on the main menu keeps your last 30 runs
+- Tutorial tips the first time you meet movement, the shop, combining, affixes, evolution, elites, bosses, talents and more — re-enable them in Settings
+- Talent balance: Shadow Dance invulnerability cut to 0.35s, Unyielding now gets you up once per run at 25% HP, Battle Lust caps at 3 stacks, Execution at 8%, and some HP / attack speed / pickup talents reduced
+- New boss music: an intense 168 BPM track that kicks in when the boss appears and hands back to the chapter music once it falls
+- Healing balance: far fewer fruit drops with a per-wave cap, collected by pickup range; life steal triggers at most every 0.25s, at 40% rate for area damage, capped at 30%; healing skills heal about half as much with longer cooldowns; HP Regen is now clearly per 5 seconds
+- The stat panel shows the Dodge (60%) and Life Steal (30%) caps
+- 18 new achievements (evolution, challenges)
 
 <a id="v1-2-0"></a>
 

@@ -1,4 +1,5 @@
 // 主菜单
+import { tip } from '../systems/Tutorial';
 import { talentPointsFree } from '../systems/TalentTree';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
@@ -7,9 +8,9 @@ import { text, button, COLORS, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { run, hasSavedRun, loadRun } from '../systems/RunState';
-import { save, unlockedCount } from '../systems/Save';
+import { save, unlockedCount, isUnlocked } from '../systems/Save';
 import { lang, tx } from '../i18n';
-import { checkAchievements, setInRun, pointsBalance } from '../systems/Achievements';
+import { checkAchievements, setInRun, pointsBalance, missingRequirement, charCost } from '../systems/Achievements';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { paint } from '../art/Painter';
 
@@ -192,5 +193,9 @@ export class MenuScene extends Phaser.Scene {
       COLORS.textDim,
     ).setOrigin(1, 1);
     this.input.once('pointerdown', () => audio.unlock());
+    // 新手引导：天赋点、买角色、挑战
+    if (talentPointsFree() > 0) tip('talents');
+    if (CHARACTERS.some((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance())) tip('buyChar');
+    if (save.wins >= 1 || Object.values(save.charRuns).reduce((a, b) => a + b, 0) >= 3) tip('challenge');
   }
 }

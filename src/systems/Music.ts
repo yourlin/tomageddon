@@ -31,8 +31,7 @@ interface TrackSpec {
 const MAJOR = [0, 2, 4, 5, 7, 9, 11],
   MINOR = [0, 2, 3, 5, 7, 8, 10],
   DORIAN = [0, 2, 3, 5, 7, 9, 10];
-const PHRYGIAN = [0, 1, 3, 5, 7, 8, 10],
-  HARM_MINOR = [0, 2, 3, 5, 7, 8, 11];
+const PHRYGIAN = [0, 1, 3, 5, 7, 8, 10];
 const FOUR = 'x...x...x...x...',
   BACK = '....x.......x...',
   OFF8 = '..x...x...x...x.';
@@ -163,23 +162,27 @@ export const TRACKS: Record<string, TrackSpec> = {
     lead: { wave: 'square', oct: 2, density: 0.3 },
   },
   // Boss 战：紧张和声小调
+  // Boss 战：168 BPM 弗里几亚小调，碎拍底鼓 + 滚动失真贝斯 + 军鼓加花 + 高速琶音与密集主旋律，热血激烈
   bgm_boss: {
-    bpm: 140,
-    root: 36,
-    scale: HARM_MINOR,
-    prog: [0, 5, 3, 4],
-    kick: 'x...x...x...x.x.',
-    snare: BACK,
-    hat: 'xxXxxxXxxxXxxxXx',
-    bass: '0000000000000000',
+    bpm: 168,
+    root: 33,
+    scale: PHRYGIAN,
+    prog: [0, 0, 5, 6, 0, 1, 5, 4],
+    kick: 'x..x..x.x..x..xx',
+    snare: '....x.......x.xx',
+    clap: '....x.......x...',
+    hat: 'xXxXxXxXxXxXxXxX',
+    open: '..x...x...x...x.',
+    bass: '0070007000700777',
     bassWave: 'sawtooth',
-    bassCut: 1200,
+    bassCut: 1700,
     dist: true,
-    arp: '0123210301232103',
+    arp: '0123012301230123',
     arpWave: 'square',
-    arpOct: 2,
+    arpOct: 3,
     pad: true,
-    lead: { wave: 'sawtooth', oct: 2, density: 0.55 },
+    lead: { wave: 'sawtooth', oct: 2, density: 0.78 },
+    vol: 1.05,
   },
 };
 

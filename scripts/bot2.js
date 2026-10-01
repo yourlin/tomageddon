@@ -362,6 +362,41 @@ export async function runBatch(ids, ch, speed = 16) {
   return window.__results;
 }
 
+/**
+ * 按角色主流派自动加天赋（平衡测试用）：近战 力量→守护→迅捷，远程 力量→迅捷→守护，元素 炼金→奥术→力量。
+ * 每个方向按道路顺序加点，遵守前置与终极天赋的投入要求。
+ */
+export function botTalents(charId, budget, exclude = []) {
+  const { TALENT_NODES, setTalents } = window.__dev;
+  const P = profile(charId);
+  const order =
+    P.main === 'melee'
+      ? ['might', 'guard', 'agility']
+      : P.main === 'ranged'
+        ? ['might', 'agility', 'guard']
+        : ['alchemy', 'arcane', 'might'];
+  const t = {};
+  for (const b of order) {
+    const nodes = TALENT_NODES.filter((n) => n.branch === b);
+    const spent = () => nodes.reduce((s, n) => s + (t[n.id] ?? 0), 0);
+    let progress = true;
+    while (budget > 0 && progress) {
+      progress = false;
+      for (const n of nodes) {
+        if (budget <= 0) break;
+        if ((t[n.id] ?? 0) >= n.max || exclude.includes(n.id)) continue;
+        if (n.parent && !t[n.parent]) continue;
+        if (n.needPoints && spent() < n.needPoints) continue;
+        t[n.id] = (t[n.id] ?? 0) + 1;
+        budget--;
+        progress = true;
+      }
+    }
+  }
+  setTalents(t);
+  return t;
+}
+window.botTalents = botTalents;
 window.startBot2 = startBot2;
 /** 只接管战斗走位与技能（录制宣传视频用，不处理菜单） */
 window.botAutopilot = (charId) => {

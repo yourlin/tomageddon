@@ -1,4 +1,5 @@
 // 商店：购买武器/道具、合成、出售、刷新、锁定
+import { tip } from '../systems/Tutorial';
 import { pickOf } from '../systems/Rng';
 import { EVOLUTION_OF, EVOLUTIONS } from '../data/evolutions';
 import { treeTotals } from '../systems/TalentTree';
@@ -63,6 +64,12 @@ export class ShopScene extends Phaser.Scene {
     saveRun();
     this.layer = this.add.container(0, 0);
     this.draw();
+    // 新手引导：商店基础 → 合成 → 词条与打造 → 进化
+    tip('shop');
+    if (run.weapons.some((a) => run.weapons.some((b) => b.uid !== a.uid && b.id === a.id && b.tier === a.tier && a.tier < 3)))
+      tip('combine');
+    if (run.weapons.some((w) => w.tier >= 2)) tip('affix');
+    if (run.weapons.some((w) => run.canEvolve(w))) tip('evolve');
   }
 
   private price(base: number): number {
@@ -317,12 +324,22 @@ export class ShopScene extends Phaser.Scene {
     const s = run.stats;
     const lineH = Math.min(26, (H - 250) / STAT_ORDER.length);
     STAT_ORDER.forEach((k, i) => {
-      const v = s[k];
+      const cap = k === 'dodge' ? run.dodgeCap : k === 'lifeSteal' ? BALANCE.player.lifeStealCap : Infinity;
+      const v = Math.min(s[k], cap);
       const info = STAT_INFO[k];
       const y = 120 + i * lineH;
       L.add(text(this, sx + 16, y, info.name, 16, info.color));
       const col = v > 0 ? '#52ff8a' : v < 0 ? '#ff6b6b' : '#fff4ea';
-      L.add(text(this, sx + sw - 16, y, `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}`, 16, col).setOrigin(1, 0));
+      L.add(
+        text(
+          this,
+          sx + sw - 16,
+          y,
+          `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(' /5秒', '/5s') : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
+          16,
+          col,
+        ).setOrigin(1, 0),
+      );
     });
 
     // 底部按钮

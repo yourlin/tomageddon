@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const DOCS = new URL('../docs/', import.meta.url);
 const MAX_WAVE = 15;
+const TALENT_NAME = { none: '不点（基准）', mid: '中期 40 点', full: '全部 79 点' };
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const avg = (l, k) => (l.length ? l.reduce((a, r) => a + (r[k] ?? 0), 0) / l.length : 0);
@@ -128,7 +129,7 @@ export function renderMarkdown(meta, results) {
   const lines = [
     '# 平衡测试报告（自动生成）',
     '',
-    `> ${stamp(new Date(meta.finishedAt))}${meta.version ? ` · v${meta.version}` : ''} · 每角色每章 ${meta.runs} 局 · ${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · ${meta.complete ? '完整' : `**未完成 ${results.length}/${meta.total}**`} · 机器人：按流派评估购买/升级，采样躲避`,
+    `> ${stamp(new Date(meta.finishedAt))}${meta.version ? ` · v${meta.version}` : ''} · 每角色每章 ${meta.runs} 局 · 天赋 ${TALENT_NAME[meta.talents ?? 'none'] ?? meta.talents} · ${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · ${meta.complete ? '完整' : `**未完成 ${results.length}/${meta.total}**`} · 机器人：按流派评估购买/升级，采样躲避`,
     '',
   ];
   for (const c of S) {
@@ -231,7 +232,8 @@ details{margin-top:28px}summary{cursor:pointer;font-weight:600;font-size:16px}
     ${meta.version ? `<span>游戏版本：v${esc(meta.version)}</span>` : ''}
     <span>生成时间：${esc(stamp(new Date(meta.finishedAt)))}</span>
     <span>章节：${meta.chapters.join(' / ')}</span>
-    <span>每角色每章 ${meta.runs} 局</span><span>${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · 最多 ${meta.workers} 并行</span>
+    <span>每角色每章 ${meta.runs} 局</span>
+    <span>天赋预设：${TALENT_NAME[meta.talents ?? 'none'] ?? meta.talents}</span><span>${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · 最多 ${meta.workers} 并行</span>
     <span>完成 ${done}/${total} 局</span><span>累计用时 ${dur(meta.elapsedMs)}</span>
     ${meta.resumed ? `<span>续跑 ${meta.resumed} 次</span>` : ''}
   </div>

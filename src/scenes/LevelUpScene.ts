@@ -1,4 +1,5 @@
 // 波次间：升级属性选择 + 宝箱开启
+import { tip } from '../systems/Tutorial';
 import { pickOf, shuffleWith } from '../systems/Rng';
 import { treeTotals } from '../systems/TalentTree';
 import { bump } from '../systems/Counters';
@@ -27,6 +28,7 @@ export class LevelUpScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
+    tip('levelup');
     this.cameras.main.setBackgroundColor(COLORS.bg);
     this.layer = this.add.container(0, 0);
     this.rerolls = 0;

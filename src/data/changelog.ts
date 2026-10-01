@@ -10,6 +10,46 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.3.0',
+    date: '2026-10-01',
+    highlight: [
+      '武器进化、每日 / 每周挑战、局后数据与战绩，新手也有引导了',
+      'Weapon evolution, daily / weekly challenges, run stats and history — plus tips for new players',
+    ],
+    items: [
+      [
+        '武器进化：T4 武器 + 指定道具，在商店进化为 12 把超武之一，保留词条与打造等级；商店会提示进化配方',
+        'Weapon evolution: a T4 weapon plus a specific item evolves in the shop into one of 12 super weapons, keeping affixes and forge level; the shop shows recipes',
+      ],
+      [
+        '每日 / 每周挑战：每天、每周一套固定的角色、章节、规则和商店，15 种规则修饰；记录个人最佳和连续挑战天数',
+        'Daily / weekly challenges: a fixed character, chapter, ruleset and shop every day and every week, 15 rule modifiers; personal bests and streaks are tracked',
+      ],
+      [
+        '局后数据：伤害来源排行（每把武器、技能、持续伤害……）与每波收入；主菜单新增「战绩」，保留最近 30 局',
+        'Run stats: damage by source (each weapon, skill, damage over time…) and seeds per wave; new "History" on the main menu keeps your last 30 runs',
+      ],
+      [
+        '新手引导：第一次遇到移动、商店、合成、词条、进化、精英、Boss、天赋等系统时给出简短提示，可在设置里重新显示',
+        'Tutorial tips the first time you meet movement, the shop, combining, affixes, evolution, elites, bosses, talents and more — re-enable them in Settings',
+      ],
+      [
+        '天赋平衡：影舞无敌缩短为 0.35 秒，不屈改为每局一次以 25% 生命站起，战意最多 3 层，斩杀线降到 8%，部分生命 / 攻速 / 拾取天赋下调',
+        'Talent balance: Shadow Dance invulnerability cut to 0.35s, Unyielding now gets you up once per run at 25% HP, Battle Lust caps at 3 stacks, Execution at 8%, and some HP / attack speed / pickup talents reduced',
+      ],
+      [
+        'Boss 战音乐重做：168 BPM 的激烈曲目，Boss 登场时切入、倒下后恢复章节音乐',
+        'New boss music: an intense 168 BPM track that kicks in when the boss appears and hands back to the chapter music once it falls',
+      ],
+      [
+        '回复平衡：番茄掉率大幅降低且每波有上限，按拾取范围吸取；吸血每 0.25 秒最多触发一次、群体伤害触发率 ×0.4、上限 30%；回血技能回复量减半、冷却变长；生命再生明确为每 5 秒',
+        'Healing balance: far fewer fruit drops with a per-wave cap, collected by pickup range; life steal triggers at most every 0.25s, at 40% rate for area damage, capped at 30%; healing skills heal about half as much with longer cooldowns; HP Regen is now clearly per 5 seconds',
+      ],
+      ['属性面板显示闪避（60%）与吸血（30%）上限', 'The stat panel shows the Dodge (60%) and Life Steal (30%) caps'],
+      ['新增 18 项成就（武器进化、挑战）', '18 new achievements (evolution, challenges)'],
+    ],
+  },
+  {
     version: '1.2.0',
     date: '2026-10-01',
     highlight: ['全新天赋树与无尽模式上线，成就扩充到 847 项', 'New talent tree and Endless mode, plus 847 achievements'],

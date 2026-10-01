@@ -68,7 +68,7 @@
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
 | <img src="images/item/band_aid.png" width="32" height="32" alt=""> 创可贴 | 普通 | +3 最大生命 | 12 | ∞ |
-| <img src="images/item/tomato_juice.png" width="32" height="32" alt=""> 番茄汁 | 普通 | +2 生命再生 | 14 | ∞ |
+| <img src="images/item/tomato_juice.png" width="32" height="32" alt=""> 番茄汁 | 普通 | +2 生命再生（每 5 秒） | 14 | ∞ |
 | <img src="images/item/toothpick.png" width="32" height="32" alt=""> 牙签 | 普通 | +2 近战伤害，-5 射程 | 13 | ∞ |
 | <img src="images/item/rubber_band.png" width="32" height="32" alt=""> 橡皮筋 | 普通 | +2 远程伤害 | 13 | ∞ |
 | <img src="images/item/lighter.png" width="32" height="32" alt=""> 打火机 | 普通 | +2 元素伤害 | 13 | ∞ |
@@ -88,15 +88,15 @@
 | <img src="images/item/scope.png" width="32" height="32" alt=""> 瞄准镜 | 稀有 | +3 远程伤害，+3% 暴击率，+40 射程 | 38 | ∞ |
 | <img src="images/item/battery.png" width="32" height="32" alt=""> 电池 | 稀有 | +3 元素伤害，+5% 攻击速度 | 36 | ∞ |
 | <img src="images/item/mosquito.png" width="32" height="32" alt=""> 蚊子标本 | 稀有 | -2 最大生命，+4% 吸血 | 40 | ∞ |
-| <img src="images/item/energy_drink.png" width="32" height="32" alt=""> 能量饮料 | 稀有 | -1 生命再生，+10% 攻击速度，+3% 移动速度 | 38 | ∞ |
+| <img src="images/item/energy_drink.png" width="32" height="32" alt=""> 能量饮料 | 稀有 | -1 生命再生（每 5 秒），+10% 攻击速度，+3% 移动速度 | 38 | ∞ |
 | <img src="images/item/helmet.png" width="32" height="32" alt=""> 锅盖头盔 | 稀有 | +3 护甲，-3% 移动速度 | 40 | ∞ |
 | <img src="images/item/piggy_bank.png" width="32" height="32" alt=""> 存钱罐 | 稀有 | 每波结束获得当前番茄籽 10% 的利息（每波上限 6×波次） | 30 | 3 |
 | <img src="images/item/bomb_seed.png" width="32" height="32" alt=""> 爆裂种子 | 稀有 | +3% 全伤害，击杀敌人时 10% 概率爆炸 | 42 | ∞ |
 | <img src="images/item/cactus.png" width="32" height="32" alt=""> 仙人掌 | 稀有 | +2 护甲，受到伤害时对攻击者造成 8 点伤害 | 34 | ∞ |
 | <img src="images/item/lucky_cat.png" width="32" height="32" alt=""> 招财猫 | 稀有 | +12 幸运，10% 概率番茄籽翻倍 | 38 | ∞ |
 | <img src="images/item/running_shoes.png" width="32" height="32" alt=""> 跑鞋 | 稀有 | +2% 闪避，+10% 移动速度 | 38 | ∞ |
-| <img src="images/item/lemonade.png" width="32" height="32" alt=""> 柠檬水 | 稀有 | +3 最大生命，+3 生命再生 | 36 | ∞ |
-| <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | 稀有 | +5 最大生命，+1 生命再生，每击杀 25 个敌人回复 1 生命 | 40 | ∞ |
+| <img src="images/item/lemonade.png" width="32" height="32" alt=""> 柠檬水 | 稀有 | +3 最大生命，+3 生命再生（每 5 秒） | 36 | ∞ |
+| <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | 稀有 | +5 最大生命，+1 生命再生（每 5 秒），每击杀 25 个敌人回复 1 生命 | 40 | ∞ |
 | <img src="images/item/vip_card.png" width="32" height="32" alt=""> 会员卡 | 史诗 | +5 幸运，每波商店刷新次数 +2 | 55 | 2 |
 | <img src="images/item/vacuum.png" width="32" height="32" alt=""> 吸尘器 | 史诗 | +5 幸运，+150 拾取范围 | 60 | ∞ |
 | <img src="images/item/iron_wok.png" width="32" height="32" alt=""> 铁锅盾 | 史诗 | +5 最大生命，+5 护甲，-5% 移动速度 | 70 | ∞ |
@@ -108,7 +108,7 @@
 | <img src="images/item/coupon.png" width="32" height="32" alt=""> 优惠券 | 史诗 | 商店价格 -10% | 55 | 3 |
 | <img src="images/item/protein.png" width="32" height="32" alt=""> 蛋白粉 | 史诗 | +10 最大生命，+2 近战伤害，-2% 移动速度 | 75 | ∞ |
 | <img src="images/item/golden_tomato.png" width="32" height="32" alt=""> 黄金番茄 | 传说 | +10 最大生命，+15% 全伤害，+15 幸运 | 120 | ∞ |
-| <img src="images/item/phoenix_feather.png" width="32" height="32" alt=""> 凤凰羽毛 | 传说 | +3 生命再生，死亡时以 50% 生命复活一次 | 110 | 1 |
+| <img src="images/item/phoenix_feather.png" width="32" height="32" alt=""> 凤凰羽毛 | 传说 | +3 生命再生（每 5 秒），死亡时以 50% 生命复活一次 | 110 | 1 |
 | <img src="images/item/chef_knife_set.png" width="32" height="32" alt=""> 大厨刀具套装 | 传说 | +8 近战伤害，+8% 攻击速度，+8% 暴击率 | 130 | ∞ |
 | <img src="images/item/railgun_core.png" width="32" height="32" alt=""> 电磁核心 | 传说 | +8 远程伤害，+8% 攻击速度，+60 射程 | 130 | ∞ |
 | <img src="images/item/grandma_recipe.png" width="32" height="32" alt=""> 外婆的秘方 | 传说 | +20 幸运，+25 收获，+25% 经验获取 | 115 | ∞ |
@@ -179,16 +179,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/tomatoes_0.png" width="32" height="32" alt=""> 番茄干 | 普通 | +2 最大生命，+1 生命再生 | 15 | ∞ |
+| <img src="images/item/tomatoes_0.png" width="32" height="32" alt=""> 番茄干 | 普通 | +2 最大生命，+1 生命再生（每 5 秒） | 15 | ∞ |
 | <img src="images/item/tomatoes_1.png" width="32" height="32" alt=""> 番茄泥 | 普通 | +3 最大生命 | 15 | ∞ |
-| <img src="images/item/tomatoes_2.png" width="32" height="32" alt=""> 樱桃番茄 | 普通 | +1 最大生命，+1 生命再生 | 15 | ∞ |
+| <img src="images/item/tomatoes_2.png" width="32" height="32" alt=""> 樱桃番茄 | 普通 | +1 最大生命，+1 生命再生（每 5 秒） | 15 | ∞ |
 | <img src="images/item/tomatoes_3.png" width="32" height="32" alt=""> 番茄种子 | 普通 | +3 最大生命 | 15 | ∞ |
-| <img src="images/item/tomatoes_4.png" width="32" height="32" alt=""> 浓缩番茄汁 | 稀有 | +2 最大生命，+1 生命再生，果实回血 +38% | 36 | ∞ |
-| <img src="images/item/tomatoes_5.png" width="32" height="32" alt=""> 番茄炖菜 | 稀有 | +3 最大生命，+3 生命再生 | 36 | ∞ |
-| <img src="images/item/tomatoes_6.png" width="32" height="32" alt=""> 番茄罐头 | 稀有 | +2 最大生命，+1 生命再生，果实回血 +40% | 36 | ∞ |
-| <img src="images/item/tomatoes_7.png" width="32" height="32" alt=""> 番茄酱大王瓶 | 史诗 | +6 最大生命，+3 生命再生，-6% 移动速度，果实回血 +96% | 73 | ∞ |
-| <img src="images/item/tomatoes_8.png" width="32" height="32" alt=""> 传家番茄 | 史诗 | +3 最大生命，+3 生命再生，果实回血 +68% | 73 | ∞ |
-| <img src="images/item/tomatoes_9.png" width="32" height="32" alt=""> 番茄之心 | 传说 | +12 最大生命，+5 生命再生，-10% 移动速度，果实回血 +131% | 123 | ∞ |
+| <img src="images/item/tomatoes_4.png" width="32" height="32" alt=""> 浓缩番茄汁 | 稀有 | +2 最大生命，+1 生命再生（每 5 秒），果实回血 +38% | 36 | ∞ |
+| <img src="images/item/tomatoes_5.png" width="32" height="32" alt=""> 番茄炖菜 | 稀有 | +3 最大生命，+3 生命再生（每 5 秒） | 36 | ∞ |
+| <img src="images/item/tomatoes_6.png" width="32" height="32" alt=""> 番茄罐头 | 稀有 | +2 最大生命，+1 生命再生（每 5 秒），果实回血 +40% | 36 | ∞ |
+| <img src="images/item/tomatoes_7.png" width="32" height="32" alt=""> 番茄酱大王瓶 | 史诗 | +6 最大生命，+3 生命再生（每 5 秒），-6% 移动速度，果实回血 +96% | 73 | ∞ |
+| <img src="images/item/tomatoes_8.png" width="32" height="32" alt=""> 传家番茄 | 史诗 | +3 最大生命，+3 生命再生（每 5 秒），果实回血 +68% | 73 | ∞ |
+| <img src="images/item/tomatoes_9.png" width="32" height="32" alt=""> 番茄之心 | 传说 | +12 最大生命，+5 生命再生（每 5 秒），-10% 移动速度，果实回血 +131% | 123 | ∞ |
 
 <a id="series-2"></a>
 
@@ -213,16 +213,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/sauces_0.png" width="32" height="32" alt=""> 酱油 | 普通 | +1 生命再生，+1% 吸血 | 15 | ∞ |
+| <img src="images/item/sauces_0.png" width="32" height="32" alt=""> 酱油 | 普通 | +1 生命再生（每 5 秒），+1% 吸血 | 15 | ∞ |
 | <img src="images/item/sauces_1.png" width="32" height="32" alt=""> 醋 | 普通 | +2% 吸血 | 15 | ∞ |
-| <img src="images/item/sauces_2.png" width="32" height="32" alt=""> 蚝油 | 普通 | +1 生命再生，+1% 吸血 | 15 | ∞ |
+| <img src="images/item/sauces_2.png" width="32" height="32" alt=""> 蚝油 | 普通 | +1 生命再生（每 5 秒），+1% 吸血 | 15 | ∞ |
 | <img src="images/item/sauces_3.png" width="32" height="32" alt=""> 甜面酱 | 普通 | +2% 吸血 | 15 | ∞ |
-| <img src="images/item/sauces_4.png" width="32" height="32" alt=""> 豆瓣酱 | 稀有 | +1 生命再生，+1% 吸血，击杀时获得14% 概率嗜血 | 36 | ∞ |
-| <img src="images/item/sauces_5.png" width="32" height="32" alt=""> 沙茶酱 | 稀有 | +3 生命再生，+2% 吸血 | 36 | ∞ |
-| <img src="images/item/sauces_6.png" width="32" height="32" alt=""> XO酱 | 稀有 | +1 生命再生，+1% 吸血，击杀时获得15% 概率嗜血 | 36 | ∞ |
-| <img src="images/item/sauces_7.png" width="32" height="32" alt=""> 秘制烤肉酱 | 史诗 | +3 生命再生，+3% 吸血，-2 护甲，击杀时获得35% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/sauces_8.png" width="32" height="32" alt=""> 血色辣酱 | 史诗 | +3 生命再生，+2% 吸血，击杀时获得26% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/sauces_9.png" width="32" height="32" alt=""> 永恒母酱 | 传说 | +5 生命再生，+7% 吸血，-4 护甲，击杀时获得49% 概率嗜血 | 123 | ∞ |
+| <img src="images/item/sauces_4.png" width="32" height="32" alt=""> 豆瓣酱 | 稀有 | +1 生命再生（每 5 秒），+1% 吸血，击杀时获得14% 概率嗜血 | 36 | ∞ |
+| <img src="images/item/sauces_5.png" width="32" height="32" alt=""> 沙茶酱 | 稀有 | +3 生命再生（每 5 秒），+2% 吸血 | 36 | ∞ |
+| <img src="images/item/sauces_6.png" width="32" height="32" alt=""> XO酱 | 稀有 | +1 生命再生（每 5 秒），+1% 吸血，击杀时获得15% 概率嗜血 | 36 | ∞ |
+| <img src="images/item/sauces_7.png" width="32" height="32" alt=""> 秘制烤肉酱 | 史诗 | +3 生命再生（每 5 秒），+3% 吸血，-2 护甲，击杀时获得35% 概率嗜血 | 73 | ∞ |
+| <img src="images/item/sauces_8.png" width="32" height="32" alt=""> 血色辣酱 | 史诗 | +3 生命再生（每 5 秒），+2% 吸血，击杀时获得26% 概率嗜血 | 73 | ∞ |
+| <img src="images/item/sauces_9.png" width="32" height="32" alt=""> 永恒母酱 | 传说 | +5 生命再生（每 5 秒），+7% 吸血，-4 护甲，击杀时获得49% 概率嗜血 | 123 | ∞ |
 
 <a id="series-4"></a>
 
@@ -322,9 +322,9 @@
 | <img src="images/item/fire_4.png" width="32" height="32" alt=""> 火焰喷嘴 | 稀有 | +3% 元素武器伤害，+2 元素伤害，命中时11% 概率灼烧 | 36 | ∞ |
 | <img src="images/item/fire_5.png" width="32" height="32" alt=""> 岩浆石 | 稀有 | +9% 元素武器伤害，+2 元素伤害 | 36 | ∞ |
 | <img src="images/item/fire_6.png" width="32" height="32" alt=""> 凤凰炭 | 稀有 | +3% 元素武器伤害，+2 元素伤害，命中时12% 概率灼烧 | 36 | ∞ |
-| <img src="images/item/fire_7.png" width="32" height="32" alt=""> 烈焰核心 | 史诗 | -2 生命再生，+8% 元素武器伤害，+4 元素伤害，命中时28% 概率灼烧 | 73 | ∞ |
+| <img src="images/item/fire_7.png" width="32" height="32" alt=""> 烈焰核心 | 史诗 | -2 生命再生（每 5 秒），+8% 元素武器伤害，+4 元素伤害，命中时28% 概率灼烧 | 73 | ∞ |
 | <img src="images/item/fire_8.png" width="32" height="32" alt=""> 太阳碎片 | 史诗 | +9% 元素武器伤害，+2 元素伤害，命中时21% 概率灼烧 | 73 | ∞ |
-| <img src="images/item/fire_9.png" width="32" height="32" alt=""> 不灭之火 | 传说 | -4 生命再生，+17% 元素武器伤害，+8 元素伤害，命中时39% 概率灼烧 | 123 | ∞ |
+| <img src="images/item/fire_9.png" width="32" height="32" alt=""> 不灭之火 | 传说 | -4 生命再生（每 5 秒），+17% 元素武器伤害，+8 元素伤害，命中时39% 概率灼烧 | 123 | ∞ |
 
 <a id="series-10"></a>
 
@@ -383,16 +383,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/herbs_0.png" width="32" height="32" alt=""> 薄荷叶 | 普通 | +1 最大生命，+1 生命再生 | 15 | ∞ |
-| <img src="images/item/herbs_1.png" width="32" height="32" alt=""> 甘草 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/herbs_2.png" width="32" height="32" alt=""> 枸杞 | 普通 | +2 最大生命，+1 生命再生 | 15 | ∞ |
-| <img src="images/item/herbs_3.png" width="32" height="32" alt=""> 金银花 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/herbs_4.png" width="32" height="32" alt=""> 人参须 | 稀有 | +2 最大生命，+2 生命再生，受伤时获得再生 | 36 | ∞ |
-| <img src="images/item/herbs_5.png" width="32" height="32" alt=""> 灵芝片 | 稀有 | +4 最大生命，+2 生命再生 | 36 | ∞ |
-| <img src="images/item/herbs_6.png" width="32" height="32" alt=""> 雪莲 | 稀有 | +2 最大生命，+2 生命再生，受伤时获得再生 | 36 | ∞ |
-| <img src="images/item/herbs_7.png" width="32" height="32" alt=""> 千年人参 | 史诗 | +4 最大生命，+4 生命再生，-6% 全伤害，受伤时获得2层再生 | 73 | ∞ |
-| <img src="images/item/herbs_8.png" width="32" height="32" alt=""> 仙草 | 史诗 | +4 最大生命，+2 生命再生，受伤时获得2层再生 | 73 | ∞ |
-| <img src="images/item/herbs_9.png" width="32" height="32" alt=""> 生命之树叶 | 传说 | +8 最大生命，+8 生命再生，-10% 全伤害，受伤时获得3层再生 | 123 | ∞ |
+| <img src="images/item/herbs_0.png" width="32" height="32" alt=""> 薄荷叶 | 普通 | +1 最大生命，+1 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/herbs_1.png" width="32" height="32" alt=""> 甘草 | 普通 | +2 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/herbs_2.png" width="32" height="32" alt=""> 枸杞 | 普通 | +2 最大生命，+1 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/herbs_3.png" width="32" height="32" alt=""> 金银花 | 普通 | +2 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/herbs_4.png" width="32" height="32" alt=""> 人参须 | 稀有 | +2 最大生命，+2 生命再生（每 5 秒），受伤时获得再生 | 36 | ∞ |
+| <img src="images/item/herbs_5.png" width="32" height="32" alt=""> 灵芝片 | 稀有 | +4 最大生命，+2 生命再生（每 5 秒） | 36 | ∞ |
+| <img src="images/item/herbs_6.png" width="32" height="32" alt=""> 雪莲 | 稀有 | +2 最大生命，+2 生命再生（每 5 秒），受伤时获得再生 | 36 | ∞ |
+| <img src="images/item/herbs_7.png" width="32" height="32" alt=""> 千年人参 | 史诗 | +4 最大生命，+4 生命再生（每 5 秒），-6% 全伤害，受伤时获得2层再生 | 73 | ∞ |
+| <img src="images/item/herbs_8.png" width="32" height="32" alt=""> 仙草 | 史诗 | +4 最大生命，+2 生命再生（每 5 秒），受伤时获得2层再生 | 73 | ∞ |
+| <img src="images/item/herbs_9.png" width="32" height="32" alt=""> 生命之树叶 | 传说 | +8 最大生命，+8 生命再生（每 5 秒），-10% 全伤害，受伤时获得3层再生 | 123 | ∞ |
 
 <a id="series-14"></a>
 
@@ -424,9 +424,9 @@
 | <img src="images/item/coffee_4.png" width="32" height="32" alt=""> 浓缩咖啡 | 稀有 | +3% 攻击速度，+3% 移动速度，击杀时获得19% 概率急速 | 36 | ∞ |
 | <img src="images/item/coffee_5.png" width="32" height="32" alt=""> 冷萃咖啡 | 稀有 | +4% 攻击速度，+7% 移动速度 | 36 | ∞ |
 | <img src="images/item/coffee_6.png" width="32" height="32" alt=""> 猫屎咖啡 | 稀有 | +4% 攻击速度，+3% 移动速度，击杀时获得20% 概率急速 | 36 | ∞ |
-| <img src="images/item/coffee_7.png" width="32" height="32" alt=""> 三倍浓缩 | 史诗 | -2 生命再生，+8% 攻击速度，+6% 移动速度，击杀时获得46% 概率急速 | 73 | ∞ |
+| <img src="images/item/coffee_7.png" width="32" height="32" alt=""> 三倍浓缩 | 史诗 | -2 生命再生（每 5 秒），+8% 攻击速度，+6% 移动速度，击杀时获得46% 概率急速 | 73 | ∞ |
 | <img src="images/item/coffee_8.png" width="32" height="32" alt=""> 咖啡因结晶 | 史诗 | +4% 攻击速度，+7% 移动速度，击杀时获得34% 概率急速 | 73 | ∞ |
-| <img src="images/item/coffee_9.png" width="32" height="32" alt=""> 时间停止咖啡 | 传说 | -4 生命再生，+18% 攻击速度，+13% 移动速度，击杀时获得60% 概率急速 | 123 | ∞ |
+| <img src="images/item/coffee_9.png" width="32" height="32" alt=""> 时间停止咖啡 | 传说 | -4 生命再生（每 5 秒），+18% 攻击速度，+13% 移动速度，击杀时获得60% 概率急速 | 123 | ∞ |
 
 <a id="series-16"></a>
 
@@ -468,16 +468,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/cheese_0.png" width="32" height="32" alt=""> 奶酪片 | 普通 | +1 生命再生，+1 护甲 | 15 | ∞ |
+| <img src="images/item/cheese_0.png" width="32" height="32" alt=""> 奶酪片 | 普通 | +1 生命再生（每 5 秒），+1 护甲 | 15 | ∞ |
 | <img src="images/item/cheese_1.png" width="32" height="32" alt=""> 奶酪条 | 普通 | +2 护甲 | 15 | ∞ |
-| <img src="images/item/cheese_2.png" width="32" height="32" alt=""> 马苏里拉 | 普通 | +1 生命再生，+1 护甲 | 15 | ∞ |
+| <img src="images/item/cheese_2.png" width="32" height="32" alt=""> 马苏里拉 | 普通 | +1 生命再生（每 5 秒），+1 护甲 | 15 | ∞ |
 | <img src="images/item/cheese_3.png" width="32" height="32" alt=""> 切达奶酪 | 普通 | +2 护甲 | 15 | ∞ |
-| <img src="images/item/cheese_4.png" width="32" height="32" alt=""> 蓝纹奶酪 | 稀有 | +1 生命再生，+2 护甲，受伤时获得坚韧 | 36 | ∞ |
-| <img src="images/item/cheese_5.png" width="32" height="32" alt=""> 帕玛森 | 稀有 | +3 生命再生，+2 护甲 | 36 | ∞ |
-| <img src="images/item/cheese_6.png" width="32" height="32" alt=""> 百年陈酪 | 稀有 | +1 生命再生，+2 护甲，受伤时获得坚韧 | 36 | ∞ |
-| <img src="images/item/cheese_7.png" width="32" height="32" alt=""> 奶酪堡垒 | 史诗 | +3 生命再生，+4 护甲，-6% 移动速度，受伤时获得2层坚韧 | 73 | ∞ |
-| <img src="images/item/cheese_8.png" width="32" height="32" alt=""> 至尊奶酪轮 | 史诗 | +3 生命再生，+2 护甲，受伤时获得2层坚韧 | 73 | ∞ |
-| <img src="images/item/cheese_9.png" width="32" height="32" alt=""> 奶酪女神 | 传说 | +5 生命再生，+8 护甲，-10% 移动速度，受伤时获得3层坚韧 | 123 | ∞ |
+| <img src="images/item/cheese_4.png" width="32" height="32" alt=""> 蓝纹奶酪 | 稀有 | +1 生命再生（每 5 秒），+2 护甲，受伤时获得坚韧 | 36 | ∞ |
+| <img src="images/item/cheese_5.png" width="32" height="32" alt=""> 帕玛森 | 稀有 | +3 生命再生（每 5 秒），+2 护甲 | 36 | ∞ |
+| <img src="images/item/cheese_6.png" width="32" height="32" alt=""> 百年陈酪 | 稀有 | +1 生命再生（每 5 秒），+2 护甲，受伤时获得坚韧 | 36 | ∞ |
+| <img src="images/item/cheese_7.png" width="32" height="32" alt=""> 奶酪堡垒 | 史诗 | +3 生命再生（每 5 秒），+4 护甲，-6% 移动速度，受伤时获得2层坚韧 | 73 | ∞ |
+| <img src="images/item/cheese_8.png" width="32" height="32" alt=""> 至尊奶酪轮 | 史诗 | +3 生命再生（每 5 秒），+2 护甲，受伤时获得2层坚韧 | 73 | ∞ |
+| <img src="images/item/cheese_9.png" width="32" height="32" alt=""> 奶酪女神 | 传说 | +5 生命再生（每 5 秒），+8 护甲，-10% 移动速度，受伤时获得3层坚韧 | 123 | ∞ |
 
 <a id="series-19"></a>
 
@@ -679,9 +679,9 @@
 | <img src="images/item/gems_4.png" width="32" height="32" alt=""> 翡翠 | 稀有 | +3% 暴击率，+4 幸运，暴击伤害 +11% | 36 | ∞ |
 | <img src="images/item/gems_5.png" width="32" height="32" alt=""> 蓝宝石 | 稀有 | +4% 暴击率，+12 幸运 | 36 | ∞ |
 | <img src="images/item/gems_6.png" width="32" height="32" alt=""> 红宝石 | 稀有 | +3% 暴击率，+4 幸运，暴击伤害 +12% | 36 | ∞ |
-| <img src="images/item/gems_7.png" width="32" height="32" alt=""> 钻石 | 史诗 | -2 生命再生，+8% 暴击率，+10 幸运，暴击伤害 +28% | 73 | ∞ |
+| <img src="images/item/gems_7.png" width="32" height="32" alt=""> 钻石 | 史诗 | -2 生命再生（每 5 秒），+8% 暴击率，+10 幸运，暴击伤害 +28% | 73 | ∞ |
 | <img src="images/item/gems_8.png" width="32" height="32" alt=""> 星辰宝石 | 史诗 | +4% 暴击率，+11 幸运，暴击伤害 +21% | 73 | ∞ |
-| <img src="images/item/gems_9.png" width="32" height="32" alt=""> 无限宝石 | 传说 | -4 生命再生，+17% 暴击率，+22 幸运，暴击伤害 +39% | 123 | ∞ |
+| <img src="images/item/gems_9.png" width="32" height="32" alt=""> 无限宝石 | 传说 | -4 生命再生（每 5 秒），+17% 暴击率，+22 幸运，暴击伤害 +39% | 123 | ∞ |
 
 <a id="series-31"></a>
 
@@ -740,16 +740,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/potions_0.png" width="32" height="32" alt=""> 红药水 | 普通 | +1 生命再生，+1% 吸血 | 15 | ∞ |
-| <img src="images/item/potions_1.png" width="32" height="32" alt=""> 蓝药水 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/potions_2.png" width="32" height="32" alt=""> 绿药水 | 普通 | +1 生命再生，+1% 吸血 | 15 | ∞ |
-| <img src="images/item/potions_3.png" width="32" height="32" alt=""> 解毒剂 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/potions_4.png" width="32" height="32" alt=""> 回复药 | 稀有 | +2 生命再生，+1% 吸血，每击杀 51 个敌人回复 1 生命 | 36 | ∞ |
-| <img src="images/item/potions_5.png" width="32" height="32" alt=""> 高级回复药 | 稀有 | +2 生命再生，+2% 吸血 | 36 | ∞ |
-| <img src="images/item/potions_6.png" width="32" height="32" alt=""> 万能药 | 稀有 | +2 生命再生，+1% 吸血，每击杀 50 个敌人回复 1 生命 | 36 | ∞ |
-| <img src="images/item/potions_7.png" width="32" height="32" alt=""> 不死药水 | 史诗 | +4 生命再生，+2% 吸血，-6% 移动速度，每击杀 36 个敌人回复 1 生命 | 73 | ∞ |
-| <img src="images/item/potions_8.png" width="32" height="32" alt=""> 凤凰药剂 | 史诗 | +2 生命再生，+2% 吸血，每击杀 43 个敌人回复 1 生命 | 73 | ∞ |
-| <img src="images/item/potions_9.png" width="32" height="32" alt=""> 生命之泉 | 传说 | +8 生命再生，+4% 吸血，-10% 移动速度，每击杀 27 个敌人回复 1 生命 | 123 | ∞ |
+| <img src="images/item/potions_0.png" width="32" height="32" alt=""> 红药水 | 普通 | +1 生命再生（每 5 秒），+1% 吸血 | 15 | ∞ |
+| <img src="images/item/potions_1.png" width="32" height="32" alt=""> 蓝药水 | 普通 | +2 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/potions_2.png" width="32" height="32" alt=""> 绿药水 | 普通 | +1 生命再生（每 5 秒），+1% 吸血 | 15 | ∞ |
+| <img src="images/item/potions_3.png" width="32" height="32" alt=""> 解毒剂 | 普通 | +2 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/potions_4.png" width="32" height="32" alt=""> 回复药 | 稀有 | +2 生命再生（每 5 秒），+1% 吸血，每击杀 51 个敌人回复 1 生命 | 36 | ∞ |
+| <img src="images/item/potions_5.png" width="32" height="32" alt=""> 高级回复药 | 稀有 | +2 生命再生（每 5 秒），+2% 吸血 | 36 | ∞ |
+| <img src="images/item/potions_6.png" width="32" height="32" alt=""> 万能药 | 稀有 | +2 生命再生（每 5 秒），+1% 吸血，每击杀 50 个敌人回复 1 生命 | 36 | ∞ |
+| <img src="images/item/potions_7.png" width="32" height="32" alt=""> 不死药水 | 史诗 | +4 生命再生（每 5 秒），+2% 吸血，-6% 移动速度，每击杀 36 个敌人回复 1 生命 | 73 | ∞ |
+| <img src="images/item/potions_8.png" width="32" height="32" alt=""> 凤凰药剂 | 史诗 | +2 生命再生（每 5 秒），+2% 吸血，每击杀 43 个敌人回复 1 生命 | 73 | ∞ |
+| <img src="images/item/potions_9.png" width="32" height="32" alt=""> 生命之泉 | 传说 | +8 生命再生（每 5 秒），+4% 吸血，-10% 移动速度，每击杀 27 个敌人回复 1 生命 | 123 | ∞ |
 
 <a id="series-35"></a>
 
@@ -764,9 +764,9 @@
 | <img src="images/item/bones_4.png" width="32" height="32" alt=""> 恐龙骨 | 稀有 | +1% 吸血，+2 近战伤害，命中时8% 概率诅咒 | 36 | ∞ |
 | <img src="images/item/bones_5.png" width="32" height="32" alt=""> 骷髅头 | 稀有 | +2% 吸血，+2 近战伤害 | 36 | ∞ |
 | <img src="images/item/bones_6.png" width="32" height="32" alt=""> 诅咒之骨 | 稀有 | +1% 吸血，+2 近战伤害，命中时8% 概率诅咒 | 36 | ∞ |
-| <img src="images/item/bones_7.png" width="32" height="32" alt=""> 死灵骨杖 | 史诗 | -2 生命再生，+2% 吸血，+4 近战伤害，命中时19% 概率诅咒 | 73 | ∞ |
+| <img src="images/item/bones_7.png" width="32" height="32" alt=""> 死灵骨杖 | 史诗 | -2 生命再生（每 5 秒），+2% 吸血，+4 近战伤害，命中时19% 概率诅咒 | 73 | ∞ |
 | <img src="images/item/bones_8.png" width="32" height="32" alt=""> 骨龙之牙 | 史诗 | +2% 吸血，+2 近战伤害，命中时14% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/bones_9.png" width="32" height="32" alt=""> 冥王之骨 | 传说 | -4 生命再生，+4% 吸血，+8 近战伤害，命中时25% 概率诅咒 | 123 | ∞ |
+| <img src="images/item/bones_9.png" width="32" height="32" alt=""> 冥王之骨 | 传说 | -4 生命再生（每 5 秒），+4% 吸血，+8 近战伤害，命中时25% 概率诅咒 | 123 | ∞ |
 
 <a id="series-36"></a>
 
@@ -832,9 +832,9 @@
 | <img src="images/item/batteries_4.png" width="32" height="32" alt=""> 燃料电池 | 稀有 | +1 元素伤害，+3% 攻击速度，命中 5% 概率落雷 | 36 | ∞ |
 | <img src="images/item/batteries_5.png" width="32" height="32" alt=""> 聚变电池 | 稀有 | +3 元素伤害，+4% 攻击速度 | 36 | ∞ |
 | <img src="images/item/batteries_6.png" width="32" height="32" alt=""> 反物质电池 | 稀有 | +1 元素伤害，+4% 攻击速度，命中 5% 概率落雷 | 36 | ∞ |
-| <img src="images/item/batteries_7.png" width="32" height="32" alt=""> 核电池 | 史诗 | -2 生命再生，+3 元素伤害，+8% 攻击速度，命中 12% 概率落雷 | 73 | ∞ |
+| <img src="images/item/batteries_7.png" width="32" height="32" alt=""> 核电池 | 史诗 | -2 生命再生（每 5 秒），+3 元素伤害，+8% 攻击速度，命中 12% 概率落雷 | 73 | ∞ |
 | <img src="images/item/batteries_8.png" width="32" height="32" alt=""> 零点能源 | 史诗 | +3 元素伤害，+4% 攻击速度，命中 9% 概率落雷 | 73 | ∞ |
-| <img src="images/item/batteries_9.png" width="32" height="32" alt=""> 宇宙能源 | 传说 | -4 生命再生，+5 元素伤害，+18% 攻击速度，命中 16% 概率落雷 | 123 | ∞ |
+| <img src="images/item/batteries_9.png" width="32" height="32" alt=""> 宇宙能源 | 传说 | -4 生命再生（每 5 秒），+5 元素伤害，+18% 攻击速度，命中 16% 概率落雷 | 123 | ∞ |
 
 <a id="series-40"></a>
 
@@ -900,9 +900,9 @@
 | <img src="images/item/dark_4.png" width="32" height="32" alt=""> 邪眼 | 稀有 | +1% 吸血，+5% 光环伤害，命中时8% 概率诅咒 | 36 | ∞ |
 | <img src="images/item/dark_5.png" width="32" height="32" alt=""> 恶魔角 | 稀有 | +2% 吸血，+7% 光环伤害 | 36 | ∞ |
 | <img src="images/item/dark_6.png" width="32" height="32" alt=""> 深渊之石 | 稀有 | +1% 吸血，+6% 光环伤害，命中时8% 概率诅咒 | 36 | ∞ |
-| <img src="images/item/dark_7.png" width="32" height="32" alt=""> 魔王契约 | 史诗 | -2 生命再生，+2% 吸血，+13% 光环伤害，命中时19% 概率诅咒 | 73 | ∞ |
+| <img src="images/item/dark_7.png" width="32" height="32" alt=""> 魔王契约 | 史诗 | -2 生命再生（每 5 秒），+2% 吸血，+13% 光环伤害，命中时19% 概率诅咒 | 73 | ∞ |
 | <img src="images/item/dark_8.png" width="32" height="32" alt=""> 虚空之眼 | 史诗 | +2% 吸血，+6% 光环伤害，命中时14% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/dark_9.png" width="32" height="32" alt=""> 混沌黑洞 | 传说 | -4 生命再生，+4% 吸血，+28% 光环伤害，命中时25% 概率诅咒 | 123 | ∞ |
+| <img src="images/item/dark_9.png" width="32" height="32" alt=""> 混沌黑洞 | 传说 | -4 生命再生（每 5 秒），+4% 吸血，+28% 光环伤害，命中时25% 概率诅咒 | 123 | ∞ |
 
 <a id="series-44"></a>
 
@@ -910,16 +910,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/holy_0.png" width="32" height="32" alt=""> 白蜡烛 | 普通 | +1 生命再生，+1 护甲 | 15 | ∞ |
-| <img src="images/item/holy_1.png" width="32" height="32" alt=""> 圣水 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/holy_2.png" width="32" height="32" alt=""> 念珠 | 普通 | +1 生命再生，+1 护甲 | 15 | ∞ |
-| <img src="images/item/holy_3.png" width="32" height="32" alt=""> 祈祷书 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/holy_4.png" width="32" height="32" alt=""> 天使雕像 | 稀有 | +2 生命再生，+1 护甲，每 20 秒净化所有减益 | 36 | 2 |
-| <img src="images/item/holy_5.png" width="32" height="32" alt=""> 圣光碎片 | 稀有 | +2 生命再生，+3 护甲 | 36 | ∞ |
-| <img src="images/item/holy_6.png" width="32" height="32" alt=""> 神圣护符 | 稀有 | +2 生命再生，+1 护甲，每 20 秒净化所有减益 | 36 | 2 |
-| <img src="images/item/holy_7.png" width="32" height="32" alt=""> 神之祝福 | 史诗 | +4 生命再生，-6% 全伤害，+3 护甲，每 13 秒净化所有减益 | 73 | 2 |
-| <img src="images/item/holy_8.png" width="32" height="32" alt=""> 圣杯 | 史诗 | +2 生命再生，+3 护甲，每 16 秒净化所有减益 | 73 | 2 |
-| <img src="images/item/holy_9.png" width="32" height="32" alt=""> 光明之心 | 传说 | +8 生命再生，-10% 全伤害，+5 护甲，每 9 秒净化所有减益 | 123 | 2 |
+| <img src="images/item/holy_0.png" width="32" height="32" alt=""> 白蜡烛 | 普通 | +1 生命再生（每 5 秒），+1 护甲 | 15 | ∞ |
+| <img src="images/item/holy_1.png" width="32" height="32" alt=""> 圣水 | 普通 | +2 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/holy_2.png" width="32" height="32" alt=""> 念珠 | 普通 | +1 生命再生（每 5 秒），+1 护甲 | 15 | ∞ |
+| <img src="images/item/holy_3.png" width="32" height="32" alt=""> 祈祷书 | 普通 | +2 生命再生（每 5 秒） | 15 | ∞ |
+| <img src="images/item/holy_4.png" width="32" height="32" alt=""> 天使雕像 | 稀有 | +2 生命再生（每 5 秒），+1 护甲，每 20 秒净化所有减益 | 36 | 2 |
+| <img src="images/item/holy_5.png" width="32" height="32" alt=""> 圣光碎片 | 稀有 | +2 生命再生（每 5 秒），+3 护甲 | 36 | ∞ |
+| <img src="images/item/holy_6.png" width="32" height="32" alt=""> 神圣护符 | 稀有 | +2 生命再生（每 5 秒），+1 护甲，每 20 秒净化所有减益 | 36 | 2 |
+| <img src="images/item/holy_7.png" width="32" height="32" alt=""> 神之祝福 | 史诗 | +4 生命再生（每 5 秒），-6% 全伤害，+3 护甲，每 13 秒净化所有减益 | 73 | 2 |
+| <img src="images/item/holy_8.png" width="32" height="32" alt=""> 圣杯 | 史诗 | +2 生命再生（每 5 秒），+3 护甲，每 16 秒净化所有减益 | 73 | 2 |
+| <img src="images/item/holy_9.png" width="32" height="32" alt=""> 光明之心 | 传说 | +8 生命再生（每 5 秒），-10% 全伤害，+5 护甲，每 9 秒净化所有减益 | 123 | 2 |
 
 <a id="series-45"></a>
 
@@ -1002,9 +1002,9 @@
 | <img src="images/item/rot_4.png" width="32" height="32" alt=""> 沼气瓶 | 稀有 | +5% 光环伤害，+6% 光环范围，命中时11% 概率虚弱 | 36 | ∞ |
 | <img src="images/item/rot_5.png" width="32" height="32" alt=""> 腐蚀液 | 稀有 | +7% 光环伤害，+16% 光环范围 | 36 | ∞ |
 | <img src="images/item/rot_6.png" width="32" height="32" alt=""> 瘟疫之瓶 | 稀有 | +6% 光环伤害，+6% 光环范围，命中时12% 概率虚弱 | 36 | ∞ |
-| <img src="images/item/rot_7.png" width="32" height="32" alt=""> 腐王之眼 | 史诗 | -2 生命再生，+13% 光环伤害，+14% 光环范围，命中时28% 概率虚弱 | 73 | ∞ |
+| <img src="images/item/rot_7.png" width="32" height="32" alt=""> 腐王之眼 | 史诗 | -2 生命再生（每 5 秒），+13% 光环伤害，+14% 光环范围，命中时28% 概率虚弱 | 73 | ∞ |
 | <img src="images/item/rot_8.png" width="32" height="32" alt=""> 堕落精华 | 史诗 | +6% 光环伤害，+16% 光环范围，命中时21% 概率虚弱 | 73 | ∞ |
-| <img src="images/item/rot_9.png" width="32" height="32" alt=""> 终焉腐化 | 传说 | -4 生命再生，+28% 光环伤害，+30% 光环范围，命中时35% 概率虚弱 | 123 | ∞ |
+| <img src="images/item/rot_9.png" width="32" height="32" alt=""> 终焉腐化 | 传说 | -4 生命再生（每 5 秒），+28% 光环伤害，+30% 光环范围，命中时35% 概率虚弱 | 123 | ∞ |
 
 <a id="series-50"></a>
 

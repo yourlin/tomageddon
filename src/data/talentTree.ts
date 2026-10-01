@@ -32,6 +32,10 @@ export interface TreeFx {
   bossDmg?: number;
   /** 升级选项 +N */
   levelChoices?: number;
+  /** 每局一次：倒下时以 N% 生命站起来，并无敌 1.5 秒 */
+  cheatDeath?: number;
+  /** 击杀时获得 1 层怒气（每层伤害 +4%，持续 2 秒），本天赋最多叠到 N 层 */
+  killRage?: number;
   /** 小怪生命低于 N% 时直接斩杀 */
   execute?: number;
   /** 暴击时 % 概率回复 1 生命 */
@@ -191,10 +195,10 @@ const MIGHT = place('might', [
       kind: 'notable',
       icon: '🌀',
       name: ['战意', 'Battle Lust'],
-      desc: ['击杀时获得 1 层怒气（伤害 +4%，持续 2 秒）', 'Kills grant 1 Rage stack (+4% damage, 2s)'],
+      desc: ['击杀时获得 1 层怒气（伤害 +4%，持续 2 秒，最多 3 层）', 'Kills grant a Rage stack (+4% damage, 2s, up to 3)'],
       val: 1,
       max: 1,
-      fx: { special: { onKillSelf: [ST('rage', 2)] } },
+      fx: { killRage: 3 },
     },
   ]),
   ...road('might', -95, [
@@ -278,9 +282,9 @@ const MIGHT = place('might', [
       icon: '👹',
       name: ['屠魔', 'Demon Slayer'],
       desc: ['对精英与 Boss 伤害 +{v}%', '+{v}% damage to elites and bosses'],
-      val: 4,
+      val: 3,
       max: 5,
-      fx: { bossDmg: 4 },
+      fx: { bossDmg: 3 },
     },
     {
       id: 'might_lowhp',
@@ -288,9 +292,9 @@ const MIGHT = place('might', [
       icon: '🩸',
       name: ['背水', 'Last Stand'],
       desc: ['生命低于 40% 时伤害 +{v}%', '+{v}% damage below 40% HP'],
-      val: 8,
+      val: 6,
       max: 2,
-      fx: { lowHpDmg: 8 },
+      fx: { lowHpDmg: 6 },
     },
   ]),
   ...road('might', 110, [
@@ -319,11 +323,11 @@ const MIGHT = place('might', [
       kind: 'keystone',
       icon: '⚔️',
       name: ['斩杀', 'Execution'],
-      desc: ['小怪生命低于 12% 时直接斩杀', 'Regular monsters below 12% HP are executed'],
-      val: 12,
+      desc: ['小怪生命低于 8% 时直接斩杀', 'Regular monsters below 8% HP are executed'],
+      val: 8,
       max: 1,
       needPoints: 26,
-      fx: { execute: 12 },
+      fx: { execute: 8 },
     },
   ]),
 ]);
@@ -334,9 +338,9 @@ const GUARD = place('guard', [
     icon: '❤️',
     name: ['体魄', 'Constitution'],
     desc: ['最大生命 +{v}', 'Max HP +{v}'],
-    val: 3,
+    val: 2,
     max: 3,
-    fx: { mods: { maxHp: 3 } },
+    fx: { mods: { maxHp: 2 } },
   }),
   ...road('guard', -145, [
     {
@@ -376,7 +380,7 @@ const GUARD = place('guard', [
       kind: 'minor',
       icon: '🌿',
       name: ['再生', 'Regrowth'],
-      desc: ['生命再生 +{v}', 'HP regen +{v}'],
+      desc: ['生命再生 +{v}（每 5 秒）', 'HP regen +{v} (per 5s)'],
       val: 1,
       max: 3,
       fx: { mods: { regen: 1 } },
@@ -396,9 +400,9 @@ const GUARD = place('guard', [
       kind: 'minor',
       icon: '🌱',
       name: ['生机', 'Vitality'],
-      desc: ['生命再生 +{v}', 'HP regen +{v}'],
+      desc: ['生命再生 +{v}（每 5 秒）', 'HP regen +{v} (per 5s)'],
       val: 1,
-      max: 2,
+      max: 1,
       fx: { mods: { regen: 1 } },
     },
   ]),
@@ -430,10 +434,10 @@ const GUARD = place('guard', [
       kind: 'notable',
       icon: '🔰',
       name: ['护盾', 'Ward'],
-      desc: ['每 12 秒获得一层抵挡一次伤害的护盾', 'Every 12s gain a shield that blocks one hit'],
-      val: 12,
+      desc: ['每 15 秒获得一层抵挡一次伤害的护盾', 'Every 15s gain a shield that blocks one hit'],
+      val: 15,
       max: 1,
-      fx: { special: { shield: 12 } },
+      fx: { special: { shield: 15 } },
     },
     {
       id: 'guard_barrier',
@@ -463,20 +467,23 @@ const GUARD = place('guard', [
       icon: '🫀',
       name: ['强健', 'Robust'],
       desc: ['最大生命 +{v}', 'Max HP +{v}'],
-      val: 3,
+      val: 2,
       max: 5,
-      fx: { mods: { maxHp: 3 } },
+      fx: { mods: { maxHp: 2 } },
     },
     {
       id: 'guard_key',
       kind: 'keystone',
       icon: '🗿',
       name: ['不屈', 'Unyielding'],
-      desc: ['每局可以复活 1 次', 'Revive once per run'],
-      val: 1,
+      desc: [
+        '每局一次：倒下时以 25% 生命站起来，并无敌 1.5 秒',
+        'Once per run: get back up with 25% HP and 1.5s of invulnerability when you fall',
+      ],
+      val: 25,
       max: 1,
       needPoints: 24,
-      fx: { special: { revive: 1 } },
+      fx: { cheatDeath: 25 },
     },
   ]),
 ]);
@@ -499,7 +506,7 @@ const AGILITY = place('agility', [
       name: ['身法', 'Footwork'],
       desc: ['闪避 +{v}%', 'Dodge +{v}%'],
       val: 1,
-      max: 3,
+      max: 2,
       fx: { mods: { dodge: 1 } },
     },
     {
@@ -551,7 +558,7 @@ const AGILITY = place('agility', [
       name: ['连射', 'Volley'],
       desc: ['攻速 +{v}%', 'Attack speed +{v}%'],
       val: 2,
-      max: 2,
+      max: 1,
       fx: { mods: { attackSpeed: 2 } },
     },
   ]),
@@ -562,9 +569,9 @@ const AGILITY = place('agility', [
       icon: '🧲',
       name: ['磁吸', 'Magnet'],
       desc: ['拾取距离 +{v}', 'Pickup range +{v}'],
-      val: 15,
-      max: 3,
-      fx: { mods: { pickup: 15 } },
+      val: 10,
+      max: 2,
+      fx: { mods: { pickup: 10 } },
     },
     {
       id: 'agility_xp',
@@ -625,11 +632,11 @@ const AGILITY = place('agility', [
       kind: 'keystone',
       icon: '🥷',
       name: ['影舞', 'Shadow Dance'],
-      desc: ['闪避后 0.8 秒内无敌，并额外掷出 2 把飞刀', 'Invulnerable for 0.8s after dodging, and throw 2 extra knives'],
+      desc: ['闪避后 0.35 秒内无敌，并额外掷出 2 把飞刀', 'Invulnerable for 0.35s after dodging, and throw 2 extra knives'],
       val: 1,
       max: 1,
       needPoints: 24,
-      fx: { special: { onDodgeSelf: [ST('invuln', 0.8)] }, dodgeKnives: 2 },
+      fx: { special: { onDodgeSelf: [ST('invuln', 0.35)] }, dodgeKnives: 2 },
     },
   ]),
 ]);

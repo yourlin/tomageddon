@@ -30,39 +30,39 @@ Content: 33 characters · 50 weapons · 566 items · 77 monsters · 30 elites ·
 
 | Character | Role | Modifiers | Traits | Skill | Cooldown | Unlock |
 | --- | --- | --- | --- | --- | --- | --- |
-| Tomato Sister | All-Rounder | +1 HP Regen, +5% All Damage | +5% Damage; +1 HP Regen | Ketchup Burst [Nova Burst] Splatter ketchup everywhere, damaging and slowing enemies. | 17s | Unlocked by default |
+| Tomato Sister | All-Rounder | +1 HP Regen (per 5s), +5% All Damage | +5% Damage; +1 HP Regen | Ketchup Burst [Nova Burst] Splatter ketchup everywhere, damaging and slowing enemies. | 17s | Unlocked by default |
 | Carrot Knight | Melee Tank | +5 Max HP, +3 Melee Damage, +3 Armor | +3 Armor; +3 Melee Damage; Ranged Damage -50% | Knight Charge [Dash] An invulnerable charge that stuns every enemy in its path. | 11s | Unlocked by default |
 | Chili Sis | Fire Expert | -2 Max HP, +3 Elemental Damage | +3 Elemental Damage; -2 Max HP; All hits have a 25% chance to Burn | Flame Nova [Nova Burst] A fiery shockwave that applies 3 stacks of Burn. | 20s | Unlocked by default |
 | Corn Gunner | Sharpshooter | +3 Max HP, +3 Ranged Damage, +50 Range | +3 Ranged Damage; +50 Range; +3 Max HP; Melee Damage -50% | Popcorn Barrage [Ring Barrage] Fire 18 popcorn shots in all directions. | 8s | Unlocked by default |
-| Chubby Melon | Heavy Tank | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed | +25 Max HP; +2 Armor; -12% Move Speed; -10% Attack Speed | Melon Roll [Dash] Roll into enemies and restore 10% HP. | 11s | 385 pts |
-| Lemon Assassin | Crit Assassin | -4 Max HP, +20% Crit Chance, +10% Dodge, +5% Move Speed | +20% Crit Chance; +10% Dodge; -4 Max HP | Sour Mist [Stealth] Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance. | 11s | 385 pts |
-| Eggplant Mage | Thunder Mage | +3 Max HP, +4 Elemental Damage, +10 Luck | +4 Elemental Damage; +10 Luck; +3 Max HP; Melee Damage -70% | Purple Thunder [Screen Clear] Lightning blankets the screen, striking every enemy and briefly Stunning them. | 14s | 385 pts |
-| Count Garlic | Vampire Noble | -3 HP Regen, +10% Life Steal, +5% All Damage | +10% Life Steal; -3 HP Regen; +5% Damage | Blood Domain [Drain Heal] Drain life from nearby enemies and inflict Bleed. | 14s | 815 pts |
-| Blueberry Twins | Weapon Master | -10% All Damage | 8 weapon slots; -10% Damage | Twin Clone [Summon Clone] Summon a clone that auto-fires for 8s. | 10s | 815 pts |
-| Captain Pineapple | Merchant Pirate | -3 Max HP, +20 Luck, +10 Harvest | Shop prices -15%; +20 Luck; +10 Harvest | Golden Cannon [AOE Missile] Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds. | 16s | 385 pts |
-| Pumpkin Ghost | Dodge Master | -4 Max HP, +25% Dodge, +8% Move Speed | +25% Dodge; Dodge cap 75%; -4 Max HP | Spirit Form [Stealth] Become Invulnerable for 2.5s and gain a big speed boost. | 11s | 840 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| Strawberry Idol | Rising Star | -3 Max HP, +40% XP Gain | +40% XP Gain; 5 choices on level up | Fan Cheer [Self Buff] Gain 3 stacks of Haste + 5 stacks of Rage for 6s. | 13s | 815 pts |
-| Ginger Ninja | Wind Ninja | +15% Attack Speed, -1 Armor, +20% Move Speed | +20% Move Speed; +15% Attack Speed; -1 Armor | Shadow Slash [Dash] Dash forward with a slash that inflicts Bleed. | 11s | 840 pts, requires [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills) |
-| Dr. Avocado | Bomb Expert | +5% All Damage, +2 Elemental Damage, +30 Range | +2 Elemental Damage; +5% Damage; Kills have a 15% chance to explode | Core Overload [Multi-Strike] Trigger 5 chain explosions. | 11s | 910 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| Uncle Onion | Tearjerker | +10 Max HP, +2 HP Regen, +4 Armor, -5% Move Speed | +4 Armor; +10 Max HP; Reflect 15 damage when hit | Tear Gas Zone [Binding Field] Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside. | 12s | 960 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
-| Mushroom Shaman | Poison Expert | +2 Elemental Damage, +5 Luck | +2 Elemental Damage; All hits have a 30% chance to Poison | Spore Cloud [Mass Debuff] Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area. | 19s | 335 pts |
-| Coconut Boxer | Heavy Hitter | +5 Max HP, +4 Melee Damage, +2 Armor | +4 Melee Damage; +2 Armor; +5 Max HP; Kills stack Rage (+4% Damage each) | Ground Pound [Nova Burst] Slam the ground to Stun enemies and inflict Armor Break. | 21s | 385 pts |
-| Grape Magician | Illusionist | +3 Max HP, +1 Ranged Damage, +1 Elemental Damage, +10 Luck | +10 Luck; +3 Max HP; 20% chance to Confuse enemies when attacked | Grape Clone [Summon Clone] Summon a clone that auto-fires for 8s. | 10s | 670 pts |
-| Cherry Gunslinger | Rapid Shooter | -8% All Damage, +1 Ranged Damage, +20% Attack Speed | +20% Attack Speed; -8% Damage; 10% chance to gain Haste when shooting | Dual Barrage [Focused Barrage] Fire 12 bullets in a row at the nearest enemy. | 11s | 385 pts |
-| Pea Soldier | Legionnaire | +3 Max HP, +2 Ranged Damage | +2 Ranged Damage; Start with 2 Pea Shooters; +3% Damage per duplicate weapon | Pea Turret [Focused Barrage] Rapid-fire 16 peas at the nearest enemy. | 10s | 670 pts |
-| Peach Angel | Healer | +5 Max HP, +5 HP Regen, -10% All Damage | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage | Angel’s Blessing [Drain Heal] Restore 20% HP and become Invulnerable for 1.5s. | 15s | 815 pts |
-| Dragonfruit Rider | Flame Knight | +5 Max HP, +2 Melee Damage, +2 Elemental Damage, +5% Move Speed | +2 Melee/Elemental Damage; +5 Max HP; Melee hits have a 20% chance to Burn | Dragonflame Charge [Dash] Charge forward, applying 4 stacks of Burn along the path. | 12s | 840 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| Beet Berserker | Berserker | +3% Life Steal, +15% All Damage, -1 Armor | +15% Damage; +3% Life Steal; -1 Armor; Gain Rage when damaged | Frenzy [Self Buff] Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s. | 13s | 815 pts |
-| Asparagus Archer | Marksman | +1 Ranged Damage, +10% Crit Chance, +80 Range | +80 Range; +10% Crit Chance; Hits have a 15% chance to Mark enemies (next hit always crits) | Heartpiercer [Focused Barrage] Fire 8 piercing arrows at the enemy with the highest HP and Mark the target. | 12s | 815 pts |
-| Chef Yam | Gourmet | +5 Max HP, -5% All Damage, +20 Harvest | +20 Harvest; Fruit healing doubled; -5% Damage | Roast Yam Feast [Drain Heal] Restore 20% HP and gain 5 stacks of Regen. | 18s | 385 pts |
-| Kiwi Detective | Weakness Seeker | +3 Max HP, +1 Melee Damage, +8% Crit Chance, +10 Luck | +8% Crit Chance; +3 Max HP; +1 Melee Damage; Hits have a 20% chance to apply Vulnerable; Crit Damage +30% | One Truth [Mass Debuff] See through every enemy on screen: apply Mark and 2 stacks of Vulnerable. | 15s | 670 pts |
-| Lychee Princess | Lucky Princess | +40 Luck | +40 Luck; Crate drop rate doubled | Princess’s Luck [Self Buff] Gain 5 stacks of Lucky + 3 stacks of Focus for 6s. | 10s | 840 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| Durian Overlord | Spiked Tyrant | +10 Max HP, +3 Armor, -4% Move Speed | +3 Armor; +10 Max HP; -4% Move Speed; Reflect 10 damage; Nearby enemies are constantly Weakened | Stink Bomb [Mass Debuff] Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies. | 21s | 910 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| Pepper Mech | Mech Pilot | +10 Max HP, +5 Armor, -10% Dodge, -10% Move Speed | +5 Armor; +10 Max HP; -10% Dodge; Gain 20 Shield every 12s | Drone Support [Summon Clone] Deploy a drone for 8s. | 10s | 910 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| Monk Gourd | Zen Monk | +3 HP Regen, +15% Dodge, +5% Move Speed | +15% Dodge; +3 HP Regen; Gain Focus on successful dodge | Golden Bell [Stealth] Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify. | 16s | 910 pts, requires [Boss Terminator（Bronze）](ACHIEVEMENTS.md#ach-bosses) |
-| Bitter Melon Mage | Frost Mage | +3 Max HP, +3 Elemental Damage, +5% Attack Speed | +3 Elemental Damage; +3 Max HP; Hits have an 8% chance to Freeze enemies for 1s | Frozen Domain [Binding Field] Unleash a 5s frost field around you that Slows and Freezes enemies who enter. | 16s | 840 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| Sprout Apprentice | Rising Talent | -3 Max HP, -8% All Damage, +80% XP Gain | +80% XP Gain; -8% Damage; -3 Max HP; 5 choices on level up | Growth Spurt [Self Buff] Gain 12 XP and 5s of Haste. | 10s | 815 pts |
-| Wasabi Bomber | Demolition Maniac | -5 Max HP, +8% All Damage, +2 Elemental Damage | +8% Damage; Kills have a 25% chance to explode; Explosions inflict Burn | Wasabi Nuke [AOE Missile] Launch a wasabi nuke at the enemy horde for a massive, burning explosion. | 23s | 960 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
+| Chubby Melon | Heavy Tank | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed | +25 Max HP; +2 Armor; -12% Move Speed; -10% Attack Speed | Melon Roll [Dash] Roll into enemies and restore 10% HP. | 13s | 390 pts |
+| Lemon Assassin | Crit Assassin | -4 Max HP, +20% Crit Chance, +10% Dodge, +5% Move Speed | +20% Crit Chance; +10% Dodge; -4 Max HP | Sour Mist [Stealth] Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance. | 11s | 390 pts |
+| Eggplant Mage | Thunder Mage | +3 Max HP, +4 Elemental Damage, +10 Luck | +4 Elemental Damage; +10 Luck; +3 Max HP; Melee Damage -70% | Purple Thunder [Screen Clear] Lightning blankets the screen, striking every enemy and briefly Stunning them. | 14s | 390 pts |
+| Count Garlic | Vampire Noble | -3 HP Regen (per 5s), +10% Life Steal, +5% All Damage | +10% Life Steal; -3 HP Regen; +5% Damage | Blood Domain [Drain Heal] Drain life from nearby enemies and inflict Bleed. | 14s | 830 pts |
+| Blueberry Twins | Weapon Master | -10% All Damage | 8 weapon slots; -10% Damage | Twin Clone [Summon Clone] Summon a clone that auto-fires for 8s. | 10s | 830 pts |
+| Captain Pineapple | Merchant Pirate | -3 Max HP, +20 Luck, +10 Harvest | Shop prices -15%; +20 Luck; +10 Harvest | Golden Cannon [AOE Missile] Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds. | 16s | 390 pts |
+| Pumpkin Ghost | Dodge Master | -4 Max HP, +25% Dodge, +8% Move Speed | +25% Dodge; Dodge cap 75%; -4 Max HP | Spirit Form [Stealth] Become Invulnerable for 2.5s and gain a big speed boost. | 11s | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Strawberry Idol | Rising Star | -3 Max HP, +40% XP Gain | +40% XP Gain; 5 choices on level up | Fan Cheer [Self Buff] Gain 3 stacks of Haste + 5 stacks of Rage for 6s. | 13s | 830 pts |
+| Ginger Ninja | Wind Ninja | +15% Attack Speed, -1 Armor, +20% Move Speed | +20% Move Speed; +15% Attack Speed; -1 Armor | Shadow Slash [Dash] Dash forward with a slash that inflicts Bleed. | 11s | 855 pts, requires [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills) |
+| Dr. Avocado | Bomb Expert | +5% All Damage, +2 Elemental Damage, +30 Range | +2 Elemental Damage; +5% Damage; Kills have a 15% chance to explode | Core Overload [Multi-Strike] Trigger 5 chain explosions. | 11s | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| Uncle Onion | Tearjerker | +10 Max HP, +2 HP Regen (per 5s), +4 Armor, -5% Move Speed | +4 Armor; +10 Max HP; Reflect 15 damage when hit | Tear Gas Zone [Binding Field] Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside. | 12s | 980 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
+| Mushroom Shaman | Poison Expert | +2 Elemental Damage, +5 Luck | +2 Elemental Damage; All hits have a 30% chance to Poison | Spore Cloud [Mass Debuff] Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area. | 19s | 340 pts |
+| Coconut Boxer | Heavy Hitter | +5 Max HP, +4 Melee Damage, +2 Armor | +4 Melee Damage; +2 Armor; +5 Max HP; Kills stack Rage (+4% Damage each) | Ground Pound [Nova Burst] Slam the ground to Stun enemies and inflict Armor Break. | 21s | 390 pts |
+| Grape Magician | Illusionist | +3 Max HP, +1 Ranged Damage, +1 Elemental Damage, +10 Luck | +10 Luck; +3 Max HP; 20% chance to Confuse enemies when attacked | Grape Clone [Summon Clone] Summon a clone that auto-fires for 8s. | 10s | 685 pts |
+| Cherry Gunslinger | Rapid Shooter | -8% All Damage, +1 Ranged Damage, +20% Attack Speed | +20% Attack Speed; -8% Damage; 10% chance to gain Haste when shooting | Dual Barrage [Focused Barrage] Fire 12 bullets in a row at the nearest enemy. | 11s | 390 pts |
+| Pea Soldier | Legionnaire | +3 Max HP, +2 Ranged Damage | +2 Ranged Damage; Start with 2 Pea Shooters; +3% Damage per duplicate weapon | Pea Turret [Focused Barrage] Rapid-fire 16 peas at the nearest enemy. | 10s | 685 pts |
+| Peach Angel | Healer | +5 Max HP, +5 HP Regen (per 5s), -10% All Damage | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage | Angel’s Blessing [Drain Heal] Restore 20% HP and become Invulnerable for 1.5s. | 21s | 830 pts |
+| Dragonfruit Rider | Flame Knight | +5 Max HP, +2 Melee Damage, +2 Elemental Damage, +5% Move Speed | +2 Melee/Elemental Damage; +5 Max HP; Melee hits have a 20% chance to Burn | Dragonflame Charge [Dash] Charge forward, applying 4 stacks of Burn along the path. | 12s | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Beet Berserker | Berserker | +3% Life Steal, +15% All Damage, -1 Armor | +15% Damage; +3% Life Steal; -1 Armor; Gain Rage when damaged | Frenzy [Self Buff] Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s. | 13s | 830 pts |
+| Asparagus Archer | Marksman | +1 Ranged Damage, +10% Crit Chance, +80 Range | +80 Range; +10% Crit Chance; Hits have a 15% chance to Mark enemies (next hit always crits) | Heartpiercer [Focused Barrage] Fire 8 piercing arrows at the enemy with the highest HP and Mark the target. | 12s | 830 pts |
+| Chef Yam | Gourmet | +5 Max HP, -5% All Damage, +20 Harvest | +20 Harvest; Fruit healing doubled; -5% Damage | Roast Yam Feast [Drain Heal] Restore 20% HP and gain 5 stacks of Regen. | 24s | 390 pts |
+| Kiwi Detective | Weakness Seeker | +3 Max HP, +1 Melee Damage, +8% Crit Chance, +10 Luck | +8% Crit Chance; +3 Max HP; +1 Melee Damage; Hits have a 20% chance to apply Vulnerable; Crit Damage +30% | One Truth [Mass Debuff] See through every enemy on screen: apply Mark and 2 stacks of Vulnerable. | 15s | 685 pts |
+| Lychee Princess | Lucky Princess | +40 Luck | +40 Luck; Crate drop rate doubled | Princess’s Luck [Self Buff] Gain 5 stacks of Lucky + 3 stacks of Focus for 6s. | 10s | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Durian Overlord | Spiked Tyrant | +10 Max HP, +3 Armor, -4% Move Speed | +3 Armor; +10 Max HP; -4% Move Speed; Reflect 10 damage; Nearby enemies are constantly Weakened | Stink Bomb [Mass Debuff] Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies. | 21s | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| Pepper Mech | Mech Pilot | +10 Max HP, +5 Armor, -10% Dodge, -10% Move Speed | +5 Armor; +10 Max HP; -10% Dodge; Gain 20 Shield every 12s | Drone Support [Summon Clone] Deploy a drone for 8s. | 10s | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| Monk Gourd | Zen Monk | +3 HP Regen (per 5s), +15% Dodge, +5% Move Speed | +15% Dodge; +3 HP Regen; Gain Focus on successful dodge | Golden Bell [Stealth] Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify. | 16s | 930 pts, requires [Boss Terminator（Bronze）](ACHIEVEMENTS.md#ach-bosses) |
+| Bitter Melon Mage | Frost Mage | +3 Max HP, +3 Elemental Damage, +5% Attack Speed | +3 Elemental Damage; +3 Max HP; Hits have an 8% chance to Freeze enemies for 1s | Frozen Domain [Binding Field] Unleash a 5s frost field around you that Slows and Freezes enemies who enter. | 16s | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Sprout Apprentice | Rising Talent | -3 Max HP, -8% All Damage, +80% XP Gain | +80% XP Gain; -8% Damage; -3 Max HP; 5 choices on level up | Growth Spurt [Self Buff] Gain 12 XP and 5s of Haste. | 10s | 830 pts |
+| Wasabi Bomber | Demolition Maniac | -5 Max HP, +8% All Damage, +2 Elemental Damage | +8% Damage; Kills have a 25% chance to explode; Explosions inflict Burn | Wasabi Nuke [AOE Missile] Launch a wasabi nuke at the enemy horde for a massive, burning explosion. | 23s | 980 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
 
 <a id="statuses"></a>
 
@@ -358,7 +358,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Item | Series | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
 | Band-Aid | Classic | +3 Max HP | 12 | ∞ |
-| Tomato Juice | Classic | +2 HP Regen | 14 | ∞ |
+| Tomato Juice | Classic | +2 HP Regen (per 5s) | 14 | ∞ |
 | Toothpick | Classic | +2 Melee Damage, -5 Range | 13 | ∞ |
 | Rubber Band | Classic | +2 Ranged Damage | 13 | ∞ |
 | Lighter | Classic | +2 Elemental Damage | 13 | ∞ |
@@ -373,17 +373,17 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Hot Sauce Packet | Classic | +5% All Damage | 14 | ∞ |
 | Recipe Notes | Classic | +10% XP Gain | 14 | ∞ |
 | Reroll Ticket | Classic | +1 shop reroll(s) per wave | 18 | 3 |
-| Sun-Dried Tomato | Tomato Goods | +2 Max HP, +1 HP Regen | 15 | ∞ |
+| Sun-Dried Tomato | Tomato Goods | +2 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
 | Tomato Purée | Tomato Goods | +3 Max HP | 15 | ∞ |
-| Cherry Tomato | Tomato Goods | +1 Max HP, +1 HP Regen | 15 | ∞ |
+| Cherry Tomato | Tomato Goods | +1 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
 | Tomato Seed | Tomato Goods | +3 Max HP | 15 | ∞ |
 | Black Peppercorns | Spices | +4% Elemental Weapon Dmg, +2% Crit Chance | 15 | ∞ |
 | Sichuan Pepper | Spices | +7% Elemental Weapon Dmg | 15 | ∞ |
 | Star Anise | Spices | +3% Elemental Weapon Dmg, +3% Crit Chance | 15 | ∞ |
 | Cinnamon Stick | Spices | +7% Elemental Weapon Dmg | 15 | ∞ |
-| Soy Sauce | Sauces | +1 HP Regen, +1% Life Steal | 15 | ∞ |
+| Soy Sauce | Sauces | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
 | Vinegar | Sauces | +2% Life Steal | 15 | ∞ |
-| Oyster Sauce | Sauces | +1 HP Regen, +1% Life Steal | 15 | ∞ |
+| Oyster Sauce | Sauces | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
 | Sweet Bean Sauce | Sauces | +2% Life Steal | 15 | ∞ |
 | Fruit Knife | Knives | +4% Melee Weapon Dmg, +2% Crit Chance | 15 | ∞ |
 | Peeler | Knives | +7% Melee Weapon Dmg | 15 | ∞ |
@@ -421,10 +421,10 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Spoiled Milk | Poisons | +2 Elemental Damage | 15 | ∞ |
 | Toadstool Slice | Poisons | +1 Elemental Damage, +6 Luck | 15 | ∞ |
 | Stinky Tofu | Poisons | +2 Elemental Damage | 15 | ∞ |
-| Mint Leaf | Herbs | +1 Max HP, +1 HP Regen | 15 | ∞ |
-| Licorice Root | Herbs | +2 HP Regen | 15 | ∞ |
-| Goji Berries | Herbs | +2 Max HP, +1 HP Regen | 15 | ∞ |
-| Honeysuckle | Herbs | +2 HP Regen | 15 | ∞ |
+| Mint Leaf | Herbs | +1 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
+| Licorice Root | Herbs | +2 HP Regen (per 5s) | 15 | ∞ |
+| Goji Berries | Herbs | +2 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
+| Honeysuckle | Herbs | +2 HP Regen (per 5s) | 15 | ∞ |
 | Green Tea | Teas | +3% Attack Speed, +3% Skill Cooldown | 15 | ∞ |
 | Black Tea | Teas | +5% Attack Speed | 15 | ∞ |
 | Milk Tea | Teas | +2% Attack Speed, +4% Skill Cooldown | 15 | ∞ |
@@ -441,9 +441,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Steamed Bun | Breads | +3 Max HP | 15 | ∞ |
 | Baguette | Breads | +1 Max HP, +1 Armor | 15 | ∞ |
 | Croissant | Breads | +3 Max HP | 15 | ∞ |
-| Cheese Slice | Cheese | +1 HP Regen, +1 Armor | 15 | ∞ |
+| Cheese Slice | Cheese | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
 | String Cheese | Cheese | +2 Armor | 15 | ∞ |
-| Mozzarella | Cheese | +1 HP Regen, +1 Armor | 15 | ∞ |
+| Mozzarella | Cheese | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
 | Cheddar | Cheese | +2 Armor | 15 | ∞ |
 | Dried Minnows | Seafood | +5 Luck, +3 Harvest | 15 | ∞ |
 | Dried Shrimp | Seafood | +9 Luck | 15 | ∞ |
@@ -505,10 +505,10 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Loose Change | Coins | +9 Luck | 15 | ∞ |
 | Souvenir Coin | Coins | +4 Luck, +4 Harvest | 15 | ∞ |
 | Silver Dollar | Coins | +9 Luck | 15 | ∞ |
-| Red Potion | Potions | +1 HP Regen, +1% Life Steal | 15 | ∞ |
-| Blue Potion | Potions | +2 HP Regen | 15 | ∞ |
-| Green Potion | Potions | +1 HP Regen, +1% Life Steal | 15 | ∞ |
-| Antidote | Potions | +2 HP Regen | 15 | ∞ |
+| Red Potion | Potions | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
+| Blue Potion | Potions | +2 HP Regen (per 5s) | 15 | ∞ |
+| Green Potion | Potions | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
+| Antidote | Potions | +2 HP Regen (per 5s) | 15 | ∞ |
 | Chicken Bone | Bones | +1% Life Steal, +1 Melee Damage | 15 | ∞ |
 | Fishbone | Bones | +2 Melee Damage | 15 | ∞ |
 | Pork Bone | Bones | +1% Life Steal, +1 Melee Damage | 15 | ∞ |
@@ -545,10 +545,10 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Crow Feather | Darkness | +8% Aura Damage | 15 | ∞ |
 | Voodoo Doll | Darkness | +1% Life Steal, +3% Aura Damage | 15 | ∞ |
 | Shadow Cloth | Darkness | +8% Aura Damage | 15 | ∞ |
-| White Candle | Holy | +1 HP Regen, +1 Armor | 15 | ∞ |
-| Holy Water | Holy | +2 HP Regen | 15 | ∞ |
-| Prayer Beads | Holy | +1 HP Regen, +1 Armor | 15 | ∞ |
-| Prayer Book | Holy | +2 HP Regen | 15 | ∞ |
+| White Candle | Holy | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
+| Holy Water | Holy | +2 HP Regen (per 5s) | 15 | ∞ |
+| Prayer Beads | Holy | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
+| Prayer Book | Holy | +2 HP Regen (per 5s) | 15 | ∞ |
 | Kunai | Ninja Gear | +2% Crit Chance, +3% Move Speed | 15 | ∞ |
 | Shuriken | Ninja Gear | +5% Move Speed | 15 | ∞ |
 | Smoke Bomb | Ninja Gear | +3% Crit Chance, +2% Move Speed | 15 | ∞ |
@@ -593,24 +593,24 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Scope | Classic | +3 Ranged Damage, +3% Crit Chance, +40 Range | 38 | ∞ |
 | Battery | Classic | +3 Elemental Damage, +5% Attack Speed | 36 | ∞ |
 | Pinned Mosquito | Classic | -2 Max HP, +4% Life Steal | 40 | ∞ |
-| Energy Drink | Classic | -1 HP Regen, +10% Attack Speed, +3% Move Speed | 38 | ∞ |
+| Energy Drink | Classic | -1 HP Regen (per 5s), +10% Attack Speed, +3% Move Speed | 38 | ∞ |
 | Pot-Lid Helmet | Classic | +3 Armor, -3% Move Speed | 40 | ∞ |
 | Piggy Bank | Classic | At the end of each wave, earn 10% interest on your Seeds (capped at 6 × wave) | 30 | 3 |
 | Popping Seed | Classic | +3% All Damage, Kills have a 10% chance to explode | 42 | ∞ |
 | Cactus | Classic | +2 Armor, Deals 8 damage to attackers when you are hit | 34 | ∞ |
 | Lucky Cat | Classic | +12 Luck, 10% chance to double Seeds | 38 | ∞ |
 | Running Shoes | Classic | +2% Dodge, +10% Move Speed | 38 | ∞ |
-| Lemonade | Classic | +3 Max HP, +3 HP Regen | 36 | ∞ |
-| Bandage Roll | Classic | +5 Max HP, +1 HP Regen, Heal 1 HP every 25 kills | 40 | ∞ |
-| Tomato Concentrate | Tomato Goods | +2 Max HP, +1 HP Regen, Fruit healing +38% | 36 | ∞ |
-| Tomato Stew | Tomato Goods | +3 Max HP, +3 HP Regen | 36 | ∞ |
-| Canned Tomatoes | Tomato Goods | +2 Max HP, +1 HP Regen, Fruit healing +40% | 36 | ∞ |
+| Lemonade | Classic | +3 Max HP, +3 HP Regen (per 5s) | 36 | ∞ |
+| Bandage Roll | Classic | +5 Max HP, +1 HP Regen (per 5s), Heal 1 HP every 25 kills | 40 | ∞ |
+| Tomato Concentrate | Tomato Goods | +2 Max HP, +1 HP Regen (per 5s), Fruit healing +38% | 36 | ∞ |
+| Tomato Stew | Tomato Goods | +3 Max HP, +3 HP Regen (per 5s) | 36 | ∞ |
+| Canned Tomatoes | Tomato Goods | +2 Max HP, +1 HP Regen (per 5s), Fruit healing +40% | 36 | ∞ |
 | Ground Cumin | Spices | +5% Elemental Weapon Dmg, +2% Crit Chance, On hit: 11% chance of Burn | 36 | ∞ |
 | Curry Cube | Spices | +6% Elemental Weapon Dmg, +6% Crit Chance | 36 | ∞ |
 | Thirteen Spice | Spices | +5% Elemental Weapon Dmg, +2% Crit Chance, On hit: 12% chance of Burn | 36 | ∞ |
-| Chili Bean Paste | Sauces | +1 HP Regen, +1% Life Steal, On kill, gain 14% chance of Bloodlust | 36 | ∞ |
-| Satay Sauce | Sauces | +3 HP Regen, +2% Life Steal | 36 | ∞ |
-| XO Sauce | Sauces | +1 HP Regen, +1% Life Steal, On kill, gain 15% chance of Bloodlust | 36 | ∞ |
+| Chili Bean Paste | Sauces | +1 HP Regen (per 5s), +1% Life Steal, On kill, gain 14% chance of Bloodlust | 36 | ∞ |
+| Satay Sauce | Sauces | +3 HP Regen (per 5s), +2% Life Steal | 36 | ∞ |
+| XO Sauce | Sauces | +1 HP Regen (per 5s), +1% Life Steal, On kill, gain 15% chance of Bloodlust | 36 | ∞ |
 | Fillet Knife | Knives | +5% Melee Weapon Dmg, +2% Crit Chance, On hit: 11% chance of Bleed | 36 | ∞ |
 | Bone Cleaver | Knives | +6% Melee Weapon Dmg, +6% Crit Chance | 36 | ∞ |
 | Yanagiba | Knives | +5% Melee Weapon Dmg, +2% Crit Chance, On hit: 12% chance of Bleed | 36 | ∞ |
@@ -638,9 +638,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Snake Venom Vial | Poisons | +2 Elemental Damage, +4 Luck, On hit: 14% chance of Poison | 36 | ∞ |
 | Scorpion Tail | Poisons | +2 Elemental Damage, +12 Luck | 36 | ∞ |
 | Toxic Spores | Poisons | +2 Elemental Damage, +4 Luck, On hit: 15% chance of Poison | 36 | ∞ |
-| Ginseng Whiskers | Herbs | +2 Max HP, +2 HP Regen, When hurt, gain Regen | 36 | ∞ |
-| Lingzhi Slice | Herbs | +4 Max HP, +2 HP Regen | 36 | ∞ |
-| Snow Lotus | Herbs | +2 Max HP, +2 HP Regen, When hurt, gain Regen | 36 | ∞ |
+| Ginseng Whiskers | Herbs | +2 Max HP, +2 HP Regen (per 5s), When hurt, gain Regen | 36 | ∞ |
+| Lingzhi Slice | Herbs | +4 Max HP, +2 HP Regen (per 5s) | 36 | ∞ |
+| Snow Lotus | Herbs | +2 Max HP, +2 HP Regen (per 5s), When hurt, gain Regen | 36 | ∞ |
 | Matcha | Teas | +3% Attack Speed, +3% Skill Cooldown, Every 17s, gain 2× Haste | 36 | 2 |
 | Pu'er Cake | Teas | +4% Attack Speed, +9% Skill Cooldown | 36 | ∞ |
 | Jin Jun Mei | Teas | +4% Attack Speed, +3% Skill Cooldown, Every 17s, gain 2× Haste | 36 | 2 |
@@ -653,9 +653,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Bagel | Breads | +2 Max HP, +1 Armor, At wave start, gain Shield (8) | 36 | 2 |
 | Pineapple Bun | Breads | +3 Max HP, +3 Armor | 36 | ∞ |
 | Whole Wheat Loaf | Breads | +2 Max HP, +1 Armor, At wave start, gain Shield (9) | 36 | 2 |
-| Blue Cheese | Cheese | +1 HP Regen, +2 Armor, When hurt, gain Fortify | 36 | ∞ |
-| Parmesan | Cheese | +3 HP Regen, +2 Armor | 36 | ∞ |
-| Century-Aged Cheese | Cheese | +1 HP Regen, +2 Armor, When hurt, gain Fortify | 36 | ∞ |
+| Blue Cheese | Cheese | +1 HP Regen (per 5s), +2 Armor, When hurt, gain Fortify | 36 | ∞ |
+| Parmesan | Cheese | +3 HP Regen (per 5s), +2 Armor | 36 | ∞ |
+| Century-Aged Cheese | Cheese | +1 HP Regen (per 5s), +2 Armor, When hurt, gain Fortify | 36 | ∞ |
 | Oyster | Seafood | +6 Luck, +3 Harvest, 8% chance to double Seeds | 36 | ∞ |
 | Lobster Claw | Seafood | +8 Luck, +9 Harvest | 36 | ∞ |
 | King Crab | Seafood | +7 Luck, +3 Harvest, 8% chance to double Seeds | 36 | ∞ |
@@ -701,9 +701,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Gold Coin | Coins | +6 Luck, +3 Harvest, 8% chance to double Seeds | 36 | ∞ |
 | Ancient Coin | Coins | +8 Luck, +9 Harvest | 36 | ∞ |
 | Treasure Map | Coins | +7 Luck, +3 Harvest, 8% chance to double Seeds | 36 | ∞ |
-| Healing Potion | Potions | +2 HP Regen, +1% Life Steal, Heal 1 HP every 51 kills | 36 | ∞ |
-| Greater Potion | Potions | +2 HP Regen, +2% Life Steal | 36 | ∞ |
-| Elixir | Potions | +2 HP Regen, +1% Life Steal, Heal 1 HP every 50 kills | 36 | ∞ |
+| Healing Potion | Potions | +2 HP Regen (per 5s), +1% Life Steal, Heal 1 HP every 51 kills | 36 | ∞ |
+| Greater Potion | Potions | +2 HP Regen (per 5s), +2% Life Steal | 36 | ∞ |
+| Elixir | Potions | +2 HP Regen (per 5s), +1% Life Steal, Heal 1 HP every 50 kills | 36 | ∞ |
 | Dino Bone | Bones | +1% Life Steal, +2 Melee Damage, On hit: 8% chance of Curse | 36 | ∞ |
 | Skull | Bones | +2% Life Steal, +2 Melee Damage | 36 | ∞ |
 | Cursed Bone | Bones | +1% Life Steal, +2 Melee Damage, On hit: 8% chance of Curse | 36 | ∞ |
@@ -731,9 +731,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Evil Eye | Darkness | +1% Life Steal, +5% Aura Damage, On hit: 8% chance of Curse | 36 | ∞ |
 | Demon Horn | Darkness | +2% Life Steal, +7% Aura Damage | 36 | ∞ |
 | Abyss Stone | Darkness | +1% Life Steal, +6% Aura Damage, On hit: 8% chance of Curse | 36 | ∞ |
-| Angel Statue | Holy | +2 HP Regen, +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
-| Holy Light Shard | Holy | +2 HP Regen, +3 Armor | 36 | ∞ |
-| Sacred Charm | Holy | +2 HP Regen, +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
+| Angel Statue | Holy | +2 HP Regen (per 5s), +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
+| Holy Light Shard | Holy | +2 HP Regen (per 5s), +3 Armor | 36 | ∞ |
+| Sacred Charm | Holy | +2 HP Regen (per 5s), +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
 | Ninja Rope | Ninja Gear | +2% Crit Chance, +4% Move Speed, On hit: 11% chance of Bleed | 36 | ∞ |
 | Throwing Dart | Ninja Gear | +6% Crit Chance, +5% Move Speed | 36 | ∞ |
 | Shadow Clone Scroll | Ninja Gear | +2% Crit Chance, +4% Move Speed, On hit: 12% chance of Bleed | 36 | ∞ |
@@ -775,12 +775,12 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Backpack | Classic | -3% Move Speed, +1 weapon slot | 80 | 2 |
 | Coupon | Classic | Shop prices -10% | 55 | 3 |
 | Protein Powder | Classic | +10 Max HP, +2 Melee Damage, -2% Move Speed | 75 | ∞ |
-| King-Size Ketchup | Tomato Goods | +6 Max HP, +3 HP Regen, -6% Move Speed, Fruit healing +96% | 73 | ∞ |
-| Heirloom Tomato | Tomato Goods | +3 Max HP, +3 HP Regen, Fruit healing +68% | 73 | ∞ |
+| King-Size Ketchup | Tomato Goods | +6 Max HP, +3 HP Regen (per 5s), -6% Move Speed, Fruit healing +96% | 73 | ∞ |
+| Heirloom Tomato | Tomato Goods | +3 Max HP, +3 HP Regen (per 5s), Fruit healing +68% | 73 | ∞ |
 | Chili Extract | Spices | -3 Max HP, +12% Elemental Weapon Dmg, +5% Crit Chance, On hit: 28% chance of Burn | 73 | ∞ |
 | Devil Pepper Dust | Spices | +6% Elemental Weapon Dmg, +6% Crit Chance, On hit: 21% chance of Burn | 73 | ∞ |
-| Secret BBQ Sauce | Sauces | +3 HP Regen, +3% Life Steal, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
-| Blood-Red Hot Sauce | Sauces | +3 HP Regen, +2% Life Steal, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
+| Secret BBQ Sauce | Sauces | +3 HP Regen (per 5s), +3% Life Steal, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
+| Blood-Red Hot Sauce | Sauces | +3 HP Regen (per 5s), +2% Life Steal, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
 | Damascus Blade | Knives | +13% Melee Weapon Dmg, +5% Crit Chance, -35 Range, On hit: 29% chance of Bleed | 73 | ∞ |
 | Dragonslayer Cleaver | Knives | +6% Melee Weapon Dmg, +6% Crit Chance, On hit: 21% chance of Bleed | 73 | ∞ |
 | Layered Pot Shield | Cookware | +4 Max HP, +4 Armor, -6% Move Speed, When hurt, gain 2× Fortify | 73 | ∞ |
@@ -791,7 +791,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Sniper Soaker | Toy Guns | +2 Ranged Damage, +40 Range, On hit: 12% chance of Mark | 73 | ∞ |
 | Homing Round | Ammo | +12% Ranged Weapon Dmg, +6% Attack Speed, -3% Dodge, On hit: 30% chance of Armor Break | 73 | ∞ |
 | Tungsten Round | Ammo | +6% Ranged Weapon Dmg, +6% Attack Speed, On hit: 22% chance of Armor Break | 73 | ∞ |
-| Blaze Core | Fire | -2 HP Regen, +8% Elemental Weapon Dmg, +4 Elemental Damage, On hit: 28% chance of Burn | 73 | ∞ |
+| Blaze Core | Fire | -2 HP Regen (per 5s), +8% Elemental Weapon Dmg, +4 Elemental Damage, On hit: 28% chance of Burn | 73 | ∞ |
 | Sun Shard | Fire | +9% Elemental Weapon Dmg, +2 Elemental Damage, On hit: 21% chance of Burn | 73 | ∞ |
 | Permafrost Crystal | Frozen Treats | +4 Elemental Damage, +3 Armor, -6% Move Speed, On hit: 48% chance of Slow | 73 | ∞ |
 | Heart of Frost | Frozen Treats | +2 Elemental Damage, +3 Armor, On hit: 34% chance of Slow | 73 | ∞ |
@@ -799,18 +799,18 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Storm Core | Thunder | +2 Elemental Damage, +6% Attack Speed, 9% chance to call lightning on hit | 73 | ∞ |
 | Plague Flask | Poisons | -3 Max HP, +4 Elemental Damage, +10 Luck, On hit: 35% chance of Poison | 73 | ∞ |
 | Corrupted Core | Poisons | +2 Elemental Damage, +11 Luck, On hit: 26% chance of Poison | 73 | ∞ |
-| Ancient Ginseng | Herbs | +4 Max HP, +4 HP Regen, -6% All Damage, When hurt, gain 2× Regen | 73 | ∞ |
-| Immortal Herb | Herbs | +4 Max HP, +2 HP Regen, When hurt, gain 2× Regen | 73 | ∞ |
+| Ancient Ginseng | Herbs | +4 Max HP, +4 HP Regen (per 5s), -6% All Damage, When hurt, gain 2× Regen | 73 | ∞ |
+| Immortal Herb | Herbs | +4 Max HP, +2 HP Regen (per 5s), When hurt, gain 2× Regen | 73 | ∞ |
 | Da Hong Pao | Teas | -3 Max HP, +8% Attack Speed, +8% Skill Cooldown, Every 12s, gain 2× Haste | 73 | 2 |
 | Immortal's Tea | Teas | +4% Attack Speed, +8% Skill Cooldown, Every 14s, gain 2× Haste | 73 | 2 |
-| Triple Espresso | Coffee | -2 HP Regen, +8% Attack Speed, +6% Move Speed, On kill, gain 46% chance of Haste | 73 | ∞ |
+| Triple Espresso | Coffee | -2 HP Regen (per 5s), +8% Attack Speed, +6% Move Speed, On kill, gain 46% chance of Haste | 73 | ∞ |
 | Caffeine Crystal | Coffee | +4% Attack Speed, +7% Move Speed, On kill, gain 34% chance of Haste | 73 | ∞ |
 | Rainbow Cake | Desserts | +6 Max HP, -5% Attack Speed, +11 Luck, At wave start, gain Shield (21) | 73 | 2 |
 | Royal Pudding | Desserts | +3 Max HP, +11 Luck, At wave start, gain Shield (15) | 73 | 2 |
 | Stone-Oven Bread | Breads | +6 Max HP, -5% Attack Speed, +3 Armor, At wave start, gain Shield (21) | 73 | 2 |
 | Golden Loaf | Breads | +3 Max HP, +3 Armor, At wave start, gain Shield (15) | 73 | 2 |
-| Cheese Fortress | Cheese | +3 HP Regen, +4 Armor, -6% Move Speed, When hurt, gain 2× Fortify | 73 | ∞ |
-| Supreme Cheese Wheel | Cheese | +3 HP Regen, +2 Armor, When hurt, gain 2× Fortify | 73 | ∞ |
+| Cheese Fortress | Cheese | +3 HP Regen (per 5s), +4 Armor, -6% Move Speed, When hurt, gain 2× Fortify | 73 | ∞ |
+| Supreme Cheese Wheel | Cheese | +3 HP Regen (per 5s), +2 Armor, When hurt, gain 2× Fortify | 73 | ∞ |
 | Otoro Tuna | Seafood | -2 Armor, +15 Luck, +8 Harvest, 19% chance to double Seeds | 73 | ∞ |
 | Deep-Sea Pearl | Seafood | +8 Luck, +8 Harvest, 14% chance to double Seeds | 73 | ∞ |
 | Golden Egg | Eggs | +6 Max HP, -6% All Damage, +13% XP Gain, When hurt, gain 2× Regen | 73 | ∞ |
@@ -833,7 +833,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Codex of All Things | Books | +9% XP Gain, +8% Skill Cooldown, On hit, gain 14% chance of Focus | 73 | ∞ |
 | Forbidden Scroll | Scrolls | +4 Elemental Damage, -2 Armor, +8% Skill Cooldown, 12% chance to call lightning on hit | 73 | ∞ |
 | Apocalypse Scroll | Scrolls | +2 Elemental Damage, +8% Skill Cooldown, 9% chance to call lightning on hit | 73 | ∞ |
-| Diamond | Gems | -2 HP Regen, +8% Crit Chance, +10 Luck, Crit Damage +28% | 73 | ∞ |
+| Diamond | Gems | -2 HP Regen (per 5s), +8% Crit Chance, +10 Luck, Crit Damage +28% | 73 | ∞ |
 | Star Gem | Gems | +4% Crit Chance, +11 Luck, Crit Damage +21% | 73 | ∞ |
 | King's Ring | Rings | -3 Max HP, +8% Ranged Weapon Dmg, +8% Crit Chance, On hit: 16% chance of Mark | 73 | ∞ |
 | Ring of Fate | Rings | +9% Ranged Weapon Dmg, +4% Crit Chance, On hit: 12% chance of Mark | 73 | ∞ |
@@ -841,9 +841,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Divine Protection | Amulets | +3% Dodge, +11 Luck, Cleanse all debuffs every 16s | 73 | 2 |
 | Treasure Bowl | Coins | -3 Max HP, +15 Luck, +8 Harvest, 19% chance to double Seeds | 73 | ∞ |
 | Midas Stone | Coins | +8 Luck, +8 Harvest, 14% chance to double Seeds | 73 | ∞ |
-| Undying Draught | Potions | +4 HP Regen, +2% Life Steal, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
-| Phoenix Tonic | Potions | +2 HP Regen, +2% Life Steal, Heal 1 HP every 43 kills | 73 | ∞ |
-| Necro Staff | Bones | -2 HP Regen, +2% Life Steal, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| Undying Draught | Potions | +4 HP Regen (per 5s), +2% Life Steal, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
+| Phoenix Tonic | Potions | +2 HP Regen (per 5s), +2% Life Steal, Heal 1 HP every 43 kills | 73 | ∞ |
+| Necro Staff | Bones | -2 HP Regen (per 5s), +2% Life Steal, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
 | Bone Dragon Fang | Bones | +2% Life Steal, +2 Melee Damage, On hit: 14% chance of Curse | 73 | ∞ |
 | Phoenix Tail Plume | Feathers | -2 Armor, +6% Dodge, +6% Move Speed, On kill, gain 46% chance of Haste | 73 | ∞ |
 | Angel Feather | Feathers | +3% Dodge, +7% Move Speed, On kill, gain 34% chance of Haste | 73 | ∞ |
@@ -851,7 +851,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Wishing Candy | Candies | +11 Luck, +9% XP Gain, At wave start, gain Lucky | 73 | 2 |
 | Turbine | Machine Parts | +4 Ranged Damage, +3 Armor, -3% Dodge, On hit: 30% chance of Armor Break | 73 | ∞ |
 | Perpetual Motion | Machine Parts | +2 Ranged Damage, +3 Armor, On hit: 22% chance of Armor Break | 73 | ∞ |
-| Nuclear Battery | Energy | -2 HP Regen, +3 Elemental Damage, +8% Attack Speed, 12% chance to call lightning on hit | 73 | ∞ |
+| Nuclear Battery | Energy | -2 HP Regen (per 5s), +3 Elemental Damage, +8% Attack Speed, 12% chance to call lightning on hit | 73 | ∞ |
 | Zero-Point Energy | Energy | +3 Elemental Damage, +4% Attack Speed, 9% chance to call lightning on hit | 73 | ∞ |
 | Oni Mask | Masks | -3 Max HP, +5% Crit Chance, +6% Dodge, When hurt, inflict 46% chance of Confuse on the attacker | 73 | ∞ |
 | Mask of Faces | Masks | +6% Crit Chance, +3% Dodge, When hurt, inflict 34% chance of Confuse on the attacker | 73 | ∞ |
@@ -859,10 +859,10 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Legendary Card | Toys | +8 Luck, +14% XP Gain, At wave start, gain Lucky | 73 | 2 |
 | Golden Harp | Instruments | +8% Attack Speed, -2 Armor, +8% Skill Cooldown, Every 12s, gain 2× Haste | 73 | 2 |
 | War Drum | Instruments | +4% Attack Speed, +8% Skill Cooldown, Every 14s, gain 2× Haste | 73 | 2 |
-| Demon Lord's Pact | Darkness | -2 HP Regen, +2% Life Steal, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| Demon Lord's Pact | Darkness | -2 HP Regen (per 5s), +2% Life Steal, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
 | Eye of the Void | Darkness | +2% Life Steal, +6% Aura Damage, On hit: 14% chance of Curse | 73 | ∞ |
-| God's Blessing | Holy | +4 HP Regen, -6% All Damage, +3 Armor, Cleanse all debuffs every 13s | 73 | 2 |
-| Holy Grail | Holy | +2 HP Regen, +3 Armor, Cleanse all debuffs every 16s | 73 | 2 |
+| God's Blessing | Holy | +4 HP Regen (per 5s), -6% All Damage, +3 Armor, Cleanse all debuffs every 13s | 73 | 2 |
+| Holy Grail | Holy | +2 HP Regen (per 5s), +3 Armor, Cleanse all debuffs every 16s | 73 | 2 |
 | Assassin's Dagger | Ninja Gear | -3 Max HP, +5% Crit Chance, +9% Move Speed, On hit: 28% chance of Bleed | 73 | ∞ |
 | Ninpo Mastery | Ninja Gear | +6% Crit Chance, +5% Move Speed, On hit: 21% chance of Bleed | 73 | ∞ |
 | Blackbeard's Flag | Pirate | +3 Melee Damage, -2 Armor, +15 Luck, 19% chance to double Seeds | 73 | ∞ |
@@ -871,7 +871,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Antimatter | Lab | +2 Elemental Damage, +40 Range, 10% chance for kills to explode (17 damage) | 73 | ∞ |
 | Champion's Belt | Sports | +4 Max HP, +10% Move Speed, -9 Luck, When hurt, gain 2× Regen | 73 | ∞ |
 | Legendary Jersey | Sports | +4 Max HP, +5% Move Speed, When hurt, gain 2× Regen | 73 | ∞ |
-| Eye of the Rot King | Rot | -2 HP Regen, +13% Aura Damage, +14% Aura Size, On hit: 28% chance of Weaken | 73 | ∞ |
+| Eye of the Rot King | Rot | -2 HP Regen (per 5s), +13% Aura Damage, +14% Aura Size, On hit: 28% chance of Weaken | 73 | ∞ |
 | Fallen Essence | Rot | +6% Aura Damage, +16% Aura Size, On hit: 21% chance of Weaken | 73 | ∞ |
 | Heavenly Fragment | Skill Manuals | -3 Max HP, +14% Skill Cooldown, +34% Skill Damage | 73 | ∞ |
 | Supreme Sutra | Skill Manuals | +15% Skill Cooldown, +17% Skill Damage | 73 | ∞ |
@@ -887,29 +887,29 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Item | Series | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
 | Golden Tomato | Classic | +10 Max HP, +15% All Damage, +15 Luck | 120 | ∞ |
-| Phoenix Feather | Classic | +3 HP Regen, On death, revive once with 50% HP | 110 | 1 |
+| Phoenix Feather | Classic | +3 HP Regen (per 5s), On death, revive once with 50% HP | 110 | 1 |
 | Master Knife Set | Classic | +8 Melee Damage, +8% Attack Speed, +8% Crit Chance | 130 | ∞ |
 | Railgun Core | Classic | +8 Ranged Damage, +8% Attack Speed, +60 Range | 130 | ∞ |
 | Grandma's Recipe | Classic | +20 Luck, +25 Harvest, +25% XP Gain | 115 | ∞ |
 | Vampire Cape | Classic | +10% Life Steal, +8% All Damage, +5% Dodge | 125 | ∞ |
-| Heart of Tomato | Tomato Goods | +12 Max HP, +5 HP Regen, -10% Move Speed, Fruit healing +131% | 123 | ∞ |
+| Heart of Tomato | Tomato Goods | +12 Max HP, +5 HP Regen (per 5s), -10% Move Speed, Fruit healing +131% | 123 | ∞ |
 | Dragonbreath Spice | Spices | -6 Max HP, +26% Elemental Weapon Dmg, +11% Crit Chance, On hit: 39% chance of Burn | 123 | ∞ |
-| Eternal Mother Sauce | Sauces | +5 HP Regen, +7% Life Steal, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
+| Eternal Mother Sauce | Sauces | +5 HP Regen (per 5s), +7% Life Steal, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
 | Master Smith's Blade | Knives | +26% Melee Weapon Dmg, +11% Crit Chance, -60 Range, On hit: 39% chance of Bleed | 123 | ∞ |
 | Ancestral Wok | Cookware | +8 Max HP, +8 Armor, -10% Move Speed, When hurt, gain 3× Fortify | 123 | ∞ |
 | Banquet Silverware | Tableware | +8 Melee Damage, +12% Attack Speed, -4 Armor, On kill, gain 82% chance of Rage | 123 | ∞ |
 | Deluxe Catapult | Toy Guns | -4 Melee Damage, +8 Ranged Damage, +80 Range, On hit: 20% chance of Mark | 123 | ∞ |
 | Stardust Ammo | Ammo | +26% Ranged Weapon Dmg, +12% Attack Speed, -6% Dodge, On hit: 40% chance of Armor Break | 123 | ∞ |
-| Undying Flame | Fire | -4 HP Regen, +17% Elemental Weapon Dmg, +8 Elemental Damage, On hit: 39% chance of Burn | 123 | ∞ |
+| Undying Flame | Fire | -4 HP Regen (per 5s), +17% Elemental Weapon Dmg, +8 Elemental Damage, On hit: 39% chance of Burn | 123 | ∞ |
 | Snow Queen's Crown | Frozen Treats | +8 Elemental Damage, +5 Armor, -10% Move Speed, On hit: 50% chance of Slow | 123 | ∞ |
 | Spark of Zeus | Thunder | +8 Elemental Damage, +12% Attack Speed, -4 Armor, 16% chance to call lightning on hit | 123 | ∞ |
 | King of Venoms | Poisons | -6 Max HP, +8 Elemental Damage, +22 Luck, On hit: 45% chance of Poison | 123 | ∞ |
-| World Tree Leaf | Herbs | +8 Max HP, +8 HP Regen, -10% All Damage, When hurt, gain 3× Regen | 123 | ∞ |
+| World Tree Leaf | Herbs | +8 Max HP, +8 HP Regen (per 5s), -10% All Damage, When hurt, gain 3× Regen | 123 | ∞ |
 | Eternal Teapot | Teas | -6 Max HP, +18% Attack Speed, +16% Skill Cooldown, Every 9s, gain 2× Haste | 123 | 2 |
-| Time-Stop Coffee | Coffee | -4 HP Regen, +18% Attack Speed, +13% Move Speed, On kill, gain 60% chance of Haste | 123 | ∞ |
+| Time-Stop Coffee | Coffee | -4 HP Regen (per 5s), +18% Attack Speed, +13% Move Speed, On kill, gain 60% chance of Haste | 123 | ∞ |
 | Dream Dessert Tower | Desserts | +12 Max HP, -9% Attack Speed, +22 Luck, At wave start, gain Shield (29) | 123 | 2 |
 | God of Bread | Breads | +12 Max HP, -9% Attack Speed, +5 Armor, At wave start, gain Shield (29) | 123 | 2 |
-| Cheese Goddess | Cheese | +5 HP Regen, +8 Armor, -10% Move Speed, When hurt, gain 3× Fortify | 123 | ∞ |
+| Cheese Goddess | Cheese | +5 HP Regen (per 5s), +8 Armor, -10% Move Speed, When hurt, gain 3× Fortify | 123 | ∞ |
 | Sea King's Scale | Seafood | -4 Armor, +33 Luck, +16 Harvest, 25% chance to double Seeds | 123 | ∞ |
 | Egg of Chaos | Eggs | +12 Max HP, -10% All Damage, +27% XP Gain, When hurt, gain 3× Regen | 123 | ∞ |
 | Harvest Goddess Scythe | Farm Tools | +8 Max HP, -10% Move Speed, +24 Harvest, 25% chance to double Seeds | 123 | ∞ |
@@ -921,26 +921,26 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Holy Aegis | Shields | +8 Max HP, -9% Attack Speed, +8 Armor, Reflect 26 damage when hurt | 123 | ∞ |
 | Fount of Knowledge | Books | -6 Max HP, +40% XP Gain, +16% Skill Cooldown, On hit, gain 25% chance of Focus | 123 | ∞ |
 | Genesis Scroll | Scrolls | +8 Elemental Damage, -4 Armor, +16% Skill Cooldown, 16% chance to call lightning on hit | 123 | ∞ |
-| Boundless Gem | Gems | -4 HP Regen, +17% Crit Chance, +22 Luck, Crit Damage +39% | 123 | ∞ |
+| Boundless Gem | Gems | -4 HP Regen (per 5s), +17% Crit Chance, +22 Luck, Crit Damage +39% | 123 | ∞ |
 | Supreme Ring | Rings | -6 Max HP, +17% Ranged Weapon Dmg, +17% Crit Chance, On hit: 20% chance of Mark | 123 | ∞ |
 | Eternal Ward | Amulets | -10% All Damage, +12% Dodge, +22 Luck, Cleanse all debuffs every 9s | 123 | 2 |
 | Fortune God's Hand | Coins | -6 Max HP, +33 Luck, +16 Harvest, 25% chance to double Seeds | 123 | ∞ |
-| Fountain of Life | Potions | +8 HP Regen, +4% Life Steal, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
-| Bone of Hades | Bones | -4 HP Regen, +4% Life Steal, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| Fountain of Life | Potions | +8 HP Regen (per 5s), +4% Life Steal, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
+| Bone of Hades | Bones | -4 HP Regen (per 5s), +4% Life Steal, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
 | Divine Golden Plume | Feathers | -4 Armor, +12% Dodge, +13% Move Speed, On kill, gain 60% chance of Haste | 123 | ∞ |
 | Eternal Sweetness | Candies | -4 Armor, +22 Luck, +40% XP Gain, At wave start, gain 3× Lucky | 123 | 2 |
 | Mechanical Heart | Machine Parts | +8 Ranged Damage, +5 Armor, -6% Dodge, On hit: 40% chance of Armor Break | 123 | ∞ |
-| Cosmic Energy | Energy | -4 HP Regen, +5 Elemental Damage, +18% Attack Speed, 16% chance to call lightning on hit | 123 | ∞ |
+| Cosmic Energy | Energy | -4 HP Regen (per 5s), +5 Elemental Damage, +18% Attack Speed, 16% chance to call lightning on hit | 123 | ∞ |
 | Faceless Mask | Masks | -6 Max HP, +11% Crit Chance, +12% Dodge, When hurt, inflict 60% chance of Confuse on the attacker | 123 | ∞ |
 | Box of Wonder | Toys | -10% All Damage, +33 Luck, +27% XP Gain, At wave start, gain 3× Lucky | 123 | 2 |
 | Heavenly Melody | Instruments | +18% Attack Speed, -4 Armor, +16% Skill Cooldown, Every 9s, gain 2× Haste | 123 | 2 |
-| Chaos Black Hole | Darkness | -4 HP Regen, +4% Life Steal, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
-| Heart of Light | Holy | +8 HP Regen, -10% All Damage, +5 Armor, Cleanse all debuffs every 9s | 123 | 2 |
+| Chaos Black Hole | Darkness | -4 HP Regen (per 5s), +4% Life Steal, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| Heart of Light | Holy | +8 HP Regen (per 5s), -10% All Damage, +5 Armor, Cleanse all debuffs every 9s | 123 | 2 |
 | Shadow King | Ninja Gear | -6 Max HP, +11% Crit Chance, +20% Move Speed, On hit: 39% chance of Bleed | 123 | ∞ |
 | Pirate King's Hoard | Pirate | +5 Melee Damage, -4 Armor, +33 Luck, 25% chance to double Seeds | 123 | ∞ |
 | Cosmic Equation | Lab | -6 Max HP, +8 Elemental Damage, +80 Range, 20% chance for kills to explode (23 damage) | 123 | ∞ |
 | God of Sports | Sports | +8 Max HP, +20% Move Speed, -17 Luck, When hurt, gain 3× Regen | 123 | ∞ |
-| Final Decay | Rot | -4 HP Regen, +28% Aura Damage, +30% Aura Size, On hit: 35% chance of Weaken | 123 | ∞ |
+| Final Decay | Rot | -4 HP Regen (per 5s), +28% Aura Damage, +30% Aura Size, On hit: 35% chance of Weaken | 123 | ∞ |
 | Tome of Ultimates | Skill Manuals | -6 Max HP, +25% Skill Cooldown, +62% Skill Damage | 123 | ∞ |
 | Celestial Relic | Skill Relics | -10% All Damage, +80% Skill Area, +47% Skill Duration | 123 | ∞ |
 | Eye of the Cosmos | Stars | +17% Crit Chance, -4 Armor, +27% XP Gain, Crit Damage +39% | 123 | ∞ |

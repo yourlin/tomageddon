@@ -8,6 +8,7 @@ import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { save, persist } from '../systems/Save';
+import { BALANCE } from '../data/balance';
 
 export class PauseScene extends Phaser.Scene {
   constructor() {
@@ -30,7 +31,16 @@ export class PauseScene extends Phaser.Scene {
       const x = W / 2 - 390 + Math.floor(i / col) * 250,
         y = 130 + (i % col) * 26;
       const info = STAT_INFO[k];
-      text(this, x, y, `${info.name}：${Math.round(s[k] * 10) / 10}${info.pct ? '%' : ''}`, 17, info.color);
+      const cap = k === 'dodge' ? run.dodgeCap : k === 'lifeSteal' ? BALANCE.player.lifeStealCap : Infinity;
+      const v = Math.min(s[k], cap);
+      text(
+        this,
+        x,
+        y,
+        `${info.name}：${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(' / 5 秒', ' / 5s') : ''}${s[k] >= cap ? tx('（上限）', ' (cap)') : ''}`,
+        17,
+        info.color,
+      );
     });
     text(this, W / 2 + 120, 130, tx('武器', 'Weapons'), 20, '#ffb347');
     run.weapons.forEach((w, i) => text(this, W / 2 + 120, 160 + i * 24, `${WEAPON_MAP[w.id].name} ${TIER_NAMES[w.tier]}`, 17));

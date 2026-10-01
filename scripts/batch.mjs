@@ -27,6 +27,13 @@ const MIN_WORKERS = Math.min(WORKERS, Number(arg('min-workers', String(Math.max(
 const SPEED = arg('speed', 'max') === 'max' ? 'max' : Number(arg('speed'));
 const ONLY = arg('chars', '');
 const FRESH = process.argv.includes('--fresh');
+// 天赋预设：none 不点（基准）· mid 40 点（中期玩家）· full 79 点（全部天赋点）
+const TALENTS = arg('talents', 'none');
+// 无尽模式：不限波数，打到阵亡为止（报告里的波次即到达的最远波次）
+const ENDLESS = process.argv.includes('--endless');
+// 测试用：从天赋预设里去掉指定天赋（逗号分隔），用来找出过强的天赋
+const NO_TALENTS = arg('no-talents', '');
+const TALENT_BUDGET = { none: 0, mid: 40, full: 79 }[TALENTS] ?? Number(TALENTS);
 const PORT = 4174;
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const PROGRESS = new URL('./.batch-progress.json', import.meta.url);
@@ -88,7 +95,7 @@ const jobs = [];
 for (const ch of CHAPTERS) for (const id of chars) for (let r = 0; r < RUNS; r++) jobs.push({ id, ch, run: r, key: `${ch}:${id}:${r}` });
 
 // ---------- 进度：相同参数自动续跑 ----------
-const config = { chapters: CHAPTERS, runs: RUNS, speed: SPEED, chars };
+const config = { chapters: CHAPTERS, runs: RUNS, speed: SPEED, chars, talents: TALENTS, endless: ENDLESS, noTalents: NO_TALENTS };
 let state = {
   meta: { ...config, version: VERSION, workers: WORKERS, names, total: jobs.length, startedAt: Date.now(), elapsedMs: 0, resumed: 0 },
   results: [],
@@ -96,8 +103,13 @@ let state = {
 if (existsSync(PROGRESS) && !FRESH) {
   const prev = JSON.parse(readFileSync(PROGRESS, 'utf8'));
   const same =
-    JSON.stringify({ chapters: prev.meta.chapters, runs: prev.meta.runs, speed: prev.meta.speed, chars: prev.meta.chars }) ===
-    JSON.stringify(config);
+    JSON.stringify({
+      chapters: prev.meta.chapters,
+      runs: prev.meta.runs,
+      speed: prev.meta.speed,
+      chars: prev.meta.chars,
+      talents: prev.meta.talents ?? 'none',
+    }) === JSON.stringify(config);
   if (same) {
     state = prev;
     state.meta = { ...prev.meta, version: VERSION, workers: WORKERS, names, resumed: (prev.meta.resumed ?? 0) + 1 };
@@ -147,9 +159,11 @@ const t0 = Date.now();
 const retries = {};
 async function playJob(page, job) {
   return page.evaluate(
-    async ({ id, ch, speed, limit }) => {
+    async ({ id, ch, speed, limit, talents, endless, noTalents }) => {
       window.__dmg = [];
+      window.botTalents(id, talents, noTalents ? noTalents.split(',') : []);
       window.startBot2(id, ch, speed);
+      if (endless) window.run.endless = true;
       const t = performance.now();
       while (!window.__botState.done) {
         await new Promise((res) => setTimeout(res, 200));
@@ -177,7 +191,14 @@ async function playJob(page, job) {
           .join(' '),
       };
     },
-    { ...job, speed: SPEED, limit: JOB_TIMEOUT },
+    {
+      ...job,
+      speed: SPEED,
+      limit: ENDLESS ? JOB_TIMEOUT * 4 : JOB_TIMEOUT,
+      talents: TALENT_BUDGET,
+      endless: ENDLESS,
+      noTalents: NO_TALENTS,
+    },
   );
 }
 // ---------- 动态并发 ----------

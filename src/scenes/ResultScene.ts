@@ -1,4 +1,5 @@
 // 结算
+import { tip } from '../systems/Tutorial';
 import { bump, bumpMax, counter } from '../systems/Counters';
 import { WEAPON_MAP } from '../data/weapons';
 import Phaser from 'phaser';
@@ -42,6 +43,7 @@ export class ResultScene extends Phaser.Scene {
       if (Object.values(run.items).reduce((x, y) => x + y, 0) >= 60) bump('winHoarder');
       persist();
       audio.play(this, 'levelup');
+      if (!run.endless && !run.challenge) tip('endless');
     }
     if (!data.win && !data.counted) {
       data.counted = true;

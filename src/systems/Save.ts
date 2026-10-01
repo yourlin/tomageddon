@@ -39,6 +39,8 @@ export interface SaveData {
   talents: Record<string, number>;
   /** 最近的对局记录（新的在前，最多 30 条） */
   history: RunRecord[];
+  /** 已看过的新手提示 */
+  tutorial: Record<string, boolean>;
   /** 挑战成绩：`daily:2026-10-01` → 个人最佳 */
   challenges: Record<string, { best: number; bestWave: number; attempts: number; won: boolean }>;
 }
@@ -94,6 +96,7 @@ const DEFAULT: SaveData = {
   talents: {},
   history: [],
   challenges: {},
+  tutorial: {},
 };
 
 /** 旧存档迁移：改为成就点购买前，玩过或通关过的角色保留使用权 */
@@ -123,6 +126,7 @@ function load(): SaveData {
       talents: { ...(d.talents ?? {}) },
       history: Array.isArray(d.history) ? d.history : [],
       challenges: { ...(d.challenges ?? {}) },
+      tutorial: { ...(d.tutorial ?? {}) },
     };
   } catch {
     return structuredClone(DEFAULT);

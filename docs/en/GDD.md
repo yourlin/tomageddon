@@ -198,7 +198,7 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 - Run saves: auto-saved at the end of each wave when entering level-up/shop, resumable via "Continue" in the main menu; cleared on clear, death or abandon
 - Clearing browser data deletes saves
 
-### 10.2 Achievements (847)
+### 10.2 Achievements (865)
 
 - Every gameplay event bumps a generic counter (`systems/Counters.ts`, e.g. `kill:mold`, `cast:nova`, `charClear:tomato:3`); achievements read counters and unlock tier by tier
 - Achievement families are generated per subject: every monster / elite affix / elite and boss / weapon (obtain, T4, forge) / item series / weapon set / skill form / inflicted status / chapter / Endless / 11 per character, plus challenges
@@ -209,7 +209,7 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 
 - 6 branches (Might / Guard / Agility / Arcane / Fortune / Alchemy), 81 talents, 28–37 points to max each; all points together master about 2.5 branches
 - Map layout: the core talent sits in the middle with roads leading outward; you must unlock the connected talent first; keystones need 24–26 points in the branch
-- Most talents add a single, modest stat (+1% all damage or +1 armor per rank); roads end in special abilities: knives on dodge, 0.5–2.5% max HP healing on cast, Echo (instant cooldown), executes, a revive, starting seeds, free rerolls…
+- Most talents add a single, modest stat (+1% all damage or +1 armor per rank); roads end in special abilities: knives on dodge, 0.5–2.5% max HP healing on cast, Echo (instant cooldown), executes, a once-per-run last stand at 25% HP, starting seeds, free rerolls…
 - Talents feed starting stats and specials (`systems/TalentTree.ts`) and can be reset for free at any time; balance tests run without talents as the baseline
 
 ### 10.4 Endless Mode
@@ -217,6 +217,23 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 - After clearing a chapter, its Endless mode can be toggled on the character select screen: no wave limit, 15-wave cycles (elites on waves 5/10, a boss on 15), elites and bosses rerolled each cycle, bosses from every chapter from wave 30
 - After wave 15, monster HP ×1.1 and damage ×1.06 per wave (compounding); income keeps pace with shop inflation; defeating a boss continues the run until you fall
 - Best waves are recorded globally, per chapter and per character, feeding the Endless achievements
+
+### 10.5 Weapon Evolution
+
+- 12 recipes (`data/evolutions.ts`): T4 weapon + a specific classic item (not consumed) → super weapon. Super weapons derive from the base (damage ×1.4–2, cooldown ×0.55–0.85, range ×1.15–1.4, plus a signature effect); evolving swaps the weapon id in place, keeping affixes and forge level
+- Super weapons never appear in the shop; while you hold an evolvable T3+ weapon without its item, each shop roll has a 20% chance to offer it
+- In balance tests about 30–50% of runs evolve at least one weapon
+
+### 10.6 Daily / Weekly Challenges
+
+- `systems/Rng.ts`: mulberry32 seeded RNG; challenge seed = hash(kind + date key). Shops (per wave + roll number), level-up choices, crates, elites and bosses all derive from the seed, so identical actions give identical results; in-combat drops and crits stay random
+- Daily: chapters 1–3 · 15 waves · 2 modifiers; Weekly: chapters 2–5 · Endless · 3 modifiers; 15 modifiers with exclusive groups, total difficulty lean capped at +2
+- Personal bests, attempts and streaks are stored locally (`save.challenges`)
+
+### 10.7 Tutorial and History
+
+- `systems/Tutorial.ts`: 14 tips, each shown once on first encounter, pausing combat while open; hidden in automated tests (headless / webdriver) and re-enabled from Settings
+- Run stats break damage down by source (weapon / skill / DoT / explosion / knives) and show seeds per wave; History keeps the last 30 runs (`save.history`)
 
 ## 11. Procedural Art and Animation
 

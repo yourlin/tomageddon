@@ -27,6 +27,9 @@ interface Field {
   info: HitInfo;
 }
 
+/** 技能自带回复量的整体系数（数据里 heal: 0.2 → 实际回复 9% 最大生命） */
+const HEAL_SCALE = 0.45;
+
 export class SkillSystem {
   skill: SkillDef;
   cd = 3;
@@ -279,7 +282,7 @@ export class SkillSystem {
         const dur = 0.22;
         const speed = this.radius(sk.distance ?? 300) / dur;
         this.dash = { t: dur, vx: (dx / len) * speed, vy: (dy / len) * speed, hit: new Set(), info };
-        if (sk.heal) g.heal(Math.round(s.maxHp * sk.heal));
+        if (sk.heal) g.heal(Math.round(s.maxHp * sk.heal * HEAL_SCALE));
         break;
       }
       case 'buff': {
@@ -332,7 +335,8 @@ export class SkillSystem {
             0xff4d6d,
           );
         }
-        g.heal(Math.min(Math.round(s.maxHp * 0.15), hits.length) + Math.round(s.maxHp * (sk.heal ?? 0)));
+        // 吸取：每命中 1 个敌人回 0.5 点，最多 6% 最大生命；再加技能自带的回复量（整体 ×HEAL_SCALE）
+        g.heal(Math.min(Math.round(s.maxHp * 0.06), Math.round(hits.length * 0.5)) + Math.round(s.maxHp * (sk.heal ?? 0) * HEAL_SCALE));
         break;
       }
       case 'strikes': {

@@ -17,6 +17,8 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
   - [Chapter 3 · Frozen Fridge](#chapter-3)
   - [Chapter 4 · City Junkyard](#chapter-4)
   - [Chapter 5 · Ketchup Factory](#chapter-5)
+- [Endless Mode](#endless)
+- [Daily / Weekly Challenges](#challenges)
 
 <a id="waves"></a>
 
@@ -242,6 +244,39 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 | <img src="../images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [Ketchup Slime](MONSTERS.md#enemy-ketchup_slime) | 8+ | 3 (4%) |
 | <img src="../images/enemy/press_piston.png" width="32" height="32" alt=""> [Press Piston](MONSTERS.md#enemy-press_piston) | 9+ | 3 (4%) |
 | <img src="../images/enemy/bottling_bot.png" width="32" height="32" alt=""> [Bottling Bot](MONSTERS.md#enemy-bottling_bot) | 11+ | 2 (3%) |
+
+<a id="endless"></a>
+
+## Endless Mode
+
+After clearing a chapter, its Endless mode can be turned on from the character screen: no wave limit, 15-wave cycles (elites on waves 5/10, a boss on 15), elites and bosses rerolled every cycle, bosses from every chapter from wave 30. After wave 15, monster HP ×1.12 and damage ×1.09 per wave (compounding); income keeps pace with shop prices. It ends when you fall.
+
+<a id="challenges"></a>
+
+## Daily / Weekly Challenges
+
+A date seed decides the character, chapter and rule modifiers, and also the shops, level-up choices, crates, elites and bosses — everyone faces the same rolls on the same day (week). Characters are lent for the challenge; your personal best is recorded.
+
+- **Daily**: a random chapter 1–3 · 15 waves · 2 modifiers; score = wave×200 + kills + level×20, plus 3000 and a time bonus on a clear
+- **Weekly**: a random chapter 2–5 · Endless · 3 modifiers; score = wave×500 + kills
+
+| Modifier | Effect |
+| --- | --- |
+| 💨 Swift Horde | Monsters move 25% faster |
+| 🍷 Glass Cannon | +40% all damage, -40% max HP |
+| 🥊 Melee Day | The shop only sells melee weapons |
+| 🏹 Ranged Day | The shop only sells ranged weapons |
+| 🔮 Elemental Day | The shop only sells elemental weapons |
+| 💰 Silver Spoon | Start with +150 Seeds, shop prices +25% |
+| ✨ Champion Rush | Affixed champions appear 3× as often |
+| 🗿 Land of Giants | Monsters have +50% HP and move 15% slower |
+| 🐜 Swarm | +40% spawns, -25% monster HP |
+| 🧛 Night of Fangs | +10% life steal, but HP regen does nothing |
+| 🎯 One Shot | One reroll per shop, but it is free |
+| 🍀 Lucky Day | +60 Luck |
+| 📚 Scholar | +100% XP gain |
+| 👹 Tough Foes | Elites and bosses have +50% HP |
+| 🌟 Skill Party | -50% skill cooldown |
 
 ---
 

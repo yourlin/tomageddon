@@ -68,7 +68,7 @@ Each level-up offers random stats; values scale with rarity:
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
 | <img src="../images/item/band_aid.png" width="32" height="32" alt=""> Band-Aid | Common | +3 Max HP | 12 | ∞ |
-| <img src="../images/item/tomato_juice.png" width="32" height="32" alt=""> Tomato Juice | Common | +2 HP Regen | 14 | ∞ |
+| <img src="../images/item/tomato_juice.png" width="32" height="32" alt=""> Tomato Juice | Common | +2 HP Regen (per 5s) | 14 | ∞ |
 | <img src="../images/item/toothpick.png" width="32" height="32" alt=""> Toothpick | Common | +2 Melee Damage, -5 Range | 13 | ∞ |
 | <img src="../images/item/rubber_band.png" width="32" height="32" alt=""> Rubber Band | Common | +2 Ranged Damage | 13 | ∞ |
 | <img src="../images/item/lighter.png" width="32" height="32" alt=""> Lighter | Common | +2 Elemental Damage | 13 | ∞ |
@@ -88,15 +88,15 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/scope.png" width="32" height="32" alt=""> Scope | Rare | +3 Ranged Damage, +3% Crit Chance, +40 Range | 38 | ∞ |
 | <img src="../images/item/battery.png" width="32" height="32" alt=""> Battery | Rare | +3 Elemental Damage, +5% Attack Speed | 36 | ∞ |
 | <img src="../images/item/mosquito.png" width="32" height="32" alt=""> Pinned Mosquito | Rare | -2 Max HP, +4% Life Steal | 40 | ∞ |
-| <img src="../images/item/energy_drink.png" width="32" height="32" alt=""> Energy Drink | Rare | -1 HP Regen, +10% Attack Speed, +3% Move Speed | 38 | ∞ |
+| <img src="../images/item/energy_drink.png" width="32" height="32" alt=""> Energy Drink | Rare | -1 HP Regen (per 5s), +10% Attack Speed, +3% Move Speed | 38 | ∞ |
 | <img src="../images/item/helmet.png" width="32" height="32" alt=""> Pot-Lid Helmet | Rare | +3 Armor, -3% Move Speed | 40 | ∞ |
 | <img src="../images/item/piggy_bank.png" width="32" height="32" alt=""> Piggy Bank | Rare | At the end of each wave, earn 10% interest on your Seeds (capped at 6 × wave) | 30 | 3 |
 | <img src="../images/item/bomb_seed.png" width="32" height="32" alt=""> Popping Seed | Rare | +3% All Damage, Kills have a 10% chance to explode | 42 | ∞ |
 | <img src="../images/item/cactus.png" width="32" height="32" alt=""> Cactus | Rare | +2 Armor, Deals 8 damage to attackers when you are hit | 34 | ∞ |
 | <img src="../images/item/lucky_cat.png" width="32" height="32" alt=""> Lucky Cat | Rare | +12 Luck, 10% chance to double Seeds | 38 | ∞ |
 | <img src="../images/item/running_shoes.png" width="32" height="32" alt=""> Running Shoes | Rare | +2% Dodge, +10% Move Speed | 38 | ∞ |
-| <img src="../images/item/lemonade.png" width="32" height="32" alt=""> Lemonade | Rare | +3 Max HP, +3 HP Regen | 36 | ∞ |
-| <img src="../images/item/bandage_roll.png" width="32" height="32" alt=""> Bandage Roll | Rare | +5 Max HP, +1 HP Regen, Heal 1 HP every 25 kills | 40 | ∞ |
+| <img src="../images/item/lemonade.png" width="32" height="32" alt=""> Lemonade | Rare | +3 Max HP, +3 HP Regen (per 5s) | 36 | ∞ |
+| <img src="../images/item/bandage_roll.png" width="32" height="32" alt=""> Bandage Roll | Rare | +5 Max HP, +1 HP Regen (per 5s), Heal 1 HP every 25 kills | 40 | ∞ |
 | <img src="../images/item/vip_card.png" width="32" height="32" alt=""> VIP Card | Epic | +5 Luck, +2 shop reroll(s) per wave | 55 | 2 |
 | <img src="../images/item/vacuum.png" width="32" height="32" alt=""> Vacuum Cleaner | Epic | +5 Luck, +150 Pickup Range | 60 | ∞ |
 | <img src="../images/item/iron_wok.png" width="32" height="32" alt=""> Iron Wok Shield | Epic | +5 Max HP, +5 Armor, -5% Move Speed | 70 | ∞ |
@@ -108,7 +108,7 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/coupon.png" width="32" height="32" alt=""> Coupon | Epic | Shop prices -10% | 55 | 3 |
 | <img src="../images/item/protein.png" width="32" height="32" alt=""> Protein Powder | Epic | +10 Max HP, +2 Melee Damage, -2% Move Speed | 75 | ∞ |
 | <img src="../images/item/golden_tomato.png" width="32" height="32" alt=""> Golden Tomato | Legendary | +10 Max HP, +15% All Damage, +15 Luck | 120 | ∞ |
-| <img src="../images/item/phoenix_feather.png" width="32" height="32" alt=""> Phoenix Feather | Legendary | +3 HP Regen, On death, revive once with 50% HP | 110 | 1 |
+| <img src="../images/item/phoenix_feather.png" width="32" height="32" alt=""> Phoenix Feather | Legendary | +3 HP Regen (per 5s), On death, revive once with 50% HP | 110 | 1 |
 | <img src="../images/item/chef_knife_set.png" width="32" height="32" alt=""> Master Knife Set | Legendary | +8 Melee Damage, +8% Attack Speed, +8% Crit Chance | 130 | ∞ |
 | <img src="../images/item/railgun_core.png" width="32" height="32" alt=""> Railgun Core | Legendary | +8 Ranged Damage, +8% Attack Speed, +60 Range | 130 | ∞ |
 | <img src="../images/item/grandma_recipe.png" width="32" height="32" alt=""> Grandma's Recipe | Legendary | +20 Luck, +25 Harvest, +25% XP Gain | 115 | ∞ |
@@ -179,16 +179,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/tomatoes_0.png" width="32" height="32" alt=""> Sun-Dried Tomato | Common | +2 Max HP, +1 HP Regen | 15 | ∞ |
+| <img src="../images/item/tomatoes_0.png" width="32" height="32" alt=""> Sun-Dried Tomato | Common | +2 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
 | <img src="../images/item/tomatoes_1.png" width="32" height="32" alt=""> Tomato Purée | Common | +3 Max HP | 15 | ∞ |
-| <img src="../images/item/tomatoes_2.png" width="32" height="32" alt=""> Cherry Tomato | Common | +1 Max HP, +1 HP Regen | 15 | ∞ |
+| <img src="../images/item/tomatoes_2.png" width="32" height="32" alt=""> Cherry Tomato | Common | +1 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
 | <img src="../images/item/tomatoes_3.png" width="32" height="32" alt=""> Tomato Seed | Common | +3 Max HP | 15 | ∞ |
-| <img src="../images/item/tomatoes_4.png" width="32" height="32" alt=""> Tomato Concentrate | Rare | +2 Max HP, +1 HP Regen, Fruit healing +38% | 36 | ∞ |
-| <img src="../images/item/tomatoes_5.png" width="32" height="32" alt=""> Tomato Stew | Rare | +3 Max HP, +3 HP Regen | 36 | ∞ |
-| <img src="../images/item/tomatoes_6.png" width="32" height="32" alt=""> Canned Tomatoes | Rare | +2 Max HP, +1 HP Regen, Fruit healing +40% | 36 | ∞ |
-| <img src="../images/item/tomatoes_7.png" width="32" height="32" alt=""> King-Size Ketchup | Epic | +6 Max HP, +3 HP Regen, -6% Move Speed, Fruit healing +96% | 73 | ∞ |
-| <img src="../images/item/tomatoes_8.png" width="32" height="32" alt=""> Heirloom Tomato | Epic | +3 Max HP, +3 HP Regen, Fruit healing +68% | 73 | ∞ |
-| <img src="../images/item/tomatoes_9.png" width="32" height="32" alt=""> Heart of Tomato | Legendary | +12 Max HP, +5 HP Regen, -10% Move Speed, Fruit healing +131% | 123 | ∞ |
+| <img src="../images/item/tomatoes_4.png" width="32" height="32" alt=""> Tomato Concentrate | Rare | +2 Max HP, +1 HP Regen (per 5s), Fruit healing +38% | 36 | ∞ |
+| <img src="../images/item/tomatoes_5.png" width="32" height="32" alt=""> Tomato Stew | Rare | +3 Max HP, +3 HP Regen (per 5s) | 36 | ∞ |
+| <img src="../images/item/tomatoes_6.png" width="32" height="32" alt=""> Canned Tomatoes | Rare | +2 Max HP, +1 HP Regen (per 5s), Fruit healing +40% | 36 | ∞ |
+| <img src="../images/item/tomatoes_7.png" width="32" height="32" alt=""> King-Size Ketchup | Epic | +6 Max HP, +3 HP Regen (per 5s), -6% Move Speed, Fruit healing +96% | 73 | ∞ |
+| <img src="../images/item/tomatoes_8.png" width="32" height="32" alt=""> Heirloom Tomato | Epic | +3 Max HP, +3 HP Regen (per 5s), Fruit healing +68% | 73 | ∞ |
+| <img src="../images/item/tomatoes_9.png" width="32" height="32" alt=""> Heart of Tomato | Legendary | +12 Max HP, +5 HP Regen (per 5s), -10% Move Speed, Fruit healing +131% | 123 | ∞ |
 
 <a id="series-2"></a>
 
@@ -213,16 +213,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/sauces_0.png" width="32" height="32" alt=""> Soy Sauce | Common | +1 HP Regen, +1% Life Steal | 15 | ∞ |
+| <img src="../images/item/sauces_0.png" width="32" height="32" alt=""> Soy Sauce | Common | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
 | <img src="../images/item/sauces_1.png" width="32" height="32" alt=""> Vinegar | Common | +2% Life Steal | 15 | ∞ |
-| <img src="../images/item/sauces_2.png" width="32" height="32" alt=""> Oyster Sauce | Common | +1 HP Regen, +1% Life Steal | 15 | ∞ |
+| <img src="../images/item/sauces_2.png" width="32" height="32" alt=""> Oyster Sauce | Common | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
 | <img src="../images/item/sauces_3.png" width="32" height="32" alt=""> Sweet Bean Sauce | Common | +2% Life Steal | 15 | ∞ |
-| <img src="../images/item/sauces_4.png" width="32" height="32" alt=""> Chili Bean Paste | Rare | +1 HP Regen, +1% Life Steal, On kill, gain 14% chance of Bloodlust | 36 | ∞ |
-| <img src="../images/item/sauces_5.png" width="32" height="32" alt=""> Satay Sauce | Rare | +3 HP Regen, +2% Life Steal | 36 | ∞ |
-| <img src="../images/item/sauces_6.png" width="32" height="32" alt=""> XO Sauce | Rare | +1 HP Regen, +1% Life Steal, On kill, gain 15% chance of Bloodlust | 36 | ∞ |
-| <img src="../images/item/sauces_7.png" width="32" height="32" alt=""> Secret BBQ Sauce | Epic | +3 HP Regen, +3% Life Steal, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
-| <img src="../images/item/sauces_8.png" width="32" height="32" alt=""> Blood-Red Hot Sauce | Epic | +3 HP Regen, +2% Life Steal, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
-| <img src="../images/item/sauces_9.png" width="32" height="32" alt=""> Eternal Mother Sauce | Legendary | +5 HP Regen, +7% Life Steal, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
+| <img src="../images/item/sauces_4.png" width="32" height="32" alt=""> Chili Bean Paste | Rare | +1 HP Regen (per 5s), +1% Life Steal, On kill, gain 14% chance of Bloodlust | 36 | ∞ |
+| <img src="../images/item/sauces_5.png" width="32" height="32" alt=""> Satay Sauce | Rare | +3 HP Regen (per 5s), +2% Life Steal | 36 | ∞ |
+| <img src="../images/item/sauces_6.png" width="32" height="32" alt=""> XO Sauce | Rare | +1 HP Regen (per 5s), +1% Life Steal, On kill, gain 15% chance of Bloodlust | 36 | ∞ |
+| <img src="../images/item/sauces_7.png" width="32" height="32" alt=""> Secret BBQ Sauce | Epic | +3 HP Regen (per 5s), +3% Life Steal, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
+| <img src="../images/item/sauces_8.png" width="32" height="32" alt=""> Blood-Red Hot Sauce | Epic | +3 HP Regen (per 5s), +2% Life Steal, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
+| <img src="../images/item/sauces_9.png" width="32" height="32" alt=""> Eternal Mother Sauce | Legendary | +5 HP Regen (per 5s), +7% Life Steal, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
 
 <a id="series-4"></a>
 
@@ -322,9 +322,9 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/fire_4.png" width="32" height="32" alt=""> Flame Nozzle | Rare | +3% Elemental Weapon Dmg, +2 Elemental Damage, On hit: 11% chance of Burn | 36 | ∞ |
 | <img src="../images/item/fire_5.png" width="32" height="32" alt=""> Lava Rock | Rare | +9% Elemental Weapon Dmg, +2 Elemental Damage | 36 | ∞ |
 | <img src="../images/item/fire_6.png" width="32" height="32" alt=""> Phoenix Charcoal | Rare | +3% Elemental Weapon Dmg, +2 Elemental Damage, On hit: 12% chance of Burn | 36 | ∞ |
-| <img src="../images/item/fire_7.png" width="32" height="32" alt=""> Blaze Core | Epic | -2 HP Regen, +8% Elemental Weapon Dmg, +4 Elemental Damage, On hit: 28% chance of Burn | 73 | ∞ |
+| <img src="../images/item/fire_7.png" width="32" height="32" alt=""> Blaze Core | Epic | -2 HP Regen (per 5s), +8% Elemental Weapon Dmg, +4 Elemental Damage, On hit: 28% chance of Burn | 73 | ∞ |
 | <img src="../images/item/fire_8.png" width="32" height="32" alt=""> Sun Shard | Epic | +9% Elemental Weapon Dmg, +2 Elemental Damage, On hit: 21% chance of Burn | 73 | ∞ |
-| <img src="../images/item/fire_9.png" width="32" height="32" alt=""> Undying Flame | Legendary | -4 HP Regen, +17% Elemental Weapon Dmg, +8 Elemental Damage, On hit: 39% chance of Burn | 123 | ∞ |
+| <img src="../images/item/fire_9.png" width="32" height="32" alt=""> Undying Flame | Legendary | -4 HP Regen (per 5s), +17% Elemental Weapon Dmg, +8 Elemental Damage, On hit: 39% chance of Burn | 123 | ∞ |
 
 <a id="series-10"></a>
 
@@ -383,16 +383,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/herbs_0.png" width="32" height="32" alt=""> Mint Leaf | Common | +1 Max HP, +1 HP Regen | 15 | ∞ |
-| <img src="../images/item/herbs_1.png" width="32" height="32" alt=""> Licorice Root | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/herbs_2.png" width="32" height="32" alt=""> Goji Berries | Common | +2 Max HP, +1 HP Regen | 15 | ∞ |
-| <img src="../images/item/herbs_3.png" width="32" height="32" alt=""> Honeysuckle | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/herbs_4.png" width="32" height="32" alt=""> Ginseng Whiskers | Rare | +2 Max HP, +2 HP Regen, When hurt, gain Regen | 36 | ∞ |
-| <img src="../images/item/herbs_5.png" width="32" height="32" alt=""> Lingzhi Slice | Rare | +4 Max HP, +2 HP Regen | 36 | ∞ |
-| <img src="../images/item/herbs_6.png" width="32" height="32" alt=""> Snow Lotus | Rare | +2 Max HP, +2 HP Regen, When hurt, gain Regen | 36 | ∞ |
-| <img src="../images/item/herbs_7.png" width="32" height="32" alt=""> Ancient Ginseng | Epic | +4 Max HP, +4 HP Regen, -6% All Damage, When hurt, gain 2× Regen | 73 | ∞ |
-| <img src="../images/item/herbs_8.png" width="32" height="32" alt=""> Immortal Herb | Epic | +4 Max HP, +2 HP Regen, When hurt, gain 2× Regen | 73 | ∞ |
-| <img src="../images/item/herbs_9.png" width="32" height="32" alt=""> World Tree Leaf | Legendary | +8 Max HP, +8 HP Regen, -10% All Damage, When hurt, gain 3× Regen | 123 | ∞ |
+| <img src="../images/item/herbs_0.png" width="32" height="32" alt=""> Mint Leaf | Common | +1 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/herbs_1.png" width="32" height="32" alt=""> Licorice Root | Common | +2 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/herbs_2.png" width="32" height="32" alt=""> Goji Berries | Common | +2 Max HP, +1 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/herbs_3.png" width="32" height="32" alt=""> Honeysuckle | Common | +2 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/herbs_4.png" width="32" height="32" alt=""> Ginseng Whiskers | Rare | +2 Max HP, +2 HP Regen (per 5s), When hurt, gain Regen | 36 | ∞ |
+| <img src="../images/item/herbs_5.png" width="32" height="32" alt=""> Lingzhi Slice | Rare | +4 Max HP, +2 HP Regen (per 5s) | 36 | ∞ |
+| <img src="../images/item/herbs_6.png" width="32" height="32" alt=""> Snow Lotus | Rare | +2 Max HP, +2 HP Regen (per 5s), When hurt, gain Regen | 36 | ∞ |
+| <img src="../images/item/herbs_7.png" width="32" height="32" alt=""> Ancient Ginseng | Epic | +4 Max HP, +4 HP Regen (per 5s), -6% All Damage, When hurt, gain 2× Regen | 73 | ∞ |
+| <img src="../images/item/herbs_8.png" width="32" height="32" alt=""> Immortal Herb | Epic | +4 Max HP, +2 HP Regen (per 5s), When hurt, gain 2× Regen | 73 | ∞ |
+| <img src="../images/item/herbs_9.png" width="32" height="32" alt=""> World Tree Leaf | Legendary | +8 Max HP, +8 HP Regen (per 5s), -10% All Damage, When hurt, gain 3× Regen | 123 | ∞ |
 
 <a id="series-14"></a>
 
@@ -424,9 +424,9 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/coffee_4.png" width="32" height="32" alt=""> Espresso | Rare | +3% Attack Speed, +3% Move Speed, On kill, gain 19% chance of Haste | 36 | ∞ |
 | <img src="../images/item/coffee_5.png" width="32" height="32" alt=""> Cold Brew | Rare | +4% Attack Speed, +7% Move Speed | 36 | ∞ |
 | <img src="../images/item/coffee_6.png" width="32" height="32" alt=""> Civet Coffee | Rare | +4% Attack Speed, +3% Move Speed, On kill, gain 20% chance of Haste | 36 | ∞ |
-| <img src="../images/item/coffee_7.png" width="32" height="32" alt=""> Triple Espresso | Epic | -2 HP Regen, +8% Attack Speed, +6% Move Speed, On kill, gain 46% chance of Haste | 73 | ∞ |
+| <img src="../images/item/coffee_7.png" width="32" height="32" alt=""> Triple Espresso | Epic | -2 HP Regen (per 5s), +8% Attack Speed, +6% Move Speed, On kill, gain 46% chance of Haste | 73 | ∞ |
 | <img src="../images/item/coffee_8.png" width="32" height="32" alt=""> Caffeine Crystal | Epic | +4% Attack Speed, +7% Move Speed, On kill, gain 34% chance of Haste | 73 | ∞ |
-| <img src="../images/item/coffee_9.png" width="32" height="32" alt=""> Time-Stop Coffee | Legendary | -4 HP Regen, +18% Attack Speed, +13% Move Speed, On kill, gain 60% chance of Haste | 123 | ∞ |
+| <img src="../images/item/coffee_9.png" width="32" height="32" alt=""> Time-Stop Coffee | Legendary | -4 HP Regen (per 5s), +18% Attack Speed, +13% Move Speed, On kill, gain 60% chance of Haste | 123 | ∞ |
 
 <a id="series-16"></a>
 
@@ -468,16 +468,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/cheese_0.png" width="32" height="32" alt=""> Cheese Slice | Common | +1 HP Regen, +1 Armor | 15 | ∞ |
+| <img src="../images/item/cheese_0.png" width="32" height="32" alt=""> Cheese Slice | Common | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
 | <img src="../images/item/cheese_1.png" width="32" height="32" alt=""> String Cheese | Common | +2 Armor | 15 | ∞ |
-| <img src="../images/item/cheese_2.png" width="32" height="32" alt=""> Mozzarella | Common | +1 HP Regen, +1 Armor | 15 | ∞ |
+| <img src="../images/item/cheese_2.png" width="32" height="32" alt=""> Mozzarella | Common | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
 | <img src="../images/item/cheese_3.png" width="32" height="32" alt=""> Cheddar | Common | +2 Armor | 15 | ∞ |
-| <img src="../images/item/cheese_4.png" width="32" height="32" alt=""> Blue Cheese | Rare | +1 HP Regen, +2 Armor, When hurt, gain Fortify | 36 | ∞ |
-| <img src="../images/item/cheese_5.png" width="32" height="32" alt=""> Parmesan | Rare | +3 HP Regen, +2 Armor | 36 | ∞ |
-| <img src="../images/item/cheese_6.png" width="32" height="32" alt=""> Century-Aged Cheese | Rare | +1 HP Regen, +2 Armor, When hurt, gain Fortify | 36 | ∞ |
-| <img src="../images/item/cheese_7.png" width="32" height="32" alt=""> Cheese Fortress | Epic | +3 HP Regen, +4 Armor, -6% Move Speed, When hurt, gain 2× Fortify | 73 | ∞ |
-| <img src="../images/item/cheese_8.png" width="32" height="32" alt=""> Supreme Cheese Wheel | Epic | +3 HP Regen, +2 Armor, When hurt, gain 2× Fortify | 73 | ∞ |
-| <img src="../images/item/cheese_9.png" width="32" height="32" alt=""> Cheese Goddess | Legendary | +5 HP Regen, +8 Armor, -10% Move Speed, When hurt, gain 3× Fortify | 123 | ∞ |
+| <img src="../images/item/cheese_4.png" width="32" height="32" alt=""> Blue Cheese | Rare | +1 HP Regen (per 5s), +2 Armor, When hurt, gain Fortify | 36 | ∞ |
+| <img src="../images/item/cheese_5.png" width="32" height="32" alt=""> Parmesan | Rare | +3 HP Regen (per 5s), +2 Armor | 36 | ∞ |
+| <img src="../images/item/cheese_6.png" width="32" height="32" alt=""> Century-Aged Cheese | Rare | +1 HP Regen (per 5s), +2 Armor, When hurt, gain Fortify | 36 | ∞ |
+| <img src="../images/item/cheese_7.png" width="32" height="32" alt=""> Cheese Fortress | Epic | +3 HP Regen (per 5s), +4 Armor, -6% Move Speed, When hurt, gain 2× Fortify | 73 | ∞ |
+| <img src="../images/item/cheese_8.png" width="32" height="32" alt=""> Supreme Cheese Wheel | Epic | +3 HP Regen (per 5s), +2 Armor, When hurt, gain 2× Fortify | 73 | ∞ |
+| <img src="../images/item/cheese_9.png" width="32" height="32" alt=""> Cheese Goddess | Legendary | +5 HP Regen (per 5s), +8 Armor, -10% Move Speed, When hurt, gain 3× Fortify | 123 | ∞ |
 
 <a id="series-19"></a>
 
@@ -679,9 +679,9 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/gems_4.png" width="32" height="32" alt=""> Jade | Rare | +3% Crit Chance, +4 Luck, Crit Damage +11% | 36 | ∞ |
 | <img src="../images/item/gems_5.png" width="32" height="32" alt=""> Sapphire | Rare | +4% Crit Chance, +12 Luck | 36 | ∞ |
 | <img src="../images/item/gems_6.png" width="32" height="32" alt=""> Ruby | Rare | +3% Crit Chance, +4 Luck, Crit Damage +12% | 36 | ∞ |
-| <img src="../images/item/gems_7.png" width="32" height="32" alt=""> Diamond | Epic | -2 HP Regen, +8% Crit Chance, +10 Luck, Crit Damage +28% | 73 | ∞ |
+| <img src="../images/item/gems_7.png" width="32" height="32" alt=""> Diamond | Epic | -2 HP Regen (per 5s), +8% Crit Chance, +10 Luck, Crit Damage +28% | 73 | ∞ |
 | <img src="../images/item/gems_8.png" width="32" height="32" alt=""> Star Gem | Epic | +4% Crit Chance, +11 Luck, Crit Damage +21% | 73 | ∞ |
-| <img src="../images/item/gems_9.png" width="32" height="32" alt=""> Boundless Gem | Legendary | -4 HP Regen, +17% Crit Chance, +22 Luck, Crit Damage +39% | 123 | ∞ |
+| <img src="../images/item/gems_9.png" width="32" height="32" alt=""> Boundless Gem | Legendary | -4 HP Regen (per 5s), +17% Crit Chance, +22 Luck, Crit Damage +39% | 123 | ∞ |
 
 <a id="series-31"></a>
 
@@ -740,16 +740,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/potions_0.png" width="32" height="32" alt=""> Red Potion | Common | +1 HP Regen, +1% Life Steal | 15 | ∞ |
-| <img src="../images/item/potions_1.png" width="32" height="32" alt=""> Blue Potion | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/potions_2.png" width="32" height="32" alt=""> Green Potion | Common | +1 HP Regen, +1% Life Steal | 15 | ∞ |
-| <img src="../images/item/potions_3.png" width="32" height="32" alt=""> Antidote | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/potions_4.png" width="32" height="32" alt=""> Healing Potion | Rare | +2 HP Regen, +1% Life Steal, Heal 1 HP every 51 kills | 36 | ∞ |
-| <img src="../images/item/potions_5.png" width="32" height="32" alt=""> Greater Potion | Rare | +2 HP Regen, +2% Life Steal | 36 | ∞ |
-| <img src="../images/item/potions_6.png" width="32" height="32" alt=""> Elixir | Rare | +2 HP Regen, +1% Life Steal, Heal 1 HP every 50 kills | 36 | ∞ |
-| <img src="../images/item/potions_7.png" width="32" height="32" alt=""> Undying Draught | Epic | +4 HP Regen, +2% Life Steal, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
-| <img src="../images/item/potions_8.png" width="32" height="32" alt=""> Phoenix Tonic | Epic | +2 HP Regen, +2% Life Steal, Heal 1 HP every 43 kills | 73 | ∞ |
-| <img src="../images/item/potions_9.png" width="32" height="32" alt=""> Fountain of Life | Legendary | +8 HP Regen, +4% Life Steal, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
+| <img src="../images/item/potions_0.png" width="32" height="32" alt=""> Red Potion | Common | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
+| <img src="../images/item/potions_1.png" width="32" height="32" alt=""> Blue Potion | Common | +2 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/potions_2.png" width="32" height="32" alt=""> Green Potion | Common | +1 HP Regen (per 5s), +1% Life Steal | 15 | ∞ |
+| <img src="../images/item/potions_3.png" width="32" height="32" alt=""> Antidote | Common | +2 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/potions_4.png" width="32" height="32" alt=""> Healing Potion | Rare | +2 HP Regen (per 5s), +1% Life Steal, Heal 1 HP every 51 kills | 36 | ∞ |
+| <img src="../images/item/potions_5.png" width="32" height="32" alt=""> Greater Potion | Rare | +2 HP Regen (per 5s), +2% Life Steal | 36 | ∞ |
+| <img src="../images/item/potions_6.png" width="32" height="32" alt=""> Elixir | Rare | +2 HP Regen (per 5s), +1% Life Steal, Heal 1 HP every 50 kills | 36 | ∞ |
+| <img src="../images/item/potions_7.png" width="32" height="32" alt=""> Undying Draught | Epic | +4 HP Regen (per 5s), +2% Life Steal, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
+| <img src="../images/item/potions_8.png" width="32" height="32" alt=""> Phoenix Tonic | Epic | +2 HP Regen (per 5s), +2% Life Steal, Heal 1 HP every 43 kills | 73 | ∞ |
+| <img src="../images/item/potions_9.png" width="32" height="32" alt=""> Fountain of Life | Legendary | +8 HP Regen (per 5s), +4% Life Steal, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
 
 <a id="series-35"></a>
 
@@ -764,9 +764,9 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/bones_4.png" width="32" height="32" alt=""> Dino Bone | Rare | +1% Life Steal, +2 Melee Damage, On hit: 8% chance of Curse | 36 | ∞ |
 | <img src="../images/item/bones_5.png" width="32" height="32" alt=""> Skull | Rare | +2% Life Steal, +2 Melee Damage | 36 | ∞ |
 | <img src="../images/item/bones_6.png" width="32" height="32" alt=""> Cursed Bone | Rare | +1% Life Steal, +2 Melee Damage, On hit: 8% chance of Curse | 36 | ∞ |
-| <img src="../images/item/bones_7.png" width="32" height="32" alt=""> Necro Staff | Epic | -2 HP Regen, +2% Life Steal, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| <img src="../images/item/bones_7.png" width="32" height="32" alt=""> Necro Staff | Epic | -2 HP Regen (per 5s), +2% Life Steal, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
 | <img src="../images/item/bones_8.png" width="32" height="32" alt=""> Bone Dragon Fang | Epic | +2% Life Steal, +2 Melee Damage, On hit: 14% chance of Curse | 73 | ∞ |
-| <img src="../images/item/bones_9.png" width="32" height="32" alt=""> Bone of Hades | Legendary | -4 HP Regen, +4% Life Steal, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| <img src="../images/item/bones_9.png" width="32" height="32" alt=""> Bone of Hades | Legendary | -4 HP Regen (per 5s), +4% Life Steal, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
 
 <a id="series-36"></a>
 
@@ -832,9 +832,9 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/batteries_4.png" width="32" height="32" alt=""> Fuel Cell | Rare | +1 Elemental Damage, +3% Attack Speed, 5% chance to call lightning on hit | 36 | ∞ |
 | <img src="../images/item/batteries_5.png" width="32" height="32" alt=""> Fusion Cell | Rare | +3 Elemental Damage, +4% Attack Speed | 36 | ∞ |
 | <img src="../images/item/batteries_6.png" width="32" height="32" alt=""> Antimatter Cell | Rare | +1 Elemental Damage, +4% Attack Speed, 5% chance to call lightning on hit | 36 | ∞ |
-| <img src="../images/item/batteries_7.png" width="32" height="32" alt=""> Nuclear Battery | Epic | -2 HP Regen, +3 Elemental Damage, +8% Attack Speed, 12% chance to call lightning on hit | 73 | ∞ |
+| <img src="../images/item/batteries_7.png" width="32" height="32" alt=""> Nuclear Battery | Epic | -2 HP Regen (per 5s), +3 Elemental Damage, +8% Attack Speed, 12% chance to call lightning on hit | 73 | ∞ |
 | <img src="../images/item/batteries_8.png" width="32" height="32" alt=""> Zero-Point Energy | Epic | +3 Elemental Damage, +4% Attack Speed, 9% chance to call lightning on hit | 73 | ∞ |
-| <img src="../images/item/batteries_9.png" width="32" height="32" alt=""> Cosmic Energy | Legendary | -4 HP Regen, +5 Elemental Damage, +18% Attack Speed, 16% chance to call lightning on hit | 123 | ∞ |
+| <img src="../images/item/batteries_9.png" width="32" height="32" alt=""> Cosmic Energy | Legendary | -4 HP Regen (per 5s), +5 Elemental Damage, +18% Attack Speed, 16% chance to call lightning on hit | 123 | ∞ |
 
 <a id="series-40"></a>
 
@@ -900,9 +900,9 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/dark_4.png" width="32" height="32" alt=""> Evil Eye | Rare | +1% Life Steal, +5% Aura Damage, On hit: 8% chance of Curse | 36 | ∞ |
 | <img src="../images/item/dark_5.png" width="32" height="32" alt=""> Demon Horn | Rare | +2% Life Steal, +7% Aura Damage | 36 | ∞ |
 | <img src="../images/item/dark_6.png" width="32" height="32" alt=""> Abyss Stone | Rare | +1% Life Steal, +6% Aura Damage, On hit: 8% chance of Curse | 36 | ∞ |
-| <img src="../images/item/dark_7.png" width="32" height="32" alt=""> Demon Lord's Pact | Epic | -2 HP Regen, +2% Life Steal, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| <img src="../images/item/dark_7.png" width="32" height="32" alt=""> Demon Lord's Pact | Epic | -2 HP Regen (per 5s), +2% Life Steal, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
 | <img src="../images/item/dark_8.png" width="32" height="32" alt=""> Eye of the Void | Epic | +2% Life Steal, +6% Aura Damage, On hit: 14% chance of Curse | 73 | ∞ |
-| <img src="../images/item/dark_9.png" width="32" height="32" alt=""> Chaos Black Hole | Legendary | -4 HP Regen, +4% Life Steal, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| <img src="../images/item/dark_9.png" width="32" height="32" alt=""> Chaos Black Hole | Legendary | -4 HP Regen (per 5s), +4% Life Steal, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
 
 <a id="series-44"></a>
 
@@ -910,16 +910,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/holy_0.png" width="32" height="32" alt=""> White Candle | Common | +1 HP Regen, +1 Armor | 15 | ∞ |
-| <img src="../images/item/holy_1.png" width="32" height="32" alt=""> Holy Water | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/holy_2.png" width="32" height="32" alt=""> Prayer Beads | Common | +1 HP Regen, +1 Armor | 15 | ∞ |
-| <img src="../images/item/holy_3.png" width="32" height="32" alt=""> Prayer Book | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/holy_4.png" width="32" height="32" alt=""> Angel Statue | Rare | +2 HP Regen, +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
-| <img src="../images/item/holy_5.png" width="32" height="32" alt=""> Holy Light Shard | Rare | +2 HP Regen, +3 Armor | 36 | ∞ |
-| <img src="../images/item/holy_6.png" width="32" height="32" alt=""> Sacred Charm | Rare | +2 HP Regen, +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
-| <img src="../images/item/holy_7.png" width="32" height="32" alt=""> God's Blessing | Epic | +4 HP Regen, -6% All Damage, +3 Armor, Cleanse all debuffs every 13s | 73 | 2 |
-| <img src="../images/item/holy_8.png" width="32" height="32" alt=""> Holy Grail | Epic | +2 HP Regen, +3 Armor, Cleanse all debuffs every 16s | 73 | 2 |
-| <img src="../images/item/holy_9.png" width="32" height="32" alt=""> Heart of Light | Legendary | +8 HP Regen, -10% All Damage, +5 Armor, Cleanse all debuffs every 9s | 123 | 2 |
+| <img src="../images/item/holy_0.png" width="32" height="32" alt=""> White Candle | Common | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
+| <img src="../images/item/holy_1.png" width="32" height="32" alt=""> Holy Water | Common | +2 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/holy_2.png" width="32" height="32" alt=""> Prayer Beads | Common | +1 HP Regen (per 5s), +1 Armor | 15 | ∞ |
+| <img src="../images/item/holy_3.png" width="32" height="32" alt=""> Prayer Book | Common | +2 HP Regen (per 5s) | 15 | ∞ |
+| <img src="../images/item/holy_4.png" width="32" height="32" alt=""> Angel Statue | Rare | +2 HP Regen (per 5s), +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
+| <img src="../images/item/holy_5.png" width="32" height="32" alt=""> Holy Light Shard | Rare | +2 HP Regen (per 5s), +3 Armor | 36 | ∞ |
+| <img src="../images/item/holy_6.png" width="32" height="32" alt=""> Sacred Charm | Rare | +2 HP Regen (per 5s), +1 Armor, Cleanse all debuffs every 20s | 36 | 2 |
+| <img src="../images/item/holy_7.png" width="32" height="32" alt=""> God's Blessing | Epic | +4 HP Regen (per 5s), -6% All Damage, +3 Armor, Cleanse all debuffs every 13s | 73 | 2 |
+| <img src="../images/item/holy_8.png" width="32" height="32" alt=""> Holy Grail | Epic | +2 HP Regen (per 5s), +3 Armor, Cleanse all debuffs every 16s | 73 | 2 |
+| <img src="../images/item/holy_9.png" width="32" height="32" alt=""> Heart of Light | Legendary | +8 HP Regen (per 5s), -10% All Damage, +5 Armor, Cleanse all debuffs every 9s | 123 | 2 |
 
 <a id="series-45"></a>
 
@@ -1002,9 +1002,9 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/rot_4.png" width="32" height="32" alt=""> Swamp Gas Jar | Rare | +5% Aura Damage, +6% Aura Size, On hit: 11% chance of Weaken | 36 | ∞ |
 | <img src="../images/item/rot_5.png" width="32" height="32" alt=""> Corrosive Goo | Rare | +7% Aura Damage, +16% Aura Size | 36 | ∞ |
 | <img src="../images/item/rot_6.png" width="32" height="32" alt=""> Plague Bottle | Rare | +6% Aura Damage, +6% Aura Size, On hit: 12% chance of Weaken | 36 | ∞ |
-| <img src="../images/item/rot_7.png" width="32" height="32" alt=""> Eye of the Rot King | Epic | -2 HP Regen, +13% Aura Damage, +14% Aura Size, On hit: 28% chance of Weaken | 73 | ∞ |
+| <img src="../images/item/rot_7.png" width="32" height="32" alt=""> Eye of the Rot King | Epic | -2 HP Regen (per 5s), +13% Aura Damage, +14% Aura Size, On hit: 28% chance of Weaken | 73 | ∞ |
 | <img src="../images/item/rot_8.png" width="32" height="32" alt=""> Fallen Essence | Epic | +6% Aura Damage, +16% Aura Size, On hit: 21% chance of Weaken | 73 | ∞ |
-| <img src="../images/item/rot_9.png" width="32" height="32" alt=""> Final Decay | Legendary | -4 HP Regen, +28% Aura Damage, +30% Aura Size, On hit: 35% chance of Weaken | 123 | ∞ |
+| <img src="../images/item/rot_9.png" width="32" height="32" alt=""> Final Decay | Legendary | -4 HP Regen (per 5s), +28% Aura Damage, +30% Aura Size, On hit: 35% chance of Weaken | 123 | ∞ |
 
 <a id="series-50"></a>
 

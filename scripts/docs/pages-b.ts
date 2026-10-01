@@ -8,6 +8,8 @@ import { STAT_INFO, type StatKey } from '../../src/data/stats';
 import { describeItem } from '../../src/data/describe';
 import { BALANCE, RARITY, waveDuration, xpToNext, spawnInterval, spawnBatch } from '../../src/data/balance';
 import { RARITY_BUDGET } from '../../src/data/itemGen';
+import { MODIFIERS } from '../../src/data/challenges';
+import { pick } from '../../src/systems/Achievements';
 import { Doc, lnk, stApply, sep, img, ELITES, BOSS_ONLY, BEHAVIOR_NAME, describePattern, enemyAppear, waveRange } from './common';
 
 export function itemsDoc(): void {
@@ -227,5 +229,29 @@ export function chaptersDoc(): void {
       c.pool.map((p) => [`${img('enemy', p.enemy)} ${lnk.enemy(p.enemy)}`, waveRange(p.from, p.to), `${p.weight} (${Math.round((p.weight / w) * 100)}%)`]),
     );
   }
+  d.h2(tx('无尽模式', 'Endless Mode'), 'endless');
+  d.p(
+    tx(
+      `通关某章后，可在选角界面开启该章的无尽模式：不限波数，每 ${W.bossWave} 波一轮（第 5 / 10 波精英、第 15 波 Boss），精英与 Boss 每轮重新抽取，第 30 波起 Boss 来自全部章节。第 ${W.count} 波之后怪物生命每波 ×${BALANCE.endless.hp}、伤害每波 ×${BALANCE.endless.dmg}（复利），收入随商店涨价同步增长，倒下为止。`,
+      `After clearing a chapter, its Endless mode can be turned on from the character screen: no wave limit, ${W.bossWave}-wave cycles (elites on waves 5/10, a boss on 15), elites and bosses rerolled every cycle, bosses from every chapter from wave 30. After wave ${W.count}, monster HP ×${BALANCE.endless.hp} and damage ×${BALANCE.endless.dmg} per wave (compounding); income keeps pace with shop prices. It ends when you fall.`,
+    ),
+  );
+  d.h2(tx('每日 / 每周挑战', 'Daily / Weekly Challenges'), 'challenges');
+  d.p(
+    tx(
+      '由日期种子决定角色、章节与规则修饰，商店、升级选项、宝箱、精英与 Boss 也由种子决定——同一天（同一周）所有玩家面对同一套随机结果。挑战会临时借用角色，不需要解锁；成绩记录为个人最佳。',
+      'A date seed decides the character, chapter and rule modifiers, and also the shops, level-up choices, crates, elites and bosses — everyone faces the same rolls on the same day (week). Characters are lent for the challenge; your personal best is recorded.',
+    ),
+    '',
+    tx(
+      '- **每日挑战**：第 1~3 章随机一章 · 15 波 · 2 个修饰；得分 = 波次×200 + 击杀 + 等级×20，通关再加 3000 + 剩余时间奖励',
+      '- **Daily**: a random chapter 1–3 · 15 waves · 2 modifiers; score = wave×200 + kills + level×20, plus 3000 and a time bonus on a clear',
+    ),
+    tx('- **每周挑战**：第 2~5 章随机一章 · 无尽模式 · 3 个修饰；得分 = 波次×500 + 击杀', '- **Weekly**: a random chapter 2–5 · Endless · 3 modifiers; score = wave×500 + kills'),
+  );
+  d.table(
+    [tx('规则修饰', 'Modifier'), tx('效果', 'Effect')],
+    MODIFIERS.map((m) => [`${m.icon} ${pick(m.name)}`, pick(m.desc)]),
+  );
   d.write();
 }

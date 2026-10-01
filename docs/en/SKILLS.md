@@ -166,7 +166,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | --- | --- |
 | Character | [Chubby Melon](CHARACTERS.md#char-watermelon) |
 | Form | Dash |
-| Cooldown | 11s |
+| Cooldown | 13s |
 | Damage multiplier | ×2 |
 | Dash distance | 260 |
 | Heal | 10% Max HP |
@@ -430,7 +430,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | --- | --- |
 | Character | [Peach Angel](CHARACTERS.md#char-peach) |
 | Form | Drain Heal |
-| Cooldown | 15s |
+| Cooldown | 21s |
 | Damage multiplier | ×1 |
 | Radius | 150 |
 | Self gains | [Invulnerable](#status-invuln) 1.5s |
@@ -498,7 +498,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | --- | --- |
 | Character | [Chef Yam](CHARACTERS.md#char-sweetpotato) |
 | Form | Drain Heal |
-| Cooldown | 18s |
+| Cooldown | 24s |
 | Damage multiplier | ×1 |
 | Radius | 160 |
 | Self gains | 5× [Regen](#status-regen) 6s |

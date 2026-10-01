@@ -1,4 +1,5 @@
 // 核心战斗场景：固定竞技场，玩家移动躲避，武器自动攻击
+import { tip, seenTip } from '../systems/Tutorial';
 import { treeTotals } from '../systems/TalentTree';
 import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
@@ -21,7 +22,7 @@ import {
 import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
 import { BOSS_MAP, AFFIX_IDS, type AffixId, type Pattern } from '../data/bosses';
-import type { WeaponEffect, WeaponClass } from '../data/weapons';
+import { WEAPON_MAP, type WeaponEffect, type WeaponClass } from '../data/weapons';
 import { STATUSES, type StatusApply, type StatusId } from '../data/statuses';
 import { Enemy } from '../objects/Enemy';
 import { Bullet } from '../objects/Bullet';
@@ -151,6 +152,8 @@ export class GameScene extends Phaser.Scene {
   auraT: number[] = [];
   cleanseT = 0;
   cratesDropped = 0;
+  /** 本波小怪掉落的果实数（有上限） */
+  fruitsDropped = 0;
   ccImmuneUntil = 0;
   terrain!: Terrain;
   overtime = 0;
@@ -190,6 +193,7 @@ export class GameScene extends Phaser.Scene {
     this.cleanseT = 0;
     this.statusVer = -1;
     this.cratesDropped = 0;
+    this.fruitsDropped = 0;
     this.overtime = 0;
     this.tookDamage = false;
     setInRun(true);
@@ -266,8 +270,15 @@ export class GameScene extends Phaser.Scene {
       this.scene.launch('Hud');
       this.scene.bringToTop('Hud');
     }
-    audio.playMusic(this, run.isBossWave() ? 'bgm_boss' : ch.music);
+    // 章节音乐；Boss 登场时切到 Boss 战音乐，Boss 倒下后切回章节音乐
+    audio.playMusic(this, ch.music);
     if (run.wave === 1) TERRAIN_INFO[ch.id]?.forEach((m, i) => this.time.delayedCall(1500 + i * 2600, () => this.terrainNotice(m)));
+    // 新手引导：第 1 波讲移动，技能第一次就绪时讲技能；精英 / Boss 出场时各讲一次
+    if (run.wave === 1) this.time.delayedCall(500, () => tip('move', this));
+    if (!seenTip('skill')) this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this) });
+    this.events.on('bossSpawn', (e: Enemy) => {
+      if (e.boss) tip(e.boss.elite ? 'elite' : 'boss', this);
+    });
     audio.play(this, 'wave');
     this.events.once('shutdown', () => {
       this.weapons.destroy();
@@ -288,6 +299,7 @@ export class GameScene extends Phaser.Scene {
     s.luck += t.luck;
     s.lifeSteal += t.lifeSteal;
     s.dodge = Math.min(s.dodge, run.dodgeCap);
+    s.lifeSteal = Math.min(s.lifeSteal, BALANCE.player.lifeStealCap);
     this.rangeMult = Math.max(0.3, 1 + t.range / 100);
     this.statusDmgBonus = run.specials.statusDmg;
     this.stats = s;
@@ -598,6 +610,16 @@ export class GameScene extends Phaser.Scene {
   private onPlayerDeath(): void {
     if (this.dead) return;
     if (this.talent.preventDeath()) return;
+    // 天赋「不屈」：每局一次，以少量生命站起来
+    const cd = treeTotals().cheatDeath;
+    if (cd && !run.cheatDeathUsed) {
+      run.cheatDeathUsed = true;
+      run.hp = Math.ceil(this.stats.maxHp * (cd / 100));
+      this.iframes = 1.5;
+      this.fx.ring(this.player.x, this.player.y, 220, 0x4cc9f0, 600, true);
+      this.fx.label(this.player.x, this.player.y, tx('不屈！', 'Unyielding!'), '#4cc9f0');
+      return;
+    }
     if (run.specials.revive > run.revivesUsed) {
       run.revivesUsed++;
       save.stats.revives++;
@@ -811,7 +833,10 @@ export class GameScene extends Phaser.Scene {
     const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
     const affixes = def.elite ? this.rollAffixes(nAffix).filter((a) => !(def.affixes ?? []).includes(a)) : [];
     e.spawnBoss(this, def, x, y, hp, dmg, affixes);
-    if (!def.elite) this.boss = e;
+    if (!def.elite) {
+      this.boss = e;
+      audio.playMusic(this, 'bgm_boss');
+    }
     this.events.emit('bossSpawn', e);
     this.shake(0.01, 300);
   }
@@ -926,7 +951,7 @@ export class GameScene extends Phaser.Scene {
       .filter((e) => e.alive)
       .sort((a, b) => Phaser.Math.Distance.Squared(p.x, p.y, a.x, a.y) - Phaser.Math.Distance.Squared(p.x, p.y, b.x, b.y));
     const s = this.stats;
-    const dmg = (8 + run.wave * 1.6) * (1 + (s.damage + s.rangedPct) / 100);
+    const dmg = (6 + run.wave * 1.2) * (1 + (s.damage + s.rangedPct) / 100);
     const key = this.textures.exists('proj_star_anise_shuriken') ? 'proj_star_anise_shuriken' : 'proj_player';
     for (let i = 0; i < n; i++) {
       const t = near[i % Math.max(1, near.length)];
@@ -1114,9 +1139,12 @@ export class GameScene extends Phaser.Scene {
     this.applyPlayerStatus(sp.onHitSelf);
     // 荆棘词缀反伤
     if (info.cls === 'melee' && e.affixes.includes('thorny')) this.hurtDirect(Math.max(1, dmg * 0.05), '#6a994e');
-    const ls = (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult();
+    // 吸血：每次命中按概率回 1 点，最多每 0.25 秒一次；群体伤害（横扫、光环、爆炸、喷火、连锁、地雷）触发概率 ×0.4
+    const wk = info.weaponId ? WEAPON_MAP[info.weaponId]?.kind : undefined;
+    const aoe = info.explosion || wk === 'sweep' || wk === 'aura' || wk === 'flame' || wk === 'chain' || wk === 'mine';
+    const ls = Math.min(BALANCE.player.lifeStealCap, (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult()) * (aoe ? 0.4 : 1);
     if (ls > 0 && this.lsCd <= 0 && Math.random() * 100 < ls) {
-      this.lsCd = 0.1;
+      this.lsCd = 0.25;
       this.heal(1, false);
     }
     const lh = sp.lightningOnHit;
@@ -1193,12 +1221,16 @@ export class GameScene extends Phaser.Scene {
     this.fx.burst(e.x, e.y, color, e.isBoss ? 40 : 8);
     this.fx.splat(e.x, e.y, color, e.radius);
     this.applyPlayerStatus(sp.onKillSelf);
+    // 天赋「战意」：击杀补怒气，最多叠到上限
+    const kr = treeTotals().killRage;
+    if (kr && (this.pstatus.get('rage')?.stacks ?? 0) < kr) this.applyPlayerStatus([{ id: 'rage', dur: 2 }]);
     // 经验沿用原公式；货币按怪物血量成长放大（血越厚掉得越多），避免后期买不起
     if (e.boss) {
       save.killedBosses[e.boss.id] = (save.killedBosses[e.boss.id] ?? 0) + 1;
       if (e.boss.elite) save.stats.eliteKills++;
       else {
         save.stats.bossKills++;
+        audio.playMusic(this, run.chapter.music);
         if (run.endless) bump('endlessBosses');
         if (e.enraged) save.stats.overtimeWins++;
       }
@@ -1230,8 +1262,10 @@ export class GameScene extends Phaser.Scene {
         this.dropPickup('crate', e.x, e.y, 1);
       } else if (Math.random() < 0.3) this.dropPickup('fruit', e.x, e.y, 1);
     } else {
-      if (Math.random() < fruitDropChance(s.luck)) this.dropPickup('fruit', e.x, e.y, 1);
-      else if (
+      if (this.fruitsDropped < 2 + Math.floor(run.wave / 4) && Math.random() < fruitDropChance(s.luck)) {
+        this.fruitsDropped++;
+        this.dropPickup('fruit', e.x, e.y, 1);
+      } else if (
         this.cratesDropped < BALANCE.cratesPerWave + (sp.crateMult > 1 ? 1 : 0) &&
         Math.random() < crateDropChance(s.luck) * sp.crateMult
       ) {
@@ -1577,7 +1611,7 @@ export class GameScene extends Phaser.Scene {
       const dx = pl.x - p.img.x,
         dy = pl.y - p.img.y;
       const d2 = dx * dx + dy * dy;
-      if (!p.magnet && d2 < r2 && (p.kind !== 'fruit' || run.hp < this.stats.maxHp || d2 < 900)) p.magnet = true;
+      if (!p.magnet && d2 < r2) p.magnet = true;
       if (p.magnet) {
         const d = Math.sqrt(d2) || 1;
         const sp = BALANCE.pickup.magnetSpeed * (this.waveOver ? 1.6 : 1);
@@ -1600,6 +1634,7 @@ export class GameScene extends Phaser.Scene {
       run.earn(p.value + bonus, 'pickup');
       run.addXp(p.xp + bonusXp);
       if (bonus) this.fx.label(p.img.x, p.img.y - 10, '×2', '#52ff8a');
+      if (!seenTip('seeds')) tip('seeds', this);
       audio.play(this, 'pickup', 0.03);
     } else if (p.kind === 'fruit') {
       bump('fruits');

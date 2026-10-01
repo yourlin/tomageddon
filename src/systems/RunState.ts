@@ -84,6 +84,8 @@ export class RunState {
   rerolls = 0;
   shop: ShopOffer[] = [];
   revivesUsed = 0;
+  /** 天赋「不屈」本局是否已用 */
+  cheatDeathUsed = false;
   /** 本局获得的成就点（结算界面展示） */
   achPoints = 0;
   /** 加成池：上一波留在地上的番茄籽与经验，本波拾取时双倍返还 */
@@ -165,6 +167,7 @@ export class RunState {
     this.rerolls = 0;
     this.shop = [];
     this.revivesUsed = 0;
+    this.cheatDeathUsed = false;
     this.harvestBonus = 0;
     // 每局随机抽取精英与 Boss
     const ep = [...elitePool(chapterId)].sort(() => Math.random() - 0.5);
@@ -455,6 +458,7 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       pendingCrates: run.pendingCrates,
       shop: run.shop,
       revivesUsed: run.revivesUsed,
+      cheatDeathUsed: run.cheatDeathUsed,
       harvestBonus: run.harvestBonus,
       bonusSeeds: run.bonusSeeds,
       bonusXp: run.bonusXp,
@@ -503,6 +507,7 @@ export function loadRun(): boolean {
     pendingCrates: d.pendingCrates,
     shop: d.shop,
     revivesUsed: d.revivesUsed,
+    cheatDeathUsed: !!d.cheatDeathUsed,
     harvestBonus: d.harvestBonus,
     bonusSeeds: d.bonusSeeds ?? 0,
     bonusXp: d.bonusXp ?? 0,

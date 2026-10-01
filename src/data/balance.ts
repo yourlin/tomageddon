@@ -3,10 +3,11 @@ import type { Stats } from './stats';
 
 export const BALANCE = {
   arena: { width: 1920, height: 1200, margin: 40 },
-  player: { baseSpeed: 230, radius: 22, iframes: 0.5, dodgeCap: 60, maxWeapons: 6 },
+  /** dodgeCap / lifeStealCap：闪避与吸血的上限 % */
+  player: { baseSpeed: 230, radius: 22, iframes: 0.5, dodgeCap: 60, lifeStealCap: 30, maxWeapons: 6 },
   waves: { count: 15, eliteWaves: [5, 10], bossWave: 15 },
   /** 无尽模式：第 15 波之后每波生命 ×hp、伤害 ×dmg（复利），保证终会结束 */
-  endless: { hp: 1.1, dmg: 1.06 },
+  endless: { hp: 1.12, dmg: 1.09 },
   pickup: { baseRadius: 110, magnetSpeed: 700 },
   maxEnemies: 260,
   harvestGrowth: 0.05,
@@ -174,7 +175,7 @@ export const RARITY = [
 
 /** 每波结束时击杀敌人掉落果实（回血）的概率 */
 export function fruitDropChance(luck: number): number {
-  return Math.min(0.12, 0.02 * (1 + luck / 100));
+  return Math.min(0.04, 0.007 * (1 + luck / 100));
 }
 
 /** 宝箱掉落概率（精英必掉） */
