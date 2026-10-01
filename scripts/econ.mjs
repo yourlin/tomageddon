@@ -72,4 +72,6 @@ for (const ch of [...new Set(rs.map((r) => r.ch))].sort()) {
     .map((w) => w.wTier[3]);
   const ge = (k) => Math.round((t4.filter((x) => x >= k).length / Math.max(1, t4.length)) * 100);
   console.log(`T4（到第 15 波 ${t4.length} 局）：≥1 ${ge(1)}%  ≥2 ${ge(2)}%  ≥3 ${ge(3)}%   目标 50/30/10`);
+  const ev = c.map((r) => r.final?.evolved ?? 0);
+  console.log(`进化超武：至少 1 把 ${Math.round((ev.filter((x) => x > 0).length / Math.max(1, ev.length)) * 100)}%`);
 }

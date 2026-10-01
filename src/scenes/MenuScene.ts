@@ -160,29 +160,25 @@ export class MenuScene extends Phaser.Scene {
       ).setOrigin(0, 0.5);
     }
     button(this, W / 2, by, 320, 72, tx('开始游戏', 'Start'), () => this.scene.start('CharSelect'), COLORS.primary, 32);
-    button(this, W / 2 - 108, by + 90, 102, 60, tx('图鉴', 'Codex'), () => this.scene.start('Codex'), 0x8d5a97, 24);
-    button(this, W / 2, by + 90, 102, 60, tx('成就', 'Awards'), () => this.scene.start('Achievements'), 0xb07d2b, 24);
-    button(this, W / 2 + 108, by + 90, 102, 60, tx('天赋', 'Talents'), () => this.scene.start('TalentTree'), 0x5a189a, 24);
+    button(this, W / 2, by + 80, 320, 58, tx('🗓️ 每日 / 每周挑战', '🗓️ Daily / Weekly'), () => this.scene.start('Challenge'), 0xc1121f, 24);
+    // 图鉴 · 成就 · 天赋 · 战绩
+    const row: [string, string, number][] = [
+      [tx('图鉴', 'Codex'), 'Codex', 0x8d5a97],
+      [tx('成就', 'Awards'), 'Achievements', 0xb07d2b],
+      [tx('天赋', 'Talents'), 'TalentTree', 0x5a189a],
+      [tx('战绩', 'History'), 'History', 0x2a6f97],
+    ];
+    row.forEach(([label, key, color], i) =>
+      button(this, W / 2 - 120 + i * 80, by + 150, 76, 56, label, () => this.scene.start(key), color, 20),
+    );
     // 有未分配的天赋点时显示红点
     if (talentPointsFree() > 0) {
-      const dot = this.add.circle(W / 2 + 152, by + 66, 8, 0xff4b3e).setStrokeStyle(2, 0xffffff);
+      const dot = this.add.circle(W / 2 + 74, by + 126, 9, 0xff4b3e).setStrokeStyle(2, 0xffffff);
       this.tweens.add({ targets: dot, scale: 1.25, duration: 600, yoyo: true, repeat: -1 });
-      text(this, W / 2 + 152, by + 66, String(talentPointsFree()), 11).setOrigin(0.5);
+      text(this, W / 2 + 74, by + 126, String(talentPointsFree()), 11).setOrigin(0.5);
     }
-    button(this, W / 2, by + 165, 320, 60, tx('设置', 'Settings'), () => this.scene.start('Settings'), 0x4a6fa5, 26);
-    button(
-      this,
-      W / 2,
-      by + 240,
-      320,
-      60,
-      tx('全屏', 'Fullscreen'),
-      () => {
-        toggleFullscreen(this);
-      },
-      0x3a7d44,
-      26,
-    );
+    button(this, W / 2 - 82, by + 220, 156, 54, tx('设置', 'Settings'), () => this.scene.start('Settings'), 0x4a6fa5, 22);
+    button(this, W / 2 + 82, by + 220, 156, 54, tx('全屏', 'Fullscreen'), () => toggleFullscreen(this), 0x3a7d44, 22);
 
     text(
       this,

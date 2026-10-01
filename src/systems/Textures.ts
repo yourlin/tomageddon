@@ -1,5 +1,6 @@
 // 程序化美术：武器、子弹、掉落物、特效、界面图标（Canvas 2D 卡通渲染）
 // 角色 / 怪物 / Boss 由 Rig 部件动画实时绘制；道具图标按需生成（ItemArt）。
+import { EVOLVED_WEAPONS } from '../data/evolutions';
 import Phaser from 'phaser';
 import { WEAPONS } from '../data/weapons';
 import { STAT_INFO, STAT_ORDER, type StatKey } from '../data/stats';
@@ -187,7 +188,7 @@ function statGlyph(ctx: Ctx, k: StatKey, c: number): void {
 export function generateTextures(scene: Phaser.Scene): void {
   const s = scene;
   // ---------- 武器 ----------
-  for (const w of WEAPONS) {
+  for (const w of [...WEAPONS, ...EVOLVED_WEAPONS]) {
     paint(s, `weapon_${w.id}`, 128, 64, (ctx) => drawWeapon(ctx, w.id));
     paint(s, `icon_weapon_${w.id}`, 128, 128, (ctx) => drawWeaponIcon(ctx, w.id, w.cls));
   }

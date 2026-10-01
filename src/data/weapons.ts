@@ -42,6 +42,8 @@ export interface WeaponDef {
   effect?: WeaponEffect;
   price: number; // T1 基础价格，T2/T3/T4 = x2.1 / x4 / x7.5（见 TIER_PRICE_MULT）
   minTier?: number; // 商店最低出现品质（0 起）
+  /** 进化超武：由哪把武器进化而来（不进商店池） */
+  evolvedFrom?: string;
 }
 
 export const TIER_PRICE_MULT = [1, 2.1, 4, 7.5];

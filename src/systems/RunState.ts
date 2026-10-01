@@ -1,6 +1,9 @@
 // 一局游戏的状态：角色、武器、道具、属性、经验、番茄籽
+import { MODIFIER_MAP, makeChallenge, challengeScore, type ChallengeDef, type ModifierId } from '../data/challenges';
+import { hashSeed, mulberry32, pickOf, shuffleWith, dayNumber, type Rand } from './Rng';
+import { EVOLUTION_OF } from '../data/evolutions';
 import { treeTotals } from './TalentTree';
-import { bump } from './Counters';
+import { bump, bumpMax, counter } from './Counters';
 import { BASE_STATS, addMods, type Stats, type StatMods } from '../data/stats';
 import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPON_MAP, WEAPON_SETS, type WeaponDef } from '../data/weapons';
@@ -9,7 +12,7 @@ import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
 import { BALANCE, xpToNext, isBossWaveNo, isEliteWaveNo } from '../data/balance';
-import { markSeen, save } from './Save';
+import { markSeen, save, type RunRecord } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
 
@@ -90,8 +93,37 @@ export class RunState {
   bossId = ''; // 本局 Boss
   /** 无尽模式：不限波数，每 15 波一轮 */
   endless = false;
+  /** 本波第几次上架商品（挑战模式的随机序列编号） */
+  shopRollNo = 0;
+  shopRollWave = -1;
+  /** 每日 / 每周挑战（种子、修饰） */
+  challenge: ChallengeDef | null = null;
+  /** 是否启用了某个挑战修饰 */
+  mod(id: ModifierId): boolean {
+    return !!this.challenge?.modifiers.includes(id);
+  }
+  /** 随机源：挑战模式按「种子 + 用途」生成固定序列，否则用 Math.random */
+  rand(stream: string): Rand {
+    return this.challenge ? mulberry32(hashSeed(`${this.challenge.seed}:${stream}`)) : Math.random;
+  }
+  /** 开始一局挑战 */
+  startChallenge(c: ChallengeDef): void {
+    this.start(c.charId, c.chapterId, c.endless);
+    this.challenge = c;
+    const r = this.rand('setup');
+    const ep = shuffleWith([...elitePool(c.chapterId)], r);
+    this.eliteIds = [ep[0].id, ep[1].id];
+    this.bossId = pickOf(bossPool(c.chapterId), r).id;
+    if (this.mod('rich_start')) this.seeds += 150;
+    this.dirty();
+    this.hp = this.stats.maxHp;
+  }
   /** 调试：每波各来源番茄籽收入 */
   income: Record<number, Record<string, number>> = {};
+  /** 局后统计：各来源造成的伤害（武器 id / skill / dot / explosion / knives / other） */
+  dmgBy: Record<string, number> = {};
+  /** 本局开始时间（用于战绩里的用时） */
+  startedAt = 0;
   earn(v: number, src: string): void {
     this.seeds += v;
     if (v > 0) save.stats.seedsEarned += v;
@@ -111,6 +143,8 @@ export class RunState {
 
   start(charId: string, chapterId: number, endless = false): void {
     this.endless = endless;
+    this.challenge = null;
+    this.shopRollWave = -1;
     this.achPoints = 0;
     this.bonusSeeds = 0;
     this.bonusXp = 0;
@@ -122,6 +156,8 @@ export class RunState {
     this.seeds = 0;
     this.kills = 0;
     this.income = {};
+    this.dmgBy = {};
+    this.startedAt = Date.now();
     this.items = {};
     this.levelMods = {};
     this.pendingLevelUps = 0;
@@ -161,6 +197,12 @@ export class RunState {
       let best: number | null = null;
       for (const k of Object.keys(set.bonus).map(Number)) if (cnt >= k && (best === null || k > best)) best = k;
       if (best !== null) addMods(s, set.bonus[best] as StatMods);
+    }
+    // 挑战修饰
+    if (this.challenge) {
+      for (const m of this.challenge.modifiers) if (MODIFIER_MAP[m].mods) addMods(s, MODIFIER_MAP[m].mods as StatMods);
+      if (this.mod('glass_cannon')) s.maxHp *= 0.6;
+      if (this.mod('vampire')) s.regen = Math.min(0, s.regen);
     }
     s.maxHp = Math.max(1, Math.round(s.maxHp));
     this.cache = s;
@@ -340,6 +382,25 @@ export class RunState {
     return true;
   }
 
+  /** 可进化：T4 + 持有对应道具 */
+  canEvolve(w: OwnedWeapon): boolean {
+    const e = EVOLUTION_OF[w.id];
+    return !!e && w.tier >= 3 && (this.items[e.item] ?? 0) > 0;
+  }
+
+  /** 进化：原地替换武器 id，保留词条与打造等级 */
+  evolve(uid: number): boolean {
+    const w = this.weapons.find((x) => x.uid === uid);
+    if (!w || !this.canEvolve(w)) return false;
+    const to = EVOLUTION_OF[w.id].to.id;
+    w.id = to;
+    markSeen('weapons', to);
+    bump('evolutions');
+    bump(`evolve:${to}`);
+    this.dirty();
+    return true;
+  }
+
   removeWeapon(uid: number): void {
     this.weapons = this.weapons.filter((x) => x.uid !== uid);
     this.dirty();
@@ -347,6 +408,7 @@ export class RunState {
 
   /** 每波商店刷新次数上限：默认 3，道具可增加，最多 10 */
   get maxRerolls(): number {
+    if (this.mod('one_reroll')) return 1;
     return Math.min(10, 3 + this.specials.rerolls);
   }
 
@@ -399,6 +461,10 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       bossId: run.bossId,
       eliteIds: run.eliteIds,
       endless: run.endless,
+      challenge: run.challenge ? { kind: run.challenge.kind, key: run.challenge.key } : null,
+      dmgBy: run.dmgBy,
+      income: run.income,
+      startedAt: run.startedAt,
       savedAt: Date.now(),
     };
     localStorage.setItem(RUN_KEY, JSON.stringify(d));
@@ -443,12 +509,67 @@ export function loadRun(): boolean {
     bossId: d.bossId,
     eliteIds: d.eliteIds,
     endless: !!d.endless,
+    challenge: d.challenge ? makeChallenge((d.challenge as ChallengeDef).kind, (d.challenge as ChallengeDef).key) : null,
     rerolls: 0,
-    income: {},
+    income: d.income ?? {},
+    dmgBy: d.dmgBy ?? {},
+    startedAt: d.startedAt ?? Date.now(),
   });
   run.dirty();
   run.hp = run.stats.maxHp;
   return true;
+}
+
+/** 把本局写入战绩（结算时调用一次） */
+export function recordHistory(win: boolean): RunRecord {
+  const income: number[] = [];
+  for (let w = 1; w <= run.wave; w++) income.push(Math.round(Object.values(run.income[w] ?? {}).reduce((a, b) => a + Math.max(0, b), 0)));
+  const rec: RunRecord = {
+    t: Date.now(),
+    charId: run.charId,
+    chapterId: run.chapterId,
+    endless: run.endless,
+    win,
+    wave: run.wave,
+    level: run.level,
+    kills: run.kills,
+    sec: Math.round((Date.now() - run.startedAt) / 1000),
+    weapons: run.weapons.map((w) => ({ id: w.id, tier: w.tier, forge: w.forge })),
+    items: Object.values(run.items).reduce((a, b) => a + b, 0),
+    dmg: Object.entries(run.dmgBy)
+      .map(([k, v]) => [k, Math.round(v)] as [string, number])
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10),
+    income,
+  };
+  if (run.challenge) {
+    const c = run.challenge;
+    const score = challengeScore(c.kind, { win, wave: run.wave, kills: run.kills, level: run.level, sec: rec.sec });
+    rec.challenge = { kind: c.kind, key: c.key, score };
+    const k = `${c.kind}:${c.key}`;
+    const prev = save.challenges[k] ?? { best: 0, bestWave: 0, attempts: 0, won: false };
+    save.challenges[k] = {
+      best: Math.max(prev.best, score),
+      bestWave: Math.max(prev.bestWave, run.wave),
+      attempts: prev.attempts + 1,
+      won: prev.won || win,
+    };
+    // 挑战成就计数：次数、通关、每周最佳波次、每日连续天数
+    bump(`${c.kind}Runs`);
+    if (win) bump(`${c.kind}Wins`);
+    if (c.kind === 'weekly') bumpMax('weeklyBest', run.wave);
+    if (c.kind === 'daily') {
+      const dn = dayNumber();
+      const last = counter('dailyLastDay');
+      const streak = last === dn ? counter('dailyStreak') : last === dn - 1 ? counter('dailyStreak') + 1 : 1;
+      save.counters.dailyStreak = streak;
+      save.counters.dailyLastDay = dn;
+      bumpMax('dailyStreakBest', streak);
+    }
+  }
+  save.history.unshift(rec);
+  save.history.length = Math.min(save.history.length, 30);
+  return rec;
 }
 
 export function clearRun(): void {

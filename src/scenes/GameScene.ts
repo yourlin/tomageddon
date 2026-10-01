@@ -125,6 +125,8 @@ export class GameScene extends Phaser.Scene {
   rangeMult = 1;
   statusDmgBonus = 0;
   moveX = 0;
+  /** 当前这次命中的伤害来源（weaponHit 设置，damageEnemy 读取） */
+  dmgSrc = '';
   moveY = 0;
   facing = 1;
   timeLeft = 20;
@@ -693,7 +695,7 @@ export class GameScene extends Phaser.Scene {
     if (this.aliveCount() >= BALANCE.maxEnemies) return;
     const pool = run.chapter.pool.filter((p) => w >= p.from && (p.to === undefined || w <= p.to));
     const total = pool.reduce((a, p) => a + p.weight, 0);
-    let batch = spawnBatch(w);
+    let batch = Math.round(spawnBatch(w) * (run.mod('swarm') ? 1.4 : 1));
     if (boss) batch = Math.ceil(batch / 2);
     // 第 7 波起有概率出现“词缀精英小怪”
     const affixedAlive = this.enemies.filter((e) => e.alive && !e.boss && e.affixes.length).length;
@@ -710,7 +712,9 @@ export class GameScene extends Phaser.Scene {
       const def = ENEMY_MAP[pick.enemy];
       const group = def.group ?? 1;
       const [cx, cy] = this.randomSpawnPos();
-      const affixed = w >= 7 && affixedAlive < 2 + run.chapterId / 2 && Math.random() < 0.015 * (w - 5) * (0.8 + run.chapterId * 0.2);
+      const champ = run.mod('champions') ? 3 : 1;
+      const affixed =
+        w >= 7 && affixedAlive < (2 + run.chapterId / 2) * champ && Math.random() < 0.015 * (w - 5) * (0.8 + run.chapterId * 0.2) * champ;
       if (affixed) {
         this.queueSpawn(def.id, false, cx, cy, this.rollAffixes(w >= 12 ? 2 : 1));
         batch -= 3;
@@ -779,9 +783,9 @@ export class GameScene extends Phaser.Scene {
       def,
       x,
       y,
-      enemyHp(def.hp, def.hpGrowth, run.wave, ch.hpMult),
+      Math.round(enemyHp(def.hp, def.hpGrowth, run.wave, ch.hpMult) * (run.mod('giants') ? 1.5 : run.mod('swarm') ? 0.75 : 1)),
       enemyDamage(def.dmg, def.dmgGrowth, run.wave, ch.dmgMult),
-      ch.speedMult,
+      ch.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1),
       affixes,
     );
     return e;
@@ -794,7 +798,11 @@ export class GameScene extends Phaser.Scene {
     markSeen('bosses', id);
     const ch = run.chapter;
     const hp = Math.round(
-      def.hp * chapterScale(ch.bossHpMult, run.wave) * (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3) * endlessHp(run.wave),
+      def.hp *
+        chapterScale(ch.bossHpMult, run.wave) *
+        (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3) *
+        endlessHp(run.wave) *
+        (run.mod('tough_bosses') ? 1.5 : 1),
     );
     const dmg = Math.round(
       def.dmg * 1.2 * chapterScale(ch.dmgMult, run.wave) * (def.elite ? 1 + (run.wave - 5) * 0.08 : 1) * endlessDmg(run.wave),
@@ -929,6 +937,7 @@ export class GameScene extends Phaser.Scene {
       if (b.crit) b.dmg *= 1.5;
       b.knockback = 20;
       b.spin = 18;
+      b.src = 'knives';
     }
   }
 
@@ -1001,6 +1010,7 @@ export class GameScene extends Phaser.Scene {
         lifeSteal: b.lifeSteal,
         status: b.status,
         cls: 'ranged',
+        weaponId: b.src || undefined,
       };
       if (b.kind === 'rocket') {
         this.rocketBoom(b);
@@ -1038,7 +1048,7 @@ export class GameScene extends Phaser.Scene {
       b.y,
       b.effect?.explode ?? 60,
       b.dmg,
-      { dmg: b.dmg, crit: b.crit, effect: b.effect, knockback: 20, status: b.status },
+      { dmg: b.dmg, crit: b.crit, effect: b.effect, knockback: 20, status: b.status, weaponId: b.src || undefined },
       0xff5400,
     );
   }
@@ -1073,6 +1083,7 @@ export class GameScene extends Phaser.Scene {
   // ---------------- 伤害结算 ----------------
   weaponHit(e: Enemy, info: HitInfo, fromX: number, fromY: number): void {
     if (!e.alive) return;
+    this.dmgSrc = info.weaponId ?? (info.explosion ? 'explosion' : 'other');
     const s = this.stats;
     const sp = run.specials;
     const eff = info.effect;
@@ -1145,6 +1156,9 @@ export class GameScene extends Phaser.Scene {
       e.hp = 0;
     }
     bumpMax('maxHit', Math.round(dmg));
+    // 局后统计：按来源累计实际造成的伤害（不计溢出）
+    const src = opts.dot ? 'dot' : this.dmgSrc || 'other';
+    run.dmgBy[src] = (run.dmgBy[src] ?? 0) + Math.min(dmg, Math.max(0, e.hp + dmg));
     if (opts.crit) bump('crits');
     this.fx.number(e.x, e.y - e.radius, dmg, opts.color ?? '#ffffff', opts.crit);
     if (!opts.dot) {

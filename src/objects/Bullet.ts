@@ -25,6 +25,8 @@ export class Bullet extends Phaser.GameObjects.Image {
   // 敌方子弹
   slow = 0;
   spin = 0;
+  /** 伤害来源（武器 id 等），用于局后统计 */
+  src = '';
   debuffs: StatusApply[] | undefined;
   owner: Enemy | null = null;
   status: StatusApply[] | undefined; // 玩家子弹附带的状态
@@ -52,6 +54,7 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.returning = false;
     this.slow = 0;
     this.spin = 0;
+    this.src = '';
     this.debuffs = undefined;
     this.owner = null;
     this.status = undefined;

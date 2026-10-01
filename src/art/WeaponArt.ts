@@ -27,7 +27,57 @@ const metal = (ctx: Ctx, x: number, y: number, w: number, h: number, c = 0xc9d1d
   ctx.stroke();
 };
 
+/** 进化超武：基于原武器绘制，叠加专属色调、金色光晕与闪光 */
+const EVOLVED_ART: Record<string, [string, number]> = {
+  hell_trident: ['fork', 0xff4b3e],
+  titan_pin: ['rolling_pin', 0x8d99ae],
+  paoding_blade: ['knife', 0x4cc9f0],
+  dragon_cleaver: ['cleaver', 0x9d0208],
+  pea_gatling: ['pea_shooter', 0x38b000],
+  ketchup_flood: ['ketchup', 0xd00000],
+  devil_missile: ['chili_rocket', 0x6a040f],
+  thor_whisk: ['lightning_whisk', 0xffd60a],
+  vampire_garlic: ['garlic_aura', 0x7b2cbf],
+  blueberry_railgun: ['blueberry_sniper', 0x00b4d8],
+  golden_corn: ['corn_cannon', 0xffb703],
+  anise_storm: ['star_anise_shuriken', 0xb5179e],
+};
+
+function drawEvolved(ctx: Ctx, base: string, tint: number): void {
+  const c = document.createElement('canvas');
+  c.width = 128;
+  c.height = 64;
+  const o = c.getContext('2d')!;
+  drawWeapon(o, base);
+  o.globalCompositeOperation = 'source-atop';
+  o.fillStyle = rgb(tint, 0.4);
+  o.fillRect(0, 0, 128, 64);
+  ctx.save();
+  ctx.shadowColor = rgb(0xffd166, 1);
+  ctx.shadowBlur = 12;
+  ctx.drawImage(c, 0, 0);
+  ctx.restore();
+  ctx.drawImage(c, 0, 0);
+  // 四角星闪光
+  for (const [x, y, r] of [
+    [108, 12, 6],
+    [18, 52, 4],
+    [70, 6, 3.5],
+  ]) {
+    ctx.beginPath();
+    ctx.moveTo(x, y - r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.quadraticCurveTo(x, y, x, y + r);
+    ctx.quadraticCurveTo(x, y, x - r, y);
+    ctx.quadraticCurveTo(x, y, x, y - r);
+    ctx.fillStyle = rgb(0xfff3b0, 0.95);
+    ctx.fill();
+  }
+}
+
 export function drawWeapon(ctx: Ctx, id: string): void {
+  const evo = EVOLVED_ART[id];
+  if (evo) return drawEvolved(ctx, evo[0], evo[1]);
   const cy = 32;
   switch (id) {
     case 'fork':

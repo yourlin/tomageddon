@@ -1,7 +1,7 @@
 // 自动化平衡测试机器人 v2（开发用）
 // 用法：await import('/scripts/bot2.js'); runBatch(['tomato','carrot'], 2, 16)
 // 按角色流派：近战贴近敌人、远程保持距离；按流派评估道具/升级/武器价值
-const { CHARACTER_MAP, CHARACTERS, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, TIER_PRICE_MULT, sellPrice } = window.__dev;
+const { CHARACTER_MAP, CHARACTERS, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, TIER_PRICE_MULT, sellPrice, EVOLUTIONS } = window.__dev;
 
 function profile(charId) {
   const c = CHARACTER_MAP[charId];
@@ -57,6 +57,8 @@ function modsValue(mods, W) {
 
 function itemValue(it, P) {
   let v = modsValue(it.mods, P.W);
+  // 进化催化剂：持有对应的 T3+ 武器且还没有这件道具时价值很高
+  if (!run.items[it.id] && EVOLUTIONS.some((e) => e.item === it.id && run.weapons.some((w) => w.id === e.from && w.tier >= 2))) v += 25;
   if (it.special) v += [2, 5, 9, 16][it.rarity];
   return v;
 }
@@ -213,6 +215,12 @@ function move(P) {
 
 function shop(P) {
   const s = game.scene.getScene('Shop');
+  const evo = run.weapons.find((w) => run.canEvolve(w));
+  if (evo) {
+    run.evolve(evo.uid);
+    s.draw();
+    return;
+  }
   for (const o of run.shop)
     if (o.kind === 'weapon' && o.tier === 3 && !window.__econ.seen.has(o)) {
       window.__econ.seen.add(o);
@@ -329,6 +337,7 @@ function snapshot() {
     weapons: run.weapons.length,
     wTier: wt,
     forge: Math.max(0, ...run.weapons.map((w) => w.forge ?? 0)),
+    evolved: run.weapons.filter((w) => WEAPON_MAP[w.id].evolvedFrom).length,
     stats: Object.fromEntries(STAT_KEYS.map((k) => [k, Math.round(st[k] ?? 0)])),
   };
 }

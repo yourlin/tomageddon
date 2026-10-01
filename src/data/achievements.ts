@@ -10,6 +10,7 @@ import { GENERATED_ITEMS } from './itemGen';
 import { SKILL_TYPE_NAME } from './skills';
 import { DEBUFF_IDS } from './statuses';
 import { CHAPTERS } from './chapters';
+import { EVOLUTIONS } from './evolutions';
 import type { SkillType } from './characters';
 
 export type AchCategory =
@@ -307,6 +308,62 @@ const GLOBAL: AchievementDef[] = [
   K('win_hoarder', 'challenge', '🎒', ['满载而归', 'Loaded Up'], ['通关时持有 60 件道具', 'Clear holding 60 items'], 'winHoarder', [
     [1, 40],
   ]),
+  K('daily_runs', 'challenge', '🗓️', ['每日打卡', 'Daily Regular'], ['参加 {n} 次每日挑战', 'Play {n} daily challenge(s)'], 'dailyRuns', [
+    [1, 2],
+    [10, 8],
+    [50, 25],
+  ]),
+  K(
+    'daily_wins',
+    'challenge',
+    '🏆',
+    ['今日之星', 'Star of the Day'],
+    ['通关 {n} 次每日挑战', 'Clear {n} daily challenge(s)'],
+    'dailyWins',
+    [
+      [1, 5],
+      [10, 20],
+      [30, 50],
+    ],
+  ),
+  K(
+    'daily_streak',
+    'challenge',
+    '🔥',
+    ['风雨无阻', 'Rain or Shine'],
+    ['连续 {n} 天参加每日挑战', 'Play the daily challenge {n} days in a row'],
+    'dailyStreakBest',
+    [
+      [3, 5],
+      [7, 15],
+      [30, 60],
+    ],
+  ),
+  K(
+    'weekly_runs',
+    'challenge',
+    '♾️',
+    ['周末战士', 'Weekend Warrior'],
+    ['参加 {n} 次每周挑战', 'Play {n} weekly challenge(s)'],
+    'weeklyRuns',
+    [
+      [1, 3],
+      [10, 15],
+    ],
+  ),
+  K(
+    'weekly_best',
+    'challenge',
+    '🏔️',
+    ['本周之巅', 'Peak of the Week'],
+    ['每周挑战中完成第 {n} 波', 'Finish wave {n} in a weekly challenge'],
+    'weeklyBest',
+    [
+      [20, 5],
+      [30, 15],
+      [45, 40],
+    ],
+  ),
   // ---- 构筑 ----
   A('level', 'build', '📈', ['茁壮成长', 'Growth Spurt'], ['单局达到 {n} 级', 'Reach level {n} in a run'], 'runLevel', [
     [10, 2],
@@ -652,6 +709,30 @@ const PER_WEAPON: AchievementDef[] = WEAPONS.flatMap((w) => [
   ),
 ]);
 
+/** 武器进化：累计次数 + 每把超武的首次进化 */
+const PER_EVOLUTION: AchievementDef[] = [
+  K('evolutions', 'arsenal', '✨', ['进化论', 'Evolution Theory'], ['累计进化武器 {n} 次', 'Evolve weapons {n} time(s)'], 'evolutions', [
+    [1, 5],
+    [10, 20],
+    [50, 60],
+  ]),
+  ...EVOLUTIONS.map((e) =>
+    S(
+      K(
+        `evolve_${e.to.id}`,
+        'arsenal',
+        '🌟',
+        ['{x}诞生', '{x} Is Born'],
+        ['首次进化出「{x}」', 'Evolve {x} for the first time'],
+        `evolve:${e.to.id}`,
+        [[1, 20]],
+      ),
+      'weapon',
+      e.to.id,
+    ),
+  ),
+];
+
 /** 收藏：道具系列、武器套装、各稀有度购买 */
 const SERIES_IDS = [...new Set(GENERATED_ITEMS.map((i) => i.id.replace(/_\d+$/, '')))];
 const PER_COLLECTION: AchievementDef[] = [
@@ -918,6 +999,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   ...PER_MONSTER,
   ...PER_BOSS,
   ...PER_WEAPON,
+  ...PER_EVOLUTION,
   ...PER_COLLECTION,
   ...PER_SKILL,
   ...ENDLESS,

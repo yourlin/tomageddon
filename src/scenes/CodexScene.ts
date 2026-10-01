@@ -1,9 +1,10 @@
 // 图鉴：角色 / 武器 / 道具 / 怪物 / Boss
+import { EVOLVED_WEAPONS, EVOLUTION_OF } from '../data/evolutions';
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout } from '../ui/UI';
 import { CHARACTERS } from '../data/characters';
 import { WEAPONS, WEAPON_MAP } from '../data/weapons';
-import { ALL_ITEMS } from '../data/items';
+import { ALL_ITEMS, ITEM_MAP } from '../data/items';
 import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { portraitKey } from '../ui/Portrait';
@@ -111,7 +112,7 @@ export class CodexScene extends Phaser.Scene {
             : { key: portraitKey(this, 'char', c.id), name: '？？？', color: '#888888', lines: [unlockHint(c)] },
         );
       case 'weapon':
-        return WEAPONS.map((w) =>
+        return [...WEAPONS, ...EVOLVED_WEAPONS].map((w) =>
           L(
             'weapons',
             w.id,
@@ -124,10 +125,25 @@ export class CodexScene extends Phaser.Scene {
                 tx(`伤害 ${w.damage.join('/')}`, `Damage ${w.damage.join('/')}`),
                 tx(`冷却 ${w.cooldown.join('/')} 秒`, `Cooldown ${w.cooldown.join('/')}s`),
                 tx(`射程 ${w.range} · 暴击倍率 x${w.critMult}`, `Range ${w.range} · Crit multiplier x${w.critMult}`),
-                tx(`基础价格 ${w.price}`, `Base price ${w.price}`),
+                w.evolvedFrom
+                  ? tx(
+                      `✨ 进化：${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
+                      `✨ Evolution: ${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
+                    )
+                  : EVOLUTION_OF[w.id]
+                    ? tx(
+                        `T4 + ${ITEM_MAP[EVOLUTION_OF[w.id].item].name} 可进化为「${EVOLUTION_OF[w.id].to.name}」`,
+                        `T4 + ${ITEM_MAP[EVOLUTION_OF[w.id].item].name} evolves into ${EVOLUTION_OF[w.id].to.name}`,
+                      )
+                    : tx(`基础价格 ${w.price}`, `Base price ${w.price}`),
               ],
             },
-            tx('在商店中出现或获得后解锁', 'Unlocked after it appears in the shop or is obtained'),
+            w.evolvedFrom
+              ? tx(
+                  `进化获得：${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
+                  `Obtained by evolving ${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
+                )
+              : tx('在商店中出现或获得后解锁', 'Unlocked after it appears in the shop or is obtained'),
           ),
         );
       case 'item':

@@ -1,4 +1,5 @@
 // 波次间：升级属性选择 + 宝箱开启
+import { pickOf, shuffleWith } from '../systems/Rng';
 import { treeTotals } from '../systems/TalentTree';
 import { bump } from '../systems/Counters';
 import Phaser from 'phaser';
@@ -73,12 +74,13 @@ export class LevelUpScene extends Phaser.Scene {
     const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };
     const own = new Set([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
     const pool = LEVELUP_OPTIONS.filter((o) => !Object.values(CLASS_KEY).includes(o.key) || own.has(o.key));
-    const opts = Phaser.Utils.Array.Shuffle([...pool]).slice(0, n);
+    const R = run.rand(`lvl:${run.level}:${run.pendingLevelUps}:${this.rerolls}`);
+    const opts = shuffleWith([...pool], R).slice(0, n);
     const cw = Math.min(230, (W - 60) / n - 16),
       ch = 280;
     const x0 = W / 2 - (n * (cw + 16) - 16) / 2;
     opts.forEach((o, i) => {
-      const rar = pickRarity(run.wave, run.stats.luck);
+      const rar = pickRarity(run.wave, run.stats.luck, R);
       const v = o.values[rar];
       const x = x0 + i * (cw + 16),
         y = 140;
@@ -130,9 +132,10 @@ export class LevelUpScene extends Phaser.Scene {
     const W = this.scale.width,
       H = this.scale.height;
     const L = this.layer;
-    const rar = Math.min(3, pickRarity(run.wave, run.stats.luck + 20));
+    const R = run.rand(`crate:${run.wave}:${run.pendingCrates}`);
+    const rar = Math.min(3, pickRarity(run.wave, run.stats.luck + 20, R));
     const pool = ALL_ITEMS.filter((it) => it.rarity === rar && (!it.max || (run.items[it.id] ?? 0) < it.max));
-    const item: ItemDef = Phaser.Utils.Array.GetRandom(pool.length ? pool : ALL_ITEMS.filter((i) => i.rarity === 0));
+    const item: ItemDef = pickOf(pool.length ? pool : ALL_ITEMS.filter((i) => i.rarity === 0), R);
     this.options = [];
     this.crateItem = item;
     audio.play(this, 'buy');

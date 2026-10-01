@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { EVOLUTIONS } from './data/evolutions';
 import { BootScene } from './scenes/BootScene';
 import { MenuScene } from './scenes/MenuScene';
 import { CharSelectScene } from './scenes/CharSelectScene';
@@ -13,6 +14,9 @@ import { SettingsScene } from './scenes/SettingsScene';
 import { AchievementScene } from './scenes/AchievementScene';
 import { ChangelogScene } from './scenes/ChangelogScene';
 import { TalentTreeScene } from './scenes/TalentTreeScene';
+import { RunStatsScene } from './scenes/RunStatsScene';
+import { HistoryScene } from './scenes/HistoryScene';
+import { ChallengeScene } from './scenes/ChallengeScene';
 import { run } from './systems/RunState';
 import { controls } from './systems/Controls';
 import { CHARACTERS, CHARACTER_MAP } from './data/characters';
@@ -70,6 +74,9 @@ const game = new Phaser.Game({
     AchievementScene,
     ChangelogScene,
     TalentTreeScene,
+    RunStatsScene,
+    HistoryScene,
+    ChallengeScene,
   ],
 });
 
@@ -98,6 +105,7 @@ Object.assign(window, {
   controls,
   GameScene,
   __dev: {
+    EVOLUTIONS,
     CHARACTERS,
     CHARACTER_MAP,
     WEAPON_MAP,

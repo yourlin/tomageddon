@@ -4,8 +4,8 @@ import { WEAPON_MAP } from '../data/weapons';
 import Phaser from 'phaser';
 import { showcaseRig } from '../ui/Portrait';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
-import { run, clearRun } from '../systems/RunState';
-import { save, persist, isUnlocked } from '../systems/Save';
+import { run, clearRun, recordHistory } from '../systems/RunState';
+import { save, persist, isUnlocked, type RunRecord } from '../systems/Save';
 import { CHARACTERS } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import { audio } from '../systems/Audio';
@@ -14,11 +14,13 @@ import { checkAchievements, setInRun, missingRequirement, pointsBalance, charCos
 import { showSharePoster } from '../systems/SharePoster';
 
 export class ResultScene extends Phaser.Scene {
+  private record!: RunRecord;
+
   constructor() {
     super('Result');
   }
 
-  create(data: { win: boolean; counted?: boolean }): void {
+  create(data: { win: boolean; counted?: boolean; recorded?: boolean }): void {
     autoRelayout(this, data);
     const W = this.scale.width,
       H = this.scale.height;
@@ -48,6 +50,11 @@ export class ResultScene extends Phaser.Scene {
       if (run.wave === 1) bump('deathW1');
       persist();
     }
+    if (!data.recorded) {
+      data.recorded = true;
+      this.record = recordHistory(!!data.win);
+      persist();
+    } else this.record = save.history[0];
     checkAchievements();
     setInRun(false);
     const affordable = CHARACTERS.filter((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance());
@@ -89,6 +96,22 @@ export class ResultScene extends Phaser.Scene {
       { lineSpacing: 10 },
     );
     let y = 400;
+    const ch = this.record.challenge;
+    if (ch) {
+      const best = save.challenges[`${ch.kind}:${ch.key}`]?.best ?? ch.score;
+      text(
+        this,
+        W / 2,
+        y,
+        tx(
+          `${ch.kind === 'daily' ? '每日' : '每周'}挑战得分 ${ch.score}${ch.score >= best ? '（新纪录！）' : `（个人最佳 ${best}）`}`,
+          `${ch.kind === 'daily' ? 'Daily' : 'Weekly'} score ${ch.score}${ch.score >= best ? ' (new best!)' : ` (best ${best})`}`,
+        ),
+        24,
+        '#e0aaff',
+      ).setOrigin(0.5);
+      y += 36;
+    }
     if (data.win && run.chapterId < CHAPTERS.length) {
       text(
         this,
@@ -133,13 +156,25 @@ export class ResultScene extends Phaser.Scene {
       () => {
         save.charRuns[run.charId] = (save.charRuns[run.charId] ?? 0) + 1;
         persist();
-        run.start(run.charId, run.chapterId);
+        if (run.challenge) run.startChallenge(run.challenge);
+        else run.start(run.charId, run.chapterId, run.endless);
         this.scene.start('Game');
       },
       COLORS.primary,
       26,
     );
     button(this, W / 2, H - 110, 230, 68, tx('分享战绩', 'Share'), () => void showSharePoster(this, data.win), 0xb07d2b, 26);
+    button(
+      this,
+      W / 2 + 290,
+      90,
+      150,
+      48,
+      tx('📊 本局数据', '📊 Run stats'),
+      () => this.scene.launch('RunStats', { record: this.record }),
+      0x4a6fa5,
+      18,
+    );
     button(this, W / 2 + 260, H - 110, 230, 68, tx('返回菜单', 'Main Menu'), () => this.scene.start('Menu'), 0x555555, 26);
   }
 }

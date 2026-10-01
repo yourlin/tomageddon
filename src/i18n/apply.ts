@@ -1,4 +1,5 @@
 // 启动时按当前语言把英文覆盖表写回游戏数据（数据对象被各模块共享，写回后所有界面/文档自动使用英文）
+import { EVOLVED_WEAPONS } from '../data/evolutions';
 import { lang, type Lang } from './index';
 import { CHARACTERS } from '../data/characters';
 import { WEAPONS } from '../data/weapons';
@@ -31,7 +32,7 @@ export function applyLanguage(l: Lang = lang): void {
     c.skill.desc = e.skill.desc;
     c.talent = { ...e.talent };
   }
-  for (const w of WEAPONS) Object.assign(w, EN_WEAPONS[w.id] ?? {});
+  for (const w of [...WEAPONS, ...EVOLVED_WEAPONS]) Object.assign(w, EN_WEAPONS[w.id] ?? {});
   for (const it of ALL_ITEMS) it.nameZh ??= it.name;
   for (const it of ITEMS) Object.assign(it, EN_ITEMS[it.id] ?? {});
   for (const it of ALL_ITEMS) {

@@ -241,7 +241,8 @@ export class WeaponSystem {
       case 'boomerang': {
         const count = def.count?.[tier] ?? 1;
         const spread = Phaser.Math.DegToRad(def.spread ?? 0);
-        const key = g.textures.exists(`proj_${def.id}`) ? `proj_${def.id}` : (PROJ_KEY[def.id] ?? 'proj_player');
+        const pid = def.evolvedFrom ?? def.id;
+        const key = g.textures.exists(`proj_${pid}`) ? `proj_${pid}` : (PROJ_KEY[pid] ?? 'proj_player');
         const speed = def.projSpeed ?? 600;
         for (let k = 0; k < count; k++) {
           let ang = a;
@@ -255,6 +256,7 @@ export class WeaponSystem {
           b.effect = def.effect;
           b.lifeSteal = i.lifeSteal ?? 0;
           b.status = i.status;
+          b.src = def.id;
           b.pierce = def.pierce?.[tier] ?? 0;
           b.bounce = def.bounce?.[tier] ?? 0;
           if (def.kind === 'rocket') b.kind = 'rocket';

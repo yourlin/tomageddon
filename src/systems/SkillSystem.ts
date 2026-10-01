@@ -148,7 +148,7 @@ export class SkillSystem {
     p.play('cast', true);
     castFx(g, sk, sk.type === 'buff' || sk.type === 'ghost' ? this.dur(sk.duration ?? 3) : 0, Math.atan2(g.moveY || 0.0001, g.moveX || 1));
     const status = this.statuses(sk.status);
-    const info: HitInfo = { dmg: this.damage(s), crit: false, knockback: 30, lifeSteal: 0, status };
+    const info: HitInfo = { dmg: this.damage(s), crit: false, knockback: 30, lifeSteal: 0, status, weaponId: 'skill' };
     if (sk.selfStatus) g.applyPlayerStatus(this.statuses(sk.selfStatus));
     if (sk.xp) run.addXp(sk.xp);
 

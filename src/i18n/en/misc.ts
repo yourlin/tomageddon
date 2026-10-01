@@ -2,6 +2,19 @@
 import type { ChaptersEn, StatsEn, StatusesEn, WeaponsEn, WeaponTagsEn } from '../types';
 
 export const EN_WEAPONS: WeaponsEn = {
+  // ---- 进化超武 ----
+  hell_trident: { name: 'Hell Trident', desc: 'A trident soaked in hot sauce — it sets whatever it pierces ablaze.' },
+  titan_pin: { name: 'Titan Pin', desc: 'Weighted with an iron wok; every sweep stuns a crowd.' },
+  paoding_blade: { name: 'Master Chef Blade', desc: 'Cuts through effortlessly — every slice is lethal.' },
+  dragon_cleaver: { name: 'Dragon Cleaver', desc: 'Forged from a whole knife set; it cleaves through anything.' },
+  pea_gatling: { name: 'Pea Gatling', desc: 'A whole sack of peas, fired nonstop.' },
+  ketchup_flood: { name: 'Ketchup Flood', desc: 'An endless torrent of ketchup that drowns everything.' },
+  devil_missile: { name: 'Devil Pepper Missile', desc: 'Off the heat scale — double the blast radius.' },
+  thor_whisk: { name: 'Thunder Whisk', desc: 'Tesla-charged lightning that keeps jumping through the horde.' },
+  vampire_garlic: { name: 'Vampire Garlic', desc: 'Even vampires love garlic now: the aura drains life.' },
+  blueberry_railgun: { name: 'Blueberry Railgun', desc: 'Magnetically accelerated blueberries pierce whole lines of enemies.' },
+  golden_corn: { name: 'Golden Popcorn Cannon', desc: 'Golden popcorn that bursts in every direction.' },
+  anise_storm: { name: 'Anise Storm', desc: 'Feather-light star anise that never stops bouncing.' },
   fork: { name: 'Tomato Fork', desc: 'A humble three-pronged fork. Thrusts forward.' },
   rolling_pin: { name: 'Rolling Pin', desc: 'Sweeps a wide area and knocks enemies back.' },
   knife: { name: "Chef's Knife", desc: 'Fast thrusts with high crit.' },

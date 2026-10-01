@@ -115,9 +115,9 @@ export function weaponTierWeights(wave: number, luck: number, t4Mult = 1): numbe
   return [Math.max(0, 1 - t2 - t3 - t4), t2, t3, t4];
 }
 
-export function pickWeaponTier(wave: number, luck: number, t4Mult = 1): number {
+export function pickWeaponTier(wave: number, luck: number, t4Mult = 1, rnd: () => number = Math.random): number {
   const w = weaponTierWeights(wave, luck, t4Mult);
-  let r = Math.random();
+  let r = rnd();
   for (let i = 3; i >= 1; i--) {
     if (r < w[i]) return i;
     r -= w[i];
@@ -155,9 +155,9 @@ export function rarityWeights(wave: number, luck: number): number[] {
   return [common, rare, epic, legend];
 }
 
-export function pickRarity(wave: number, luck: number): number {
+export function pickRarity(wave: number, luck: number, rnd: () => number = Math.random): number {
   const w = rarityWeights(wave, luck);
-  let r = Math.random();
+  let r = rnd();
   for (let i = 3; i >= 1; i--) {
     if (r < w[i]) return i;
     r -= w[i];

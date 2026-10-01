@@ -37,6 +37,31 @@ export interface SaveData {
   counters: Record<string, number>;
   /** 天赋树：节点 id → 等级 */
   talents: Record<string, number>;
+  /** 最近的对局记录（新的在前，最多 30 条） */
+  history: RunRecord[];
+  /** 挑战成绩：`daily:2026-10-01` → 个人最佳 */
+  challenges: Record<string, { best: number; bestWave: number; attempts: number; won: boolean }>;
+}
+
+/** 一局的战绩摘要（战绩页与局后数据页使用） */
+export interface RunRecord {
+  t: number;
+  charId: string;
+  chapterId: number;
+  endless: boolean;
+  /** 挑战模式：daily / weekly + 日期键 */
+  challenge?: { kind: 'daily' | 'weekly'; key: string; score: number };
+  win: boolean;
+  wave: number;
+  level: number;
+  kills: number;
+  sec: number;
+  weapons: { id: string; tier: number; forge?: number }[];
+  items: number;
+  /** 伤害来源 → 伤害（只保留前 10） */
+  dmg: [string, number][];
+  /** 每波收入 */
+  income: number[];
 }
 
 export interface AchStats {
@@ -67,6 +92,8 @@ const DEFAULT: SaveData = {
   stats: { eliteKills: 0, bossKills: 0, overtimeWins: 0, perfectWaves: 0, revives: 0, t4Crafted: 0, seedsEarned: 0 },
   counters: {},
   talents: {},
+  history: [],
+  challenges: {},
 };
 
 /** 旧存档迁移：改为成就点购买前，玩过或通关过的角色保留使用权 */
@@ -94,6 +121,8 @@ function load(): SaveData {
       stats: { ...DEFAULT.stats, ...(d.stats ?? {}) },
       counters: { ...(d.counters ?? {}) },
       talents: { ...(d.talents ?? {}) },
+      history: Array.isArray(d.history) ? d.history : [],
+      challenges: { ...(d.challenges ?? {}) },
     };
   } catch {
     return structuredClone(DEFAULT);
