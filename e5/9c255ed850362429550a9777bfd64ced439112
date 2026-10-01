@@ -1,0 +1,144 @@
+docs/CHARACTERS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,61-89,178,195,212,229,246,263,280,297,314,331,348,365,382,399,416,433,450,467,484,501,518,535,552,569,586,603,620,637,654,658
+src/scenes/MenuScene.ts
+  s_b200a2907eaa8e::t_2b88cdd11f1457 2,163-171
+docs/DATA_TABLES.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,37-65,950
+src/scenes/ShopScene.ts
+  s_b200a2907eaa8e::t_ab11b4a2a1a9de 2,329-330
+  s_b200a2907eaa8e::t_2b88cdd11f1457 11-21
+  s_b200a2907eaa8e::t_4b466c65c31a1c 119,121
+docs/TALENTS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 1-195
+docs/WEAPONS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,1216
+src/systems/SkillSystem.ts
+  s_b200a2907eaa8e::t_8ee14cabb4b035 17
+  s_b200a2907eaa8e::t_ab11b4a2a1a9de 3,137-144
+docs/ITEMS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,1062
+src/data/achievements.ts
+  s_b200a2907eaa8e::t_da9b93958c2824 28,820-914,923,974
+  s_b200a2907eaa8e::t_b02d561be8f17c 83-84,926-958
+docs/en/ACHIEVEMENTS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 1,5,9,27,41-69,541-547,549,551-589,668
+  s_b200a2907eaa8e::t_576a039d745fb7 77,79,190-196,231-237,245,248,252,536-539,548,550
+  s_b200a2907eaa8e::t_5d7eba2a209649 540
+docs/en/MONSTERS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,2328
+docs/GDD.md
+  s_b200a2907eaa8e::t_6b57a289ade745 119,202-220
+  s_b200a2907eaa8e::t_8297a8617aab2c 221
+src/data/talentTree.ts
+  s_b200a2907eaa8e::t_f0292b79e97cb0 1-159,168-169,190-200,231-241,262-271,273-296,317-332,341,352-373,384-392,403-405,416-485,494,505-526,537-545,556-558,579-580,601-612,623-638,647,658-691,712-713,724-735,756-771,780,791-866,877-888,899-914,923-1011,1032-1050
+  s_b200a2907eaa8e::t_b02d561be8f17c 272
+  s_b200a2907eaa8e::t_2b88cdd11f1457 160-167,170-189,201-230,242-261,297-316,333-340,342-351,374-383,393-402,406-415,486-493,495-504,527-536,546-555,559-578,581-600,613-622,639-646,648-657,692-711,714-723,736-755,772-779,781-790,867-876,889-898,915-922,1012-1031
+scripts/docs/pages-c.ts
+  s_b200a2907eaa8e::t_f3cd3ac1de31ce 22-23
+  s_b200a2907eaa8e::t_b6f850220e903d 9-11,100-143
+  s_b200a2907eaa8e::t_dcbe7f6c55f039 144-146
+docs/en/ITEMS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,1062
+src/data/changelog.ts
+  s_b200a2907eaa8e::t_576a039d745fb7 13-38
+  s_b200a2907eaa8e::t_13b8ac6f08c2b1 12
+README.en.md
+  s_b200a2907eaa8e::t_17c1fdeeb13367 49-50,89-91
+  s_b200a2907eaa8e::t_b3d27bdac57c41 108
+package.json
+  s_b200a2907eaa8e::t_576a039d745fb7 3
+src/scenes/CharSelectScene.ts
+  s_b200a2907eaa8e::t_57c1ed875c16f3 2,34-36,126-134,140-147,251-252,260,264-274,298-299
+  s_b200a2907eaa8e::t_2b88cdd11f1457 135-139,253-259
+src/scenes/ResultScene.ts
+  s_b200a2907eaa8e::t_4b466c65c31a1c 2,46,60-64,68,77-79
+src/systems/Achievements.ts
+  s_b200a2907eaa8e::t_f3cd3ac1de31ce 220,223
+README.md
+  s_b200a2907eaa8e::t_fbfc98a969bc6a 49-50,89-91,108
+docs/en/CHANGELOG.md
+  s_b200a2907eaa8e::t_576a039d745fb7 13,17-28
+  s_b200a2907eaa8e::t_b6f850220e903d 5,64
+  s_b200a2907eaa8e::t_091c507ed455fb 29
+docs/en/TALENTS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 1-195
+docs/en/CHARACTERS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,61-89,178,195,212,229,246,263,280,297,314,331,348,365,382,399,416,433,450,467,484,501,518,535,552,569,586,603,620,637,654,658
+src/scenes/TalentTreeScene.ts
+  s_b200a2907eaa8e::t_2b88cdd11f1457 188-190,240-245,284-294,332-333,373-375,449-457,466-469
+  s_b200a2907eaa8e::t_f79ccb436910e1 235,302,304-309
+  s_b200a2907eaa8e::t_34ff97e332b530 1-187,191-234,236-239,246-283,295-301,303,310-331,334-372,376-448,458-465,470-509
+docs/en/SKILLS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,691
+src/systems/RunState.ts
+  s_b200a2907eaa8e::t_ab11b4a2a1a9de 2,140,154,234
+  s_b200a2907eaa8e::t_d60e52605fc9e1 11,91-92,354,357-369,401,410,445
+  s_b200a2907eaa8e::t_4b466c65c31a1c 112-113
+src/scenes/LevelUpScene.ts
+  s_b200a2907eaa8e::t_ab11b4a2a1a9de 2,70
+docs/CHANGELOG.md
+  s_b200a2907eaa8e::t_576a039d745fb7 13,17-28
+  s_b200a2907eaa8e::t_b6f850220e903d 5,64
+  s_b200a2907eaa8e::t_9fa33c6aeec027 29
+scripts/docs/common.ts
+  s_b200a2907eaa8e::t_b6f850220e903d 26
+docs/SKILLS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,691
+docs/en/DATA_TABLES.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,37-65,950
+src/data/balance.ts
+  s_b200a2907eaa8e::t_d60e52605fc9e1 8-9,26-29,34,36,68,73,104-106
+  s_b200a2907eaa8e::t_2b88cdd11f1457 30-33
+src/scenes/HudScene.ts
+  s_b200a2907eaa8e::t_4b466c65c31a1c 199-200
+docs/en/WEAPONS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,1216
+docs/MONSTERS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,2328
+docs/en/GDD.md
+  s_b200a2907eaa8e::t_6b57a289ade745 118,201-219
+  s_b200a2907eaa8e::t_828f844a09fa36 220
+src/systems/TalentTree.ts
+  s_b200a2907eaa8e::t_0f066353c56c15 1-141
+docs/ACHIEVEMENTS.md
+  s_b200a2907eaa8e::t_576a039d745fb7 77,79,190-196,231-237,245,248,252,536-539,548,550
+  s_b200a2907eaa8e::t_b6f850220e903d 1,5,9,27,41-69,541-547,549,551-589,668
+  s_b200a2907eaa8e::t_208dfd154ea774 540
+src/systems/Save.ts
+  s_b200a2907eaa8e::t_ab11b4a2a1a9de 38-39,69,96
+src/main.ts
+  s_b200a2907eaa8e::t_2b88cdd11f1457 15,72
+scripts/bot2.js
+  s_b200a2907eaa8e::t_850abeea6dfe9d 97-98,104,117
+src/scenes/GameScene.ts
+  s_b200a2907eaa8e::t_2b88cdd11f1457 796-798
+  s_b200a2907eaa8e::t_4b466c65c31a1c 258-261,669,799-801,853-859,874,1188
+  s_b200a2907eaa8e::t_ab11b4a2a1a9de 2,542,914-934,1136-1140,1142-1146,1172-1173
+  s_b200a2907eaa8e::t_4de6e9bdcf17f0 18-19
+docs/en/CHAPTERS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,248
+docs/CHAPTERS.md
+  s_b200a2907eaa8e::t_b6f850220e903d 5,248
+src/scenes/AchievementScene.ts
+  s_b200a2907eaa8e::t_f3cd3ac1de31ce 158-159
+scripts/gen-docs.ts
+  s_b200a2907eaa8e::t_b6f850220e903d 2,9,22
+package-lock.json
+  s_b200a2907eaa8e::t_ae910816d26abb 3,9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e59c255ed850362429550a9777bfd64ced439112",
+  "prompts": {},
+  "sessions": {
+    "s_b200a2907eaa8e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "63daa427-e0ca-495b-9b74-3a8023276d84",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
