@@ -159,6 +159,7 @@ npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [-
 npm run promo:overlays   # QR code, title, captions and end card overlays (Chinese and English)
 npm run promo:record     # headless Chrome plays the game from a script and records each clip (both UIs) plus the music
 npm run promo:edit       # beat-synced ffmpeg edit → promo/tomageddon-promo.mp4 and -en.mp4
+npm run promo:publish    # transcode to public/promo/*.webm and grab the README poster from the title frame
 ```
 
 Footage and renders live in `promo/` (not committed); the cover image at the top of each README links to the WebM version in `public/promo/`, served by GitHub Pages (GitHub strips `<video>` tags from READMEs, so the cover links to the video instead).

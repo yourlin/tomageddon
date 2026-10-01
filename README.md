@@ -159,6 +159,7 @@ npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [-
 npm run promo:overlays   # 生成二维码、标题、字幕与片尾叠加层（中英两套）
 npm run promo:record     # 无头 Chrome 按脚本操作游戏并录制各段素材（中英界面各一套）与配乐
 npm run promo:edit       # ffmpeg 卡点剪辑，输出 promo/tomageddon-promo.mp4 与 -en.mp4
+npm run promo:publish    # 转码为 public/promo/*.webm，并从标题帧截取 README 封面图
 ```
 
 素材与成片在 `promo/`（不提交）；README 顶部的封面图链接到 `public/promo/` 中的 WebM 版本（随 GitHub Pages 发布；GitHub 会过滤 README 里的 `<video>` 标签，因此用封面图跳转播放）。
