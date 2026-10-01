@@ -5,6 +5,8 @@ export const BALANCE = {
   arena: { width: 1920, height: 1200, margin: 40 },
   player: { baseSpeed: 230, radius: 22, iframes: 0.5, dodgeCap: 60, maxWeapons: 6 },
   waves: { count: 15, eliteWaves: [5, 10], bossWave: 15 },
+  /** 无尽模式：第 15 波之后每波生命 ×hp、伤害 ×dmg（复利），保证终会结束 */
+  endless: { hp: 1.1, dmg: 1.06 },
   pickup: { baseRadius: 110, magnetSpeed: 700 },
   maxEnemies: 260,
   harvestGrowth: 0.05,
@@ -21,8 +23,17 @@ export const BALANCE = {
 };
 
 /** 波次时长（秒）：20, 25, 30 ... 最多 60；Boss 波 90 秒 */
+/** 每 15 波一轮：第 5 / 10 波精英，第 15 波 Boss（无尽模式循环） */
+export const isBossWaveNo = (wave: number): boolean => wave % BALANCE.waves.bossWave === 0;
+export const isEliteWaveNo = (wave: number): boolean => BALANCE.waves.eliteWaves.includes(((wave - 1) % BALANCE.waves.bossWave) + 1);
+/** 无尽模式超过第 15 波后的复利倍率 */
+export const endlessHp = (wave: number): number =>
+  wave > BALANCE.waves.count ? Math.pow(BALANCE.endless.hp, wave - BALANCE.waves.count) : 1;
+export const endlessDmg = (wave: number): number =>
+  wave > BALANCE.waves.count ? Math.pow(BALANCE.endless.dmg, wave - BALANCE.waves.count) : 1;
+
 export function waveDuration(wave: number): number {
-  if (wave === BALANCE.waves.bossWave) return 90;
+  if (isBossWaveNo(wave)) return 90;
   return Math.min(20 + (wave - 1) * 5, 60);
 }
 
@@ -54,12 +65,12 @@ export function chapterScale(mult: number, wave: number): number {
 /** 敌人血量：随波次次线性增长（w^0.9，先快后慢），与玩家越往后越慢的成长相匹配；章节难度由章节倍率体现 */
 export function enemyHp(base: number, growth: number, wave: number, chapterMult: number): number {
   const w = wave - 1;
-  return Math.round(base * (1 + growth * Math.pow(w, 0.9)) * chapterScale(chapterMult, wave));
+  return Math.round(base * (1 + growth * Math.pow(w, 0.9)) * chapterScale(chapterMult, wave) * endlessHp(wave));
 }
 
 export function enemyDamage(base: number, growth: number, wave: number, chapterMult: number): number {
   const w = wave - 1;
-  return Math.max(1, Math.round((base + growth * (0.5 * w + 0.035 * w * w)) * 1.15 * chapterScale(chapterMult, wave)));
+  return Math.max(1, Math.round((base + growth * (0.5 * w + 0.035 * w * w)) * 1.15 * chapterScale(chapterMult, wave) * endlessDmg(wave)));
 }
 
 /** 刷怪节奏：每波的刷新间隔（秒）与每批数量 */
@@ -90,7 +101,9 @@ export function incomeTarget(wave: number): number {
 export function seedValue(wave: number): number {
   const w = Math.min(wave, 14);
   const calib = wave === 1 ? 2.5 : wave === 2 ? 1 : BALANCE.income.calib;
-  return (incomeTarget(w) / expectedSpawns(w)) * calib;
+  // 无尽模式：收入跟着商店涨价走
+  const endless = wave > 14 ? priceInflation(wave) / priceInflation(14) : 1;
+  return (incomeTarget(w) / expectedSpawns(w)) * calib * endless;
 }
 
 /** 商店武器品质权重 [T1, T2, T3, T4]：受波次、幸运与章节 T4 系数影响 */

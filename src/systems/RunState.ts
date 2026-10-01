@@ -1,4 +1,5 @@
 // 一局游戏的状态：角色、武器、道具、属性、经验、番茄籽
+import { treeTotals } from './TalentTree';
 import { bump } from './Counters';
 import { BASE_STATS, addMods, type Stats, type StatMods } from '../data/stats';
 import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
@@ -7,7 +8,7 @@ import { ITEM_MAP, type ItemSpecial } from '../data/items';
 import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
-import { BALANCE, xpToNext } from '../data/balance';
+import { BALANCE, xpToNext, isBossWaveNo, isEliteWaveNo } from '../data/balance';
 import { markSeen, save } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
@@ -87,6 +88,8 @@ export class RunState {
   bonusXp = 0;
   harvestBonus = 0; // 收获随波次成长的累计值
   bossId = ''; // 本局 Boss
+  /** 无尽模式：不限波数，每 15 波一轮 */
+  endless = false;
   /** 调试：每波各来源番茄籽收入 */
   income: Record<number, Record<string, number>> = {};
   earn(v: number, src: string): void {
@@ -106,7 +109,8 @@ export class RunState {
     return CHAPTERS[this.chapterId - 1];
   }
 
-  start(charId: string, chapterId: number): void {
+  start(charId: string, chapterId: number, endless = false): void {
+    this.endless = endless;
     this.achPoints = 0;
     this.bonusSeeds = 0;
     this.bonusXp = 0;
@@ -133,6 +137,7 @@ export class RunState {
     this.bossId = bp[Math.floor(Math.random() * bp.length)].id;
     this.weapons = this.char.startWeapons.map((id) => ({ uid: uidSeq++, id, tier: 0 }));
     for (const id of this.char.startWeapons) markSeen('weapons', id);
+    this.seeds = treeTotals().startSeeds;
     this.dirty();
     this.hp = this.stats.maxHp;
   }
@@ -146,6 +151,7 @@ export class RunState {
     if (this.cache) return this.cache;
     const s: Stats = { ...BASE_STATS };
     addMods(s, this.char.mods);
+    addMods(s, treeTotals().mods);
     addMods(s, this.levelMods);
     s.harvest += this.harvestBonus;
     for (const [id, n] of Object.entries(this.items)) addMods(s, ITEM_MAP[id].mods, n);
@@ -225,6 +231,7 @@ export class RunState {
       if (x.cleanseEvery) sp.cleanseEvery = sp.cleanseEvery ? Math.min(sp.cleanseEvery, x.cleanseEvery) : x.cleanseEvery;
     };
     apply(this.char.special, 1);
+    for (const [x, r] of treeTotals().specials) apply(x, r);
     for (const [id, n] of Object.entries(this.items)) apply(ITEM_MAP[id].special, n);
     sp.shopDiscount = Math.min(50, sp.shopDiscount);
     sp.doubleSeed = Math.min(40, sp.doubleSeed);
@@ -344,10 +351,22 @@ export class RunState {
   }
 
   isBossWave(): boolean {
-    return this.wave === BALANCE.waves.bossWave;
+    return this.endless ? isBossWaveNo(this.wave) : this.wave === BALANCE.waves.bossWave;
   }
   isEliteWave(): boolean {
-    return BALANCE.waves.eliteWaves.includes(this.wave);
+    return this.endless ? isEliteWaveNo(this.wave) : BALANCE.waves.eliteWaves.includes(this.wave);
+  }
+  /** 本波精英：第一轮用开局抽好的两名，无尽模式之后每次重新抽 */
+  eliteForWave(): string {
+    if (this.wave <= BALANCE.waves.count) return this.eliteIds[this.wave === BALANCE.waves.eliteWaves[0] ? 0 : 1];
+    const pool = elitePool(this.chapterId);
+    return pool[Math.floor(Math.random() * pool.length)].id;
+  }
+  /** 本波 Boss：第一轮用开局抽好的，无尽模式第 30 波起从全部章节的 Boss 里抽 */
+  bossForWave(): string {
+    if (this.wave <= BALANCE.waves.count) return this.bossId;
+    const pool = this.wave >= 30 ? CHAPTERS.flatMap((c) => bossPool(c.id)) : bossPool(this.chapterId);
+    return pool[Math.floor(Math.random() * pool.length)].id;
   }
 }
 
@@ -379,6 +398,7 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       bonusXp: run.bonusXp,
       bossId: run.bossId,
       eliteIds: run.eliteIds,
+      endless: run.endless,
       savedAt: Date.now(),
     };
     localStorage.setItem(RUN_KEY, JSON.stringify(d));
@@ -387,7 +407,7 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
   }
 }
 
-export function hasSavedRun(): { charId: string; chapterId: number; wave: number; phase?: 'shop' | 'wave' } | null {
+export function hasSavedRun(): { charId: string; chapterId: number; wave: number; phase?: 'shop' | 'wave'; endless?: boolean } | null {
   try {
     const raw = localStorage.getItem(RUN_KEY);
     if (!raw) return null;
@@ -422,6 +442,7 @@ export function loadRun(): boolean {
     bonusXp: d.bonusXp ?? 0,
     bossId: d.bossId,
     eliteIds: d.eliteIds,
+    endless: !!d.endless,
     rerolls: 0,
     income: {},
   });

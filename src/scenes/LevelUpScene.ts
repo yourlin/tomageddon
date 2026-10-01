@@ -1,4 +1,5 @@
 // 波次间：升级属性选择 + 宝箱开启
+import { treeTotals } from '../systems/TalentTree';
 import { bump } from '../systems/Counters';
 import Phaser from 'phaser';
 import { describeItem } from '../data/describe';
@@ -66,7 +67,7 @@ export class LevelUpScene extends Phaser.Scene {
         COLORS.textDim,
       ).setOrigin(0.5),
     );
-    const n = run.char.levelUpChoices ?? BALANCE.levelUpChoices;
+    const n = (run.char.levelUpChoices ?? BALANCE.levelUpChoices) + treeTotals().levelChoices;
     // 只提供当前武器涉及的流派伤害选项（否则 4 种流派会把有用选项稀释掉）
     const cls = new Set(run.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => (d.kind === 'aura' ? 'aura' : d.cls)));
     const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };

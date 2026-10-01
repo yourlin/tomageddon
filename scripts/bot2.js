@@ -94,11 +94,14 @@ export function startBot2(charId, ch, speed = 16) {
   window.__log = [];
   window.__econ = { spent: 0, reroll: 0, rerolls: 0, t4Seen: 0, t4Bought: 0, seen: new WeakSet() };
   let lastFrame = -1;
+  // scene.stop 要到下一帧才生效：先确认新的一局开始了，再认结算画面（否则会误读上一局的结算）
+  let sawGame = false;
   window.__bot = setInterval(() => {
     // 每个渲染帧最多操作一次（高倍速时一帧可能超过 30ms，避免重复点击）
     if (game.loop.frame === lastFrame) return;
     lastFrame = game.loop.frame;
     const act = game.scene.getScenes(true).map((s) => s.scene.key);
+    if (act.includes('Game')) sawGame = true;
     if (act.includes('LevelUp')) {
       const s = game.scene.getScene('LevelUp');
       if (s.options.length) {
@@ -111,7 +114,7 @@ export function startBot2(charId, ch, speed = 16) {
         if (b) b.emit('pointerup');
       }
     } else if (act.includes('Shop')) shop(P);
-    else if (act.includes('Result')) {
+    else if (sawGame && act.includes('Result')) {
       const r = game.scene.getScene('Result');
       const win = r.children.list.some((o) => o.type === 'Text' && o.text.includes('通关'));
       clearInterval(window.__bot);

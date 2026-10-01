@@ -10,6 +10,33 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.2.0',
+    date: '2026-10-01',
+    highlight: ['全新天赋树与无尽模式上线，成就扩充到 847 项', 'New talent tree and Endless mode, plus 847 achievements'],
+    items: [
+      [
+        '天赋树：6 个专精方向、81 个天赋，像地图一样从核心向外延展；完成里程碑成就获得天赋点，强化开局属性或获得特殊能力（闪避掷飞刀、施法回血、斩杀、复活……），随时免费重置',
+        'Talent tree: 6 branches and 81 talents laid out like maps around a core; milestone achievements grant points to boost starting stats or unlock abilities (knives on dodge, healing on cast, executes, a revive…), with free resets any time',
+      ],
+      [
+        '无尽模式：通关某章后可开启，不限波数，每 15 波一轮精英与 Boss，怪物越来越强，看你能坚持到第几波',
+        'Endless mode: unlocked per chapter after clearing it — no wave limit, elites and a boss every 15 waves, ever-stronger monsters',
+      ],
+      [
+        '成就扩充到 847 项：每种怪物、武器、道具系列、技能、状态、章节、挑战、无尽模式与每名角色都有成就；越难的成就奖励越多',
+        '847 achievements covering every monster, weapon, item series, skill, status, chapter, challenge, Endless and each character — harder goals pay more',
+      ],
+      [
+        '角色价格按新的成就点总量调整，首次通关第 1 章就能买下第一名新角色',
+        'Character prices rescaled to the new point total — your first Chapter 1 clear buys your first new character',
+      ],
+      [
+        '成就页新增分类、只看未完成与快速翻页；一次解锁很多成就时合并提示',
+        'Achievements screen: more categories, an unfinished-only filter and quick paging; bursts of unlocks are grouped',
+      ],
+    ],
+  },
+  {
     version: '1.1.0',
     date: '2026-09-30',
     highlight: [

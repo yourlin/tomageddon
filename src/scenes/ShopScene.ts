@@ -1,4 +1,5 @@
 // 商店：购买武器/道具、合成、出售、刷新、锁定
+import { treeTotals } from '../systems/TalentTree';
 import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
 import { describeItem } from '../data/describe';
@@ -7,7 +8,17 @@ import { run, saveRun, type ShopOffer, type OwnedWeapon } from '../systems/RunSt
 import { WEAPONS, WEAPON_MAP, TIER_PRICE_MULT, TIER_NAMES, WEAPON_SETS } from '../data/weapons';
 import { ALL_ITEMS, ITEM_MAP } from '../data/items';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
-import { BALANCE, RARITY, pickRarity, rerollPrice, pickWeaponTier, shopPrice, sellPrice } from '../data/balance';
+import {
+  BALANCE,
+  RARITY,
+  pickRarity,
+  rerollPrice,
+  pickWeaponTier,
+  shopPrice,
+  sellPrice,
+  isBossWaveNo,
+  isEliteWaveNo,
+} from '../data/balance';
 import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
 import { text, button, panel, COLORS, fitImage, hitArea, toast, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
@@ -105,9 +116,9 @@ export class ShopScene extends Phaser.Scene {
         130,
         30,
         tx(`第 ${run.wave} 波完成 · 即将进入第 ${run.wave + 1} 波`, `Wave ${run.wave} complete · next: wave ${run.wave + 1}`) +
-          (run.wave + 1 === BALANCE.waves.bossWave
+          ((run.endless ? isBossWaveNo(run.wave + 1) : run.wave + 1 === BALANCE.waves.bossWave)
             ? tx('（BOSS）', ' (BOSS)')
-            : BALANCE.waves.eliteWaves.includes(run.wave + 1)
+            : (run.endless ? isEliteWaveNo(run.wave + 1) : BALANCE.waves.eliteWaves.includes(run.wave + 1))
               ? tx('（精英）', ' (Elite)')
               : ''),
         20,
@@ -315,7 +326,8 @@ export class ShopScene extends Phaser.Scene {
 
   /** 刷新价格：随章节与波次上涨；当前货架每买走一件，价格 ×0.75 */
   private rerollCost(): number {
-    if (freeFirstReroll(run.charId) && run.rerolls === 0) return 0;
+    const free = (freeFirstReroll(run.charId) ? 1 : 0) + treeTotals().freeRerolls;
+    if (run.rerolls < free) return 0;
     const bought = run.shop.filter((x) => x.sold).length;
     return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * Math.pow(0.75, bought)));
   }

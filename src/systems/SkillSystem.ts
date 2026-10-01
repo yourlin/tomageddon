@@ -1,5 +1,6 @@
 // 角色主动技能（大招）
 // 伤害 = 当前武器平均单次伤害 × 系数 ×（1+技能伤害%）；范围受射程与技能范围影响；持续时间受技能持续影响
+import { treeTotals } from './TalentTree';
 import { bump } from './Counters';
 import Phaser from 'phaser';
 import type { GameScene, HitInfo } from '../scenes/GameScene';
@@ -13,6 +14,7 @@ import { Rig } from '../objects/Rig';
 import { weaponDamage } from './WeaponSystem';
 import { WEAPON_MAP } from '../data/weapons';
 import { castFx, drainLines } from './SkillFx';
+import { tx } from '../i18n';
 
 interface Field {
   x: number;
@@ -132,6 +134,14 @@ export class SkillSystem {
     const s = g.stats;
     const p = g.player;
     this.cd = this.maxCd;
+    // 天赋：施法回复、施法增益、回响（立刻冷却完毕）
+    const tt = treeTotals();
+    if (tt.castHeal) g.heal(Math.max(1, Math.round((g.stats.maxHp * tt.castHeal) / 100)));
+    if (tt.castSelf.length) g.applyPlayerStatus(tt.castSelf);
+    if (tt.skillEcho && Math.random() * 100 < tt.skillEcho) {
+      this.cd = Math.min(this.cd, 0.4);
+      g.fx.label(p.x, p.y - 40, tx('回响！', 'Echo!'), '#b46bff');
+    }
     bump('casts');
     bump(`cast:${sk.type}`);
     audio.play(g, 'skill');

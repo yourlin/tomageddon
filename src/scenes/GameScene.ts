@@ -1,4 +1,5 @@
 // 核心战斗场景：固定竞技场，玩家移动躲避，武器自动攻击
+import { treeTotals } from '../systems/TalentTree';
 import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
 import { run } from '../systems/RunState';
@@ -14,6 +15,8 @@ import {
   fruitDropChance,
   crateDropChance,
   chapterScale,
+  endlessHp,
+  endlessDmg,
 } from '../data/balance';
 import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
@@ -252,7 +255,10 @@ export class GameScene extends Phaser.Scene {
 
     this.timeLeft = waveDuration(run.wave);
     this.spawnT = 0.5;
-    if (run.isBossWave()) this.time.delayedCall(800, () => this.queueSpawn(run.bossId, true));
+    if (run.isBossWave()) {
+      const bossId = run.bossForWave();
+      this.time.delayedCall(800, () => this.queueSpawn(bossId, true));
+    }
 
     if (!HEADLESS_MODE) {
       this.scene.launch('Hud');
@@ -533,6 +539,7 @@ export class GameScene extends Phaser.Scene {
       this.iframes = 0.15;
       this.applyPlayerStatus(sp.onDodgeSelf);
       this.talent.onDodge();
+      if (treeTotals().dodgeKnives) this.throwKnives(treeTotals().dodgeKnives);
       return;
     }
     if (this.shieldUp) {
@@ -659,7 +666,7 @@ export class GameScene extends Phaser.Scene {
     const dur = waveDuration(run.wave);
     if (run.isEliteWave() && !this.eliteSpawned && this.timeLeft < dur * 0.75) {
       this.eliteSpawned = true;
-      this.queueSpawn(run.eliteIds[run.wave === BALANCE.waves.eliteWaves[0] ? 0 : 1], true);
+      this.queueSpawn(run.eliteForWave(), true);
     }
     if (this.timeLeft <= 0) this.endWave();
   }
@@ -786,8 +793,12 @@ export class GameScene extends Phaser.Scene {
     const def = BOSS_MAP[id];
     markSeen('bosses', id);
     const ch = run.chapter;
-    const hp = Math.round(def.hp * chapterScale(ch.bossHpMult, run.wave) * (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3));
-    const dmg = Math.round(def.dmg * 1.2 * chapterScale(ch.dmgMult, run.wave) * (def.elite ? 1 + (run.wave - 5) * 0.08 : 1));
+    const hp = Math.round(
+      def.hp * chapterScale(ch.bossHpMult, run.wave) * (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3) * endlessHp(run.wave),
+    );
+    const dmg = Math.round(
+      def.dmg * 1.2 * chapterScale(ch.dmgMult, run.wave) * (def.elite ? 1 + (run.wave - 5) * 0.08 : 1) * endlessDmg(run.wave),
+    );
     // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加
     const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
     const affixes = def.elite ? this.rollAffixes(nAffix).filter((a) => !(def.affixes ?? []).includes(a)) : [];
@@ -839,6 +850,13 @@ export class GameScene extends Phaser.Scene {
     bumpMax(`chWave:${run.chapterId}`, run.wave);
     bumpMax(`charWave:${run.charId}`, run.wave);
     bumpMax(`charLevel:${run.charId}`, run.level);
+    if (run.endless) {
+      bump('endlessWaves');
+      bumpMax('endlessBest', run.wave);
+      bumpMax(`endlessBest:ch:${run.chapterId}`, run.wave);
+      bumpMax(`endlessBest:char:${run.charId}`, run.wave);
+      bumpMax('endlessRunKills', run.kills);
+    }
     persist();
     checkAchievements();
     this.events.emit('waveEnd');
@@ -853,7 +871,7 @@ export class GameScene extends Phaser.Scene {
         } else this.collect(p);
       }
       this.scene.stop('Hud');
-      if (run.isBossWave()) {
+      if (run.isBossWave() && !run.endless) {
         this.recordProgress();
         this.scene.start('Result', { win: true });
       } else {
@@ -890,6 +908,27 @@ export class GameScene extends Phaser.Scene {
       e.rig?.play('attack');
       this.damagePlayer(e.dmg * e.dealtMult, e, e.attackDebuffs(e.state === 'charge' ? e.chargeDebuff : undefined));
       if (this.iframes > 0) break;
+    }
+  }
+
+  /** 天赋「袖里飞刀」：闪避时向最近的敌人掷出飞刀 */
+  private throwKnives(n: number): void {
+    const p = this.player;
+    const near = [...this.grid.query(p.x, p.y, 420, this.tmp2)]
+      .filter((e) => e.alive)
+      .sort((a, b) => Phaser.Math.Distance.Squared(p.x, p.y, a.x, a.y) - Phaser.Math.Distance.Squared(p.x, p.y, b.x, b.y));
+    const s = this.stats;
+    const dmg = (8 + run.wave * 1.6) * (1 + (s.damage + s.rangedPct) / 100);
+    const key = this.textures.exists('proj_star_anise_shuriken') ? 'proj_star_anise_shuriken' : 'proj_player';
+    for (let i = 0; i < n; i++) {
+      const t = near[i % Math.max(1, near.length)];
+      const ang = t ? Math.atan2(t.y - p.y, t.x - p.x) + (i >= near.length ? (i - near.length + 1) * 0.25 : 0) : (i / n) * Math.PI * 2;
+      const b = this.spawnPlayerBullet(key, p.x, p.y, ang, 720, 0.6, 10);
+      b.dmg = dmg;
+      b.crit = Math.random() * 100 < s.crit;
+      if (b.crit) b.dmg *= 1.5;
+      b.knockback = 20;
+      b.spin = 18;
     }
   }
 
@@ -1094,7 +1133,17 @@ export class GameScene extends Phaser.Scene {
   damageEnemy(e: Enemy, dmg: number, opts: { crit?: boolean; color?: string; dot?: boolean } = {}): boolean {
     if (!e.alive) return false;
     dmg *= e.takenMult;
+    // 天赋：对精英/Boss 增伤、低血增伤、暴击回血
+    const tt = treeTotals();
+    if (tt.bossDmg && e.boss) dmg *= 1 + tt.bossDmg / 100;
+    if (tt.lowHpDmg && run.hp < this.stats.maxHp * 0.4) dmg *= 1 + tt.lowHpDmg / 100;
+    if (tt.critHeal && opts.crit && Math.random() * 100 < tt.critHeal) this.heal(1, false);
     e.hp -= dmg;
+    // 天赋：斩杀生命过低的小怪
+    if (tt.execute && !e.boss && e.hp > 0 && e.hp < e.maxHp * (tt.execute / 100)) {
+      this.fx.label(e.x, e.y - e.radius - 10, tx('斩杀', 'Execute'), '#ff4b3e');
+      e.hp = 0;
+    }
     bumpMax('maxHit', Math.round(dmg));
     if (opts.crit) bump('crits');
     this.fx.number(e.x, e.y - e.radius, dmg, opts.color ?? '#ffffff', opts.crit);
@@ -1120,6 +1169,8 @@ export class GameScene extends Phaser.Scene {
       for (const a of e.affixes) bump(`champ:${a}`);
     }
     if (e.boss?.elite) bump(`charElite:${run.charId}`);
+    // 天赋「捡漏」：额外掉落 1 番茄籽
+    if (Math.random() * 100 < treeTotals().killSeeds) this.dropPickup('seed', e.x, e.y, 1, 0);
     e.kill(this);
     run.kills++;
     this.killCounter++;
@@ -1134,6 +1185,7 @@ export class GameScene extends Phaser.Scene {
       if (e.boss.elite) save.stats.eliteKills++;
       else {
         save.stats.bossKills++;
+        if (run.endless) bump('endlessBosses');
         if (e.enraged) save.stats.overtimeWins++;
       }
     }

@@ -155,7 +155,8 @@ export class AchievementScene extends Phaser.Scene {
       this.layer.add(g);
       const label = maxed
         ? tx('✓ 已满级', '✓ Maxed')
-        : `${cur.toLocaleString()} / ${goal.toLocaleString()}  ·  +${a.tiers[next].points}${tx(' 点', ' pts')}`;
+        : `${cur.toLocaleString()} / ${goal.toLocaleString()}  ·  +${a.tiers[next].points}${tx(' 点', ' pts')}` +
+          (a.tp?.[next] ? tx(` · +${a.tp[next]} 天赋点`, ` · +${a.tp[next]} talent`) : '');
       this.layer.add(text(this, x + cw - 14, by - 3, label, 13, maxed ? '#ffd166' : COLORS.textDim).setOrigin(1, 1));
     });
     if (pages > 1) {

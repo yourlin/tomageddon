@@ -2,7 +2,7 @@
 
 **中文** · [English](en/CHANGELOG.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
@@ -10,8 +10,22 @@
 
 ## 目录
 
+- [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-2-0"></a>
+
+## v1.2.0 · 2026-10-01
+
+**全新天赋树与无尽模式上线，成就扩充到 847 项**
+
+
+- 天赋树：6 个专精方向、81 个天赋，像地图一样从核心向外延展；完成里程碑成就获得天赋点，强化开局属性或获得特殊能力（闪避掷飞刀、施法回血、斩杀、复活……），随时免费重置
+- 无尽模式：通关某章后可开启，不限波数，每 15 波一轮精英与 Boss，怪物越来越强，看你能坚持到第几波
+- 成就扩充到 847 项：每种怪物、武器、道具系列、技能、状态、章节、挑战、无尽模式与每名角色都有成就；越难的成就奖励越多
+- 角色价格按新的成就点总量调整，首次通关第 1 章就能买下第一名新角色
+- 成就页新增分类、只看未完成与快速翻页；一次解锁很多成就时合并提示
 
 <a id="v1-1-0"></a>
 
@@ -47,4 +61,4 @@
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**

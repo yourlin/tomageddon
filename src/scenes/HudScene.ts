@@ -196,7 +196,8 @@ export class HudScene extends Phaser.Scene {
 
     const bossWave = run.isBossWave();
     this.waveText.setText(
-      bossWave ? tx(`第 ${run.wave} 波 · BOSS`, `Wave ${run.wave} · BOSS`) : tx(`第 ${run.wave} 波`, `Wave ${run.wave}`),
+      (bossWave ? tx(`第 ${run.wave} 波 · BOSS`, `Wave ${run.wave} · BOSS`) : tx(`第 ${run.wave} 波`, `Wave ${run.wave}`)) +
+        (run.endless ? tx(' · 无尽', ' · Endless') : ''),
     );
   }
 

@@ -25,6 +25,7 @@ export type AchCategory =
   | 'skill'
   | 'economy'
   | 'codex'
+  | 'endless'
   | 'character';
 
 export type AchMetric =
@@ -79,6 +80,8 @@ export interface AchievementDef {
   bossId?: string;
   /** counter / runSeries / runSet 指标的键 */
   key?: string;
+  /** 各等级额外奖励的天赋点（见 TALENT_REWARDS） */
+  tp?: number[];
   /** 文字中 {x} 指代的对象（运行时按当前语言取名字） */
   subject?: { kind: AchSubject; id: string };
   tiers: AchTier[];
@@ -814,6 +817,101 @@ const PER_CHAPTER: AchievementDef[] = CHAPTERS.flatMap((ch, i) => [
   ),
 ]);
 
+/** 无尽模式：最佳波次（全局 / 每章 / 每名角色）、累计波次、Boss、单局击杀 */
+const ENDLESS: AchievementDef[] = [
+  K('endless_runs', 'endless', '♾️', ['永不停歇', 'Never Stop'], ['开始 {n} 次无尽模式', 'Start {n} Endless run(s)'], 'endlessRuns', [
+    [1, 2],
+    [20, 10],
+  ]),
+  K(
+    'endless_best',
+    'endless',
+    '🏔️',
+    ['无尽攀登', 'Endless Climb'],
+    ['无尽模式完成第 {n} 波', 'Finish wave {n} in Endless'],
+    'endlessBest',
+    [
+      [20, 5],
+      [30, 15],
+      [45, 40],
+      [60, 80],
+      [100, 150],
+    ],
+  ),
+  K(
+    'endless_waves',
+    'endless',
+    '🌊',
+    ['无尽浪潮', 'Endless Tide'],
+    ['无尽模式累计完成 {n} 个波次', 'Finish {n} Endless waves'],
+    'endlessWaves',
+    [
+      [50, 3],
+      [500, 15],
+      [3000, 50],
+    ],
+  ),
+  K(
+    'endless_bosses',
+    'endless',
+    '👑',
+    ['轮回猎手', 'Cycle Hunter'],
+    ['无尽模式击败 {n} 名 Boss', 'Defeat {n} bosses in Endless'],
+    'endlessBosses',
+    [
+      [1, 10],
+      [10, 30],
+      [50, 80],
+    ],
+  ),
+  K(
+    'endless_kills',
+    'endless',
+    '🌪️',
+    ['无尽收割', 'Endless Harvest'],
+    ['无尽模式单局击败 {n} 只怪物', 'Defeat {n} monsters in one Endless run'],
+    'endlessRunKills',
+    [
+      [3000, 10],
+      [10000, 40],
+    ],
+  ),
+  ...CHAPTERS.map((ch, i) =>
+    S(
+      K(
+        `endless_ch_${ch.id}`,
+        'endless',
+        '🚩',
+        ['{x}·无尽', '{x} · Endless'],
+        ['在「{x}」无尽模式完成第 {n} 波', 'Finish wave {n} of {x} in Endless'],
+        `endlessBest:ch:${ch.id}`,
+        [
+          [20, 3 + i * 2],
+          [30, 10 + i * 5],
+          [45, 30 + i * 10],
+        ],
+      ),
+      'chapter',
+      String(ch.id),
+    ),
+  ),
+  ...CHARACTERS.map((c) => ({
+    ...K(
+      `endless_char_${c.id}`,
+      'endless',
+      '♾️',
+      ['{char}·无尽', '{char} · Endless'],
+      ['使用{char}在无尽模式完成第 {n} 波', 'Finish wave {n} in Endless as {char}'],
+      `endlessBest:char:${c.id}`,
+      [
+        [20, 2],
+        [30, 8],
+      ],
+    ),
+    charId: c.id,
+  })),
+];
+
 export const ACHIEVEMENTS: AchievementDef[] = [
   ...GLOBAL,
   ...PER_CHAPTER,
@@ -822,8 +920,42 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   ...PER_WEAPON,
   ...PER_COLLECTION,
   ...PER_SKILL,
+  ...ENDLESS,
   ...PER_CHARACTER,
 ];
+/** 天赋点奖励：只有里程碑成就给，总计约 80 点（≈ 精通 2.5 个天赋方向）；首次通关第 1 章约得 7 点 */
+export const TALENT_REWARDS: Record<string, number[]> = {
+  clear_1: [2],
+  clear_2: [2],
+  clear_3: [2],
+  clear_4: [3],
+  clear_5: [3],
+  wins: [1, 1, 2, 3],
+  chars_won: [1, 2, 4],
+  bosses: [1, 1, 2, 3],
+  elites: [1, 1, 1, 2],
+  overtime: [1, 1],
+  kills: [1, 1, 1, 2],
+  perfect: [0, 1, 1, 1],
+  level: [1, 1, 1],
+  t4: [1, 1, 1],
+  forge_max: [0, 1, 1],
+  win_solo: [2],
+  win_low_hp: [1],
+  win_pure_melee: [1],
+  win_pure_ranged: [1],
+  win_pure_elemental: [1],
+  win_all_t4: [2],
+  win_hoarder: [1],
+  codex_weapons: [0, 0, 1],
+  codex_items: [0, 0, 1],
+  codex_monsters: [0, 1],
+  codex_bosses: [0, 1],
+  endless_best: [1, 1, 1, 2, 2],
+  endless_bosses: [1, 1, 1],
+};
+for (const a of ACHIEVEMENTS) if (TALENT_REWARDS[a.id]) a.tp = TALENT_REWARDS[a.id];
+
 export const ACH_MAP: Record<string, AchievementDef> = Object.fromEntries(ACHIEVEMENTS.map((a) => [a.id, a]));
 
 export const ACH_CATEGORY_NAME: Record<AchCategory, [string, string]> = {
@@ -839,6 +971,7 @@ export const ACH_CATEGORY_NAME: Record<AchCategory, [string, string]> = {
   skill: ['技能', 'Skills'],
   economy: ['经济', 'Economy'],
   codex: ['图鉴', 'Codex'],
+  endless: ['无尽', 'Endless'],
   character: ['角色', 'Characters'],
 };
 

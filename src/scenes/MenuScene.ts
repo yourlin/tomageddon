@@ -1,4 +1,5 @@
 // 主菜单
+import { talentPointsFree } from '../systems/TalentTree';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { paintArena } from '../art/ArenaArt';
@@ -159,8 +160,15 @@ export class MenuScene extends Phaser.Scene {
       ).setOrigin(0, 0.5);
     }
     button(this, W / 2, by, 320, 72, tx('开始游戏', 'Start'), () => this.scene.start('CharSelect'), COLORS.primary, 32);
-    button(this, W / 2 - 82, by + 90, 156, 60, tx('图鉴', 'Codex'), () => this.scene.start('Codex'), 0x8d5a97, 26);
-    button(this, W / 2 + 82, by + 90, 156, 60, tx('成就', 'Awards'), () => this.scene.start('Achievements'), 0xb07d2b, 26);
+    button(this, W / 2 - 108, by + 90, 102, 60, tx('图鉴', 'Codex'), () => this.scene.start('Codex'), 0x8d5a97, 24);
+    button(this, W / 2, by + 90, 102, 60, tx('成就', 'Awards'), () => this.scene.start('Achievements'), 0xb07d2b, 24);
+    button(this, W / 2 + 108, by + 90, 102, 60, tx('天赋', 'Talents'), () => this.scene.start('TalentTree'), 0x5a189a, 24);
+    // 有未分配的天赋点时显示红点
+    if (talentPointsFree() > 0) {
+      const dot = this.add.circle(W / 2 + 152, by + 66, 8, 0xff4b3e).setStrokeStyle(2, 0xffffff);
+      this.tweens.add({ targets: dot, scale: 1.25, duration: 600, yoyo: true, repeat: -1 });
+      text(this, W / 2 + 152, by + 66, String(talentPointsFree()), 11).setOrigin(0.5);
+    }
     button(this, W / 2, by + 165, 320, 60, tx('设置', 'Settings'), () => this.scene.start('Settings'), 0x4a6fa5, 26);
     button(
       this,

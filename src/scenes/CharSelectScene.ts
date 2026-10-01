@@ -1,4 +1,5 @@
 // 角色与关卡选择
+import { bump, counter } from '../systems/Counters';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { CHARACTERS, type CharacterDef } from '../data/characters';
@@ -30,6 +31,9 @@ export class CharSelectScene extends Phaser.Scene {
   private chapterText!: Phaser.GameObjects.Text;
   private chapterDesc!: Phaser.GameObjects.Text;
   private startBtn!: ReturnType<typeof button>;
+  private endlessBtn!: ReturnType<typeof button>;
+  /** 无尽模式（通关该章后可选） */
+  private endless = false;
   private showcase: ReturnType<typeof showcaseRig> | null = null;
   private detailX = 0;
 
@@ -119,6 +123,28 @@ export class CharSelectScene extends Phaser.Scene {
     );
     this.chapterText = text(this, 130, cy, '', 26, '#ffd166');
     this.chapterDesc = text(this, 130, cy + 40, '', 18, COLORS.textDim, { wordWrap: { width: W * 0.62 - 180 } });
+    this.endlessBtn = button(
+      this,
+      W * 0.62 + 130,
+      cy + 35,
+      170,
+      64,
+      '',
+      () => {
+        if (save.clearedChapters < this.chapter) {
+          toast(
+            this,
+            tx(`通关第 ${this.chapter} 章后解锁本章无尽模式`, `Clear Chapter ${this.chapter} to unlock its Endless mode`),
+            '#ff6b6b',
+          );
+          return;
+        }
+        this.endless = !this.endless;
+        this.refresh();
+      },
+      0x5a189a,
+      19,
+    );
     this.startBtn = button(this, W - 150, cy + 35, 220, 76, tx('出发！', 'Go!'), () => this.start(), COLORS.primary, 32);
     this.refresh();
   }
@@ -222,10 +248,30 @@ export class CharSelectScene extends Phaser.Scene {
     }
     const ch = CHAPTERS[this.chapter - 1];
     const chUnlocked = save.clearedChapters >= this.chapter - 1;
+    const endlessOk = save.clearedChapters >= this.chapter;
+    if (!endlessOk) this.endless = false;
+    this.endlessBtn.setLabel(
+      endlessOk
+        ? this.endless
+          ? tx('♾️ 无尽：开', '♾️ Endless: ON')
+          : tx('♾️ 无尽：关', '♾️ Endless: OFF')
+        : tx('♾️ 无尽 🔒', '♾️ Endless 🔒'),
+    );
+    this.endlessBtn.setAlpha(endlessOk ? 1 : 0.55);
     this.chapterText.setText(
       `${ch.name}  ${chUnlocked ? '' : '🔒'}  ${tx(`（怪物生命 x${ch.hpMult} 伤害 x${ch.dmgMult}）`, `(HP x${ch.hpMult} · DMG x${ch.dmgMult})`)}`,
     );
-    this.chapterDesc.setText(chUnlocked ? ch.desc : tx(`通关第 ${this.chapter - 1} 章解锁`, `Clear Chapter ${this.chapter - 1} to unlock`));
+    const endlessBest = counter(`endlessBest:ch:${ch.id}`);
+    this.chapterDesc.setText(
+      !chUnlocked
+        ? tx(`通关第 ${this.chapter - 1} 章解锁`, `Clear Chapter ${this.chapter - 1} to unlock`)
+        : this.endless
+          ? tx(
+              `无尽模式：不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），越往后怪物越强，直到倒下为止。本章最佳：第 ${endlessBest} 波`,
+              `Endless: no wave limit, 15-wave cycles (elites on 5/10, a boss on 15), monsters keep getting stronger until you fall. Best here: wave ${endlessBest}`,
+            )
+          : ch.desc,
+    );
     if (unlocked) {
       this.startBtn.setLabel(tx('出发！', 'Go!'));
       this.startBtn.setEnabled(chUnlocked);
@@ -249,7 +295,8 @@ export class CharSelectScene extends Phaser.Scene {
     save.charRuns[this.selected.id] = (save.charRuns[this.selected.id] ?? 0) + 1;
     persist();
     checkAchievements();
-    run.start(this.selected.id, this.chapter);
+    run.start(this.selected.id, this.chapter, this.endless);
+    if (this.endless) bump('endlessRuns');
     this.scene.start('Game');
   }
 }

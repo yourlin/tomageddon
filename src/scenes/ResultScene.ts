@@ -1,5 +1,5 @@
 // 结算
-import { bump } from '../systems/Counters';
+import { bump, bumpMax, counter } from '../systems/Counters';
 import { WEAPON_MAP } from '../data/weapons';
 import Phaser from 'phaser';
 import { showcaseRig } from '../ui/Portrait';
@@ -43,6 +43,7 @@ export class ResultScene extends Phaser.Scene {
     }
     if (!data.win && !data.counted) {
       data.counted = true;
+      if (run.endless) bumpMax('endlessRunKills', run.kills);
       bump('deaths');
       if (run.wave === 1) bump('deathW1');
       persist();
@@ -56,11 +57,15 @@ export class ResultScene extends Phaser.Scene {
       this,
       W / 2,
       90,
-      data.win ? tx('通关成功！', 'Chapter Cleared!') : tx('你被打败了……', 'You were defeated...'),
+      data.win
+        ? tx('通关成功！', 'Chapter Cleared!')
+        : run.endless
+          ? tx(`无尽模式 · 坚持到第 ${run.wave} 波`, `Endless · survived to wave ${run.wave}`)
+          : tx('你被打败了……', 'You were defeated...'),
       52,
       data.win ? '#ffd166' : '#ff6b6b',
     ).setOrigin(0.5);
-    text(this, W / 2, 145, run.chapter.name, 22, COLORS.textDim).setOrigin(0.5);
+    text(this, W / 2, 145, run.chapter.name + (run.endless ? tx(' · 无尽模式', ' · Endless') : ''), 22, COLORS.textDim).setOrigin(0.5);
     const hero = showcaseRig(this, 'char', run.charId, W / 2 - 250, 290, 70);
     if (data.win) hero.play('victory', true);
     text(
@@ -69,7 +74,9 @@ export class ResultScene extends Phaser.Scene {
       200,
       [
         tx(`角色：${run.char.name}`, `Character: ${run.char.name}`),
-        tx(`到达波次：${run.wave} / 15`, `Wave reached: ${run.wave} / 15`),
+        run.endless
+          ? tx(`到达波次：${run.wave}（最佳 ${counter('endlessBest')}）`, `Wave reached: ${run.wave} (best ${counter('endlessBest')})`)
+          : tx(`到达波次：${run.wave} / 15`, `Wave reached: ${run.wave} / 15`),
         tx(`等级：${run.level}`, `Level: ${run.level}`),
         tx(`击杀：${run.kills}`, `Kills: ${run.kills}`),
         tx(

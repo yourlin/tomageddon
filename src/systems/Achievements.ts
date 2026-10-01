@@ -217,9 +217,10 @@ function notify(a: AchievementDef, tier: number, points: number): void {
       'padding:10px 18px;border-radius:12px;background:rgba(40,16,20,0.94);border:2px solid #ffd166;color:#fff4ea;' +
       'font:15px "PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:transform .35s ease;pointer-events:none;';
     const tl = tierLabel(a, tier);
+    const tp = a.tp?.[tier - 1] ?? 0;
     el.innerHTML =
       `<span style="font-size:30px">${a.icon}${medalOf(a, tier)}</span><span>` +
-      `<div style="color:#ffd166;font-size:12px">${tx('成就解锁', 'Achievement unlocked')}${tl ? ` · ${tl}` : ''} · +${points} ${tx('成就点', 'pts')}</div>` +
+      `<div style="color:#ffd166;font-size:12px">${tx('成就解锁', 'Achievement unlocked')}${tl ? ` · ${tl}` : ''} · +${points} ${tx('成就点', 'pts')}${tp ? ` · <b style="color:#e0aaff">+${tp} ${tx('天赋点', 'talent pts')}</b>` : ''}</div>` +
       `<div style="font-weight:bold;font-size:17px">${achText(a, 'name', tier - 1)}</div>` +
       `<div style="opacity:.75;font-size:12px">${achText(a, 'desc', tier - 1)}</div></span>`;
     overlayRoot().appendChild(el);

@@ -6,6 +6,9 @@ import { achText, tierGoal, pick, pointsTotal } from '../../src/systems/Achievem
 import { Doc, lnk, img, unlockText } from './common';
 import { BOSS_MAP } from '../../src/data/bosses';
 import { CHANGELOG } from '../../src/data/changelog';
+import { BRANCHES, TALENT_NODES, branchCost, type NodeKind } from '../../src/data/talentTree';
+import { nodeText, talentPointsTotal } from '../../src/systems/TalentTree';
+import { ACH_MAP } from '../../src/data/achievements';
 
 /** 条件文字：多级成就把目标值换成 N */
 const condText = (a: AchievementDef): string =>
@@ -16,7 +19,8 @@ function tiersText(a: AchievementDef): string {
   return a.tiers
     .map((t, i) => {
       const medal = a.tiers.length === 1 ? TIER_MEDALS[2] : TIER_MEDALS[i];
-      return `${medal} ${tierGoal(a, i).toLocaleString()}${tx(`（+${t.points} 点）`, ` (+${t.points} pts)`)}`;
+      const tp = a.tp?.[i] ? tx(` · 天赋点 +${a.tp[i]}`, ` · +${a.tp[i]} talent`) : '';
+      return `${medal} ${tierGoal(a, i).toLocaleString()}${tx(`（+${t.points} 点${tp}）`, ` (+${t.points} pts${tp})`)}`;
     })
     .join('<br>');
 }
@@ -90,6 +94,53 @@ export function changelogDoc(): void {
     d.h2(`v${e.version} · ${e.date}`, `v${e.version.replace(/\./g, '-')}`);
     d.p(`**${pick(e.highlight)}**`, '');
     d.p(...e.items.map((it) => `- ${pick(it)}`));
+  }
+  d.write();
+}
+
+/** 天赋树：方向、节点、天赋点来源 */
+export function talentsDoc(): void {
+  const total = talentPointsTotal();
+  const avg = BRANCHES.reduce((a, b) => a + branchCost(b.id), 0) / BRANCHES.length;
+  const kind: Record<NodeKind, string> = {
+    core: tx('核心', 'Core'),
+    minor: tx('属性', 'Attribute'),
+    notable: tx('特殊能力', 'Ability'),
+    star: tx('明星（5 级）', 'Star (5 ranks)'),
+    keystone: tx('终极', 'Keystone'),
+  };
+  const d = new Doc('TALENTS.md', tx('天赋树', 'Talent Tree'), [
+    tx(
+      `天赋树是跨局成长：完成里程碑[成就](ACHIEVEMENTS.md)获得天赋点，在主菜单「天赋」里加点，下一局开局生效，可随时免费重置。共 ${BRANCHES.length} 个专精方向、${TALENT_NODES.length} 个天赋；全部 ${total} 个天赋点大约够精通 ${(total / avg).toFixed(1)} 个方向（每个方向点满约 ${Math.round(avg)} 点）。`,
+      `The talent tree is cross-run progression: milestone [achievements](ACHIEVEMENTS.md) grant talent points, which you spend under "Talents" on the main menu; they apply from your next run and can be reset for free at any time. ${BRANCHES.length} branches, ${TALENT_NODES.length} talents; all ${total} points master about ${(total / avg).toFixed(1)} branches (~${Math.round(avg)} points each).`,
+    ),
+    '',
+    tx(
+      '每个方向是一张地图：核心天赋在中心，道路向外延展，要先点亮相连的上一个天赋才能继续；大多数天赋只加一种属性，攻击与防御数值克制；道路尽头是特殊能力，少数明星天赋可以点 5 级；终极天赋需要在该方向投入足够点数。',
+      'Each branch is a map: the core talent sits in the middle and roads lead outward — you must unlock the connected talent before moving on. Most talents add a single stat, with attack and defense kept small; roads end in special abilities, a few star talents go up to 5 ranks, and keystones need enough points spent in the branch.',
+    ),
+  ]);
+  d.h2(tx('天赋点来源', 'Talent Point Sources'), 'sources');
+  d.table(
+    [tx('成就', 'Achievement'), tx('各等级天赋点', 'Points per tier')],
+    Object.values(ACH_MAP)
+      .filter((a) => a.tp)
+      .map((a) => [`[${a.icon} ${achText(a, 'name', 0)}](ACHIEVEMENTS.md#ach-${a.id})`, a.tp!.map((x, i) => `${TIER_MEDALS[a.tiers.length === 1 ? 2 : i]} +${x}`).join(' · ')]),
+  );
+  for (const b of BRANCHES) {
+    d.h2(`${pick(b.name)} · ${pick(b.land)}（${branchCost(b.id)} ${tx('点', 'pts')}）`, `branch-${b.id}`);
+    d.p(pick(b.desc));
+    d.table(
+      [tx('天赋', 'Talent'), tx('类型', 'Type'), tx('前置', 'Requires'), tx('效果（满级）', 'Effect (max rank)')],
+      TALENT_NODES.filter((n) => n.branch === b.id).map((n) => [
+        `${n.icon} ${nodeText(n, 'name')}`,
+        `${kind[n.kind]}${n.max > 1 ? ` · ${n.max} ${tx('级', 'ranks')}` : ''}`,
+        [n.parent ? nodeText(TALENT_NODES.find((x) => x.id === n.parent)!, 'name') : '—', n.needPoints ? tx(`本方向 ${n.needPoints} 点`, `${n.needPoints} pts in branch`) : '']
+          .filter(Boolean)
+          .join(' · '),
+        nodeText(n, 'desc', n.max),
+      ]),
+    );
   }
   d.write();
 }

@@ -46,6 +46,8 @@ Ketchup Town is being eaten away by "the Rot": mold, pests and possessed kitchen
 3. **Elites and bosses**: [elites](docs/en/MONSTERS.md#elites) on waves 5 and 10, a [boss](docs/en/MONSTERS.md#bosses) on wave 15 (after 90 seconds it enrages, with damage stacking until the fight is decided). Each run draws them at random from the chapter pool.
 4. **Between waves**: harvest & interest → level-up choices → open crates → shop for [weapons](docs/en/WEAPONS.md) and [items](docs/en/ITEMS.md), combine, reroll, lock.
 5. **Achievements & unlocks**: clearing a [chapter](docs/en/CHAPTERS.md) unlocks the next one; [achievements](docs/en/ACHIEVEMENTS.md) (Bronze/Silver/Gold/Diamond tiers) grant points that buy new characters, and some characters also require a specific achievement.
+6. **Talent tree**: milestone achievements also grant talent points to spend on the [talent maps](docs/en/TALENTS.md) of 6 branches — boost your starting stats or gain special abilities (knives on dodge, healing on cast, executes, a revive…), with free resets at any time.
+7. **Endless mode**: after clearing a chapter you can play it in Endless — no wave limit, elites and a boss every 15 waves, ever-stronger monsters. How far can you go?
 
 Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statuses): Poison, Freeze, Curse, Armor Break… versus Shield, Rage, Haste, Regen.
 
@@ -84,8 +86,9 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 | Items           | 566          | 46 classic items + 52 themed series × 10, power-budgeted per rarity                                                                                                            | [Items](docs/en/ITEMS.md)                                                   |
 | Monsters        | 75 + 2       | 75 monsters (10 AI behaviors) + 2 terrain critters, 15 per chapter                                                                                                                             | [Monsters](docs/en/MONSTERS.md)                                             |
 | Elites / Bosses | 30 / 15      | 11 attack patterns, phase two, enrage; 12 elite affixes                                                                                                                        | [Elites](docs/en/MONSTERS.md#elites) · [Bosses](docs/en/MONSTERS.md#bosses) |
-| Achievements    | 136          | Tiered medals (Bronze/Silver/Gold/Diamond); points buy characters; run and clear achievements for every character, first-kill achievements for every elite and boss            | [Achievements](docs/en/ACHIEVEMENTS.md)                                     |
-| Chapters        | 5 × 15 waves | Midnight Kitchen, Wild Garden, Frozen Fridge, City Junkyard, Ketchup Factory; 2–3 terrain hazards each                                                                         | [Chapters](docs/en/CHAPTERS.md)                                             |
+| Achievements    | 847          | Tiered medals (Bronze/Silver/Gold/Diamond), bigger rewards for harder goals; covers monsters, weapons, item series, skills, statuses, chapters, challenges, Endless and every character; points buy characters, milestones also grant talent points | [Achievements](docs/en/ACHIEVEMENTS.md)                                     |
+| Talent tree     | 6 × 81       | Might, Guard, Agility, Arcane, Fortune, Alchemy — laid out like maps; all points together master about 2.5 branches                                                           | [Talents](docs/en/TALENTS.md)                                               |
+| Chapters        | 5 × 15 waves | Midnight Kitchen, Wild Garden, Frozen Fridge, City Junkyard, Ketchup Factory; 2–3 terrain hazards each; cleared chapters unlock their Endless mode (no wave limit)               | [Chapters](docs/en/CHAPTERS.md)                                             |
 
 Procedural art: Canvas cartoon shading + part-based rigs + 12 animation states (idle/move/attack/hurt/windup/charge/stun/freeze/cast/spawn/death/victory).
 
@@ -102,6 +105,7 @@ Procedural music: electronic loops synthesized live with WebAudio. The main menu
 | [Monsters](docs/en/MONSTERS.md)         | Behaviors, attack patterns, phase two and affixes of monsters, elites and bosses |
 | [Chapters](docs/en/CHAPTERS.md)         | Wave rules, chapter difficulty, terrain hazards, monster/elite/boss pools        |
 | [Achievements](docs/en/ACHIEVEMENTS.md) | Tier goals and points of every achievement, character prices and prerequisites   |
+| [Talents](docs/en/TALENTS.md)           | Talent point sources and every talent in all 6 branches                          |
 | [Design Doc](docs/en/GDD.md)            | Systems, formulas, art & animation, balancing method, architecture               |
 | [Data Tables](docs/en/DATA_TABLES.md)   | All numbers in one place                                                         |
 | [Changelog](docs/en/CHANGELOG.md)       | Player-facing release notes (also in the game's main menu)                       |

@@ -35,6 +35,8 @@ export interface SaveData {
   stats: AchStats;
   /** 成就计数器（见 systems/Counters.ts） */
   counters: Record<string, number>;
+  /** 天赋树：节点 id → 等级 */
+  talents: Record<string, number>;
 }
 
 export interface AchStats {
@@ -64,6 +66,7 @@ const DEFAULT: SaveData = {
   killedBosses: {},
   stats: { eliteKills: 0, bossKills: 0, overtimeWins: 0, perfectWaves: 0, revives: 0, t4Crafted: 0, seedsEarned: 0 },
   counters: {},
+  talents: {},
 };
 
 /** 旧存档迁移：改为成就点购买前，玩过或通关过的角色保留使用权 */
@@ -90,6 +93,7 @@ function load(): SaveData {
       killedBosses: { ...(d.killedBosses ?? {}) },
       stats: { ...DEFAULT.stats, ...(d.stats ?? {}) },
       counters: { ...(d.counters ?? {}) },
+      talents: { ...(d.talents ?? {}) },
     };
   } catch {
     return structuredClone(DEFAULT);

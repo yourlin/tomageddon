@@ -115,7 +115,7 @@ Each character = stat modifiers + starting weapons + passive traits + a **signat
 
 **Skill upgrades**: 3 new stats, "Skill Damage / Skill Area / Skill Duration", together with "Skill Cooldown", are provided by 2 item series (Skill Manuals and Skill Relics, 20 items in total) and level-up choices.
 
-## 7. Items (562)
+## 7. Items (566)
 
 - **42 hand-designed items** (classic items, including key ones like revive, extra weapon slot and Bubble Gum shield)
 - **520 series items**: 52 themed series × 10 items (including 2 skill-upgrade series) (4 Common / 3 Rare / 2 Epic / 1 Legendary), e.g. Tomato Goods, Spices, Knives, Cookware, Frozen Treats, Thunder, Poisons, Herbs, Teas, Coffee, Desserts, Gems, Rings, Amulets, Ninja Gear, Pirate, Lab, Stars...
@@ -197,6 +197,26 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 - Permanent progress (unlocks, kills, clear count, best wave, settings) is stored in browser localStorage
 - Run saves: auto-saved at the end of each wave when entering level-up/shop, resumable via "Continue" in the main menu; cleared on clear, death or abandon
 - Clearing browser data deletes saves
+
+### 10.2 Achievements (847)
+
+- Every gameplay event bumps a generic counter (`systems/Counters.ts`, e.g. `kill:mold`, `cast:nova`, `charClear:tomato:3`); achievements read counters and unlock tier by tier
+- Achievement families are generated per subject: every monster / elite affix / elite and boss / weapon (obtain, T4, forge) / item series / weapon set / skill form / inflicted status / chapter / Endless / 11 per character, plus challenges
+- Rewards scale with difficulty: entry tiers 1–3 pts, medium 5–15, hard 30–150; character prices = 70% of all points, split by each character's `cost` weight
+- Milestone achievements also grant **talent points** (79 in total, see `TALENT_REWARDS`)
+
+### 10.3 Talent Tree
+
+- 6 branches (Might / Guard / Agility / Arcane / Fortune / Alchemy), 81 talents, 28–37 points to max each; all points together master about 2.5 branches
+- Map layout: the core talent sits in the middle with roads leading outward; you must unlock the connected talent first; keystones need 24–26 points in the branch
+- Most talents add a single, modest stat (+1% all damage or +1 armor per rank); roads end in special abilities: knives on dodge, 0.5–2.5% max HP healing on cast, Echo (instant cooldown), executes, a revive, starting seeds, free rerolls…
+- Talents feed starting stats and specials (`systems/TalentTree.ts`) and can be reset for free at any time; balance tests run without talents as the baseline
+
+### 10.4 Endless Mode
+
+- After clearing a chapter, its Endless mode can be toggled on the character select screen: no wave limit, 15-wave cycles (elites on waves 5/10, a boss on 15), elites and bosses rerolled each cycle, bosses from every chapter from wave 30
+- After wave 15, monster HP ×1.1 and damage ×1.06 per wave (compounding); income keeps pace with shop inflation; defeating a boss continues the run until you fall
+- Best waves are recorded globally, per chapter and per character, feeding the Endless achievements
 
 ## 11. Procedural Art and Animation
 
