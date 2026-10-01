@@ -7,6 +7,10 @@ import { Doc, lnk, img, unlockText } from './common';
 import { BOSS_MAP } from '../../src/data/bosses';
 import { CHANGELOG } from '../../src/data/changelog';
 
+/** 条件文字：多级成就把目标值换成 N */
+const condText = (a: AchievementDef): string =>
+  a.tiers.length > 1 ? achText(a, 'desc', 0).replace(tierGoal(a, 0).toLocaleString(), 'N') : achText(a, 'desc', 0);
+
 /** 各等级：🥉 100（+10 点） */
 function tiersText(a: AchievementDef): string {
   return a.tiers
@@ -19,7 +23,7 @@ function tiersText(a: AchievementDef): string {
 
 export function achievementsDoc(): void {
   const global = ACHIEVEMENTS.filter((a) => a.category !== 'character');
-  const perChar = CHARACTERS.map((c) => [ACHIEVEMENTS.find((a) => a.id === `char_runs_${c.id}`)!, ACHIEVEMENTS.find((a) => a.id === `char_wins_${c.id}`)!] as const);
+  void global;
   const d = new Doc('ACHIEVEMENTS.md', tx(`成就（${ACHIEVEMENTS.length} 项）`, `Achievements (${ACHIEVEMENTS.length})`), [
     tx(
       `成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 ${pointsTotal()} 点。`,
@@ -38,38 +42,38 @@ export function achievementsDoc(): void {
   );
   for (const cat of Object.keys(ACH_CATEGORY_NAME) as AchCategory[]) {
     if (cat === 'character' || cat === 'slayer') continue;
+    // 怪物 / 武器 / 收藏 / 技能这类按对象生成的成就，附上对应图片
     d.h2(pick(ACH_CATEGORY_NAME[cat]), `cat-${cat}`);
     d.table(
       [tx('成就', 'Achievement'), tx('条件', 'Condition'), tx('等级目标与奖励', 'Tier goals & points')],
-      global
-        .filter((a) => a.category === cat)
-        .map((a) => [`<a id="ach-${a.id}"></a>${a.icon} ${achText(a, 'name', 0)}`, achText(a, 'desc', 0).replace(/[\d,]+/, 'N'), tiersText(a)]),
+      ACHIEVEMENTS.filter((a) => a.category === cat && !a.bossId)
+        .map((a) => [`<a id="ach-${a.id}"></a>${a.icon} ${achText(a, 'name', 0)}`, condText(a), tiersText(a)]),
     );
   }
   d.h2(pick(ACH_CATEGORY_NAME.slayer), 'cat-slayer');
-  d.p(tx('每名精英与 Boss 首次击败时解锁，精英 +10 点，Boss +20 点。', 'Unlocked the first time you defeat each elite and boss: +10 pts per elite, +20 per boss.'));
-  d.table(
-    [tx('精英 / Boss', 'Elite / Boss'), tx('章节', 'Chapter'), tx('成就', 'Achievement'), tx('奖励', 'Reward')],
-    ACHIEVEMENTS.filter((a) => a.category === 'slayer').map((a) => {
-      const b = BOSS_MAP[a.bossId!];
-      return [`${img('boss', b.id)} ${lnk.boss(b)}<a id="ach-${a.id}"></a>`, lnk.chapter(b.chapter), achText(a, 'name', 0), `+${a.tiers[0].points}`];
-    }),
-  );
-  d.h2(pick(ACH_CATEGORY_NAME.character), 'cat-character');
-  const [r0, w0] = perChar[0];
   d.p(
     tx(
-      `每名角色两项成就：「${achText(r0, 'name').replace(CHARACTERS[0].name, 'X')}」使用该角色开局，「${achText(w0, 'name').replace(CHARACTERS[0].name, 'X')}」使用该角色通关。`,
-      `Two achievements per character: "${achText(r0, 'name').replace(CHARACTERS[0].name, 'X')}" for starting runs as them and "${achText(w0, 'name').replace(CHARACTERS[0].name, 'X')}" for clearing runs as them.`,
+      '每名精英与 Boss 各一项成就，按击败次数分级：精英 1 / 5 / 20 次（+8 / +15 / +40 点），Boss 1 / 5 / 15 次（+20 / +40 / +80 点）。',
+      'One achievement per elite and boss, tiered by kills: elites 1 / 5 / 20 (+8 / +15 / +40 pts), bosses 1 / 5 / 15 (+20 / +40 / +80 pts).',
     ),
   );
   d.table(
-    [tx('角色', 'Character'), tx('开局次数', 'Runs started'), tx('通关次数', 'Runs cleared')],
-    perChar.map(([r, w], i) => [
-      `${img('char', CHARACTERS[i].id)} ${lnk.char(CHARACTERS[i])}<a id="ach-${r.id}"></a><a id="ach-${w.id}"></a>`,
-      tiersText(r),
-      tiersText(w),
-    ]),
+    [tx('精英 / Boss', 'Elite / Boss'), tx('章节', 'Chapter'), tx('成就', 'Achievement'), tx('等级目标与奖励', 'Tier goals & points')],
+    ACHIEVEMENTS.filter((a) => a.category === 'slayer' && a.bossId).map((a) => {
+      const b = BOSS_MAP[a.bossId!];
+      return [`${img('boss', b.id)} ${lnk.boss(b)}<a id="ach-${a.id}"></a>`, lnk.chapter(b.chapter), achText(a, 'name', 0), tiersText(a)];
+    }),
+  );
+  d.h2(pick(ACH_CATEGORY_NAME.character), 'cat-character');
+  const fams = ['runs', 'wins', 'wave', 'level', 'kills', 'elite', 'ch1', 'ch2', 'ch3', 'ch4', 'ch5'];
+  const sample = fams.map((f) => ACHIEVEMENTS.find((a) => a.id === `char_${f}_${CHARACTERS[0].id}`)!);
+  d.p(
+    tx(`每名角色 ${fams.length} 项成就（以${CHARACTERS[0].name}为例）：`, `${fams.length} achievements per character (${CHARACTERS[0].name} shown):`),
+    '',
+  );
+  d.table(
+    [tx('成就', 'Achievement'), tx('条件', 'Condition'), tx('等级目标与奖励', 'Tier goals & points')],
+    sample.map((a) => [`${a.icon} ${achText(a, 'name', 0)}`, condText(a), tiersText(a)]),
   );
   d.write();
 }

@@ -1,4 +1,6 @@
 // 敌人逻辑对象（小怪 / 精英 / Boss）。渲染交给 Rig，状态效果交给 StatusSet。
+import { bump } from '../systems/Counters';
+import type { StatusId } from '../data/statuses';
 import Phaser from 'phaser';
 import type { EnemyDef } from '../data/enemies';
 import { AFFIXES, type AffixId, type BossDef, type Pattern } from '../data/bosses';
@@ -38,7 +40,7 @@ export class Enemy {
   rigKey = '';
   ring: Phaser.GameObjects.Image | null = null;
   affixes: AffixId[] = [];
-  status = new StatusSet();
+  status = Object.assign(new StatusSet(), { onApplied: (id: StatusId) => bump(`inflict:${id}`) });
   hp = 1;
   maxHp = 1;
   dmg = 1;

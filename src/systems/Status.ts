@@ -59,6 +59,8 @@ export class StatusSet {
   private dirty = false;
   private tickAcc = 0;
   version = 0;
+  /** 成功施加状态时回调（敌人用于成就计数） */
+  onApplied?: (id: StatusId) => void;
 
   clear(): void {
     this.list.length = 0;
@@ -86,6 +88,7 @@ export class StatusSet {
       dur *= 1 - this.ccResist;
     }
     if (def.kind === 'debuff' && this.totals.immune) return false;
+    this.onApplied?.(a.id);
     const cur = this.get(a.id);
     const add = a.stacks ?? 1;
     if (cur) {

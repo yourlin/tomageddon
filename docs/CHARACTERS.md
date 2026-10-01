@@ -58,35 +58,35 @@
 | <img src="images/char/carrot.png" width="32" height="32" alt=""> [胡萝卜骑士](#char-carrot) | 近战坦克 | 骑士之盾 | [擀面杖](WEAPONS.md#weapon-rolling_pin) | [骑士冲锋](SKILLS.md#skill-carrot) （突进冲撞） | 默认解锁 |
 | <img src="images/char/chili.png" width="32" height="32" alt=""> [辣椒姐](#char-chili) | 火焰专家 | 火上浇油 | [芥末喷枪](WEAPONS.md#weapon-mustard_flamer) | [烈焰新星](SKILLS.md#skill-chili) （周身爆发） | 默认解锁 |
 | <img src="images/char/corn.png" width="32" height="32" alt=""> [玉米枪手](#char-corn) | 远程射手 | 远程压制 | [玉米加农](WEAPONS.md#weapon-corn_cannon) | [爆米花弹幕](SKILLS.md#skill-corn) （环形弹幕） | 默认解锁 |
-| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](#char-watermelon) | 重装坦克 | 皮糙肉厚 | [西瓜锤](WEAPONS.md#weapon-watermelon_hammer) | [西瓜翻滚](SKILLS.md#skill-watermelon) （突进冲撞） | 80 成就点 |
-| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](#char-lemon) | 暴击刺客 | 酸爽一击 | [菜刀](WEAPONS.md#weapon-knife) | [酸雾隐身](SKILLS.md#skill-lemon) （无敌潜行） | 80 成就点 |
-| <img src="images/char/eggplant.png" width="32" height="32" alt=""> [茄子法师](#char-eggplant) | 雷电法师 | 雷霆之力 | [西兰花法杖](WEAPONS.md#weapon-broccoli_staff) | [紫雷天罚](SKILLS.md#skill-eggplant) （全屏攻击） | 80 成就点 |
-| <img src="images/char/garlic.png" width="32" height="32" alt=""> [大蒜伯爵](#char-garlic) | 吸血贵族 | 血之盛宴 | [大蒜光环](WEAPONS.md#weapon-garlic_aura) | [血之领域](SKILLS.md#skill-garlic) （吸取回复） | 170 成就点 |
-| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](#char-blueberry) | 武器大师 | 双生默契 | [豌豆枪](WEAPONS.md#weapon-pea_shooter)、[菜刀](WEAPONS.md#weapon-knife) | [双子分身](SKILLS.md#skill-blueberry) （召唤分身） | 170 成就点 |
-| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](#char-pineapple) | 商人海盗 | 海盗分赃 | [番茄弹弓](WEAPONS.md#weapon-slingshot) | [黄金炮击](SKILLS.md#skill-pineapple) （发射 AOE） | 80 成就点 |
-| <img src="images/char/pumpkin.png" width="32" height="32" alt=""> [南瓜幽灵](#char-pumpkin) | 闪避大师 | 幽灵突袭 | [冰镇汽水](WEAPONS.md#weapon-soda) | [灵体化](SKILLS.md#skill-pumpkin) （无敌潜行） | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="images/char/strawberry.png" width="32" height="32" alt=""> [草莓偶像](#char-strawberry) | 成长明星 | 人气飙升 | [番茄酱瓶](WEAPONS.md#weapon-ketchup) | [应援打 Call](SKILLS.md#skill-strawberry) （自身增益） | 170 成就点 |
-| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](#char-ginger) | 疾风忍者 | 疾风步 | [洋葱回旋镖](WEAPONS.md#weapon-onion_boomerang) | [瞬影斩](SKILLS.md#skill-ginger) （突进冲撞） | 175 成就点，需先达成 [番茄酱风暴（银）](ACHIEVEMENTS.md#ach-kills) |
-| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](#char-avocado) | 炸弹专家 | 连环爆破 | [胡椒雷](WEAPONS.md#weapon-pepper_mine)、[辣椒火箭](WEAPONS.md#weapon-chili_rocket) | [核心过载](SKILLS.md#skill-avocado) （多点轰炸） | 190 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="images/char/onion.png" width="32" height="32" alt=""> [洋葱大叔](#char-onion) | 催泪硬汉 | 催泪弹 | [平底锅](WEAPONS.md#weapon-pan) | [催泪领域](SKILLS.md#skill-onion) （禁锢领域） | 200 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
-| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](#char-mushroom) | 剧毒专家 | 孢子扩散 | [冰镇汽水](WEAPONS.md#weapon-soda) | [孢子云](SKILLS.md#skill-mushroom) （群体减益） | 70 成就点 |
-| <img src="images/char/coconut.png" width="32" height="32" alt=""> [椰子拳师](#char-coconut) | 重拳格斗 | 重拳出击 | [平底锅](WEAPONS.md#weapon-pan) | [震地拳](SKILLS.md#skill-coconut) （周身爆发） | 80 成就点 |
-| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](#char-grape) | 幻术大师 | 障眼法 | [番茄酱瓶](WEAPONS.md#weapon-ketchup) | [葡萄分身](SKILLS.md#skill-grape) （召唤分身） | 140 成就点 |
-| <img src="images/char/cherry.png" width="32" height="32" alt=""> [樱桃双枪](#char-cherry) | 连射枪手 | 连珠炮 | [豌豆枪](WEAPONS.md#weapon-pea_shooter) | [双枪连射](SKILLS.md#skill-cherry) （单体连发） | 80 成就点 |
-| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](#char-pea) | 军团兵 | 豌豆军团 | [豌豆枪](WEAPONS.md#weapon-pea_shooter)、[豌豆枪](WEAPONS.md#weapon-pea_shooter) | [豌豆炮台](SKILLS.md#skill-pea) （单体连发） | 140 成就点 |
-| <img src="images/char/peach.png" width="32" height="32" alt=""> [蜜桃天使](#char-peach) | 治愈者 | 天使庇护 | [番茄弹弓](WEAPONS.md#weapon-slingshot) | [天使祝福](SKILLS.md#skill-peach) （吸取回复） | 170 成就点 |
-| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](#char-dragonfruit) | 烈焰骑士 | 龙息 | [擀面杖](WEAPONS.md#weapon-rolling_pin) | [龙焰冲锋](SKILLS.md#skill-dragonfruit) （突进冲撞） | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](#char-beet) | 狂战士 | 狂战之血 | [剁骨刀](WEAPONS.md#weapon-cleaver) | [狂暴](SKILLS.md#skill-beet) （自身增益） | 170 成就点 |
-| <img src="images/char/asparagus.png" width="32" height="32" alt=""> [芦笋弓手](#char-asparagus) | 精准射手 | 一箭穿心 | [玉米加农](WEAPONS.md#weapon-corn_cannon) | [穿心箭](SKILLS.md#skill-asparagus) （单体连发） | 170 成就点 |
-| <img src="images/char/sweetpotato.png" width="32" height="32" alt=""> [红薯厨神](#char-sweetpotato) | 美食家 | 美食家 | [擀面杖](WEAPONS.md#weapon-rolling_pin) | [烤红薯盛宴](SKILLS.md#skill-sweetpotato) （吸取回复） | 80 成就点 |
-| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](#char-kiwi) | 弱点洞察 | 弱点洞察 | [菜刀](WEAPONS.md#weapon-knife) | [真相只有一个](SKILLS.md#skill-kiwi) （群体减益） | 140 成就点 |
-| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](#char-lychee) | 幸运公主 | 好运连连 | [番茄弹弓](WEAPONS.md#weapon-slingshot) | [公主的好运](SKILLS.md#skill-lychee) （自身增益） | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](#char-durian) | 毒刺霸主 | 臭气熏天 | [大蒜光环](WEAPONS.md#weapon-garlic_aura) | [臭气熏天](SKILLS.md#skill-durian) （群体减益） | 190 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="images/char/bellpepper.png" width="32" height="32" alt=""> [青椒机甲](#char-bellpepper) | 机甲驾驶员 | 机甲装甲 | [酱料加特林](WEAPONS.md#weapon-sauce_gatling) | [无人机支援](SKILLS.md#skill-bellpepper) （召唤分身） | 190 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="images/char/wintermelon.png" width="32" height="32" alt=""> [冬瓜和尚](#char-wintermelon) | 禅修武僧 | 禅定 | [擀面杖](WEAPONS.md#weapon-rolling_pin) | [金钟罩](SKILLS.md#skill-wintermelon) （无敌潜行） | 190 成就点，需先达成 [Boss 终结者（铜）](ACHIEVEMENTS.md#ach-bosses) |
-| <img src="images/char/bittermelon.png" width="32" height="32" alt=""> [苦瓜冰法](#char-bittermelon) | 寒冰法师 | 寒霜侵袭 | [冰镇汽水](WEAPONS.md#weapon-soda) | [冰封领域](SKILLS.md#skill-bittermelon) （禁锢领域） | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="images/char/sprout.png" width="32" height="32" alt=""> [豆芽学徒](#char-sprout) | 潜力新星 | 厚积薄发 | [番茄叉](WEAPONS.md#weapon-fork) | [拔苗助长](SKILLS.md#skill-sprout) （自身增益） | 170 成就点 |
-| <img src="images/char/wasabi.png" width="32" height="32" alt=""> [山葵爆破手](#char-wasabi) | 爆破狂人 | 连锁反应 | [辣椒火箭](WEAPONS.md#weapon-chili_rocket) | [冲鼻核弹](SKILLS.md#skill-wasabi) （发射 AOE） | 200 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
+| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](#char-watermelon) | 重装坦克 | 皮糙肉厚 | [西瓜锤](WEAPONS.md#weapon-watermelon_hammer) | [西瓜翻滚](SKILLS.md#skill-watermelon) （突进冲撞） | 365 成就点 |
+| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](#char-lemon) | 暴击刺客 | 酸爽一击 | [菜刀](WEAPONS.md#weapon-knife) | [酸雾隐身](SKILLS.md#skill-lemon) （无敌潜行） | 365 成就点 |
+| <img src="images/char/eggplant.png" width="32" height="32" alt=""> [茄子法师](#char-eggplant) | 雷电法师 | 雷霆之力 | [西兰花法杖](WEAPONS.md#weapon-broccoli_staff) | [紫雷天罚](SKILLS.md#skill-eggplant) （全屏攻击） | 365 成就点 |
+| <img src="images/char/garlic.png" width="32" height="32" alt=""> [大蒜伯爵](#char-garlic) | 吸血贵族 | 血之盛宴 | [大蒜光环](WEAPONS.md#weapon-garlic_aura) | [血之领域](SKILLS.md#skill-garlic) （吸取回复） | 780 成就点 |
+| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](#char-blueberry) | 武器大师 | 双生默契 | [豌豆枪](WEAPONS.md#weapon-pea_shooter)、[菜刀](WEAPONS.md#weapon-knife) | [双子分身](SKILLS.md#skill-blueberry) （召唤分身） | 780 成就点 |
+| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](#char-pineapple) | 商人海盗 | 海盗分赃 | [番茄弹弓](WEAPONS.md#weapon-slingshot) | [黄金炮击](SKILLS.md#skill-pineapple) （发射 AOE） | 365 成就点 |
+| <img src="images/char/pumpkin.png" width="32" height="32" alt=""> [南瓜幽灵](#char-pumpkin) | 闪避大师 | 幽灵突袭 | [冰镇汽水](WEAPONS.md#weapon-soda) | [灵体化](SKILLS.md#skill-pumpkin) （无敌潜行） | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="images/char/strawberry.png" width="32" height="32" alt=""> [草莓偶像](#char-strawberry) | 成长明星 | 人气飙升 | [番茄酱瓶](WEAPONS.md#weapon-ketchup) | [应援打 Call](SKILLS.md#skill-strawberry) （自身增益） | 780 成就点 |
+| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](#char-ginger) | 疾风忍者 | 疾风步 | [洋葱回旋镖](WEAPONS.md#weapon-onion_boomerang) | [瞬影斩](SKILLS.md#skill-ginger) （突进冲撞） | 805 成就点，需先达成 [番茄酱风暴（银）](ACHIEVEMENTS.md#ach-kills) |
+| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](#char-avocado) | 炸弹专家 | 连环爆破 | [胡椒雷](WEAPONS.md#weapon-pepper_mine)、[辣椒火箭](WEAPONS.md#weapon-chili_rocket) | [核心过载](SKILLS.md#skill-avocado) （多点轰炸） | 870 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
+| <img src="images/char/onion.png" width="32" height="32" alt=""> [洋葱大叔](#char-onion) | 催泪硬汉 | 催泪弹 | [平底锅](WEAPONS.md#weapon-pan) | [催泪领域](SKILLS.md#skill-onion) （禁锢领域） | 915 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
+| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](#char-mushroom) | 剧毒专家 | 孢子扩散 | [冰镇汽水](WEAPONS.md#weapon-soda) | [孢子云](SKILLS.md#skill-mushroom) （群体减益） | 320 成就点 |
+| <img src="images/char/coconut.png" width="32" height="32" alt=""> [椰子拳师](#char-coconut) | 重拳格斗 | 重拳出击 | [平底锅](WEAPONS.md#weapon-pan) | [震地拳](SKILLS.md#skill-coconut) （周身爆发） | 365 成就点 |
+| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](#char-grape) | 幻术大师 | 障眼法 | [番茄酱瓶](WEAPONS.md#weapon-ketchup) | [葡萄分身](SKILLS.md#skill-grape) （召唤分身） | 640 成就点 |
+| <img src="images/char/cherry.png" width="32" height="32" alt=""> [樱桃双枪](#char-cherry) | 连射枪手 | 连珠炮 | [豌豆枪](WEAPONS.md#weapon-pea_shooter) | [双枪连射](SKILLS.md#skill-cherry) （单体连发） | 365 成就点 |
+| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](#char-pea) | 军团兵 | 豌豆军团 | [豌豆枪](WEAPONS.md#weapon-pea_shooter)、[豌豆枪](WEAPONS.md#weapon-pea_shooter) | [豌豆炮台](SKILLS.md#skill-pea) （单体连发） | 640 成就点 |
+| <img src="images/char/peach.png" width="32" height="32" alt=""> [蜜桃天使](#char-peach) | 治愈者 | 天使庇护 | [番茄弹弓](WEAPONS.md#weapon-slingshot) | [天使祝福](SKILLS.md#skill-peach) （吸取回复） | 780 成就点 |
+| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](#char-dragonfruit) | 烈焰骑士 | 龙息 | [擀面杖](WEAPONS.md#weapon-rolling_pin) | [龙焰冲锋](SKILLS.md#skill-dragonfruit) （突进冲撞） | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](#char-beet) | 狂战士 | 狂战之血 | [剁骨刀](WEAPONS.md#weapon-cleaver) | [狂暴](SKILLS.md#skill-beet) （自身增益） | 780 成就点 |
+| <img src="images/char/asparagus.png" width="32" height="32" alt=""> [芦笋弓手](#char-asparagus) | 精准射手 | 一箭穿心 | [玉米加农](WEAPONS.md#weapon-corn_cannon) | [穿心箭](SKILLS.md#skill-asparagus) （单体连发） | 780 成就点 |
+| <img src="images/char/sweetpotato.png" width="32" height="32" alt=""> [红薯厨神](#char-sweetpotato) | 美食家 | 美食家 | [擀面杖](WEAPONS.md#weapon-rolling_pin) | [烤红薯盛宴](SKILLS.md#skill-sweetpotato) （吸取回复） | 365 成就点 |
+| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](#char-kiwi) | 弱点洞察 | 弱点洞察 | [菜刀](WEAPONS.md#weapon-knife) | [真相只有一个](SKILLS.md#skill-kiwi) （群体减益） | 640 成就点 |
+| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](#char-lychee) | 幸运公主 | 好运连连 | [番茄弹弓](WEAPONS.md#weapon-slingshot) | [公主的好运](SKILLS.md#skill-lychee) （自身增益） | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](#char-durian) | 毒刺霸主 | 臭气熏天 | [大蒜光环](WEAPONS.md#weapon-garlic_aura) | [臭气熏天](SKILLS.md#skill-durian) （群体减益） | 870 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
+| <img src="images/char/bellpepper.png" width="32" height="32" alt=""> [青椒机甲](#char-bellpepper) | 机甲驾驶员 | 机甲装甲 | [酱料加特林](WEAPONS.md#weapon-sauce_gatling) | [无人机支援](SKILLS.md#skill-bellpepper) （召唤分身） | 870 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
+| <img src="images/char/wintermelon.png" width="32" height="32" alt=""> [冬瓜和尚](#char-wintermelon) | 禅修武僧 | 禅定 | [擀面杖](WEAPONS.md#weapon-rolling_pin) | [金钟罩](SKILLS.md#skill-wintermelon) （无敌潜行） | 870 成就点，需先达成 [Boss 终结者（铜）](ACHIEVEMENTS.md#ach-bosses) |
+| <img src="images/char/bittermelon.png" width="32" height="32" alt=""> [苦瓜冰法](#char-bittermelon) | 寒冰法师 | 寒霜侵袭 | [冰镇汽水](WEAPONS.md#weapon-soda) | [冰封领域](SKILLS.md#skill-bittermelon) （禁锢领域） | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| <img src="images/char/sprout.png" width="32" height="32" alt=""> [豆芽学徒](#char-sprout) | 潜力新星 | 厚积薄发 | [番茄叉](WEAPONS.md#weapon-fork) | [拔苗助长](SKILLS.md#skill-sprout) （自身增益） | 780 成就点 |
+| <img src="images/char/wasabi.png" width="32" height="32" alt=""> [山葵爆破手](#char-wasabi) | 爆破狂人 | 连锁反应 | [辣椒火箭](WEAPONS.md#weapon-chili_rocket) | [冲鼻核弹](SKILLS.md#skill-wasabi) （发射 AOE） | 915 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
 
 <a id="details"></a>
 
@@ -175,7 +175,7 @@
 | 属性修正 | +25 最大生命，-10% 攻击速度，+2 护甲，-12% 移动速度 |
 | 初始武器 | [西瓜锤](WEAPONS.md#weapon-watermelon_hammer) |
 | 主动技能 | [西瓜翻滚](SKILLS.md#skill-watermelon)【突进冲撞】冷却 11s — 翻滚冲撞并回复 10% 生命。 |
-| 解锁条件 | 80 成就点 |
+| 解锁条件 | 365 成就点 |
 
 <a id="char-lemon"></a>
 
@@ -192,7 +192,7 @@
 | 属性修正 | -4 最大生命，+20% 暴击率，+10% 闪避，+5% 移动速度 |
 | 初始武器 | [菜刀](WEAPONS.md#weapon-knife) |
 | 主动技能 | [酸雾隐身](SKILLS.md#skill-lemon)【无敌潜行】冷却 11s — 隐身 3 秒（无敌），暴击 +50%。 |
-| 解锁条件 | 80 成就点 |
+| 解锁条件 | 365 成就点 |
 
 <a id="char-eggplant"></a>
 
@@ -209,7 +209,7 @@
 | 属性修正 | +3 最大生命，+4 元素伤害，+10 幸运，近战伤害 ×0.3 |
 | 初始武器 | [西兰花法杖](WEAPONS.md#weapon-broccoli_staff) |
 | 主动技能 | [紫雷天罚](SKILLS.md#skill-eggplant)【全屏攻击】冷却 14s — 天雷覆盖全屏，劈中所有敌人并短暂眩晕。 |
-| 解锁条件 | 80 成就点 |
+| 解锁条件 | 365 成就点 |
 
 <a id="char-garlic"></a>
 
@@ -226,7 +226,7 @@
 | 属性修正 | -3 生命再生，+10% 吸血，+5% 全伤害 |
 | 初始武器 | [大蒜光环](WEAPONS.md#weapon-garlic_aura) |
 | 主动技能 | [血之领域](SKILLS.md#skill-garlic)【吸取回复】冷却 14s — 吸取周围敌人生命，施加流血。 |
-| 解锁条件 | 170 成就点 |
+| 解锁条件 | 780 成就点 |
 
 <a id="char-blueberry"></a>
 
@@ -243,7 +243,7 @@
 | 属性修正 | -10% 全伤害，武器栏 8 |
 | 初始武器 | [豌豆枪](WEAPONS.md#weapon-pea_shooter)、[菜刀](WEAPONS.md#weapon-knife) |
 | 主动技能 | [双子分身](SKILLS.md#skill-blueberry)【召唤分身】冷却 10s — 召唤分身 8 秒自动射击。 |
-| 解锁条件 | 170 成就点 |
+| 解锁条件 | 780 成就点 |
 
 <a id="char-pineapple"></a>
 
@@ -260,7 +260,7 @@
 | 属性修正 | -3 最大生命，+20 幸运，+10 收获，商店折扣 15% |
 | 初始武器 | [番茄弹弓](WEAPONS.md#weapon-slingshot) |
 | 主动技能 | [黄金炮击](SKILLS.md#skill-pineapple)【发射 AOE】冷却 16s — 向敌群最密集处发射黄金炮弹，大范围爆炸，击杀必掉番茄籽。 |
-| 解锁条件 | 80 成就点 |
+| 解锁条件 | 365 成就点 |
 
 <a id="char-pumpkin"></a>
 
@@ -277,7 +277,7 @@
 | 属性修正 | -4 最大生命，+25% 闪避，+8% 移动速度，闪避上限 75% |
 | 初始武器 | [冰镇汽水](WEAPONS.md#weapon-soda) |
 | 主动技能 | [灵体化](SKILLS.md#skill-pumpkin)【无敌潜行】冷却 11s — 无敌 2.5 秒并大幅加速。 |
-| 解锁条件 | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| 解锁条件 | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
 
 <a id="char-strawberry"></a>
 
@@ -294,7 +294,7 @@
 | 属性修正 | -3 最大生命，+40% 经验获取，升级选项 5 个 |
 | 初始武器 | [番茄酱瓶](WEAPONS.md#weapon-ketchup) |
 | 主动技能 | [应援打 Call](SKILLS.md#skill-strawberry)【自身增益】冷却 13s — 6 秒内急速 3 层 + 怒气 5 层。 |
-| 解锁条件 | 170 成就点 |
+| 解锁条件 | 780 成就点 |
 
 <a id="char-ginger"></a>
 
@@ -311,7 +311,7 @@
 | 属性修正 | +15% 攻击速度，-1 护甲，+20% 移动速度 |
 | 初始武器 | [洋葱回旋镖](WEAPONS.md#weapon-onion_boomerang) |
 | 主动技能 | [瞬影斩](SKILLS.md#skill-ginger)【突进冲撞】冷却 11s — 突进斩击，施加流血。 |
-| 解锁条件 | 175 成就点，需先达成 [番茄酱风暴（银）](ACHIEVEMENTS.md#ach-kills) |
+| 解锁条件 | 805 成就点，需先达成 [番茄酱风暴（银）](ACHIEVEMENTS.md#ach-kills) |
 
 <a id="char-avocado"></a>
 
@@ -328,7 +328,7 @@
 | 属性修正 | +5% 全伤害，+2 元素伤害，+30 射程 |
 | 初始武器 | [胡椒雷](WEAPONS.md#weapon-pepper_mine)、[辣椒火箭](WEAPONS.md#weapon-chili_rocket) |
 | 主动技能 | [核心过载](SKILLS.md#skill-avocado)【多点轰炸】冷却 11s — 连环爆炸 5 次。 |
-| 解锁条件 | 190 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
+| 解锁条件 | 870 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
 
 <a id="char-onion"></a>
 
@@ -345,7 +345,7 @@
 | 属性修正 | +10 最大生命，+2 生命再生，+4 护甲，-5% 移动速度 |
 | 初始武器 | [平底锅](WEAPONS.md#weapon-pan) |
 | 主动技能 | [催泪领域](SKILLS.md#skill-onion)【禁锢领域】冷却 12s — 释放 5 秒催泪瓦斯区域，区域内敌人大幅减速并致盲。 |
-| 解锁条件 | 200 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
+| 解锁条件 | 915 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
 
 <a id="char-mushroom"></a>
 
@@ -362,7 +362,7 @@
 | 属性修正 | +2 元素伤害，+5 幸运 |
 | 初始武器 | [冰镇汽水](WEAPONS.md#weapon-soda) |
 | 主动技能 | [孢子云](SKILLS.md#skill-mushroom)【群体减益】冷却 19s — 对大范围内敌人施加 5 层中毒与 2 层虚弱。 |
-| 解锁条件 | 70 成就点 |
+| 解锁条件 | 320 成就点 |
 
 <a id="char-coconut"></a>
 
@@ -379,7 +379,7 @@
 | 属性修正 | +5 最大生命，+4 近战伤害，+2 护甲，元素伤害 ×0.5 |
 | 初始武器 | [平底锅](WEAPONS.md#weapon-pan) |
 | 主动技能 | [震地拳](SKILLS.md#skill-coconut)【周身爆发】冷却 21s — 重击地面，眩晕并破甲。 |
-| 解锁条件 | 80 成就点 |
+| 解锁条件 | 365 成就点 |
 
 <a id="char-grape"></a>
 
@@ -396,7 +396,7 @@
 | 属性修正 | +3 最大生命，+1 远程伤害，+1 元素伤害，+10 幸运 |
 | 初始武器 | [番茄酱瓶](WEAPONS.md#weapon-ketchup) |
 | 主动技能 | [葡萄分身](SKILLS.md#skill-grape)【召唤分身】冷却 10s — 召唤分身 8 秒自动射击。 |
-| 解锁条件 | 140 成就点 |
+| 解锁条件 | 640 成就点 |
 
 <a id="char-cherry"></a>
 
@@ -413,7 +413,7 @@
 | 属性修正 | -8% 全伤害，+1 远程伤害，+20% 攻击速度 |
 | 初始武器 | [豌豆枪](WEAPONS.md#weapon-pea_shooter) |
 | 主动技能 | [双枪连射](SKILLS.md#skill-cherry)【单体连发】冷却 11s — 对最近的敌人连续射出 12 发子弹。 |
-| 解锁条件 | 80 成就点 |
+| 解锁条件 | 365 成就点 |
 
 <a id="char-pea"></a>
 
@@ -430,7 +430,7 @@
 | 属性修正 | +3 最大生命，+2 远程伤害 |
 | 初始武器 | [豌豆枪](WEAPONS.md#weapon-pea_shooter)、[豌豆枪](WEAPONS.md#weapon-pea_shooter) |
 | 主动技能 | [豌豆炮台](SKILLS.md#skill-pea)【单体连发】冷却 10s — 对最近的敌人高速连发 16 颗豌豆。 |
-| 解锁条件 | 140 成就点 |
+| 解锁条件 | 640 成就点 |
 
 <a id="char-peach"></a>
 
@@ -447,7 +447,7 @@
 | 属性修正 | +5 最大生命，+5 生命再生，-10% 全伤害 |
 | 初始武器 | [番茄弹弓](WEAPONS.md#weapon-slingshot) |
 | 主动技能 | [天使祝福](SKILLS.md#skill-peach)【吸取回复】冷却 15s — 回复 20% 生命，无敌 1.5 秒。 |
-| 解锁条件 | 170 成就点 |
+| 解锁条件 | 780 成就点 |
 
 <a id="char-dragonfruit"></a>
 
@@ -464,7 +464,7 @@
 | 属性修正 | +5 最大生命，+2 近战伤害，+2 元素伤害，+5% 移动速度 |
 | 初始武器 | [擀面杖](WEAPONS.md#weapon-rolling_pin) |
 | 主动技能 | [龙焰冲锋](SKILLS.md#skill-dragonfruit)【突进冲撞】冷却 12s — 冲锋并在路径上叠加 4 层灼烧。 |
-| 解锁条件 | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| 解锁条件 | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
 
 <a id="char-beet"></a>
 
@@ -481,7 +481,7 @@
 | 属性修正 | +3% 吸血，+15% 全伤害，-1 护甲 |
 | 初始武器 | [剁骨刀](WEAPONS.md#weapon-cleaver) |
 | 主动技能 | [狂暴](SKILLS.md#skill-beet)【自身增益】冷却 13s — 6 秒暴怒（移速、伤害 +30%）与嗜血。 |
-| 解锁条件 | 170 成就点 |
+| 解锁条件 | 780 成就点 |
 
 <a id="char-asparagus"></a>
 
@@ -498,7 +498,7 @@
 | 属性修正 | +1 远程伤害，+10% 暴击率，+80 射程，近战伤害 ×0.6 |
 | 初始武器 | [玉米加农](WEAPONS.md#weapon-corn_cannon) |
 | 主动技能 | [穿心箭](SKILLS.md#skill-asparagus)【单体连发】冷却 12s — 向生命最高的敌人连射 8 支穿透箭，并标记目标。 |
-| 解锁条件 | 170 成就点 |
+| 解锁条件 | 780 成就点 |
 
 <a id="char-sweetpotato"></a>
 
@@ -515,7 +515,7 @@
 | 属性修正 | +5 最大生命，-5% 全伤害，+20 收获 |
 | 初始武器 | [擀面杖](WEAPONS.md#weapon-rolling_pin) |
 | 主动技能 | [烤红薯盛宴](SKILLS.md#skill-sweetpotato)【吸取回复】冷却 18s — 回复 20% 生命，获得 5 层再生。 |
-| 解锁条件 | 80 成就点 |
+| 解锁条件 | 365 成就点 |
 
 <a id="char-kiwi"></a>
 
@@ -532,7 +532,7 @@
 | 属性修正 | +3 最大生命，+1 近战伤害，+8% 暴击率，+10 幸运 |
 | 初始武器 | [菜刀](WEAPONS.md#weapon-knife) |
 | 主动技能 | [真相只有一个](SKILLS.md#skill-kiwi)【群体减益】冷却 15s — 看穿全屏敌人：施加标记与 2 层易伤。 |
-| 解锁条件 | 140 成就点 |
+| 解锁条件 | 640 成就点 |
 
 <a id="char-lychee"></a>
 
@@ -549,7 +549,7 @@
 | 属性修正 | +40 幸运 |
 | 初始武器 | [番茄弹弓](WEAPONS.md#weapon-slingshot) |
 | 主动技能 | [公主的好运](SKILLS.md#skill-lychee)【自身增益】冷却 10s — 6 秒好运 5 层 + 专注 3 层。 |
-| 解锁条件 | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| 解锁条件 | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
 
 <a id="char-durian"></a>
 
@@ -566,7 +566,7 @@
 | 属性修正 | +10 最大生命，+3 护甲，-4% 移动速度 |
 | 初始武器 | [大蒜光环](WEAPONS.md#weapon-garlic_aura) |
 | 主动技能 | [臭气熏天](SKILLS.md#skill-durian)【群体减益】冷却 21s — 对周围敌人施加中毒、3 层虚弱与混乱。 |
-| 解锁条件 | 190 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
+| 解锁条件 | 870 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
 
 <a id="char-bellpepper"></a>
 
@@ -583,7 +583,7 @@
 | 属性修正 | +10 最大生命，+5 护甲，-10% 闪避，-10% 移动速度 |
 | 初始武器 | [酱料加特林](WEAPONS.md#weapon-sauce_gatling) |
 | 主动技能 | [无人机支援](SKILLS.md#skill-bellpepper)【召唤分身】冷却 10s — 部署无人机 8 秒。 |
-| 解锁条件 | 190 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
+| 解锁条件 | 870 成就点，需先达成 [破冰者](ACHIEVEMENTS.md#ach-clear_3) |
 
 <a id="char-wintermelon"></a>
 
@@ -600,7 +600,7 @@
 | 属性修正 | +3 生命再生，+15% 闪避，+5% 移动速度，远程伤害 ×0.7 |
 | 初始武器 | [擀面杖](WEAPONS.md#weapon-rolling_pin) |
 | 主动技能 | [金钟罩](SKILLS.md#skill-wintermelon)【无敌潜行】冷却 16s — 冥想 2 秒无敌，获得 5 层坚韧。 |
-| 解锁条件 | 190 成就点，需先达成 [Boss 终结者（铜）](ACHIEVEMENTS.md#ach-bosses) |
+| 解锁条件 | 870 成就点，需先达成 [Boss 终结者（铜）](ACHIEVEMENTS.md#ach-bosses) |
 
 <a id="char-bittermelon"></a>
 
@@ -617,7 +617,7 @@
 | 属性修正 | +3 最大生命，+3 元素伤害，+5% 攻击速度 |
 | 初始武器 | [冰镇汽水](WEAPONS.md#weapon-soda) |
 | 主动技能 | [冰封领域](SKILLS.md#skill-bittermelon)【禁锢领域】冷却 16s — 在身边展开 5 秒冰封领域，敌人进入后减速并被冻结。 |
-| 解锁条件 | 175 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
+| 解锁条件 | 805 成就点，需先达成 [菜园守护者](ACHIEVEMENTS.md#ach-clear_2) |
 
 <a id="char-sprout"></a>
 
@@ -634,7 +634,7 @@
 | 属性修正 | -3 最大生命，-8% 全伤害，+80% 经验获取，升级选项 5 个 |
 | 初始武器 | [番茄叉](WEAPONS.md#weapon-fork) |
 | 主动技能 | [拔苗助长](SKILLS.md#skill-sprout)【自身增益】冷却 10s — 获得 12 点经验与 5 秒急速。 |
-| 解锁条件 | 170 成就点 |
+| 解锁条件 | 780 成就点 |
 
 <a id="char-wasabi"></a>
 
@@ -651,7 +651,7 @@
 | 属性修正 | -5 最大生命，+8% 全伤害，+2 元素伤害 |
 | 初始武器 | [辣椒火箭](WEAPONS.md#weapon-chili_rocket) |
 | 主动技能 | [冲鼻核弹](SKILLS.md#skill-wasabi)【发射 AOE】冷却 23s — 向敌群发射山葵核弹，超大范围爆炸并灼烧。 |
-| 解锁条件 | 200 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
+| 解锁条件 | 915 成就点，需先达成 [垃圾场之王](ACHIEVEMENTS.md#ach-clear_4) |
 
 ---
 

@@ -1,5 +1,6 @@
 // 角色主动技能（大招）
 // 伤害 = 当前武器平均单次伤害 × 系数 ×（1+技能伤害%）；范围受射程与技能范围影响；持续时间受技能持续影响
+import { bump } from './Counters';
 import Phaser from 'phaser';
 import type { GameScene, HitInfo } from '../scenes/GameScene';
 import type { SkillDef } from '../data/characters';
@@ -131,6 +132,8 @@ export class SkillSystem {
     const s = g.stats;
     const p = g.player;
     this.cd = this.maxCd;
+    bump('casts');
+    bump(`cast:${sk.type}`);
     audio.play(g, 'skill');
     p.play('cast', true);
     castFx(g, sk, sk.type === 'buff' || sk.type === 'ghost' ? this.dur(sk.duration ?? 3) : 0, Math.atan2(g.moveY || 0.0001, g.moveX || 1));

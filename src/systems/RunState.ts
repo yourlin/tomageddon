@@ -1,4 +1,5 @@
 // 一局游戏的状态：角色、武器、道具、属性、经验、番茄籽
+import { bump } from './Counters';
 import { BASE_STATS, addMods, type Stats, type StatMods } from '../data/stats';
 import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPON_MAP, WEAPON_SETS, type WeaponDef } from '../data/weapons';
@@ -300,6 +301,7 @@ export class RunState {
       const same = this.weapons.find((w) => w.id === id && w.tier === tier && tier < 3);
       if (same) {
         same.tier++;
+        if (same.tier === 3) bump(`t4:${id}`);
         ensureAffixes(same, this.stats.luck);
         this.dirty();
         return;
@@ -309,6 +311,8 @@ export class RunState {
     const w: OwnedWeapon = { uid: uidSeq++, id, tier };
     ensureAffixes(w, this.stats.luck);
     this.weapons.push(w);
+    bump(`weaponGot:${id}`);
+    if (tier === 3) bump(`t4:${id}`);
     this.dirty();
   }
 
@@ -321,7 +325,10 @@ export class RunState {
     this.weapons = this.weapons.filter((x) => x.uid !== other.uid);
     w.tier++;
     ensureAffixes(w, this.stats.luck);
-    if (w.tier === 3) save.stats.t4Crafted++;
+    if (w.tier === 3) {
+      save.stats.t4Crafted++;
+      bump(`t4:${w.id}`);
+    }
     this.dirty();
     return true;
   }

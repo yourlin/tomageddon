@@ -24,6 +24,9 @@ export class AchievementScene extends Phaser.Scene {
   private filter: Filter = 'all';
   private page = 0;
   private layer!: Phaser.GameObjects.Container;
+  private tabBtns: ReturnType<typeof button>[] = [];
+  /** 只看未满级的成就 */
+  private unfinished = false;
 
   constructor() {
     super('Achievements');
@@ -51,12 +54,14 @@ export class AchievementScene extends Phaser.Scene {
       ['all', tx('全部', 'All')],
       ...(Object.keys(ACH_CATEGORY_NAME) as AchCategory[]).map((c) => [c, pick(ACH_CATEGORY_NAME[c])] as [Filter, string]),
     ];
-    tabs.forEach(([f, n], i) =>
+    // 分类标签：按数量自动收窄，一行放下
+    const tw = Math.min(126, (W - 48) / tabs.length - 6);
+    this.tabBtns = tabs.map(([f, n], i) =>
       button(
         this,
-        24 + 62 + i * 134,
+        24 + tw / 2 + i * (tw + 6),
         100,
-        126,
+        tw,
         42,
         n,
         () => {
@@ -65,7 +70,7 @@ export class AchievementScene extends Phaser.Scene {
           this.draw();
         },
         0x7a2e35,
-        17,
+        tw < 100 ? 15 : 17,
       ),
     );
     this.layer = this.add.container(0, 0);
@@ -76,7 +81,41 @@ export class AchievementScene extends Phaser.Scene {
     this.layer.removeAll(true);
     const W = this.scale.width,
       H = this.scale.height;
-    const list = ACHIEVEMENTS.filter((a) => this.filter === 'all' || a.category === this.filter);
+    const tabKeys: Filter[] = ['all', ...(Object.keys(ACH_CATEGORY_NAME) as AchCategory[])];
+    this.tabBtns.forEach((b, i) => b.setAlpha(tabKeys[i] === this.filter ? 1 : 0.6));
+    const inCat = ACHIEVEMENTS.filter((a) => this.filter === 'all' || a.category === this.filter);
+    // 未满级的排前面：已解锁一部分的最前，其次未解锁，满级的最后
+    const list = (this.unfinished ? inCat.filter((a) => !isMaxed(a)) : inCat).sort(
+      (a, b) => Number(isMaxed(a)) - Number(isMaxed(b)) || Number(achTier(b.id) > 0) - Number(achTier(a.id) > 0),
+    );
+    const done = inCat.filter((a) => achTier(a.id) > 0).length;
+    this.layer.add(
+      text(
+        this,
+        24,
+        H - 34,
+        tx(`本类已解锁 ${done} / ${inCat.length}`, `Unlocked ${done} / ${inCat.length}`),
+        17,
+        COLORS.textDim,
+      ).setOrigin(0, 0.5),
+    );
+    this.layer.add(
+      button(
+        this,
+        W - 120,
+        H - 34,
+        200,
+        46,
+        this.unfinished ? tx('☑ 只看未完成', '☑ Unfinished only') : tx('☐ 只看未完成', '☐ Unfinished only'),
+        () => {
+          this.unfinished = !this.unfinished;
+          this.page = 0;
+          this.draw();
+        },
+        0x4a6fa5,
+        17,
+      ),
+    );
     const pages = Math.max(1, Math.ceil(list.length / PER_PAGE));
     this.page = Math.min(this.page, pages - 1);
     const cols = 3,
@@ -127,7 +166,7 @@ export class AchievementScene extends Phaser.Scene {
             this,
             W / 2 + dx,
             py,
-            140,
+            110,
             46,
             label,
             () => {
@@ -138,9 +177,15 @@ export class AchievementScene extends Phaser.Scene {
             20,
           ),
         );
-      if (this.page > 0) pageBtn(-120, tx('上一页', 'Prev'), -1);
+      if (this.page > 0) {
+        pageBtn(-240, '«', -this.page);
+        pageBtn(-125, tx('上一页', 'Prev'), -1);
+      }
       this.layer.add(text(this, W / 2, py, `${this.page + 1} / ${pages}`, 20).setOrigin(0.5));
-      if (this.page < pages - 1) pageBtn(120, tx('下一页', 'Next'), 1);
+      if (this.page < pages - 1) {
+        pageBtn(125, tx('下一页', 'Next'), 1);
+        pageBtn(240, '»', pages - 1 - this.page);
+      }
     }
   }
 }

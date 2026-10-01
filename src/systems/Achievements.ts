@@ -4,7 +4,16 @@ import { CHARACTERS, CHARACTER_MAP, type CharacterDef } from '../data/characters
 import { WEAPONS } from '../data/weapons';
 import { ENEMIES } from '../data/enemies';
 import { BOSSES, BOSS_MAP } from '../data/bosses';
-import { ALL_ITEMS } from '../data/items';
+import { ALL_ITEMS, ITEM_MAP } from '../data/items';
+import { WEAPON_MAP } from '../data/weapons';
+import { AFFIXES, type AffixId } from '../data/bosses';
+import { STATUSES, type StatusId } from '../data/statuses';
+import { CHAPTERS } from '../data/chapters';
+import { SKILL_TYPE_NAME } from '../data/skills';
+import { RARITY } from '../data/balance';
+import type { SkillType } from '../data/characters';
+import { tagName } from '../i18n/apply';
+import { counter } from './Counters';
 import { save, persist, isUnlocked, isSeen, buyCharacter } from './Save';
 import { run } from './RunState';
 import { lang, tx } from '../i18n';
@@ -17,7 +26,8 @@ export function setInRun(v: boolean): void {
 }
 
 const regularEnemies = () => ENEMIES.filter((e) => !e.critter);
-const METRICS: Record<AchMetric, (charId?: string) => number> = {
+const runItemCount = () => Object.values(run.items).reduce((a, b) => a + b, 0);
+const METRICS: Record<AchMetric, (a: AchievementDef) => number> = {
   totalKills: () => save.totalKills,
   runKills: () => (inRun ? run.kills : 0),
   eliteKills: () => save.stats.eliteKills,
@@ -30,7 +40,7 @@ const METRICS: Record<AchMetric, (charId?: string) => number> = {
   charsWon: () => CHARACTERS.filter((c) => (save.charWins[c.id] ?? 0) > 0).length,
   charsOwned: () => CHARACTERS.filter(isUnlocked).length,
   runLevel: () => (inRun ? run.level : 0),
-  runItems: () => (inRun ? Object.values(run.items).reduce((a, b) => a + b, 0) : 0),
+  runItems: () => (inRun ? runItemCount() : 0),
   runWeapons: () => (inRun ? run.weapons.length : 0),
   t4Crafted: () => save.stats.t4Crafted,
   runSeeds: () => (inRun ? run.seeds : 0),
@@ -39,10 +49,44 @@ const METRICS: Record<AchMetric, (charId?: string) => number> = {
   seenItems: () => save.seen.items.length,
   seenEnemies: () => regularEnemies().filter((e) => isSeen('enemies', e.id)).length,
   seenBosses: () => BOSSES.filter((b) => isSeen('bosses', b.id)).length,
-  charRuns: (id) => save.charRuns[id!] ?? 0,
-  charWins: (id) => save.charWins[id!] ?? 0,
-  bossDefeated: (id) => save.killedBosses[id!] ?? 0,
+  charRuns: (a) => save.charRuns[a.charId!] ?? 0,
+  charWins: (a) => save.charWins[a.charId!] ?? 0,
+  bossDefeated: (a) => save.killedBosses[a.bossId!] ?? 0,
+  counter: (a) => counter(a.key!),
+  runSeries: (a) => {
+    if (!inRun) return 0;
+    let n = 0;
+    for (const [id, c] of Object.entries(run.items)) if (id.startsWith(`${a.key}_`)) n += c;
+    return n;
+  },
+  runSet: (a) => (inRun ? (run.setCounts()[a.key!] ?? 0) : 0),
 };
+
+/** {x} 指代对象的名字（读取当前语言下的数据） */
+function subjectName(a: AchievementDef): string {
+  const s = a.subject;
+  if (!s) return '';
+  switch (s.kind) {
+    case 'enemy':
+      return ENEMIES.find((e) => e.id === s.id)?.name ?? s.id;
+    case 'weapon':
+      return WEAPON_MAP[s.id]?.name ?? s.id;
+    case 'series':
+      return ITEM_MAP[`${s.id}_0`]?.series ?? s.id;
+    case 'set':
+      return tagName(s.id);
+    case 'skill':
+      return SKILL_TYPE_NAME[s.id as SkillType] ?? s.id;
+    case 'status':
+      return STATUSES[s.id as StatusId]?.name ?? s.id;
+    case 'affix':
+      return AFFIXES[s.id as AffixId]?.name ?? s.id;
+    case 'chapter':
+      return CHAPTERS[Number(s.id) - 1]?.name ?? s.id;
+    case 'rarity':
+      return RARITY[Number(s.id)]?.name ?? s.id;
+  }
+}
 
 const TOTALS: Partial<Record<AchMetric, () => number>> = {
   charsWon: () => CHARACTERS.length,
@@ -59,7 +103,7 @@ export function tierGoal(a: AchievementDef, i: number): number {
   return g === 'all' ? (TOTALS[a.metric]?.() ?? 1) : g;
 }
 
-export const achValue = (a: AchievementDef): number => METRICS[a.metric](a.charId ?? a.bossId);
+export const achValue = (a: AchievementDef): number => METRICS[a.metric](a);
 /** 已达成的等级数（0 = 未解锁） */
 export const achTier = (id: string): number => save.achievements[id]?.tier ?? 0;
 export const isMaxed = (a: AchievementDef): boolean => achTier(a.id) >= a.tiers.length;
@@ -71,7 +115,8 @@ export function achText(a: AchievementDef, field: 'name' | 'desc', tierIdx?: num
   return t
     .replace('{n}', tierGoal(a, i).toLocaleString())
     .replace('{char}', a.charId ? CHARACTER_MAP[a.charId].name : '')
-    .replace('{boss}', a.bossId ? BOSS_MAP[a.bossId].name : '');
+    .replace('{boss}', a.bossId ? BOSS_MAP[a.bossId].name : '')
+    .replace(/\{x\}/g, subjectName(a));
 }
 export const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
 
@@ -93,6 +138,15 @@ export function pointsEarned(): number {
 export const pointsBalance = (): number => pointsEarned() - save.pointsSpent;
 export const pointsTotal = (): number => ACHIEVEMENTS.reduce((s, a) => s + a.tiers.reduce((t, x) => t + x.points, 0), 0);
 
+/** 角色价格：characters.ts 里的 cost 是相对权重，按「全部角色总价 = 全部成就点 × 70%」缩放，取整到 5 */
+const ALL_CHARS_SHARE = 0.7;
+let priceScale = 0;
+export function charCost(c: CharacterDef): number {
+  if (!c.cost) return 0;
+  if (!priceScale) priceScale = (pointsTotal() * ALL_CHARS_SHARE) / CHARACTERS.reduce((s, x) => s + (x.cost ?? 0), 0);
+  return Math.max(5, Math.round((c.cost * priceScale) / 5) * 5);
+}
+
 /** 购买角色前置：未满足时返回需要完成的成就说明 */
 export function missingRequirement(c: CharacterDef): string | null {
   const r = c.requires;
@@ -106,7 +160,7 @@ export function missingRequirement(c: CharacterDef): string | null {
 export function unlockHint(c: CharacterDef): string {
   if (isUnlocked(c)) return '';
   const req = missingRequirement(c);
-  const price = tx(`价格 ${c.cost} 成就点`, `Costs ${c.cost} pts`);
+  const price = tx(`价格 ${charCost(c)} 成就点`, `Costs ${charCost(c)} pts`);
   return req ? tx(`需先达成 ${req}；${price}`, `Requires ${req}; ${price}`) : price;
 }
 
@@ -114,7 +168,7 @@ export type BuyResult = 'ok' | 'owned' | 'locked' | 'poor';
 export function tryBuyCharacter(c: CharacterDef): BuyResult {
   if (isUnlocked(c)) return 'owned';
   if (missingRequirement(c)) return 'locked';
-  if (!buyCharacter(c, pointsBalance())) return 'poor';
+  if (!buyCharacter(c, pointsBalance(), charCost(c))) return 'poor';
   checkAchievements();
   return 'ok';
 }
@@ -136,7 +190,14 @@ export function checkAchievements(): number {
   }
   if (!fresh.length) return 0;
   persist();
-  for (const f of fresh) notify(f.a, f.tier, f.points);
+  // 一次解锁很多时只逐条提示点数最高的 3 条，其余合并成一条汇总
+  fresh.sort((x, y) => y.points - x.points);
+  for (const f of fresh.slice(0, 3)) notify(f.a, f.tier, f.points);
+  if (fresh.length > 3)
+    notifyMore(
+      fresh.length - 3,
+      fresh.slice(3).reduce((s, f) => s + f.points, 0),
+    );
   const gained = fresh.reduce((s, f) => s + f.points, 0);
   if (inRun) run.achPoints += gained;
   return gained;
@@ -168,6 +229,26 @@ function notify(a: AchievementDef, tier: number, points: number): void {
       el.remove();
       next();
     }, 3400);
+  });
+  if (!showing) next();
+}
+
+function notifyMore(n: number, points: number): void {
+  if (HEADLESS || typeof document === 'undefined') return;
+  queue.push(() => {
+    const el = document.createElement('div');
+    el.style.cssText =
+      'position:fixed;left:50%;top:14px;transform:translate(-50%,-130%);z-index:30;padding:10px 18px;border-radius:12px;' +
+      'background:rgba(40,16,20,0.94);border:2px solid #ffd166;color:#fff4ea;font:15px "PingFang SC","Microsoft YaHei",sans-serif;' +
+      'box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:transform .35s ease;pointer-events:none;';
+    el.innerHTML = `🏆 ${tx(`另有 ${n} 项成就解锁`, `${n} more achievements unlocked`)} · <b style="color:#ffd166">+${points} ${tx('成就点', 'pts')}</b>`;
+    overlayRoot().appendChild(el);
+    requestAnimationFrame(() => (el.style.transform = 'translate(-50%,0)'));
+    setTimeout(() => (el.style.transform = 'translate(-50%,-130%)'), 2400);
+    setTimeout(() => {
+      el.remove();
+      next();
+    }, 2800);
   });
   if (!showing) next();
 }

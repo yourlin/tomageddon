@@ -1,4 +1,5 @@
 // 商店：购买武器/道具、合成、出售、刷新、锁定
+import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
 import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
@@ -274,6 +275,7 @@ export class ShopScene extends Phaser.Scene {
           if (run.seeds < rp || !canReroll) return;
           run.seeds -= rp;
           run.rerolls++;
+          bump('shopRerolls');
           this.rollShop(true);
           audio.play(this, 'buy');
           this.draw();
@@ -293,7 +295,12 @@ export class ShopScene extends Phaser.Scene {
         return;
       }
       run.addWeapon(o.id, o.tier);
-    } else run.addItem(o.id);
+      bump('weaponsBought');
+    } else {
+      run.addItem(o.id);
+      bump('itemsBought');
+      bump(`rarityBought:${o.tier}`);
+    }
     run.seeds -= o.price;
     o.sold = true;
     o.locked = false;
@@ -375,6 +382,7 @@ export class ShopScene extends Phaser.Scene {
             if (run.seeds < one) return;
             run.seeds -= one;
             rerollOne(w, i, s.luck);
+            bump('affixRerolls');
             run.dirty();
             audio.play(this, 'buy');
             redraw();
@@ -415,6 +423,7 @@ export class ShopScene extends Phaser.Scene {
           if (run.seeds < all) return;
           run.seeds -= all;
           rerollAll(w, s.luck);
+          bump('affixRerolls');
           run.dirty();
           audio.play(this, 'buy');
           redraw();
@@ -435,6 +444,10 @@ export class ShopScene extends Phaser.Scene {
           if (run.seeds < fc || !canForge(w)) return;
           run.seeds -= fc;
           const ok = forge(w);
+          bump('forges');
+          bump(ok ? 'forgeOk' : 'forgeFail');
+          bumpMax(`forge:${w.id}`, w.forge ?? 0);
+          bumpMax('forgeMax', w.forge ?? 0);
           run.dirty();
           audio.play(this, ok ? 'levelup' : 'hurt');
           toast(this, ok ? tx(`打造成功！+${w.forge}`, `Forged! +${w.forge}`) : tx('打造失败', 'Forge failed'), ok ? '#52ff8a' : '#ff6b6b');
@@ -456,6 +469,7 @@ export class ShopScene extends Phaser.Scene {
         tx('合成', 'Combine'),
         () => {
           if (run.combine(w.uid)) {
+            bump('combines');
             audio.play(this, 'levelup');
             redraw();
           }
@@ -478,6 +492,7 @@ export class ShopScene extends Phaser.Scene {
             return;
           }
           run.removeWeapon(w.uid);
+          bump('sells');
           run.seeds += sp;
           audio.play(this, 'buy');
           c.destroy();

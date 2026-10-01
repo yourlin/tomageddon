@@ -1,4 +1,5 @@
 // 波次间：升级属性选择 + 宝箱开启
+import { bump } from '../systems/Counters';
 import Phaser from 'phaser';
 import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
@@ -94,6 +95,7 @@ export class LevelUpScene extends Phaser.Scene {
       );
       const pick = () => {
         run.addLevelMod({ [o.key]: v });
+        bump('levelups');
         run.pendingLevelUps--;
         this.next();
       };
@@ -163,6 +165,7 @@ export class LevelUpScene extends Phaser.Scene {
         tx('拿走', 'Take'),
         () => {
           run.addItem(item.id);
+          bump('crates');
           run.pendingCrates--;
           this.next();
         },
@@ -180,6 +183,7 @@ export class LevelUpScene extends Phaser.Scene {
         tx(`回收 🌱${recycle}`, `Recycle 🌱${recycle}`),
         () => {
           run.earn(recycle, 'recycle');
+          bump('crates');
           run.pendingCrates--;
           this.next();
         },

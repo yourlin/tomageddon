@@ -33,6 +33,8 @@ export interface SaveData {
   seenVersion?: string;
   /** 成就用累计统计 */
   stats: AchStats;
+  /** 成就计数器（见 systems/Counters.ts） */
+  counters: Record<string, number>;
 }
 
 export interface AchStats {
@@ -61,6 +63,7 @@ const DEFAULT: SaveData = {
   charRuns: {},
   killedBosses: {},
   stats: { eliteKills: 0, bossKills: 0, overtimeWins: 0, perfectWaves: 0, revives: 0, t4Crafted: 0, seedsEarned: 0 },
+  counters: {},
 };
 
 /** 旧存档迁移：改为成就点购买前，玩过或通关过的角色保留使用权 */
@@ -86,6 +89,7 @@ function load(): SaveData {
       charRuns: { ...(d.charRuns ?? {}) },
       killedBosses: { ...(d.killedBosses ?? {}) },
       stats: { ...DEFAULT.stats, ...(d.stats ?? {}) },
+      counters: { ...(d.counters ?? {}) },
     };
   } catch {
     return structuredClone(DEFAULT);
@@ -108,10 +112,10 @@ export function isUnlocked(c: CharacterDef): boolean {
 }
 
 /** 用成就点购买角色；余额由成就系统计算后传入 */
-export function buyCharacter(c: CharacterDef, balance: number): boolean {
-  if (isUnlocked(c) || !c.cost || balance < c.cost) return false;
+export function buyCharacter(c: CharacterDef, balance: number, price: number): boolean {
+  if (isUnlocked(c) || !c.cost || balance < price) return false;
   save.ownedChars.push(c.id);
-  save.pointsSpent += c.cost;
+  save.pointsSpent += price;
   persist();
   return true;
 }

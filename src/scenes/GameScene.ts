@@ -1,4 +1,5 @@
 // 核心战斗场景：固定竞技场，玩家移动躲避，武器自动攻击
+import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
 import { run } from '../systems/RunState';
 import {
@@ -830,7 +831,14 @@ export class GameScene extends Phaser.Scene {
     }
     save.totalKills += this.killCounter;
     this.killCounter = 0;
-    if (!this.tookDamage) save.stats.perfectWaves++;
+    if (!this.tookDamage) {
+      save.stats.perfectWaves++;
+      bump(`chPerfect:${run.chapterId}`);
+    }
+    bump('waves');
+    bumpMax(`chWave:${run.chapterId}`, run.wave);
+    bumpMax(`charWave:${run.charId}`, run.wave);
+    bumpMax(`charLevel:${run.charId}`, run.level);
     persist();
     checkAchievements();
     this.events.emit('waveEnd');
@@ -1087,6 +1095,8 @@ export class GameScene extends Phaser.Scene {
     if (!e.alive) return false;
     dmg *= e.takenMult;
     e.hp -= dmg;
+    bumpMax('maxHit', Math.round(dmg));
+    if (opts.crit) bump('crits');
     this.fx.number(e.x, e.y - e.radius, dmg, opts.color ?? '#ffffff', opts.crit);
     if (!opts.dot) {
       e.rig?.play('hurt');
@@ -1101,6 +1111,15 @@ export class GameScene extends Phaser.Scene {
 
   private killEnemy(e: Enemy): void {
     const color = e.def?.color ?? e.boss?.color ?? 0xffffff;
+    // 成就计数：每种怪物、章节、角色击杀；词缀精英按词缀
+    if (e.def) bump(`kill:${e.def.id}`);
+    bump(`chKills:${run.chapterId}`);
+    bump(`charKills:${run.charId}`);
+    if (e.def && e.affixes.length) {
+      bump('champions');
+      for (const a of e.affixes) bump(`champ:${a}`);
+    }
+    if (e.boss?.elite) bump(`charElite:${run.charId}`);
     e.kill(this);
     run.kills++;
     this.killCounter++;
@@ -1517,6 +1536,7 @@ export class GameScene extends Phaser.Scene {
       if (bonus) this.fx.label(p.img.x, p.img.y - 10, '×2', '#52ff8a');
       audio.play(this, 'pickup', 0.03);
     } else if (p.kind === 'fruit') {
+      bump('fruits');
       const bonus = this.talent.fruitSeeds();
       if (bonus) run.earn(bonus, 'talent');
       this.heal(Math.max(3, Math.round(this.stats.maxHp * 0.08 * (1 + run.specials.fruitHeal / 100))));

@@ -1,4 +1,6 @@
 // 结算
+import { bump } from '../systems/Counters';
+import { WEAPON_MAP } from '../data/weapons';
 import Phaser from 'phaser';
 import { showcaseRig } from '../ui/Portrait';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
@@ -8,7 +10,7 @@ import { CHARACTERS } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
-import { checkAchievements, setInRun, missingRequirement, pointsBalance } from '../systems/Achievements';
+import { checkAchievements, setInRun, missingRequirement, pointsBalance, charCost } from '../systems/Achievements';
 import { showSharePoster } from '../systems/SharePoster';
 
 export class ResultScene extends Phaser.Scene {
@@ -28,12 +30,26 @@ export class ResultScene extends Phaser.Scene {
       save.wins++;
       save.charWins[run.charId] = (save.charWins[run.charId] ?? 0) + 1;
       save.clearedChapters = Math.max(save.clearedChapters, run.chapterId);
+      // 成就计数：角色 × 章节通关、挑战条件
+      bump(`charClear:${run.charId}:${run.chapterId}`);
+      if (run.weapons.length === 1) bump('winSolo');
+      if (run.hp <= run.stats.maxHp * 0.1) bump('winLowHp');
+      const classes = new Set(run.weapons.map((w) => WEAPON_MAP[w.id].cls));
+      if (run.weapons.length >= 4 && classes.size === 1) bump(`winPure:${[...classes][0]}`);
+      if (run.weapons.length >= 6 && run.weapons.every((w) => w.tier === 3)) bump('winAllT4');
+      if (Object.values(run.items).reduce((x, y) => x + y, 0) >= 60) bump('winHoarder');
       persist();
       audio.play(this, 'levelup');
     }
+    if (!data.win && !data.counted) {
+      data.counted = true;
+      bump('deaths');
+      if (run.wave === 1) bump('deathW1');
+      persist();
+    }
     checkAchievements();
     setInRun(false);
-    const affordable = CHARACTERS.filter((c) => !isUnlocked(c) && !missingRequirement(c) && (c.cost ?? 0) <= pointsBalance());
+    const affordable = CHARACTERS.filter((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance());
 
     panel(this, W / 2 - 400, 40, 800, H - 80);
     text(

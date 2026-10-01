@@ -15,6 +15,7 @@ import {
   checkAchievements,
   achTier,
   medalOf,
+  charCost,
 } from '../systems/Achievements';
 import { ACH_MAP } from '../data/achievements';
 import { run, clearRun } from '../systems/RunState';
@@ -68,7 +69,7 @@ export class CharSelectScene extends Phaser.Scene {
       if (!unlocked) {
         // 未拥有：半透明显示本体，角标为价格（有未满足的前置成就时显示锁）
         img.setAlpha(0.45);
-        const tag = missingRequirement(c) ? '🔒' : `🏅${c.cost}`;
+        const tag = missingRequirement(c) ? '🔒' : `🏅${charCost(c)}`;
         text(this, x + s - 4, y + s - 2, tag, 15, '#ffd166', { stroke: '#000000', strokeThickness: 4 }).setOrigin(1, 1);
       }
       hitArea(this, x, y, s, s, () => {
@@ -229,8 +230,8 @@ export class CharSelectScene extends Phaser.Scene {
       this.startBtn.setLabel(tx('出发！', 'Go!'));
       this.startBtn.setEnabled(chUnlocked);
     } else {
-      this.startBtn.setLabel(tx(`购买 🏅${c.cost}`, `Buy 🏅${c.cost}`));
-      this.startBtn.setEnabled(!missingRequirement(c) && pointsBalance() >= (c.cost ?? 0));
+      this.startBtn.setLabel(tx(`购买 🏅${charCost(c)}`, `Buy 🏅${charCost(c)}`));
+      this.startBtn.setEnabled(!missingRequirement(c) && pointsBalance() >= charCost(c));
     }
   }
 

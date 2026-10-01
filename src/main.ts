@@ -24,6 +24,7 @@ import { applyLanguage } from './i18n/apply';
 import { lang, tx } from './i18n';
 import { autoFullscreenOnFirstTouch } from './systems/Fullscreen';
 import { installForceLandscape } from './systems/ForceLandscape';
+import { pointsEarned, charCost } from './systems/Achievements';
 
 // 按语言写入数据文本，必须在创建游戏前执行
 applyLanguage();
@@ -94,5 +95,16 @@ Object.assign(window, {
   run,
   controls,
   GameScene,
-  __dev: { CHARACTERS, CHARACTER_MAP, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, rerollPrice, TIER_PRICE_MULT, sellPrice },
+  __dev: {
+    CHARACTERS,
+    CHARACTER_MAP,
+    WEAPON_MAP,
+    ITEM_MAP,
+    LEVELUP_OPTIONS,
+    rerollPrice,
+    TIER_PRICE_MULT,
+    sellPrice,
+    pointsEarned,
+    charCost,
+  },
 });
