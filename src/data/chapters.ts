@@ -1,4 +1,10 @@
 // 关卡（章节）：每章 15 波，第 5/10 波出现精英，第 15 波 Boss。
+//
+// 【难度倍率已参数化】hpMult / dmgMult / bossHpMult / speedMult 不再手填，
+// 而是在文件末尾由 balance.ts 的 chapterHpMult() 等几何级数函数按 chapter.id 统一派生，
+// 保证「单调递增、不断裂」。各章仅保留美术、刷怪池、lootMult / t4Mult 等本就应按章定制的字段。
+import { chapterHpMult, chapterDmgMult, chapterBossHpMult, chapterSpeedMult } from './balance';
+
 export interface SpawnEntry {
   enemy: string;
   from: number; // 从第几波开始出现
@@ -225,6 +231,17 @@ export const CHAPTERS: ChapterDef[] = [
     music: 'bgm_factory',
   },
 ];
+
+// ── 难度倍率统一派生（覆盖上方手填值）──────────────────────────────
+// 由 balance.ts 的几何级数函数按 chapter.id 生成，保证单调递增、无断裂。
+// 原手填曲线存在不合理：hpMult 1→2.9→3.1→2.7→3.4（第 4 章不升反降），
+// bossHpMult 1→1.75→1.8→1.8→2.4（第 3、4 章持平）。现统一为平滑递增。
+for (const ch of CHAPTERS) {
+  ch.hpMult = chapterHpMult(ch.id);
+  ch.dmgMult = chapterDmgMult(ch.id);
+  ch.bossHpMult = chapterBossHpMult(ch.id);
+  ch.speedMult = chapterSpeedMult(ch.id);
+}
 
 /** 各章地形机关说明（战斗第 1 波提示，也用于文档生成） */
 export const TERRAIN_INFO: Record<number, string[]> = {

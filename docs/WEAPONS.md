@@ -79,36 +79,36 @@
 | <img src="images/weapon/rolling_pin.png" width="32" height="32" alt=""> [擀面杖](#weapon-rolling_pin) | 近战 | 横扫 | 厨具 | 12 / 20 / 32 / 48 | 1.25 / 1.18 / 1.1 / 1 | 130 | 18 |
 | <img src="images/weapon/knife.png" width="32" height="32" alt=""> [菜刀](#weapon-knife) | 近战 | 直刺 | 厨具/锋利 | 6 / 10 / 16 / 25 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | 20 |
 | <img src="images/weapon/pan.png" width="32" height="32" alt=""> [平底锅](#weapon-pan) | 近战 | 横扫 | 厨具 | 18 / 30 / 46 / 70 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | 25 |
-| <img src="images/weapon/watermelon_hammer.png" width="32" height="32" alt=""> [西瓜锤](#weapon-watermelon_hammer) | 近战 | 横扫 | 蔬果 | 30 / 50 / 80 / 120 | 2.2 / 2.1 / 2 / 1.8 | 140 | 35 |
+| <img src="images/weapon/watermelon_hammer.png" width="32" height="32" alt=""> [西瓜锤](#weapon-watermelon_hammer) | 近战 | 横扫 | 蔬果/爆破 | 30 / 50 / 80 / 120 | 2.2 / 2.1 / 2 / 1.8 | 140 | 35 |
 | <img src="images/weapon/slingshot.png" width="32" height="32" alt=""> [番茄弹弓](#weapon-slingshot) | 远程 | 子弹 | 蔬果 | 8 / 13 / 20 / 30 | 0.95 / 0.9 / 0.83 / 0.75 | 380 | 15 |
 | <img src="images/weapon/pea_shooter.png" width="32" height="32" alt=""> [豌豆枪](#weapon-pea_shooter) | 远程 | 子弹 | 枪械/蔬果 | 4 / 6 / 9 / 13 | 0.32 / 0.29 / 0.26 / 0.22 | 400 | 22 |
-| <img src="images/weapon/chili_rocket.png" width="32" height="32" alt=""> [辣椒火箭](#weapon-chili_rocket) | 远程 | 爆炸弹 | 枪械/元素 | 14 / 24 / 38 / 58 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | 30 |
+| <img src="images/weapon/chili_rocket.png" width="32" height="32" alt=""> [辣椒火箭](#weapon-chili_rocket) | 远程 | 爆炸弹 | 枪械/元素/爆破 | 14 / 24 / 38 / 58 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | 30 |
 | <img src="images/weapon/corn_cannon.png" width="32" height="32" alt=""> [玉米加农](#weapon-corn_cannon) | 远程 | 子弹 | 枪械 | 16 / 28 / 44 / 68 | 1.1 / 1 / 0.92 / 0.84 | 520 | 28 |
 | <img src="images/weapon/ketchup.png" width="32" height="32" alt=""> [番茄酱瓶](#weapon-ketchup) | 远程 | 子弹 | 酱料 | 5 / 8 / 12 / 17 | 0.75 / 0.7 / 0.65 / 0.6 | 280 | 20 |
 | <img src="images/weapon/mustard_flamer.png" width="32" height="32" alt=""> [芥末喷枪](#weapon-mustard_flamer) | 元素 | 喷火 | 酱料/元素 | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 200 | 28 |
 | <img src="images/weapon/soda.png" width="32" height="32" alt=""> [冰镇汽水](#weapon-soda) | 元素 | 子弹 | 元素 | 9 / 15 / 22 / 32 | 0.75 / 0.7 / 0.65 / 0.58 | 400 | 22 |
 | <img src="images/weapon/garlic_aura.png" width="32" height="32" alt=""> [大蒜光环](#weapon-garlic_aura) | 元素 | 光环 | 蔬果/元素 | 4 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 110 | 30 |
-| <img src="images/weapon/pepper_mine.png" width="32" height="32" alt=""> [胡椒雷](#weapon-pepper_mine) | 元素 | 地雷 | 元素 | 20 / 34 / 52 / 80 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 25 |
+| <img src="images/weapon/pepper_mine.png" width="32" height="32" alt=""> [胡椒雷](#weapon-pepper_mine) | 元素 | 地雷 | 元素/爆破 | 20 / 34 / 52 / 80 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 25 |
 | <img src="images/weapon/onion_boomerang.png" width="32" height="32" alt=""> [洋葱回旋镖](#weapon-onion_boomerang) | 远程 | 回旋镖 | 蔬果 | 10 / 17 / 26 / 40 | 1.4 / 1.3 / 1.2 / 1.1 | 360 | 24 |
 | <img src="images/weapon/broccoli_staff.png" width="32" height="32" alt=""> [西兰花法杖](#weapon-broccoli_staff) | 元素 | 连锁闪电 | 蔬果/元素 | 10 / 17 / 26 / 40 | 1.1 / 1 / 0.92 / 0.84 | 420 | 30 |
 | <img src="images/weapon/sauce_gatling.png" width="32" height="32" alt=""> [酱料加特林](#weapon-sauce_gatling) | 远程 | 子弹 | 枪械/酱料 | 4 / 6 / 8 / 11 | 0.16 / 0.14 / 0.12 / 0.1 | 420 | 40 |
 | <img src="images/weapon/cleaver.png" width="32" height="32" alt=""> [剁骨刀](#weapon-cleaver) | 近战 | 横扫 | 厨具/锋利 | 13 / 22 / 35 / 54 | 1.1 / 1.05 / 1 / 0.9 | 125 | 26 |
-| <img src="images/weapon/spatula.png" width="32" height="32" alt=""> [锅铲](#weapon-spatula) | 近战 | 横扫 | 厨具 | 7 / 12 / 19 / 29 | 0.8 / 0.76 / 0.7 / 0.64 | 115 | 16 |
+| <img src="images/weapon/spatula.png" width="32" height="32" alt=""> [锅铲](#weapon-spatula) | 近战 | 横扫 | 厨具 | 9 / 16 / 25 / 38 | 1.05 / 1 / 0.92 / 0.84 | 115 | 16 |
 | <img src="images/weapon/whisk_spin.png" width="32" height="32" alt=""> [旋风打蛋器](#weapon-whisk_spin) | 近战 | 光环 | 厨具 | 3 / 5 / 8 / 12 | 0.45 / 0.45 / 0.42 / 0.4 | 90 | 22 |
 | <img src="images/weapon/meat_tenderizer.png" width="32" height="32" alt=""> [松肉锤](#weapon-meat_tenderizer) | 近战 | 横扫 | 厨具 | 22 / 36 / 56 / 84 | 1.9 / 1.8 / 1.7 / 1.55 | 110 | 30 |
-| <img src="images/weapon/skewer.png" width="32" height="32" alt=""> [烤串签](#weapon-skewer) | 近战 | 直刺 | 厨具/锋利 | 8 / 14 / 22 / 34 | 1.05 / 1 / 0.92 / 0.84 | 185 | 24 |
+| <img src="images/weapon/skewer.png" width="32" height="32" alt=""> [烤串签](#weapon-skewer) | 近战 | 直刺 | 厨具/锋利 | 12 / 21 / 33 / 51 | 1.05 / 1 / 0.92 / 0.84 | 185 | 24 |
 | <img src="images/weapon/ladle.png" width="32" height="32" alt=""> [汤勺](#weapon-ladle) | 近战 | 横扫 | 厨具/酱料 | 10 / 17 / 27 / 41 | 1.15 / 1.1 / 1.02 / 0.94 | 120 | 20 |
-| <img src="images/weapon/baguette_sword.png" width="32" height="32" alt=""> [法棍剑](#weapon-baguette_sword) | 近战 | 横扫 | 蔬果 | 11 / 19 / 30 / 46 | 1.3 / 1.22 / 1.14 / 1.04 | 150 | 22 |
+| <img src="images/weapon/baguette_sword.png" width="32" height="32" alt=""> [法棍剑](#weapon-baguette_sword) | 近战 | 横扫 | 蔬果 | 11 / 19 / 30 / 46 | 1.3 / 1.22 / 1.14 / 1.04 | 140 | 22 |
 | <img src="images/weapon/cucumber_katana.png" width="32" height="32" alt=""> [黄瓜武士刀](#weapon-cucumber_katana) | 近战 | 直刺 | 蔬果/锋利 | 9 / 15 / 24 / 36 | 0.8 / 0.75 / 0.69 / 0.62 | 140 | 24 |
 | <img src="images/weapon/pizza_cutter.png" width="32" height="32" alt=""> [披萨滚刀](#weapon-pizza_cutter) | 近战 | 回旋镖 | 厨具/锋利 | 9 / 15 / 24 / 36 | 1.3 / 1.2 / 1.1 / 1 | 230 | 26 |
 | <img src="images/weapon/chopsticks.png" width="32" height="32" alt=""> [竹筷](#weapon-chopsticks) | 近战 | 直刺 | 厨具 | 5 / 9 / 14 / 21 | 0.5 / 0.46 / 0.42 / 0.38 | 155 | 18 |
-| <img src="images/weapon/bamboo_spear.png" width="32" height="32" alt=""> [竹笋长矛](#weapon-bamboo_spear) | 近战 | 直刺 | 蔬果 | 16 / 27 / 42 / 64 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | 28 |
-| <img src="images/weapon/pineapple_mace.png" width="32" height="32" alt=""> [菠萝流星锤](#weapon-pineapple_mace) | 近战 | 横扫 | 蔬果 | 20 / 34 / 53 / 80 | 1.8 / 1.7 / 1.6 / 1.45 | 130 | 32 |
+| <img src="images/weapon/bamboo_spear.png" width="32" height="32" alt=""> [竹笋长矛](#weapon-bamboo_spear) | 近战 | 直刺 | 蔬果 | 19 / 32 / 50 / 77 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | 28 |
+| <img src="images/weapon/pineapple_mace.png" width="32" height="32" alt=""> [菠萝流星锤](#weapon-pineapple_mace) | 近战 | 横扫 | 蔬果/爆破 | 20 / 34 / 53 / 80 | 1.8 / 1.7 / 1.6 / 1.45 | 130 | 32 |
 | <img src="images/weapon/olive_launcher.png" width="32" height="32" alt=""> [橄榄发射器](#weapon-olive_launcher) | 远程 | 子弹 | 枪械/蔬果 | 6 / 10 / 15 / 23 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 22 |
-| <img src="images/weapon/popcorn_machine.png" width="32" height="32" alt=""> [爆米花机](#weapon-popcorn_machine) | 远程 | 地雷 | 枪械 | 14 / 24 / 37 / 56 | 2 / 1.9 / 1.75 / 1.6 | 220 | 24 |
+| <img src="images/weapon/popcorn_machine.png" width="32" height="32" alt=""> [爆米花机](#weapon-popcorn_machine) | 远程 | 地雷 | 枪械/爆破 | 14 / 24 / 37 / 56 | 2 / 1.9 / 1.75 / 1.6 | 220 | 24 |
 | <img src="images/weapon/grape_shotgun.png" width="32" height="32" alt=""> [葡萄霰弹枪](#weapon-grape_shotgun) | 远程 | 子弹 | 枪械/蔬果 | 4 / 7 / 10 / 15 | 1 / 0.95 / 0.88 / 0.8 | 240 | 26 |
-| <img src="images/weapon/bean_bazooka.png" width="32" height="32" alt=""> [豆子火箭筒](#weapon-bean_bazooka) | 远程 | 爆炸弹 | 枪械 | 22 / 36 / 56 / 84 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 34 |
-| <img src="images/weapon/cherry_bomb.png" width="32" height="32" alt=""> [樱桃炸弹](#weapon-cherry_bomb) | 远程 | 爆炸弹 | 蔬果 | 10 / 17 / 26 / 40 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 28 |
+| <img src="images/weapon/bean_bazooka.png" width="32" height="32" alt=""> [豆子火箭筒](#weapon-bean_bazooka) | 远程 | 爆炸弹 | 枪械/爆破 | 22 / 36 / 56 / 84 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 34 |
+| <img src="images/weapon/cherry_bomb.png" width="32" height="32" alt=""> [樱桃炸弹](#weapon-cherry_bomb) | 远程 | 爆炸弹 | 蔬果/爆破 | 10 / 17 / 26 / 40 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 28 |
 | <img src="images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [蓝莓狙击枪](#weapon-blueberry_sniper) | 远程 | 子弹 | 枪械/蔬果 | 26 / 44 / 68 / 100 | 1.9 / 1.8 / 1.65 / 1.5 | 650 | 32 |
 | <img src="images/weapon/plate_frisbee.png" width="32" height="32" alt=""> [餐盘飞碟](#weapon-plate_frisbee) | 远程 | 回旋镖 | 厨具 | 12 / 20 / 31 / 47 | 1.5 / 1.4 / 1.3 / 1.2 | 330 | 24 |
 | <img src="images/weapon/seed_spitter.png" width="32" height="32" alt=""> [瓜子机枪](#weapon-seed_spitter) | 远程 | 子弹 | 枪械/蔬果 | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | 26 |
@@ -120,8 +120,8 @@
 | <img src="images/weapon/steam_kettle.png" width="32" height="32" alt=""> [蒸汽水壶](#weapon-steam_kettle) | 元素 | 喷火 | 厨具/元素 | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | 28 |
 | <img src="images/weapon/curry_aura.png" width="32" height="32" alt=""> [咖喱光环](#weapon-curry_aura) | 元素 | 光环 | 酱料/元素 | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 120 | 32 |
 | <img src="images/weapon/pepper_spray.png" width="32" height="32" alt=""> [胡椒喷雾](#weapon-pepper_spray) | 元素 | 喷火 | 元素 | 2 / 4 / 6 / 9 | 0.18 / 0.16 / 0.14 / 0.12 | 150 | 26 |
-| <img src="images/weapon/mint_frost_mine.png" width="32" height="32" alt=""> [薄荷冰雷](#weapon-mint_frost_mine) | 元素 | 地雷 | 蔬果/元素 | 16 / 27 / 42 / 64 | 2.6 / 2.4 / 2.2 / 1.9 | 220 | 26 |
-| <img src="images/weapon/thunder_durian.png" width="32" height="32" alt=""> [雷霆榴莲](#weapon-thunder_durian) | 元素 | 爆炸弹 | 蔬果/元素 | 16 / 27 / 42 / 64 | 2.2 / 2.1 / 1.95 / 1.75 | 400 | 32 |
+| <img src="images/weapon/mint_frost_mine.png" width="32" height="32" alt=""> [薄荷冰雷](#weapon-mint_frost_mine) | 元素 | 地雷 | 蔬果/元素/爆破 | 16 / 27 / 42 / 64 | 2.6 / 2.4 / 2.2 / 1.9 | 220 | 26 |
+| <img src="images/weapon/thunder_durian.png" width="32" height="32" alt=""> [雷霆榴莲](#weapon-thunder_durian) | 元素 | 爆炸弹 | 蔬果/元素/爆破 | 16 / 27 / 42 / 64 | 2.2 / 2.1 / 1.95 / 1.75 | 400 | 32 |
 | <img src="images/weapon/dragonfruit_orb.png" width="32" height="32" alt=""> [火龙果法球](#weapon-dragonfruit_orb) | 元素 | 子弹 | 蔬果/元素 | 8 / 13 / 20 / 30 | 1 / 0.95 / 0.88 / 0.8 | 400 | 28 |
 | <img src="images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [八角飞镖](#weapon-star_anise_shuriken) | 元素 | 回旋镖 | 锋利/元素 | 9 / 15 / 23 / 35 | 1.3 / 1.2 / 1.1 / 1 | 320 | 28 |
 | <img src="images/weapon/lemon_battery.png" width="32" height="32" alt=""> [柠檬电池](#weapon-lemon_battery) | 元素 | 连锁闪电 | 蔬果/元素 | 12 / 20 / 31 / 47 | 1.3 / 1.2 / 1.1 / 1 | 360 | 30 |
@@ -249,13 +249,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 近战 / 横扫 |
-| 标签 | 蔬果 |
+| 标签 | 蔬果、爆破 |
 | 伤害 T1~T4 | 30 / 50 / 80 / 120 |
 | 冷却 T1~T4 | 2.2s / 2.1s / 2s / 1.8s |
 | 射程 | 140 |
 | 属性加成 | 近战伤害 ×1.5，最大生命 ×0.1 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 爆炸半径 80，击退 40 |
+| 特效 | 爆炸半径 100，击退 40 |
 | T1 价格 | 35 |
 | 初始携带 | [西瓜胖墩](CHARACTERS.md#char-watermelon) |
 
@@ -292,8 +292,8 @@
 | --- | --- |
 | 类别 / 方式 | 近战 / 横扫 |
 | 标签 | 厨具 |
-| 伤害 T1~T4 | 7 / 12 / 19 / 29 |
-| 冷却 T1~T4 | 0.8s / 0.76s / 0.7s / 0.64s |
+| 伤害 T1~T4 | 9 / 16 / 25 / 38 |
+| 冷却 T1~T4 | 1.05s / 1s / 0.92s / 0.84s |
 | 射程 | 115 |
 | 属性加成 | 近战伤害 ×0.8 |
 | 暴击倍率 | ×1.5 |
@@ -355,7 +355,7 @@
 | --- | --- |
 | 类别 / 方式 | 近战 / 直刺 |
 | 标签 | 厨具、锋利 |
-| 伤害 T1~T4 | 8 / 14 / 22 / 34 |
+| 伤害 T1~T4 | 12 / 21 / 33 / 51 |
 | 冷却 T1~T4 | 1.05s / 1s / 0.92s / 0.84s |
 | 射程 | 185 |
 | 属性加成 | 近战伤害 ×0.9 |
@@ -399,7 +399,7 @@
 | 标签 | 蔬果 |
 | 伤害 T1~T4 | 11 / 19 / 30 / 46 |
 | 冷却 T1~T4 | 1.3s / 1.22s / 1.14s / 1.04s |
-| 射程 | 150 |
+| 射程 | 140 |
 | 属性加成 | 近战伤害 ×1，最大生命 ×0.15 |
 | 暴击倍率 | ×1.5 |
 | 特效 | 击退 25 |
@@ -481,7 +481,7 @@
 | --- | --- |
 | 类别 / 方式 | 近战 / 直刺 |
 | 标签 | 蔬果 |
-| 伤害 T1~T4 | 16 / 27 / 42 / 64 |
+| 伤害 T1~T4 | 19 / 32 / 50 / 77 |
 | 冷却 T1~T4 | 1.5s / 1.42s / 1.32s / 1.2s |
 | 射程 | 200 |
 | 属性加成 | 近战伤害 ×1.2 |
@@ -501,13 +501,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 近战 / 横扫 |
-| 标签 | 蔬果 |
+| 标签 | 蔬果、爆破 |
 | 伤害 T1~T4 | 20 / 34 / 53 / 80 |
 | 冷却 T1~T4 | 1.8s / 1.7s / 1.6s / 1.45s |
 | 射程 | 130 |
 | 属性加成 | 近战伤害 ×1.3 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 爆炸半径 60，击退 30 |
+| 特效 | 爆炸半径 75，击退 30 |
 | T1 价格 | 32 |
 | 初始携带 | - |
 
@@ -568,13 +568,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 远程 / 爆炸弹 |
-| 标签 | 枪械、元素 |
+| 标签 | 枪械、元素、爆破 |
 | 伤害 T1~T4 | 14 / 24 / 38 / 58 |
 | 冷却 T1~T4 | 1.8s / 1.7s / 1.6s / 1.4s |
 | 射程 | 450 |
 | 属性加成 | 远程伤害 ×1，元素伤害 ×0.5 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 灼烧 3/秒 2s，爆炸半径 70 |
+| 特效 | 灼烧 3/秒 2s，爆炸半径 90 |
 | T1 价格 | 30 |
 | 初始携带 | [牛油果博士](CHARACTERS.md#char-avocado)、[山葵爆破手](CHARACTERS.md#char-wasabi) |
 
@@ -694,13 +694,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 远程 / 地雷 |
-| 标签 | 枪械 |
+| 标签 | 枪械、爆破 |
 | 伤害 T1~T4 | 14 / 24 / 37 / 56 |
 | 冷却 T1~T4 | 2s / 1.9s / 1.75s / 1.6s |
 | 射程 | 220 |
 | 属性加成 | 远程伤害 ×0.9 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 爆炸半径 60 |
+| 特效 | 爆炸半径 75 |
 | T1 价格 | 24 |
 | 初始携带 | - |
 
@@ -736,13 +736,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 远程 / 爆炸弹 |
-| 标签 | 枪械 |
+| 标签 | 枪械、爆破 |
 | 伤害 T1~T4 | 22 / 36 / 56 / 84 |
 | 冷却 T1~T4 | 2.4s / 2.25s / 2.1s / 1.9s |
 | 射程 | 480 |
 | 属性加成 | 远程伤害 ×1.3 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 爆炸半径 90，击退 30 |
+| 特效 | 爆炸半径 115，击退 30 |
 | T1 价格 | 34 |
 | 初始携带 | - |
 
@@ -757,13 +757,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 远程 / 爆炸弹 |
-| 标签 | 蔬果 |
+| 标签 | 蔬果、爆破 |
 | 伤害 T1~T4 | 10 / 17 / 26 / 40 |
 | 冷却 T1~T4 | 1.6s / 1.5s / 1.4s / 1.3s |
 | 射程 | 360 |
 | 属性加成 | 远程伤害 ×0.8 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 爆炸半径 55，弹丸 2/2/2/3 |
+| 特效 | 爆炸半径 70，弹丸 2/2/2/3 |
 | T1 价格 | 28 |
 | 初始携带 | - |
 
@@ -971,13 +971,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 元素 / 地雷 |
-| 标签 | 元素 |
+| 标签 | 元素、爆破 |
 | 伤害 T1~T4 | 20 / 34 / 52 / 80 |
 | 冷却 T1~T4 | 2.5s / 2.3s / 2.1s / 1.8s |
 | 射程 | 200 |
 | 属性加成 | 元素伤害 ×1 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 爆炸半径 90 |
+| 特效 | 爆炸半径 115 |
 | T1 价格 | 25 |
 | 初始携带 | [牛油果博士](CHARACTERS.md#char-avocado) |
 
@@ -1118,13 +1118,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 元素 / 地雷 |
-| 标签 | 蔬果、元素 |
+| 标签 | 蔬果、元素、爆破 |
 | 伤害 T1~T4 | 16 / 27 / 42 / 64 |
 | 冷却 T1~T4 | 2.6s / 2.4s / 2.2s / 1.9s |
 | 射程 | 220 |
 | 属性加成 | 元素伤害 ×0.9 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 减速 50% 2s，爆炸半径 100 |
+| 特效 | 减速 50% 2s，爆炸半径 125 |
 | T1 价格 | 26 |
 | 初始携带 | - |
 
@@ -1139,13 +1139,13 @@
 | 项目 | 数值 |
 | --- | --- |
 | 类别 / 方式 | 元素 / 爆炸弹 |
-| 标签 | 蔬果、元素 |
+| 标签 | 蔬果、元素、爆破 |
 | 伤害 T1~T4 | 16 / 27 / 42 / 64 |
 | 冷却 T1~T4 | 2.2s / 2.1s / 1.95s / 1.75s |
 | 射程 | 400 |
 | 属性加成 | 元素伤害 ×1 |
 | 暴击倍率 | ×1.5 |
-| 特效 | 眩晕 0.35s，爆炸半径 80 |
+| 特效 | 眩晕 0.35s，爆炸半径 100 |
 | T1 价格 | 32 |
 | 初始携带 | - |
 

@@ -47,6 +47,10 @@ const HAND_ICONS: Record<string, [string, number, number]> = {
   railgun_core: ['orb', 0x4cc9f0, 0xffffff],
   grandma_recipe: ['scroll', 0xf1e3d3, 0x6b4226],
   vampire_cape: ['mask', 0x9d0208, 0x1b1b1b],
+  firecracker: ['candy', 0xe63946, 0xffd166],
+  baking_powder: ['bag', 0xfff3e0, 0xffba08],
+  pressure_cooker: ['jar', 0xb2bec3, 0xff7b00],
+  powder_keg: ['box', 0x8d5524, 0xe63946],
 };
 
 type Shape = (ctx: Ctx, c: number, c2: number, r: () => number) => void;

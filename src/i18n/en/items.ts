@@ -52,6 +52,10 @@ export const EN_ITEMS: ItemsEn = {
   railgun_core: { name: 'Railgun Core' },
   grandma_recipe: { name: "Grandma's Recipe" },
   vampire_cape: { name: 'Vampire Cape' },
+  firecracker: { name: 'Firecracker' },
+  baking_powder: { name: 'Baking Powder' },
+  pressure_cooker: { name: 'Pressure Cooker' },
+  powder_keg: { name: 'Powder Keg' },
 };
 
 // items: common×4, rare×3, epic×2, legendary×1

@@ -74,6 +74,7 @@ export const EN_WEAPON_TAGS: WeaponTagsEn = {
   枪械: 'Firearm',
   酱料: 'Sauce',
   元素: 'Elemental',
+  爆破: 'Demolition',
 };
 
 export const EN_STATUSES: StatusesEn = {
@@ -153,6 +154,7 @@ export const EN_STATS: StatsEn = {
   elementalPct: 'Elemental Weapon Dmg',
   auraPct: 'Aura Damage',
   auraSize: 'Aura Size',
+  explodeSize: 'Explosion Size',
   melee: 'Melee Damage',
   ranged: 'Ranged Damage',
   elemental: 'Elemental Damage',

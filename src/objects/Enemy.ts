@@ -387,7 +387,8 @@ export class Enemy {
       case 'trail':
         if (this.actT <= 0) {
           this.actT = d.trailCd ?? 0.5;
-          g.addSlime(this.x, this.y, d.id === 'oil_blob' ? 0x3d2c2e : 0xb5e48c);
+          // 粘液伤害 = 留下它的怪物接触伤害的 35%（随波次 / 章节 / 精英缩放同步成长）
+          g.addSlime(this.x, this.y, d.id === 'oil_blob' ? 0x3d2c2e : 0xb5e48c, this.dmg * this.dealtMult * 0.35);
         }
         return [nx * s, ny * s];
       default:

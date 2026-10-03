@@ -10,10 +10,24 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v1.3.1 · 2026-10-03](#v1-3-1)
 - [v1.3.0 · 2026-10-01](#v1-3-0)
 - [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-3-1"></a>
+
+## v1.3.1 · 2026-10-03
+
+**Rebalanced progression and items, fixed the shop after continuing a run, and added unique projectiles for ranged weapons**
+
+
+- Unified and parameterized enemy, chapter and economy growth formulas for a smoother difficulty curve
+- Reworked life steal and HP regeneration, and adjusted explosion radius, melee weapon typing and ground-effect damage
+- Limited legendary item availability and added trade-offs to common and rare items to curb late-game stat inflation
+- Every ranged weapon now uses a unique projectile visual, with clearer damage numbers for ground effects
+- Fixed the shop being empty and impossible to refresh after continuing a saved run
 
 <a id="v1-3-0"></a>
 

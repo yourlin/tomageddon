@@ -1,10 +1,22 @@
 // 全局数值公式。所有可调参数集中在这里，方便平衡。
+//
+// 【成长曲线设计规范】（反推自同类游戏 Brotato 的合理数值，详见仓库根 Brotato成长公式反推.md）
+// 本文件遵循以下原则，避免散落的 magic number 与断裂/非单调曲线：
+//   ① 章节难度倍率必须「单调递增」，由 chapterMult() 以几何级数参数化派生，而非手填。
+//   ② 敌人血量与伤害使用「同族」的次线性成长公式 growthCurve()，便于统一调参。
+//   ③ 精英 / Boss 的随波次缩放集中在 eliteScale() / bossScale()，不再散落于场景代码。
+//   ④ 经济校准（seedValue 的 calib）用平滑函数 incomeCalib()，取代硬编码分段魔数。
 import type { Stats } from './stats';
 
 export const BALANCE = {
   arena: { width: 1920, height: 1200, margin: 40 },
-  /** dodgeCap / lifeStealCap：闪避与吸血的上限 % */
-  player: { baseSpeed: 230, radius: 22, iframes: 0.5, dodgeCap: 60, lifeStealCap: 30, maxWeapons: 6 },
+  /** dodgeCap：闪避上限 %。
+   *  吸血不设百分比上限（参考土豆兄弟），改为「每次吸血后 lifeStealTickCd 秒内不能再吸」，
+   *  即每秒最多回复 1 / lifeStealTickCd 点生命（0.2 秒 → 5 点/秒；土豆兄弟为 0.1 秒 → 10 点/秒，
+   *  这里按本作较低的生命基数减半）。 */
+  player: { baseSpeed: 230, radius: 22, iframes: 0.5, dodgeCap: 60, lifeStealTickCd: 0.2, maxWeapons: 6 },
+  /** 生命再生（参考土豆兄弟）：第 1 点 first 生命/秒，之后每点 perPoint 生命/秒；≤0 时不回复 */
+  regen: { first: 0.2, perPoint: 0.089 },
   waves: { count: 15, eliteWaves: [5, 10], bossWave: 15 },
   /** 无尽模式：第 15 波之后每波生命 ×hp、伤害 ×dmg（复利），保证终会结束 */
   endless: { hp: 1.12, dmg: 1.09 },
@@ -15,12 +27,34 @@ export const BALANCE = {
   income: { base: 34, linear: 0.5, quad: 0.035, calib: 0.75 },
   /** 商店 T4 武器概率：rate × (波次 − fromWave)^1.6，再乘幸运与章节 t4Mult */
   t4: { rate: 0.003, fromWave: 7 },
+  /** 传说道具出现率（商店 / 宝箱）：参考土豆兄弟按 15 波进度换算——
+   *  土豆兄弟 20 波，第 8 波起每波 +0.23%、上限 8%；本作第 6 波起每波 +0.3%、上限 8%。 */
+  legendItem: { fromWave: 6, perWave: 0.003, cap: 0.08 },
+  /** 升级属性选项的传说（IV 级）出现率：保持原曲线，不随道具一起削弱 */
+  legendUpgrade: { fromWave: 6, perWave: 0.008, cap: 0.15 },
+  /** 暴击伤害总加成上限 %（武器词条 + 道具 / 角色 / 天赋，合并成一个加法池） */
+  critDmgCap: 150,
+  /** 命中落雷概率总上限 % */
+  lightningCap: 50,
   seedMult: 0.5, // 第 6 波起小怪番茄籽的经验倍率（货币掉落另按血量成长放大，见 Enemy.lootMult）
   cratesPerWave: 3, // 每波最多掉落宝箱（精英/Boss 不计）
   rerollBase: 2,
   shopSlots: 4,
   levelUpChoices: 4,
   treeChance: 0.0,
+  /** 章节数：用于把章节倍率参数化为几何级数 */
+  chapterCount: 5,
+  /** 章节难度几何级数的「终点倍率」（第 1 章恒为 1，第 N 章达到该值）。
+   *  由 chapterMult() 派生出每章单调递增的倍率，杜绝手填导致的曲线断裂。 */
+  chapterCurve: { hpEnd: 3.4, dmgEnd: 1.7, bossHpEnd: 2.4, speedStep: 0.05 },
+  /** 敌人成长曲线指数：血量与伤害共用同族公式 base·(1+growth·w^exp)。
+   *  exp<1 为次线性（先快后慢），与玩家后期成长放缓相匹配。 */
+  enemyGrowthExp: 0.9,
+  /** 伤害相对血量的额外系数（伤害曲线整体乘此值，用于微调手感而不破坏同族形态） */
+  enemyDmgScale: 1.15,
+  /** 精英 / Boss 随波次的缩放参数（取代原先散落在 GameScene 的 magic number） */
+  elite: { base: 0.8, perWave: 0.12, dmgBase: 1.0, dmgPerWave: 0.08 },
+  boss: { hpMult: 3, dmgMult: 1.2 },
 };
 
 /** 波次时长（秒）：20, 25, 30 ... 最多 60；Boss 波 90 秒 */
@@ -44,6 +78,21 @@ export function xpToNext(level: number): number {
 }
 
 /** 护甲减伤倍率 */
+/** 生命再生速度（生命/秒），参考土豆兄弟：0.20 + (regen − 1) × 0.089。
+ *  第 1 点价值最高，之后边际递减，避免堆再生无脑回满；regen ≤ 0 视为 0。 */
+export function regenPerSecond(regen: number): number {
+  if (regen <= 0) return 0;
+  return BALANCE.regen.first + (regen - 1) * BALANCE.regen.perPoint;
+}
+
+/** 爆炸半径乘数（参考土豆兄弟的 Explosion Size）：1 + 爆炸范围% / 100，负值最低到 0.5 */
+export function explodeSizeMultiplier(explodeSize: number): number {
+  return Math.max(0.5, 1 + explodeSize / 100);
+}
+
+/** 吸血每秒最多回复的生命（由触发冷却推出，用于显示与文档） */
+export const lifeStealMaxPerSecond = (): number => Math.round(1 / BALANCE.player.lifeStealTickCd);
+
 export function armorMultiplier(armor: number): number {
   return armor >= 0 ? 15 / (15 + armor) : (15 - armor) / 15;
 }
@@ -63,16 +112,53 @@ export function chapterScale(mult: number, wave: number): number {
   return 1 + (mult - 1) * k;
 }
 
-/** 敌人血量：随波次次线性增长（w^0.9，先快后慢），与玩家越往后越慢的成长相匹配；章节难度由章节倍率体现 */
-export function enemyHp(base: number, growth: number, wave: number, chapterMult: number): number {
-  const w = wave - 1;
-  return Math.round(base * (1 + growth * Math.pow(w, 0.9)) * chapterScale(chapterMult, wave) * endlessHp(wave));
+/** 参数化章节难度倍率（几何级数，保证「单调递增」）。
+ *  第 1 章恒为 1，第 chapterCount 章达到 end；中间按 end^((ch-1)/(N-1)) 平滑插值。
+ *  —— 修正点：取代 chapters.ts 中手填且非单调的 hpMult/dmgMult/bossHpMult（原为 2.9→3.1→2.7→3.4 等断裂曲线）。 */
+export function chapterMult(chapterId: number, end: number): number {
+  const n = BALANCE.chapterCount;
+  const t = Math.min(1, Math.max(0, (chapterId - 1) / (n - 1)));
+  return Math.round(Math.pow(end, t) * 100) / 100;
 }
 
-export function enemyDamage(base: number, growth: number, wave: number, chapterMult: number): number {
+/** 便捷取各类章节倍率（供 chapters.ts 派生，而非手填） */
+export const chapterHpMult = (ch: number): number => chapterMult(ch, BALANCE.chapterCurve.hpEnd);
+export const chapterDmgMult = (ch: number): number => chapterMult(ch, BALANCE.chapterCurve.dmgEnd);
+export const chapterBossHpMult = (ch: number): number => chapterMult(ch, BALANCE.chapterCurve.bossHpEnd);
+/** 速度倍率：等差递增（每章 +speedStep），本就单调合理，保留等差形态 */
+export const chapterSpeedMult = (ch: number): number => Math.round((1 + BALANCE.chapterCurve.speedStep * (ch - 1)) * 100) / 100;
+
+/** 统一的敌人成长曲线：base·(1 + growth·w^exp)，w = wave-1。
+ *  血量与伤害共用此同族形态，便于一处调参即可同步改变两条曲线。 */
+export function growthCurve(base: number, growth: number, wave: number): number {
   const w = wave - 1;
-  return Math.max(1, Math.round((base + growth * (0.5 * w + 0.035 * w * w)) * 1.15 * chapterScale(chapterMult, wave) * endlessDmg(wave)));
+  return base * (1 + growth * Math.pow(w, BALANCE.enemyGrowthExp));
 }
+
+/** 敌人血量：同族次线性成长 × 章节倍率 × 无尽复利 */
+export function enemyHp(base: number, growth: number, wave: number, chapterMult: number): number {
+  return Math.round(growthCurve(base, growth, wave) * chapterScale(chapterMult, wave) * endlessHp(wave));
+}
+
+/** 敌人伤害：与血量同族的成长曲线（仅整体乘 enemyDmgScale 微调手感）× 章节倍率 × 无尽复利。
+ *  —— 修正点：原伤害用二次式 (0.5w+0.035w²)，与血量的 w^0.9 形态不一致、后期伤害相对血量暴涨；现统一为同族。 */
+export function enemyDamage(base: number, growth: number, wave: number, chapterMult: number): number {
+  return Math.max(
+    1,
+    Math.round(growthCurve(base, growth, wave) * BALANCE.enemyDmgScale * chapterScale(chapterMult, wave) * endlessDmg(wave)),
+  );
+}
+
+/** 精英随波次的血量 / 伤害缩放系数（取代 GameScene 中散落的 0.8+(wave-5)·0.12 等 magic number） */
+export function eliteHpScale(wave: number): number {
+  return Math.max(BALANCE.elite.base, BALANCE.elite.base + (wave - 5) * BALANCE.elite.perWave);
+}
+export function eliteDmgScale(wave: number): number {
+  return Math.max(BALANCE.elite.dmgBase, BALANCE.elite.dmgBase + (wave - 5) * BALANCE.elite.dmgPerWave);
+}
+/** Boss（非精英）固定缩放系数，集中管理，便于统一调参 */
+export const bossHpScale = (): number => BALANCE.boss.hpMult;
+export const bossDmgScale = (): number => BALANCE.boss.dmgMult;
 
 /** 刷怪节奏：每波的刷新间隔（秒）与每批数量 */
 export function spawnInterval(wave: number): number {
@@ -97,14 +183,23 @@ export function incomeTarget(wave: number): number {
   return BALANCE.income.base * (1 + BALANCE.income.linear * w + BALANCE.income.quad * w * w);
 }
 
-/** 单只小怪（seeds = 1）的番茄籽价值：收入目标 ÷ 期望刷怪数 × 实测校准
- *  第 1 波怪死得晚、籽大多来不及捡（留到下一波翻倍），所以放大；后期分裂/召唤/精英使实际击杀多于估算，所以压低 */
+/** 经济校准系数：平滑地从早期的放大（怪死得晚、籽来不及捡→留到下波翻倍）过渡到后期的压低
+ *  （分裂 / 召唤 / 精英使实际击杀多于估算）。
+ *  —— 修正点：原为硬编码分段 {wave1:2.5, wave2:1, 其余:0.75}，调节刷怪节奏即失准；
+ *     现用指数衰减平滑收敛到 BALANCE.income.calib，形态连续、可解释。 */
+export function incomeCalib(wave: number): number {
+  const floor = BALANCE.income.calib; // 稳态校准（后期趋近值）
+  const peak = 2.5; // 第 1 波的放大峰值
+  // 指数衰减：wave=1 → peak，随波次平滑衰减到 floor
+  return floor + (peak - floor) * Math.exp(-0.9 * (wave - 1));
+}
+
+/** 单只小怪（seeds = 1）的番茄籽价值：收入目标 ÷ 期望刷怪数 × 平滑校准 */
 export function seedValue(wave: number): number {
   const w = Math.min(wave, 14);
-  const calib = wave === 1 ? 2.5 : wave === 2 ? 1 : BALANCE.income.calib;
   // 无尽模式：收入跟着商店涨价走
   const endless = wave > 14 ? priceInflation(wave) / priceInflation(14) : 1;
-  return (incomeTarget(w) / expectedSpawns(w)) * calib * endless;
+  return (incomeTarget(w) / expectedSpawns(w)) * incomeCalib(wave) * endless;
 }
 
 /** 商店武器品质权重 [T1, T2, T3, T4]：受波次、幸运与章节 T4 系数影响 */
@@ -147,17 +242,27 @@ export function sellPrice(price: number): number {
 }
 
 /** 稀有度概率（受波次与幸运影响）。返回 [普通, 稀有, 史诗, 传说] */
-export function rarityWeights(wave: number, luck: number): number[] {
+/** 传说稀有度曲线：min(cap, perWave × (波次 − fromWave)) × (1 + 幸运%) */
+export interface LegendCurve {
+  fromWave: number;
+  perWave: number;
+  cap: number;
+}
+
+export function rarityWeights(wave: number, luck: number, legendCurve: LegendCurve = BALANCE.legendItem): number[] {
   const l = 1 + Math.max(-0.9, luck / 100);
-  const rare = Math.min(0.6, 0.06 * (wave - 1) * l);
+  const rareRaw = Math.min(0.6, 0.06 * (wave - 1) * l);
   const epic = Math.min(0.35, Math.max(0, 0.023 * (wave - 2)) * l);
-  const legend = Math.min(0.15, Math.max(0, 0.008 * (wave - 6)) * l);
+  const legend = Math.min(legendCurve.cap, Math.max(0, legendCurve.perWave * (wave - legendCurve.fromWave)) * l);
+  // 高稀有度优先保留，稀有仅占据剩余空间；与 pickRarity() 从高到低抽取的实际分布一致。
+  const rare = Math.min(rareRaw, Math.max(0, 1 - epic - legend));
   const common = Math.max(0, 1 - rare - epic - legend);
   return [common, rare, epic, legend];
 }
 
-export function pickRarity(wave: number, luck: number, rnd: () => number = Math.random): number {
-  const w = rarityWeights(wave, luck);
+/** 抽取稀有度。默认用道具曲线（商店 / 宝箱）；升级属性选项传入 BALANCE.legendUpgrade */
+export function pickRarity(wave: number, luck: number, rnd: () => number = Math.random, legendCurve?: LegendCurve): number {
+  const w = rarityWeights(wave, luck, legendCurve);
   let r = rnd();
   for (let i = 3; i >= 1; i--) {
     if (r < w[i]) return i;

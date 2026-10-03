@@ -15,6 +15,7 @@ export const STAT_COST: Partial<Record<StatKey, number>> = {
   elementalPct: 1.4,
   auraPct: 1.3,
   auraSize: 0.8,
+  explodeSize: 0.8,
   melee: 4.5,
   ranged: 4.5,
   elemental: 4.5,
@@ -753,15 +754,22 @@ function build(): ItemDef[] {
       let budget = RARITY_BUDGET[rarity] * (0.95 + (i % 4) * 0.03);
       const mods: StatMods = {};
       let special: ItemSpecial | undefined;
-      // 史诗/传说：带代价换取更多预算（偶数位）
-      if (rarity >= 2 && i % 2 === 1) {
+      // 稀有及以上的特效
+      const hasSpecial = !!arch && (rarity >= 2 || (rarity === 1 && i % 2 === 0));
+      // 普通道具奇数位只加一项属性
+      const pShare = rarity === 0 && i % 2 === 1 ? 1 : 0.6;
+      // 代价规则（参考土豆兄弟）：
+      //  · 普通 / 稀有：只要加两项属性或带特效就必须带代价；代价占预算 25%，
+      //    正属性按代价的实际价值等额补回（总价值不变，不额外奖励）。只加一项属性的普通道具不带代价。
+      //  · 史诗 / 传说：奇数位带代价，补回 1.1 倍（原规则不变）。
+      const lowNeedsPen = rarity <= 1 && (pShare < 1 || hasSpecial);
+      const highNeedsPen = rarity >= 2 && i % 2 === 1;
+      if (lowNeedsPen || highNeedsPen) {
         const pen = drawback;
         const penVal = -round((budget * 0.25) / (STAT_COST[pen] ?? 1), pen);
         mods[pen] = penVal;
-        budget += -penVal * (STAT_COST[pen] ?? 1) * 1.1;
+        budget += -penVal * (STAT_COST[pen] ?? 1) * (highNeedsPen ? 1.1 : 1);
       }
-      // 稀有及以上的特效
-      const hasSpecial = arch && (rarity >= 2 || (rarity === 1 && i % 2 === 0));
       let statBudget = budget;
       if (hasSpecial) {
         const sb = budget * (rarity === 3 ? 0.35 : 0.45);
@@ -771,7 +779,6 @@ function build(): ItemDef[] {
       // 属性分配：主 60% / 副 40%（名字位置轮换，让同系列有变化）
       const p = stats[i % 3 === 2 ? 1 : 0],
         s2 = stats[i % 3 === 2 ? 0 : 1];
-      const pShare = rarity === 0 && i % 2 === 1 ? 1 : 0.6;
       mods[p] = (mods[p] ?? 0) + round((statBudget * pShare) / (STAT_COST[p] ?? 1), p);
       if (pShare < 1) mods[s2] = (mods[s2] ?? 0) + round((statBudget * (1 - pShare)) / (STAT_COST[s2] ?? 1), s2);
       const price = Math.round(RARITY_BUDGET[rarity] * PRICE_MULT[rarity] + 3);

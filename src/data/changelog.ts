@@ -10,6 +10,36 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.3.1',
+    date: '2026-10-03',
+    highlight: [
+      '全面调整成长与道具平衡，修复继续游戏后的商店问题，并为远程武器加入专属弹丸',
+      'Rebalanced progression and items, fixed the shop after continuing a run, and added unique projectiles for ranged weapons',
+    ],
+    items: [
+      [
+        '统一并参数化敌人、章节与经济成长公式，使难度曲线更连续稳定',
+        'Unified and parameterized enemy, chapter and economy growth formulas for a smoother difficulty curve',
+      ],
+      [
+        '重做吸血与生命再生机制，并调整爆炸范围、近战武器类型和地面效果伤害',
+        'Reworked life steal and HP regeneration, and adjusted explosion radius, melee weapon typing and ground-effect damage',
+      ],
+      [
+        '限制传说道具获取，并为普通与稀有道具补充合理代价，降低后期属性膨胀',
+        'Limited legendary item availability and added trade-offs to common and rare items to curb late-game stat inflation',
+      ],
+      [
+        '每把远程武器现在使用专属弹丸贴图，地面效果伤害新增清晰飘字',
+        'Every ranged weapon now uses a unique projectile visual, with clearer damage numbers for ground effects',
+      ],
+      [
+        '修复读取存档继续游戏后商店为空且无法刷新的问题',
+        'Fixed the shop being empty and impossible to refresh after continuing a saved run',
+      ],
+    ],
+  },
+  {
     version: '1.3.0',
     date: '2026-10-01',
     highlight: [

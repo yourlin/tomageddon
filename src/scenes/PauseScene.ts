@@ -8,7 +8,7 @@ import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { save, persist } from '../systems/Save';
-import { BALANCE } from '../data/balance';
+import { regenPerSecond } from '../data/balance';
 
 export class PauseScene extends Phaser.Scene {
   constructor() {
@@ -31,13 +31,14 @@ export class PauseScene extends Phaser.Scene {
       const x = W / 2 - 390 + Math.floor(i / col) * 250,
         y = 130 + (i % col) * 26;
       const info = STAT_INFO[k];
-      const cap = k === 'dodge' ? run.dodgeCap : k === 'lifeSteal' ? BALANCE.player.lifeStealCap : Infinity;
+      const cap = k === 'dodge' ? run.dodgeCap : Infinity;
       const v = Math.min(s[k], cap);
+      const regenTxt = k === 'regen' ? tx(`（${regenPerSecond(v).toFixed(2)}/秒）`, ` (${regenPerSecond(v).toFixed(2)}/s)`) : '';
       text(
         this,
         x,
         y,
-        `${info.name}：${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(' / 5 秒', ' / 5s') : ''}${s[k] >= cap ? tx('（上限）', ' (cap)') : ''}`,
+        `${info.name}：${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${regenTxt}${s[k] >= cap ? tx('（上限）', ' (cap)') : ''}`,
         17,
         info.color,
       );

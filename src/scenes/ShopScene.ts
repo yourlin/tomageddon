@@ -21,6 +21,7 @@ import {
   sellPrice,
   isBossWaveNo,
   isEliteWaveNo,
+  regenPerSecond,
 } from '../data/balance';
 import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
 import { text, button, panel, COLORS, fitImage, hitArea, toast, autoRelayout } from '../ui/UI';
@@ -60,6 +61,11 @@ export class ShopScene extends Phaser.Scene {
     if (!data?.keep) {
       run.rerolls = 0;
       this.rollShop(true);
+    } else if (!this.shelfValid()) {
+      // 读档「继续游戏」或场景重建时沿用存档里的货架；若货架是上一波的（已被标记售罄）
+      // 或本局还没生成过货架（第 1 波存档时为空），必须重新进货，否则会出现空商店
+      run.rerolls = 0;
+      this.rollShop(true);
     }
     saveRun();
     this.layer = this.add.container(0, 0);
@@ -77,6 +83,11 @@ export class ShopScene extends Phaser.Scene {
       1,
       Math.round(shopPrice(base, run.wave + 1) * (1 - run.specials.shopDiscount / 100) * (run.mod('rich_start') ? 1.25 : 1)),
     );
+  }
+
+  /** 货架是否可用：为当前波次生成，且至少还有一件没卖出（全部买光时 buy() 会立即免费补货） */
+  private shelfValid(): boolean {
+    return run.shopWave === run.wave && run.shop.length > 0 && run.shop.some((o) => !o.sold);
   }
 
   private rollShop(keepLocked: boolean): void {
@@ -135,11 +146,15 @@ export class ShopScene extends Phaser.Scene {
       }
     }
     run.shop = offers;
+    run.shopWave = run.wave;
     for (const o of offers) markSeen(o.kind === 'weapon' ? 'weapons' : 'items', o.id);
     persist();
   }
 
   private draw(): void {
+    // 每次操作（购买、出售、刷新、锁定、合成、打造）后都会重绘：顺便写盘，
+    // 保证「继续游戏」恢复的是当前货架与持有物，而不是进店时的快照
+    saveRun();
     checkAchievements();
     const W = this.scale.width,
       H = this.scale.height;
@@ -324,7 +339,7 @@ export class ShopScene extends Phaser.Scene {
     const s = run.stats;
     const lineH = Math.min(26, (H - 250) / STAT_ORDER.length);
     STAT_ORDER.forEach((k, i) => {
-      const cap = k === 'dodge' ? run.dodgeCap : k === 'lifeSteal' ? BALANCE.player.lifeStealCap : Infinity;
+      const cap = k === 'dodge' ? run.dodgeCap : Infinity;
       const v = Math.min(s[k], cap);
       const info = STAT_INFO[k];
       const y = 120 + i * lineH;
@@ -335,7 +350,7 @@ export class ShopScene extends Phaser.Scene {
           this,
           sx + sw - 16,
           y,
-          `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(' /5秒', '/5s') : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
+          `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(`(${regenPerSecond(v).toFixed(2)}/秒)`, ` (${regenPerSecond(v).toFixed(2)}/s)`) : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
           16,
           col,
         ).setOrigin(1, 0),

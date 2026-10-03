@@ -187,7 +187,8 @@ export class Terrain {
             const x = p.x + Phaser.Math.Between(-220, 220),
               y = p.y + Phaser.Math.Between(-160, 160);
             g.fx.telegraphCircle(x, y, 60, 1.1, 0xff9f1c, () =>
-              g.addHazard(x, y, 60, 4, this.dmg(1.5), [{ id: 'burn', dur: 2, stacks: 1 }], 0xffb703),
+              // 每 0.5 秒结算一次，伤害约等于同波次蟑螂的一次接触伤害（原为 1.5，几乎没有威胁）
+              g.addHazard(x, y, 60, 4, this.dmg(3), [{ id: 'burn', dur: 2, stacks: 1 }], 0xffb703),
             );
           }
           g.terrainNotice(tx('热油飞溅！', 'Hot oil splash!'));
