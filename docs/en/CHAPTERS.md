@@ -271,7 +271,7 @@ A date seed decides the character, chapter and rule modifiers, and also the shop
 | ✨ Champion Rush | Affixed champions appear 3× as often |
 | 🗿 Land of Giants | Monsters have +50% HP and move 15% slower |
 | 🐜 Swarm | +40% spawns, -25% monster HP |
-| 🧛 Night of Fangs | +10% life steal, but HP regen does nothing |
+| 🧛 Night of Fangs | +10% Life Steal Chance, but HP Regen does nothing |
 | 🎯 One Shot | One reroll per shop, but it is free |
 | 🍀 Lucky Day | +60 Luck |
 | 📚 Scholar | +100% XP gain |

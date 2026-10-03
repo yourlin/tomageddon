@@ -15,6 +15,7 @@ import { weaponDamage } from './WeaponSystem';
 import { WEAPON_MAP } from '../data/weapons';
 import { castFx, drainLines } from './SkillFx';
 import { tx } from '../i18n';
+import { HEAL_SCALE, DRAIN_PER_HIT, DRAIN_MAX_PCT } from '../data/skills';
 
 interface Field {
   x: number;
@@ -26,9 +27,6 @@ interface Field {
   ring: Phaser.GameObjects.Image;
   info: HitInfo;
 }
-
-/** 技能自带回复量的整体系数（数据里 heal: 0.2 → 实际回复 9% 最大生命） */
-const HEAL_SCALE = 0.45;
 
 export class SkillSystem {
   skill: SkillDef;
@@ -335,8 +333,11 @@ export class SkillSystem {
             0xff4d6d,
           );
         }
-        // 吸取：每命中 1 个敌人回 0.5 点，最多 6% 最大生命；再加技能自带的回复量（整体 ×HEAL_SCALE）
-        g.heal(Math.min(Math.round(s.maxHp * 0.06), Math.round(hits.length * 0.5)) + Math.round(s.maxHp * (sk.heal ?? 0) * HEAL_SCALE));
+        // 吸取：每命中 1 个敌人回 DRAIN_PER_HIT 点，最多 DRAIN_MAX_PCT 最大生命；再加技能自带的回复量（整体 ×HEAL_SCALE）
+        g.heal(
+          Math.min(Math.round(s.maxHp * DRAIN_MAX_PCT), Math.round(hits.length * DRAIN_PER_HIT)) +
+            Math.round(s.maxHp * (sk.heal ?? 0) * HEAL_SCALE),
+        );
         break;
       }
       case 'strikes': {

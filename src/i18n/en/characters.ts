@@ -39,7 +39,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A big, round bruiser with a seriously thick rind.',
     talent: { name: 'Thick Rind', desc: 'Take 10% less damage; +1% damage per 10 Max HP' },
     traits: ['+25 Max HP', '+2 Armor', '-12% Move Speed', '-10% Attack Speed'],
-    skill: { name: 'Melon Roll', desc: 'Roll into enemies and restore 10% HP.' },
+    skill: { name: 'Melon Roll', desc: 'Roll into enemies and restore 4.5% Max HP.' },
   },
   lemon: {
     name: 'Lemon Assassin',
@@ -61,8 +61,8 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Count Garlic',
     title: 'Vampire Noble',
     desc: 'An ancient vampire... made entirely of garlic.',
-    talent: { name: 'Blood Feast', desc: 'Life Steal is doubled below 50% HP' },
-    traits: ['+10% Life Steal', '-3 HP Regen', '+5% Damage'],
+    talent: { name: 'Blood Feast', desc: 'Life Steal Chance is doubled below 50% HP' },
+    traits: ['+10% Life Steal Chance', '-3 HP Regen', '+5% Damage'],
     skill: { name: 'Blood Domain', desc: 'Drain life from nearby enemies and inflict Bleed.' },
   },
   blueberry: {
@@ -170,7 +170,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A gentle angel who watches over every friend.',
     talent: { name: "Angel's Grace", desc: 'Once per wave, survive a lethal hit with 1 HP and 2s of invulnerability' },
     traits: ['+5 HP Regen', 'Gain 15 Shield at the start of each wave', '-10% Damage'],
-    skill: { name: 'Angel’s Blessing', desc: 'Restore 20% HP and become Invulnerable for 1.5s.' },
+    skill: { name: 'Angel’s Blessing', desc: 'Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s.' },
   },
   dragonfruit: {
     name: 'Dragonfruit Rider',
@@ -185,7 +185,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Berserker',
     desc: 'A blood-red beet who gets stronger the longer the fight goes.',
     talent: { name: 'Berserker Blood', desc: '+6% damage per 10% HP missing' },
-    traits: ['+15% Damage', '+3% Life Steal', '-1 Armor', 'Gain Rage when damaged'],
+    traits: ['+15% Damage', '+3% Life Steal Chance', '-1 Armor', 'Gain Rage when damaged'],
     skill: { name: 'Frenzy', desc: 'Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s.' },
   },
   asparagus: {
@@ -202,7 +202,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'The smell of roasted sweet potato perks everyone right up.',
     talent: { name: 'Gourmet', desc: 'Picking up fruit also grants Seeds (more in later waves)' },
     traits: ['+20 Harvest', 'Fruit healing doubled', '-5% Damage'],
-    skill: { name: 'Roast Yam Feast', desc: 'Restore 20% HP and gain 5 stacks of Regen.' },
+    skill: { name: 'Roast Yam Feast', desc: 'Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen.' },
   },
   kiwi: {
     name: 'Kiwi Detective',

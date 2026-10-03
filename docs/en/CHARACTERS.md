@@ -174,7 +174,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Traits | +25 Max HP; +2 Armor; -12% Move Speed; -10% Attack Speed |
 | Stat modifiers | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed |
 | Starting weapons | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) |
-| Active skill | [Melon Roll](SKILLS.md#skill-watermelon) [Dash] cooldown 13s — Roll into enemies and restore 10% HP. |
+| Active skill | [Melon Roll](SKILLS.md#skill-watermelon) [Dash] cooldown 13s — Roll into enemies and restore 4.5% Max HP. |
 | Unlock | 390 pts |
 
 <a id="char-lemon"></a>
@@ -221,9 +221,9 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Blood Feast**：Life Steal is doubled below 50% HP |
-| Traits | +10% Life Steal; -3 HP Regen; +5% Damage |
-| Stat modifiers | -3 HP Regen, +10% Life Steal, +5% All Damage |
+| Talent | **Blood Feast**：Life Steal Chance is doubled below 50% HP |
+| Traits | +10% Life Steal Chance; -3 HP Regen; +5% Damage |
+| Stat modifiers | -3 HP Regen, +10% Life Steal Chance, +5% All Damage |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
 | Active skill | [Blood Domain](SKILLS.md#skill-garlic) [Drain Heal] cooldown 14s — Drain life from nearby enemies and inflict Bleed. |
 | Unlock | 830 pts |
@@ -446,7 +446,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Traits | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage |
 | Stat modifiers | +5 Max HP, +5 HP Regen, -10% All Damage |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
-| Active skill | [Angel’s Blessing](SKILLS.md#skill-peach) [Drain Heal] cooldown 21s — Restore 20% HP and become Invulnerable for 1.5s. |
+| Active skill | [Angel’s Blessing](SKILLS.md#skill-peach) [Drain Heal] cooldown 21s — Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s. |
 | Unlock | 830 pts |
 
 <a id="char-dragonfruit"></a>
@@ -477,8 +477,8 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Field | Value |
 | --- | --- |
 | Talent | **Berserker Blood**：+6% damage per 10% HP missing |
-| Traits | +15% Damage; +3% Life Steal; -1 Armor; Gain Rage when damaged |
-| Stat modifiers | +3% Life Steal, +15% All Damage, -1 Armor |
+| Traits | +15% Damage; +3% Life Steal Chance; -1 Armor; Gain Rage when damaged |
+| Stat modifiers | +3% Life Steal Chance, +15% All Damage, -1 Armor |
 | Starting weapons | [Meat Cleaver](WEAPONS.md#weapon-cleaver) |
 | Active skill | [Frenzy](SKILLS.md#skill-beet) [Self Buff] cooldown 13s — Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s. |
 | Unlock | 830 pts |
@@ -514,7 +514,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Traits | +20 Harvest; Fruit healing doubled; -5% Damage |
 | Stat modifiers | +5 Max HP, -5% All Damage, +20 Harvest |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
-| Active skill | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) [Drain Heal] cooldown 24s — Restore 20% HP and gain 5 stacks of Regen. |
+| Active skill | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) [Drain Heal] cooldown 24s — Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen. |
 | Unlock | 390 pts |
 
 <a id="char-kiwi"></a>

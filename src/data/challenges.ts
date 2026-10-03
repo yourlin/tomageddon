@@ -101,7 +101,7 @@ export const MODIFIERS: ModifierDef[] = [
     id: 'vampire',
     icon: '🧛',
     name: ['吸血之夜', 'Night of Fangs'],
-    desc: ['吸血 +10%，但生命再生无效', '+10% life steal, but HP regen does nothing'],
+    desc: ['吸血概率 +10%，但生命再生无效', '+10% Life Steal Chance, but HP Regen does nothing'],
     mods: { lifeSteal: 10 },
     weight: 0,
   },

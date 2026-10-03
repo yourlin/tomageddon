@@ -4,7 +4,7 @@ import { CHARACTERS } from '../../src/data/characters';
 import { WEAPONS, TIER_PRICE_MULT } from '../../src/data/weapons';
 import { STATUSES } from '../../src/data/statuses';
 import { STAT_INFO, type StatKey } from '../../src/data/stats';
-import { SKILL_TYPE_NAME } from '../../src/data/skills';
+import { SKILL_TYPE_NAME, skillHealPct, DRAIN_PER_HIT, DRAIN_MAX_PCT } from '../../src/data/skills';
 import { tagName } from '../../src/i18n/apply';
 import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
 import { WEAPON_AFFIXES, FORGE } from '../../src/data/weaponAffixes';
@@ -136,7 +136,16 @@ export function skillsDoc(): void {
     if (s.status?.length) rows.push([tx('对敌施加', 'Inflicts'), stApply(s.status, '')]);
     if (s.selfStatus?.length) rows.push([tx('自身获得', 'Self gains'), stApply(s.selfStatus, '')]);
     if (s.mods) rows.push([tx('属性增益', 'Stat boost'), mods(s.mods)]);
-    if (s.heal) rows.push([tx('回复', 'Heal'), tx(`${Math.round(s.heal * 100)}% 最大生命`, `${Math.round(s.heal * 100)}% Max HP`)]);
+    if (s.heal)
+      rows.push([tx('回复', 'Heal'), tx(`${skillHealPct(s.heal)}% 最大生命`, `${skillHealPct(s.heal)}% Max HP`)]);
+    if (s.type === 'heal')
+      rows.push([
+        tx('吸取', 'Drain'),
+        tx(
+          `每命中 1 个敌人 +${DRAIN_PER_HIT} 生命（最多 ${DRAIN_MAX_PCT * 100}% 最大生命）`,
+          `+${DRAIN_PER_HIT} HP per enemy hit (max ${DRAIN_MAX_PCT * 100}% Max HP)`,
+        ),
+      ]);
     if (s.xp) rows.push([tx('经验', 'XP'), `+${s.xp}`]);
     d.table([tx('项目', 'Field'), tx('数值', 'Value')], rows);
   }
@@ -231,7 +240,7 @@ export function weaponsDoc(): void {
         e.stun ? tx(`眩晕 ${e.stun}s`, `Stun ${e.stun}s`) : '',
         e.explode ? tx(`爆炸半径 ${e.explode}`, `Explosion radius ${e.explode}`) : '',
         e.chain ? tx(`连锁 ${e.chain.join('/')} 次`, `Chains ${e.chain.join('/')} times`) : '',
-        e.lifeSteal ? tx(`额外吸血 ${e.lifeSteal}%`, `+${e.lifeSteal}% Life Steal`) : '',
+        e.lifeSteal ? tx(`额外吸血概率 ${e.lifeSteal}%`, `+${e.lifeSteal}% Life Steal Chance`) : '',
         w.pierce ? tx(`穿透 ${w.pierce.join('/')}`, `Pierce ${w.pierce.join('/')}`) : '',
         w.bounce ? tx(`弹射 ${w.bounce.join('/')}`, `Bounce ${w.bounce.join('/')}`) : '',
         w.count ? tx(`弹丸 ${w.count.join('/')}`, `Projectiles ${w.count.join('/')}`) : '',

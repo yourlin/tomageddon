@@ -95,7 +95,7 @@ HP, armor, healing and shields
 | 🌿 Regrowth | Attribute · 3 ranks | Constitution | HP regen +3 |
 | 🍎 Fruity | Attribute · 2 ranks | Regrowth | Fruit healing +30% |
 | 🌱 Vitality | Attribute | Fruity | HP regen +1 |
-| 🧛 Leech | Attribute · 3 ranks | Constitution | Life steal +3% |
+| 🧛 Leech | Attribute · 3 ranks | Constitution | Life Steal Chance +3% |
 | 💗 Satisfying Hit | Ability · 2 ranks | Leech | 30% chance to heal 1 HP on crit |
 | 🔰 Ward | Ability | Constitution | Every 15s gain a shield that blocks one hit |
 | 🫧 Opening Barrier | Ability | Ward | Gain a 3s Barrier at the start of each wave |

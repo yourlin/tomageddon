@@ -412,7 +412,7 @@ const GUARD = place('guard', [
       kind: 'minor',
       icon: '🧛',
       name: ['汲取', 'Leech'],
-      desc: ['吸血 +{v}%', 'Life steal +{v}%'],
+      desc: ['吸血概率 +{v}%', 'Life Steal Chance +{v}%'],
       val: 1,
       max: 3,
       fx: { mods: { lifeSteal: 1 } },

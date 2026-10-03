@@ -224,7 +224,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+25 最大生命', '+2 护甲', '-12% 移速', '-10% 攻速'],
     skill: {
       name: '西瓜翻滚',
-      desc: '翻滚冲撞并回复 10% 生命。',
+      desc: '翻滚冲撞并回复 4.5% 最大生命。',
       type: 'dash',
       cd: 0,
       mult: 2.0,
@@ -339,8 +339,8 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { lifeSteal: 10, regen: -3, damage: 5 },
     startWeapons: ['garlic_aura'],
     favored: ['garlic_aura', 'ladle', 'soy_pistol'],
-    talent: { name: '血之盛宴', desc: '生命低于 50% 时吸血效果翻倍' },
-    traits: ['+10% 吸血', '-3 生命再生', '+5% 伤害'],
+    talent: { name: '血之盛宴', desc: '生命低于 50% 时吸血概率翻倍' },
+    traits: ['+10% 吸血概率', '-3 生命再生', '+5% 伤害'],
     skill: {
       name: '血之领域',
       desc: '吸取周围敌人生命，施加流血。',
@@ -808,7 +808,7 @@ export const CHARACTERS: CharacterDef[] = [
     special: { waveStartSelf: [{ id: 'shield', dur: 999, value: 15 }] },
     skill: {
       name: '天使祝福',
-      desc: '回复 20% 生命，无敌 1.5 秒。',
+      desc: '吸取周围敌人生命并回复 9% 最大生命，无敌 1.5 秒。',
       type: 'heal',
       cd: 0,
       mult: 1.0,
@@ -885,7 +885,7 @@ export const CHARACTERS: CharacterDef[] = [
     startWeapons: ['cleaver'],
     favored: ['cleaver', 'pineapple_mace', 'bamboo_spear'],
     talent: { name: '狂战之血', desc: '每损失 10% 生命，伤害 +6%' },
-    traits: ['+15% 伤害', '+3% 吸血', '-1 护甲', '受伤时获得怒气'],
+    traits: ['+15% 伤害', '+3% 吸血概率', '-1 护甲', '受伤时获得怒气'],
     special: { onHurtSelf: [S('rage', 5, 2)] },
     skill: {
       name: '狂暴',
@@ -969,7 +969,7 @@ export const CHARACTERS: CharacterDef[] = [
     special: { fruitHeal: 100 },
     skill: {
       name: '烤红薯盛宴',
-      desc: '回复 20% 生命，获得 5 层再生。',
+      desc: '吸取周围敌人生命并回复 9% 最大生命，获得 5 层再生。',
       type: 'heal',
       cd: 0,
       mult: 1.0,

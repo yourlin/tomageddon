@@ -40,7 +40,7 @@ Each level-up offers random stats; values scale with rarity:
 | --- | --- |
 | Max HP | 3 / 6 / 9 / 12 |
 | HP Regen | 2 / 3 / 4 / 5 |
-| Life Steal | 1 / 2 / 3 / 4 |
+| Life Steal Chance | 1 / 2 / 3 / 4 |
 | Melee Weapon Dmg | 6 / 10 / 14 / 19 |
 | Ranged Weapon Dmg | 6 / 10 / 14 / 19 |
 | Elemental Weapon Dmg | 6 / 10 / 14 / 19 |
@@ -89,7 +89,7 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/chef_hat.png" width="32" height="32" alt=""> Chef's Hat | Rare | +5 Max HP, +4 Melee Damage, -2 Ranged Damage, +1 Armor | 35 | ∞ |
 | <img src="../images/item/scope.png" width="32" height="32" alt=""> Scope | Rare | +4 Ranged Damage, -5% Attack Speed, +5% Crit Chance, +40 Range | 38 | ∞ |
 | <img src="../images/item/battery.png" width="32" height="32" alt=""> Battery | Rare | -3 Max HP, +4 Elemental Damage, +7% Attack Speed | 36 | ∞ |
-| <img src="../images/item/mosquito.png" width="32" height="32" alt=""> Pinned Mosquito | Rare | -2 Max HP, +4% Life Steal | 40 | ∞ |
+| <img src="../images/item/mosquito.png" width="32" height="32" alt=""> Pinned Mosquito | Rare | -2 Max HP, +4% Life Steal Chance | 40 | ∞ |
 | <img src="../images/item/energy_drink.png" width="32" height="32" alt=""> Energy Drink | Rare | -1 HP Regen, +10% Attack Speed, +3% Move Speed | 38 | ∞ |
 | <img src="../images/item/helmet.png" width="32" height="32" alt=""> Pot-Lid Helmet | Rare | +3 Armor, -3% Move Speed | 40 | ∞ |
 | <img src="../images/item/piggy_bank.png" width="32" height="32" alt=""> Piggy Bank | Rare | At the end of each wave, earn 10% interest on your Seeds (capped at 6 × wave) | 30 | 3 |
@@ -116,7 +116,7 @@ Each level-up offers random stats; values scale with rarity:
 | <img src="../images/item/chef_knife_set.png" width="32" height="32" alt=""> Master Knife Set | Legendary | +8 Melee Damage, -4 Ranged Damage, +8% Attack Speed, +8% Crit Chance | 130 | ∞ |
 | <img src="../images/item/railgun_core.png" width="32" height="32" alt=""> Railgun Core | Legendary | -4 Melee Damage, +8 Ranged Damage, +8% Attack Speed, +60 Range | 130 | ∞ |
 | <img src="../images/item/grandma_recipe.png" width="32" height="32" alt=""> Grandma's Recipe | Legendary | -8% All Damage, +20 Luck, +25 Harvest, +25% XP Gain | 115 | ∞ |
-| <img src="../images/item/vampire_cape.png" width="32" height="32" alt=""> Vampire Cape | Legendary | -3 HP Regen, +10% Life Steal, +8% All Damage, +5% Dodge | 125 | ∞ |
+| <img src="../images/item/vampire_cape.png" width="32" height="32" alt=""> Vampire Cape | Legendary | -3 HP Regen, +10% Life Steal Chance, +8% All Damage, +5% Dodge | 125 | ∞ |
 | <img src="../images/item/powder_keg.png" width="32" height="32" alt=""> Powder Keg | Legendary | +5% All Damage, +50% Explosion Size, -3% Move Speed | 115 | ∞ |
 
 <a id="series"></a>
@@ -218,16 +218,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/sauces_0.png" width="32" height="32" alt=""> Soy Sauce | Common | +1 HP Regen, +2% Life Steal, -1 Armor | 15 | ∞ |
-| <img src="../images/item/sauces_1.png" width="32" height="32" alt=""> Vinegar | Common | +2% Life Steal | 15 | ∞ |
-| <img src="../images/item/sauces_2.png" width="32" height="32" alt=""> Oyster Sauce | Common | +2 HP Regen, +1% Life Steal, -1 Armor | 15 | ∞ |
-| <img src="../images/item/sauces_3.png" width="32" height="32" alt=""> Sweet Bean Sauce | Common | +2% Life Steal | 15 | ∞ |
-| <img src="../images/item/sauces_4.png" width="32" height="32" alt=""> Chili Bean Paste | Rare | +1 HP Regen, +2% Life Steal, -1 Armor, On kill, gain 17% chance of Bloodlust | 36 | ∞ |
-| <img src="../images/item/sauces_5.png" width="32" height="32" alt=""> Satay Sauce | Rare | +3 HP Regen, +2% Life Steal, -1 Armor | 36 | ∞ |
-| <img src="../images/item/sauces_6.png" width="32" height="32" alt=""> XO Sauce | Rare | +1 HP Regen, +2% Life Steal, -1 Armor, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
-| <img src="../images/item/sauces_7.png" width="32" height="32" alt=""> Secret BBQ Sauce | Epic | +3 HP Regen, +3% Life Steal, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
-| <img src="../images/item/sauces_8.png" width="32" height="32" alt=""> Blood-Red Hot Sauce | Epic | +3 HP Regen, +2% Life Steal, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
-| <img src="../images/item/sauces_9.png" width="32" height="32" alt=""> Eternal Mother Sauce | Legendary | +5 HP Regen, +7% Life Steal, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
+| <img src="../images/item/sauces_0.png" width="32" height="32" alt=""> Soy Sauce | Common | +1 HP Regen, +2% Life Steal Chance, -1 Armor | 15 | ∞ |
+| <img src="../images/item/sauces_1.png" width="32" height="32" alt=""> Vinegar | Common | +2% Life Steal Chance | 15 | ∞ |
+| <img src="../images/item/sauces_2.png" width="32" height="32" alt=""> Oyster Sauce | Common | +2 HP Regen, +1% Life Steal Chance, -1 Armor | 15 | ∞ |
+| <img src="../images/item/sauces_3.png" width="32" height="32" alt=""> Sweet Bean Sauce | Common | +2% Life Steal Chance | 15 | ∞ |
+| <img src="../images/item/sauces_4.png" width="32" height="32" alt=""> Chili Bean Paste | Rare | +1 HP Regen, +2% Life Steal Chance, -1 Armor, On kill, gain 17% chance of Bloodlust | 36 | ∞ |
+| <img src="../images/item/sauces_5.png" width="32" height="32" alt=""> Satay Sauce | Rare | +3 HP Regen, +2% Life Steal Chance, -1 Armor | 36 | ∞ |
+| <img src="../images/item/sauces_6.png" width="32" height="32" alt=""> XO Sauce | Rare | +1 HP Regen, +2% Life Steal Chance, -1 Armor, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
+| <img src="../images/item/sauces_7.png" width="32" height="32" alt=""> Secret BBQ Sauce | Epic | +3 HP Regen, +3% Life Steal Chance, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
+| <img src="../images/item/sauces_8.png" width="32" height="32" alt=""> Blood-Red Hot Sauce | Epic | +3 HP Regen, +2% Life Steal Chance, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
+| <img src="../images/item/sauces_9.png" width="32" height="32" alt=""> Eternal Mother Sauce | Legendary | +5 HP Regen, +7% Life Steal Chance, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
 
 <a id="series-4"></a>
 
@@ -558,16 +558,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/bugs_0.png" width="32" height="32" alt=""> Pinned Ant | Common | -1 Max HP, +1% Life Steal, +2% Crit Chance | 15 | ∞ |
-| <img src="../images/item/bugs_1.png" width="32" height="32" alt=""> Pinned Ladybug | Common | +2% Life Steal | 15 | ∞ |
-| <img src="../images/item/bugs_2.png" width="32" height="32" alt=""> Pinned Butterfly | Common | -1 Max HP, +1% Life Steal, +4% Crit Chance | 15 | ∞ |
-| <img src="../images/item/bugs_3.png" width="32" height="32" alt=""> Pinned Beetle | Common | +2% Life Steal | 15 | ∞ |
-| <img src="../images/item/bugs_4.png" width="32" height="32" alt=""> Pinned Mantis | Rare | -2 Max HP, +2% Life Steal, +3% Crit Chance, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
-| <img src="../images/item/bugs_5.png" width="32" height="32" alt=""> Queen Bee Specimen | Rare | -2 Max HP, +2% Life Steal, +8% Crit Chance | 36 | ∞ |
-| <img src="../images/item/bugs_6.png" width="32" height="32" alt=""> Pinned Scorpion | Rare | -2 Max HP, +2% Life Steal, +3% Crit Chance, On kill, gain 19% chance of Bloodlust | 36 | ∞ |
-| <img src="../images/item/bugs_7.png" width="32" height="32" alt=""> Golden Scarab | Epic | -3 Max HP, +3% Life Steal, +5% Crit Chance, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
-| <img src="../images/item/bugs_8.png" width="32" height="32" alt=""> Vampire Bat | Epic | +2% Life Steal, +6% Crit Chance, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
-| <img src="../images/item/bugs_9.png" width="32" height="32" alt=""> Bug King in Amber | Legendary | -6 Max HP, +7% Life Steal, +11% Crit Chance, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
+| <img src="../images/item/bugs_0.png" width="32" height="32" alt=""> Pinned Ant | Common | -1 Max HP, +1% Life Steal Chance, +2% Crit Chance | 15 | ∞ |
+| <img src="../images/item/bugs_1.png" width="32" height="32" alt=""> Pinned Ladybug | Common | +2% Life Steal Chance | 15 | ∞ |
+| <img src="../images/item/bugs_2.png" width="32" height="32" alt=""> Pinned Butterfly | Common | -1 Max HP, +1% Life Steal Chance, +4% Crit Chance | 15 | ∞ |
+| <img src="../images/item/bugs_3.png" width="32" height="32" alt=""> Pinned Beetle | Common | +2% Life Steal Chance | 15 | ∞ |
+| <img src="../images/item/bugs_4.png" width="32" height="32" alt=""> Pinned Mantis | Rare | -2 Max HP, +2% Life Steal Chance, +3% Crit Chance, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
+| <img src="../images/item/bugs_5.png" width="32" height="32" alt=""> Queen Bee Specimen | Rare | -2 Max HP, +2% Life Steal Chance, +8% Crit Chance | 36 | ∞ |
+| <img src="../images/item/bugs_6.png" width="32" height="32" alt=""> Pinned Scorpion | Rare | -2 Max HP, +2% Life Steal Chance, +3% Crit Chance, On kill, gain 19% chance of Bloodlust | 36 | ∞ |
+| <img src="../images/item/bugs_7.png" width="32" height="32" alt=""> Golden Scarab | Epic | -3 Max HP, +3% Life Steal Chance, +5% Crit Chance, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
+| <img src="../images/item/bugs_8.png" width="32" height="32" alt=""> Vampire Bat | Epic | +2% Life Steal Chance, +6% Crit Chance, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
+| <img src="../images/item/bugs_9.png" width="32" height="32" alt=""> Bug King in Amber | Legendary | -6 Max HP, +7% Life Steal Chance, +11% Crit Chance, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
 
 <a id="series-24"></a>
 
@@ -745,16 +745,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/potions_0.png" width="32" height="32" alt=""> Red Potion | Common | +2 HP Regen, +1% Life Steal, -1% Move Speed | 15 | ∞ |
+| <img src="../images/item/potions_0.png" width="32" height="32" alt=""> Red Potion | Common | +2 HP Regen, +1% Life Steal Chance, -1% Move Speed | 15 | ∞ |
 | <img src="../images/item/potions_1.png" width="32" height="32" alt=""> Blue Potion | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/potions_2.png" width="32" height="32" alt=""> Green Potion | Common | +1 HP Regen, +1% Life Steal, -1% Move Speed | 15 | ∞ |
+| <img src="../images/item/potions_2.png" width="32" height="32" alt=""> Green Potion | Common | +1 HP Regen, +1% Life Steal Chance, -1% Move Speed | 15 | ∞ |
 | <img src="../images/item/potions_3.png" width="32" height="32" alt=""> Antidote | Common | +2 HP Regen | 15 | ∞ |
-| <img src="../images/item/potions_4.png" width="32" height="32" alt=""> Healing Potion | Rare | +2 HP Regen, +1% Life Steal, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
-| <img src="../images/item/potions_5.png" width="32" height="32" alt=""> Greater Potion | Rare | +2 HP Regen, +3% Life Steal, -3% Move Speed | 36 | ∞ |
-| <img src="../images/item/potions_6.png" width="32" height="32" alt=""> Elixir | Rare | +2 HP Regen, +1% Life Steal, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
-| <img src="../images/item/potions_7.png" width="32" height="32" alt=""> Undying Draught | Epic | +4 HP Regen, +2% Life Steal, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
-| <img src="../images/item/potions_8.png" width="32" height="32" alt=""> Phoenix Tonic | Epic | +2 HP Regen, +2% Life Steal, Heal 1 HP every 43 kills | 73 | ∞ |
-| <img src="../images/item/potions_9.png" width="32" height="32" alt=""> Fountain of Life | Legendary | +8 HP Regen, +4% Life Steal, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
+| <img src="../images/item/potions_4.png" width="32" height="32" alt=""> Healing Potion | Rare | +2 HP Regen, +1% Life Steal Chance, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
+| <img src="../images/item/potions_5.png" width="32" height="32" alt=""> Greater Potion | Rare | +2 HP Regen, +3% Life Steal Chance, -3% Move Speed | 36 | ∞ |
+| <img src="../images/item/potions_6.png" width="32" height="32" alt=""> Elixir | Rare | +2 HP Regen, +1% Life Steal Chance, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
+| <img src="../images/item/potions_7.png" width="32" height="32" alt=""> Undying Draught | Epic | +4 HP Regen, +2% Life Steal Chance, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
+| <img src="../images/item/potions_8.png" width="32" height="32" alt=""> Phoenix Tonic | Epic | +2 HP Regen, +2% Life Steal Chance, Heal 1 HP every 43 kills | 73 | ∞ |
+| <img src="../images/item/potions_9.png" width="32" height="32" alt=""> Fountain of Life | Legendary | +8 HP Regen, +4% Life Steal Chance, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
 
 <a id="series-35"></a>
 
@@ -762,16 +762,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/bones_0.png" width="32" height="32" alt=""> Chicken Bone | Common | -1 HP Regen, +1% Life Steal, +2 Melee Damage | 15 | ∞ |
+| <img src="../images/item/bones_0.png" width="32" height="32" alt=""> Chicken Bone | Common | -1 HP Regen, +1% Life Steal Chance, +2 Melee Damage | 15 | ∞ |
 | <img src="../images/item/bones_1.png" width="32" height="32" alt=""> Fishbone | Common | +2 Melee Damage | 15 | ∞ |
-| <img src="../images/item/bones_2.png" width="32" height="32" alt=""> Pork Bone | Common | -1 HP Regen, +2% Life Steal, +1 Melee Damage | 15 | ∞ |
+| <img src="../images/item/bones_2.png" width="32" height="32" alt=""> Pork Bone | Common | -1 HP Regen, +2% Life Steal Chance, +1 Melee Damage | 15 | ∞ |
 | <img src="../images/item/bones_3.png" width="32" height="32" alt=""> Beef Bone | Common | +2 Melee Damage | 15 | ∞ |
-| <img src="../images/item/bones_4.png" width="32" height="32" alt=""> Dino Bone | Rare | -1 HP Regen, +1% Life Steal, +2 Melee Damage, On hit: 9% chance of Curse | 36 | ∞ |
-| <img src="../images/item/bones_5.png" width="32" height="32" alt=""> Skull | Rare | -1 HP Regen, +3% Life Steal, +2 Melee Damage | 36 | ∞ |
-| <img src="../images/item/bones_6.png" width="32" height="32" alt=""> Cursed Bone | Rare | -1 HP Regen, +1% Life Steal, +2 Melee Damage, On hit: 10% chance of Curse | 36 | ∞ |
-| <img src="../images/item/bones_7.png" width="32" height="32" alt=""> Necro Staff | Epic | -2 HP Regen, +2% Life Steal, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
-| <img src="../images/item/bones_8.png" width="32" height="32" alt=""> Bone Dragon Fang | Epic | +2% Life Steal, +2 Melee Damage, On hit: 14% chance of Curse | 73 | ∞ |
-| <img src="../images/item/bones_9.png" width="32" height="32" alt=""> Bone of Hades | Legendary | -4 HP Regen, +4% Life Steal, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| <img src="../images/item/bones_4.png" width="32" height="32" alt=""> Dino Bone | Rare | -1 HP Regen, +1% Life Steal Chance, +2 Melee Damage, On hit: 9% chance of Curse | 36 | ∞ |
+| <img src="../images/item/bones_5.png" width="32" height="32" alt=""> Skull | Rare | -1 HP Regen, +3% Life Steal Chance, +2 Melee Damage | 36 | ∞ |
+| <img src="../images/item/bones_6.png" width="32" height="32" alt=""> Cursed Bone | Rare | -1 HP Regen, +1% Life Steal Chance, +2 Melee Damage, On hit: 10% chance of Curse | 36 | ∞ |
+| <img src="../images/item/bones_7.png" width="32" height="32" alt=""> Necro Staff | Epic | -2 HP Regen, +2% Life Steal Chance, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| <img src="../images/item/bones_8.png" width="32" height="32" alt=""> Bone Dragon Fang | Epic | +2% Life Steal Chance, +2 Melee Damage, On hit: 14% chance of Curse | 73 | ∞ |
+| <img src="../images/item/bones_9.png" width="32" height="32" alt=""> Bone of Hades | Legendary | -4 HP Regen, +4% Life Steal Chance, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
 
 <a id="series-36"></a>
 
@@ -898,16 +898,16 @@ Each level-up offers random stats; values scale with rarity:
 
 | Item | Rarity | Effect | Price | Max |
 | --- | --- | --- | --- | --- |
-| <img src="../images/item/dark_0.png" width="32" height="32" alt=""> Black Cat Fur | Common | -1 HP Regen, +1% Life Steal, +6% Aura Damage | 15 | ∞ |
+| <img src="../images/item/dark_0.png" width="32" height="32" alt=""> Black Cat Fur | Common | -1 HP Regen, +1% Life Steal Chance, +6% Aura Damage | 15 | ∞ |
 | <img src="../images/item/dark_1.png" width="32" height="32" alt=""> Crow Feather | Common | +8% Aura Damage | 15 | ∞ |
-| <img src="../images/item/dark_2.png" width="32" height="32" alt=""> Voodoo Doll | Common | -1 HP Regen, +2% Life Steal, +4% Aura Damage | 15 | ∞ |
+| <img src="../images/item/dark_2.png" width="32" height="32" alt=""> Voodoo Doll | Common | -1 HP Regen, +2% Life Steal Chance, +4% Aura Damage | 15 | ∞ |
 | <img src="../images/item/dark_3.png" width="32" height="32" alt=""> Shadow Cloth | Common | +8% Aura Damage | 15 | ∞ |
-| <img src="../images/item/dark_4.png" width="32" height="32" alt=""> Evil Eye | Rare | -1 HP Regen, +1% Life Steal, +6% Aura Damage, On hit: 9% chance of Curse | 36 | ∞ |
-| <img src="../images/item/dark_5.png" width="32" height="32" alt=""> Demon Horn | Rare | -1 HP Regen, +3% Life Steal, +8% Aura Damage | 36 | ∞ |
-| <img src="../images/item/dark_6.png" width="32" height="32" alt=""> Abyss Stone | Rare | -1 HP Regen, +1% Life Steal, +7% Aura Damage, On hit: 10% chance of Curse | 36 | ∞ |
-| <img src="../images/item/dark_7.png" width="32" height="32" alt=""> Demon Lord's Pact | Epic | -2 HP Regen, +2% Life Steal, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
-| <img src="../images/item/dark_8.png" width="32" height="32" alt=""> Eye of the Void | Epic | +2% Life Steal, +6% Aura Damage, On hit: 14% chance of Curse | 73 | ∞ |
-| <img src="../images/item/dark_9.png" width="32" height="32" alt=""> Chaos Black Hole | Legendary | -4 HP Regen, +4% Life Steal, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| <img src="../images/item/dark_4.png" width="32" height="32" alt=""> Evil Eye | Rare | -1 HP Regen, +1% Life Steal Chance, +6% Aura Damage, On hit: 9% chance of Curse | 36 | ∞ |
+| <img src="../images/item/dark_5.png" width="32" height="32" alt=""> Demon Horn | Rare | -1 HP Regen, +3% Life Steal Chance, +8% Aura Damage | 36 | ∞ |
+| <img src="../images/item/dark_6.png" width="32" height="32" alt=""> Abyss Stone | Rare | -1 HP Regen, +1% Life Steal Chance, +7% Aura Damage, On hit: 10% chance of Curse | 36 | ∞ |
+| <img src="../images/item/dark_7.png" width="32" height="32" alt=""> Demon Lord's Pact | Epic | -2 HP Regen, +2% Life Steal Chance, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| <img src="../images/item/dark_8.png" width="32" height="32" alt=""> Eye of the Void | Epic | +2% Life Steal Chance, +6% Aura Damage, On hit: 14% chance of Curse | 73 | ∞ |
+| <img src="../images/item/dark_9.png" width="32" height="32" alt=""> Chaos Black Hole | Legendary | -4 HP Regen, +4% Life Steal Chance, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
 
 <a id="series-44"></a>
 

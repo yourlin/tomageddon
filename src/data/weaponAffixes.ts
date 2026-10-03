@@ -14,7 +14,7 @@ export const WEAPON_AFFIXES: WeaponAffixDef[] = [
   { id: 'crit', name: ['暴击率 +{v}%', 'Crit Chance +{v}%'], values: [4, 7, 11, 16] },
   { id: 'critDmg', name: ['暴击伤害 +{v}%', 'Crit Damage +{v}%'], values: [15, 25, 40, 60] },
   { id: 'range', name: ['射程 +{v}', 'Range +{v}'], values: [20, 35, 55, 80] },
-  { id: 'lifeSteal', name: ['吸血 +{v}%', 'Life Steal +{v}%'], values: [1, 2, 3, 5] },
+  { id: 'lifeSteal', name: ['吸血概率 +{v}%', 'Life Steal Chance +{v}%'], values: [1, 2, 3, 5] },
   { id: 'burn', name: ['命中 {v}% 概率灼烧', '{v}% chance to Burn'], values: [8, 14, 22, 32] },
   { id: 'poison', name: ['命中 {v}% 概率中毒', '{v}% chance to Poison'], values: [8, 14, 22, 32] },
   { id: 'slow', name: ['命中 {v}% 概率减速', '{v}% chance to Slow'], values: [10, 18, 28, 40] },

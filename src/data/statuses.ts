@@ -169,7 +169,7 @@ export const STATUSES: Record<StatusId, StatusDef> = {
   },
   rage: { id: 'rage', name: '怒气', kind: 'buff', color: 0xff4d4d, glyph: '怒', desc: '造成的伤害提高', maxStacks: 10, dmgDealt: 4 },
   shield: { id: 'shield', name: '护盾', kind: 'buff', color: 0x9bf6ff, glyph: '盾', desc: '抵挡等量伤害', maxStacks: 1 },
-  regen: { id: 'regen', name: '再生', kind: 'buff', color: 0x52b788, glyph: '生', desc: '每秒回复生命', maxStacks: 5, regen: 1 },
+  regen: { id: 'regen', name: '再生', kind: 'buff', color: 0x52b788, glyph: '生', desc: '每层每秒回复 1 生命', maxStacks: 5, regen: 1 },
   fortify: { id: 'fortify', name: '坚韧', kind: 'buff', color: 0xb2bec3, glyph: '坚', desc: '护甲提高', maxStacks: 5, armor: 2 },
   invuln: { id: 'invuln', name: '无敌', kind: 'buff', color: 0xffffff, glyph: '无', desc: '免疫所有伤害', maxStacks: 1, immune: true },
   thorns: { id: 'thorns', name: '荆棘', kind: 'buff', color: 0x6a994e, glyph: '刺', desc: '反弹近身伤害', maxStacks: 5, reflect: 5 },
@@ -196,7 +196,7 @@ export const STATUSES: Record<StatusId, StatusDef> = {
     dmgDealt: 30,
   },
   lucky: { id: 'lucky', name: '好运', kind: 'buff', color: 0xfdcb6e, glyph: '运', desc: '幸运提高', maxStacks: 5, luck: 10 },
-  vampiric: { id: 'vampiric', name: '嗜血', kind: 'buff', color: 0x9d0208, glyph: '嗜', desc: '吸血提高', maxStacks: 5, lifeSteal: 4 },
+  vampiric: { id: 'vampiric', name: '嗜血', kind: 'buff', color: 0x9d0208, glyph: '嗜', desc: '吸血概率每层 +4%', maxStacks: 5, lifeSteal: 4 },
 };
 
 export const DEBUFF_IDS = (Object.keys(STATUSES) as StatusId[]).filter((k) => STATUSES[k].kind === 'debuff');

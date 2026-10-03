@@ -86,6 +86,15 @@ export function skillCooldown(sk: SkillDef): number {
   return Math.round(Math.min(30, Math.max(8, (8 + p.dmg * 0.9 + p.ctrl + p.buff) * 0.65)));
 }
 
+/** 技能自带回复量的整体系数（数据里 heal: 0.2 → 实际回复 9% 最大生命）；描述与文档必须使用乘后数值 */
+export const HEAL_SCALE = 0.45;
+/** 吸取回复形态：每命中 1 个敌人回复的生命，以及该部分的上限（占最大生命比例） */
+export const DRAIN_PER_HIT = 0.5;
+export const DRAIN_MAX_PCT = 0.06;
+
+/** 技能实际回复的最大生命百分比（四舍五入到 0.1） */
+export const skillHealPct = (heal: number): number => Math.round(heal * HEAL_SCALE * 1000) / 10;
+
 export const SKILL_TYPE_NAME: Record<string, string> = {
   nova: '周身爆发',
   dash: '突进冲撞',

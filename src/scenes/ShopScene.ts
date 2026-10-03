@@ -22,6 +22,7 @@ import {
   isBossWaveNo,
   isEliteWaveNo,
   regenPerSecond,
+  lifeStealMaxPerSecond,
 } from '../data/balance';
 import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
 import { text, button, panel, COLORS, fitImage, hitArea, toast, autoRelayout } from '../ui/UI';
@@ -350,7 +351,7 @@ export class ShopScene extends Phaser.Scene {
           this,
           sx + sw - 16,
           y,
-          `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(`(${regenPerSecond(v).toFixed(2)}/秒)`, ` (${regenPerSecond(v).toFixed(2)}/s)`) : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
+          `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(`(${regenPerSecond(v).toFixed(2)}/秒)`, ` (${regenPerSecond(v).toFixed(2)}/s)`) : ''}${k === 'lifeSteal' && v > 0 ? tx(`(≤${lifeStealMaxPerSecond()}/秒)`, ` (≤${lifeStealMaxPerSecond()}/s)`) : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
           16,
           col,
         ).setOrigin(1, 0),
