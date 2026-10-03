@@ -55,32 +55,49 @@ export class MenuScene extends Phaser.Scene {
       });
     }
 
+    // 有进行中的对局时「继续游戏」按钮在开始按钮上方 90px：标题与版本号必须让出这块位置，
+    // 否则版本号 / 更新日志入口会被按钮盖住（1.3.x 的「版本号不显示」）
+    const by = H * 0.52;
+    const saved = hasSavedRun();
+    const buttonsTop = (saved ? by - 90 - 36 : by - 36) - 8;
     let titleBottom = H * 0.2 + 102;
     if (this.textures.exists('ui_logo')) {
       const logo = this.add.image(W / 2, H * 0.26, 'ui_logo');
       logo.setScale(Math.min((W * 0.5) / logo.width, (H * 0.32) / logo.height));
+      // 标题底边至少给版本号留 30px
+      const over = logo.getBounds().bottom - (buttonsTop - 30);
+      if (over > 0) {
+        const s = Math.max(0.2, (logo.displayHeight - over) / logo.displayHeight);
+        logo.setScale(logo.scale * s);
+        logo.y = Math.min(logo.y, buttonsTop - 30 - logo.displayHeight / 2);
+      }
       titleBottom = logo.getBounds().bottom;
     } else {
       text(this, W / 2, H * 0.2, '番茄酱', 110, '#ff4b3e', { strokeThickness: 14, fontStyle: 'bold' }).setOrigin(0.5);
       text(this, W / 2, H * 0.2 + 80, 'TOMAGEDDON', 34, '#ffd166', { strokeThickness: 6 }).setOrigin(0.5);
     }
-    // 版本号点击进入更新日志；未读过本版本时带红点
+    // 版本号点击进入更新日志；未读过本版本时带红点。标题下放不下时放到左下角
+    const fits = titleBottom + 14 + 12 <= buttonsTop;
+    const vx = fits ? W / 2 : 20;
+    const vy = fits ? titleBottom + 14 : H - 30;
     const vLabel = text(
       this,
-      W / 2,
-      titleBottom + 14,
+      vx,
+      vy,
       tx(
         `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''} · 更新日志`,
         `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''} · What's New`,
       ),
-      16,
+      fits ? 16 : 18,
       COLORS.textDim,
-    ).setOrigin(0.5);
+    )
+      .setOrigin(fits ? 0.5 : 0, 0.5)
+      .setDepth(10);
     vLabel.setInteractive({ useHandCursor: true }).on('pointerup', () => this.scene.start('Changelog'));
     vLabel.on('pointerover', () => vLabel.setColor(COLORS.text));
     vLabel.on('pointerout', () => vLabel.setColor(COLORS.textDim));
     if (save.seenVersion !== __APP_VERSION__) {
-      const dot = this.add.circle(vLabel.getBounds().right + 10, titleBottom + 14, 5, 0xff4b3e);
+      const dot = this.add.circle(vLabel.getBounds().right + 10, vy, 5, 0xff4b3e).setDepth(10);
       this.tweens.add({ targets: dot, alpha: 0.25, duration: 700, yoyo: true, repeat: -1 });
     }
     if (this.textures.exists('art_hero')) {
@@ -131,8 +148,6 @@ export class MenuScene extends Phaser.Scene {
       17,
     );
 
-    const by = H * 0.52;
-    const saved = hasSavedRun();
     if (saved) {
       const c = CHARACTER_MAP[saved.charId];
       button(
