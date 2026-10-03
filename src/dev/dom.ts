@@ -150,4 +150,32 @@ export const CSS = `
 #dev-panel .sel td{background:#3d1a20 !important}
 #dev-panel a{color:#ffd166;cursor:pointer}
 #dev-toggle{position:fixed;top:6px;right:calc(var(--dev-w) + 6px);z-index:51;background:#2b0f12;color:#ffd166;border:1px solid #6a2e36;border-radius:4px;padding:2px 8px;cursor:pointer;font:12px system-ui}
+#dev-toggle.left{right:auto;left:calc(var(--dev-w) + 6px)}
+#dev-panel.left{left:0;right:auto;border-left:none;border-right:2px solid #4a2028}
+#dev-panel .grip{position:absolute;top:0;bottom:0;left:-4px;width:8px;cursor:ew-resize;z-index:2}
+#dev-panel.left .grip{left:auto;right:-4px}
+#dev-panel.compact{font-size:11px;line-height:1.25}
+#dev-panel.compact .row{margin:1px 0;gap:2px 6px}
+#dev-panel.compact button{padding:1px 5px}
+#dev-panel.compact .body{padding:4px}
+#dev-panel.compact .live{max-height:120px}
+#dev-panel .tabs{flex-wrap:wrap}
+#dev-panel .toast{transition:opacity .3s;opacity:0;margin-left:6px;cursor:pointer;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#dev-panel .thumb{vertical-align:middle;image-rendering:auto;border-radius:4px;background:#0f0507}
+#dev-panel .strip{display:flex;gap:2px;overflow-x:auto;padding:2px 0}
+#dev-panel .strip a{border:1px solid transparent;border-radius:4px;line-height:0}
+#dev-panel .strip a.on{border-color:#ffd166}
+#dev-panel .oplog{font-family:Consolas,monospace;font-size:11px;max-height:340px;overflow:auto;background:#0f0507;border:1px solid #3a1a1f;padding:4px}
+#dev-panel .chart{display:block;background:#0f0507;border:1px solid #3a1a1f;border-radius:4px;margin:3px 0}
+#dev-panel .n{font-variant-numeric:tabular-nums}
+#dev-panel details summary{cursor:pointer;color:#ffd166}
+.dev-modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:80;display:flex;align-items:flex-start;justify-content:center;padding-top:8vh}
+.dev-modal{width:min(640px,92%);max-height:80vh;overflow:auto;background:#17090b;border:1px solid #6a2e36;border-radius:8px;padding:10px}
+.dev-modal input{width:100%}
+.dev-cmds{margin-top:6px;max-height:60vh;overflow:auto}
+.dev-cmds div{padding:3px 6px;border-radius:4px;cursor:pointer}
+.dev-cmds div.on{background:#55242c}
+#dev-panel .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:6px;margin-top:6px}
+#dev-panel .cgrid a{text-align:center;border:1px solid #3a1a1f;border-radius:6px;padding:4px;color:#f3e6e0}
+#dev-panel .cgrid a.on{border-color:#ffd166}
 `;

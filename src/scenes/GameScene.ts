@@ -48,6 +48,8 @@ export interface SandboxOpts {
   terrain: boolean;
   /** 本次沙盒的阵亡次数（非无敌模式下统计） */
   deaths: number;
+  /** 按本章本波的真实刷怪逻辑持续出怪 */
+  waves?: boolean;
 }
 
 export interface HitInfo {
@@ -109,6 +111,8 @@ const DEBUG_DMG = {
 export class GameScene extends Phaser.Scene {
   /** 调试：每帧模拟步数（用于自动化平衡测试）；Infinity = 每帧在 simBudgetMs 内尽可能多跑 */
   static simSpeed = 1;
+  /** 开发者沙盒：慢放倍率（< 1 慢放，仅在 simSpeed ≤ 1 时生效） */
+  static simScale = 1;
   /** 加速模拟时每帧最多占用的毫秒数（0 = 不限，按 simSpeed 固定步数） */
   static simBudgetMs = 0;
   /** 调试：每个模拟步开始前回调（测试机器人按模拟时间决策，与帧率无关） */
@@ -339,10 +343,21 @@ export class GameScene extends Phaser.Scene {
       this.tweens.timeScale = Math.max(1, (steps * 1000) / 60 / Math.max(1, dms));
       return;
     }
-    this.time.timeScale = 1;
-    this.tweens.timeScale = 1;
+    this.time.timeScale = GameScene.simScale;
+    this.tweens.timeScale = GameScene.simScale;
     if (!this.dead) GameScene.onStep?.(this);
-    this.step(Math.min(dms / 1000, 1 / 20));
+    this.step(Math.min(dms / 1000, 1 / 20) * GameScene.simScale);
+  }
+
+  /** 开发者沙盒：场景暂停时手动推进一个 1/60 秒的模拟步（单步调试） */
+  devFrame(): void {
+    if (this.dead) return;
+    const ts = this.time.timeScale;
+    this.time.timeScale = 0;
+    GameScene.onStep?.(this);
+    this.advanceClock(1000 / 60);
+    this.step(1 / 60, true);
+    this.time.timeScale = ts;
   }
 
   /** 手动推进场景计时器 ms 毫秒（自动推进已被 timeScale = 0 关闭） */
@@ -354,8 +369,8 @@ export class GameScene extends Phaser.Scene {
     c.timeScale = 0;
   }
 
-  private step(dt: number): void {
-    if (this.dead || !this.sys.isActive()) return;
+  private step(dt: number, force = false): void {
+    if (this.dead || (!force && !this.sys.isActive())) return;
     const sandbox = GameScene.sandbox;
     if (
       !sandbox &&
@@ -372,8 +387,9 @@ export class GameScene extends Phaser.Scene {
     this.updatePlayerStatus(dt);
     if (!sandbox || sandbox.terrain) this.terrain.update(dt);
     this.updatePlayer(dt);
-    if (!this.waveOver && !sandbox) {
-      this.updateTimer(dt);
+    // 沙盒可选「真实刷怪」：按本章本波的刷怪逻辑出怪，但不计时、不结算
+    if (!this.waveOver && (!sandbox || sandbox.waves)) {
+      if (!sandbox) this.updateTimer(dt);
       this.updateSpawning(dt);
     }
     this.weapons.update(dt);

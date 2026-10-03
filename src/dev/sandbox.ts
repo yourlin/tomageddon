@@ -27,6 +27,8 @@ export interface SpawnOpts {
   test: boolean;
   /** 生成距离（离玩家）；不填按默认（小怪 200~300，Boss 280）。近战看特效时用近距离 */
   dist?: number[];
+  /** 指定生成位置（世界坐标）；数量大于 1 时围绕该点排开 */
+  at?: { x: number; y: number };
 }
 
 export interface Tracked {
@@ -69,6 +71,10 @@ export interface Overlay {
   pickup: boolean;
   skill: boolean;
   labels: boolean;
+  /** 碰撞框 / 受击框 / 弹道 */
+  hitbox: boolean;
+  /** 性能数据（实体数、对象池、帧耗时） */
+  perf: boolean;
 }
 
 /** 叠加层配色：按武器栏位循环（面板图例使用同一配色） */
@@ -88,7 +94,20 @@ export class Sandbox {
   noSkillCd = false;
   speed = 1;
   paused = false;
-  overlay: Overlay = { range: true, explode: true, pickup: false, skill: true, labels: true };
+  overlay: Overlay = { range: true, explode: true, pickup: false, skill: true, labels: true, hitbox: false, perf: false };
+  /** 慢放倍率（1 = 正常） */
+  slow = 1;
+  zoom = 1;
+  camMode: 'player' | 'target' | 'free' = 'player';
+  /** 点击画面的作用：none = 选中 / 拖动目标，spawn = 在点击处生成，teleport = 传送玩家 */
+  placeMode: 'none' | 'spawn' | 'teleport' = 'none';
+  placeSel: { id: string; boss: boolean; opts: SpawnOpts } | null = null;
+  lockPlayer = false;
+  playerAnchor: { x: number; y: number } | null = null;
+  /** 检查器选中的实体 */
+  selected: Enemy | null = null;
+  onSelect: ((e: Enemy | null) => void) | null = null;
+  onMessage: ((msg: string, bad?: boolean) => void) | null = null;
   trial: DevWeapon[] | null = null;
   tracked: Tracked[] = [];
   tests: TestResult[] = [];
@@ -130,6 +149,7 @@ export class Sandbox {
     applyBuild(this.getBuild(), this.trial);
     GameScene.sandbox = this.opts;
     GameScene.simSpeed = this.speed;
+    GameScene.simScale = this.slow;
     for (const k of ['Hud', 'Pause', 'LevelUp', 'Shop', 'Result', 'Menu', 'CharSelect'])
       if (this.game.scene.isActive(k) || this.game.scene.isPaused(k)) this.game.scene.stop(k);
     this.tracked = [];
@@ -170,6 +190,14 @@ export class Sandbox {
     }
     const draw = () => this.draw();
     g.events.on(Phaser.Scenes.Events.POST_UPDATE, draw);
+    this.bindPointer(g);
+    this.timeline = [];
+    this.selected = null;
+    this.applyCamera();
+    // 快照还原：场景重建完成后再把目标放回去
+    const snap = this.pendingSnap;
+    this.pendingSnap = null;
+    if (snap) g.time.delayedCall(30, () => this.applySnapshot(snap));
     g.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       g.events.off(Phaser.Scenes.Events.POST_UPDATE, draw);
       for (const t of this.tracked) t.text?.destroy();
@@ -196,6 +224,11 @@ export class Sandbox {
   private step(g: GameScene): void {
     if (this.god) run.hp = g.stats.maxHp;
     if (this.noSkillCd && g.skill.cd > 0) g.skill.cd = 0;
+    if (this.lockPlayer) {
+      this.playerAnchor ??= { x: g.player.x, y: g.player.y };
+      g.player.setPosition(this.playerAnchor.x, this.playerAnchor.y);
+    } else this.playerAnchor = null;
+    this.recordTimeline(g);
     for (const t of this.tracked) {
       const e = t.e;
       if (!this.isAlive(t)) continue;
@@ -320,8 +353,11 @@ export class Sandbox {
     for (let i = 0; i < n; i++) {
       const ang = (i / n) * Math.PI * 2 + 0.3;
       const dist = opts.dist?.length ? opts.dist[i % opts.dist.length] : boss ? 280 : 200 + (i % 3) * 50;
-      const x = Phaser.Math.Clamp(p.x + Math.cos(ang) * dist, A.x + 60, A.right - 60);
-      const y = Phaser.Math.Clamp(p.y + Math.sin(ang) * dist * 0.75, A.y + 60, A.bottom - 60);
+      const ox = opts.at ? opts.at.x : p.x,
+        oy = opts.at ? opts.at.y : p.y;
+      const rr = opts.at ? (n > 1 ? 40 + (i % 3) * 20 : 0) : dist;
+      const x = Phaser.Math.Clamp(ox + Math.cos(ang) * rr, A.x + 60, A.right - 60);
+      const y = Phaser.Math.Clamp(oy + Math.sin(ang) * rr * (opts.at ? 1 : 0.75), A.y + 60, A.bottom - 60);
       const e = this.withScaling(opts.chapterId, opts.wave, () =>
         boss ? g.spawnBossNow(id, x, y, opts.affixes ?? undefined) : g.spawnEnemyNow(id, x, y, opts.affixes ?? []),
       );
@@ -477,7 +513,272 @@ export class Sandbox {
       // 测试中的目标保留在测试记录里，这里只移出跟踪列表
       return false;
     });
+    if (this.overlay.hitbox) this.drawHitboxes(gfx);
+    this.recordPerf();
+    // 选中目标高亮（检查器 / 拖动）
+    const sel = this.selected;
+    if (sel && sel.alive) gfx.lineStyle(2, 0x00e5ff, 0.9).strokeCircle(sel.x, sel.y, sel.radius + 6);
   }
+
+  // ---------------- 碰撞框 / 性能 ----------------
+  private drawHitboxes(gfx: Phaser.GameObjects.Graphics): void {
+    const g = this.g;
+    const p = g.player;
+    gfx.lineStyle(1.5, 0x52ff8a, 0.9).strokeCircle(p.x, p.y, BALANCE.player.radius);
+    for (const e of g.enemies) if (e.alive) gfx.lineStyle(1, 0xff6b6b, 0.8).strokeCircle(e.x, e.y, e.radius);
+    for (const b of g.enemyBullets) if (b.alive) gfx.lineStyle(1, 0xff3b30, 0.9).strokeCircle(b.x, b.y, b.radius);
+    for (const b of g.bullets)
+      if (b.alive) {
+        gfx.lineStyle(1, 0x6ec6ff, 0.8).strokeCircle(b.x, b.y, b.radius);
+        // 弹道：按当前速度画出 0.25 秒内的路径
+        gfx.lineStyle(1, 0x6ec6ff, 0.35).lineBetween(b.x, b.y, b.x + b.vx * 0.25, b.y + b.vy * 0.25);
+      }
+    for (const b of g.enemyBullets) if (b.alive) gfx.lineStyle(1, 0xff3b30, 0.35).lineBetween(b.x, b.y, b.x + b.vx * 0.4, b.y + b.vy * 0.4);
+  }
+
+  /** 最近 180 帧的帧耗时（毫秒） */
+  frameMs: number[] = [];
+  private recordPerf(): void {
+    this.frameMs.push(this.game.loop.delta);
+    if (this.frameMs.length > 180) this.frameMs.shift();
+  }
+  perfStats(): Record<string, number> {
+    const g = this.g;
+    const cnt = <T extends { alive: boolean }>(a: T[]) => a.reduce((n, x) => n + (x.alive ? 1 : 0), 0);
+    const fm = this.frameMs;
+    const avg = fm.length ? fm.reduce((a, b) => a + b, 0) / fm.length : 0;
+    return {
+      fps: Math.round(this.game.loop.actualFps),
+      frameAvg: Math.round(avg * 10) / 10,
+      frameMax: Math.round(Math.max(0, ...fm) * 10) / 10,
+      enemies: cnt(g.enemies),
+      enemyPool: g.enemies.length,
+      bullets: cnt(g.bullets),
+      bulletPool: g.bullets.length,
+      enemyBullets: cnt(g.enemyBullets),
+      enemyBulletPool: g.enemyBullets.length,
+      pickups: cnt(g.pickups),
+      hazards: g.hazards.length,
+      objects: g.children.length,
+    };
+  }
+
+  // ---------------- 慢放 / 单步 ----------------
+  setSlow(scale: number): void {
+    this.slow = scale;
+    GameScene.simScale = scale;
+  }
+  /** 暂停时前进 n 个 1/60 秒模拟步 */
+  frame(n = 1): void {
+    if (!this.running) return;
+    if (!this.paused) this.togglePause();
+    for (let i = 0; i < n; i++) this.g.devFrame();
+  }
+
+  // ---------------- 镜头 ----------------
+  applyCamera(): void {
+    if (!this.running) return;
+    const cam = this.g.cameras.main;
+    cam.setZoom(this.zoom);
+    if (this.camMode === 'player') cam.startFollow(this.g.player, true, 0.12, 0.12);
+    else if (this.camMode === 'target') {
+      const t = [...this.tracked].reverse().find((x) => this.isAlive(x));
+      if (t) cam.startFollow(t.e, true, 0.12, 0.12);
+      else cam.startFollow(this.g.player, true, 0.12, 0.12);
+    } else cam.stopFollow();
+  }
+  setZoom(z: number): void {
+    this.zoom = Phaser.Math.Clamp(z, 0.3, 3);
+    if (this.running) this.g.cameras.main.setZoom(this.zoom);
+  }
+  pan(dx: number, dy: number): void {
+    if (!this.running) return;
+    this.camMode = 'free';
+    const cam = this.g.cameras.main;
+    cam.stopFollow();
+    cam.scrollX += dx / cam.zoom;
+    cam.scrollY += dy / cam.zoom;
+  }
+
+  // ---------------- 鼠标交互：放置、传送、拖动、平移、缩放、选中 ----------------
+  private bindPointer(g: GameScene): void {
+    let drag: Enemy | null = null;
+    let panFrom: { x: number; y: number } | null = null;
+    const hit = (x: number, y: number): Enemy | null => {
+      let best: Enemy | null = null,
+        bd = Infinity;
+      for (const e of g.enemies) {
+        if (!e.alive) continue;
+        const d = Math.hypot(e.x - x, e.y - y);
+        if (d < e.radius + 10 && d < bd) {
+          bd = d;
+          best = e;
+        }
+      }
+      return best;
+    };
+    g.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
+      if (p.rightButtonDown() || p.middleButtonDown()) {
+        panFrom = { x: p.x, y: p.y };
+        return;
+      }
+      const x = p.worldX,
+        y = p.worldY;
+      if (this.placeMode === 'spawn' && this.placeSel) {
+        const err = this.spawn(this.placeSel.id, this.placeSel.boss, { ...this.placeSel.opts, at: { x, y } });
+        if (err) this.onMessage?.(err, true);
+        return;
+      }
+      if (this.placeMode === 'teleport') {
+        g.player.setPosition(x, y);
+        this.playerAnchor = this.lockPlayer ? { x, y } : null;
+        return;
+      }
+      const e = hit(x, y);
+      this.selected = e;
+      this.onSelect?.(e);
+      if (e) drag = e;
+    });
+    g.input.on('pointermove', (p: Phaser.Input.Pointer) => {
+      if (panFrom) {
+        this.pan(panFrom.x - p.x, panFrom.y - p.y);
+        panFrom = { x: p.x, y: p.y };
+        return;
+      }
+      if (drag && p.isDown && drag.alive) {
+        drag.x = p.worldX;
+        drag.y = p.worldY;
+        const t = this.tracked.find((q) => q.e === drag && this.isAlive(q));
+        if (t) t.anchor = { x: drag.x, y: drag.y };
+      }
+    });
+    const up = () => {
+      drag = null;
+      panFrom = null;
+    };
+    g.input.on('pointerup', up);
+    g.input.on('gameout', up);
+    g.input.on('wheel', (_p: Phaser.Input.Pointer, _o: unknown, _dx: number, dy: number) => {
+      this.setZoom(this.zoom * (dy > 0 ? 0.9 : 1.1));
+      this.onChange?.();
+    });
+  }
+
+  // ---------------- 快照 / 回放 ----------------
+  /** 抓取场上状态（玩家位置与生命、所有被跟踪目标的位置 / 生命 / 选项） */
+  capture(label = ''): Snapshot | null {
+    if (!this.running) return null;
+    const g = this.g;
+    return {
+      t: Date.now(),
+      simT: g.time.now,
+      label,
+      build: JSON.parse(JSON.stringify(this.getBuild())) as DevBuild,
+      player: { x: g.player.x, y: g.player.y, hp: run.hp },
+      enemies: this.tracked
+        .filter((t) => this.isAlive(t))
+        .map((t) => ({
+          id: t.boss ? t.e.boss!.id : t.e.def!.id,
+          boss: t.boss,
+          x: t.e.x,
+          y: t.e.y,
+          hp: t.e.hp,
+          phase2: !!t.e.phase2,
+          opts: { ...t.opts, test: false },
+        })),
+    };
+  }
+  /** 场上直接还原（不重启场景）：清场后按快照位置重新生成目标 */
+  applySnapshot(s: Snapshot): void {
+    if (!this.running) return;
+    const g = this.g;
+    this.clear();
+    g.player.setPosition(s.player.x, s.player.y);
+    run.hp = Math.min(s.player.hp, g.stats.maxHp);
+    for (const e of s.enemies) {
+      this.spawn(e.id, e.boss, { ...e.opts, count: 1, at: { x: e.x, y: e.y } });
+      const t = this.tracked[this.tracked.length - 1];
+      if (t) {
+        t.e.hp = Math.min(e.hp, t.e.maxHp);
+        if (e.phase2 && t.boss) this.phase2(t);
+      }
+    }
+    this.onChange?.();
+  }
+  /** 场景重启后要还原的快照（构筑不同时由面板先切构筑再重启） */
+  pendingSnap: Snapshot | null = null;
+  /** 回放：每秒记录一次，保留 30 秒 */
+  timeline: Snapshot[] = [];
+  private lastCapT = 0;
+  private recordTimeline(g: GameScene): void {
+    if (g.time.now - this.lastCapT < 1000) return;
+    this.lastCapT = g.time.now;
+    const s = this.capture();
+    if (!s) return;
+    this.timeline.push(s);
+    if (this.timeline.length > 30) this.timeline.shift();
+  }
+  /** 回到 sec 秒前（按 1 秒粒度） */
+  rewind(sec: number): string | null {
+    const tl = this.timeline;
+    if (!tl.length) return '还没有回放记录';
+    const s = tl[Math.max(0, tl.length - 1 - Math.round(sec))];
+    const keep = tl.indexOf(s);
+    this.applySnapshot(s);
+    tl.length = keep + 1;
+    if (!this.paused) this.togglePause();
+    return null;
+  }
+
+  // ---------------- 刷怪剧本 ----------------
+  /** 每行「秒数 怪物id 数量 [b]」，b 表示精英 / Boss；# 开头为注释 */
+  parseScript(src: string): { lines: ScriptLine[]; err: string | null } {
+    const lines: ScriptLine[] = [];
+    for (const [i, raw] of src.split('\n').entries()) {
+      const s = raw.replace(/#.*/, '').trim();
+      if (!s) continue;
+      const [t, id, n, flag] = s.split(/\s+/);
+      const boss = flag === 'b' || (!ENEMY_MAP[id] && !!BOSS_MAP[id]);
+      if (!Number.isFinite(Number(t)) || !(boss ? BOSS_MAP[id] : ENEMY_MAP[id]))
+        return { lines, err: `第 ${i + 1} 行无法识别：${raw}` };
+      lines.push({ t: Number(t), id, count: Math.max(1, Number(n) || 1), boss });
+    }
+    return { lines, err: null };
+  }
+  private scriptTimers: Phaser.Time.TimerEvent[] = [];
+  runScript(lines: ScriptLine[], base: SpawnOpts): string | null {
+    if (!this.running) return '沙盒未运行';
+    this.stopScript();
+    const g = this.g;
+    for (const l of lines)
+      this.scriptTimers.push(
+        g.time.delayedCall(l.t * 1000, () => {
+          const err = this.spawn(l.id, l.boss, { ...base, count: l.count, test: false });
+          if (err) this.onMessage?.(err, true);
+        }),
+      );
+    return null;
+  }
+  stopScript(): void {
+    for (const t of this.scriptTimers) t.remove(false);
+    this.scriptTimers = [];
+  }
+}
+
+export interface ScriptLine {
+  t: number;
+  id: string;
+  count: number;
+  boss: boolean;
+}
+
+export interface Snapshot {
+  t: number;
+  simT: number;
+  label: string;
+  build: DevBuild;
+  player: { x: number; y: number; hp: number };
+  enemies: { id: string; boss: boolean; x: number; y: number; hp: number; phase2: boolean; opts: SpawnOpts }[];
 }
 
 /** damageEnemy 包装函数需要找到当前控制器（场景实例只包一次） */

@@ -1,5 +1,5 @@
 // 快捷栏：常驻在面板顶部，不用切页签就能换角色、逐个浏览怪物。
-// 快捷键（焦点不在输入框时）：[ / ] 上一个 / 下一个角色，, / . 上一个 / 下一个怪物
+// 快捷键见 prefs.ts（默认 [ / ] 换角色，, / . 换怪物），由 DevPanel 统一分发
 import { h, btn, select } from './dom';
 import type { DevCtx } from './ctx';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
@@ -7,6 +7,9 @@ import { CHAPTERS } from '../data/chapters';
 import { ENEMIES, ENEMY_MAP } from '../data/enemies';
 import { elitePool, bossPool } from '../data/bosses';
 import type { AttackMode } from './sandbox';
+import { thumb } from './thumbs';
+import { prefs, keyText } from './prefs';
+import { openModal } from './palette';
 
 /** 浏览怪物时生成的目标怎么行动：正常攻击（看招式）/ 木桩 / 只手动触发 */
 let viewMode: AttackMode = 'ai';
@@ -28,7 +31,7 @@ export function stepChar(ctx: DevCtx, delta: number): void {
   switchChar(ctx, CHARACTERS[(i + delta + n) % n].id);
 }
 
-interface Monster {
+export interface Monster {
   /** 与 ui.mSel 相同的写法：小怪为 id，精英 / Boss 为 b:id */
   sel: string;
   id: string;
@@ -62,7 +65,7 @@ export function stepMonster(ctx: DevCtx, delta: number): void {
   showMonster(ctx, m);
 }
 
-function showMonster(ctx: DevCtx, m: Monster): void {
+export function showMonster(ctx: DevCtx, m: Monster): void {
   const ui = ctx.ui;
   ui.mSel = m.sel;
   ui.tab = 'monsters';
@@ -83,6 +86,7 @@ function showMonster(ctx: DevCtx, m: Monster): void {
   ctx.rerender();
 }
 
+
 export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
   const ui = ctx.ui;
   const list = monsterList(ctx);
@@ -98,19 +102,34 @@ export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
       },
       ui.mCat === v ? 'on' : '',
     );
+  const k = (a: Parameters<typeof keyText>[0]) => keyText(a);
+  // 怪物缩略图条：当前筛选下的全部怪物，点哪个生成哪个
+  const strip = h(
+    'div',
+    { class: 'strip' },
+    ...list.map((m) =>
+      h(
+        'a',
+        { class: m.sel === ui.mSel ? 'on' : '', title: m.name, onclick: () => showMonster(ctx, m) },
+        thumb(m.boss ? 'boss' : 'enemy', m.id, 30),
+      ),
+    ),
+  );
   el.replaceChildren(
     h(
       'div',
       { class: 'row' },
       h('b', { class: 'nw' }, '角色'),
-      btn('◀', () => stepChar(ctx, -1), '', '上一个角色（快捷键 [）'),
+      thumb('char', ctx.build.charId, 26),
+      btn('◀', () => stepChar(ctx, -1), '', `上一个角色（${k(prefs.keys.charPrev)}）`),
       select(
         CHARACTERS.map((c) => [c.id, `${c.name}（${c.title}）`]),
         ctx.build.charId,
         (v) => switchChar(ctx, v),
       ),
-      btn('▶', () => stepChar(ctx, 1), '', '下一个角色（快捷键 ]）'),
-      h('span', { class: 'muted small' }, '[ ] 切换'),
+      btn('▶', () => stepChar(ctx, 1), '', `下一个角色（${k(prefs.keys.charNext)}）`),
+      btn('▦ 网格选择', () => openCharGrid(ctx, el.ownerDocument)),
+      h('span', { class: 'muted small' }, `${k(prefs.keys.charPrev)} ${k(prefs.keys.charNext)} 切换`),
     ),
     h(
       'div',
@@ -132,17 +151,49 @@ export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
         (v) => (viewMode = v as AttackMode),
       ),
     ),
+    strip,
     h(
       'div',
       { class: 'row' },
-      btn('◀', () => stepMonster(ctx, -1), '', '清场并生成上一个（快捷键 ,）'),
+      btn('◀', () => stepMonster(ctx, -1), '', `清场并生成上一个（${k(prefs.keys.monPrev)}）`),
       h('b', { class: 'cur' }, cur ? cur.name : '（未选择）'),
       h('span', { class: 'muted' }, pos),
-      btn('▶', () => stepMonster(ctx, 1), '', '清场并生成下一个（快捷键 .）'),
+      btn('▶', () => stepMonster(ctx, 1), '', `清场并生成下一个（${k(prefs.keys.monNext)}）`),
       cur ? btn('重新生成', () => showMonster(ctx, cur)) : '',
-      h('span', { class: 'muted small' }, ', . 切换 · 生成在玩家附近、锁血锁位'),
+      h('span', { class: 'muted small' }, `${k(prefs.keys.monPrev)} ${k(prefs.keys.monNext)} 切换 · 生成在玩家附近、锁血锁位`),
     ),
   );
+}
+
+/** 角色网格选择器：头像 + 名称，可搜索 */
+function openCharGrid(ctx: DevCtx, doc: Document): void {
+  const grid = h('div', { class: 'cgrid' });
+  const input = h('input', { placeholder: '搜索角色名 / 称号 / id' });
+  let close = () => {};
+  const draw = () => {
+    const q = input.value.trim().toLowerCase();
+    grid.replaceChildren(
+      ...CHARACTERS.filter((c) => !q || `${c.name}${c.title}${c.id}`.toLowerCase().includes(q)).map((c) =>
+        h(
+          'a',
+          {
+            class: c.id === ctx.build.charId ? 'on' : '',
+            onclick: () => {
+              close();
+              switchChar(ctx, c.id);
+            },
+          },
+          thumb('char', c.id, 56),
+          h('div', null, c.name),
+          h('div', { class: 'muted small' }, c.title),
+        ),
+      ),
+    );
+  };
+  input.addEventListener('input', draw);
+  draw();
+  close = openModal(doc, h('div', null, input, grid));
+  input.focus();
 }
 
 /** 输入框（文字 / 数字）有焦点时不响应快捷键 */
@@ -150,18 +201,3 @@ export const isTyping = (el: Element | null): boolean =>
   !!el &&
   (el.tagName === 'TEXTAREA' ||
     (el.tagName === 'INPUT' && !['checkbox', 'radio', 'button', 'range', 'color'].includes((el as HTMLInputElement).type)));
-
-export function installQuickKeys(ctx: DevCtx): void {
-  window.addEventListener('keydown', (e) => {
-    if (e.repeat || e.ctrlKey || e.metaKey || e.altKey || isTyping(document.activeElement)) return;
-    const act = {
-      BracketLeft: () => stepChar(ctx, -1),
-      BracketRight: () => stepChar(ctx, 1),
-      Comma: () => stepMonster(ctx, -1),
-      Period: () => stepMonster(ctx, 1),
-    }[e.code];
-    if (!act) return;
-    e.preventDefault();
-    act();
-  });
-}

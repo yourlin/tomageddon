@@ -31,7 +31,36 @@ interface Spot {
 
 export { TERRAIN_INFO } from '../data/chapters';
 
+/** 各章地形机制的开关键（开发者界面逐个关闭用；键名与 tick() / 区域 kind 一致） */
+export const TERRAIN_MECHS: Record<number, [string, string][]> = {
+  1: [
+    ['oil', '热油飞溅'],
+    ['sewer', '下水道钻怪'],
+    ['tomato', '掉落番茄'],
+  ],
+  2: [
+    ['rabbit', '兔子洞'],
+    ['gopher', '土拨鼠'],
+  ],
+  3: [
+    ['ice', '冰面'],
+    ['gust', '冷风'],
+  ],
+  4: [
+    ['quicksand', '流沙坑'],
+    ['qs', '流沙伤害'],
+    ['debris', '垃圾坠落'],
+    ['move', '流沙移动'],
+  ],
+  5: [
+    ['conveyor', '传送带'],
+    ['vent', '蒸汽阀门'],
+  ],
+};
+
 export class Terrain {
+  /** 开发者界面关闭的机制键（见 TERRAIN_MECHS），正常游戏为空 */
+  static off = new Set<string>();
   zones: Zone[] = [];
   holes: Spot[] = [];
   private timers: Record<string, number> = {};
@@ -127,7 +156,7 @@ export class Terrain {
   }
 
   private tick(key: string, dt: number, every: number, minWave = 1): boolean {
-    if (run.wave < minWave) return false;
+    if (run.wave < minWave || Terrain.off.has(key.split('_')[0])) return false;
     this.timers[key] = (this.timers[key] ?? every) - dt;
     if (this.timers[key] > 0) return false;
     this.timers[key] = every * Phaser.Math.FloatBetween(0.8, 1.2);
@@ -144,6 +173,7 @@ export class Terrain {
 
     // ---------- 区域效果 ----------
     for (const z of this.zones) {
+      if (Terrain.off.has(z.kind)) continue;
       z.t += dt;
       if (z.kind === 'ice') {
         if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r) g.slippery = true;
@@ -281,7 +311,7 @@ export class Terrain {
         }
         break;
       case 5:
-        for (const h of this.holes) {
+        for (const h of Terrain.off.has('vent') ? [] : this.holes) {
           h.t -= dt;
           if (h.t > 0) {
             if (Math.random() < dt * 2) this.puff(h.x, h.y, 0.3);

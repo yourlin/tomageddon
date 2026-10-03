@@ -1,8 +1,20 @@
 // 开发者界面各页签共享的上下文
 import type { DevBuild, Shelf } from './build';
-import type { Sandbox, SpawnOpts } from './sandbox';
+import type { Sandbox, SpawnOpts, Snapshot } from './sandbox';
 
-export type TabId = 'build' | 'weapons' | 'skills' | 'monsters' | 'tests';
+export type TabId =
+  | 'build'
+  | 'weapons'
+  | 'skills'
+  | 'monsters'
+  | 'items'
+  | 'status'
+  | 'sandbox'
+  | 'tests'
+  | 'batch'
+  | 'data'
+  | 'debug'
+  | 'assets';
 
 export interface UiState {
   tab: TabId;
@@ -40,4 +52,9 @@ export interface DevCtx {
   setBuild(b: DevBuild): void;
   rerender(): void;
   toast(msg: string, bad?: boolean): void;
+  /** 还原快照：构筑不同则先切构筑并重启沙盒，场景重建后再放回目标 */
+  restoreSnapshot(s: Snapshot): void;
+  /** 构筑撤销 / 重做 */
+  undo(): void;
+  redo(): void;
 }
