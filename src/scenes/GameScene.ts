@@ -32,6 +32,7 @@ import { StatusSet } from '../systems/Status';
 import { RigPool } from '../systems/RigPool';
 import { Fx } from '../systems/Fx';
 import { controls, readPad } from '../systems/Controls';
+import { addDangerPatterns } from '../systems/Danger';
 import { audio } from '../systems/Audio';
 import { save, persist, markSeen } from '../systems/Save';
 import { paintArena } from '../art/ArenaArt';
@@ -570,6 +571,7 @@ export class GameScene extends Phaser.Scene {
 
   heal(n: number, show = true): void {
     if (n <= 0 || this.pstatus.totals.noHeal || this.dead) return;
+    n *= run.rules.heal;
     const before = run.hp;
     run.hp = Math.min(this.stats.maxHp, run.hp + n);
     if (show && run.hp - before >= 1) this.fx.number(this.player.x, this.player.y - 20, run.hp - before, '#52ff8a');
@@ -776,7 +778,7 @@ export class GameScene extends Phaser.Scene {
     if (this.aliveCount() >= BALANCE.maxEnemies) return;
     const pool = run.chapter.pool.filter((p) => w >= p.from && (p.to === undefined || w <= p.to));
     const total = pool.reduce((a, p) => a + p.weight, 0);
-    let batch = Math.round(spawnBatch(w) * (run.mod('swarm') ? 1.4 : 1));
+    let batch = Math.round(spawnBatch(w) * (run.mod('swarm') ? 1.4 : 1) * run.rules.spawn);
     if (boss) batch = Math.ceil(batch / 2);
     // 第 7 波起有概率出现“词缀精英小怪”
     const affixedAlive = this.enemies.filter((e) => e.alive && !e.boss && e.affixes.length).length;
@@ -793,7 +795,7 @@ export class GameScene extends Phaser.Scene {
       const def = ENEMY_MAP[pick.enemy];
       const group = def.group ?? 1;
       const [cx, cy] = this.randomSpawnPos();
-      const champ = run.mod('champions') ? 3 : 1;
+      const champ = (run.mod('champions') ? 3 : 1) * run.rules.champ;
       const affixed =
         w >= 7 && affixedAlive < (2 + run.chapterId / 2) * champ && Math.random() < 0.015 * (w - 5) * (0.8 + run.chapterId * 0.2) * champ;
       if (affixed) {
@@ -859,14 +861,15 @@ export class GameScene extends Phaser.Scene {
     const def = ENEMY_MAP[id];
     markSeen('enemies', id);
     const ms = minionStats(def, run.wave, run.chapter);
+    const R = run.rules;
     e.spawnMinion(
       this,
       def,
       x,
       y,
-      Math.round(ms.hp * (run.mod('giants') ? 1.5 : run.mod('swarm') ? 0.75 : 1)),
-      ms.dmg,
-      ms.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1),
+      Math.round(ms.hp * (run.mod('giants') ? 1.5 : run.mod('swarm') ? 0.75 : 1) * R.enemyHp),
+      Math.max(1, Math.round(ms.dmg * R.enemyDmg)),
+      ms.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1) * R.enemySpeed,
       affixes,
     );
     return e;
@@ -879,12 +882,17 @@ export class GameScene extends Phaser.Scene {
     const def = BOSS_MAP[id];
     markSeen('bosses', id);
     // 精英 / Boss 的随波次缩放系数统一由 balance.ts 提供（不再在此散落 magic number）
-    const { hp, dmg } = bossStats(def, run.wave, run.chapter, run.mod('tough_bosses') ? 1.5 : 1);
-    // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加
-    const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
+    const R = run.rules;
+    const base = bossStats(def, run.wave, run.chapter, run.mod('tough_bosses') ? 1.5 : 1);
+    const hp = Math.round(base.hp * R.enemyHp * R.eliteHp);
+    const dmg = Math.max(1, Math.round(base.dmg * R.enemyDmg));
+    // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加；危机等级可再加
+    const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0) + R.eliteAffix;
     affixes ??= def.elite ? this.rollAffixes(nAffix) : [];
     affixes = affixes.filter((a) => !(def.affixes ?? []).includes(a));
     e.spawnBoss(this, def, x, y, hp, dmg, affixes);
+    // A6：危机 10 / 15 / 20 时 Boss 学会新招式
+    if (!def.elite && R.bossSkill > 0) addDangerPatterns(e, R.bossSkill);
     if (!def.elite) {
       this.boss = e;
       audio.playMusic(this, 'bgm_boss');

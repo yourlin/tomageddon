@@ -15,6 +15,35 @@ import { BALANCE, xpToNext, isBossWaveNo, isEliteWaveNo } from '../data/balance'
 import { markSeen, save, persistDisabled, type RunRecord } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
+import { dangerLevels, MAX_DANGER, type RuleDelta } from '../data/danger';
+
+/** 汇总后的规则：倍率（1 = 不变）与计数 */
+export interface RunExt {
+  danger: number;
+  relics: string[];
+  endlessRevived: boolean;
+  events: Record<number, string>;
+  hardRoute: boolean;
+  awakened: boolean;
+}
+/** 其他系统挂到 RunState 的回调（避免循环依赖）：读档后重算遗物规则等 */
+export const runHooks: { onLoad: (() => void) | null; onStart: (() => void) | null } = { onLoad: null, onStart: null };
+
+export interface Rules {
+  enemyHp: number;
+  enemyDmg: number;
+  enemySpeed: number;
+  spawn: number;
+  champ: number;
+  eliteHp: number;
+  eliteAffix: number;
+  bossSkill: number;
+  shopPrice: number;
+  rerollPrice: number;
+  heal: number;
+  xp: number;
+  income: number;
+}
 
 export interface OwnedWeapon {
   uid: number;
@@ -102,6 +131,82 @@ export class RunState {
   shopWave = -1;
   /** 每日 / 每周挑战（种子、修饰） */
   challenge: ChallengeDef | null = null;
+  /** 番茄危机等级 0–20（挑战模式固定为 0） */
+  danger = 0;
+  /** 本局持有的遗物 id（C 模块） */
+  relics: string[] = [];
+  /** 无尽模式本局是否已花钱复活过（B6） */
+  endlessRevived = false;
+  /** 本局已发生的随机事件波（H1）：波次 → 事件 id */
+  events: Record<number, string> = {};
+  /** 波间路线（H3）：下一波是否选了「危险路线」 */
+  hardRoute = false;
+  /** 本局觉醒是否生效（F2，开局时按存档设置决定） */
+  awakened = false;
+  saveExt(): RunExt {
+    return {
+      danger: this.danger,
+      relics: this.relics,
+      endlessRevived: this.endlessRevived,
+      events: this.events,
+      hardRoute: this.hardRoute,
+      awakened: this.awakened,
+    };
+  }
+  loadExt(e: RunExt | null): void {
+    this.danger = e?.danger ?? 0;
+    this.relics = [...(e?.relics ?? [])];
+    this.endlessRevived = !!e?.endlessRevived;
+    this.events = { ...(e?.events ?? {}) };
+    this.hardRoute = !!e?.hardRoute;
+    this.awakened = !!e?.awakened;
+    this.extraRules = {};
+    runHooks.onLoad?.();
+  }
+  /** 其他规则来源（遗物、事件波、无尽变异），key 为来源名，由各系统写入后调用 dirty() */
+  extraRules: Record<string, RuleDelta> = {};
+  private rulesCache: Rules | null = null;
+  /** 汇总后的规则倍率（危机等级 + 遗物 + 事件 + 变异） */
+  get rules(): Rules {
+    if (this.rulesCache) return this.rulesCache;
+    const sum: Required<RuleDelta> = {
+      enemyHp: 0,
+      enemyDmg: 0,
+      enemySpeed: 0,
+      spawn: 0,
+      champ: 0,
+      eliteHp: 0,
+      eliteAffix: 0,
+      bossSkill: 0,
+      shopPrice: 0,
+      rerollPrice: 0,
+      heal: 0,
+      xp: 0,
+      income: 0,
+    };
+    const add = (d: RuleDelta) => {
+      for (const [k, v] of Object.entries(d) as [keyof RuleDelta, number][]) sum[k] += v;
+    };
+    for (const l of dangerLevels(this.danger)) add(l.rule);
+    for (const d of Object.values(this.extraRules)) add(d);
+    const m = (v: number) => Math.max(0, 1 + v / 100);
+    this.rulesCache = {
+      enemyHp: m(sum.enemyHp),
+      enemyDmg: m(sum.enemyDmg),
+      enemySpeed: m(sum.enemySpeed),
+      spawn: m(sum.spawn),
+      champ: m(sum.champ),
+      eliteHp: m(sum.eliteHp),
+      eliteAffix: sum.eliteAffix,
+      bossSkill: sum.bossSkill,
+      shopPrice: m(sum.shopPrice),
+      rerollPrice: m(sum.rerollPrice),
+      heal: m(sum.heal),
+      xp: m(sum.xp),
+      income: m(sum.income),
+    };
+    return this.rulesCache;
+  }
   /** 是否启用了某个挑战修饰 */
   mod(id: ModifierId): boolean {
     return !!this.challenge?.modifiers.includes(id);
@@ -112,7 +217,7 @@ export class RunState {
   }
   /** 开始一局挑战 */
   startChallenge(c: ChallengeDef): void {
-    this.start(c.charId, c.chapterId, c.endless);
+    this.start(c.charId, c.chapterId, c.endless, 0);
     this.challenge = c;
     const r = this.rand('setup');
     const ep = shuffleWith([...elitePool(c.chapterId)], r);
@@ -129,6 +234,11 @@ export class RunState {
   /** 本局开始时间（用于战绩里的用时） */
   startedAt = 0;
   earn(v: number, src: string): void {
+    // 危机等级「歉收」等规则：只影响拾取与收获（随机取整，小额掉落也按比例生效）
+    if (v > 0 && (src === 'pickup' || src === 'harvest') && this.rules.income !== 1) {
+      const x = v * this.rules.income;
+      v = Math.floor(x) + (Math.random() < x - Math.floor(x) ? 1 : 0);
+    }
     this.seeds += v;
     if (v > 0) save.stats.seedsEarned += v;
     const w = (this.income[this.wave] ??= {});
@@ -145,9 +255,15 @@ export class RunState {
     return CHAPTERS[this.chapterId - 1];
   }
 
-  start(charId: string, chapterId: number, endless = false): void {
+  start(charId: string, chapterId: number, endless = false, danger = this.danger): void {
     this.endless = endless;
     this.challenge = null;
+    this.danger = Math.max(0, Math.min(MAX_DANGER, danger));
+    this.extraRules = {};
+    this.relics = [];
+    this.endlessRevived = false;
+    this.events = {};
+    this.hardRoute = false;
     this.shopRollWave = -1;
     this.achPoints = 0;
     this.bonusSeeds = 0;
@@ -180,6 +296,7 @@ export class RunState {
     this.weapons = this.char.startWeapons.map((id) => ({ uid: uidSeq++, id, tier: 0 }));
     for (const id of this.char.startWeapons) markSeen('weapons', id);
     this.seeds = treeTotals().startSeeds;
+    runHooks.onStart?.();
     this.dirty();
     this.hp = this.stats.maxHp;
   }
@@ -187,6 +304,7 @@ export class RunState {
   dirty(): void {
     this.cache = null;
     this.specialCache = null;
+    this.rulesCache = null;
   }
 
   get stats(): Stats {
@@ -313,7 +431,7 @@ export class RunState {
   }
 
   addXp(amount: number): void {
-    this.xp += amount * (1 + this.stats.xpGain / 100);
+    this.xp += amount * (1 + this.stats.xpGain / 100) * this.rules.xp;
     while (this.xp >= xpToNext(this.level)) {
       this.xp -= xpToNext(this.level);
       this.level++;
@@ -475,6 +593,8 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       dmgBy: run.dmgBy,
       income: run.income,
       startedAt: run.startedAt,
+      // 1.4.0：危机等级、遗物、无尽复活等
+      ext: run.saveExt(),
       savedAt: Date.now(),
     };
     localStorage.setItem(RUN_KEY, JSON.stringify(d));
@@ -527,6 +647,7 @@ export function loadRun(): boolean {
     dmgBy: d.dmgBy ?? {},
     startedAt: d.startedAt ?? Date.now(),
   });
+  run.loadExt((d.ext as RunExt | undefined) ?? null);
   run.dirty();
   run.hp = run.stats.maxHp;
   return true;
@@ -546,6 +667,8 @@ export function recordHistory(win: boolean): RunRecord {
     level: run.level,
     kills: run.kills,
     sec: Math.round((Date.now() - run.startedAt) / 1000),
+    danger: run.danger || undefined,
+    relics: run.relics.length ? [...run.relics] : undefined,
     weapons: run.weapons.map((w) => ({ id: w.id, tier: w.tier, forge: w.forge })),
     items: Object.values(run.items).reduce((a, b) => a + b, 0),
     dmg: Object.entries(run.dmgBy)

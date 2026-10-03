@@ -50,7 +50,9 @@ import {
 export function offerPrice(base: number, completedWave = run.wave): number {
   return Math.max(
     1,
-    Math.round(shopPrice(base, completedWave + 1) * (1 - run.specials.shopDiscount / 100) * (run.mod('rich_start') ? 1.25 : 1)),
+    Math.round(
+      shopPrice(base, completedWave + 1) * (1 - run.specials.shopDiscount / 100) * (run.mod('rich_start') ? 1.25 : 1) * run.rules.shopPrice,
+    ),
   );
 }
 /** 道具基础价随波次上浮（前 8 波逐步 +30%），再交给 offerPrice */
@@ -424,7 +426,7 @@ export class ShopScene extends Phaser.Scene {
     const free = (freeFirstReroll(run.charId) ? 1 : 0) + treeTotals().freeRerolls + (run.mod('one_reroll') ? 1 : 0);
     if (run.rerolls < free) return 0;
     const bought = run.shop.filter((x) => x.sold).length;
-    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * Math.pow(0.75, bought)));
+    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * Math.pow(0.75, bought) * run.rules.rerollPrice));
   }
 
   private weaponPopup(w: OwnedWeapon, x: number, y: number): void {

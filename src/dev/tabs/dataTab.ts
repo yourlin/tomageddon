@@ -13,7 +13,18 @@ import {
   findOverride,
   exportPatch,
 } from '../overrides';
-import { BALANCE, chapterMult, growthCurve, chapterScale, incomeTarget, endlessHp } from '../../data/balance';
+import {
+  BALANCE,
+  chapterMult,
+  growthCurve,
+  chapterScale,
+  incomeTarget,
+  endlessHp,
+  dangerMult,
+  dangerReward,
+  goldReward,
+} from '../../data/balance';
+import { DANGER_LEVELS, MAX_DANGER } from '../../data/danger';
 
 let tbl = 'weapons';
 let rowId = '';
@@ -242,6 +253,36 @@ export function renderData(ctx: DevCtx): HTMLElement {
   };
   drawCurves();
   root.append(h('h3', null, 'I4 平衡曲线（拖动滑块实时预览）'), curves);
+
+  // ---------------- H2 危机曲线 ----------------
+  const lv = Array.from({ length: MAX_DANGER + 1 }, (_, i) => i);
+  root.append(
+    h('h3', null, 'H2 危机等级曲线'),
+    lineChart(
+      [
+        ['敌人 HP', COLORS[0], lv.map((l) => dangerMult(l).hp)],
+        ['敌人伤害', COLORS[1], lv.map((l) => dangerMult(l).dmg)],
+        ['奖励', COLORS[2], lv.map((l) => dangerReward(l))],
+      ],
+      { xLabel: (i) => String(i) },
+    ),
+    table(
+      ['级', '规则', 'HP', '伤害', '奖励', '金番茄（通关 W15）'],
+      lv.slice(1).map((l) => {
+        const d = DANGER_LEVELS[l - 1];
+        const m = dangerMult(l);
+        return [
+          String(l),
+          `${d.icon} ${d.name[0]}：${d.desc[0]}`,
+          `×${fmt(m.hp, 2)}`,
+          `×${fmt(m.dmg, 2)}`,
+          `×${fmt(m.reward, 2)}`,
+          String(goldReward(15, l, false, true)),
+        ];
+      }),
+      { numeric: [2, 3, 4, 5] },
+    ),
+  );
 
   function redraw(): void {
     const el = renderData(ctx);

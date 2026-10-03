@@ -21,7 +21,10 @@ import {
 import { ACH_MAP } from '../data/achievements';
 import { run, clearRun } from '../systems/RunState';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast } from '../ui/UI';
-import { tx } from '../i18n';
+import { tx, lang } from '../i18n';
+import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
+import { dangerReward } from '../data/balance';
+import { dangerUnlocked, dangerBest, hasGoldFrame } from '../systems/Danger';
 
 export class CharSelectScene extends Phaser.Scene {
   private selected: CharacterDef = CHARACTERS[0];
@@ -32,6 +35,11 @@ export class CharSelectScene extends Phaser.Scene {
   private chapterDesc!: Phaser.GameObjects.Text;
   private startBtn!: ReturnType<typeof button>;
   private endlessBtn!: ReturnType<typeof button>;
+  private dangerBtn!: ReturnType<typeof button>;
+  /** 番茄危机等级（A4）：跨场景记住上次的选择 */
+  private static lastDanger: Record<number, number> = {};
+  private danger = 0;
+  private dangerPanel: Phaser.GameObjects.Container | null = null;
   /** 无尽模式（通关该章后可选） */
   private endless = false;
   private showcase: ReturnType<typeof showcaseRig> | null = null;
@@ -126,9 +134,9 @@ export class CharSelectScene extends Phaser.Scene {
     this.endlessBtn = button(
       this,
       W * 0.62 + 130,
-      cy + 35,
+      cy + 12,
       170,
-      64,
+      40,
       '',
       () => {
         if (save.clearedChapters < this.chapter) {
@@ -143,8 +151,13 @@ export class CharSelectScene extends Phaser.Scene {
         this.refresh();
       },
       0x5a189a,
-      19,
+      17,
     );
+    // 番茄危机等级选择（A4）：◀ 等级 ▶，点等级查看叠加的全部规则
+    const dx = W * 0.62 + 130;
+    button(this, dx - 66, cy + 60, 36, 38, '◀', () => this.setDanger(this.danger - 1), 0x7a2e35, 18);
+    this.dangerBtn = button(this, dx, cy + 60, 90, 38, '', () => this.showDangerRules(), 0x9d0208, 17);
+    button(this, dx + 66, cy + 60, 36, 38, '▶', () => this.setDanger(this.danger + 1), 0x7a2e35, 18);
     this.startBtn = button(this, W - 150, cy + 35, 220, 76, tx('出发！', 'Go!'), () => this.start(), COLORS.primary, 32);
     this.refresh();
   }
@@ -155,6 +168,8 @@ export class CharSelectScene extends Phaser.Scene {
       const sel = k.c === this.selected;
       k.g.fillStyle(sel ? 0x7a2e35 : COLORS.panel, 1).fillRoundedRect(k.x, k.y, k.s, k.s, 12);
       k.g.lineStyle(sel ? 4 : 2, sel ? COLORS.gold : COLORS.border, 1).strokeRoundedRect(k.x, k.y, k.s, k.s, 12);
+      // A9：任意章节通关危机 20 的角色，头像加金色外框
+      if (hasGoldFrame(k.c.id)) k.g.lineStyle(3, 0xffd700, 1).strokeRoundedRect(k.x - 3, k.y - 3, k.s + 6, k.s + 6, 14);
     }
     const c = this.selected;
     const unlocked = isUnlocked(c);
@@ -244,7 +259,14 @@ export class CharSelectScene extends Phaser.Scene {
           pw - 40,
         ) + 4;
       const best = save.bestWave[`${c.id}_${this.chapter}`];
-      if (best) add(20, y, tx(`本章最佳：第 ${best} 波`, `Best this chapter: wave ${best}`), 15, COLORS.textDim);
+      // F4：本章最佳、最高危机、无尽最高波数（熟练度由角色系统追加）
+      const stats: string[] = [];
+      if (best) stats.push(tx(`本章最佳：第 ${best} 波`, `Best: wave ${best}`));
+      const db = dangerBest(c.id, this.chapter);
+      if (db > 0) stats.push(tx(`最高危机 ${db}`, `Top Danger ${db}`));
+      const eb = save.meta.endlessBest[`${c.id}_${this.chapter}`];
+      if (eb) stats.push(tx(`无尽最高 ${eb} 波`, `Endless best ${eb}`));
+      if (stats.length) add(20, y, stats.join(' · '), 15, COLORS.textDim);
     }
     const ch = CHAPTERS[this.chapter - 1];
     const chUnlocked = save.clearedChapters >= this.chapter - 1;
@@ -258,6 +280,19 @@ export class CharSelectScene extends Phaser.Scene {
         : tx('♾️ 无尽 🔒', '♾️ Endless 🔒'),
     );
     this.endlessBtn.setAlpha(endlessOk ? 1 : 0.55);
+    // 危机等级：换章节时取该章上次的选择，超过解锁上限则回落
+    const dMax = dangerUnlocked(this.chapter);
+    this.danger = Math.min(dMax, CharSelectScene.lastDanger[this.chapter] ?? this.danger);
+    this.dangerBtn.setLabel(this.danger ? tx(`危机 ${this.danger}`, `Danger ${this.danger}`) : tx('危机 0', 'Danger 0'));
+    this.dangerBtn.setAlpha(dMax ? 1 : 0.55);
+    const dangerLine =
+      this.danger > 0
+        ? '\n' +
+          tx(
+            `危机 ${this.danger}：${DANGER_LEVELS[this.danger - 1].desc[0]} 等 ${this.danger} 条规则 · 奖励 ×${dangerReward(this.danger)}`,
+            `Danger ${this.danger}: ${DANGER_LEVELS[this.danger - 1].desc[1]} and ${this.danger - 1} more · reward ×${dangerReward(this.danger)}`,
+          )
+        : '';
     this.chapterText.setText(
       `${ch.name}  ${chUnlocked ? '' : '🔒'}  ${tx(`（怪物生命 x${ch.hpMult} 伤害 x${ch.dmgMult}）`, `(HP x${ch.hpMult} · DMG x${ch.dmgMult})`)}`,
     );
@@ -270,7 +305,7 @@ export class CharSelectScene extends Phaser.Scene {
               `无尽模式：不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），越往后怪物越强，直到倒下为止。本章最佳：第 ${endlessBest} 波`,
               `Endless: no wave limit, 15-wave cycles (elites on 5/10, a boss on 15), monsters keep getting stronger until you fall. Best here: wave ${endlessBest}`,
             )
-          : ch.desc,
+          : ch.desc + dangerLine,
     );
     if (unlocked) {
       this.startBtn.setLabel(tx('出发！', 'Go!'));
@@ -279,6 +314,82 @@ export class CharSelectScene extends Phaser.Scene {
       this.startBtn.setLabel(tx(`购买 🏅${charCost(c)}`, `Buy 🏅${charCost(c)}`));
       this.startBtn.setEnabled(!missingRequirement(c) && pointsBalance() >= charCost(c));
     }
+  }
+
+  private setDanger(v: number): void {
+    const max = dangerUnlocked(this.chapter);
+    if (v > max) {
+      toast(
+        this,
+        max === 0
+          ? tx(`通关第 ${this.chapter} 章后开放番茄危机`, `Clear Chapter ${this.chapter} to unlock Danger levels`)
+          : tx(`先在危机 ${max} 通关本章`, `Clear this chapter at Danger ${max} first`),
+        '#ff6b6b',
+      );
+      return;
+    }
+    this.danger = Math.max(0, v);
+    CharSelectScene.lastDanger[this.chapter] = this.danger;
+    this.refresh();
+  }
+
+  /** 叠加规则一览（点危机等级按钮打开，再点关闭） */
+  private showDangerRules(): void {
+    if (this.dangerPanel) {
+      this.dangerPanel.destroy();
+      this.dangerPanel = null;
+      return;
+    }
+    const W = this.scale.width,
+      H = this.scale.height;
+    const c = this.add.container(0, 0).setDepth(100);
+    const bg = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.6).setInteractive();
+    bg.on('pointerup', () => this.showDangerRules());
+    c.add(bg);
+    const lv = Math.max(this.danger, 1);
+    const pw = 560,
+      ph = 70 + MAX_DANGER * 26;
+    const g = this.add.graphics();
+    g.fillStyle(COLORS.panel, 0.98).fillRoundedRect(W / 2 - pw / 2, H / 2 - ph / 2, pw, ph, 14);
+    g.lineStyle(2, COLORS.gold, 1).strokeRoundedRect(W / 2 - pw / 2, H / 2 - ph / 2, pw, ph, 14);
+    c.add(g);
+    c.add(
+      text(
+        this,
+        W / 2,
+        H / 2 - ph / 2 + 26,
+        tx(`番茄危机 · 第 ${this.danger} 级`, `Danger · Level ${this.danger}`),
+        24,
+        '#ff9f1c',
+      ).setOrigin(0.5),
+    );
+    const max = dangerUnlocked(this.chapter);
+    DANGER_LEVELS.forEach((d, i) => {
+      const on = d.level <= this.danger;
+      const locked = d.level > max;
+      const color = on ? '#ffd166' : locked ? '#6b5450' : COLORS.textDim;
+      c.add(
+        text(
+          this,
+          W / 2 - pw / 2 + 24,
+          H / 2 - ph / 2 + 56 + i * 26,
+          `${d.level}. ${d.icon} ${d.name[lang === 'en' ? 1 : 0]} — ${d.desc[lang === 'en' ? 1 : 0]}${locked ? ' 🔒' : ''}`,
+          16,
+          color,
+        ),
+      );
+    });
+    c.add(
+      text(
+        this,
+        W / 2,
+        H / 2 + ph / 2 - 16,
+        tx(`奖励倍率 ×${dangerReward(lv)} · 点击任意处关闭`, `Reward ×${dangerReward(lv)} · click to close`),
+        14,
+        COLORS.textDim,
+      ).setOrigin(0.5),
+    );
+    this.dangerPanel = c;
   }
 
   private start(): void {
@@ -295,7 +406,7 @@ export class CharSelectScene extends Phaser.Scene {
     save.charRuns[this.selected.id] = (save.charRuns[this.selected.id] ?? 0) + 1;
     persist();
     checkAchievements();
-    run.start(this.selected.id, this.chapter, this.endless);
+    run.start(this.selected.id, this.chapter, this.endless, this.danger);
     if (this.endless) bump('endlessRuns');
     this.scene.start('Game');
   }

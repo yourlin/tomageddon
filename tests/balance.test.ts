@@ -12,7 +12,11 @@ import {
   incomeTarget,
   rarityWeights,
   weaponTierWeights,
+  dangerReward,
+  dangerMult,
+  goldReward,
 } from '../src/data/balance';
+import { DANGER_LEVELS, MAX_DANGER } from '../src/data/danger';
 
 const CH = Array.from({ length: BALANCE.chapterCount }, (_, i) => i + 1);
 const WAVES = Array.from({ length: 100 }, (_, i) => i + 1);
@@ -80,5 +84,44 @@ describe('概率表', () => {
         for (const x of ws) expect(x).toBeGreaterThanOrEqual(0);
         expect(ws.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 6);
       }
+  });
+});
+
+describe('番茄危机（A8）', () => {
+  it('奖励倍率严格递增且二阶差分平滑', () => {
+    let prev = dangerReward(0);
+    let prevD = 0;
+    for (let l = 1; l <= MAX_DANGER; l++) {
+      const v = dangerReward(l);
+      expect(v).toBeGreaterThan(prev);
+      const d = v - prev;
+      if (l > 1) expect(Math.abs(d - prevD)).toBeLessThan(0.03);
+      prev = v;
+      prevD = d;
+    }
+  });
+  it('敌人生命 / 伤害倍率随等级单调不减，20 级在合理范围', () => {
+    let hp = 1;
+    let dmg = 1;
+    for (let l = 0; l <= MAX_DANGER; l++) {
+      const m = dangerMult(l);
+      expect(m.hp).toBeGreaterThanOrEqual(hp);
+      expect(m.dmg).toBeGreaterThanOrEqual(dmg);
+      hp = m.hp;
+      dmg = m.dmg;
+    }
+    expect(hp).toBeGreaterThan(1.5);
+    expect(hp).toBeLessThan(2.5);
+    expect(dmg).toBeLessThan(2);
+  });
+  it('每一级都恰好一条，且描述里的数字与规则一致', () => {
+    expect(DANGER_LEVELS.map((d) => d.level)).toEqual(Array.from({ length: MAX_DANGER }, (_, i) => i + 1));
+    for (const d of DANGER_LEVELS)
+      for (const v of Object.values(d.rule)) if (Math.abs(v) > 1) expect(d.desc[0], `危机 ${d.level}`).toContain(String(Math.abs(v)));
+  });
+  it('金番茄：0 级普通模式不产出，危机越高越多', () => {
+    expect(goldReward(15, 0, false, true)).toBe(0);
+    expect(goldReward(15, 10, false, true)).toBeGreaterThan(goldReward(15, 1, false, true));
+    expect(goldReward(40, 0, true, false)).toBeGreaterThan(0);
   });
 });

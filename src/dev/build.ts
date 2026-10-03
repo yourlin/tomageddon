@@ -44,6 +44,10 @@ export interface DevBuild {
   /** 初始资金（番茄籽） */
   budget: number;
   talents: TalentMode;
+  /** 番茄危机等级（H1） */
+  danger?: number;
+  /** 遗物（H3） */
+  relics?: string[];
   /** talents = 'custom' 时的天赋树节点等级 */
   talentMap?: Record<string, number>;
   weapons: DevWeapon[];
@@ -117,9 +121,12 @@ const toOwned = (w: DevWeapon): OwnedWeapon => ({
 const fromOwned = (w: OwnedWeapon): DevWeapon => ({ id: w.id, tier: w.tier, affixes: w.affixes?.map((a) => ({ ...a })), forge: w.forge });
 
 /** 把构筑写进全局 run（随后重启沙盒即可生效）。trial 不为空时用它替换武器（单独试用某把武器） */
+export const devHooksBuild: { afterApply: (() => void) | null } = { afterApply: null };
 export function applyBuild(b: DevBuild, trial: DevWeapon[] | null = null): void {
   applyTalents(b.talents, b.talentMap);
-  run.start(b.charId, b.chapterId);
+  run.start(b.charId, b.chapterId, false, b.danger ?? 0);
+  run.relics = [...(b.relics ?? [])];
+  devHooksBuild.afterApply?.();
   run.wave = b.wave;
   run.weapons = (trial ?? b.weapons).map(toOwned);
   run.items = { ...b.items };

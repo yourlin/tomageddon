@@ -13,6 +13,7 @@ import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { checkAchievements, setInRun, missingRequirement, pointsBalance, charCost } from '../systems/Achievements';
 import { showSharePoster } from '../systems/SharePoster';
+import { settleDanger, type DangerResult } from '../systems/Danger';
 
 export class ResultScene extends Phaser.Scene {
   private record!: RunRecord;
@@ -21,7 +22,7 @@ export class ResultScene extends Phaser.Scene {
     super('Result');
   }
 
-  create(data: { win: boolean; counted?: boolean; recorded?: boolean }): void {
+  create(data: { win: boolean; counted?: boolean; recorded?: boolean; danger?: DangerResult }): void {
     autoRelayout(this, data);
     const W = this.scale.width,
       H = this.scale.height;
@@ -55,8 +56,10 @@ export class ResultScene extends Phaser.Scene {
     if (!data.recorded) {
       data.recorded = true;
       this.record = recordHistory(!!data.win);
+      data.danger = settleDanger(!!data.win, this.record.sec);
       persist();
     } else this.record = save.history[0];
+    const dr = data.danger;
     checkAchievements();
     setInRun(false);
     const affordable = CHARACTERS.filter((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance());
@@ -74,7 +77,16 @@ export class ResultScene extends Phaser.Scene {
       52,
       data.win ? '#ffd166' : '#ff6b6b',
     ).setOrigin(0.5);
-    text(this, W / 2, 145, run.chapter.name + (run.endless ? tx(' · 无尽模式', ' · Endless') : ''), 22, COLORS.textDim).setOrigin(0.5);
+    text(
+      this,
+      W / 2,
+      145,
+      run.chapter.name +
+        (run.endless ? tx(' · 无尽模式', ' · Endless') : '') +
+        (run.danger > 0 && !run.challenge ? tx(` · 危机 ${run.danger}`, ` · Danger ${run.danger}`) : ''),
+      22,
+      COLORS.textDim,
+    ).setOrigin(0.5);
     const hero = showcaseRig(this, 'char', run.charId, W / 2 - 250, 290, 70);
     if (data.win) hero.play('victory', true);
     text(
@@ -114,7 +126,7 @@ export class ResultScene extends Phaser.Scene {
       ).setOrigin(0.5);
       y += 36;
     }
-    if (data.win && run.chapterId < CHAPTERS.length) {
+    if (data.win && run.chapterId < CHAPTERS.length && run.danger === 0) {
       text(
         this,
         W / 2,
@@ -124,6 +136,27 @@ export class ResultScene extends Phaser.Scene {
         '#52ff8a',
       ).setOrigin(0.5);
       y += 34;
+    }
+    // 番茄危机：第几次通关、新解锁的等级、金番茄与天赋点（A7 / A10）
+    if (dr) {
+      const parts: string[] = [];
+      if (data.win && dr.clearNo)
+        parts.push(
+          run.danger > 0
+            ? tx(
+                `第 ${dr.clearNo} 次在危机 ${run.danger} 通关本章`,
+                `Cleared this chapter at Danger ${run.danger} for the ${dr.clearNo}× time`,
+              )
+            : tx(`第 ${dr.clearNo} 次通关本章`, `Cleared this chapter ${dr.clearNo}×`),
+        );
+      if (dr.unlocked) parts.push(tx(`解锁危机 ${dr.unlocked}`, `Danger ${dr.unlocked} unlocked`));
+      if (dr.fastest) parts.push(tx('最快纪录！', 'Fastest clear!'));
+      if (dr.gold) parts.push(tx(`金番茄 +${dr.gold}`, `Golden Tomatoes +${dr.gold}`));
+      if (dr.tp) parts.push(tx(`天赋点 +${dr.tp}`, `Talent points +${dr.tp}`));
+      if (parts.length) {
+        text(this, W / 2, y, parts.join(' · '), 21, '#ff9f1c').setOrigin(0.5);
+        y += 34;
+      }
     }
     // 本局获得的成就点；有买得起的角色时提示去选角界面购买
     text(

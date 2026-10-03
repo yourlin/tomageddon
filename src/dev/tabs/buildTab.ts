@@ -42,6 +42,7 @@ import {
   type DevBuild,
 } from '../build';
 import { renderBuildTools } from './buildTools';
+import { DANGER_LEVELS, MAX_DANGER } from '../../data/danger';
 
 const META_KEY = 'tomageddon_dev_preset_meta';
 let presetSearch = '';
@@ -90,7 +91,13 @@ export function renderBuild(ctx: DevCtx): HTMLElement {
       'div',
       { class: 'row' },
       '当前波次',
-      num(b.wave, (v) => ((b.wave = v), ctx.changed()), { min: 1, max: 40, width: 52 }),
+      num(b.wave, (v) => ((b.wave = v), ctx.changed()), { min: 1, max: 80, width: 52 }),
+      'H1 危机',
+      select(
+        Array.from({ length: MAX_DANGER + 1 }, (_, i): [number, string] => [i, i ? `${i} ${DANGER_LEVELS[i - 1].name[0]}` : '0 普通']),
+        b.danger ?? 0,
+        (v) => ((b.danger = Number(v)), ctx.changed()),
+      ),
       '等级',
       num(b.level, (v) => ((b.level = v), ctx.changed()), { min: 0, max: 80, width: 52 }),
       '天赋',

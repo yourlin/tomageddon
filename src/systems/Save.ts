@@ -168,6 +168,12 @@ export interface RunRecord {
   dmg: [string, number][];
   /** 每波收入 */
   income: number[];
+  /** 番茄危机等级（1.4.0） */
+  danger?: number;
+  /** 本局遗物（1.4.0） */
+  relics?: string[];
+  /** 无尽模式里花钱复活过（成绩单独标记） */
+  revived?: boolean;
 }
 
 export interface AchStats {

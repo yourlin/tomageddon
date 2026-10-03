@@ -12,7 +12,7 @@ export const rankOf = (id: string): number => save.talents[id] ?? 0;
 
 /** 成就累计给的天赋点 */
 export function talentPointsEarned(): number {
-  let n = 0;
+  let n = save.meta.bonusTp;
   for (const a of ACHIEVEMENTS) if (a.tp) for (let i = 0; i < achTier(a.id); i++) n += a.tp[i] ?? 0;
   return n;
 }

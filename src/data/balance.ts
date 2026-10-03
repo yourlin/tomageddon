@@ -7,6 +7,7 @@
 //   ③ 精英 / Boss 的随波次缩放集中在 eliteScale() / bossScale()，不再散落于场景代码。
 //   ④ 经济校准（seedValue 的 calib）用平滑函数 incomeCalib()，取代硬编码分段魔数。
 import type { Stats } from './stats';
+import { dangerLevels } from './danger';
 
 export const BALANCE = {
   arena: { width: 1920, height: 1200, margin: 40 },
@@ -286,4 +287,31 @@ export function fruitDropChance(luck: number): number {
 /** 宝箱掉落概率（精英必掉） */
 export function crateDropChance(luck: number): number {
   return Math.min(0.02, 0.004 * (1 + Math.max(0, luck) / 100));
+}
+
+// ---------------- 番茄危机（A8） ----------------
+/** 危机等级的整体倍率曲线：敌人生命 / 伤害按危机规则累加（与 data/danger.ts 一致），
+ *  奖励倍率 reward 为平滑的二次曲线：0 级 1.0，10 级约 2.6，20 级约 4.8。 */
+export function dangerReward(level: number): number {
+  const l = Math.max(0, level);
+  return Math.round((1 + 0.12 * l + 0.0035 * l * l) * 100) / 100;
+}
+
+/** 危机等级 level 下敌人的生命 / 伤害总倍率与奖励倍率 */
+export function dangerMult(level: number): { hp: number; dmg: number; reward: number } {
+  let hp = 0;
+  let dmg = 0;
+  for (const l of dangerLevels(level)) {
+    hp += l.rule.enemyHp ?? 0;
+    dmg += l.rule.enemyDmg ?? 0;
+  }
+  return { hp: 1 + hp / 100, dmg: 1 + dmg / 100, reward: dangerReward(level) };
+}
+
+/** 金番茄（I2）：危机 ≥1 或无尽 15 波以后才产出；按到达波次 × 奖励倍率 */
+export function goldReward(wave: number, level: number, endless: boolean, win: boolean): number {
+  let g = 0;
+  if (level > 0) g += Math.floor((Math.min(wave, 15) / 3) * dangerReward(level)) + (win ? Math.round(5 * dangerReward(level)) : 0);
+  if (endless && wave > 15) g += Math.floor((wave - 15) / 2) * (1 + level * 0.1);
+  return Math.round(g);
 }
