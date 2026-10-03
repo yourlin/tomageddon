@@ -28,7 +28,7 @@ export class LevelUpScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    tip('levelup');
+    tip('levelup', this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     this.layer = this.add.container(0, 0);
     this.rerolls = 0;
@@ -131,7 +131,17 @@ export class LevelUpScene extends Phaser.Scene {
     );
     rb.setEnabled(run.seeds >= price);
     L.add(rb);
-    L.add(text(this, 30, H - 40, `🌱 ${run.seeds}`, 24, '#ffe066').setOrigin(0, 0.5));
+    // 当前持有的番茄籽紧贴刷新按钮显示，刷新前一眼能看到够不够（原来放在左下角，很容易被忽略）
+    L.add(
+      text(
+        this,
+        W / 2 - 150,
+        H - 70,
+        tx(`持有 🌱 ${run.seeds}`, `You have 🌱 ${run.seeds}`),
+        24,
+        run.seeds >= price ? '#ffe066' : '#ff6b6b',
+      ).setOrigin(1, 0.5),
+    );
   }
 
   private showCrate(): void {

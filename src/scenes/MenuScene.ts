@@ -194,8 +194,8 @@ export class MenuScene extends Phaser.Scene {
     ).setOrigin(1, 1);
     this.input.once('pointerdown', () => audio.unlock());
     // 新手引导：天赋点、买角色、挑战
-    if (talentPointsFree() > 0) tip('talents');
-    if (CHARACTERS.some((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance())) tip('buyChar');
-    if (save.wins >= 1 || Object.values(save.charRuns).reduce((a, b) => a + b, 0) >= 3) tip('challenge');
+    if (talentPointsFree() > 0) tip('talents', this);
+    if (CHARACTERS.some((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance())) tip('buyChar', this);
+    if (save.wins >= 1 || Object.values(save.charRuns).reduce((a, b) => a + b, 0) >= 3) tip('challenge', this);
   }
 }

@@ -287,11 +287,11 @@ export class GameScene extends Phaser.Scene {
     if (!sandbox && run.wave === 1)
       TERRAIN_INFO[ch.id]?.forEach((m, i) => this.time.delayedCall(1500 + i * 2600, () => this.terrainNotice(m)));
     // 新手引导：第 1 波讲移动，技能第一次就绪时讲技能；精英 / Boss 出场时各讲一次
-    if (!sandbox && run.wave === 1) this.time.delayedCall(500, () => tip('move', this));
+    if (!sandbox && run.wave === 1) this.time.delayedCall(500, () => tip('move', this, true));
     if (!sandbox && !seenTip('skill'))
-      this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this) });
+      this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this, true) });
     this.events.on('bossSpawn', (e: Enemy) => {
-      if (e.boss && !GameScene.sandbox) tip(e.boss.elite ? 'elite' : 'boss', this);
+      if (e.boss && !GameScene.sandbox) tip(e.boss.elite ? 'elite' : 'boss', this, true);
     });
     audio.play(this, 'wave');
     this.events.once('shutdown', () => {
@@ -1685,7 +1685,7 @@ export class GameScene extends Phaser.Scene {
       run.earn(p.value + bonus, 'pickup');
       run.addXp(p.xp + bonusXp);
       if (bonus) this.fx.label(p.img.x, p.img.y - 10, '×2', '#52ff8a');
-      if (!seenTip('seeds')) tip('seeds', this);
+      if (!seenTip('seeds')) tip('seeds', this, true);
       audio.play(this, 'pickup', 0.03);
     } else if (p.kind === 'fruit') {
       bump('fruits');

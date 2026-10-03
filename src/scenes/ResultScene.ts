@@ -43,7 +43,7 @@ export class ResultScene extends Phaser.Scene {
       if (Object.values(run.items).reduce((x, y) => x + y, 0) >= 60) bump('winHoarder');
       persist();
       audio.play(this, 'levelup');
-      if (!run.endless && !run.challenge) tip('endless');
+      if (!run.endless && !run.challenge) tip('endless', this);
     }
     if (!data.win && !data.counted) {
       data.counted = true;

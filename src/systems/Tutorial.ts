@@ -128,18 +128,57 @@ const TIPS: Record<TipKey, () => [string, string]> = {
   ],
 };
 
-const queue: { key: TipKey; pause?: Phaser.Scene }[] = [];
+interface TipItem {
+  key: TipKey;
+  /** 触发提示的场景：它关闭或休眠时，提示随之收起，不会带进下一个场景 */
+  owner?: Phaser.Scene;
+  /** 显示期间是否暂停 owner（战斗场景用） */
+  pause: boolean;
+}
+
+const queue: TipItem[] = [];
 let showing = false;
+/** 当前正在显示的提示，以及收起它的函数 */
+let current: { item: TipItem; close: () => void } | null = null;
+/** 已挂过离场监听的场景，避免重复挂 */
+const watched = new WeakSet<Phaser.Scene>();
 
 export const seenTip = (key: TipKey): boolean => !!save.tutorial[key];
 
-/** 显示一次提示；pause 传入战斗场景时暂停直到点「知道了」 */
-export function tip(key: TipKey, pause?: Phaser.Scene): void {
-  if (DISABLED || save.tutorial[key] || queue.some((q) => q.key === key) || typeof document === 'undefined') return;
-  save.tutorial[key] = true;
-  persist();
-  queue.push({ key, pause });
+/**
+ * 显示一次提示。owner 为触发它的场景：该场景 shutdown / sleep 时提示自动收起，
+ * 还没轮到显示的排队提示也一并丢弃（不记为已读，下次进入该场景会再弹）。
+ * pause 为 true 时显示期间暂停 owner，直到点「知道了」。
+ */
+export function tip(key: TipKey, owner?: Phaser.Scene, pause = false): void {
+  if (DISABLED || save.tutorial[key] || queue.some((q) => q.key === key) || current?.item.key === key) return;
+  if (typeof document === 'undefined') return;
+  if (owner) watchOwner(owner);
+  queue.push({ key, owner, pause });
   if (!showing) next();
+}
+
+/** 场景离开时收起它的提示 */
+function watchOwner(scene: Phaser.Scene): void {
+  if (watched.has(scene)) return;
+  watched.add(scene);
+  const leave = () => {
+    // autoRelayout（旋转屏幕 / 缩放窗口）会 restart 同一个场景，也会触发 shutdown。
+    // 稍等一下再判断：场景已重新运行说明只是重排布局，提示保留；否则才是真正离开
+    setTimeout(() => {
+      const s = scene.sys;
+      if (!s || (!s.isActive() && !s.isPaused())) dismissFor(scene);
+    }, 200);
+  };
+  // 场景实例会被 Phaser 复用，所以用 on 而不是 once，每次离开都要清理
+  scene.events.on('shutdown', leave);
+  scene.events.on('sleep', leave);
+}
+
+/** 收起 scene 触发的提示：丢弃其排队项，正在显示的立即关闭 */
+export function dismissFor(scene: Phaser.Scene): void {
+  for (let i = queue.length - 1; i >= 0; i--) if (queue[i].owner === scene) queue.splice(i, 1);
+  if (current?.item.owner === scene) current.close();
 }
 
 export function resetTutorial(): void {
@@ -151,8 +190,11 @@ function next(): void {
   const item = queue.shift();
   showing = !!item;
   if (!item) return;
+  // 真正显示出来才记为已读：排队中被场景切换丢弃的提示以后还会出现
+  save.tutorial[item.key] = true;
+  persist();
   const [title, body] = TIPS[item.key]();
-  if (item.pause?.scene.isActive()) item.pause.scene.pause();
+  if (item.pause && item.owner?.scene.isActive()) item.owner.scene.pause();
   const el = document.createElement('div');
   el.style.cssText =
     'position:fixed;left:50%;bottom:9%;transform:translate(-50%,30px);opacity:0;z-index:40;max-width:min(560px,86vw);' +
@@ -165,12 +207,17 @@ function next(): void {
   btn.textContent = tx('知道了', 'Got it');
   btn.style.cssText =
     'margin-top:12px;float:right;padding:7px 22px;border:none;border-radius:9px;background:#ff4b3e;color:#fff;font:bold 15px sans-serif;cursor:pointer;';
+  let closed = false;
   const close = () => {
+    if (closed) return;
+    closed = true;
+    current = null;
     el.style.opacity = '0';
     setTimeout(() => el.remove(), 250);
-    if (item.pause?.scene.isPaused()) item.pause.scene.resume();
+    if (item.pause && item.owner?.scene.isPaused()) item.owner.scene.resume();
     setTimeout(next, 300);
   };
+  current = { item, close };
   btn.onclick = close;
   el.appendChild(btn);
   overlayRoot().appendChild(el);

@@ -82,11 +82,11 @@ export class ShopScene extends Phaser.Scene {
     this.layer = this.add.container(0, 0);
     this.draw();
     // 新手引导：商店基础 → 合成 → 词条与打造 → 进化
-    tip('shop');
+    tip('shop', this);
     if (run.weapons.some((a) => run.weapons.some((b) => b.uid !== a.uid && b.id === a.id && b.tier === a.tier && a.tier < 3)))
-      tip('combine');
-    if (run.weapons.some((w) => w.tier >= 2)) tip('affix');
-    if (run.weapons.some((w) => run.canEvolve(w))) tip('evolve');
+      tip('combine', this);
+    if (run.weapons.some((w) => w.tier >= 2)) tip('affix', this);
+    if (run.weapons.some((w) => run.canEvolve(w))) tip('evolve', this);
   }
 
   private price(base: number): number {
