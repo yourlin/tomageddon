@@ -98,6 +98,8 @@ export class RunState {
   /** 本波第几次上架商品（挑战模式的随机序列编号） */
   shopRollNo = 0;
   shopRollWave = -1;
+  /** 当前货架是为哪一波生成的；与 wave 不一致说明货架过期（例如读档恢复了上一波已售罄的货架） */
+  shopWave = -1;
   /** 每日 / 每周挑战（种子、修饰） */
   challenge: ChallengeDef | null = null;
   /** 是否启用了某个挑战修饰 */
@@ -166,6 +168,7 @@ export class RunState {
     this.pendingCrates = 0;
     this.rerolls = 0;
     this.shop = [];
+    this.shopWave = -1;
     this.revivesUsed = 0;
     this.cheatDeathUsed = false;
     this.harvestBonus = 0;
@@ -280,7 +283,8 @@ export class RunState {
     for (const [id, n] of Object.entries(this.items)) apply(ITEM_MAP[id].special, n);
     sp.shopDiscount = Math.min(50, sp.shopDiscount);
     sp.doubleSeed = Math.min(40, sp.doubleSeed);
-    sp.critDmg = Math.min(150, sp.critDmg);
+    sp.critDmg = Math.min(BALANCE.critDmgCap, sp.critDmg);
+    sp.lightningOnHit = Math.min(BALANCE.lightningCap, sp.lightningOnHit);
     this.specialCache = sp;
     return sp;
   }
@@ -457,6 +461,7 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       pendingLevelUps: run.pendingLevelUps,
       pendingCrates: run.pendingCrates,
       shop: run.shop,
+      shopWave: run.shopWave,
       revivesUsed: run.revivesUsed,
       cheatDeathUsed: run.cheatDeathUsed,
       harvestBonus: run.harvestBonus,
@@ -506,6 +511,7 @@ export function loadRun(): boolean {
     pendingLevelUps: d.pendingLevelUps,
     pendingCrates: d.pendingCrates,
     shop: d.shop,
+    shopWave: typeof d.shopWave === 'number' ? d.shopWave : -1, // 旧存档没有该字段，视为过期
     revivesUsed: d.revivesUsed,
     cheatDeathUsed: !!d.cheatDeathUsed,
     harvestBonus: d.harvestBonus,

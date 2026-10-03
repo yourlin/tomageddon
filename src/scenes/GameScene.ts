@@ -18,11 +18,17 @@ import {
   chapterScale,
   endlessHp,
   endlessDmg,
+  eliteHpScale,
+  eliteDmgScale,
+  bossHpScale,
+  bossDmgScale,
+  regenPerSecond,
+  explodeSizeMultiplier,
 } from '../data/balance';
 import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
 import { BOSS_MAP, AFFIX_IDS, type AffixId, type Pattern } from '../data/bosses';
-import { WEAPON_MAP, type WeaponEffect, type WeaponClass } from '../data/weapons';
+import type { WeaponEffect, WeaponClass } from '../data/weapons';
 import { STATUSES, type StatusApply, type StatusId } from '../data/statuses';
 import { Enemy } from '../objects/Enemy';
 import { Bullet } from '../objects/Bullet';
@@ -54,6 +60,8 @@ export interface HitInfo {
   status?: StatusApply[];
   /** 爆炸造成的伤害（部分天赋按此判断） */
   explosion?: boolean;
+  /** 武器词条带来的暴击伤害 %，暴击时与道具暴击伤害相加后统一结算 */
+  critBonus?: number;
 }
 
 interface Pickup {
@@ -299,7 +307,7 @@ export class GameScene extends Phaser.Scene {
     s.luck += t.luck;
     s.lifeSteal += t.lifeSteal;
     s.dodge = Math.min(s.dodge, run.dodgeCap);
-    s.lifeSteal = Math.min(s.lifeSteal, BALANCE.player.lifeStealCap);
+    // 吸血不设百分比上限：强度由触发冷却（每秒最多回复量）限制，见 BALANCE.player.lifeStealTickCd
     this.rangeMult = Math.max(0.3, 1 + t.range / 100);
     this.statusDmgBonus = run.specials.statusDmg;
     this.stats = s;
@@ -389,7 +397,9 @@ export class GameScene extends Phaser.Scene {
         s = { ...s, chance: undefined, dur: Math.min(0.8, s.dur) };
         this.ccImmuneUntil = now + (s.dur + 1.5) * 1000;
       }
-      if (this.pstatus.apply(s) && isDebuff(s.id) && (s.chance === undefined || s.chance < 100)) {
+      // 只在「新获得」减益时弹出名称；刷新持续时间 / 叠层不再重复弹字（地面效果每帧刷新会刷屏、拖慢性能）
+      const had = this.pstatus.has(s.id);
+      if (this.pstatus.apply(s) && isDebuff(s.id) && !had && (s.chance === undefined || s.chance < 100)) {
         this.fx.label(this.player.x, this.player.y - 40, STATUSES[s.id].name, '#' + STATUSES[s.id].color.toString(16).padStart(6, '0'));
       }
     }
@@ -501,7 +511,7 @@ export class GameScene extends Phaser.Scene {
     }
     const s = this.stats;
     if (s.regen > 0 && run.hp < s.maxHp) {
-      this.regenAcc += (s.regen / 5) * dt;
+      this.regenAcc += regenPerSecond(s.regen) * dt;
       if (this.regenAcc >= 1) {
         const h = Math.floor(this.regenAcc);
         this.regenAcc -= h;
@@ -819,15 +829,16 @@ export class GameScene extends Phaser.Scene {
     const def = BOSS_MAP[id];
     markSeen('bosses', id);
     const ch = run.chapter;
+    // 精英 / Boss 的随波次缩放系数统一由 balance.ts 提供（不再在此散落 magic number）
     const hp = Math.round(
       def.hp *
         chapterScale(ch.bossHpMult, run.wave) *
-        (def.elite ? 0.8 + (run.wave - 5) * 0.12 : 3) *
+        (def.elite ? eliteHpScale(run.wave) : bossHpScale()) *
         endlessHp(run.wave) *
         (run.mod('tough_bosses') ? 1.5 : 1),
     );
     const dmg = Math.round(
-      def.dmg * 1.2 * chapterScale(ch.dmgMult, run.wave) * (def.elite ? 1 + (run.wave - 5) * 0.08 : 1) * endlessDmg(run.wave),
+      def.dmg * bossDmgScale() * chapterScale(ch.dmgMult, run.wave) * (def.elite ? eliteDmgScale(run.wave) : 1) * endlessDmg(run.wave),
     );
     // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加
     const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
@@ -1030,6 +1041,7 @@ export class GameScene extends Phaser.Scene {
       const info: HitInfo = {
         dmg: b.dmg,
         crit: b.crit,
+        critBonus: b.critBonus,
         knockback: b.knockback,
         effect: b.effect,
         lifeSteal: b.lifeSteal,
@@ -1073,7 +1085,7 @@ export class GameScene extends Phaser.Scene {
       b.y,
       b.effect?.explode ?? 60,
       b.dmg,
-      { dmg: b.dmg, crit: b.crit, effect: b.effect, knockback: 20, status: b.status, weaponId: b.src || undefined },
+      { dmg: b.dmg, crit: b.crit, critBonus: b.critBonus, effect: b.effect, knockback: 20, status: b.status, weaponId: b.src || undefined },
       0xff5400,
     );
   }
@@ -1120,7 +1132,11 @@ export class GameScene extends Phaser.Scene {
       dmg *= 1.5;
       e.status.remove('mark');
     }
-    if (crit && sp.critDmg) dmg *= 1 + sp.critDmg / 100;
+    // 暴击伤害：武器词条 + 道具 / 角色 / 天赋相加成一个池子，总加成不超过 critDmgCap（不再两层相乘）
+    if (crit) {
+      const cd = Math.min(BALANCE.critDmgCap, sp.critDmg + (info.critBonus ?? 0));
+      if (cd > 0) dmg *= 1 + cd / 100;
+    }
     if (info.knockback && e.knockResist < 1) {
       const ang = Math.atan2(e.y - fromY, e.x - fromX);
       const k = info.knockback * 12 * (1 - e.knockResist);
@@ -1139,12 +1155,11 @@ export class GameScene extends Phaser.Scene {
     this.applyPlayerStatus(sp.onHitSelf);
     // 荆棘词缀反伤
     if (info.cls === 'melee' && e.affixes.includes('thorny')) this.hurtDirect(Math.max(1, dmg * 0.05), '#6a994e');
-    // 吸血：每次命中按概率回 1 点，最多每 0.25 秒一次；群体伤害（横扫、光环、爆炸、喷火、连锁、地雷）触发概率 ×0.4
-    const wk = info.weaponId ? WEAPON_MAP[info.weaponId]?.kind : undefined;
-    const aoe = info.explosion || wk === 'sweep' || wk === 'aura' || wk === 'flame' || wk === 'chain' || wk === 'mine';
-    const ls = Math.min(BALANCE.player.lifeStealCap, (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult()) * (aoe ? 0.4 : 1);
+    // 吸血（参考土豆兄弟）：每次命中按吸血率概率回 1 点；吸到后 lifeStealTickCd 秒内不能再吸，
+    // 即每秒最多回复 1 / lifeStealTickCd 点。吸血率本身不设上限，群体伤害也不打折（触发冷却已足够限制）。
+    const ls = (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult();
     if (ls > 0 && this.lsCd <= 0 && Math.random() * 100 < ls) {
-      this.lsCd = 0.25;
+      this.lsCd = BALANCE.player.lifeStealTickCd;
       this.heal(1, false);
     }
     const lh = sp.lightningOnHit;
@@ -1306,6 +1321,8 @@ export class GameScene extends Phaser.Scene {
   }
 
   explode(x: number, y: number, r: number, dmg: number, info: HitInfo, color: number, goldDrop = false): void {
+    // 爆炸范围属性对所有己方爆炸（武器、地雷、技能、击杀爆炸）生效，最低保留 50% 半径
+    r *= explodeSizeMultiplier(this.stats.explodeSize);
     this.fx.explosion(x, y, r, color);
     audio.play(this, 'explode', 0.08);
     const hits = [...this.grid.query(x, y, r, this.tmp2)];
@@ -1444,7 +1461,8 @@ export class GameScene extends Phaser.Scene {
     this.fx.ring(e.x, e.y, e.radius + 40, 0xb5838d, 300);
   }
 
-  addSlime(x: number, y: number, color = 0xb5e48c): void {
+  /** 粘液 / 油渍拖尾：减速 + 每 0.5 秒结算 dps 点伤害（与其他地面效果重叠时只取最高） */
+  addSlime(x: number, y: number, color = 0xb5e48c, dps = 0): void {
     if (this.hazards.length > 60) return;
     const img = this.add
       .image(x, y, 'fx_slime')
@@ -1453,7 +1471,7 @@ export class GameScene extends Phaser.Scene {
       .setDepth(1)
       .setRotation(Math.random() * 6);
     img.setScale(64 / img.width);
-    this.hazards.push({ img, x, y, r: 28, t: 3, slow: 0, dps: 0, tick: 0, debuff: [{ id: 'sticky', dur: 0.4 }] });
+    this.hazards.push({ img, x, y, r: 28, t: 3, slow: 0, dps, tick: 0, debuff: [{ id: 'sticky', dur: 0.4 }] });
   }
 
   bossSlam(e: Enemy, p: Pattern): void {
@@ -1554,26 +1572,38 @@ export class GameScene extends Phaser.Scene {
     this.shake(0.012, 400);
   }
 
+  /** 地面效果（热油、粘液、Boss 毒池等）统一结算：
+   *  - 站在多个重叠区域里时只取「伤害最高」的一个，每 HAZARD_TICK 秒结算一次（只弹一个伤害数字）；
+   *  - 概率类减益（灼烧等）也随结算节拍判定一次，而不是每帧判定；
+   *  - 减速 / 黏液这类持续效果每帧刷新以保证手感，但不会重复弹字（见 applyPlayerStatus）。 */
+  private hazardTickT = 0;
   private updateHazards(dt: number): void {
+    const HAZARD_TICK = 0.5;
     const p = this.player;
+    let worst: Hazard | null = null;
+    let slow = 0;
+    const sustained = new Map<string, StatusApply>(); // 持续刷新类（黏液）
+    const procs = new Map<string, StatusApply>(); // 概率类（随节拍判定）
     for (const h of this.hazards) {
       h.t -= dt;
       if (h.t < 0.5) h.img.setAlpha(Math.max(0, h.t) * 1.3);
-      const inside = Phaser.Math.Distance.Between(h.x, h.y, p.x, p.y) < h.r + 10;
-      if (inside && !this.waveOver) {
-        if (h.slow) this.applyPlayerStatus([{ id: 'slow', dur: 0.3, stacks: Math.max(1, Math.round(h.slow / 15)) }]);
-        if (h.debuff) this.applyPlayerStatus(h.debuff.map((d) => ({ ...d, chance: d.id === 'sticky' ? undefined : 20 })));
-        if (h.dps) {
-          h.tick -= dt;
-          if (h.tick <= 0) {
-            h.tick = 0.5;
-            this.damagePlayer(h.dps);
-          }
-        }
+      if (h.t > 0 && Phaser.Math.Distance.Between(h.x, h.y, p.x, p.y) < h.r + 10) {
+        slow = Math.max(slow, h.slow);
+        if (h.dps > (worst?.dps ?? 0)) worst = h;
+        for (const d of h.debuff ?? []) (d.id === 'sticky' ? sustained : procs).set(d.id, d);
       }
       if (h.t <= 0) h.img.destroy();
     }
     this.hazards = this.hazards.filter((h) => h.t > 0);
+    this.hazardTickT -= dt;
+    if (this.waveOver) return;
+    if (slow) this.applyPlayerStatus([{ id: 'slow', dur: 0.3, stacks: Math.max(1, Math.round(slow / 15)) }]);
+    if (sustained.size) this.applyPlayerStatus([...sustained.values()].map((d) => ({ ...d, chance: undefined })));
+    if (this.hazardTickT > 0 || (!worst && !procs.size)) return;
+    this.hazardTickT = HAZARD_TICK;
+    if (procs.size) this.applyPlayerStatus([...procs.values()].map((d) => ({ ...d, chance: d.chance ?? 50 })));
+    // Hazard.dps 实为「每次结算的伤害」（历史命名，结算节拍 0.5 秒）
+    if (worst) this.damagePlayer(worst.dps);
   }
 
   // ---------------- 掉落物 ----------------

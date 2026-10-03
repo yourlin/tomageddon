@@ -92,9 +92,9 @@ HP, armor, healing and shields
 | 🛡️ Plating | Attribute · 3 ranks | Constitution | Armor +3 |
 | 🌵 Thorns | Attribute · 2 ranks | Plating | Reflect 6 damage when hit in melee |
 | 🧱 Hold the Line | Ability | Thorns | Taking damage grants 1 Fortify stack (+2 armor, 3s, max 5) |
-| 🌿 Regrowth | Attribute · 3 ranks | Constitution | HP regen +3 (per 5s) |
+| 🌿 Regrowth | Attribute · 3 ranks | Constitution | HP regen +3 |
 | 🍎 Fruity | Attribute · 2 ranks | Regrowth | Fruit healing +30% |
-| 🌱 Vitality | Attribute | Fruity | HP regen +1 (per 5s) |
+| 🌱 Vitality | Attribute | Fruity | HP regen +1 |
 | 🧛 Leech | Attribute · 3 ranks | Constitution | Life steal +3% |
 | 💗 Satisfying Hit | Ability · 2 ranks | Leech | 30% chance to heal 1 HP on crit |
 | 🔰 Ward | Ability | Constitution | Every 15s gain a shield that blocks one hit |

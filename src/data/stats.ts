@@ -1,15 +1,15 @@
-import { tx } from '../i18n';
 // 角色属性系统（属性面板）
 export interface Stats {
   maxHp: number; // 最大生命
-  regen: number; // 生命再生：每 5 秒回复 regen 点
-  lifeSteal: number; // 吸血 %：每次命中有该概率回复 1 点生命
+  regen: number; // 生命再生（参考土豆兄弟）：回复速度 = 0.20 + (regen-1)×0.089 生命/秒，见 regenPerSecond()
+  lifeSteal: number; // 吸血 %：每次命中有该概率回复 1 点生命；无百分比上限，每秒最多回复量由触发冷却限制
   damage: number; // 全伤害 %：所有武器伤害乘算（少量来源：部分角色、天赋与经典道具）
   meleePct: number; // 近战武器伤害 %
   rangedPct: number; // 远程武器伤害 %
   elementalPct: number; // 元素武器伤害 %
   auraPct: number; // 光环武器伤害 %（光环不吃元素/近战/远程伤害 %）
   auraSize: number; // 光环范围 %（射程不影响光环）
+  explodeSize: number; // 爆炸范围 %：所有己方爆炸（武器、地雷、技能、击杀爆炸）的半径乘算
   melee: number; // 近战伤害（加成数值，按武器系数计入）
   ranged: number; // 远程伤害
   elemental: number; // 元素伤害
@@ -42,6 +42,7 @@ export const BASE_STATS: Stats = {
   elementalPct: 0,
   auraPct: 0,
   auraSize: 0,
+  explodeSize: 0,
   melee: 0,
   ranged: 0,
   elemental: 0,
@@ -71,6 +72,7 @@ export const STAT_INFO: Record<StatKey, { name: string; pct?: boolean; color: st
   elementalPct: { name: '元素武器伤害', pct: true, color: '#6ec6ff' },
   auraPct: { name: '光环伤害', pct: true, color: '#c77dff' },
   auraSize: { name: '光环范围', pct: true, color: '#e0aaff' },
+  explodeSize: { name: '爆炸范围', pct: true, color: '#ff9f1c' },
   melee: { name: '近战伤害', color: '#ffd166' },
   ranged: { name: '远程伤害', color: '#9be564' },
   elemental: { name: '元素伤害', color: '#6ec6ff' },
@@ -100,6 +102,7 @@ export const STAT_ORDER: StatKey[] = [
   'elementalPct',
   'auraPct',
   'auraSize',
+  'explodeSize',
   'melee',
   'ranged',
   'elemental',
@@ -130,7 +133,6 @@ export function formatMod(key: StatKey, v: number): string {
   const info = STAT_INFO[key];
   const sign = v > 0 ? '+' : '';
   const num = Number.isInteger(v) ? String(v) : v.toFixed(1);
-  if (key === 'regen') return tx(`${sign}${num} 生命再生（每 5 秒）`, `${sign}${num} HP Regen (per 5s)`);
   return `${sign}${num}${info.pct ? '%' : ''} ${info.name}`;
 }
 

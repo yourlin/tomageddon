@@ -21,7 +21,6 @@ const PROJ_KEY: Record<string, string> = {
   mustard_flamer: 'proj_flame',
   soda: 'proj_soda',
   onion_boomerang: 'proj_onion',
-  sauce_gatling: 'proj_ketchup',
 };
 
 /** 武器伤害；传入持有的武器时计入词条与打造加成 */
@@ -185,7 +184,9 @@ export class WeaponSystem {
     const same = run.specials.sameWeaponBonus;
     if (same) dmg *= 1 + (same * run.weapons.filter((x) => x.id === def.id).length) / 100;
     const crit = Math.random() * 100 < s.crit + (def.critBonus ?? 0) + ax.crit;
-    if (crit) dmg *= def.critMult * (1 + ax.critDmg / 100);
+    // 这里只乘武器自身的暴击倍率；词条暴击伤害随 HitInfo.critBonus 传给 weaponHit，
+    // 与道具 / 角色 / 天赋的暴击伤害合并成一个加法池（上限 BALANCE.critDmgCap）
+    if (crit) dmg *= def.critMult;
     const status: StatusApply[] = [];
     if (ax.burn) status.push({ id: 'burn', dur: 3, stacks: 1, chance: ax.burn });
     if (ax.poison) status.push({ id: 'poison', dur: 4, stacks: 1, chance: ax.poison });
@@ -199,6 +200,7 @@ export class WeaponSystem {
       dmg,
       weaponId: def.id,
       cls: def.cls,
+      critBonus: ax.critDmg,
     };
   }
 
@@ -249,6 +251,7 @@ export class WeaponSystem {
           const i = this.info(w, s);
           b.dmg = i.dmg;
           b.crit = i.crit;
+          b.critBonus = i.critBonus ?? 0;
           b.knockback = i.knockback ?? 0;
           b.effect = def.effect;
           b.lifeSteal = i.lifeSteal ?? 0;

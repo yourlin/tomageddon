@@ -111,6 +111,14 @@ function statGlyph(ctx: Ctx, k: StatKey, c: number): void {
       ctx.fillStyle = '#fff';
       ctx.fill();
       break;
+    case 'explodeSize':
+      // 爆炸星芒：外圈 10 角星 + 白色内核
+      starPath(ctx, cx, cy, 40, 20, 10);
+      toon(ctx, c, cx - 40, cy - 40, 80, 80);
+      ctx.fillStyle = '#fff3b0';
+      starPath(ctx, cx, cy, 18, 9, 8);
+      ctx.fill();
+      break;
     case 'attackSpeed':
     case 'skillCd':
     case 'skillDur':
@@ -284,6 +292,270 @@ export function generateTextures(scene: Phaser.Scene): void {
       ctx.stroke();
     }
   });
+  // ---------- 各远程武器专属子弹（键为 proj_<武器 id>，WeaponSystem 优先使用；朝向一律向右 +x）----------
+  // 酱料加特林：橙褐色拉长酱料弹（区别于番茄酱瓶的红色圆滴）
+  proj(s, 'proj_sauce_gatling', 26, 14, (ctx) => {
+    ellipsePath(ctx, 14, 7, 11, 4.5);
+    toon(ctx, 0xbc6c25, 3, 2.5, 22, 9, { lineW: 2 });
+    ctx.fillStyle = 'rgba(255,230,180,0.85)';
+    ellipsePath(ctx, 17, 5.5, 4, 1.4);
+    ctx.fill();
+  });
+  // 披萨滚刀：带刻痕的银色圆刀片（回旋，自转）
+  proj(s, 'proj_pizza_cutter', 40, 40, (ctx) => {
+    ctx.beginPath();
+    ctx.arc(20, 20, 16, 0, Math.PI * 2);
+    toon(ctx, 0xced4da, 4, 4, 32, 32, { lineW: 2.5 });
+    ctx.strokeStyle = '#6c757d';
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 8; i++) {
+      const a = (i / 8) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(20 + Math.cos(a) * 7, 20 + Math.sin(a) * 7);
+      ctx.lineTo(20 + Math.cos(a) * 15, 20 + Math.sin(a) * 15);
+      ctx.stroke();
+    }
+    ctx.beginPath();
+    ctx.arc(20, 20, 5, 0, Math.PI * 2);
+    toon(ctx, 0xe63946, 15, 15, 10, 10, { lineW: 1.5 });
+  });
+  // 橄榄发射器：绿橄榄 + 红色甜椒塞心
+  proj(s, 'proj_olive_launcher', 26, 20, (ctx) => {
+    ellipsePath(ctx, 13, 10, 10, 7.5);
+    toon(ctx, 0x6a994e, 3, 2.5, 20, 15, { lineW: 2 });
+    ctx.beginPath();
+    ctx.arc(19, 10, 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#e63946';
+    ctx.fill();
+  });
+  // 葡萄霰弹枪：紫色小葡萄粒
+  proj(s, 'proj_grape_shotgun', 20, 20, (ctx) => {
+    ctx.beginPath();
+    ctx.arc(10, 10, 7.5, 0, Math.PI * 2);
+    toon(ctx, 0x7b2cbf, 2.5, 2.5, 15, 15, { lineW: 2 });
+    ctx.fillStyle = 'rgba(255,255,255,0.75)';
+    ctx.beginPath();
+    ctx.arc(7.5, 7.5, 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  // 豆子火箭筒：大豆荚火箭（尾焰 + 绿色豆荚弹体 + 豆粒）
+  proj(s, 'proj_bean_bazooka', 52, 26, (ctx) => {
+    const g = ctx.createLinearGradient(0, 0, 16, 0);
+    g.addColorStop(0, 'rgba(255,186,8,0)');
+    g.addColorStop(1, 'rgba(255,186,8,0.9)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.moveTo(0, 13);
+    ctx.lineTo(16, 7);
+    ctx.lineTo(16, 19);
+    ctx.closePath();
+    ctx.fill();
+    ellipsePath(ctx, 32, 13, 18, 9);
+    toon(ctx, 0x80b918, 14, 4, 36, 18, { lineW: 2.5 });
+    ctx.fillStyle = '#dde5b6';
+    for (const x of [24, 32, 40]) {
+      ctx.beginPath();
+      ctx.arc(x, 13, 3.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+  // 樱桃炸弹：红樱桃 + 引信梗 + 火星
+  proj(s, 'proj_cherry_bomb', 30, 30, (ctx) => {
+    ctx.strokeStyle = '#2d6a4f';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(14, 12);
+    ctx.quadraticCurveTo(16, 4, 22, 3);
+    ctx.stroke();
+    glow(ctx, 23, 3, 4, 0xffba08, 1);
+    ctx.beginPath();
+    ctx.arc(13, 18, 9, 0, Math.PI * 2);
+    toon(ctx, 0xd00000, 4, 9, 18, 18, { lineW: 2 });
+  });
+  // 蓝莓狙击枪：高速拉长的蓝莓弹 + 拖尾
+  proj(s, 'proj_blueberry_sniper', 40, 16, (ctx) => {
+    const g = ctx.createLinearGradient(0, 0, 26, 0);
+    g.addColorStop(0, 'rgba(160,196,255,0)');
+    g.addColorStop(1, 'rgba(160,196,255,0.8)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 6, 26, 4);
+    ctx.beginPath();
+    ctx.arc(31, 8, 6.5, 0, Math.PI * 2);
+    toon(ctx, 0x3a0ca3, 24.5, 1.5, 13, 13, { lineW: 2 });
+    ctx.fillStyle = '#c8b6ff';
+    starPath(ctx, 31, 8, 2.6, 1.1, 5);
+    ctx.fill();
+  });
+  // 餐盘飞碟：白瓷盘 + 蓝色花边（回旋，自转）
+  proj(s, 'proj_plate_frisbee', 40, 40, (ctx) => {
+    ctx.beginPath();
+    ctx.arc(20, 20, 16, 0, Math.PI * 2);
+    toon(ctx, 0xf8f9fa, 4, 4, 32, 32, { lineW: 2.5 });
+    ctx.strokeStyle = '#4361ee';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(20, 20, 12.5, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(42,22,20,0.25)';
+    ctx.beginPath();
+    ctx.arc(20, 20, 7, 0, Math.PI * 2);
+    ctx.stroke();
+  });
+  // 瓜子机枪：黑色西瓜籽（尖头朝前）
+  proj(s, 'proj_seed_spitter', 20, 14, (ctx) => {
+    ctx.beginPath();
+    ctx.moveTo(18, 7);
+    ctx.quadraticCurveTo(10, 0, 3, 3.5);
+    ctx.quadraticCurveTo(0, 7, 3, 10.5);
+    ctx.quadraticCurveTo(10, 14, 18, 7);
+    ctx.closePath();
+    toon(ctx, 0x2b2118, 1, 1.5, 17, 11, { lineW: 1.5 });
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ellipsePath(ctx, 8, 5.5, 3, 1.2);
+    ctx.fill();
+  });
+  // 胡萝卜弩：胡萝卜箭（尾部绿叶、橙色箭身、尖端朝前）
+  proj(s, 'proj_carrot_crossbow', 44, 16, (ctx) => {
+    ctx.fillStyle = '#52b788';
+    for (const dy of [-5, 0, 5]) {
+      ctx.beginPath();
+      ctx.moveTo(10, 8);
+      ctx.lineTo(1, 8 + dy - 2);
+      ctx.lineTo(1, 8 + dy + 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.beginPath();
+    ctx.moveTo(9, 3);
+    ctx.lineTo(42, 8);
+    ctx.lineTo(9, 13);
+    ctx.closePath();
+    toon(ctx, 0xf3722c, 9, 3, 33, 10, { lineW: 2 });
+    ctx.strokeStyle = 'rgba(42,22,20,0.35)';
+    ctx.lineWidth = 1.2;
+    for (const x of [17, 24, 31]) {
+      ctx.beginPath();
+      ctx.moveTo(x, 5.5);
+      ctx.lineTo(x + 1.5, 9);
+      ctx.stroke();
+    }
+  });
+  // 蜂蜜喷枪：金色黏稠蜜滴（尖端朝后拖尾）
+  proj(s, 'proj_honey_blaster', 28, 20, (ctx) => {
+    ctx.beginPath();
+    ctx.moveTo(2, 10);
+    ctx.quadraticCurveTo(10, 3, 18, 3);
+    ctx.arc(18, 10, 7, -Math.PI / 2, Math.PI / 2);
+    ctx.quadraticCurveTo(10, 17, 2, 10);
+    ctx.closePath();
+    toon(ctx, 0xffb703, 2, 3, 23, 14, { lineW: 2 });
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ellipsePath(ctx, 19, 7, 2.5, 1.5);
+    ctx.fill();
+  });
+  // 酱油手枪：深褐色酱油滴
+  proj(s, 'proj_soy_pistol', 22, 16, (ctx) => {
+    ctx.beginPath();
+    ctx.moveTo(2, 8);
+    ctx.quadraticCurveTo(8, 2.5, 14, 2.5);
+    ctx.arc(14, 8, 5.5, -Math.PI / 2, Math.PI / 2);
+    ctx.quadraticCurveTo(8, 13.5, 2, 8);
+    ctx.closePath();
+    toon(ctx, 0x4a2c1a, 2, 2.5, 17.5, 11, { lineW: 2 });
+    ctx.fillStyle = 'rgba(255,220,180,0.55)';
+    ellipsePath(ctx, 15, 6, 2, 1.2);
+    ctx.fill();
+  });
+  // 冰块格：半透明浅蓝冰块
+  proj(s, 'proj_ice_cube_tray', 22, 22, (ctx) => {
+    roundRectPath(ctx, 3, 3, 16, 16, 4);
+    toon(ctx, 0xa2d2ff, 3, 3, 16, 16, { lineW: 2 });
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    roundRectPath(ctx, 6, 5.5, 6, 3, 1.5);
+    ctx.fill();
+  });
+  // 蒸汽水壶：白色蒸汽团（火焰类，飞行中放大淡出）
+  proj(s, 'proj_steam_kettle', 40, 40, (ctx) => {
+    glow(ctx, 20, 20, 20, 0xdee2e6, 0.85);
+    for (const [x, y, r] of [
+      [15, 21, 8],
+      [24, 17, 9],
+      [24, 25, 7],
+    ] as const) {
+      ctx.fillStyle = 'rgba(255,255,255,0.75)';
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+  // 胡椒喷雾：红橙色辛辣粉雾 + 黑胡椒颗粒（火焰类）
+  proj(s, 'proj_pepper_spray', 40, 40, (ctx) => {
+    glow(ctx, 20, 20, 20, 0xe85d04, 0.85);
+    glow(ctx, 20, 20, 10, 0xffba08, 0.9);
+    ctx.fillStyle = '#2a1614';
+    for (const [x, y] of [
+      [13, 16],
+      [24, 13],
+      [27, 24],
+      [16, 27],
+      [20, 20],
+    ] as const) {
+      ctx.beginPath();
+      ctx.arc(x, y, 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+  // 雷霆榴莲：带刺的黄绿榴莲 + 电光
+  proj(s, 'proj_thunder_durian', 36, 36, (ctx) => {
+    glow(ctx, 18, 18, 18, 0x9bf6ff, 0.6);
+    starPath(ctx, 18, 18, 15, 11, 12);
+    toon(ctx, 0xb5c900, 3, 3, 30, 30, { lineW: 2 });
+    ctx.strokeStyle = '#9bf6ff';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(20, 9);
+    ctx.lineTo(14, 18);
+    ctx.lineTo(20, 18);
+    ctx.lineTo(15, 27);
+    ctx.stroke();
+  });
+  // 火龙果法球：燃烧的粉色火龙果（绿色鳞片 + 火焰光晕）
+  proj(s, 'proj_dragonfruit_orb', 32, 32, (ctx) => {
+    glow(ctx, 16, 16, 16, 0xff7b00, 0.7);
+    ellipsePath(ctx, 16, 16, 10, 9);
+    toon(ctx, 0xf72585, 6, 7, 20, 18, { lineW: 2 });
+    ctx.fillStyle = '#80b918';
+    for (const [x, y] of [
+      [12, 12],
+      [19, 11],
+      [15, 19],
+      [21, 18],
+    ] as const) {
+      ctx.beginPath();
+      ctx.moveTo(x - 3, y + 2);
+      ctx.lineTo(x, y - 3);
+      ctx.lineTo(x + 3, y + 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+  });
+  // 八角飞镖：褐色八角星（回旋，自转）
+  proj(s, 'proj_star_anise_shuriken', 36, 36, (ctx) => {
+    starPath(ctx, 18, 18, 16, 6, 8);
+    toon(ctx, 0x9c6644, 2, 2, 32, 32, { lineW: 2 });
+    ctx.fillStyle = '#ffd166';
+    for (let i = 0; i < 8; i++) {
+      const a = -Math.PI / 2 + (i / 8) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.arc(18 + Math.cos(a) * 9, 18 + Math.sin(a) * 9, 1.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.beginPath();
+    ctx.arc(18, 18, 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#5e3d27';
+    ctx.fill();
+  });
+
   paint(s, 'mine', 40, 40, (ctx) => {
     ctx.beginPath();
     ctx.arc(20, 22, 14, 0, Math.PI * 2);
@@ -712,7 +984,7 @@ export function generateTextures(scene: Phaser.Scene): void {
     paint(s, `stat_${k}`, 96, 96, (ctx) => {
       statGlyph(ctx, k, c);
       // 百分比类与光环类属性：角标区分于同类的数值属性
-      const badge = k === 'auraSize' ? '◎' : k.endsWith('Pct') ? '%' : '';
+      const badge = k === 'auraSize' || k === 'explodeSize' ? '◎' : k.endsWith('Pct') ? '%' : '';
       if (badge) {
         ctx.fillStyle = '#1a0a0c';
         ctx.beginPath();

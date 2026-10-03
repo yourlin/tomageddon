@@ -79,36 +79,36 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/rolling_pin.png" width="32" height="32" alt=""> [Rolling Pin](#weapon-rolling_pin) | Melee | Sweep | Kitchenware | 12 / 20 / 32 / 48 | 1.25 / 1.18 / 1.1 / 1 | 130 | 18 |
 | <img src="../images/weapon/knife.png" width="32" height="32" alt=""> [Chef's Knife](#weapon-knife) | Melee | Thrust | Kitchenware/Sharp | 6 / 10 / 16 / 25 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | 20 |
 | <img src="../images/weapon/pan.png" width="32" height="32" alt=""> [Frying Pan](#weapon-pan) | Melee | Sweep | Kitchenware | 18 / 30 / 46 / 70 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | 25 |
-| <img src="../images/weapon/watermelon_hammer.png" width="32" height="32" alt=""> [Melon Hammer](#weapon-watermelon_hammer) | Melee | Sweep | Produce | 30 / 50 / 80 / 120 | 2.2 / 2.1 / 2 / 1.8 | 140 | 35 |
+| <img src="../images/weapon/watermelon_hammer.png" width="32" height="32" alt=""> [Melon Hammer](#weapon-watermelon_hammer) | Melee | Sweep | Produce/Demolition | 30 / 50 / 80 / 120 | 2.2 / 2.1 / 2 / 1.8 | 140 | 35 |
 | <img src="../images/weapon/slingshot.png" width="32" height="32" alt=""> [Tomato Slingshot](#weapon-slingshot) | Ranged | Bullet | Produce | 8 / 13 / 20 / 30 | 0.95 / 0.9 / 0.83 / 0.75 | 380 | 15 |
 | <img src="../images/weapon/pea_shooter.png" width="32" height="32" alt=""> [Pea Shooter](#weapon-pea_shooter) | Ranged | Bullet | Firearm/Produce | 4 / 6 / 9 / 13 | 0.32 / 0.29 / 0.26 / 0.22 | 400 | 22 |
-| <img src="../images/weapon/chili_rocket.png" width="32" height="32" alt=""> [Chili Rocket](#weapon-chili_rocket) | Ranged | Rocket | Firearm/Elemental | 14 / 24 / 38 / 58 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | 30 |
+| <img src="../images/weapon/chili_rocket.png" width="32" height="32" alt=""> [Chili Rocket](#weapon-chili_rocket) | Ranged | Rocket | Firearm/Elemental/Demolition | 14 / 24 / 38 / 58 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | 30 |
 | <img src="../images/weapon/corn_cannon.png" width="32" height="32" alt=""> [Corn Cannon](#weapon-corn_cannon) | Ranged | Bullet | Firearm | 16 / 28 / 44 / 68 | 1.1 / 1 / 0.92 / 0.84 | 520 | 28 |
 | <img src="../images/weapon/ketchup.png" width="32" height="32" alt=""> [Ketchup Bottle](#weapon-ketchup) | Ranged | Bullet | Sauce | 5 / 8 / 12 / 17 | 0.75 / 0.7 / 0.65 / 0.6 | 280 | 20 |
 | <img src="../images/weapon/mustard_flamer.png" width="32" height="32" alt=""> [Mustard Flamer](#weapon-mustard_flamer) | Elemental | Flame | Sauce/Elemental | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 200 | 28 |
 | <img src="../images/weapon/soda.png" width="32" height="32" alt=""> [Iced Soda](#weapon-soda) | Elemental | Bullet | Elemental | 9 / 15 / 22 / 32 | 0.75 / 0.7 / 0.65 / 0.58 | 400 | 22 |
 | <img src="../images/weapon/garlic_aura.png" width="32" height="32" alt=""> [Garlic Aura](#weapon-garlic_aura) | Elemental | Aura | Produce/Elemental | 4 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 110 | 30 |
-| <img src="../images/weapon/pepper_mine.png" width="32" height="32" alt=""> [Pepper Mine](#weapon-pepper_mine) | Elemental | Mine | Elemental | 20 / 34 / 52 / 80 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 25 |
+| <img src="../images/weapon/pepper_mine.png" width="32" height="32" alt=""> [Pepper Mine](#weapon-pepper_mine) | Elemental | Mine | Elemental/Demolition | 20 / 34 / 52 / 80 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 25 |
 | <img src="../images/weapon/onion_boomerang.png" width="32" height="32" alt=""> [Onion Boomerang](#weapon-onion_boomerang) | Ranged | Boomerang | Produce | 10 / 17 / 26 / 40 | 1.4 / 1.3 / 1.2 / 1.1 | 360 | 24 |
 | <img src="../images/weapon/broccoli_staff.png" width="32" height="32" alt=""> [Broccoli Staff](#weapon-broccoli_staff) | Elemental | Chain Lightning | Produce/Elemental | 10 / 17 / 26 / 40 | 1.1 / 1 / 0.92 / 0.84 | 420 | 30 |
 | <img src="../images/weapon/sauce_gatling.png" width="32" height="32" alt=""> [Sauce Gatling](#weapon-sauce_gatling) | Ranged | Bullet | Firearm/Sauce | 4 / 6 / 8 / 11 | 0.16 / 0.14 / 0.12 / 0.1 | 420 | 40 |
 | <img src="../images/weapon/cleaver.png" width="32" height="32" alt=""> [Meat Cleaver](#weapon-cleaver) | Melee | Sweep | Kitchenware/Sharp | 13 / 22 / 35 / 54 | 1.1 / 1.05 / 1 / 0.9 | 125 | 26 |
-| <img src="../images/weapon/spatula.png" width="32" height="32" alt=""> [Spatula](#weapon-spatula) | Melee | Sweep | Kitchenware | 7 / 12 / 19 / 29 | 0.8 / 0.76 / 0.7 / 0.64 | 115 | 16 |
+| <img src="../images/weapon/spatula.png" width="32" height="32" alt=""> [Spatula](#weapon-spatula) | Melee | Sweep | Kitchenware | 9 / 16 / 25 / 38 | 1.05 / 1 / 0.92 / 0.84 | 115 | 16 |
 | <img src="../images/weapon/whisk_spin.png" width="32" height="32" alt=""> [Whirl Whisk](#weapon-whisk_spin) | Melee | Aura | Kitchenware | 3 / 5 / 8 / 12 | 0.45 / 0.45 / 0.42 / 0.4 | 90 | 22 |
 | <img src="../images/weapon/meat_tenderizer.png" width="32" height="32" alt=""> [Meat Tenderizer](#weapon-meat_tenderizer) | Melee | Sweep | Kitchenware | 22 / 36 / 56 / 84 | 1.9 / 1.8 / 1.7 / 1.55 | 110 | 30 |
-| <img src="../images/weapon/skewer.png" width="32" height="32" alt=""> [BBQ Skewer](#weapon-skewer) | Melee | Thrust | Kitchenware/Sharp | 8 / 14 / 22 / 34 | 1.05 / 1 / 0.92 / 0.84 | 185 | 24 |
+| <img src="../images/weapon/skewer.png" width="32" height="32" alt=""> [BBQ Skewer](#weapon-skewer) | Melee | Thrust | Kitchenware/Sharp | 12 / 21 / 33 / 51 | 1.05 / 1 / 0.92 / 0.84 | 185 | 24 |
 | <img src="../images/weapon/ladle.png" width="32" height="32" alt=""> [Soup Ladle](#weapon-ladle) | Melee | Sweep | Kitchenware/Sauce | 10 / 17 / 27 / 41 | 1.15 / 1.1 / 1.02 / 0.94 | 120 | 20 |
-| <img src="../images/weapon/baguette_sword.png" width="32" height="32" alt=""> [Baguette Blade](#weapon-baguette_sword) | Melee | Sweep | Produce | 11 / 19 / 30 / 46 | 1.3 / 1.22 / 1.14 / 1.04 | 150 | 22 |
+| <img src="../images/weapon/baguette_sword.png" width="32" height="32" alt=""> [Baguette Blade](#weapon-baguette_sword) | Melee | Sweep | Produce | 11 / 19 / 30 / 46 | 1.3 / 1.22 / 1.14 / 1.04 | 140 | 22 |
 | <img src="../images/weapon/cucumber_katana.png" width="32" height="32" alt=""> [Cucumber Katana](#weapon-cucumber_katana) | Melee | Thrust | Produce/Sharp | 9 / 15 / 24 / 36 | 0.8 / 0.75 / 0.69 / 0.62 | 140 | 24 |
 | <img src="../images/weapon/pizza_cutter.png" width="32" height="32" alt=""> [Pizza Cutter](#weapon-pizza_cutter) | Melee | Boomerang | Kitchenware/Sharp | 9 / 15 / 24 / 36 | 1.3 / 1.2 / 1.1 / 1 | 230 | 26 |
 | <img src="../images/weapon/chopsticks.png" width="32" height="32" alt=""> [Chopsticks](#weapon-chopsticks) | Melee | Thrust | Kitchenware | 5 / 9 / 14 / 21 | 0.5 / 0.46 / 0.42 / 0.38 | 155 | 18 |
-| <img src="../images/weapon/bamboo_spear.png" width="32" height="32" alt=""> [Bamboo Spear](#weapon-bamboo_spear) | Melee | Thrust | Produce | 16 / 27 / 42 / 64 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | 28 |
-| <img src="../images/weapon/pineapple_mace.png" width="32" height="32" alt=""> [Pineapple Mace](#weapon-pineapple_mace) | Melee | Sweep | Produce | 20 / 34 / 53 / 80 | 1.8 / 1.7 / 1.6 / 1.45 | 130 | 32 |
+| <img src="../images/weapon/bamboo_spear.png" width="32" height="32" alt=""> [Bamboo Spear](#weapon-bamboo_spear) | Melee | Thrust | Produce | 19 / 32 / 50 / 77 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | 28 |
+| <img src="../images/weapon/pineapple_mace.png" width="32" height="32" alt=""> [Pineapple Mace](#weapon-pineapple_mace) | Melee | Sweep | Produce/Demolition | 20 / 34 / 53 / 80 | 1.8 / 1.7 / 1.6 / 1.45 | 130 | 32 |
 | <img src="../images/weapon/olive_launcher.png" width="32" height="32" alt=""> [Olive Launcher](#weapon-olive_launcher) | Ranged | Bullet | Firearm/Produce | 6 / 10 / 15 / 23 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 22 |
-| <img src="../images/weapon/popcorn_machine.png" width="32" height="32" alt=""> [Popcorn Popper](#weapon-popcorn_machine) | Ranged | Mine | Firearm | 14 / 24 / 37 / 56 | 2 / 1.9 / 1.75 / 1.6 | 220 | 24 |
+| <img src="../images/weapon/popcorn_machine.png" width="32" height="32" alt=""> [Popcorn Popper](#weapon-popcorn_machine) | Ranged | Mine | Firearm/Demolition | 14 / 24 / 37 / 56 | 2 / 1.9 / 1.75 / 1.6 | 220 | 24 |
 | <img src="../images/weapon/grape_shotgun.png" width="32" height="32" alt=""> [Grape Shotgun](#weapon-grape_shotgun) | Ranged | Bullet | Firearm/Produce | 4 / 7 / 10 / 15 | 1 / 0.95 / 0.88 / 0.8 | 240 | 26 |
-| <img src="../images/weapon/bean_bazooka.png" width="32" height="32" alt=""> [Bean Bazooka](#weapon-bean_bazooka) | Ranged | Rocket | Firearm | 22 / 36 / 56 / 84 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 34 |
-| <img src="../images/weapon/cherry_bomb.png" width="32" height="32" alt=""> [Cherry Bombs](#weapon-cherry_bomb) | Ranged | Rocket | Produce | 10 / 17 / 26 / 40 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 28 |
+| <img src="../images/weapon/bean_bazooka.png" width="32" height="32" alt=""> [Bean Bazooka](#weapon-bean_bazooka) | Ranged | Rocket | Firearm/Demolition | 22 / 36 / 56 / 84 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 34 |
+| <img src="../images/weapon/cherry_bomb.png" width="32" height="32" alt=""> [Cherry Bombs](#weapon-cherry_bomb) | Ranged | Rocket | Produce/Demolition | 10 / 17 / 26 / 40 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 28 |
 | <img src="../images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [Blueberry Sniper](#weapon-blueberry_sniper) | Ranged | Bullet | Firearm/Produce | 26 / 44 / 68 / 100 | 1.9 / 1.8 / 1.65 / 1.5 | 650 | 32 |
 | <img src="../images/weapon/plate_frisbee.png" width="32" height="32" alt=""> [Plate Frisbee](#weapon-plate_frisbee) | Ranged | Boomerang | Kitchenware | 12 / 20 / 31 / 47 | 1.5 / 1.4 / 1.3 / 1.2 | 330 | 24 |
 | <img src="../images/weapon/seed_spitter.png" width="32" height="32" alt=""> [Seed Spitter](#weapon-seed_spitter) | Ranged | Bullet | Firearm/Produce | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | 26 |
@@ -120,8 +120,8 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/steam_kettle.png" width="32" height="32" alt=""> [Steam Kettle](#weapon-steam_kettle) | Elemental | Flame | Kitchenware/Elemental | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | 28 |
 | <img src="../images/weapon/curry_aura.png" width="32" height="32" alt=""> [Curry Aura](#weapon-curry_aura) | Elemental | Aura | Sauce/Elemental | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 120 | 32 |
 | <img src="../images/weapon/pepper_spray.png" width="32" height="32" alt=""> [Pepper Spray](#weapon-pepper_spray) | Elemental | Flame | Elemental | 2 / 4 / 6 / 9 | 0.18 / 0.16 / 0.14 / 0.12 | 150 | 26 |
-| <img src="../images/weapon/mint_frost_mine.png" width="32" height="32" alt=""> [Mint Frost Mine](#weapon-mint_frost_mine) | Elemental | Mine | Produce/Elemental | 16 / 27 / 42 / 64 | 2.6 / 2.4 / 2.2 / 1.9 | 220 | 26 |
-| <img src="../images/weapon/thunder_durian.png" width="32" height="32" alt=""> [Thunder Durian](#weapon-thunder_durian) | Elemental | Rocket | Produce/Elemental | 16 / 27 / 42 / 64 | 2.2 / 2.1 / 1.95 / 1.75 | 400 | 32 |
+| <img src="../images/weapon/mint_frost_mine.png" width="32" height="32" alt=""> [Mint Frost Mine](#weapon-mint_frost_mine) | Elemental | Mine | Produce/Elemental/Demolition | 16 / 27 / 42 / 64 | 2.6 / 2.4 / 2.2 / 1.9 | 220 | 26 |
+| <img src="../images/weapon/thunder_durian.png" width="32" height="32" alt=""> [Thunder Durian](#weapon-thunder_durian) | Elemental | Rocket | Produce/Elemental/Demolition | 16 / 27 / 42 / 64 | 2.2 / 2.1 / 1.95 / 1.75 | 400 | 32 |
 | <img src="../images/weapon/dragonfruit_orb.png" width="32" height="32" alt=""> [Dragonfruit Orb](#weapon-dragonfruit_orb) | Elemental | Bullet | Produce/Elemental | 8 / 13 / 20 / 30 | 1 / 0.95 / 0.88 / 0.8 | 400 | 28 |
 | <img src="../images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [Star Anise Star](#weapon-star_anise_shuriken) | Elemental | Boomerang | Sharp/Elemental | 9 / 15 / 23 / 35 | 1.3 / 1.2 / 1.1 / 1 | 320 | 28 |
 | <img src="../images/weapon/lemon_battery.png" width="32" height="32" alt=""> [Lemon Battery](#weapon-lemon_battery) | Elemental | Chain Lightning | Produce/Elemental | 12 / 20 / 31 / 47 | 1.3 / 1.2 / 1.1 / 1 | 360 | 30 |
@@ -249,13 +249,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Melee / Sweep |
-| Tags | Produce |
+| Tags | Produce, Demolition |
 | Damage T1–T4 | 30 / 50 / 80 / 120 |
 | Cooldown T1–T4 | 2.2s / 2.1s / 2s / 1.8s |
 | Range | 140 |
 | Scaling | Melee Damage ×1.5, Max HP ×0.1 |
 | Crit multiplier | ×1.5 |
-| Effects | Explosion radius 80, Knockback 40 |
+| Effects | Explosion radius 100, Knockback 40 |
 | T1 price | 35 |
 | Starting weapon of | [Chubby Melon](CHARACTERS.md#char-watermelon) |
 
@@ -292,8 +292,8 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | --- | --- |
 | Class / attack | Melee / Sweep |
 | Tags | Kitchenware |
-| Damage T1–T4 | 7 / 12 / 19 / 29 |
-| Cooldown T1–T4 | 0.8s / 0.76s / 0.7s / 0.64s |
+| Damage T1–T4 | 9 / 16 / 25 / 38 |
+| Cooldown T1–T4 | 1.05s / 1s / 0.92s / 0.84s |
 | Range | 115 |
 | Scaling | Melee Damage ×0.8 |
 | Crit multiplier | ×1.5 |
@@ -355,7 +355,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | --- | --- |
 | Class / attack | Melee / Thrust |
 | Tags | Kitchenware, Sharp |
-| Damage T1–T4 | 8 / 14 / 22 / 34 |
+| Damage T1–T4 | 12 / 21 / 33 / 51 |
 | Cooldown T1–T4 | 1.05s / 1s / 0.92s / 0.84s |
 | Range | 185 |
 | Scaling | Melee Damage ×0.9 |
@@ -399,7 +399,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Tags | Produce |
 | Damage T1–T4 | 11 / 19 / 30 / 46 |
 | Cooldown T1–T4 | 1.3s / 1.22s / 1.14s / 1.04s |
-| Range | 150 |
+| Range | 140 |
 | Scaling | Melee Damage ×1, Max HP ×0.15 |
 | Crit multiplier | ×1.5 |
 | Effects | Knockback 25 |
@@ -481,7 +481,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | --- | --- |
 | Class / attack | Melee / Thrust |
 | Tags | Produce |
-| Damage T1–T4 | 16 / 27 / 42 / 64 |
+| Damage T1–T4 | 19 / 32 / 50 / 77 |
 | Cooldown T1–T4 | 1.5s / 1.42s / 1.32s / 1.2s |
 | Range | 200 |
 | Scaling | Melee Damage ×1.2 |
@@ -501,13 +501,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Melee / Sweep |
-| Tags | Produce |
+| Tags | Produce, Demolition |
 | Damage T1–T4 | 20 / 34 / 53 / 80 |
 | Cooldown T1–T4 | 1.8s / 1.7s / 1.6s / 1.45s |
 | Range | 130 |
 | Scaling | Melee Damage ×1.3 |
 | Crit multiplier | ×1.5 |
-| Effects | Explosion radius 60, Knockback 30 |
+| Effects | Explosion radius 75, Knockback 30 |
 | T1 price | 32 |
 | Starting weapon of | - |
 
@@ -568,13 +568,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Ranged / Rocket |
-| Tags | Firearm, Elemental |
+| Tags | Firearm, Elemental, Demolition |
 | Damage T1–T4 | 14 / 24 / 38 / 58 |
 | Cooldown T1–T4 | 1.8s / 1.7s / 1.6s / 1.4s |
 | Range | 450 |
 | Scaling | Ranged Damage ×1, Elemental Damage ×0.5 |
 | Crit multiplier | ×1.5 |
-| Effects | Burn 3/s for 2s, Explosion radius 70 |
+| Effects | Burn 3/s for 2s, Explosion radius 90 |
 | T1 price | 30 |
 | Starting weapon of | [Dr. Avocado](CHARACTERS.md#char-avocado), [Wasabi Bomber](CHARACTERS.md#char-wasabi) |
 
@@ -694,13 +694,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Ranged / Mine |
-| Tags | Firearm |
+| Tags | Firearm, Demolition |
 | Damage T1–T4 | 14 / 24 / 37 / 56 |
 | Cooldown T1–T4 | 2s / 1.9s / 1.75s / 1.6s |
 | Range | 220 |
 | Scaling | Ranged Damage ×0.9 |
 | Crit multiplier | ×1.5 |
-| Effects | Explosion radius 60 |
+| Effects | Explosion radius 75 |
 | T1 price | 24 |
 | Starting weapon of | - |
 
@@ -736,13 +736,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Ranged / Rocket |
-| Tags | Firearm |
+| Tags | Firearm, Demolition |
 | Damage T1–T4 | 22 / 36 / 56 / 84 |
 | Cooldown T1–T4 | 2.4s / 2.25s / 2.1s / 1.9s |
 | Range | 480 |
 | Scaling | Ranged Damage ×1.3 |
 | Crit multiplier | ×1.5 |
-| Effects | Explosion radius 90, Knockback 30 |
+| Effects | Explosion radius 115, Knockback 30 |
 | T1 price | 34 |
 | Starting weapon of | - |
 
@@ -757,13 +757,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Ranged / Rocket |
-| Tags | Produce |
+| Tags | Produce, Demolition |
 | Damage T1–T4 | 10 / 17 / 26 / 40 |
 | Cooldown T1–T4 | 1.6s / 1.5s / 1.4s / 1.3s |
 | Range | 360 |
 | Scaling | Ranged Damage ×0.8 |
 | Crit multiplier | ×1.5 |
-| Effects | Explosion radius 55, Projectiles 2/2/2/3 |
+| Effects | Explosion radius 70, Projectiles 2/2/2/3 |
 | T1 price | 28 |
 | Starting weapon of | - |
 
@@ -971,13 +971,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Elemental / Mine |
-| Tags | Elemental |
+| Tags | Elemental, Demolition |
 | Damage T1–T4 | 20 / 34 / 52 / 80 |
 | Cooldown T1–T4 | 2.5s / 2.3s / 2.1s / 1.8s |
 | Range | 200 |
 | Scaling | Elemental Damage ×1 |
 | Crit multiplier | ×1.5 |
-| Effects | Explosion radius 90 |
+| Effects | Explosion radius 115 |
 | T1 price | 25 |
 | Starting weapon of | [Dr. Avocado](CHARACTERS.md#char-avocado) |
 
@@ -1118,13 +1118,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Elemental / Mine |
-| Tags | Produce, Elemental |
+| Tags | Produce, Elemental, Demolition |
 | Damage T1–T4 | 16 / 27 / 42 / 64 |
 | Cooldown T1–T4 | 2.6s / 2.4s / 2.2s / 1.9s |
 | Range | 220 |
 | Scaling | Elemental Damage ×0.9 |
 | Crit multiplier | ×1.5 |
-| Effects | Slow 50% for 2s, Explosion radius 100 |
+| Effects | Slow 50% for 2s, Explosion radius 125 |
 | T1 price | 26 |
 | Starting weapon of | - |
 
@@ -1139,13 +1139,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Field | Value |
 | --- | --- |
 | Class / attack | Elemental / Rocket |
-| Tags | Produce, Elemental |
+| Tags | Produce, Elemental, Demolition |
 | Damage T1–T4 | 16 / 27 / 42 / 64 |
 | Cooldown T1–T4 | 2.2s / 2.1s / 1.95s / 1.75s |
 | Range | 400 |
 | Scaling | Elemental Damage ×1 |
 | Crit multiplier | ×1.5 |
-| Effects | Stun 0.35s, Explosion radius 80 |
+| Effects | Stun 0.35s, Explosion radius 100 |
 | T1 price | 32 |
 | Starting weapon of | - |
 

@@ -30,6 +30,7 @@ export class Bullet extends Phaser.GameObjects.Image {
   debuffs: StatusApply[] | undefined;
   owner: Enemy | null = null;
   status: StatusApply[] | undefined; // 玩家子弹附带的状态
+  critBonus = 0; // 武器词条暴击伤害 %（命中时与道具暴击伤害合并结算）
 
   constructor(scene: Phaser.Scene) {
     super(scene, 0, 0, 'proj_player');
@@ -59,6 +60,7 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.owner = null;
     this.status = undefined;
     this.crit = false;
+    this.critBonus = 0;
     return this;
   }
 

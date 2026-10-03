@@ -104,7 +104,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Heart of Tomato**：After each wave, permanently gain +1 Max HP and +1% Damage |
 | Traits | +5% Damage; +1 HP Regen |
-| Stat modifiers | +1 HP Regen (per 5s), +5% All Damage |
+| Stat modifiers | +1 HP Regen, +5% All Damage |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
 | Active skill | [Ketchup Burst](SKILLS.md#skill-tomato) [Nova Burst] cooldown 17s — Splatter ketchup everywhere, damaging and slowing enemies. |
 | Unlock | Unlocked by default |
@@ -223,7 +223,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Blood Feast**：Life Steal is doubled below 50% HP |
 | Traits | +10% Life Steal; -3 HP Regen; +5% Damage |
-| Stat modifiers | -3 HP Regen (per 5s), +10% Life Steal, +5% All Damage |
+| Stat modifiers | -3 HP Regen, +10% Life Steal, +5% All Damage |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
 | Active skill | [Blood Domain](SKILLS.md#skill-garlic) [Drain Heal] cooldown 14s — Drain life from nearby enemies and inflict Bleed. |
 | Unlock | 830 pts |
@@ -342,7 +342,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Tear Gas**：When hit, Blind nearby enemies for 2s (at most once per 3s) |
 | Traits | +4 Armor; +10 Max HP; Reflect 15 damage when hit |
-| Stat modifiers | +10 Max HP, +2 HP Regen (per 5s), +4 Armor, -5% Move Speed |
+| Stat modifiers | +10 Max HP, +2 HP Regen, +4 Armor, -5% Move Speed |
 | Starting weapons | [Frying Pan](WEAPONS.md#weapon-pan) |
 | Active skill | [Tear Gas Zone](SKILLS.md#skill-onion) [Binding Field] cooldown 12s — Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside. |
 | Unlock | 980 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
@@ -444,7 +444,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Angel's Grace**：Once per wave, survive a lethal hit with 1 HP and 2s of invulnerability |
 | Traits | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage |
-| Stat modifiers | +5 Max HP, +5 HP Regen (per 5s), -10% All Damage |
+| Stat modifiers | +5 Max HP, +5 HP Regen, -10% All Damage |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
 | Active skill | [Angel’s Blessing](SKILLS.md#skill-peach) [Drain Heal] cooldown 21s — Restore 20% HP and become Invulnerable for 1.5s. |
 | Unlock | 830 pts |
@@ -597,7 +597,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | --- | --- |
 | Talent | **Zen Stillness**：While standing still, take 25% less damage and heal 2% Max HP per second |
 | Traits | +15% Dodge; +3 HP Regen; Gain Focus on successful dodge |
-| Stat modifiers | +3 HP Regen (per 5s), +15% Dodge, +5% Move Speed, Ranged damage ×0.7 |
+| Stat modifiers | +3 HP Regen, +15% Dodge, +5% Move Speed, Ranged damage ×0.7 |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
 | Active skill | [Golden Bell](SKILLS.md#skill-wintermelon) [Stealth] cooldown 16s — Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify. |
 | Unlock | 930 pts, requires [Boss Terminator（Bronze）](ACHIEVEMENTS.md#ach-bosses) |

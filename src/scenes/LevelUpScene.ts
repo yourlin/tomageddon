@@ -74,15 +74,19 @@ export class LevelUpScene extends Phaser.Scene {
     // 只提供当前武器涉及的流派伤害选项（否则 4 种流派会把有用选项稀释掉）
     const cls = new Set(run.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => (d.kind === 'aura' ? 'aura' : d.cls)));
     const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };
-    const own = new Set([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
-    const pool = LEVELUP_OPTIONS.filter((o) => !Object.values(CLASS_KEY).includes(o.key) || own.has(o.key));
+    const own = new Set<string>([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
+    // 爆炸范围：只在持有爆炸类武器（命中/落点爆炸）时提供
+    const EXPLODE_KEY = 'explodeSize';
+    if (run.weapons.some((w) => WEAPON_MAP[w.id]?.effect?.explode)) own.add(EXPLODE_KEY);
+    const gated = [...Object.values(CLASS_KEY), EXPLODE_KEY] as string[];
+    const pool = LEVELUP_OPTIONS.filter((o) => !gated.includes(o.key) || own.has(o.key));
     const R = run.rand(`lvl:${run.level}:${run.pendingLevelUps}:${this.rerolls}`);
     const opts = shuffleWith([...pool], R).slice(0, n);
     const cw = Math.min(230, (W - 60) / n - 16),
       ch = 280;
     const x0 = W / 2 - (n * (cw + 16) - 16) / 2;
     opts.forEach((o, i) => {
-      const rar = pickRarity(run.wave, run.stats.luck, R);
+      const rar = pickRarity(run.wave, run.stats.luck, R, BALANCE.legendUpgrade);
       const v = o.values[rar];
       const x = x0 + i * (cw + 16),
         y = 140;
