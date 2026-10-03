@@ -11,14 +11,10 @@ import { LevelUpScene } from './scenes/LevelUpScene';
 import { ShopScene } from './scenes/ShopScene';
 import { PauseScene } from './scenes/PauseScene';
 import { ResultScene } from './scenes/ResultScene';
-import { CodexScene } from './scenes/CodexScene';
 import { SettingsScene } from './scenes/SettingsScene';
-import { AchievementScene } from './scenes/AchievementScene';
-import { ChangelogScene } from './scenes/ChangelogScene';
-import { TalentTreeScene } from './scenes/TalentTreeScene';
-import { RunStatsScene } from './scenes/RunStatsScene';
-import { HistoryScene } from './scenes/HistoryScene';
 import { ChallengeScene } from './scenes/ChallengeScene';
+import { lazyScene } from './scenes/LazyScene';
+import { installErrorLog } from './systems/ErrorLog';
 import { run } from './systems/RunState';
 import { controls } from './systems/Controls';
 import { CHARACTERS, CHARACTER_MAP } from './data/characters';
@@ -75,13 +71,14 @@ const game = new Phaser.Game({
     ShopScene,
     PauseScene,
     ResultScene,
-    CodexScene,
+    // K8：图鉴 / 成就 / 更新日志 / 天赋树 / 局后数据 / 战绩按需加载，不进首屏包
+    lazyScene('Codex', () => import('./scenes/CodexScene').then((m) => m.CodexScene)),
     SettingsScene,
-    AchievementScene,
-    ChangelogScene,
-    TalentTreeScene,
-    RunStatsScene,
-    HistoryScene,
+    lazyScene('Achievements', () => import('./scenes/AchievementScene').then((m) => m.AchievementScene)),
+    lazyScene('Changelog', () => import('./scenes/ChangelogScene').then((m) => m.ChangelogScene)),
+    lazyScene('TalentTree', () => import('./scenes/TalentTreeScene').then((m) => m.TalentTreeScene)),
+    lazyScene('RunStats', () => import('./scenes/RunStatsScene').then((m) => m.RunStatsScene)),
+    lazyScene('History', () => import('./scenes/HistoryScene').then((m) => m.HistoryScene)),
     ChallengeScene,
   ],
 });
@@ -109,6 +106,12 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // 调试用
+installErrorLog(() =>
+  game.scene
+    .getScenes(true)
+    .map((s) => s.sys.settings.key)
+    .join(','),
+);
 Object.assign(window, {
   game,
   run,

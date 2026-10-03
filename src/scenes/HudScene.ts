@@ -88,11 +88,15 @@ export class HudScene extends Phaser.Scene {
       controls.pausePressed = true;
     });
 
-    // 技能按钮
+    // 技能按钮（L2：大小可调；「摇杆在右」时按钮放到左下角）
     const sk = run.char.skill;
-    const bx = W - 110,
-      by = H - 110;
+    const st = save.settings;
+    const bs = st.btnScale ?? 1;
+    const right = !!st.joyRight;
+    const bx = right ? 110 * bs : W - 110 * bs,
+      by = H - 110 * bs;
     this.skillBtn = this.add.container(bx, by);
+    this.skillBtn.setScale(bs);
     this.skillGfx = this.add.graphics();
     const skName = text(this, 0, 18, sk.name, 16).setOrigin(0.5);
     const icon = this.textures.exists(`skill_${run.charId}`)
@@ -108,12 +112,14 @@ export class HudScene extends Phaser.Scene {
       if (p.id === this.joyId) this.joyId = -1;
     });
 
-    // 虚拟摇杆（左半屏任意位置按下）
-    this.joyBase = this.add.image(0, 0, 'ui_joy_base').setVisible(false).setDepth(5);
-    this.joyKnob = this.add.image(0, 0, 'ui_joy_knob').setVisible(false).setDepth(6);
+    // 虚拟摇杆（默认左半屏任意位置按下；L2 可换到右手、调大小）
+    const js = st.joyScale ?? 1;
+    this.joyBase = this.add.image(0, 0, 'ui_joy_base').setVisible(false).setDepth(5).setScale(js);
+    this.joyKnob = this.add.image(0, 0, 'ui_joy_knob').setVisible(false).setDepth(6).setScale(js);
     this.input.on('pointerdown', (p: Phaser.Input.Pointer, over: Phaser.GameObjects.GameObject[]) => {
       if (over.length || this.joyId !== -1) return;
-      if (p.x > W * 0.6 && p.y > H * 0.5) return;
+      // 技能按钮所在的角落不触发摇杆
+      if (right ? p.x < W * 0.4 && p.y > H * 0.5 : p.x > W * 0.6 && p.y > H * 0.5) return;
       this.joyId = p.id;
       this.joyOrigin.set(p.x, p.y);
       this.joyBase.setPosition(p.x, p.y).setVisible(true);
@@ -123,7 +129,7 @@ export class HudScene extends Phaser.Scene {
       if (p.id !== this.joyId) return;
       const dx = p.x - this.joyOrigin.x,
         dy = p.y - this.joyOrigin.y;
-      const max = 70;
+      const max = 70 * js;
       const d = Math.hypot(dx, dy);
       const k = d > max ? max / d : 1;
       this.joyKnob.setPosition(this.joyOrigin.x + dx * k, this.joyOrigin.y + dy * k);

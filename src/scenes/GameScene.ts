@@ -31,7 +31,7 @@ import { SkillSystem } from '../systems/SkillSystem';
 import { StatusSet } from '../systems/Status';
 import { RigPool } from '../systems/RigPool';
 import { Fx } from '../systems/Fx';
-import { controls } from '../systems/Controls';
+import { controls, readPad } from '../systems/Controls';
 import { audio } from '../systems/Audio';
 import { save, persist, markSeen } from '../systems/Save';
 import { paintArena } from '../art/ArenaArt';
@@ -476,6 +476,13 @@ export class GameScene extends Phaser.Scene {
     const k = this.keys;
     let mx = controls.joyX,
       my = controls.joyY;
+    const pad = readPad();
+    if (pad.connected && (pad.x || pad.y)) {
+      mx = pad.x;
+      my = pad.y;
+    }
+    if (pad.skill) controls.skillPressed = true;
+    if (pad.pause) controls.pausePressed = true;
     if (k.A.isDown || k.LEFT.isDown) mx = -1;
     if (k.D.isDown || k.RIGHT.isDown) mx = 1;
     if (k.W.isDown || k.UP.isDown) my = -1;
@@ -706,7 +713,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   shake(intensity: number, dur: number): void {
-    if (save.settings.shake) this.cameras.main.shake(dur, intensity);
+    if (save.settings.shake) this.cameras.main.shake(dur, intensity * (save.settings.shakeScale ?? 1));
   }
 
   // ---------------- 波次与刷怪 ----------------
