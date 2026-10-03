@@ -1,6 +1,7 @@
 // 构筑页：角色 / 章节 / 波次 / 等级 / 资金 → 模拟商店购买与升级加点 → 保存为预设
 import { h, btn, check, select, num, table, fmt } from '../dom';
 import type { DevCtx } from '../ctx';
+import { switchChar } from '../quick';
 import { CHARACTERS, CHARACTER_MAP } from '../../data/characters';
 import { CHAPTERS } from '../../data/chapters';
 import { WEAPONS, WEAPON_MAP, TIER_NAMES } from '../../data/weapons';
@@ -60,14 +61,7 @@ export function renderBuild(ctx: DevCtx): HTMLElement {
       select(
         CHARACTERS.map((c) => [c.id, `${c.name}（${c.title}）`]),
         b.charId,
-        (v) => {
-          // 武器仍是旧角色初始武器时，换成新角色的初始武器
-          const old = CHARACTER_MAP[b.charId].startWeapons;
-          const same = b.weapons.length === old.length && b.weapons.every((w, i) => w.id === old[i] && w.tier === 0);
-          b.charId = v;
-          if (same) b.weapons = CHARACTER_MAP[v].startWeapons.map((id) => ({ id, tier: 0 }));
-          ctx.changed();
-        },
+        (v) => switchChar(ctx, v),
       ),
       '章节',
       select(

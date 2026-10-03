@@ -106,6 +106,14 @@ export const CSS = `
 #dev-panel .hdr{display:flex;align-items:center;gap:6px;padding:6px 8px;background:#2b0f12;border-bottom:1px solid #4a2028}
 #dev-panel .hdr b{color:#ff6b5e;font-size:14px;margin-right:auto}
 #dev-panel .ctl{padding:6px 8px;border-bottom:1px solid #4a2028;background:#1d0b0e;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+#dev-panel .quick{padding:4px 8px;border-bottom:1px solid #4a2028;background:#22100f}
+#dev-panel .quick .row{margin:2px 0}
+#dev-panel .quick .cur{min-width:120px;color:#ffd166;font-size:13px}
+#dev-panel .seg{display:inline-flex}
+#dev-panel .seg button{border-radius:0;margin-left:-1px}
+#dev-panel .seg button:first-child{border-radius:4px 0 0 4px}
+#dev-panel .seg button:last-child{border-radius:0 4px 4px 0}
+#dev-panel .seg button.on{background:#ff4b3e;color:#fff;border-color:#ff4b3e}
 #dev-panel .live{padding:6px 8px;border-bottom:1px solid #4a2028;background:#140709;font-family:Consolas,monospace;font-size:11.5px;white-space:pre-wrap;max-height:210px;overflow:auto}
 #dev-panel .tabs{display:flex;gap:2px;padding:4px 6px 0;background:#1d0b0e;border-bottom:1px solid #4a2028}
 #dev-panel .tabs button{border-radius:6px 6px 0 0;border-bottom:none;padding:5px 10px}

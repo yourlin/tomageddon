@@ -11,6 +11,7 @@ import { renderWeapons } from './tabs/weaponsTab';
 import { renderSkills } from './tabs/skillsTab';
 import { renderMonsters } from './tabs/monstersTab';
 import { renderTests, srcName } from './tabs/testsTab';
+import { renderQuick, installQuickKeys, isTyping } from './quick';
 import { run } from '../systems/RunState';
 import { save } from '../systems/Save';
 import { audio } from '../systems/Audio';
@@ -36,12 +37,18 @@ function mount(game: Phaser.Game): void {
   const root = document.documentElement;
   const stage = document.getElementById('stage')!;
   let collapsed = false;
+  // 让 Phaser 重新量父容器再重排。只调 refresh() 会沿用缓存的旧父容器尺寸，
+  // 结果画布仍按旧宽度绘制，右侧被面板挡住（打开面板、浏览器缩放时都会出现）
+  const fit = () => {
+    (game.scale as unknown as { getParentBounds(): boolean }).getParentBounds();
+    game.scale.refresh();
+  };
   const layout = () => {
     root.style.setProperty('--dev-w', collapsed ? '0px' : `${PANEL_W}px`);
     stage.style.right = collapsed ? '0' : `${PANEL_W}px`;
     panel.style.display = collapsed ? 'none' : 'flex';
     toggle.textContent = collapsed ? '◀ 开发者面板' : '▶';
-    game.scale.refresh();
+    fit();
   };
 
   let build: DevBuild = loadCurrent();
@@ -124,6 +131,7 @@ function mount(game: Phaser.Game): void {
       ctx.changed();
     },
     rerender: () => {
+      renderQuick(ctx, quick);
       renderTabs();
       renderTab();
     },
@@ -147,6 +155,7 @@ function mount(game: Phaser.Game): void {
   });
   const toastEl = h('span', { style: 'transition:opacity .3s;opacity:0;margin-left:6px' });
   const ctl = h('div', { class: 'ctl' });
+  const quick = h('div', { class: 'quick' });
   const live = h('div', { class: 'live' });
   const tabs = h('div', { class: 'tabs' });
   const body = h('div', { class: 'body' });
@@ -161,25 +170,43 @@ function mount(game: Phaser.Game): void {
       btn('退出到游戏', () => (location.href = location.pathname)),
     ),
     ctl,
+    quick,
     live,
     tabs,
     body,
   );
   document.body.append(panel, toggle);
 
-  // 在面板里打字时关闭游戏键盘（否则 WASD / 空格会被游戏截获）
+  // 键盘：只有在文字 / 数字输入框里打字时才关闭游戏键盘（否则 WASD / 空格会被游戏截获）。
+  // 点完按钮、复选框、下拉框后立刻交还焦点：否则焦点留在控件上，空格会再次触发按钮、
+  // 方向键会改下拉框的值，而点击画布又无法夺回焦点（画布不可聚焦），表现为键盘失灵
   const kb = () => game.input.keyboard;
-  panel.addEventListener('focusin', (e) => {
-    const t = e.target as HTMLElement;
-    if (kb() && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) kb()!.enabled = false;
-  });
-  panel.addEventListener('focusout', () => {
+  const release = () => {
     if (kb()) kb()!.enabled = true;
     for (const s of game.scene.getScenes(true)) s.input.keyboard?.resetKeys();
+  };
+  panel.addEventListener('focusin', (e) => {
+    if (kb() && isTyping(e.target as HTMLElement)) kb()!.enabled = false;
+  });
+  panel.addEventListener('focusout', release);
+  const blurControl = (e: Event) => {
+    const t = e.target as HTMLElement;
+    // 下拉框只在选完（change）后交还焦点：click 时就失焦会把刚打开的下拉列表关掉
+    if (e.type === 'click' && t.tagName === 'SELECT') return;
+    if (t instanceof HTMLElement && !isTyping(t) && /^(BUTTON|INPUT|SELECT|A)$/.test(t.tagName)) setTimeout(() => t.blur(), 0);
+  };
+  panel.addEventListener('click', blurControl);
+  panel.addEventListener('change', blurControl);
+  // 点到游戏画面时，无论焦点在面板哪里都还给游戏
+  stage.addEventListener('pointerdown', () => {
+    const a = document.activeElement as HTMLElement | null;
+    if (a && panel.contains(a)) a.blur();
+    release();
   });
 
   // ---------------- 控制条 ----------------
   function renderCtl(): void {
+    renderQuick(ctx, quick);
     ctl.replaceChildren(
       btn(sb.paused ? '▶ 继续' : '⏸ 暂停', () => {
         sb.togglePause();
@@ -302,6 +329,8 @@ function mount(game: Phaser.Game): void {
   renderTab();
   sb.restart();
   window.setInterval(renderLive, 250);
-  window.addEventListener('resize', () => game.scale.refresh());
+  // 浏览器缩放、窗口大小变化、面板展开收起都会改变舞台尺寸：统一监听舞台本身
+  new ResizeObserver(fit).observe(stage);
+  installQuickKeys(ctx);
   Object.assign(window, { __devPanel: ctx });
 }
