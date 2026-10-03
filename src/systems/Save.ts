@@ -135,7 +135,15 @@ function load(): SaveData {
 
 export const save: SaveData = load();
 
+/** 开发者界面（?dev）下禁止写盘：沙盒里的击杀、天赋改动、图鉴发现都只留在内存，不污染玩家存档 */
+let persistOff = false;
+export function disablePersist(): void {
+  persistOff = true;
+}
+export const persistDisabled = (): boolean => persistOff;
+
 export function persist(): void {
+  if (persistOff) return;
   try {
     localStorage.setItem(KEY, JSON.stringify(save));
   } catch {

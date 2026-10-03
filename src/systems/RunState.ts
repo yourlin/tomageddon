@@ -12,7 +12,7 @@ import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
 import { BALANCE, xpToNext, isBossWaveNo, isEliteWaveNo } from '../data/balance';
-import { markSeen, save, type RunRecord } from './Save';
+import { markSeen, save, persistDisabled, type RunRecord } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
 
@@ -444,6 +444,7 @@ const RUN_KEY = 'tomato_sister_run_v1';
 /** 局内存档：每波结束时保存，刷新页面后可继续 */
 /** 保存对局；phase = 'wave' 表示保存于某一波开始时（继续游戏将直接从该波开始） */
 export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
+  if (persistDisabled()) return;
   try {
     const d = {
       v: 1,

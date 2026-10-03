@@ -9,19 +9,11 @@ import {
   waveDuration,
   spawnInterval,
   spawnBatch,
-  enemyHp,
-  enemyDamage,
   armorMultiplier,
   moveSpeed,
   fruitDropChance,
   crateDropChance,
   chapterScale,
-  endlessHp,
-  endlessDmg,
-  eliteHpScale,
-  eliteDmgScale,
-  bossHpScale,
-  bossDmgScale,
   regenPerSecond,
   explodeSizeMultiplier,
 } from '../data/balance';
@@ -48,6 +40,15 @@ import { tx } from '../i18n';
 import { checkAchievements, setInRun } from '../systems/Achievements';
 import { TalentSystem, waveGrowthMods } from '../systems/Talents';
 import { saveRun } from '../systems/RunState';
+import { minionStats, bossStats } from '../systems/EnemyScaling';
+
+/** 开发者沙盒（?dev）：不刷怪、不计时、不掉落、不结算；玩家阵亡时原地复活。其余行为由开发者界面通过 onStep 驱动 */
+export interface SandboxOpts {
+  /** 是否运行章节地形机制（油渍、地鼠、冰面…） */
+  terrain: boolean;
+  /** 本次沙盒的阵亡次数（非无敌模式下统计） */
+  deaths: number;
+}
 
 export interface HitInfo {
   dmg: number;
@@ -112,6 +113,8 @@ export class GameScene extends Phaser.Scene {
   static simBudgetMs = 0;
   /** 调试：每个模拟步开始前回调（测试机器人按模拟时间决策，与帧率无关） */
   static onStep: ((g: GameScene) => void) | null = null;
+  /** 开发者沙盒配置；null = 正常游戏 */
+  static sandbox: SandboxOpts | null = null;
 
   arena!: Phaser.Geom.Rectangle;
   player!: Rig;
@@ -205,8 +208,9 @@ export class GameScene extends Phaser.Scene {
     this.overtime = 0;
     this.tookDamage = false;
     setInRun(true);
+    const sandbox = GameScene.sandbox;
     // 每波开始时自动保存，暂停后可“保存并退出”，下次从本波开始继续
-    if (!HEADLESS_MODE) saveRun('wave');
+    if (!HEADLESS_MODE && !sandbox) saveRun('wave');
     this.enrageStacks = 0;
     this.pressureT = 0;
     this.pstatus = new StatusSet();
@@ -267,9 +271,9 @@ export class GameScene extends Phaser.Scene {
 
     this.keys = this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,ESC,P') as Record<string, Phaser.Input.Keyboard.Key>;
 
-    this.timeLeft = waveDuration(run.wave);
+    this.timeLeft = sandbox ? 999 : waveDuration(run.wave);
     this.spawnT = 0.5;
-    if (run.isBossWave()) {
+    if (!sandbox && run.isBossWave()) {
       const bossId = run.bossForWave();
       this.time.delayedCall(800, () => this.queueSpawn(bossId, true));
     }
@@ -280,12 +284,14 @@ export class GameScene extends Phaser.Scene {
     }
     // 章节音乐；Boss 登场时切到 Boss 战音乐，Boss 倒下后切回章节音乐
     audio.playMusic(this, ch.music);
-    if (run.wave === 1) TERRAIN_INFO[ch.id]?.forEach((m, i) => this.time.delayedCall(1500 + i * 2600, () => this.terrainNotice(m)));
+    if (!sandbox && run.wave === 1)
+      TERRAIN_INFO[ch.id]?.forEach((m, i) => this.time.delayedCall(1500 + i * 2600, () => this.terrainNotice(m)));
     // 新手引导：第 1 波讲移动，技能第一次就绪时讲技能；精英 / Boss 出场时各讲一次
-    if (run.wave === 1) this.time.delayedCall(500, () => tip('move', this));
-    if (!seenTip('skill')) this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this) });
+    if (!sandbox && run.wave === 1) this.time.delayedCall(500, () => tip('move', this));
+    if (!sandbox && !seenTip('skill'))
+      this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this) });
     this.events.on('bossSpawn', (e: Enemy) => {
-      if (e.boss) tip(e.boss.elite ? 'elite' : 'boss', this);
+      if (e.boss && !GameScene.sandbox) tip(e.boss.elite ? 'elite' : 'boss', this);
     });
     audio.play(this, 'wave');
     this.events.once('shutdown', () => {
@@ -350,7 +356,11 @@ export class GameScene extends Phaser.Scene {
 
   private step(dt: number): void {
     if (this.dead || !this.sys.isActive()) return;
-    if (Phaser.Input.Keyboard.JustDown(this.keys.ESC) || Phaser.Input.Keyboard.JustDown(this.keys.P) || controls.pausePressed) {
+    const sandbox = GameScene.sandbox;
+    if (
+      !sandbox &&
+      (Phaser.Input.Keyboard.JustDown(this.keys.ESC) || Phaser.Input.Keyboard.JustDown(this.keys.P) || controls.pausePressed)
+    ) {
       controls.pausePressed = false;
       this.scene.pause();
       this.scene.pause('Hud');
@@ -360,9 +370,9 @@ export class GameScene extends Phaser.Scene {
     this.grid.clear();
     for (const e of this.enemies) if (e.alive) this.grid.insert(e);
     this.updatePlayerStatus(dt);
-    this.terrain.update(dt);
+    if (!sandbox || sandbox.terrain) this.terrain.update(dt);
     this.updatePlayer(dt);
-    if (!this.waveOver) {
+    if (!this.waveOver && !sandbox) {
       this.updateTimer(dt);
       this.updateSpawning(dt);
     }
@@ -619,6 +629,22 @@ export class GameScene extends Phaser.Scene {
 
   private onPlayerDeath(): void {
     if (this.dead) return;
+    // 开发者沙盒：不结算，原地满血复活并计数
+    const sandbox = GameScene.sandbox;
+    if (sandbox) {
+      sandbox.deaths++;
+      run.hp = this.stats.maxHp;
+      this.iframes = 1;
+      this.pstatus.cleanse();
+      this.fx.ring(this.player.x, this.player.y, 160, 0xff3b30, 500, true);
+      this.fx.label(
+        this.player.x,
+        this.player.y - 40,
+        tx(`阵亡 ×${sandbox.deaths}（沙盒复活）`, `Died ×${sandbox.deaths} (sandbox revive)`),
+        '#ff6b6b',
+      );
+      return;
+    }
     if (this.talent.preventDeath()) return;
     // 天赋「不屈」：每局一次，以少量生命站起来
     const cd = treeTotals().cheatDeath;
@@ -809,40 +835,32 @@ export class GameScene extends Phaser.Scene {
     if (!e) return null;
     const def = ENEMY_MAP[id];
     markSeen('enemies', id);
-    const ch = run.chapter;
+    const ms = minionStats(def, run.wave, run.chapter);
     e.spawnMinion(
       this,
       def,
       x,
       y,
-      Math.round(enemyHp(def.hp, def.hpGrowth, run.wave, ch.hpMult) * (run.mod('giants') ? 1.5 : run.mod('swarm') ? 0.75 : 1)),
-      enemyDamage(def.dmg, def.dmgGrowth, run.wave, ch.dmgMult),
-      ch.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1),
+      Math.round(ms.hp * (run.mod('giants') ? 1.5 : run.mod('swarm') ? 0.75 : 1)),
+      ms.dmg,
+      ms.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1),
       affixes,
     );
     return e;
   }
 
-  private spawnBossNow(id: string, x: number, y: number): void {
+  /** 立即生成精英 / Boss。affixes 传入时替代随机词缀（开发者界面用） */
+  spawnBossNow(id: string, x: number, y: number, affixes?: AffixId[]): Enemy | null {
     const e = this.freeEnemy();
-    if (!e) return;
+    if (!e) return null;
     const def = BOSS_MAP[id];
     markSeen('bosses', id);
-    const ch = run.chapter;
     // 精英 / Boss 的随波次缩放系数统一由 balance.ts 提供（不再在此散落 magic number）
-    const hp = Math.round(
-      def.hp *
-        chapterScale(ch.bossHpMult, run.wave) *
-        (def.elite ? eliteHpScale(run.wave) : bossHpScale()) *
-        endlessHp(run.wave) *
-        (run.mod('tough_bosses') ? 1.5 : 1),
-    );
-    const dmg = Math.round(
-      def.dmg * bossDmgScale() * chapterScale(ch.dmgMult, run.wave) * (def.elite ? eliteDmgScale(run.wave) : 1) * endlessDmg(run.wave),
-    );
+    const { hp, dmg } = bossStats(def, run.wave, run.chapter, run.mod('tough_bosses') ? 1.5 : 1);
     // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加
     const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
-    const affixes = def.elite ? this.rollAffixes(nAffix).filter((a) => !(def.affixes ?? []).includes(a)) : [];
+    affixes ??= def.elite ? this.rollAffixes(nAffix) : [];
+    affixes = affixes.filter((a) => !(def.affixes ?? []).includes(a));
     e.spawnBoss(this, def, x, y, hp, dmg, affixes);
     if (!def.elite) {
       this.boss = e;
@@ -850,10 +868,11 @@ export class GameScene extends Phaser.Scene {
     }
     this.events.emit('bossSpawn', e);
     this.shake(0.01, 300);
+    return e;
   }
 
   private endWave(): void {
-    if (this.waveOver) return;
+    if (this.waveOver || GameScene.sandbox) return;
     this.waveOver = true;
     audio.play(this, 'wave');
     for (const e of this.enemies)
@@ -1608,6 +1627,8 @@ export class GameScene extends Phaser.Scene {
 
   // ---------------- 掉落物 ----------------
   private dropPickup(kind: Pickup['kind'], x: number, y: number, value: number, xp = value): void {
+    // 沙盒不掉落：拾取会改变经验、等级与资金，破坏构筑的可复现性
+    if (GameScene.sandbox) return;
     const key = kind === 'seed' ? 'pickup_seed' : kind === 'fruit' ? 'pickup_fruit' : 'pickup_crate';
     let p = this.pickups.find((q) => !q.alive && q.kind === kind);
     if (p) {

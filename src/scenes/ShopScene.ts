@@ -46,6 +46,16 @@ import {
   canForge,
 } from '../systems/WeaponMods';
 
+/** 商店标价：completedWave 为刚打完的波次（商店卖的是下一波的价格），计入折扣与挑战修饰 */
+export function offerPrice(base: number, completedWave = run.wave): number {
+  return Math.max(
+    1,
+    Math.round(shopPrice(base, completedWave + 1) * (1 - run.specials.shopDiscount / 100) * (run.mod('rich_start') ? 1.25 : 1)),
+  );
+}
+/** 道具基础价随波次上浮（前 8 波逐步 +30%），再交给 offerPrice */
+export const itemBasePrice = (price: number, completedWave = run.wave): number => price * (1 + 0.3 * Math.min(1, completedWave / 8));
+
 export class ShopScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
   private popup: Phaser.GameObjects.Container | null = null;
@@ -80,10 +90,7 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private price(base: number): number {
-    return Math.max(
-      1,
-      Math.round(shopPrice(base, run.wave + 1) * (1 - run.specials.shopDiscount / 100) * (run.mod('rich_start') ? 1.25 : 1)),
-    );
+    return offerPrice(base);
   }
 
   /** 货架是否可用：为当前波次生成，且至少还有一件没卖出（全部买光时 buy() 会立即免费补货） */
@@ -115,7 +122,7 @@ export class ShopScene extends Phaser.Scene {
         kind: 'item',
         id: it.id,
         tier: it.rarity,
-        price: this.price(it.price * (1 + 0.3 * Math.min(1, run.wave / 8))),
+        price: this.price(itemBasePrice(it.price)),
         locked: false,
         sold: false,
       });
@@ -140,7 +147,7 @@ export class ShopScene extends Phaser.Scene {
           kind: 'item',
           id: it.id,
           tier: it.rarity,
-          price: this.price(it.price * (1 + 0.3 * Math.min(1, run.wave / 8))),
+          price: this.price(itemBasePrice(it.price)),
           locked: false,
           sold: false,
         });

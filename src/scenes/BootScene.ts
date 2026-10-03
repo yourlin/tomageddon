@@ -2,6 +2,7 @@
 import Phaser from 'phaser';
 import { queueAssets } from '../systems/Assets';
 import { generateTextures, FONT } from '../systems/Textures';
+import { DEV_MODE, devHooks } from '../dev/flag';
 
 export class BootScene extends Phaser.Scene {
   constructor() {
@@ -29,6 +30,12 @@ export class BootScene extends Phaser.Scene {
 
   create(): void {
     generateTextures(this);
+    // 开发者界面：贴图就绪后由 src/dev 接管，不进入主菜单
+    if (DEV_MODE) {
+      devHooks.onBootReady?.(this.game);
+      devHooks.booted = true;
+      return;
+    }
     // 无渲染测试模式：不进入菜单，由测试脚本直接启动对局
     if (new URLSearchParams(location.search).has('headless')) {
       (window as unknown as { __ready: boolean }).__ready = true;

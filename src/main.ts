@@ -25,13 +25,17 @@ import { CHARACTERS, CHARACTER_MAP } from './data/characters';
 import { WEAPON_MAP, TIER_PRICE_MULT } from './data/weapons';
 import { ITEM_MAP, LEVELUP_OPTIONS } from './data/items';
 import { rerollPrice, sellPrice } from './data/balance';
-import { save } from './systems/Save';
+import { save, disablePersist } from './systems/Save';
 import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
 import { lang, tx } from './i18n';
 import { autoFullscreenOnFirstTouch } from './systems/Fullscreen';
 import { installForceLandscape } from './systems/ForceLandscape';
 import { pointsEarned, charCost } from './systems/Achievements';
+import { DEV_MODE } from './dev/flag';
+
+// 开发者界面：整页生命周期内不写存档（必须在任何场景运行前生效）
+if (DEV_MODE) disablePersist();
 
 // 按语言写入数据文本，必须在创建游戏前执行
 applyLanguage();
@@ -85,6 +89,10 @@ const game = new Phaser.Game({
 if (HEADLESS) {
   // 测试模式不渲染：主循环只更新不绘制（loop.start 绑定的是 this.step，启动前覆盖即可）
   game.step = game.headlessStep;
+} else if (DEV_MODE) {
+  // 开发者界面：桌面端使用，不强制横屏 / 全屏；本体动态加载，不进玩家首屏包
+  applyPerfSettings(game);
+  void import('./dev/DevPanel').then((m) => m.installDevPanel(game));
 } else {
   applyPerfSettings(game);
   autoFullscreenOnFirstTouch(game);
