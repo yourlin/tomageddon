@@ -169,6 +169,11 @@ export const CSS = `
 #dev-panel .chart{display:block;background:#0f0507;border:1px solid #3a1a1f;border-radius:4px;margin:3px 0}
 #dev-panel .n{font-variant-numeric:tabular-nums}
 #dev-panel details summary{cursor:pointer;color:#ffd166}
+#dev-panel .bar{display:flex;align-items:center;gap:4px;font-size:11px;margin:1px 0}
+#dev-panel .bar .bl{width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#dev-panel .bar .bb{height:9px;border-radius:2px;min-width:1px}
+#dev-panel .bar .bv{color:#a88f88;font-variant-numeric:tabular-nums}
+#dev-panel .heat td.n{color:#000;font-weight:600}
 .dev-modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:80;display:flex;align-items:flex-start;justify-content:center;padding-top:8vh}
 .dev-modal{width:min(640px,92%);max-height:80vh;overflow:auto;background:#17090b;border:1px solid #6a2e36;border-radius:8px;padding:10px}
 .dev-modal input{width:100%}

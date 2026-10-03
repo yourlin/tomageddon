@@ -89,7 +89,7 @@ const game = new Phaser.Game({
 if (HEADLESS) {
   // 测试模式不渲染：主循环只更新不绘制（loop.start 绑定的是 this.step，启动前覆盖即可）
   game.step = game.headlessStep;
-} else if (DEV_MODE) {
+} else if (DEV_MODE && import.meta.env.VITE_DISABLE_DEV !== '1') {
   // 开发者界面：桌面端使用，不强制横屏 / 全屏；本体动态加载，不进玩家首屏包
   applyPerfSettings(game);
   void import('./dev/DevPanel').then((m) => m.installDevPanel(game));

@@ -7,15 +7,9 @@ import { loadCurrent, saveCurrent, applyBuild, type DevBuild } from './build';
 import { createSandbox } from './sandbox';
 import type { DevCtx, TabId, UiState } from './ctx';
 import { renderBuild } from './tabs/buildTab';
-import { renderWeapons } from './tabs/weaponsTab';
-import { renderSkills } from './tabs/skillsTab';
 import { renderMonsters } from './tabs/monstersTab';
 import { renderTests, srcName } from './tabs/testsTab';
-import { renderItems } from './tabs/itemsTab';
-import { renderStatus } from './tabs/statusTab';
 import { renderSandbox, takeSnapshot, restoreSnapshot } from './tabs/sandboxTab';
-import { renderBatch } from './tabs/batchTab';
-import { renderAssets } from './tabs/assetsTab';
 import { renderData } from './tabs/dataTab';
 import { renderDebug, installEventHooks } from './tabs/debugTab';
 import { renderQuick, isTyping, stepChar, stepMonster, switchChar, showMonster, monsterList } from './quick';
@@ -32,20 +26,26 @@ import { run } from '../systems/RunState';
 import { save } from '../systems/Save';
 import { audio } from '../systems/Audio';
 
-const TABS: [TabId, string, (ctx: DevCtx) => HTMLElement][] = [
+type Render = (ctx: DevCtx) => HTMLElement;
+/** L4：常用页签随面板加载；其余页签第一次打开时才下载（Promise 形式的为按需加载） */
+const TABS: [TabId, string, Render | (() => Promise<Render>)][] = [
   ['build', '构筑', renderBuild],
-  ['weapons', '武器', renderWeapons],
-  ['skills', '技能', renderSkills],
+  ['weapons', '武器', () => import('./tabs/weaponsTab').then((m) => m.renderWeapons)],
+  ['analysis', '分析', () => import('./tabs/analysisTab').then((m) => m.renderAnalysis)],
+  ['skills', '技能', () => import('./tabs/skillsTab').then((m) => m.renderSkills)],
   ['monsters', '怪物', renderMonsters],
-  ['items', '道具', renderItems],
-  ['status', '状态', renderStatus],
+  ['items', '道具', () => import('./tabs/itemsTab').then((m) => m.renderItems)],
+  ['status', '状态', () => import('./tabs/statusTab').then((m) => m.renderStatus)],
   ['sandbox', '沙盒', renderSandbox],
   ['tests', '测试', renderTests],
-  ['batch', '批量', renderBatch],
+  ['batch', '批量', () => import('./tabs/batchTab').then((m) => m.renderBatch)],
   ['data', '数值', renderData],
   ['debug', '调试', renderDebug],
-  ['assets', '内容', renderAssets],
+  ['assets', '内容', () => import('./tabs/assetsTab').then((m) => m.renderAssets)],
 ];
+const LAZY = new Set<TabId>(['weapons', 'analysis', 'skills', 'items', 'status', 'batch', 'assets']);
+const loaded = new Map<TabId, Render>();
+const loading = new Map<TabId, Promise<Render>>();
 const MIN_W = 380;
 const MAX_W = 1100;
 
@@ -229,6 +229,15 @@ function mount(game: Phaser.Game): void {
     },
     undo: () => jump(undoStack, redoStack, '撤销'),
     redo: () => jump(redoStack, undoStack, '重做'),
+    applyNow(b) {
+      build = JSON.parse(JSON.stringify(b)) as DevBuild;
+      ui.shelf = null;
+      pushHistory();
+      saveCurrent(build);
+      applyBuild(build, sb.trial);
+      doRestart();
+      renderTab();
+    },
   };
   let toastT = 0;
   sb.onMessage = (m, bad) => ctx.toast(m, bad);
@@ -592,9 +601,23 @@ function mount(game: Phaser.Game): void {
     const scroll = body.scrollTop;
     // 注意：这里不写 run（沙盒运行中写 run 会回满血、清空统计）；构筑改动统一走 ctx.changed()
     const t = TABS.find(([id]) => id === ui.tab) ?? TABS[0];
+    const render: Render | undefined = LAZY.has(t[0]) ? loaded.get(t[0]) : (t[2] as Render);
+    if (!render) {
+      body.replaceChildren(h('div', { class: 'muted' }, '加载中…'));
+      if (!loading.has(t[0]))
+        loading.set(
+          t[0],
+          (t[2] as () => Promise<Render>)().then((r) => {
+            loaded.set(t[0], r);
+            if (ui.tab === t[0]) renderTab();
+            return r;
+          }),
+        );
+      return;
+    }
     let el: HTMLElement;
     try {
-      el = t[2](ctx);
+      el = render(ctx);
     } catch (e) {
       el = h('div', { class: 'bad' }, `页签渲染失败：${e instanceof Error ? e.message : String(e)}`);
       console.error(e);

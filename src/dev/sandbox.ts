@@ -75,6 +75,8 @@ export interface Overlay {
   hitbox: boolean;
   /** 性能数据（实体数、对象池、帧耗时） */
   perf: boolean;
+  /** 怪物 AI 状态（D6） */
+  ai: boolean;
 }
 
 /** 叠加层配色：按武器栏位循环（面板图例使用同一配色） */
@@ -94,7 +96,7 @@ export class Sandbox {
   noSkillCd = false;
   speed = 1;
   paused = false;
-  overlay: Overlay = { range: true, explode: true, pickup: false, skill: true, labels: true, hitbox: false, perf: false };
+  overlay: Overlay = { range: true, explode: true, pickup: false, skill: true, labels: true, hitbox: false, perf: false, ai: false };
   /** 慢放倍率（1 = 正常） */
   slow = 1;
   zoom = 1;
@@ -200,6 +202,7 @@ export class Sandbox {
     if (snap) g.time.delayedCall(30, () => this.applySnapshot(snap));
     g.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       g.events.off(Phaser.Scenes.Events.POST_UPDATE, draw);
+      this.clearAiText();
       for (const t of this.tracked) t.text?.destroy();
       this.tracked = [];
       this.gfx = null;
@@ -514,6 +517,7 @@ export class Sandbox {
       return false;
     });
     if (this.overlay.hitbox) this.drawHitboxes(gfx);
+    if (this.overlay.ai) this.drawAi(gfx);
     this.recordPerf();
     // 选中目标高亮（检查器 / 拖动）
     const sel = this.selected;
@@ -521,6 +525,35 @@ export class Sandbox {
   }
 
   // ---------------- 碰撞框 / 性能 ----------------
+  /** D6：怪物 AI 状态可视化：移动方向（箭头）、行为状态颜色、指向玩家的目标线 */
+  private aiText: Phaser.GameObjects.Text[] = [];
+  private drawAi(gfx: Phaser.GameObjects.Graphics): void {
+    const g = this.g;
+    const p = g.player;
+    const STATE_COLOR: Record<string, number> = { move: 0x52ff8a, windup: 0xffd166, charge: 0xff3b30, fuse: 0xff9f1c, blink: 0xc08bff };
+    let n = 0;
+    for (const e of g.enemies) {
+      if (!e.alive) continue;
+      const c = STATE_COLOR[e.state] ?? 0xffffff;
+      const len = Math.hypot(e.dirX, e.dirY) || 1;
+      gfx.lineStyle(2, c, 0.9).lineBetween(e.x, e.y, e.x + (e.dirX / len) * (e.radius + 22), e.y + (e.dirY / len) * (e.radius + 22));
+      if (e.isBoss || this.tracked.some((t) => t.e === e)) gfx.lineStyle(1, c, 0.25).lineBetween(e.x, e.y, p.x, p.y);
+      if (n < 40) {
+        const t = (this.aiText[n] ??= g.add.text(0, 0, '', { fontSize: '10px', color: '#ffffff', fontFamily: 'Consolas,monospace' }).setDepth(9999));
+        const cd = e.patterns.length ? ' ' + e.patternT.map((x) => Math.max(0, x).toFixed(1)).join('/') : '';
+        t.setVisible(true)
+          .setPosition(e.x + e.radius + 4, e.y - 6)
+          .setText(`${e.state}${e.state !== 'move' ? ' ' + e.stateT.toFixed(1) : ''}${cd}${e.enraged ? ' 狂暴' : ''}`);
+        n++;
+      }
+    }
+    for (let i = n; i < this.aiText.length; i++) this.aiText[i].setVisible(false);
+  }
+  private clearAiText(): void {
+    for (const t of this.aiText) t.destroy();
+    this.aiText = [];
+  }
+
   private drawHitboxes(gfx: Phaser.GameObjects.Graphics): void {
     const g = this.g;
     const p = g.player;

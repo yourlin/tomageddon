@@ -3,7 +3,9 @@
 import type Phaser from 'phaser';
 
 const params = new URLSearchParams(location.search);
-export const DEV_MODE = params.has('dev') && !params.has('headless');
+/** L5：构建时设 VITE_DISABLE_DEV=1 可彻底关闭 ?dev（开发者分包也不会生成） */
+export const DEV_DISABLED = import.meta.env.VITE_DISABLE_DEV === '1';
+export const DEV_MODE = !DEV_DISABLED && params.has('dev') && !params.has('headless');
 
 export const devHooks: { onBootReady: ((game: Phaser.Game) => void) | null; booted: boolean } = {
   onBootReady: null,

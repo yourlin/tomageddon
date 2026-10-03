@@ -1,5 +1,5 @@
 // 技能页：所有角色的主动技能（形态、冷却、伤害、范围、状态），当前角色可直接释放观察特效
-import { h, btn, check, table, fmt, hex } from '../dom';
+import { h, btn, check, num, table, fmt, hex } from '../dom';
 import type { DevCtx } from '../ctx';
 import { CHARACTERS, CHARACTER_MAP } from '../../data/characters';
 import { SKILL_TYPE_NAME, skillPower } from '../../data/skills';
@@ -7,6 +7,18 @@ import { save } from '../../systems/Save';
 import { run } from '../../systems/RunState';
 import { WEAPON_MAP } from '../../data/weapons';
 import { skillCalc, statusText } from '../info';
+import { numericFields, getAt, setOverride, findOverride } from '../overrides';
+
+const SKILL_FIELD: Record<string, string> = {
+  cd: '冷却',
+  mult: '伤害系数',
+  radius: '半径',
+  distance: '距离',
+  count: '数量',
+  duration: '持续',
+  heal: '回复',
+  xp: '经验',
+};
 
 export function renderSkills(ctx: DevCtx): HTMLElement {
   const sb = ctx.sb;
@@ -57,6 +69,31 @@ export function renderSkills(ctx: DevCtx): HTMLElement {
         }),
       ),
       h('div', { class: 'muted' }, '提示：冲刺 / 环形弹幕等方向类技能朝移动方向释放，可先用 WASD 移动再按空格或「释放技能」。'),
+    ),
+    h('h3', null, 'E5 技能参数实时编辑（写入数值覆盖层，可在「数值」页还原 / 导出）'),
+    h(
+      'div',
+      { class: 'grid' },
+      ...numericFields(sk, 1)
+        .filter((p) => p[0] !== 'color')
+        .map((p) => {
+          const ov = findOverride('chars', c.id, ['skill', ...p]);
+          const v = getAt(sk, p) as number;
+          return h(
+            'label',
+            { class: ov ? 'warn' : '', title: ov ? `原值 ${ov.orig}` : '' },
+            SKILL_FIELD[p.join('.')] ?? p.join('.'),
+            num(
+              v,
+              (nv) => {
+                const e = setOverride('chars', c.id, ['skill', ...p], nv);
+                if (e) ctx.toast(e, true);
+                ctx.changed();
+              },
+              { width: 60, step: Number.isInteger(v) ? 1 : 0.05 },
+            ),
+          );
+        }),
     ),
   );
 

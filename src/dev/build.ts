@@ -33,7 +33,7 @@ export interface LedgerEntry {
   /** 操作前的武器与道具（撤销用） */
   snap: string;
 }
-export type TalentMode = 'save' | 'none' | 'max';
+export type TalentMode = 'save' | 'none' | 'max' | 'custom';
 
 export interface DevBuild {
   charId: string;
@@ -44,6 +44,8 @@ export interface DevBuild {
   /** 初始资金（番茄籽） */
   budget: number;
   talents: TalentMode;
+  /** talents = 'custom' 时的天赋树节点等级 */
+  talentMap?: Record<string, number>;
   weapons: DevWeapon[];
   items: Record<string, number>;
   levelPicks: LevelPick[];
@@ -89,15 +91,19 @@ export const money = (b: DevBuild): number => b.budget - spent(b);
 // ---------------- 天赋 ----------------
 /** 进入开发者界面时的存档天赋（切换到「无 / 满」后还能切回来） */
 const SAVED_TALENTS: Record<string, number> = { ...save.talents };
-let talentMode: TalentMode | null = null;
-function applyTalents(mode: TalentMode): void {
-  if (talentMode === mode) return;
-  talentMode = mode;
+let talentMode: string | null = null;
+function applyTalents(mode: TalentMode, map?: Record<string, number>): void {
+  const key = mode === 'custom' ? 'custom:' + JSON.stringify(map ?? {}) : mode;
+  if (talentMode === key) return;
+  talentMode = key;
   // persist 已被禁用，这里只改内存
   if (mode === 'save') setTalents(SAVED_TALENTS);
   else if (mode === 'none') setTalents({});
+  else if (mode === 'custom') setTalents({ ...(map ?? {}) });
   else setTalents(Object.fromEntries(TALENT_NODES.map((n) => [n.id, n.max])));
 }
+/** 存档天赋（C7 自定义天赋的起点） */
+export const savedTalents = (): Record<string, number> => ({ ...SAVED_TALENTS });
 
 // ---------------- 写入 run ----------------
 let uid = 900000;
@@ -112,7 +118,7 @@ const fromOwned = (w: OwnedWeapon): DevWeapon => ({ id: w.id, tier: w.tier, affi
 
 /** 把构筑写进全局 run（随后重启沙盒即可生效）。trial 不为空时用它替换武器（单独试用某把武器） */
 export function applyBuild(b: DevBuild, trial: DevWeapon[] | null = null): void {
-  applyTalents(b.talents);
+  applyTalents(b.talents, b.talentMap);
   run.start(b.charId, b.chapterId);
   run.wave = b.wave;
   run.weapons = (trial ?? b.weapons).map(toOwned);

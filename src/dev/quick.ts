@@ -10,6 +10,7 @@ import type { AttackMode } from './sandbox';
 import { thumb } from './thumbs';
 import { prefs, keyText } from './prefs';
 import { openModal } from './palette';
+import { allMonsters } from './tabs/monsterTools';
 
 /** 浏览怪物时生成的目标怎么行动：正常攻击（看招式）/ 木桩 / 只手动触发 */
 let viewMode: AttackMode = 'ai';
@@ -45,6 +46,7 @@ export function monsterList(ctx: DevCtx): Monster[] {
   const ch = CHAPTERS[ui.mChapter - 1];
   const q = ui.mSearch.trim().toLowerCase();
   const ok = (name: string, id: string) => !q || name.toLowerCase().includes(q) || id.includes(q);
+  if (ui.mCat === 'all') return allMonsters(q);
   if (ui.mCat === 'pool' || ui.mCat === 'minion') {
     const ids = ui.mCat === 'pool' ? [...new Set(ch.pool.map((p) => p.enemy))] : ENEMIES.map((d) => d.id);
     return ids
@@ -140,7 +142,7 @@ export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
         ui.mChapter,
         (v) => ((ui.mChapter = Number(v)), (ui.mSel = ''), ctx.rerender()),
       ),
-      h('span', { class: 'seg' }, seg('pool', '刷怪池'), seg('minion', '全部小怪'), seg('elite', '精英'), seg('boss', 'Boss')),
+      h('span', { class: 'seg' }, seg('pool', '刷怪池'), seg('minion', '全部小怪'), seg('elite', '精英'), seg('boss', 'Boss'), seg('all', '全类别')),
       select(
         [
           ['ai', '正常攻击'],

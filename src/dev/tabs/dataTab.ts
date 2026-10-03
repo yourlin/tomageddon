@@ -50,7 +50,10 @@ export function lineChart(series: [string, string, number[]][], opts: { w?: numb
     el('text', { x: x(i) - 4, y: H - 3, fill: '#a88f88', 'font-size': 9 }, opts.xLabel ? opts.xLabel(i) : String(i + 1));
   series.forEach(([name, color, pts], si) => {
     el('polyline', {
-      points: pts.map((v, i) => `${x(i)},${y(v)}`).join(' '),
+      points: pts
+        .map((v, i) => (Number.isFinite(v) ? `${x(i)},${y(v)}` : ''))
+        .filter(Boolean)
+        .join(' '),
       fill: 'none',
       stroke: color,
       'stroke-width': 1.6,

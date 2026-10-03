@@ -38,8 +38,21 @@ import {
   savePresets,
   newBuild,
   sanitize,
+  savedTalents,
   type DevBuild,
 } from '../build';
+import { renderBuildTools } from './buildTools';
+
+const META_KEY = 'tomageddon_dev_preset_meta';
+let presetSearch = '';
+let presetSort: 'name' | 'time' = 'name';
+const loadMeta = (): Record<string, number> => {
+  try {
+    return JSON.parse(localStorage.getItem(META_KEY) ?? '{}') as Record<string, number>;
+  } catch {
+    return {};
+  }
+};
 
 export function renderBuild(ctx: DevCtx): HTMLElement {
   const b = ctx.build;
@@ -86,9 +99,14 @@ export function renderBuild(ctx: DevCtx): HTMLElement {
           ['save', '存档天赋'],
           ['none', '无天赋'],
           ['max', '全部满级'],
+          ['custom', '自定义（见下方 C7）'],
         ],
         b.talents,
-        (v) => ((b.talents = v as DevBuild['talents']), ctx.changed()),
+        (v) => {
+          b.talents = v as DevBuild['talents'];
+          if (v === 'custom') b.talentMap ??= savedTalents();
+          ctx.changed();
+        },
       ),
     ),
     h(
@@ -175,6 +193,8 @@ export function renderBuild(ctx: DevCtx): HTMLElement {
       h(
         'span',
         null,
+        mkBtn('↑', i === 0, () => (b.weapons.splice(i - 1, 0, ...b.weapons.splice(i, 1)), ctx.changed()), '上移（影响叠加层颜色与武器栏顺序）'),
+        mkBtn('↓', i === b.weapons.length - 1, () => (b.weapons.splice(i + 1, 0, ...b.weapons.splice(i, 1)), ctx.changed()), '下移'),
         mkBtn('合成', !canCombine(b, i), () => (combineWeapon(b, i) ? ctx.changed() : ctx.toast('需要另一把同名同品质', true))),
         evo
           ? mkBtn(
@@ -390,6 +410,7 @@ export function renderBuild(ctx: DevCtx): HTMLElement {
 
   // ---------------- 预设 ----------------
   root.append(presets(ctx));
+  root.append(renderBuildTools(ctx));
   return root;
 }
 
@@ -557,6 +578,9 @@ function presets(ctx: DevCtx): HTMLElement {
           const n = ui.presetName.trim() || `${CHARACTER_MAP[ctx.build.charId].name} W${ctx.build.wave} Lv${ctx.build.level}`;
           all[n] = JSON.parse(JSON.stringify(ctx.build));
           savePresets(all);
+          const meta = loadMeta();
+          meta[n] = Date.now();
+          localStorage.setItem(META_KEY, JSON.stringify(meta));
           ctx.toast(`已保存预设「${n}」`);
           ctx.rerender();
         },
@@ -564,25 +588,7 @@ function presets(ctx: DevCtx): HTMLElement {
       ),
       btn('新建空白', () => ctx.setBuild(newBuild(ctx.build.charId))),
     ),
-    Object.keys(all).length
-      ? table(
-          ['名称', '摘要', ''],
-          Object.entries(all).map(([k, p]) => [
-            k,
-            h('span', { class: 'muted' }, summary(p)),
-            h(
-              'span',
-              null,
-              btn('载入', () => ctx.setBuild(sanitize(JSON.parse(JSON.stringify(p))))),
-              btn('删', () => {
-                delete all[k];
-                savePresets(all);
-                ctx.rerender();
-              }),
-            ),
-          ]),
-        )
-      : h('div', { class: 'muted' }, '还没有预设'),
+    Object.keys(all).length ? presetTable(ctx, all, summary) : h('div', { class: 'muted' }, '还没有预设'),
     h(
       'div',
       { class: 'row' },
@@ -605,4 +611,72 @@ function presets(ctx: DevCtx): HTMLElement {
     ),
     io,
   );
+}
+
+
+/** C5：预设按「分组/名称」分组，可搜索、按名称或保存时间排序，并显示同一构筑最近一次的测试结果 */
+function presetTable(ctx: DevCtx, all: Record<string, DevBuild>, summary: (p: DevBuild) => string): HTMLElement {
+  const meta = loadMeta();
+  const q = presetSearch.trim().toLowerCase();
+  const label = (p: DevBuild) =>
+    `${CHARACTER_MAP[p.charId]?.name} 第${p.chapterId}章W${p.wave} Lv${p.level} · ${p.weapons.map((w) => `${WEAPON_MAP[w.id]?.name}T${w.tier + 1}`).join('/')}`;
+  const entries = Object.entries(all)
+    .filter(([k, p]) => !q || `${k} ${summary(p)}`.toLowerCase().includes(q))
+    .sort((a, b) => (presetSort === 'time' ? (meta[b[0]] ?? 0) - (meta[a[0]] ?? 0) : a[0].localeCompare(b[0])));
+  const groups = new Map<string, [string, DevBuild][]>();
+  for (const e of entries) {
+    const g = e[0].includes('/') ? e[0].slice(0, e[0].indexOf('/')) : '未分组';
+    if (!groups.has(g)) groups.set(g, []);
+    groups.get(g)!.push(e);
+  }
+  const search = h('input', {
+    placeholder: '搜索预设',
+    value: presetSearch,
+    onchange: () => ((presetSearch = search.value), ctx.rerender()),
+  });
+  const out = h(
+    'div',
+    null,
+    h(
+      'div',
+      { class: 'row' },
+      search,
+      select(
+        [
+          ['name', '按名称'],
+          ['time', '按保存时间'],
+        ],
+        presetSort,
+        (v) => ((presetSort = v as typeof presetSort), ctx.rerender()),
+      ),
+      h('span', { class: 'muted' }, '名称写成「分组/名称」即可分组'),
+    ),
+  );
+  for (const [g, list] of groups) {
+    out.append(
+      h('div', { class: 'muted', style: 'margin-top:4px' }, `▸ ${g}（${list.length}）`),
+      table(
+        ['名称', '摘要', '最近测试', ''],
+        list.map(([k, p]) => {
+          const t = ctx.sb.tests.find((r) => r.build === label(p) && r.ttk !== null);
+          return [
+            k.includes('/') ? k.slice(k.indexOf('/') + 1) : k,
+            h('span', { class: 'muted' }, summary(p)),
+            t ? h('span', { title: t.label }, `TTK ${t.ttk!.toFixed(2)}s`) : '',
+            h(
+              'span',
+              { class: 'nw' },
+              btn('载入', () => ctx.setBuild(sanitize(JSON.parse(JSON.stringify(p))))),
+              btn('删', () => {
+                delete all[k];
+                savePresets(all);
+                ctx.rerender();
+              }),
+            ),
+          ];
+        }),
+      ),
+    );
+  }
+  return out;
 }

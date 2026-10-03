@@ -7,6 +7,7 @@ import { BOSS_MAP, AFFIXES, AFFIX_IDS, elitePool, bossPool, type BossDef, type A
 import { minionStats, bossStats } from '../../systems/EnemyScaling';
 import { minionTraits, patternText, afterArmor, bossSummary, BEHAVIOR_NAME, PATTERN_NAME } from '../info';
 import type { AttackMode, Tracked } from '../sandbox';
+import { allFilters, allMonsters, liveEditor, affixPresets, poolChart, heatToggle, heatColor, heatMode, buildDps } from './monsterTools';
 
 const MATRIX_WAVES = [1, 3, 5, 7, 10, 12, 15, 20, 25];
 
@@ -50,12 +51,14 @@ export function renderMonsters(ctx: DevCtx): HTMLElement {
           ['minion', '全部小怪'],
           ['elite', '本章精英'],
           ['boss', '本章 Boss'],
+          ['all', '全类别（所有章节）'],
         ],
         ui.mCat,
         (v) => ((ui.mCat = v as typeof ui.mCat), ctx.rerender()),
       ),
       searchBox(ctx),
     ),
+    ui.mCat === 'all' ? allFilters(ctx) : '',
     h(
       'div',
       { class: 'box' },
@@ -118,13 +121,36 @@ export function renderMonsters(ctx: DevCtx): HTMLElement {
         btn('清场', () => sb.clear()),
         h('span', { class: 'muted' }, '词缀小怪：生命 ×3.5、伤害 ×1.3；Boss 召唤物按构筑波次缩放'),
       ),
+      affixPresets(ctx),
+      h('div', { class: 'row' }, check('AI 状态叠加层（D6）', sb.overlay.ai, (v) => (sb.overlay.ai = v), '移动方向箭头、行为状态与招式冷却'), heatToggle(ctx)),
     ),
   );
 
   // ---------------- 列表 ----------------
   const q = ui.mSearch.trim().toLowerCase();
   const match = (name: string, id: string) => !q || name.toLowerCase().includes(q) || id.includes(q);
-  if (ui.mCat === 'pool' || ui.mCat === 'minion') {
+  if (ui.mCat === 'all') {
+    const rows = allMonsters(q).map((r) => {
+      const c = CHAPTERS[(r.chapter || ui.mChapter) - 1];
+      const st = r.boss ? bossStats(BOSS_MAP[r.id], ui.mWave, c) : minionStats(ENEMY_MAP[r.id], ui.mWave, c);
+      const color = r.boss ? BOSS_MAP[r.id].color : ENEMY_MAP[r.id].color;
+      const info = r.boss
+        ? BOSS_MAP[r.id].patterns.map((p) => PATTERN_NAME[p.type]).join('/')
+        : BEHAVIOR_NAME[ENEMY_MAP[r.id].behavior];
+      return [
+        link(ctx, r.sel, r.name, color),
+        `${r.chapter ? `第${r.chapter}章` : '—'} ${r.kind === 'minion' ? '小怪' : r.kind === 'elite' ? '精英' : 'Boss'}`,
+        h('span', { class: 'muted' }, info),
+        String(st.hp),
+        String(st.dmg),
+        spawnBtns(ctx, r.id, r.boss),
+      ];
+    });
+    root.append(
+      h('div', { class: 'muted' }, `${rows.length} 个；数值按各自首次出现的章节 + 上方波次 W${ui.mWave} 缩放`),
+      table(['名称', '章节 / 类型', '行为 / 招式', '生命', '伤害', ''], rows, { numeric: [3, 4] }),
+    );
+  } else if (ui.mCat === 'pool' || ui.mCat === 'minion') {
     const entries: { d: EnemyDef; note: string }[] =
       ui.mCat === 'pool'
         ? ch.pool.map((p) => ({ d: ENEMY_MAP[p.enemy], note: `W${p.from}${p.to ? `~${p.to}` : '+'} 权重${p.weight}` }))
@@ -143,6 +169,7 @@ export function renderMonsters(ctx: DevCtx): HTMLElement {
         ];
       });
     root.append(table(['小怪', '行为 / 出现', '生命', '伤害→实受', '速度', ''], rows, { numeric: [2, 3, 4] }));
+    if (ui.mCat === 'pool') root.append(poolChart(ui.mChapter));
   } else {
     const list = (ui.mCat === 'elite' ? elitePool(ui.mChapter) : bossPool(ui.mChapter)).filter((b) => match(b.name, b.id));
     const rows = list.map((b) => {
@@ -252,6 +279,7 @@ function detail(ctx: DevCtx): HTMLElement {
         live ? attackModeSel(ctx, live) : '',
       ),
     );
+    if (live) box.append(liveEditor(ctx, live));
     const pats = [...b.patterns.map((p) => ({ p, phase2: false })), ...(b.phase2?.add ?? []).map((p) => ({ p, phase2: true }))];
     box.append(
       table(
@@ -300,6 +328,7 @@ function detail(ctx: DevCtx): HTMLElement {
           )
         : '',
     );
+    if (live) box.append(liveEditor(ctx, live));
     box.append(matrix((c, w) => minionStats(d, w, c)));
   }
   return box;
@@ -328,24 +357,33 @@ function attackModeSel(ctx: DevCtx, t: Tracked): HTMLElement {
   );
 }
 
-/** 各章 × 各波 的生命 / 伤害 */
+/** 各章 × 各波 的生命 / 伤害；热力图模式下底色 = 生命 ÷ 构筑 DPS（击杀秒数） */
 function matrix(fn: (ch: (typeof CHAPTERS)[number], wave: number) => { hp: number; dmg: number }): HTMLElement {
+  const dps = Math.max(1, buildDps());
+  const heat = heatMode === 'ttk';
   return h(
     'div',
     null,
-    h('h3', null, '强度矩阵（生命 / 伤害）'),
-    table(
-      ['章节', ...MATRIX_WAVES.map((w) => `W${w}`)],
-      CHAPTERS.map((c) => [
-        `第${c.id}章`,
-        ...MATRIX_WAVES.map((w) => {
-          const s = fn(c, w);
-          return h('span', null, fmtK(s.hp), h('span', { class: 'muted' }, ` / ${fmt(s.dmg)}`));
-        }),
-      ]),
-      { numeric: MATRIX_WAVES.map((_, i) => i + 1) },
+    h('h3', null, heat ? `强度热力图（生命 / 伤害；底色 = 以构筑 DPS ${Math.round(dps)} 击杀所需秒数）` : '强度矩阵（生命 / 伤害）'),
+    h(
+      'div',
+      { class: heat ? 'heat' : '' },
+      table(
+        ['章节', ...MATRIX_WAVES.map((w) => `W${w}`)],
+        CHAPTERS.map((c) => [
+          `第${c.id}章`,
+          ...MATRIX_WAVES.map((w) => {
+            const s = fn(c, w);
+            const sec = s.hp / dps;
+            const cell = h('span', { title: `击杀约 ${fmt(sec, 2)} 秒` }, fmtK(s.hp), h('span', { class: heat ? '' : 'muted' }, ` / ${fmt(s.dmg)}`));
+            if (heat) cell.style.cssText = `background:${heatColor(sec)};display:block;padding:0 3px;border-radius:2px`;
+            return cell;
+          }),
+        ]),
+        { numeric: MATRIX_WAVES.map((_, i) => i + 1) },
+      ),
     ),
-    h('div', { class: 'muted' }, 'W16+ 为无尽模式的复利成长（生命 ×1.12、伤害 ×1.09 每波）'),
+    h('div', { class: 'muted' }, 'W16+ 为无尽模式的复利成长（生命 ×1.12、伤害 ×1.09 每波）。热力图：绿 <1 秒，黄约 3 秒，红 >10 秒。'),
   );
 }
 

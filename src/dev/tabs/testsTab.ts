@@ -5,6 +5,7 @@ import { WEAPON_MAP } from '../../data/weapons';
 import { run } from '../../systems/RunState';
 import { weaponRange } from '../../systems/WeaponSystem';
 import { OVERLAY_COLORS, type TestResult } from '../sandbox';
+import { renderSuites } from './suiteTab';
 
 const SRC_NAME: Record<string, string> = {
   skill: '技能',
@@ -135,5 +136,6 @@ export function renderTests(ctx: DevCtx): HTMLElement {
       btn('刷新本页', () => ctx.rerender()),
     ),
   );
+  root.append(renderSuites(ctx));
   return root;
 }

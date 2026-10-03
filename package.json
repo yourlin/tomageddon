@@ -15,6 +15,9 @@
     "release:major": "npm version major --no-git-tag-version && vite build",
     "preview": "vite preview --host",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:split": "node scripts/check-dev-split.mjs",
     "docs": "tsx scripts/gen-docs.ts",
     "docs:images": "node scripts/export-images.mjs",
     "balance": "vite build && node scripts/batch.mjs",
@@ -46,7 +49,8 @@
     "tsx": "^4.23.15",
     "typescript": "~6.0.0",
     "typescript-eslint": "^8.71.0",
-    "vite": "^8.3.1"
+    "vite": "^8.3.1",
+    "vitest": "5.0.3"
   },
   "private": true
 }

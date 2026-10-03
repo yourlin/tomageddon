@@ -5,6 +5,7 @@ import type { Sandbox, SpawnOpts, Snapshot } from './sandbox';
 export type TabId =
   | 'build'
   | 'weapons'
+  | 'analysis'
   | 'skills'
   | 'monsters'
   | 'items'
@@ -36,7 +37,7 @@ export interface UiState {
   // 怪物页
   mChapter: number;
   mWave: number;
-  mCat: 'pool' | 'minion' | 'elite' | 'boss';
+  mCat: 'pool' | 'minion' | 'elite' | 'boss' | 'all';
   mSel: string; // 选中的怪物 id（boss: 前缀 b:）
   mSearch: string;
   spawn: SpawnOpts;
@@ -57,4 +58,6 @@ export interface DevCtx {
   /** 构筑撤销 / 重做 */
   undo(): void;
   redo(): void;
+  /** 立即载入构筑并重启沙盒（不走 250ms 防抖；测试套件用） */
+  applyNow(b: DevBuild): void;
 }
