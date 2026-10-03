@@ -160,7 +160,7 @@
 
 <img src="images/char/watermelon.png" width="64" height="64" alt="">
 
-> 翻滚冲撞并回复 10% 生命。
+> 翻滚冲撞并回复 4.5% 最大生命。
 
 | 项目 | 数值 |
 | --- | --- |
@@ -169,7 +169,7 @@
 | 冷却 | 13s |
 | 伤害系数 | ×2 |
 | 冲刺距离 | 260 |
-| 回复 | 10% 最大生命 |
+| 回复 | 4.5% 最大生命 |
 
 <a id="skill-lemon"></a>
 
@@ -219,6 +219,7 @@
 | 伤害系数 | ×1 |
 | 半径 | 200 |
 | 对敌施加 | 3层[流血](#status-bleed) 4s |
+| 吸取 | 每命中 1 个敌人 +0.5 生命（最多 6% 最大生命） |
 
 <a id="skill-blueberry"></a>
 
@@ -424,7 +425,7 @@
 
 <img src="images/char/peach.png" width="64" height="64" alt="">
 
-> 回复 20% 生命，无敌 1.5 秒。
+> 吸取周围敌人生命并回复 9% 最大生命，无敌 1.5 秒。
 
 | 项目 | 数值 |
 | --- | --- |
@@ -434,7 +435,8 @@
 | 伤害系数 | ×1 |
 | 半径 | 150 |
 | 自身获得 | [无敌](#status-invuln) 1.5s |
-| 回复 | 20% 最大生命 |
+| 回复 | 9% 最大生命 |
+| 吸取 | 每命中 1 个敌人 +0.5 生命（最多 6% 最大生命） |
 
 <a id="skill-dragonfruit"></a>
 
@@ -492,7 +494,7 @@
 
 <img src="images/char/sweetpotato.png" width="64" height="64" alt="">
 
-> 回复 20% 生命，获得 5 层再生。
+> 吸取周围敌人生命并回复 9% 最大生命，获得 5 层再生。
 
 | 项目 | 数值 |
 | --- | --- |
@@ -502,7 +504,8 @@
 | 伤害系数 | ×1 |
 | 半径 | 160 |
 | 自身获得 | 5层[再生](#status-regen) 6s |
-| 回复 | 20% 最大生命 |
+| 回复 | 9% 最大生命 |
+| 吸取 | 每命中 1 个敌人 +0.5 生命（最多 6% 最大生命） |
 
 <a id="skill-kiwi"></a>
 
@@ -676,7 +679,7 @@
 | <a id="status-haste"></a>急速 | 3 | 移速与攻速提高 |
 | <a id="status-rage"></a>怒气 | 10 | 造成的伤害提高 |
 | <a id="status-shield"></a>护盾 | 1 | 抵挡等量伤害 |
-| <a id="status-regen"></a>再生 | 5 | 每秒回复生命 |
+| <a id="status-regen"></a>再生 | 5 | 每层每秒回复 1 生命 |
 | <a id="status-fortify"></a>坚韧 | 5 | 护甲提高 |
 | <a id="status-invuln"></a>无敌 | 1 | 免疫所有伤害 |
 | <a id="status-thorns"></a>荆棘 | 5 | 反弹近身伤害 |
@@ -684,7 +687,7 @@
 | <a id="status-barrier"></a>屏障 | 1 | 受到的伤害降低 40% |
 | <a id="status-enrage"></a>暴怒 | 1 | 移速 +30%，伤害 +30% |
 | <a id="status-lucky"></a>好运 | 5 | 幸运提高 |
-| <a id="status-vampiric"></a>嗜血 | 5 | 吸血提高 |
+| <a id="status-vampiric"></a>嗜血 | 5 | 吸血概率每层 +4% |
 
 ---
 

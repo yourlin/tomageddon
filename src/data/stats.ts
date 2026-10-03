@@ -65,7 +65,7 @@ export const BASE_STATS: Stats = {
 export const STAT_INFO: Record<StatKey, { name: string; pct?: boolean; color: string }> = {
   maxHp: { name: '最大生命', color: '#ff6b6b' },
   regen: { name: '生命再生', color: '#ff9f9f' },
-  lifeSteal: { name: '吸血', pct: true, color: '#ff4d6d' },
+  lifeSteal: { name: '吸血概率', pct: true, color: '#ff4d6d' },
   damage: { name: '全伤害', pct: true, color: '#ffb347' },
   meleePct: { name: '近战武器伤害', pct: true, color: '#ffd166' },
   rangedPct: { name: '远程武器伤害', pct: true, color: '#9be564' },

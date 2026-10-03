@@ -10,11 +10,23 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v1.3.2 · 2026-10-03](#v1-3-2)
 - [v1.3.1 · 2026-10-03](#v1-3-1)
 - [v1.3.0 · 2026-10-01](#v1-3-0)
 - [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-3-2"></a>
+
+## v1.3.2 · 2026-10-03
+
+**Corrected life steal and healing descriptions to match how they actually work**
+
+
+- "Life Steal" is now "Life Steal Chance": each hit has that chance to heal 1 HP, and the stat panel shows the 5 HP/s maximum
+- Fixed the heal amounts shown for Melon Roll, Angel’s Blessing and Roast Yam Feast (actually 4.5% / 9% / 9% Max HP) and documented the extra drain healing
+- Regen and Bloodlust status descriptions now state their per-stack effect
 
 <a id="v1-3-1"></a>
 

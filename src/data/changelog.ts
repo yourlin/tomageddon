@@ -10,6 +10,25 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.3.2',
+    date: '2026-10-03',
+    highlight: [
+      '修正吸血与回复相关描述，使其与实际机制一致',
+      'Corrected life steal and healing descriptions to match how they actually work',
+    ],
+    items: [
+      [
+        '「吸血」更名为「吸血概率」：每次命中按该概率回复 1 生命，属性面板显示每秒最多回复 5 点',
+        '"Life Steal" is now "Life Steal Chance": each hit has that chance to heal 1 HP, and the stat panel shows the 5 HP/s maximum',
+      ],
+      [
+        '修正西瓜翻滚、天使祝福、烤红薯盛宴的回复量描述（实际为 4.5% / 9% / 9% 最大生命），并说明吸取回复的额外回血',
+        'Fixed the heal amounts shown for Melon Roll, Angel’s Blessing and Roast Yam Feast (actually 4.5% / 9% / 9% Max HP) and documented the extra drain healing',
+      ],
+      ['再生与嗜血状态描述写明每层效果', 'Regen and Bloodlust status descriptions now state their per-stack effect'],
+    ],
+  },
+  {
     version: '1.3.1',
     date: '2026-10-03',
     highlight: [

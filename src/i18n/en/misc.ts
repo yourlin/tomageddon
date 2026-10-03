@@ -24,7 +24,7 @@ export const EN_WEAPONS: WeaponsEn = {
   pea_shooter: { name: 'Pea Shooter', desc: 'Rapid-fire pea barrage.' },
   chili_rocket: { name: 'Chili Rocket', desc: 'Explodes on hit and burns enemies.' },
   corn_cannon: { name: 'Corn Cannon', desc: 'Fires corn kernel shells that pierce multiple enemies.' },
-  ketchup: { name: 'Ketchup Bottle', desc: 'Sprays ketchup in a cone. Hits grant extra Life Steal.' },
+  ketchup: { name: 'Ketchup Bottle', desc: 'Sprays ketchup in a cone. Hits grant extra Life Steal Chance.' },
   mustard_flamer: { name: 'Mustard Flamer', desc: 'Short-range flames with infinite pierce that burn enemies.' },
   soda: { name: 'Iced Soda', desc: 'Icy bubbles pierce enemies and slow them by 40%.' },
   garlic_aura: { name: 'Garlic Aura', desc: 'Continuously damages nearby enemies (every 0.5s).' },
@@ -37,7 +37,7 @@ export const EN_WEAPONS: WeaponsEn = {
   whisk_spin: { name: 'Whirl Whisk', desc: 'Whisks around you, damaging and slowing nearby enemies.' },
   meat_tenderizer: { name: 'Meat Tenderizer', desc: 'Heavy smash that stuns for 0.6s. Scales with Armor.' },
   skewer: { name: 'BBQ Skewer', desc: 'Long-reach thrust that leaves enemies sizzling.' },
-  ladle: { name: 'Soup Ladle', desc: 'A sweep of hot soup. Hits grant extra Life Steal.' },
+  ladle: { name: 'Soup Ladle', desc: 'A sweep of hot soup. Hits grant extra Life Steal Chance.' },
   baguette_sword: { name: 'Baguette Blade', desc: 'Huge-reach bread sweep. Scales with Max HP.' },
   cucumber_katana: { name: 'Cucumber Katana', desc: 'A crisp slash with very high crit.' },
   pizza_cutter: { name: 'Pizza Cutter', desc: 'Flung out and pulled back, slicing everything en route.' },
@@ -54,7 +54,7 @@ export const EN_WEAPONS: WeaponsEn = {
   seed_spitter: { name: 'Seed Spitter', desc: 'Pew-pew-pew! Rapid-fire melon seeds.' },
   carrot_crossbow: { name: 'Carrot Crossbow', desc: 'Pointy carrot bolts pierce a whole line of enemies.' },
   honey_blaster: { name: 'Honey Blaster', desc: 'Sticky honey shots slow enemies by 35%.' },
-  soy_pistol: { name: 'Soy Pistol', desc: 'Steady sidearm. Hits grant extra Life Steal.' },
+  soy_pistol: { name: 'Soy Pistol', desc: 'Steady sidearm. Hits grant extra Life Steal Chance.' },
   ice_cube_tray: { name: 'Ice Cube Tray', desc: 'Flings a row of ice cubes that heavily slow enemies.' },
   lightning_whisk: { name: 'Zap Whisk', desc: 'Whips up current that jumps between even more enemies.' },
   steam_kettle: { name: 'Steam Kettle', desc: 'A wide blast of steam that pierces and slows.' },
@@ -98,7 +98,7 @@ export const EN_STATUSES: StatusesEn = {
   haste: { name: 'Haste', desc: 'Move Speed and Attack Speed increased', glyph: 'HA' },
   rage: { name: 'Rage', desc: 'Damage dealt increased', glyph: 'RA' },
   shield: { name: 'Shield', desc: 'Absorbs an equal amount of damage', glyph: 'SH' },
-  regen: { name: 'Regen', desc: 'Restores HP every second', glyph: 'RG' },
+  regen: { name: 'Regen', desc: 'Restores 1 HP per second per stack', glyph: 'RG' },
   fortify: { name: 'Fortify', desc: 'Armor increased', glyph: 'FO' },
   invuln: { name: 'Invulnerable', desc: 'Immune to all damage', glyph: 'IN' },
   thorns: { name: 'Thorns', desc: 'Reflects melee damage', glyph: 'TH' },
@@ -106,7 +106,7 @@ export const EN_STATUSES: StatusesEn = {
   barrier: { name: 'Barrier', desc: 'Damage taken reduced by 40%', glyph: 'BA' },
   enrage: { name: 'Enrage', desc: 'Move Speed +30%, Damage +30%', glyph: 'EN' },
   lucky: { name: 'Lucky', desc: 'Luck increased', glyph: 'LU' },
-  vampiric: { name: 'Bloodlust', desc: 'Life Steal increased', glyph: 'VA' },
+  vampiric: { name: 'Bloodlust', desc: 'Life Steal Chance +4% per stack', glyph: 'VA' },
 };
 
 export const EN_CHAPTERS: ChaptersEn = {
@@ -147,7 +147,7 @@ export const EN_CHAPTERS: ChaptersEn = {
 export const EN_STATS: StatsEn = {
   maxHp: 'Max HP',
   regen: 'HP Regen',
-  lifeSteal: 'Life Steal',
+  lifeSteal: 'Life Steal Chance',
   damage: 'All Damage',
   meleePct: 'Melee Weapon Dmg',
   rangedPct: 'Ranged Weapon Dmg',

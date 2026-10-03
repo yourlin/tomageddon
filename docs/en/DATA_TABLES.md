@@ -34,10 +34,10 @@ Content: 33 characters · 50 weapons · 570 items · 77 monsters · 30 elites ·
 | Carrot Knight | Melee Tank | +5 Max HP, +3 Melee Damage, +3 Armor | +3 Armor; +3 Melee Damage; Ranged Damage -50% | Knight Charge [Dash] An invulnerable charge that stuns every enemy in its path. | 11s | Unlocked by default |
 | Chili Sis | Fire Expert | -2 Max HP, +3 Elemental Damage | +3 Elemental Damage; -2 Max HP; All hits have a 25% chance to Burn | Flame Nova [Nova Burst] A fiery shockwave that applies 3 stacks of Burn. | 20s | Unlocked by default |
 | Corn Gunner | Sharpshooter | +3 Max HP, +3 Ranged Damage, +50 Range | +3 Ranged Damage; +50 Range; +3 Max HP; Melee Damage -50% | Popcorn Barrage [Ring Barrage] Fire 18 popcorn shots in all directions. | 8s | Unlocked by default |
-| Chubby Melon | Heavy Tank | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed | +25 Max HP; +2 Armor; -12% Move Speed; -10% Attack Speed | Melon Roll [Dash] Roll into enemies and restore 10% HP. | 13s | 390 pts |
+| Chubby Melon | Heavy Tank | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed | +25 Max HP; +2 Armor; -12% Move Speed; -10% Attack Speed | Melon Roll [Dash] Roll into enemies and restore 4.5% Max HP. | 13s | 390 pts |
 | Lemon Assassin | Crit Assassin | -4 Max HP, +20% Crit Chance, +10% Dodge, +5% Move Speed | +20% Crit Chance; +10% Dodge; -4 Max HP | Sour Mist [Stealth] Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance. | 11s | 390 pts |
 | Eggplant Mage | Thunder Mage | +3 Max HP, +4 Elemental Damage, +10 Luck | +4 Elemental Damage; +10 Luck; +3 Max HP; Melee Damage -70% | Purple Thunder [Screen Clear] Lightning blankets the screen, striking every enemy and briefly Stunning them. | 14s | 390 pts |
-| Count Garlic | Vampire Noble | -3 HP Regen, +10% Life Steal, +5% All Damage | +10% Life Steal; -3 HP Regen; +5% Damage | Blood Domain [Drain Heal] Drain life from nearby enemies and inflict Bleed. | 14s | 830 pts |
+| Count Garlic | Vampire Noble | -3 HP Regen, +10% Life Steal Chance, +5% All Damage | +10% Life Steal Chance; -3 HP Regen; +5% Damage | Blood Domain [Drain Heal] Drain life from nearby enemies and inflict Bleed. | 14s | 830 pts |
 | Blueberry Twins | Weapon Master | -10% All Damage | 8 weapon slots; -10% Damage | Twin Clone [Summon Clone] Summon a clone that auto-fires for 8s. | 10s | 830 pts |
 | Captain Pineapple | Merchant Pirate | -3 Max HP, +20 Luck, +10 Harvest | Shop prices -15%; +20 Luck; +10 Harvest | Golden Cannon [AOE Missile] Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds. | 16s | 390 pts |
 | Pumpkin Ghost | Dodge Master | -4 Max HP, +25% Dodge, +8% Move Speed | +25% Dodge; Dodge cap 75%; -4 Max HP | Spirit Form [Stealth] Become Invulnerable for 2.5s and gain a big speed boost. | 11s | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
@@ -50,11 +50,11 @@ Content: 33 characters · 50 weapons · 570 items · 77 monsters · 30 elites ·
 | Grape Magician | Illusionist | +3 Max HP, +1 Ranged Damage, +1 Elemental Damage, +10 Luck | +10 Luck; +3 Max HP; 20% chance to Confuse enemies when attacked | Grape Clone [Summon Clone] Summon a clone that auto-fires for 8s. | 10s | 685 pts |
 | Cherry Gunslinger | Rapid Shooter | -8% All Damage, +1 Ranged Damage, +20% Attack Speed | +20% Attack Speed; -8% Damage; 10% chance to gain Haste when shooting | Dual Barrage [Focused Barrage] Fire 12 bullets in a row at the nearest enemy. | 11s | 390 pts |
 | Pea Soldier | Legionnaire | +3 Max HP, +2 Ranged Damage | +2 Ranged Damage; Start with 2 Pea Shooters; +3% Damage per duplicate weapon | Pea Turret [Focused Barrage] Rapid-fire 16 peas at the nearest enemy. | 10s | 685 pts |
-| Peach Angel | Healer | +5 Max HP, +5 HP Regen, -10% All Damage | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage | Angel’s Blessing [Drain Heal] Restore 20% HP and become Invulnerable for 1.5s. | 21s | 830 pts |
+| Peach Angel | Healer | +5 Max HP, +5 HP Regen, -10% All Damage | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage | Angel’s Blessing [Drain Heal] Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s. | 21s | 830 pts |
 | Dragonfruit Rider | Flame Knight | +5 Max HP, +2 Melee Damage, +2 Elemental Damage, +5% Move Speed | +2 Melee/Elemental Damage; +5 Max HP; Melee hits have a 20% chance to Burn | Dragonflame Charge [Dash] Charge forward, applying 4 stacks of Burn along the path. | 12s | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| Beet Berserker | Berserker | +3% Life Steal, +15% All Damage, -1 Armor | +15% Damage; +3% Life Steal; -1 Armor; Gain Rage when damaged | Frenzy [Self Buff] Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s. | 13s | 830 pts |
+| Beet Berserker | Berserker | +3% Life Steal Chance, +15% All Damage, -1 Armor | +15% Damage; +3% Life Steal Chance; -1 Armor; Gain Rage when damaged | Frenzy [Self Buff] Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s. | 13s | 830 pts |
 | Asparagus Archer | Marksman | +1 Ranged Damage, +10% Crit Chance, +80 Range | +80 Range; +10% Crit Chance; Hits have a 15% chance to Mark enemies (next hit always crits) | Heartpiercer [Focused Barrage] Fire 8 piercing arrows at the enemy with the highest HP and Mark the target. | 12s | 830 pts |
-| Chef Yam | Gourmet | +5 Max HP, -5% All Damage, +20 Harvest | +20 Harvest; Fruit healing doubled; -5% Damage | Roast Yam Feast [Drain Heal] Restore 20% HP and gain 5 stacks of Regen. | 24s | 390 pts |
+| Chef Yam | Gourmet | +5 Max HP, -5% All Damage, +20 Harvest | +20 Harvest; Fruit healing doubled; -5% Damage | Roast Yam Feast [Drain Heal] Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen. | 24s | 390 pts |
 | Kiwi Detective | Weakness Seeker | +3 Max HP, +1 Melee Damage, +8% Crit Chance, +10 Luck | +8% Crit Chance; +3 Max HP; +1 Melee Damage; Hits have a 20% chance to apply Vulnerable; Crit Damage +30% | One Truth [Mass Debuff] See through every enemy on screen: apply Mark and 2 stacks of Vulnerable. | 15s | 685 pts |
 | Lychee Princess | Lucky Princess | +40 Luck | +40 Luck; Crate drop rate doubled | Princess’s Luck [Self Buff] Gain 5 stacks of Lucky + 3 stacks of Focus for 6s. | 10s | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
 | Durian Overlord | Spiked Tyrant | +10 Max HP, +3 Armor, -4% Move Speed | +3 Armor; +10 Max HP; -4% Move Speed; Reflect 10 damage; Nearby enemies are constantly Weakened | Stink Bomb [Mass Debuff] Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies. | 21s | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
@@ -89,7 +89,7 @@ Content: 33 characters · 50 weapons · 570 items · 77 monsters · 30 elites ·
 | Haste | Buff | 3 | Move Speed and Attack Speed increased |
 | Rage | Buff | 10 | Damage dealt increased |
 | Shield | Buff | 1 | Absorbs an equal amount of damage |
-| Regen | Buff | 5 | Restores HP every second |
+| Regen | Buff | 5 | Restores 1 HP per second per stack |
 | Fortify | Buff | 5 | Armor increased |
 | Invulnerable | Buff | 1 | Immune to all damage |
 | Thorns | Buff | 5 | Reflects melee damage |
@@ -97,7 +97,7 @@ Content: 33 characters · 50 weapons · 570 items · 77 monsters · 30 elites ·
 | Barrier | Buff | 1 | Damage taken reduced by 40% |
 | Enrage | Buff | 1 | Move Speed +30%, Damage +30% |
 | Lucky | Buff | 5 | Luck increased |
-| Bloodlust | Buff | 5 | Life Steal increased |
+| Bloodlust | Buff | 5 | Life Steal Chance +4% per stack |
 
 <a id="affixes"></a>
 
@@ -382,10 +382,10 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Sichuan Pepper | Spices | +7% Elemental Weapon Dmg | 15 | ∞ |
 | Star Anise | Spices | -1 Max HP, +4% Elemental Weapon Dmg, +4% Crit Chance | 15 | ∞ |
 | Cinnamon Stick | Spices | +7% Elemental Weapon Dmg | 15 | ∞ |
-| Soy Sauce | Sauces | +1 HP Regen, +2% Life Steal, -1 Armor | 15 | ∞ |
-| Vinegar | Sauces | +2% Life Steal | 15 | ∞ |
-| Oyster Sauce | Sauces | +2 HP Regen, +1% Life Steal, -1 Armor | 15 | ∞ |
-| Sweet Bean Sauce | Sauces | +2% Life Steal | 15 | ∞ |
+| Soy Sauce | Sauces | +1 HP Regen, +2% Life Steal Chance, -1 Armor | 15 | ∞ |
+| Vinegar | Sauces | +2% Life Steal Chance | 15 | ∞ |
+| Oyster Sauce | Sauces | +2 HP Regen, +1% Life Steal Chance, -1 Armor | 15 | ∞ |
+| Sweet Bean Sauce | Sauces | +2% Life Steal Chance | 15 | ∞ |
 | Fruit Knife | Knives | +5% Melee Weapon Dmg, +2% Crit Chance, -10 Range | 15 | ∞ |
 | Peeler | Knives | +7% Melee Weapon Dmg | 15 | ∞ |
 | Bread Knife | Knives | +4% Melee Weapon Dmg, +4% Crit Chance, -10 Range | 15 | ∞ |
@@ -462,10 +462,10 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Pumpkin Seeds | Plant Seeds | +7 Harvest | 15 | ∞ |
 | Watermelon Seeds | Plant Seeds | -1% All Damage, +6 Luck, +3 Harvest | 15 | ∞ |
 | Lotus Seeds | Plant Seeds | +7 Harvest | 15 | ∞ |
-| Pinned Ant | Bug Specimens | -1 Max HP, +1% Life Steal, +2% Crit Chance | 15 | ∞ |
-| Pinned Ladybug | Bug Specimens | +2% Life Steal | 15 | ∞ |
-| Pinned Butterfly | Bug Specimens | -1 Max HP, +1% Life Steal, +4% Crit Chance | 15 | ∞ |
-| Pinned Beetle | Bug Specimens | +2% Life Steal | 15 | ∞ |
+| Pinned Ant | Bug Specimens | -1 Max HP, +1% Life Steal Chance, +2% Crit Chance | 15 | ∞ |
+| Pinned Ladybug | Bug Specimens | +2% Life Steal Chance | 15 | ∞ |
+| Pinned Butterfly | Bug Specimens | -1 Max HP, +1% Life Steal Chance, +4% Crit Chance | 15 | ∞ |
+| Pinned Beetle | Bug Specimens | +2% Life Steal Chance | 15 | ∞ |
 | Slippers | Shoes | -1 Armor, +2% Dodge, +5% Move Speed | 15 | ∞ |
 | Sandals | Shoes | +5% Move Speed | 15 | ∞ |
 | Cloth Shoes | Shoes | -1 Armor, +3% Dodge, +3% Move Speed | 15 | ∞ |
@@ -506,13 +506,13 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Loose Change | Coins | +9 Luck | 15 | ∞ |
 | Souvenir Coin | Coins | -1 Max HP, +5 Luck, +5 Harvest | 15 | ∞ |
 | Silver Dollar | Coins | +9 Luck | 15 | ∞ |
-| Red Potion | Potions | +2 HP Regen, +1% Life Steal, -1% Move Speed | 15 | ∞ |
+| Red Potion | Potions | +2 HP Regen, +1% Life Steal Chance, -1% Move Speed | 15 | ∞ |
 | Blue Potion | Potions | +2 HP Regen | 15 | ∞ |
-| Green Potion | Potions | +1 HP Regen, +1% Life Steal, -1% Move Speed | 15 | ∞ |
+| Green Potion | Potions | +1 HP Regen, +1% Life Steal Chance, -1% Move Speed | 15 | ∞ |
 | Antidote | Potions | +2 HP Regen | 15 | ∞ |
-| Chicken Bone | Bones | -1 HP Regen, +1% Life Steal, +2 Melee Damage | 15 | ∞ |
+| Chicken Bone | Bones | -1 HP Regen, +1% Life Steal Chance, +2 Melee Damage | 15 | ∞ |
 | Fishbone | Bones | +2 Melee Damage | 15 | ∞ |
-| Pork Bone | Bones | -1 HP Regen, +2% Life Steal, +1 Melee Damage | 15 | ∞ |
+| Pork Bone | Bones | -1 HP Regen, +2% Life Steal Chance, +1 Melee Damage | 15 | ∞ |
 | Beef Bone | Bones | +2 Melee Damage | 15 | ∞ |
 | Chicken Feather | Feathers | -1 Armor, +3% Dodge, +3% Move Speed | 15 | ∞ |
 | Duck Down | Feathers | +3% Dodge | 15 | ∞ |
@@ -542,9 +542,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Bell | Instruments | +5% Attack Speed | 15 | ∞ |
 | Harmonica | Instruments | +3% Attack Speed, -1 Armor, +6% Skill Cooldown | 15 | ∞ |
 | Triangle | Instruments | +5% Attack Speed | 15 | ∞ |
-| Black Cat Fur | Darkness | -1 HP Regen, +1% Life Steal, +6% Aura Damage | 15 | ∞ |
+| Black Cat Fur | Darkness | -1 HP Regen, +1% Life Steal Chance, +6% Aura Damage | 15 | ∞ |
 | Crow Feather | Darkness | +8% Aura Damage | 15 | ∞ |
-| Voodoo Doll | Darkness | -1 HP Regen, +2% Life Steal, +4% Aura Damage | 15 | ∞ |
+| Voodoo Doll | Darkness | -1 HP Regen, +2% Life Steal Chance, +4% Aura Damage | 15 | ∞ |
 | Shadow Cloth | Darkness | +8% Aura Damage | 15 | ∞ |
 | White Candle | Holy | +2 HP Regen, -1% All Damage, +1 Armor | 15 | ∞ |
 | Holy Water | Holy | +2 HP Regen | 15 | ∞ |
@@ -593,7 +593,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Chef's Hat | Classic | +5 Max HP, +4 Melee Damage, -2 Ranged Damage, +1 Armor | 35 | ∞ |
 | Scope | Classic | +4 Ranged Damage, -5% Attack Speed, +5% Crit Chance, +40 Range | 38 | ∞ |
 | Battery | Classic | -3 Max HP, +4 Elemental Damage, +7% Attack Speed | 36 | ∞ |
-| Pinned Mosquito | Classic | -2 Max HP, +4% Life Steal | 40 | ∞ |
+| Pinned Mosquito | Classic | -2 Max HP, +4% Life Steal Chance | 40 | ∞ |
 | Energy Drink | Classic | -1 HP Regen, +10% Attack Speed, +3% Move Speed | 38 | ∞ |
 | Pot-Lid Helmet | Classic | +3 Armor, -3% Move Speed | 40 | ∞ |
 | Piggy Bank | Classic | At the end of each wave, earn 10% interest on your Seeds (capped at 6 × wave) | 30 | 3 |
@@ -610,9 +610,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Ground Cumin | Spices | -2 Max HP, +6% Elemental Weapon Dmg, +3% Crit Chance, On hit: 15% chance of Burn | 36 | ∞ |
 | Curry Cube | Spices | -2 Max HP, +8% Elemental Weapon Dmg, +8% Crit Chance | 36 | ∞ |
 | Thirteen Spice | Spices | -2 Max HP, +7% Elemental Weapon Dmg, +3% Crit Chance, On hit: 15% chance of Burn | 36 | ∞ |
-| Chili Bean Paste | Sauces | +1 HP Regen, +2% Life Steal, -1 Armor, On kill, gain 17% chance of Bloodlust | 36 | ∞ |
-| Satay Sauce | Sauces | +3 HP Regen, +2% Life Steal, -1 Armor | 36 | ∞ |
-| XO Sauce | Sauces | +1 HP Regen, +2% Life Steal, -1 Armor, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
+| Chili Bean Paste | Sauces | +1 HP Regen, +2% Life Steal Chance, -1 Armor, On kill, gain 17% chance of Bloodlust | 36 | ∞ |
+| Satay Sauce | Sauces | +3 HP Regen, +2% Life Steal Chance, -1 Armor | 36 | ∞ |
+| XO Sauce | Sauces | +1 HP Regen, +2% Life Steal Chance, -1 Armor, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
 | Fillet Knife | Knives | +6% Melee Weapon Dmg, +3% Crit Chance, -15 Range, On hit: 14% chance of Bleed | 36 | ∞ |
 | Bone Cleaver | Knives | +8% Melee Weapon Dmg, +8% Crit Chance, -20 Range | 36 | ∞ |
 | Yanagiba | Knives | +7% Melee Weapon Dmg, +3% Crit Chance, -20 Range, On hit: 15% chance of Bleed | 36 | ∞ |
@@ -670,9 +670,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Pine Nuts | Plant Seeds | -3% All Damage, +5 Luck, +6 Harvest, 9% chance to double Seeds | 36 | ∞ |
 | Ginkgo Nut | Plant Seeds | -3% All Damage, +15 Luck, +7 Harvest | 36 | ∞ |
 | Magic Bean | Plant Seeds | -3% All Damage, +6 Luck, +6 Harvest, 10% chance to double Seeds | 36 | ∞ |
-| Pinned Mantis | Bug Specimens | -2 Max HP, +2% Life Steal, +3% Crit Chance, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
-| Queen Bee Specimen | Bug Specimens | -2 Max HP, +2% Life Steal, +8% Crit Chance | 36 | ∞ |
-| Pinned Scorpion | Bug Specimens | -2 Max HP, +2% Life Steal, +3% Crit Chance, On kill, gain 19% chance of Bloodlust | 36 | ∞ |
+| Pinned Mantis | Bug Specimens | -2 Max HP, +2% Life Steal Chance, +3% Crit Chance, On kill, gain 18% chance of Bloodlust | 36 | ∞ |
+| Queen Bee Specimen | Bug Specimens | -2 Max HP, +2% Life Steal Chance, +8% Crit Chance | 36 | ∞ |
+| Pinned Scorpion | Bug Specimens | -2 Max HP, +2% Life Steal Chance, +3% Crit Chance, On kill, gain 19% chance of Bloodlust | 36 | ∞ |
 | Trail Runners | Shoes | -1 Armor, +2% Dodge, +5% Move Speed, On kill, gain 23% chance of Haste | 36 | ∞ |
 | Roller Skates | Shoes | -1 Armor, +5% Dodge, +6% Move Speed | 36 | ∞ |
 | Spring Shoes | Shoes | -1 Armor, +2% Dodge, +5% Move Speed, On kill, gain 24% chance of Haste | 36 | ∞ |
@@ -703,12 +703,12 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Gold Coin | Coins | -2 Max HP, +8 Luck, +4 Harvest, 10% chance to double Seeds | 36 | ∞ |
 | Ancient Coin | Coins | -2 Max HP, +10 Luck, +11 Harvest | 36 | ∞ |
 | Treasure Map | Coins | -2 Max HP, +8 Luck, +4 Harvest, 10% chance to double Seeds | 36 | ∞ |
-| Healing Potion | Potions | +2 HP Regen, +1% Life Steal, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
-| Greater Potion | Potions | +2 HP Regen, +3% Life Steal, -3% Move Speed | 36 | ∞ |
-| Elixir | Potions | +2 HP Regen, +1% Life Steal, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
-| Dino Bone | Bones | -1 HP Regen, +1% Life Steal, +2 Melee Damage, On hit: 9% chance of Curse | 36 | ∞ |
-| Skull | Bones | -1 HP Regen, +3% Life Steal, +2 Melee Damage | 36 | ∞ |
-| Cursed Bone | Bones | -1 HP Regen, +1% Life Steal, +2 Melee Damage, On hit: 10% chance of Curse | 36 | ∞ |
+| Healing Potion | Potions | +2 HP Regen, +1% Life Steal Chance, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
+| Greater Potion | Potions | +2 HP Regen, +3% Life Steal Chance, -3% Move Speed | 36 | ∞ |
+| Elixir | Potions | +2 HP Regen, +1% Life Steal Chance, -3% Move Speed, Heal 1 HP every 48 kills | 36 | ∞ |
+| Dino Bone | Bones | -1 HP Regen, +1% Life Steal Chance, +2 Melee Damage, On hit: 9% chance of Curse | 36 | ∞ |
+| Skull | Bones | -1 HP Regen, +3% Life Steal Chance, +2 Melee Damage | 36 | ∞ |
+| Cursed Bone | Bones | -1 HP Regen, +1% Life Steal Chance, +2 Melee Damage, On hit: 10% chance of Curse | 36 | ∞ |
 | Hawk Feather | Feathers | -1 Armor, +3% Dodge, +3% Move Speed, On kill, gain 23% chance of Haste | 36 | ∞ |
 | Swan Feather | Feathers | -1 Armor, +3% Dodge, +9% Move Speed | 36 | ∞ |
 | Thunderbird Plume | Feathers | -1 Armor, +3% Dodge, +3% Move Speed, On kill, gain 24% chance of Haste | 36 | ∞ |
@@ -730,9 +730,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Snare Drum | Instruments | +4% Attack Speed, -1 Armor, +4% Skill Cooldown, Every 16s, gain 2× Haste | 36 | 2 |
 | Guitar Pick | Instruments | +5% Attack Speed, -1 Armor, +10% Skill Cooldown | 36 | ∞ |
 | Trumpet | Instruments | +4% Attack Speed, -1 Armor, +4% Skill Cooldown, Every 16s, gain 2× Haste | 36 | 2 |
-| Evil Eye | Darkness | -1 HP Regen, +1% Life Steal, +6% Aura Damage, On hit: 9% chance of Curse | 36 | ∞ |
-| Demon Horn | Darkness | -1 HP Regen, +3% Life Steal, +8% Aura Damage | 36 | ∞ |
-| Abyss Stone | Darkness | -1 HP Regen, +1% Life Steal, +7% Aura Damage, On hit: 10% chance of Curse | 36 | ∞ |
+| Evil Eye | Darkness | -1 HP Regen, +1% Life Steal Chance, +6% Aura Damage, On hit: 9% chance of Curse | 36 | ∞ |
+| Demon Horn | Darkness | -1 HP Regen, +3% Life Steal Chance, +8% Aura Damage | 36 | ∞ |
+| Abyss Stone | Darkness | -1 HP Regen, +1% Life Steal Chance, +7% Aura Damage, On hit: 10% chance of Curse | 36 | ∞ |
 | Angel Statue | Holy | +2 HP Regen, -3% All Damage, +1 Armor, Cleanse all debuffs every 19s | 36 | 2 |
 | Holy Light Shard | Holy | +2 HP Regen, -3% All Damage, +4 Armor | 36 | ∞ |
 | Sacred Charm | Holy | +2 HP Regen, -3% All Damage, +1 Armor, Cleanse all debuffs every 19s | 36 | 2 |
@@ -782,8 +782,8 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Heirloom Tomato | Tomato Goods | +3 Max HP, +3 HP Regen, Fruit healing +68% | 73 | ∞ |
 | Chili Extract | Spices | -3 Max HP, +12% Elemental Weapon Dmg, +5% Crit Chance, On hit: 28% chance of Burn | 73 | ∞ |
 | Devil Pepper Dust | Spices | +6% Elemental Weapon Dmg, +6% Crit Chance, On hit: 21% chance of Burn | 73 | ∞ |
-| Secret BBQ Sauce | Sauces | +3 HP Regen, +3% Life Steal, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
-| Blood-Red Hot Sauce | Sauces | +3 HP Regen, +2% Life Steal, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
+| Secret BBQ Sauce | Sauces | +3 HP Regen, +3% Life Steal Chance, -2 Armor, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
+| Blood-Red Hot Sauce | Sauces | +3 HP Regen, +2% Life Steal Chance, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
 | Damascus Blade | Knives | +13% Melee Weapon Dmg, +5% Crit Chance, -35 Range, On hit: 29% chance of Bleed | 73 | ∞ |
 | Dragonslayer Cleaver | Knives | +6% Melee Weapon Dmg, +6% Crit Chance, On hit: 21% chance of Bleed | 73 | ∞ |
 | Layered Pot Shield | Cookware | +4 Max HP, +4 Armor, -6% Move Speed, When hurt, gain 2× Fortify | 73 | ∞ |
@@ -822,8 +822,8 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Great Earth Plow | Farm Tools | +4 Max HP, +6 Harvest, 14% chance to double Seeds | 73 | ∞ |
 | Starlight Seed | Plant Seeds | -6% All Damage, +11 Luck, +12 Harvest, 19% chance to double Seeds | 73 | ∞ |
 | World Tree Seed | Plant Seeds | +11 Luck, +6 Harvest, 14% chance to double Seeds | 73 | ∞ |
-| Golden Scarab | Bug Specimens | -3 Max HP, +3% Life Steal, +5% Crit Chance, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
-| Vampire Bat | Bug Specimens | +2% Life Steal, +6% Crit Chance, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
+| Golden Scarab | Bug Specimens | -3 Max HP, +3% Life Steal Chance, +5% Crit Chance, On kill, gain 35% chance of Bloodlust | 73 | ∞ |
+| Vampire Bat | Bug Specimens | +2% Life Steal Chance, +6% Crit Chance, On kill, gain 26% chance of Bloodlust | 73 | ∞ |
 | Gale Boots | Shoes | -2 Armor, +4% Dodge, +9% Move Speed, On kill, gain 46% chance of Haste | 73 | ∞ |
 | Rocket Boots | Shoes | +4% Dodge, +5% Move Speed, On kill, gain 34% chance of Haste | 73 | ∞ |
 | Vanishing Kasa | Hats | -6% All Damage, +4 Armor, +4% Dodge, When hurt, inflict 48% chance of Confuse on the attacker | 73 | ∞ |
@@ -844,10 +844,10 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Divine Protection | Amulets | +3% Dodge, +11 Luck, Cleanse all debuffs every 16s | 73 | 2 |
 | Treasure Bowl | Coins | -3 Max HP, +15 Luck, +8 Harvest, 19% chance to double Seeds | 73 | ∞ |
 | Midas Stone | Coins | +8 Luck, +8 Harvest, 14% chance to double Seeds | 73 | ∞ |
-| Undying Draught | Potions | +4 HP Regen, +2% Life Steal, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
-| Phoenix Tonic | Potions | +2 HP Regen, +2% Life Steal, Heal 1 HP every 43 kills | 73 | ∞ |
-| Necro Staff | Bones | -2 HP Regen, +2% Life Steal, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
-| Bone Dragon Fang | Bones | +2% Life Steal, +2 Melee Damage, On hit: 14% chance of Curse | 73 | ∞ |
+| Undying Draught | Potions | +4 HP Regen, +2% Life Steal Chance, -6% Move Speed, Heal 1 HP every 36 kills | 73 | ∞ |
+| Phoenix Tonic | Potions | +2 HP Regen, +2% Life Steal Chance, Heal 1 HP every 43 kills | 73 | ∞ |
+| Necro Staff | Bones | -2 HP Regen, +2% Life Steal Chance, +4 Melee Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| Bone Dragon Fang | Bones | +2% Life Steal Chance, +2 Melee Damage, On hit: 14% chance of Curse | 73 | ∞ |
 | Phoenix Tail Plume | Feathers | -2 Armor, +6% Dodge, +6% Move Speed, On kill, gain 46% chance of Haste | 73 | ∞ |
 | Angel Feather | Feathers | +3% Dodge, +7% Move Speed, On kill, gain 34% chance of Haste | 73 | ∞ |
 | Magic Candy | Candies | -2 Armor, +10 Luck, +19% XP Gain, At wave start, gain 2× Lucky | 73 | 2 |
@@ -862,8 +862,8 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Legendary Card | Toys | +8 Luck, +14% XP Gain, At wave start, gain Lucky | 73 | 2 |
 | Golden Harp | Instruments | +8% Attack Speed, -2 Armor, +8% Skill Cooldown, Every 12s, gain 2× Haste | 73 | 2 |
 | War Drum | Instruments | +4% Attack Speed, +8% Skill Cooldown, Every 14s, gain 2× Haste | 73 | 2 |
-| Demon Lord's Pact | Darkness | -2 HP Regen, +2% Life Steal, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
-| Eye of the Void | Darkness | +2% Life Steal, +6% Aura Damage, On hit: 14% chance of Curse | 73 | ∞ |
+| Demon Lord's Pact | Darkness | -2 HP Regen, +2% Life Steal Chance, +13% Aura Damage, On hit: 19% chance of Curse | 73 | ∞ |
+| Eye of the Void | Darkness | +2% Life Steal Chance, +6% Aura Damage, On hit: 14% chance of Curse | 73 | ∞ |
 | God's Blessing | Holy | +4 HP Regen, -6% All Damage, +3 Armor, Cleanse all debuffs every 13s | 73 | 2 |
 | Holy Grail | Holy | +2 HP Regen, +3 Armor, Cleanse all debuffs every 16s | 73 | 2 |
 | Assassin's Dagger | Ninja Gear | -3 Max HP, +5% Crit Chance, +9% Move Speed, On hit: 28% chance of Bleed | 73 | ∞ |
@@ -894,11 +894,11 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Master Knife Set | Classic | +8 Melee Damage, -4 Ranged Damage, +8% Attack Speed, +8% Crit Chance | 130 | ∞ |
 | Railgun Core | Classic | -4 Melee Damage, +8 Ranged Damage, +8% Attack Speed, +60 Range | 130 | ∞ |
 | Grandma's Recipe | Classic | -8% All Damage, +20 Luck, +25 Harvest, +25% XP Gain | 115 | ∞ |
-| Vampire Cape | Classic | -3 HP Regen, +10% Life Steal, +8% All Damage, +5% Dodge | 125 | ∞ |
+| Vampire Cape | Classic | -3 HP Regen, +10% Life Steal Chance, +8% All Damage, +5% Dodge | 125 | ∞ |
 | Powder Keg | Classic | +5% All Damage, +50% Explosion Size, -3% Move Speed | 115 | ∞ |
 | Heart of Tomato | Tomato Goods | +12 Max HP, +5 HP Regen, -10% Move Speed, Fruit healing +131% | 123 | ∞ |
 | Dragonbreath Spice | Spices | -6 Max HP, +26% Elemental Weapon Dmg, +11% Crit Chance, On hit: 39% chance of Burn | 123 | ∞ |
-| Eternal Mother Sauce | Sauces | +5 HP Regen, +7% Life Steal, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
+| Eternal Mother Sauce | Sauces | +5 HP Regen, +7% Life Steal Chance, -4 Armor, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
 | Master Smith's Blade | Knives | +26% Melee Weapon Dmg, +11% Crit Chance, -60 Range, On hit: 39% chance of Bleed | 123 | ∞ |
 | Ancestral Wok | Cookware | +8 Max HP, +8 Armor, -10% Move Speed, When hurt, gain 3× Fortify | 123 | ∞ |
 | Banquet Silverware | Tableware | +8 Melee Damage, +12% Attack Speed, -4 Armor, On kill, gain 82% chance of Rage | 123 | ∞ |
@@ -918,7 +918,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Egg of Chaos | Eggs | +12 Max HP, -10% All Damage, +27% XP Gain, When hurt, gain 3× Regen | 123 | ∞ |
 | Harvest Goddess Scythe | Farm Tools | +8 Max HP, -10% Move Speed, +24 Harvest, 25% chance to double Seeds | 123 | ∞ |
 | Seed of Genesis | Plant Seeds | -10% All Damage, +22 Luck, +24 Harvest, 25% chance to double Seeds | 123 | ∞ |
-| Bug King in Amber | Bug Specimens | -6 Max HP, +7% Life Steal, +11% Crit Chance, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
+| Bug King in Amber | Bug Specimens | -6 Max HP, +7% Life Steal Chance, +11% Crit Chance, On kill, gain 49% chance of Bloodlust | 123 | ∞ |
 | Wings of Hermes | Shoes | -4 Armor, +8% Dodge, +20% Move Speed, On kill, gain 60% chance of Haste | 123 | ∞ |
 | Shapeshifter Hat | Hats | -10% All Damage, +8 Armor, +8% Dodge, When hurt, inflict 60% chance of Confuse on the attacker | 123 | ∞ |
 | Hand of God | Gloves | +8 Melee Damage, -60 Range, +5 Armor, On hit: 12% chance of Stun | 123 | ∞ |
@@ -929,8 +929,8 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Supreme Ring | Rings | -6 Max HP, +17% Ranged Weapon Dmg, +17% Crit Chance, On hit: 20% chance of Mark | 123 | ∞ |
 | Eternal Ward | Amulets | -10% All Damage, +12% Dodge, +22 Luck, Cleanse all debuffs every 9s | 123 | 2 |
 | Fortune God's Hand | Coins | -6 Max HP, +33 Luck, +16 Harvest, 25% chance to double Seeds | 123 | ∞ |
-| Fountain of Life | Potions | +8 HP Regen, +4% Life Steal, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
-| Bone of Hades | Bones | -4 HP Regen, +4% Life Steal, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| Fountain of Life | Potions | +8 HP Regen, +4% Life Steal Chance, -10% Move Speed, Heal 1 HP every 27 kills | 123 | ∞ |
+| Bone of Hades | Bones | -4 HP Regen, +4% Life Steal Chance, +8 Melee Damage, On hit: 25% chance of Curse | 123 | ∞ |
 | Divine Golden Plume | Feathers | -4 Armor, +12% Dodge, +13% Move Speed, On kill, gain 60% chance of Haste | 123 | ∞ |
 | Eternal Sweetness | Candies | -4 Armor, +22 Luck, +40% XP Gain, At wave start, gain 3× Lucky | 123 | 2 |
 | Mechanical Heart | Machine Parts | +8 Ranged Damage, +5 Armor, -6% Dodge, On hit: 40% chance of Armor Break | 123 | ∞ |
@@ -938,7 +938,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Faceless Mask | Masks | -6 Max HP, +11% Crit Chance, +12% Dodge, When hurt, inflict 60% chance of Confuse on the attacker | 123 | ∞ |
 | Box of Wonder | Toys | -10% All Damage, +33 Luck, +27% XP Gain, At wave start, gain 3× Lucky | 123 | 2 |
 | Heavenly Melody | Instruments | +18% Attack Speed, -4 Armor, +16% Skill Cooldown, Every 9s, gain 2× Haste | 123 | 2 |
-| Chaos Black Hole | Darkness | -4 HP Regen, +4% Life Steal, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
+| Chaos Black Hole | Darkness | -4 HP Regen, +4% Life Steal Chance, +28% Aura Damage, On hit: 25% chance of Curse | 123 | ∞ |
 | Heart of Light | Holy | +8 HP Regen, -10% All Damage, +5 Armor, Cleanse all debuffs every 9s | 123 | 2 |
 | Shadow King | Ninja Gear | -6 Max HP, +11% Crit Chance, +20% Move Speed, On hit: 39% chance of Bleed | 123 | ∞ |
 | Pirate King's Hoard | Pirate | +5 Melee Damage, -4 Armor, +33 Luck, 25% chance to double Seeds | 123 | ∞ |

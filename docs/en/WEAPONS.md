@@ -141,7 +141,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit Chance +N% | 4 | 7 | 11 | 16 |
 | Crit Damage +N% | 15 | 25 | 40 | 60 |
 | Range +N | 20 | 35 | 55 | 80 |
-| Life Steal +N% | 1 | 2 | 3 | 5 |
+| Life Steal Chance +N% | 1 | 2 | 3 | 5 |
 | N% chance to Burn | 8 | 14 | 22 | 32 |
 | N% chance to Poison | 8 | 14 | 22 | 32 |
 | N% chance to Slow | 10 | 18 | 28 | 40 |
@@ -370,7 +370,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 <img src="../images/weapon/ladle.png" width="64" height="64" alt="">
 
-> A sweep of hot soup. Hits grant extra Life Steal.
+> A sweep of hot soup. Hits grant extra Life Steal Chance.
 
 | Field | Value |
 | --- | --- |
@@ -381,7 +381,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Range | 120 |
 | Scaling | Melee Damage ×0.9, Max HP ×0.05 |
 | Crit multiplier | ×1.5 |
-| Effects | +3% Life Steal, Knockback 20 |
+| Effects | +3% Life Steal Chance, Knockback 20 |
 | T1 price | 20 |
 | Starting weapon of | - |
 
@@ -605,7 +605,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 <img src="../images/weapon/ketchup.png" width="64" height="64" alt="">
 
-> Sprays ketchup in a cone. Hits grant extra Life Steal.
+> Sprays ketchup in a cone. Hits grant extra Life Steal Chance.
 
 | Field | Value |
 | --- | --- |
@@ -616,7 +616,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Range | 280 |
 | Scaling | Ranged Damage ×0.6 |
 | Crit multiplier | ×1.5 |
-| Effects | +5% Life Steal, Projectiles 3/3/4/5 |
+| Effects | +5% Life Steal Chance, Projectiles 3/3/4/5 |
 | T1 price | 20 |
 | Starting weapon of | [Strawberry Idol](CHARACTERS.md#char-strawberry), [Grape Magician](CHARACTERS.md#char-grape) |
 
@@ -658,7 +658,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Range | 420 |
 | Scaling | Ranged Damage ×0.4 |
 | Crit multiplier | ×1.5 |
-| Effects | +1% Life Steal |
+| Effects | +1% Life Steal Chance |
 | T1 price | 40 |
 | Starting weapon of | [Pepper Mech](CHARACTERS.md#char-bellpepper) |
 
@@ -878,7 +878,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 <img src="../images/weapon/soy_pistol.png" width="64" height="64" alt="">
 
-> Steady sidearm. Hits grant extra Life Steal.
+> Steady sidearm. Hits grant extra Life Steal Chance.
 
 | Field | Value |
 | --- | --- |
@@ -889,7 +889,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Range | 380 |
 | Scaling | Ranged Damage ×0.7 |
 | Crit multiplier | ×1.5 |
-| Effects | +2% Life Steal |
+| Effects | +2% Life Steal Chance |
 | T1 price | 20 |
 | Starting weapon of | - |
 

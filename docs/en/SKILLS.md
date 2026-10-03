@@ -160,7 +160,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <img src="../images/char/watermelon.png" width="64" height="64" alt="">
 
-> Roll into enemies and restore 10% HP.
+> Roll into enemies and restore 4.5% Max HP.
 
 | Field | Value |
 | --- | --- |
@@ -169,7 +169,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | Cooldown | 13s |
 | Damage multiplier | ×2 |
 | Dash distance | 260 |
-| Heal | 10% Max HP |
+| Heal | 4.5% Max HP |
 
 <a id="skill-lemon"></a>
 
@@ -219,6 +219,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | Damage multiplier | ×1 |
 | Radius | 200 |
 | Inflicts | 3× [Bleed](#status-bleed) 4s |
+| Drain | +0.5 HP per enemy hit (max 6% Max HP) |
 
 <a id="skill-blueberry"></a>
 
@@ -424,7 +425,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <img src="../images/char/peach.png" width="64" height="64" alt="">
 
-> Restore 20% HP and become Invulnerable for 1.5s.
+> Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s.
 
 | Field | Value |
 | --- | --- |
@@ -434,7 +435,8 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | Damage multiplier | ×1 |
 | Radius | 150 |
 | Self gains | [Invulnerable](#status-invuln) 1.5s |
-| Heal | 20% Max HP |
+| Heal | 9% Max HP |
+| Drain | +0.5 HP per enemy hit (max 6% Max HP) |
 
 <a id="skill-dragonfruit"></a>
 
@@ -492,7 +494,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <img src="../images/char/sweetpotato.png" width="64" height="64" alt="">
 
-> Restore 20% HP and gain 5 stacks of Regen.
+> Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen.
 
 | Field | Value |
 | --- | --- |
@@ -502,7 +504,8 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | Damage multiplier | ×1 |
 | Radius | 160 |
 | Self gains | 5× [Regen](#status-regen) 6s |
-| Heal | 20% Max HP |
+| Heal | 9% Max HP |
+| Drain | +0.5 HP per enemy hit (max 6% Max HP) |
 
 <a id="skill-kiwi"></a>
 
@@ -676,7 +679,7 @@ Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elite
 | <a id="status-haste"></a>Haste | 3 | Move Speed and Attack Speed increased |
 | <a id="status-rage"></a>Rage | 10 | Damage dealt increased |
 | <a id="status-shield"></a>Shield | 1 | Absorbs an equal amount of damage |
-| <a id="status-regen"></a>Regen | 5 | Restores HP every second |
+| <a id="status-regen"></a>Regen | 5 | Restores 1 HP per second per stack |
 | <a id="status-fortify"></a>Fortify | 5 | Armor increased |
 | <a id="status-invuln"></a>Invulnerable | 1 | Immune to all damage |
 | <a id="status-thorns"></a>Thorns | 5 | Reflects melee damage |
@@ -684,7 +687,7 @@ Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elite
 | <a id="status-barrier"></a>Barrier | 1 | Damage taken reduced by 40% |
 | <a id="status-enrage"></a>Enrage | 1 | Move Speed +30%, Damage +30% |
 | <a id="status-lucky"></a>Lucky | 5 | Luck increased |
-| <a id="status-vampiric"></a>Bloodlust | 5 | Life Steal increased |
+| <a id="status-vampiric"></a>Bloodlust | 5 | Life Steal Chance +4% per stack |
 
 ---
 

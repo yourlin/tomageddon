@@ -195,7 +195,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'ketchup',
     name: '番茄酱瓶',
-    desc: '扇形喷射番茄酱，命中额外吸血。',
+    desc: '扇形喷射番茄酱，命中额外提高吸血概率。',
     cls: 'ranged',
     kind: 'bullet',
     tags: ['酱料'],
@@ -402,7 +402,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'ladle',
     name: '汤勺',
-    desc: '舀一勺热汤横扫，命中额外吸血。',
+    desc: '舀一勺热汤横扫，命中额外提高吸血概率。',
     cls: 'melee',
     kind: 'sweep',
     tags: ['厨具', '酱料'],
@@ -675,7 +675,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'soy_pistol',
     name: '酱油手枪',
-    desc: '稳定的点射手枪，命中额外吸血。',
+    desc: '稳定的点射手枪，命中额外提高吸血概率。',
     cls: 'ranged',
     kind: 'bullet',
     tags: ['枪械', '酱料'],

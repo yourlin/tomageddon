@@ -40,7 +40,7 @@
 | --- | --- |
 | 最大生命 | 3 / 6 / 9 / 12 |
 | 生命再生 | 2 / 3 / 4 / 5 |
-| 吸血 | 1 / 2 / 3 / 4 |
+| 吸血概率 | 1 / 2 / 3 / 4 |
 | 近战武器伤害 | 6 / 10 / 14 / 19 |
 | 远程武器伤害 | 6 / 10 / 14 / 19 |
 | 元素武器伤害 | 6 / 10 / 14 / 19 |
@@ -89,7 +89,7 @@
 | <img src="images/item/chef_hat.png" width="32" height="32" alt=""> 厨师帽 | 稀有 | +5 最大生命，+4 近战伤害，-2 远程伤害，+1 护甲 | 35 | ∞ |
 | <img src="images/item/scope.png" width="32" height="32" alt=""> 瞄准镜 | 稀有 | +4 远程伤害，-5% 攻击速度，+5% 暴击率，+40 射程 | 38 | ∞ |
 | <img src="images/item/battery.png" width="32" height="32" alt=""> 电池 | 稀有 | -3 最大生命，+4 元素伤害，+7% 攻击速度 | 36 | ∞ |
-| <img src="images/item/mosquito.png" width="32" height="32" alt=""> 蚊子标本 | 稀有 | -2 最大生命，+4% 吸血 | 40 | ∞ |
+| <img src="images/item/mosquito.png" width="32" height="32" alt=""> 蚊子标本 | 稀有 | -2 最大生命，+4% 吸血概率 | 40 | ∞ |
 | <img src="images/item/energy_drink.png" width="32" height="32" alt=""> 能量饮料 | 稀有 | -1 生命再生，+10% 攻击速度，+3% 移动速度 | 38 | ∞ |
 | <img src="images/item/helmet.png" width="32" height="32" alt=""> 锅盖头盔 | 稀有 | +3 护甲，-3% 移动速度 | 40 | ∞ |
 | <img src="images/item/piggy_bank.png" width="32" height="32" alt=""> 存钱罐 | 稀有 | 每波结束获得当前番茄籽 10% 的利息（每波上限 6×波次） | 30 | 3 |
@@ -116,7 +116,7 @@
 | <img src="images/item/chef_knife_set.png" width="32" height="32" alt=""> 大厨刀具套装 | 传说 | +8 近战伤害，-4 远程伤害，+8% 攻击速度，+8% 暴击率 | 130 | ∞ |
 | <img src="images/item/railgun_core.png" width="32" height="32" alt=""> 电磁核心 | 传说 | -4 近战伤害，+8 远程伤害，+8% 攻击速度，+60 射程 | 130 | ∞ |
 | <img src="images/item/grandma_recipe.png" width="32" height="32" alt=""> 外婆的秘方 | 传说 | -8% 全伤害，+20 幸运，+25 收获，+25% 经验获取 | 115 | ∞ |
-| <img src="images/item/vampire_cape.png" width="32" height="32" alt=""> 吸血鬼披风 | 传说 | -3 生命再生，+10% 吸血，+8% 全伤害，+5% 闪避 | 125 | ∞ |
+| <img src="images/item/vampire_cape.png" width="32" height="32" alt=""> 吸血鬼披风 | 传说 | -3 生命再生，+10% 吸血概率，+8% 全伤害，+5% 闪避 | 125 | ∞ |
 | <img src="images/item/powder_keg.png" width="32" height="32" alt=""> 火药桶 | 传说 | +5% 全伤害，+50% 爆炸范围，-3% 移动速度 | 115 | ∞ |
 
 <a id="series"></a>
@@ -218,16 +218,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/sauces_0.png" width="32" height="32" alt=""> 酱油 | 普通 | +1 生命再生，+2% 吸血，-1 护甲 | 15 | ∞ |
-| <img src="images/item/sauces_1.png" width="32" height="32" alt=""> 醋 | 普通 | +2% 吸血 | 15 | ∞ |
-| <img src="images/item/sauces_2.png" width="32" height="32" alt=""> 蚝油 | 普通 | +2 生命再生，+1% 吸血，-1 护甲 | 15 | ∞ |
-| <img src="images/item/sauces_3.png" width="32" height="32" alt=""> 甜面酱 | 普通 | +2% 吸血 | 15 | ∞ |
-| <img src="images/item/sauces_4.png" width="32" height="32" alt=""> 豆瓣酱 | 稀有 | +1 生命再生，+2% 吸血，-1 护甲，击杀时获得17% 概率嗜血 | 36 | ∞ |
-| <img src="images/item/sauces_5.png" width="32" height="32" alt=""> 沙茶酱 | 稀有 | +3 生命再生，+2% 吸血，-1 护甲 | 36 | ∞ |
-| <img src="images/item/sauces_6.png" width="32" height="32" alt=""> XO酱 | 稀有 | +1 生命再生，+2% 吸血，-1 护甲，击杀时获得18% 概率嗜血 | 36 | ∞ |
-| <img src="images/item/sauces_7.png" width="32" height="32" alt=""> 秘制烤肉酱 | 史诗 | +3 生命再生，+3% 吸血，-2 护甲，击杀时获得35% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/sauces_8.png" width="32" height="32" alt=""> 血色辣酱 | 史诗 | +3 生命再生，+2% 吸血，击杀时获得26% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/sauces_9.png" width="32" height="32" alt=""> 永恒母酱 | 传说 | +5 生命再生，+7% 吸血，-4 护甲，击杀时获得49% 概率嗜血 | 123 | ∞ |
+| <img src="images/item/sauces_0.png" width="32" height="32" alt=""> 酱油 | 普通 | +1 生命再生，+2% 吸血概率，-1 护甲 | 15 | ∞ |
+| <img src="images/item/sauces_1.png" width="32" height="32" alt=""> 醋 | 普通 | +2% 吸血概率 | 15 | ∞ |
+| <img src="images/item/sauces_2.png" width="32" height="32" alt=""> 蚝油 | 普通 | +2 生命再生，+1% 吸血概率，-1 护甲 | 15 | ∞ |
+| <img src="images/item/sauces_3.png" width="32" height="32" alt=""> 甜面酱 | 普通 | +2% 吸血概率 | 15 | ∞ |
+| <img src="images/item/sauces_4.png" width="32" height="32" alt=""> 豆瓣酱 | 稀有 | +1 生命再生，+2% 吸血概率，-1 护甲，击杀时获得17% 概率嗜血 | 36 | ∞ |
+| <img src="images/item/sauces_5.png" width="32" height="32" alt=""> 沙茶酱 | 稀有 | +3 生命再生，+2% 吸血概率，-1 护甲 | 36 | ∞ |
+| <img src="images/item/sauces_6.png" width="32" height="32" alt=""> XO酱 | 稀有 | +1 生命再生，+2% 吸血概率，-1 护甲，击杀时获得18% 概率嗜血 | 36 | ∞ |
+| <img src="images/item/sauces_7.png" width="32" height="32" alt=""> 秘制烤肉酱 | 史诗 | +3 生命再生，+3% 吸血概率，-2 护甲，击杀时获得35% 概率嗜血 | 73 | ∞ |
+| <img src="images/item/sauces_8.png" width="32" height="32" alt=""> 血色辣酱 | 史诗 | +3 生命再生，+2% 吸血概率，击杀时获得26% 概率嗜血 | 73 | ∞ |
+| <img src="images/item/sauces_9.png" width="32" height="32" alt=""> 永恒母酱 | 传说 | +5 生命再生，+7% 吸血概率，-4 护甲，击杀时获得49% 概率嗜血 | 123 | ∞ |
 
 <a id="series-4"></a>
 
@@ -558,16 +558,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/bugs_0.png" width="32" height="32" alt=""> 蚂蚁标本 | 普通 | -1 最大生命，+1% 吸血，+2% 暴击率 | 15 | ∞ |
-| <img src="images/item/bugs_1.png" width="32" height="32" alt=""> 瓢虫标本 | 普通 | +2% 吸血 | 15 | ∞ |
-| <img src="images/item/bugs_2.png" width="32" height="32" alt=""> 蝴蝶标本 | 普通 | -1 最大生命，+1% 吸血，+4% 暴击率 | 15 | ∞ |
-| <img src="images/item/bugs_3.png" width="32" height="32" alt=""> 甲虫标本 | 普通 | +2% 吸血 | 15 | ∞ |
-| <img src="images/item/bugs_4.png" width="32" height="32" alt=""> 螳螂标本 | 稀有 | -2 最大生命，+2% 吸血，+3% 暴击率，击杀时获得18% 概率嗜血 | 36 | ∞ |
-| <img src="images/item/bugs_5.png" width="32" height="32" alt=""> 蜂后标本 | 稀有 | -2 最大生命，+2% 吸血，+8% 暴击率 | 36 | ∞ |
-| <img src="images/item/bugs_6.png" width="32" height="32" alt=""> 蝎子标本 | 稀有 | -2 最大生命，+2% 吸血，+3% 暴击率，击杀时获得19% 概率嗜血 | 36 | ∞ |
-| <img src="images/item/bugs_7.png" width="32" height="32" alt=""> 黄金圣甲虫 | 史诗 | -3 最大生命，+3% 吸血，+5% 暴击率，击杀时获得35% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/bugs_8.png" width="32" height="32" alt=""> 吸血蝙蝠 | 史诗 | +2% 吸血，+6% 暴击率，击杀时获得26% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/bugs_9.png" width="32" height="32" alt=""> 虫王琥珀 | 传说 | -6 最大生命，+7% 吸血，+11% 暴击率，击杀时获得49% 概率嗜血 | 123 | ∞ |
+| <img src="images/item/bugs_0.png" width="32" height="32" alt=""> 蚂蚁标本 | 普通 | -1 最大生命，+1% 吸血概率，+2% 暴击率 | 15 | ∞ |
+| <img src="images/item/bugs_1.png" width="32" height="32" alt=""> 瓢虫标本 | 普通 | +2% 吸血概率 | 15 | ∞ |
+| <img src="images/item/bugs_2.png" width="32" height="32" alt=""> 蝴蝶标本 | 普通 | -1 最大生命，+1% 吸血概率，+4% 暴击率 | 15 | ∞ |
+| <img src="images/item/bugs_3.png" width="32" height="32" alt=""> 甲虫标本 | 普通 | +2% 吸血概率 | 15 | ∞ |
+| <img src="images/item/bugs_4.png" width="32" height="32" alt=""> 螳螂标本 | 稀有 | -2 最大生命，+2% 吸血概率，+3% 暴击率，击杀时获得18% 概率嗜血 | 36 | ∞ |
+| <img src="images/item/bugs_5.png" width="32" height="32" alt=""> 蜂后标本 | 稀有 | -2 最大生命，+2% 吸血概率，+8% 暴击率 | 36 | ∞ |
+| <img src="images/item/bugs_6.png" width="32" height="32" alt=""> 蝎子标本 | 稀有 | -2 最大生命，+2% 吸血概率，+3% 暴击率，击杀时获得19% 概率嗜血 | 36 | ∞ |
+| <img src="images/item/bugs_7.png" width="32" height="32" alt=""> 黄金圣甲虫 | 史诗 | -3 最大生命，+3% 吸血概率，+5% 暴击率，击杀时获得35% 概率嗜血 | 73 | ∞ |
+| <img src="images/item/bugs_8.png" width="32" height="32" alt=""> 吸血蝙蝠 | 史诗 | +2% 吸血概率，+6% 暴击率，击杀时获得26% 概率嗜血 | 73 | ∞ |
+| <img src="images/item/bugs_9.png" width="32" height="32" alt=""> 虫王琥珀 | 传说 | -6 最大生命，+7% 吸血概率，+11% 暴击率，击杀时获得49% 概率嗜血 | 123 | ∞ |
 
 <a id="series-24"></a>
 
@@ -745,16 +745,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/potions_0.png" width="32" height="32" alt=""> 红药水 | 普通 | +2 生命再生，+1% 吸血，-1% 移动速度 | 15 | ∞ |
+| <img src="images/item/potions_0.png" width="32" height="32" alt=""> 红药水 | 普通 | +2 生命再生，+1% 吸血概率，-1% 移动速度 | 15 | ∞ |
 | <img src="images/item/potions_1.png" width="32" height="32" alt=""> 蓝药水 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/potions_2.png" width="32" height="32" alt=""> 绿药水 | 普通 | +1 生命再生，+1% 吸血，-1% 移动速度 | 15 | ∞ |
+| <img src="images/item/potions_2.png" width="32" height="32" alt=""> 绿药水 | 普通 | +1 生命再生，+1% 吸血概率，-1% 移动速度 | 15 | ∞ |
 | <img src="images/item/potions_3.png" width="32" height="32" alt=""> 解毒剂 | 普通 | +2 生命再生 | 15 | ∞ |
-| <img src="images/item/potions_4.png" width="32" height="32" alt=""> 回复药 | 稀有 | +2 生命再生，+1% 吸血，-3% 移动速度，每击杀 48 个敌人回复 1 生命 | 36 | ∞ |
-| <img src="images/item/potions_5.png" width="32" height="32" alt=""> 高级回复药 | 稀有 | +2 生命再生，+3% 吸血，-3% 移动速度 | 36 | ∞ |
-| <img src="images/item/potions_6.png" width="32" height="32" alt=""> 万能药 | 稀有 | +2 生命再生，+1% 吸血，-3% 移动速度，每击杀 48 个敌人回复 1 生命 | 36 | ∞ |
-| <img src="images/item/potions_7.png" width="32" height="32" alt=""> 不死药水 | 史诗 | +4 生命再生，+2% 吸血，-6% 移动速度，每击杀 36 个敌人回复 1 生命 | 73 | ∞ |
-| <img src="images/item/potions_8.png" width="32" height="32" alt=""> 凤凰药剂 | 史诗 | +2 生命再生，+2% 吸血，每击杀 43 个敌人回复 1 生命 | 73 | ∞ |
-| <img src="images/item/potions_9.png" width="32" height="32" alt=""> 生命之泉 | 传说 | +8 生命再生，+4% 吸血，-10% 移动速度，每击杀 27 个敌人回复 1 生命 | 123 | ∞ |
+| <img src="images/item/potions_4.png" width="32" height="32" alt=""> 回复药 | 稀有 | +2 生命再生，+1% 吸血概率，-3% 移动速度，每击杀 48 个敌人回复 1 生命 | 36 | ∞ |
+| <img src="images/item/potions_5.png" width="32" height="32" alt=""> 高级回复药 | 稀有 | +2 生命再生，+3% 吸血概率，-3% 移动速度 | 36 | ∞ |
+| <img src="images/item/potions_6.png" width="32" height="32" alt=""> 万能药 | 稀有 | +2 生命再生，+1% 吸血概率，-3% 移动速度，每击杀 48 个敌人回复 1 生命 | 36 | ∞ |
+| <img src="images/item/potions_7.png" width="32" height="32" alt=""> 不死药水 | 史诗 | +4 生命再生，+2% 吸血概率，-6% 移动速度，每击杀 36 个敌人回复 1 生命 | 73 | ∞ |
+| <img src="images/item/potions_8.png" width="32" height="32" alt=""> 凤凰药剂 | 史诗 | +2 生命再生，+2% 吸血概率，每击杀 43 个敌人回复 1 生命 | 73 | ∞ |
+| <img src="images/item/potions_9.png" width="32" height="32" alt=""> 生命之泉 | 传说 | +8 生命再生，+4% 吸血概率，-10% 移动速度，每击杀 27 个敌人回复 1 生命 | 123 | ∞ |
 
 <a id="series-35"></a>
 
@@ -762,16 +762,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/bones_0.png" width="32" height="32" alt=""> 鸡骨头 | 普通 | -1 生命再生，+1% 吸血，+2 近战伤害 | 15 | ∞ |
+| <img src="images/item/bones_0.png" width="32" height="32" alt=""> 鸡骨头 | 普通 | -1 生命再生，+1% 吸血概率，+2 近战伤害 | 15 | ∞ |
 | <img src="images/item/bones_1.png" width="32" height="32" alt=""> 鱼刺 | 普通 | +2 近战伤害 | 15 | ∞ |
-| <img src="images/item/bones_2.png" width="32" height="32" alt=""> 猪骨 | 普通 | -1 生命再生，+2% 吸血，+1 近战伤害 | 15 | ∞ |
+| <img src="images/item/bones_2.png" width="32" height="32" alt=""> 猪骨 | 普通 | -1 生命再生，+2% 吸血概率，+1 近战伤害 | 15 | ∞ |
 | <img src="images/item/bones_3.png" width="32" height="32" alt=""> 牛骨 | 普通 | +2 近战伤害 | 15 | ∞ |
-| <img src="images/item/bones_4.png" width="32" height="32" alt=""> 恐龙骨 | 稀有 | -1 生命再生，+1% 吸血，+2 近战伤害，命中时9% 概率诅咒 | 36 | ∞ |
-| <img src="images/item/bones_5.png" width="32" height="32" alt=""> 骷髅头 | 稀有 | -1 生命再生，+3% 吸血，+2 近战伤害 | 36 | ∞ |
-| <img src="images/item/bones_6.png" width="32" height="32" alt=""> 诅咒之骨 | 稀有 | -1 生命再生，+1% 吸血，+2 近战伤害，命中时10% 概率诅咒 | 36 | ∞ |
-| <img src="images/item/bones_7.png" width="32" height="32" alt=""> 死灵骨杖 | 史诗 | -2 生命再生，+2% 吸血，+4 近战伤害，命中时19% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/bones_8.png" width="32" height="32" alt=""> 骨龙之牙 | 史诗 | +2% 吸血，+2 近战伤害，命中时14% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/bones_9.png" width="32" height="32" alt=""> 冥王之骨 | 传说 | -4 生命再生，+4% 吸血，+8 近战伤害，命中时25% 概率诅咒 | 123 | ∞ |
+| <img src="images/item/bones_4.png" width="32" height="32" alt=""> 恐龙骨 | 稀有 | -1 生命再生，+1% 吸血概率，+2 近战伤害，命中时9% 概率诅咒 | 36 | ∞ |
+| <img src="images/item/bones_5.png" width="32" height="32" alt=""> 骷髅头 | 稀有 | -1 生命再生，+3% 吸血概率，+2 近战伤害 | 36 | ∞ |
+| <img src="images/item/bones_6.png" width="32" height="32" alt=""> 诅咒之骨 | 稀有 | -1 生命再生，+1% 吸血概率，+2 近战伤害，命中时10% 概率诅咒 | 36 | ∞ |
+| <img src="images/item/bones_7.png" width="32" height="32" alt=""> 死灵骨杖 | 史诗 | -2 生命再生，+2% 吸血概率，+4 近战伤害，命中时19% 概率诅咒 | 73 | ∞ |
+| <img src="images/item/bones_8.png" width="32" height="32" alt=""> 骨龙之牙 | 史诗 | +2% 吸血概率，+2 近战伤害，命中时14% 概率诅咒 | 73 | ∞ |
+| <img src="images/item/bones_9.png" width="32" height="32" alt=""> 冥王之骨 | 传说 | -4 生命再生，+4% 吸血概率，+8 近战伤害，命中时25% 概率诅咒 | 123 | ∞ |
 
 <a id="series-36"></a>
 
@@ -898,16 +898,16 @@
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
-| <img src="images/item/dark_0.png" width="32" height="32" alt=""> 黑猫毛 | 普通 | -1 生命再生，+1% 吸血，+6% 光环伤害 | 15 | ∞ |
+| <img src="images/item/dark_0.png" width="32" height="32" alt=""> 黑猫毛 | 普通 | -1 生命再生，+1% 吸血概率，+6% 光环伤害 | 15 | ∞ |
 | <img src="images/item/dark_1.png" width="32" height="32" alt=""> 乌鸦羽 | 普通 | +8% 光环伤害 | 15 | ∞ |
-| <img src="images/item/dark_2.png" width="32" height="32" alt=""> 诅咒娃娃 | 普通 | -1 生命再生，+2% 吸血，+4% 光环伤害 | 15 | ∞ |
+| <img src="images/item/dark_2.png" width="32" height="32" alt=""> 诅咒娃娃 | 普通 | -1 生命再生，+2% 吸血概率，+4% 光环伤害 | 15 | ∞ |
 | <img src="images/item/dark_3.png" width="32" height="32" alt=""> 暗影布 | 普通 | +8% 光环伤害 | 15 | ∞ |
-| <img src="images/item/dark_4.png" width="32" height="32" alt=""> 邪眼 | 稀有 | -1 生命再生，+1% 吸血，+6% 光环伤害，命中时9% 概率诅咒 | 36 | ∞ |
-| <img src="images/item/dark_5.png" width="32" height="32" alt=""> 恶魔角 | 稀有 | -1 生命再生，+3% 吸血，+8% 光环伤害 | 36 | ∞ |
-| <img src="images/item/dark_6.png" width="32" height="32" alt=""> 深渊之石 | 稀有 | -1 生命再生，+1% 吸血，+7% 光环伤害，命中时10% 概率诅咒 | 36 | ∞ |
-| <img src="images/item/dark_7.png" width="32" height="32" alt=""> 魔王契约 | 史诗 | -2 生命再生，+2% 吸血，+13% 光环伤害，命中时19% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/dark_8.png" width="32" height="32" alt=""> 虚空之眼 | 史诗 | +2% 吸血，+6% 光环伤害，命中时14% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/dark_9.png" width="32" height="32" alt=""> 混沌黑洞 | 传说 | -4 生命再生，+4% 吸血，+28% 光环伤害，命中时25% 概率诅咒 | 123 | ∞ |
+| <img src="images/item/dark_4.png" width="32" height="32" alt=""> 邪眼 | 稀有 | -1 生命再生，+1% 吸血概率，+6% 光环伤害，命中时9% 概率诅咒 | 36 | ∞ |
+| <img src="images/item/dark_5.png" width="32" height="32" alt=""> 恶魔角 | 稀有 | -1 生命再生，+3% 吸血概率，+8% 光环伤害 | 36 | ∞ |
+| <img src="images/item/dark_6.png" width="32" height="32" alt=""> 深渊之石 | 稀有 | -1 生命再生，+1% 吸血概率，+7% 光环伤害，命中时10% 概率诅咒 | 36 | ∞ |
+| <img src="images/item/dark_7.png" width="32" height="32" alt=""> 魔王契约 | 史诗 | -2 生命再生，+2% 吸血概率，+13% 光环伤害，命中时19% 概率诅咒 | 73 | ∞ |
+| <img src="images/item/dark_8.png" width="32" height="32" alt=""> 虚空之眼 | 史诗 | +2% 吸血概率，+6% 光环伤害，命中时14% 概率诅咒 | 73 | ∞ |
+| <img src="images/item/dark_9.png" width="32" height="32" alt=""> 混沌黑洞 | 传说 | -4 生命再生，+4% 吸血概率，+28% 光环伤害，命中时25% 概率诅咒 | 123 | ∞ |
 
 <a id="series-44"></a>
 
