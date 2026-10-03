@@ -196,7 +196,16 @@ export const STATUSES: Record<StatusId, StatusDef> = {
     dmgDealt: 30,
   },
   lucky: { id: 'lucky', name: '好运', kind: 'buff', color: 0xfdcb6e, glyph: '运', desc: '幸运提高', maxStacks: 5, luck: 10 },
-  vampiric: { id: 'vampiric', name: '嗜血', kind: 'buff', color: 0x9d0208, glyph: '嗜', desc: '吸血概率每层 +4%', maxStacks: 5, lifeSteal: 4 },
+  vampiric: {
+    id: 'vampiric',
+    name: '嗜血',
+    kind: 'buff',
+    color: 0x9d0208,
+    glyph: '嗜',
+    desc: '吸血概率每层 +4%',
+    maxStacks: 5,
+    lifeSteal: 4,
+  },
 };
 
 export const DEBUFF_IDS = (Object.keys(STATUSES) as StatusId[]).filter((k) => STATUSES[k].kind === 'debuff');

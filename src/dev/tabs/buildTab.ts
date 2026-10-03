@@ -193,7 +193,12 @@ export function renderBuild(ctx: DevCtx): HTMLElement {
       h(
         'span',
         null,
-        mkBtn('↑', i === 0, () => (b.weapons.splice(i - 1, 0, ...b.weapons.splice(i, 1)), ctx.changed()), '上移（影响叠加层颜色与武器栏顺序）'),
+        mkBtn(
+          '↑',
+          i === 0,
+          () => (b.weapons.splice(i - 1, 0, ...b.weapons.splice(i, 1)), ctx.changed()),
+          '上移（影响叠加层颜色与武器栏顺序）',
+        ),
         mkBtn('↓', i === b.weapons.length - 1, () => (b.weapons.splice(i + 1, 0, ...b.weapons.splice(i, 1)), ctx.changed()), '下移'),
         mkBtn('合成', !canCombine(b, i), () => (combineWeapon(b, i) ? ctx.changed() : ctx.toast('需要另一把同名同品质', true))),
         evo
@@ -612,7 +617,6 @@ function presets(ctx: DevCtx): HTMLElement {
     io,
   );
 }
-
 
 /** C5：预设按「分组/名称」分组，可搜索、按名称或保存时间排序，并显示同一构筑最近一次的测试结果 */
 function presetTable(ctx: DevCtx, all: Record<string, DevBuild>, summary: (p: DevBuild) => string): HTMLElement {

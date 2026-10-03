@@ -41,7 +41,10 @@ export function installEventHooks(): void {
     const d = before - run.hp;
     const src = (a[1] as { def?: { name: string }; boss?: { name: string } } | undefined) ?? null;
     const who = src?.boss?.name ?? src?.def?.name ?? '未知';
-    logEv('hurt', d > 0 ? `玩家 -${d.toFixed(1)}（来自 ${who}，原始 ${Number(a[0]).toFixed(1)}）` : `玩家免伤（${who}：闪避 / 无敌 / 护盾）`);
+    logEv(
+      'hurt',
+      d > 0 ? `玩家 -${d.toFixed(1)}（来自 ${who}，原始 ${Number(a[0]).toFixed(1)}）` : `玩家免伤（${who}：闪避 / 无敌 / 护盾）`,
+    );
   });
   wrap(P, 'killEnemy', (_s, a) => {
     const e = a[0] as { def?: { name: string }; boss?: { name: string }; maxHp: number };
@@ -73,7 +76,8 @@ function fields(o: unknown): [string, string][] {
   const out: [string, string][] = [];
   for (const [k, v] of Object.entries(o as Record<string, unknown>)) {
     if (k.startsWith('_') || typeof v === 'function') continue;
-    if (v === null || ['number', 'string', 'boolean'].includes(typeof v)) out.push([k, typeof v === 'number' ? String(Math.round(v * 100) / 100) : String(v)]);
+    if (v === null || ['number', 'string', 'boolean'].includes(typeof v))
+      out.push([k, typeof v === 'number' ? String(Math.round(v * 100) / 100) : String(v)]);
     else if (Array.isArray(v)) out.push([k, `[${v.length}]`]);
     else if (v instanceof Phaser.GameObjects.GameObject) out.push([k, `<${v.type}>`]);
     else if (typeof v === 'object') {
@@ -98,29 +102,46 @@ export function renderDebug(ctx: DevCtx): HTMLElement {
   );
   if (sel && sb.running && sel.alive) {
     root.append(
-      h('div', { class: 'row' }, check('展开全部字段', inspectOpen, (v) => ((inspectOpen = v), ctx.rerender())), btn('刷新', () => ctx.rerender())),
+      h(
+        'div',
+        { class: 'row' },
+        check('展开全部字段', inspectOpen, (v) => ((inspectOpen = v), ctx.rerender())),
+        btn('刷新', () => ctx.rerender()),
+      ),
       table(
         ['字段', '值'],
-        (inspectOpen ? fields(sel) : fields(sel).filter(([k]) => ['hp', 'maxHp', 'x', 'y', 'speed', 'dmg', 'phase2', 'radius'].includes(k))).map(([k, v]) => [
-          k,
-          v,
-        ]),
+        (inspectOpen
+          ? fields(sel)
+          : fields(sel).filter(([k]) => ['hp', 'maxHp', 'x', 'y', 'speed', 'dmg', 'phase2', 'radius'].includes(k))
+        ).map(([k, v]) => [k, v]),
       ),
-      h('div', { class: 'muted small' }, '状态：' + ((sel as unknown as { status?: StatusSet }).status?.list.map((s) => `${s.id}×${s.stacks}`).join(' ') || '无')),
+      h(
+        'div',
+        { class: 'muted small' },
+        '状态：' + ((sel as unknown as { status?: StatusSet }).status?.list.map((s) => `${s.id}×${s.stacks}`).join(' ') || '无'),
+      ),
     );
   } else root.append(h('div', { class: 'muted' }, '未选中'));
   if (sb.running) {
     const g = sb.g as unknown as Record<string, unknown>;
     const count = (k: string) => {
       const v = g[k] as { countActive?: () => number; length?: number } | undefined;
-      return v?.countActive ? v.countActive() : Array.isArray(v) ? (v as unknown[]).filter((x) => (x as { alive?: boolean }).alive !== false).length : '—';
+      return v?.countActive
+        ? v.countActive()
+        : Array.isArray(v)
+          ? (v as unknown[]).filter((x) => (x as { alive?: boolean }).alive !== false).length
+          : '—';
     };
     root.append(
       table(
         ['集合', '存活'],
         ['enemies', 'bullets', 'enemyBullets', 'pickups', 'hazards'].map((k) => [k, String(count(k))]),
       ),
-      h('div', { class: 'row' }, btn('在控制台打印 GameScene', () => (console.log(sb.g), ctx.toast('已输出到浏览器控制台（F12）')))),
+      h(
+        'div',
+        { class: 'row' },
+        btn('在控制台打印 GameScene', () => (console.log(sb.g), ctx.toast('已输出到浏览器控制台（F12）'))),
+      ),
     );
   }
 
@@ -172,7 +193,13 @@ export function renderDebug(ctx: DevCtx): HTMLElement {
           { class: 'row' },
           e.build ? btn('载入当时的构筑', () => ctx.setBuild(JSON.parse(e.build) as DevBuild)) : '',
           e.snap && e.snap !== 'null' ? btn('恢复当时的快照', () => ctx.restoreSnapshot(JSON.parse(e.snap) as Snapshot)) : '',
-          btn('复制报告', () => void navigator.clipboard?.writeText(`${e.msg}\n${e.stack}\n\nbuild: ${e.build}\n\nsnap: ${e.snap}`).then(() => ctx.toast('已复制'))),
+          btn(
+            '复制报告',
+            () =>
+              void navigator.clipboard
+                ?.writeText(`${e.msg}\n${e.stack}\n\nbuild: ${e.build}\n\nsnap: ${e.snap}`)
+                .then(() => ctx.toast('已复制')),
+          ),
         ),
       ),
     );
@@ -182,13 +209,17 @@ export function renderDebug(ctx: DevCtx): HTMLElement {
   const game = sb.game;
   const scenes = game.scene.getScenes(false).map((s) => {
     const st = s.sys.settings.status;
-    const name = ['PENDING', 'INIT', 'START', 'LOADING', 'CREATING', 'RUNNING', 'PAUSED', 'SLEEPING', 'SHUTDOWN', 'DESTROYED'][st] ?? String(st);
+    const name =
+      ['PENDING', 'INIT', 'START', 'LOADING', 'CREATING', 'RUNNING', 'PAUSED', 'SLEEPING', 'SHUTDOWN', 'DESTROYED'][st] ?? String(st);
     return [s.sys.settings.key, name, s.sys.isVisible() ? '可见' : '隐藏'];
   });
   const tips = document.querySelectorAll('.tutorial-tip, [data-tutorial]');
   root.append(
     h('h3', null, 'J4 场景栈'),
-    table(['场景', '状态', ''], scenes.filter((s) => s[1] !== 'PENDING' || s[0] === 'Game')),
+    table(
+      ['场景', '状态', ''],
+      scenes.filter((s) => s[1] !== 'PENDING' || s[0] === 'Game'),
+    ),
     h('div', { class: 'muted' }, `页面上的新手提示元素：${tips.length} 个`),
   );
 
@@ -201,7 +232,11 @@ export function renderDebug(ctx: DevCtx): HTMLElement {
       'details',
       null,
       h('summary', null, '内存中的存档（save）'),
-      h('pre', { class: 'small', style: 'white-space:pre-wrap;max-height:300px;overflow:auto' }, esc(JSON.stringify(save, null, 1)).slice(0, 20000)),
+      h(
+        'pre',
+        { class: 'small', style: 'white-space:pre-wrap;max-height:300px;overflow:auto' },
+        esc(JSON.stringify(save, null, 1)).slice(0, 20000),
+      ),
     ),
     table(
       ['键', '大小', ''],

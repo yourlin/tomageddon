@@ -22,7 +22,12 @@ function stub(): AnyFn {
 
 vi.mock('phaser', () => {
   const P = stub();
-  return { default: P, ...Object.fromEntries(['Scene', 'Math', 'GameObjects', 'Scenes', 'Input', 'Display', 'Geom', 'Scale', 'AUTO', 'Game'].map((k) => [k, P[k]])) };
+  return {
+    default: P,
+    ...Object.fromEntries(
+      ['Scene', 'Math', 'GameObjects', 'Scenes', 'Input', 'Display', 'Geom', 'Scale', 'AUTO', 'Game'].map((k) => [k, P[k]]),
+    ),
+  };
 });
 
 // localStorage 替身（存档 / 开发者预设会读写）

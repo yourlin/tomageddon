@@ -12,7 +12,12 @@ import { weaponCalc, PATTERN_NAME, BEHAVIOR_NAME } from '../info';
 import { setOverride } from '../overrides';
 
 // ---------------- D5 全类别 ----------------
-export const allFilter = { chapter: 0, behavior: '' as '' | EnemyBehavior, pattern: '' as '' | PatternType, kind: '' as '' | 'minion' | 'elite' | 'boss' };
+export const allFilter = {
+  chapter: 0,
+  behavior: '' as '' | EnemyBehavior,
+  pattern: '' as '' | PatternType,
+  kind: '' as '' | 'minion' | 'elite' | 'boss',
+};
 
 export interface AllRow {
   sel: string;
@@ -124,11 +129,16 @@ export function liveEditor(ctx: DevCtx, t: Tracked): HTMLElement {
         e.phase2 ? h('span', { class: 'warn' }, '已在二阶段') : '',
         e.enraged
           ? h('span', { class: 'bad' }, '狂暴中')
-          : btn('触发狂暴', () => {
-              e.enraged = true;
-              e.status.apply({ id: 'enrage', dur: 999 });
-              ctx.rerender();
-            }, '', '与 Boss 波倒计时结束相同：冷却减半、附加狂暴状态'),
+          : btn(
+              '触发狂暴',
+              () => {
+                e.enraged = true;
+                e.status.apply({ id: 'enrage', dur: 999 });
+                ctx.rerender();
+              },
+              '',
+              '与 Boss 波倒计时结束相同：冷却减半、附加狂暴状态',
+            ),
       ),
     );
     // D3：招式时间轴
@@ -188,10 +198,18 @@ export function liveEditor(ctx: DevCtx, t: Tracked): HTMLElement {
             'label',
             null,
             `${i + 1}.${PATTERN_NAME[p.type]} CD`,
-            num(p.cd, (v) => (setOverride('bosses', b.id, ['patterns', String(i), 'cd'], v), ctx.toast(`已覆盖 ${b.name} 招式 ${i + 1} 冷却 = ${v}`), ctx.rerender()), {
-              width: 54,
-              step: 0.1,
-            }),
+            num(
+              p.cd,
+              (v) => (
+                setOverride('bosses', b.id, ['patterns', String(i), 'cd'], v),
+                ctx.toast(`已覆盖 ${b.name} 招式 ${i + 1} 冷却 = ${v}`),
+                ctx.rerender()
+              ),
+              {
+                width: 54,
+                step: 0.1,
+              },
+            ),
           ),
         ),
       ),
@@ -254,7 +272,20 @@ export function affixPresets(ctx: DevCtx): HTMLElement {
 }
 
 // ---------------- D7 刷怪池概率 ----------------
-const POOL_COLORS = ['#ff6b5e', '#ffd166', '#52ff8a', '#5ec8ff', '#c08bff', '#ff9ad5', '#ff9f1c', '#7fffd4', '#d4a373', '#a0a0ff', '#e0e0e0', '#8fbc8f'];
+const POOL_COLORS = [
+  '#ff6b5e',
+  '#ffd166',
+  '#52ff8a',
+  '#5ec8ff',
+  '#c08bff',
+  '#ff9ad5',
+  '#ff9f1c',
+  '#7fffd4',
+  '#d4a373',
+  '#a0a0ff',
+  '#e0e0e0',
+  '#8fbc8f',
+];
 export function poolChart(chapterId: number): HTMLElement {
   const ch = CHAPTERS[chapterId - 1];
   const ids = [...new Set(ch.pool.map((p) => p.enemy))];

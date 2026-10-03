@@ -539,7 +539,9 @@ export class Sandbox {
       gfx.lineStyle(2, c, 0.9).lineBetween(e.x, e.y, e.x + (e.dirX / len) * (e.radius + 22), e.y + (e.dirY / len) * (e.radius + 22));
       if (e.isBoss || this.tracked.some((t) => t.e === e)) gfx.lineStyle(1, c, 0.25).lineBetween(e.x, e.y, p.x, p.y);
       if (n < 40) {
-        const t = (this.aiText[n] ??= g.add.text(0, 0, '', { fontSize: '10px', color: '#ffffff', fontFamily: 'Consolas,monospace' }).setDepth(9999));
+        const t = (this.aiText[n] ??= g.add
+          .text(0, 0, '', { fontSize: '10px', color: '#ffffff', fontFamily: 'Consolas,monospace' })
+          .setDepth(9999));
         const cd = e.patterns.length ? ' ' + e.patternT.map((x) => Math.max(0, x).toFixed(1)).join('/') : '';
         t.setVisible(true)
           .setPosition(e.x + e.radius + 4, e.y - 6)
@@ -772,8 +774,7 @@ export class Sandbox {
       if (!s) continue;
       const [t, id, n, flag] = s.split(/\s+/);
       const boss = flag === 'b' || (!ENEMY_MAP[id] && !!BOSS_MAP[id]);
-      if (!Number.isFinite(Number(t)) || !(boss ? BOSS_MAP[id] : ENEMY_MAP[id]))
-        return { lines, err: `第 ${i + 1} 行无法识别：${raw}` };
+      if (!Number.isFinite(Number(t)) || !(boss ? BOSS_MAP[id] : ENEMY_MAP[id])) return { lines, err: `第 ${i + 1} 行无法识别：${raw}` };
       lines.push({ t: Number(t), id, count: Math.max(1, Number(n) || 1), boss });
     }
     return { lines, err: null };

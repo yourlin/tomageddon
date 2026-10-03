@@ -69,7 +69,11 @@ export class SettingsScene extends Phaser.Scene {
       ],
       [tx('伤害数字', 'Damage Numbers'), () => onOff(st.showDmg), () => (st.showDmg = !st.showDmg)],
       // L1：伤害数字密度（暴击总显示）
-      [tx('伤害数字密度', 'Number Density'), () => pct(st.dmgDensity ?? 1), () => (st.dmgDensity = cycle([1, 0.5, 0.25, 0.1], st.dmgDensity ?? 1))],
+      [
+        tx('伤害数字密度', 'Number Density'),
+        () => pct(st.dmgDensity ?? 1),
+        () => (st.dmgDensity = cycle([1, 0.5, 0.25, 0.1], st.dmgDensity ?? 1)),
+      ],
       // L1：粒子数量
       [tx('粒子数量', 'Particles'), () => pct(st.particles ?? 1), () => (st.particles = cycle([1, 0.5, 0.25, 0], st.particles ?? 1))],
       [
@@ -90,11 +94,7 @@ export class SettingsScene extends Phaser.Scene {
       ],
       // L2：移动端操作
       [tx('摇杆大小', 'Joystick Size'), () => pct(st.joyScale ?? 1), () => (st.joyScale = cycle([1, 1.25, 1.5, 0.8], st.joyScale ?? 1))],
-      [
-        tx('摇杆位置', 'Joystick Side'),
-        () => (st.joyRight ? tx('右手', 'Right') : tx('左手', 'Left')),
-        () => (st.joyRight = !st.joyRight),
-      ],
+      [tx('摇杆位置', 'Joystick Side'), () => (st.joyRight ? tx('右手', 'Right') : tx('左手', 'Left')), () => (st.joyRight = !st.joyRight)],
       [tx('按钮大小', 'Button Size'), () => pct(st.btnScale ?? 1), () => (st.btnScale = cycle([1, 1.2, 1.4, 0.85], st.btnScale ?? 1))],
     ];
     // 切换语言需要重新加载（数据文本在启动时按语言写入）；战斗中暂停时不提供，避免丢失本波进度

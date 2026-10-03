@@ -21,7 +21,10 @@ let search = '';
 let fieldSearch = '';
 
 /** 小型折线图（SVG），series 每条为 [名称, 颜色, 点列] */
-export function lineChart(series: [string, string, number[]][], opts: { w?: number; h?: number; xLabel?: (i: number) => string } = {}): SVGSVGElement {
+export function lineChart(
+  series: [string, string, number[]][],
+  opts: { w?: number; h?: number; xLabel?: (i: number) => string } = {},
+): SVGSVGElement {
   const W = opts.w ?? 500;
   const H = opts.h ?? 160;
   const pad = 28;
@@ -88,7 +91,13 @@ export function renderData(ctx: DevCtx): HTMLElement {
         tbl,
         (v) => ((tbl = v), (rowId = ''), ctx.rerender()),
       ),
-      ids.length > 1 ? h('input', { placeholder: '搜索条目', value: search, oninput: (e: Event) => ((search = (e.target as HTMLInputElement).value), redraw()) }) : '',
+      ids.length > 1
+        ? h('input', {
+            placeholder: '搜索条目',
+            value: search,
+            oninput: (e: Event) => ((search = (e.target as HTMLInputElement).value), redraw()),
+          })
+        : '',
       ids.length > 1
         ? select(
             shownIds.slice(0, 400).map((id) => [id, label(id)]),
@@ -129,7 +138,11 @@ export function renderData(ctx: DevCtx): HTMLElement {
   }
   root.append(
     fields.length ? grid : h('div', { class: 'muted' }, '这个条目没有数字字段'),
-    h('div', { class: 'muted' }, '改完自动重启沙盒；武器 / 怪物数值在下一次生成时生效。章节倍率在启动时派生，曲线参数改动只影响下方预览与新算的数值。'),
+    h(
+      'div',
+      { class: 'muted' },
+      '改完自动重启沙盒；武器 / 怪物数值在下一次生成时生效。章节倍率在启动时派生，曲线参数改动只影响下方预览与新算的数值。',
+    ),
   );
 
   // ---------------- 覆盖项列表 ----------------
@@ -213,11 +226,18 @@ export function renderData(ctx: DevCtx): HTMLElement {
       ),
       h('div', { class: 'muted small' }, '基础 HP 10、成长 0.5 的小怪在各章 1–15 波的血量'),
       lineChart(
-        chs.map((c, i) => [`第${c}章`, COLORS[i % COLORS.length], waves.map((w) => growthCurve(10, 0.5, w) * chapterScale(chapterMult(c, cc.hpEnd), w))]),
+        chs.map((c, i) => [
+          `第${c}章`,
+          COLORS[i % COLORS.length],
+          waves.map((w) => growthCurve(10, 0.5, w) * chapterScale(chapterMult(c, cc.hpEnd), w)),
+        ]),
       ),
       h('div', { class: 'muted small' }, '每波番茄籽收入目标 · 无尽 HP 复利（16–40 波）'),
       lineChart([['收入', COLORS[3], waves.map(incomeTarget)]], { h: 110 }),
-      lineChart([['无尽 HP', COLORS[4], Array.from({ length: 25 }, (_, i) => endlessHp(i + 16))]], { h: 110, xLabel: (i) => String(i + 16) }),
+      lineChart([['无尽 HP', COLORS[4], Array.from({ length: 25 }, (_, i) => endlessHp(i + 16))]], {
+        h: 110,
+        xLabel: (i) => String(i + 16),
+      }),
     );
   };
   drawCurves();

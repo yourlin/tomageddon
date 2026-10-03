@@ -14,7 +14,9 @@ export function lazyScene(key: string, load: () => Promise<SceneClass>): SceneCl
       const W = this.scale.width;
       const H = this.scale.height;
       this.cameras.main.setBackgroundColor('#1a0a0c');
-      const t = this.add.text(W / 2, H / 2, tx('加载中…', 'Loading…'), { fontFamily: 'system-ui', fontSize: '28px', color: '#f3e6e0' }).setOrigin(0.5);
+      const t = this.add
+        .text(W / 2, H / 2, tx('加载中…', 'Loading…'), { fontFamily: 'system-ui', fontSize: '28px', color: '#f3e6e0' })
+        .setOrigin(0.5);
       load()
         .then((Cls) => {
           const mgr = this.game.scene;

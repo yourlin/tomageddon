@@ -1,6 +1,18 @@
 // L1：开发者构筑（src/dev/build.ts）与游戏共用的商店 / 合成 / 撤销逻辑
 import { describe, it, expect, beforeEach } from 'vitest';
-import { newBuild, buyWeapon, buyItem, sellWeapon, combineWeapon, canCombine, undo, money, spent, weaponPrice, applyBuild } from '../src/dev/build';
+import {
+  newBuild,
+  buyWeapon,
+  buyItem,
+  sellWeapon,
+  combineWeapon,
+  canCombine,
+  undo,
+  money,
+  spent,
+  weaponPrice,
+  applyBuild,
+} from '../src/dev/build';
 import { CHARACTER_MAP } from '../src/data/characters';
 import { ALL_ITEMS } from '../src/data/items';
 import { run } from '../src/systems/RunState';

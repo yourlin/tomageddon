@@ -232,7 +232,9 @@ export function normalize(input: unknown): SaveData {
     settings: { ...DEFAULT.settings, ...(d.settings ?? {}) },
     seen: { ...structuredClone(DEFAULT.seen), ...(d.seen ?? {}) },
     // 旧版成就记录为时间戳，格式不兼容，丢弃后按新规则重新评定
-    achievements: Object.fromEntries(Object.entries(d.achievements ?? {}).filter(([, v]) => typeof v === 'object')) as SaveData['achievements'],
+    achievements: Object.fromEntries(
+      Object.entries(d.achievements ?? {}).filter(([, v]) => typeof v === 'object'),
+    ) as SaveData['achievements'],
     ownedChars: d.ownedChars ?? legacyOwned(d),
     charRuns: { ...(d.charRuns ?? {}) },
     killedBosses: { ...(d.killedBosses ?? {}) },

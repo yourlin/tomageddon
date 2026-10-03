@@ -328,7 +328,9 @@ function mount(game: Phaser.Game): void {
     if (!w) return ctx.toast('浏览器拦截了弹出窗口', true);
     popup = w;
     w.document.title = 'Tomageddon · 开发者面板';
-    w.document.head.append(h('style', null, CSS + '#dev-panel{position:static;width:100vw;height:100vh;border:none}#dev-panel .grip{display:none}'));
+    w.document.head.append(
+      h('style', null, CSS + '#dev-panel{position:static;width:100vw;height:100vh;border:none}#dev-panel .grip{display:none}'),
+    );
     w.document.body.style.margin = '0';
     w.document.body.append(panel);
     w.document.addEventListener('keydown', onKey);

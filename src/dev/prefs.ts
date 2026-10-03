@@ -3,18 +3,7 @@
 import type { UiState } from './ctx';
 
 export type KeyAction =
-  | 'charPrev'
-  | 'charNext'
-  | 'monPrev'
-  | 'monNext'
-  | 'palette'
-  | 'help'
-  | 'undo'
-  | 'redo'
-  | 'pause'
-  | 'frame'
-  | 'snapshot'
-  | 'restore';
+  'charPrev' | 'charNext' | 'monPrev' | 'monNext' | 'palette' | 'help' | 'undo' | 'redo' | 'pause' | 'frame' | 'snapshot' | 'restore';
 
 /** 快捷键用 KeyboardEvent.code 表示；带 Ctrl 的写成 `Ctrl+KeyK` */
 export const KEY_LABEL: Record<KeyAction, string> = {

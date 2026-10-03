@@ -122,7 +122,12 @@ export function renderMonsters(ctx: DevCtx): HTMLElement {
         h('span', { class: 'muted' }, '词缀小怪：生命 ×3.5、伤害 ×1.3；Boss 召唤物按构筑波次缩放'),
       ),
       affixPresets(ctx),
-      h('div', { class: 'row' }, check('AI 状态叠加层（D6）', sb.overlay.ai, (v) => (sb.overlay.ai = v), '移动方向箭头、行为状态与招式冷却'), heatToggle(ctx)),
+      h(
+        'div',
+        { class: 'row' },
+        check('AI 状态叠加层（D6）', sb.overlay.ai, (v) => (sb.overlay.ai = v), '移动方向箭头、行为状态与招式冷却'),
+        heatToggle(ctx),
+      ),
     ),
   );
 
@@ -134,9 +139,7 @@ export function renderMonsters(ctx: DevCtx): HTMLElement {
       const c = CHAPTERS[(r.chapter || ui.mChapter) - 1];
       const st = r.boss ? bossStats(BOSS_MAP[r.id], ui.mWave, c) : minionStats(ENEMY_MAP[r.id], ui.mWave, c);
       const color = r.boss ? BOSS_MAP[r.id].color : ENEMY_MAP[r.id].color;
-      const info = r.boss
-        ? BOSS_MAP[r.id].patterns.map((p) => PATTERN_NAME[p.type]).join('/')
-        : BEHAVIOR_NAME[ENEMY_MAP[r.id].behavior];
+      const info = r.boss ? BOSS_MAP[r.id].patterns.map((p) => PATTERN_NAME[p.type]).join('/') : BEHAVIOR_NAME[ENEMY_MAP[r.id].behavior];
       return [
         link(ctx, r.sel, r.name, color),
         `${r.chapter ? `第${r.chapter}章` : '—'} ${r.kind === 'minion' ? '小怪' : r.kind === 'elite' ? '精英' : 'Boss'}`,
@@ -375,7 +378,12 @@ function matrix(fn: (ch: (typeof CHAPTERS)[number], wave: number) => { hp: numbe
           ...MATRIX_WAVES.map((w) => {
             const s = fn(c, w);
             const sec = s.hp / dps;
-            const cell = h('span', { title: `击杀约 ${fmt(sec, 2)} 秒` }, fmtK(s.hp), h('span', { class: heat ? '' : 'muted' }, ` / ${fmt(s.dmg)}`));
+            const cell = h(
+              'span',
+              { title: `击杀约 ${fmt(sec, 2)} 秒` },
+              fmtK(s.hp),
+              h('span', { class: heat ? '' : 'muted' }, ` / ${fmt(s.dmg)}`),
+            );
             if (heat) cell.style.cssText = `background:${heatColor(sec)};display:block;padding:0 3px;border-radius:2px`;
             return cell;
           }),

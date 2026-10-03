@@ -195,17 +195,19 @@ export function renderSandbox(ctx: DevCtx): HTMLElement {
     h(
       'div',
       { class: 'row' },
-      btn('从剪贴板导入快照', () =>
-        void navigator.clipboard
-          ?.readText()
-          .then((t) => {
-            const s = JSON.parse(t) as Snapshot;
-            if (!s.build || !s.enemies) throw new Error('bad');
-            snaps.unshift(s);
-            saveSnaps(snaps);
-            ctx.rerender();
-          })
-          .catch(() => ctx.toast('剪贴板里不是快照 JSON', true)),
+      btn(
+        '从剪贴板导入快照',
+        () =>
+          void navigator.clipboard
+            ?.readText()
+            .then((t) => {
+              const s = JSON.parse(t) as Snapshot;
+              if (!s.build || !s.enemies) throw new Error('bad');
+              snaps.unshift(s);
+              saveSnaps(snaps);
+              ctx.rerender();
+            })
+            .catch(() => ctx.toast('剪贴板里不是快照 JSON', true)),
       ),
     ),
   );
@@ -287,7 +289,12 @@ export function renderSandbox(ctx: DevCtx): HTMLElement {
     h(
       'div',
       { class: 'row' },
-      check('碰撞框 / 弹道', sb.overlay.hitbox, (v) => (sb.overlay.hitbox = v), '绿：玩家 · 红：敌人与敌方子弹 · 蓝：玩家子弹（线段为 0.25 秒内的路径）'),
+      check(
+        '碰撞框 / 弹道',
+        sb.overlay.hitbox,
+        (v) => (sb.overlay.hitbox = v),
+        '绿：玩家 · 红：敌人与敌方子弹 · 蓝：玩家子弹（线段为 0.25 秒内的路径）',
+      ),
       check('性能数据', sb.overlay.perf, (v) => ((sb.overlay.perf = v), ctx.rerender()), '在实时数据栏显示实体数、对象池与帧耗时'),
     ),
   );

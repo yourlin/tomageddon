@@ -178,14 +178,25 @@ export function renderSuites(ctx: DevCtx): HTMLElement {
   const ui = ctx.ui;
   const sel = ui.mSel;
   const nameIn = h('input', { placeholder: '新套件名', value: suiteName, oninput: () => (suiteName = nameIn.value), style: 'width:120px' });
-  const wavesIn = h('input', { value: wavesText, oninput: () => (wavesText = wavesIn.value), style: 'width:90px', title: '逗号分隔的波次' });
+  const wavesIn = h('input', {
+    value: wavesText,
+    oninput: () => (wavesText = wavesIn.value),
+    style: 'width:90px',
+    title: '逗号分隔的波次',
+  });
 
   root.append(
     h('h3', null, 'F1 测试套件'),
     h(
       'div',
       { class: 'row' },
-      names.length ? select(names.map((n) => [n, `${n}（${suites[n].length}）`]), curSuite, (v) => ((curSuite = v), ctx.rerender())) : h('span', { class: 'muted' }, '还没有套件'),
+      names.length
+        ? select(
+            names.map((n) => [n, `${n}（${suites[n].length}）`]),
+            curSuite,
+            (v) => ((curSuite = v), ctx.rerender()),
+          )
+        : h('span', { class: 'muted' }, '还没有套件'),
       nameIn,
       btn('新建', () => {
         const n = suiteName.trim();
@@ -202,7 +213,7 @@ export function renderSuites(ctx: DevCtx): HTMLElement {
           'div',
           { class: 'row' },
           '加入用例：当前构筑 × 怪物页选中的',
-          h('b', null, sel ? (sel.startsWith('b:') ? BOSS_MAP[sel.slice(2)]?.name : ENEMY_MAP[sel]?.name) ?? sel : '（未选）'),
+          h('b', null, sel ? ((sel.startsWith('b:') ? BOSS_MAP[sel.slice(2)]?.name : ENEMY_MAP[sel]?.name) ?? sel) : '（未选）'),
           `（×${ui.spawn.count}，第${ui.mChapter}章）波次`,
           wavesIn,
           btn('加入', () => {
@@ -248,7 +259,11 @@ export function renderSuites(ctx: DevCtx): HTMLElement {
           String(i + 1),
           caseLabel(c),
           `${c.chapterId}/${c.wave}`,
-          h('span', { class: 'muted small' }, `Lv${c.build.level} ${c.build.weapons.length} 武器 ${Object.values(c.build.items).reduce((a, n) => a + n, 0)} 道具`),
+          h(
+            'span',
+            { class: 'muted small' },
+            `Lv${c.build.level} ${c.build.weapons.length} 武器 ${Object.values(c.build.items).reduce((a, n) => a + n, 0)} 道具`,
+          ),
           btn('删', () => (cases.splice(i, 1), store(SUITE_KEY, suites), ctx.rerender())),
         ]),
       ),
@@ -277,11 +292,27 @@ export function renderSuites(ctx: DevCtx): HTMLElement {
           ctx.toast('已把最近一次运行设为基线');
           ctx.rerender();
         }),
-        btn('清空记录', () => (store(RUN_KEY, load<SuiteRun[]>(RUN_KEY, []).filter((r) => r.suite !== curSuite)), ctx.rerender())),
+        btn(
+          '清空记录',
+          () => (
+            store(
+              RUN_KEY,
+              load<SuiteRun[]>(RUN_KEY, []).filter((r) => r.suite !== curSuite),
+            ),
+            ctx.rerender()
+          ),
+        ),
       ),
       table(
         ['用例', '波次', 'TTK', '承伤', '阵亡', '状态'],
-        last.results.map((r) => [r.label, `W${r.wave}`, ttkS(r), String(r.taken), String(r.deaths), h('span', { class: r.status === 'ok' ? 'good' : 'bad' }, r.status)]),
+        last.results.map((r) => [
+          r.label,
+          `W${r.wave}`,
+          ttkS(r),
+          String(r.taken),
+          String(r.deaths),
+          h('span', { class: r.status === 'ok' ? 'good' : 'bad' }, r.status),
+        ]),
         { numeric: [2, 3, 4] },
       ),
     );

@@ -41,7 +41,10 @@ export function measure(ctx: DevCtx, b: DevBuild): Measure {
   const dmgBy = { ...run.dmgBy };
   applyBuild(b);
   const stats = { ...run.stats } as unknown as Record<StatKey, number>;
-  const weapons = run.weapons.map((w) => ({ name: `${WEAPON_MAP[w.id].name}T${w.tier + 1}`, dps: weaponCalc(WEAPON_MAP[w.id], w.tier).dps }));
+  const weapons = run.weapons.map((w) => ({
+    name: `${WEAPON_MAP[w.id].name}T${w.tier + 1}`,
+    dps: weaponCalc(WEAPON_MAP[w.id], w.tier).dps,
+  }));
   applyBuild(ctx.build, ctx.sb.trial);
   run.hp = Math.min(hp, run.stats.maxHp);
   run.dmgBy = dmgBy;
@@ -148,7 +151,17 @@ function fromRecord(r: RunRecord): DevBuild {
 
 /** C6：构筑分享码（与 1.4.0 构筑分享码同一格式：TMB1. + base64(JSON)） */
 export function buildCode(b: DevBuild): string {
-  const slim = { c: b.charId, ch: b.chapterId, w: b.wave, l: b.level, t: b.talents, ws: b.weapons, it: b.items, lp: b.levelPicks, x: b.extraMods };
+  const slim = {
+    c: b.charId,
+    ch: b.chapterId,
+    w: b.wave,
+    l: b.level,
+    t: b.talents,
+    ws: b.weapons,
+    it: b.items,
+    lp: b.levelPicks,
+    x: b.extraMods,
+  };
   return 'TMB1.' + btoa(unescape(encodeURIComponent(JSON.stringify(slim))));
 }
 export function parseBuildCode(code: string): DevBuild | null {
@@ -219,7 +232,11 @@ export function renderBuildTools(ctx: DevCtx): HTMLElement {
         bdKey = key;
         ctx.rerender();
       }),
-      h('span', { class: 'muted' }, '逐项去掉道具 / 升级 / 天赋 / 开发者属性 / 武器品质重算；剩余部分归为角色与基础。悬停「最终属性」也可看到。'),
+      h(
+        'span',
+        { class: 'muted' },
+        '逐项去掉道具 / 升级 / 天赋 / 开发者属性 / 武器品质重算；剩余部分归为角色与基础。悬停「最终属性」也可看到。',
+      ),
     ),
   );
   if (bd && bdKey === key)
@@ -269,7 +286,11 @@ export function renderBuildTools(ctx: DevCtx): HTMLElement {
           'div',
           null,
           `期望 DPS 合计  B ${Math.round(mb.dps)} → A ${Math.round(ma.dps)}  `,
-          h('b', { class: dd >= 0 ? 'good' : 'bad' }, `${dd >= 0 ? '+' : ''}${Math.round(dd)}（${fmt((dd / Math.max(1, mb.dps)) * 100)}%）`),
+          h(
+            'b',
+            { class: dd >= 0 ? 'good' : 'bad' },
+            `${dd >= 0 ? '+' : ''}${Math.round(dd)}（${fmt((dd / Math.max(1, mb.dps)) * 100)}%）`,
+          ),
         ),
         rows.length ? table(['属性', 'B', 'A', 'A−B'], rows, { numeric: [1, 2, 3] }) : h('div', { class: 'muted' }, '属性完全相同'),
       ),
@@ -376,10 +397,23 @@ export function renderBuildTools(ctx: DevCtx): HTMLElement {
             ctx.changed();
           };
           return [
-            h('span', { class: parentOk ? '' : 'muted', title: n.parent ? `前置：${TALENT_NODES.find((x) => x.id === n.parent)?.name[0]}` : '核心' }, `${n.icon} ${n.name[0]}`),
+            h(
+              'span',
+              {
+                class: parentOk ? '' : 'muted',
+                title: n.parent ? `前置：${TALENT_NODES.find((x) => x.id === n.parent)?.name[0]}` : '核心',
+              },
+              `${n.icon} ${n.name[0]}`,
+            ),
             h('b', { class: lv >= n.max ? 'good' : lv ? 'warn' : 'muted' }, `${lv}/${n.max}`),
             h('span', { class: 'muted small' }, n.desc[0].replace('{v}', fmt(n.val * Math.max(1, lv)))),
-            h('span', { class: 'nw' }, btn('−', () => set(lv - 1)), btn('+', () => set(lv + 1)), btn('满', () => set(n.max))),
+            h(
+              'span',
+              { class: 'nw' },
+              btn('−', () => set(lv - 1)),
+              btn('+', () => set(lv + 1)),
+              btn('满', () => set(n.max)),
+            ),
           ];
         }),
       ),

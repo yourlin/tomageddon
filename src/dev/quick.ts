@@ -88,7 +88,6 @@ export function showMonster(ctx: DevCtx, m: Monster): void {
   ctx.rerender();
 }
 
-
 export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
   const ui = ctx.ui;
   const list = monsterList(ctx);
@@ -142,7 +141,15 @@ export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
         ui.mChapter,
         (v) => ((ui.mChapter = Number(v)), (ui.mSel = ''), ctx.rerender()),
       ),
-      h('span', { class: 'seg' }, seg('pool', '刷怪池'), seg('minion', '全部小怪'), seg('elite', '精英'), seg('boss', 'Boss'), seg('all', '全类别')),
+      h(
+        'span',
+        { class: 'seg' },
+        seg('pool', '刷怪池'),
+        seg('minion', '全部小怪'),
+        seg('elite', '精英'),
+        seg('boss', 'Boss'),
+        seg('all', '全类别'),
+      ),
       select(
         [
           ['ai', '正常攻击'],
