@@ -1,5 +1,6 @@
 // 角色与关卡选择
 import { bump, counter } from '../systems/Counters';
+import { tip } from '../systems/Tutorial';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { CHARACTERS, type CharacterDef } from '../data/characters';
@@ -105,6 +106,9 @@ export class CharSelectScene extends Phaser.Scene {
         this.refresh();
       });
     });
+    // L5：新系统引导
+    if (save.wins >= 1) tip('quests', this);
+    if (dangerUnlocked(this.chapter) >= 1) tip('danger', this);
 
     // 详情面板
     const px = W * 0.5 + 10,

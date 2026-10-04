@@ -15,6 +15,8 @@ import { toggleFullscreen } from '../systems/Fullscreen';
 import { paint } from '../art/Painter';
 import { openExternal, SHOW_DONATE, IS_STEAM, quitApp } from '../platform';
 import { dayKey } from '../systems/Rng';
+import { persist } from '../systems/Save';
+import { titleName, unlockedTitles } from '../data/titles';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -38,6 +40,8 @@ export class MenuScene extends Phaser.Scene {
         .setAlpha(0.5);
       this.add.rectangle(W / 2, H / 2, W, H, 0x1a0a0c, 0.5);
     }
+    // I6：菜园随进度变繁茂（通关章节、危机等级、真结局都会让花草变多）
+    this.drawGarden(W, H);
     // 飘落的角色
     const chars = CHARACTERS.map((c) => portraitKey(this, 'char', c.id));
     for (let i = 0; i < 10; i++) {
@@ -198,16 +202,18 @@ export class MenuScene extends Phaser.Scene {
       [tx('成就', 'Awards'), 'Achievements', 0xb07d2b],
       [tx('天赋', 'Talents'), 'TalentTree', 0x5a189a],
       [tx('战绩', 'History'), 'History', 0x2a6f97],
+      [tx('收藏', 'Collect'), 'Collection', 0x2d6a4f],
     ];
-    row.forEach(([label, key, color], i) =>
-      button(this, W / 2 - 120 + i * 80, by + 150, 76, 56, label, () => this.scene.start(key), color, 20),
-    );
+    const rx = (i: number): number => W / 2 - 160 + i * 80;
+    row.forEach(([label, key, color], i) => button(this, rx(i), by + 150, 76, 56, label, () => this.scene.start(key), color, 20));
     // 有未分配的天赋点时显示红点
     if (talentPointsFree() > 0) {
-      const dot = this.add.circle(W / 2 + 74, by + 126, 9, 0xff4b3e).setStrokeStyle(2, 0xffffff);
+      const dot = this.add.circle(rx(2) + 34, by + 126, 9, 0xff4b3e).setStrokeStyle(2, 0xffffff);
       this.tweens.add({ targets: dot, scale: 1.25, duration: 600, yoyo: true, repeat: -1 });
-      text(this, W / 2 + 74, by + 126, String(talentPointsFree()), 11).setOrigin(0.5);
+      text(this, rx(2) + 34, by + 126, String(talentPointsFree()), 11).setOrigin(0.5);
     }
+    // I5：称号——点击在已解锁称号间切换（含「无称号」）
+    this.drawTitle(W, by + 285);
     button(this, W / 2 - 82, by + 220, 156, 54, tx('设置', 'Settings'), () => this.scene.start('Settings'), 0x4a6fa5, 22);
     button(this, W / 2 + 82, by + 220, 156, 54, tx('全屏', 'Fullscreen'), () => toggleFullscreen(this), 0x3a7d44, 22);
 
@@ -216,8 +222,8 @@ export class MenuScene extends Phaser.Scene {
       W - 20,
       H - 20,
       tx(
-        `成就点 🏅${pointsBalance()} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
-        `Points 🏅${pointsBalance()} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
+        `成就点 🏅${pointsBalance()} · 金番茄 🥇${save.meta.gold} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
+        `Points 🏅${pointsBalance()} · Golden 🥇${save.meta.gold} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
       ),
       16,
       COLORS.textDim,
@@ -227,5 +233,59 @@ export class MenuScene extends Phaser.Scene {
     if (talentPointsFree() > 0) tip('talents', this);
     if (CHARACTERS.some((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance())) tip('buyChar', this);
     if (save.wins >= 1 || Object.values(save.charRuns).reduce((a, b) => a + b, 0) >= 3) tip('challenge', this);
+  }
+
+  private drawTitle(W: number, y: number): void {
+    const list = unlockedTitles(save.achievements);
+    if (!list.length) return;
+    const label = (): string =>
+      save.meta.title
+        ? tx(`称号「${titleName(save.meta.title)}」 · 点击切换`, `Title "${titleName(save.meta.title)}" · click to change`)
+        : tx('🎖️ 选择称号', '🎖️ Pick a title');
+    const t = text(this, W / 2, y, label(), 17, '#ffd166')
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true });
+    t.on('pointerup', () => {
+      const opts = ['', ...list];
+      save.meta.title = opts[(opts.indexOf(save.meta.title) + 1) % opts.length];
+      persist();
+      t.setText(label());
+    });
+  }
+
+  /** I6：进度越多，菜园越繁茂；分数 0~40 */
+  static gardenScore(): number {
+    const dangerMax = Math.max(0, ...Object.values(save.meta.dangerBest));
+    return Math.min(
+      40,
+      save.clearedChapters * 3 + Math.min(10, dangerMax) + (save.meta.trueEnding ? 8 : 0) + Math.min(7, Math.floor(save.wins / 10)),
+    );
+  }
+
+  private drawGarden(W: number, H: number): void {
+    const n = MenuScene.gardenScore();
+    if (n <= 0) return;
+    const g = this.add.graphics().setDepth(0.5);
+    const rnd = new Phaser.Math.RandomDataGenerator(['garden']);
+    // 草丛
+    for (let i = 0; i < 6 + n * 3; i++) {
+      const x = rnd.between(0, W),
+        y = H - rnd.between(0, 40);
+      g.fillStyle(rnd.pick([0x2d6a4f, 0x40916c, 0x52b788]), 0.85);
+      g.fillTriangle(x - 6, y, x + 6, y, x + rnd.between(-4, 4), y - rnd.between(14, 30));
+    }
+    // 花朵与果实
+    const flowers = [0xff4b3e, 0xffd166, 0xff8fab, 0xf8f9fa, 0x9d4edd];
+    for (let i = 0; i < Math.floor(n * 1.2); i++) {
+      const x = rnd.between(10, W - 10),
+        y = H - rnd.between(10, 60);
+      g.lineStyle(2, 0x2d6a4f, 0.9).lineBetween(x, y, x, y + 18);
+      g.fillStyle(rnd.pick(flowers), 0.95).fillCircle(x, y, rnd.between(4, 8));
+    }
+    // 真结局后：一轮金色光晕
+    if (save.meta.trueEnding) {
+      const sun = this.add.circle(W - 140, 150, 60, 0xffd166, 0.15).setDepth(0.4);
+      this.tweens.add({ targets: sun, scale: 1.2, alpha: 0.25, duration: 2400, yoyo: true, repeat: -1 });
+    }
   }
 }

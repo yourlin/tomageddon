@@ -159,7 +159,9 @@ export interface RunRecord {
   chapterId: number;
   endless: boolean;
   /** 挑战模式：daily / weekly + 日期键 */
-  challenge?: { kind: 'daily' | 'weekly' | 'custom'; key: string; score: number };
+  challenge?: { kind: 'daily' | 'weekly' | 'custom' | 'free'; key: string; score: number };
+  /** J2：构筑分享码（1.4.0） */
+  build?: string;
   win: boolean;
   wave: number;
   level: number;
@@ -171,6 +173,8 @@ export interface RunRecord {
   dmg: [string, number][];
   /** 每波收入 */
   income: number[];
+  /** J1：每波 DPS（1.4.0） */
+  dps?: number[];
   /** 番茄危机等级（1.4.0） */
   danger?: number;
   /** 本局遗物（1.4.0） */

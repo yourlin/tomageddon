@@ -935,20 +935,21 @@ export const EXTRA_CHAPTERS: ChapterDef[] = [
 export const HIDDEN_CHAPTER_IDS: readonly number[] = [7];
 
 /**
- * 新章节音乐 key。Music.ts 目前没有这两首曲目定义；主会话可以新写一份曲谱，
- * 也可以先按这里的映射回退到已有曲目。
+ * 新章节音乐回退表（曲目 key → 已有曲目）。1.4.0 起 bgm_greenhouse / bgm_rotgarden
+ * 已在 Music.ts 中定义，不再需要回退；保留空表以便日后新章节先占位。
  */
-export const EXTRA_MUSIC_FALLBACK: Record<string, string> = {
-  bgm_greenhouse: 'bgm_garden',
-  bgm_rotgarden: 'bgm_junkyard',
-};
+export const EXTRA_MUSIC_FALLBACK: Record<string, string> = {};
 
 // ════════════════════════════ 地形 / 竞技场美术 ════════════════════════════
 
 /** 新章节地形说明（与 chapters.ts 的 TERRAIN_INFO 同格式，合并即可） */
 export const TERRAIN_INFO_EXTRA: Record<number, string[]> = {
-  6: ['孢子喷口：地面周期性喷出中毒孢子云', '堆肥坑：定期钻出枯萎嫩芽'],
-  7: ['腐泥沼：会把人和怪物吸入中心，并染上腐烂', '烂果坠落：注意地面的预警圈'],
+  6: [
+    '孢子喷口：地面周期性喷出中毒孢子云',
+    '堆肥坑：定期钻出枯萎嫩芽',
+    '补光灯：光区内的玩家与怪物都会硬化（护甲提高、受到伤害降低），灯会定期换位',
+  ],
+  7: ['腐泥沼：会把人和怪物吸入中心，并染上腐烂', '烂果坠落：注意地面的预警圈', '荆棘藤：脚下会钻出荆棘，造成伤害并附加流血与腐蚀'],
 };
 
 /**
@@ -963,11 +964,13 @@ export const TERRAIN_MECHS_EXTRA: Record<number, [string, string][]> = {
   6: [
     ['spore', '孢子喷口'],
     ['compost', '堆肥坑钻怪'],
+    ['lamp', '补光灯'],
   ],
   7: [
     ['quicksand', '腐泥沼'],
     ['qs', '腐泥伤害'],
     ['debris', '烂果坠落'],
+    ['bramble', '荆棘藤'],
   ],
 };
 
@@ -1067,7 +1070,11 @@ export const EXTRA_CHAPTER_EN: ChaptersEn = {
   6: {
     name: 'Chapter 6 · Rotting Greenhouse',
     desc: 'In the steamy glass greenhouse, the veggies are rotting one by one. Only Danger 5 veterans may enter.',
-    terrain: ['Spore Vents: The ground periodically puffs Poison spore clouds', 'Compost Pits: Blight Sprouts crawl out periodically'],
+    terrain: [
+      'Spore Vents: The ground periodically puffs Poison spore clouds',
+      'Compost Pits: Blight Sprouts crawl out periodically',
+      'Grow Lamps: Players and monsters in the light become Hardened (more Armor, less damage taken); lamps move periodically',
+    ],
   },
   7: {
     name: 'Chapter 7 · Rot Garden',
@@ -1075,6 +1082,7 @@ export const EXTRA_CHAPTER_EN: ChaptersEn = {
     terrain: [
       'Rot Mire: Pulls players and monsters toward the center and spreads Rot',
       'Falling Rotten Fruit: Watch for warning circles on the ground',
+      'Brambles: Thorns burst from under your feet, dealing damage and inflicting Bleed and Corrode',
     ],
   },
 };

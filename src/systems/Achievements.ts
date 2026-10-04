@@ -16,7 +16,7 @@ import type { SkillType } from '../data/characters';
 import { tagName } from '../i18n/apply';
 import { counter } from './Counters';
 import { save, persist, isUnlocked, isSeen, buyCharacter } from './Save';
-import { run } from './RunState';
+import { run, freeChallengeActive } from './RunState';
 import { lang, tx } from '../i18n';
 import { overlayRoot } from './ForceLandscape';
 
@@ -182,6 +182,7 @@ export function syncPlatformAchievements(): void {
 
 /** 检查所有成就，逐级解锁；返回本次新获得的成就点 */
 export function checkAchievements(): number {
+  if (freeChallengeActive()) return 0;
   const fresh: { a: AchievementDef; tier: number; points: number }[] = [];
   for (const a of ACHIEVEMENTS) {
     let tier = achTier(a.id);

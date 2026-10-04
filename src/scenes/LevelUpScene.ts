@@ -228,6 +228,7 @@ export class LevelUpScene extends Phaser.Scene {
     this.options = [];
     this.crateItem = null;
     this.relicChoices = picks;
+    tip('relic', this);
     const done = () => {
       run.pendingRelics--;
       this.relicChoices = [];

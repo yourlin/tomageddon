@@ -205,6 +205,11 @@ export class Enemy {
     return Math.max(0.2, 1 + this.status.totals.dmgDealt / 100) * (this.enraged ? 1.3 : 1);
   }
 
+  /** 攻击 / 技能冷却推进倍率（急速、浸湿、腐烂等 attackSpeed 汇总；下限 0.3） */
+  get actRate(): number {
+    return Math.max(0.3, 1 + this.status.totals.attackSpeed / 100);
+  }
+
   tick(dt: number, g: GameScene): void {
     const p = g.player;
     const dx = p.x - this.x,
@@ -276,9 +281,13 @@ export class Enemy {
                 ? 0xc8a2ff
                 : st.has('slow')
                   ? 0xbfe9ff
-                  : this.enraged
-                    ? 0xff9a9a
-                    : -1,
+                  : st.has('corrode')
+                    ? 0xd4e09b
+                    : st.has('soaked')
+                      ? 0xa0c4ff
+                      : this.enraged
+                        ? 0xff9a9a
+                        : -1,
       );
     }
   }
@@ -305,7 +314,7 @@ export class Enemy {
 
   private minionAI(dt: number, g: GameScene, nx: number, ny: number, dist: number): [number, number] {
     const d = this.def!;
-    this.actT -= dt;
+    this.actT -= dt * this.actRate;
     const s = this.speed;
     const noAttack = this.status.totals.noAttack;
     const rig = this.rig!;
@@ -455,7 +464,7 @@ export class Enemy {
     }
     const noAttack = this.status.totals.noAttack;
     for (let i = 0; i < this.patterns.length && !noAttack; i++) {
-      this.patternT[i] -= dt;
+      this.patternT[i] -= dt * this.actRate;
       if (this.patternT[i] > 0) continue;
       const p = this.patterns[i];
       this.patternT[i] = p.cd * cdMult;

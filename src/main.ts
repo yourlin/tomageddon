@@ -83,6 +83,8 @@ const game = new Phaser.Game({
     lazyScene('TalentTree', () => import('./scenes/TalentTreeScene').then((m) => m.TalentTreeScene)),
     lazyScene('RunStats', () => import('./scenes/RunStatsScene').then((m) => m.RunStatsScene)),
     lazyScene('History', () => import('./scenes/HistoryScene').then((m) => m.HistoryScene)),
+    lazyScene('CustomChallenge', () => import('./scenes/CustomChallengeScene').then((m) => m.CustomChallengeScene)),
+    lazyScene('Collection', () => import('./scenes/CollectionScene').then((m) => m.CollectionScene)),
     ChallengeScene,
   ],
 });

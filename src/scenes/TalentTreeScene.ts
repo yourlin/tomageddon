@@ -14,7 +14,14 @@ import {
   talentPointsEarned,
   talentPointsTotal,
   nodeText,
+  masterUnlocked,
+  masterCost,
+  masterMods,
+  buyMaster,
+  MASTER_CYCLE,
 } from '../systems/TalentTree';
+import { save, persist } from '../systems/Save';
+import { STAT_INFO } from '../data/stats';
 import { tx, lang } from '../i18n';
 import { audio } from '../systems/Audio';
 
@@ -35,6 +42,7 @@ export class TalentTreeScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
   private tabs: ReturnType<typeof button>[] = [];
   private pointsText!: Phaser.GameObjects.Text;
+  private masterBtn!: ReturnType<typeof button>;
 
   constructor() {
     super('TalentTree');
@@ -63,6 +71,8 @@ export class TalentTreeScene extends Phaser.Scene {
       0x7a2e35,
       19,
     );
+    // I1：大师层——天赋点满后用金番茄购买，每层小幅提升，无上限
+    this.masterBtn = button(this, W - 440, 44, 200, 52, '', () => this.buyMasterLayer(), 0x8a6d1f, 18);
     const tw = (W - 40) / BRANCHES.length;
     this.tabs = BRANCHES.map((b, i) =>
       button(
@@ -91,10 +101,12 @@ export class TalentTreeScene extends Phaser.Scene {
     const free = talentPointsFree();
     this.pointsText.setText(
       tx(
-        `可用天赋点 ${free} · 已获得 ${talentPointsEarned()} / ${talentPointsTotal()}（完成里程碑成就获得）`,
-        `Free points ${free} · earned ${talentPointsEarned()} / ${talentPointsTotal()} (from milestone achievements)`,
+        `可用天赋点 ${free} · 已获得 ${talentPointsEarned()} / ${talentPointsTotal()}（完成里程碑成就获得） · 🥇${save.meta.gold}`,
+        `Free points ${free} · earned ${talentPointsEarned()} / ${talentPointsTotal()} (from milestone achievements) · 🥇${save.meta.gold}`,
       ),
     );
+    this.masterBtn.setLabel(tx(`🥇 大师层 ${save.meta.master}`, `🥇 Master ${save.meta.master}`));
+    this.masterBtn.setAlpha(masterUnlocked() ? 1 : 0.55);
     BRANCHES.forEach((x, i) => {
       this.tabs[i].setLabel(`${pick(x.name)}  ${branchSpent(x.id)}/${branchCost(x.id)}`);
       this.tabs[i].setAlpha(x.id === this.branch ? 1 : 0.55);
@@ -103,6 +115,39 @@ export class TalentTreeScene extends Phaser.Scene {
     this.drawRoads();
     for (const n of TALENT_NODES) if (n.branch === this.branch) this.drawNode(n);
     this.drawInfo();
+  }
+
+  private buyMasterLayer(): void {
+    // STAT_INFO 的 name 在英文模式下已被 i18n/apply 替换成英文
+    const statName = (k: string): string => STAT_INFO[k as keyof typeof STAT_INFO]?.name ?? k;
+    if (!masterUnlocked()) {
+      toast(this, tx('天赋树全部点满后开放大师层', 'Max out every talent to unlock Master layers'), '#ff6b6b');
+      return;
+    }
+    const cost = masterCost();
+    if (!buyMaster()) {
+      toast(
+        this,
+        tx(`金番茄不够：需要 🥇${cost}，拥有 🥇${save.meta.gold}`, `Need 🥇${cost} Golden Tomatoes (you have 🥇${save.meta.gold})`),
+        '#ff6b6b',
+      );
+      return;
+    }
+    persist();
+    audio.play(this, 'buy');
+    const [k, v] = MASTER_CYCLE[(save.meta.master - 1) % MASTER_CYCLE.length];
+    const total = Object.entries(masterMods())
+      .map(([kk, vv]) => `${statName(kk)} +${vv}`)
+      .join('  ');
+    toast(
+      this,
+      tx(
+        `大师层 ${save.meta.master}：${statName(k)} +${v}（累计 ${total}）`,
+        `Master ${save.meta.master}: ${statName(k)} +${v} (total ${total})`,
+      ),
+      '#ffd166',
+    );
+    this.draw();
   }
 
   // ---------------- 地图背景 ----------------

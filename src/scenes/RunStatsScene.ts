@@ -6,6 +6,8 @@ import { WEAPON_MAP, TIER_NAMES } from '../data/weapons';
 import { CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import type { RunRecord } from '../systems/Save';
+import { decodeBuild } from '../systems/BuildCode';
+import { startPractice } from '../systems/Practice';
 import { tx } from '../i18n';
 
 /** 伤害来源的显示名与图标 */
@@ -103,6 +105,26 @@ export class RunStatsScene extends Phaser.Scene {
     });
     if (!r.dmg.length) text(this, lx, ly + 40, tx('没有记录到伤害', 'No damage recorded'), 16, COLORS.textDim);
 
+    // ---- J2 构筑分享码 / J3 用此构筑练习 ----
+    if (r.build) {
+      const code = r.build;
+      const cb = text(this, lx, py + ph - 30, tx('📋 复制构筑分享码', '📋 Copy build code'), 16, '#9bf6ff').setInteractive({
+        useHandCursor: true,
+      });
+      cb.on('pointerup', () => void navigator.clipboard?.writeText(code).then(() => cb.setText(tx('已复制 ✓', 'Copied ✓'))));
+      const pr = text(this, lx + 200, py + ph - 30, tx('🎯 用此构筑练习', '🎯 Practice this build'), 16, '#9be564').setInteractive({
+        useHandCursor: true,
+      });
+      pr.on('pointerup', () => {
+        const b = decodeBuild(code);
+        if (!b) return;
+        this.scene.stop('History');
+        this.scene.stop('Result');
+        startPractice(this, b);
+        this.scene.stop();
+      });
+    }
+
     // ---- 每波收入（纵向柱状图） ----
     const rx = px + pw * 0.6,
       ry = py + 84,
@@ -125,6 +147,18 @@ export class RunStatsScene extends Phaser.Scene {
       if (inc.length <= 20 || i % 5 === 4) text(this, x + bw / 2, chartY + chartH + 6, String(i + 1), 12, COLORS.textDim).setOrigin(0.5, 0);
     });
     text(this, rx, chartY - 4, fmt(top), 12, COLORS.textDim).setOrigin(0, 1);
+    // J1：每波 DPS 折线（橙色，右侧刻度），1.4.0 之前的记录没有这项
+    const dps = r.dps ?? [];
+    if (dps.some((v) => v > 0)) {
+      const dTop = Math.max(1, ...dps);
+      const pts = dps.map(
+        (v, i) => new Phaser.Math.Vector2(rx + i * (rw / inc.length) + 1 + bw / 2, chartY + chartH - (chartH * v) / dTop),
+      );
+      g.lineStyle(3, 0xff9f1c, 1).strokePoints(pts, false);
+      for (const p of pts) g.fillStyle(0xff9f1c, 1).fillCircle(p.x, p.y, 3);
+      text(this, rx + rw, chartY - 4, `DPS ${fmt(dTop)}`, 12, '#ff9f1c').setOrigin(1, 1);
+      text(this, rx + rw, ry, tx('— 每波 DPS', '— DPS per wave'), 14, '#ff9f1c').setOrigin(1, 0);
+    }
     const sum = inc.reduce((a, b) => a + b, 0);
     text(
       this,

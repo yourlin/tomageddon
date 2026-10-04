@@ -135,6 +135,7 @@ export class SkillSystem {
     const s = g.stats;
     const p = g.player;
     this.cd = this.maxCd;
+    g.waveQuests.onSkill();
     // 天赋：施法回复、施法增益、回响（立刻冷却完毕）
     const tt = treeTotals();
     if (tt.castHeal) g.heal(Math.max(1, Math.round((g.stats.maxHp * tt.castHeal) / 100)));

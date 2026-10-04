@@ -136,7 +136,7 @@ export const MODIFIER_MAP: Record<ModifierId, ModifierDef> = Object.fromEntries(
 >;
 
 /** custom = 玩家输入的种子（D6），规则与每日相同，但不计入连续天数 */
-export type ChallengeKind = 'daily' | 'weekly' | 'custom';
+export type ChallengeKind = 'daily' | 'weekly' | 'custom' | 'free';
 export interface ChallengeDef {
   kind: ChallengeKind;
   key: string;
@@ -166,17 +166,43 @@ export function makeChallenge(kind: ChallengeKind, key = kind === 'daily' ? dayK
   return { kind, key, seed, charId, chapterId, endless: kind === 'weekly', modifiers: picked.map((m) => m.id) };
 }
 
+/** J4：自定义挑战——玩家自选角色、章节、模式与修饰规则；不计成就、不计连续天数。key = 角色.章节.e|n.修饰+修饰 */
+export interface FreeOpts {
+  charId: string;
+  chapterId: number;
+  endless: boolean;
+  modifiers: ModifierId[];
+}
+export const freeKey = (o: FreeOpts): string => `${o.charId}.${o.chapterId}.${o.endless ? 'e' : 'n'}.${o.modifiers.join('+')}`;
+export function parseFreeKey(key: string): FreeOpts | null {
+  const [c, ch, e, mods = ''] = key.split('.');
+  const chapterId = Number(ch);
+  const modifiers = (mods ? mods.split('+') : []) as ModifierId[];
+  if (!CHARACTERS.some((x) => x.id === c) || !Number.isInteger(chapterId) || chapterId < 1 || chapterId > 5) return null;
+  if ((e !== 'e' && e !== 'n') || !modifiers.every((m) => MODIFIER_MAP[m]) || new Set(modifiers).size !== modifiers.length) return null;
+  return { charId: c, chapterId, endless: e === 'e', modifiers };
+}
+export function makeFreeChallenge(o: FreeOpts): ChallengeDef {
+  const key = freeKey(o);
+  return { kind: 'free', key, seed: hashSeed(`tomageddon:free:${key}`), ...o, modifiers: [...o.modifiers] };
+}
+
 /** D5 / D6：挑战的分享码（kind:key），朋友输入后打同一局 */
 export const challengeCode = (c: { kind: ChallengeKind; key: string }): string => `${c.kind}:${c.key}`;
 /** 解析分享码；不是 kind:key 格式的任意文字都当作自定义种子 */
 export function parseChallengeCode(code: string): ChallengeDef | null {
   const s = code.trim();
   if (!s) return null;
+  const f = s.match(/^free:(.+)$/);
+  if (f) {
+    const o = parseFreeKey(f[1]);
+    return o ? makeFreeChallenge(o) : null;
+  }
   const m = s.match(/^(daily|weekly|custom):(.+)$/);
   return m ? makeChallenge(m[1] as ChallengeKind, m[2]) : makeChallenge('custom', s.slice(0, 40));
 }
 export const challengeKindName = (k: ChallengeKind): [string, string] =>
-  k === 'daily' ? ['每日', 'Daily'] : k === 'weekly' ? ['每周', 'Weekly'] : ['种子', 'Seeded'];
+  k === 'daily' ? ['每日', 'Daily'] : k === 'weekly' ? ['每周', 'Weekly'] : k === 'free' ? ['自定义', 'Custom'] : ['种子', 'Seeded'];
 
 /** D3：连续每日挑战奖励（天数 → 金番茄 / 天赋点） */
 export const STREAK_REWARDS: { days: number; gold: number; tp: number }[] = [

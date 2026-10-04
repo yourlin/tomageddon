@@ -24,7 +24,12 @@ export type TipKey =
   | 'talents'
   | 'buyChar'
   | 'endless'
-  | 'challenge';
+  | 'challenge'
+  | 'danger'
+  | 'relic'
+  | 'merchant'
+  | 'quests'
+  | 'practice';
 
 /** 提示内容：[标题, 正文]，中英 */
 const TIPS: Record<TipKey, () => [string, string]> = {
@@ -124,6 +129,42 @@ const TIPS: Record<TipKey, () => [string, string]> = {
     tx(
       '每天和每周都会换一套固定的角色、章节和规则，商店也一样。挑战会临时借用角色，记录你的个人最佳。',
       'A fixed character, chapter, ruleset and shop every day and every week. Characters are lent for the challenge, and your personal best is recorded.',
+    ),
+  ],
+  // L5：1.4.0 新系统
+  danger: () => [
+    tx('番茄危机', 'Tomato Danger'),
+    tx(
+      '这一章已开放危机等级：在选角界面右侧调高等级，敌人更强、规则更苛刻，但金番茄奖励更多。每在一个等级通关，就解锁下一级（最高 20）。',
+      'Danger levels are open for this chapter: raise it on the right of the character screen. Tougher foes and harsher rules, but more Golden Tomatoes. Clear a level to unlock the next (up to 20).',
+    ),
+  ],
+  relic: () => [
+    tx('遗物', 'Relics'),
+    tx(
+      '击败精英后三选一遗物：遗物整局生效、不占道具栏。收集同一套装的遗物会激活额外的套装效果；有些遗物带代价，看清楚再拿。',
+      'Beat an elite to pick 1 of 3 relics. Relics last the whole run and take no item slot. Collect a full set for a bonus; some relics have a cost — read before you take.',
+    ),
+  ],
+  merchant: () => [
+    tx('神秘商人', 'Mysterious Merchant'),
+    tx(
+      '商店里偶尔会出现神秘商人，出售交易或诅咒型遗物：效果强，但会带来代价。每次只卖一件，错过就没了。',
+      'A merchant sometimes appears in the shop, selling a trade or cursed relic: powerful, with a price. One offer only — miss it and it is gone.',
+    ),
+  ],
+  quests: () => [
+    tx('角色任务与熟练度', 'Character quests & Mastery'),
+    tx(
+      '每名角色都有 3 个专属任务，全部完成后可开启「觉醒」被动。用某个角色游玩还会积累熟练度，升级后有开局奖励，满 10 级免费解锁皮肤。',
+      'Each character has 3 quests; finish them all to toggle their Awakening passive. Playing a character also builds Mastery, with starting bonuses and a free skin at level 10.',
+    ),
+  ],
+  practice: () => [
+    tx('练习与自定义挑战', 'Practice & Custom challenges'),
+    tx(
+      '「练习模式」可以导入任意一局的构筑分享码，对着木桩测试 DPS；「自定义挑战」可以自由组合角色、章节和规则。两者都不计成就。',
+      'Practice mode loads any run’s build code and lets you test DPS on dummies; Custom challenges let you mix any character, chapter and rules. Neither counts toward achievements.',
     ),
   ],
 };

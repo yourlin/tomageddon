@@ -12,6 +12,10 @@ import { counter } from '../systems/Counters';
 import { checkAchievements } from '../systems/Achievements';
 import { dayKey } from '../systems/Rng';
 import { tx, lang } from '../i18n';
+import { toast } from '../ui/UI';
+import { tip } from '../systems/Tutorial';
+import { decodeBuild } from '../systems/BuildCode';
+import { startPractice } from '../systems/Practice';
 
 const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
 
@@ -70,6 +74,10 @@ export class ChallengeScene extends Phaser.Scene {
       0x2a6f97,
       20,
     );
+    // J4：自定义挑战；J3：练习模式（导入构筑码，默认最近一局）
+    button(this, W - 430, 44, 180, 52, tx('🛠️ 自定义挑战', '🛠️ Custom'), () => this.scene.start('CustomChallenge'), 0x7b2cbf, 19);
+    button(this, W - 630, 44, 180, 52, tx('🎯 练习模式', '🎯 Practice'), () => this.practice(), 0x2d6a4f, 19);
+    tip('practice', this);
     const cw = (W - 72) / 2;
     this.card(makeChallenge('daily'), 24, 116, cw, 440);
     this.card(makeChallenge('weekly'), 48 + cw, 116, cw, 440);
@@ -122,6 +130,18 @@ export class ChallengeScene extends Phaser.Scene {
       ).setOrigin(1, 0.5);
     }
     void H;
+  }
+
+  private practice(): void {
+    const last = save.history.find((r) => r.build)?.build ?? '';
+    void promptText(tx('粘贴构筑分享码（默认是最近一局）', 'Paste a build code (defaults to your last run)'), 'TMG1-…', last).then(
+      (code) => {
+        if (!code) return;
+        const b = decodeBuild(code);
+        if (!b) return toast(this, tx('构筑码无效', 'Invalid build code'), '#ff6b6b');
+        startPractice(this, b);
+      },
+    );
   }
 
   private begin(c: ChallengeDef): void {

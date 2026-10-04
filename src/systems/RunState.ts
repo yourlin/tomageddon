@@ -12,7 +12,7 @@ import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
 import { BALANCE, xpToNext, isBossWaveNo, isEliteWaveNo } from '../data/balance';
-import { markSeen, save, persistDisabled, type RunRecord } from './Save';
+import { markSeen, save, persistDisabled, type RunRecord, type SaveData } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
 import { dangerLevels, MAX_DANGER, type RuleDelta } from '../data/danger';
@@ -20,6 +20,8 @@ import { storage } from '../platform';
 import { relicTotals, type RelicTotals } from '../data/relics';
 import { AWAKENINGS } from '../data/awakenings';
 import { ITEM_COMBOS, type ItemCombo } from '../data/gearExtra';
+import { encodeBuild, snapshotRun } from './BuildCode';
+import { WEATHER_MAP, type WeatherId } from './Weather';
 
 /** 汇总后的规则：倍率（1 = 不变）与计数 */
 export interface RunExt {
@@ -33,6 +35,8 @@ export interface RunExt {
   merchant?: MerchantOffer | null;
   perfectWaves?: number;
   masteryDmg?: number;
+  waveDmg?: Record<number, number>;
+  waveSec?: Record<number, number>;
 }
 /** H2：神秘商人（某次商店随机出现，卖一件交易 / 诅咒遗物） */
 export interface MerchantOffer {
@@ -166,6 +170,11 @@ export class RunState {
   perfectWaves = 0;
   /** F3：熟练度专属天赋的全伤害 %（开局时由 Progress 写入） */
   masteryDmg = 0;
+  /** J1：每波造成的伤害与该波持续秒数（局后 DPS 曲线） */
+  waveDmg: Record<number, number> = {};
+  waveSec: Record<number, number> = {};
+  /** H6：本波天气（不存档，每波开始时由 GameScene 按种子重算） */
+  weather: WeatherId = 'clear';
   private relicCache: RelicTotals | null = null;
   /** 当前持有遗物（含已集齐套装）的汇总效果 */
   get relicFx(): RelicTotals {
@@ -183,6 +192,8 @@ export class RunState {
       merchant: this.merchant,
       perfectWaves: this.perfectWaves,
       masteryDmg: this.masteryDmg,
+      waveDmg: this.waveDmg,
+      waveSec: this.waveSec,
     };
   }
   loadExt(e: RunExt | null): void {
@@ -196,6 +207,8 @@ export class RunState {
     this.merchant = e?.merchant ?? null;
     this.perfectWaves = e?.perfectWaves ?? 0;
     this.masteryDmg = e?.masteryDmg ?? 0;
+    this.waveDmg = { ...(e?.waveDmg ?? {}) };
+    this.waveSec = { ...(e?.waveSec ?? {}) };
     this.extraRules = {};
     runHooks.onLoad?.();
   }
@@ -261,6 +274,11 @@ export class RunState {
     this.masteryDmg = 0;
     this.awakened = false;
     this.challenge = c;
+    // J4：自定义挑战不计成就——记下成就相关统计，局后（或放弃时）还原
+    freeSnapshot =
+      c.kind === 'free'
+        ? JSON.stringify({ counters: save.counters, stats: save.stats, kills: save.totalKills, bosses: save.killedBosses })
+        : null;
     const r = this.rand('setup');
     const ep = shuffleWith([...elitePool(c.chapterId)], r);
     this.eliteIds = [ep[0].id, ep[1].id];
@@ -324,6 +342,8 @@ export class RunState {
     this.kills = 0;
     this.income = {};
     this.dmgBy = {};
+    this.waveDmg = {};
+    this.waveSec = {};
     this.startedAt = Date.now();
     this.items = {};
     this.levelMods = {};
@@ -378,6 +398,8 @@ export class RunState {
     }
     // G7 道具组合：同时持有两件道具时额外加成（不随叠加数倍增）
     for (const c of this.activeCombos()) addMods(s, c.bonus);
+    // H6 天气
+    addMods(s, WEATHER_MAP[this.weather].mods);
     // F2 觉醒 / F3 熟练度专属天赋
     if (this.awakened && AWAKENINGS[this.charId]?.mods) addMods(s, AWAKENINGS[this.charId].mods!);
     s.damage += this.masteryDmg;
@@ -755,6 +777,7 @@ export function recordHistory(win: boolean): RunRecord {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 10),
     income,
+    dps: Array.from({ length: run.wave }, (_, i) => Math.round((run.waveDmg[i + 1] ?? 0) / Math.max(1, run.waveSec[i + 1] ?? 1))),
   };
   if (run.challenge) {
     const c = run.challenge;
@@ -796,9 +819,30 @@ export function recordHistory(win: boolean): RunRecord {
         }
     }
   }
+  rec.build = encodeBuild(snapshotRun(run));
+  restoreFreeSnapshot();
   save.history.unshift(rec);
   save.history.length = Math.min(save.history.length, 30);
   return rec;
+}
+
+let freeSnapshot: string | null = null;
+/** J4：自定义挑战进行中（成就检查暂停） */
+export const freeChallengeActive = (): boolean => freeSnapshot !== null;
+/** J4：还原自定义挑战开始前的成就统计 */
+export function restoreFreeSnapshot(): void {
+  if (!freeSnapshot) return;
+  const d = JSON.parse(freeSnapshot) as {
+    counters: SaveData['counters'];
+    stats: SaveData['stats'];
+    kills: number;
+    bosses: SaveData['killedBosses'];
+  };
+  save.counters = d.counters;
+  save.stats = d.stats;
+  save.totalKills = d.kills;
+  save.killedBosses = d.bosses;
+  freeSnapshot = null;
 }
 
 export function clearRun(): void {

@@ -9,12 +9,61 @@ import { save } from '../systems/Save';
 import { counter } from '../systems/Counters';
 import { sourceLabel } from './RunStatsScene';
 import { tx } from '../i18n';
+import type { RunRecord } from '../systems/Save';
 
-const PER_PAGE = 8;
+const PER_PAGE = 7;
+
+// J5：战绩筛选与排序
+export type HistFilter = 'all' | 'win' | 'lose' | 'endless' | 'challenge';
+export type HistSort = 'time' | 'wave' | 'kills' | 'sec';
+export const FILTERS: [HistFilter, string, string][] = [
+  ['all', '全部', 'All'],
+  ['win', '通关', 'Cleared'],
+  ['lose', '阵亡', 'Defeated'],
+  ['endless', '无尽', 'Endless'],
+  ['challenge', '挑战', 'Challenge'],
+];
+export const SORTS: [HistSort, string, string][] = [
+  ['time', '最近', 'Recent'],
+  ['wave', '波次', 'Wave'],
+  ['kills', '击杀', 'Kills'],
+  ['sec', '时长', 'Time'],
+];
+export function filterHistory(list: RunRecord[], f: HistFilter, sort: HistSort): RunRecord[] {
+  const ok = (r: RunRecord): boolean =>
+    f === 'all'
+      ? true
+      : f === 'win'
+        ? r.win && !r.endless && !r.challenge
+        : f === 'lose'
+          ? !r.win && !r.endless && !r.challenge
+          : f === 'endless'
+            ? !!r.endless
+            : !!r.challenge;
+  const key = (r: RunRecord): number => (sort === 'time' ? r.t : sort === 'wave' ? r.wave : sort === 'kills' ? r.kills : r.sec);
+  return list.filter(ok).sort((a, b) => key(b) - key(a));
+}
+
+/** D8：个人最佳——无尽最高波数（角色 × 章节）与各危机等级最快通关（章节 × 等级） */
+export function personalBests(): { endless: [string, number][]; fastest: [string, number][] } {
+  const endless = Object.entries(save.meta.endlessBest)
+    .filter(([, w]) => w > 0)
+    .sort((a, b) => b[1] - a[1]);
+  const fastest = Object.entries(save.meta.fastest).sort((a, b) => {
+    const [ca, la] = a[0].split('_').map(Number);
+    const [cb, lb] = b[0].split('_').map(Number);
+    return ca - cb || lb - la;
+  });
+  return { endless, fastest };
+}
+const mmss = (sec: number): string => `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, '0')}`;
 
 export class HistoryScene extends Phaser.Scene {
   private page = 0;
   private layer!: Phaser.GameObjects.Container;
+  private filter: HistFilter = 'all';
+  private sort: HistSort = 'time';
+  private best = false;
 
   constructor() {
     super('History');
@@ -47,19 +96,88 @@ export class HistoryScene extends Phaser.Scene {
       text(this, x + 14, 114, v, 22, '#ffd166', { fontStyle: 'bold' });
     });
     this.layer = this.add.container(0, 0);
-    if (!h.length)
+    this.page = 0;
+    this.best = false;
+    if (!h.length && !Object.keys(save.meta.endlessBest).length && !Object.keys(save.meta.fastest).length)
       text(this, W / 2, 360, tx('还没有对局记录，去打一局吧！', 'No runs yet — go play one!'), 22, COLORS.textDim).setOrigin(0.5);
     else this.draw();
   }
 
+  /** 筛选 / 排序 / 个人最佳 切换按钮 */
+  private drawBar(): void {
+    const W = this.scale.width;
+    const y = 180;
+    const chip = (x: number, w: number, label: string, on: boolean, cb: () => void): void => {
+      const b = button(this, x + w / 2, y, w, 34, label, cb, on ? 0xe09f3e : 0x3a2a2c, 15);
+      this.layer.add(b);
+    };
+    let x = 24;
+    if (!this.best) {
+      for (const [id, zh, en] of FILTERS) {
+        chip(x, 74, tx(zh, en), this.filter === id, () => {
+          this.filter = id;
+          this.page = 0;
+          this.draw();
+        });
+        x += 80;
+      }
+      x += 16;
+      for (const [id, zh, en] of SORTS) {
+        chip(x, 74, tx(`↓${zh}`, `↓${en}`), this.sort === id, () => {
+          this.sort = id;
+          this.page = 0;
+          this.draw();
+        });
+        x += 80;
+      }
+    }
+    chip(W - 24 - 150, 150, this.best ? tx('← 对局记录', '← Run list') : tx('🏆 个人最佳', '🏆 Personal bests'), this.best, () => {
+      this.best = !this.best;
+      this.page = 0;
+      this.draw();
+    });
+  }
+
+  private drawBests(): void {
+    const W = this.scale.width;
+    const { endless, fastest } = personalBests();
+    const L = this.layer;
+    const col = (x: number, title: string, rows: string[]): void => {
+      L.add(text(this, x, 216, title, 20, '#ffd166', { fontStyle: 'bold' }));
+      if (!rows.length) L.add(text(this, x, 250, tx('暂无记录', 'No records yet'), 16, COLORS.textDim));
+      rows.slice(0, 16).forEach((r, i) => L.add(text(this, x, 250 + i * 28, r, 16, COLORS.text)));
+    };
+    const chName = (id: string): string => CHAPTERS[Number(id) - 1]?.name ?? id;
+    col(
+      40,
+      tx('无尽最高波数', 'Endless best wave'),
+      endless.map(([k, w], i) => {
+        const cut = k.lastIndexOf('_');
+        return `${i + 1}. ${CHARACTER_MAP[k.slice(0, cut)]?.name ?? k.slice(0, cut)} · ${chName(k.slice(cut + 1))} — ${tx(`第 ${w} 波`, `wave ${w}`)}`;
+      }),
+    );
+    col(
+      W / 2 + 20,
+      tx('危机等级最快通关', 'Fastest Danger clears'),
+      fastest.map(([k, sec]) => {
+        const [ch, lv] = k.split('_');
+        return `${chName(ch)} · ${tx(`危机 ${lv}`, `Danger ${lv}`)} — ${mmss(sec)}`;
+      }),
+    );
+  }
+
   private draw(): void {
     this.layer.removeAll(true);
+    this.drawBar();
+    if (this.best) return this.drawBests();
     const W = this.scale.width,
       H = this.scale.height;
-    const list = save.history;
+    const list = filterHistory(save.history, this.filter, this.sort);
     const pages = Math.ceil(list.length / PER_PAGE);
     const rowH = 58,
-      y0 = 170;
+      y0 = 210;
+    if (!list.length)
+      this.layer.add(text(this, W / 2, 360, tx('没有符合条件的对局', 'No matching runs'), 20, COLORS.textDim).setOrigin(0.5));
     list.slice(this.page * PER_PAGE, (this.page + 1) * PER_PAGE).forEach((r, i) => {
       const y = y0 + i * (rowH + 6);
       const c = CHARACTER_MAP[r.charId];

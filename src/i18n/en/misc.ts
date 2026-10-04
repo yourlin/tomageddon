@@ -96,6 +96,8 @@ export const EN_STATUSES: StatusesEn = {
   mark: { name: 'Mark', desc: 'The next hit taken is a guaranteed crit', glyph: 'MK' },
   silence: { name: 'Silence', desc: 'Cannot use skills', glyph: 'SI' },
   rot: { name: 'Rot', desc: 'Max HP effects reduced. Attack Speed -10%', glyph: 'RO' },
+  soaked: { name: 'Soaked', desc: 'Move Speed -10% and Attack Speed -8% per stack. Stacks up to 3', glyph: 'SO' },
+  corrode: { name: 'Corrode', desc: 'Takes acid damage per stack every second. Damage taken +6% per stack. Stacks up to 4', glyph: 'CO' },
 
   haste: { name: 'Haste', desc: 'Move Speed and Attack Speed increased', glyph: 'HA' },
   rage: { name: 'Rage', desc: 'Damage dealt increased', glyph: 'RA' },
@@ -109,6 +111,8 @@ export const EN_STATUSES: StatusesEn = {
   enrage: { name: 'Enrage', desc: 'Move Speed +30%, Damage +30%', glyph: 'EN' },
   lucky: { name: 'Lucky', desc: 'Luck increased', glyph: 'LU' },
   vampiric: { name: 'Bloodlust', desc: 'Life Steal Chance +4% per stack', glyph: 'VA' },
+  tailwind: { name: 'Tailwind', desc: 'Move Speed +12% and Dodge +4% per stack. Stacks up to 3', glyph: 'TW' },
+  hardened: { name: 'Hardened', desc: 'Armor +3 and Damage taken -10% per stack. Stacks up to 2', glyph: 'HD' },
 };
 
 export const EN_CHAPTERS: ChaptersEn = {
@@ -124,7 +128,11 @@ export const EN_CHAPTERS: ChaptersEn = {
   2: {
     name: 'Chapter 2 · Wild Garden',
     desc: 'Bugs have overrun the garden. Watch out for the healing toadstools.',
-    terrain: ['Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit', 'Gophers: Pop out of burrows to throw rocks'],
+    terrain: [
+      'Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit',
+      'Gophers: Pop out of burrows to throw rocks',
+      'Sprinklers: Periodically spray water, Soaking players and monsters in range (Move and Attack Speed reduced)',
+    ],
   },
   3: {
     name: 'Chapter 3 · Frozen Fridge',
@@ -137,12 +145,17 @@ export const EN_CHAPTERS: ChaptersEn = {
     terrain: [
       'Quicksand Pit: Pulls players and monsters toward the center and deals damage',
       'Falling Trash: Watch for warning circles on the ground',
+      'Acid Leak: Acid pools bubble up near you, dealing damage and inflicting Corrode',
     ],
   },
   5: {
     name: 'Chapter 5 · Ketchup Factory',
     desc: 'The source of all rot. Defeat the Rotten Chef and save Ketchup Town!',
-    terrain: ['Conveyor Belts: Push all units standing on them', 'Steam Valves: Periodically blast scalding steam'],
+    terrain: [
+      'Conveyor Belts: Push all units standing on them',
+      'Steam Valves: Periodically blast scalding steam',
+      'Air Vents: Stand on a vent to gain Tailwind (more Move Speed and Dodge); monsters get blown away',
+    ],
   },
 };
 

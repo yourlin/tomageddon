@@ -97,6 +97,7 @@ export class ShopScene extends Phaser.Scene {
     if (run.weapons.some((w) => w.tier >= 2)) tip('affix', this);
     if (run.weapons.some((w) => run.canEvolve(w))) tip('evolve', this);
     this.maybeMerchant();
+    if (run.merchant && !run.merchant.done) tip('merchant', this);
   }
 
   /** H2：第 3 波后每次商店 22% 概率出现神秘商人，卖一件交易 / 诅咒型遗物 */

@@ -1,4 +1,5 @@
 // 战斗 HUD：血条、经验、番茄籽、波次计时、Boss 血条、虚拟摇杆、技能按钮
+import { WEATHER_MAP } from '../systems/Weather';
 import Phaser from 'phaser';
 import { run } from '../systems/RunState';
 import { controls } from '../systems/Controls';
@@ -92,6 +93,45 @@ export class HudScene extends Phaser.Scene {
       ).setOrigin(1, 0);
   }
 
+  private weatherFx!: Phaser.GameObjects.Graphics;
+  private weatherDrops: { x: number; y: number; life: number }[] = [];
+  private weatherAcc = 0;
+  private questText!: Phaser.GameObjects.Text;
+
+  /** H6：雨 / 雪 / 沙尘 / 落叶粒子与全屏叠色 */
+  private drawWeather(dt: number): void {
+    const v = WEATHER_MAP[run.weather].visual;
+    const g = this.weatherFx;
+    g.clear();
+    if (v.overlayAlpha > 0) g.fillStyle(v.overlay, v.overlayAlpha).fillRect(0, 0, this.scale.width, this.scale.height);
+    if (v.kind === 'none' || (save.settings.particles ?? 1) <= 0) {
+      this.weatherDrops.length = 0;
+      return;
+    }
+    const W = this.scale.width,
+      H = this.scale.height;
+    const rate = v.density * (W / 960) * (save.settings.particles ?? 1);
+    this.weatherAcc += rate * dt;
+    while (this.weatherAcc >= 1 && this.weatherDrops.length < 400) {
+      this.weatherAcc--;
+      this.weatherDrops.push({ x: Math.random() * (W + 200) - 100, y: -10, life: 0 });
+    }
+    const a = (v.angle * Math.PI) / 180;
+    const vx = Math.sin(a) * v.speed,
+      vy = Math.cos(a) * v.speed;
+    g.lineStyle(2, v.color, v.alpha).fillStyle(v.color, v.alpha);
+    this.weatherDrops = this.weatherDrops.filter((d) => {
+      d.x += vx * dt;
+      d.y += vy * dt;
+      d.life += dt;
+      if (v.kind === 'rain') g.lineBetween(d.x, d.y, d.x - vx * 0.03, d.y - vy * 0.03);
+      else if (v.kind === 'snow') g.fillCircle(d.x + Math.sin(d.life * 3 + d.x) * 6, d.y, 2.5);
+      else if (v.kind === 'dust') g.fillRect(d.x, d.y, 3, 3);
+      else g.lineBetween(d.x, d.y, d.x + 6, d.y + 4);
+      return d.y < H + 20 && d.x > -120 && d.x < W + 120;
+    });
+  }
+
   create(): void {
     this.g = this.scene.get('Game') as GameScene;
     this.bosses = [];
@@ -100,6 +140,12 @@ export class HudScene extends Phaser.Scene {
     const W = this.scale.width,
       H = this.scale.height;
 
+    // H6：天气层（屏幕空间，画在 HUD 最底下）
+    this.weatherFx = this.add.graphics().setDepth(-10);
+    this.weatherDrops = [];
+    this.weatherAcc = 0;
+    // H5：小任务进度
+    this.questText = text(this, 20, 136, '', 15, '#9bf6ff');
     this.bars = this.add.graphics();
     this.hpText = text(this, 30 + 150, 34, '', 20).setOrigin(0.5);
     this.lvText = text(this, 30 + 150, 66, '', 16).setOrigin(0.5);
@@ -263,9 +309,16 @@ export class HudScene extends Phaser.Scene {
     this.scene.restart();
   }
 
-  update(): void {
+  update(_t: number, dms: number): void {
     const g = this.g;
     if (!g || !g.stats) return;
+    this.drawWeather(Math.min(0.05, dms / 1000));
+    const qs = g.waveQuests.status();
+    if (qs) {
+      const mark = qs.state === 'done' ? '✅ ' : qs.state === 'failed' ? '❌ ' : `${qs.icon} `;
+      this.questText.setText(`${mark}${tx(qs.name[0], qs.name[1])} · ${tx(qs.text[0], qs.text[1])}`);
+      this.questText.setColor(qs.state === 'done' ? '#52ff8a' : qs.state === 'failed' ? '#ff8f8f' : '#9bf6ff');
+    } else this.questText.setText('');
     const s = g.stats;
     const b = this.bars;
     b.clear();

@@ -141,3 +141,6 @@ export const EVOLVED_WEAPONS: WeaponDef[] = EVOLUTIONS.map((e) => e.to);
 export const EVOLUTION_OF: Record<string, EvolutionDef> = Object.fromEntries(EVOLUTIONS.map((e) => [e.from, e]));
 // 超武也要能通过 WEAPON_MAP 查到（战斗、存档、图鉴共用）
 for (const w of EVOLVED_WEAPONS) WEAPON_MAP[w.id] = w;
+
+/** 光环类武器（含超武）id：小任务「光环收割」等判断用 */
+export const AURA_WEAPON_IDS = new Set([...WEAPONS, ...EVOLVED_WEAPONS].filter((w) => w.kind === 'aura').map((w) => w.id));
