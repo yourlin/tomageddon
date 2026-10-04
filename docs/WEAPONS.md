@@ -1,4 +1,4 @@
-# 武器（50 把）
+# 武器（62 把）
 
 **中文** · [English](en/WEAPONS.md)
 
@@ -32,6 +32,10 @@
   - [竹筷](#weapon-chopsticks)
   - [竹笋长矛](#weapon-bamboo_spear)
   - [菠萝流星锤](#weapon-pineapple_mace)
+  - [芥末太刀](#weapon-wasabi_katana)
+  - [厨房剪刀](#weapon-kitchen_scissors)
+  - [破壁机](#weapon-blender_aura)
+  - [炸药鸡腿](#weapon-dynamite_drumstick)
 - [远程武器](#class-ranged)
   - [番茄弹弓](#weapon-slingshot)
   - [豌豆枪](#weapon-pea_shooter)
@@ -51,6 +55,11 @@
   - [胡萝卜弩](#weapon-carrot_crossbow)
   - [蜂蜜喷枪](#weapon-honey_blaster)
   - [酱油手枪](#weapon-soy_pistol)
+  - [胡椒研磨枪](#weapon-pepper_grinder)
+  - [酱油炸弹](#weapon-soy_bomb)
+  - [烧烤喷枪](#weapon-bbq_torch)
+  - [果酱迫击炮](#weapon-jam_mortar)
+  - [海胆雷](#weapon-sea_urchin_mine)
 - [元素武器](#class-elemental)
   - [芥末喷枪](#weapon-mustard_flamer)
   - [冰镇汽水](#weapon-soda)
@@ -67,7 +76,10 @@
   - [火龙果法球](#weapon-dragonfruit_orb)
   - [八角飞镖](#weapon-star_anise_shuriken)
   - [柠檬电池](#weapon-lemon_battery)
-- [武器进化（12 把超武）](#evolution)
+  - [海盐结界](#weapon-salt_aura)
+  - [可乐电击枪](#weapon-cola_zapper)
+  - [火锅吐息](#weapon-hotpot_breath)
+- [武器进化（20 把超武）](#evolution)
 
 <a id="overview"></a>
 
@@ -125,6 +137,18 @@
 | <img src="images/weapon/dragonfruit_orb.png" width="32" height="32" alt=""> [火龙果法球](#weapon-dragonfruit_orb) | 元素 | 子弹 | 蔬果/元素 | 8 / 13 / 20 / 30 | 1 / 0.95 / 0.88 / 0.8 | 400 | 28 |
 | <img src="images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [八角飞镖](#weapon-star_anise_shuriken) | 元素 | 回旋镖 | 锋利/元素 | 9 / 15 / 23 / 35 | 1.3 / 1.2 / 1.1 / 1 | 320 | 28 |
 | <img src="images/weapon/lemon_battery.png" width="32" height="32" alt=""> [柠檬电池](#weapon-lemon_battery) | 元素 | 连锁闪电 | 蔬果/元素 | 12 / 20 / 31 / 47 | 1.3 / 1.2 / 1.1 / 1 | 360 | 30 |
+| <img src="images/weapon/wasabi_katana.png" width="32" height="32" alt=""> [芥末太刀](#weapon-wasabi_katana) | 近战 | 直刺 | 锋利/酱料 | 10 / 17 / 27 / 41 | 0.85 / 0.8 / 0.74 / 0.67 | 150 | 26 |
+| <img src="images/weapon/kitchen_scissors.png" width="32" height="32" alt=""> [厨房剪刀](#weapon-kitchen_scissors) | 近战 | 横扫 | 厨具/锋利 | 8 / 14 / 22 / 33 | 0.85 / 0.8 / 0.74 / 0.68 | 105 | 22 |
+| <img src="images/weapon/blender_aura.png" width="32" height="32" alt=""> [破壁机](#weapon-blender_aura) | 近战 | 光环 | 厨具/锋利 | 4 / 6 / 9 / 14 | 0.45 / 0.43 / 0.41 / 0.38 | 95 | 28 |
+| <img src="images/weapon/dynamite_drumstick.png" width="32" height="32" alt=""> [炸药鸡腿](#weapon-dynamite_drumstick) | 近战 | 横扫 | 爆破 | 17 / 29 / 45 / 68 | 1.7 / 1.6 / 1.5 / 1.36 | 120 | 30 |
+| <img src="images/weapon/pepper_grinder.png" width="32" height="32" alt=""> [胡椒研磨枪](#weapon-pepper_grinder) | 远程 | 子弹 | 枪械/锋利 | 6 / 10 / 15 / 22 | 0.5 / 0.46 / 0.42 / 0.38 | 400 | 26 |
+| <img src="images/weapon/soy_bomb.png" width="32" height="32" alt=""> [酱油炸弹](#weapon-soy_bomb) | 远程 | 地雷 | 酱料/爆破 | 15 / 25 / 39 / 60 | 2.2 / 2.05 / 1.9 / 1.7 | 210 | 26 |
+| <img src="images/weapon/bbq_torch.png" width="32" height="32" alt=""> [烧烤喷枪](#weapon-bbq_torch) | 远程 | 喷火 | 枪械/酱料 | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 190 | 30 |
+| <img src="images/weapon/jam_mortar.png" width="32" height="32" alt=""> [果酱迫击炮](#weapon-jam_mortar) | 远程 | 爆炸弹 | 酱料/爆破 | 16 / 27 / 42 / 64 | 2 / 1.9 / 1.78 / 1.6 | 460 | 32 |
+| <img src="images/weapon/sea_urchin_mine.png" width="32" height="32" alt=""> [海胆雷](#weapon-sea_urchin_mine) | 远程 | 地雷 | 锋利/爆破 | 13 / 22 / 34 / 52 | 1.9 / 1.8 / 1.65 / 1.5 | 230 | 26 |
+| <img src="images/weapon/salt_aura.png" width="32" height="32" alt=""> [海盐结界](#weapon-salt_aura) | 元素 | 光环 | 锋利/元素 | 3 / 5 / 8 / 12 | 0.5 / 0.5 / 0.5 / 0.5 | 115 | 30 |
+| <img src="images/weapon/cola_zapper.png" width="32" height="32" alt=""> [可乐电击枪](#weapon-cola_zapper) | 元素 | 连锁闪电 | 枪械/元素 | 8 / 14 / 21 / 32 | 0.95 / 0.88 / 0.8 / 0.72 | 440 | 28 |
+| <img src="images/weapon/hotpot_breath.png" width="32" height="32" alt=""> [火锅吐息](#weapon-hotpot_breath) | 元素 | 喷火 | 酱料/元素 | 3 / 4 / 6 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 165 | 30 |
 
 <a id="affixes"></a>
 
@@ -320,7 +344,7 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 减速 20% 0.6s |
 | T1 价格 | 22 |
-| 初始携带 | - |
+| 初始携带 | [菠萝蜜卫士](CHARACTERS.md#char-jackfruit) |
 
 <a id="weapon-meat_tenderizer"></a>
 
@@ -383,7 +407,7 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 额外吸血概率 3%，击退 20 |
 | T1 价格 | 20 |
-| 初始携带 | - |
+| 初始携带 | [卷心菜老兵](CHARACTERS.md#char-cabbage) |
 
 <a id="weapon-baguette_sword"></a>
 
@@ -509,6 +533,90 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 爆炸半径 75，击退 30 |
 | T1 价格 | 32 |
+| 初始携带 | - |
+
+<a id="weapon-wasabi_katana"></a>
+
+### 芥末太刀
+
+<img src="images/weapon/wasabi_katana.png" width="64" height="64" alt="">
+
+> 刀身抹满芥末，刺中带灼烧，暴击率高。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 直刺 |
+| 标签 | 锋利、酱料 |
+| 伤害 T1~T4 | 10 / 17 / 27 / 41 |
+| 冷却 T1~T4 | 0.85s / 0.8s / 0.74s / 0.67s |
+| 射程 | 150 |
+| 属性加成 | 近战伤害 ×0.9 |
+| 暴击倍率 | ×2.2 |
+| 特效 | 灼烧 2/秒 1.5s，额外暴击 8% |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-kitchen_scissors"></a>
+
+### 厨房剪刀
+
+<img src="images/weapon/kitchen_scissors.png" width="64" height="64" alt="">
+
+> 咔嚓咔嚓快速横剪，暴击率高。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 横扫 |
+| 标签 | 厨具、锋利 |
+| 伤害 T1~T4 | 8 / 14 / 22 / 33 |
+| 冷却 T1~T4 | 0.85s / 0.8s / 0.74s / 0.68s |
+| 射程 | 105 |
+| 属性加成 | 近战伤害 ×0.8 |
+| 暴击倍率 | ×2.2 |
+| 特效 | 击退 8，额外暴击 10% |
+| T1 价格 | 22 |
+| 初始携带 | - |
+
+<a id="weapon-blender_aura"></a>
+
+### 破壁机
+
+<img src="images/weapon/blender_aura.png" width="64" height="64" alt="">
+
+> 在身边高速旋转的刀片，持续切割周围敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 光环 |
+| 标签 | 厨具、锋利 |
+| 伤害 T1~T4 | 4 / 6 / 9 / 14 |
+| 冷却 T1~T4 | 0.45s / 0.43s / 0.41s / 0.38s |
+| 射程 | 95 |
+| 属性加成 | 近战伤害 ×0.5 |
+| 暴击倍率 | ×2 |
+| 特效 | 额外暴击 5% |
+| T1 价格 | 28 |
+| 初始携带 | - |
+
+<a id="weapon-dynamite_drumstick"></a>
+
+### 炸药鸡腿
+
+<img src="images/weapon/dynamite_drumstick.png" width="64" height="64" alt="">
+
+> 绑着炸药的大鸡腿，抡一下就炸一片。受最大生命加成。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 近战 / 横扫 |
+| 标签 | 爆破 |
+| 伤害 T1~T4 | 17 / 29 / 45 / 68 |
+| 冷却 T1~T4 | 1.7s / 1.6s / 1.5s / 1.36s |
+| 射程 | 120 |
+| 属性加成 | 近战伤害 ×1.1，最大生命 ×0.1 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 爆炸半径 85，击退 30 |
+| T1 价格 | 30 |
 | 初始携带 | - |
 
 <a id="class-ranged"></a>
@@ -681,7 +789,7 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 弹射 2/2/3/4 |
 | T1 价格 | 22 |
-| 初始携带 | - |
+| 初始携带 | [石榴炮手](CHARACTERS.md#char-pomegranate) |
 
 <a id="weapon-popcorn_machine"></a>
 
@@ -702,7 +810,7 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 爆炸半径 75 |
 | T1 价格 | 24 |
-| 初始携带 | - |
+| 初始携带 | [黄豆军师](CHARACTERS.md#char-soybean) |
 
 <a id="weapon-grape_shotgun"></a>
 
@@ -828,7 +936,7 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | - |
 | T1 价格 | 26 |
-| 初始携带 | - |
+| 初始携带 | [石榴炮手](CHARACTERS.md#char-pomegranate) |
 
 <a id="weapon-carrot_crossbow"></a>
 
@@ -891,6 +999,111 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 额外吸血概率 2% |
 | T1 价格 | 20 |
+| 初始携带 | - |
+
+<a id="weapon-pepper_grinder"></a>
+
+### 胡椒研磨枪
+
+<img src="images/weapon/pepper_grinder.png" width="64" height="64" alt="">
+
+> 高速射出锋利胡椒粒，可穿透，暴击率高。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 子弹 |
+| 标签 | 枪械、锋利 |
+| 伤害 T1~T4 | 6 / 10 / 15 / 22 |
+| 冷却 T1~T4 | 0.5s / 0.46s / 0.42s / 0.38s |
+| 射程 | 400 |
+| 属性加成 | 远程伤害 ×0.7 |
+| 暴击倍率 | ×2.2 |
+| 特效 | 穿透 1/1/1/2，额外暴击 8% |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-soy_bomb"></a>
+
+### 酱油炸弹
+
+<img src="images/weapon/soy_bomb.png" width="64" height="64" alt="">
+
+> 在身边布下酱油炸弹，爆炸并额外提高吸血概率。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 地雷 |
+| 标签 | 酱料、爆破 |
+| 伤害 T1~T4 | 15 / 25 / 39 / 60 |
+| 冷却 T1~T4 | 2.2s / 2.05s / 1.9s / 1.7s |
+| 射程 | 210 |
+| 属性加成 | 远程伤害 ×0.9 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 爆炸半径 90，额外吸血概率 3% |
+| T1 价格 | 26 |
+| 初始携带 | - |
+
+<a id="weapon-bbq_torch"></a>
+
+### 烧烤喷枪
+
+<img src="images/weapon/bbq_torch.png" width="64" height="64" alt="">
+
+> 喷出带酱汁的火焰，无限穿透并灼烧，命中额外提高吸血概率。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 喷火 |
+| 标签 | 枪械、酱料 |
+| 伤害 T1~T4 | 2 / 3 / 5 / 8 |
+| 冷却 T1~T4 | 0.2s / 0.18s / 0.16s / 0.14s |
+| 射程 | 190 |
+| 属性加成 | 远程伤害 ×0.25 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 灼烧 2/秒 2s，额外吸血概率 1% |
+| T1 价格 | 30 |
+| 初始携带 | - |
+
+<a id="weapon-jam_mortar"></a>
+
+### 果酱迫击炮
+
+<img src="images/weapon/jam_mortar.png" width="64" height="64" alt="">
+
+> 轰出一坨果酱，爆炸并黏住敌人（减速 30%）。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 爆炸弹 |
+| 标签 | 酱料、爆破 |
+| 伤害 T1~T4 | 16 / 27 / 42 / 64 |
+| 冷却 T1~T4 | 2s / 1.9s / 1.78s / 1.6s |
+| 射程 | 460 |
+| 属性加成 | 远程伤害 ×1.1 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 减速 30% 1.5s，爆炸半径 95，击退 15 |
+| T1 价格 | 32 |
+| 初始携带 | - |
+
+<a id="weapon-sea_urchin_mine"></a>
+
+### 海胆雷
+
+<img src="images/weapon/sea_urchin_mine.png" width="64" height="64" alt="">
+
+> 浑身是刺的海胆雷，爆炸伤害容易暴击。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 远程 / 地雷 |
+| 标签 | 锋利、爆破 |
+| 伤害 T1~T4 | 13 / 22 / 34 / 52 |
+| 冷却 T1~T4 | 1.9s / 1.8s / 1.65s / 1.5s |
+| 射程 | 230 |
+| 属性加成 | 远程伤害 ×0.8 |
+| 暴击倍率 | ×2.5 |
+| 特效 | 爆炸半径 70，额外暴击 10% |
+| T1 价格 | 26 |
 | 初始携带 | - |
 
 <a id="class-elemental"></a>
@@ -1084,7 +1297,7 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 灼烧 2/秒 2s |
 | T1 价格 | 32 |
-| 初始携带 | - |
+| 初始携带 | [芋头术士](CHARACTERS.md#char-taro) |
 
 <a id="weapon-pepper_spray"></a>
 
@@ -1168,7 +1381,7 @@
 | 暴击倍率 | ×1.5 |
 | 特效 | 灼烧 3/秒 2s，弹射 1/2/2/3 |
 | T1 价格 | 28 |
-| 初始携带 | - |
+| 初始携带 | [黑莓女巫](CHARACTERS.md#char-blackberry) |
 
 <a id="weapon-star_anise_shuriken"></a>
 
@@ -1212,9 +1425,72 @@
 | T1 价格 | 30 |
 | 初始携带 | - |
 
+<a id="weapon-salt_aura"></a>
+
+### 海盐结界
+
+<img src="images/weapon/salt_aura.png" width="64" height="64" alt="">
+
+> 锋利的盐晶环绕周身，持续切割周围敌人，容易暴击。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 光环 |
+| 标签 | 锋利、元素 |
+| 伤害 T1~T4 | 3 / 5 / 8 / 12 |
+| 冷却 T1~T4 | 0.5s / 0.5s / 0.5s / 0.5s |
+| 射程 | 115 |
+| 属性加成 | 元素伤害 ×0.45 |
+| 暴击倍率 | ×2 |
+| 特效 | 额外暴击 10% |
+| T1 价格 | 30 |
+| 初始携带 | - |
+
+<a id="weapon-cola_zapper"></a>
+
+### 可乐电击枪
+
+<img src="images/weapon/cola_zapper.png" width="64" height="64" alt="">
+
+> 带电的可乐气泡在敌人间跳跃并减速。受远程伤害少量加成。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 连锁闪电 |
+| 标签 | 枪械、元素 |
+| 伤害 T1~T4 | 8 / 14 / 21 / 32 |
+| 冷却 T1~T4 | 0.95s / 0.88s / 0.8s / 0.72s |
+| 射程 | 440 |
+| 属性加成 | 元素伤害 ×0.7，远程伤害 ×0.3 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 减速 20% 1s，连锁 2/3/4/5 次 |
+| T1 价格 | 28 |
+| 初始携带 | - |
+
+<a id="weapon-hotpot_breath"></a>
+
+### 火锅吐息
+
+<img src="images/weapon/hotpot_breath.png" width="64" height="64" alt="">
+
+> 喷出滚烫红油，强力灼烧，命中额外提高吸血概率。
+
+| 项目 | 数值 |
+| --- | --- |
+| 类别 / 方式 | 元素 / 喷火 |
+| 标签 | 酱料、元素 |
+| 伤害 T1~T4 | 3 / 4 / 6 / 10 |
+| 冷却 T1~T4 | 0.22s / 0.2s / 0.18s / 0.16s |
+| 射程 | 165 |
+| 属性加成 | 元素伤害 ×0.3 |
+| 暴击倍率 | ×1.5 |
+| 特效 | 灼烧 3/秒 2s，额外吸血概率 1% |
+| T1 价格 | 30 |
+| 初始携带 | - |
+
 <a id="evolution"></a>
 
-## 武器进化（12 把超武）
+## 武器进化（20 把超武）
 
 T4 武器 + 持有指定的经典道具时，在商店点开武器即可进化为超武：伤害、冷却、射程整体强化并获得专属效果，原有词条与打造等级保留，道具不会被消耗。超武不进商店池；持有可进化武器但还没有对应道具时，商店每次上架有 20% 概率直接出现该道具。
 
@@ -1232,6 +1508,14 @@ T4 武器 + 持有指定的经典道具时，在商店点开武器即可进化�
 | <img src="images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [蓝莓狙击枪](#weapon-blueberry_sniper) | <img src="images/item/railgun_core.png" width="32" height="32" alt=""> 电磁核心 | <img src="images/weapon/blueberry_railgun.png" width="32" height="32" alt=""> **蓝莓电磁炮** | 100→**200** / 1.5s→**1.2s** / 650→**910** | 电磁加速的蓝莓，贯穿整列敌人。 |
 | <img src="images/weapon/corn_cannon.png" width="32" height="32" alt=""> [玉米加农](#weapon-corn_cannon) | <img src="images/item/golden_tomato.png" width="32" height="32" alt=""> 黄金番茄 | <img src="images/weapon/golden_corn.png" width="32" height="32" alt=""> **黄金爆米花炮** | 68→**116** / 0.84s→**0.71s** / 520→**598** | 金色爆米花四散炸开。 |
 | <img src="images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [八角飞镖](#weapon-star_anise_shuriken) | <img src="images/item/feather.png" width="32" height="32" alt=""> 羽毛 | <img src="images/weapon/anise_storm.png" width="32" height="32" alt=""> **八角风暴** | 35→**53** / 1s→**0.7s** / 320→**368** | 轻如羽毛的八角，弹来弹去停不下来。 |
+| <img src="images/weapon/pan.png" width="32" height="32" alt=""> [平底锅](#weapon-pan) | <img src="images/item/helmet.png" width="32" height="32" alt=""> 锅盖头盔 | <img src="images/weapon/iron_bastion_pan.png" width="32" height="32" alt=""> **铸铁壁垒锅** | 70→**119** / 1.3s→**1.11s** / 120→**150** | 锅盖头盔焊成的重锅，一拍震晕一片，护甲越高越疼。 |
+| <img src="images/weapon/watermelon_hammer.png" width="32" height="32" alt=""> [西瓜锤](#weapon-watermelon_hammer) | <img src="images/item/powder_keg.png" width="32" height="32" alt=""> 火药桶 | <img src="images/weapon/melon_quake.png" width="32" height="32" alt=""> **西瓜震地锤** | 120→**216** / 1.8s→**1.53s** / 140→**161** | 塞满火药的西瓜，砸地引发超大爆炸。 |
+| <img src="images/weapon/broccoli_staff.png" width="32" height="32" alt=""> [西兰花法杖](#weapon-broccoli_staff) | <img src="images/item/battery.png" width="32" height="32" alt=""> 电池 | <img src="images/weapon/storm_broccoli.png" width="32" height="32" alt=""> **风暴西兰花** | 40→**64** / 0.84s→**0.67s** / 420→**483** | 电池充满的西兰花，闪电跳得更远还会眩晕。 |
+| <img src="images/weapon/mustard_flamer.png" width="32" height="32" alt=""> [芥末喷枪](#weapon-mustard_flamer) | <img src="images/item/pressure_cooker.png" width="32" height="32" alt=""> 高压锅 | <img src="images/weapon/mustard_dragon.png" width="32" height="32" alt=""> **芥末龙息** | 8→**14** / 0.14s→**0.12s** / 200→**260** | 高压喷射的芥末烈焰，射程更远、灼烧更狠。 |
+| <img src="images/weapon/pepper_mine.png" width="32" height="32" alt=""> [胡椒雷](#weapon-pepper_mine) | <img src="images/item/baking_powder.png" width="32" height="32" alt=""> 泡打粉 | <img src="images/weapon/pepper_minefield.png" width="32" height="32" alt=""> **胡椒雷区** | 80→**136** / 1.8s→**1.17s** / 200→**230** | 泡打粉让胡椒雷膨胀，布雷更快、炸得更大还会灼烧。 |
+| <img src="images/weapon/wasabi_katana.png" width="32" height="32" alt=""> [芥末太刀](#weapon-wasabi_katana) | <img src="images/item/sushi_mat.png" width="32" height="32" alt=""> 寿司竹帘 | <img src="images/weapon/tsunami_katana.png" width="32" height="32" alt=""> **怒涛芥末刀** | 41→**74** / 0.67s→**0.54s** / 150→**195** | 寿司大师的终极一刀，暴击伤害与灼烧大幅提升。 |
+| <img src="images/weapon/blender_aura.png" width="32" height="32" alt=""> [破壁机](#weapon-blender_aura) | <img src="images/item/turbo_motor.png" width="32" height="32" alt=""> 涡轮马达 | <img src="images/weapon/tornado_blender.png" width="32" height="32" alt=""> **龙卷破壁机** | 14→**25** / 0.38s→**0.32s** / 95→**128** | 涡轮全开，刀片卷起龙卷风，切割并减速周围敌人。 |
+| <img src="images/weapon/soy_bomb.png" width="32" height="32" alt=""> [酱油炸弹](#weapon-soy_bomb) | <img src="images/item/fermented_jar.png" width="32" height="32" alt=""> 发酵酱坛 | <img src="images/weapon/umami_bomb.png" width="32" height="32" alt=""> **鲜味核弹** | 60→**114** / 1.7s→**1.44s** / 210→**241** | 发酵百年的酱油炸弹，爆炸巨大并大幅提高吸血概率。 |
 
 ---
 

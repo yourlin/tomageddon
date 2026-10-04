@@ -33,9 +33,9 @@ export interface SaveData {
   seen: { items: string[]; weapons: string[]; enemies: string[]; bosses: string[] };
   /** 成就：id → 已达成的最高等级（1 起）与达成时间 */
   achievements: Record<string, { tier: number; t: number }>;
-  /** 已用成就点购买的角色 */
+  /** 旧版本（成就点购买制）已买下的角色：改为成就解锁后保留使用权 */
   ownedChars: string[];
-  /** 已花费的成就点 */
+  /** 旧版本已花费的成就点（已不再使用，保留字段以兼容旧存档） */
   pointsSpent: number;
   /** 每名角色开局次数 */
   charRuns: Record<string, number>;
@@ -222,7 +222,7 @@ const DEFAULT: SaveData = {
 function legacyOwned(d: Partial<SaveData>): string[] {
   const played = new Set(Object.keys(d.bestWave ?? {}).map((k) => k.replace(/_\d+$/, '')));
   for (const id of Object.keys(d.charWins ?? {})) played.add(id);
-  return CHARACTERS.filter((c) => c.cost && played.has(c.id)).map((c) => c.id);
+  return CHARACTERS.filter((c) => c.unlock && played.has(c.id)).map((c) => c.id);
 }
 
 function load(): SaveData {
@@ -300,18 +300,10 @@ export function persist(): void {
   }
 }
 
-/** 角色是否可用：默认角色，或已用成就点购买 */
+/** 角色是否可用：默认角色、已达成解锁成就，或旧版本已用成就点买下（保留使用权） */
 export function isUnlocked(c: CharacterDef): boolean {
-  return !c.cost || save.ownedChars.includes(c.id);
-}
-
-/** 用成就点购买角色；余额由成就系统计算后传入 */
-export function buyCharacter(c: CharacterDef, balance: number, price: number): boolean {
-  if (isUnlocked(c) || !c.cost || balance < price) return false;
-  save.ownedChars.push(c.id);
-  save.pointsSpent += price;
-  persist();
-  return true;
+  if (!c.unlock || save.ownedChars.includes(c.id)) return true;
+  return (save.achievements[c.unlock.ach]?.tier ?? 0) >= c.unlock.tier;
 }
 
 export function unlockedCount(): number {

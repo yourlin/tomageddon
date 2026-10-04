@@ -25,7 +25,7 @@ Pick a character + chapter (each run randomly draws 2 elites and 1 boss)
        └─ Kills drop Seeds (XP + currency), fruit (healing), chests (items)
   └─ Wave end: Harvest, interest → level up and pick stats → open chests → shop (buy/sell, combine, reroll, lock)
   └─ Elites on waves 5/10, random "affixed elite monsters" from wave 7, boss on wave 15
-Clearing a chapter unlocks the next one; achievements grant points that buy new characters
+Clearing a chapter unlocks the next one; specific achievements unlock new characters
 ```
 
 ## 3. Controls
@@ -80,7 +80,7 @@ Each character = stat modifiers + starting weapons + passive traits + a **signat
 | Economy / growth | Captain Pineapple, Lychee Princess, Strawberry Idol, Sprout Apprentice |
 | Explosives / frenzy | Dr. Avocado, Wasabi Bomber, Beet Berserker, Grape Magician |
 
-4 are unlocked by default; the rest are bought with achievement points (70–200, in starter / mid / advanced tiers), and some pricier characters also require a specific achievement (e.g. clearing a chapter or defeating a boss). See [Achievements](ACHIEVEMENTS.md).
+4 are unlocked by default; each of the rest is tied to one achievement (e.g. eating 50 fruits, clearing chapter 3, defeating 5 bosses) and unlocks automatically once it reaches the required tier; stronger characters need harder achievements. Characters bought with points in older versions stay owned. See [Achievements](ACHIEVEMENTS.md).
 
 **Ultimate forms (13)**
 
@@ -202,7 +202,7 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 
 - Every gameplay event bumps a generic counter (`systems/Counters.ts`, e.g. `kill:mold`, `cast:nova`, `charClear:tomato:3`); achievements read counters and unlock tier by tier
 - Achievement families are generated per subject: every monster / elite affix / elite and boss / weapon (obtain, T4, forge) / item series / weapon set / skill form / inflicted status / chapter / Endless / 11 per character, plus challenges
-- Rewards scale with difficulty: entry tiers 1–3 pts, medium 5–15, hard 30–150; character prices = 70% of all points, split by each character's `cost` weight
+- Rewards scale with difficulty: entry tiers 1–3 pts, medium 5–15, hard 30–150; points are only a running score and no longer buy characters; each character unlocks via the achievement in its `unlock` field in `characters.ts`
 - Milestone achievements also grant **talent points** (79 in total, see `TALENT_REWARDS`)
 
 ### 10.3 Talent Tree

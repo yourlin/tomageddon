@@ -48,7 +48,13 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
   - [Frozen Domain (Bitter Melon Mage)](#skill-bittermelon)
   - [Growth Spurt (Sprout Apprentice)](#skill-sprout)
   - [Wasabi Nuke (Wasabi Bomber)](#skill-wasabi)
-- [Status Effects (28)](#statuses)
+  - [Bean Troops (Strategist Soy)](#skill-soybean)
+  - [Thousand Spikes (Jackfruit Guard)](#skill-jackfruit)
+  - [Seed Burst (Pomegranate Gunner)](#skill-pomegranate)
+  - [Taro Paste Field (Taro Mystic)](#skill-taro)
+  - [Steadfast Body (Cabbage Veteran)](#skill-cabbage)
+  - [Withering Hex (Blackberry Witch)](#skill-blackberry)
+- [Status Effects (32)](#statuses)
   - [Debuffs](#statuses-debuff)
   - [Buffs](#statuses-buff)
 
@@ -71,17 +77,17 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | --- | --- |
 | Nova Burst `nova` | [Ketchup Burst](#skill-tomato), [Flame Nova](#skill-chili), [Ground Pound](#skill-coconut) |
 | Dash `dash` | [Knight Charge](#skill-carrot), [Melon Roll](#skill-watermelon), [Shadow Slash](#skill-ginger), [Dragonflame Charge](#skill-dragonfruit) |
-| Self Buff `buff` | [Fan Cheer](#skill-strawberry), [Frenzy](#skill-beet), [Princess’s Luck](#skill-lychee), [Growth Spurt](#skill-sprout) |
+| Self Buff `buff` | [Fan Cheer](#skill-strawberry), [Frenzy](#skill-beet), [Princess’s Luck](#skill-lychee), [Growth Spurt](#skill-sprout), [Thousand Spikes](#skill-jackfruit), [Steadfast Body](#skill-cabbage) |
 | Stealth `ghost` | [Sour Mist](#skill-lemon), [Spirit Form](#skill-pumpkin), [Golden Bell](#skill-wintermelon) |
-| Ring Barrage `ring` | [Popcorn Barrage](#skill-corn) |
+| Ring Barrage `ring` | [Popcorn Barrage](#skill-corn), [Seed Burst](#skill-pomegranate) |
 | Drain Heal `heal` | [Blood Domain](#skill-garlic), [Angel’s Blessing](#skill-peach), [Roast Yam Feast](#skill-sweetpotato) |
 | Multi-Strike `strikes` | [Core Overload](#skill-avocado) |
-| Summon Clone `clone` | [Twin Clone](#skill-blueberry), [Grape Clone](#skill-grape), [Drone Support](#skill-bellpepper) |
+| Summon Clone `clone` | [Twin Clone](#skill-blueberry), [Grape Clone](#skill-grape), [Drone Support](#skill-bellpepper), [Bean Troops](#skill-soybean) |
 | Focused Barrage `barrage` | [Dual Barrage](#skill-cherry), [Pea Turret](#skill-pea), [Heartpiercer](#skill-asparagus) |
 | AOE Missile `missile` | [Golden Cannon](#skill-pineapple), [Wasabi Nuke](#skill-wasabi) |
 | Screen Clear `screen` | [Purple Thunder](#skill-eggplant) |
-| Binding Field `field` | [Tear Gas Zone](#skill-onion), [Frozen Domain](#skill-bittermelon) |
-| Mass Debuff `curse` | [Spore Cloud](#skill-mushroom), [One Truth](#skill-kiwi), [Stink Bomb](#skill-durian) |
+| Binding Field `field` | [Tear Gas Zone](#skill-onion), [Frozen Domain](#skill-bittermelon), [Taro Paste Field](#skill-taro) |
+| Mass Debuff `curse` | [Spore Cloud](#skill-mushroom), [One Truth](#skill-kiwi), [Stink Bomb](#skill-durian), [Withering Hex](#skill-blackberry) |
 
 <a id="skills"></a>
 
@@ -641,9 +647,108 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 | Radius | 190 |
 | Inflicts | 3× [Burn](#status-burn) 4s |
 
+<a id="skill-soybean"></a>
+
+### Bean Troops (Strategist Soy)
+
+<img src="../images/char/soybean.png" width="64" height="64" alt="">
+
+> Summon a bean clone that auto-fires for 10s.
+
+| Field | Value |
+| --- | --- |
+| Character | [Strategist Soy](CHARACTERS.md#char-soybean) |
+| Form | Summon Clone |
+| Cooldown | 14s |
+| Damage multiplier | ×0.6 |
+| Duration | 10s |
+
+<a id="skill-jackfruit"></a>
+
+### Thousand Spikes (Jackfruit Guard)
+
+<img src="../images/char/jackfruit.png" width="64" height="64" alt="">
+
+> Gain 5 stacks of Thorns and 3 stacks of Fortify for 6s.
+
+| Field | Value |
+| --- | --- |
+| Character | [Jackfruit Guard](CHARACTERS.md#char-jackfruit) |
+| Form | Self Buff |
+| Cooldown | 12s |
+| Duration | 6s |
+| Self gains | 5× [Thorns](#status-thorns) 6s, 3× [Fortify](#status-fortify) 6s |
+
+<a id="skill-pomegranate"></a>
+
+### Seed Burst (Pomegranate Gunner)
+
+<img src="../images/char/pomegranate.png" width="64" height="64" alt="">
+
+> Spray 30 pomegranate seeds in all directions.
+
+| Field | Value |
+| --- | --- |
+| Character | [Pomegranate Gunner](CHARACTERS.md#char-pomegranate) |
+| Form | Ring Barrage |
+| Cooldown | 8s |
+| Damage multiplier | ×0.5 |
+| Count | 30 |
+
+<a id="skill-taro"></a>
+
+### Taro Paste Field (Taro Mystic)
+
+<img src="../images/char/taro.png" width="64" height="64" alt="">
+
+> Create a 6s taro field that Burns and Slows enemies inside.
+
+| Field | Value |
+| --- | --- |
+| Character | [Taro Mystic](CHARACTERS.md#char-taro) |
+| Form | Binding Field |
+| Cooldown | 30s |
+| Damage multiplier | ×1.6 |
+| Radius | 230 |
+| Duration | 6s |
+| Inflicts | 2× [Burn](#status-burn) 2s, 2× [Slow](#status-slow) 1s |
+
+<a id="skill-cabbage"></a>
+
+### Steadfast Body (Cabbage Veteran)
+
+<img src="../images/char/cabbage.png" width="64" height="64" alt="">
+
+> 5s Barrier (-40% damage taken), 5 stacks of Fortify and 3 stacks of Regen.
+
+| Field | Value |
+| --- | --- |
+| Character | [Cabbage Veteran](CHARACTERS.md#char-cabbage) |
+| Form | Self Buff |
+| Cooldown | 15s |
+| Duration | 5s |
+| Self gains | [Barrier](#status-barrier) 5s, 5× [Fortify](#status-fortify) 5s, 3× [Regen](#status-regen) 5s |
+
+<a id="skill-blackberry"></a>
+
+### Withering Hex (Blackberry Witch)
+
+<img src="../images/char/blackberry.png" width="64" height="64" alt="">
+
+> Curse nearby enemies, apply 3 stacks of Rot and Silence them for 3s.
+
+| Field | Value |
+| --- | --- |
+| Character | [Blackberry Witch](CHARACTERS.md#char-blackberry) |
+| Form | Mass Debuff |
+| Cooldown | 16s |
+| Damage multiplier | ×0.3 |
+| Radius | 280 |
+| Inflicts | [Curse](#status-curse) 6s, 3× [Rot](#status-rot) 6s, [Silence](#status-silence) 3s |
+
 <a id="statuses"></a>
 
-## Status Effects (28)
+## Status Effects (32)
 
 Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elites 50%); Stun/Freeze on the player lasts at most 0.8s, followed by 1.5s of immunity.
 
@@ -669,6 +774,8 @@ Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elite
 | <a id="status-mark"></a>Mark | 1 | The next hit taken is a guaranteed crit |
 | <a id="status-silence"></a>Silence | 1 | Cannot use skills |
 | <a id="status-rot"></a>Rot | 3 | Max HP effects reduced. Attack Speed -10% |
+| <a id="status-soaked"></a>Soaked | 3 | Move Speed -10% and Attack Speed -8% per stack. Stacks up to 3 |
+| <a id="status-corrode"></a>Corrode | 4 | Takes acid damage per stack every second. Damage taken +6% per stack. Stacks up to 4 |
 
 <a id="statuses-buff"></a>
 
@@ -688,6 +795,8 @@ Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elite
 | <a id="status-enrage"></a>Enrage | 1 | Move Speed +30%, Damage +30% |
 | <a id="status-lucky"></a>Lucky | 5 | Luck increased |
 | <a id="status-vampiric"></a>Bloodlust | 5 | Life Steal Chance +4% per stack |
+| <a id="status-tailwind"></a>Tailwind | 3 | Move Speed +12% and Dodge +4% per stack. Stacks up to 3 |
+| <a id="status-hardened"></a>Hardened | 2 | Armor +3 and Damage taken -10% per stack. Stacks up to 2 |
 
 ---
 

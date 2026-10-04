@@ -41,8 +41,7 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
     talent: { name: '撒豆成兵', desc: '技能持续 +40%、技能冷却 -15%：豆兵分身存在更久、出场更勤' },
     traits: ['+40% 技能持续', '+15% 技能冷却缩减', '+3 最大生命', '-5% 伤害'],
     skill: { name: '豆兵出阵', desc: '召唤豆兵分身 10 秒自动射击。', type: 'clone', cd: 0, mult: 0.6, duration: 10, color: 0xe9d8a6 },
-    cost: 190,
-    requires: { ach: 'elites', tier: 2 },
+    unlock: { ach: 'chars_owned', tier: 2 },
   },
   // ---- 反伤流：高额反弹 + 受伤叠荆棘 ----
   {
@@ -85,8 +84,7 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
       selfStatus: [S('thorns', 6, 5), S('fortify', 6, 3)],
       color: 0x6a994e,
     },
-    cost: 190,
-    requires: { ach: 'clear_3', tier: 1 },
+    unlock: { ach: 'champions', tier: 2 },
   },
   // ---- 全弹幕流：多把远程武器 + 高攻速 ----
   {
@@ -122,8 +120,7 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
     traits: ['武器栏 7 格', '+25% 攻速', '+2 远程伤害', '-12% 伤害', '-2 最大生命', '近战伤害 -50%'],
     special: { onKillSelf: [S('haste', 2, 1)] },
     skill: { name: '石榴籽爆裂', desc: '向四周喷射 30 颗石榴籽。', type: 'ring', cd: 0, mult: 0.5, count: 30, color: 0xff4d6d },
-    cost: 190,
-    requires: { ach: 'kills', tier: 3 },
+    unlock: { ach: 'kills', tier: 3 },
   },
   // ---- 零武器流：只有 1 格武器，靠光环与技能输出 ----
   {
@@ -168,8 +165,7 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
       status: [S('burn', 2, 2), S('slow', 1, 2)],
       color: 0xcdb4db,
     },
-    cost: 190,
-    requires: { ach: 'bosses', tier: 2 },
+    unlock: { ach: 'evolutions', tier: 1 },
   },
   // ---- 不屈复活流（评估空缺 1：没有角色带复活 / 净化） ----
   {
@@ -209,8 +205,7 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
       selfStatus: [S('barrier', 5), S('fortify', 5, 5), S('regen', 5, 3)],
       color: 0x95d5b2,
     },
-    cost: 175,
-    requires: { ach: 'bosses', tier: 1 },
+    unlock: { ach: 'wins', tier: 2 },
   },
   // ---- 诅咒腐蚀流（评估空缺 2：没有角色使用诅咒 / 腐烂 / 沉默） ----
   {
@@ -253,8 +248,7 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
       status: [S('curse', 6), S('rot', 6, 3), S('silence', 3)],
       color: 0x9d4edd,
     },
-    cost: 200,
-    requires: { ach: 'clear_4', tier: 1 },
+    unlock: { ach: 'clear_5', tier: 1 },
   },
 ];
 

@@ -9,16 +9,7 @@ import { WEAPON_MAP } from '../data/weapons';
 import { SKILL_TYPE_NAME } from '../data/skills';
 import { describeMods } from '../data/stats';
 import { save, persist, isUnlocked } from '../systems/Save';
-import {
-  pointsBalance,
-  missingRequirement,
-  unlockHint,
-  tryBuyCharacter,
-  checkAchievements,
-  achTier,
-  medalOf,
-  charCost,
-} from '../systems/Achievements';
+import { unlockHint, unlockProgress, checkAchievements, achTier, medalOf } from '../systems/Achievements';
 import { ACH_MAP } from '../data/achievements';
 import { run, clearRun } from '../systems/RunState';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast } from '../ui/UI';
@@ -77,7 +68,17 @@ export class CharSelectScene extends Phaser.Scene {
 
     text(this, 30, 20, tx('选择角色', 'Choose Character'), 36).setOrigin(0, 0);
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
-    text(this, W - 180, 44, tx(`成就点 🏅 ${pointsBalance()}`, `Points 🏅 ${pointsBalance()}`), 22, '#ffd166').setOrigin(1, 0.5);
+    {
+      const owned = CHARACTERS.filter(isUnlocked).length;
+      text(
+        this,
+        W - 180,
+        44,
+        tx(`已解锁角色 ${owned}/${CHARACTERS.length}`, `Characters ${owned}/${CHARACTERS.length}`),
+        22,
+        '#ffd166',
+      ).setOrigin(1, 0.5);
+    }
 
     // 角色网格
     const cols = 8,
@@ -96,10 +97,11 @@ export class CharSelectScene extends Phaser.Scene {
       if (runsAch && achTier(runsAch.id) > 0) text(this, x + 3, y + 1, medalOf(runsAch), 17).setOrigin(0, 0);
       if (achTier(`char_wins_${c.id}`) > 0) text(this, x + s - 3, y + 1, '🏆', 15).setOrigin(1, 0);
       if (!unlocked) {
-        // 未拥有：半透明显示本体，角标为价格（有未满足的前置成就时显示锁）
+        // 未拥有：半透明显示本体，角标为锁和解锁成就的完成进度
         img.setAlpha(0.45);
-        const tag = missingRequirement(c) ? '🔒' : `🏅${charCost(c)}`;
-        text(this, x + s - 4, y + s - 2, tag, 15, '#ffd166', { stroke: '#000000', strokeThickness: 4 }).setOrigin(1, 1);
+        const p = unlockProgress(c);
+        const pct = Math.floor((p.value / p.goal) * 100);
+        text(this, x + s - 4, y + s - 2, `🔒${pct}%`, 13, '#ffd166', { stroke: '#000000', strokeThickness: 4 }).setOrigin(1, 1);
       }
       hitArea(this, x, y, s, s, () => {
         this.selected = c;
@@ -207,7 +209,7 @@ export class CharSelectScene extends Phaser.Scene {
     {
       const hint = unlocked ? c.desc : unlockHint(c);
       d.add(
-        text(this, 180, 104, hint, 17, unlocked ? COLORS.textDim : missingRequirement(c) ? '#ff6b6b' : '#ffd166', {
+        text(this, 180, 104, hint, 17, unlocked ? COLORS.textDim : '#ffd166', {
           wordWrap: { width: pw - 200, useAdvancedWrap: true },
         }),
       );
@@ -413,8 +415,8 @@ export class CharSelectScene extends Phaser.Scene {
       this.startBtn.setLabel(tx('出发！', 'Go!'));
       this.startBtn.setEnabled(chUnlocked);
     } else {
-      this.startBtn.setLabel(tx(`购买 🏅${charCost(c)}`, `Buy 🏅${charCost(c)}`));
-      this.startBtn.setEnabled(!missingRequirement(c) && pointsBalance() >= charCost(c));
+      this.startBtn.setLabel(tx('🔒 达成成就解锁', '🔒 Unlock via achievement'));
+      this.startBtn.setEnabled(false);
     }
   }
 
@@ -497,11 +499,7 @@ export class CharSelectScene extends Phaser.Scene {
   private start(): void {
     const c = this.selected;
     if (!isUnlocked(c)) {
-      const r = tryBuyCharacter(c);
-      if (r === 'ok') {
-        toast(this, tx(`获得新角色：${c.name}`, `New character: ${c.name}`), '#52ff8a');
-        this.time.delayedCall(700, () => this.scene.restart());
-      } else toast(this, r === 'poor' ? tx('成就点不足', 'Not enough points') : tx('尚未满足解锁条件', 'Requirement not met'), '#ff6b6b');
+      toast(this, unlockHint(c), '#ff6b6b');
       return;
     }
     clearRun();

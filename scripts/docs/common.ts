@@ -9,7 +9,7 @@ import { STATUSES, type StatusApply, type StatusId } from '../../src/data/status
 import { describeMods } from '../../src/data/stats';
 import type { CharacterDef } from '../../src/data/characters';
 import { ACH_MAP } from '../../src/data/achievements';
-import { achText, tierLabel, charCost } from '../../src/systems/Achievements';
+import { achText, tierLabel } from '../../src/systems/Achievements';
 
 export const outDir = () => (lang === 'en' ? 'docs/en' : 'docs');
 
@@ -86,15 +86,13 @@ export const lnk = {
 };
 
 export const sep = () => tx('、', ', ');
-/** 角色解锁方式：默认 / 成就点价格（+ 前置成就链接） */
+/** 角色解锁方式：默认 / 达成指定成就（带链接） */
 export function unlockText(c: CharacterDef, f = 'ACHIEVEMENTS.md'): string {
-  if (!c.cost) return tx('默认解锁', 'Unlocked by default');
-  const price = tx(`${charCost(c)} 成就点`, `${charCost(c)} pts`);
-  if (!c.requires) return price;
-  const a = ACH_MAP[c.requires.ach];
-  const tl = tierLabel(a, c.requires.tier);
-  const req = `[${achText(a, 'name', c.requires.tier - 1)}${tl ? `（${tl}）` : ''}](${f}#ach-${a.id})`;
-  return tx(`${price}，需先达成 ${req}`, `${price}, requires ${req}`);
+  if (!c.unlock) return tx('默认解锁', 'Unlocked by default');
+  const a = ACH_MAP[c.unlock.ach];
+  const tl = tierLabel(a, c.unlock.tier);
+  const req = `[${achText(a, 'name', c.unlock.tier - 1)}${tl ? `（${tl}）` : ''}](${f}#ach-${a.id})`;
+  return tx(`达成成就 ${req}：${achText(a, 'desc', c.unlock.tier - 1)}`, `Achievement ${req}: ${achText(a, 'desc', c.unlock.tier - 1)}`);
 }
 /** 状态施加：3层[减速](..) 3s（30%） */
 export const stApply = (l: StatusApply[] | undefined, f?: string) =>

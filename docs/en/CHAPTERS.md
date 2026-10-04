@@ -1,4 +1,4 @@
-# Chapters (5 × 15 waves)
+# Chapters (7 × 15 waves)
 
 [中文](../CHAPTERS.md) · **English**
 
@@ -17,6 +17,8 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
   - [Chapter 3 · Frozen Fridge](#chapter-3)
   - [Chapter 4 · City Junkyard](#chapter-4)
   - [Chapter 5 · Ketchup Factory](#chapter-5)
+  - [Chapter 6 · Rotting Greenhouse](#chapter-6)
+  - [Chapter 7 · Rot Garden](#chapter-7)
 - [Endless Mode](#endless)
 - [Daily / Weekly Challenges](#challenges)
 
@@ -95,7 +97,7 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 | Field | Value |
 | --- | --- |
 | Difficulty | HP ×1.36 · damage ×1.14 · speed ×1.05 |
-| Terrain | Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit<br>Gophers: Pop out of burrows to throw rocks |
+| Terrain | Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit<br>Gophers: Pop out of burrows to throw rocks<br>Sprinklers: Periodically spray water, Soaking players and monsters in range (Move and Attack Speed reduced) |
 | Elite pool | <img src="../images/boss/rat_captain.png" width="24" height="24" alt=""> [Captain Rat](MONSTERS.md#boss-rat_captain), <img src="../images/boss/snail_tank.png" width="24" height="24" alt=""> [Tank Snail](MONSTERS.md#boss-snail_tank), <img src="../images/boss/queen_bee.png" width="24" height="24" alt=""> [Queen Bee](MONSTERS.md#boss-queen_bee), <img src="../images/boss/scarecrow.png" width="24" height="24" alt=""> [Evil Scarecrow](MONSTERS.md#boss-scarecrow), <img src="../images/boss/spider_matron.png" width="24" height="24" alt=""> [Spider Matron](MONSTERS.md#boss-spider_matron), <img src="../images/boss/mushroom_king.png" width="24" height="24" alt=""> [Shroom King](MONSTERS.md#boss-mushroom_king) |
 | Boss pool | <img src="../images/boss/locust_queen.png" width="24" height="24" alt=""> [Locust Queen](MONSTERS.md#boss-locust_queen), <img src="../images/boss/rotten_pumpkin.png" width="24" height="24" alt=""> [Rotten Pumpkin King](MONSTERS.md#boss-rotten_pumpkin), <img src="../images/boss/mole_general.png" width="24" height="24" alt=""> [General Mole](MONSTERS.md#boss-mole_general) |
 
@@ -173,7 +175,7 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 | Field | Value |
 | --- | --- |
 | Difficulty | HP ×2.5 · damage ×1.49 · speed ×1.15 |
-| Terrain | Quicksand Pit: Pulls players and monsters toward the center and deals damage<br>Falling Trash: Watch for warning circles on the ground |
+| Terrain | Quicksand Pit: Pulls players and monsters toward the center and deals damage<br>Falling Trash: Watch for warning circles on the ground<br>Acid Leak: Acid pools bubble up near you, dealing damage and inflicting Corrode |
 | Elite pool | <img src="../images/boss/tire_beast.png" width="24" height="24" alt=""> [Tire Beast](MONSTERS.md#boss-tire_beast), <img src="../images/boss/can_king.png" width="24" height="24" alt=""> [Can King](MONSTERS.md#boss-can_king), <img src="../images/boss/rag_wraith.png" width="24" height="24" alt=""> [Rag Wraith](MONSTERS.md#boss-rag_wraith), <img src="../images/boss/battery_bug.png" width="24" height="24" alt=""> [Leaky Battery Bug](MONSTERS.md#boss-battery_bug), <img src="../images/boss/garbage_rat.png" width="24" height="24" alt=""> [Garbage Rat King](MONSTERS.md#boss-garbage_rat), <img src="../images/boss/oil_titan.png" width="24" height="24" alt=""> [Oil Titan](MONSTERS.md#boss-oil_titan) |
 | Boss pool | <img src="../images/boss/trash_golem.png" width="24" height="24" alt=""> [Trash Colossus](MONSTERS.md#boss-trash_golem), <img src="../images/boss/toxic_barrel.png" width="24" height="24" alt=""> [Toxic Barrel Fiend](MONSTERS.md#boss-toxic_barrel), <img src="../images/boss/scrap_dragon.png" width="24" height="24" alt=""> [Scrap Dragon](MONSTERS.md#boss-scrap_dragon) |
 
@@ -213,7 +215,7 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 | Field | Value |
 | --- | --- |
 | Difficulty | HP ×3.4 · damage ×1.7 · speed ×1.2 |
-| Terrain | Conveyor Belts: Push all units standing on them<br>Steam Valves: Periodically blast scalding steam |
+| Terrain | Conveyor Belts: Push all units standing on them<br>Steam Valves: Periodically blast scalding steam<br>Air Vents: Stand on a vent to gain Tailwind (more Move Speed and Dodge); monsters get blown away |
 | Elite pool | <img src="../images/boss/conveyor_worm.png" width="24" height="24" alt=""> [Conveyor Worm](MONSTERS.md#boss-conveyor_worm), <img src="../images/boss/ketchup_golem.png" width="24" height="24" alt=""> [Ketchup Golem](MONSTERS.md#boss-ketchup_golem), <img src="../images/boss/security_bot.png" width="24" height="24" alt=""> [Security Bot](MONSTERS.md#boss-security_bot), <img src="../images/boss/press_machine.png" width="24" height="24" alt=""> [Stamping Press](MONSTERS.md#boss-press_machine), <img src="../images/boss/chef_minion.png" width="24" height="24" alt=""> [Rotten Sous Chef](MONSTERS.md#boss-chef_minion), <img src="../images/boss/furnace_imp.png" width="24" height="24" alt=""> [Furnace Imp](MONSTERS.md#boss-furnace_imp) |
 | Boss pool | <img src="../images/boss/rotten_chef.png" width="24" height="24" alt=""> [Rotten Chef](MONSTERS.md#boss-rotten_chef), <img src="../images/boss/factory_core.png" width="24" height="24" alt=""> [Factory Core](MONSTERS.md#boss-factory_core), <img src="../images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [Ketchup Leviathan](MONSTERS.md#boss-ketchup_leviathan) |
 
@@ -244,6 +246,85 @@ Each chapter has 15 waves: [elites](MONSTERS.md#elites) on waves 5 and 10, the [
 | <img src="../images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [Ketchup Slime](MONSTERS.md#enemy-ketchup_slime) | 8+ | 3 (4%) |
 | <img src="../images/enemy/press_piston.png" width="32" height="32" alt=""> [Press Piston](MONSTERS.md#enemy-press_piston) | 9+ | 3 (4%) |
 | <img src="../images/enemy/bottling_bot.png" width="32" height="32" alt=""> [Bottling Bot](MONSTERS.md#enemy-bottling_bot) | 11+ | 2 (3%) |
+
+<a id="chapter-6"></a>
+
+### Chapter 6 · Rotting Greenhouse
+
+> In the steamy glass greenhouse, the veggies are rotting one by one. Only Danger 5 veterans may enter.
+
+| Field | Value |
+| --- | --- |
+| Difficulty | HP ×4.62 · damage ×1.94 · speed ×1.25 |
+| Terrain | Spore Vents: The ground periodically puffs Poison spore clouds<br>Compost Pits: Blight Sprouts crawl out periodically<br>Grow Lamps: Players and monsters in the light become Hardened (more Armor, less damage taken); lamps move periodically |
+| Elite pool | <img src="../images/boss/pumpkin_brute.png" width="24" height="24" alt=""> [Pumpkin Brute](MONSTERS.md#boss-pumpkin_brute), <img src="../images/boss/spore_matron.png" width="24" height="24" alt=""> [Spore Matron](MONSTERS.md#boss-spore_matron) |
+| Boss pool | <img src="../images/boss/blight_gardener.png" width="24" height="24" alt=""> [Blight Gardener](MONSTERS.md#boss-blight_gardener) |
+
+**Monster pool**
+
+| Monster | Waves | Weight |
+| --- | --- | --- |
+| <img src="../images/enemy/blight_sprout.png" width="32" height="32" alt=""> [Blight Sprout](MONSTERS.md#enemy-blight_sprout) | 1~5 | 8 (12%) |
+| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1~6 | 4 (6%) |
+| <img src="../images/enemy/aphid.png" width="32" height="32" alt=""> [Aphid](MONSTERS.md#enemy-aphid) | 1~7 | 3 (5%) |
+| <img src="../images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [Fungus Gnat](MONSTERS.md#enemy-fungus_gnat) | 2+ | 4 (6%) |
+| <img src="../images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [Sweaty Cucumber](MONSTERS.md#enemy-slime_cucumber) | 3+ | 3 (5%) |
+| <img src="../images/enemy/rot_chili.png" width="32" height="32" alt=""> [Rotten Chili](MONSTERS.md#enemy-rot_chili) | 3+ | 3 (5%) |
+| <img src="../images/enemy/garden_slug.png" width="32" height="32" alt=""> [Garden Slug](MONSTERS.md#enemy-garden_slug) | 3+ | 3 (5%) |
+| <img src="../images/enemy/spore_puff.png" width="32" height="32" alt=""> [Spore Puffball](MONSTERS.md#enemy-spore_puff) | 4+ | 3 (5%) |
+| <img src="../images/enemy/thorn_weed.png" width="32" height="32" alt=""> [Thorn Weed](MONSTERS.md#enemy-thorn_weed) | 4+ | 3 (5%) |
+| <img src="../images/enemy/vine_lasher.png" width="32" height="32" alt=""> [Rot Vine](MONSTERS.md#enemy-vine_lasher) | 5+ | 3 (5%) |
+| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 5+ | 3 (5%) |
+| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 5+ | 2 (3%) |
+| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 6+ | 3 (5%) |
+| <img src="../images/enemy/pollen_bloom.png" width="32" height="32" alt=""> [Toxic Bloom](MONSTERS.md#enemy-pollen_bloom) | 6+ | 2 (3%) |
+| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 6+ | 3 (5%) |
+| <img src="../images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [Moldy Pumpkin](MONSTERS.md#enemy-moldy_pumpkin) | 7+ | 3 (5%) |
+| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 7+ | 2 (3%) |
+| <img src="../images/enemy/mantis.png" width="32" height="32" alt=""> [Blade Mantis](MONSTERS.md#enemy-mantis) | 8+ | 3 (5%) |
+| <img src="../images/enemy/rivet_bot.png" width="32" height="32" alt=""> [Rivet Bot](MONSTERS.md#enemy-rivet_bot) | 8+ | 2 (3%) |
+| <img src="../images/enemy/compost_heap.png" width="32" height="32" alt=""> [Compost Bin](MONSTERS.md#enemy-compost_heap) | 9+ | 2 (3%) |
+| <img src="../images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [Ketchup Slime](MONSTERS.md#enemy-ketchup_slime) | 10+ | 2 (3%) |
+| <img src="../images/enemy/press_piston.png" width="32" height="32" alt=""> [Press Piston](MONSTERS.md#enemy-press_piston) | 11+ | 2 (3%) |
+
+<a id="chapter-7"></a>
+
+### Chapter 7 · Rot Garden
+
+> [Hidden Chapter] Where all rot truly began. Break through to face the Rot King.
+
+| Field | Value |
+| --- | --- |
+| Difficulty | HP ×6.27 · damage ×2.22 · speed ×1.3 |
+| Terrain | Rot Mire: Pulls players and monsters toward the center and spreads Rot<br>Falling Rotten Fruit: Watch for warning circles on the ground<br>Brambles: Thorns burst from under your feet, dealing damage and inflicting Bleed and Corrode |
+| Elite pool | <img src="../images/boss/carrot_knight.png" width="24" height="24" alt=""> [Carrot Revenant](MONSTERS.md#boss-carrot_knight), <img src="../images/boss/onion_witch.png" width="24" height="24" alt=""> [Onion Witch](MONSTERS.md#boss-onion_witch) |
+| Boss pool | <img src="../images/boss/rot_mother.png" width="24" height="24" alt=""> [Mother of Rot](MONSTERS.md#boss-rot_mother), <img src="../images/boss/rot_king.png" width="24" height="24" alt=""> [Rot King](MONSTERS.md#boss-rot_king) |
+
+**Monster pool**
+
+| Monster | Waves | Weight |
+| --- | --- | --- |
+| <img src="../images/enemy/blight_sprout.png" width="32" height="32" alt=""> [Blight Sprout](MONSTERS.md#enemy-blight_sprout) | 1~5 | 8 (13%) |
+| <img src="../images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [Fungus Gnat](MONSTERS.md#enemy-fungus_gnat) | 1+ | 4 (7%) |
+| <img src="../images/enemy/caterpillar.png" width="32" height="32" alt=""> [Cabbage Worm](MONSTERS.md#enemy-caterpillar) | 1~8 | 3 (5%) |
+| <img src="../images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [Rotheart Cabbage](MONSTERS.md#enemy-rot_cabbage) | 2+ | 4 (7%) |
+| <img src="../images/enemy/zombie_carrot.png" width="32" height="32" alt=""> [Zombie Carrot](MONSTERS.md#enemy-zombie_carrot) | 3+ | 3 (5%) |
+| <img src="../images/enemy/spore_puff.png" width="32" height="32" alt=""> [Spore Puffball](MONSTERS.md#enemy-spore_puff) | 3+ | 3 (5%) |
+| <img src="../images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [Sweaty Cucumber](MONSTERS.md#enemy-slime_cucumber) | 3+ | 2 (3%) |
+| <img src="../images/enemy/blight_onion.png" width="32" height="32" alt=""> [Blight Onion](MONSTERS.md#enemy-blight_onion) | 4+ | 3 (5%) |
+| <img src="../images/enemy/rot_chili.png" width="32" height="32" alt=""> [Rotten Chili](MONSTERS.md#enemy-rot_chili) | 4+ | 3 (5%) |
+| <img src="../images/enemy/vine_lasher.png" width="32" height="32" alt=""> [Rot Vine](MONSTERS.md#enemy-vine_lasher) | 4+ | 3 (5%) |
+| <img src="../images/enemy/weevil.png" width="32" height="32" alt=""> [Weevil](MONSTERS.md#enemy-weevil) | 5+ | 3 (5%) |
+| <img src="../images/enemy/mantis.png" width="32" height="32" alt=""> [Blade Mantis](MONSTERS.md#enemy-mantis) | 5+ | 3 (5%) |
+| <img src="../images/enemy/rot_sprinkler.png" width="32" height="32" alt=""> [Rot Sprinkler](MONSTERS.md#enemy-rot_sprinkler) | 6+ | 2 (3%) |
+| <img src="../images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [Moldy Pumpkin](MONSTERS.md#enemy-moldy_pumpkin) | 6+ | 3 (5%) |
+| <img src="../images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [Boom Ladybug](MONSTERS.md#enemy-ladybug_bomb) | 6+ | 2 (3%) |
+| <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 6+ | 2 (3%) |
+| <img src="../images/enemy/rotten_potato.png" width="32" height="32" alt=""> [Rotten Potato](MONSTERS.md#enemy-rotten_potato) | 7+ | 2 (3%) |
+| <img src="../images/enemy/compost_heap.png" width="32" height="32" alt=""> [Compost Bin](MONSTERS.md#enemy-compost_heap) | 8+ | 2 (3%) |
+| <img src="../images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [Ketchup Slime](MONSTERS.md#enemy-ketchup_slime) | 9+ | 2 (3%) |
+| <img src="../images/enemy/rivet_bot.png" width="32" height="32" alt=""> [Rivet Bot](MONSTERS.md#enemy-rivet_bot) | 9+ | 2 (3%) |
+| <img src="../images/enemy/press_piston.png" width="32" height="32" alt=""> [Press Piston](MONSTERS.md#enemy-press_piston) | 10+ | 2 (3%) |
 
 <a id="endless"></a>
 

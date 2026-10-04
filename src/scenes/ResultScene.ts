@@ -8,12 +8,12 @@ import Phaser from 'phaser';
 import { showcaseRig } from '../ui/Portrait';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { run, clearRun, recordHistory } from '../systems/RunState';
-import { save, persist, isUnlocked, type RunRecord } from '../systems/Save';
-import { CHARACTERS } from '../data/characters';
+import { save, persist, type RunRecord } from '../systems/Save';
+import { CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS, BASE_CHAPTERS } from '../data/chapters';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
-import { checkAchievements, setInRun, missingRequirement, pointsBalance, charCost } from '../systems/Achievements';
+import { checkAchievements, setInRun } from '../systems/Achievements';
 import { showSharePoster } from '../systems/SharePoster';
 import { settleDanger, type DangerResult } from '../systems/Danger';
 import { settleProgress, type ProgressResult } from '../systems/Progress';
@@ -66,7 +66,7 @@ export class ResultScene extends Phaser.Scene {
     const dr = data.danger;
     checkAchievements();
     setInRun(false);
-    const affordable = CHARACTERS.filter((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance());
+    const newChars = run.newChars.map((id) => CHARACTER_MAP[id]).filter(Boolean);
 
     panel(this, W / 2 - 400, 40, 800, H - 80);
     text(
@@ -194,24 +194,16 @@ export class ResultScene extends Phaser.Scene {
       }).setOrigin(0.5, 0);
       y += 30;
     }
-    // 本局获得的成就点；有买得起的角色时提示去选角界面购买
-    text(
-      this,
-      W / 2,
-      y,
-      tx(
-        `本局获得成就点 +${run.achPoints}（可用 🏅${pointsBalance()}）`,
-        `Achievement points this run +${run.achPoints} (available 🏅${pointsBalance()})`,
-      ),
-      22,
-      '#ffd166',
-    ).setOrigin(0.5);
-    if (affordable.length)
+    // 本局获得的成就点（累计成绩），以及本局达成成就新解锁的角色
+    text(this, W / 2, y, tx(`本局获得成就点 +${run.achPoints}`, `Achievement points this run +${run.achPoints}`), 22, '#ffd166').setOrigin(
+      0.5,
+    );
+    if (newChars.length)
       text(
         this,
         W / 2,
         y + 34,
-        tx(`可以购买新角色：${affordable.map((c) => c.name).join('、')}`, `You can buy: ${affordable.map((c) => c.name).join(', ')}`),
+        tx(`新角色解锁：${newChars.map((c) => c.name).join('、')}`, `New characters: ${newChars.map((c) => c.name).join(', ')}`),
         18,
         '#52ff8a',
         { wordWrap: { width: 720, useAdvancedWrap: true }, align: 'center' },

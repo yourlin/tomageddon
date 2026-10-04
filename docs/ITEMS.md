@@ -1,4 +1,4 @@
-# 道具（570 件）
+# 道具（600 件）
 
 **中文** · [English](en/ITEMS.md)
 
@@ -6,7 +6,7 @@
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-道具是在商店购买或从宝箱获得的被动物品，可叠加。共 50 件经典道具 + 52 个主题系列 × 10 件。
+道具是在商店购买或从宝箱获得的被动物品，可叠加。共 80 件经典道具 + 52 个主题系列 × 10 件。
 
 效果中的 Buff / Debuff 见[状态效果](SKILLS.md#statuses)，属性说明见[设计文档](GDD.md)。
 
@@ -14,7 +14,7 @@
 
 - [稀有度与强度预算](#rarity)
 - [升级属性选项](#levelup)
-- [经典道具（50）](#classic)
+- [经典道具（80）](#classic)
 - [系列道具（52 个系列）](#series)
 
 <a id="rarity"></a>
@@ -25,10 +25,10 @@
 
 | 稀有度 | 数量 | 强度预算 |
 | --- | --- | --- |
-| 普通 | 225 | 10 |
-| 稀有 | 171 | 22 |
-| 史诗 | 115 | 40 |
-| 传说 | 59 | 75 |
+| 普通 | 235 | 10 |
+| 稀有 | 180 | 22 |
+| 史诗 | 122 | 40 |
+| 传说 | 63 | 75 |
 
 <a id="levelup"></a>
 
@@ -64,7 +64,7 @@
 
 <a id="classic"></a>
 
-## 经典道具（50）
+## 经典道具（80）
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
@@ -85,6 +85,16 @@
 | <img src="images/item/notebook.png" width="32" height="32" alt=""> 食谱笔记 | 普通 | +10% 经验获取 | 14 | ∞ |
 | <img src="images/item/reroll_ticket.png" width="32" height="32" alt=""> 刷新券 | 普通 | 每波商店刷新次数 +1 | 18 | 3 |
 | <img src="images/item/firecracker.png" width="32" height="32" alt=""> 小鞭炮 | 普通 | +10% 爆炸范围 | 15 | ∞ |
+| <img src="images/item/wasabi_tube.png" width="32" height="32" alt=""> 芥末管 | 普通 | +4% 元素武器伤害，+2% 暴击率 | 14 | ∞ |
+| <img src="images/item/sushi_mat.png" width="32" height="32" alt=""> 寿司竹帘 | 普通 | +4% 近战武器伤害，+1 近战伤害 | 14 | ∞ |
+| <img src="images/item/salt_pinch.png" width="32" height="32" alt=""> 一撮海盐 | 普通 | +2% 全伤害，+3% 暴击率 | 14 | ∞ |
+| <img src="images/item/soy_packet.png" width="32" height="32" alt=""> 酱油小包 | 普通 | +1 生命再生，+1% 吸血概率 | 14 | ∞ |
+| <img src="images/item/bbq_charcoal.png" width="32" height="32" alt=""> 烧烤炭 | 普通 | +6% 爆炸范围，+1 元素伤害 | 13 | ∞ |
+| <img src="images/item/spring_coil.png" width="32" height="32" alt=""> 弹簧圈 | 普通 | +4% 攻击速度，+1% 移动速度 | 13 | ∞ |
+| <img src="images/item/oven_mitt.png" width="32" height="32" alt=""> 烤箱手套 | 普通 | +2 最大生命，+1 护甲 | 15 | ∞ |
+| <img src="images/item/jam_jar.png" width="32" height="32" alt=""> 果酱罐 | 普通 | +2 最大生命，+1 生命再生，-1% 移动速度 | 12 | ∞ |
+| <img src="images/item/fortune_cookie.png" width="32" height="32" alt=""> 幸运饼干 | 普通 | +6 幸运，+3 收获 | 14 | ∞ |
+| <img src="images/item/firework_fuse.png" width="32" height="32" alt=""> 烟花引信 | 普通 | +8% 爆炸范围，+1 远程伤害 | 15 | ∞ |
 | <img src="images/item/big_magnet.png" width="32" height="32" alt=""> 强力磁铁 | 稀有 | -3% 移动速度，+6 收获，+80 拾取范围 | 30 | ∞ |
 | <img src="images/item/chef_hat.png" width="32" height="32" alt=""> 厨师帽 | 稀有 | +5 最大生命，+4 近战伤害，-2 远程伤害，+1 护甲 | 35 | ∞ |
 | <img src="images/item/scope.png" width="32" height="32" alt=""> 瞄准镜 | 稀有 | +4 远程伤害，-5% 攻击速度，+5% 暴击率，+40 射程 | 38 | ∞ |
@@ -100,6 +110,15 @@
 | <img src="images/item/lemonade.png" width="32" height="32" alt=""> 柠檬水 | 稀有 | +4 最大生命，+4 生命再生，-4% 全伤害 | 36 | ∞ |
 | <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | 稀有 | +7 最大生命，+1 生命再生，-3% 移动速度，每击杀 25 个敌人回复 1 生命 | 40 | ∞ |
 | <img src="images/item/baking_powder.png" width="32" height="32" alt=""> 泡打粉 | 稀有 | -3 最大生命，+22% 爆炸范围，+2 元素伤害 | 36 | ∞ |
+| <img src="images/item/turbo_motor.png" width="32" height="32" alt=""> 涡轮马达 | 稀有 | -2 最大生命，+6% 光环伤害，+10% 光环范围，+6% 攻击速度 | 38 | ∞ |
+| <img src="images/item/fermented_jar.png" width="32" height="32" alt=""> 发酵酱坛 | 稀有 | +2% 吸血概率，+14% 爆炸范围，-1 护甲，击杀 6% 概率爆炸（12 伤害） | 40 | ∞ |
+| <img src="images/item/sharpening_rod.png" width="32" height="32" alt=""> 磨刀棒 | 稀有 | +6% 近战武器伤害，+4% 暴击率，-10 射程，暴击伤害 +10% | 38 | ∞ |
+| <img src="images/item/spice_rack.png" width="32" height="32" alt=""> 调料架 | 稀有 | -2 最大生命，+8% 元素武器伤害，命中 8% 概率灼烧 | 36 | ∞ |
+| <img src="images/item/soup_thermos.png" width="32" height="32" alt=""> 保温汤壶 | 稀有 | +3 生命再生，+1 护甲，-2% 移动速度，受伤时获得坚韧 | 36 | ∞ |
+| <img src="images/item/tin_foil.png" width="32" height="32" alt=""> 锡纸 | 稀有 | -3% 攻击速度，+2 护甲，+2% 闪避，受伤反弹 6 伤害 | 34 | ∞ |
+| <img src="images/item/gunpowder_pouch.png" width="32" height="32" alt=""> 火药袋 | 稀有 | -3 最大生命，+15% 爆炸范围，+2 远程伤害，击杀 8% 概率爆炸（14 伤害） | 40 | ∞ |
+| <img src="images/item/chili_flakes.png" width="32" height="32" alt=""> 辣椒碎 | 稀有 | -1 生命再生，+2 元素伤害，+4% 攻击速度，命中时15% 概率灼烧 | 36 | ∞ |
+| <img src="images/item/meat_thermometer.png" width="32" height="32" alt=""> 肉类温度计 | 稀有 | +3% 暴击率，+25 射程，持续伤害 +15% | 35 | ∞ |
 | <img src="images/item/vip_card.png" width="32" height="32" alt=""> 会员卡 | 史诗 | +5 幸运，每波商店刷新次数 +2 | 55 | 2 |
 | <img src="images/item/vacuum.png" width="32" height="32" alt=""> 吸尘器 | 史诗 | +5 幸运，+150 拾取范围 | 60 | ∞ |
 | <img src="images/item/iron_wok.png" width="32" height="32" alt=""> 铁锅盾 | 史诗 | +5 最大生命，+5 护甲，-5% 移动速度 | 70 | ∞ |
@@ -111,6 +130,13 @@
 | <img src="images/item/coupon.png" width="32" height="32" alt=""> 优惠券 | 史诗 | 商店价格 -10% | 55 | 3 |
 | <img src="images/item/protein.png" width="32" height="32" alt=""> 蛋白粉 | 史诗 | +10 最大生命，+2 近战伤害，-2% 移动速度 | 75 | ∞ |
 | <img src="images/item/pressure_cooker.png" width="32" height="32" alt=""> 高压锅 | 史诗 | +30% 爆炸范围，+1 护甲 | 70 | ∞ |
+| <img src="images/item/cast_iron_skillet.png" width="32" height="32" alt=""> 铸铁煎锅 | 史诗 | +4 最大生命，+3 近战伤害，+4 护甲，-4% 移动速度，命中时6% 概率眩晕 | 72 | ∞ |
+| <img src="images/item/sauce_fountain.png" width="32" height="32" alt=""> 酱料喷泉 | 史诗 | +2 生命再生，+4% 吸血概率，每击杀 20 个敌人回复 1 生命 | 70 | ∞ |
+| <img src="images/item/pressure_valve.png" width="32" height="32" alt=""> 泄压阀 | 史诗 | +5% 全伤害，+25% 爆炸范围，-1 护甲，击杀 12% 概率爆炸（20 伤害） | 72 | ∞ |
+| <img src="images/item/samurai_tsuba.png" width="32" height="32" alt=""> 武士刀镡 | 史诗 | -3 最大生命，+10% 近战武器伤害，+8% 暴击率，暴击伤害 +20% | 74 | ∞ |
+| <img src="images/item/static_apron.png" width="32" height="32" alt=""> 静电围裙 | 史诗 | +4 元素伤害，+2 护甲，命中 6% 概率落雷 | 70 | ∞ |
+| <img src="images/item/mortar_pestle.png" width="32" height="32" alt=""> 石臼研钵 | 史诗 | +10% 远程武器伤害，+15% 爆炸范围，+4% 攻击速度 | 68 | ∞ |
+| <img src="images/item/salt_lamp.png" width="32" height="32" alt=""> 盐灯 | 史诗 | -3 最大生命，+12% 光环伤害，+15% 光环范围，每 1.5 秒使周围 130 范围敌人虚弱 | 70 | ∞ |
 | <img src="images/item/golden_tomato.png" width="32" height="32" alt=""> 黄金番茄 | 传说 | +10 最大生命，+15% 全伤害，-5% 移动速度，+15 幸运 | 120 | ∞ |
 | <img src="images/item/phoenix_feather.png" width="32" height="32" alt=""> 凤凰羽毛 | 传说 | +3 生命再生，死亡时以 50% 生命复活一次 | 110 | 1 |
 | <img src="images/item/chef_knife_set.png" width="32" height="32" alt=""> 大厨刀具套装 | 传说 | +8 近战伤害，-4 远程伤害，+8% 攻击速度，+8% 暴击率 | 130 | ∞ |
@@ -118,6 +144,10 @@
 | <img src="images/item/grandma_recipe.png" width="32" height="32" alt=""> 外婆的秘方 | 传说 | -8% 全伤害，+20 幸运，+25 收获，+25% 经验获取 | 115 | ∞ |
 | <img src="images/item/vampire_cape.png" width="32" height="32" alt=""> 吸血鬼披风 | 传说 | -3 生命再生，+10% 吸血概率，+8% 全伤害，+5% 闪避 | 125 | ∞ |
 | <img src="images/item/powder_keg.png" width="32" height="32" alt=""> 火药桶 | 传说 | +5% 全伤害，+50% 爆炸范围，-3% 移动速度 | 115 | ∞ |
+| <img src="images/item/michelin_star.png" width="32" height="32" alt=""> 米其林之星 | 传说 | +10% 全伤害，+6% 暴击率，+10 幸运，+10 收获，每把同名武器 +5% 伤害 | 125 | 1 |
+| <img src="images/item/dragon_wok.png" width="32" height="32" alt=""> 龙纹炒锅 | 传说 | +30% 爆炸范围，+6 元素伤害，-4% 移动速度，命中 15% 概率灼烧，持续伤害 +20% | 125 | ∞ |
+| <img src="images/item/sauce_grail.png" width="32" height="32" alt=""> 酱之圣杯 | 传说 | +10 最大生命，+3 生命再生，+8% 吸血概率，-5% 全伤害，击杀时获得25% 概率嗜血 | 120 | ∞ |
+| <img src="images/item/arsenal_belt.png" width="32" height="32" alt=""> 军火腰带 | 传说 | +12% 远程武器伤害，+15% 爆炸范围，-4 近战伤害，+6 远程伤害，+10% 攻击速度 | 125 | ∞ |
 
 <a id="series"></a>
 

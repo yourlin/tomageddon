@@ -113,8 +113,8 @@ const TIPS: Record<TipKey, () => [string, string]> = {
   buyChar: () => [
     tx('解锁新角色', 'Unlock characters'),
     tx(
-      '成就点已经够买新角色了！在选角界面选中带价格的角色，点「购买」即可。每名角色都有不同的技能和天赋。',
-      'You have enough achievement points for a new character! Select a priced character on the character screen and hit "Buy". Each has a unique skill and talent.',
+      '你达成了成就，解锁了新角色！每名未解锁的角色都对应一项成就，在选角界面选中带 🔒 的角色可以看到条件和进度。每名角色都有不同的技能和天赋。',
+      'An achievement unlocked a new character! Every locked character is tied to one achievement: select a 🔒 character on the character screen to see its requirement and progress. Each has a unique skill and talent.',
     ),
   ],
   endless: () => [

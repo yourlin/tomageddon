@@ -10,7 +10,7 @@ import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { run, hasSavedRun, loadRun } from '../systems/RunState';
 import { save, unlockedCount, isUnlocked } from '../systems/Save';
 import { lang, tx } from '../i18n';
-import { checkAchievements, setInRun, pointsBalance, missingRequirement, charCost } from '../systems/Achievements';
+import { checkAchievements, setInRun, pointsEarned } from '../systems/Achievements';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { paint } from '../art/Painter';
 import { openExternal, SHOW_DONATE, IS_STEAM, quitApp } from '../platform';
@@ -222,16 +222,16 @@ export class MenuScene extends Phaser.Scene {
       W - 20,
       H - 20,
       tx(
-        `成就点 🏅${pointsBalance()} · 金番茄 🥇${save.meta.gold} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
-        `Points 🏅${pointsBalance()} · Golden 🥇${save.meta.gold} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
+        `成就点 🏅${pointsEarned()} · 金番茄 🥇${save.meta.gold} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
+        `Points 🏅${pointsEarned()} · Golden 🥇${save.meta.gold} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
       ),
       16,
       COLORS.textDim,
     ).setOrigin(1, 1);
     this.input.once('pointerdown', () => audio.unlock());
-    // 新手引导：天赋点、买角色、挑战
+    // 新手引导：天赋点、新解锁的角色、挑战
     if (talentPointsFree() > 0) tip('talents', this);
-    if (CHARACTERS.some((c) => !isUnlocked(c) && !missingRequirement(c) && charCost(c) <= pointsBalance())) tip('buyChar', this);
+    if (CHARACTERS.some((c) => c.unlock && isUnlocked(c) && !save.charRuns[c.id])) tip('buyChar', this);
     if (save.wins >= 1 || Object.values(save.charRuns).reduce((a, b) => a + b, 0) >= 3) tip('challenge', this);
   }
 

@@ -48,10 +48,8 @@ export interface CharacterDef {
   levelUpChoices?: number;
   special?: ItemSpecial;
   skill: SkillDef;
-  /** 解锁价格（成就点）；不填表示默认解锁 */
-  cost?: number;
-  /** 购买前需要先达成的成就（id 与最低等级，等级从 1 起） */
-  requires?: { ach: string; tier: number };
+  /** 解锁条件：达成指定成就的指定等级（等级从 1 起）后自动解锁；不填表示默认解锁 */
+  unlock?: { ach: string; tier: number };
 }
 
 const S = (id: StatusApply['id'], dur: number, stacks = 1, chance?: number): StatusApply => ({ id, dur, stacks, chance });
@@ -233,7 +231,7 @@ export const CHARACTERS: CharacterDef[] = [
       heal: 0.1,
       color: 0x2ec4b6,
     },
-    cost: 80,
+    unlock: { ach: 'fruits', tier: 2 },
   },
   {
     id: 'lemon',
@@ -274,7 +272,7 @@ export const CHARACTERS: CharacterDef[] = [
       mods: { crit: 50, speed: 20 },
       color: 0xf7ec59,
     },
-    cost: 80,
+    unlock: { ach: 'crits', tier: 1 },
   },
   {
     id: 'eggplant',
@@ -313,7 +311,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 0.4)],
       color: 0xc77dff,
     },
-    cost: 80,
+    unlock: { ach: 'casts', tier: 2 },
   },
   {
     id: 'garlic',
@@ -352,7 +350,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 3)],
       color: 0x9d0208,
     },
-    cost: 170,
+    unlock: { ach: 'elites', tier: 2 },
   },
   {
     id: 'blueberry',
@@ -383,7 +381,7 @@ export const CHARACTERS: CharacterDef[] = [
     talent: { name: '双生默契', desc: '每持有一对同名武器，伤害 +5%' },
     traits: ['武器栏 8 格', '-10% 伤害'],
     skill: { name: '双子分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x3a86ff },
-    cost: 170,
+    unlock: { ach: 'chars_won', tier: 1 },
   },
   {
     id: 'pineapple',
@@ -422,7 +420,7 @@ export const CHARACTERS: CharacterDef[] = [
       radius: 150,
       color: 0xffd700,
     },
-    cost: 80,
+    unlock: { ach: 'rich', tier: 1 },
   },
   {
     id: 'pumpkin',
@@ -452,8 +450,7 @@ export const CHARACTERS: CharacterDef[] = [
     talent: { name: '幽灵突袭', desc: '闪避成功后 1.5 秒内伤害 +40%' },
     traits: ['+25% 闪避', '闪避上限 75%', '-4 最大生命'],
     skill: { name: '灵体化', desc: '无敌 2.5 秒并大幅加速。', type: 'ghost', cd: 0, duration: 2.5, mods: { speed: 60 }, color: 0xffb4a2 },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'clear_2', tier: 1 },
   },
   {
     id: 'strawberry',
@@ -496,7 +493,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 6, 3), S('rage', 6, 5)],
       color: 0xff70a6,
     },
-    cost: 170,
+    unlock: { ach: 'level', tier: 2 },
   },
   {
     id: 'ginger',
@@ -535,8 +532,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 2)],
       color: 0xe9c46a,
     },
-    cost: 175,
-    requires: { ach: 'kills', tier: 2 },
+    unlock: { ach: 'perfect', tier: 2 },
   },
   {
     id: 'avocado',
@@ -564,8 +560,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+2 元素伤害', '+5% 伤害', '击杀 15% 概率爆炸'],
     special: { explodeOnKill: { chance: 15, dmg: 20 } },
     skill: { name: '核心过载', desc: '连环爆炸 5 次。', type: 'strikes', cd: 0, mult: 1.6, count: 5, radius: 90, color: 0xa7c957 },
-    cost: 190,
-    requires: { ach: 'clear_3', tier: 1 },
+    unlock: { ach: 't4', tier: 1 },
   },
   {
     id: 'onion',
@@ -608,8 +603,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('blind', 1)],
       color: 0xe0aaff,
     },
-    cost: 200,
-    requires: { ach: 'clear_4', tier: 1 },
+    unlock: { ach: 'deaths', tier: 2 },
   },
   // ---------------- 新角色 ----------------
   {
@@ -648,7 +642,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 6, 5), S('weaken', 5, 2)],
       color: 0x70e000,
     },
-    cost: 70,
+    unlock: { ach: 'inflict_poison', tier: 1 },
   },
   {
     id: 'coconut',
@@ -686,7 +680,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 1.2), S('armorBreak', 6, 3)],
       color: 0xbc6c25,
     },
-    cost: 80,
+    unlock: { ach: 'clear_1', tier: 1 },
   },
   {
     id: 'grape',
@@ -719,7 +713,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+10 幸运', '+3 最大生命', '受到攻击 20% 概率使敌人混乱'],
     special: { onHurtEnemy: [S('confuse', 3, 1, 20)] },
     skill: { name: '葡萄分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0xb5179e },
-    cost: 140,
+    unlock: { ach: 'crates', tier: 2 },
   },
   {
     id: 'cherry',
@@ -751,7 +745,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+20% 攻速', '-8% 伤害', '射击时 10% 概率获得急速'],
     special: { onHitSelf: [S('haste', 2, 1, 10)] },
     skill: { name: '双枪连射', desc: '对最近的敌人连续射出 12 发子弹。', type: 'barrage', cd: 0, mult: 0.9, count: 12, color: 0xff4d6d },
-    cost: 80,
+    unlock: { ach: 'set_枪械', tier: 1 },
   },
   {
     id: 'pea',
@@ -778,7 +772,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+2 远程伤害', '初始 2 把豌豆枪', '每把同名武器 +3% 伤害'],
     special: { sameWeaponBonus: 3 },
     skill: { name: '豌豆炮台', desc: '对最近的敌人高速连发 16 颗豌豆。', type: 'barrage', cd: 0, mult: 0.6, count: 16, color: 0x70e000 },
-    cost: 140,
+    unlock: { ach: 'kills', tier: 2 },
   },
   {
     id: 'peach',
@@ -818,7 +812,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('invuln', 1.5)],
       color: 0xffd6e0,
     },
-    cost: 170,
+    unlock: { ach: 'revive', tier: 1 },
   },
   {
     id: 'dragonfruit',
@@ -857,8 +851,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 4)],
       color: 0xff5400,
     },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'inflict_burn', tier: 2 },
   },
   {
     id: 'beet',
@@ -897,7 +890,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('enrage', 6), S('vampiric', 6, 3)],
       color: 0xd00000,
     },
-    cost: 170,
+    unlock: { ach: 'run_kills', tier: 2 },
   },
   {
     id: 'asparagus',
@@ -937,7 +930,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 4)],
       color: 0xb5e48c,
     },
-    cost: 170,
+    unlock: { ach: 'max_hit', tier: 2 },
   },
   {
     id: 'sweetpotato',
@@ -979,7 +972,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('regen', 6, 5)],
       color: 0xffb703,
     },
-    cost: 80,
+    unlock: { ach: 'set_厨具', tier: 2 },
   },
   {
     id: 'kiwi',
@@ -1018,7 +1011,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 6), S('vulnerable', 6, 2)],
       color: 0xffd166,
     },
-    cost: 140,
+    unlock: { ach: 'codex_monsters', tier: 1 },
   },
   {
     id: 'lychee',
@@ -1057,8 +1050,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('lucky', 6, 5), S('focus', 6, 3)],
       color: 0xffc2d1,
     },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'earned', tier: 2 },
   },
   {
     id: 'durian',
@@ -1096,8 +1088,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 5, 4), S('weaken', 5, 3), S('confuse', 3)],
       color: 0xc9a227,
     },
-    cost: 190,
-    requires: { ach: 'clear_3', tier: 1 },
+    unlock: { ach: 'bosses', tier: 2 },
   },
   {
     id: 'bellpepper',
@@ -1126,8 +1117,7 @@ export const CHARACTERS: CharacterDef[] = [
     traits: ['+5 护甲', '+10 生命', '-10% 闪避', '每 12 秒获得 20 点护盾'],
     special: { periodicSelf: { every: 12, status: [{ id: 'shield', dur: 12, value: 20 }] } },
     skill: { name: '无人机支援', desc: '部署无人机 8 秒。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x4cc9f0 },
-    cost: 190,
-    requires: { ach: 'clear_3', tier: 1 },
+    unlock: { ach: 'clear_4', tier: 1 },
   },
   {
     id: 'wintermelon',
@@ -1164,8 +1154,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('fortify', 8, 5)],
       color: 0xffd166,
     },
-    cost: 190,
-    requires: { ach: 'bosses', tier: 1 },
+    unlock: { ach: 'overtime', tier: 1 },
   },
   {
     id: 'bittermelon',
@@ -1203,8 +1192,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('freeze', 0.8, 1, 25)],
       color: 0xa9def9,
     },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'clear_3', tier: 1 },
   },
   {
     id: 'sprout',
@@ -1241,7 +1229,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 5, 2)],
       color: 0x80b918,
     },
-    cost: 170,
+    unlock: { ach: 'levelups', tier: 2 },
   },
   {
     id: 'wasabi',
@@ -1280,8 +1268,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 3)],
       color: 0xb5e48c,
     },
-    cost: 200,
-    requires: { ach: 'clear_4', tier: 1 },
+    unlock: { ach: 'set_爆破', tier: 2 },
   },
 ];
 

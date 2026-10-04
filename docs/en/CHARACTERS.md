@@ -1,4 +1,4 @@
-# Characters (33)
+# Characters (39)
 
 [中文](../CHARACTERS.md) · **English**
 
@@ -47,6 +47,12 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
   - [Bitter Melon Mage · Frost Mage](#char-bittermelon)
   - [Sprout Apprentice · Rising Talent](#char-sprout)
   - [Wasabi Bomber · Demolition Maniac](#char-wasabi)
+  - [Strategist Soy · Summoner](#char-soybean)
+  - [Jackfruit Guard · Thorn Reflector](#char-jackfruit)
+  - [Pomegranate Gunner · Bullet Storm](#char-pomegranate)
+  - [Taro Mystic · One Weapon Only](#char-taro)
+  - [Cabbage Veteran · Unbreakable](#char-cabbage)
+  - [Blackberry Witch · Hexer](#char-blackberry)
 
 <a id="overview"></a>
 
@@ -58,35 +64,41 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | <img src="../images/char/carrot.png" width="32" height="32" alt=""> [Carrot Knight](#char-carrot) | Melee Tank | Knight's Shield | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Knight Charge](SKILLS.md#skill-carrot) (Dash) | Unlocked by default |
 | <img src="../images/char/chili.png" width="32" height="32" alt=""> [Chili Sis](#char-chili) | Fire Expert | Fuel the Fire | [Mustard Flamer](WEAPONS.md#weapon-mustard_flamer) | [Flame Nova](SKILLS.md#skill-chili) (Nova Burst) | Unlocked by default |
 | <img src="../images/char/corn.png" width="32" height="32" alt=""> [Corn Gunner](#char-corn) | Sharpshooter | Suppressing Fire | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) | [Popcorn Barrage](SKILLS.md#skill-corn) (Ring Barrage) | Unlocked by default |
-| <img src="../images/char/watermelon.png" width="32" height="32" alt=""> [Chubby Melon](#char-watermelon) | Heavy Tank | Thick Rind | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) | [Melon Roll](SKILLS.md#skill-watermelon) (Dash) | 390 pts |
-| <img src="../images/char/lemon.png" width="32" height="32" alt=""> [Lemon Assassin](#char-lemon) | Crit Assassin | Sour Strike | [Chef's Knife](WEAPONS.md#weapon-knife) | [Sour Mist](SKILLS.md#skill-lemon) (Stealth) | 390 pts |
-| <img src="../images/char/eggplant.png" width="32" height="32" alt=""> [Eggplant Mage](#char-eggplant) | Thunder Mage | Thunder Power | [Broccoli Staff](WEAPONS.md#weapon-broccoli_staff) | [Purple Thunder](SKILLS.md#skill-eggplant) (Screen Clear) | 390 pts |
-| <img src="../images/char/garlic.png" width="32" height="32" alt=""> [Count Garlic](#char-garlic) | Vampire Noble | Blood Feast | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Blood Domain](SKILLS.md#skill-garlic) (Drain Heal) | 830 pts |
-| <img src="../images/char/blueberry.png" width="32" height="32" alt=""> [Blueberry Twins](#char-blueberry) | Weapon Master | Twin Bond | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) | [Twin Clone](SKILLS.md#skill-blueberry) (Summon Clone) | 830 pts |
-| <img src="../images/char/pineapple.png" width="32" height="32" alt=""> [Captain Pineapple](#char-pineapple) | Merchant Pirate | Pirate's Share | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Golden Cannon](SKILLS.md#skill-pineapple) (AOE Missile) | 390 pts |
-| <img src="../images/char/pumpkin.png" width="32" height="32" alt=""> [Pumpkin Ghost](#char-pumpkin) | Dodge Master | Ghost Ambush | [Iced Soda](WEAPONS.md#weapon-soda) | [Spirit Form](SKILLS.md#skill-pumpkin) (Stealth) | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/strawberry.png" width="32" height="32" alt=""> [Strawberry Idol](#char-strawberry) | Rising Star | Rising Star | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Fan Cheer](SKILLS.md#skill-strawberry) (Self Buff) | 830 pts |
-| <img src="../images/char/ginger.png" width="32" height="32" alt=""> [Ginger Ninja](#char-ginger) | Wind Ninja | Gale Step | [Onion Boomerang](WEAPONS.md#weapon-onion_boomerang) | [Shadow Slash](SKILLS.md#skill-ginger) (Dash) | 855 pts, requires [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills) |
-| <img src="../images/char/avocado.png" width="32" height="32" alt=""> [Dr. Avocado](#char-avocado) | Bomb Expert | Blast Science | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Core Overload](SKILLS.md#skill-avocado) (Multi-Strike) | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="../images/char/onion.png" width="32" height="32" alt=""> [Uncle Onion](#char-onion) | Tearjerker | Tear Gas | [Frying Pan](WEAPONS.md#weapon-pan) | [Tear Gas Zone](SKILLS.md#skill-onion) (Binding Field) | 980 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
-| <img src="../images/char/mushroom.png" width="32" height="32" alt=""> [Mushroom Shaman](#char-mushroom) | Poison Expert | Spore Burst | [Iced Soda](WEAPONS.md#weapon-soda) | [Spore Cloud](SKILLS.md#skill-mushroom) (Mass Debuff) | 340 pts |
-| <img src="../images/char/coconut.png" width="32" height="32" alt=""> [Coconut Boxer](#char-coconut) | Heavy Hitter | Knockout Punch | [Frying Pan](WEAPONS.md#weapon-pan) | [Ground Pound](SKILLS.md#skill-coconut) (Nova Burst) | 390 pts |
-| <img src="../images/char/grape.png" width="32" height="32" alt=""> [Grape Magician](#char-grape) | Illusionist | Sleight of Hand | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Grape Clone](SKILLS.md#skill-grape) (Summon Clone) | 685 pts |
-| <img src="../images/char/cherry.png" width="32" height="32" alt=""> [Cherry Gunslinger](#char-cherry) | Rapid Shooter | Rapid Volley | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Dual Barrage](SKILLS.md#skill-cherry) (Focused Barrage) | 390 pts |
-| <img src="../images/char/pea.png" width="32" height="32" alt=""> [Pea Soldier](#char-pea) | Legionnaire | Pea Legion | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Pea Turret](SKILLS.md#skill-pea) (Focused Barrage) | 685 pts |
-| <img src="../images/char/peach.png" width="32" height="32" alt=""> [Peach Angel](#char-peach) | Healer | Angel's Grace | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Angel’s Blessing](SKILLS.md#skill-peach) (Drain Heal) | 830 pts |
-| <img src="../images/char/dragonfruit.png" width="32" height="32" alt=""> [Dragonfruit Rider](#char-dragonfruit) | Flame Knight | Dragon Breath | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Dragonflame Charge](SKILLS.md#skill-dragonfruit) (Dash) | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/beet.png" width="32" height="32" alt=""> [Beet Berserker](#char-beet) | Berserker | Berserker Blood | [Meat Cleaver](WEAPONS.md#weapon-cleaver) | [Frenzy](SKILLS.md#skill-beet) (Self Buff) | 830 pts |
-| <img src="../images/char/asparagus.png" width="32" height="32" alt=""> [Asparagus Archer](#char-asparagus) | Marksman | Heartpiercer | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) | [Heartpiercer](SKILLS.md#skill-asparagus) (Focused Barrage) | 830 pts |
-| <img src="../images/char/sweetpotato.png" width="32" height="32" alt=""> [Chef Yam](#char-sweetpotato) | Gourmet | Gourmet | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) (Drain Heal) | 390 pts |
-| <img src="../images/char/kiwi.png" width="32" height="32" alt=""> [Kiwi Detective](#char-kiwi) | Weakness Seeker | Weak Spot | [Chef's Knife](WEAPONS.md#weapon-knife) | [One Truth](SKILLS.md#skill-kiwi) (Mass Debuff) | 685 pts |
-| <img src="../images/char/lychee.png" width="32" height="32" alt=""> [Lychee Princess](#char-lychee) | Lucky Princess | Lucky Streak | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Princess’s Luck](SKILLS.md#skill-lychee) (Self Buff) | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/durian.png" width="32" height="32" alt=""> [Durian Overlord](#char-durian) | Spiked Tyrant | Stench Aura | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Stink Bomb](SKILLS.md#skill-durian) (Mass Debuff) | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="../images/char/bellpepper.png" width="32" height="32" alt=""> [Pepper Mech](#char-bellpepper) | Mech Pilot | Mech Plating | [Sauce Gatling](WEAPONS.md#weapon-sauce_gatling) | [Drone Support](SKILLS.md#skill-bellpepper) (Summon Clone) | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
-| <img src="../images/char/wintermelon.png" width="32" height="32" alt=""> [Monk Gourd](#char-wintermelon) | Zen Monk | Zen Stillness | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Golden Bell](SKILLS.md#skill-wintermelon) (Stealth) | 930 pts, requires [Boss Terminator（Bronze）](ACHIEVEMENTS.md#ach-bosses) |
-| <img src="../images/char/bittermelon.png" width="32" height="32" alt=""> [Bitter Melon Mage](#char-bittermelon) | Frost Mage | Frostbite | [Iced Soda](WEAPONS.md#weapon-soda) | [Frozen Domain](SKILLS.md#skill-bittermelon) (Binding Field) | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
-| <img src="../images/char/sprout.png" width="32" height="32" alt=""> [Sprout Apprentice](#char-sprout) | Rising Talent | Late Bloomer | [Tomato Fork](WEAPONS.md#weapon-fork) | [Growth Spurt](SKILLS.md#skill-sprout) (Self Buff) | 830 pts |
-| <img src="../images/char/wasabi.png" width="32" height="32" alt=""> [Wasabi Bomber](#char-wasabi) | Demolition Maniac | Chain Reaction | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Wasabi Nuke](SKILLS.md#skill-wasabi) (AOE Missile) | 980 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
+| <img src="../images/char/watermelon.png" width="32" height="32" alt=""> [Chubby Melon](#char-watermelon) | Heavy Tank | Thick Rind | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) | [Melon Roll](SKILLS.md#skill-watermelon) (Dash) | Achievement [Fruit Run（Silver）](ACHIEVEMENTS.md#ach-fruits): Eat 50 fruit |
+| <img src="../images/char/lemon.png" width="32" height="32" alt=""> [Lemon Assassin](#char-lemon) | Crit Assassin | Sour Strike | [Chef's Knife](WEAPONS.md#weapon-knife) | [Sour Mist](SKILLS.md#skill-lemon) (Stealth) | Achievement [Critical Thinking（Bronze）](ACHIEVEMENTS.md#ach-crits): Land 100 critical hits |
+| <img src="../images/char/eggplant.png" width="32" height="32" alt=""> [Eggplant Mage](#char-eggplant) | Thunder Mage | Thunder Power | [Broccoli Staff](WEAPONS.md#weapon-broccoli_staff) | [Purple Thunder](SKILLS.md#skill-eggplant) (Screen Clear) | Achievement [Ultimate Addict（Silver）](ACHIEVEMENTS.md#ach-casts): Cast your skill 100 times |
+| <img src="../images/char/garlic.png" width="32" height="32" alt=""> [Count Garlic](#char-garlic) | Vampire Noble | Blood Feast | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Blood Domain](SKILLS.md#skill-garlic) (Drain Heal) | Achievement [Elite Hunter（Silver）](ACHIEVEMENTS.md#ach-elites): Defeat 10 elites |
+| <img src="../images/char/blueberry.png" width="32" height="32" alt=""> [Blueberry Twins](#char-blueberry) | Weapon Master | Twin Bond | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) | [Twin Clone](SKILLS.md#skill-blueberry) (Summon Clone) | Achievement [Versatile（Bronze）](ACHIEVEMENTS.md#ach-chars_won): Clear runs with 3 different characters |
+| <img src="../images/char/pineapple.png" width="32" height="32" alt=""> [Captain Pineapple](#char-pineapple) | Merchant Pirate | Pirate's Share | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Golden Cannon](SKILLS.md#skill-pineapple) (AOE Missile) | Achievement [Nest Egg（Bronze）](ACHIEVEMENTS.md#ach-rich): Hold 200 Seeds at once |
+| <img src="../images/char/pumpkin.png" width="32" height="32" alt=""> [Pumpkin Ghost](#char-pumpkin) | Dodge Master | Ghost Ambush | [Iced Soda](WEAPONS.md#weapon-soda) | [Spirit Form](SKILLS.md#skill-pumpkin) (Stealth) | Achievement [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2): Clear Chapter 2 |
+| <img src="../images/char/strawberry.png" width="32" height="32" alt=""> [Strawberry Idol](#char-strawberry) | Rising Star | Rising Star | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Fan Cheer](SKILLS.md#skill-strawberry) (Self Buff) | Achievement [Growth Spurt（Silver）](ACHIEVEMENTS.md#ach-level): Reach level 20 in a run |
+| <img src="../images/char/ginger.png" width="32" height="32" alt=""> [Ginger Ninja](#char-ginger) | Wind Ninja | Gale Step | [Onion Boomerang](WEAPONS.md#weapon-onion_boomerang) | [Shadow Slash](SKILLS.md#skill-ginger) (Dash) | Achievement [Untouched（Silver）](ACHIEVEMENTS.md#ach-perfect): Finish 10 waves without taking damage |
+| <img src="../images/char/avocado.png" width="32" height="32" alt=""> [Dr. Avocado](#char-avocado) | Bomb Expert | Blast Science | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Core Overload](SKILLS.md#skill-avocado) (Multi-Strike) | Achievement [Legendary Arms（Bronze）](ACHIEVEMENTS.md#ach-t4): Combine 1 weapon(s) into T4 |
+| <img src="../images/char/onion.png" width="32" height="32" alt=""> [Uncle Onion](#char-onion) | Tearjerker | Tear Gas | [Frying Pan](WEAPONS.md#weapon-pan) | [Tear Gas Zone](SKILLS.md#skill-onion) (Binding Field) | Achievement [Never Give Up（Silver）](ACHIEVEMENTS.md#ach-deaths): Fall in battle 10 time(s) |
+| <img src="../images/char/mushroom.png" width="32" height="32" alt=""> [Mushroom Shaman](#char-mushroom) | Poison Expert | Spore Burst | [Iced Soda](WEAPONS.md#weapon-soda) | [Spore Cloud](SKILLS.md#skill-mushroom) (Mass Debuff) | Achievement [Poison Specialist（Bronze）](ACHIEVEMENTS.md#ach-inflict_poison): Inflict [Poison] on enemies 50 times |
+| <img src="../images/char/coconut.png" width="32" height="32" alt=""> [Coconut Boxer](#char-coconut) | Heavy Hitter | Knockout Punch | [Frying Pan](WEAPONS.md#weapon-pan) | [Ground Pound](SKILLS.md#skill-coconut) (Nova Burst) | Achievement [Kitchen Cleaned](ACHIEVEMENTS.md#ach-clear_1): Clear Chapter 1 |
+| <img src="../images/char/grape.png" width="32" height="32" alt=""> [Grape Magician](#char-grape) | Illusionist | Sleight of Hand | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) | [Grape Clone](SKILLS.md#skill-grape) (Summon Clone) | Achievement [Unboxer（Silver）](ACHIEVEMENTS.md#ach-crates): Open 50 crates |
+| <img src="../images/char/cherry.png" width="32" height="32" alt=""> [Cherry Gunslinger](#char-cherry) | Rapid Shooter | Rapid Volley | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Dual Barrage](SKILLS.md#skill-cherry) (Focused Barrage) | Achievement [Firearm Set（Bronze）](ACHIEVEMENTS.md#ach-set_枪械): Hold 2 [Firearm] weapons in one run |
+| <img src="../images/char/pea.png" width="32" height="32" alt=""> [Pea Soldier](#char-pea) | Legionnaire | Pea Legion | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Pea Shooter](WEAPONS.md#weapon-pea_shooter) | [Pea Turret](SKILLS.md#skill-pea) (Focused Barrage) | Achievement [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills): Defeat 1,000 monsters in total |
+| <img src="../images/char/peach.png" width="32" height="32" alt=""> [Peach Angel](#char-peach) | Healer | Angel's Grace | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Angel’s Blessing](SKILLS.md#skill-peach) (Drain Heal) | Achievement [Phoenix Rising](ACHIEVEMENTS.md#ach-revive): Revive 1 time(s) in battle |
+| <img src="../images/char/dragonfruit.png" width="32" height="32" alt=""> [Dragonfruit Rider](#char-dragonfruit) | Flame Knight | Dragon Breath | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Dragonflame Charge](SKILLS.md#skill-dragonfruit) (Dash) | Achievement [Burn Specialist（Silver）](ACHIEVEMENTS.md#ach-inflict_burn): Inflict [Burn] on enemies 1,000 times |
+| <img src="../images/char/beet.png" width="32" height="32" alt=""> [Beet Berserker](#char-beet) | Berserker | Berserker Blood | [Meat Cleaver](WEAPONS.md#weapon-cleaver) | [Frenzy](SKILLS.md#skill-beet) (Self Buff) | Achievement [Lawnmower（Silver）](ACHIEVEMENTS.md#ach-run_kills): Defeat 800 monsters in a single run |
+| <img src="../images/char/asparagus.png" width="32" height="32" alt=""> [Asparagus Archer](#char-asparagus) | Marksman | Heartpiercer | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) | [Heartpiercer](SKILLS.md#skill-asparagus) (Focused Barrage) | Achievement [One Punch（Silver）](ACHIEVEMENTS.md#ach-max_hit): Deal 5,000 damage in a single hit |
+| <img src="../images/char/sweetpotato.png" width="32" height="32" alt=""> [Chef Yam](#char-sweetpotato) | Gourmet | Gourmet | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) (Drain Heal) | Achievement [Kitchenware Set（Silver）](ACHIEVEMENTS.md#ach-set_厨具): Hold 4 [Kitchenware] weapons in one run |
+| <img src="../images/char/kiwi.png" width="32" height="32" alt=""> [Kiwi Detective](#char-kiwi) | Weakness Seeker | Weak Spot | [Chef's Knife](WEAPONS.md#weapon-knife) | [One Truth](SKILLS.md#skill-kiwi) (Mass Debuff) | Achievement [Monster Scholar（Bronze）](ACHIEVEMENTS.md#ach-codex_monsters): Discover 20 monsters in the codex |
+| <img src="../images/char/lychee.png" width="32" height="32" alt=""> [Lychee Princess](#char-lychee) | Lucky Princess | Lucky Streak | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) | [Princess’s Luck](SKILLS.md#skill-lychee) (Self Buff) | Achievement [Tomato Tycoon（Silver）](ACHIEVEMENTS.md#ach-earned): Earn 20,000 Seeds in total |
+| <img src="../images/char/durian.png" width="32" height="32" alt=""> [Durian Overlord](#char-durian) | Spiked Tyrant | Stench Aura | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) | [Stink Bomb](SKILLS.md#skill-durian) (Mass Debuff) | Achievement [Boss Terminator（Silver）](ACHIEVEMENTS.md#ach-bosses): Defeat 5 bosses |
+| <img src="../images/char/bellpepper.png" width="32" height="32" alt=""> [Pepper Mech](#char-bellpepper) | Mech Pilot | Mech Plating | [Sauce Gatling](WEAPONS.md#weapon-sauce_gatling) | [Drone Support](SKILLS.md#skill-bellpepper) (Summon Clone) | Achievement [Junkyard King](ACHIEVEMENTS.md#ach-clear_4): Clear Chapter 4 |
+| <img src="../images/char/wintermelon.png" width="32" height="32" alt=""> [Monk Gourd](#char-wintermelon) | Zen Monk | Zen Stillness | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) | [Golden Bell](SKILLS.md#skill-wintermelon) (Stealth) | Achievement [Against the Odds（Bronze）](ACHIEVEMENTS.md#ach-overtime): Defeat an enraged boss 1 time(s) |
+| <img src="../images/char/bittermelon.png" width="32" height="32" alt=""> [Bitter Melon Mage](#char-bittermelon) | Frost Mage | Frostbite | [Iced Soda](WEAPONS.md#weapon-soda) | [Frozen Domain](SKILLS.md#skill-bittermelon) (Binding Field) | Achievement [Icebreaker](ACHIEVEMENTS.md#ach-clear_3): Clear Chapter 3 |
+| <img src="../images/char/sprout.png" width="32" height="32" alt=""> [Sprout Apprentice](#char-sprout) | Rising Talent | Late Bloomer | [Tomato Fork](WEAPONS.md#weapon-fork) | [Growth Spurt](SKILLS.md#skill-sprout) (Self Buff) | Achievement [Level Up!（Silver）](ACHIEVEMENTS.md#ach-levelups): Pick 200 level-up upgrades |
+| <img src="../images/char/wasabi.png" width="32" height="32" alt=""> [Wasabi Bomber](#char-wasabi) | Demolition Maniac | Chain Reaction | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) | [Wasabi Nuke](SKILLS.md#skill-wasabi) (AOE Missile) | Achievement [Demolition Set（Silver）](ACHIEVEMENTS.md#ach-set_爆破): Hold 4 [Demolition] weapons in one run |
+| <img src="../images/char/soybean.png" width="32" height="32" alt=""> [Strategist Soy](#char-soybean) | Summoner | Bean Army | [Popcorn Popper](WEAPONS.md#weapon-popcorn_machine) | [Bean Troops](SKILLS.md#skill-soybean) (Summon Clone) | Achievement [Assemble!（Silver）](ACHIEVEMENTS.md#ach-chars_owned): Own 20 characters |
+| <img src="../images/char/jackfruit.png" width="32" height="32" alt=""> [Jackfruit Guard](#char-jackfruit) | Thorn Reflector | Thorn for Thorn | [Whirl Whisk](WEAPONS.md#weapon-whisk_spin) | [Thousand Spikes](SKILLS.md#skill-jackfruit) (Self Buff) | Achievement [Champion Crusher（Silver）](ACHIEVEMENTS.md#ach-champions): Defeat 50 affixed champions |
+| <img src="../images/char/pomegranate.png" width="32" height="32" alt=""> [Pomegranate Gunner](#char-pomegranate) | Bullet Storm | Seed Torrent | [Seed Spitter](WEAPONS.md#weapon-seed_spitter), [Olive Launcher](WEAPONS.md#weapon-olive_launcher) | [Seed Burst](SKILLS.md#skill-pomegranate) (Ring Barrage) | Achievement [Ketchup Storm（Gold）](ACHIEVEMENTS.md#ach-kills): Defeat 10,000 monsters in total |
+| <img src="../images/char/taro.png" width="32" height="32" alt=""> [Taro Mystic](#char-taro) | One Weapon Only | Taro Barrier | [Curry Aura](WEAPONS.md#weapon-curry_aura) | [Taro Paste Field](SKILLS.md#skill-taro) (Binding Field) | Achievement [Evolution Theory（Bronze）](ACHIEVEMENTS.md#ach-evolutions): Evolve weapons 1 time(s) |
+| <img src="../images/char/cabbage.png" width="32" height="32" alt=""> [Cabbage Veteran](#char-cabbage) | Unbreakable | Layer upon Layer | [Soup Ladle](WEAPONS.md#weapon-ladle) | [Steadfast Body](SKILLS.md#skill-cabbage) (Self Buff) | Achievement [Veteran（Silver）](ACHIEVEMENTS.md#ach-wins): Clear 10 runs |
+| <img src="../images/char/blackberry.png" width="32" height="32" alt=""> [Blackberry Witch](#char-blackberry) | Hexer | Dark Pact | [Dragonfruit Orb](WEAPONS.md#weapon-dragonfruit_orb) | [Withering Hex](SKILLS.md#skill-blackberry) (Mass Debuff) | Achievement [End of the Rot](ACHIEVEMENTS.md#ach-clear_5): Clear Chapter 5 and defeat the source of the Rot |
 
 <a id="details"></a>
 
@@ -175,7 +187,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed |
 | Starting weapons | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) |
 | Active skill | [Melon Roll](SKILLS.md#skill-watermelon) [Dash] cooldown 13s — Roll into enemies and restore 4.5% Max HP. |
-| Unlock | 390 pts |
+| Unlock | Achievement [Fruit Run（Silver）](ACHIEVEMENTS.md#ach-fruits): Eat 50 fruit |
 
 <a id="char-lemon"></a>
 
@@ -192,7 +204,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -4 Max HP, +20% Crit Chance, +10% Dodge, +5% Move Speed |
 | Starting weapons | [Chef's Knife](WEAPONS.md#weapon-knife) |
 | Active skill | [Sour Mist](SKILLS.md#skill-lemon) [Stealth] cooldown 11s — Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance. |
-| Unlock | 390 pts |
+| Unlock | Achievement [Critical Thinking（Bronze）](ACHIEVEMENTS.md#ach-crits): Land 100 critical hits |
 
 <a id="char-eggplant"></a>
 
@@ -209,7 +221,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +3 Max HP, +4 Elemental Damage, +10 Luck, Melee damage ×0.3 |
 | Starting weapons | [Broccoli Staff](WEAPONS.md#weapon-broccoli_staff) |
 | Active skill | [Purple Thunder](SKILLS.md#skill-eggplant) [Screen Clear] cooldown 14s — Lightning blankets the screen, striking every enemy and briefly Stunning them. |
-| Unlock | 390 pts |
+| Unlock | Achievement [Ultimate Addict（Silver）](ACHIEVEMENTS.md#ach-casts): Cast your skill 100 times |
 
 <a id="char-garlic"></a>
 
@@ -226,7 +238,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -3 HP Regen, +10% Life Steal Chance, +5% All Damage |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
 | Active skill | [Blood Domain](SKILLS.md#skill-garlic) [Drain Heal] cooldown 14s — Drain life from nearby enemies and inflict Bleed. |
-| Unlock | 830 pts |
+| Unlock | Achievement [Elite Hunter（Silver）](ACHIEVEMENTS.md#ach-elites): Defeat 10 elites |
 
 <a id="char-blueberry"></a>
 
@@ -243,7 +255,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -10% All Damage, 8 weapon slots |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) |
 | Active skill | [Twin Clone](SKILLS.md#skill-blueberry) [Summon Clone] cooldown 10s — Summon a clone that auto-fires for 8s. |
-| Unlock | 830 pts |
+| Unlock | Achievement [Versatile（Bronze）](ACHIEVEMENTS.md#ach-chars_won): Clear runs with 3 different characters |
 
 <a id="char-pineapple"></a>
 
@@ -260,7 +272,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -3 Max HP, +20 Luck, +10 Harvest, Shop discount 15% |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
 | Active skill | [Golden Cannon](SKILLS.md#skill-pineapple) [AOE Missile] cooldown 16s — Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds. |
-| Unlock | 390 pts |
+| Unlock | Achievement [Nest Egg（Bronze）](ACHIEVEMENTS.md#ach-rich): Hold 200 Seeds at once |
 
 <a id="char-pumpkin"></a>
 
@@ -277,7 +289,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -4 Max HP, +25% Dodge, +8% Move Speed, Dodge cap 75% |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
 | Active skill | [Spirit Form](SKILLS.md#skill-pumpkin) [Stealth] cooldown 11s — Become Invulnerable for 2.5s and gain a big speed boost. |
-| Unlock | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Unlock | Achievement [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2): Clear Chapter 2 |
 
 <a id="char-strawberry"></a>
 
@@ -294,7 +306,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -3 Max HP, +40% XP Gain, 5 level-up choices |
 | Starting weapons | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) |
 | Active skill | [Fan Cheer](SKILLS.md#skill-strawberry) [Self Buff] cooldown 13s — Gain 3 stacks of Haste + 5 stacks of Rage for 6s. |
-| Unlock | 830 pts |
+| Unlock | Achievement [Growth Spurt（Silver）](ACHIEVEMENTS.md#ach-level): Reach level 20 in a run |
 
 <a id="char-ginger"></a>
 
@@ -311,7 +323,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +15% Attack Speed, -1 Armor, +20% Move Speed |
 | Starting weapons | [Onion Boomerang](WEAPONS.md#weapon-onion_boomerang) |
 | Active skill | [Shadow Slash](SKILLS.md#skill-ginger) [Dash] cooldown 11s — Dash forward with a slash that inflicts Bleed. |
-| Unlock | 855 pts, requires [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills) |
+| Unlock | Achievement [Untouched（Silver）](ACHIEVEMENTS.md#ach-perfect): Finish 10 waves without taking damage |
 
 <a id="char-avocado"></a>
 
@@ -328,7 +340,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +5% All Damage, +2 Elemental Damage, +30 Range |
 | Starting weapons | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |
 | Active skill | [Core Overload](SKILLS.md#skill-avocado) [Multi-Strike] cooldown 11s — Trigger 5 chain explosions. |
-| Unlock | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| Unlock | Achievement [Legendary Arms（Bronze）](ACHIEVEMENTS.md#ach-t4): Combine 1 weapon(s) into T4 |
 
 <a id="char-onion"></a>
 
@@ -345,7 +357,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +10 Max HP, +2 HP Regen, +4 Armor, -5% Move Speed |
 | Starting weapons | [Frying Pan](WEAPONS.md#weapon-pan) |
 | Active skill | [Tear Gas Zone](SKILLS.md#skill-onion) [Binding Field] cooldown 12s — Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside. |
-| Unlock | 980 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
+| Unlock | Achievement [Never Give Up（Silver）](ACHIEVEMENTS.md#ach-deaths): Fall in battle 10 time(s) |
 
 <a id="char-mushroom"></a>
 
@@ -362,7 +374,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +2 Elemental Damage, +5 Luck |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
 | Active skill | [Spore Cloud](SKILLS.md#skill-mushroom) [Mass Debuff] cooldown 19s — Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area. |
-| Unlock | 340 pts |
+| Unlock | Achievement [Poison Specialist（Bronze）](ACHIEVEMENTS.md#ach-inflict_poison): Inflict [Poison] on enemies 50 times |
 
 <a id="char-coconut"></a>
 
@@ -379,7 +391,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +5 Max HP, +4 Melee Damage, +2 Armor, Elemental damage ×0.5 |
 | Starting weapons | [Frying Pan](WEAPONS.md#weapon-pan) |
 | Active skill | [Ground Pound](SKILLS.md#skill-coconut) [Nova Burst] cooldown 21s — Slam the ground to Stun enemies and inflict Armor Break. |
-| Unlock | 390 pts |
+| Unlock | Achievement [Kitchen Cleaned](ACHIEVEMENTS.md#ach-clear_1): Clear Chapter 1 |
 
 <a id="char-grape"></a>
 
@@ -396,7 +408,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +3 Max HP, +1 Ranged Damage, +1 Elemental Damage, +10 Luck |
 | Starting weapons | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) |
 | Active skill | [Grape Clone](SKILLS.md#skill-grape) [Summon Clone] cooldown 10s — Summon a clone that auto-fires for 8s. |
-| Unlock | 685 pts |
+| Unlock | Achievement [Unboxer（Silver）](ACHIEVEMENTS.md#ach-crates): Open 50 crates |
 
 <a id="char-cherry"></a>
 
@@ -413,7 +425,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -8% All Damage, +1 Ranged Damage, +20% Attack Speed |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) |
 | Active skill | [Dual Barrage](SKILLS.md#skill-cherry) [Focused Barrage] cooldown 11s — Fire 12 bullets in a row at the nearest enemy. |
-| Unlock | 390 pts |
+| Unlock | Achievement [Firearm Set（Bronze）](ACHIEVEMENTS.md#ach-set_枪械): Hold 2 [Firearm] weapons in one run |
 
 <a id="char-pea"></a>
 
@@ -430,7 +442,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +3 Max HP, +2 Ranged Damage |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Pea Shooter](WEAPONS.md#weapon-pea_shooter) |
 | Active skill | [Pea Turret](SKILLS.md#skill-pea) [Focused Barrage] cooldown 10s — Rapid-fire 16 peas at the nearest enemy. |
-| Unlock | 685 pts |
+| Unlock | Achievement [Ketchup Storm（Silver）](ACHIEVEMENTS.md#ach-kills): Defeat 1,000 monsters in total |
 
 <a id="char-peach"></a>
 
@@ -447,7 +459,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +5 Max HP, +5 HP Regen, -10% All Damage |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
 | Active skill | [Angel’s Blessing](SKILLS.md#skill-peach) [Drain Heal] cooldown 21s — Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s. |
-| Unlock | 830 pts |
+| Unlock | Achievement [Phoenix Rising](ACHIEVEMENTS.md#ach-revive): Revive 1 time(s) in battle |
 
 <a id="char-dragonfruit"></a>
 
@@ -464,7 +476,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +5 Max HP, +2 Melee Damage, +2 Elemental Damage, +5% Move Speed |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
 | Active skill | [Dragonflame Charge](SKILLS.md#skill-dragonfruit) [Dash] cooldown 12s — Charge forward, applying 4 stacks of Burn along the path. |
-| Unlock | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Unlock | Achievement [Burn Specialist（Silver）](ACHIEVEMENTS.md#ach-inflict_burn): Inflict [Burn] on enemies 1,000 times |
 
 <a id="char-beet"></a>
 
@@ -481,7 +493,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +3% Life Steal Chance, +15% All Damage, -1 Armor |
 | Starting weapons | [Meat Cleaver](WEAPONS.md#weapon-cleaver) |
 | Active skill | [Frenzy](SKILLS.md#skill-beet) [Self Buff] cooldown 13s — Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s. |
-| Unlock | 830 pts |
+| Unlock | Achievement [Lawnmower（Silver）](ACHIEVEMENTS.md#ach-run_kills): Defeat 800 monsters in a single run |
 
 <a id="char-asparagus"></a>
 
@@ -498,7 +510,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +1 Ranged Damage, +10% Crit Chance, +80 Range, Melee damage ×0.6 |
 | Starting weapons | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) |
 | Active skill | [Heartpiercer](SKILLS.md#skill-asparagus) [Focused Barrage] cooldown 12s — Fire 8 piercing arrows at the enemy with the highest HP and Mark the target. |
-| Unlock | 830 pts |
+| Unlock | Achievement [One Punch（Silver）](ACHIEVEMENTS.md#ach-max_hit): Deal 5,000 damage in a single hit |
 
 <a id="char-sweetpotato"></a>
 
@@ -515,7 +527,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +5 Max HP, -5% All Damage, +20 Harvest |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
 | Active skill | [Roast Yam Feast](SKILLS.md#skill-sweetpotato) [Drain Heal] cooldown 24s — Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen. |
-| Unlock | 390 pts |
+| Unlock | Achievement [Kitchenware Set（Silver）](ACHIEVEMENTS.md#ach-set_厨具): Hold 4 [Kitchenware] weapons in one run |
 
 <a id="char-kiwi"></a>
 
@@ -532,7 +544,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +3 Max HP, +1 Melee Damage, +8% Crit Chance, +10 Luck |
 | Starting weapons | [Chef's Knife](WEAPONS.md#weapon-knife) |
 | Active skill | [One Truth](SKILLS.md#skill-kiwi) [Mass Debuff] cooldown 15s — See through every enemy on screen: apply Mark and 2 stacks of Vulnerable. |
-| Unlock | 685 pts |
+| Unlock | Achievement [Monster Scholar（Bronze）](ACHIEVEMENTS.md#ach-codex_monsters): Discover 20 monsters in the codex |
 
 <a id="char-lychee"></a>
 
@@ -549,7 +561,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +40 Luck |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
 | Active skill | [Princess’s Luck](SKILLS.md#skill-lychee) [Self Buff] cooldown 10s — Gain 5 stacks of Lucky + 3 stacks of Focus for 6s. |
-| Unlock | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Unlock | Achievement [Tomato Tycoon（Silver）](ACHIEVEMENTS.md#ach-earned): Earn 20,000 Seeds in total |
 
 <a id="char-durian"></a>
 
@@ -566,7 +578,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +10 Max HP, +3 Armor, -4% Move Speed |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
 | Active skill | [Stink Bomb](SKILLS.md#skill-durian) [Mass Debuff] cooldown 21s — Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies. |
-| Unlock | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| Unlock | Achievement [Boss Terminator（Silver）](ACHIEVEMENTS.md#ach-bosses): Defeat 5 bosses |
 
 <a id="char-bellpepper"></a>
 
@@ -583,7 +595,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +10 Max HP, +5 Armor, -10% Dodge, -10% Move Speed |
 | Starting weapons | [Sauce Gatling](WEAPONS.md#weapon-sauce_gatling) |
 | Active skill | [Drone Support](SKILLS.md#skill-bellpepper) [Summon Clone] cooldown 10s — Deploy a drone for 8s. |
-| Unlock | 930 pts, requires [Icebreaker](ACHIEVEMENTS.md#ach-clear_3) |
+| Unlock | Achievement [Junkyard King](ACHIEVEMENTS.md#ach-clear_4): Clear Chapter 4 |
 
 <a id="char-wintermelon"></a>
 
@@ -600,7 +612,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +3 HP Regen, +15% Dodge, +5% Move Speed, Ranged damage ×0.7 |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
 | Active skill | [Golden Bell](SKILLS.md#skill-wintermelon) [Stealth] cooldown 16s — Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify. |
-| Unlock | 930 pts, requires [Boss Terminator（Bronze）](ACHIEVEMENTS.md#ach-bosses) |
+| Unlock | Achievement [Against the Odds（Bronze）](ACHIEVEMENTS.md#ach-overtime): Defeat an enraged boss 1 time(s) |
 
 <a id="char-bittermelon"></a>
 
@@ -617,7 +629,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | +3 Max HP, +3 Elemental Damage, +5% Attack Speed |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
 | Active skill | [Frozen Domain](SKILLS.md#skill-bittermelon) [Binding Field] cooldown 16s — Unleash a 5s frost field around you that Slows and Freezes enemies who enter. |
-| Unlock | 855 pts, requires [Garden Keeper](ACHIEVEMENTS.md#ach-clear_2) |
+| Unlock | Achievement [Icebreaker](ACHIEVEMENTS.md#ach-clear_3): Clear Chapter 3 |
 
 <a id="char-sprout"></a>
 
@@ -634,7 +646,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -3 Max HP, -8% All Damage, +80% XP Gain, 5 level-up choices |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
 | Active skill | [Growth Spurt](SKILLS.md#skill-sprout) [Self Buff] cooldown 10s — Gain 12 XP and 5s of Haste. |
-| Unlock | 830 pts |
+| Unlock | Achievement [Level Up!（Silver）](ACHIEVEMENTS.md#ach-levelups): Pick 200 level-up upgrades |
 
 <a id="char-wasabi"></a>
 
@@ -651,7 +663,109 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 | Stat modifiers | -5 Max HP, +8% All Damage, +2 Elemental Damage |
 | Starting weapons | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |
 | Active skill | [Wasabi Nuke](SKILLS.md#skill-wasabi) [AOE Missile] cooldown 23s — Launch a wasabi nuke at the enemy horde for a massive, burning explosion. |
-| Unlock | 980 pts, requires [Junkyard King](ACHIEVEMENTS.md#ach-clear_4) |
+| Unlock | Achievement [Demolition Set（Silver）](ACHIEVEMENTS.md#ach-set_爆破): Hold 4 [Demolition] weapons in one run |
+
+<a id="char-soybean"></a>
+
+### Strategist Soy · Summoner
+
+<img src="../images/char/soybean.png" width="96" height="96" alt="">
+
+> A scheming little soybean — one command and the bean troops pour out.
+
+| Field | Value |
+| --- | --- |
+| Talent | **Bean Army**：+40% Skill Duration and -15% Skill Cooldown: bean clones last longer and come out more often |
+| Traits | +40% Skill Duration; +15% Skill Cooldown Reduction; +3 Max HP; -5% Damage |
+| Stat modifiers | +3 Max HP, -5% All Damage, +15% Skill Cooldown, +40% Skill Duration |
+| Starting weapons | [Popcorn Popper](WEAPONS.md#weapon-popcorn_machine) |
+| Active skill | [Bean Troops](SKILLS.md#skill-soybean) [Summon Clone] cooldown 14s — Summon a bean clone that auto-fires for 10s. |
+| Unlock | Achievement [Assemble!（Silver）](ACHIEVEMENTS.md#ach-chars_owned): Own 20 characters |
+
+<a id="char-jackfruit"></a>
+
+### Jackfruit Guard · Thorn Reflector
+
+<img src="../images/char/jackfruit.png" width="96" height="96" alt="">
+
+> A spiky guardian — whoever hits it gets hurt.
+
+| Field | Value |
+| --- | --- |
+| Talent | **Thorn for Thorn**：When hurt, gain 1 stack of Thorns for 4s (each reflects 5 damage, max 5) |
+| Traits | +4 Armor; +12 Max HP; -6% Move Speed; -5% Damage; Reflect 25 damage when hurt |
+| Stat modifiers | +12 Max HP, -5% All Damage, +4 Armor, -6% Move Speed |
+| Starting weapons | [Whirl Whisk](WEAPONS.md#weapon-whisk_spin) |
+| Active skill | [Thousand Spikes](SKILLS.md#skill-jackfruit) [Self Buff] cooldown 12s — Gain 5 stacks of Thorns and 3 stacks of Fortify for 6s. |
+| Unlock | Achievement [Champion Crusher（Silver）](ACHIEVEMENTS.md#ach-champions): Defeat 50 affixed champions |
+
+<a id="char-pomegranate"></a>
+
+### Pomegranate Gunner · Bullet Storm
+
+<img src="../images/char/pomegranate.png" width="96" height="96" alt="">
+
+> A gunner packed full of seed rounds. Once firing, never stopping.
+
+| Field | Value |
+| --- | --- |
+| Talent | **Seed Torrent**：On kill, gain 1 stack of Haste for 2s (+10% Move & Attack Speed, max 3) |
+| Traits | 7 weapon slots; +25% Attack Speed; +2 Ranged Damage; -12% Damage; -2 Max HP; Melee Damage -50% |
+| Stat modifiers | -2 Max HP, -12% All Damage, +2 Ranged Damage, +25% Attack Speed, Melee damage ×0.5, 7 weapon slots |
+| Starting weapons | [Seed Spitter](WEAPONS.md#weapon-seed_spitter), [Olive Launcher](WEAPONS.md#weapon-olive_launcher) |
+| Active skill | [Seed Burst](SKILLS.md#skill-pomegranate) [Ring Barrage] cooldown 8s — Spray 30 pomegranate seeds in all directions. |
+| Unlock | Achievement [Ketchup Storm（Gold）](ACHIEVEMENTS.md#ach-kills): Defeat 10,000 monsters in total |
+
+<a id="char-taro"></a>
+
+### Taro Mystic · One Weapon Only
+
+<img src="../images/char/taro.png" width="96" height="96" alt="">
+
+> A taro who dislikes blades and guns, warding off foes with a fragrant barrier.
+
+| Field | Value |
+| --- | --- |
+| Talent | **Taro Barrier**：Can hold only 1 weapon; enemies within 170 burn every second |
+| Traits | 1 weapon slot; +35% Aura Damage; +25% Aura Size; +40% Skill Damage; +20% Skill Cooldown Reduction; +6 Max HP; +2 Elemental Damage |
+| Stat modifiers | +6 Max HP, +35% Aura Damage, +25% Aura Size, +2 Elemental Damage, +20% Skill Cooldown, +40% Skill Damage, 1 weapon slots |
+| Starting weapons | [Curry Aura](WEAPONS.md#weapon-curry_aura) |
+| Active skill | [Taro Paste Field](SKILLS.md#skill-taro) [Binding Field] cooldown 30s — Create a 6s taro field that Burns and Slows enemies inside. |
+| Unlock | Achievement [Evolution Theory（Bronze）](ACHIEVEMENTS.md#ach-evolutions): Evolve weapons 1 time(s) |
+
+<a id="char-cabbage"></a>
+
+### Cabbage Veteran · Unbreakable
+
+<img src="../images/char/cabbage.png" width="96" height="96" alt="">
+
+> Peel one layer and there is another. This veteran never stays down.
+
+| Field | Value |
+| --- | --- |
+| Talent | **Layer upon Layer**：Revive once per run; cleanse your debuffs every 8s |
+| Traits | +8 Max HP; +2 Armor; +2 HP Regen; -8% Damage; Gain 1 stack of Fortify when hurt |
+| Stat modifiers | +8 Max HP, +2 HP Regen, -8% All Damage, +2 Armor |
+| Starting weapons | [Soup Ladle](WEAPONS.md#weapon-ladle) |
+| Active skill | [Steadfast Body](SKILLS.md#skill-cabbage) [Self Buff] cooldown 15s — 5s Barrier (-40% damage taken), 5 stacks of Fortify and 3 stacks of Regen. |
+| Unlock | Achievement [Veteran（Silver）](ACHIEVEMENTS.md#ach-wins): Clear 10 runs |
+
+<a id="char-blackberry"></a>
+
+### Blackberry Witch · Hexer
+
+<img src="../images/char/blackberry.png" width="96" height="96" alt="">
+
+> A forest witch whose whispered hexes make enemies wither.
+
+| Field | Value |
+| --- | --- |
+| Talent | **Dark Pact**：Hits have a 20% chance to Rot and 8% to Curse (no healing, +10% damage taken) |
+| Traits | +3 Elemental Damage; +5 Luck; -2 Max HP; Hits inflict Rot and Curse |
+| Stat modifiers | -2 Max HP, +3 Elemental Damage, +5 Luck |
+| Starting weapons | [Dragonfruit Orb](WEAPONS.md#weapon-dragonfruit_orb) |
+| Active skill | [Withering Hex](SKILLS.md#skill-blackberry) [Mass Debuff] cooldown 16s — Curse nearby enemies, apply 3 stacks of Rot and Silence them for 3s. |
+| Unlock | Achievement [End of the Rot](ACHIEVEMENTS.md#ach-clear_5): Clear Chapter 5 and defeat the source of the Rot |
 
 ---
 

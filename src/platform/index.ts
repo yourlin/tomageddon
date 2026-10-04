@@ -29,7 +29,8 @@ declare global {
   }
 }
 
-export const IS_STEAM: boolean = import.meta.env.VITE_PLATFORM === 'steam';
+// import.meta.env 只在 Vite 下存在；文档生成脚本（tsx 直接运行）里按网页版处理
+export const IS_STEAM: boolean = import.meta.env?.VITE_PLATFORM === 'steam';
 const bridge = (): SteamBridge | undefined => (typeof window !== 'undefined' ? window.tomaSteam : undefined);
 
 // ---------------- 存储 ----------------

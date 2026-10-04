@@ -1,4 +1,4 @@
-// 成就列表：分类筛选 + 分页；显示奖章等级、下一级目标、进度条与奖励成就点
+// 成就列表：分类筛选 + 分页；显示奖章等级、下一级目标、进度条、奖励成就点与解锁的角色
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { ACHIEVEMENTS, ACH_CATEGORY_NAME, type AchCategory } from '../data/achievements';
@@ -10,12 +10,12 @@ import {
   isMaxed,
   medalOf,
   pick,
-  pointsBalance,
   pointsEarned,
   pointsTotal,
   checkAchievements,
 } from '../systems/Achievements';
 import { tx } from '../i18n';
+import { CHARACTERS } from '../data/characters';
 
 type Filter = AchCategory | 'all';
 const PER_PAGE = 12;
@@ -43,10 +43,7 @@ export class AchievementScene extends Phaser.Scene {
       this,
       W - 180,
       44,
-      tx(
-        `可用成就点 🏅 ${pointsBalance()}  ·  累计 ${pointsEarned()} / ${pointsTotal()}`,
-        `Points 🏅 ${pointsBalance()}  ·  earned ${pointsEarned()} / ${pointsTotal()}`,
-      ),
+      tx(`成就点 🏅 ${pointsEarned()} / ${pointsTotal()}`, `Points 🏅 ${pointsEarned()} / ${pointsTotal()}`),
       20,
       '#ffd166',
     ).setOrigin(1, 0.5);
@@ -156,7 +153,10 @@ export class AchievementScene extends Phaser.Scene {
       const label = maxed
         ? tx('✓ 已满级', '✓ Maxed')
         : `${cur.toLocaleString()} / ${goal.toLocaleString()}  ·  +${a.tiers[next].points}${tx(' 点', ' pts')}` +
-          (a.tp?.[next] ? tx(` · +${a.tp[next]} 天赋点`, ` · +${a.tp[next]} talent`) : '');
+          (a.tp?.[next] ? tx(` · +${a.tp[next]} 天赋点`, ` · +${a.tp[next]} talent`) : '') +
+          CHARACTERS.filter((c) => c.unlock?.ach === a.id && c.unlock.tier === next + 1)
+            .map((c) => tx(` · 🔓 ${c.name}`, ` · 🔓 ${c.name}`))
+            .join('');
       this.layer.add(text(this, x + cw - 14, by - 3, label, 13, maxed ? '#ffd166' : COLORS.textDim).setOrigin(1, 1));
     });
     if (pages > 1) {

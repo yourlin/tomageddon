@@ -1,5 +1,5 @@
 // 成就：每项读取一个指标（见 systems/Achievements.ts 的 METRICS），分若干等级（铜 → 银 → 金 → 钻石），
-// 每达到一级获得成就点，成就点可在选角界面购买角色。
+// 每达到一级获得成就点（累计成绩）；部分成就达成指定等级后会解锁角色（见 characters.ts 的 unlock）。
 // 文字自带中英文（[中文, English]）；{n} 替换为当前等级目标值，{char} 替换为角色名，{x} 替换为 subject 的名字。
 // 难度越高奖励越多：入门等级 1~3 点，中等 5~15 点，高难 30~150 点。
 import { CHARACTERS } from './characters';

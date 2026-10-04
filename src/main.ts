@@ -30,7 +30,7 @@ import { applyLanguage } from './i18n/apply';
 import { lang, tx } from './i18n';
 import { autoFullscreenOnFirstTouch } from './systems/Fullscreen';
 import { installForceLandscape } from './systems/ForceLandscape';
-import { pointsEarned, charCost } from './systems/Achievements';
+import { pointsEarned } from './systems/Achievements';
 import { DEV_MODE } from './dev/flag';
 
 // 开发者界面：整页生命周期内不写存档（必须在任何场景运行前生效）
@@ -145,6 +145,5 @@ Object.assign(window, {
     TIER_PRICE_MULT,
     sellPrice,
     pointsEarned,
-    charCost,
   },
 });

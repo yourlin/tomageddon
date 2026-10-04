@@ -1,4 +1,4 @@
-# Weapons (50)
+# Weapons (62)
 
 [中文](../WEAPONS.md) · **English**
 
@@ -32,6 +32,10 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
   - [Chopsticks](#weapon-chopsticks)
   - [Bamboo Spear](#weapon-bamboo_spear)
   - [Pineapple Mace](#weapon-pineapple_mace)
+  - [Wasabi Katana](#weapon-wasabi_katana)
+  - [Kitchen Shears](#weapon-kitchen_scissors)
+  - [Blender](#weapon-blender_aura)
+  - [Dynamite Drumstick](#weapon-dynamite_drumstick)
 - [Ranged Weapons](#class-ranged)
   - [Tomato Slingshot](#weapon-slingshot)
   - [Pea Shooter](#weapon-pea_shooter)
@@ -51,6 +55,11 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
   - [Carrot Crossbow](#weapon-carrot_crossbow)
   - [Honey Blaster](#weapon-honey_blaster)
   - [Soy Pistol](#weapon-soy_pistol)
+  - [Pepper Grinder Gun](#weapon-pepper_grinder)
+  - [Soy Bomb](#weapon-soy_bomb)
+  - [BBQ Torch](#weapon-bbq_torch)
+  - [Jam Mortar](#weapon-jam_mortar)
+  - [Sea Urchin Mine](#weapon-sea_urchin_mine)
 - [Elemental Weapons](#class-elemental)
   - [Mustard Flamer](#weapon-mustard_flamer)
   - [Iced Soda](#weapon-soda)
@@ -67,7 +76,10 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
   - [Dragonfruit Orb](#weapon-dragonfruit_orb)
   - [Star Anise Star](#weapon-star_anise_shuriken)
   - [Lemon Battery](#weapon-lemon_battery)
-- [Weapon Evolution (12 super weapons)](#evolution)
+  - [Sea Salt Ward](#weapon-salt_aura)
+  - [Cola Zapper](#weapon-cola_zapper)
+  - [Hotpot Breath](#weapon-hotpot_breath)
+- [Weapon Evolution (20 super weapons)](#evolution)
 
 <a id="overview"></a>
 
@@ -125,6 +137,18 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/dragonfruit_orb.png" width="32" height="32" alt=""> [Dragonfruit Orb](#weapon-dragonfruit_orb) | Elemental | Bullet | Produce/Elemental | 8 / 13 / 20 / 30 | 1 / 0.95 / 0.88 / 0.8 | 400 | 28 |
 | <img src="../images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [Star Anise Star](#weapon-star_anise_shuriken) | Elemental | Boomerang | Sharp/Elemental | 9 / 15 / 23 / 35 | 1.3 / 1.2 / 1.1 / 1 | 320 | 28 |
 | <img src="../images/weapon/lemon_battery.png" width="32" height="32" alt=""> [Lemon Battery](#weapon-lemon_battery) | Elemental | Chain Lightning | Produce/Elemental | 12 / 20 / 31 / 47 | 1.3 / 1.2 / 1.1 / 1 | 360 | 30 |
+| <img src="../images/weapon/wasabi_katana.png" width="32" height="32" alt=""> [Wasabi Katana](#weapon-wasabi_katana) | Melee | Thrust | Sharp/Sauce | 10 / 17 / 27 / 41 | 0.85 / 0.8 / 0.74 / 0.67 | 150 | 26 |
+| <img src="../images/weapon/kitchen_scissors.png" width="32" height="32" alt=""> [Kitchen Shears](#weapon-kitchen_scissors) | Melee | Sweep | Kitchenware/Sharp | 8 / 14 / 22 / 33 | 0.85 / 0.8 / 0.74 / 0.68 | 105 | 22 |
+| <img src="../images/weapon/blender_aura.png" width="32" height="32" alt=""> [Blender](#weapon-blender_aura) | Melee | Aura | Kitchenware/Sharp | 4 / 6 / 9 / 14 | 0.45 / 0.43 / 0.41 / 0.38 | 95 | 28 |
+| <img src="../images/weapon/dynamite_drumstick.png" width="32" height="32" alt=""> [Dynamite Drumstick](#weapon-dynamite_drumstick) | Melee | Sweep | Demolition | 17 / 29 / 45 / 68 | 1.7 / 1.6 / 1.5 / 1.36 | 120 | 30 |
+| <img src="../images/weapon/pepper_grinder.png" width="32" height="32" alt=""> [Pepper Grinder Gun](#weapon-pepper_grinder) | Ranged | Bullet | Firearm/Sharp | 6 / 10 / 15 / 22 | 0.5 / 0.46 / 0.42 / 0.38 | 400 | 26 |
+| <img src="../images/weapon/soy_bomb.png" width="32" height="32" alt=""> [Soy Bomb](#weapon-soy_bomb) | Ranged | Mine | Sauce/Demolition | 15 / 25 / 39 / 60 | 2.2 / 2.05 / 1.9 / 1.7 | 210 | 26 |
+| <img src="../images/weapon/bbq_torch.png" width="32" height="32" alt=""> [BBQ Torch](#weapon-bbq_torch) | Ranged | Flame | Firearm/Sauce | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 190 | 30 |
+| <img src="../images/weapon/jam_mortar.png" width="32" height="32" alt=""> [Jam Mortar](#weapon-jam_mortar) | Ranged | Rocket | Sauce/Demolition | 16 / 27 / 42 / 64 | 2 / 1.9 / 1.78 / 1.6 | 460 | 32 |
+| <img src="../images/weapon/sea_urchin_mine.png" width="32" height="32" alt=""> [Sea Urchin Mine](#weapon-sea_urchin_mine) | Ranged | Mine | Sharp/Demolition | 13 / 22 / 34 / 52 | 1.9 / 1.8 / 1.65 / 1.5 | 230 | 26 |
+| <img src="../images/weapon/salt_aura.png" width="32" height="32" alt=""> [Sea Salt Ward](#weapon-salt_aura) | Elemental | Aura | Sharp/Elemental | 3 / 5 / 8 / 12 | 0.5 / 0.5 / 0.5 / 0.5 | 115 | 30 |
+| <img src="../images/weapon/cola_zapper.png" width="32" height="32" alt=""> [Cola Zapper](#weapon-cola_zapper) | Elemental | Chain Lightning | Firearm/Elemental | 8 / 14 / 21 / 32 | 0.95 / 0.88 / 0.8 / 0.72 | 440 | 28 |
+| <img src="../images/weapon/hotpot_breath.png" width="32" height="32" alt=""> [Hotpot Breath](#weapon-hotpot_breath) | Elemental | Flame | Sauce/Elemental | 3 / 4 / 6 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 165 | 30 |
 
 <a id="affixes"></a>
 
@@ -320,7 +344,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | Slow 20% for 0.6s |
 | T1 price | 22 |
-| Starting weapon of | - |
+| Starting weapon of | [Jackfruit Guard](CHARACTERS.md#char-jackfruit) |
 
 <a id="weapon-meat_tenderizer"></a>
 
@@ -383,7 +407,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | +3% Life Steal Chance, Knockback 20 |
 | T1 price | 20 |
-| Starting weapon of | - |
+| Starting weapon of | [Cabbage Veteran](CHARACTERS.md#char-cabbage) |
 
 <a id="weapon-baguette_sword"></a>
 
@@ -509,6 +533,90 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | Explosion radius 75, Knockback 30 |
 | T1 price | 32 |
+| Starting weapon of | - |
+
+<a id="weapon-wasabi_katana"></a>
+
+### Wasabi Katana
+
+<img src="../images/weapon/wasabi_katana.png" width="64" height="64" alt="">
+
+> A wasabi-smeared blade: thrusts burn and crit often.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Thrust |
+| Tags | Sharp, Sauce |
+| Damage T1–T4 | 10 / 17 / 27 / 41 |
+| Cooldown T1–T4 | 0.85s / 0.8s / 0.74s / 0.67s |
+| Range | 150 |
+| Scaling | Melee Damage ×0.9 |
+| Crit multiplier | ×2.2 |
+| Effects | Burn 2/s for 1.5s, +8% Crit Chance |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-kitchen_scissors"></a>
+
+### Kitchen Shears
+
+<img src="../images/weapon/kitchen_scissors.png" width="64" height="64" alt="">
+
+> Snip-snip! Fast sweeping cuts with high crit.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Sweep |
+| Tags | Kitchenware, Sharp |
+| Damage T1–T4 | 8 / 14 / 22 / 33 |
+| Cooldown T1–T4 | 0.85s / 0.8s / 0.74s / 0.68s |
+| Range | 105 |
+| Scaling | Melee Damage ×0.8 |
+| Crit multiplier | ×2.2 |
+| Effects | Knockback 8, +10% Crit Chance |
+| T1 price | 22 |
+| Starting weapon of | - |
+
+<a id="weapon-blender_aura"></a>
+
+### Blender
+
+<img src="../images/weapon/blender_aura.png" width="64" height="64" alt="">
+
+> Spinning blades around you keep slicing nearby enemies.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Aura |
+| Tags | Kitchenware, Sharp |
+| Damage T1–T4 | 4 / 6 / 9 / 14 |
+| Cooldown T1–T4 | 0.45s / 0.43s / 0.41s / 0.38s |
+| Range | 95 |
+| Scaling | Melee Damage ×0.5 |
+| Crit multiplier | ×2 |
+| Effects | +5% Crit Chance |
+| T1 price | 28 |
+| Starting weapon of | - |
+
+<a id="weapon-dynamite_drumstick"></a>
+
+### Dynamite Drumstick
+
+<img src="../images/weapon/dynamite_drumstick.png" width="64" height="64" alt="">
+
+> A drumstick strapped with dynamite — every swing blows up a crowd. Scales with Max HP.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Melee / Sweep |
+| Tags | Demolition |
+| Damage T1–T4 | 17 / 29 / 45 / 68 |
+| Cooldown T1–T4 | 1.7s / 1.6s / 1.5s / 1.36s |
+| Range | 120 |
+| Scaling | Melee Damage ×1.1, Max HP ×0.1 |
+| Crit multiplier | ×1.5 |
+| Effects | Explosion radius 85, Knockback 30 |
+| T1 price | 30 |
 | Starting weapon of | - |
 
 <a id="class-ranged"></a>
@@ -681,7 +789,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | Bounce 2/2/3/4 |
 | T1 price | 22 |
-| Starting weapon of | - |
+| Starting weapon of | [Pomegranate Gunner](CHARACTERS.md#char-pomegranate) |
 
 <a id="weapon-popcorn_machine"></a>
 
@@ -702,7 +810,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | Explosion radius 75 |
 | T1 price | 24 |
-| Starting weapon of | - |
+| Starting weapon of | [Strategist Soy](CHARACTERS.md#char-soybean) |
 
 <a id="weapon-grape_shotgun"></a>
 
@@ -828,7 +936,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | - |
 | T1 price | 26 |
-| Starting weapon of | - |
+| Starting weapon of | [Pomegranate Gunner](CHARACTERS.md#char-pomegranate) |
 
 <a id="weapon-carrot_crossbow"></a>
 
@@ -891,6 +999,111 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | +2% Life Steal Chance |
 | T1 price | 20 |
+| Starting weapon of | - |
+
+<a id="weapon-pepper_grinder"></a>
+
+### Pepper Grinder Gun
+
+<img src="../images/weapon/pepper_grinder.png" width="64" height="64" alt="">
+
+> Fires sharp peppercorns at high speed that pierce and crit often.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Bullet |
+| Tags | Firearm, Sharp |
+| Damage T1–T4 | 6 / 10 / 15 / 22 |
+| Cooldown T1–T4 | 0.5s / 0.46s / 0.42s / 0.38s |
+| Range | 400 |
+| Scaling | Ranged Damage ×0.7 |
+| Crit multiplier | ×2.2 |
+| Effects | Pierce 1/1/1/2, +8% Crit Chance |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-soy_bomb"></a>
+
+### Soy Bomb
+
+<img src="../images/weapon/soy_bomb.png" width="64" height="64" alt="">
+
+> Lays soy sauce bombs that explode. Hits grant extra Life Steal Chance.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Mine |
+| Tags | Sauce, Demolition |
+| Damage T1–T4 | 15 / 25 / 39 / 60 |
+| Cooldown T1–T4 | 2.2s / 2.05s / 1.9s / 1.7s |
+| Range | 210 |
+| Scaling | Ranged Damage ×0.9 |
+| Crit multiplier | ×1.5 |
+| Effects | Explosion radius 90, +3% Life Steal Chance |
+| T1 price | 26 |
+| Starting weapon of | - |
+
+<a id="weapon-bbq_torch"></a>
+
+### BBQ Torch
+
+<img src="../images/weapon/bbq_torch.png" width="64" height="64" alt="">
+
+> Saucy flames with infinite pierce that burn. Hits grant extra Life Steal Chance.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Flame |
+| Tags | Firearm, Sauce |
+| Damage T1–T4 | 2 / 3 / 5 / 8 |
+| Cooldown T1–T4 | 0.2s / 0.18s / 0.16s / 0.14s |
+| Range | 190 |
+| Scaling | Ranged Damage ×0.25 |
+| Crit multiplier | ×1.5 |
+| Effects | Burn 2/s for 2s, +1% Life Steal Chance |
+| T1 price | 30 |
+| Starting weapon of | - |
+
+<a id="weapon-jam_mortar"></a>
+
+### Jam Mortar
+
+<img src="../images/weapon/jam_mortar.png" width="64" height="64" alt="">
+
+> Lobs a glob of jam that explodes and sticks enemies (30% slow).
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Rocket |
+| Tags | Sauce, Demolition |
+| Damage T1–T4 | 16 / 27 / 42 / 64 |
+| Cooldown T1–T4 | 2s / 1.9s / 1.78s / 1.6s |
+| Range | 460 |
+| Scaling | Ranged Damage ×1.1 |
+| Crit multiplier | ×1.5 |
+| Effects | Slow 30% for 1.5s, Explosion radius 95, Knockback 15 |
+| T1 price | 32 |
+| Starting weapon of | - |
+
+<a id="weapon-sea_urchin_mine"></a>
+
+### Sea Urchin Mine
+
+<img src="../images/weapon/sea_urchin_mine.png" width="64" height="64" alt="">
+
+> Spiky urchin mines whose blasts crit easily.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Ranged / Mine |
+| Tags | Sharp, Demolition |
+| Damage T1–T4 | 13 / 22 / 34 / 52 |
+| Cooldown T1–T4 | 1.9s / 1.8s / 1.65s / 1.5s |
+| Range | 230 |
+| Scaling | Ranged Damage ×0.8 |
+| Crit multiplier | ×2.5 |
+| Effects | Explosion radius 70, +10% Crit Chance |
+| T1 price | 26 |
 | Starting weapon of | - |
 
 <a id="class-elemental"></a>
@@ -1084,7 +1297,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | Burn 2/s for 2s |
 | T1 price | 32 |
-| Starting weapon of | - |
+| Starting weapon of | [Taro Mystic](CHARACTERS.md#char-taro) |
 
 <a id="weapon-pepper_spray"></a>
 
@@ -1168,7 +1381,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | Crit multiplier | ×1.5 |
 | Effects | Burn 3/s for 2s, Bounce 1/2/2/3 |
 | T1 price | 28 |
-| Starting weapon of | - |
+| Starting weapon of | [Blackberry Witch](CHARACTERS.md#char-blackberry) |
 
 <a id="weapon-star_anise_shuriken"></a>
 
@@ -1212,9 +1425,72 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | T1 price | 30 |
 | Starting weapon of | - |
 
+<a id="weapon-salt_aura"></a>
+
+### Sea Salt Ward
+
+<img src="../images/weapon/salt_aura.png" width="64" height="64" alt="">
+
+> Sharp salt crystals orbit you, slicing nearby enemies with high crit.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Aura |
+| Tags | Sharp, Elemental |
+| Damage T1–T4 | 3 / 5 / 8 / 12 |
+| Cooldown T1–T4 | 0.5s / 0.5s / 0.5s / 0.5s |
+| Range | 115 |
+| Scaling | Elemental Damage ×0.45 |
+| Crit multiplier | ×2 |
+| Effects | +10% Crit Chance |
+| T1 price | 30 |
+| Starting weapon of | - |
+
+<a id="weapon-cola_zapper"></a>
+
+### Cola Zapper
+
+<img src="../images/weapon/cola_zapper.png" width="64" height="64" alt="">
+
+> Charged cola bubbles jump between enemies and slow them. Slightly scales with Ranged Damage.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Chain Lightning |
+| Tags | Firearm, Elemental |
+| Damage T1–T4 | 8 / 14 / 21 / 32 |
+| Cooldown T1–T4 | 0.95s / 0.88s / 0.8s / 0.72s |
+| Range | 440 |
+| Scaling | Elemental Damage ×0.7, Ranged Damage ×0.3 |
+| Crit multiplier | ×1.5 |
+| Effects | Slow 20% for 1s, Chains 2/3/4/5 times |
+| T1 price | 28 |
+| Starting weapon of | - |
+
+<a id="weapon-hotpot_breath"></a>
+
+### Hotpot Breath
+
+<img src="../images/weapon/hotpot_breath.png" width="64" height="64" alt="">
+
+> Spews scalding chili oil that burns hard. Hits grant extra Life Steal Chance.
+
+| Field | Value |
+| --- | --- |
+| Class / attack | Elemental / Flame |
+| Tags | Sauce, Elemental |
+| Damage T1–T4 | 3 / 4 / 6 / 10 |
+| Cooldown T1–T4 | 0.22s / 0.2s / 0.18s / 0.16s |
+| Range | 165 |
+| Scaling | Elemental Damage ×0.3 |
+| Crit multiplier | ×1.5 |
+| Effects | Burn 3/s for 2s, +1% Life Steal Chance |
+| T1 price | 30 |
+| Starting weapon of | - |
+
 <a id="evolution"></a>
 
-## Weapon Evolution (12 super weapons)
+## Weapon Evolution (20 super weapons)
 
 A T4 weapon plus a specific classic item can evolve in the shop (tap the weapon): damage, cooldown and range improve and it gains a signature effect, keeping its affixes and forge level; the item is not consumed. Super weapons never appear in the shop; while you hold an evolvable weapon without its item, each shop roll has a 20% chance to offer that item.
 
@@ -1232,6 +1508,14 @@ A T4 weapon plus a specific classic item can evolve in the shop (tap the weapon)
 | <img src="../images/weapon/blueberry_sniper.png" width="32" height="32" alt=""> [Blueberry Sniper](#weapon-blueberry_sniper) | <img src="../images/item/railgun_core.png" width="32" height="32" alt=""> Railgun Core | <img src="../images/weapon/blueberry_railgun.png" width="32" height="32" alt=""> **Blueberry Railgun** | 100→**200** / 1.5s→**1.2s** / 650→**910** | Magnetically accelerated blueberries pierce whole lines of enemies. |
 | <img src="../images/weapon/corn_cannon.png" width="32" height="32" alt=""> [Corn Cannon](#weapon-corn_cannon) | <img src="../images/item/golden_tomato.png" width="32" height="32" alt=""> Golden Tomato | <img src="../images/weapon/golden_corn.png" width="32" height="32" alt=""> **Golden Popcorn Cannon** | 68→**116** / 0.84s→**0.71s** / 520→**598** | Golden popcorn that bursts in every direction. |
 | <img src="../images/weapon/star_anise_shuriken.png" width="32" height="32" alt=""> [Star Anise Star](#weapon-star_anise_shuriken) | <img src="../images/item/feather.png" width="32" height="32" alt=""> Feather | <img src="../images/weapon/anise_storm.png" width="32" height="32" alt=""> **Anise Storm** | 35→**53** / 1s→**0.7s** / 320→**368** | Feather-light star anise that never stops bouncing. |
+| <img src="../images/weapon/pan.png" width="32" height="32" alt=""> [Frying Pan](#weapon-pan) | <img src="../images/item/helmet.png" width="32" height="32" alt=""> Pot-Lid Helmet | <img src="../images/weapon/iron_bastion_pan.png" width="32" height="32" alt=""> **Iron Bastion Pan** | 70→**119** / 1.3s→**1.11s** / 120→**150** | A heavy pan welded from a pot-lid helmet. Every smack stuns a crowd and hurts more with Armor. |
+| <img src="../images/weapon/watermelon_hammer.png" width="32" height="32" alt=""> [Melon Hammer](#weapon-watermelon_hammer) | <img src="../images/item/powder_keg.png" width="32" height="32" alt=""> Powder Keg | <img src="../images/weapon/melon_quake.png" width="32" height="32" alt=""> **Melon Quake** | 120→**216** / 1.8s→**1.53s** / 140→**161** | A gunpowder-stuffed melon that sets off a massive blast on impact. |
+| <img src="../images/weapon/broccoli_staff.png" width="32" height="32" alt=""> [Broccoli Staff](#weapon-broccoli_staff) | <img src="../images/item/battery.png" width="32" height="32" alt=""> Battery | <img src="../images/weapon/storm_broccoli.png" width="32" height="32" alt=""> **Storm Broccoli** | 40→**64** / 0.84s→**0.67s** / 420→**483** | Fully charged broccoli: lightning jumps farther and stuns. |
+| <img src="../images/weapon/mustard_flamer.png" width="32" height="32" alt=""> [Mustard Flamer](#weapon-mustard_flamer) | <img src="../images/item/pressure_cooker.png" width="32" height="32" alt=""> Pressure Cooker | <img src="../images/weapon/mustard_dragon.png" width="32" height="32" alt=""> **Mustard Dragon** | 8→**14** / 0.14s→**0.12s** / 200→**260** | High-pressure mustard flames with longer reach and fiercer burns. |
+| <img src="../images/weapon/pepper_mine.png" width="32" height="32" alt=""> [Pepper Mine](#weapon-pepper_mine) | <img src="../images/item/baking_powder.png" width="32" height="32" alt=""> Baking Powder | <img src="../images/weapon/pepper_minefield.png" width="32" height="32" alt=""> **Pepper Minefield** | 80→**136** / 1.8s→**1.17s** / 200→**230** | Baking powder puffs up the mines: faster laying, bigger blasts, and burns. |
+| <img src="../images/weapon/wasabi_katana.png" width="32" height="32" alt=""> [Wasabi Katana](#weapon-wasabi_katana) | <img src="../images/item/sushi_mat.png" width="32" height="32" alt=""> Sushi Mat | <img src="../images/weapon/tsunami_katana.png" width="32" height="32" alt=""> **Tsunami Katana** | 41→**74** / 0.67s→**0.54s** / 150→**195** | A sushi master's ultimate cut — far higher crit damage and burns. |
+| <img src="../images/weapon/blender_aura.png" width="32" height="32" alt=""> [Blender](#weapon-blender_aura) | <img src="../images/item/turbo_motor.png" width="32" height="32" alt=""> Turbo Motor | <img src="../images/weapon/tornado_blender.png" width="32" height="32" alt=""> **Tornado Blender** | 14→**25** / 0.38s→**0.32s** / 95→**128** | Turbo on full: the blades whip up a tornado that slices and slows. |
+| <img src="../images/weapon/soy_bomb.png" width="32" height="32" alt=""> [Soy Bomb](#weapon-soy_bomb) | <img src="../images/item/fermented_jar.png" width="32" height="32" alt=""> Fermentation Crock | <img src="../images/weapon/umami_bomb.png" width="32" height="32" alt=""> **Umami Nuke** | 60→**114** / 1.7s→**1.44s** / 210→**241** | Century-fermented soy bombs: huge blasts and much higher Life Steal Chance. |
 
 ---
 

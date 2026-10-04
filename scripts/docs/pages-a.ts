@@ -16,7 +16,7 @@ export function charactersDoc(): void {
   const CLS = CLS_NAME();
   const d = new Doc('CHARACTERS.md', tx(`角色（${CHARACTERS.length} 名）`, `Characters (${CHARACTERS.length})`), [
     tx(
-      '每名角色 = 属性修正 + 初始武器 + 被动特性 + 主动技能 + 独特外观。默认解锁 4 名，其余用[成就](ACHIEVEMENTS.md)获得的成就点购买，部分角色需先达成指定成就。',
+      '每名角色 = 属性修正 + 初始武器 + 被动特性 + 主动技能 + 独特外观。默认解锁 4 名，其余每名都绑定一项[成就](ACHIEVEMENTS.md)，达成后自动解锁。',
       'Each character = stat modifiers + starting weapons + passive traits + an active skill + a unique look. 4 are unlocked by default; the rest are bought with points earned from [achievements](ACHIEVEMENTS.md), and some require a specific achievement first.',
     ),
     '',

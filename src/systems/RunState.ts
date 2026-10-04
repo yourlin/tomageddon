@@ -136,6 +136,8 @@ export class RunState {
   cheatDeathUsed = false;
   /** 本局获得的成就点（结算界面展示） */
   achPoints = 0;
+  /** 本局通过达成成就新解锁的角色 id（结算界面展示） */
+  newChars: string[] = [];
   /** 加成池：上一波留在地上的番茄籽与经验，本波拾取时双倍返还 */
   bonusSeeds = 0;
   bonusXp = 0;
@@ -331,6 +333,7 @@ export class RunState {
     this.hardRoute = false;
     this.shopRollWave = -1;
     this.achPoints = 0;
+    this.newChars = [];
     this.bonusSeeds = 0;
     this.bonusXp = 0;
     this.charId = charId;

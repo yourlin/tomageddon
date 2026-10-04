@@ -35,14 +35,14 @@ export function achievementsDoc(): void {
     ),
     '',
     tx(
-      '成就点用于在选角界面购买[角色](CHARACTERS.md)；部分角色需要先达成指定成就才能购买。解锁时屏幕顶部会弹出提示，主菜单「成就」可查看全部进度。',
-      'Points buy [characters](CHARACTERS.md) on the character select screen; some characters also require a specific achievement. Unlocks pop up at the top of the screen, and the main menu "Awards" screen shows all progress.',
+      '除默认的 4 名外，每名[角色](CHARACTERS.md)都绑定一项成就，达成该成就的指定等级后自动解锁；成就点只作为累计成绩展示。解锁时屏幕顶部会弹出提示，主菜单「成就」可查看全部进度，可解锁角色的成就会标出 🔓。',
+      'Apart from the 4 starters, every [character](CHARACTERS.md) is tied to one achievement and unlocks automatically once that achievement reaches the required tier; points are only a running score. Unlocks pop up at the top of the screen, and the main menu "Awards" screen shows all progress, marking achievements that unlock a character with 🔓.',
     ),
   ]);
   d.h2(tx('角色价格', 'Character Prices'), 'prices');
   d.table(
     [tx('角色', 'Character'), tx('解锁方式', 'How to unlock')],
-    [...CHARACTERS].sort((a, b) => (a.cost ?? 0) - (b.cost ?? 0)).map((c) => [`${img('char', c.id)} ${lnk.char(c)}`, unlockText(c, '')]),
+    [...CHARACTERS].sort((a, b) => Number(!!a.unlock) - Number(!!b.unlock)).map((c) => [`${img('char', c.id)} ${lnk.char(c)}`, unlockText(c, '')]),
   );
   for (const cat of Object.keys(ACH_CATEGORY_NAME) as AchCategory[]) {
     if (cat === 'character' || cat === 'slayer') continue;
