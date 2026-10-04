@@ -52,6 +52,8 @@ export class CharSelectScene extends Phaser.Scene {
   private endless = false;
   private showcase: ReturnType<typeof showcaseRig> | null = null;
   private detailX = 0;
+  /** 详情页：0 基本信息，1 成长（熟练度/任务/觉醒/皮肤） */
+  private page: 0 | 1 = 0;
 
   constructor() {
     super('CharSelect');
@@ -219,155 +221,168 @@ export class CharSelectScene extends Phaser.Scene {
         d.add(t);
         return t.height;
       };
+      // 详情分两页：基本（天赋/特性/技能/武器）与成长（战绩/熟练度/任务/觉醒/皮肤），内容多时不会溢出面板
+      const pageBtn = text(this, pw - 20, 24, this.page === 0 ? tx('成长 ▸', 'Progress ▸') : tx('◂ 基本', '◂ Basics'), 18, '#9bf6ff')
+        .setOrigin(1, 0)
+        .setInteractive({ useHandCursor: true });
+      pageBtn.on('pointerup', () => {
+        this.page = this.page === 0 ? 1 : 0;
+        this.refresh();
+      });
+      d.add(pageBtn);
       let y = 172;
-      y += add(20, y, tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 21, '#ffd166') + 4;
-      y += add(30, y, c.talent.desc, 16, '#fff4ea', pw - 60) + 10;
-      y += add(20, y, tx('特性', 'Traits'), 21, '#ffb347') + 4;
-      const traits = [...c.traits];
-      if (!traits.length) traits.push(...describeMods(c.mods));
-      const half = Math.ceil(traits.length / 2);
-      const colW = (pw - 60) / 2;
-      const hL = add(
-        30,
-        y,
-        traits
-          .slice(0, half)
-          .map((t) => '• ' + t)
-          .join('\n'),
-        16,
-        '#fff4ea',
-        colW - 10,
-      );
-      const hR =
-        traits.length > 1
-          ? add(
-              30 + colW,
-              y,
-              traits
-                .slice(half)
-                .map((t) => '• ' + t)
-                .join('\n'),
-              16,
-              '#fff4ea',
-              colW - 10,
-            )
-          : 0;
-      y += Math.max(hL, hR) + 10;
-      y +=
-        add(
-          20,
+      if (this.page === 0) {
+        y += add(20, y, tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 21, '#ffd166') + 4;
+        y += add(30, y, c.talent.desc, 16, '#fff4ea', pw - 60) + 10;
+        y += add(20, y, tx('特性', 'Traits'), 21, '#ffb347') + 4;
+        const traits = [...c.traits];
+        if (!traits.length) traits.push(...describeMods(c.mods));
+        const half = Math.ceil(traits.length / 2);
+        const colW = (pw - 60) / 2;
+        const hL = add(
+          30,
           y,
-          tx(
-            `技能：${c.skill.name}【${SKILL_TYPE_NAME[c.skill.type]}】冷却 ${c.skill.cd} 秒`,
-            `Skill: ${c.skill.name} [${SKILL_TYPE_NAME[c.skill.type]}] cooldown ${c.skill.cd}s`,
-          ),
-          19,
-          '#6ec6ff',
-        ) + 4;
-      y += add(30, y, c.skill.desc, 16, '#fff4ea', pw - 60) + 8;
-      y +=
-        add(
-          20,
-          y,
-          tx('初始武器：', 'Starting weapons: ') + c.startWeapons.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
-          17,
-          '#9be564',
-        ) + 2;
-      y +=
-        add(
-          20,
-          y,
-          tx('契合武器（伤害 +20%）：', 'Synergy weapons (+20% dmg): ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
+          traits
+            .slice(0, half)
+            .map((t) => '• ' + t)
+            .join('\n'),
           16,
-          '#ffd166',
-          pw - 40,
-        ) + 4;
-      const best = save.bestWave[`${c.id}_${this.chapter}`];
-      // F4：本章最佳、最高危机、无尽最高波数（熟练度由角色系统追加）
-      const stats: string[] = [];
-      if (best) stats.push(tx(`本章最佳：第 ${best} 波`, `Best: wave ${best}`));
-      const db = dangerBest(c.id, this.chapter);
-      if (db > 0) stats.push(tx(`最高危机 ${db}`, `Top Danger ${db}`));
-      const eb = save.meta.endlessBest[`${c.id}_${this.chapter}`];
-      if (eb) stats.push(tx(`无尽最高 ${eb} 波`, `Endless best ${eb}`));
-      if (stats.length) y += add(20, y, stats.join(' · '), 15, COLORS.textDim) + 4;
-      // F4：熟练度、专属任务、觉醒（点击切换开关）
-      y += add(20, y, masteryLabel(c.id), 15, '#9bf6ff') + 2;
-      const qs = questsOf(c.id);
-      if (qs.length)
+          '#fff4ea',
+          colW - 10,
+        );
+        const hR =
+          traits.length > 1
+            ? add(
+                30 + colW,
+                y,
+                traits
+                  .slice(half)
+                  .map((t) => '• ' + t)
+                  .join('\n'),
+                16,
+                '#fff4ea',
+                colW - 10,
+              )
+            : 0;
+        y += Math.max(hL, hR) + 10;
         y +=
           add(
             20,
             y,
-            qs
-              .map((q) => {
-                const done = questDone(q);
-                const prog = q.kind === 'counter' && !done ? ` ${questProgress(q)}/${q.target}` : '';
-                return `${done ? '✔' : '○'} ${q.name[lang === 'en' ? 1 : 0]}：${q.desc[lang === 'en' ? 1 : 0]}${prog}`;
-              })
-              .join('\n'),
-            14,
-            '#fff4ea',
-            pw - 40,
+            tx(
+              `技能：${c.skill.name}【${SKILL_TYPE_NAME[c.skill.type]}】冷却 ${c.skill.cd} 秒`,
+              `Skill: ${c.skill.name} [${SKILL_TYPE_NAME[c.skill.type]}] cooldown ${c.skill.cd}s`,
+            ),
+            19,
+            '#6ec6ff',
+          ) + 4;
+        y += add(30, y, c.skill.desc, 16, '#fff4ea', pw - 60) + 8;
+        y +=
+          add(
+            20,
+            y,
+            tx('初始武器：', 'Starting weapons: ') + c.startWeapons.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
+            17,
+            '#9be564',
           ) + 2;
-      const aw = awakeningOf(c.id);
-      if (aw) {
-        const unlockedAw = awakenUnlocked(c.id);
-        const on = awakenOn(c.id);
-        const t = text(
-          this,
-          20,
-          y,
-          (unlockedAw ? (on ? '✨ ' : '◌ ') : '🔒 ') +
-            tx(`觉醒【${aw.name[0]}】${aw.desc[0]}`, `Awakening [${aw.name[1]}] ${aw.desc[1]}`) +
-            (unlockedAw
-              ? tx(on ? '（已开启，点击关闭）' : '（已关闭，点击开启）', on ? ' (on — click to turn off)' : ' (off — click to turn on)')
-              : tx('（完成 3 个任务解锁）', ' (complete 3 quests)')),
-          14,
-          unlockedAw ? (on ? '#ffd166' : COLORS.textDim) : '#888888',
-          { wordWrap: { width: pw - 40, useAdvancedWrap: true } },
-        );
-        if (unlockedAw)
-          t.setInteractive({ useHandCursor: true }).on('pointerup', () => {
-            save.meta.awaken[c.id] = !on;
+        y +=
+          add(
+            20,
+            y,
+            tx('契合武器（伤害 +20%）：', 'Synergy weapons (+20% dmg): ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
+            16,
+            '#ffd166',
+            pw - 40,
+          ) + 4;
+      }
+      if (this.page === 1) {
+        const best = save.bestWave[`${c.id}_${this.chapter}`];
+        // F4：本章最佳、最高危机、无尽最高波数（熟练度由角色系统追加）
+        const stats: string[] = [];
+        if (best) stats.push(tx(`本章最佳：第 ${best} 波`, `Best: wave ${best}`));
+        const db = dangerBest(c.id, this.chapter);
+        if (db > 0) stats.push(tx(`最高危机 ${db}`, `Top Danger ${db}`));
+        const eb = save.meta.endlessBest[`${c.id}_${this.chapter}`];
+        if (eb) stats.push(tx(`无尽最高 ${eb} 波`, `Endless best ${eb}`));
+        if (stats.length) y += add(20, y, stats.join(' · '), 15, COLORS.textDim) + 4;
+        // F4：熟练度、专属任务、觉醒（点击切换开关）
+        y += add(20, y, masteryLabel(c.id), 15, '#9bf6ff') + 2;
+        const qs = questsOf(c.id);
+        if (qs.length)
+          y +=
+            add(
+              20,
+              y,
+              qs
+                .map((q) => {
+                  const done = questDone(q);
+                  const prog = q.kind === 'counter' && !done ? ` ${questProgress(q)}/${q.target}` : '';
+                  return `${done ? '✔' : '○'} ${q.name[lang === 'en' ? 1 : 0]}：${q.desc[lang === 'en' ? 1 : 0]}${prog}`;
+                })
+                .join('\n'),
+              14,
+              '#fff4ea',
+              pw - 40,
+            ) + 2;
+        const aw = awakeningOf(c.id);
+        if (aw) {
+          const unlockedAw = awakenUnlocked(c.id);
+          const on = awakenOn(c.id);
+          const t = text(
+            this,
+            20,
+            y,
+            (unlockedAw ? (on ? '✨ ' : '◌ ') : '🔒 ') +
+              tx(`觉醒【${aw.name[0]}】${aw.desc[0]}`, `Awakening [${aw.name[1]}] ${aw.desc[1]}`) +
+              (unlockedAw
+                ? tx(on ? '（已开启，点击关闭）' : '（已关闭，点击开启）', on ? ' (on — click to turn off)' : ' (off — click to turn on)')
+                : tx('（完成 3 个任务解锁）', ' (complete 3 quests)')),
+            14,
+            unlockedAw ? (on ? '#ffd166' : COLORS.textDim) : '#888888',
+            { wordWrap: { width: pw - 40, useAdvancedWrap: true } },
+          );
+          if (unlockedAw)
+            t.setInteractive({ useHandCursor: true }).on('pointerup', () => {
+              save.meta.awaken[c.id] = !on;
+              persist();
+              this.refresh();
+            });
+          d.add(t);
+          y += t.height + 2;
+        }
+        // F6：皮肤（金番茄购买 / 熟练度 10 级免费），点击购买或切换
+        const sk = SKIN_OF[c.id];
+        if (sk && unlocked) {
+          const owned = skinOwned(c.id);
+          const active = skinActive(c.id);
+          const label = owned
+            ? tx(
+                `🎨 皮肤「${skinName(sk, false)}」${active ? '（使用中，点击换回）' : '（点击换上）'}`,
+                `🎨 Skin "${skinName(sk, true)}" ${active ? '(equipped — click to remove)' : '(click to equip)'}`,
+              )
+            : tx(
+                `🎨 皮肤「${skinName(sk, false)}」 🥇${sk.price}（拥有 🥇${save.meta.gold}，熟练度 10 级免费）`,
+                `🎨 Skin "${skinName(sk, true)}" 🥇${sk.price} (you have 🥇${save.meta.gold}; free at Mastery 10)`,
+              );
+          const st = text(
+            this,
+            20,
+            y,
+            label,
+            14,
+            owned ? (active ? '#ffd166' : '#fff4ea') : save.meta.gold >= sk.price ? '#52ff8a' : '#888888',
+            {
+              wordWrap: { width: pw - 40, useAdvancedWrap: true },
+            },
+          ).setInteractive({ useHandCursor: true });
+          st.on('pointerup', () => {
+            if (owned) toggleSkin(c.id);
+            else if (!buySkin(c.id)) return toast(this, tx('金番茄不够', 'Not enough Golden Tomatoes'), '#ff6b6b');
             persist();
             this.refresh();
           });
-        d.add(t);
-        y += t.height + 2;
-      }
-      // F6：皮肤（金番茄购买 / 熟练度 10 级免费），点击购买或切换
-      const sk = SKIN_OF[c.id];
-      if (sk && unlocked) {
-        const owned = skinOwned(c.id);
-        const active = skinActive(c.id);
-        const label = owned
-          ? tx(
-              `🎨 皮肤「${skinName(sk, false)}」${active ? '（使用中，点击换回）' : '（点击换上）'}`,
-              `🎨 Skin "${skinName(sk, true)}" ${active ? '(equipped — click to remove)' : '(click to equip)'}`,
-            )
-          : tx(
-              `🎨 皮肤「${skinName(sk, false)}」 🥇${sk.price}（拥有 🥇${save.meta.gold}，熟练度 10 级免费）`,
-              `🎨 Skin "${skinName(sk, true)}" 🥇${sk.price} (you have 🥇${save.meta.gold}; free at Mastery 10)`,
-            );
-        const st = text(
-          this,
-          20,
-          y,
-          label,
-          14,
-          owned ? (active ? '#ffd166' : '#fff4ea') : save.meta.gold >= sk.price ? '#52ff8a' : '#888888',
-          {
-            wordWrap: { width: pw - 40, useAdvancedWrap: true },
-          },
-        ).setInteractive({ useHandCursor: true });
-        st.on('pointerup', () => {
-          if (owned) toggleSkin(c.id);
-          else if (!buySkin(c.id)) return toast(this, tx('金番茄不够', 'Not enough Golden Tomatoes'), '#ff6b6b');
-          persist();
-          this.refresh();
-        });
-        d.add(st);
+          d.add(st);
+        }
       }
     }
     const ch = CHAPTERS[this.chapter - 1];
