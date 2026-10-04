@@ -42,8 +42,9 @@ const TABS: [TabId, string, Render | (() => Promise<Render>)][] = [
   ['data', '数值', renderData],
   ['debug', '调试', renderDebug],
   ['assets', '内容', () => import('./tabs/assetsTab').then((m) => m.renderAssets)],
+  ['v14', '新系统', () => import('./tabs/v14Tab').then((m) => m.renderV14)],
 ];
-const LAZY = new Set<TabId>(['weapons', 'analysis', 'skills', 'items', 'status', 'batch', 'assets']);
+const LAZY = new Set<TabId>(['weapons', 'analysis', 'skills', 'items', 'status', 'batch', 'assets', 'v14']);
 const loaded = new Map<TabId, Render>();
 const loading = new Map<TabId, Promise<Render>>();
 const MIN_W = 380;

@@ -15,7 +15,8 @@ export type TabId =
   | 'batch'
   | 'data'
   | 'debug'
-  | 'assets';
+  | 'assets'
+  | 'v14';
 
 export interface UiState {
   tab: TabId;
