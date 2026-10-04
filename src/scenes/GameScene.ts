@@ -205,6 +205,8 @@ export class GameScene extends Phaser.Scene {
   eventCrateCap = 0;
   /** 荆棘词缀反伤的每秒累计窗口 */
   private thornyWin = { t: -99999, used: 0 };
+  /** 隐身技能的诱饵位置：非空时敌人追它（见 SkillStyles） */
+  decoy: { x: number; y: number } | null = null;
   /** H5：本波小任务 */
   readonly waveQuests = new WaveQuestTracker();
   /** F7：上次说台词的时间（秒，场景时钟） */
@@ -227,6 +229,7 @@ export class GameScene extends Phaser.Scene {
     this.enemyBullets = [];
     this.noisy = false;
     this.dangerRing = null;
+    this.decoy = null;
     this.thornyWin = { t: -99999, used: 0 };
     this.pickups = [];
     this.hazards = [];

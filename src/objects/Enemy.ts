@@ -211,7 +211,8 @@ export class Enemy {
   }
 
   tick(dt: number, g: GameScene): void {
-    const p = g.player;
+    // 隐身技能留下的诱饵：敌人会去追诱饵而不是玩家
+    const p = g.decoy ?? g.player;
     const dx = p.x - this.x,
       dy = p.y - this.y;
     const dist = Math.hypot(dx, dy) || 1;

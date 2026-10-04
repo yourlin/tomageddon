@@ -155,7 +155,7 @@ function screenBolts(g: GameScene, color: number): void {
 }
 
 /** 技能释放总入口：通用表现 + 形态专属表现 */
-export function castFx(g: GameScene, sk: SkillDef, dur = 0, dashAngle = 0): void {
+export function castFx(g: GameScene, sk: SkillDef, dur = 0, dashAngle = 0, styled = false): void {
   const p = g.player;
   banner(g, p.x, p.y, sk.name, sk.color);
   rays(g, p.x, p.y, sk.color);
@@ -163,6 +163,8 @@ export function castFx(g: GameScene, sk: SkillDef, dur = 0, dashAngle = 0): void
   const cam = g.cameras.main;
   g.tweens.add({ targets: cam, zoom: cam.zoom * 1.05, duration: 90, yoyo: true, ease: 'Quad.easeOut' });
   cam.flash(110, (sk.color >> 16) & 255, (sk.color >> 8) & 255, sk.color & 255, false);
+  // 角色专属演出自带完整表现，这里只保留横幅、光芒与镜头冲击
+  if (styled) return;
   switch (sk.type) {
     case 'nova':
     case 'heal':
