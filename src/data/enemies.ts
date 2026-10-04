@@ -1,6 +1,7 @@
 // 小怪数据。hp/dmg 会随波次（growth）与章节倍率成长。
 import type { RigSpec } from '../art/RigSpec';
 import type { StatusApply } from './statuses';
+import { EXTRA_ENEMIES } from './chaptersExtra';
 
 export type EnemyBehavior = 'chase' | 'wander' | 'charger' | 'shooter' | 'bomber' | 'splitter' | 'healer' | 'summoner' | 'trail' | 'flee';
 
@@ -2376,4 +2377,6 @@ export const ENEMIES: EnemyDef[] = [
   },
 ];
 
+// 1.4.0：第 6 / 7 章新增的敌人（G2）
+ENEMIES.push(...EXTRA_ENEMIES);
 export const ENEMY_MAP: Record<string, EnemyDef> = Object.fromEntries(ENEMIES.map((e) => [e.id, e]));

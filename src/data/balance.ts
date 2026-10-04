@@ -19,8 +19,16 @@ export const BALANCE = {
   /** 生命再生（参考土豆兄弟）：第 1 点 first 生命/秒，之后每点 perPoint 生命/秒；≤0 时不回复 */
   regen: { first: 0.2, perPoint: 0.089 },
   waves: { count: 15, eliteWaves: [5, 10], bossWave: 15 },
-  /** 无尽模式：第 15 波之后每波生命 ×hp、伤害 ×dmg（复利），保证终会结束 */
-  endless: { hp: 1.12, dmg: 1.09 },
+  /** 无尽模式：第 15 波之后每波生命 ×hp、伤害 ×dmg（复利），保证终会结束。
+   *  B3：分段式——从第 from 波之后起改用该段的每波倍率，避免高波数时数值爆炸（曲线连续） */
+  endless: {
+    hp: 1.12,
+    dmg: 1.09,
+    segments: [
+      { from: 30, hp: 1.08, dmg: 1.06 },
+      { from: 45, hp: 1.05, dmg: 1.04 },
+    ],
+  },
   pickup: { baseRadius: 110, magnetSpeed: 700 },
   maxEnemies: 260,
   harvestGrowth: 0.05,
@@ -63,10 +71,19 @@ export const BALANCE = {
 export const isBossWaveNo = (wave: number): boolean => wave % BALANCE.waves.bossWave === 0;
 export const isEliteWaveNo = (wave: number): boolean => BALANCE.waves.eliteWaves.includes(((wave - 1) % BALANCE.waves.bossWave) + 1);
 /** 无尽模式超过第 15 波后的复利倍率 */
-export const endlessHp = (wave: number): number =>
-  wave > BALANCE.waves.count ? Math.pow(BALANCE.endless.hp, wave - BALANCE.waves.count) : 1;
-export const endlessDmg = (wave: number): number =>
-  wave > BALANCE.waves.count ? Math.pow(BALANCE.endless.dmg, wave - BALANCE.waves.count) : 1;
+function endlessMult(wave: number, key: 'hp' | 'dmg'): number {
+  const E = BALANCE.endless;
+  const segs = [{ from: BALANCE.waves.count, hp: E.hp, dmg: E.dmg }, ...E.segments];
+  let m = 1;
+  segs.forEach((sg, i) => {
+    const end = i + 1 < segs.length ? segs[i + 1].from : Infinity;
+    const n = Math.max(0, Math.min(wave, end) - sg.from);
+    m *= Math.pow(sg[key], n);
+  });
+  return m;
+}
+export const endlessHp = (wave: number): number => endlessMult(wave, 'hp');
+export const endlessDmg = (wave: number): number => endlessMult(wave, 'dmg');
 
 export function waveDuration(wave: number): number {
   if (isBossWaveNo(wave)) return 90;
@@ -118,7 +135,8 @@ export function chapterScale(mult: number, wave: number): number {
  *  —— 修正点：取代 chapters.ts 中手填且非单调的 hpMult/dmgMult/bossHpMult（原为 2.9→3.1→2.7→3.4 等断裂曲线）。 */
 export function chapterMult(chapterId: number, end: number): number {
   const n = BALANCE.chapterCount;
-  const t = Math.min(1, Math.max(0, (chapterId - 1) / (n - 1)));
+  // 1.4.0：第 6 / 7 章（t > 1）沿同一公比外推，第 1–5 章数值不变
+  const t = Math.max(0, (chapterId - 1) / (n - 1));
   return Math.round(Math.pow(end, t) * 100) / 100;
 }
 

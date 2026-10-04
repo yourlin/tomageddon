@@ -106,7 +106,12 @@ export function startBot2(charId, ch, speed = 16) {
     if (act.includes('Game')) sawGame = true;
     if (act.includes('LevelUp')) {
       const s = game.scene.getScene('LevelUp');
-      if (s.options.length) {
+      if (s.relicChoices?.length) {
+        // 遗物三选一：增益 > 交易 > 诅咒
+        const rank = { boon: 0, trade: 1, curse: 2 };
+        const best = [...s.relicChoices].sort((a, b) => rank[a.kind] - rank[b.kind])[0];
+        s.options.find((o) => o.key === `relic:${best.id}`)?.pick();
+      } else if (s.options.length) {
         const best = [...s.options].sort((a, b) => levelValue(b, P) - levelValue(a, P))[0];
         best.pick();
       } else if (s.crateItem) {
@@ -215,6 +220,15 @@ function move(P) {
 
 function shop(P) {
   const s = game.scene.getScene('Shop');
+  // 1.4.0 弹窗：神秘商人（钱够多才买）与路线选择（默认普通路线）
+  if (s.modalChoices?.length) {
+    const m = s.modalChoices;
+    const buy = m.find((c) => c.label.startsWith('买下'));
+    const price = Number(buy?.label.match(/\d+/)?.[0] ?? Infinity);
+    const pick = buy && buy.enabled && run.seeds > price * 3 ? buy : (m.find((c) => c.label === '普通路线') ?? m[m.length - 1]);
+    pick.pick();
+    return;
+  }
   const evo = run.weapons.find((w) => run.canEvolve(w));
   if (evo) {
     run.evolve(evo.uid);

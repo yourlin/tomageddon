@@ -13,6 +13,8 @@ import { IS_WECHAT } from './Fullscreen';
 import { isUnlocked } from './Save';
 import { pointsEarned } from './Achievements';
 import { tx } from '../i18n';
+import { challengeCode } from '../data/challenges';
+import { titleName } from '../data/titles';
 
 /** 游戏地址（去掉查询参数，扫码直接进入游戏） */
 const gameUrl = () => location.origin + location.pathname;
@@ -78,7 +80,17 @@ async function drawPoster(scene: Phaser.Scene, win: boolean): Promise<HTMLCanvas
     52,
     win ? '#ffd166' : '#ff9f9f',
   );
-  center(run.chapter.name, 302, 26, '#c9a9a6', false);
+  // D5：挑战种子与得分、危机等级、称号一起印在海报上，朋友可以输入同一个种子打同一局
+  const extra: string[] = [run.chapter.name];
+  if (run.danger) extra.push(tx(`番茄危机 ${run.danger} 级`, `Danger ${run.danger}`));
+  if (run.challenge) {
+    const sc = save.history[0]?.challenge?.score;
+    extra.push(
+      tx(`种子 ${challengeCode(run.challenge)}`, `Seed ${challengeCode(run.challenge)}`) + (sc ? tx(` · ${sc} 分`, ` · ${sc} pts`) : ''),
+    );
+  }
+  if (save.meta.title) extra.push(`「${titleName(save.meta.title)}」`);
+  center(extra.join('  ·  '), 302, 24, '#c9a9a6', false);
   // 角色
   const pic = await snapshot(scene, portraitKey(scene, 'char', run.charId), 256);
   ctx.fillStyle = 'rgba(255,209,102,0.12)';

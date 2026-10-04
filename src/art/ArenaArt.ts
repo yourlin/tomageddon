@@ -1,6 +1,7 @@
 // 章节竞技场地面（程序绘制，按章节主题）
 import Phaser from 'phaser';
 import { paint, rgb, darken, lighten, rng, roundRectPath, type Ctx } from './Painter';
+import { ARENA_PALETTE_EXTRA } from '../data/chaptersExtra';
 
 const W = 1300,
   H = 850; // 显示时拉伸到 2080×1360（竞技场 + 每边 80px 边缘）
@@ -236,6 +237,51 @@ export function paintArena(scene: Phaser.Scene, ch: number): string {
         });
         vignette(ctx, 0x111111);
         border(ctx, 0x4a4a40);
+        break;
+      }
+      case 6:
+      case 7: {
+        // 1.4.0：腐烂温室 / 腐烂菜园——泥地渐变 + 地块杂点 + 枯草与霉斑 + 毒液污渍（调色板见 chaptersExtra）
+        const P = ARENA_PALETTE_EXTRA[ch as 6 | 7];
+        const g = ctx.createLinearGradient(0, 0, W, H);
+        g.addColorStop(0, rgb(P.base));
+        g.addColorStop(1, rgb(P.baseDark));
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
+        for (let i = 0; i < 1800; i++) {
+          ctx.fillStyle = rgb(P.tiles[Math.floor(r() * P.tiles.length)], 0.6);
+          ctx.fillRect(r() * W, r() * H, 3 + r() * 6, 2 + r() * 4);
+        }
+        if (ch === 6) {
+          // 温室玻璃框投下的格子阴影
+          ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+          ctx.lineWidth = 6;
+          for (let x = 0; x < W; x += 220) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x + 120, H);
+            ctx.stroke();
+          }
+        }
+        scatter(ctx, r, 70, (x, y, sc) => {
+          ctx.strokeStyle = rgb(P.decor[Math.floor(sc * P.decor.length)]);
+          ctx.lineWidth = 3;
+          for (let k = 0; k < 4; k++) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.quadraticCurveTo(x + (k - 1.5) * 6, y - 8, x + (k - 1.5) * 10, y - 12 - sc * 8);
+            ctx.stroke();
+          }
+        });
+        const [sr, sg, sb] = P.stain.rgb;
+        scatter(ctx, r, 9, (x, y, sc) => {
+          ctx.fillStyle = `rgba(${sr},${sg},${sb},${P.stain.alpha + sc * 0.1})`;
+          ctx.beginPath();
+          ctx.ellipse(x, y, 30 + sc * 50, 18 + sc * 26, sc * 3, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        vignette(ctx, P.vignette);
+        border(ctx, P.wall);
         break;
       }
       default: {

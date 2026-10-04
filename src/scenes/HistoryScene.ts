@@ -1,5 +1,6 @@
 // 战绩页：最近 30 局的记录与汇总；点击一局查看局后数据
 import Phaser from 'phaser';
+import { challengeKindName } from '../data/challenges';
 import { text, button, panel, COLORS, fitImage, autoRelayout, hitArea } from '../ui/UI';
 import { portraitKey } from '../ui/Portrait';
 import { CHARACTER_MAP } from '../data/characters';
@@ -68,9 +69,10 @@ export class HistoryScene extends Phaser.Scene {
       const d = new Date(r.t);
       const when = `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
       const mode = r.challenge
-        ? r.challenge.kind === 'daily'
-          ? tx(`每日挑战 · ${r.challenge.score} 分`, `Daily · ${r.challenge.score} pts`)
-          : tx(`每周挑战 · ${r.challenge.score} 分`, `Weekly · ${r.challenge.score} pts`)
+        ? tx(
+            `${challengeKindName(r.challenge.kind)[0]}挑战 · ${r.challenge.score} 分`,
+            `${challengeKindName(r.challenge.kind)[1]} · ${r.challenge.score} pts`,
+          )
         : r.endless
           ? tx('无尽', 'Endless')
           : r.win

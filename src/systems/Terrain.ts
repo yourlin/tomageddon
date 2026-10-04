@@ -30,6 +30,7 @@ interface Spot {
 }
 
 export { TERRAIN_INFO } from '../data/chapters';
+import { TERRAIN_MECHS_EXTRA } from '../data/chaptersExtra';
 
 /** 各章地形机制的开关键（开发者界面逐个关闭用；键名与 tick() / 区域 kind 一致） */
 export const TERRAIN_MECHS: Record<number, [string, string][]> = {
@@ -56,6 +57,7 @@ export const TERRAIN_MECHS: Record<number, [string, string][]> = {
     ['conveyor', '传送带'],
     ['vent', '蒸汽阀门'],
   ],
+  ...TERRAIN_MECHS_EXTRA,
 };
 
 export class Terrain {
@@ -129,6 +131,17 @@ export class Terrain {
         place(4, 180, (x, y) => this.holes.push({ x, y, t: rand(2, 8), img: g.add.image(x, y, 'terrain_vent').setDepth(0.6) }));
         break;
       }
+      // 1.4.0 第 6 章「腐烂温室」：孢子喷口（复用第 1 章油池实现，改为中毒）+ 堆肥坑钻怪（复用下水道）
+      case 6:
+        place(4, 180, (x, y) => this.holes.push({ x, y, t: 0, img: g.add.image(x, y, 'terrain_hole').setDepth(0.6).setTint(0x8a9a5b) }));
+        this.timers = { spore: 8, compost: 11 };
+        break;
+      // 隐藏第 7 章「腐烂菜园」：腐泥沼（复用流沙，附带腐烂）+ 烂果坠落（复用垃圾坠落）
+      case 7:
+        for (let i = 0; i < 3; i++) this.addQuicksand();
+        for (const z of this.zones) z.img.setTint(0x7f5539);
+        this.timers = { debris: 8 };
+        break;
     }
   }
 
@@ -193,7 +206,7 @@ export class Terrain {
           g.envVY += vy;
           g.applyPlayerStatus([{ id: 'sticky', dur: 0.3 }]);
           if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r * 0.3 && this.tick(`qs_dmg_${z.x}`, dt, 0.6))
-            g.damagePlayer(this.dmg(2));
+            g.damagePlayer(this.dmg(2), undefined, this.ch === 7 ? [{ id: 'rot', dur: 2 }] : undefined);
         }
         for (const e of g.grid.query(z.x, z.y, z.r, g.tmp2)) {
           if (e.isBoss) continue;
@@ -290,7 +303,25 @@ export class Terrain {
           });
         }
         break;
+      case 6:
+        if (this.tick('spore', dt, 9, 2)) {
+          for (let i = 0; i < 2 + Math.floor(run.wave / 6); i++) {
+            const x = p.x + Phaser.Math.Between(-220, 220),
+              y = p.y + Phaser.Math.Between(-160, 160);
+            g.fx.telegraphCircle(x, y, 65, 1.1, 0x70e000, () =>
+              g.addHazard(x, y, 65, 4, this.dmg(3), [{ id: 'poison', dur: 3, stacks: 2 }], 0x80b918),
+            );
+          }
+          g.terrainNotice(tx('孢子喷发！', 'Spore burst!'));
+        }
+        if (this.tick('compost', dt, 11, 3)) {
+          const h = Phaser.Utils.Array.GetRandom(this.holes);
+          this.pulse(h);
+          for (let i = 0; i < 3; i++) g.time.delayedCall(i * 250, () => g.spawnEnemyNow('blight_sprout', h.x, h.y));
+        }
+        break;
       case 4:
+      case 7:
         if (this.tick('debris', dt, 9, 2)) {
           for (let i = 0; i < 3 + Math.floor(run.wave / 5); i++) {
             const x = p.x + Phaser.Math.Between(-260, 260),
@@ -302,9 +333,9 @@ export class Terrain {
               for (const e of g.grid.query(x, y, 55, g.tmp2)) g.damageEnemy(e, 20 + run.wave * 6);
             });
           }
-          g.terrainNotice(tx('垃圾坠落！', 'Falling junk!'));
+          g.terrainNotice(this.ch === 7 ? tx('烂果坠落！', 'Rotten fruit falling!') : tx('垃圾坠落！', 'Falling junk!'));
         }
-        if (this.tick('move', dt, 20)) {
+        if (this.ch === 4 && this.tick('move', dt, 20)) {
           const old = this.zones.shift();
           if (old) g.tweens.add({ targets: old.img, alpha: 0, duration: 800, onComplete: () => old.img.destroy() });
           this.addQuicksand();

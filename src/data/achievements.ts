@@ -12,6 +12,7 @@ import { DEBUFF_IDS } from './statuses';
 import { CHAPTERS } from './chapters';
 import { EVOLUTIONS } from './evolutions';
 import type { SkillType } from './characters';
+import { ACHIEVEMENTS_14 } from './achievements14';
 
 export type AchCategory =
   | 'combat'
@@ -1004,6 +1005,8 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   ...PER_SKILL,
   ...ENDLESS,
   ...PER_CHARACTER,
+  // 1.4.0：危机等级、遗物、事件波、无尽专属、角色任务与觉醒
+  ...ACHIEVEMENTS_14,
 ];
 /** 天赋点奖励：只有里程碑成就给，总计约 80 点（≈ 精通 2.5 个天赋方向）；首次通关第 1 章约得 7 点 */
 export const TALENT_REWARDS: Record<string, number[]> = {

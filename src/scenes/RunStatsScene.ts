@@ -1,5 +1,6 @@
 // 局后数据（弹窗）：伤害来源排行 + 每波收入；从结算页或战绩页打开
 import Phaser from 'phaser';
+import { challengeKindName } from '../data/challenges';
 import { text, button, panel, COLORS, fitImage } from '../ui/UI';
 import { WEAPON_MAP, TIER_NAMES } from '../data/weapons';
 import { CHARACTER_MAP } from '../data/characters';
@@ -40,9 +41,7 @@ export class RunStatsScene extends Phaser.Scene {
     panel(this, px, py, pw, ph);
     const c = CHARACTER_MAP[r.charId];
     const mode = r.challenge
-      ? r.challenge.kind === 'daily'
-        ? tx('每日挑战', 'Daily Challenge')
-        : tx('每周挑战', 'Weekly Challenge')
+      ? tx(`${challengeKindName(r.challenge.kind)[0]}挑战`, `${challengeKindName(r.challenge.kind)[1]} Challenge`)
       : r.endless
         ? tx('无尽模式', 'Endless')
         : r.win

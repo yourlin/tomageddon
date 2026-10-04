@@ -95,6 +95,8 @@ export interface MetaSave {
   skinOf: Record<string, string>;
   /** 无尽复活使用次数（统计） */
   endlessRevives: number;
+  /** G4：看过真结局的次数 */
+  trueEnding?: number;
   /** 个人最佳：危机等级最快通关（`${chapterId}_${level}` → 秒） */
   fastest: Record<string, number>;
 }
@@ -157,7 +159,7 @@ export interface RunRecord {
   chapterId: number;
   endless: boolean;
   /** 挑战模式：daily / weekly + 日期键 */
-  challenge?: { kind: 'daily' | 'weekly'; key: string; score: number };
+  challenge?: { kind: 'daily' | 'weekly' | 'custom'; key: string; score: number };
   win: boolean;
   wave: number;
   level: number;

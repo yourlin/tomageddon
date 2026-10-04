@@ -14,6 +14,7 @@ import { checkAchievements, setInRun, pointsBalance, missingRequirement, charCos
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { paint } from '../art/Painter';
 import { openExternal, SHOW_DONATE, IS_STEAM, quitApp } from '../platform';
+import { dayKey } from '../systems/Rng';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -170,6 +171,27 @@ export class MenuScene extends Phaser.Scene {
     }
     button(this, W / 2, by, 320, 72, tx('开始游戏', 'Start'), () => this.scene.start('CharSelect'), COLORS.primary, 32);
     button(this, W / 2, by + 80, 320, 58, tx('🗓️ 每日 / 每周挑战', '🗓️ Daily / Weekly'), () => this.scene.start('Challenge'), 0xc1121f, 24);
+    // D4：今日挑战状态与刷新倒计时
+    {
+      const rec = save.challenges[`daily:${dayKey()}`];
+      const now = new Date();
+      const ms = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime() - now.getTime();
+      const h = Math.floor(ms / 3600000),
+        m = Math.floor((ms % 3600000) / 60000);
+      const st = rec?.won
+        ? tx('今日 ✓ 已通关', 'Today ✓ cleared')
+        : rec
+          ? tx(`今日最佳 ${rec.best}`, `Today best ${rec.best}`)
+          : tx('今日未挑战', 'Not played today');
+      text(
+        this,
+        W / 2 + 175,
+        by + 80,
+        `${st}\n${tx(`${h} 小时 ${m} 分后刷新`, `resets in ${h}h ${m}m`)}`,
+        14,
+        rec?.won ? '#ffd166' : COLORS.textDim,
+      ).setOrigin(0, 0.5);
+    }
     // 图鉴 · 成就 · 天赋 · 战绩
     const row: [string, string, number][] = [
       [tx('图鉴', 'Codex'), 'Codex', 0x8d5a97],

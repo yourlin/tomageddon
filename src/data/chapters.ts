@@ -4,6 +4,7 @@
 // 而是在文件末尾由 balance.ts 的 chapterHpMult() 等几何级数函数按 chapter.id 统一派生，
 // 保证「单调递增、不断裂」。各章仅保留美术、刷怪池、lootMult / t4Mult 等本就应按章定制的字段。
 import { chapterHpMult, chapterDmgMult, chapterBossHpMult, chapterSpeedMult } from './balance';
+import { EXTRA_CHAPTERS, EXTRA_MUSIC_FALLBACK, TERRAIN_INFO_EXTRA, HIDDEN_CHAPTER_IDS } from './chaptersExtra';
 
 export interface SpawnEntry {
   enemy: string;
@@ -232,6 +233,12 @@ export const CHAPTERS: ChapterDef[] = [
   },
 ];
 
+// 1.4.0：第 6 章（危机 5 解锁）与隐藏第 7 章（G1 / G3）。新曲目未写之前回退到已有曲目
+CHAPTERS.push(...EXTRA_CHAPTERS.map((c) => ({ ...c, music: EXTRA_MUSIC_FALLBACK[c.music] ?? c.music })));
+/** 普通流程的章节数（通关第 5 章即「通关游戏」；第 6 / 7 章另有解锁条件） */
+export const BASE_CHAPTERS = 5;
+export { HIDDEN_CHAPTER_IDS };
+
 // ── 难度倍率统一派生（覆盖上方手填值）──────────────────────────────
 // 由 balance.ts 的几何级数函数按 chapter.id 生成，保证单调递增、无断裂。
 // 原手填曲线存在不合理：hpMult 1→2.9→3.1→2.7→3.4（第 4 章不升反降），
@@ -250,4 +257,5 @@ export const TERRAIN_INFO: Record<number, string[]> = {
   3: ['冰面：在冰上会打滑，但速度更快', '冷风：周期性狂风吹动所有单位并减速'],
   4: ['流沙坑：会把人和怪物吸入中心，并造成伤害', '垃圾坠落：注意地面的预警圈'],
   5: ['传送带：推动站在上面的所有单位', '蒸汽阀门：周期性喷出灼热蒸汽'],
+  ...TERRAIN_INFO_EXTRA,
 };

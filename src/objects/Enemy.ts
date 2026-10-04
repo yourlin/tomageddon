@@ -85,6 +85,9 @@ export class Enemy {
     if (this.affixes.includes('frost')) out.push({ id: 'slow', dur: 2, stacks: 2 });
     if (this.affixes.includes('venom')) out.push({ id: 'poison', dur: 4, stacks: 3 });
     if (this.affixes.includes('cursed')) out.push({ id: 'curse', dur: 3 });
+    if (this.affixes.includes('burning')) out.push({ id: 'burn', dur: 3, stacks: 2 });
+    if (this.affixes.includes('bleeding')) out.push({ id: 'bleed', dur: 3, stacks: 2 });
+    if (this.affixes.includes('weakening')) out.push({ id: 'weaken', dur: 3 });
     return out;
   }
 
@@ -160,6 +163,16 @@ export class Enemy {
   private applyAffixes(g: GameScene): void {
     if (this.affixes.includes('swift')) this.speed *= 1.35;
     if (this.affixes.includes('armored')) this.knockResist = 1;
+    if (this.affixes.includes('giant')) {
+      this.hp = this.maxHp = Math.round(this.maxHp * 1.6);
+      this.radius *= 1.2;
+    }
+    if (this.affixes.includes('brutal')) this.dmg = Math.round(this.dmg * 1.4);
+    if (this.affixes.includes('unstoppable')) {
+      this.knockResist = 1;
+      this.status.ccResist = 1;
+    }
+    if (this.affixes.includes('rich')) this.seeds *= 3;
     if (this.affixes.length || this.boss) {
       const col = this.affixes.length ? AFFIXES[this.affixes[0]].color : (this.boss!.look.aura ?? 0xff3b30);
       this.ring = g.add.image(this.x, this.y, 'fx_ring').setTint(col).setAlpha(0.55).setDepth(2);

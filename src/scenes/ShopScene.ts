@@ -28,7 +28,11 @@ import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSyst
 import { text, button, panel, COLORS, fitImage, hitArea, toast, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { markSeen, persist } from '../systems/Save';
-import { tx } from '../i18n';
+import { tx, lang } from '../i18n';
+import { GameScene } from './GameScene';
+import { rollRelics, grantRelic } from '../systems/Relics';
+import { RELIC_MAP, RELIC_KIND_INFO, describeRelic, describeRule } from '../data/relics';
+import { routeChoiceAvailable, HARD_ROUTE_RULE } from '../systems/RunEvents';
 import { tagName } from '../i18n/apply';
 import { checkAchievements, setInRun } from '../systems/Achievements';
 import { freeFirstReroll } from '../systems/Talents';
@@ -61,6 +65,8 @@ export const itemBasePrice = (price: number, completedWave = run.wave): number =
 export class ShopScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
   private popup: Phaser.GameObjects.Container | null = null;
+  /** 当前弹窗的选项（供自动化测试读取；空 = 没有弹窗） */
+  modalChoices: { label: string; enabled: boolean; pick: () => void }[] = [];
 
   constructor() {
     super('Shop');
@@ -89,6 +95,78 @@ export class ShopScene extends Phaser.Scene {
       tip('combine', this);
     if (run.weapons.some((w) => w.tier >= 2)) tip('affix', this);
     if (run.weapons.some((w) => run.canEvolve(w))) tip('evolve', this);
+    this.maybeMerchant();
+  }
+
+  /** H2：第 3 波后每次商店 22% 概率出现神秘商人，卖一件交易 / 诅咒型遗物 */
+  private maybeMerchant(): void {
+    if (GameScene.sandbox) return;
+    if (!run.merchant || run.merchant.wave !== run.wave) {
+      run.merchant = null;
+      const R = run.rand(`merchant:${run.wave}`);
+      if (run.wave >= 3 && R() < 0.22) {
+        const r = rollRelics(1, R, ['trade', 'curse'])[0];
+        if (r) run.merchant = { wave: run.wave, relic: r.id, price: Math.round(offerPrice(28 + run.wave * 6)), done: false };
+      }
+    }
+    const m = run.merchant;
+    if (!m || m.done) return;
+    const r = RELIC_MAP[m.relic];
+    const zh = lang === 'zh';
+    const lines = [
+      `${r.icon} ${r.name[zh ? 0 : 1]}  ·  ${RELIC_KIND_INFO[r.kind].name[zh ? 0 : 1]}`,
+      ...describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id),
+    ];
+    this.modal(tx('🧙 神秘商人出现了', '🧙 A Mysterious Merchant appears'), lines, [
+      {
+        label: tx(`买下 🌱${m.price}`, `Buy 🌱${m.price}`),
+        color: COLORS.green,
+        enabled: run.seeds >= m.price,
+        onClick: () => {
+          run.seeds -= m.price;
+          m.done = true;
+          grantRelic(m.relic);
+          bump('merchantBuys');
+          audio.play(this, 'buy');
+          this.draw();
+        },
+      },
+      {
+        label: tx('离开', 'Leave'),
+        color: 0x555555,
+        onClick: () => {
+          m.done = true;
+          saveRun();
+        },
+      },
+    ]);
+  }
+
+  /** 居中弹窗：标题 + 文字 + 一排按钮（点任一按钮关闭） */
+  private modal(title: string, lines: string[], btns: { label: string; color: number; enabled?: boolean; onClick: () => void }[]): void {
+    const W = this.scale.width,
+      H = this.scale.height;
+    const c = this.add.container(0, 0).setDepth(200);
+    c.add(this.add.rectangle(0, 0, W, H, 0x000000, 0.6).setOrigin(0).setInteractive());
+    const pw = Math.min(560, W - 40),
+      ph = 300;
+    const x = (W - pw) / 2,
+      y = (H - ph) / 2;
+    c.add(panel(this, x, y, pw, ph, COLORS.panelLight, COLORS.gold));
+    c.add(text(this, W / 2, y + 36, title, 28, '#ffd166').setOrigin(0.5));
+    c.add(text(this, W / 2, y + 70, lines.join('\n'), 18, '#fff4ea', { align: 'center', wordWrap: { width: pw - 40 } }).setOrigin(0.5, 0));
+    const bw = Math.min(220, (pw - 40) / btns.length - 16);
+    this.modalChoices = [];
+    btns.forEach((b, i) => {
+      const bx = W / 2 + (i - (btns.length - 1) / 2) * (bw + 16);
+      const pick = () => {
+        this.modalChoices = [];
+        c.destroy();
+        b.onClick();
+      };
+      this.modalChoices.push({ label: b.label, enabled: b.enabled ?? true, pick });
+      c.add(button(this, bx, y + ph - 44, bw, 54, b.label, pick, b.color, 18).setEnabled(b.enabled ?? true));
+    });
   }
 
   private price(base: number): number {
@@ -423,7 +501,8 @@ export class ShopScene extends Phaser.Scene {
 
   /** 刷新价格：随章节与波次上涨；当前货架每买走一件，价格 ×0.75 */
   private rerollCost(): number {
-    const free = (freeFirstReroll(run.charId) ? 1 : 0) + treeTotals().freeRerolls + (run.mod('one_reroll') ? 1 : 0);
+    const free =
+      (freeFirstReroll(run.charId) ? 1 : 0) + treeTotals().freeRerolls + (run.mod('one_reroll') ? 1 : 0) + run.relicFx.flags.freeRerolls;
     if (run.rerolls < free) return 0;
     const bought = run.shop.filter((x) => x.sold).length;
     return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * Math.pow(0.75, bought) * run.rules.rerollPrice));
@@ -659,6 +738,28 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private nextWave(): void {
+    if (this.modalChoices.length) return; // 已有弹窗（路线 / 商人）时忽略重复点击
+    // H3：每 3 波一次路线选择（挑战模式不提供，保证同一种子同一难度）
+    if (!run.challenge && !GameScene.sandbox && routeChoiceAvailable(run.wave + 1)) {
+      const hard = describeRule(HARD_ROUTE_RULE).join(tx('，', ', '));
+      this.modal(
+        tx('选择路线', 'Choose a Route'),
+        [
+          tx('普通路线：照常进行', 'Normal route: business as usual'),
+          tx(`危险路线：${hard}，结束时额外 1 个宝箱`, `Dangerous route: ${hard}, plus 1 crate at the end`),
+        ],
+        [
+          { label: tx('普通路线', 'Normal'), color: COLORS.primary, onClick: () => this.startNext(false) },
+          { label: tx('危险路线 ☠', 'Dangerous ☠'), color: 0x9d0208, onClick: () => this.startNext(true) },
+        ],
+      );
+      return;
+    }
+    this.startNext(false);
+  }
+
+  private startNext(hard: boolean): void {
+    run.hardRoute = hard;
     run.wave++;
     run.shop.forEach((o) => {
       if (!o.locked) o.sold = true;

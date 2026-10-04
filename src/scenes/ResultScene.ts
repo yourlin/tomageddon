@@ -1,5 +1,7 @@
 // 结算
 import { tip } from '../systems/Tutorial';
+import { challengeKindName } from '../data/challenges';
+import { takeStreakReward } from '../systems/RunState';
 import { bump, bumpMax, counter } from '../systems/Counters';
 import { WEAPON_MAP } from '../data/weapons';
 import Phaser from 'phaser';
@@ -8,7 +10,7 @@ import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { run, clearRun, recordHistory } from '../systems/RunState';
 import { save, persist, isUnlocked, type RunRecord } from '../systems/Save';
 import { CHARACTERS } from '../data/characters';
-import { CHAPTERS } from '../data/chapters';
+import { CHAPTERS, BASE_CHAPTERS } from '../data/chapters';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { checkAchievements, setInRun, missingRequirement, pointsBalance, charCost } from '../systems/Achievements';
@@ -33,7 +35,7 @@ export class ResultScene extends Phaser.Scene {
       data.counted = true;
       save.wins++;
       save.charWins[run.charId] = (save.charWins[run.charId] ?? 0) + 1;
-      save.clearedChapters = Math.max(save.clearedChapters, run.chapterId);
+      if (run.chapterId <= BASE_CHAPTERS) save.clearedChapters = Math.max(save.clearedChapters, run.chapterId);
       // 成就计数：角色 × 章节通关、挑战条件
       bump(`charClear:${run.charId}:${run.chapterId}`);
       if (run.weapons.length === 1) bump('winSolo');
@@ -118,15 +120,30 @@ export class ResultScene extends Phaser.Scene {
         W / 2,
         y,
         tx(
-          `${ch.kind === 'daily' ? '每日' : '每周'}挑战得分 ${ch.score}${ch.score >= best ? '（新纪录！）' : `（个人最佳 ${best}）`}`,
-          `${ch.kind === 'daily' ? 'Daily' : 'Weekly'} score ${ch.score}${ch.score >= best ? ' (new best!)' : ` (best ${best})`}`,
+          `${challengeKindName(ch.kind)[0]}挑战得分 ${ch.score}${ch.score >= best ? '（新纪录！）' : `（个人最佳 ${best}）`}`,
+          `${challengeKindName(ch.kind)[1]} score ${ch.score}${ch.score >= best ? ' (new best!)' : ` (best ${best})`}`,
         ),
         24,
         '#e0aaff',
       ).setOrigin(0.5);
       y += 36;
+      const sr = takeStreakReward();
+      if (sr) {
+        text(
+          this,
+          W / 2,
+          y,
+          tx(
+            `连续挑战 ${sr.days} 天奖励：🥇${sr.gold}${sr.tp ? ` · 天赋点 +${sr.tp}` : ''}`,
+            `${sr.days}-day streak reward: 🥇${sr.gold}${sr.tp ? ` · +${sr.tp} talent point(s)` : ''}`,
+          ),
+          20,
+          '#ffd166',
+        ).setOrigin(0.5);
+        y += 30;
+      }
     }
-    if (data.win && run.chapterId < CHAPTERS.length && run.danger === 0) {
+    if (data.win && run.chapterId < BASE_CHAPTERS && run.danger === 0) {
       text(
         this,
         W / 2,

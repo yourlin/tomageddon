@@ -1,5 +1,6 @@
 // 英文怪物 / 精英 / Boss / 词缀数据（键为数据 id）
 import type { AffixesEn, BossesEn, EnemiesEn } from '../types';
+import { EXTRA_EN_ENEMIES, EXTRA_EN_BOSSES } from '../../data/chaptersExtra';
 
 export const EN_ENEMIES: EnemiesEn = {
   mold: { name: 'Mold Blob', desc: 'The most common pest, creeping slowly toward you.' },
@@ -144,4 +145,16 @@ export const EN_AFFIXES: AffixesEn = {
   vampiric: { name: 'Vampiric', desc: 'Heals when dealing damage' },
   thorny: { name: 'Thorny', desc: 'Reflects 20% of melee damage' },
   commander: { name: 'Commander', desc: 'Nearby monsters gain Haste' },
+  giant: { name: 'Giant', desc: '+60% HP and a bigger body' },
+  brutal: { name: 'Brutal', desc: '+40% damage' },
+  burning: { name: 'Searing', desc: 'Attacks inflict 2 stacks of Burn' },
+  bleeding: { name: 'Rending', desc: 'Attacks inflict 2 stacks of Bleed' },
+  weakening: { name: 'Enfeebling', desc: 'Attacks inflict Weaken' },
+  unstoppable: { name: 'Unstoppable', desc: 'Immune to slow, stun and knockback' },
+  rich: { name: 'Wealthy', desc: 'Drops 3× Seeds' },
+  splitting: { name: 'Splitting', desc: 'Splits into 2 minions of the same kind on death' },
 };
+
+// 1.4.0：第 6 / 7 章与真结局 Boss
+Object.assign(EN_ENEMIES, EXTRA_EN_ENEMIES);
+Object.assign(EN_BOSSES, EXTRA_EN_BOSSES);

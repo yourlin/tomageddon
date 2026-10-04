@@ -15,7 +15,10 @@ import { STATUSES } from '../data/statuses';
 import { RARITY } from '../data/balance';
 import { isUnlocked, isSeen } from '../systems/Save';
 import { unlockHint } from '../systems/Achievements';
-import { tx } from '../i18n';
+import { tx, lang } from '../i18n';
+import { save } from '../systems/Save';
+import { RELICS, RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic } from '../data/relics';
+import { FONT } from '../systems/Textures';
 
 const PATTERN_NAME: Record<string, string> = {
   ring: tx('环形弹', 'Ring'),
@@ -31,7 +34,7 @@ const PATTERN_NAME: Record<string, string> = {
   scatter: tx('乱射', 'Scatter'),
 };
 
-type Tab = 'char' | 'weapon' | 'item' | 'enemy' | 'boss';
+type Tab = 'char' | 'weapon' | 'item' | 'relic' | 'enemy' | 'boss';
 interface Entry {
   key: string;
   name: string;
@@ -59,15 +62,16 @@ export class CodexScene extends Phaser.Scene {
       ['char', tx('角色', 'Characters')],
       ['weapon', tx('武器', 'Weapons')],
       ['item', tx('道具', 'Items')],
+      ['relic', tx('遗物', 'Relics')],
       ['enemy', tx('怪物', 'Monsters')],
       ['boss', 'Boss'],
     ];
     tabs.forEach(([t, n], i) =>
       button(
         this,
-        215 + i * 130,
+        205 + i * 118,
         44,
-        120,
+        110,
         48,
         n,
         () => {
@@ -164,6 +168,25 @@ export class CodexScene extends Phaser.Scene {
             tx('在商店中出现或获得后解锁', 'Unlocked after it appears in the shop or is obtained'),
           ),
         );
+      case 'relic': {
+        const zh = lang === 'zh';
+        return RELICS.map((r) => {
+          const k = RELIC_KIND_INFO[r.kind];
+          const e: Entry = {
+            key: `@relic:${r.id}`,
+            name: r.name[zh ? 0 : 1],
+            color: k.css,
+            lines: [
+              k.name[zh ? 0 : 1] + (r.set ? ` · ${tx('套装', 'Set')} ${RELIC_SET_MAP[r.set].name[zh ? 0 : 1]}` : ''),
+              ...describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id),
+              ...(r.set
+                ? [tx('集齐 3 件套装效果：', '3-piece set bonus: ') + describeRelic(RELIC_SET_MAP[r.set]).join(tx('，', ', '))]
+                : []),
+            ],
+          };
+          return this.lock(e, save.meta.relics.includes(r.id), tx('在一局中获得后解锁', 'Unlocked after obtaining it in a run'));
+        });
+      }
       case 'enemy':
         return ENEMIES.map((e) =>
           L(
@@ -243,9 +266,7 @@ export class CodexScene extends Phaser.Scene {
       const x = 24 + (i % cols) * (s + 10),
         y = 90 + Math.floor(i / cols) * (s + 10);
       this.layer.add(panel(this, x, y, s, s, COLORS.panel, COLORS.border));
-      const img = fitImage(this.add.image(x + s / 2, y + s / 2, this.resolve(e.key)), s - 14);
-      if (e.name === '？？？') img.setTint(0x000000);
-      this.layer.add(img);
+      this.layer.add(this.icon(x + s / 2, y + s / 2, e, s - 14));
       this.layer.add(hitArea(this, x, y, s, s, () => this.show(e)));
     });
     if (pages > 1) {
@@ -285,6 +306,21 @@ export class CodexScene extends Phaser.Scene {
     this.show(list[this.page * per]);
   }
 
+  /** 条目图标：遗物用 emoji 文字，其余用贴图；未发现时显示剪影 */
+  private icon(x: number, y: number, e: Entry, size: number): Phaser.GameObjects.GameObject {
+    if (e.key.startsWith('@relic:')) {
+      const r = RELIC_MAP[e.key.slice(7)];
+      const t = this.add
+        .text(x, y, e.name === '？？？' ? '❔' : r.icon, { fontFamily: FONT, fontSize: `${Math.round(size * 0.62)}px` })
+        .setOrigin(0.5);
+      if (e.name === '？？？') t.setAlpha(0.4);
+      return t;
+    }
+    const img = fitImage(this.add.image(x, y, this.resolve(e.key)), size);
+    if (e.name === '？？？') img.setTint(0x000000);
+    return img;
+  }
+
   private resolve(key: string): string {
     if (!key.startsWith('@')) return key;
     const [kind, id] = key.slice(1).split(':');
@@ -304,9 +340,7 @@ export class CodexScene extends Phaser.Scene {
     const x = W * 0.58,
       w = W - x - 24;
     this.detail.add(panel(this, x, 90, w, H - 120));
-    const img = fitImage(this.add.image(x + w / 2, 190, this.resolve(e.key)), 150);
-    if (e.name === '？？？') img.setTint(0x000000);
-    this.detail.add(img);
+    this.detail.add(this.icon(x + w / 2, 190, e, 150));
     this.detail.add(text(this, x + w / 2, 290, e.name, 30, e.color).setOrigin(0.5));
     this.detail.add(
       text(this, x + 24, 330, e.lines.filter(Boolean).join('\n'), 17, '#fff4ea', { wordWrap: { width: w - 48 }, lineSpacing: 6 }),

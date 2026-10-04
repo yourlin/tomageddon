@@ -24,6 +24,8 @@ import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast } f
 import { tx, lang } from '../i18n';
 import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
 import { dangerReward } from '../data/balance';
+import { chapterAvailable, chapterCleared, chapterVisible } from '../systems/Danger';
+import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { dangerUnlocked, dangerBest, hasGoldFrame } from '../systems/Danger';
 
 export class CharSelectScene extends Phaser.Scene {
@@ -110,6 +112,7 @@ export class CharSelectScene extends Phaser.Scene {
       '◀',
       () => {
         this.chapter = Math.max(1, this.chapter - 1);
+        while (this.chapter > 1 && !chapterVisible(this.chapter)) this.chapter--;
         this.refresh();
       },
       0x7a2e35,
@@ -123,7 +126,8 @@ export class CharSelectScene extends Phaser.Scene {
       64,
       '▶',
       () => {
-        this.chapter = Math.min(CHAPTERS.length, this.chapter + 1);
+        const next = Math.min(CHAPTERS.length, this.chapter + 1);
+        if (chapterVisible(next)) this.chapter = next;
         this.refresh();
       },
       0x7a2e35,
@@ -139,7 +143,7 @@ export class CharSelectScene extends Phaser.Scene {
       40,
       '',
       () => {
-        if (save.clearedChapters < this.chapter) {
+        if (!chapterCleared(this.chapter)) {
           toast(
             this,
             tx(`通关第 ${this.chapter} 章后解锁本章无尽模式`, `Clear Chapter ${this.chapter} to unlock its Endless mode`),
@@ -269,8 +273,8 @@ export class CharSelectScene extends Phaser.Scene {
       if (stats.length) add(20, y, stats.join(' · '), 15, COLORS.textDim);
     }
     const ch = CHAPTERS[this.chapter - 1];
-    const chUnlocked = save.clearedChapters >= this.chapter - 1;
-    const endlessOk = save.clearedChapters >= this.chapter;
+    const chUnlocked = chapterAvailable(this.chapter);
+    const endlessOk = chapterCleared(this.chapter);
     if (!endlessOk) this.endless = false;
     this.endlessBtn.setLabel(
       endlessOk
@@ -299,7 +303,9 @@ export class CharSelectScene extends Phaser.Scene {
     const endlessBest = counter(`endlessBest:ch:${ch.id}`);
     this.chapterDesc.setText(
       !chUnlocked
-        ? tx(`通关第 ${this.chapter - 1} 章解锁`, `Clear Chapter ${this.chapter - 1} to unlock`)
+        ? this.chapter === 6
+          ? tx(`任意一章在番茄危机 ${CH6_DANGER_REQ} 级以上通关后解锁`, `Clear any chapter on Danger ${CH6_DANGER_REQ}+ to unlock`)
+          : tx(`通关第 ${this.chapter - 1} 章解锁`, `Clear Chapter ${this.chapter - 1} to unlock`)
         : this.endless
           ? tx(
               `无尽模式：不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），越往后怪物越强，直到倒下为止。本章最佳：第 ${endlessBest} 波`,

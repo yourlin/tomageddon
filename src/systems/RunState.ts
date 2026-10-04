@@ -1,5 +1,5 @@
 // 一局游戏的状态：角色、武器、道具、属性、经验、番茄籽
-import { MODIFIER_MAP, makeChallenge, challengeScore, type ChallengeDef, type ModifierId } from '../data/challenges';
+import { MODIFIER_MAP, makeChallenge, challengeScore, STREAK_REWARDS, type ChallengeDef, type ModifierId } from '../data/challenges';
 import { hashSeed, mulberry32, pickOf, shuffleWith, dayNumber, type Rand } from './Rng';
 import { EVOLUTION_OF } from '../data/evolutions';
 import { treeTotals } from './TalentTree';
@@ -17,6 +17,7 @@ import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
 import { dangerLevels, MAX_DANGER, type RuleDelta } from '../data/danger';
 import { storage } from '../platform';
+import { relicTotals, type RelicTotals } from '../data/relics';
 
 /** 汇总后的规则：倍率（1 = 不变）与计数 */
 export interface RunExt {
@@ -26,6 +27,15 @@ export interface RunExt {
   events: Record<number, string>;
   hardRoute: boolean;
   awakened: boolean;
+  pendingRelics?: number;
+  merchant?: MerchantOffer | null;
+}
+/** H2：神秘商人（某次商店随机出现，卖一件交易 / 诅咒遗物） */
+export interface MerchantOffer {
+  wave: number;
+  relic: string;
+  price: number;
+  done: boolean;
 }
 /** 其他系统挂到 RunState 的回调（避免循环依赖）：读档后重算遗物规则等 */
 export const runHooks: { onLoad: (() => void) | null; onStart: (() => void) | null } = { onLoad: null, onStart: null };
@@ -144,6 +154,15 @@ export class RunState {
   hardRoute = false;
   /** 本局觉醒是否生效（F2，开局时按存档设置决定） */
   awakened = false;
+  /** 待选择的遗物三选一次数（C2：精英奖励、无尽里程碑） */
+  pendingRelics = 0;
+  /** H2：本次商店的神秘商人 */
+  merchant: MerchantOffer | null = null;
+  private relicCache: RelicTotals | null = null;
+  /** 当前持有遗物（含已集齐套装）的汇总效果 */
+  get relicFx(): RelicTotals {
+    return (this.relicCache ??= relicTotals(this.relics));
+  }
   saveExt(): RunExt {
     return {
       danger: this.danger,
@@ -152,6 +171,8 @@ export class RunState {
       events: this.events,
       hardRoute: this.hardRoute,
       awakened: this.awakened,
+      pendingRelics: this.pendingRelics,
+      merchant: this.merchant,
     };
   }
   loadExt(e: RunExt | null): void {
@@ -161,6 +182,8 @@ export class RunState {
     this.events = { ...(e?.events ?? {}) };
     this.hardRoute = !!e?.hardRoute;
     this.awakened = !!e?.awakened;
+    this.pendingRelics = e?.pendingRelics ?? 0;
+    this.merchant = e?.merchant ?? null;
     this.extraRules = {};
     runHooks.onLoad?.();
   }
@@ -189,6 +212,7 @@ export class RunState {
       for (const [k, v] of Object.entries(d) as [keyof RuleDelta, number][]) sum[k] += v;
     };
     for (const l of dangerLevels(this.danger)) add(l.rule);
+    add(this.relicFx.rule);
     for (const d of Object.values(this.extraRules)) add(d);
     const m = (v: number) => Math.max(0, 1 + v / 100);
     this.rulesCache = {
@@ -262,6 +286,8 @@ export class RunState {
     this.danger = Math.max(0, Math.min(MAX_DANGER, danger));
     this.extraRules = {};
     this.relics = [];
+    this.pendingRelics = 0;
+    this.merchant = null;
     this.endlessRevived = false;
     this.events = {};
     this.hardRoute = false;
@@ -306,6 +332,7 @@ export class RunState {
     this.cache = null;
     this.specialCache = null;
     this.rulesCache = null;
+    this.relicCache = null;
   }
 
   get stats(): Stats {
@@ -329,6 +356,14 @@ export class RunState {
       if (this.mod('glass_cannon')) s.maxHp *= 0.6;
       if (this.mod('vampire')) s.regen = Math.min(0, s.regen);
     }
+    // 遗物：属性与规则型效果（归零只清掉正值，负面效果保留）
+    const rf = this.relicFx;
+    for (const m of rf.mods) addMods(s, m);
+    if (rf.flags.noRegen) s.regen = Math.min(0, s.regen);
+    if (rf.flags.noLifeSteal) s.lifeSteal = Math.min(0, s.lifeSteal);
+    if (rf.flags.noDodge) s.dodge = Math.min(0, s.dodge);
+    if (rf.flags.noArmor) s.armor = Math.min(0, s.armor);
+    s.maxHp *= rf.flags.maxHpMult;
     s.maxHp = Math.max(1, Math.round(s.maxHp));
     this.cache = s;
     return s;
@@ -400,6 +435,7 @@ export class RunState {
     apply(this.char.special, 1);
     for (const [x, r] of treeTotals().specials) apply(x, r);
     for (const [id, n] of Object.entries(this.items)) apply(ITEM_MAP[id].special, n);
+    for (const x of this.relicFx.specials) apply(x, 1);
     sp.shopDiscount = Math.min(50, sp.shopDiscount);
     sp.doubleSeed = Math.min(40, sp.doubleSeed);
     sp.critDmg = Math.min(BALANCE.critDmgCap, sp.critDmg);
@@ -511,7 +547,8 @@ export class RunState {
   /** 可进化：T4 + 持有对应道具 */
   canEvolve(w: OwnedWeapon): boolean {
     const e = EVOLUTION_OF[w.id];
-    return !!e && w.tier >= 3 && (this.items[e.item] ?? 0) > 0;
+    const minTier = this.relicFx.flags.evolveEarly.includes(w.id) ? 2 : 3;
+    return !!e && w.tier >= minTier && (this.items[e.item] ?? 0) > 0;
   }
 
   /** 进化：原地替换武器 id，保留词条与打造等级 */
@@ -654,6 +691,14 @@ export function loadRun(): boolean {
   return true;
 }
 
+/** D3：最近一次结算拿到的连续挑战奖励（结算界面展示后清空） */
+export let streakReward: { days: number; gold: number; tp: number } | null = null;
+export const takeStreakReward = () => {
+  const r = streakReward;
+  streakReward = null;
+  return r;
+};
+
 /** 把本局写入战绩（结算时调用一次） */
 export function recordHistory(win: boolean): RunRecord {
   const income: number[] = [];
@@ -670,6 +715,7 @@ export function recordHistory(win: boolean): RunRecord {
     sec: Math.round((Date.now() - run.startedAt) / 1000),
     danger: run.danger || undefined,
     relics: run.relics.length ? [...run.relics] : undefined,
+    revived: run.endlessRevived || undefined,
     weapons: run.weapons.map((w) => ({ id: w.id, tier: w.tier, forge: w.forge })),
     items: Object.values(run.items).reduce((a, b) => a + b, 0),
     dmg: Object.entries(run.dmgBy)
@@ -701,6 +747,21 @@ export function recordHistory(win: boolean): RunRecord {
       save.counters.dailyStreak = streak;
       save.counters.dailyLastDay = dn;
       bumpMax('dailyStreakBest', streak);
+      // D3：本轮连续天数达到 3 / 7 / 30 天各领一次奖励（断签后重新计）
+      const st = save.meta.streak;
+      if (streak === 1) st.claimed = [];
+      st.days = streak;
+      st.best = Math.max(st.best, streak);
+      st.last = c.key;
+      for (const r of STREAK_REWARDS)
+        if (streak >= r.days && !st.claimed.includes(r.days)) {
+          st.claimed.push(r.days);
+          save.meta.gold += r.gold;
+          save.meta.goldEarned += r.gold;
+          save.meta.bonusTp += r.tp;
+          bump('goldEarned', r.gold);
+          streakReward = r;
+        }
     }
   }
   save.history.unshift(rec);

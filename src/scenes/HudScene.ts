@@ -9,8 +9,10 @@ import type { Enemy } from '../objects/Enemy';
 import { STATUSES } from '../data/statuses';
 import { AFFIXES } from '../data/bosses';
 import { FONT } from '../systems/Textures';
-import { tx } from '../i18n';
+import { tx, lang } from '../i18n';
 import { save } from '../systems/Save';
+import { RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic } from '../data/relics';
+import { WEAPON_MAP } from '../data/weapons';
 
 export class HudScene extends Phaser.Scene {
   private g!: GameScene;
@@ -41,6 +43,53 @@ export class HudScene extends Phaser.Scene {
 
   constructor() {
     super('Hud');
+  }
+
+  private drawRelics(W: number): void {
+    const owned = run.relics.map((id) => RELIC_MAP[id]).filter(Boolean);
+    if (!owned.length) return;
+    const zh = lang === 'zh';
+    const perRow = 8;
+    let tipBox: Phaser.GameObjects.Container | null = null;
+    const hide = () => {
+      tipBox?.destroy();
+      tipBox = null;
+    };
+    owned.forEach((r, i) => {
+      const x = W - 50 - (i % perRow) * 38,
+        y = 100 + Math.floor(i / perRow) * 38;
+      const k = RELIC_KIND_INFO[r.kind];
+      const c = this.add.container(x, y);
+      const g = this.add.graphics();
+      g.fillStyle(0x000000, 0.45).fillCircle(0, 0, 17).lineStyle(2, k.color, 1).strokeCircle(0, 0, 17);
+      c.add([g, this.add.text(0, 1, r.icon, { fontFamily: FONT, fontSize: '18px' }).setOrigin(0.5)]);
+      c.setSize(36, 36).setInteractive({ useHandCursor: true });
+      const show = () => {
+        hide();
+        const lines = [r.name[zh ? 0 : 1], ...describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id)];
+        const t = text(this, 0, 0, lines.join('\n'), 15, '#ffffff', { wordWrap: { width: 260 } }).setOrigin(1, 0);
+        const bg = this.add.graphics();
+        bg.fillStyle(0x1a0a0c, 0.92)
+          .fillRoundedRect(-t.width - 10, -6, t.width + 20, t.height + 12, 8)
+          .lineStyle(2, k.color, 1);
+        bg.strokeRoundedRect(-t.width - 10, -6, t.width + 20, t.height + 12, 8);
+        tipBox = this.add.container(x + 18, y + 24, [bg, t]).setDepth(50);
+      };
+      c.on('pointerover', show);
+      c.on('pointerdown', show);
+      c.on('pointerout', hide);
+    });
+    // 已集齐的套装
+    const sets = run.relicFx.sets;
+    if (sets.length)
+      text(
+        this,
+        W - 30,
+        100 + Math.ceil(owned.length / perRow) * 38 - 10,
+        sets.map((s) => `✦ ${RELIC_SET_MAP[s].name[zh ? 0 : 1]}`).join('  '),
+        13,
+        '#ffd166',
+      ).setOrigin(1, 0);
   }
 
   create(): void {
@@ -87,6 +136,9 @@ export class HudScene extends Phaser.Scene {
     pause.on('pointerdown', () => {
       controls.pausePressed = true;
     });
+
+    // C4：遗物图标（右上角，悬停 / 点按显示说明）
+    this.drawRelics(W);
 
     // 技能按钮（L2：大小可调；「摇杆在右」时按钮放到左下角）
     const sk = run.char.skill;
