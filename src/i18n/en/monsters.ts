@@ -143,7 +143,7 @@ export const EN_AFFIXES: AffixesEn = {
   shielded: { name: 'Shielded', desc: 'Gains Barrier for 3s every 8s' },
   explosive: { name: 'Explosive', desc: 'Explodes on death' },
   vampiric: { name: 'Vampiric', desc: 'Heals when dealing damage' },
-  thorny: { name: 'Thorny', desc: 'Reflects 20% of melee damage' },
+  thorny: { name: 'Thorny', desc: 'Melee hits reflect 5% of damage (reduced by armor; at most 2% Max HP per hit, 8% per second)' },
   commander: { name: 'Commander', desc: 'Nearby monsters gain Haste' },
   giant: { name: 'Giant', desc: '+60% HP and a bigger body' },
   brutal: { name: 'Brutal', desc: '+40% damage' },

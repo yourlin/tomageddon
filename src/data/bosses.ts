@@ -64,7 +64,7 @@ export const AFFIXES: Record<AffixId, AffixDef> = {
   shielded: { id: 'shielded', name: '护盾', color: 0x4cc9f0, desc: '每 8 秒获得 3 秒屏障' },
   explosive: { id: 'explosive', name: '爆裂', color: 0xff7b00, desc: '死亡时爆炸' },
   vampiric: { id: 'vampiric', name: '吸血', color: 0x9d0208, desc: '造成伤害时回复生命' },
-  thorny: { id: 'thorny', name: '荆棘', color: 0x6a994e, desc: '反弹 20% 近战伤害' },
+  thorny: { id: 'thorny', name: '荆棘', color: 0x6a994e, desc: '近战命中时反弹 5% 伤害（经护甲减免，单次最多 2%、每秒最多 8% 最大生命）' },
   commander: { id: 'commander', name: '统帅', color: 0xffd166, desc: '周围怪物获得急速' },
   giant: { id: 'giant', name: '巨大', color: 0x8d6e63, desc: '生命 +60%，体型变大' },
   brutal: { id: 'brutal', name: '残暴', color: 0xe63946, desc: '伤害 +40%' },

@@ -115,6 +115,19 @@ export function armorMultiplier(armor: number): number {
   return armor >= 0 ? 15 / (15 + armor) : (15 - armor) / 15;
 }
 
+/**
+ * 「荆棘」词缀反伤：按本次近战实际造成的伤害（不计溢出）反弹 pct，经护甲减免；
+ * 单次最多 hitCap × 最大生命，每秒累计最多 secCap × 最大生命——高伤害近战构筑不会被自己的伤害秒杀。
+ */
+export const THORNY = { pct: 0.05, hitCap: 0.02, secCap: 0.08 } as const;
+/** 返回本次反伤（已封顶）；used = 本秒已承受的荆棘反伤 */
+export function thornyReflect(dealt: number, maxHp: number, armor: number, used: number): number {
+  if (dealt <= 0 || maxHp <= 0) return 0;
+  const raw = dealt * THORNY.pct * armorMultiplier(armor);
+  const capped = Math.min(raw, maxHp * THORNY.hitCap, Math.max(0, maxHp * THORNY.secCap - used));
+  return Math.max(0, capped);
+}
+
 /** 攻速换算为冷却倍率 */
 export function attackSpeedMultiplier(as: number): number {
   return as >= 0 ? 1 / (1 + as / 100) : 1 + -as / 100;

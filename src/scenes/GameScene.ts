@@ -16,6 +16,7 @@ import {
   chapterScale,
   regenPerSecond,
   explodeSizeMultiplier,
+  thornyReflect,
 } from '../data/balance';
 import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
@@ -202,6 +203,8 @@ export class GameScene extends Phaser.Scene {
   /** H1「宝箱怪潮」：宝箱掉率倍数与额外上限 */
   eventCrateMult = 1;
   eventCrateCap = 0;
+  /** 荆棘词缀反伤的每秒累计窗口 */
+  private thornyWin = { t: -99999, used: 0 };
   /** H5：本波小任务 */
   readonly waveQuests = new WaveQuestTracker();
   /** F7：上次说台词的时间（秒，场景时钟） */
@@ -224,6 +227,7 @@ export class GameScene extends Phaser.Scene {
     this.enemyBullets = [];
     this.noisy = false;
     this.dangerRing = null;
+    this.thornyWin = { t: -99999, used: 0 };
     this.pickups = [];
     this.hazards = [];
     this.marks = [];
@@ -1496,7 +1500,16 @@ export class GameScene extends Phaser.Scene {
     for (const st of sp.onHit) e.status.apply(st, statusScale);
     this.applyPlayerStatus(sp.onHitSelf);
     // 荆棘词缀反伤
-    if (info.cls === 'melee' && e.affixes.includes('thorny')) this.hurtDirect(Math.max(1, dmg * 0.05), '#6a994e');
+    // 按实际伤害、经护甲、单次与每秒封顶；受击无敌期间不反伤（见 balance.thornyReflect）
+    if (info.cls === 'melee' && e.affixes.includes('thorny') && this.iframes <= 0) {
+      const now = this.time.now;
+      if (now - this.thornyWin.t >= 1000 || now < this.thornyWin.t) this.thornyWin = { t: now, used: 0 };
+      const r = thornyReflect(Math.min(dmg, e.hp), s.maxHp, s.armor, this.thornyWin.used);
+      if (r > 0) {
+        this.thornyWin.used += r;
+        this.hurtDirect(r, '#6a994e');
+      }
+    }
     // 吸血（参考土豆兄弟）：每次命中按吸血率概率回 1 点；吸到后 lifeStealTickCd 秒内不能再吸，
     // 即每秒最多回复 1 / lifeStealTickCd 点。吸血率本身不设上限，群体伤害也不打折（触发冷却已足够限制）。
     const ls = (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult();
