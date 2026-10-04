@@ -4,6 +4,7 @@ import type { StatusId } from '../data/statuses';
 import Phaser from 'phaser';
 import type { EnemyDef } from '../data/enemies';
 import { AFFIXES, type AffixId, type BossDef, type Pattern } from '../data/bosses';
+import { drawAffixDeco } from './AffixDeco';
 import type { StatusApply } from '../data/statuses';
 import type { GameScene } from '../scenes/GameScene';
 import { StatusSet } from '../systems/Status';
@@ -39,6 +40,8 @@ export class Enemy {
   rig: Rig | null = null;
   rigKey = '';
   ring: Phaser.GameObjects.Image | null = null;
+  /** 精英词缀装饰（每帧重画） */
+  deco: Phaser.GameObjects.Graphics | null = null;
   affixes: AffixId[] = [];
   status = Object.assign(new StatusSet(), { onApplied: (id: StatusId) => bump(`inflict:${id}`) });
   hp = 1;
@@ -178,12 +181,16 @@ export class Enemy {
       this.ring = g.add.image(this.x, this.y, 'fx_ring').setTint(col).setAlpha(0.55).setDepth(2);
       this.ring.setScale((this.radius * 2.6) / 128, (this.radius * 1.3) / 128);
     }
+    this.deco?.destroy();
+    this.deco = this.affixes.length ? g.add.graphics() : null;
   }
 
   kill(g: GameScene, animate = true): void {
     this.alive = false;
     this.ring?.destroy();
     this.ring = null;
+    this.deco?.destroy();
+    this.deco = null;
     const rig = this.rig;
     const key = this.rigKey;
     this.rig = null;
@@ -269,6 +276,10 @@ export class Enemy {
     rig.setPosition(this.x, this.y).setDepth(this.y);
     rig.tick(dt, moveAmt, dx, nx, ny);
     if (this.ring) this.ring.setPosition(this.x, this.y + this.radius * 0.85).setRotation(this.ring.rotation + dt * 1.5);
+    if (this.deco) {
+      this.deco.clear().setDepth(this.y + 0.5);
+      drawAffixDeco(this.deco, this.affixes, this.x, this.y - this.radius * 0.2, this.radius, g.time.now / 1000);
+    }
     if (st.version !== this.tintVer) {
       this.tintVer = st.version;
       rig.setStatusTint(

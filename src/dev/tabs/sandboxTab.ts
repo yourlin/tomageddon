@@ -1,6 +1,7 @@
 // 沙盒页：慢放 / 单步、镜头、点击放置与传送、玩家锁定、地形机制开关、真实刷怪、
 // 快照与回放、刷怪剧本、碰撞框与性能叠加层
 import { h, btn, check, select, num, table, fmt } from '../dom';
+import { lineup, reelWall, type LineupKind } from '../gallery';
 import type { DevCtx } from '../ctx';
 import { TERRAIN_MECHS, Terrain } from '../../systems/Terrain';
 import { CHAPTERS } from '../../data/chapters';
@@ -52,6 +53,39 @@ export function restoreSnapshot(ctx: DevCtx, s: Snapshot | undefined = loadSnaps
 export function renderSandbox(ctx: DevCtx): HTMLElement {
   const sb = ctx.sb;
   const root = h('div');
+
+  // ---------------- 阵列预览：一屏看多个 ----------------
+  const fq = h('input', { placeholder: '筛选（id / 名字 / 类型，可留空）', style: 'width:220px' }) as HTMLInputElement;
+  const go = (kind: LineupKind) => {
+    const fail = lineup(ctx, kind, ctx.ui.mSel && !ctx.ui.mSel.startsWith('b:') ? ctx.ui.mSel : undefined);
+    ctx.toast(fail ? `已摆出，但有 ${fail} 个因敌人池已满未生成` : '已摆出阵列（锁定、不攻击、不死）');
+    ctx.rerender();
+  };
+  root.append(
+    h('h3', null, '阵列预览（一屏看多个）'),
+    h(
+      'div',
+      { class: 'row' },
+      btn('小怪阵列', () => go('minions'), '', '每种小怪一只，网格排列'),
+      btn('精英 / Boss 阵列', () => go('bosses')),
+      btn('词缀阵列', () => go('affixes'), '', '用怪物页当前选中的小怪（未选则第一只），每种词缀一只，便于看词缀装饰'),
+      btn('清空', () => (sb.clear(), (sb.lockPlayer = false), ctx.rerender())),
+    ),
+    h(
+      'div',
+      { class: 'row' },
+      fq,
+      btn(
+        '技能动画墙',
+        () => void reelWall(ctx, 'skills', fq.value.trim()),
+        'pri',
+        '逐个角色放技能并录制，最后同屏循环播放（每个约 2 秒）',
+      ),
+      btn('武器动画墙', () => void reelWall(ctx, 'weapons', fq.value.trim()), '', '每把武器（T4）单独开火录制'),
+      btn('超武动画墙', () => void reelWall(ctx, 'evolved', fq.value.trim())),
+    ),
+    h('div', { class: 'muted' }, '动画墙会临时切换构筑，录完自动恢复；录制过程中可按 Esc 中止。'),
+  );
 
   // ---------------- 时间 ----------------
   root.append(
