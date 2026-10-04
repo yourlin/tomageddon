@@ -2,6 +2,7 @@
 import type { StatMods } from './stats';
 import type { StatusApply } from './statuses';
 import { GENERATED_ITEMS } from './itemGen';
+import { EXTRA_ITEMS } from './gearExtra';
 
 export interface ItemSpecial {
   explodeOnKill?: { chance: number; dmg: number }; // 击杀爆炸
@@ -213,6 +214,8 @@ export const ITEMS: ItemDef[] = [
 ];
 
 /** 手工设计的道具 + 系列化生成的道具 */
+// 1.4.0 G7：新道具 30 个
+ITEMS.push(...EXTRA_ITEMS);
 export const ALL_ITEMS: ItemDef[] = [...ITEMS, ...GENERATED_ITEMS];
 
 export const ITEM_MAP: Record<string, ItemDef> = Object.fromEntries(ALL_ITEMS.map((i) => [i.id, i]));

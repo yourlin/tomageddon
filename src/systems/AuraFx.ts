@@ -1,5 +1,6 @@
 // 光环武器的动态效果：呼吸的底层光晕 + 反向旋转的双层环 + 环绕粒子 + 每次结算时的冲击波
 import Phaser from 'phaser';
+import { EXTRA_AURA_LOOK } from '../data/gearExtra';
 
 export type AuraStyle = 'petal' | 'wind' | 'ember' | 'blood' | 'spark';
 
@@ -197,3 +198,6 @@ export class AuraFx {
     for (const m of this.motes) m.img.destroy();
   }
 }
+
+// 1.4.0 G5：新光环武器的外观
+Object.assign(AURA_LOOK, EXTRA_AURA_LOOK);

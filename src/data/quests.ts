@@ -280,6 +280,37 @@ export const QUESTS: QuestDef[] = [
   C('wasabi', 1, 'charKills:wasabi', 2000, ['引信', 'Fuse'], totalKills(2000)),
   R('wasabi', 2, { win: true, minKills: 2500 }, ['冲鼻风暴', 'Nose Burner'], winKills(2500)),
   R('wasabi', 3, { win: true, minDanger: 10 }, ['末日引爆', 'Doomsday Blast'], winDanger(10)),
+  // ---------- 1.4.0 新角色 ----------
+  // 黄豆军师：技能召唤
+  C('soybean', 1, 'charLevel:soybean', 15, ['排兵布阵', 'Formation'], reachLevel(15)),
+  C('soybean', 2, 'charElite:soybean', 10, ['以多胜少', 'Strength in Numbers'], totalElites(10)),
+  R('soybean', 3, { win: true, minDanger: 5 }, ['运筹帷幄', 'Master Strategist'], winDanger(5)),
+  // 菠萝蜜卫士：反伤
+  C('jackfruit', 1, 'charWave:jackfruit', 10, ['满身是刺', 'All Spikes'], reachWave(10)),
+  C('jackfruit', 2, 'charKills:jackfruit', 3000, ['刺猬战术', 'Hedgehog Tactics'], totalKills(3000)),
+  R('jackfruit', 3, { endless: true, minWave: 30 }, ['坚不可摧', 'Impregnable'], endlessWave(30)),
+  // 石榴炮手：全弹幕
+  C('pomegranate', 1, 'charKills:pomegranate', 1500, ['籽弹上膛', 'Locked and Loaded'], totalKills(1500)),
+  R('pomegranate', 2, { win: true, minKills: 1500 }, ['弹幕风暴', 'Bullet Storm'], winKills(1500)),
+  R('pomegranate', 3, { win: true, minDanger: 6 }, ['万籽齐发', 'Full Barrage'], winDanger(6)),
+  // 芋头术士：零武器
+  C('taro', 1, 'charWave:taro', 10, ['结界初成', 'First Ward'], reachWave(10)),
+  C('taro', 2, 'charClear:taro:2', 1, ['芋香四溢', 'Taro Aroma'], clearChapter(2)),
+  R(
+    'taro',
+    3,
+    { win: true, minDanger: 5, maxWeapons: 1 },
+    ['无招胜有招', 'The Empty Hand'],
+    ['只持有 1 把武器在危机等级 5 或以上通关', 'Win on Danger 5 or higher holding only 1 weapon'],
+  ),
+  // 卷心菜老兵：不屈复活
+  C('cabbage', 1, 'charWave:cabbage', 12, ['老兵不死', 'Old Soldiers Never Die'], reachWave(12)),
+  R('cabbage', 2, { win: true, perfectWaves: 5 }, ['层层设防', 'Layered Defense'], winPerfect(5)),
+  R('cabbage', 3, { endless: true, minWave: 40 }, ['百折不挠', 'Indomitable'], endlessWave(40)),
+  // 黑莓女巫：诅咒腐蚀
+  C('blackberry', 1, 'charLevel:blackberry', 15, ['熬制药水', 'Brewing'], reachLevel(15)),
+  C('blackberry', 2, 'charClear:blackberry:3', 1, ['冰封诅咒', 'Frozen Hex'], clearChapter(3)),
+  R('blackberry', 3, { win: true, minDanger: 7 }, ['大巫师', 'Archwitch'], winDanger(7)),
 ];
 
 export const QUEST_MAP: Record<string, QuestDef> = Object.fromEntries(QUESTS.map((q) => [q.id, q]));

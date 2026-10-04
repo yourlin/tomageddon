@@ -1,5 +1,6 @@
 // 道具英文覆盖表：经典道具（键为道具 id）+ 系列道具（键为系列 id，10 个名字顺序与中文一致）
 import type { ItemsEn, SeriesEn } from '../types';
+import { EXTRA_ITEMS_EN } from '../../data/gearExtra';
 
 export const EN_ITEMS: ItemsEn = {
   big_magnet: { name: 'Power Magnet' },
@@ -819,3 +820,6 @@ export const EN_SERIES: SeriesEn = {
     ],
   },
 };
+
+// 1.4.0 G5 / G7：新武器、超武与道具
+Object.assign(EN_ITEMS, EXTRA_ITEMS_EN);

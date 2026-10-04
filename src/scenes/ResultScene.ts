@@ -16,6 +16,7 @@ import { tx } from '../i18n';
 import { checkAchievements, setInRun, missingRequirement, pointsBalance, charCost } from '../systems/Achievements';
 import { showSharePoster } from '../systems/SharePoster';
 import { settleDanger, type DangerResult } from '../systems/Danger';
+import { settleProgress, type ProgressResult } from '../systems/Progress';
 
 export class ResultScene extends Phaser.Scene {
   private record!: RunRecord;
@@ -24,7 +25,7 @@ export class ResultScene extends Phaser.Scene {
     super('Result');
   }
 
-  create(data: { win: boolean; counted?: boolean; recorded?: boolean; danger?: DangerResult }): void {
+  create(data: { win: boolean; counted?: boolean; recorded?: boolean; danger?: DangerResult; progress?: ProgressResult }): void {
     autoRelayout(this, data);
     const W = this.scale.width,
       H = this.scale.height;
@@ -59,6 +60,7 @@ export class ResultScene extends Phaser.Scene {
       data.recorded = true;
       this.record = recordHistory(!!data.win);
       data.danger = settleDanger(!!data.win, this.record.sec);
+      data.progress = settleProgress(!!data.win);
       persist();
     } else this.record = save.history[0];
     const dr = data.danger;
@@ -174,6 +176,23 @@ export class ResultScene extends Phaser.Scene {
         text(this, W / 2, y, parts.join(' · '), 21, '#ff9f1c').setOrigin(0.5);
         y += 34;
       }
+    }
+    // F1–F3：完成的角色任务、觉醒、熟练度
+    const pr = data.progress;
+    if (pr) {
+      const parts: string[] = [];
+      for (const q of pr.quests) parts.push(tx(`✔ 任务「${q.name[0]}」`, `✔ Quest "${q.name[1]}"`));
+      if (pr.awakened) parts.push(tx(`✨ ${run.char.name} 觉醒了！`, `✨ ${run.char.name} awakened!`));
+      parts.push(
+        pr.masteryAfter > pr.masteryBefore
+          ? tx(`熟练度升到 ${pr.masteryAfter} 级`, `Mastery up to Lv ${pr.masteryAfter}`)
+          : tx(`熟练度经验 +${pr.masteryXp}`, `Mastery XP +${pr.masteryXp}`),
+      );
+      text(this, W / 2, y, parts.join(' · '), 18, '#9bf6ff', {
+        wordWrap: { width: 740, useAdvancedWrap: true },
+        align: 'center',
+      }).setOrigin(0.5, 0);
+      y += 30;
     }
     // 本局获得的成就点；有买得起的角色时提示去选角界面购买
     text(

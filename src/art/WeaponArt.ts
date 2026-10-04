@@ -1,5 +1,6 @@
 // 武器手持图（128×64，手柄在左、朝右）
 import { type Ctx, rgb, darken, lighten, toon, ellipsePath, roundRectPath, starPath, glow, OUTLINE } from './Painter';
+import { EXTRA_WEAPON_ART, EXTRA_EVOLVED_ART } from '../data/gearExtra';
 
 const handle = (ctx: Ctx, x0: number, x1: number, y: number, h: number, c = 0x8d5b3a) => {
   roundRectPath(ctx, x0, y - h / 2, x1 - x0, h, h / 2);
@@ -43,6 +44,19 @@ const EVOLVED_ART: Record<string, [string, number]> = {
   anise_storm: ['star_anise_shuriken', 0xb5179e],
 };
 
+/** 1.4.0 新武器：基于已有武器的造型重新染色（不带超武的金光与闪星） */
+function drawTinted(ctx: Ctx, base: string, tint: number): void {
+  const c = document.createElement('canvas');
+  c.width = 128;
+  c.height = 64;
+  const o = c.getContext('2d')!;
+  drawWeapon(o, base);
+  o.globalCompositeOperation = 'source-atop';
+  o.fillStyle = rgb(tint, 0.45);
+  o.fillRect(0, 0, 128, 64);
+  ctx.drawImage(c, 0, 0);
+}
+
 function drawEvolved(ctx: Ctx, base: string, tint: number): void {
   const c = document.createElement('canvas');
   c.width = 128;
@@ -76,8 +90,10 @@ function drawEvolved(ctx: Ctx, base: string, tint: number): void {
 }
 
 export function drawWeapon(ctx: Ctx, id: string): void {
-  const evo = EVOLVED_ART[id];
+  const evo = EVOLVED_ART[id] ?? EXTRA_EVOLVED_ART[id];
   if (evo) return drawEvolved(ctx, evo[0], evo[1]);
+  const ex = EXTRA_WEAPON_ART[id];
+  if (ex) return drawTinted(ctx, ex[0], ex[1]);
   const cy = 32;
   switch (id) {
     case 'fork':

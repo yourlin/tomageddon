@@ -1,4 +1,5 @@
 import type { CharactersEn } from '../types';
+import { EXTRA_CHARACTERS_EN } from '../../data/charactersExtra';
 
 export const EN_CHARACTERS: CharactersEn = {
   tomato: {
@@ -269,3 +270,6 @@ export const EN_CHARACTERS: CharactersEn = {
     skill: { name: 'Wasabi Nuke', desc: 'Launch a wasabi nuke at the enemy horde for a massive, burning explosion.' },
   },
 };
+
+// 1.4.0 F5：新角色
+Object.assign(EN_CHARACTERS, EXTRA_CHARACTERS_EN);

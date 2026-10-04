@@ -18,6 +18,8 @@ import { ensureAffixes, type WeaponAffix } from './WeaponMods';
 import { dangerLevels, MAX_DANGER, type RuleDelta } from '../data/danger';
 import { storage } from '../platform';
 import { relicTotals, type RelicTotals } from '../data/relics';
+import { AWAKENINGS } from '../data/awakenings';
+import { ITEM_COMBOS, type ItemCombo } from '../data/gearExtra';
 
 /** 汇总后的规则：倍率（1 = 不变）与计数 */
 export interface RunExt {
@@ -29,6 +31,8 @@ export interface RunExt {
   awakened: boolean;
   pendingRelics?: number;
   merchant?: MerchantOffer | null;
+  perfectWaves?: number;
+  masteryDmg?: number;
 }
 /** H2：神秘商人（某次商店随机出现，卖一件交易 / 诅咒遗物） */
 export interface MerchantOffer {
@@ -158,6 +162,10 @@ export class RunState {
   pendingRelics = 0;
   /** H2：本次商店的神秘商人 */
   merchant: MerchantOffer | null = null;
+  /** 本局无伤完成的波次（角色任务用） */
+  perfectWaves = 0;
+  /** F3：熟练度专属天赋的全伤害 %（开局时由 Progress 写入） */
+  masteryDmg = 0;
   private relicCache: RelicTotals | null = null;
   /** 当前持有遗物（含已集齐套装）的汇总效果 */
   get relicFx(): RelicTotals {
@@ -173,6 +181,8 @@ export class RunState {
       awakened: this.awakened,
       pendingRelics: this.pendingRelics,
       merchant: this.merchant,
+      perfectWaves: this.perfectWaves,
+      masteryDmg: this.masteryDmg,
     };
   }
   loadExt(e: RunExt | null): void {
@@ -184,6 +194,8 @@ export class RunState {
     this.awakened = !!e?.awakened;
     this.pendingRelics = e?.pendingRelics ?? 0;
     this.merchant = e?.merchant ?? null;
+    this.perfectWaves = e?.perfectWaves ?? 0;
+    this.masteryDmg = e?.masteryDmg ?? 0;
     this.extraRules = {};
     runHooks.onLoad?.();
   }
@@ -243,6 +255,11 @@ export class RunState {
   /** 开始一局挑战 */
   startChallenge(c: ChallengeDef): void {
     this.start(c.charId, c.chapterId, c.endless, 0);
+    // 挑战模式人人公平：撤销熟练度开局奖励与觉醒
+    this.items = {};
+    this.seeds = treeTotals().startSeeds;
+    this.masteryDmg = 0;
+    this.awakened = false;
     this.challenge = c;
     const r = this.rand('setup');
     const ep = shuffleWith([...elitePool(c.chapterId)], r);
@@ -288,6 +305,9 @@ export class RunState {
     this.relics = [];
     this.pendingRelics = 0;
     this.merchant = null;
+    this.perfectWaves = 0;
+    this.masteryDmg = 0;
+    this.awakened = false;
     this.endlessRevived = false;
     this.events = {};
     this.hardRoute = false;
@@ -356,6 +376,11 @@ export class RunState {
       if (this.mod('glass_cannon')) s.maxHp *= 0.6;
       if (this.mod('vampire')) s.regen = Math.min(0, s.regen);
     }
+    // G7 道具组合：同时持有两件道具时额外加成（不随叠加数倍增）
+    for (const c of this.activeCombos()) addMods(s, c.bonus);
+    // F2 觉醒 / F3 熟练度专属天赋
+    if (this.awakened && AWAKENINGS[this.charId]?.mods) addMods(s, AWAKENINGS[this.charId].mods!);
+    s.damage += this.masteryDmg;
     // 遗物：属性与规则型效果（归零只清掉正值，负面效果保留）
     const rf = this.relicFx;
     for (const m of rf.mods) addMods(s, m);
@@ -436,12 +461,19 @@ export class RunState {
     for (const [x, r] of treeTotals().specials) apply(x, r);
     for (const [id, n] of Object.entries(this.items)) apply(ITEM_MAP[id].special, n);
     for (const x of this.relicFx.specials) apply(x, 1);
+    for (const c of this.activeCombos()) apply(c.special, 1);
+    if (this.awakened) apply(AWAKENINGS[this.charId]?.special, 1);
     sp.shopDiscount = Math.min(50, sp.shopDiscount);
     sp.doubleSeed = Math.min(40, sp.doubleSeed);
     sp.critDmg = Math.min(BALANCE.critDmgCap, sp.critDmg);
     sp.lightningOnHit = Math.min(BALANCE.lightningCap, sp.lightningOnHit);
     this.specialCache = sp;
     return sp;
+  }
+
+  /** 当前生效的道具组合（G7） */
+  activeCombos(): ItemCombo[] {
+    return ITEM_COMBOS.filter((c) => (this.items[c.item] ?? 0) > 0 && (this.items[c.needs] ?? 0) > 0);
   }
 
   get maxWeapons(): number {

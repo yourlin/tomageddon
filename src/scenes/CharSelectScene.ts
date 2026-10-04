@@ -25,6 +25,20 @@ import { tx, lang } from '../i18n';
 import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
 import { dangerReward } from '../data/balance';
 import { chapterAvailable, chapterCleared, chapterVisible } from '../systems/Danger';
+import {
+  questDone,
+  questProgress,
+  awakenUnlocked,
+  awakenOn,
+  awakeningOf,
+  masteryLabel,
+  skinOwned,
+  skinActive,
+  buySkin,
+  toggleSkin,
+} from '../systems/Progress';
+import { SKIN_OF, skinName } from '../data/skins';
+import { questsOf } from '../data/quests';
 import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { dangerUnlocked, dangerBest, hasGoldFrame } from '../systems/Danger';
 
@@ -270,7 +284,85 @@ export class CharSelectScene extends Phaser.Scene {
       if (db > 0) stats.push(tx(`最高危机 ${db}`, `Top Danger ${db}`));
       const eb = save.meta.endlessBest[`${c.id}_${this.chapter}`];
       if (eb) stats.push(tx(`无尽最高 ${eb} 波`, `Endless best ${eb}`));
-      if (stats.length) add(20, y, stats.join(' · '), 15, COLORS.textDim);
+      if (stats.length) y += add(20, y, stats.join(' · '), 15, COLORS.textDim) + 4;
+      // F4：熟练度、专属任务、觉醒（点击切换开关）
+      y += add(20, y, masteryLabel(c.id), 15, '#9bf6ff') + 2;
+      const qs = questsOf(c.id);
+      if (qs.length)
+        y +=
+          add(
+            20,
+            y,
+            qs
+              .map((q) => {
+                const done = questDone(q);
+                const prog = q.kind === 'counter' && !done ? ` ${questProgress(q)}/${q.target}` : '';
+                return `${done ? '✔' : '○'} ${q.name[lang === 'en' ? 1 : 0]}：${q.desc[lang === 'en' ? 1 : 0]}${prog}`;
+              })
+              .join('\n'),
+            14,
+            '#fff4ea',
+            pw - 40,
+          ) + 2;
+      const aw = awakeningOf(c.id);
+      if (aw) {
+        const unlockedAw = awakenUnlocked(c.id);
+        const on = awakenOn(c.id);
+        const t = text(
+          this,
+          20,
+          y,
+          (unlockedAw ? (on ? '✨ ' : '◌ ') : '🔒 ') +
+            tx(`觉醒【${aw.name[0]}】${aw.desc[0]}`, `Awakening [${aw.name[1]}] ${aw.desc[1]}`) +
+            (unlockedAw
+              ? tx(on ? '（已开启，点击关闭）' : '（已关闭，点击开启）', on ? ' (on — click to turn off)' : ' (off — click to turn on)')
+              : tx('（完成 3 个任务解锁）', ' (complete 3 quests)')),
+          14,
+          unlockedAw ? (on ? '#ffd166' : COLORS.textDim) : '#888888',
+          { wordWrap: { width: pw - 40, useAdvancedWrap: true } },
+        );
+        if (unlockedAw)
+          t.setInteractive({ useHandCursor: true }).on('pointerup', () => {
+            save.meta.awaken[c.id] = !on;
+            persist();
+            this.refresh();
+          });
+        d.add(t);
+        y += t.height + 2;
+      }
+      // F6：皮肤（金番茄购买 / 熟练度 10 级免费），点击购买或切换
+      const sk = SKIN_OF[c.id];
+      if (sk && unlocked) {
+        const owned = skinOwned(c.id);
+        const active = skinActive(c.id);
+        const label = owned
+          ? tx(
+              `🎨 皮肤「${skinName(sk, false)}」${active ? '（使用中，点击换回）' : '（点击换上）'}`,
+              `🎨 Skin "${skinName(sk, true)}" ${active ? '(equipped — click to remove)' : '(click to equip)'}`,
+            )
+          : tx(
+              `🎨 皮肤「${skinName(sk, false)}」 🥇${sk.price}（拥有 🥇${save.meta.gold}，熟练度 10 级免费）`,
+              `🎨 Skin "${skinName(sk, true)}" 🥇${sk.price} (you have 🥇${save.meta.gold}; free at Mastery 10)`,
+            );
+        const st = text(
+          this,
+          20,
+          y,
+          label,
+          14,
+          owned ? (active ? '#ffd166' : '#fff4ea') : save.meta.gold >= sk.price ? '#52ff8a' : '#888888',
+          {
+            wordWrap: { width: pw - 40, useAdvancedWrap: true },
+          },
+        ).setInteractive({ useHandCursor: true });
+        st.on('pointerup', () => {
+          if (owned) toggleSkin(c.id);
+          else if (!buySkin(c.id)) return toast(this, tx('金番茄不够', 'Not enough Golden Tomatoes'), '#ff6b6b');
+          persist();
+          this.refresh();
+        });
+        d.add(st);
+      }
     }
     const ch = CHAPTERS[this.chapter - 1];
     const chUnlocked = chapterAvailable(this.chapter);

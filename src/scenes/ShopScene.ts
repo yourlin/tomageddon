@@ -33,6 +33,7 @@ import { GameScene } from './GameScene';
 import { rollRelics, grantRelic } from '../systems/Relics';
 import { RELIC_MAP, RELIC_KIND_INFO, describeRelic, describeRule } from '../data/relics';
 import { routeChoiceAvailable, HARD_ROUTE_RULE } from '../systems/RunEvents';
+import { ITEM_COMBOS, describeCombo } from '../data/gearExtra';
 import { tagName } from '../i18n/apply';
 import { checkAchievements, setInRun } from '../systems/Achievements';
 import { freeFirstReroll } from '../systems/Talents';
@@ -310,6 +311,12 @@ export class ShopScene extends Phaser.Scene {
         name = it.name;
         icon = itemIconKey(this, it);
         lines = describeItem(it);
+        // G7：与这件道具有关的组合（已持有另一件时标 ✓）
+        for (const c of ITEM_COMBOS.filter((x) => x.item === it.id || x.needs === it.id)) {
+          const other = c.item === it.id ? c.needs : c.item;
+          const [zh, en] = describeCombo(c, (id) => ITEM_MAP[id]?.name ?? id);
+          lines.push(`${(run.items[other] ?? 0) > 0 ? '✓ ' : '⚭ '}${tx(zh, en)}`);
+        }
         // 进化催化剂：持有对应武器时提示
         const evoFor = EVOLUTIONS.filter((e) => e.item === it.id && run.weapons.some((w) => w.id === e.from));
         if (evoFor.length)

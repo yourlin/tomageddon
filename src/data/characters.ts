@@ -4,6 +4,7 @@ import type { ItemSpecial } from './items';
 import type { StatusApply } from './statuses';
 import type { RigSpec } from '../art/RigSpec';
 import { skillCooldown } from './skills';
+import { EXTRA_CHARACTERS } from './charactersExtra';
 
 export type SkillType =
   'nova' | 'dash' | 'buff' | 'ring' | 'heal' | 'strikes' | 'ghost' | 'clone' | 'barrage' | 'missile' | 'screen' | 'field' | 'curse';
@@ -1286,5 +1287,7 @@ export const CHARACTERS: CharacterDef[] = [
 
 // 大招冷却按威力自动计算
 for (const c of CHARACTERS) c.skill.cd = skillCooldown(c.skill);
+// 1.4.0 F5：6 名新角色（技能冷却已在 charactersExtra 里算好）
+CHARACTERS.push(...EXTRA_CHARACTERS);
 
 export const CHARACTER_MAP: Record<string, CharacterDef> = Object.fromEntries(CHARACTERS.map((c) => [c.id, c]));

@@ -1,4 +1,5 @@
 // 武器数据。每把武器 4 个品质（T1~T4），两把同名同品质可在商店合成升一级。
+import { EXTRA_WEAPONS } from './gearExtra';
 export type WeaponClass = 'melee' | 'ranged' | 'elemental';
 export type WeaponKind =
   | 'thrust' // 近战直刺：沿直线伸出
@@ -854,6 +855,8 @@ export const WEAPONS: WeaponDef[] = [
   },
 ];
 
+// 1.4.0 G5：新武器 12 把
+WEAPONS.push(...EXTRA_WEAPONS);
 export const WEAPON_MAP: Record<string, WeaponDef> = Object.fromEntries(WEAPONS.map((w) => [w.id, w]));
 
 /** 武器套装：持有 N 把带某标签的武器时获得加成 */

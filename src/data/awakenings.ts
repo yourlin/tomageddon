@@ -282,6 +282,52 @@ const LIST: AwakeningDef[] = [
     mods: { explodeSize: 40 },
     special: { onKillSelf: [S('rage', 3, 1)] },
   },
+  // ---------- 1.4.0 新角色 ----------
+  {
+    charId: 'soybean',
+    name: ['豆兵大阵', 'Bean Legion'],
+    desc: ['每 10 秒获得 1 层急速（3 秒）；+25% 技能伤害', 'Every 10s, gain 1 Haste stack (3s); +25% skill damage'],
+    mods: { skillDmg: 25 },
+    special: { periodicSelf: { every: 10, status: [S('haste', 3, 1)] } },
+  },
+  {
+    charId: 'jackfruit',
+    name: ['震慑之刺', 'Daunting Spikes'],
+    desc: [
+      '每 2 秒使周围 120 范围内敌人虚弱 1 层（2 秒）；+3 护甲',
+      'Every 2s, Weaken enemies within 120 range for 1 stack (2s); +3 armor',
+    ],
+    mods: { armor: 3 },
+    special: { aura: { radius: 120, every: 2, status: [S('weaken', 2, 1)] } },
+  },
+  {
+    charId: 'pomegranate',
+    name: ['爆浆石榴', 'Bursting Seeds'],
+    desc: ['击杀敌人 15% 概率爆炸（18 点伤害）；+2 远程伤害', 'Kills have a 15% chance to explode (18 damage); +2 ranged damage'],
+    mods: { ranged: 2 },
+    special: { explodeOnKill: { chance: 15, dmg: 18 } },
+  },
+  {
+    charId: 'taro',
+    name: ['紫芋烈焰', 'Violet Blaze'],
+    desc: ['命中 15% 概率灼烧；+20% 光环范围', '15% chance to Burn on hit; +20% aura size'],
+    mods: { auraSize: 20 },
+    special: { burnChance: 15 },
+  },
+  {
+    charId: 'cabbage',
+    name: ['千层护甲', 'Thousand Layers'],
+    desc: ['每 10 秒获得泡泡护盾；+10 最大生命', 'Gain a bubble shield every 10s; +10 max HP'],
+    mods: { maxHp: 10 },
+    special: { shield: 10 },
+  },
+  {
+    charId: 'blackberry',
+    name: ['黑暗仪式', 'Dark Ritual'],
+    desc: ['持续伤害 +30%；+10 幸运', 'Damage over time +30%; +10 luck'],
+    mods: { luck: 10 },
+    special: { statusDmg: 30 },
+  },
 ];
 
 export const AWAKENINGS: Record<string, AwakeningDef> = Object.fromEntries(LIST.map((a) => [a.charId, a]));

@@ -19,6 +19,7 @@ import { tx, lang } from '../i18n';
 import { save } from '../systems/Save';
 import { RELICS, RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic } from '../data/relics';
 import { FONT } from '../systems/Textures';
+import { ITEM_COMBOS, describeCombo } from '../data/gearExtra';
 
 const PATTERN_NAME: Record<string, string> = {
   ring: tx('环形弹', 'Ring'),
@@ -162,6 +163,10 @@ export class CodexScene extends Phaser.Scene {
               lines: [
                 `${RARITY[it.rarity].name}${it.series ? ' · ' + tx(it.series + '系列', it.series + ' series') : ''}`,
                 ...describeItem(it),
+                ...ITEM_COMBOS.filter((x) => x.item === it.id || x.needs === it.id).map((c) => {
+                  const [zh, en] = describeCombo(c, (id) => ITEM_MAP[id]?.name ?? id);
+                  return '⚭ ' + tx(zh, en);
+                }),
                 tx(`价格 ${it.price}${it.max ? ` · 上限 ${it.max}` : ''}`, `Price ${it.price}${it.max ? ` · max ${it.max}` : ''}`),
               ],
             },

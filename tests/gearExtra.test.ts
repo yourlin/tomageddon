@@ -25,11 +25,15 @@ import {
 } from '../src/data/gearExtra';
 
 const STAT_KEYS = new Set(Object.keys(BASE_STATS));
-const oldWeaponIds = new Set([...WEAPONS, ...EVOLVED_WEAPONS].map((w) => w.id));
-const oldItemIds = new Set(ALL_ITEMS.map((i) => i.id));
 const newWeaponIds = new Set(EXTRA_WEAPONS.map((w) => w.id));
 const newItemIds = new Set(EXTRA_ITEMS.map((i) => i.id));
 const evoIds = EXTRA_EVOLUTIONS_SPEC.map((e) => e.boost.id);
+// 1.4.0 接线后新内容已并入总表：「现有」= 总表去掉新增部分
+const oldWeaponIds = new Set(
+  [...WEAPONS, ...EVOLVED_WEAPONS].map((w) => w.id).filter((id) => !newWeaponIds.has(id) && !evoIds.includes(id)),
+);
+const oldItemIds = new Set(ALL_ITEMS.map((i) => i.id).filter((id) => !newItemIds.has(id)));
+const OLD_EVOLUTIONS = EVOLUTIONS.filter((e) => !evoIds.includes(e.to.id));
 /** 经典道具（手工 + 新增），进化只认这些 */
 const classicIds = new Set([...ITEMS.map((i) => i.id), ...newItemIds]);
 const allItemIds = new Set([...oldItemIds, ...newItemIds]);
@@ -56,6 +60,26 @@ describe('id 冲突', () => {
       expect(oldWeaponIds.has(id), id).toBe(false);
       expect(oldItemIds.has(id), id).toBe(false);
     }
+  });
+  it('新内容都已并入武器、超武、道具总表，且总表 id 无重复', () => {
+    for (const id of newWeaponIds)
+      expect(
+        WEAPONS.some((w) => w.id === id),
+        id,
+      ).toBe(true);
+    for (const id of evoIds)
+      expect(
+        EVOLVED_WEAPONS.some((w) => w.id === id),
+        id,
+      ).toBe(true);
+    for (const id of newItemIds)
+      expect(
+        ITEMS.some((i) => i.id === id),
+        id,
+      ).toBe(true);
+    const w = [...WEAPONS, ...EVOLVED_WEAPONS].map((x) => x.id);
+    expect(new Set(w).size).toBe(w.length);
+    expect(new Set(ALL_ITEMS.map((i) => i.id)).size).toBe(ALL_ITEMS.length);
   });
   it('道具 id 不以 _数字 结尾（否则会被当成系列道具解析）', () => {
     for (const id of newItemIds) expect(id).not.toMatch(/_\d+$/);
@@ -89,8 +113,8 @@ describe('新武器', () => {
 });
 
 describe('新进化', () => {
-  const oldFrom = new Set(EVOLUTIONS.map((e) => e.from));
-  const oldEvoItems = new Set(EVOLUTIONS.map((e) => e.item));
+  const oldFrom = new Set(OLD_EVOLUTIONS.map((e) => e.from));
+  const oldEvoItems = new Set(OLD_EVOLUTIONS.map((e) => e.item));
   it('from 不重复、不与现有 12 组重复，且武器存在（不能是超武）', () => {
     const froms = EXTRA_EVOLUTIONS_SPEC.map((e) => e.from);
     expect(new Set(froms).size).toBe(froms.length);

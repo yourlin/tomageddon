@@ -41,9 +41,9 @@ function bumpedKeys(): { exact: Set<string>; prefixes: string[] } {
 const hasNum = (text: string, n: number): boolean => new RegExp(`(?<![\\d.])${String(n).replace('.', '\\.')}(?![\\d.]|\\.\\d)`).test(text);
 
 describe('角色任务', () => {
-  it('共 99 个任务，每名角色恰好 3 个，id 唯一', () => {
-    expect(CHARACTERS.length).toBe(33);
-    expect(QUESTS.length).toBe(99);
+  it('共 117 个任务（33 名原有角色 + 6 名新角色），每名角色恰好 3 个，id 唯一', () => {
+    expect(CHARACTERS.length).toBe(39);
+    expect(QUESTS.length).toBe(117);
     expect(new Set(QUESTS.map((q) => q.id)).size).toBe(QUESTS.length);
     expect(Object.keys(QUEST_MAP).length).toBe(QUESTS.length);
     for (const c of CHARACTERS) expect(questsOf(c.id).length, c.id).toBe(3);
@@ -130,7 +130,7 @@ describe('角色任务', () => {
 });
 
 describe('角色觉醒', () => {
-  it('33 名角色的觉醒齐全，且没有多余条目', () => {
+  it('39 名角色的觉醒齐全，且没有多余条目', () => {
     expect(Object.keys(AWAKENINGS).sort()).toEqual(CHARACTERS.map((c) => c.id).sort());
     for (const [id, a] of Object.entries(AWAKENINGS)) expect(a.charId).toBe(id);
   });

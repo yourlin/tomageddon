@@ -1,6 +1,7 @@
 // 武器进化：T4 武器 + 指定的经典道具 → 在商店武器弹窗里进化为专属超武。
 // 进化保留原武器的词条与打造等级；超武不进商店池，只能通过进化获得。
 import { WEAPONS, WEAPON_MAP, type WeaponDef } from './weapons';
+import { EXTRA_EVOLUTIONS_SPEC } from './gearExtra';
 
 export interface EvolutionDef {
   /** 进化前的武器 */
@@ -134,6 +135,8 @@ export const EVOLUTIONS: EvolutionDef[] = [
   }),
 ];
 
+// 1.4.0 G6：新进化 8 组
+EVOLUTIONS.push(...EXTRA_EVOLUTIONS_SPEC.map((x) => evolve(x.from, x.item, x.boost)));
 export const EVOLVED_WEAPONS: WeaponDef[] = EVOLUTIONS.map((e) => e.to);
 export const EVOLUTION_OF: Record<string, EvolutionDef> = Object.fromEntries(EVOLUTIONS.map((e) => [e.from, e]));
 // 超武也要能通过 WEAPON_MAP 查到（战斗、存档、图鉴共用）

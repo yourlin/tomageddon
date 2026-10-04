@@ -44,6 +44,9 @@ import { saveRun } from '../systems/RunState';
 import { minionStats, bossStats } from '../systems/EnemyScaling';
 import { applyWaveRules, describeEvent, isSuperBossWave, mutations, reviveCost, type RunEventDef } from '../systems/RunEvents';
 import { button, text as uiText } from '../ui/UI';
+import { skinActive } from '../systems/Progress';
+import { SKIN_OF, applySkin } from '../data/skins';
+import { BARKS, EASTER_EGGS, BARK_CHANCE, BARK_COOLDOWN, type BarkKind } from '../data/barks';
 
 /** 开发者沙盒（?dev）：不刷怪、不计时、不掉落、不结算；玩家阵亡时原地复活。其余行为由开发者界面通过 onStep 驱动 */
 export interface SandboxOpts {
@@ -190,6 +193,8 @@ export class GameScene extends Phaser.Scene {
   /** H1「宝箱怪潮」：宝箱掉率倍数与额外上限 */
   eventCrateMult = 1;
   eventCrateCap = 0;
+  /** F7：上次说台词的时间（秒，场景时钟） */
+  private barkAt = -999;
   /** G4：本局是否已召唤真结局 Boss */
   finalSpawned = false;
   /** B6：正在等待玩家决定是否花钱复活 */
@@ -250,7 +255,14 @@ export class GameScene extends Phaser.Scene {
     this.fx = new Fx(this);
 
     const c = run.char;
-    this.player = new Rig(this, c.look, `char_${c.id}`, BALANCE.player.radius * 1.25);
+    // F6：装备皮肤时用换色后的外观（独立缓存键）
+    const skin = skinActive(c.id);
+    this.player = new Rig(
+      this,
+      skin ? applySkin(c.look, SKIN_OF[c.id]) : c.look,
+      `char_${c.id}${skin ? '_skin' : ''}`,
+      BALANCE.player.radius * 1.25,
+    );
     this.add.existing(this.player);
     this.player.setPosition(A.width / 2, A.height / 2);
     this.player.play('spawn', true);
@@ -338,7 +350,10 @@ export class GameScene extends Phaser.Scene {
       this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this, true) });
     this.events.on('bossSpawn', (e: Enemy) => {
       if (e.boss && !GameScene.sandbox) tip(e.boss.elite ? 'elite' : 'boss', this, true);
+      if (e.boss && !e.boss.elite) this.bark('boss');
     });
+    this.barkAt = -999;
+    if (!sandbox) this.time.delayedCall(900, () => this.bark('start'));
     audio.play(this, 'wave');
     this.events.once('shutdown', () => {
       this.weapons.destroy();
@@ -673,6 +688,7 @@ export class GameScene extends Phaser.Scene {
     this.cameras.main.flash(80, 120, 0, 0, false);
     this.applyPlayerStatus(sp.onHurtSelf);
     this.talent.onHurt();
+    this.bark('hurt');
     if (source?.alive) {
       for (const d of sp.onHurtEnemy) source.status.apply(d);
       const th = sp.thorns + this.pstatus.totals.reflect;
@@ -811,6 +827,34 @@ export class GameScene extends Phaser.Scene {
     this.time.delayedCall(1400, () => {
       this.scene.stop('Hud');
       this.scene.start('Result', { win: false });
+    });
+  }
+
+  /** F7：角色台词气泡（按场合概率触发，有冷却；角色专属彩蛋优先） */
+  bark(kind: BarkKind): void {
+    if (HEADLESS_MODE || GameScene.sandbox || this.dead) return;
+    const now = this.time.now / 1000;
+    if (now - this.barkAt < BARK_COOLDOWN || Math.random() > BARK_CHANCE[kind]) return;
+    this.barkAt = now;
+    const eggs = EASTER_EGGS.filter((e) => e.charId === run.charId && e.kind === kind);
+    const [zh, en] =
+      eggs.length && Math.random() < 0.5 ? eggs[Math.floor(Math.random() * eggs.length)].text : Phaser.Utils.Array.GetRandom(BARKS[kind]);
+    const t = uiText(this, this.player.x, this.player.y - 70, tx(zh, en), 18, '#fff4ea')
+      .setOrigin(0.5)
+      .setDepth(13000);
+    t.setBackgroundColor('#1a0a0ccc').setPadding(8, 4, 8, 4);
+    const follow = () => t.setPosition(this.player.x, t.y);
+    this.events.on('postupdate', follow);
+    this.tweens.add({
+      targets: t,
+      y: t.y - 24,
+      alpha: { from: 1, to: 0 },
+      delay: 1300,
+      duration: 500,
+      onComplete: () => {
+        this.events.off('postupdate', follow);
+        t.destroy();
+      },
     });
   }
 
@@ -1075,6 +1119,8 @@ export class GameScene extends Phaser.Scene {
     for (const p of this.pickups) if (p.alive && p.kind !== 'seed') p.magnet = true;
     this.pstatus.cleanse();
     this.player.play('victory', true);
+    this.barkAt = -999;
+    this.bark('win');
     const s = this.stats;
     if (s.harvest > 0) {
       run.earn(Math.round(s.harvest), 'harvest');
@@ -1114,6 +1160,7 @@ export class GameScene extends Phaser.Scene {
     this.killCounter = 0;
     if (!this.tookDamage) {
       save.stats.perfectWaves++;
+      run.perfectWaves++;
       bump(`chPerfect:${run.chapterId}`);
     }
     bump('waves');
@@ -1463,6 +1510,7 @@ export class GameScene extends Phaser.Scene {
     this.fx.burst(e.x, e.y, color, e.isBoss ? 40 : 8);
     this.fx.splat(e.x, e.y, color, e.radius);
     this.applyPlayerStatus(sp.onKillSelf);
+    this.bark('kill');
     // 天赋「战意」：击杀补怒气，最多叠到上限
     const kr = treeTotals().killRage;
     if (kr && (this.pstatus.get('rage')?.stacks ?? 0) < kr) this.applyPlayerStatus([{ id: 'rage', dur: 2 }]);
