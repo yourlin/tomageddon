@@ -1,4 +1,6 @@
 dist
+dist-steam
+release-steam
 node_modules
 docs
 public

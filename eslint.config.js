@@ -5,7 +5,7 @@ import globals from 'globals';
 import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  { ignores: ['dist/', 'node_modules/', 'docs/', 'public/'] },
+  { ignores: ['dist/', 'dist-steam/', 'release-steam/', '.kiro/', 'node_modules/', 'docs/', 'public/'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -13,9 +13,28 @@ export default tseslint.config(
     languageOptions: { globals: globals.browser },
   },
   {
+    // 平台适配层约束：游戏代码不直接碰 localStorage / window.open，统一走 src/platform
+    files: ['src/**/*.ts'],
+    ignores: ['src/platform/**', 'src/dev/**'],
+    rules: {
+      'no-restricted-globals': ['error', { name: 'localStorage', message: '请使用 src/platform 的 storage' }],
+      'no-restricted-properties': [
+        'error',
+        { object: 'window', property: 'localStorage', message: '请使用 src/platform 的 storage' },
+        { object: 'window', property: 'open', message: '请使用 src/platform 的 openExternal' },
+      ],
+    },
+  },
+  {
     // Node 端脚本（构建、文档、批量测试）
     files: ['scripts/**/*.{ts,mjs}', '*.config.{js,ts}'],
     languageOptions: { globals: globals.node },
+  },
+  {
+    // Electron 主进程与预加载脚本（CommonJS，Node 环境）
+    files: ['electron/**/*.cjs'],
+    languageOptions: { sourceType: 'commonjs', globals: globals.node },
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
   },
   {
     // 这些脚本中 page.evaluate 的回调在浏览器里执行

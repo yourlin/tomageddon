@@ -1,5 +1,6 @@
 // 成就系统：读取存档与当前对局的指标，逐级解锁并发放成就点；成就点用于购买角色
 import { ACHIEVEMENTS, ACH_MAP, TIER_MEDALS, TIER_NAME, type AchievementDef, type AchMetric } from '../data/achievements';
+import { unlockPlatformAchievement } from '../platform';
 import { CHARACTERS, CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPONS } from '../data/weapons';
 import { ENEMIES } from '../data/enemies';
@@ -174,6 +175,11 @@ export function tryBuyCharacter(c: CharacterDef): BuyResult {
 }
 
 // ---------------- 检查与解锁 ----------------
+/** Steam 版启动时把已获得的成就全部同步一次（网页存档导入、离线游玩后补报） */
+export function syncPlatformAchievements(): void {
+  for (const a of ACHIEVEMENTS) for (let t = 1; t <= achTier(a.id); t++) unlockPlatformAchievement(`${a.id}_${t}`);
+}
+
 /** 检查所有成就，逐级解锁；返回本次新获得的成就点 */
 export function checkAchievements(): number {
   const fresh: { a: AchievementDef; tier: number; points: number }[] = [];
@@ -184,6 +190,8 @@ export function checkAchievements(): number {
     let points = 0;
     while (tier < a.tiers.length && v >= tierGoal(a, tier)) points += a.tiers[tier++].points;
     if (tier > achTier(a.id)) {
+      // Steam：每一级是一个独立的 Steam 成就（API 名 `${id}_${级}`，见 docs/steam/achievements.csv）
+      for (let t = achTier(a.id) + 1; t <= tier; t++) unlockPlatformAchievement(`${a.id}_${t}`);
       save.achievements[a.id] = { tier, t: Date.now() };
       fresh.push({ a, tier, points });
     }

@@ -13,6 +13,7 @@ import { lang, tx } from '../i18n';
 import { checkAchievements, setInRun, pointsBalance, missingRequirement, charCost } from '../systems/Achievements';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { paint } from '../art/Painter';
+import { openExternal, SHOW_DONATE, IS_STEAM, quitApp } from '../platform';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -133,20 +134,12 @@ export class MenuScene extends Phaser.Scene {
       .setInteractive({ useHandCursor: true });
     gh.on('pointerover', () => gh.setAlpha(1));
     gh.on('pointerout', () => gh.setAlpha(0.85));
-    gh.on('pointerup', () => window.open(__REPO_URL__, '_blank', 'noopener'));
-    // 请作者喝杯咖啡：跳转到 README 的收款码章节
+    gh.on('pointerup', () => openExternal(__REPO_URL__));
+    // 请作者喝杯咖啡：跳转到 README 的收款码章节（Steam 版不显示）
     const donateUrl = lang === 'en' ? `${__REPO_URL__}/blob/main/README.en.md#support-the-author` : `${__REPO_URL__}#支持作者`;
-    button(
-      this,
-      W - 175,
-      44,
-      190,
-      46,
-      tx('☕ 请作者喝杯咖啡', '☕ Buy me a coffee'),
-      () => window.open(donateUrl, '_blank', 'noopener'),
-      0x8a5a2b,
-      17,
-    );
+    if (SHOW_DONATE)
+      button(this, W - 175, 44, 190, 46, tx('☕ 请作者喝杯咖啡', '☕ Buy me a coffee'), () => openExternal(donateUrl), 0x8a5a2b, 17);
+    if (IS_STEAM) button(this, W - 150, H - 60, 120, 44, tx('退出游戏', 'Quit'), () => quitApp(), 0x555555, 18);
 
     if (saved) {
       const c = CHARACTER_MAP[saved.charId];

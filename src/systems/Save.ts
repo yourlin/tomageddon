@@ -1,5 +1,6 @@
 // 本地存档：解锁进度、统计、设置
 import { CHARACTERS, type CharacterDef } from '../data/characters';
+import { storage } from '../platform';
 
 export interface SaveData {
   clearedChapters: number; // 已通关的最高章节
@@ -220,7 +221,7 @@ function legacyOwned(d: Partial<SaveData>): string[] {
 
 function load(): SaveData {
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = storage.getItem(KEY);
     if (!raw) return structuredClone(DEFAULT);
     return normalize(JSON.parse(raw));
   } catch {
@@ -287,7 +288,7 @@ export const persistDisabled = (): boolean => persistOff;
 export function persist(): void {
   if (persistOff) return;
   try {
-    localStorage.setItem(KEY, JSON.stringify(save));
+    storage.setItem(KEY, JSON.stringify(save));
   } catch {
     /* 隐私模式等情况忽略 */
   }

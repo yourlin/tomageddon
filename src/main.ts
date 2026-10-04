@@ -15,6 +15,9 @@ import { SettingsScene } from './scenes/SettingsScene';
 import { ChallengeScene } from './scenes/ChallengeScene';
 import { lazyScene } from './scenes/LazyScene';
 import { installErrorLog } from './systems/ErrorLog';
+import { onShouldPause, IS_DESKTOP_APP, IS_STEAM } from './platform';
+import { syncPlatformAchievements } from './systems/Achievements';
+import { portraitKey } from './ui/Portrait';
 import { run } from './systems/RunState';
 import { controls } from './systems/Controls';
 import { CHARACTERS, CHARACTER_MAP } from './data/characters';
@@ -92,9 +95,17 @@ if (HEADLESS) {
   void import('./dev/DevPanel').then((m) => m.installDevPanel(game));
 } else {
   applyPerfSettings(game);
-  autoFullscreenOnFirstTouch(game);
-  installForceLandscape(game);
+  // Steam（桌面窗口）版不需要首次触摸自动全屏与「请旋转屏幕」
+  if (!IS_DESKTOP_APP) {
+    autoFullscreenOnFirstTouch(game);
+    installForceLandscape(game);
+  }
 }
+// 窗口失焦、最小化、Steam 浮层打开时自动暂停战斗
+if (IS_STEAM) syncPlatformAchievements();
+onShouldPause(() => {
+  if (game.scene.isActive('Game') && !game.scene.isPaused('Game')) controls.pausePressed = true;
+});
 
 // 切到后台时自动暂停战斗
 document.addEventListener('visibilitychange', () => {
@@ -106,6 +117,7 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // 调试用
+Object.assign(window, { portraitKey });
 installErrorLog(() =>
   game.scene
     .getScenes(true)

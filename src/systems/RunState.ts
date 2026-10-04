@@ -16,6 +16,7 @@ import { markSeen, save, persistDisabled, type RunRecord } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
 import { dangerLevels, MAX_DANGER, type RuleDelta } from '../data/danger';
+import { storage } from '../platform';
 
 /** 汇总后的规则：倍率（1 = 不变）与计数 */
 export interface RunExt {
@@ -597,7 +598,7 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       ext: run.saveExt(),
       savedAt: Date.now(),
     };
-    localStorage.setItem(RUN_KEY, JSON.stringify(d));
+    storage.setItem(RUN_KEY, JSON.stringify(d));
   } catch {
     /* 忽略 */
   }
@@ -605,7 +606,7 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
 
 export function hasSavedRun(): { charId: string; chapterId: number; wave: number; phase?: 'shop' | 'wave'; endless?: boolean } | null {
   try {
-    const raw = localStorage.getItem(RUN_KEY);
+    const raw = storage.getItem(RUN_KEY);
     if (!raw) return null;
     const d = JSON.parse(raw);
     return d.v === 1 && CHARACTER_MAP[d.charId] ? d : null;
@@ -709,7 +710,7 @@ export function recordHistory(win: boolean): RunRecord {
 
 export function clearRun(): void {
   try {
-    localStorage.removeItem(RUN_KEY);
+    storage.removeItem(RUN_KEY);
   } catch {
     /* 忽略 */
   }
