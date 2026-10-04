@@ -44,6 +44,8 @@ export interface DevPrefs {
   /** 页签与筛选状态（不含货架等临时对象） */
   ui?: Partial<UiState>;
   scroll?: number;
+  /** 顶部可折叠区块的折叠状态（live = 实时数据，quick = 角色与怪物） */
+  fold?: Record<string, boolean>;
 }
 
 const KEY = 'tomageddon_dev_prefs';

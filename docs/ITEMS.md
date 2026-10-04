@@ -1,12 +1,12 @@
-# 道具（600 件）
+# 道具（603 件）
 
 **中文** · [English](en/ITEMS.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · **道具** · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · **道具** · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-道具是在商店购买或从宝箱获得的被动物品，可叠加。共 80 件经典道具 + 52 个主题系列 × 10 件。
+道具是在商店购买或从宝箱获得的被动物品，可叠加。共 83 件经典道具 + 52 个主题系列 × 10 件。
 
 效果中的 Buff / Debuff 见[状态效果](SKILLS.md#statuses)，属性说明见[设计文档](GDD.md)。
 
@@ -14,7 +14,7 @@
 
 - [稀有度与强度预算](#rarity)
 - [升级属性选项](#levelup)
-- [经典道具（80）](#classic)
+- [经典道具（83）](#classic)
 - [系列道具（52 个系列）](#series)
 
 <a id="rarity"></a>
@@ -26,9 +26,9 @@
 | 稀有度 | 数量 | 强度预算 |
 | --- | --- | --- |
 | 普通 | 235 | 10 |
-| 稀有 | 180 | 22 |
-| 史诗 | 122 | 40 |
-| 传说 | 63 | 75 |
+| 稀有 | 181 | 22 |
+| 史诗 | 123 | 40 |
+| 传说 | 64 | 75 |
 
 <a id="levelup"></a>
 
@@ -64,7 +64,7 @@
 
 <a id="classic"></a>
 
-## 经典道具（80）
+## 经典道具（83）
 
 | 道具 | 稀有度 | 效果 | 价格 | 上限 |
 | --- | --- | --- | --- | --- |
@@ -110,6 +110,7 @@
 | <img src="images/item/lemonade.png" width="32" height="32" alt=""> 柠檬水 | 稀有 | +4 最大生命，+4 生命再生，-4% 全伤害 | 36 | ∞ |
 | <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | 稀有 | +7 最大生命，+1 生命再生，-3% 移动速度，每击杀 25 个敌人回复 1 生命 | 40 | ∞ |
 | <img src="images/item/baking_powder.png" width="32" height="32" alt=""> 泡打粉 | 稀有 | -3 最大生命，+22% 爆炸范围，+2 元素伤害 | 36 | ∞ |
+| <img src="images/item/pomegranate.png" width="32" height="32" alt=""> 爆籽石榴 | 稀有 | -6% 远程武器伤害，+1 远程伤害，远程子弹命中后分裂 +1 层：每层分出 2 颗，伤害为上一层的 50%（总层数最多 3） | 46 | 2 |
 | <img src="images/item/turbo_motor.png" width="32" height="32" alt=""> 涡轮马达 | 稀有 | -2 最大生命，+6% 光环伤害，+10% 光环范围，+6% 攻击速度 | 38 | ∞ |
 | <img src="images/item/fermented_jar.png" width="32" height="32" alt=""> 发酵酱坛 | 稀有 | +2% 吸血概率，+14% 爆炸范围，-1 护甲，击杀 6% 概率爆炸（12 伤害） | 40 | ∞ |
 | <img src="images/item/sharpening_rod.png" width="32" height="32" alt=""> 磨刀棒 | 稀有 | +6% 近战武器伤害，+4% 暴击率，-10 射程，暴击伤害 +10% | 38 | ∞ |
@@ -130,6 +131,7 @@
 | <img src="images/item/coupon.png" width="32" height="32" alt=""> 优惠券 | 史诗 | 商店价格 -10% | 55 | 3 |
 | <img src="images/item/protein.png" width="32" height="32" alt=""> 蛋白粉 | 史诗 | +10 最大生命，+2 近战伤害，-2% 移动速度 | 75 | ∞ |
 | <img src="images/item/pressure_cooker.png" width="32" height="32" alt=""> 高压锅 | 史诗 | +30% 爆炸范围，+1 护甲 | 70 | ∞ |
+| <img src="images/item/onion_layers.png" width="32" height="32" alt=""> 千层洋葱 | 史诗 | +2 远程伤害，-4% 攻击速度，远程子弹命中后分裂 +1 层：每层分出 2 颗，伤害为上一层的 50%（总层数最多 3） | 78 | 2 |
 | <img src="images/item/cast_iron_skillet.png" width="32" height="32" alt=""> 铸铁煎锅 | 史诗 | +4 最大生命，+3 近战伤害，+4 护甲，-4% 移动速度，命中时6% 概率眩晕 | 72 | ∞ |
 | <img src="images/item/sauce_fountain.png" width="32" height="32" alt=""> 酱料喷泉 | 史诗 | +2 生命再生，+4% 吸血概率，每击杀 20 个敌人回复 1 生命 | 70 | ∞ |
 | <img src="images/item/pressure_valve.png" width="32" height="32" alt=""> 泄压阀 | 史诗 | +5% 全伤害，+25% 爆炸范围，-1 护甲，击杀 12% 概率爆炸（20 伤害） | 72 | ∞ |
@@ -137,17 +139,18 @@
 | <img src="images/item/static_apron.png" width="32" height="32" alt=""> 静电围裙 | 史诗 | +4 元素伤害，+2 护甲，命中 6% 概率落雷 | 70 | ∞ |
 | <img src="images/item/mortar_pestle.png" width="32" height="32" alt=""> 石臼研钵 | 史诗 | +10% 远程武器伤害，+15% 爆炸范围，+4% 攻击速度 | 68 | ∞ |
 | <img src="images/item/salt_lamp.png" width="32" height="32" alt=""> 盐灯 | 史诗 | -3 最大生命，+12% 光环伤害，+15% 光环范围，每 1.5 秒使周围 130 范围敌人虚弱 | 70 | ∞ |
-| <img src="images/item/golden_tomato.png" width="32" height="32" alt=""> 黄金番茄 | 传说 | +10 最大生命，+15% 全伤害，-5% 移动速度，+15 幸运 | 120 | ∞ |
+| <img src="images/item/golden_tomato.png" width="32" height="32" alt=""> 黄金番茄 | 传说 | +10 最大生命，+15% 全伤害，-5% 移动速度，+15 幸运 | 120 | 1 |
 | <img src="images/item/phoenix_feather.png" width="32" height="32" alt=""> 凤凰羽毛 | 传说 | +3 生命再生，死亡时以 50% 生命复活一次 | 110 | 1 |
-| <img src="images/item/chef_knife_set.png" width="32" height="32" alt=""> 大厨刀具套装 | 传说 | +8 近战伤害，-4 远程伤害，+8% 攻击速度，+8% 暴击率 | 130 | ∞ |
-| <img src="images/item/railgun_core.png" width="32" height="32" alt=""> 电磁核心 | 传说 | -4 近战伤害，+8 远程伤害，+8% 攻击速度，+60 射程 | 130 | ∞ |
-| <img src="images/item/grandma_recipe.png" width="32" height="32" alt=""> 外婆的秘方 | 传说 | -8% 全伤害，+20 幸运，+25 收获，+25% 经验获取 | 115 | ∞ |
-| <img src="images/item/vampire_cape.png" width="32" height="32" alt=""> 吸血鬼披风 | 传说 | -3 生命再生，+10% 吸血概率，+8% 全伤害，+5% 闪避 | 125 | ∞ |
-| <img src="images/item/powder_keg.png" width="32" height="32" alt=""> 火药桶 | 传说 | +5% 全伤害，+50% 爆炸范围，-3% 移动速度 | 115 | ∞ |
+| <img src="images/item/chef_knife_set.png" width="32" height="32" alt=""> 大厨刀具套装 | 传说 | +8 近战伤害，-4 远程伤害，+8% 攻击速度，+8% 暴击率 | 130 | 1 |
+| <img src="images/item/railgun_core.png" width="32" height="32" alt=""> 电磁核心 | 传说 | -4 近战伤害，+8 远程伤害，+8% 攻击速度，+60 射程 | 130 | 1 |
+| <img src="images/item/grandma_recipe.png" width="32" height="32" alt=""> 外婆的秘方 | 传说 | -8% 全伤害，+20 幸运，+25 收获，+25% 经验获取 | 115 | 1 |
+| <img src="images/item/vampire_cape.png" width="32" height="32" alt=""> 吸血鬼披风 | 传说 | -3 生命再生，+10% 吸血概率，+8% 全伤害，+5% 闪避 | 125 | 1 |
+| <img src="images/item/powder_keg.png" width="32" height="32" alt=""> 火药桶 | 传说 | +5% 全伤害，+50% 爆炸范围，-3% 移动速度 | 115 | 1 |
+| <img src="images/item/cluster_tomato.png" width="32" height="32" alt=""> 串串番茄 | 传说 | +8% 远程武器伤害，+2 远程伤害，远程子弹命中后分裂 +2 层：每层分出 2 颗，伤害为上一层的 50%（总层数最多 3） | 135 | 1 |
 | <img src="images/item/michelin_star.png" width="32" height="32" alt=""> 米其林之星 | 传说 | +10% 全伤害，+6% 暴击率，+10 幸运，+10 收获，每把同名武器 +5% 伤害 | 125 | 1 |
-| <img src="images/item/dragon_wok.png" width="32" height="32" alt=""> 龙纹炒锅 | 传说 | +30% 爆炸范围，+6 元素伤害，-4% 移动速度，命中 15% 概率灼烧，持续伤害 +20% | 125 | ∞ |
-| <img src="images/item/sauce_grail.png" width="32" height="32" alt=""> 酱之圣杯 | 传说 | +10 最大生命，+3 生命再生，+8% 吸血概率，-5% 全伤害，击杀时获得25% 概率嗜血 | 120 | ∞ |
-| <img src="images/item/arsenal_belt.png" width="32" height="32" alt=""> 军火腰带 | 传说 | +12% 远程武器伤害，+15% 爆炸范围，-4 近战伤害，+6 远程伤害，+10% 攻击速度 | 125 | ∞ |
+| <img src="images/item/dragon_wok.png" width="32" height="32" alt=""> 龙纹炒锅 | 传说 | +30% 爆炸范围，+6 元素伤害，-4% 移动速度，命中 15% 概率灼烧，持续伤害 +20% | 125 | 1 |
+| <img src="images/item/sauce_grail.png" width="32" height="32" alt=""> 酱之圣杯 | 传说 | +10 最大生命，+3 生命再生，+8% 吸血概率，-5% 全伤害，击杀时获得25% 概率嗜血 | 120 | 1 |
+| <img src="images/item/arsenal_belt.png" width="32" height="32" alt=""> 军火腰带 | 传说 | +12% 远程武器伤害，+15% 爆炸范围，-4 近战伤害，+6 远程伤害，+10% 攻击速度 | 125 | 1 |
 
 <a id="series"></a>
 
@@ -223,7 +226,7 @@
 | <img src="images/item/tomatoes_6.png" width="32" height="32" alt=""> 番茄罐头 | 稀有 | +3 最大生命，+1 生命再生，-3% 移动速度，果实回血 +50% | 36 | ∞ |
 | <img src="images/item/tomatoes_7.png" width="32" height="32" alt=""> 番茄酱大王瓶 | 史诗 | +6 最大生命，+3 生命再生，-6% 移动速度，果实回血 +96% | 73 | ∞ |
 | <img src="images/item/tomatoes_8.png" width="32" height="32" alt=""> 传家番茄 | 史诗 | +3 最大生命，+3 生命再生，果实回血 +68% | 73 | ∞ |
-| <img src="images/item/tomatoes_9.png" width="32" height="32" alt=""> 番茄之心 | 传说 | +12 最大生命，+5 生命再生，-10% 移动速度，果实回血 +131% | 123 | ∞ |
+| <img src="images/item/tomatoes_9.png" width="32" height="32" alt=""> 番茄之心 | 传说 | +12 最大生命，+5 生命再生，-10% 移动速度，果实回血 +131% | 123 | 1 |
 
 <a id="series-2"></a>
 
@@ -240,7 +243,7 @@
 | <img src="images/item/spices_6.png" width="32" height="32" alt=""> 十三香 | 稀有 | -2 最大生命，+7% 元素武器伤害，+3% 暴击率，命中时15% 概率灼烧 | 36 | ∞ |
 | <img src="images/item/spices_7.png" width="32" height="32" alt=""> 辣椒精 | 史诗 | -3 最大生命，+12% 元素武器伤害，+5% 暴击率，命中时28% 概率灼烧 | 73 | ∞ |
 | <img src="images/item/spices_8.png" width="32" height="32" alt=""> 魔鬼椒粉 | 史诗 | +6% 元素武器伤害，+6% 暴击率，命中时21% 概率灼烧 | 73 | ∞ |
-| <img src="images/item/spices_9.png" width="32" height="32" alt=""> 龙息香料 | 传说 | -6 最大生命，+26% 元素武器伤害，+11% 暴击率，命中时39% 概率灼烧 | 123 | ∞ |
+| <img src="images/item/spices_9.png" width="32" height="32" alt=""> 龙息香料 | 传说 | -6 最大生命，+26% 元素武器伤害，+11% 暴击率，命中时39% 概率灼烧 | 123 | 1 |
 
 <a id="series-3"></a>
 
@@ -257,7 +260,7 @@
 | <img src="images/item/sauces_6.png" width="32" height="32" alt=""> XO酱 | 稀有 | +1 生命再生，+2% 吸血概率，-1 护甲，击杀时获得18% 概率嗜血 | 36 | ∞ |
 | <img src="images/item/sauces_7.png" width="32" height="32" alt=""> 秘制烤肉酱 | 史诗 | +3 生命再生，+3% 吸血概率，-2 护甲，击杀时获得35% 概率嗜血 | 73 | ∞ |
 | <img src="images/item/sauces_8.png" width="32" height="32" alt=""> 血色辣酱 | 史诗 | +3 生命再生，+2% 吸血概率，击杀时获得26% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/sauces_9.png" width="32" height="32" alt=""> 永恒母酱 | 传说 | +5 生命再生，+7% 吸血概率，-4 护甲，击杀时获得49% 概率嗜血 | 123 | ∞ |
+| <img src="images/item/sauces_9.png" width="32" height="32" alt=""> 永恒母酱 | 传说 | +5 生命再生，+7% 吸血概率，-4 护甲，击杀时获得49% 概率嗜血 | 123 | 1 |
 
 <a id="series-4"></a>
 
@@ -274,7 +277,7 @@
 | <img src="images/item/knives_6.png" width="32" height="32" alt=""> 柳刃刀 | 稀有 | +7% 近战武器伤害，+3% 暴击率，-20 射程，命中时15% 概率流血 | 36 | ∞ |
 | <img src="images/item/knives_7.png" width="32" height="32" alt=""> 大马士革刀 | 史诗 | +13% 近战武器伤害，+5% 暴击率，-35 射程，命中时29% 概率流血 | 73 | ∞ |
 | <img src="images/item/knives_8.png" width="32" height="32" alt=""> 屠龙菜刀 | 史诗 | +6% 近战武器伤害，+6% 暴击率，命中时21% 概率流血 | 73 | ∞ |
-| <img src="images/item/knives_9.png" width="32" height="32" alt=""> 名匠之刃 | 传说 | +26% 近战武器伤害，+11% 暴击率，-60 射程，命中时39% 概率流血 | 123 | ∞ |
+| <img src="images/item/knives_9.png" width="32" height="32" alt=""> 名匠之刃 | 传说 | +26% 近战武器伤害，+11% 暴击率，-60 射程，命中时39% 概率流血 | 123 | 1 |
 
 <a id="series-5"></a>
 
@@ -291,7 +294,7 @@
 | <img src="images/item/pots_6.png" width="32" height="32" alt=""> 铸铁锅 | 稀有 | +2 最大生命，+2 护甲，-3% 移动速度，受伤时获得坚韧 | 36 | ∞ |
 | <img src="images/item/pots_7.png" width="32" height="32" alt=""> 千层锅盾 | 史诗 | +4 最大生命，+4 护甲，-6% 移动速度，受伤时获得2层坚韧 | 73 | ∞ |
 | <img src="images/item/pots_8.png" width="32" height="32" alt=""> 不锈钢堡垒 | 史诗 | +4 最大生命，+2 护甲，受伤时获得2层坚韧 | 73 | ∞ |
-| <img src="images/item/pots_9.png" width="32" height="32" alt=""> 老祖宗铁锅 | 传说 | +8 最大生命，+8 护甲，-10% 移动速度，受伤时获得3层坚韧 | 123 | ∞ |
+| <img src="images/item/pots_9.png" width="32" height="32" alt=""> 老祖宗铁锅 | 传说 | +8 最大生命，+8 护甲，-10% 移动速度，受伤时获得3层坚韧 | 123 | 1 |
 
 <a id="series-6"></a>
 
@@ -308,7 +311,7 @@
 | <img src="images/item/utensils_6.png" width="32" height="32" alt=""> 象牙筷 | 稀有 | +2 近战伤害，+3% 攻击速度，-1 护甲，击杀时获得30% 概率怒气 | 36 | ∞ |
 | <img src="images/item/utensils_7.png" width="32" height="32" alt=""> 双龙筷 | 史诗 | +4 近战伤害，+6% 攻击速度，-2 护甲，击杀时获得58% 概率怒气 | 73 | ∞ |
 | <img src="images/item/utensils_8.png" width="32" height="32" alt=""> 神速筷 | 史诗 | +2 近战伤害，+6% 攻击速度，击杀时获得43% 概率怒气 | 73 | ∞ |
-| <img src="images/item/utensils_9.png" width="32" height="32" alt=""> 宴会银器 | 传说 | +8 近战伤害，+12% 攻击速度，-4 护甲，击杀时获得82% 概率怒气 | 123 | ∞ |
+| <img src="images/item/utensils_9.png" width="32" height="32" alt=""> 宴会银器 | 传说 | +8 近战伤害，+12% 攻击速度，-4 护甲，击杀时获得82% 概率怒气 | 123 | 1 |
 
 <a id="series-7"></a>
 
@@ -325,7 +328,7 @@
 | <img src="images/item/guns_6.png" width="32" height="32" alt=""> 激光笔 | 稀有 | -1 近战伤害，+2 远程伤害，+20 射程，命中时8% 概率标记 | 36 | ∞ |
 | <img src="images/item/guns_7.png" width="32" height="32" alt=""> 精准瞄具 | 史诗 | -2 近战伤害，+4 远程伤害，+40 射程，命中时16% 概率标记 | 73 | ∞ |
 | <img src="images/item/guns_8.png" width="32" height="32" alt=""> 狙击水枪 | 史诗 | +2 远程伤害，+40 射程，命中时12% 概率标记 | 73 | ∞ |
-| <img src="images/item/guns_9.png" width="32" height="32" alt=""> 豪华弹射器 | 传说 | -4 近战伤害，+8 远程伤害，+80 射程，命中时20% 概率标记 | 123 | ∞ |
+| <img src="images/item/guns_9.png" width="32" height="32" alt=""> 豪华弹射器 | 传说 | -4 近战伤害，+8 远程伤害，+80 射程，命中时20% 概率标记 | 123 | 1 |
 
 <a id="series-8"></a>
 
@@ -342,7 +345,7 @@
 | <img src="images/item/ammo_6.png" width="32" height="32" alt=""> 爆裂弹 | 稀有 | +7% 远程武器伤害，+3% 攻击速度，-2% 闪避，命中时17% 概率破甲 | 36 | ∞ |
 | <img src="images/item/ammo_7.png" width="32" height="32" alt=""> 追踪弹 | 史诗 | +12% 远程武器伤害，+6% 攻击速度，-3% 闪避，命中时30% 概率破甲 | 73 | ∞ |
 | <img src="images/item/ammo_8.png" width="32" height="32" alt=""> 钨芯弹 | 史诗 | +6% 远程武器伤害，+6% 攻击速度，命中时22% 概率破甲 | 73 | ∞ |
-| <img src="images/item/ammo_9.png" width="32" height="32" alt=""> 星辰弹药 | 传说 | +26% 远程武器伤害，+12% 攻击速度，-6% 闪避，命中时40% 概率破甲 | 123 | ∞ |
+| <img src="images/item/ammo_9.png" width="32" height="32" alt=""> 星辰弹药 | 传说 | +26% 远程武器伤害，+12% 攻击速度，-6% 闪避，命中时40% 概率破甲 | 123 | 1 |
 
 <a id="series-9"></a>
 
@@ -359,7 +362,7 @@
 | <img src="images/item/fire_6.png" width="32" height="32" alt=""> 凤凰炭 | 稀有 | -1 生命再生，+4% 元素武器伤害，+2 元素伤害，命中时14% 概率灼烧 | 36 | ∞ |
 | <img src="images/item/fire_7.png" width="32" height="32" alt=""> 烈焰核心 | 史诗 | -2 生命再生，+8% 元素武器伤害，+4 元素伤害，命中时28% 概率灼烧 | 73 | ∞ |
 | <img src="images/item/fire_8.png" width="32" height="32" alt=""> 太阳碎片 | 史诗 | +9% 元素武器伤害，+2 元素伤害，命中时21% 概率灼烧 | 73 | ∞ |
-| <img src="images/item/fire_9.png" width="32" height="32" alt=""> 不灭之火 | 传说 | -4 生命再生，+17% 元素武器伤害，+8 元素伤害，命中时39% 概率灼烧 | 123 | ∞ |
+| <img src="images/item/fire_9.png" width="32" height="32" alt=""> 不灭之火 | 传说 | -4 生命再生，+17% 元素武器伤害，+8 元素伤害，命中时39% 概率灼烧 | 123 | 1 |
 
 <a id="series-10"></a>
 
@@ -376,7 +379,7 @@
 | <img src="images/item/ice_6.png" width="32" height="32" alt=""> 冰川水 | 稀有 | +2 元素伤害，+1 护甲，-3% 移动速度，命中时25% 概率减速 | 36 | ∞ |
 | <img src="images/item/ice_7.png" width="32" height="32" alt=""> 永冻晶石 | 史诗 | +4 元素伤害，+3 护甲，-6% 移动速度，命中时48% 概率减速 | 73 | ∞ |
 | <img src="images/item/ice_8.png" width="32" height="32" alt=""> 极寒之心 | 史诗 | +2 元素伤害，+3 护甲，命中时34% 概率减速 | 73 | ∞ |
-| <img src="images/item/ice_9.png" width="32" height="32" alt=""> 冰雪女王冠 | 传说 | +8 元素伤害，+5 护甲，-10% 移动速度，命中时50% 概率减速 | 123 | ∞ |
+| <img src="images/item/ice_9.png" width="32" height="32" alt=""> 冰雪女王冠 | 传说 | +8 元素伤害，+5 护甲，-10% 移动速度，命中时50% 概率减速 | 123 | 1 |
 
 <a id="series-11"></a>
 
@@ -393,7 +396,7 @@
 | <img src="images/item/thunder_6.png" width="32" height="32" alt=""> 闪电瓶 | 稀有 | +2 元素伤害，+3% 攻击速度，-1 护甲，命中 6% 概率落雷 | 36 | ∞ |
 | <img src="images/item/thunder_7.png" width="32" height="32" alt=""> 雷神电池 | 史诗 | +4 元素伤害，+6% 攻击速度，-2 护甲，命中 12% 概率落雷 | 73 | ∞ |
 | <img src="images/item/thunder_8.png" width="32" height="32" alt=""> 暴风雷核 | 史诗 | +2 元素伤害，+6% 攻击速度，命中 9% 概率落雷 | 73 | ∞ |
-| <img src="images/item/thunder_9.png" width="32" height="32" alt=""> 宙斯之火花 | 传说 | +8 元素伤害，+12% 攻击速度，-4 护甲，命中 16% 概率落雷 | 123 | ∞ |
+| <img src="images/item/thunder_9.png" width="32" height="32" alt=""> 宙斯之火花 | 传说 | +8 元素伤害，+12% 攻击速度，-4 护甲，命中 16% 概率落雷 | 123 | 1 |
 
 <a id="series-12"></a>
 
@@ -410,7 +413,7 @@
 | <img src="images/item/poisons_6.png" width="32" height="32" alt=""> 剧毒孢子 | 稀有 | -2 最大生命，+2 元素伤害，+6 幸运，命中时19% 概率中毒 | 36 | ∞ |
 | <img src="images/item/poisons_7.png" width="32" height="32" alt=""> 瘟疫烧瓶 | 史诗 | -3 最大生命，+4 元素伤害，+10 幸运，命中时35% 概率中毒 | 73 | ∞ |
 | <img src="images/item/poisons_8.png" width="32" height="32" alt=""> 腐化之核 | 史诗 | +2 元素伤害，+11 幸运，命中时26% 概率中毒 | 73 | ∞ |
-| <img src="images/item/poisons_9.png" width="32" height="32" alt=""> 万毒之王 | 传说 | -6 最大生命，+8 元素伤害，+22 幸运，命中时45% 概率中毒 | 123 | ∞ |
+| <img src="images/item/poisons_9.png" width="32" height="32" alt=""> 万毒之王 | 传说 | -6 最大生命，+8 元素伤害，+22 幸运，命中时45% 概率中毒 | 123 | 1 |
 
 <a id="series-13"></a>
 
@@ -427,7 +430,7 @@
 | <img src="images/item/herbs_6.png" width="32" height="32" alt=""> 雪莲 | 稀有 | +2 最大生命，+2 生命再生，-3% 全伤害，受伤时获得再生 | 36 | ∞ |
 | <img src="images/item/herbs_7.png" width="32" height="32" alt=""> 千年人参 | 史诗 | +4 最大生命，+4 生命再生，-6% 全伤害，受伤时获得2层再生 | 73 | ∞ |
 | <img src="images/item/herbs_8.png" width="32" height="32" alt=""> 仙草 | 史诗 | +4 最大生命，+2 生命再生，受伤时获得2层再生 | 73 | ∞ |
-| <img src="images/item/herbs_9.png" width="32" height="32" alt=""> 生命之树叶 | 传说 | +8 最大生命，+8 生命再生，-10% 全伤害，受伤时获得3层再生 | 123 | ∞ |
+| <img src="images/item/herbs_9.png" width="32" height="32" alt=""> 生命之树叶 | 传说 | +8 最大生命，+8 生命再生，-10% 全伤害，受伤时获得3层再生 | 123 | 1 |
 
 <a id="series-14"></a>
 
@@ -461,7 +464,7 @@
 | <img src="images/item/coffee_6.png" width="32" height="32" alt=""> 猫屎咖啡 | 稀有 | -1 生命再生，+4% 攻击速度，+3% 移动速度，击杀时获得24% 概率急速 | 36 | ∞ |
 | <img src="images/item/coffee_7.png" width="32" height="32" alt=""> 三倍浓缩 | 史诗 | -2 生命再生，+8% 攻击速度，+6% 移动速度，击杀时获得46% 概率急速 | 73 | ∞ |
 | <img src="images/item/coffee_8.png" width="32" height="32" alt=""> 咖啡因结晶 | 史诗 | +4% 攻击速度，+7% 移动速度，击杀时获得34% 概率急速 | 73 | ∞ |
-| <img src="images/item/coffee_9.png" width="32" height="32" alt=""> 时间停止咖啡 | 传说 | -4 生命再生，+18% 攻击速度，+13% 移动速度，击杀时获得60% 概率急速 | 123 | ∞ |
+| <img src="images/item/coffee_9.png" width="32" height="32" alt=""> 时间停止咖啡 | 传说 | -4 生命再生，+18% 攻击速度，+13% 移动速度，击杀时获得60% 概率急速 | 123 | 1 |
 
 <a id="series-16"></a>
 
@@ -512,7 +515,7 @@
 | <img src="images/item/cheese_6.png" width="32" height="32" alt=""> 百年陈酪 | 稀有 | +1 生命再生，+2 护甲，-3% 移动速度，受伤时获得坚韧 | 36 | ∞ |
 | <img src="images/item/cheese_7.png" width="32" height="32" alt=""> 奶酪堡垒 | 史诗 | +3 生命再生，+4 护甲，-6% 移动速度，受伤时获得2层坚韧 | 73 | ∞ |
 | <img src="images/item/cheese_8.png" width="32" height="32" alt=""> 至尊奶酪轮 | 史诗 | +3 生命再生，+2 护甲，受伤时获得2层坚韧 | 73 | ∞ |
-| <img src="images/item/cheese_9.png" width="32" height="32" alt=""> 奶酪女神 | 传说 | +5 生命再生，+8 护甲，-10% 移动速度，受伤时获得3层坚韧 | 123 | ∞ |
+| <img src="images/item/cheese_9.png" width="32" height="32" alt=""> 奶酪女神 | 传说 | +5 生命再生，+8 护甲，-10% 移动速度，受伤时获得3层坚韧 | 123 | 1 |
 
 <a id="series-19"></a>
 
@@ -529,7 +532,7 @@
 | <img src="images/item/fish_6.png" width="32" height="32" alt=""> 帝王蟹 | 稀有 | -1 护甲，+8 幸运，+4 收获，10% 概率番茄籽翻倍 | 36 | ∞ |
 | <img src="images/item/fish_7.png" width="32" height="32" alt=""> 金枪鱼大腹 | 史诗 | -2 护甲，+15 幸运，+8 收获，19% 概率番茄籽翻倍 | 73 | ∞ |
 | <img src="images/item/fish_8.png" width="32" height="32" alt=""> 深海珍珠 | 史诗 | +8 幸运，+8 收获，14% 概率番茄籽翻倍 | 73 | ∞ |
-| <img src="images/item/fish_9.png" width="32" height="32" alt=""> 海王之鳞 | 传说 | -4 护甲，+33 幸运，+16 收获，25% 概率番茄籽翻倍 | 123 | ∞ |
+| <img src="images/item/fish_9.png" width="32" height="32" alt=""> 海王之鳞 | 传说 | -4 护甲，+33 幸运，+16 收获，25% 概率番茄籽翻倍 | 123 | 1 |
 
 <a id="series-20"></a>
 
@@ -546,7 +549,7 @@
 | <img src="images/item/eggs_6.png" width="32" height="32" alt=""> 鸵鸟蛋 | 稀有 | +3 最大生命，-3% 全伤害，+7% 经验获取，受伤时获得再生 | 36 | ∞ |
 | <img src="images/item/eggs_7.png" width="32" height="32" alt=""> 金蛋 | 史诗 | +6 最大生命，-6% 全伤害，+13% 经验获取，受伤时获得2层再生 | 73 | ∞ |
 | <img src="images/item/eggs_8.png" width="32" height="32" alt=""> 龙蛋 | 史诗 | +3 最大生命，+14% 经验获取，受伤时获得2层再生 | 73 | ∞ |
-| <img src="images/item/eggs_9.png" width="32" height="32" alt=""> 混沌之卵 | 传说 | +12 最大生命，-10% 全伤害，+27% 经验获取，受伤时获得3层再生 | 123 | ∞ |
+| <img src="images/item/eggs_9.png" width="32" height="32" alt=""> 混沌之卵 | 传说 | +12 最大生命，-10% 全伤害，+27% 经验获取，受伤时获得3层再生 | 123 | 1 |
 
 <a id="series-21"></a>
 
@@ -563,7 +566,7 @@
 | <img src="images/item/farm_6.png" width="32" height="32" alt=""> 拖拉机钥匙 | 稀有 | +2 最大生命，-3% 移动速度，+6 收获，10% 概率番茄籽翻倍 | 36 | ∞ |
 | <img src="images/item/farm_7.png" width="32" height="32" alt=""> 丰收号角 | 史诗 | +4 最大生命，-6% 移动速度，+12 收获，19% 概率番茄籽翻倍 | 73 | ∞ |
 | <img src="images/item/farm_8.png" width="32" height="32" alt=""> 大地之犁 | 史诗 | +4 最大生命，+6 收获，14% 概率番茄籽翻倍 | 73 | ∞ |
-| <img src="images/item/farm_9.png" width="32" height="32" alt=""> 丰饶女神镰 | 传说 | +8 最大生命，-10% 移动速度，+24 收获，25% 概率番茄籽翻倍 | 123 | ∞ |
+| <img src="images/item/farm_9.png" width="32" height="32" alt=""> 丰饶女神镰 | 传说 | +8 最大生命，-10% 移动速度，+24 收获，25% 概率番茄籽翻倍 | 123 | 1 |
 
 <a id="series-22"></a>
 
@@ -580,7 +583,7 @@
 | <img src="images/item/seedsS_6.png" width="32" height="32" alt=""> 魔豆 | 稀有 | -3% 全伤害，+6 幸运，+6 收获，10% 概率番茄籽翻倍 | 36 | ∞ |
 | <img src="images/item/seedsS_7.png" width="32" height="32" alt=""> 星光种子 | 史诗 | -6% 全伤害，+11 幸运，+12 收获，19% 概率番茄籽翻倍 | 73 | ∞ |
 | <img src="images/item/seedsS_8.png" width="32" height="32" alt=""> 世界树种子 | 史诗 | +11 幸运，+6 收获，14% 概率番茄籽翻倍 | 73 | ∞ |
-| <img src="images/item/seedsS_9.png" width="32" height="32" alt=""> 创世之种 | 传说 | -10% 全伤害，+22 幸运，+24 收获，25% 概率番茄籽翻倍 | 123 | ∞ |
+| <img src="images/item/seedsS_9.png" width="32" height="32" alt=""> 创世之种 | 传说 | -10% 全伤害，+22 幸运，+24 收获，25% 概率番茄籽翻倍 | 123 | 1 |
 
 <a id="series-23"></a>
 
@@ -597,7 +600,7 @@
 | <img src="images/item/bugs_6.png" width="32" height="32" alt=""> 蝎子标本 | 稀有 | -2 最大生命，+2% 吸血概率，+3% 暴击率，击杀时获得19% 概率嗜血 | 36 | ∞ |
 | <img src="images/item/bugs_7.png" width="32" height="32" alt=""> 黄金圣甲虫 | 史诗 | -3 最大生命，+3% 吸血概率，+5% 暴击率，击杀时获得35% 概率嗜血 | 73 | ∞ |
 | <img src="images/item/bugs_8.png" width="32" height="32" alt=""> 吸血蝙蝠 | 史诗 | +2% 吸血概率，+6% 暴击率，击杀时获得26% 概率嗜血 | 73 | ∞ |
-| <img src="images/item/bugs_9.png" width="32" height="32" alt=""> 虫王琥珀 | 传说 | -6 最大生命，+7% 吸血概率，+11% 暴击率，击杀时获得49% 概率嗜血 | 123 | ∞ |
+| <img src="images/item/bugs_9.png" width="32" height="32" alt=""> 虫王琥珀 | 传说 | -6 最大生命，+7% 吸血概率，+11% 暴击率，击杀时获得49% 概率嗜血 | 123 | 1 |
 
 <a id="series-24"></a>
 
@@ -614,7 +617,7 @@
 | <img src="images/item/shoes_6.png" width="32" height="32" alt=""> 弹簧鞋 | 稀有 | -1 护甲，+2% 闪避，+5% 移动速度，击杀时获得24% 概率急速 | 36 | ∞ |
 | <img src="images/item/shoes_7.png" width="32" height="32" alt=""> 疾风靴 | 史诗 | -2 护甲，+4% 闪避，+9% 移动速度，击杀时获得46% 概率急速 | 73 | ∞ |
 | <img src="images/item/shoes_8.png" width="32" height="32" alt=""> 火箭靴 | 史诗 | +4% 闪避，+5% 移动速度，击杀时获得34% 概率急速 | 73 | ∞ |
-| <img src="images/item/shoes_9.png" width="32" height="32" alt=""> 赫尔墨斯之翼 | 传说 | -4 护甲，+8% 闪避，+20% 移动速度，击杀时获得60% 概率急速 | 123 | ∞ |
+| <img src="images/item/shoes_9.png" width="32" height="32" alt=""> 赫尔墨斯之翼 | 传说 | -4 护甲，+8% 闪避，+20% 移动速度，击杀时获得60% 概率急速 | 123 | 1 |
 
 <a id="series-25"></a>
 
@@ -631,7 +634,7 @@
 | <img src="images/item/hats_6.png" width="32" height="32" alt=""> 将军帽 | 稀有 | -3% 全伤害，+2 护甲，+2% 闪避，受伤时使攻击者25% 概率混乱 | 36 | ∞ |
 | <img src="images/item/hats_7.png" width="32" height="32" alt=""> 隐身斗笠 | 史诗 | -6% 全伤害，+4 护甲，+4% 闪避，受伤时使攻击者48% 概率混乱 | 73 | ∞ |
 | <img src="images/item/hats_8.png" width="32" height="32" alt=""> 魔王之冠 | 史诗 | +2 护甲，+4% 闪避，受伤时使攻击者34% 概率混乱 | 73 | ∞ |
-| <img src="images/item/hats_9.png" width="32" height="32" alt=""> 百变神帽 | 传说 | -10% 全伤害，+8 护甲，+8% 闪避，受伤时使攻击者60% 概率混乱 | 123 | ∞ |
+| <img src="images/item/hats_9.png" width="32" height="32" alt=""> 百变神帽 | 传说 | -10% 全伤害，+8 护甲，+8% 闪避，受伤时使攻击者60% 概率混乱 | 123 | 1 |
 
 <a id="series-26"></a>
 
@@ -648,7 +651,7 @@
 | <img src="images/item/gloves_6.png" width="32" height="32" alt=""> 烈焰拳套 | 稀有 | +2 近战伤害，-20 射程，+1 护甲，命中时5% 概率眩晕 | 36 | ∞ |
 | <img src="images/item/gloves_7.png" width="32" height="32" alt=""> 巨人护手 | 史诗 | +4 近战伤害，-35 射程，+3 护甲，命中时10% 概率眩晕 | 73 | ∞ |
 | <img src="images/item/gloves_8.png" width="32" height="32" alt=""> 雷霆拳套 | 史诗 | +2 近战伤害，+3 护甲，命中时7% 概率眩晕 | 73 | ∞ |
-| <img src="images/item/gloves_9.png" width="32" height="32" alt=""> 神之手 | 传说 | +8 近战伤害，-60 射程，+5 护甲，命中时12% 概率眩晕 | 123 | ∞ |
+| <img src="images/item/gloves_9.png" width="32" height="32" alt=""> 神之手 | 传说 | +8 近战伤害，-60 射程，+5 护甲，命中时12% 概率眩晕 | 123 | 1 |
 
 <a id="series-27"></a>
 
@@ -665,7 +668,7 @@
 | <img src="images/item/shields_6.png" width="32" height="32" alt=""> 刺盾 | 稀有 | +2 最大生命，-3% 攻击速度，+2 护甲，受伤反弹 10 伤害 | 36 | ∞ |
 | <img src="images/item/shields_7.png" width="32" height="32" alt=""> 反击之盾 | 史诗 | +4 最大生命，-5% 攻击速度，+4 护甲，受伤反弹 19 伤害 | 73 | ∞ |
 | <img src="images/item/shields_8.png" width="32" height="32" alt=""> 不破之壁 | 史诗 | +4 最大生命，+2 护甲，受伤反弹 14 伤害 | 73 | ∞ |
-| <img src="images/item/shields_9.png" width="32" height="32" alt=""> 圣盾 | 传说 | +8 最大生命，-9% 攻击速度，+8 护甲，受伤反弹 26 伤害 | 123 | ∞ |
+| <img src="images/item/shields_9.png" width="32" height="32" alt=""> 圣盾 | 传说 | +8 最大生命，-9% 攻击速度，+8 护甲，受伤反弹 26 伤害 | 123 | 1 |
 
 <a id="series-28"></a>
 
@@ -682,7 +685,7 @@
 | <img src="images/item/books_6.png" width="32" height="32" alt=""> 禁书 | 稀有 | -2 最大生命，+10% 经验获取，+4% 技能冷却缩减，命中时自身获得10% 概率专注 | 36 | ∞ |
 | <img src="images/item/books_7.png" width="32" height="32" alt=""> 贤者之书 | 史诗 | -3 最大生命，+19% 经验获取，+8% 技能冷却缩减，命中时自身获得19% 概率专注 | 73 | ∞ |
 | <img src="images/item/books_8.png" width="32" height="32" alt=""> 万物图鉴 | 史诗 | +9% 经验获取，+8% 技能冷却缩减，命中时自身获得14% 概率专注 | 73 | ∞ |
-| <img src="images/item/books_9.png" width="32" height="32" alt=""> 知识之源 | 传说 | -6 最大生命，+40% 经验获取，+16% 技能冷却缩减，命中时自身获得25% 概率专注 | 123 | ∞ |
+| <img src="images/item/books_9.png" width="32" height="32" alt=""> 知识之源 | 传说 | -6 最大生命，+40% 经验获取，+16% 技能冷却缩减，命中时自身获得25% 概率专注 | 123 | 1 |
 
 <a id="series-29"></a>
 
@@ -699,7 +702,7 @@
 | <img src="images/item/scrolls_6.png" width="32" height="32" alt=""> 雷霆卷轴 | 稀有 | +2 元素伤害，-1 护甲，+4% 技能冷却缩减，命中 6% 概率落雷 | 36 | ∞ |
 | <img src="images/item/scrolls_7.png" width="32" height="32" alt=""> 禁咒卷轴 | 史诗 | +4 元素伤害，-2 护甲，+8% 技能冷却缩减，命中 12% 概率落雷 | 73 | ∞ |
 | <img src="images/item/scrolls_8.png" width="32" height="32" alt=""> 天启卷轴 | 史诗 | +2 元素伤害，+8% 技能冷却缩减，命中 9% 概率落雷 | 73 | ∞ |
-| <img src="images/item/scrolls_9.png" width="32" height="32" alt=""> 创世卷轴 | 传说 | +8 元素伤害，-4 护甲，+16% 技能冷却缩减，命中 16% 概率落雷 | 123 | ∞ |
+| <img src="images/item/scrolls_9.png" width="32" height="32" alt=""> 创世卷轴 | 传说 | +8 元素伤害，-4 护甲，+16% 技能冷却缩减，命中 16% 概率落雷 | 123 | 1 |
 
 <a id="series-30"></a>
 
@@ -716,7 +719,7 @@
 | <img src="images/item/gems_6.png" width="32" height="32" alt=""> 红宝石 | 稀有 | -1 生命再生，+4% 暴击率，+5 幸运，暴击伤害 +14% | 36 | ∞ |
 | <img src="images/item/gems_7.png" width="32" height="32" alt=""> 钻石 | 史诗 | -2 生命再生，+8% 暴击率，+10 幸运，暴击伤害 +28% | 73 | ∞ |
 | <img src="images/item/gems_8.png" width="32" height="32" alt=""> 星辰宝石 | 史诗 | +4% 暴击率，+11 幸运，暴击伤害 +21% | 73 | ∞ |
-| <img src="images/item/gems_9.png" width="32" height="32" alt=""> 无限宝石 | 传说 | -4 生命再生，+17% 暴击率，+22 幸运，暴击伤害 +39% | 123 | ∞ |
+| <img src="images/item/gems_9.png" width="32" height="32" alt=""> 无限宝石 | 传说 | -4 生命再生，+17% 暴击率，+22 幸运，暴击伤害 +39% | 123 | 1 |
 
 <a id="series-31"></a>
 
@@ -733,7 +736,7 @@
 | <img src="images/item/rings_6.png" width="32" height="32" alt=""> 暴君之戒 | 稀有 | -2 最大生命，+4% 远程武器伤害，+4% 暴击率，命中时9% 概率标记 | 36 | ∞ |
 | <img src="images/item/rings_7.png" width="32" height="32" alt=""> 王者之戒 | 史诗 | -3 最大生命，+8% 远程武器伤害，+8% 暴击率，命中时16% 概率标记 | 73 | ∞ |
 | <img src="images/item/rings_8.png" width="32" height="32" alt=""> 命运之戒 | 史诗 | +9% 远程武器伤害，+4% 暴击率，命中时12% 概率标记 | 73 | ∞ |
-| <img src="images/item/rings_9.png" width="32" height="32" alt=""> 至尊魔戒 | 传说 | -6 最大生命，+17% 远程武器伤害，+17% 暴击率，命中时20% 概率标记 | 123 | ∞ |
+| <img src="images/item/rings_9.png" width="32" height="32" alt=""> 至尊魔戒 | 传说 | -6 最大生命，+17% 远程武器伤害，+17% 暴击率，命中时20% 概率标记 | 123 | 1 |
 
 <a id="series-32"></a>
 
@@ -767,7 +770,7 @@
 | <img src="images/item/coins_6.png" width="32" height="32" alt=""> 藏宝图 | 稀有 | -2 最大生命，+8 幸运，+4 收获，10% 概率番茄籽翻倍 | 36 | ∞ |
 | <img src="images/item/coins_7.png" width="32" height="32" alt=""> 聚宝盆 | 史诗 | -3 最大生命，+15 幸运，+8 收获，19% 概率番茄籽翻倍 | 73 | ∞ |
 | <img src="images/item/coins_8.png" width="32" height="32" alt=""> 点金石 | 史诗 | +8 幸运，+8 收获，14% 概率番茄籽翻倍 | 73 | ∞ |
-| <img src="images/item/coins_9.png" width="32" height="32" alt=""> 财神之手 | 传说 | -6 最大生命，+33 幸运，+16 收获，25% 概率番茄籽翻倍 | 123 | ∞ |
+| <img src="images/item/coins_9.png" width="32" height="32" alt=""> 财神之手 | 传说 | -6 最大生命，+33 幸运，+16 收获，25% 概率番茄籽翻倍 | 123 | 1 |
 
 <a id="series-34"></a>
 
@@ -784,7 +787,7 @@
 | <img src="images/item/potions_6.png" width="32" height="32" alt=""> 万能药 | 稀有 | +2 生命再生，+1% 吸血概率，-3% 移动速度，每击杀 48 个敌人回复 1 生命 | 36 | ∞ |
 | <img src="images/item/potions_7.png" width="32" height="32" alt=""> 不死药水 | 史诗 | +4 生命再生，+2% 吸血概率，-6% 移动速度，每击杀 36 个敌人回复 1 生命 | 73 | ∞ |
 | <img src="images/item/potions_8.png" width="32" height="32" alt=""> 凤凰药剂 | 史诗 | +2 生命再生，+2% 吸血概率，每击杀 43 个敌人回复 1 生命 | 73 | ∞ |
-| <img src="images/item/potions_9.png" width="32" height="32" alt=""> 生命之泉 | 传说 | +8 生命再生，+4% 吸血概率，-10% 移动速度，每击杀 27 个敌人回复 1 生命 | 123 | ∞ |
+| <img src="images/item/potions_9.png" width="32" height="32" alt=""> 生命之泉 | 传说 | +8 生命再生，+4% 吸血概率，-10% 移动速度，每击杀 27 个敌人回复 1 生命 | 123 | 1 |
 
 <a id="series-35"></a>
 
@@ -801,7 +804,7 @@
 | <img src="images/item/bones_6.png" width="32" height="32" alt=""> 诅咒之骨 | 稀有 | -1 生命再生，+1% 吸血概率，+2 近战伤害，命中时10% 概率诅咒 | 36 | ∞ |
 | <img src="images/item/bones_7.png" width="32" height="32" alt=""> 死灵骨杖 | 史诗 | -2 生命再生，+2% 吸血概率，+4 近战伤害，命中时19% 概率诅咒 | 73 | ∞ |
 | <img src="images/item/bones_8.png" width="32" height="32" alt=""> 骨龙之牙 | 史诗 | +2% 吸血概率，+2 近战伤害，命中时14% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/bones_9.png" width="32" height="32" alt=""> 冥王之骨 | 传说 | -4 生命再生，+4% 吸血概率，+8 近战伤害，命中时25% 概率诅咒 | 123 | ∞ |
+| <img src="images/item/bones_9.png" width="32" height="32" alt=""> 冥王之骨 | 传说 | -4 生命再生，+4% 吸血概率，+8 近战伤害，命中时25% 概率诅咒 | 123 | 1 |
 
 <a id="series-36"></a>
 
@@ -818,7 +821,7 @@
 | <img src="images/item/feathers_6.png" width="32" height="32" alt=""> 雷鸟之羽 | 稀有 | -1 护甲，+3% 闪避，+3% 移动速度，击杀时获得24% 概率急速 | 36 | ∞ |
 | <img src="images/item/feathers_7.png" width="32" height="32" alt=""> 凤凰尾羽 | 史诗 | -2 护甲，+6% 闪避，+6% 移动速度，击杀时获得46% 概率急速 | 73 | ∞ |
 | <img src="images/item/feathers_8.png" width="32" height="32" alt=""> 天使之羽 | 史诗 | +3% 闪避，+7% 移动速度，击杀时获得34% 概率急速 | 73 | ∞ |
-| <img src="images/item/feathers_9.png" width="32" height="32" alt=""> 神鸟金羽 | 传说 | -4 护甲，+12% 闪避，+13% 移动速度，击杀时获得60% 概率急速 | 123 | ∞ |
+| <img src="images/item/feathers_9.png" width="32" height="32" alt=""> 神鸟金羽 | 传说 | -4 护甲，+12% 闪避，+13% 移动速度，击杀时获得60% 概率急速 | 123 | 1 |
 
 <a id="series-37"></a>
 
@@ -852,7 +855,7 @@
 | <img src="images/item/gears_6.png" width="32" height="32" alt=""> 活塞 | 稀有 | +2 远程伤害，+1 护甲，-2% 闪避，命中时17% 概率破甲 | 36 | ∞ |
 | <img src="images/item/gears_7.png" width="32" height="32" alt=""> 涡轮 | 史诗 | +4 远程伤害，+3 护甲，-3% 闪避，命中时30% 概率破甲 | 73 | ∞ |
 | <img src="images/item/gears_8.png" width="32" height="32" alt=""> 永动机 | 史诗 | +2 远程伤害，+3 护甲，命中时22% 概率破甲 | 73 | ∞ |
-| <img src="images/item/gears_9.png" width="32" height="32" alt=""> 机械之心 | 传说 | +8 远程伤害，+5 护甲，-6% 闪避，命中时40% 概率破甲 | 123 | ∞ |
+| <img src="images/item/gears_9.png" width="32" height="32" alt=""> 机械之心 | 传说 | +8 远程伤害，+5 护甲，-6% 闪避，命中时40% 概率破甲 | 123 | 1 |
 
 <a id="series-39"></a>
 
@@ -869,7 +872,7 @@
 | <img src="images/item/batteries_6.png" width="32" height="32" alt=""> 反物质电池 | 稀有 | -1 生命再生，+1 元素伤害，+4% 攻击速度，命中 6% 概率落雷 | 36 | ∞ |
 | <img src="images/item/batteries_7.png" width="32" height="32" alt=""> 核电池 | 史诗 | -2 生命再生，+3 元素伤害，+8% 攻击速度，命中 12% 概率落雷 | 73 | ∞ |
 | <img src="images/item/batteries_8.png" width="32" height="32" alt=""> 零点能源 | 史诗 | +3 元素伤害，+4% 攻击速度，命中 9% 概率落雷 | 73 | ∞ |
-| <img src="images/item/batteries_9.png" width="32" height="32" alt=""> 宇宙能源 | 传说 | -4 生命再生，+5 元素伤害，+18% 攻击速度，命中 16% 概率落雷 | 123 | ∞ |
+| <img src="images/item/batteries_9.png" width="32" height="32" alt=""> 宇宙能源 | 传说 | -4 生命再生，+5 元素伤害，+18% 攻击速度，命中 16% 概率落雷 | 123 | 1 |
 
 <a id="series-40"></a>
 
@@ -886,7 +889,7 @@
 | <img src="images/item/masks_6.png" width="32" height="32" alt=""> 忍者面具 | 稀有 | -2 最大生命，+3% 暴击率，+3% 闪避，受伤时使攻击者25% 概率混乱 | 36 | ∞ |
 | <img src="images/item/masks_7.png" width="32" height="32" alt=""> 鬼面 | 史诗 | -3 最大生命，+5% 暴击率，+6% 闪避，受伤时使攻击者46% 概率混乱 | 73 | ∞ |
 | <img src="images/item/masks_8.png" width="32" height="32" alt=""> 千面之面 | 史诗 | +6% 暴击率，+3% 闪避，受伤时使攻击者34% 概率混乱 | 73 | ∞ |
-| <img src="images/item/masks_9.png" width="32" height="32" alt=""> 无相之面 | 传说 | -6 最大生命，+11% 暴击率，+12% 闪避，受伤时使攻击者60% 概率混乱 | 123 | ∞ |
+| <img src="images/item/masks_9.png" width="32" height="32" alt=""> 无相之面 | 传说 | -6 最大生命，+11% 暴击率，+12% 闪避，受伤时使攻击者60% 概率混乱 | 123 | 1 |
 
 <a id="series-41"></a>
 
@@ -937,7 +940,7 @@
 | <img src="images/item/dark_6.png" width="32" height="32" alt=""> 深渊之石 | 稀有 | -1 生命再生，+1% 吸血概率，+7% 光环伤害，命中时10% 概率诅咒 | 36 | ∞ |
 | <img src="images/item/dark_7.png" width="32" height="32" alt=""> 魔王契约 | 史诗 | -2 生命再生，+2% 吸血概率，+13% 光环伤害，命中时19% 概率诅咒 | 73 | ∞ |
 | <img src="images/item/dark_8.png" width="32" height="32" alt=""> 虚空之眼 | 史诗 | +2% 吸血概率，+6% 光环伤害，命中时14% 概率诅咒 | 73 | ∞ |
-| <img src="images/item/dark_9.png" width="32" height="32" alt=""> 混沌黑洞 | 传说 | -4 生命再生，+4% 吸血概率，+28% 光环伤害，命中时25% 概率诅咒 | 123 | ∞ |
+| <img src="images/item/dark_9.png" width="32" height="32" alt=""> 混沌黑洞 | 传说 | -4 生命再生，+4% 吸血概率，+28% 光环伤害，命中时25% 概率诅咒 | 123 | 1 |
 
 <a id="series-44"></a>
 
@@ -971,7 +974,7 @@
 | <img src="images/item/ninja_6.png" width="32" height="32" alt=""> 影分身卷 | 稀有 | -2 最大生命，+3% 暴击率，+5% 移动速度，命中时15% 概率流血 | 36 | ∞ |
 | <img src="images/item/ninja_7.png" width="32" height="32" alt=""> 暗杀匕首 | 史诗 | -3 最大生命，+5% 暴击率，+9% 移动速度，命中时28% 概率流血 | 73 | ∞ |
 | <img src="images/item/ninja_8.png" width="32" height="32" alt=""> 忍之极意 | 史诗 | +6% 暴击率，+5% 移动速度，命中时21% 概率流血 | 73 | ∞ |
-| <img src="images/item/ninja_9.png" width="32" height="32" alt=""> 影之王 | 传说 | -6 最大生命，+11% 暴击率，+20% 移动速度，命中时39% 概率流血 | 123 | ∞ |
+| <img src="images/item/ninja_9.png" width="32" height="32" alt=""> 影之王 | 传说 | -6 最大生命，+11% 暴击率，+20% 移动速度，命中时39% 概率流血 | 123 | 1 |
 
 <a id="series-46"></a>
 
@@ -988,7 +991,7 @@
 | <img src="images/item/pirate_6.png" width="32" height="32" alt=""> 宝箱钥匙 | 稀有 | +1 近战伤害，-1 护甲，+8 幸运，10% 概率番茄籽翻倍 | 36 | ∞ |
 | <img src="images/item/pirate_7.png" width="32" height="32" alt=""> 黑胡子旗 | 史诗 | +3 近战伤害，-2 护甲，+15 幸运，19% 概率番茄籽翻倍 | 73 | ∞ |
 | <img src="images/item/pirate_8.png" width="32" height="32" alt=""> 幽灵船舵 | 史诗 | +3 近战伤害，+8 幸运，14% 概率番茄籽翻倍 | 73 | ∞ |
-| <img src="images/item/pirate_9.png" width="32" height="32" alt=""> 海盗王宝藏 | 传说 | +5 近战伤害，-4 护甲，+33 幸运，25% 概率番茄籽翻倍 | 123 | ∞ |
+| <img src="images/item/pirate_9.png" width="32" height="32" alt=""> 海盗王宝藏 | 传说 | +5 近战伤害，-4 护甲，+33 幸运，25% 概率番茄籽翻倍 | 123 | 1 |
 
 <a id="series-47"></a>
 
@@ -1005,7 +1008,7 @@
 | <img src="images/item/science_6.png" width="32" height="32" alt=""> 等离子瓶 | 稀有 | -2 最大生命，+2 元素伤害，+20 射程，击杀 8% 概率爆炸（15 伤害） | 36 | ∞ |
 | <img src="images/item/science_7.png" width="32" height="32" alt=""> 粒子加速器 | 史诗 | -3 最大生命，+4 元素伤害，+40 射程，击杀 14% 概率爆炸（19 伤害） | 73 | ∞ |
 | <img src="images/item/science_8.png" width="32" height="32" alt=""> 反物质 | 史诗 | +2 元素伤害，+40 射程，击杀 10% 概率爆炸（17 伤害） | 73 | ∞ |
-| <img src="images/item/science_9.png" width="32" height="32" alt=""> 宇宙方程式 | 传说 | -6 最大生命，+8 元素伤害，+80 射程，击杀 20% 概率爆炸（23 伤害） | 123 | ∞ |
+| <img src="images/item/science_9.png" width="32" height="32" alt=""> 宇宙方程式 | 传说 | -6 最大生命，+8 元素伤害，+80 射程，击杀 20% 概率爆炸（23 伤害） | 123 | 1 |
 
 <a id="series-48"></a>
 
@@ -1022,7 +1025,7 @@
 | <img src="images/item/sports_6.png" width="32" height="32" alt=""> 奥运奖牌 | 稀有 | +2 最大生命，+5% 移动速度，-5 幸运，受伤时获得再生 | 36 | ∞ |
 | <img src="images/item/sports_7.png" width="32" height="32" alt=""> 冠军腰带 | 史诗 | +4 最大生命，+10% 移动速度，-9 幸运，受伤时获得2层再生 | 73 | ∞ |
 | <img src="images/item/sports_8.png" width="32" height="32" alt=""> 传奇球衣 | 史诗 | +4 最大生命，+5% 移动速度，受伤时获得2层再生 | 73 | ∞ |
-| <img src="images/item/sports_9.png" width="32" height="32" alt=""> 体育之神 | 传说 | +8 最大生命，+20% 移动速度，-17 幸运，受伤时获得3层再生 | 123 | ∞ |
+| <img src="images/item/sports_9.png" width="32" height="32" alt=""> 体育之神 | 传说 | +8 最大生命，+20% 移动速度，-17 幸运，受伤时获得3层再生 | 123 | 1 |
 
 <a id="series-49"></a>
 
@@ -1039,7 +1042,7 @@
 | <img src="images/item/rot_6.png" width="32" height="32" alt=""> 瘟疫之瓶 | 稀有 | -1 生命再生，+7% 光环伤害，+7% 光环范围，命中时14% 概率虚弱 | 36 | ∞ |
 | <img src="images/item/rot_7.png" width="32" height="32" alt=""> 腐王之眼 | 史诗 | -2 生命再生，+13% 光环伤害，+14% 光环范围，命中时28% 概率虚弱 | 73 | ∞ |
 | <img src="images/item/rot_8.png" width="32" height="32" alt=""> 堕落精华 | 史诗 | +6% 光环伤害，+16% 光环范围，命中时21% 概率虚弱 | 73 | ∞ |
-| <img src="images/item/rot_9.png" width="32" height="32" alt=""> 终焉腐化 | 传说 | -4 生命再生，+28% 光环伤害，+30% 光环范围，命中时35% 概率虚弱 | 123 | ∞ |
+| <img src="images/item/rot_9.png" width="32" height="32" alt=""> 终焉腐化 | 传说 | -4 生命再生，+28% 光环伤害，+30% 光环范围，命中时35% 概率虚弱 | 123 | 1 |
 
 <a id="series-50"></a>
 
@@ -1056,7 +1059,7 @@
 | <img src="images/item/skillbook_6.png" width="32" height="32" alt=""> 奥义真解 | 稀有 | -2 最大生命，+8% 技能冷却缩减，+19% 技能伤害 | 36 | ∞ |
 | <img src="images/item/skillbook_7.png" width="32" height="32" alt=""> 天书残卷 | 史诗 | -3 最大生命，+14% 技能冷却缩减，+34% 技能伤害 | 73 | ∞ |
 | <img src="images/item/skillbook_8.png" width="32" height="32" alt=""> 无上心经 | 史诗 | +15% 技能冷却缩减，+17% 技能伤害 | 73 | ∞ |
-| <img src="images/item/skillbook_9.png" width="32" height="32" alt=""> 大招圣典 | 传说 | -6 最大生命，+25% 技能冷却缩减，+62% 技能伤害 | 123 | ∞ |
+| <img src="images/item/skillbook_9.png" width="32" height="32" alt=""> 大招圣典 | 传说 | -6 最大生命，+25% 技能冷却缩减，+62% 技能伤害 | 123 | 1 |
 
 <a id="series-51"></a>
 
@@ -1073,7 +1076,7 @@
 | <img src="images/item/talisman_6.png" width="32" height="32" alt=""> 空间罗盘 | 稀有 | -3% 全伤害，+24% 技能范围，+14% 技能持续 | 36 | ∞ |
 | <img src="images/item/talisman_7.png" width="32" height="32" alt=""> 永恒沙漏 | 史诗 | -6% 全伤害，+46% 技能范围，+27% 技能持续 | 73 | ∞ |
 | <img src="images/item/talisman_8.png" width="32" height="32" alt=""> 星辰罗盘 | 史诗 | +22% 技能范围，+29% 技能持续 | 73 | ∞ |
-| <img src="images/item/talisman_9.png" width="32" height="32" alt=""> 天穹法器 | 传说 | -10% 全伤害，+80% 技能范围，+47% 技能持续 | 123 | ∞ |
+| <img src="images/item/talisman_9.png" width="32" height="32" alt=""> 天穹法器 | 传说 | -10% 全伤害，+80% 技能范围，+47% 技能持续 | 123 | 1 |
 
 <a id="series-52"></a>
 
@@ -1090,8 +1093,8 @@
 | <img src="images/item/stars_6.png" width="32" height="32" alt=""> 银河之尘 | 稀有 | +4% 暴击率，-1 护甲，+7% 经验获取，暴击伤害 +14% | 36 | ∞ |
 | <img src="images/item/stars_7.png" width="32" height="32" alt=""> 超新星 | 史诗 | +8% 暴击率，-2 护甲，+13% 经验获取，暴击伤害 +28% | 73 | ∞ |
 | <img src="images/item/stars_8.png" width="32" height="32" alt=""> 星辰之核 | 史诗 | +4% 暴击率，+14% 经验获取，暴击伤害 +21% | 73 | ∞ |
-| <img src="images/item/stars_9.png" width="32" height="32" alt=""> 宇宙之眼 | 传说 | +17% 暴击率，-4 护甲，+27% 经验获取，暴击伤害 +39% | 123 | ∞ |
+| <img src="images/item/stars_9.png" width="32" height="32" alt=""> 宇宙之眼 | 传说 | +17% 暴击率，-4 护甲，+27% 经验获取，暴击伤害 +39% | 123 | 1 |
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · **道具** · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · **道具** · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)

@@ -6,9 +6,102 @@ export interface ChangeEntry {
   date: string;
   highlight: [string, string];
   items: [string, string][];
+  /** M4：老玩家首次进入新版本时主菜单弹出的「新功能」卡片 */
+  news?: { icon: string; title: [string, string]; desc: [string, string] }[];
 }
 
 export const CHANGELOG: ChangeEntry[] = [
+  {
+    version: '1.4.0',
+    date: '2026-10-04',
+    highlight: [
+      '「通关之后」：番茄危机 20 级难度阶梯、遗物、角色任务与觉醒、第 6/7 章与真结局，通关后还有很长的路可以走',
+      '"After the Credits": a 20-level Tomato Danger ladder, relics, character quests and Awakenings, chapters 6/7 and a true ending — plenty to chase after your first clear',
+    ],
+    items: [
+      [
+        '番茄危机 0–20 级：通关一级解锁下一级，每级叠加一条规则，奖励随等级提高',
+        'Tomato Danger 0–20: each clear unlocks the next level, each level stacks one more rule, and rewards scale up',
+      ],
+      [
+        '新增 45 件遗物与 8 个套装：精英、无尽里程碑与神秘商人提供，改变规则而不只是加属性',
+        '45 new relics in 8 sets from elites, Endless milestones and the Mysterious Merchant — they bend the rules, not just stats',
+      ],
+      [
+        '无尽模式深化：每 10 波里程碑奖励、第 30/45/60 波超级 Boss、变异词缀、一次复活',
+        'Deeper Endless: milestone rewards every 10 waves, super bosses at 30/45/60, mutations and one revive',
+      ],
+      [
+        '每名角色 3 个专属任务、觉醒被动、1–10 级熟练度与一套皮肤；新增 6 名角色',
+        'Every character gets 3 quests, an Awakening, Mastery 1–10 and a skin; 6 new characters',
+      ],
+      [
+        '角色改为达成指定成就自动解锁，不再花成就点购买',
+        'Characters now unlock automatically from specific achievements instead of being bought with points',
+      ],
+      [
+        '第 6 章「腐烂温室」、隐藏第 7 章「腐烂菜园」与真结局 Boss',
+        'Chapter 6 "Rotting Greenhouse", hidden Chapter 7 "Rot Garden" and a true final boss',
+      ],
+      ['12 把新武器、8 组进化、30 个新道具与 23 条道具组合', '12 new weapons, 8 evolutions, 30 new items and 23 item combos'],
+      [
+        '事件波、危险路线、神秘商人、局内小任务、天气与 5 种新地形机关',
+        'Event waves, risky routes, the Mysterious Merchant, in-wave mini-quests, weather and 5 new terrain hazards',
+      ],
+      [
+        '每日 / 每周挑战连续奖励、种子分享、自定义挑战与练习模式',
+        'Daily / weekly streak rewards, seed sharing, custom challenges and practice mode',
+      ],
+      [
+        '天赋大师层、收藏度总览、称号、76 个新成就、构筑分享码与局后 DPS 曲线',
+        'Talent master tiers, a collection overview, titles, 76 new achievements, build codes and a post-run DPS chart',
+      ],
+      ['技能演出全面重做：同类技能各有不同的动画与效果', 'Skill visuals reworked: similar skills now look and play differently'],
+      [
+        '修复荆棘词缀反伤可能秒杀高伤害近战构筑的问题（现在有单次与每秒上限）',
+        'Fixed Thorny reflection being able to one-shot high-damage melee builds (now capped per hit and per second)',
+      ],
+      [
+        '设置新增伤害数字密度、震动强度、粒子数量、摇杆与按钮大小、手柄支持，以及存档导入导出',
+        'Settings: damage number density, shake strength, particle amount, joystick and button size, gamepad support, and save import/export',
+      ],
+    ],
+    news: [
+      {
+        icon: '🔥',
+        title: ['番茄危机', 'Tomato Danger'],
+        desc: [
+          '通关后在选角界面选危机等级，越高越难、奖励越多',
+          'Pick a Danger level on character select after a clear — harder, with bigger rewards',
+        ],
+      },
+      {
+        icon: '🏺',
+        title: ['遗物', 'Relics'],
+        desc: ['击败第 5、10 波精英三选一，改变一局的玩法', 'Beat the wave 5 and 10 elites to pick one of three run-changing relics'],
+      },
+      {
+        icon: '📜',
+        title: ['角色任务与觉醒', 'Quests & Awakenings'],
+        desc: ['每名角色 3 个任务，完成后解锁觉醒被动', '3 quests per character unlock an Awakening passive'],
+      },
+      {
+        icon: '🔓',
+        title: ['成就解锁角色', 'Achievement unlocks'],
+        desc: ['角色改为达成指定成就后自动解锁', 'Characters now unlock automatically from specific achievements'],
+      },
+      {
+        icon: '🥀',
+        title: ['第 6/7 章与真结局', 'Chapters 6/7 & true ending'],
+        desc: ['新章节与隐藏章节，等你来发现', 'A new chapter and a hidden one are waiting'],
+      },
+      {
+        icon: '♾️',
+        title: ['无尽与每日挑战', 'Endless & dailies'],
+        desc: ['超级 Boss、变异、连续挑战奖励与种子分享', 'Super bosses, mutations, streak rewards and seed sharing'],
+      },
+    ],
+  },
   {
     version: '1.3.2',
     date: '2026-10-03',

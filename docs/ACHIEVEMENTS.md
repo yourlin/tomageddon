@@ -2,11 +2,11 @@
 
 **中文** · [English](en/ACHIEVEMENTS.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · **成就** · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · **成就** · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 NaN 点。
+成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 45887 点。
 
 除默认的 4 名外，每名[角色](CHARACTERS.md)都绑定一项成就，达成该成就的指定等级后自动解锁；成就点只作为累计成绩展示。解锁时屏幕顶部会弹出提示，主菜单「成就」可查看全部进度，可解锁角色的成就会标出 🔓。
 
@@ -659,7 +659,7 @@
 | 成就 | 条件 | 等级目标与奖励 |
 | --- | --- | --- |
 | <a id="ach-codex_weapons"></a>🗡️ 军火库 | 在图鉴中发现 N 把武器 | 🥉 9（+2 点）<br>🥈 25（+8 点）<br>🥇 62（+30 点 · 天赋点 +1） |
-| <a id="ach-codex_items"></a>📦 道具百科 | 在图鉴中发现 N 件道具 | 🥉 50（+3 点）<br>🥈 200（+10 点）<br>🥇 600（+60 点 · 天赋点 +1） |
+| <a id="ach-codex_items"></a>📦 道具百科 | 在图鉴中发现 N 件道具 | 🥉 50（+3 点）<br>🥈 200（+10 点）<br>🥇 603（+60 点 · 天赋点 +1） |
 | <a id="ach-codex_monsters"></a>🔬 怪物学者 | 在图鉴中发现 N 种小怪 | 🥉 20（+3 点）<br>🥈 87（+30 点 · 天赋点 +1） |
 | <a id="ach-codex_bosses"></a>📜 猎魔名录 | 在图鉴中发现 N 名精英与 Boss | 🥉 15（+10 点）<br>🥈 52（+50 点 · 天赋点 +1） |
 
@@ -815,4 +815,4 @@
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · **成就** · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · **成就** · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)

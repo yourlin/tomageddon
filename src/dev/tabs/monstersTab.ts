@@ -391,7 +391,11 @@ function matrix(fn: (ch: (typeof CHAPTERS)[number], wave: number) => { hp: numbe
         { numeric: MATRIX_WAVES.map((_, i) => i + 1) },
       ),
     ),
-    h('div', { class: 'muted' }, 'W16+ 为无尽模式的复利成长（生命 ×1.12、伤害 ×1.09 每波）。热力图：绿 <1 秒，黄约 3 秒，红 >10 秒。'),
+    h(
+      'div',
+      { class: 'muted' },
+      'W16+ 为无尽模式的分段复利成长（16–30 波每波生命 ×1.12、伤害 ×1.09，31–45 波 ×1.08/×1.06，46 波起 ×1.05/×1.04）。热力图：绿 <1 秒，黄约 3 秒，红 >10 秒。',
+    ),
   );
 }
 

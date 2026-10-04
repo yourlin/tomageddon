@@ -155,7 +155,7 @@ export class LevelUpScene extends Phaser.Scene {
     const L = this.layer;
     const R = run.rand(`crate:${run.wave}:${run.pendingCrates}`);
     const rar = Math.min(3, pickRarity(run.wave, run.stats.luck + 20, R));
-    const pool = ALL_ITEMS.filter((it) => it.rarity === rar && (!it.max || (run.items[it.id] ?? 0) < it.max));
+    const pool = ALL_ITEMS.filter((it) => it.rarity === rar && run.canTakeItem(it.id));
     const item: ItemDef = pickOf(pool.length ? pool : ALL_ITEMS.filter((i) => i.rarity === 0), R);
     this.options = [];
     this.crateItem = item;

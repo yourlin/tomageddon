@@ -144,7 +144,8 @@ export function unlockRequirement(c: CharacterDef): string {
   if (!c.unlock) return '';
   const a = ACH_MAP[c.unlock.ach];
   const tier = tierLabel(a, c.unlock.tier);
-  return `${achText(a, 'name', c.unlock.tier - 1)}${tier ? `（${tier}）` : ''}：${achText(a, 'desc', c.unlock.tier - 1)}`;
+  const tierPart = tier ? (lang === 'en' ? ` (${tier})` : `（${tier}）`) : '';
+  return `${achText(a, 'name', c.unlock.tier - 1)}${tierPart}${lang === 'en' ? ': ' : '：'}${achText(a, 'desc', c.unlock.tier - 1)}`;
 }
 
 /** 未拥有角色的解锁进度：当前值 / 目标值 */

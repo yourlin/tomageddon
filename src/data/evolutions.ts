@@ -52,7 +52,7 @@ export const EVOLUTIONS: EvolutionDef[] = [
   evolve('rolling_pin', 'iron_wok', {
     id: 'titan_pin',
     name: '擎天擀面柱',
-    desc: '铁锅做的配重，一扫震晕一片。',
+    desc: '铁锅做的配重，绕身横扫一整圈，震晕四周一片。',
     range: 1.35,
     extra: { effect: { stun: 0.5 }, knockback: 30 },
   }),
@@ -67,7 +67,7 @@ export const EVOLUTIONS: EvolutionDef[] = [
   evolve('cleaver', 'chef_knife_set', {
     id: 'dragon_cleaver',
     name: '屠龙菜刀',
-    desc: '整套刀具熔铸而成，劈开一切。',
+    desc: '整套刀具熔铸而成，交叉双斩后劈出贯穿一线的屠龙刀气。',
     dmg: 1.9,
     range: 1.3,
     extra: { effect: { lifeSteal: 4 } },
@@ -98,7 +98,7 @@ export const EVOLUTIONS: EvolutionDef[] = [
   evolve('lightning_whisk', 'tesla_coil', {
     id: 'thor_whisk',
     name: '雷神打蛋器',
-    desc: '特斯拉线圈加持，雷电在怪群里跳个不停。',
+    desc: '特斯拉线圈加持，雷电在怪群里跳个不停，最后从天上砸下必定暴击的雷神之锤。',
     extra: { effect: { chain: [5, 6, 8, 10] } },
   }),
   evolve('garlic_aura', 'vampire_cape', {
@@ -128,7 +128,7 @@ export const EVOLUTIONS: EvolutionDef[] = [
   evolve('star_anise_shuriken', 'feather', {
     id: 'anise_storm',
     name: '八角风暴',
-    desc: '轻如羽毛的八角，弹来弹去停不下来。',
+    desc: '轻如羽毛的八角，飞到远处连转三圈椭圆才回来，每圈都能再打一次。',
     dmg: 1.5,
     cd: 0.7,
     extra: { bounce: up4(BASE.star_anise_shuriken.bounce, 3), count: up4(BASE.star_anise_shuriken.count ?? [1, 1, 1, 1], 1) },

@@ -1,6 +1,6 @@
 // 文档页：道具、怪物、关卡
 import { tx } from '../../src/i18n';
-import { ALL_ITEMS, ITEMS, LEVELUP_OPTIONS, type ItemDef } from '../../src/data/items';
+import { ALL_ITEMS, ITEMS, LEVELUP_OPTIONS, baseItemCap, type ItemDef } from '../../src/data/items';
 import { ENEMIES } from '../../src/data/enemies';
 import { AFFIXES, type BossDef } from '../../src/data/bosses';
 import { CHAPTERS, TERRAIN_INFO } from '../../src/data/chapters';
@@ -16,7 +16,7 @@ export function itemsDoc(): void {
   const series = [...new Set(ALL_ITEMS.map((i) => i.series).filter(Boolean))] as string[];
   const sid = (name: string) => `series-${series.indexOf(name) + 1}`;
   const head = [tx('道具', 'Item'), tx('稀有度', 'Rarity'), tx('效果', 'Effect'), tx('价格', 'Price'), tx('上限', 'Max')];
-  const itemRows = (l: ItemDef[]) => l.map((i) => [`${img('item', i.id)} ${i.name}`, RARITY[i.rarity].name, describeItem(i).join(tx('，', ', ')), i.price, i.max ?? '∞']);
+  const itemRows = (l: ItemDef[]) => l.map((i) => [`${img('item', i.id)} ${i.name}`, RARITY[i.rarity].name, describeItem(i).join(tx('，', ', ')), i.price, baseItemCap(i) ?? '∞']);
   const d = new Doc('ITEMS.md', tx(`道具（${ALL_ITEMS.length} 件）`, `Items (${ALL_ITEMS.length})`), [
     tx(
       `道具是在商店购买或从宝箱获得的被动物品，可叠加。共 ${ITEMS.length} 件经典道具 + ${series.length} 个主题系列 × 10 件。`,
@@ -192,8 +192,10 @@ export function chaptersDoc(): void {
   d.p(
     tx(
       '- 小怪生命 `基础 × (1 + 成长 × w^0.9) × 章节系数`（w = 波次−1），随波次先快后慢，与玩家成长节奏匹配；精英 / Boss 使用单独的章节倍率',
-      '- 每章都从 0 级开局，章节倍率渐进生效：`1 + (倍率−1) × (0.1 + 0.9 × (波次−1)/14)`',
       '- Monster HP `base × (1 + growth × w^0.9) × chapter factor` (w = wave−1) grows fast early and slower later, matching player growth; elites/bosses use their own chapter multiplier',
+    ),
+    tx(
+      '- 每章都从 0 级开局，章节倍率渐进生效：`1 + (倍率−1) × (0.1 + 0.9 × (波次−1)/14)`',
       '- Every chapter starts at level 0, so chapter multipliers ramp in: `1 + (mult−1) × (0.1 + 0.9 × (wave−1)/14)`',
     ),
     tx(

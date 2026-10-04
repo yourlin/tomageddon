@@ -29,8 +29,13 @@ jobs:
       - run: npm run format:check
       - run: npm run typecheck
       - run: npm test
+      # 公开站点不带开发者界面：?dev 失效，DevPanel 分包也不会生成（check:split 会校验）
       - run: npm run build
+        env:
+          VITE_DISABLE_DEV: '1'
       - run: npm run check:split
+        env:
+          VITE_DISABLE_DEV: '1'
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

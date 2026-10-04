@@ -11,6 +11,7 @@ import { STAT_INFO, STAT_ORDER, formatMod, type StatKey } from '../../data/stats
 import { RARITY, sellPrice } from '../../data/balance';
 import { WEAPON_AFFIXES, FORGE, type AffixKind } from '../../data/weaponAffixes';
 import { describeItem } from '../../data/describe';
+import { itemIconKey } from '../../art/ItemArt';
 import { run } from '../../systems/RunState';
 import { affixSlots, forgeCost, forgeChance } from '../../systems/WeaponMods';
 import { weaponDamage, weaponCooldown, weaponRange } from '../../systems/WeaponSystem';
@@ -432,6 +433,64 @@ function mkBtn(label: string, disabled: boolean, onClick: () => void, title = ''
   return b;
 }
 
+// ---------------- 商店卡片辅助 ----------------
+/** 卡片式商店样式（只注入一次；放在本文件里，避免改动面板公共样式） */
+function ensureShopCss(): void {
+  if (document.getElementById('dev-shop-css')) return;
+  const st = document.createElement('style');
+  st.id = 'dev-shop-css';
+  st.textContent = `
+#dev-panel .shop-bar{display:flex;align-items:baseline;gap:4px;padding:6px 10px;margin:6px 0;border-radius:6px;background:var(--sf2)}
+#dev-panel .shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:6px 0}
+#dev-panel .shop-card{display:flex;flex-direction:column;gap:6px;justify-content:space-between;border:2px solid var(--ln);border-radius:8px;padding:8px;background:var(--sf)}
+#dev-panel .shop-card.sold{opacity:.45;align-items:center;justify-content:center;min-height:120px}
+#dev-panel .shop-head{display:flex;gap:8px;align-items:center}
+#dev-panel .shop-desc{font-size:11px;line-height:1.45}
+#dev-panel .shop-card button{flex:1}`;
+  document.head.append(st);
+}
+
+const texCache = new Map<string, string>();
+/** 把 Phaser 贴图转成 DOM <img>（失败时返回空占位） */
+function texImg(ctx: DevCtx, key: string, size = 40): HTMLElement {
+  let url = texCache.get(key);
+  if (url === undefined) {
+    try {
+      url = ctx.sb.game.textures.exists(key) ? ctx.sb.game.textures.getBase64(key) : '';
+    } catch {
+      url = '';
+    }
+    texCache.set(key, url);
+  }
+  return url
+    ? h('img', { src: url, width: size, height: size, alt: '', style: 'object-fit:contain;flex:none' })
+    : h('span', { style: `display:inline-block;width:${size}px;flex:none` });
+}
+
+const weaponTexKey = (ctx: DevCtx, id: string): string =>
+  ctx.sb.game.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`;
+
+/** 武器属性：按当前构筑属性算出的伤害 / 冷却 / 射程 / DPS，以及基础值和属性加成系数 */
+function weaponStatBox(id: string, tier: number): HTMLElement {
+  const d = WEAPON_MAP[id];
+  const s = run.stats;
+  const dmg = weaponDamage(d, tier, s);
+  const cd = weaponCooldown(d, tier, s);
+  const rng = weaponRange(d, s);
+  const scal = Object.entries(d.scaling)
+    .filter(([, v]) => v)
+    .map(([k, v]) => `${STAT_INFO[k as StatKey]?.name ?? k} ×${fmt(v as number)}`)
+    .join('，');
+  return h(
+    'div',
+    { class: 'shop-desc' },
+    h('div', null, `伤害 `, h('b', null, String(Math.round(dmg))), ` · 冷却 ${cd.toFixed(2)}s · 射程 ${Math.round(rng)}`),
+    h('div', null, `单发 DPS ≈ `, h('b', null, (dmg / cd).toFixed(1)), h('span', { class: 'muted' }, ` · 基础伤害 ${d.damage[tier]}`)),
+    scal ? h('div', { class: 'muted' }, `加成：${scal}`) : '',
+    d.desc ? h('div', { class: 'muted' }, d.desc) : '',
+  );
+}
+
 function catalog(ctx: DevCtx): HTMLElement {
   const b = ctx.build;
   const ui = ctx.ui;
@@ -444,9 +503,15 @@ function catalog(ctx: DevCtx): HTMLElement {
         const tier = Math.max(ui.shopTier, d.minTier ?? 0);
         const p = weaponPrice(b, d.id, tier);
         const can = canAfford(b, p) && run.canAddWeapon(d.id, tier);
+        const dmg = weaponDamage(d, tier, run.stats);
+        const cd = weaponCooldown(d, tier, run.stats);
         return [
           h('span', { style: `color:${RARITY[tier].css}` }, `${d.name} T${tier + 1}`),
           d.tags.join('/'),
+          String(Math.round(dmg)),
+          cd.toFixed(2),
+          String(Math.round(weaponRange(d, run.stats))),
+          (dmg / cd).toFixed(1),
           String(p),
           mkBtn('买', !can, () => {
             const e = buyWeapon(b, d.id, tier);
@@ -455,15 +520,20 @@ function catalog(ctx: DevCtx): HTMLElement {
           }),
         ];
       });
-      list.replaceChildren(table(['武器', '标签', '价格', ''], rows, { numeric: [2] }));
+      list.replaceChildren(table(['武器', '标签', '伤害', '冷却s', '射程', 'DPS', '价格', ''], rows, { numeric: [2, 3, 4, 5, 6] }));
     } else {
       const rows = ALL_ITEMS.filter(
         (it) => (ui.shopRarity < 0 || it.rarity === ui.shopRarity) && (!q() || it.name.toLowerCase().includes(q()) || it.id.includes(q())),
       ).map((it) => {
         const p = itemPrice(b, it);
-        const full = !!it.max && (b.items[it.id] ?? 0) >= it.max;
+        const full = !run.canTakeItem(it.id);
+        const cap = run.itemCap(it.id);
         return [
-          h('span', { style: `color:${RARITY[it.rarity].css}` }, it.name + (b.items[it.id] ? ` (${b.items[it.id]})` : '')),
+          h(
+            'span',
+            { style: `color:${RARITY[it.rarity].css}` },
+            it.name + (b.items[it.id] ? ` (${b.items[it.id]}${cap < Infinity ? `/${cap}` : ''})` : ''),
+          ),
           h('span', { class: 'muted' }, describeItem(it).join('，')),
           String(p),
           mkBtn(full ? '满' : '买', full || !canAfford(b, p), () => {
@@ -510,33 +580,67 @@ function catalog(ctx: DevCtx): HTMLElement {
 function shelf(ctx: DevCtx): HTMLElement {
   const b = ctx.build;
   const ui = ctx.ui;
+  ensureShopCss();
   ui.shelf ??= rollShelf(b);
   const sh = ui.shelf;
   const cost = shelfRerollCost(b, sh);
-  const rows = sh.offers.map((o) => {
-    if (o.sold) return [h('span', { class: 'muted' }, '（已售）'), '', '', ''];
+  const m = money(b);
+  const cards = sh.offers.map((o) => {
+    if (o.sold) return h('div', { class: 'shop-card sold' }, h('div', { class: 'muted' }, '（已售）'));
     const isW = o.kind === 'weapon';
-    const name = isW ? `${WEAPON_MAP[o.id].name} T${o.tier + 1}` : ITEM_MAP[o.id].name;
-    const desc = isW ? WEAPON_MAP[o.id].desc : describeItem(ITEM_MAP[o.id]).join('，');
-    const can = canAfford(b, o.price) && (!isW || run.canAddWeapon(o.id, o.tier));
-    return [
-      h('span', { style: `color:${RARITY[o.tier].css}` }, (isW ? '⚔ ' : '◆ ') + name),
-      h('span', { class: 'muted' }, desc),
-      String(o.price),
-      mkBtn('买', !can, () => {
-        const e = isW ? buyWeapon(b, o.id, o.tier) : buyItem(b, o.id);
-        if (e) return ctx.toast(e, true);
-        o.sold = true;
-        // 全部买光：免费补货（同 ShopScene）
-        if (sh.offers.every((x) => x.sold)) ui.shelf = { ...rollShelf(b), rerolls: sh.rerolls };
-        ctx.changed();
-      }),
-    ];
+    const it = isW ? null : ITEM_MAP[o.id];
+    const name = isW ? `${WEAPON_MAP[o.id].name} T${o.tier + 1}` : it!.name;
+    const own = isW ? run.weapons.filter((w) => w.id === o.id).length : (run.items[o.id] ?? 0);
+    const cap = isW ? Infinity : run.itemCap(o.id);
+    const full = !isW && !run.canTakeItem(o.id);
+    const slotFull = isW && !run.canAddWeapon(o.id, o.tier);
+    const afford = canAfford(b, o.price);
+    const reason = full ? `已达上限 ${cap}` : slotFull ? '武器栏已满' : !afford ? '资金不足' : '';
+    return h(
+      'div',
+      { class: 'shop-card', style: `border-color:${RARITY[o.tier].css}` },
+      h(
+        'div',
+        { class: 'shop-head' },
+        texImg(ctx, isW ? weaponTexKey(ctx, o.id) : itemIconKey(ctx.sb.g, it!)),
+        h(
+          'div',
+          null,
+          h('b', { style: `color:${RARITY[o.tier].css}` }, name),
+          h(
+            'div',
+            { class: 'muted' },
+            `${isW ? WEAPON_MAP[o.id].tags.join('/') : RARITY[it!.rarity].name}${own ? ` · 已有 ${own}${cap < Infinity ? `/${cap}` : ''}` : ''}`,
+          ),
+        ),
+      ),
+      isW ? weaponStatBox(o.id, o.tier) : h('div', { class: 'shop-desc' }, describeItem(it!).join('，')),
+      h(
+        'div',
+        { class: 'row' },
+        h('b', { class: afford ? 'good' : 'bad' }, `🌱 ${o.price}`),
+        mkBtn(reason || '购买', !!reason, () => {
+          const e = isW ? buyWeapon(b, o.id, o.tier) : buyItem(b, o.id);
+          if (e) return ctx.toast(e, true);
+          o.sold = true;
+          // 全部买光：免费补货（同 ShopScene）
+          if (sh.offers.every((x) => x.sold)) ui.shelf = { ...rollShelf(b), rerolls: sh.rerolls };
+          ctx.changed();
+        }),
+      ),
+    );
   });
   return h(
     'div',
     null,
-    table(['商品', '说明', '价格', ''], rows, { numeric: [2] }),
+    h(
+      'div',
+      { class: 'shop-bar' },
+      h('span', null, `第 ${b.wave - 1} 波后的商店 · 持有 `),
+      h('b', { class: m < 0 ? 'bad' : 'good', style: 'font-size:1.25em' }, `🌱 ${m}`),
+      h('span', { class: 'muted' }, ` · 武器 ${b.weapons.length}/${run.maxWeapons}`),
+    ),
+    h('div', { class: 'shop-grid' }, ...cards),
     h(
       'div',
       { class: 'row' },

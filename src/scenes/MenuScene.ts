@@ -17,6 +17,7 @@ import { openExternal, SHOW_DONATE, IS_STEAM, quitApp } from '../platform';
 import { dayKey } from '../systems/Rng';
 import { persist } from '../systems/Save';
 import { titleName, unlockedTitles } from '../data/titles';
+import { shouldShowWhatsNew, showWhatsNew } from '../ui/WhatsNew';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -196,26 +197,13 @@ export class MenuScene extends Phaser.Scene {
         rec?.won ? '#ffd166' : COLORS.textDim,
       ).setOrigin(0, 0.5);
     }
-    // 图鉴 · 成就 · 天赋 · 战绩
-    const row: [string, string, number][] = [
-      [tx('图鉴', 'Codex'), 'Codex', 0x8d5a97],
-      [tx('成就', 'Awards'), 'Achievements', 0xb07d2b],
-      [tx('天赋', 'Talents'), 'TalentTree', 0x5a189a],
-      [tx('战绩', 'History'), 'History', 0x2a6f97],
-      [tx('收藏', 'Collect'), 'Collection', 0x2d6a4f],
-    ];
-    const rx = (i: number): number => W / 2 - 160 + i * 80;
-    row.forEach(([label, key, color], i) => button(this, rx(i), by + 150, 76, 56, label, () => this.scene.start(key), color, 20));
-    // 有未分配的天赋点时显示红点
-    if (talentPointsFree() > 0) {
-      const dot = this.add.circle(rx(2) + 34, by + 126, 9, 0xff4b3e).setStrokeStyle(2, 0xffffff);
-      this.tweens.add({ targets: dot, scale: 1.25, duration: 600, yoyo: true, repeat: -1 });
-      text(this, rx(2) + 34, by + 126, String(talentPointsFree()), 11).setOrigin(0.5);
-    }
+    // 次要入口收进一条托盘：天赋（成长）| 图鉴 · 收藏 · 成就 · 战绩（记录），统一配色，悬停才点亮
+    this.drawDock(W / 2, by + 162);
     // I5：称号——点击在已解锁称号间切换（含「无称号」）
-    this.drawTitle(W, by + 285);
-    button(this, W / 2 - 82, by + 220, 156, 54, tx('设置', 'Settings'), () => this.scene.start('Settings'), 0x4a6fa5, 22);
-    button(this, W / 2 + 82, by + 220, 156, 54, tx('全屏', 'Fullscreen'), () => toggleFullscreen(this), 0x3a7d44, 22);
+    this.drawTitle(W, by + 244);
+    // 设置 / 全屏：右上角圆形图标，与 GitHub 图标排成一列
+    this.roundIcon(W - 44, 104, 'gear', tx('设置', 'Settings'), () => this.scene.start('Settings'));
+    this.roundIcon(W - 44, 164, 'fullscreen', tx('全屏', 'Fullscreen'), () => toggleFullscreen(this));
 
     text(
       this,
@@ -229,10 +217,226 @@ export class MenuScene extends Phaser.Scene {
       COLORS.textDim,
     ).setOrigin(1, 1);
     this.input.once('pointerdown', () => audio.unlock());
+    // M4：老玩家首次进入新版本，先弹「新功能」，本次不再叠加新手提示
+    if (shouldShowWhatsNew(__APP_VERSION__)) {
+      showWhatsNew(this, __APP_VERSION__, () => this.scene.start('Changelog'));
+      return;
+    }
     // 新手引导：天赋点、新解锁的角色、挑战
     if (talentPointsFree() > 0) tip('talents', this);
     if (CHARACTERS.some((c) => c.unlock && isUnlocked(c) && !save.charRuns[c.id])) tip('buyChar', this);
     if (save.wins >= 1 || Object.values(save.charRuns).reduce((a, b) => a + b, 0) >= 3) tip('challenge', this);
+  }
+
+  /** 菜单图标：统一线稿风格（奶油色描边 + 一点强调色），画在 80×80 的画布上按 36px 显示 */
+  private icon(kind: string): string {
+    return paint(this, `ui_menu_${kind}`, 80, 80, (ctx) => {
+      const cream = '#fff4ea';
+      const accent = '#ffd166';
+      ctx.lineWidth = 6;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = cream;
+      ctx.fillStyle = cream;
+      const path = (f: () => void) => {
+        ctx.beginPath();
+        f();
+      };
+      switch (kind) {
+        case 'talent': // 发芽的种子
+          path(() => {
+            ctx.moveTo(40, 70);
+            ctx.lineTo(40, 34);
+          });
+          ctx.stroke();
+          ctx.fillStyle = '#52b788';
+          path(() => ctx.ellipse(27, 30, 15, 8, -0.6, 0, Math.PI * 2));
+          ctx.fill();
+          ctx.stroke();
+          path(() => ctx.ellipse(53, 24, 15, 8, 0.6, 0, Math.PI * 2));
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#ff4b3e';
+          path(() => ctx.ellipse(40, 68, 13, 7, 0, 0, Math.PI * 2));
+          ctx.fill();
+          break;
+        case 'codex': // 摊开的书
+          path(() => {
+            ctx.moveTo(40, 22);
+            ctx.quadraticCurveTo(26, 14, 10, 18);
+            ctx.lineTo(10, 62);
+            ctx.quadraticCurveTo(26, 58, 40, 66);
+            ctx.quadraticCurveTo(54, 58, 70, 62);
+            ctx.lineTo(70, 18);
+            ctx.quadraticCurveTo(54, 14, 40, 22);
+            ctx.lineTo(40, 66);
+          });
+          ctx.stroke();
+          ctx.strokeStyle = accent;
+          ctx.lineWidth = 4;
+          path(() => {
+            ctx.moveTo(18, 32);
+            ctx.lineTo(32, 33);
+            ctx.moveTo(18, 44);
+            ctx.lineTo(32, 45);
+          });
+          ctx.stroke();
+          break;
+        case 'collect': // 酱料罐（与收藏页同款）
+          path(() => ctx.roundRect(22, 12, 36, 10, 3));
+          ctx.fillStyle = accent;
+          ctx.fill();
+          ctx.stroke();
+          path(() => ctx.roundRect(16, 22, 48, 48, 10));
+          ctx.stroke();
+          ctx.fillStyle = '#ff4b3e';
+          path(() => ctx.roundRect(22, 44, 36, 20, 6));
+          ctx.fill();
+          break;
+        case 'awards': // 奖牌
+          ctx.strokeStyle = '#ff4b3e';
+          path(() => {
+            ctx.moveTo(26, 8);
+            ctx.lineTo(36, 34);
+            ctx.moveTo(54, 8);
+            ctx.lineTo(44, 34);
+          });
+          ctx.stroke();
+          ctx.strokeStyle = cream;
+          ctx.fillStyle = accent;
+          path(() => ctx.arc(40, 50, 20, 0, Math.PI * 2));
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = '#1a0a0c';
+          ctx.font = 'bold 22px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('★', 40, 51);
+          break;
+        case 'history': // 柱状图
+          path(() => {
+            ctx.moveTo(10, 70);
+            ctx.lineTo(70, 70);
+          });
+          ctx.stroke();
+          [
+            [16, 46],
+            [34, 30],
+            [52, 14],
+          ].forEach(([x, top], i) => {
+            ctx.fillStyle = i === 2 ? accent : cream;
+            path(() => ctx.roundRect(x, top, 13, 62 - top, 3));
+            ctx.fill();
+          });
+          break;
+        case 'gear': {
+          path(() => {
+            for (let i = 0; i < 8; i++) {
+              const a = (i / 8) * Math.PI * 2;
+              ctx.moveTo(40 + Math.cos(a) * 20, 40 + Math.sin(a) * 20);
+              ctx.lineTo(40 + Math.cos(a) * 30, 40 + Math.sin(a) * 30);
+            }
+          });
+          ctx.lineWidth = 9;
+          ctx.stroke();
+          ctx.lineWidth = 6;
+          path(() => ctx.arc(40, 40, 18, 0, Math.PI * 2));
+          ctx.stroke();
+          path(() => ctx.arc(40, 40, 6, 0, Math.PI * 2));
+          ctx.fill();
+          break;
+        }
+        case 'fullscreen':
+          path(() => {
+            ctx.moveTo(14, 30);
+            ctx.lineTo(14, 14);
+            ctx.lineTo(30, 14);
+            ctx.moveTo(50, 14);
+            ctx.lineTo(66, 14);
+            ctx.lineTo(66, 30);
+            ctx.moveTo(66, 50);
+            ctx.lineTo(66, 66);
+            ctx.lineTo(50, 66);
+            ctx.moveTo(30, 66);
+            ctx.lineTo(14, 66);
+            ctx.lineTo(14, 50);
+          });
+          ctx.lineWidth = 7;
+          ctx.stroke();
+          break;
+      }
+    });
+  }
+
+  /** 次要入口托盘：一块暗色底板，5 个「图标 + 小字」格子；天赋单独成组（会影响下一局），其余是记录类 */
+  private drawDock(cx: number, cy: number): void {
+    const items: [string, string, string, string][] = [
+      ['talent', tx('天赋', 'Talents'), 'TalentTree', tx('花点数强化下一局', 'Spend points for your next run')],
+      ['codex', tx('图鉴', 'Codex'), 'Codex', tx('角色、武器、敌人资料', 'Characters, weapons, enemies')],
+      ['collect', tx('收藏', 'Collect'), 'Collection', tx('看看还缺哪些', 'See what you are missing')],
+      ['awards', tx('成就', 'Awards'), 'Achievements', tx('成就与成就点', 'Achievements and points')],
+      ['history', tx('战绩', 'History'), 'History', tx('历次对局记录', 'Past runs')],
+    ];
+    const TW = 74,
+      TH = 72,
+      GAP = 4,
+      SEP = 18; // 天赋与记录组之间的分隔
+    const total = items.length * TW + (items.length - 1) * GAP + SEP;
+    const left = cx - total / 2;
+    const tray = this.add.graphics();
+    tray.fillStyle(0x12070a, 0.72).fillRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
+    tray.lineStyle(2, 0x7a2e35, 0.8).strokeRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
+    const sepX = left + TW + GAP / 2 + SEP / 2;
+    tray.lineStyle(2, 0x7a2e35, 0.9).lineBetween(sepX, cy - TH / 2 + 8, sepX, cy + TH / 2 - 8);
+    const hint = text(this, cx, cy + TH / 2 + 22, '', 15, COLORS.textDim)
+      .setOrigin(0.5)
+      .setAlpha(0);
+    items.forEach(([kind, label, scene, desc], i) => {
+      const x = left + i * (TW + GAP) + (i > 0 ? SEP : 0) + TW / 2;
+      const c = this.add.container(x, cy).setName(`dock:${scene}`);
+      const bg = this.add.graphics();
+      const ic = this.add.image(0, -10, this.icon(kind)).setDisplaySize(36, 36);
+      const lb = text(this, 0, 22, label, 16, COLORS.textDim).setOrigin(0.5);
+      c.add([bg, ic, lb]);
+      c.setSize(TW, TH).setInteractive({ useHandCursor: true });
+      const hl = (on: boolean) => {
+        bg.clear();
+        if (on) bg.fillStyle(0x3d1d22, 1).fillRoundedRect(-TW / 2, -TH / 2, TW, TH, 12);
+        if (on) bg.lineStyle(2, COLORS.gold, 0.9).strokeRoundedRect(-TW / 2, -TH / 2, TW, TH, 12);
+        lb.setColor(on ? '#ffd166' : COLORS.textDim);
+        ic.y = on ? -13 : -10;
+        hint.setText(desc).setAlpha(on ? 1 : 0);
+      };
+      c.on('pointerover', () => hl(true));
+      c.on('pointerout', () => hl(false));
+      c.on('pointerup', () => {
+        audio.play(this, 'click');
+        this.scene.start(scene);
+      });
+      // 有未分配的天赋点：格子右上角红点 + 数字
+      if (kind === 'talent' && talentPointsFree() > 0) {
+        const dot = this.add.circle(TW / 2 - 12, -TH / 2 + 10, 10, 0xff4b3e).setStrokeStyle(2, 0xffffff);
+        const n = text(this, TW / 2 - 12, -TH / 2 + 10, String(talentPointsFree()), 12).setOrigin(0.5);
+        c.add([dot, n]);
+        this.tweens.add({ targets: dot, scale: 1.2, duration: 600, yoyo: true, repeat: -1 });
+      }
+    });
+  }
+
+  /** 右上角圆形图标按钮，悬停在左侧显示文字 */
+  private roundIcon(x: number, y: number, kind: string, label: string, onClick: () => void): void {
+    const bg = this.add.circle(x, y, 26, 0x000000, 0.35);
+    const ic = this.add.image(x, y, this.icon(kind)).setDisplaySize(30, 30).setAlpha(0.85);
+    const tip = text(this, x - 38, y, label, 16, COLORS.text)
+      .setOrigin(1, 0.5)
+      .setAlpha(0);
+    bg.setInteractive({ useHandCursor: true }).setName(`icon:${kind}`);
+    bg.on('pointerover', () => (ic.setAlpha(1), bg.setFillStyle(0x3d1d22, 0.9), tip.setAlpha(1)));
+    bg.on('pointerout', () => (ic.setAlpha(0.85), bg.setFillStyle(0x000000, 0.35), tip.setAlpha(0)));
+    bg.on('pointerup', () => {
+      audio.play(this, 'click');
+      onClick();
+    });
   }
 
   private drawTitle(W: number, y: number): void {

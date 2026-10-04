@@ -1,7 +1,7 @@
 // 开发者界面入口（地址加 ?dev 打开）：HTML 面板 + 沙盒战斗画面。
 // 面板可拖宽、左右停靠、弹出为独立窗口；页签与筛选状态、宽度、快捷键都记在 localStorage（prefs.ts）
 import type Phaser from 'phaser';
-import { CSS, h, btn, check, select, esc, fmt } from './dom';
+import { CSS, h, btn, chip, select, esc, fmt } from './dom';
 import { devHooks } from './flag';
 import { loadCurrent, saveCurrent, applyBuild, type DevBuild } from './build';
 import { createSandbox } from './sandbox';
@@ -27,6 +27,13 @@ import { save } from '../systems/Save';
 import { audio } from '../systems/Audio';
 
 type Render = (ctx: DevCtx) => HTMLElement;
+/** 左侧页签栏的分组：按「我现在要干什么」排，而不是按代码模块排 */
+const GROUPS: [string, TabId[]][] = [
+  ['配装', ['build', 'weapons', 'items', 'skills', 'status']],
+  ['实战', ['monsters', 'sandbox', 'tests']],
+  ['数据', ['analysis', 'batch', 'data']],
+  ['工具', ['debug', 'assets', 'v14']],
+];
 /** L4：常用页签随面板加载；其余页签第一次打开时才下载（Promise 形式的为按需加载） */
 const TABS: [TabId, string, Render | (() => Promise<Render>)][] = [
   ['build', '构筑', renderBuild],
@@ -189,7 +196,9 @@ function mount(game: Phaser.Game): void {
       saveCurrent(build);
       applyBuild(build, sb.trial);
       if (restart) {
-        if (autoRestart) {
+        // 换了角色一定要重建场景：形象、技能按钮是建场景时画的，只改 run 会出现「数值是新角色、样子还是旧角色」
+        const charChanged = sb.running && sb.sceneChar !== '' && sb.sceneChar !== build.charId;
+        if (autoRestart || charChanged) {
           window.clearTimeout(restartTimer);
           restartTimer = window.setTimeout(doRestart, 250);
         } else dirty = true;
@@ -259,8 +268,34 @@ function mount(game: Phaser.Game): void {
   const ctl = h('div', { class: 'ctl' });
   const quick = h('div', { class: 'quick' });
   const live = h('div', { class: 'live' });
-  const tabs = h('div', { class: 'tabs' });
+  const tabs = h('nav', { class: 'rail', 'aria-label': '页签' });
   const body = h('div', { class: 'body' });
+  // 可折叠区块：标题行一直在，折叠后标题右侧给一行摘要（peek），不用展开也能扫一眼
+  const fold = (key: string, title: string, content: HTMLElement) => {
+    const peek = h('span', { class: 'peek' });
+    const sec = h('div', { class: 'sec' + (prefs.fold?.[key] ? ' folded' : '') });
+    const head = h(
+      'button',
+      {
+        class: 'sech',
+        'aria-expanded': String(!prefs.fold?.[key]),
+        onclick: () => {
+          const f = !sec.classList.contains('folded');
+          sec.classList.toggle('folded', f);
+          head.setAttribute('aria-expanded', String(!f));
+          prefs.fold = { ...(prefs.fold ?? {}), [key]: f };
+          savePrefs();
+        },
+      },
+      h('span', { class: 'tw' }, '▾'),
+      title,
+      peek,
+    );
+    sec.append(head, h('div', { class: 'secb' }, content));
+    return { sec, peek };
+  };
+  const liveSec = fold('live', '实时数据', live);
+  const quickSec = fold('quick', '角色与怪物', quick);
   // A1：拖动边缘调整宽度
   const grip = h('div', { class: 'grip', title: '拖动调整面板宽度' });
   grip.addEventListener('pointerdown', (e) => {
@@ -280,6 +315,21 @@ function mount(game: Phaser.Game): void {
     window.addEventListener('pointermove', move);
     window.addEventListener('pointerup', up);
   });
+  // 撤销 / 重做是构筑历史，不属于沙盒播放控制，放在顶栏；提示里的剩余步数在 renderCtl 时刷新
+  const undoBtn = btn('↶', () => ctx.undo());
+  const redoBtn = btn('↷', () => ctx.redo());
+  const dockBtn = btn('', () => {
+    prefs.side = prefs.side === 'left' ? 'right' : 'left';
+    savePrefs();
+    layout();
+    renderHdr();
+  });
+  const densBtn = btn('', () => {
+    prefs.compact = !prefs.compact;
+    savePrefs();
+    layout();
+    renderHdr();
+  });
   const panel = h(
     'div',
     { id: 'dev-panel' },
@@ -287,39 +337,29 @@ function mount(game: Phaser.Game): void {
     h(
       'div',
       { class: 'hdr' },
-      h('b', null, '🍅 开发者界面'),
+      h('span', { class: 'brand' }, h('i', null, '● '), '开发者界面'),
       toastEl,
+      undoBtn,
+      redoBtn,
       btn('⌕', () => palette(), '', `命令面板（${keyText(prefs.keys.palette)}）`),
       btn('⌨', () => openKeyHelp(panel.ownerDocument), '', `快捷键（${keyText(prefs.keys.help)}）`),
       btn('☰', () => openLog(), '', '操作日志'),
-      btn(prefs.side === 'left' ? '停靠右侧' : '停靠左侧', () => {
-        prefs.side = prefs.side === 'left' ? 'right' : 'left';
-        savePrefs();
-        layout();
-        renderHdr();
-      }),
-      btn(prefs.compact ? '宽松' : '紧凑', () => {
-        prefs.compact = !prefs.compact;
-        savePrefs();
-        layout();
-        renderHdr();
-      }),
-      btn('⧉ 弹出', () => popOut(), '', '把面板放进独立窗口（双屏时游戏全屏）'),
-      btn('退出到游戏', () => (location.href = location.pathname)),
+      dockBtn,
+      densBtn,
+      btn('⧉', () => popOut(), '', '把面板放进独立窗口（双屏时游戏全屏）'),
+      btn('退出到游戏', () => (location.href = location.pathname), 'exit'),
     ),
-    ctl,
-    quick,
-    live,
-    tabs,
-    body,
+    h('div', { class: 'main' }, tabs, h('div', { class: 'col' }, ctl, liveSec.sec, quickSec.sec, body)),
   );
-  const hdr = panel.querySelector('.hdr') as HTMLElement;
-  // 停靠 / 密度按钮的文字随状态变化：只重建这两个按钮
+  // 停靠 / 密度按钮的图标和提示随状态变化
   function renderHdr(): void {
-    const bs = hdr.querySelectorAll('button');
-    bs[3].textContent = prefs.side === 'left' ? '停靠右侧' : '停靠左侧';
-    bs[4].textContent = prefs.compact ? '宽松' : '紧凑';
+    const left = prefs.side === 'left';
+    dockBtn.textContent = left ? '⇥' : '⇤';
+    dockBtn.title = left ? '停靠到右侧' : '停靠到左侧';
+    densBtn.textContent = prefs.compact ? '⊞' : '⊟';
+    densBtn.title = prefs.compact ? '切换到宽松排版' : '切换到紧凑排版';
   }
+  renderHdr();
   document.body.append(panel, toggle);
 
   // A7：弹出为独立窗口。节点直接搬过去（事件监听跟着走），关窗时搬回来
@@ -488,57 +528,86 @@ function mount(game: Phaser.Game): void {
   // ---------------- 控制条 ----------------
   function renderCtl(): void {
     renderQuick(ctx, quick);
+    const cur = sb.slow < 1 ? sb.slow : sb.speed;
+    const lbl = (t: string) => h('span', { class: 'lbl' }, t);
+    undoBtn.title = `撤销构筑改动 ${keyText(prefs.keys.undo)}（剩 ${undoStack.length} 步）`;
+    redoBtn.title = `重做构筑改动 ${keyText(prefs.keys.redo)}（剩 ${redoStack.length} 步）`;
+    undoBtn.disabled = !undoStack.length;
+    redoBtn.disabled = !redoStack.length;
     ctl.replaceChildren(
-      btn(sb.paused ? '▶ 继续' : '⏸ 暂停', actions.pause, '', `快捷键 ${keyText(prefs.keys.pause)}`),
-      btn('单步', () => sb.frame(1), '', `暂停并前进 1 帧（${keyText(prefs.keys.frame)}）`),
-      h('span', null, '速度 '),
-      select(
-        [0.25, 0.5, 1, 2, 4, 8].map((n) => [n, `×${n}`]),
-        sb.slow < 1 ? sb.slow : sb.speed,
-        (v) => {
-          const n = Number(v);
-          if (n < 1) {
-            sb.setSpeed(1);
-            sb.setSlow(n);
-          } else {
-            sb.setSlow(1);
-            sb.setSpeed(n);
-          }
-        },
+      // 第一行：播放控制 → 沙盒操作 → 构筑历史 → 重启（最右，唯一的实心主按钮）
+      h(
+        'div',
+        { class: 'line' },
+        btn(sb.paused ? '▶ 继续' : '⏸ 暂停', actions.pause, 'play', `快捷键 ${keyText(prefs.keys.pause)}`),
+        btn('单步', () => sb.frame(1), '', `暂停并前进 1 帧（${keyText(prefs.keys.frame)}）`),
+        select(
+          [0.25, 0.5, 1, 2, 4, 8].map((n) => [n, `×${n}`]),
+          cur,
+          (v) => {
+            const n = Number(v);
+            if (n < 1) {
+              sb.setSpeed(1);
+              sb.setSlow(n);
+            } else {
+              sb.setSlow(1);
+              sb.setSpeed(n);
+            }
+          },
+          'speed',
+        ),
+        btn('释放技能', () => sb.castSkill()),
+        btn('清场', () => sb.clear()),
+        btn('重置统计', () => sb.resetMeter()),
+        h('span', { class: 'sp' }),
+        btn(dirty ? '应用构筑并重启' : '重启沙盒', doRestart, dirty ? 'hot' : 'pri'),
       ),
-      check('无敌', sb.god, (v) => (sb.god = v), '每个模拟步回满生命；关闭后阵亡会原地复活并计数'),
-      check('技能无CD', sb.noSkillCd, (v) => (sb.noSkillCd = v)),
-      check('自动放技能', save.settings.autoSkill, (v) => (save.settings.autoSkill = v)),
-      check('地形机制', sb.opts.terrain, (v) => {
-        sb.opts.terrain = v;
-        doRestart();
-      }),
-      check('静音', muted, setMute),
-      h('span', { class: 'muted' }, '｜叠加：'),
-      check('射程/光环', sb.overlay.range, (v) => (sb.overlay.range = v)),
-      check('爆炸半径', sb.overlay.explode, (v) => (sb.overlay.explode = v)),
-      check('技能范围', sb.overlay.skill, (v) => (sb.overlay.skill = v)),
-      check('拾取', sb.overlay.pickup, (v) => (sb.overlay.pickup = v)),
-      check('目标标签', sb.overlay.labels, (v) => (sb.overlay.labels = v)),
-      check('碰撞框', sb.overlay.hitbox, (v) => (sb.overlay.hitbox = v)),
-      h('span', { class: 'muted' }, '｜'),
-      btn('释放技能', () => sb.castSkill()),
-      btn('清场', () => sb.clear()),
-      btn('重置统计', () => sb.resetMeter()),
-      btn('撤销', () => ctx.undo(), '', `${keyText(prefs.keys.undo)}（剩 ${undoStack.length} 步）`),
-      btn('重做', () => ctx.redo(), '', `${keyText(prefs.keys.redo)}（剩 ${redoStack.length} 步）`),
-      btn(dirty ? '⚠ 应用构筑并重启' : '重启沙盒', doRestart, dirty ? 'hot' : 'pri'),
-      check('改动自动重启', autoRestart, (v) => {
-        autoRestart = v;
-        renderCtl();
-      }),
+      // 第二行：开关。亮绿点 = 开着
+      h(
+        'div',
+        { class: 'line' },
+        lbl('作弊'),
+        chip('无敌', sb.god, (v) => (sb.god = v), '每个模拟步回满生命；关闭后阵亡会原地复活并计数'),
+        chip('技能无CD', sb.noSkillCd, (v) => (sb.noSkillCd = v)),
+        chip('自动放技能', save.settings.autoSkill, (v) => (save.settings.autoSkill = v)),
+        chip('地形机制', sb.opts.terrain, (v) => {
+          sb.opts.terrain = v;
+          doRestart();
+        }),
+        chip('静音', muted, setMute),
+        chip(
+          '改动自动重启',
+          autoRestart,
+          (v) => {
+            autoRestart = v;
+            renderCtl();
+          },
+          '关掉后改构筑不会立刻重启沙盒，要手动点「应用构筑并重启」',
+        ),
+      ),
+      h(
+        'div',
+        { class: 'line' },
+        lbl('叠加'),
+        chip('射程/光环', sb.overlay.range, (v) => (sb.overlay.range = v)),
+        chip('爆炸半径', sb.overlay.explode, (v) => (sb.overlay.explode = v)),
+        chip('技能范围', sb.overlay.skill, (v) => (sb.overlay.skill = v)),
+        chip('拾取', sb.overlay.pickup, (v) => (sb.overlay.pickup = v)),
+        chip('目标标签', sb.overlay.labels, (v) => (sb.overlay.labels = v)),
+        chip('碰撞框', sb.overlay.hitbox, (v) => (sb.overlay.hitbox = v)),
+      ),
     );
+    const c = CHARACTERS.find((x) => x.id === build.charId);
+    quickSec.peek.textContent = `${c ? c.name : build.charId} · 第${ui.mChapter}章`;
   }
 
   // ---------------- 实时数据 ----------------
+  const meter = (k: string, v: string, unit = '', cls = '') =>
+    `<div class="meter ${cls}"><div class="k">${k}</div><div class="v">${v}${unit ? `<small>${unit}</small>` : ''}</div></div>`;
   function renderLive(): void {
     if (!sb.running) {
-      live.textContent = '沙盒未运行';
+      live.innerHTML = '<div class="idle">沙盒未运行。点「重启沙盒」开始。</div>';
+      liveSec.peek.textContent = '未运行';
       return;
     }
     const g = sb.g;
@@ -549,55 +618,72 @@ function mount(game: Phaser.Game): void {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 6)
       .map(([k, v]) => `${srcName(k)} ${Math.round((v / Math.max(1, sb.dmgTotal)) * 100)}%`)
-      .join('  ');
+      .join('\u3000');
     const targets = sb.tracked
       .filter((t) => sb.isAlive(t))
       .slice(-4)
       .map((t) => `${t.label} ${Math.ceil(t.e.hp)}/${t.e.maxHp}`)
-      .join('  ');
+      .join('\u3000');
     const lastTest = sb.tests[0];
     const test = lastTest
-      ? `测试#${lastTest.id} ${lastTest.label}：${lastTest.aborted ? '中断' : lastTest.ttk === null ? `进行中 ${((now - lastTest.startT) / 1000).toFixed(1)}s` : `TTK ${lastTest.ttk.toFixed(2)}s`}`
+      ? `#${lastTest.id} ${lastTest.label}：${lastTest.aborted ? '中断' : lastTest.ttk === null ? `进行中 ${((now - lastTest.startT) / 1000).toFixed(1)}s` : `TTK ${lastTest.ttk.toFixed(2)}s`}`
       : '';
     let perf = '';
     if (sb.overlay.perf) {
       const p = sb.perfStats();
-      perf = `性能 FPS ${p.fps} 帧耗时 ${fmt(p.frameAvg)}/${fmt(p.frameMax)}ms 敌人 ${p.enemies} 弹 ${p.bullets}+${p.enemyBullets} 对象 ${p.objects}`;
+      perf = `FPS ${p.fps}\u3000帧耗时 ${fmt(p.frameAvg)}/${fmt(p.frameMax)}ms\u3000敌人 ${p.enemies}\u3000弹 ${p.bullets}+${p.enemyBullets}\u3000对象 ${p.objects}`;
     }
-    live.innerHTML = esc(
+    const dps5 = Math.round(sb.rate(sb.hits, 5));
+    const more = (
       [
-        `${sb.paused ? '⏸ 已暂停' : '▶ 运行中'} ×${sb.slow < 1 ? sb.slow : sb.speed} · ${run.char.name} · 第${run.chapterId}章 第${run.wave}波 · Lv${run.level}${sb.trial ? ' · 【单独试用】' : ''}`,
-        `玩家 HP ${Math.ceil(run.hp)}/${s.maxHp}  护甲 ${fmt(s.armor)}  闪避 ${fmt(Math.min(s.dodge, run.dodgeCap))}%  阵亡 ${sb.opts.deaths}  技能 ${g.skill.ready ? '就绪' : g.skill.cd.toFixed(1) + 's'}`,
-        `输出 DPS  5s ${Math.round(sb.rate(sb.hits, 5))}  30s ${Math.round(sb.rate(sb.hits, 30))}  平均 ${Math.round(sb.dmgTotal / dur)}  总 ${Math.round(sb.dmgTotal)}（${dur.toFixed(1)}s）`,
-        `承伤 DPS  5s ${fmt(sb.rate(sb.taken, 5))}  总 ${Math.round(sb.takenTotal)}  最大单次 ${sb.takenMax}`,
-        srcs && `来源 ${srcs}`,
-        targets && `目标 ${targets}`,
-        test,
-        perf,
-      ]
-        .filter(Boolean)
-        .join('\n'),
-    );
+        ['来源', srcs],
+        ['目标', targets],
+        ['测试', test],
+        ['性能', perf],
+      ] as const
+    )
+      .filter(([, v]) => v)
+      .map(([k, v]) => `<dt>${k}</dt><dd title="${esc(v)}">${esc(v)}</dd>`)
+      .join('');
+    const speed = sb.slow < 1 ? sb.slow : sb.speed;
+    live.innerHTML =
+      (dirty ? '<div class="stale">构筑改过了，沙盒里还在跑改动前的那局。点「应用构筑并重启」生效。</div>' : '') +
+      `<div class="state">${sb.paused ? '⏸ 已暂停' : '▶ 运行中'} ×${speed}\u3000<b>${esc(CHARACTERS.find((c) => c.id === sb.sceneChar)?.name ?? run.char.name)}</b>\u3000第${run.chapterId}章 第${run.wave}波\u3000Lv${run.level}${sb.trial ? '\u3000<span class="trial">单独试用</span>' : ''}</div>` +
+      '<div class="meters">' +
+      meter('输出 DPS · 5 秒', String(dps5), '', 'hero') +
+      meter('30 秒 / 平均', `${Math.round(sb.rate(sb.hits, 30))}`, `/ ${Math.round(sb.dmgTotal / dur)}`) +
+      meter('总伤害', String(Math.round(sb.dmgTotal)), `${dur.toFixed(0)}s`) +
+      meter('承伤 DPS · 5 秒', fmt(sb.rate(sb.taken, 5)), `峰值 ${sb.takenMax}`, 'hurt') +
+      meter('生命', `${Math.ceil(run.hp)}`, `/ ${s.maxHp}`) +
+      meter('技能', g.skill.ready ? '就绪' : g.skill.cd.toFixed(1), g.skill.ready ? '' : 's') +
+      '</div>' +
+      `<div class="more"><dt>防御</dt><dd>护甲 ${fmt(s.armor)}\u3000闪避 ${fmt(Math.min(s.dodge, run.dodgeCap))}%\u3000阵亡 ${sb.opts.deaths}\u3000总承伤 ${Math.round(sb.takenTotal)}</dd>${more}</div>`;
+    liveSec.peek.textContent = `DPS ${dps5}\u3000HP ${Math.ceil(run.hp)}/${s.maxHp}\u3000${sb.paused ? '已暂停' : '运行中'}`;
   }
 
   // ---------------- 页签 ----------------
   function renderTabs(): void {
+    const name = new Map(TABS.map(([id, n]) => [id, n]));
     tabs.replaceChildren(
-      ...TABS.map(([id, name]) =>
-        h(
-          'button',
-          {
-            class: ui.tab === id ? 'on' : '',
-            onclick: () => {
-              ui.tab = id;
-              body.scrollTop = 0;
-              renderTabs();
-              renderTab();
+      ...GROUPS.flatMap(([g, ids]) => [
+        h('div', { class: 'grp' }, g),
+        ...ids.map((id) =>
+          h(
+            'button',
+            {
+              class: ui.tab === id ? 'on' : '',
+              'aria-current': ui.tab === id ? 'page' : false,
+              onclick: () => {
+                ui.tab = id;
+                body.scrollTop = 0;
+                renderTabs();
+                renderTab();
+              },
             },
-          },
-          name,
+            name.get(id) ?? id,
+          ),
         ),
-      ),
+      ]),
     );
   }
   function renderTab(): void {

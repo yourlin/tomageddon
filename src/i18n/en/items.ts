@@ -57,6 +57,9 @@ export const EN_ITEMS: ItemsEn = {
   baking_powder: { name: 'Baking Powder' },
   pressure_cooker: { name: 'Pressure Cooker' },
   powder_keg: { name: 'Powder Keg' },
+  pomegranate: { name: 'Bursting Pomegranate' },
+  onion_layers: { name: 'Layered Onion' },
+  cluster_tomato: { name: 'Cluster Tomatoes' },
 };
 
 // items: common×4, rare×3, epic×2, legendary×1

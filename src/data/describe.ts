@@ -3,6 +3,7 @@ import type { ItemDef, ItemSpecial } from './items';
 import { describeMods } from './stats';
 import { STATUSES, type StatusApply } from './statuses';
 import { tx } from '../i18n';
+import { BALANCE } from './balance';
 
 const st = (a: StatusApply) =>
   `${a.stacks && a.stacks > 1 ? a.stacks + tx('层', '× ') : ''}${STATUSES[a.id].name}${a.value && a.id === 'shield' ? tx(`（${a.value}）`, ` (${a.value})`) : ''}`;
@@ -43,11 +44,22 @@ export function describeSpecial(s: ItemSpecial | undefined): string[] {
   if (s.thorns) out.push(tx(`受伤反弹 ${s.thorns} 伤害`, `Reflect ${s.thorns} damage when hurt`));
   if (s.revive) out.push(tx(`死亡时复活 ${s.revive} 次`, `Revive ${s.revive} time(s) on death`));
   if (s.weaponSlot) out.push(tx(`武器栏 +${s.weaponSlot}`, `+${s.weaponSlot} weapon slot`));
+  if (s.legendCap) out.push(tx(`每种传说道具持有上限 +${s.legendCap}`, `+${s.legendCap} holding limit per legendary item`));
   if (s.burnChance) out.push(tx(`命中 ${s.burnChance}% 概率灼烧`, `${s.burnChance}% chance to Burn on hit`));
   if (s.shield) out.push(tx(`每 ${s.shield} 秒获得泡泡护盾`, `Gain a bubble shield every ${s.shield}s`));
   if (s.doubleSeed) out.push(tx(`${s.doubleSeed}% 概率番茄籽翻倍`, `${s.doubleSeed}% chance to double Seeds`));
   if (s.interest) out.push(tx(`每波获得 ${s.interest}% 利息`, `Earn ${s.interest}% interest each wave`));
   if (s.lightningOnHit) out.push(tx(`命中 ${s.lightningOnHit}% 概率落雷`, `${s.lightningOnHit}% chance to call lightning on hit`));
+  if (s.split) {
+    const S = BALANCE.split;
+    const pct = Math.round(S.dmg * 100);
+    out.push(
+      tx(
+        `远程子弹命中后分裂 +${s.split} 层：每层分出 ${S.shards} 颗，伤害为上一层的 ${pct}%（总层数最多 ${S.cap}）`,
+        `Ranged bullets split +${s.split} time(s) on hit: ${S.shards} shards per split, each dealing ${pct}% of the previous (max ${S.cap} splits total)`,
+      ),
+    );
+  }
   if (s.killHeal) out.push(tx(`每击杀 ${s.killHeal} 个敌人回复 1 生命`, `Heal 1 HP every ${s.killHeal} kills`));
   if (s.shopDiscount) out.push(tx(`商店价格 -${s.shopDiscount}%`, `Shop prices -${s.shopDiscount}%`));
   if (s.rerolls) out.push(tx(`每波商店刷新次数 +${s.rerolls}`, `+${s.rerolls} shop reroll(s) per wave`));

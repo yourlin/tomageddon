@@ -45,6 +45,8 @@ export const BALANCE = {
   critDmgCap: 150,
   /** 命中落雷概率总上限 % */
   lightningCap: 50,
+  /** 武器子弹命中后分裂：层数上限、每次分出几颗、每层伤害倍率、张角（度）、碎片飞行秒数、全场碎片上限 */
+  split: { cap: 3, shards: 2, dmg: 0.5, spread: 40, life: 0.35, maxLive: 160 },
   seedMult: 0.5, // 第 6 波起小怪番茄籽的经验倍率（货币掉落另按血量成长放大，见 Enemy.lootMult）
   cratesPerWave: 3, // 每波最多掉落宝箱（精英/Boss 不计）
   rerollBase: 2,

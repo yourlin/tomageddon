@@ -181,7 +181,8 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private rollShop(keepLocked: boolean): void {
-    const kept = keepLocked ? run.shop.filter((o) => o.locked && !o.sold) : [];
+    // 锁定保留的道具若已达持有上限（比如在别处拿到了同款），刷新时一并移除
+    const kept = keepLocked ? run.shop.filter((o) => o.locked && !o.sold && (o.kind !== 'item' || run.canTakeItem(o.id))) : [];
     // 挑战模式：按「波次 + 第几次刷新」取固定的随机序列
     if (run.shopRollWave !== run.wave) {
       run.shopRollWave = run.wave;
@@ -222,7 +223,9 @@ export class ShopScene extends Phaser.Scene {
         offers.push({ kind: 'weapon', id: def.id, tier, price: this.price(def.price * TIER_PRICE_MULT[tier]), locked: false, sold: false });
       } else {
         const rar = pickRarity(wave, luck, R);
-        const pool = ALL_ITEMS.filter((i) => i.rarity === rar && (!i.max || (run.items[i.id] ?? 0) < i.max));
+        // 已持有 + 本货架已上架（未售出）的数量达到上限的道具不再刷出
+        const onShelf = (id: string) => offers.filter((o) => o.kind === 'item' && o.id === id && !o.sold).length;
+        const pool = ALL_ITEMS.filter((i) => i.rarity === rar && (run.items[i.id] ?? 0) + onShelf(i.id) < run.itemCap(i.id));
         if (!pool.length) continue;
         const it = pickOf(pool, R);
         offers.push({
@@ -491,6 +494,10 @@ export class ShopScene extends Phaser.Scene {
       run.addWeapon(o.id, o.tier);
       bump('weaponsBought');
     } else {
+      if (!run.canTakeItem(o.id)) {
+        toast(this, tx(`已达持有上限（${run.itemCap(o.id)} 件）`, `Holding limit reached (${run.itemCap(o.id)})`));
+        return;
+      }
       run.addItem(o.id);
       bump('itemsBought');
       bump(`rarityBought:${o.tier}`);

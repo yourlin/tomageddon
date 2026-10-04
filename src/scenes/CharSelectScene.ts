@@ -34,6 +34,9 @@ import { questsOf } from '../data/quests';
 import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { dangerUnlocked, dangerBest, hasGoldFrame } from '../systems/Danger';
 
+/** 未解锁角色的剪影颜色 */
+const LOCKED_TINT = 0x5c5c66;
+
 export class CharSelectScene extends Phaser.Scene {
   private selected: CharacterDef = CHARACTERS[0];
   private chapter = 1;
@@ -99,8 +102,8 @@ export class CharSelectScene extends Phaser.Scene {
       if (runsAch && achTier(runsAch.id) > 0) text(this, x + 3, y + 1, medalOf(runsAch), 17).setOrigin(0, 0);
       if (achTier(`char_wins_${c.id}`) > 0) text(this, x + s - 3, y + 1, '🏆', 15).setOrigin(1, 0);
       if (!unlocked) {
-        // 未拥有：半透明显示本体，角标为锁和解锁成就的完成进度
-        img.setAlpha(0.45);
+        // 未拥有：只显示灰色轮廓，角标为锁和解锁成就的完成进度
+        img.setTintFill(LOCKED_TINT).setAlpha(0.85);
         const p = unlockProgress(c);
         const pct = Math.floor((p.value / p.goal) * 100);
         text(this, x + s - 4, y + s - 2, `🔒${pct}%`, 13, '#ffd166', { stroke: '#000000', strokeThickness: 4 }).setOrigin(1, 1);
@@ -203,15 +206,42 @@ export class CharSelectScene extends Phaser.Scene {
     d.removeAll(true);
     const pw = this.scale.width * 0.5 - 40;
     this.showcase?.destroy();
-    this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62);
-    if (!unlocked) this.showcase.setAlpha(0.55);
-    this.showcase.setDepth(10);
-    d.add(text(this, 180, 24, c.name, 34, '#ffffff'));
-    d.add(text(this, 180, 70, c.title, 20, '#ffd166'));
-    {
-      const hint = unlocked ? c.desc : unlockHint(c);
+    this.showcase = null;
+    if (!unlocked) {
+      // 未解锁：灰色轮廓 + 解锁条件与进度，不展示天赋、特性、技能、成长等详情
       d.add(
-        text(this, 180, 104, hint, 17, unlocked ? COLORS.textDim : '#ffd166', {
+        fitImage(this.add.image(90, 110, portraitKey(this, 'char', c.id)), 150)
+          .setTintFill(LOCKED_TINT)
+          .setAlpha(0.9),
+      );
+      d.add(text(this, 90, 110, '🔒', 40).setOrigin(0.5));
+      d.add(text(this, 180, 24, c.name, 34, '#9a9aa6'));
+      d.add(text(this, 180, 76, tx('解锁条件', 'How to unlock'), 21, '#ffd166'));
+      d.add(text(this, 180, 108, unlockHint(c), 18, '#fff4ea', { wordWrap: { width: pw - 210, useAdvancedWrap: true } }));
+      const p = unlockProgress(c);
+      const ratio = Math.min(1, p.goal > 0 ? p.value / p.goal : 0);
+      const bw = pw - 210,
+        by = 200;
+      const bar = this.add.graphics();
+      bar.fillStyle(0x000000, 0.45).fillRoundedRect(180, by, bw, 18, 9);
+      if (ratio > 0) bar.fillStyle(0xffd166, 1).fillRoundedRect(180, by, Math.max(18, bw * ratio), 18, 9);
+      d.add(bar);
+      d.add(
+        text(this, 180 + bw / 2, by + 9, `${Math.min(p.value, p.goal)} / ${p.goal}（${Math.floor(ratio * 100)}%）`, 14, '#ffffff', {
+          stroke: '#000000',
+          strokeThickness: 3,
+        }).setOrigin(0.5),
+      );
+    } else {
+      this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62);
+      this.showcase.setDepth(10);
+      d.add(text(this, 180, 24, c.name, 34, '#ffffff'));
+      d.add(text(this, 180, 70, c.title, 20, '#ffd166'));
+    }
+    if (unlocked) {
+      const hint = c.desc;
+      d.add(
+        text(this, 180, 104, hint, 17, COLORS.textDim, {
           wordWrap: { width: pw - 200, useAdvancedWrap: true },
         }),
       );
@@ -430,7 +460,7 @@ export class CharSelectScene extends Phaser.Scene {
       this.startBtn.setLabel(tx('出发！', 'Go!'));
       this.startBtn.setEnabled(chUnlocked);
     } else {
-      this.startBtn.setLabel(tx('🔒 达成成就解锁', '🔒 Unlock via achievement'));
+      this.startBtn.setLabel(tx('🔒 未解锁', '🔒 Locked'));
       this.startBtn.setEnabled(false);
     }
   }

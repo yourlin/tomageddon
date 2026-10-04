@@ -2,7 +2,7 @@
 
 **中文** · [English](en/CHANGELOG.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
@@ -10,12 +10,34 @@
 
 ## 目录
 
+- [v1.4.0 · 2026-10-04](#v1-4-0)
 - [v1.3.2 · 2026-10-03](#v1-3-2)
 - [v1.3.1 · 2026-10-03](#v1-3-1)
 - [v1.3.0 · 2026-10-01](#v1-3-0)
 - [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-4-0"></a>
+
+## v1.4.0 · 2026-10-04
+
+**「通关之后」：番茄危机 20 级难度阶梯、遗物、角色任务与觉醒、第 6/7 章与真结局，通关后还有很长的路可以走**
+
+
+- 番茄危机 0–20 级：通关一级解锁下一级，每级叠加一条规则，奖励随等级提高
+- 新增 45 件遗物与 8 个套装：精英、无尽里程碑与神秘商人提供，改变规则而不只是加属性
+- 无尽模式深化：每 10 波里程碑奖励、第 30/45/60 波超级 Boss、变异词缀、一次复活
+- 每名角色 3 个专属任务、觉醒被动、1–10 级熟练度与一套皮肤；新增 6 名角色
+- 角色改为达成指定成就自动解锁，不再花成就点购买
+- 第 6 章「腐烂温室」、隐藏第 7 章「腐烂菜园」与真结局 Boss
+- 12 把新武器、8 组进化、30 个新道具与 23 条道具组合
+- 事件波、危险路线、神秘商人、局内小任务、天气与 5 种新地形机关
+- 每日 / 每周挑战连续奖励、种子分享、自定义挑战与练习模式
+- 天赋大师层、收藏度总览、称号、76 个新成就、构筑分享码与局后 DPS 曲线
+- 技能演出全面重做：同类技能各有不同的动画与效果
+- 修复荆棘词缀反伤可能秒杀高伤害近战构筑的问题（现在有单次与每秒上限）
+- 设置新增伤害数字密度、震动强度、粒子数量、摇杆与按钮大小、手柄支持，以及存档导入导出
 
 <a id="v1-3-2"></a>
 
@@ -105,4 +127,4 @@
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · **更新日志**

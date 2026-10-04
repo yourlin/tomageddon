@@ -13,7 +13,7 @@ const pct = (v: number) => `${Math.round(v * 100)}%`;
 const cycle = <T>(opts: T[], cur: T): T => opts[(opts.indexOf(cur) + 1) % opts.length];
 
 export class SettingsScene extends Phaser.Scene {
-  private confirmReset = false;
+  private resetDialog?: Phaser.GameObjects.Container;
   constructor() {
     super('Settings');
   }
@@ -25,7 +25,7 @@ export class SettingsScene extends Phaser.Scene {
     autoRelayout(this, data);
     const W = this.scale.width,
       H = this.scale.height;
-    this.confirmReset = false;
+    this.resetDialog = undefined;
     if (this.fromPause) this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.7).setInteractive();
     else this.cameras.main.setBackgroundColor(COLORS.bg);
     const PW = Math.min(W - 40, 1100);
@@ -142,7 +142,8 @@ export class SettingsScene extends Phaser.Scene {
     });
     if (!this.fromPause) this.dataRow(W, H);
     button(this, W / 2, H - 70, 260, 54, tx('返回', 'Back'), () => this.back(), 0x555555, 22);
-    this.input.keyboard?.once('keydown-ESC', () => this.back());
+    // ESC：弹窗打开时只关闭弹窗，否则返回
+    this.input.keyboard?.on('keydown-ESC', () => (this.resetDialog ? this.closeResetDialog() : this.back()));
   }
 
   /** 存档导出 / 导入、错误日志、重置存档 */
@@ -222,25 +223,136 @@ export class SettingsScene extends Phaser.Scene {
           eb.setLabel(tx('复制错误日志 (0)', 'Copy Error Log (0)'));
         }
       });
-    const rb = button(
-      this,
-      W / 2 + 290,
-      y,
-      240,
-      50,
-      tx('重置存档', 'Reset Save'),
-      () => {
-        if (!this.confirmReset) {
-          this.confirmReset = true;
-          rb.setLabel(tx('再次点击确认重置', 'Click again to confirm'));
-          return;
-        }
-        resetSave();
-        this.scene.restart();
-      },
-      0x7a2e35,
-      20,
+    button(this, W / 2 + 290, y, 240, 50, tx('重置存档', 'Reset Save'), () => this.openResetDialog(1), 0x7a2e35, 20);
+  }
+
+  /**
+   * 重置存档的三步确认弹窗，防止误操作：
+   * 1. 警告 + 3 秒倒计时后才能继续；
+   * 2. 再次警告，确认/取消按钮左右互换位置 + 3 秒倒计时；
+   * 3. 长按 3 秒才执行（松手即中断）。
+   * 任何一步都可以取消、点遮罩或按 ESC 退出。
+   */
+  private openResetDialog(step: 1 | 2 | 3): void {
+    this.closeResetDialog();
+    const W = this.scale.width,
+      H = this.scale.height;
+    const c = this.add.container(0, 0).setDepth(2000);
+    this.resetDialog = c;
+    const mask = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.75).setInteractive();
+    mask.on('pointerup', () => this.closeResetDialog());
+    const PW = Math.min(W - 40, 620),
+      PH = 340;
+    const px = W / 2 - PW / 2,
+      py = H / 2 - PH / 2;
+    // 面板本身吞掉点击，避免点到遮罩关闭
+    const block = this.add.zone(W / 2, H / 2, PW, PH).setInteractive();
+    const g = panel(this, px, py, PW, PH, COLORS.panel, 0xff4b3e);
+    const title = text(this, W / 2, py + 40, tx(`重置存档（${step}/3）`, `Reset Save (${step}/3)`), 30, '#ff6b6b').setOrigin(0.5);
+    const bodies = {
+      1: tx(
+        '将永久清除全部进度：角色、天赋、成就、金币、图鉴和设置。\n此操作无法撤销！',
+        'This permanently erases ALL progress: characters, talents,\nachievements, gold, codex and settings.\nThis cannot be undone!',
+      ),
+      2: tx(
+        '真的要重置吗？\n如果之后可能想恢复，请先取消并点「导出存档」备份。',
+        'Are you really sure?\nIf you may want it back, cancel and use "Export Save" first.',
+      ),
+      3: tx('最后一步：按住下方按钮 3 秒执行重置。\n松手即取消。', 'Final step: hold the button below for 3 seconds.\nRelease to abort.'),
+    };
+    const body = text(this, W / 2, py + 130, bodies[step], 20, COLORS.text, { align: 'center', wordWrap: { width: PW - 60 } }).setOrigin(
+      0.5,
     );
+    c.add([mask, block, g, title, body]);
+    const by = py + PH - 60;
+    const cancelLabel = tx('取消', 'Cancel');
+
+    if (step < 3) {
+      // 第 2 步左右互换，连点同一位置不会一路确认下去
+      const okX = step === 1 ? W / 2 + 130 : W / 2 - 130;
+      const cancelX = step === 1 ? W / 2 - 130 : W / 2 + 130;
+      c.add(button(this, cancelX, by, 220, 54, cancelLabel, () => this.closeResetDialog(), 0x555555, 22));
+      const okLabel = step === 1 ? tx('继续', 'Continue') : tx('确定重置', 'Yes, reset');
+      const ok = button(this, okX, by, 220, 54, '', () => this.openResetDialog((step + 1) as 2 | 3), 0x7a2e35, 22);
+      c.add(ok);
+      let left = 3;
+      const tick = () => {
+        if (left > 0) ok.setEnabled(false).setLabel(`${okLabel} (${left})`);
+        else ok.setEnabled(true).setLabel(okLabel);
+      };
+      tick();
+      const timer = this.time.addEvent({
+        delay: 1000,
+        repeat: 2,
+        callback: () => {
+          left--;
+          tick();
+        },
+      });
+      c.once('destroy', () => timer.remove());
+      return;
+    }
+
+    // 第 3 步：长按 3 秒
+    c.add(button(this, W / 2 - 150, by, 180, 54, cancelLabel, () => this.closeResetDialog(), 0x555555, 22));
+    const HW = 260,
+      HH = 54,
+      hx = W / 2 + 90,
+      HOLD_MS = 3000;
+    const hold = this.add.container(hx, by);
+    const hg = this.add.graphics();
+    const holdLabel = tx('按住 3 秒重置', 'Hold 3s to reset');
+    const ht = text(this, 0, 0, holdLabel, 22).setOrigin(0.5);
+    hold.add([hg, ht]).setSize(HW, HH).setInteractive({ useHandCursor: true });
+    c.add(hold);
+    let held = 0;
+    let timer: Phaser.Time.TimerEvent | null = null;
+    const draw = () => {
+      const p = held / HOLD_MS;
+      hg.clear();
+      hg.fillStyle(0x4a1c22, 1).fillRoundedRect(-HW / 2, -HH / 2, HW, HH, 14);
+      if (p > 0) hg.fillStyle(0xd62828, 1).fillRoundedRect(-HW / 2, -HH / 2, Math.max(28, HW * p), HH, 14);
+      hg.lineStyle(2, 0xff6b6b, 1).strokeRoundedRect(-HW / 2, -HH / 2, HW, HH, 14);
+      ht.setText(
+        p > 0
+          ? tx(`保持按住… ${((HOLD_MS - held) / 1000).toFixed(1)}s`, `Keep holding… ${((HOLD_MS - held) / 1000).toFixed(1)}s`)
+          : holdLabel,
+      );
+    };
+    const stop = () => {
+      timer?.remove();
+      timer = null;
+      held = 0;
+      draw();
+    };
+    draw();
+    hold.on('pointerdown', () => {
+      if (timer) return;
+      audio.play(this, 'click');
+      timer = this.time.addEvent({
+        delay: 50,
+        loop: true,
+        callback: () => {
+          held += 50;
+          if (held >= HOLD_MS) {
+            stop();
+            this.closeResetDialog();
+            resetSave();
+            this.scene.restart();
+            return;
+          }
+          draw();
+        },
+      });
+    });
+    hold.on('pointerup', stop);
+    hold.on('pointerout', stop);
+    c.once('destroy', () => timer?.remove());
+  }
+
+  private closeResetDialog(): void {
+    this.resetDialog?.destroy();
+    this.resetDialog = undefined;
   }
 
   private back(): void {

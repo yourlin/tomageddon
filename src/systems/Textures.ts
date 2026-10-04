@@ -7,6 +7,7 @@ import { STAT_INFO, STAT_ORDER, type StatKey } from '../data/stats';
 import { CHARACTERS } from '../data/characters';
 import { paint, rgb, darken, lighten, toon, ellipsePath, roundRectPath, starPath, glow, OUTLINE, type Ctx } from '../art/Painter';
 import { drawWeapon, drawWeaponIcon } from '../art/WeaponArt';
+import { drawMine, MINE_SIZE } from '../art/MineArt';
 
 export const FONT = '"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif';
 
@@ -199,6 +200,8 @@ export function generateTextures(scene: Phaser.Scene): void {
   for (const w of [...WEAPONS, ...EVOLVED_WEAPONS]) {
     paint(s, `weapon_${w.id}`, 128, 64, (ctx) => drawWeapon(ctx, w.id));
     paint(s, `icon_weapon_${w.id}`, 128, 128, (ctx) => drawWeaponIcon(ctx, w.id, w.cls));
+    // 地雷类武器：布在地上的雷长得和名字一样
+    if (w.kind === 'mine') paint(s, `mine_${w.id}`, MINE_SIZE, MINE_SIZE, (ctx) => drawMine(ctx, w.id));
   }
 
   // ---------- 子弹 ----------

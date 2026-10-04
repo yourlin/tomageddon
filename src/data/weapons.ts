@@ -277,7 +277,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'onion_boomerang',
     name: '洋葱回旋镖',
-    desc: '飞出后返回，沿途无限穿透。',
+    desc: '划出一道弧线飞出又绕回，沿途无限穿透。',
     cls: 'ranged',
     kind: 'boomerang',
     tags: ['蔬果'],
@@ -449,7 +449,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'pizza_cutter',
     name: '披萨滚刀',
-    desc: '甩出滚刀再收回，沿途切开一切。',
+    desc: '甩出滚刀蛇形滚出再收回，沿途切开一切。',
     cls: 'melee',
     kind: 'boomerang',
     tags: ['厨具', '锋利'],
@@ -612,7 +612,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'plate_frisbee',
     name: '餐盘飞碟',
-    desc: '掷出餐盘，飞回时再撞一次。',
+    desc: '掷出餐盘，远处大幅甩弯再飞回，回程再撞一次。',
     cls: 'ranged',
     kind: 'boomerang',
     tags: ['厨具'],
@@ -825,7 +825,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'star_anise_shuriken',
     name: '八角飞镖',
-    desc: '香料飞镖回旋而归，灼烧沿途敌人。',
+    desc: '香料飞镖螺旋扫过前方再回旋而归，灼烧沿途敌人。',
     cls: 'elemental',
     kind: 'boomerang',
     tags: ['锋利', '元素'],

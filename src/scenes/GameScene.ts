@@ -52,6 +52,7 @@ import { stageMusic, bossMusic } from '../systems/Music';
 import { WaveQuestTracker } from '../systems/WaveQuests';
 import { weatherForWave, WEATHER_MAP, WEATHER_RULE_KEY } from '../systems/Weather';
 import { AURA_WEAPON_IDS } from '../data/evolutions';
+import { boomOffset, BOOM_PASSES } from '../systems/BoomPaths';
 
 /** 开发者沙盒（?dev）：不刷怪、不计时、不掉落、不结算；玩家阵亡时原地复活。其余行为由开发者界面通过 onStep 驱动 */
 export interface SandboxOpts {
@@ -1329,20 +1330,29 @@ export class GameScene extends Phaser.Scene {
     for (const b of this.bullets) {
       if (!b.alive) continue;
       if (b.kind === 'boomerang') {
-        b.outT -= dt;
-        if (b.outT <= 0 && !b.returning) {
-          b.returning = true;
+        // 沿曲线飞行：局部原点从出手点过渡到玩家当前位置，t = 1 时正好回到手里
+        b.pathT += dt;
+        const t = Math.min(1, b.pathT / b.pathDur);
+        const pass = Math.min(BOOM_PASSES[b.path] - 1, Math.floor(t * BOOM_PASSES[b.path]));
+        if (pass !== b.pathPass) {
+          b.pathPass = pass;
           b.hitSet.clear();
         }
-        if (b.returning) {
-          const ang = Math.atan2(p.y - b.y, p.x - b.x);
-          const sp = Math.hypot(b.vx, b.vy);
-          b.vx = Math.cos(ang) * sp;
-          b.vy = Math.sin(ang) * sp;
-          if (Phaser.Math.Distance.Between(b.x, b.y, p.x, p.y) < 30) {
-            b.kill();
-            continue;
-          }
+        const ox = b.sx + (p.x - b.sx) * t,
+          oy = b.sy + (p.y - b.sy) * t;
+        const { u, v } = boomOffset(b.path, t, b.pathReach, b.pathSide);
+        const c = Math.cos(b.pathAng),
+          sn = Math.sin(b.pathAng);
+        const nx = ox + u * c - v * sn,
+          ny = oy + u * sn + v * c;
+        if (dt > 0) {
+          b.vx = (nx - b.x) / dt;
+          b.vy = (ny - b.y) / dt;
+        }
+        b.setPosition(nx, ny);
+        if (t >= 1) {
+          b.kill();
+          continue;
         }
       } else {
         b.life -= dt;
@@ -1352,14 +1362,17 @@ export class GameScene extends Phaser.Scene {
           continue;
         }
       }
-      b.x += b.vx * dt;
-      b.y += b.vy * dt;
+      if (b.kind !== 'boomerang') {
+        b.x += b.vx * dt;
+        b.y += b.vy * dt;
+      }
       if (b.spin) b.rotation += b.spin * dt;
       if (b.kind === 'flame') {
         b.setScale(b.scale + dt * 3);
         b.setAlpha(Math.min(1, b.life * 3));
       }
-      if (b.x < a.x - 40 || b.x > a.right + 40 || b.y < a.y - 40 || b.y > a.bottom + 40) {
+      // 回旋镖的曲线可能短暂越过场地边缘，但总会飞回来，不在这里销毁
+      if (b.kind !== 'boomerang' && (b.x < a.x - 40 || b.x > a.right + 40 || b.y < a.y - 40 || b.y > a.bottom + 40)) {
         b.kill();
         continue;
       }
@@ -1410,7 +1423,37 @@ export class GameScene extends Phaser.Scene {
           continue;
         }
       }
+      if (b.split > 0) this.splitBullet(b);
       b.kill();
+    }
+  }
+
+  /** 道具「分裂」：子弹打完最后一下后朝前方扇形分出碎片。
+   *  碎片伤害按层递减、不会再打已命中过的敌人，层数与全场碎片数都有上限。 */
+  private splitBullet(b: Bullet): void {
+    const S = BALANCE.split;
+    let live = 0;
+    for (const x of this.bullets) if (x.alive && x.gen > 0) live++;
+    if (live + S.shards > S.maxLive) return;
+    const sp = Math.hypot(b.vx, b.vy) * 0.9;
+    const base = Math.atan2(b.vy, b.vx);
+    const spread = Phaser.Math.DegToRad(S.spread);
+    const key = b.texture.key;
+    for (let k = 0; k < S.shards; k++) {
+      const ang = base - spread / 2 + (S.shards > 1 ? (spread * k) / (S.shards - 1) : spread / 2);
+      const f = this.spawnPlayerBullet(key, b.x, b.y, ang, sp, S.life, Math.max(5, b.radius * 0.8));
+      f.dmg = b.dmg * S.dmg;
+      f.crit = b.crit;
+      f.critBonus = b.critBonus;
+      f.knockback = b.knockback * 0.5;
+      f.effect = b.effect;
+      f.lifeSteal = b.lifeSteal;
+      f.status = b.status;
+      f.src = b.src;
+      f.gen = b.gen + 1;
+      f.split = b.split - 1;
+      for (const e of b.hitSet) f.hitSet.add(e);
+      f.setScale(Math.pow(0.75, f.gen));
     }
   }
 

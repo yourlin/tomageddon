@@ -4,7 +4,7 @@ import { CHARACTERS } from '../../src/data/characters';
 import { ENEMIES } from '../../src/data/enemies';
 import { BOSSES, AFFIXES } from '../../src/data/bosses';
 import { WEAPONS, TIER_PRICE_MULT } from '../../src/data/weapons';
-import { ALL_ITEMS } from '../../src/data/items';
+import { ALL_ITEMS, baseItemCap } from '../../src/data/items';
 import { CHAPTERS } from '../../src/data/chapters';
 import { STATUSES } from '../../src/data/statuses';
 import { describeMods } from '../../src/data/stats';
@@ -91,7 +91,7 @@ export function tablesDoc(): void {
     d.h3(`${RARITY[r].name} (${list.length})`, `items-${r}`);
     d.table(
       [tx('道具', 'Item'), tx('系列', 'Series'), tx('效果', 'Effect'), tx('价格', 'Price'), tx('上限', 'Max')],
-      list.map((i) => [i.name, i.series ?? tx('经典', 'Classic'), describeItem(i).join(tx('，', ', ')), i.price, i.max ?? '∞']),
+      list.map((i) => [i.name, i.series ?? tx('经典', 'Classic'), describeItem(i).join(tx('，', ', ')), i.price, baseItemCap(i) ?? '∞']),
     );
   }
   d.write();

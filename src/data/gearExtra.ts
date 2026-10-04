@@ -238,7 +238,7 @@ export const EXTRA_EVOLUTIONS_SPEC: ExtraEvolutionSpec[] = [
     boost: {
       id: 'iron_bastion_pan',
       name: '铸铁壁垒锅',
-      desc: '锅盖头盔焊成的重锅，一拍震晕一片，护甲越高越疼。',
+      desc: '锅盖头盔焊成的重锅，一拍震晕一片，还能拍碎面前的敌方子弹，护甲越高越疼。',
       dmg: 1.7,
       range: 1.25,
       extra: { effect: { stun: 0.7 }, scaling: { melee: 1.4, armor: 2 }, knockback: 30 },
@@ -250,7 +250,7 @@ export const EXTRA_EVOLUTIONS_SPEC: ExtraEvolutionSpec[] = [
     boost: {
       id: 'melon_quake',
       name: '西瓜震地锤',
-      desc: '塞满火药的西瓜，砸地引发超大爆炸。',
+      desc: '塞满火药的西瓜，抡起砸地引发超大爆炸，地面开裂并连震两圈余震，震倒外围敌人。',
       dmg: 1.8,
       extra: { effect: { explode: 160 }, knockback: 50 },
     },
@@ -261,7 +261,7 @@ export const EXTRA_EVOLUTIONS_SPEC: ExtraEvolutionSpec[] = [
     boost: {
       id: 'storm_broccoli',
       name: '风暴西兰花',
-      desc: '电池充满的西兰花，闪电跳得更远还会眩晕。',
+      desc: '电池充满的西兰花，闪电跳得更远还会眩晕，劈完后再落下三道眩晕的小闪电。',
       dmg: 1.6,
       cd: 0.8,
       extra: { effect: { chain: [5, 6, 8, 10], stun: 0.2 } },
@@ -777,10 +777,16 @@ export const EXTRA_WEAPONS_EN: WeaponsEn = {
   // ---- 进化超武 ----
   iron_bastion_pan: {
     name: 'Iron Bastion Pan',
-    desc: 'A heavy pan welded from a pot-lid helmet. Every smack stuns a crowd and hurts more with Armor.',
+    desc: 'A heavy pan welded from a pot-lid helmet. Every smack stuns a crowd and shatters enemy shots in front of you; hurts more with Armor.',
   },
-  melon_quake: { name: 'Melon Quake', desc: 'A gunpowder-stuffed melon that sets off a massive blast on impact.' },
-  storm_broccoli: { name: 'Storm Broccoli', desc: 'Fully charged broccoli: lightning jumps farther and stuns.' },
+  melon_quake: {
+    name: 'Melon Quake',
+    desc: 'A gunpowder-stuffed melon slammed into the ground: a massive blast, cracks in the floor and two aftershocks that knock enemies down.',
+  },
+  storm_broccoli: {
+    name: 'Storm Broccoli',
+    desc: 'Fully charged broccoli: lightning jumps farther and stuns, then three small sky bolts drop and stun again.',
+  },
   mustard_dragon: { name: 'Mustard Dragon', desc: 'High-pressure mustard flames with longer reach and fiercer burns.' },
   pepper_minefield: { name: 'Pepper Minefield', desc: 'Baking powder puffs up the mines: faster laying, bigger blasts, and burns.' },
   tsunami_katana: { name: 'Tsunami Katana', desc: "A sushi master's ultimate cut — far higher crit damage and burns." },
@@ -859,7 +865,7 @@ export const EXTRA_EVOLVED_ART: Record<string, [base: string, tint: number]> = {
 
 /** 新光环武器外观：并入 AuraFx.ts 的 AURA_LOOK（超武未列出时会按 evolvedFrom 回落到原武器） */
 export const EXTRA_AURA_LOOK: Record<string, { color: number; style: AuraStyle }> = {
-  blender_aura: { color: 0xdee2e6, style: 'wind' },
-  salt_aura: { color: 0xffffff, style: 'spark' },
-  tornado_blender: { color: 0xc77dff, style: 'wind' },
+  blender_aura: { color: 0xdee2e6, style: 'blender' },
+  salt_aura: { color: 0xe0fbfc, style: 'salt' },
+  tornado_blender: { color: 0xc77dff, style: 'tornado' },
 };

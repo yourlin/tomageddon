@@ -99,8 +99,10 @@ export function skillsDoc(): void {
     ),
     tx(
       '- 冷却按威力自动计算：`冷却 = (8 + 0.9×伤害分 + 控制分 + 增益分) × 0.65`，限制 8~30 秒（`src/data/skills.ts`）',
-      '- 默认自动释放：按技能形态判断时机（范围伤害等敌人扎堆、回复等掉血、保命技能等危险时）；可在设置中切换为手动，自动模式下也能手动释放',
       '- Cooldown is computed from power: `cooldown = (8 + 0.9×damage score + control score + buff score) × 0.65`, clamped to 8–30s (`src/data/skills.ts`)',
+    ),
+    tx(
+      '- 默认自动释放：按技能形态判断时机（范围伤害等敌人扎堆、回复等掉血、保命技能等危险时）；可在设置中切换为手动，自动模式下也能手动释放',
       '- Skills auto-cast by default, timed by form (area skills when enemies cluster, heals when hurt, defensive skills in danger); switch to manual in Settings — you can still cast manually in auto mode',
     ),
     tx(

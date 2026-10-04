@@ -161,6 +161,7 @@ export class Sandbox {
 
   private onCreate(): void {
     const g = this.g;
+    this.sceneChar = run.charId;
     this.gfx = g.add.graphics().setDepth(20000);
     this.explosions = [];
     // 爆炸半径：包一层 Fx.explosion（Fx 每次 create 都会新建）
@@ -184,6 +185,8 @@ export class Sandbox {
       g.damageEnemy = function (this: GameScene, e, dmg, opts = {}) {
         const src = opts.dot ? 'dot' : this.dmgSrc || 'other';
         const before = run.dmgBy[src] ?? 0;
+        // 锁血目标：伤害结算前垫高生命，一击打出超过上限的伤害也不会死（每步再恢复到上限）
+        if (sandboxRef?.isImmortal(e)) e.hp = Math.max(e.hp, e.maxHp) + Math.abs(dmg) * 20 + 1;
         const alive = dmgOrig.call(this, e, dmg, opts);
         const d = (run.dmgBy[src] ?? 0) - before;
         if (d > 0) sandboxRef?.recordDmg(e, d, src);
@@ -280,6 +283,12 @@ export class Sandbox {
 
   isAlive(t: Tracked): boolean {
     return t.e.alive && t.e.uid === t.uid;
+  }
+
+  /** 是否为仍存活的锁血目标 */
+  isImmortal(e: Enemy): boolean {
+    for (const t of this.tracked) if (t.e === e) return t.opts.immortal && this.isAlive(t);
+    return false;
   }
 
   recordDmg(e: Enemy, d: number, src: string): void {
@@ -742,6 +751,8 @@ export class Sandbox {
   }
   /** 场景重启后要还原的快照（构筑不同时由面板先切构筑再重启） */
   pendingSnap: Snapshot | null = null;
+  /** 当前这局沙盒场景创建时用的角色。角色形象和技能按钮都是在场景创建时画好的，换角色必须重建场景 */
+  sceneChar = '';
   /** 回放：每秒记录一次，保留 30 秒 */
   timeline: Snapshot[] = [];
   private lastCapT = 0;

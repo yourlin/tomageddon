@@ -504,7 +504,11 @@ const GLOBAL: AchievementDef[] = [
 ];
 
 /** 角色成就：开局、通关、波次、等级、击杀、精英、逐章通关（每名角色 11 项） */
-const CH_CLEAR_POINTS = [8, 15, 25, 40, 60];
+// 第 6、7 章（腐烂温室 / 腐烂菜园）后加；再加章节时也会按最后一档递增，不会出现 NaN
+const CH_CLEAR_POINTS = [8, 15, 25, 40, 60, 85, 115];
+const CH_CLEAR_ICONS = ['🍳', '🌱', '❄️', '🗑️', '🏭', '🍄', '🥀'];
+const chClearPoints = (i: number) =>
+  CH_CLEAR_POINTS[i] ?? CH_CLEAR_POINTS[CH_CLEAR_POINTS.length - 1] + 30 * (i - CH_CLEAR_POINTS.length + 1);
 const PER_CHARACTER: AchievementDef[] = CHARACTERS.flatMap((c) => {
   const C = (def: AchievementDef): AchievementDef => ({ ...def, charId: c.id });
   return [
@@ -601,11 +605,11 @@ const PER_CHARACTER: AchievementDef[] = CHARACTERS.flatMap((c) => {
         K(
           `char_ch${ch.id}_${c.id}`,
           'character',
-          ['🍳', '🌱', '❄️', '🗑️', '🏭'][i],
+          CH_CLEAR_ICONS[i] ?? '🏆',
           [`{char}·第${ch.id}章`, `{char} · Chapter ${ch.id}`],
           [`使用{char}通关第 ${ch.id} 章`, `Clear Chapter ${ch.id} as {char}`],
           `charClear:${c.id}:${ch.id}`,
-          [[1, CH_CLEAR_POINTS[i]]],
+          [[1, chClearPoints(i)]],
         ),
       ),
     ),

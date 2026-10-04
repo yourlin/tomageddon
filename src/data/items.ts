@@ -14,9 +14,11 @@ export interface ItemSpecial {
   doubleSeed?: number; // 番茄籽翻倍概率 %
   interest?: number; // 每波结束获得当前番茄籽的 % 利息
   lightningOnHit?: number; // 命中时概率触发闪电 %
+  split?: number; // 武器子弹命中后分裂层数 +N（总层数上限 BALANCE.split.cap，每层伤害递减）
   killHeal?: number; // 每击杀 N 个敌人回复 1 生命
   shopDiscount?: number; // 商店折扣 %
   rerolls?: number; // 每波商店刷新次数上限 +N（总上限 10）
+  legendCap?: number; // 每种传说道具的持有上限 +N（角色 / 天赋 / 遗物等均可提供）
   onHit?: StatusApply[]; // 命中时对敌人施加
   onHitSelf?: StatusApply[]; // 命中时对自己施加
   onKillSelf?: StatusApply[]; // 击杀时对自己施加
@@ -42,7 +44,8 @@ export interface ItemDef {
   price: number;
   mods: StatMods;
   special?: ItemSpecial;
-  max?: number; // 最多持有数量
+  /** 最多持有数量。不填时：传说道具默认 LEGEND_ITEM_CAP，其余无上限；填了就以它为准（可用于放宽个别传说道具） */
+  max?: number;
   icon?: { shape: string; color: number; color2: number; glyph?: string };
   series?: string;
   /** 原始中文名（切换英文后仍用于图标配色，保证两种语言图标一致） */
@@ -141,6 +144,16 @@ export const ITEMS: ItemDef[] = [
     desc: '每击杀 25 个敌人回复 1 生命',
   },
   { id: 'baking_powder', name: '泡打粉', rarity: 1, price: 36, mods: { explodeSize: 22, elemental: 2, maxHp: -3 } },
+  {
+    id: 'pomegranate',
+    name: '爆籽石榴',
+    rarity: 1,
+    price: 46,
+    mods: { ranged: 1, rangedPct: -6 },
+    special: { split: 1 },
+    max: 2,
+    icon: { shape: 'fruit', color: 0xc1121f, color2: 0xffafcc },
+  },
   // ---------- 史诗 ----------
   {
     id: 'vip_card',
@@ -194,6 +207,16 @@ export const ITEMS: ItemDef[] = [
   { id: 'coupon', name: '优惠券', rarity: 2, price: 55, mods: {}, special: { shopDiscount: 10 }, max: 3, desc: '商店价格 -10%' },
   { id: 'protein', name: '蛋白粉', rarity: 2, price: 75, mods: { maxHp: 10, melee: 2, speed: -2 } },
   { id: 'pressure_cooker', name: '高压锅', rarity: 2, price: 70, mods: { explodeSize: 30, armor: 1 } },
+  {
+    id: 'onion_layers',
+    name: '千层洋葱',
+    rarity: 2,
+    price: 78,
+    mods: { ranged: 2, attackSpeed: -4 },
+    special: { split: 1 },
+    max: 2,
+    icon: { shape: 'orb', color: 0xb5838d, color2: 0xf8edeb },
+  },
   // ---------- 传说 ----------
   { id: 'golden_tomato', name: '黄金番茄', rarity: 3, price: 120, mods: { damage: 15, maxHp: 10, luck: 15, speed: -5 } },
   {
@@ -211,6 +234,15 @@ export const ITEMS: ItemDef[] = [
   { id: 'grandma_recipe', name: '外婆的秘方', rarity: 3, price: 115, mods: { harvest: 25, xpGain: 25, luck: 20, damage: -8 } },
   { id: 'vampire_cape', name: '吸血鬼披风', rarity: 3, price: 125, mods: { lifeSteal: 10, damage: 8, dodge: 5, regen: -3 } },
   { id: 'powder_keg', name: '火药桶', rarity: 3, price: 115, mods: { explodeSize: 50, damage: 5, speed: -3 } },
+  {
+    id: 'cluster_tomato',
+    name: '串串番茄',
+    rarity: 3,
+    price: 135,
+    mods: { rangedPct: 8, ranged: 2 },
+    special: { split: 2 },
+    icon: { shape: 'fruit', color: 0xe63946, color2: 0x52b788 },
+  },
 ];
 
 /** 手工设计的道具 + 系列化生成的道具 */
@@ -219,6 +251,24 @@ ITEMS.push(...EXTRA_ITEMS);
 export const ALL_ITEMS: ItemDef[] = [...ITEMS, ...GENERATED_ITEMS];
 
 export const ITEM_MAP: Record<string, ItemDef> = Object.fromEntries(ALL_ITEMS.map((i) => [i.id, i]));
+
+/** 传说稀有度（RARITY 下标） */
+export const LEGEND_RARITY = 3;
+/** 每种传说道具默认最多持有 1 件 */
+export const LEGEND_ITEM_CAP = 1;
+
+/** 道具的基础持有上限（不含加成）；undefined = 无上限 */
+export function baseItemCap(it: ItemDef): number | undefined {
+  if (it.max !== undefined) return it.max;
+  return it.rarity >= LEGEND_RARITY ? LEGEND_ITEM_CAP : undefined;
+}
+
+/** 实际持有上限：传说道具再加上 specials.legendCap（角色、天赋等提供）；Infinity = 无上限 */
+export function itemCapFor(it: ItemDef, legendBonus = 0): number {
+  const base = baseItemCap(it);
+  if (base === undefined) return Infinity;
+  return base + (it.rarity >= LEGEND_RARITY ? Math.max(0, legendBonus) : 0);
+}
 
 /** 升级时的属性选项（按稀有度数值不同）。attackClass 为 null 表示所有流派通用 */
 export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }[] = [

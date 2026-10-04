@@ -2,6 +2,7 @@
 // 全部是计数器成就（save.counters），计数器在各系统里 bump，见 tests/achievements14.test.ts 的键检查。
 import type { AchievementDef, AchCategory } from './achievements';
 import { CHARACTERS } from './characters';
+import { EN_CHARACTERS } from '../i18n/en/characters';
 import { RELIC_SETS } from './relics';
 
 type T = [number, number];
@@ -338,8 +339,8 @@ const CHARS: AchievementDef[] = [
       `awaken_${c.id}`,
       'character',
       '✨',
-      [`${c.name}·觉醒`, `${c.name} Awakened`],
-      [`完成${c.name}的全部 3 个专属任务`, `Complete all 3 of ${c.name}'s quests`],
+      [`${c.name}·觉醒`, `${EN_CHARACTERS[c.id]?.name ?? c.name} Awakened`],
+      [`完成${c.name}的全部 3 个专属任务`, `Complete all 3 of ${EN_CHARACTERS[c.id]?.name ?? c.name}'s quests`],
       `awaken:${c.id}`,
       [[1, 10]],
     ),

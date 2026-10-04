@@ -101,7 +101,7 @@ export function applyStartRewards(): void {
   else if (lv >= 2) run.seeds += 15;
   if (lv >= 5) {
     const rarity = lv >= 8 ? 1 : 0;
-    const pool = ALL_ITEMS.filter((i) => i.rarity === rarity && !i.max && i.price > 0);
+    const pool = ALL_ITEMS.filter((i) => i.rarity === rarity && run.itemCap(i.id) === Infinity && i.price > 0);
     if (pool.length) run.addItem(pool[Math.floor(Math.random() * pool.length)].id);
   }
   run.awakened = awakenOn(run.charId);

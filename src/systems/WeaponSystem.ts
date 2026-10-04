@@ -11,6 +11,10 @@ import type { Stats } from '../data/stats';
 import { attackSpeedMultiplier } from '../data/balance';
 import { audio } from './Audio';
 import { affixTotals } from './WeaponMods';
+import { SWEEP_STYLE, sweepHalfArc, sweepPose, playSweep } from './SweepFx';
+import { boomPathOf, BOOM_TIME } from './BoomPaths';
+import { CHAIN_STYLE, chainColor, chainFollowUp } from './ChainFx';
+import { MINE_BOOM_COLOR } from '../art/MineArt';
 
 const PROJ_KEY: Record<string, string> = {
   slingshot: 'proj_tomato',
@@ -136,8 +140,9 @@ export class WeaponSystem {
           oy = Math.sin(w.animAngle) * ext;
           rot = w.animAngle;
         } else if (def.kind === 'sweep') {
-          const sw = w.animAngle - 1.2 + k * 2.4;
-          const ext = Math.sin(k * Math.PI) * range * 0.55;
+          const pose = sweepPose(SWEEP_STYLE[def.id], w.animAngle, k, range);
+          const sw = pose?.sw ?? w.animAngle - 1.2 + k * 2.4;
+          const ext = pose?.ext ?? Math.sin(k * Math.PI) * range * 0.55;
           ox = Math.cos(sw) * ext;
           oy = Math.sin(sw) * ext;
           rot = sw;
@@ -222,12 +227,16 @@ export class WeaponSystem {
         break;
       }
       case 'sweep': {
+        const st = SWEEP_STYLE[def.id];
+        const half = sweepHalfArc(st);
         const hits = g.grid.query(hx, hy, range, g.tmp);
         for (const e of [...hits]) {
           const d = Phaser.Math.Angle.Wrap(Math.atan2(e.y - hy, e.x - hx) - a);
-          if (Math.abs(d) < 1.25 || Phaser.Math.Distance.Between(e.x, e.y, hx, hy) < e.radius + 30) this.hit(e, w, s, hx, hy);
+          if (Math.abs(d) < half || Phaser.Math.Distance.Between(e.x, e.y, hx, hy) < e.radius + 30) this.hit(e, w, s, hx, hy);
         }
-        g.fxSweep(hx, hy, a, range);
+        // 超武专属招式；普通横扫武器仍用通用刀光
+        if (st) playSweep(st, { g, x: hx, y: hy, a, range, info: this.info(w, s) });
+        else g.fxSweep(hx, hy, a, range);
         if (def.effect?.explode) {
           const i = this.info(w, s);
           g.explode(hx + Math.cos(a) * range * 0.7, hy + Math.sin(a) * range * 0.7, def.effect.explode, i.dmg * 0.6, i, 0xff6b6b);
@@ -259,6 +268,8 @@ export class WeaponSystem {
           b.src = def.id;
           b.pierce = def.pierce?.[tier] ?? 0;
           b.bounce = def.bounce?.[tier] ?? 0;
+          // 分裂只给普通子弹（火焰 / 回旋镖 / 火箭各有自己的命中逻辑）
+          b.split = def.kind === 'bullet' ? run.specials.split : 0;
           if (def.kind === 'rocket') b.kind = 'rocket';
           if (def.kind === 'flame') {
             b.kind = 'flame';
@@ -268,7 +279,12 @@ export class WeaponSystem {
           if (def.kind === 'boomerang') {
             b.kind = 'boomerang';
             b.pierce = 999;
-            b.outT = range / speed;
+            b.path = boomPathOf(def);
+            b.pathReach = range * 0.95;
+            b.pathDur = (range / speed) * BOOM_TIME[b.path];
+            b.pathAng = ang;
+            // 多枚时左右交替，单枚随机往一边拐
+            b.pathSide = count > 1 ? (k % 2 ? -1 : 1) : Math.random() < 0.5 ? -1 : 1;
             b.life = 99;
             b.spin = 14;
           }
@@ -290,7 +306,9 @@ export class WeaponSystem {
           dmg *= 0.85;
           cur = g.grid.nearest(cur.x, cur.y, 200, hitSet);
         }
-        g.fxLightning(pts, 0x9bf6ff);
+        g.fxLightning(pts, chainColor(def.id));
+        const cst = CHAIN_STYLE[def.id];
+        if (cst) chainFollowUp(g, cst, [...hitSet], i, def.critMult);
         audio.play(g, 'shoot', 0.06);
         break;
       }
@@ -318,7 +336,14 @@ export class WeaponSystem {
     const r = Phaser.Math.FloatBetween(40, range);
     const x = Phaser.Math.Clamp(p.x + Math.cos(ang) * r, g.arena.x + 20, g.arena.right - 20);
     const y = Phaser.Math.Clamp(p.y + Math.sin(ang) * r, g.arena.y + 20, g.arena.bottom - 20);
-    const img = g.add.image(p.x, p.y, g.textures.exists('mine_pepper') ? 'mine_pepper' : 'mine').setDepth(2);
+    const def = w.def;
+    const key = [`mine_${def.id}`, `mine_${def.evolvedFrom ?? ''}`].find((k) => g.textures.exists(k)) ?? 'mine';
+    // 超武的雷大一圈，并带一点转角，摆在地上不至于千篇一律
+    const img = g.add
+      .image(p.x, p.y, key)
+      .setDepth(2)
+      .setScale(def.evolvedFrom ? 1 : 0.85)
+      .setRotation(Phaser.Math.FloatBetween(-0.35, 0.35));
     g.tweens.add({ targets: img, x, y, duration: 300, ease: 'Quad.easeOut' });
     w.mines = w.mines.filter((m) => m.alive);
     w.mines.push({ img, arm: 0.6, alive: true });
@@ -334,7 +359,14 @@ export class WeaponSystem {
       if (g.grid.query(m.img.x, m.img.y, 26, g.tmp).length) {
         m.alive = false;
         const i = this.info(w, g.stats);
-        g.explode(m.img.x, m.img.y, w.def.effect?.explode ?? 80, i.dmg, i, 0xff5400);
+        g.explode(
+          m.img.x,
+          m.img.y,
+          w.def.effect?.explode ?? 80,
+          i.dmg,
+          i,
+          MINE_BOOM_COLOR[w.def.id] ?? MINE_BOOM_COLOR[w.def.evolvedFrom ?? ''] ?? 0xff5400,
+        );
         m.img.destroy();
       }
     }

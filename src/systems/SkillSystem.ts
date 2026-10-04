@@ -513,7 +513,9 @@ export class SkillSystem implements SkillHost {
   }
 
   destroy(): void {
-    for (const e of this.effects) e.end?.();
+    // 只在场景 shutdown 时调用：此时显示列表、粒子和伤害数字都已销毁，
+    // 不能再执行持续效果的 end（柠檬刺客的现身突袭、洋葱的爆炸等会造成伤害、生成飘字，
+    // 访问已销毁的 Text 会抛错并卡死场景重启）。效果创建的对象都挂在场景上，会随场景一起清理。
     this.effects = [];
     this.g.decoy = null;
     this.clone?.rig.destroy();

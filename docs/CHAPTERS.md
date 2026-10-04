@@ -2,7 +2,7 @@
 
 **中文** · [English](en/CHAPTERS.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
@@ -27,6 +27,7 @@
 ## 波次规则
 
 - 小怪生命 `基础 × (1 + 成长 × w^0.9) × 章节系数`（w = 波次−1），随波次先快后慢，与玩家成长节奏匹配；精英 / Boss 使用单独的章节倍率
+- 每章都从 0 级开局，章节倍率渐进生效：`1 + (倍率−1) × (0.1 + 0.9 × (波次−1)/14)`
 - 波次时长 `min(20 + 5×(波次−1), 60)` 秒，Boss 波 90 秒；每波开始生命回满
 - 波次结束：结算收获与利息 → 升级选属性 → 开宝箱 → 商店（买卖、合成、刷新、锁定）
 
@@ -361,4 +362,4 @@
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)

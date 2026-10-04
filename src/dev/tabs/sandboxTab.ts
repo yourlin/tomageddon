@@ -2,6 +2,7 @@
 // 快照与回放、刷怪剧本、碰撞框与性能叠加层
 import { h, btn, check, select, num, table, fmt } from '../dom';
 import { lineup, reelWall, type LineupKind } from '../gallery';
+import { clearReels } from '../reelCache';
 import type { DevCtx } from '../ctx';
 import { TERRAIN_MECHS, Terrain } from '../../systems/Terrain';
 import { CHAPTERS } from '../../data/chapters';
@@ -83,8 +84,14 @@ export function renderSandbox(ctx: DevCtx): HTMLElement {
       ),
       btn('武器动画墙', () => void reelWall(ctx, 'weapons', fq.value.trim()), '', '每把武器（T4）单独开火录制'),
       btn('超武动画墙', () => void reelWall(ctx, 'evolved', fq.value.trim())),
+      btn('强制重录技能墙', () => void reelWall(ctx, 'skills', fq.value.trim(), true), '', '忽略缓存，按筛选条件重新录制技能动画墙'),
+      btn('清除录像缓存', () => void clearReels().then((n) => ctx.toast(`已清除 ${n} 段动画墙录像`))),
     ),
-    h('div', { class: 'muted' }, '动画墙会临时切换构筑，录完自动恢复；录制过程中可按 Esc 中止。'),
+    h(
+      'div',
+      { class: 'muted' },
+      '动画墙录像缓存在浏览器里（不进仓库），角色技能数据或专属演出代码没变就直接播放，只重录改过的；改了公共特效代码请点「强制重录技能墙」。录制会临时切换构筑，录完自动恢复；可按 Esc 中止。',
+    ),
   );
 
   // ---------------- 时间 ----------------

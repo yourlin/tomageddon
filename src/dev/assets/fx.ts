@@ -6,6 +6,8 @@ import type { GameScene } from '../../scenes/GameScene';
 import { CHARACTERS } from '../../data/characters';
 import { castFx, drainLines } from '../../systems/SkillFx';
 import { AuraFx, AURA_LOOK } from '../../systems/AuraFx';
+import { WEAPON_MAP } from '../../data/weapons';
+import '../../data/evolutions';
 
 const COLORS: [number, string][] = [
   [0xff7b00, '橙'],
@@ -172,7 +174,7 @@ export function renderFx(ctx: DevCtx): HTMLElement {
         h(
           'button',
           { style: `color:${hex(look.color)}`, title: `${id} · ${look.style}`, onclick: () => play((g) => playAura(g, look)) },
-          `${id}（${look.style}）`,
+          `${WEAPON_MAP[id]?.name ?? id}（${look.style}）`,
         ),
       ),
       btn('停止光环', stopAura),

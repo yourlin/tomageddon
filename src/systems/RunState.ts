@@ -7,7 +7,7 @@ import { bump, bumpMax, counter } from './Counters';
 import { BASE_STATS, addMods, type Stats, type StatMods } from '../data/stats';
 import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPON_MAP, WEAPON_SETS, type WeaponDef } from '../data/weapons';
-import { ITEM_MAP, type ItemSpecial } from '../data/items';
+import { ITEM_MAP, itemCapFor, type ItemSpecial } from '../data/items';
 import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
@@ -93,9 +93,11 @@ export interface Specials {
   doubleSeed: number;
   interest: number;
   lightningOnHit: number;
+  split: number;
   killHeal: number;
   shopDiscount: number;
   rerolls: number;
+  legendCap: number;
   onHit: StatusApply[];
   onHitSelf: StatusApply[];
   onKillSelf: StatusApply[];
@@ -431,9 +433,11 @@ export class RunState {
       doubleSeed: 0,
       interest: 0,
       lightningOnHit: 0,
+      split: 0,
       killHeal: 0,
       shopDiscount: this.char.shopDiscount ?? 0,
       rerolls: 0,
+      legendCap: 0,
       onHit: [],
       onHitSelf: [],
       onKillSelf: [],
@@ -461,9 +465,11 @@ export class RunState {
       sp.doubleSeed += (x.doubleSeed ?? 0) * n;
       sp.interest += (x.interest ?? 0) * n;
       sp.lightningOnHit += (x.lightningOnHit ?? 0) * n;
+      sp.split += (x.split ?? 0) * n;
       if (x.killHeal) sp.killHeal = sp.killHeal ? Math.min(sp.killHeal, x.killHeal) : x.killHeal;
       sp.shopDiscount += (x.shopDiscount ?? 0) * n;
       sp.rerolls += (x.rerolls ?? 0) * n;
+      sp.legendCap += (x.legendCap ?? 0) * n;
       for (let i = 0; i < n; i++) {
         if (x.onHit) sp.onHit.push(...x.onHit);
         if (x.onHitSelf) sp.onHitSelf.push(...x.onHitSelf);
@@ -492,6 +498,7 @@ export class RunState {
     sp.doubleSeed = Math.min(40, sp.doubleSeed);
     sp.critDmg = Math.min(BALANCE.critDmgCap, sp.critDmg);
     sp.lightningOnHit = Math.min(BALANCE.lightningCap, sp.lightningOnHit);
+    sp.split = Math.min(BALANCE.split.cap, sp.split);
     this.specialCache = sp;
     return sp;
   }
@@ -537,6 +544,17 @@ export class RunState {
       this.dirty();
       this.hp += 1;
     }
+  }
+
+  /** 这件道具在本局的持有上限（传说默认 1，可被角色 / 天赋等的 legendCap 提高）；Infinity = 无上限 */
+  itemCap(id: string): number {
+    const it = ITEM_MAP[id];
+    return it ? itemCapFor(it, this.specials.legendCap) : 0;
+  }
+
+  /** 还能再拿一件吗（商店、宝箱、奖励等所有获取途径都用它判定） */
+  canTakeItem(id: string): boolean {
+    return (this.items[id] ?? 0) < this.itemCap(id);
   }
 
   addItem(id: string): void {

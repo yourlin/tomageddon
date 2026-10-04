@@ -201,7 +201,7 @@ export function buyItem(b: DevBuild, id: string): string | null {
   const it = ITEM_MAP[id];
   const p = itemPrice(b, it);
   if (!canAfford(b, p)) return '资金不足';
-  if (it.max && (b.items[id] ?? 0) >= it.max) return `已达持有上限 ${it.max}`;
+  if (!run.canTakeItem(id)) return `已达持有上限 ${run.itemCap(id)}`;
   transact(b, `买 ${it.name}`, p, () => run.addItem(id));
   return null;
 }
@@ -280,7 +280,7 @@ export function rollShelf(b: DevBuild, prev?: Shelf): Shelf {
       offers.push({ kind: 'weapon', id: def.id, tier, price: weaponPrice(b, def.id, tier), sold: false });
     } else {
       const rar = pickRarity(wave, luck, R);
-      const pool = ALL_ITEMS.filter((i) => i.rarity === rar && (!i.max || (run.items[i.id] ?? 0) < i.max));
+      const pool = ALL_ITEMS.filter((i) => i.rarity === rar && run.canTakeItem(i.id));
       if (!pool.length) continue;
       const it = pickOf(pool, R);
       offers.push({ kind: 'item', id: it.id, tier: it.rarity, price: itemPrice(b, it), sold: false });

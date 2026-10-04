@@ -4,7 +4,7 @@ import Phaser from 'phaser';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout } from '../ui/UI';
 import { CHARACTERS } from '../data/characters';
 import { WEAPONS, WEAPON_MAP } from '../data/weapons';
-import { ALL_ITEMS, ITEM_MAP } from '../data/items';
+import { ALL_ITEMS, ITEM_MAP, baseItemCap } from '../data/items';
 import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { portraitKey } from '../ui/Portrait';
@@ -167,7 +167,10 @@ export class CodexScene extends Phaser.Scene {
                   const [zh, en] = describeCombo(c, (id) => ITEM_MAP[id]?.name ?? id);
                   return '⚭ ' + tx(zh, en);
                 }),
-                tx(`价格 ${it.price}${it.max ? ` · 上限 ${it.max}` : ''}`, `Price ${it.price}${it.max ? ` · max ${it.max}` : ''}`),
+                tx(
+                  `价格 ${it.price}${baseItemCap(it) ? ` · 上限 ${baseItemCap(it)}` : ''}`,
+                  `Price ${it.price}${baseItemCap(it) ? ` · max ${baseItemCap(it)}` : ''}`,
+                ),
               ],
             },
             tx('在商店中出现或获得后解锁', 'Unlocked after it appears in the shop or is obtained'),
