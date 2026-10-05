@@ -45,7 +45,12 @@ Object.assign(globalThis, {
   },
 });
 if (!('location' in globalThis)) Object.assign(globalThis, { location: { search: '', pathname: '/', href: 'http://localhost/' } });
-if (!('navigator' in globalThis)) Object.assign(globalThis, { navigator: { language: 'zh-CN', userAgent: 'node' } });
+// 测试语言固定为中文：Node 21+ 自带全局 navigator，language 跟随系统（CI 上是 en-US），会让 tx() 返回英文
+Object.defineProperty(globalThis, 'navigator', {
+  value: { language: 'zh-CN', languages: ['zh-CN'], userAgent: 'node' },
+  configurable: true,
+  writable: true,
+});
 if (!('window' in globalThis)) Object.assign(globalThis, { window: globalThis });
 // 只需要能挂监听、建元素不报错（音频 / 输入初始化会碰到）
 if (!('document' in globalThis))
