@@ -679,8 +679,7 @@ export class RunState {
   /** 本波 Boss：本章用开局抽好的，无尽模式第 30 波起从全部章节的 Boss 里抽 */
   bossForWave(): string {
     if (this.wave <= this.waveCount) return this.bossId;
-    const pool =
-      this.wave >= this.waveCount + BALANCE.waves.bossWave ? CHAPTERS.flatMap((c) => bossPool(c.id)) : bossPool(this.chapterId);
+    const pool = this.wave >= this.waveCount + BALANCE.waves.bossWave ? CHAPTERS.flatMap((c) => bossPool(c.id)) : bossPool(this.chapterId);
     return pool[Math.floor(Math.random() * pool.length)].id;
   }
 }

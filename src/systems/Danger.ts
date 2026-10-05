@@ -43,9 +43,7 @@ export function dangerUnlocked(chapterId: number): number {
 
 /** 角色 × 章节 通关过的最高危机等级（未通关为 -1，0 表示普通难度通关过） */
 export function dangerBest(charId: string, chapterId: number): number {
-  return (
-    save.meta.dangerBest[`${charId}_${chapterId}`] ?? (save.bestWave[`${charId}_${chapterId}`] >= chapterWaves(chapterId) ? 0 : -1)
-  );
+  return save.meta.dangerBest[`${charId}_${chapterId}`] ?? (save.bestWave[`${charId}_${chapterId}`] >= chapterWaves(chapterId) ? 0 : -1);
 }
 
 /** A9：这个角色是否在任意章节通关过第 20 级 */

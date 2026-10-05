@@ -3,7 +3,16 @@
 // 操作：点天赋选中，再点一次加点；右键或长按退点；拖动平移，滚轮 / 双指 / 右下角按钮缩放。
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout, toast } from '../ui/UI';
-import { BRANCHES, BRANCH_MAP, TALENT_NODES, TALENT_MAP, branchCost, type BranchId, type TalentNode, type NodeKind } from '../data/talentTree';
+import {
+  BRANCHES,
+  BRANCH_MAP,
+  TALENT_NODES,
+  TALENT_MAP,
+  branchCost,
+  type BranchId,
+  type TalentNode,
+  type NodeKind,
+} from '../data/talentTree';
 import {
   rankOf,
   raise,
@@ -149,7 +158,17 @@ export class TalentTreeScene extends Phaser.Scene {
     // 缩放按钮（叠在视口右下角）
     const zx = this.vp.x + this.vp.w - 30,
       zy = this.vp.y + this.vp.h - 30;
-    button(this, zx, zy - 100, 44, 44, '＋', () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.mapCam.zoom * 1.25), 0x3d1d22, 24);
+    button(
+      this,
+      zx,
+      zy - 100,
+      44,
+      44,
+      '＋',
+      () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.mapCam.zoom * 1.25),
+      0x3d1d22,
+      24,
+    );
     button(this, zx, zy - 50, 44, 44, '－', () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.mapCam.zoom / 1.25), 0x3d1d22, 24);
     button(this, zx, zy, 44, 44, '⤢', () => this.fitView(), 0x3d1d22, 22);
 
@@ -210,7 +229,12 @@ export class TalentTreeScene extends Phaser.Scene {
     this.input.addPointer(1);
     this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
       if (this.input.pointer1.isDown && this.input.pointer2.isDown) {
-        this.pinchDist = Phaser.Math.Distance.Between(this.input.pointer1.x, this.input.pointer1.y, this.input.pointer2.x, this.input.pointer2.y);
+        this.pinchDist = Phaser.Math.Distance.Between(
+          this.input.pointer1.x,
+          this.input.pointer1.y,
+          this.input.pointer2.x,
+          this.input.pointer2.y,
+        );
         this.moved = true;
         this.cancelLongPress();
         return;
@@ -366,7 +390,14 @@ export class TalentTreeScene extends Phaser.Scene {
   }
 
   /** 世界里的文字：放大镜头时也清晰 */
-  private wtext(x: number, y: number, s: string, size: number, color = COLORS.text, opts: Partial<Phaser.Types.GameObjects.Text.TextStyle> = {}) {
+  private wtext(
+    x: number,
+    y: number,
+    s: string,
+    size: number,
+    color = COLORS.text,
+    opts: Partial<Phaser.Types.GameObjects.Text.TextStyle> = {},
+  ) {
     const t = text(this, x, y, s, size, color, { resolution: 2, ...opts }).setOrigin(0.5);
     this.world.add(t);
     return t;
@@ -382,11 +413,20 @@ export class TalentTreeScene extends Phaser.Scene {
       const a0 = rad(a - SECTOR / 2),
         a1 = rad(a + SECTOR / 2);
       // 从内到外几层叠加，越靠外颜色越明显，像淡淡的渐变
-      g.fillStyle(b.color, 0.05).slice(0, 0, EXTENT - 10, a0, a1, false).fillPath();
-      g.fillStyle(b.color, 0.04).slice(0, 0, R0 + 3.6 * DR, a0, a1, false).fillPath();
-      g.fillStyle(0x120709, 0.5).slice(0, 0, R0 - 40, a0, a1, false).fillPath();
+      g.fillStyle(b.color, 0.05)
+        .slice(0, 0, EXTENT - 10, a0, a1, false)
+        .fillPath();
+      g.fillStyle(b.color, 0.04)
+        .slice(0, 0, R0 + 3.6 * DR, a0, a1, false)
+        .fillPath();
+      g.fillStyle(0x120709, 0.5)
+        .slice(0, 0, R0 - 40, a0, a1, false)
+        .fillPath();
       // 外圈色带
-      g.lineStyle(26, b.color, 0.16).beginPath().arc(0, 0, EXTENT - 23, a0 + 0.01, a1 - 0.01).strokePath();
+      g.lineStyle(26, b.color, 0.16)
+        .beginPath()
+        .arc(0, 0, EXTENT - 23, a0 + 0.01, a1 - 0.01)
+        .strokePath();
     }
     g.lineStyle(1, 0xfff4ea, 0.07);
     for (let k = 0; k <= 3; k++) g.strokeCircle(0, 0, k ? R0 + 30 + k * DR : R0);
@@ -423,7 +463,8 @@ export class TalentTreeScene extends Phaser.Scene {
         dx = (x2 - x1) / len,
         dy = (y2 - y1) / len;
       g.lineStyle(2.5, 0xfff4ea, alpha);
-      for (let d = 0; d < len; d += 12) g.lineBetween(x1 + dx * d, y1 + dy * d, x1 + dx * Math.min(len, d + 6), y1 + dy * Math.min(len, d + 6));
+      for (let d = 0; d < len; d += 12)
+        g.lineBetween(x1 + dx * d, y1 + dy * d, x1 + dx * Math.min(len, d + 6), y1 + dy * Math.min(len, d + 6));
     };
     const solid = (x1: number, y1: number, x2: number, y2: number, color: number) => {
       g.lineStyle(8, color, 0.25).lineBetween(x1, y1, x2, y2);
@@ -582,7 +623,9 @@ export class TalentTreeScene extends Phaser.Scene {
     }
     const b = BRANCH_MAP[n.branch];
     const rank = rankOf(n.id);
-    add(text(this, x + 18, y + 14, `${pick(b.name)} · ${branchSpent(n.branch)} / ${branchCost(n.branch)}`, 20, b.css, { fontStyle: 'bold' }));
+    add(
+      text(this, x + 18, y + 14, `${pick(b.name)} · ${branchSpent(n.branch)} / ${branchCost(n.branch)}`, 20, b.css, { fontStyle: 'bold' }),
+    );
     bar(y + 44, n.branch);
     let ty = y + 70;
     add(text(this, x + 18, ty, `${n.icon} ${nodeText(n, 'name')}`, 24, '#fff4ea', { fontStyle: 'bold' }));
@@ -595,7 +638,15 @@ export class TalentTreeScene extends Phaser.Scene {
     }
     if (rank < n.max) {
       const t = add(
-        text(this, x + 18, ty, `${rank ? tx('下一级', 'Next') : tx('效果', 'Effect')}：${nodeText(n, 'desc', rank + 1)}`, 17, '#9be564', wrap),
+        text(
+          this,
+          x + 18,
+          ty,
+          `${rank ? tx('下一级', 'Next') : tx('效果', 'Effect')}：${nodeText(n, 'desc', rank + 1)}`,
+          17,
+          '#9be564',
+          wrap,
+        ),
       );
       ty += t.height + 10;
     }
@@ -609,7 +660,17 @@ export class TalentTreeScene extends Phaser.Scene {
     const st = add(text(this, x + 18, ty + 4, status.s, 15, status.c, wrap));
     ty += st.height + 14;
     if (rank > 0 && !canLower(n))
-      add(text(this, x + 18, ty, tx('有后续天赋依赖它，暂时不能退点', 'Later talents depend on this — cannot refund yet'), 14, COLORS.textDim, wrap));
+      add(
+        text(
+          this,
+          x + 18,
+          ty,
+          tx('有后续天赋依赖它，暂时不能退点', 'Later talents depend on this — cannot refund yet'),
+          14,
+          COLORS.textDim,
+          wrap,
+        ),
+      );
     add(text(this, x + 18, y + h - 16, hint, 13, COLORS.textDim, wrap).setOrigin(0, 1));
   }
 }

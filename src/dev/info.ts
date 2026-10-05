@@ -178,7 +178,9 @@ export function skillCalc(sk: SkillDef): { cd: number; dmg: number; radius: numb
 export function minionTraits(d: EnemyDef): string[] {
   const t: string[] = [BEHAVIOR_NAME[d.behavior] ?? d.behavior];
   if (d.behavior === 'shooter')
-    t.push(`射击 ${d.shots ?? 1} 发${d.spread ? `/${d.spread}°` : ''} 每 ${d.shootCd ?? 2.5}s${d.projMult !== undefined ? ` 弹伤 ×${d.projMult}` : ''}`);
+    t.push(
+      `射击 ${d.shots ?? 1} 发${d.spread ? `/${d.spread}°` : ''} 每 ${d.shootCd ?? 2.5}s${d.projMult !== undefined ? ` 弹伤 ×${d.projMult}` : ''}`,
+    );
   if (d.behavior === 'charger') t.push(`蓄力 ${d.windup ?? 0.5}s 冲速 ${d.chargeSpeed ?? 500} 每 ${d.chargeCd ?? 3}s`);
   if (d.behavior === 'bomber') t.push(`引信 ${d.fuse ?? 0.8}s 半径 ${d.blastRadius ?? 80}`);
   if (d.behavior === 'healer') t.push(`治疗 ${(d.healAmount ?? 0.2) * 100}% 半径 ${d.healRadius ?? 180} 每 ${d.healCd ?? 3}s`);

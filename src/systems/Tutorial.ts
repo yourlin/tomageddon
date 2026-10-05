@@ -100,7 +100,7 @@ const TIPS: Record<TipKey, () => [string, string]> = {
     tx('Boss 战', 'Boss fight'),
     tx(
       '每章最后一波是 Boss 战（第 1–4 章第 15 波，之后的章节更长），击败它就能通关本章。Boss 有二阶段，90 秒后狂暴，伤害会不断叠加——尽快输出！',
-      "The last wave of each chapter is the boss (wave 15 in chapters 1–4; later chapters are longer) — beat it to clear the chapter. Bosses have a second phase and enrage after 90s, stacking damage over time. Burst it down!",
+      'The last wave of each chapter is the boss (wave 15 in chapters 1–4; later chapters are longer) — beat it to clear the chapter. Bosses have a second phase and enrage after 90s, stacking damage over time. Burst it down!',
     ),
   ],
   talents: () => [

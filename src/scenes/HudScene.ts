@@ -503,15 +503,14 @@ export class HudScene extends Phaser.Scene {
     if (d.regen) fx.push(tx(`每秒回复 ${Math.round(d.regen * k * 10) / 10}`, `Regen ${Math.round(d.regen * k * 10) / 10}/s`));
     if (d.dps) fx.push(tx(`每秒伤害 ${Math.round(d.dps * k * 10) / 10}`, `${Math.round(d.dps * k * 10) / 10} dmg/s`));
     if (d.reflect) fx.push(tx(`反弹伤害 ${Math.round(d.reflect * k)}`, `Reflects ${Math.round(d.reflect * k)} dmg`));
-    const lines = [
-      `${STATUS_EMOJI[e.id]} ${d.name}  ${buff ? tx('【增益】', '[Buff]') : tx('【减益】', '[Debuff]')}`,
-      d.desc,
-    ];
+    const lines = [`${STATUS_EMOJI[e.id]} ${d.name}  ${buff ? tx('【增益】', '[Buff]') : tx('【减益】', '[Debuff]')}`, d.desc];
     if (fx.length) lines.push(fx.join(tx('，', ', ')));
     const meta: string[] = [];
     if (d.maxStacks > 1) meta.push(tx(`层数 ${k}/${d.maxStacks}`, `Stacks ${k}/${d.maxStacks}`));
     if (e.id === 'shield') meta.push(tx(`护盾值 ${Math.round(e.value)}`, `Shield ${Math.round(e.value)}`));
-    meta.push(e.dur < 900 ? tx(`剩余 ${Math.max(0, e.t).toFixed(1)} 秒`, `${Math.max(0, e.t).toFixed(1)}s left`) : tx('持续生效', 'Permanent'));
+    meta.push(
+      e.dur < 900 ? tx(`剩余 ${Math.max(0, e.t).toFixed(1)} 秒`, `${Math.max(0, e.t).toFixed(1)}s left`) : tx('持续生效', 'Permanent'),
+    );
     lines.push(meta.join(' · '));
     const str = lines.join('\n');
     const t = this.statusTipText;
@@ -583,7 +582,11 @@ export class HudScene extends Phaser.Scene {
       ic.nbg.clear();
       if (num) {
         const w = Math.max(16, ic.n.width + 6);
-        ic.nbg.fillStyle(0x1a0a0c, 0.9).fillRoundedRect(15 - w / 2, 6, w, 16, 8).lineStyle(1.5, 0xffffff, 0.8).strokeRoundedRect(15 - w / 2, 6, w, 16, 8);
+        ic.nbg
+          .fillStyle(0x1a0a0c, 0.9)
+          .fillRoundedRect(15 - w / 2, 6, w, 16, 8)
+          .lineStyle(1.5, 0xffffff, 0.8)
+          .strokeRoundedRect(15 - w / 2, 6, w, 16, 8);
       }
       ic.arc.clear();
       if (e.dur < 900) {

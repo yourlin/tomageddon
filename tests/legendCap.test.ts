@@ -1,6 +1,15 @@
 // 传说道具持有上限：默认每种 1 件，max 可单独放宽，legendCap（角色 / 天赋等）可提高
 import { describe, it, expect } from 'vitest';
-import { ALL_ITEMS, LEGEND_RARITY, LEGEND_ITEM_CAP, LEVELUP_OPTIONS, RARITY_ITEM_CAP, baseItemCap, itemCapFor, type ItemDef } from '../src/data/items';
+import {
+  ALL_ITEMS,
+  LEGEND_RARITY,
+  LEGEND_ITEM_CAP,
+  LEVELUP_OPTIONS,
+  RARITY_ITEM_CAP,
+  baseItemCap,
+  itemCapFor,
+  type ItemDef,
+} from '../src/data/items';
 import { run } from '../src/systems/RunState';
 
 const legends = ALL_ITEMS.filter((i) => i.rarity >= LEGEND_RARITY);
