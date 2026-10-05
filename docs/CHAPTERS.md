@@ -1,12 +1,12 @@
-# 关卡（5 章 × 15 波）
+# 关卡（7 章）
 
 **中文** · [English](en/CHAPTERS.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-每章 15 波：第 5、10 波出现[精英](MONSTERS.md#elites)，第 15 波为 [Boss](MONSTERS.md#bosses)。通关解锁下一章与新[角色](CHARACTERS.md)。
+第 1–4 章每章 15 波；第 5 章起每章 20 波，之后每章 +5 波，最多 50 波（各章波数 1:15 / 2:15 / 3:15 / 4:15 / 5:20 / 6:25 / 7:30）。每 5 波出现一只[精英](MONSTERS.md#elites)，最后一波为 [Boss](MONSTERS.md#bosses)。通关解锁下一章与新[角色](CHARACTERS.md)。
 
 ## 目录
 
@@ -17,6 +17,8 @@
   - [第三章 · 冰封冰箱（Frozen Fridge）](#chapter-3)
   - [第四章 · 城市垃圾场（Junkyard）](#chapter-4)
   - [第五章 · 番茄酱工厂（Ketchup Factory）](#chapter-5)
+  - [第六章 · 腐烂温室（Rotting Greenhouse）](#chapter-6)
+  - [第七章 · 腐烂菜园（Rot Garden）](#chapter-7)
 - [无尽模式](#endless)
 - [每日 / 每周挑战](#challenges)
 
@@ -25,6 +27,7 @@
 ## 波次规则
 
 - 小怪生命 `基础 × (1 + 成长 × w^0.9) × 章节系数`（w = 波次−1），随波次先快后慢，与玩家成长节奏匹配；精英 / Boss 使用单独的章节倍率
+- 每章都从 0 级开局，章节倍率渐进生效：`1 + (倍率−1) × (0.1 + 0.9 × (波次−1)/14)`
 - 波次时长 `min(20 + 5×(波次−1), 60)` 秒，Boss 波 90 秒；每波开始生命回满
 - 波次结束：结算收获与利息 → 升级选属性 → 开宝箱 → 商店（买卖、合成、刷新、锁定）
 
@@ -95,7 +98,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 难度倍率 | 生命 ×1.36 · 伤害 ×1.14 · 速度 ×1.05 |
-| 地形机关 | 兔子洞：兔子四处逃窜，击败掉落番茄籽与果实<br>土拨鼠：从地洞探头扔石头 |
+| 地形机关 | 兔子洞：兔子四处逃窜，击败掉落番茄籽与果实<br>土拨鼠：从地洞探头扔石头<br>自动洒水器：周期性喷洒，范围内的玩家与怪物都会浸湿（移速、攻速降低） |
 | 精英池 | <img src="images/boss/rat_captain.png" width="24" height="24" alt=""> [鼠队长](MONSTERS.md#boss-rat_captain)、<img src="images/boss/snail_tank.png" width="24" height="24" alt=""> [装甲蜗牛](MONSTERS.md#boss-snail_tank)、<img src="images/boss/queen_bee.png" width="24" height="24" alt=""> [蜂后](MONSTERS.md#boss-queen_bee)、<img src="images/boss/scarecrow.png" width="24" height="24" alt=""> [邪恶稻草人](MONSTERS.md#boss-scarecrow)、<img src="images/boss/spider_matron.png" width="24" height="24" alt=""> [蛛后](MONSTERS.md#boss-spider_matron)、<img src="images/boss/mushroom_king.png" width="24" height="24" alt=""> [毒菇王](MONSTERS.md#boss-mushroom_king) |
 | Boss 池 | <img src="images/boss/locust_queen.png" width="24" height="24" alt=""> [蝗虫女皇](MONSTERS.md#boss-locust_queen)、<img src="images/boss/rotten_pumpkin.png" width="24" height="24" alt=""> [腐烂南瓜王](MONSTERS.md#boss-rotten_pumpkin)、<img src="images/boss/mole_general.png" width="24" height="24" alt=""> [鼹鼠大将](MONSTERS.md#boss-mole_general) |
 
@@ -173,7 +176,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 难度倍率 | 生命 ×2.5 · 伤害 ×1.49 · 速度 ×1.15 |
-| 地形机关 | 流沙坑：会把人和怪物吸入中心，并造成伤害<br>垃圾坠落：注意地面的预警圈 |
+| 地形机关 | 流沙坑：会把人和怪物吸入中心，并造成伤害<br>垃圾坠落：注意地面的预警圈<br>酸液泄漏：脚边会冒出酸液池，造成伤害并附加腐蚀 |
 | 精英池 | <img src="images/boss/tire_beast.png" width="24" height="24" alt=""> [轮胎兽](MONSTERS.md#boss-tire_beast)、<img src="images/boss/can_king.png" width="24" height="24" alt=""> [易拉罐之王](MONSTERS.md#boss-can_king)、<img src="images/boss/rag_wraith.png" width="24" height="24" alt=""> [抹布怨灵](MONSTERS.md#boss-rag_wraith)、<img src="images/boss/battery_bug.png" width="24" height="24" alt=""> [漏电电池虫](MONSTERS.md#boss-battery_bug)、<img src="images/boss/garbage_rat.png" width="24" height="24" alt=""> [垃圾鼠王](MONSTERS.md#boss-garbage_rat)、<img src="images/boss/oil_titan.png" width="24" height="24" alt=""> [石油泰坦](MONSTERS.md#boss-oil_titan) |
 | Boss 池 | <img src="images/boss/trash_golem.png" width="24" height="24" alt=""> [垃圾巨像](MONSTERS.md#boss-trash_golem)、<img src="images/boss/toxic_barrel.png" width="24" height="24" alt=""> [毒液桶魔](MONSTERS.md#boss-toxic_barrel)、<img src="images/boss/scrap_dragon.png" width="24" height="24" alt=""> [废铁巨龙](MONSTERS.md#boss-scrap_dragon) |
 
@@ -213,7 +216,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 难度倍率 | 生命 ×3.4 · 伤害 ×1.7 · 速度 ×1.2 |
-| 地形机关 | 传送带：推动站在上面的所有单位<br>蒸汽阀门：周期性喷出灼热蒸汽 |
+| 地形机关 | 传送带：推动站在上面的所有单位<br>蒸汽阀门：周期性喷出灼热蒸汽<br>鼓风口：站在风口上获得顺风（移速、闪避提高），怪物会被吹开 |
 | 精英池 | <img src="images/boss/conveyor_worm.png" width="24" height="24" alt=""> [传送带蠕虫](MONSTERS.md#boss-conveyor_worm)、<img src="images/boss/ketchup_golem.png" width="24" height="24" alt=""> [番茄酱傀儡](MONSTERS.md#boss-ketchup_golem)、<img src="images/boss/security_bot.png" width="24" height="24" alt=""> [保安机器人](MONSTERS.md#boss-security_bot)、<img src="images/boss/press_machine.png" width="24" height="24" alt=""> [冲压机](MONSTERS.md#boss-press_machine)、<img src="images/boss/chef_minion.png" width="24" height="24" alt=""> [腐烂副厨](MONSTERS.md#boss-chef_minion)、<img src="images/boss/furnace_imp.png" width="24" height="24" alt=""> [熔炉小鬼](MONSTERS.md#boss-furnace_imp) |
 | Boss 池 | <img src="images/boss/rotten_chef.png" width="24" height="24" alt=""> [腐烂大厨](MONSTERS.md#boss-rotten_chef)、<img src="images/boss/factory_core.png" width="24" height="24" alt=""> [工厂主脑](MONSTERS.md#boss-factory_core)、<img src="images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [番茄酱海怪](MONSTERS.md#boss-ketchup_leviathan) |
 
@@ -245,11 +248,90 @@
 | <img src="images/enemy/press_piston.png" width="32" height="32" alt=""> [冲压活塞](MONSTERS.md#enemy-press_piston) | 9+ | 3 (4%) |
 | <img src="images/enemy/bottling_bot.png" width="32" height="32" alt=""> [灌装机器人](MONSTERS.md#enemy-bottling_bot) | 11+ | 2 (3%) |
 
+<a id="chapter-6"></a>
+
+### 第六章 · 腐烂温室（Rotting Greenhouse）
+
+> 闷热潮湿的玻璃温室里，蔬菜们正在一棵棵烂掉。危机 5 的老手才能推开这扇门。
+
+| 项目 | 内容 |
+| --- | --- |
+| 难度倍率 | 生命 ×4.62 · 伤害 ×1.94 · 速度 ×1.25 |
+| 地形机关 | 孢子喷口：地面周期性喷出中毒孢子云<br>堆肥坑：定期钻出枯萎嫩芽<br>补光灯：光区内的玩家与怪物都会硬化（护甲提高、受到伤害降低），灯会定期换位 |
+| 精英池 | <img src="images/boss/pumpkin_brute.png" width="24" height="24" alt=""> [南瓜蛮汉](MONSTERS.md#boss-pumpkin_brute)、<img src="images/boss/spore_matron.png" width="24" height="24" alt=""> [孢子女王](MONSTERS.md#boss-spore_matron) |
+| Boss 池 | <img src="images/boss/blight_gardener.png" width="24" height="24" alt=""> [枯萎园丁](MONSTERS.md#boss-blight_gardener) |
+
+**怪物池**
+
+| 小怪 | 出现波次 | 权重 |
+| --- | --- | --- |
+| <img src="images/enemy/blight_sprout.png" width="32" height="32" alt=""> [枯萎嫩芽](MONSTERS.md#enemy-blight_sprout) | 1~5 | 8 (12%) |
+| <img src="images/enemy/fly.png" width="32" height="32" alt=""> [果蝇](MONSTERS.md#enemy-fly) | 1~6 | 4 (6%) |
+| <img src="images/enemy/aphid.png" width="32" height="32" alt=""> [蚜虫](MONSTERS.md#enemy-aphid) | 1~7 | 3 (5%) |
+| <img src="images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [菌蚊](MONSTERS.md#enemy-fungus_gnat) | 2+ | 4 (6%) |
+| <img src="images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [流汗黄瓜](MONSTERS.md#enemy-slime_cucumber) | 3+ | 3 (5%) |
+| <img src="images/enemy/rot_chili.png" width="32" height="32" alt=""> [腐辣椒](MONSTERS.md#enemy-rot_chili) | 3+ | 3 (5%) |
+| <img src="images/enemy/garden_slug.png" width="32" height="32" alt=""> [菜园蛞蝓](MONSTERS.md#enemy-garden_slug) | 3+ | 3 (5%) |
+| <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](MONSTERS.md#enemy-spore_puff) | 4+ | 3 (5%) |
+| <img src="images/enemy/thorn_weed.png" width="32" height="32" alt=""> [荆棘杂草](MONSTERS.md#enemy-thorn_weed) | 4+ | 3 (5%) |
+| <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](MONSTERS.md#enemy-vine_lasher) | 5+ | 3 (5%) |
+| <img src="images/enemy/spider.png" width="32" height="32" alt=""> [毒蜘蛛](MONSTERS.md#enemy-spider) | 5+ | 3 (5%) |
+| <img src="images/enemy/mushroom.png" width="32" height="32" alt=""> [毒蘑菇](MONSTERS.md#enemy-mushroom) | 5+ | 2 (3%) |
+| <img src="images/enemy/beetle.png" width="32" height="32" alt=""> [炸弹甲虫](MONSTERS.md#enemy-beetle) | 6+ | 3 (5%) |
+| <img src="images/enemy/pollen_bloom.png" width="32" height="32" alt=""> [毒花苞](MONSTERS.md#enemy-pollen_bloom) | 6+ | 2 (3%) |
+| <img src="images/enemy/rat.png" width="32" height="32" alt=""> [下水道老鼠](MONSTERS.md#enemy-rat) | 6+ | 3 (5%) |
+| <img src="images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [霉变南瓜](MONSTERS.md#enemy-moldy_pumpkin) | 7+ | 3 (5%) |
+| <img src="images/enemy/splitter.png" width="32" height="32" alt=""> [分裂霉菌](MONSTERS.md#enemy-splitter) | 7+ | 2 (3%) |
+| <img src="images/enemy/mantis.png" width="32" height="32" alt=""> [刀螳螂](MONSTERS.md#enemy-mantis) | 8+ | 3 (5%) |
+| <img src="images/enemy/rivet_bot.png" width="32" height="32" alt=""> [铆钉机器人](MONSTERS.md#enemy-rivet_bot) | 8+ | 2 (3%) |
+| <img src="images/enemy/compost_heap.png" width="32" height="32" alt=""> [堆肥桶](MONSTERS.md#enemy-compost_heap) | 9+ | 2 (3%) |
+| <img src="images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [番茄酱史莱姆](MONSTERS.md#enemy-ketchup_slime) | 10+ | 2 (3%) |
+| <img src="images/enemy/press_piston.png" width="32" height="32" alt=""> [冲压活塞](MONSTERS.md#enemy-press_piston) | 11+ | 2 (3%) |
+
+<a id="chapter-7"></a>
+
+### 第七章 · 腐烂菜园（Rot Garden）
+
+> 【隐藏章节】一切腐烂真正的起点。打穿它，去见腐烂之王。
+
+| 项目 | 内容 |
+| --- | --- |
+| 难度倍率 | 生命 ×6.27 · 伤害 ×2.22 · 速度 ×1.3 |
+| 地形机关 | 腐泥沼：会把人和怪物吸入中心，并染上腐烂<br>烂果坠落：注意地面的预警圈<br>荆棘藤：脚下会钻出荆棘，造成伤害并附加流血与腐蚀 |
+| 精英池 | <img src="images/boss/carrot_knight.png" width="24" height="24" alt=""> [胡萝卜亡骑](MONSTERS.md#boss-carrot_knight)、<img src="images/boss/onion_witch.png" width="24" height="24" alt=""> [洋葱巫婆](MONSTERS.md#boss-onion_witch) |
+| Boss 池 | <img src="images/boss/rot_mother.png" width="24" height="24" alt=""> [腐土之母](MONSTERS.md#boss-rot_mother)、<img src="images/boss/rot_king.png" width="24" height="24" alt=""> [腐烂之王](MONSTERS.md#boss-rot_king) |
+
+**怪物池**
+
+| 小怪 | 出现波次 | 权重 |
+| --- | --- | --- |
+| <img src="images/enemy/blight_sprout.png" width="32" height="32" alt=""> [枯萎嫩芽](MONSTERS.md#enemy-blight_sprout) | 1~5 | 8 (13%) |
+| <img src="images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [菌蚊](MONSTERS.md#enemy-fungus_gnat) | 1+ | 4 (7%) |
+| <img src="images/enemy/caterpillar.png" width="32" height="32" alt=""> [菜青虫](MONSTERS.md#enemy-caterpillar) | 1~8 | 3 (5%) |
+| <img src="images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [烂心卷心菜](MONSTERS.md#enemy-rot_cabbage) | 2+ | 4 (7%) |
+| <img src="images/enemy/zombie_carrot.png" width="32" height="32" alt=""> [僵尸胡萝卜](MONSTERS.md#enemy-zombie_carrot) | 3+ | 3 (5%) |
+| <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](MONSTERS.md#enemy-spore_puff) | 3+ | 3 (5%) |
+| <img src="images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [流汗黄瓜](MONSTERS.md#enemy-slime_cucumber) | 3+ | 2 (3%) |
+| <img src="images/enemy/blight_onion.png" width="32" height="32" alt=""> [枯萎洋葱](MONSTERS.md#enemy-blight_onion) | 4+ | 3 (5%) |
+| <img src="images/enemy/rot_chili.png" width="32" height="32" alt=""> [腐辣椒](MONSTERS.md#enemy-rot_chili) | 4+ | 3 (5%) |
+| <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](MONSTERS.md#enemy-vine_lasher) | 4+ | 3 (5%) |
+| <img src="images/enemy/weevil.png" width="32" height="32" alt=""> [象鼻虫](MONSTERS.md#enemy-weevil) | 5+ | 3 (5%) |
+| <img src="images/enemy/mantis.png" width="32" height="32" alt=""> [刀螳螂](MONSTERS.md#enemy-mantis) | 5+ | 3 (5%) |
+| <img src="images/enemy/rot_sprinkler.png" width="32" height="32" alt=""> [腐水洒水器](MONSTERS.md#enemy-rot_sprinkler) | 6+ | 2 (3%) |
+| <img src="images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [霉变南瓜](MONSTERS.md#enemy-moldy_pumpkin) | 6+ | 3 (5%) |
+| <img src="images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [爆爆瓢虫](MONSTERS.md#enemy-ladybug_bomb) | 6+ | 2 (3%) |
+| <img src="images/enemy/mushroom.png" width="32" height="32" alt=""> [毒蘑菇](MONSTERS.md#enemy-mushroom) | 6+ | 2 (3%) |
+| <img src="images/enemy/rotten_potato.png" width="32" height="32" alt=""> [烂土豆](MONSTERS.md#enemy-rotten_potato) | 7+ | 2 (3%) |
+| <img src="images/enemy/compost_heap.png" width="32" height="32" alt=""> [堆肥桶](MONSTERS.md#enemy-compost_heap) | 8+ | 2 (3%) |
+| <img src="images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [番茄酱史莱姆](MONSTERS.md#enemy-ketchup_slime) | 9+ | 2 (3%) |
+| <img src="images/enemy/rivet_bot.png" width="32" height="32" alt=""> [铆钉机器人](MONSTERS.md#enemy-rivet_bot) | 9+ | 2 (3%) |
+| <img src="images/enemy/press_piston.png" width="32" height="32" alt=""> [冲压活塞](MONSTERS.md#enemy-press_piston) | 10+ | 2 (3%) |
+
 <a id="endless"></a>
 
 ## 无尽模式
 
-通关某章后，可在选角界面开启该章的无尽模式：不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），精英与 Boss 每轮重新抽取，第 30 波起 Boss 来自全部章节。第 15 波之后怪物生命每波 ×1.12、伤害每波 ×1.09（复利），收入随商店涨价同步增长，倒下为止。
+通关某章后，可在选角界面开启该章的无尽模式：打完本章最后一波后不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），精英与 Boss 每轮重新抽取，进入无尽后的第二轮起 Boss 来自全部章节。本章最后一波之后怪物生命每波 ×1.12、伤害每波 ×1.09（复利），收入随商店涨价同步增长，倒下为止。
 
 <a id="challenges"></a>
 
@@ -280,4 +362,4 @@
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · **关卡** · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)

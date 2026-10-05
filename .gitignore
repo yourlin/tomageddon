@@ -1,15 +1,7 @@
 node_modules
 dist
+dist-steam
+release-steam
+electron/icon.png
 *.log
 .DS_Store
-
-# 平衡测试报告与进度（本地生成，不上传）
-docs/reports/
-docs/BALANCE_REPORT.html
-docs/BALANCE_REPORT.md
-scripts/.batch-results.json
-scripts/.batch-progress.json
-scripts/.batch-progress.json.tmp
-
-# 宣传视频素材与成片（本地生成）
-/promo/

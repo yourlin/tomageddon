@@ -41,6 +41,9 @@ export class Fx {
 
   number(x: number, y: number, v: number, color = '#ffffff', crit = false): void {
     if (!save.settings.showDmg) return;
+    // L1：伤害数字密度（暴击总是显示）
+    const dens = save.settings.dmgDensity ?? 1;
+    if (!crit && dens < 1 && Math.random() >= dens) return;
     const t = this.texts[this.textIdx];
     this.textIdx = (this.textIdx + 1) % this.texts.length;
     this.scene.tweens.killTweensOf(t);
@@ -77,6 +80,10 @@ export class Fx {
   }
 
   burst(x: number, y: number, color: number, n = 8): void {
+    // L1：粒子数量
+    const k = save.settings.particles ?? 1;
+    n = Math.round(n * k);
+    if (n <= 0) return;
     this.emitter.setParticleTint(color);
     this.emitter.explode(n, x, y);
   }

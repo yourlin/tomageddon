@@ -2,7 +2,7 @@
 
 **中文** · [English](en/SKILLS.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · **技能** · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · **技能** · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
@@ -48,7 +48,13 @@
   - [冰封领域（苦瓜冰法）](#skill-bittermelon)
   - [拔苗助长（豆芽学徒）](#skill-sprout)
   - [冲鼻核弹（山葵爆破手）](#skill-wasabi)
-- [状态效果（28 种）](#statuses)
+  - [豆兵出阵（黄豆军师）](#skill-soybean)
+  - [千刺甲（菠萝蜜卫士）](#skill-jackfruit)
+  - [石榴籽爆裂（石榴炮手）](#skill-pomegranate)
+  - [芋泥结界（芋头术士）](#skill-taro)
+  - [不倒金身（卷心菜老兵）](#skill-cabbage)
+  - [枯萎咒（黑莓女巫）](#skill-blackberry)
+- [状态效果（32 种）](#statuses)
   - [减益](#statuses-debuff)
   - [增益](#statuses-buff)
 
@@ -61,6 +67,7 @@
 - 持续时间（领域/增益/无敌/分身/施加的状态）× (1 + 技能持续%)
 - 冷却 × (1 − 技能冷却缩减%，最多 −70%)；每波开始时冷却重置，技能立即可用
 - 冷却按威力自动计算：`冷却 = (8 + 0.9×伤害分 + 控制分 + 增益分) × 0.65`，限制 8~30 秒（`src/data/skills.ts`）
+- 默认自动释放：按技能形态判断时机（范围伤害等敌人扎堆、回复等掉血、保命技能等危险时）；可在设置中切换为手动，自动模式下也能手动释放
 - 技能强化属性「技能伤害 / 技能范围 / 技能持续 / 技能冷却缩减」来自[道具](ITEMS.md)（技能秘籍、技能法器系列）与升级选项
 
 <a id="forms"></a>
@@ -71,17 +78,17 @@
 | --- | --- |
 | 周身爆发 `nova` | [番茄酱爆](#skill-tomato)、[烈焰新星](#skill-chili)、[震地拳](#skill-coconut) |
 | 突进冲撞 `dash` | [骑士冲锋](#skill-carrot)、[西瓜翻滚](#skill-watermelon)、[瞬影斩](#skill-ginger)、[龙焰冲锋](#skill-dragonfruit) |
-| 自身增益 `buff` | [应援打 Call](#skill-strawberry)、[狂暴](#skill-beet)、[公主的好运](#skill-lychee)、[拔苗助长](#skill-sprout) |
+| 自身增益 `buff` | [应援打 Call](#skill-strawberry)、[狂暴](#skill-beet)、[公主的好运](#skill-lychee)、[拔苗助长](#skill-sprout)、[千刺甲](#skill-jackfruit)、[不倒金身](#skill-cabbage) |
 | 无敌潜行 `ghost` | [酸雾隐身](#skill-lemon)、[灵体化](#skill-pumpkin)、[金钟罩](#skill-wintermelon) |
-| 环形弹幕 `ring` | [爆米花弹幕](#skill-corn) |
+| 环形弹幕 `ring` | [爆米花弹幕](#skill-corn)、[石榴籽爆裂](#skill-pomegranate) |
 | 吸取回复 `heal` | [血之领域](#skill-garlic)、[天使祝福](#skill-peach)、[烤红薯盛宴](#skill-sweetpotato) |
 | 多点轰炸 `strikes` | [核心过载](#skill-avocado) |
-| 召唤分身 `clone` | [双子分身](#skill-blueberry)、[葡萄分身](#skill-grape)、[无人机支援](#skill-bellpepper) |
+| 召唤分身 `clone` | [双子分身](#skill-blueberry)、[葡萄分身](#skill-grape)、[无人机支援](#skill-bellpepper)、[豆兵出阵](#skill-soybean) |
 | 单体连发 `barrage` | [双枪连射](#skill-cherry)、[豌豆炮台](#skill-pea)、[穿心箭](#skill-asparagus) |
 | 发射 AOE `missile` | [黄金炮击](#skill-pineapple)、[冲鼻核弹](#skill-wasabi) |
 | 全屏攻击 `screen` | [紫雷天罚](#skill-eggplant) |
-| 禁锢领域 `field` | [催泪领域](#skill-onion)、[冰封领域](#skill-bittermelon) |
-| 群体减益 `curse` | [孢子云](#skill-mushroom)、[真相只有一个](#skill-kiwi)、[臭气熏天](#skill-durian) |
+| 禁锢领域 `field` | [催泪领域](#skill-onion)、[冰封领域](#skill-bittermelon)、[芋泥结界](#skill-taro) |
+| 群体减益 `curse` | [孢子云](#skill-mushroom)、[真相只有一个](#skill-kiwi)、[臭气熏天](#skill-durian)、[枯萎咒](#skill-blackberry) |
 
 <a id="skills"></a>
 
@@ -641,9 +648,108 @@
 | 半径 | 190 |
 | 对敌施加 | 3层[灼烧](#status-burn) 4s |
 
+<a id="skill-soybean"></a>
+
+### 豆兵出阵（黄豆军师）
+
+<img src="images/char/soybean.png" width="64" height="64" alt="">
+
+> 召唤豆兵分身 10 秒自动射击。
+
+| 项目 | 数值 |
+| --- | --- |
+| 角色 | [黄豆军师](CHARACTERS.md#char-soybean) |
+| 形态 | 召唤分身 |
+| 冷却 | 14s |
+| 伤害系数 | ×0.6 |
+| 持续 | 10s |
+
+<a id="skill-jackfruit"></a>
+
+### 千刺甲（菠萝蜜卫士）
+
+<img src="images/char/jackfruit.png" width="64" height="64" alt="">
+
+> 6 秒内获得 5 层荆棘与 3 层坚韧。
+
+| 项目 | 数值 |
+| --- | --- |
+| 角色 | [菠萝蜜卫士](CHARACTERS.md#char-jackfruit) |
+| 形态 | 自身增益 |
+| 冷却 | 12s |
+| 持续 | 6s |
+| 自身获得 | 5层[荆棘](#status-thorns) 6s、3层[坚韧](#status-fortify) 6s |
+
+<a id="skill-pomegranate"></a>
+
+### 石榴籽爆裂（石榴炮手）
+
+<img src="images/char/pomegranate.png" width="64" height="64" alt="">
+
+> 向四周喷射 30 颗石榴籽。
+
+| 项目 | 数值 |
+| --- | --- |
+| 角色 | [石榴炮手](CHARACTERS.md#char-pomegranate) |
+| 形态 | 环形弹幕 |
+| 冷却 | 8s |
+| 伤害系数 | ×0.5 |
+| 数量 | 30 |
+
+<a id="skill-taro"></a>
+
+### 芋泥结界（芋头术士）
+
+<img src="images/char/taro.png" width="64" height="64" alt="">
+
+> 展开 6 秒芋泥结界，持续灼烧并减速区域内敌人。
+
+| 项目 | 数值 |
+| --- | --- |
+| 角色 | [芋头术士](CHARACTERS.md#char-taro) |
+| 形态 | 禁锢领域 |
+| 冷却 | 30s |
+| 伤害系数 | ×1.6 |
+| 半径 | 230 |
+| 持续 | 6s |
+| 对敌施加 | 2层[灼烧](#status-burn) 2s、2层[减速](#status-slow) 1s |
+
+<a id="skill-cabbage"></a>
+
+### 不倒金身（卷心菜老兵）
+
+<img src="images/char/cabbage.png" width="64" height="64" alt="">
+
+> 5 秒屏障（受到伤害 -40%）、5 层坚韧与 3 层再生。
+
+| 项目 | 数值 |
+| --- | --- |
+| 角色 | [卷心菜老兵](CHARACTERS.md#char-cabbage) |
+| 形态 | 自身增益 |
+| 冷却 | 15s |
+| 持续 | 5s |
+| 自身获得 | [屏障](#status-barrier) 5s、5层[坚韧](#status-fortify) 5s、3层[再生](#status-regen) 5s |
+
+<a id="skill-blackberry"></a>
+
+### 枯萎咒（黑莓女巫）
+
+<img src="images/char/blackberry.png" width="64" height="64" alt="">
+
+> 诅咒周围敌人，施加 3 层腐烂并沉默 3 秒。
+
+| 项目 | 数值 |
+| --- | --- |
+| 角色 | [黑莓女巫](CHARACTERS.md#char-blackberry) |
+| 形态 | 群体减益 |
+| 冷却 | 16s |
+| 伤害系数 | ×0.3 |
+| 半径 | 280 |
+| 对敌施加 | [诅咒](#status-curse) 6s、3层[腐烂](#status-rot) 6s、[沉默](#status-silence) 3s |
+
 <a id="statuses"></a>
 
-## 状态效果（28 种）
+## 状态效果（32 种）
 
 玩家与敌人共用。Boss 对控制类减益有 75% 抗性（精英 50%）；玩家受到的眩晕/冰冻最长 0.8 秒，之后 1.5 秒免疫。
 
@@ -669,6 +775,8 @@
 | <a id="status-mark"></a>标记 | 1 | 下一次受到的攻击必定暴击 |
 | <a id="status-silence"></a>沉默 | 1 | 无法释放技能 |
 | <a id="status-rot"></a>腐烂 | 3 | 最大生命效果降低，攻速 -10% |
+| <a id="status-soaked"></a>浸湿 | 3 | 每层移速 -10%、攻速 -8%，最多 3 层 |
+| <a id="status-corrode"></a>腐蚀 | 4 | 每层每秒受到酸蚀伤害，受到伤害 +6%，最多 4 层 |
 
 <a id="statuses-buff"></a>
 
@@ -688,7 +796,9 @@
 | <a id="status-enrage"></a>暴怒 | 1 | 移速 +30%，伤害 +30% |
 | <a id="status-lucky"></a>好运 | 5 | 幸运提高 |
 | <a id="status-vampiric"></a>嗜血 | 5 | 吸血概率每层 +4% |
+| <a id="status-tailwind"></a>顺风 | 3 | 每层移速 +12%、闪避 +4%，最多 3 层 |
+| <a id="status-hardened"></a>硬化 | 2 | 每层护甲 +3、受到伤害 -10%，最多 2 层 |
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · **技能** · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · **技能** · [武器](WEAPONS.md) · [道具](ITEMS.md) · [怪物](MONSTERS.md) · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)

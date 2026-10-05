@@ -4,6 +4,7 @@ import type { ItemSpecial } from './items';
 import type { StatusApply } from './statuses';
 import type { RigSpec } from '../art/RigSpec';
 import { skillCooldown } from './skills';
+import { EXTRA_CHARACTERS } from './charactersExtra';
 
 export type SkillType =
   'nova' | 'dash' | 'buff' | 'ring' | 'heal' | 'strikes' | 'ghost' | 'clone' | 'barrage' | 'missile' | 'screen' | 'field' | 'curse';
@@ -36,7 +37,7 @@ export interface CharacterDef {
   mods: StatMods;
   classMult?: Partial<Record<'melee' | 'ranged' | 'elemental', number>>;
   startWeapons: string[];
-  /** 契合武器：与天赋/特性搭配的武器，伤害 +20%，商店中更常出现 */
+  /** 契合武器：与天赋搭配的 3 把武器，伤害 +10% 并获得契合特效（data/affinity.ts），商店中更常出现 */
   favored: string[];
   traits: string[];
   /** 专属天赋（机制见 systems/Talents.ts；部分通过 special 实现） */
@@ -47,10 +48,8 @@ export interface CharacterDef {
   levelUpChoices?: number;
   special?: ItemSpecial;
   skill: SkillDef;
-  /** 解锁价格（成就点）；不填表示默认解锁 */
-  cost?: number;
-  /** 购买前需要先达成的成就（id 与最低等级，等级从 1 起） */
-  requires?: { ach: string; tier: number };
+  /** 解锁条件：达成指定成就的指定等级（等级从 1 起）后自动解锁；不填表示默认解锁 */
+  unlock?: { ach: string; tier: number };
 }
 
 const S = (id: StatusApply['id'], dur: number, stacks = 1, chance?: number): StatusApply => ({ id, dur, stacks, chance });
@@ -79,7 +78,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { damage: 5, regen: 1 },
     startWeapons: ['fork'],
     favored: ['fork', 'ketchup', 'baguette_sword'],
-    talent: { name: '番茄之心', desc: '每完成一波，永久获得 +1 最大生命与 +1% 伤害' },
+    talent: { name: '番茄之心', desc: '每完成一波，永久 +1 最大生命，契合武器连击率 +2%（最多 +20%）' },
     traits: ['+5% 伤害', '+1 生命再生'],
     skill: {
       name: '番茄酱爆',
@@ -119,7 +118,7 @@ export const CHARACTERS: CharacterDef[] = [
     classMult: { ranged: 0.5 },
     startWeapons: ['rolling_pin'],
     favored: ['rolling_pin', 'meat_tenderizer', 'pan'],
-    talent: { name: '骑士之盾', desc: '每 1 点护甲使近战伤害 +1.5%' },
+    talent: { name: '骑士之盾', desc: '每 1 点护甲让契合武器横扫与爆炸范围 +2%（最多 +40%）；打破甲 3 层以上的敌人时眩晕 0.3 秒' },
     traits: ['+3 护甲', '+3 近战伤害', '远程伤害 -50%'],
     skill: {
       name: '骑士冲锋',
@@ -154,8 +153,8 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 3, maxHp: -2 },
     startWeapons: ['mustard_flamer'],
-    favored: ['mustard_flamer', 'pepper_spray', 'skewer'],
-    talent: { name: '火上浇油', desc: '对灼烧中的敌人伤害 +30%' },
+    favored: ['mustard_flamer', 'pepper_spray', 'bbq_torch'],
+    talent: { name: '火上浇油', desc: '契合武器打中灼烧中的敌人时溅出火花，对周围造成 30% 伤害' },
     traits: ['+3 元素伤害', '-2 最大生命', '所有命中 25% 概率灼烧'],
     special: { burnChance: 25 },
     skill: {
@@ -192,8 +191,8 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { ranged: 3, range: 50, maxHp: 3 },
     classMult: { melee: 0.5 },
     startWeapons: ['corn_cannon'],
-    favored: ['corn_cannon', 'blueberry_sniper', 'carrot_crossbow'],
-    talent: { name: '远程压制', desc: '与目标每相距 100，伤害 +6%（最多 +30%）' },
+    favored: ['corn_cannon', 'pepper_grinder', 'blueberry_sniper'],
+    talent: { name: '远程压制', desc: '契合子弹每飞行 100 距离，额外穿透 +1（最多 +3）' },
     traits: ['+3 远程伤害', '+50 射程', '+3 最大生命', '近战伤害 -50%'],
     skill: { name: '爆米花弹幕', desc: '向四周发射 18 发爆米花。', type: 'ring', cd: 0, mult: 0.7, count: 18, color: 0xfff3b0 },
   },
@@ -219,8 +218,8 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { maxHp: 25, armor: 2, speed: -12, attackSpeed: -10 },
     startWeapons: ['watermelon_hammer'],
-    favored: ['watermelon_hammer', 'baguette_sword', 'ladle'],
-    talent: { name: '皮糙肉厚', desc: '受到的伤害 -10%；每 10 点最大生命使伤害 +1%' },
+    favored: ['watermelon_hammer', 'baguette_sword', 'dynamite_drumstick'],
+    talent: { name: '皮糙肉厚', desc: '受到的伤害 -10%；每 20 最大生命让契合武器范围 +5%（最多 +50%）' },
     traits: ['+25 最大生命', '+2 护甲', '-12% 移速', '-10% 攻速'],
     skill: {
       name: '西瓜翻滚',
@@ -232,7 +231,7 @@ export const CHARACTERS: CharacterDef[] = [
       heal: 0.1,
       color: 0x2ec4b6,
     },
-    cost: 80,
+    unlock: { ach: 'fruits', tier: 2 },
   },
   {
     id: 'lemon',
@@ -261,8 +260,8 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { crit: 20, dodge: 10, maxHp: -4, speed: 5 },
     startWeapons: ['knife'],
     favored: ['knife', 'cucumber_katana', 'star_anise_shuriken'],
-    talent: { name: '酸爽一击', desc: '暴击伤害 +40%；暴击击杀回复 1 生命' },
-    traits: ['+20% 暴击', '+10% 闪避', '-4 最大生命'],
+    talent: { name: '酸爽一击', desc: '契合武器暴击后立刻重置冷却（每把武器每秒最多 1 次）' },
+    traits: ['+20% 暴击', '+10% 闪避', '-4 最大生命', '暴击伤害 +40%'],
     special: { critDmg: 40 },
     skill: {
       name: '酸雾隐身',
@@ -273,7 +272,7 @@ export const CHARACTERS: CharacterDef[] = [
       mods: { crit: 50, speed: 20 },
       color: 0xf7ec59,
     },
-    cost: 80,
+    unlock: { ach: 'crits', tier: 1 },
   },
   {
     id: 'eggplant',
@@ -300,8 +299,8 @@ export const CHARACTERS: CharacterDef[] = [
     classMult: { melee: 0.3 },
     startWeapons: ['broccoli_staff'],
     favored: ['broccoli_staff', 'lightning_whisk', 'lemon_battery'],
-    talent: { name: '雷霆之力', desc: '命中 10% 概率召唤落雷，雷击伤害随元素伤害成长' },
-    traits: ['+4 元素伤害', '+10 幸运', '+3 最大生命', '近战伤害 -70%'],
+    talent: { name: '雷霆之力', desc: '契合连锁每跳到一个敌人，15% 概率引下落雷' },
+    traits: ['+4 元素伤害', '+10 幸运', '+3 最大生命', '近战伤害 -70%', '命中 10% 概率落雷'],
     special: { lightningOnHit: 10 },
     skill: {
       name: '紫雷天罚',
@@ -312,7 +311,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 0.4)],
       color: 0xc77dff,
     },
-    cost: 80,
+    unlock: { ach: 'casts', tier: 2 },
   },
   {
     id: 'garlic',
@@ -336,11 +335,14 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0x6a040f,
       acc: [{ id: 'cape', color: 0x1b1b1b, color2: 0x9d0208 }],
     },
-    mods: { lifeSteal: 10, regen: -3, damage: 5 },
+    mods: { lifeSteal: 10, maxHp: 15, damage: 5 },
     startWeapons: ['garlic_aura'],
-    favored: ['garlic_aura', 'ladle', 'soy_pistol'],
-    talent: { name: '血之盛宴', desc: '生命低于 50% 时吸血概率翻倍' },
-    traits: ['+10% 吸血概率', '-3 生命再生', '+5% 伤害'],
+    favored: ['garlic_aura', 'ketchup', 'soy_pistol'],
+    talent: {
+      name: '血之盛宴',
+      desc: '生命低于 50% 时吸血概率翻倍；契合武器攻速 +30%，吸血冷却减半，一次群体命中最多连续吸血 3 次',
+    },
+    traits: ['+10% 吸血概率', '+15 最大生命', '+5% 伤害'],
     skill: {
       name: '血之领域',
       desc: '吸取周围敌人生命，施加流血。',
@@ -351,7 +353,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 3)],
       color: 0x9d0208,
     },
-    cost: 170,
+    unlock: { ach: 'elites', tier: 2 },
   },
   {
     id: 'blueberry',
@@ -379,10 +381,10 @@ export const CHARACTERS: CharacterDef[] = [
     maxWeapons: 8,
     startWeapons: ['pea_shooter', 'knife'],
     favored: ['pea_shooter', 'seed_spitter', 'chopsticks'],
-    talent: { name: '双生默契', desc: '每持有一对同名武器，伤害 +5%' },
+    talent: { name: '双生默契', desc: '每持有一对同名契合武器，契合武器弹丸再 +1（最多 +2）' },
     traits: ['武器栏 8 格', '-10% 伤害'],
     skill: { name: '双子分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x3a86ff },
-    cost: 170,
+    unlock: { ach: 'chars_won', tier: 1 },
   },
   {
     id: 'pineapple',
@@ -408,8 +410,11 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { luck: 20, harvest: 10, maxHp: -3 },
     shopDiscount: 15,
     startWeapons: ['slingshot'],
-    favored: ['slingshot', 'plate_frisbee', 'olive_launcher'],
-    talent: { name: '海盗分赃', desc: '每波结束获得当前番茄籽 8% 的利息（上限随波次提高）' },
+    favored: ['slingshot', 'plate_frisbee', 'jam_mortar'],
+    talent: {
+      name: '海盗分赃',
+      desc: '每波结束获得当前番茄籽 8% 的利息（上限随波次提高）；每持有 100 番茄籽，契合武器弹射再 +1（最多 +3）',
+    },
     traits: ['商店价格 -15%', '+20 幸运', '+10 收获'],
     special: { interest: 8 },
     skill: {
@@ -421,7 +426,7 @@ export const CHARACTERS: CharacterDef[] = [
       radius: 150,
       color: 0xffd700,
     },
-    cost: 80,
+    unlock: { ach: 'rich', tier: 1 },
   },
   {
     id: 'pumpkin',
@@ -447,12 +452,11 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { dodge: 25, maxHp: -4, speed: 8 },
     dodgeCap: 75,
     startWeapons: ['soda'],
-    favored: ['soda', 'pizza_cutter', 'onion_boomerang'],
-    talent: { name: '幽灵突袭', desc: '闪避成功后 1.5 秒内伤害 +40%' },
+    favored: ['pumpkin_lantern', 'pizza_cutter', 'onion_boomerang'],
+    talent: { name: '幽灵突袭', desc: '闪避成功后 1.5 秒内契合武器攻速 +40%' },
     traits: ['+25% 闪避', '闪避上限 75%', '-4 最大生命'],
     skill: { name: '灵体化', desc: '无敌 2.5 秒并大幅加速。', type: 'ghost', cd: 0, duration: 2.5, mods: { speed: 60 }, color: 0xffb4a2 },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'clear_2', tier: 1 },
   },
   {
     id: 'strawberry',
@@ -484,7 +488,7 @@ export const CHARACTERS: CharacterDef[] = [
     levelUpChoices: 5,
     startWeapons: ['ketchup'],
     favored: ['ketchup', 'honey_blaster', 'spatula'],
-    talent: { name: '人气飙升', desc: '每次升级额外永久获得 +1% 伤害与 +1 最大生命' },
+    talent: { name: '人气飙升', desc: '每次升级 +1 最大生命；每 4 级契合武器轮流获得一项永久强化：射程 +15%、弹丸 +1、穿透 +1、暴击 +5%' },
     traits: ['+40% 经验获取', '升级时 5 个选项'],
     skill: {
       name: '应援打 Call',
@@ -495,7 +499,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 6, 3), S('rage', 6, 5)],
       color: 0xff70a6,
     },
-    cost: 170,
+    unlock: { ach: 'level', tier: 2 },
   },
   {
     id: 'ginger',
@@ -522,7 +526,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { speed: 20, attackSpeed: 15, armor: -1 },
     startWeapons: ['onion_boomerang'],
     favored: ['onion_boomerang', 'chopsticks', 'star_anise_shuriken'],
-    talent: { name: '疾风步', desc: '移速每高出 10%，伤害 +4%' },
+    talent: { name: '疾风步', desc: '移速每 +10%，契合武器攻速 +4%' },
     traits: ['+20% 移速', '+15% 攻速', '-1 护甲'],
     skill: {
       name: '瞬影斩',
@@ -534,8 +538,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('bleed', 4, 2)],
       color: 0xe9c46a,
     },
-    cost: 175,
-    requires: { ach: 'kills', tier: 2 },
+    unlock: { ach: 'perfect', tier: 2 },
   },
   {
     id: 'avocado',
@@ -559,12 +562,11 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { elemental: 2, range: 30, damage: 5 },
     startWeapons: ['pepper_mine', 'chili_rocket'],
     favored: ['pepper_mine', 'chili_rocket', 'bean_bazooka'],
-    talent: { name: '连环爆破', desc: '爆炸伤害每波 +10%' },
+    talent: { name: '连环爆破', desc: '契合武器爆炸后 30% 概率在边缘再炸一次（50% 伤害），概率每波 +3%（最多 60%）' },
     traits: ['+2 元素伤害', '+5% 伤害', '击杀 15% 概率爆炸'],
     special: { explodeOnKill: { chance: 15, dmg: 20 } },
     skill: { name: '核心过载', desc: '连环爆炸 5 次。', type: 'strikes', cd: 0, mult: 1.6, count: 5, radius: 90, color: 0xa7c957 },
-    cost: 190,
-    requires: { ach: 'clear_3', tier: 1 },
+    unlock: { ach: 't4', tier: 1 },
   },
   {
     id: 'onion',
@@ -592,8 +594,8 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { armor: 4, maxHp: 10, speed: -5, regen: 2 },
     startWeapons: ['pan'],
-    favored: ['pan', 'meat_tenderizer', 'whisk_spin'],
-    talent: { name: '催泪弹', desc: '受击时使周围敌人致盲 2 秒（每 3 秒最多一次）' },
+    favored: ['pan', 'pepper_spray', 'whisk_spin'],
+    talent: { name: '催泪弹', desc: '受击时使周围敌人致盲 2 秒（每 3 秒最多一次）；契合武器打致盲的敌人暴击率 +30%' },
     traits: ['+4 护甲', '+10 最大生命', '受击时反弹 15 点伤害'],
     special: { thorns: 15 },
     skill: {
@@ -607,8 +609,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('blind', 1)],
       color: 0xe0aaff,
     },
-    cost: 200,
-    requires: { ach: 'clear_4', tier: 1 },
+    unlock: { ach: 'deaths', tier: 2 },
   },
   // ---------------- 新角色 ----------------
   {
@@ -633,8 +634,8 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 2, luck: 5 },
     startWeapons: ['soda'],
-    favored: ['soda', 'dragonfruit_orb', 'curry_aura'],
-    talent: { name: '孢子扩散', desc: '中毒的敌人死亡时，使周围敌人中毒 3 层' },
+    favored: ['spore_sprayer', 'curry_aura', 'steam_kettle'],
+    talent: { name: '孢子扩散', desc: '中毒的敌人死亡时爆出 3 颗追踪孢子弹，并使周围敌人中毒 3 层' },
     traits: ['+2 元素伤害', '所有命中 30% 概率中毒'],
     special: { onHit: [S('poison', 5, 1, 30)] },
     skill: {
@@ -647,7 +648,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 6, 5), S('weaken', 5, 2)],
       color: 0x70e000,
     },
-    cost: 70,
+    unlock: { ach: 'inflict_poison', tier: 1 },
   },
   {
     id: 'coconut',
@@ -671,10 +672,10 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { melee: 4, armor: 2, maxHp: 5 },
     classMult: { elemental: 0.5 },
     startWeapons: ['pan'],
-    favored: ['pan', 'meat_tenderizer', 'pineapple_mace'],
-    talent: { name: '重拳出击', desc: '近战命中 12% 概率眩晕敌人 0.6 秒' },
-    traits: ['+4 近战伤害', '+2 护甲', '+5 最大生命', '击杀叠加怒气（每层 +4% 伤害）'],
-    special: { onKillSelf: [S('rage', 4, 1)] },
+    favored: ['coconut_gloves', 'meat_tenderizer', 'pineapple_mace'],
+    talent: { name: '重拳出击', desc: '契合武器打中眩晕的敌人时打出冲击波，对周围造成 50% 伤害' },
+    traits: ['+4 近战伤害', '+2 护甲', '+5 最大生命', '击杀叠加怒气（每层 +4% 伤害）', '命中 12% 概率眩晕 0.6 秒'],
+    special: { onKillSelf: [S('rage', 4, 1)], onHit: [S('stun', 0.6, 1, 12)] },
     skill: {
       name: '震地拳',
       desc: '重击地面，眩晕并破甲。',
@@ -685,7 +686,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('stun', 1.2), S('armorBreak', 6, 3)],
       color: 0xbc6c25,
     },
-    cost: 80,
+    unlock: { ach: 'clear_1', tier: 1 },
   },
   {
     id: 'grape',
@@ -713,12 +714,12 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { luck: 10, elemental: 1, ranged: 1, maxHp: 3 },
     startWeapons: ['ketchup'],
-    favored: ['ketchup', 'grape_shotgun', 'cherry_bomb'],
-    talent: { name: '障眼法', desc: '每 8 秒获得 1 秒无敌' },
+    favored: ['grape_shotgun', 'cherry_bomb', 'plate_frisbee'],
+    talent: { name: '障眼法', desc: '每 8 秒获得 1 秒无敌；契合武器命中 15% 概率变出幻影弹打向另一个敌人（60% 伤害），无敌期间必定触发' },
     traits: ['+10 幸运', '+3 最大生命', '受到攻击 20% 概率使敌人混乱'],
     special: { onHurtEnemy: [S('confuse', 3, 1, 20)] },
     skill: { name: '葡萄分身', desc: '召唤分身 8 秒自动射击。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0xb5179e },
-    cost: 140,
+    unlock: { ach: 'crates', tier: 2 },
   },
   {
     id: 'cherry',
@@ -746,11 +747,11 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { attackSpeed: 20, ranged: 1, damage: -8 },
     startWeapons: ['pea_shooter'],
     favored: ['pea_shooter', 'seed_spitter', 'sauce_gatling'],
-    talent: { name: '连珠炮', desc: '攻速每 +10%，伤害额外 +2%' },
+    talent: { name: '连珠炮', desc: '契合武器持续开火时每发叠 1 层热枪（攻速 +1%，最多 30 层），停火 1 秒清零' },
     traits: ['+20% 攻速', '-8% 伤害', '射击时 10% 概率获得急速'],
     special: { onHitSelf: [S('haste', 2, 1, 10)] },
     skill: { name: '双枪连射', desc: '对最近的敌人连续射出 12 发子弹。', type: 'barrage', cd: 0, mult: 0.9, count: 12, color: 0xff4d6d },
-    cost: 80,
+    unlock: { ach: 'set_枪械', tier: 1 },
   },
   {
     id: 'pea',
@@ -773,11 +774,11 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { ranged: 2, maxHp: 3 },
     startWeapons: ['pea_shooter', 'pea_shooter'],
     favored: ['pea_shooter', 'seed_spitter', 'soy_pistol'],
-    talent: { name: '豌豆军团', desc: '每持有 1 把武器，伤害 +3%' },
+    talent: { name: '豌豆军团', desc: '每持有 1 把武器，契合子弹一分为二的概率 +8%' },
     traits: ['+2 远程伤害', '初始 2 把豌豆枪', '每把同名武器 +3% 伤害'],
     special: { sameWeaponBonus: 3 },
     skill: { name: '豌豆炮台', desc: '对最近的敌人高速连发 16 颗豌豆。', type: 'barrage', cd: 0, mult: 0.6, count: 16, color: 0x70e000 },
-    cost: 140,
+    unlock: { ach: 'kills', tier: 2 },
   },
   {
     id: 'peach',
@@ -803,7 +804,10 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { regen: 5, maxHp: 5, damage: -10 },
     startWeapons: ['slingshot'],
     favored: ['slingshot', 'honey_blaster', 'ladle'],
-    talent: { name: '天使庇护', desc: '每波首次受到致命伤害时保留 1 点生命，并获得 2 秒无敌' },
+    talent: {
+      name: '天使庇护',
+      desc: '每波首次受到致命伤害时保留 1 点生命，并获得 2 秒无敌；有护盾时契合武器穿透 +1，命中必定回血（每秒最多 3 次）',
+    },
     traits: ['+5 生命再生', '每波开始获得 15 点护盾', '-10% 伤害'],
     special: { waveStartSelf: [{ id: 'shield', dur: 999, value: 15 }] },
     skill: {
@@ -817,7 +821,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('invuln', 1.5)],
       color: 0xffd6e0,
     },
-    cost: 170,
+    unlock: { ach: 'revive', tier: 1 },
   },
   {
     id: 'dragonfruit',
@@ -842,9 +846,9 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { melee: 2, elemental: 2, speed: 5, maxHp: 5 },
     startWeapons: ['rolling_pin'],
-    favored: ['rolling_pin', 'dragonfruit_orb', 'skewer'],
-    talent: { name: '龙息', desc: '持续伤害（灼烧、中毒等）+40%' },
-    traits: ['+2 近战/元素伤害', '+5 最大生命', '近战命中 20% 概率灼烧'],
+    favored: ['hotpot_breath', 'dragonfruit_orb', 'skewer'],
+    talent: { name: '龙息', desc: '契合武器打中灼烧中的敌人时喷出短程龙息（3 道火焰，40% 伤害）' },
+    traits: ['+2 近战/元素伤害', '+5 最大生命', '近战命中 20% 概率灼烧', '持续伤害 +40%'],
     special: { statusDmg: 40, onHit: [S('burn', 3, 1, 20)] },
     skill: {
       name: '龙焰冲锋',
@@ -856,8 +860,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 4)],
       color: 0xff5400,
     },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'inflict_burn', tier: 2 },
   },
   {
     id: 'beet',
@@ -884,7 +887,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { damage: 15, armor: -1, lifeSteal: 3 },
     startWeapons: ['cleaver'],
     favored: ['cleaver', 'pineapple_mace', 'bamboo_spear'],
-    talent: { name: '狂战之血', desc: '每损失 10% 生命，伤害 +6%' },
+    talent: { name: '狂战之血', desc: '每损失 10% 生命，契合武器攻速 +6%、范围 +3%' },
     traits: ['+15% 伤害', '+3% 吸血概率', '-1 护甲', '受伤时获得怒气'],
     special: { onHurtSelf: [S('rage', 5, 2)] },
     skill: {
@@ -896,7 +899,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('enrage', 6), S('vampiric', 6, 3)],
       color: 0xd00000,
     },
-    cost: 170,
+    unlock: { ach: 'run_kills', tier: 2 },
   },
   {
     id: 'asparagus',
@@ -922,8 +925,8 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { range: 80, crit: 10, ranged: 1 },
     classMult: { melee: 0.6 },
     startWeapons: ['corn_cannon'],
-    favored: ['corn_cannon', 'blueberry_sniper', 'carrot_crossbow'],
-    talent: { name: '一箭穿心', desc: '对生命高于 80% 的敌人伤害 +40%' },
+    favored: ['asparagus_bow', 'carrot_crossbow', 'blueberry_sniper'],
+    talent: { name: '一箭穿心', desc: '契合武器打满血敌人必定暴击，且这次命中不消耗穿透' },
     traits: ['+80 射程', '+10% 暴击', '命中 15% 概率标记敌人（下次必暴击）'],
     special: { onHit: [S('mark', 4, 1, 15)] },
     skill: {
@@ -936,7 +939,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 4)],
       color: 0xb5e48c,
     },
-    cost: 170,
+    unlock: { ach: 'max_hit', tier: 2 },
   },
   {
     id: 'sweetpotato',
@@ -964,7 +967,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { harvest: 20, maxHp: 5, damage: -5 },
     startWeapons: ['rolling_pin'],
     favored: ['rolling_pin', 'ladle', 'spatula'],
-    talent: { name: '美食家', desc: '拾取果实时额外获得番茄籽（随波次增加）' },
+    talent: { name: '美食家', desc: '拾取果实时额外获得番茄籽（随波次增加），并在 5 秒内让契合武器攻速 +25%、范围 +20%' },
     traits: ['+20 收获', '果实回血翻倍', '-5% 伤害'],
     special: { fruitHeal: 100 },
     skill: {
@@ -978,7 +981,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('regen', 6, 5)],
       color: 0xffb703,
     },
-    cost: 80,
+    unlock: { ach: 'set_厨具', tier: 2 },
   },
   {
     id: 'kiwi',
@@ -1004,7 +1007,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { crit: 8, luck: 10, maxHp: 3, melee: 1 },
     startWeapons: ['knife'],
     favored: ['knife', 'cucumber_katana', 'honey_blaster'],
-    talent: { name: '弱点洞察', desc: '对带有减益的敌人伤害 +20%' },
+    talent: { name: '弱点洞察', desc: '目标身上每有一种减益，契合武器对它的暴击率 +5%' },
     traits: ['+8% 暴击', '+3 最大生命', '+1 近战伤害', '命中 20% 概率易伤', '暴击伤害 +30%'],
     special: { onHit: [S('vulnerable', 4, 1, 20)], critDmg: 30 },
     skill: {
@@ -1017,7 +1020,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('mark', 6), S('vulnerable', 6, 2)],
       color: 0xffd166,
     },
-    cost: 140,
+    unlock: { ach: 'codex_monsters', tier: 1 },
   },
   {
     id: 'lychee',
@@ -1043,8 +1046,8 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { luck: 40 },
     startWeapons: ['slingshot'],
-    favored: ['slingshot', 'olive_launcher', 'plate_frisbee'],
-    talent: { name: '好运连连', desc: '每 10 点幸运使伤害 +1%；每波第一次商店刷新免费' },
+    favored: ['slingshot', 'olive_launcher', 'cherry_bomb'],
+    talent: { name: '好运连连', desc: '每波第一次商店刷新免费；每 10 点幸运让契合子弹 1% 概率变成红包弹（必定暴击、弹射 +2，最多 30%）' },
     traits: ['+40 幸运', '宝箱掉率翻倍'],
     special: { crateMult: 2 },
     skill: {
@@ -1056,8 +1059,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('lucky', 6, 5), S('focus', 6, 3)],
       color: 0xffc2d1,
     },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'earned', tier: 2 },
   },
   {
     id: 'durian',
@@ -1081,8 +1083,8 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { armor: 3, maxHp: 10, speed: -4 },
     startWeapons: ['garlic_aura'],
-    favored: ['garlic_aura', 'curry_aura', 'whisk_spin'],
-    talent: { name: '臭气熏天', desc: '周围敌人持续易伤' },
+    favored: ['garlic_aura', 'thunder_durian', 'sea_urchin_mine'],
+    talent: { name: '臭气熏天', desc: '契合武器每次命中给敌人叠 1 层臭气，叠满 5 层时向四周爆出 8 根尖刺（40% 伤害）' },
     traits: ['+3 护甲', '+10 最大生命', '-4% 移速', '反弹 10 伤害', '周围敌人持续虚弱'],
     special: { thorns: 10, aura: { radius: 140, every: 1, status: [S('weaken', 1.5, 1)] } },
     skill: {
@@ -1095,8 +1097,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('poison', 5, 4), S('weaken', 5, 3), S('confuse', 3)],
       color: 0xc9a227,
     },
-    cost: 190,
-    requires: { ach: 'clear_3', tier: 1 },
+    unlock: { ach: 'bosses', tier: 2 },
   },
   {
     id: 'bellpepper',
@@ -1121,12 +1122,11 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { armor: 5, maxHp: 10, speed: -10, dodge: -10 },
     startWeapons: ['sauce_gatling'],
     favored: ['sauce_gatling', 'bean_bazooka', 'cherry_bomb'],
-    talent: { name: '机甲装甲', desc: '受到的伤害 -15%' },
+    talent: { name: '机甲装甲', desc: '受到的伤害 -15%；有护盾时契合武器攻速 +30%、弹丸 +1' },
     traits: ['+5 护甲', '+10 生命', '-10% 闪避', '每 12 秒获得 20 点护盾'],
     special: { periodicSelf: { every: 12, status: [{ id: 'shield', dur: 12, value: 20 }] } },
     skill: { name: '无人机支援', desc: '部署无人机 8 秒。', type: 'clone', cd: 0, mult: 0.45, duration: 8, color: 0x4cc9f0 },
-    cost: 190,
-    requires: { ach: 'clear_3', tier: 1 },
+    unlock: { ach: 'clear_4', tier: 1 },
   },
   {
     id: 'wintermelon',
@@ -1151,7 +1151,7 @@ export const CHARACTERS: CharacterDef[] = [
     classMult: { ranged: 0.7 },
     startWeapons: ['rolling_pin'],
     favored: ['rolling_pin', 'bamboo_spear', 'whisk_spin'],
-    talent: { name: '禅定', desc: '静止不动时受到的伤害 -25%，并每秒回复 2% 最大生命' },
+    talent: { name: '禅定', desc: '静止不动时受到的伤害 -25%、每秒回复 2% 最大生命，契合武器 50% 概率连击（60% 伤害）' },
     traits: ['+15% 闪避', '+3 再生', '闪避成功时获得专注'],
     special: { onDodgeSelf: [S('focus', 3, 1)] },
     skill: {
@@ -1163,8 +1163,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('fortify', 8, 5)],
       color: 0xffd166,
     },
-    cost: 190,
-    requires: { ach: 'bosses', tier: 1 },
+    unlock: { ach: 'overtime', tier: 1 },
   },
   {
     id: 'bittermelon',
@@ -1188,7 +1187,7 @@ export const CHARACTERS: CharacterDef[] = [
     mods: { elemental: 3, attackSpeed: 5, maxHp: 3 },
     startWeapons: ['soda'],
     favored: ['soda', 'ice_cube_tray', 'mint_frost_mine'],
-    talent: { name: '寒霜侵袭', desc: '对减速或冰冻的敌人伤害 +35%' },
+    talent: { name: '寒霜侵袭', desc: '契合武器打中冰冻的敌人必定暴击，并震碎冰块，对周围造成 50% 伤害' },
     traits: ['+3 元素伤害', '+3 最大生命', '命中 8% 概率冰冻敌人 1 秒'],
     special: { onHit: [S('freeze', 1, 1, 8)] },
     skill: {
@@ -1202,8 +1201,7 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('slow', 1, 3), S('freeze', 0.8, 1, 25)],
       color: 0xa9def9,
     },
-    cost: 175,
-    requires: { ach: 'clear_2', tier: 1 },
+    unlock: { ach: 'clear_3', tier: 1 },
   },
   {
     id: 'sprout',
@@ -1228,7 +1226,7 @@ export const CHARACTERS: CharacterDef[] = [
     levelUpChoices: 5,
     startWeapons: ['fork'],
     favored: ['fork', 'chopsticks', 'spatula'],
-    talent: { name: '厚积薄发', desc: '每升 1 级，伤害 +1.5%' },
+    talent: { name: '厚积薄发', desc: '每升 1 级契合武器攻速 +1%（最多 +40%）；每 5 级穿透 +1（最多 +3）' },
     traits: ['+80% 经验获取', '-8% 伤害', '-3 最大生命', '升级时 5 个选项'],
     skill: {
       name: '拔苗助长',
@@ -1240,7 +1238,7 @@ export const CHARACTERS: CharacterDef[] = [
       selfStatus: [S('haste', 5, 2)],
       color: 0x80b918,
     },
-    cost: 170,
+    unlock: { ach: 'levelups', tier: 2 },
   },
   {
     id: 'wasabi',
@@ -1265,8 +1263,8 @@ export const CHARACTERS: CharacterDef[] = [
     },
     mods: { elemental: 2, damage: 8, maxHp: -5 },
     startWeapons: ['chili_rocket'],
-    favored: ['chili_rocket', 'thunder_durian', 'pineapple_mace'],
-    talent: { name: '连锁反应', desc: '被爆炸击杀的敌人 40% 概率再次爆炸' },
+    favored: ['chili_rocket', 'soy_bomb', 'dynamite_drumstick'],
+    talent: { name: '连锁反应', desc: '被爆炸击杀的敌人 40% 概率再次爆炸，并溅出 2 道火花' },
     traits: ['+8% 伤害', '击杀 25% 概率爆炸', '爆炸施加灼烧'],
     special: { explodeOnKill: { chance: 25, dmg: 18 } },
     skill: {
@@ -1279,12 +1277,13 @@ export const CHARACTERS: CharacterDef[] = [
       status: [S('burn', 4, 3)],
       color: 0xb5e48c,
     },
-    cost: 200,
-    requires: { ach: 'clear_4', tier: 1 },
+    unlock: { ach: 'set_爆破', tier: 2 },
   },
 ];
 
 // 大招冷却按威力自动计算
 for (const c of CHARACTERS) c.skill.cd = skillCooldown(c.skill);
+// 1.4.0 F5：6 名新角色（技能冷却已在 charactersExtra 里算好）
+CHARACTERS.push(...EXTRA_CHARACTERS);
 
 export const CHARACTER_MAP: Record<string, CharacterDef> = Object.fromEntries(CHARACTERS.map((c) => [c.id, c]));

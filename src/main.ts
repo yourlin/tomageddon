@@ -11,27 +11,30 @@ import { LevelUpScene } from './scenes/LevelUpScene';
 import { ShopScene } from './scenes/ShopScene';
 import { PauseScene } from './scenes/PauseScene';
 import { ResultScene } from './scenes/ResultScene';
-import { CodexScene } from './scenes/CodexScene';
 import { SettingsScene } from './scenes/SettingsScene';
-import { AchievementScene } from './scenes/AchievementScene';
-import { ChangelogScene } from './scenes/ChangelogScene';
-import { TalentTreeScene } from './scenes/TalentTreeScene';
-import { RunStatsScene } from './scenes/RunStatsScene';
-import { HistoryScene } from './scenes/HistoryScene';
 import { ChallengeScene } from './scenes/ChallengeScene';
+import { lazyScene } from './scenes/LazyScene';
+import { installErrorLog } from './systems/ErrorLog';
+import { onShouldPause, IS_DESKTOP_APP, IS_STEAM } from './platform';
+import { syncPlatformAchievements } from './systems/Achievements';
+import { portraitKey } from './ui/Portrait';
 import { run } from './systems/RunState';
 import { controls } from './systems/Controls';
 import { CHARACTERS, CHARACTER_MAP } from './data/characters';
 import { WEAPON_MAP, TIER_PRICE_MULT } from './data/weapons';
 import { ITEM_MAP, LEVELUP_OPTIONS } from './data/items';
 import { rerollPrice, sellPrice } from './data/balance';
-import { save } from './systems/Save';
+import { save, disablePersist } from './systems/Save';
 import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
 import { lang, tx } from './i18n';
 import { autoFullscreenOnFirstTouch } from './systems/Fullscreen';
 import { installForceLandscape } from './systems/ForceLandscape';
-import { pointsEarned, charCost } from './systems/Achievements';
+import { pointsEarned } from './systems/Achievements';
+import { DEV_MODE } from './dev/flag';
+
+// 开发者界面：整页生命周期内不写存档（必须在任何场景运行前生效）
+if (DEV_MODE) disablePersist();
 
 // 按语言写入数据文本，必须在创建游戏前执行
 applyLanguage();
@@ -71,13 +74,17 @@ const game = new Phaser.Game({
     ShopScene,
     PauseScene,
     ResultScene,
-    CodexScene,
+    // K8：图鉴 / 成就 / 更新日志 / 天赋树 / 局后数据 / 战绩按需加载，不进首屏包
+    lazyScene('Codex', () => import('./scenes/CodexScene').then((m) => m.CodexScene)),
     SettingsScene,
-    AchievementScene,
-    ChangelogScene,
-    TalentTreeScene,
-    RunStatsScene,
-    HistoryScene,
+    lazyScene('Achievements', () => import('./scenes/AchievementScene').then((m) => m.AchievementScene)),
+    lazyScene('Changelog', () => import('./scenes/ChangelogScene').then((m) => m.ChangelogScene)),
+    lazyScene('Ending', () => import('./scenes/EndingScene').then((m) => m.EndingScene)),
+    lazyScene('TalentTree', () => import('./scenes/TalentTreeScene').then((m) => m.TalentTreeScene)),
+    lazyScene('RunStats', () => import('./scenes/RunStatsScene').then((m) => m.RunStatsScene)),
+    lazyScene('History', () => import('./scenes/HistoryScene').then((m) => m.HistoryScene)),
+    lazyScene('CustomChallenge', () => import('./scenes/CustomChallengeScene').then((m) => m.CustomChallengeScene)),
+    lazyScene('Collection', () => import('./scenes/CollectionScene').then((m) => m.CollectionScene)),
     ChallengeScene,
   ],
 });
@@ -85,11 +92,23 @@ const game = new Phaser.Game({
 if (HEADLESS) {
   // 测试模式不渲染：主循环只更新不绘制（loop.start 绑定的是 this.step，启动前覆盖即可）
   game.step = game.headlessStep;
+} else if (DEV_MODE && import.meta.env.VITE_DISABLE_DEV !== '1') {
+  // 开发者界面：桌面端使用，不强制横屏 / 全屏；本体动态加载，不进玩家首屏包
+  applyPerfSettings(game);
+  void import('./dev/DevPanel').then((m) => m.installDevPanel(game));
 } else {
   applyPerfSettings(game);
-  autoFullscreenOnFirstTouch(game);
-  installForceLandscape(game);
+  // Steam（桌面窗口）版不需要首次触摸自动全屏与「请旋转屏幕」
+  if (!IS_DESKTOP_APP) {
+    autoFullscreenOnFirstTouch(game);
+    installForceLandscape(game);
+  }
 }
+// 窗口失焦、最小化、Steam 浮层打开时自动暂停战斗
+if (IS_STEAM) syncPlatformAchievements();
+onShouldPause(() => {
+  if (game.scene.isActive('Game') && !game.scene.isPaused('Game')) controls.pausePressed = true;
+});
 
 // 切到后台时自动暂停战斗
 document.addEventListener('visibilitychange', () => {
@@ -101,6 +120,13 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // 调试用
+Object.assign(window, { portraitKey });
+installErrorLog(() =>
+  game.scene
+    .getScenes(true)
+    .map((s) => s.sys.settings.key)
+    .join(','),
+);
 Object.assign(window, {
   game,
   run,
@@ -119,6 +145,5 @@ Object.assign(window, {
     TIER_PRICE_MULT,
     sellPrice,
     pointsEarned,
-    charCost,
   },
 });

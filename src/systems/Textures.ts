@@ -7,10 +7,13 @@ import { STAT_INFO, STAT_ORDER, type StatKey } from '../data/stats';
 import { CHARACTERS } from '../data/characters';
 import { paint, rgb, darken, lighten, toon, ellipsePath, roundRectPath, starPath, glow, OUTLINE, type Ctx } from '../art/Painter';
 import { drawWeapon, drawWeaponIcon } from '../art/WeaponArt';
+import { drawMine, MINE_SIZE } from '../art/MineArt';
+import { drawSkillIcon } from '../art/SkillIconArt';
+import { texWeight, type TexTask } from './TexQueue';
 
 export const FONT = '"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif';
 
-const proj = (s: Phaser.Scene, key: string, w: number, h: number, fn: (ctx: Ctx) => void) => paint(s, key, w, h, fn);
+const paintNow = paint;
 
 /** 属性图标符号 */
 function statGlyph(ctx: Ctx, k: StatKey, c: number): void {
@@ -193,12 +196,36 @@ function statGlyph(ctx: Ctx, k: StatKey, c: number): void {
   }
 }
 
+/** 同步生成全部启动贴图 */
 export function generateTextures(scene: Phaser.Scene): void {
+  for (const t of textureTasks(scene)) t.run();
+}
+
+/**
+ * 启动贴图拆成任务列表（每张贴图一个任务），交给 TexQueue 分帧执行。
+ * 函数体内的 paint / proj 只登记任务、不立即绘制，所以下面的绘制代码保持原样。
+ */
+export function textureTasks(scene: Phaser.Scene): TexTask[] {
+  const out: TexTask[] = [];
+  const paint = (sc: Phaser.Scene, key: string, w: number, h: number, fn: (ctx: Ctx, w: number, h: number) => void): string => {
+    out.push({ run: () => paintNow(sc, key, w, h, fn), w: texWeight(w, h), k: key });
+    return key;
+  };
+  const proj = paint;
+  buildTextures(scene, paint, proj);
+  return out;
+}
+
+type PaintFn = (sc: Phaser.Scene, key: string, w: number, h: number, fn: (ctx: Ctx, w: number, h: number) => void) => string;
+
+function buildTextures(scene: Phaser.Scene, paint: PaintFn, proj: PaintFn): void {
   const s = scene;
   // ---------- 武器 ----------
   for (const w of [...WEAPONS, ...EVOLVED_WEAPONS]) {
     paint(s, `weapon_${w.id}`, 128, 64, (ctx) => drawWeapon(ctx, w.id));
     paint(s, `icon_weapon_${w.id}`, 128, 128, (ctx) => drawWeaponIcon(ctx, w.id, w.cls));
+    // 地雷类武器：布在地上的雷长得和名字一样
+    if (w.kind === 'mine') paint(s, `mine_${w.id}`, MINE_SIZE, MINE_SIZE, (ctx) => drawMine(ctx, w.id));
   }
 
   // ---------- 子弹 ----------
@@ -998,161 +1025,8 @@ export function generateTextures(scene: Phaser.Scene): void {
       }
     });
   }
-  // 技能图标
-  for (const ch of CHARACTERS) {
-    const sk = ch.skill;
-    paint(s, `skill_${ch.id}`, 96, 96, (ctx) => {
-      glow(ctx, 48, 48, 46, sk.color, 0.8);
-      const c = sk.color;
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = OUTLINE;
-      switch (sk.type) {
-        case 'nova':
-        case 'heal':
-          starPath(ctx, 48, 48, 34, 14, 8);
-          toon(ctx, c, 14, 14, 68, 68);
-          break;
-        case 'dash':
-          ctx.beginPath();
-          ctx.moveTo(14, 36);
-          ctx.lineTo(56, 36);
-          ctx.lineTo(56, 22);
-          ctx.lineTo(84, 48);
-          ctx.lineTo(56, 74);
-          ctx.lineTo(56, 60);
-          ctx.lineTo(14, 60);
-          ctx.closePath();
-          toon(ctx, c, 14, 22, 70, 52);
-          break;
-        case 'buff':
-          ctx.beginPath();
-          ctx.moveTo(48, 12);
-          ctx.lineTo(80, 48);
-          ctx.lineTo(60, 48);
-          ctx.lineTo(60, 84);
-          ctx.lineTo(36, 84);
-          ctx.lineTo(36, 48);
-          ctx.lineTo(16, 48);
-          ctx.closePath();
-          toon(ctx, c, 16, 12, 64, 72);
-          break;
-        case 'ghost':
-          ctx.beginPath();
-          ctx.moveTo(22, 84);
-          ctx.lineTo(22, 44);
-          ctx.bezierCurveTo(22, 8, 74, 8, 74, 44);
-          ctx.lineTo(74, 84);
-          ctx.lineTo(62, 74);
-          ctx.lineTo(48, 84);
-          ctx.lineTo(34, 74);
-          ctx.closePath();
-          toon(ctx, lighten(c, 0.4), 22, 14, 52, 70);
-          ctx.fillStyle = '#222';
-          ctx.beginPath();
-          ctx.arc(38, 42, 5, 0, Math.PI * 2);
-          ctx.arc(58, 42, 5, 0, Math.PI * 2);
-          ctx.fill();
-          break;
-        case 'ring':
-          for (let i = 0; i < 8; i++) {
-            const a = (i / 8) * Math.PI * 2;
-            ctx.beginPath();
-            ctx.arc(48 + Math.cos(a) * 26, 48 + Math.sin(a) * 26, 8, 0, Math.PI * 2);
-            toon(ctx, c, 40 + Math.cos(a) * 26, 40 + Math.sin(a) * 26, 16, 16, { lineW: 2 });
-          }
-          break;
-        case 'strikes':
-          ctx.beginPath();
-          ctx.moveTo(56, 10);
-          ctx.lineTo(26, 54);
-          ctx.lineTo(46, 54);
-          ctx.lineTo(36, 88);
-          ctx.lineTo(72, 40);
-          ctx.lineTo(52, 40);
-          ctx.closePath();
-          toon(ctx, c, 26, 10, 46, 78);
-          break;
-        case 'barrage':
-          for (let i = 0; i < 4; i++) {
-            ctx.beginPath();
-            ctx.ellipse(22 + i * 16, 48, 9, 6, 0, 0, Math.PI * 2);
-            toon(ctx, c, 13 + i * 16, 42, 18, 12, { lineW: 2 });
-          }
-          break;
-        case 'missile':
-          ctx.beginPath();
-          ctx.moveTo(18, 78);
-          ctx.quadraticCurveTo(30, 20, 70, 26);
-          ctx.lineWidth = 5;
-          ctx.strokeStyle = rgb(c);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(70, 30, 16, 0, Math.PI * 2);
-          toon(ctx, c, 54, 14, 32, 32);
-          break;
-        case 'screen':
-          roundRectPath(ctx, 12, 20, 72, 56, 8);
-          ctx.strokeStyle = rgb(c);
-          ctx.lineWidth = 5;
-          ctx.stroke();
-          for (const [x, y] of [
-            [30, 40],
-            [60, 36],
-            [44, 60],
-          ]) {
-            starPath(ctx, x, y, 9, 4, 5);
-            ctx.fillStyle = rgb(c);
-            ctx.fill();
-          }
-          break;
-        case 'field':
-          ctx.beginPath();
-          ctx.ellipse(48, 56, 38, 22, 0, 0, Math.PI * 2);
-          ctx.fillStyle = rgb(c, 0.5);
-          ctx.fill();
-          ctx.strokeStyle = rgb(c);
-          ctx.lineWidth = 4;
-          ctx.stroke();
-          ctx.strokeStyle = '#fff';
-          ctx.lineWidth = 3;
-          for (const x of [34, 48, 62]) {
-            ctx.beginPath();
-            ctx.moveTo(x, 20);
-            ctx.lineTo(x, 56);
-            ctx.stroke();
-          }
-          break;
-        case 'curse':
-          ctx.beginPath();
-          ctx.arc(48, 46, 26, 0, Math.PI * 2);
-          toon(ctx, c, 22, 20, 52, 52);
-          ctx.fillStyle = '#1b1b1b';
-          ctx.beginPath();
-          ctx.arc(38, 42, 5, 0, Math.PI * 2);
-          ctx.arc(58, 42, 5, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.strokeStyle = '#1b1b1b';
-          ctx.lineWidth = 3;
-          ctx.beginPath();
-          ctx.moveTo(36, 60);
-          ctx.quadraticCurveTo(48, 52, 60, 60);
-          ctx.stroke();
-          break;
-        case 'clone':
-          for (const [x, a] of [
-            [36, 0.5],
-            [58, 1],
-          ] as [number, number][]) {
-            ctx.globalAlpha = a;
-            ctx.beginPath();
-            ctx.arc(x, 50, 22, 0, Math.PI * 2);
-            toon(ctx, c, x - 22, 28, 44, 44);
-          }
-          ctx.globalAlpha = 1;
-          break;
-      }
-    });
-  }
+  // 技能图标：金属边徽章 + 每个角色的专属图案（art/SkillIconArt.ts），128px 以便高分屏清晰
+  for (const ch of CHARACTERS) paint(s, `skill_${ch.id}`, 128, 128, (ctx) => drawSkillIcon(ctx, ch.id, ch.skill, 128));
   // 状态图标底
   paint(s, 'ui_status', 40, 40, (ctx) => {
     ctx.beginPath();

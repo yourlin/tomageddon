@@ -1,4 +1,7 @@
 // 武器数据。每把武器 4 个品质（T1~T4），两把同名同品质可在商店合成升一级。
+import { EXTRA_WEAPONS } from './gearExtra';
+import { AFFINITY_WEAPONS } from './weaponsAffinity';
+import { auraBaseRadius } from './balance';
 export type WeaponClass = 'melee' | 'ranged' | 'elemental';
 export type WeaponKind =
   | 'thrust' // 近战直刺：沿直线伸出
@@ -18,6 +21,7 @@ export interface WeaponEffect {
   explode?: number; // 爆炸半径
   chain?: number[]; // 各品质连锁次数
   lifeSteal?: number; // 额外吸血 %
+  poison?: { stacks: number; dur: number }; // 命中中毒
 }
 
 export interface WeaponDef {
@@ -40,6 +44,13 @@ export interface WeaponDef {
   count?: number[]; // T1..T4 弹丸数量
   spread?: number; // 散射角（度）
   effect?: WeaponEffect;
+  /** 子弹追踪转向速度（弧度/秒），只对普通子弹生效 */
+  homing?: number;
+  /** 子弹自带分裂层数（与道具「分裂」相加） */
+  splitShots?: number;
+  /** 指定子弹贴图与染色（不填按武器 id 自动找） */
+  projKey?: string;
+  projTint?: number;
   price: number; // T1 基础价格，T2/T3/T4 = x2.1 / x4 / x7.5（见 TIER_PRICE_MULT）
   minTier?: number; // 商店最低出现品质（0 起）
   /** 进化超武：由哪把武器进化而来（不进商店池） */
@@ -270,13 +281,13 @@ export const WEAPONS: WeaponDef[] = [
     range: 200,
     scaling: { elemental: 1 },
     critMult: 1.5,
-    effect: { explode: 115 },
+    effect: { explode: 150 },
     price: 25,
   },
   {
     id: 'onion_boomerang',
     name: '洋葱回旋镖',
-    desc: '飞出后返回，沿途无限穿透。',
+    desc: '划出一道弧线飞出又绕回，沿途无限穿透。',
     cls: 'ranged',
     kind: 'boomerang',
     tags: ['蔬果'],
@@ -448,7 +459,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'pizza_cutter',
     name: '披萨滚刀',
-    desc: '甩出滚刀再收回，沿途切开一切。',
+    desc: '甩出滚刀蛇形滚出再收回，沿途切开一切。',
     cls: 'melee',
     kind: 'boomerang',
     tags: ['厨具', '锋利'],
@@ -535,7 +546,7 @@ export const WEAPONS: WeaponDef[] = [
     range: 220,
     scaling: { ranged: 0.9 },
     critMult: 1.5,
-    effect: { explode: 75 },
+    effect: { explode: 100 },
     price: 24,
   },
   {
@@ -611,7 +622,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'plate_frisbee',
     name: '餐盘飞碟',
-    desc: '掷出餐盘，飞回时再撞一次。',
+    desc: '掷出餐盘，远处大幅甩弯再飞回，回程再撞一次。',
     cls: 'ranged',
     kind: 'boomerang',
     tags: ['厨具'],
@@ -785,7 +796,7 @@ export const WEAPONS: WeaponDef[] = [
     range: 220,
     scaling: { elemental: 0.9 },
     critMult: 1.5,
-    effect: { explode: 125, slow: { pct: 50, dur: 2 } },
+    effect: { explode: 160, slow: { pct: 50, dur: 2 } },
     price: 26,
   },
   {
@@ -824,7 +835,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'star_anise_shuriken',
     name: '八角飞镖',
-    desc: '香料飞镖回旋而归，灼烧沿途敌人。',
+    desc: '香料飞镖螺旋扫过前方再回旋而归，灼烧沿途敌人。',
     cls: 'elemental',
     kind: 'boomerang',
     tags: ['锋利', '元素'],
@@ -854,6 +865,12 @@ export const WEAPONS: WeaponDef[] = [
   },
 ];
 
+// 1.4.0 G5：新武器 12 把
+WEAPONS.push(...EXTRA_WEAPONS);
+// 契合武器改版：4 把角色主题武器
+WEAPONS.push(...AFFINITY_WEAPONS);
+// 光环默认半径由 T1 威力反推（伤害越高半径越小，至少 1.5 个身位）；进化超武在此基础上再乘进化射程倍率
+for (const w of WEAPONS) if (w.kind === 'aura') w.range = auraBaseRadius(w);
 export const WEAPON_MAP: Record<string, WeaponDef> = Object.fromEntries(WEAPONS.map((w) => [w.id, w]));
 
 /** 武器套装：持有 N 把带某标签的武器时获得加成 */

@@ -18,6 +18,8 @@ export type StatusId =
   | 'mark'
   | 'silence'
   | 'rot'
+  | 'soaked'
+  | 'corrode'
   // 增益
   | 'haste'
   | 'rage'
@@ -30,7 +32,9 @@ export type StatusId =
   | 'barrier'
   | 'enrage'
   | 'lucky'
-  | 'vampiric';
+  | 'vampiric'
+  | 'tailwind'
+  | 'hardened';
 
 export interface StatusDef {
   id: StatusId;
@@ -155,6 +159,29 @@ export const STATUSES: Record<StatusId, StatusDef> = {
     attackSpeed: -10,
     dps: 0.4,
   },
+  // 1.4.0 新增（G9）：浸湿 / 腐蚀 / 顺风 / 硬化，全部走 StatusSet.recalc 的 totals 汇总
+  soaked: {
+    id: 'soaked',
+    name: '浸湿',
+    kind: 'debuff',
+    color: 0x4895ef,
+    glyph: '湿',
+    desc: '每层移速 -10%、攻速 -8%，最多 3 层',
+    maxStacks: 3,
+    speed: -10,
+    attackSpeed: -8,
+  },
+  corrode: {
+    id: 'corrode',
+    name: '腐蚀',
+    kind: 'debuff',
+    color: 0xa7c957,
+    glyph: '蚀',
+    desc: '每层每秒受到酸蚀伤害，受到伤害 +6%，最多 4 层',
+    maxStacks: 4,
+    dps: 0.3,
+    dmgTaken: 6,
+  },
 
   haste: {
     id: 'haste',
@@ -196,7 +223,38 @@ export const STATUSES: Record<StatusId, StatusDef> = {
     dmgDealt: 30,
   },
   lucky: { id: 'lucky', name: '好运', kind: 'buff', color: 0xfdcb6e, glyph: '运', desc: '幸运提高', maxStacks: 5, luck: 10 },
-  vampiric: { id: 'vampiric', name: '嗜血', kind: 'buff', color: 0x9d0208, glyph: '嗜', desc: '吸血概率每层 +4%', maxStacks: 5, lifeSteal: 4 },
+  vampiric: {
+    id: 'vampiric',
+    name: '嗜血',
+    kind: 'buff',
+    color: 0x9d0208,
+    glyph: '嗜',
+    desc: '吸血概率每层 +4%',
+    maxStacks: 5,
+    lifeSteal: 4,
+  },
+  tailwind: {
+    id: 'tailwind',
+    name: '顺风',
+    kind: 'buff',
+    color: 0xcaf0f8,
+    glyph: '风',
+    desc: '每层移速 +12%、闪避 +4%，最多 3 层',
+    maxStacks: 3,
+    speed: 12,
+    dodge: 4,
+  },
+  hardened: {
+    id: 'hardened',
+    name: '硬化',
+    kind: 'buff',
+    color: 0xe9c46a,
+    glyph: '硬',
+    desc: '每层护甲 +3、受到伤害 -10%，最多 2 层',
+    maxStacks: 2,
+    armor: 3,
+    dmgTaken: -10,
+  },
 };
 
 export const DEBUFF_IDS = (Object.keys(STATUSES) as StatusId[]).filter((k) => STATUSES[k].kind === 'debuff');

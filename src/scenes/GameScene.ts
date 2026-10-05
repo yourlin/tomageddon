@@ -9,26 +9,20 @@ import {
   waveDuration,
   spawnInterval,
   spawnBatch,
-  enemyHp,
-  enemyDamage,
   armorMultiplier,
   moveSpeed,
   fruitDropChance,
   crateDropChance,
   chapterScale,
-  endlessHp,
-  endlessDmg,
-  eliteHpScale,
-  eliteDmgScale,
-  bossHpScale,
-  bossDmgScale,
   regenPerSecond,
   explodeSizeMultiplier,
+  thornyReflect,
+  lifeStealHeal,
 } from '../data/balance';
 import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
-import { BOSS_MAP, AFFIX_IDS, type AffixId, type Pattern } from '../data/bosses';
-import type { WeaponEffect, WeaponClass } from '../data/weapons';
+import { BOSS_MAP, AFFIX_IDS, TRUE_FINAL_BOSS_ID, type AffixId, type Pattern } from '../data/bosses';
+import { WEAPON_MAP, type WeaponEffect, type WeaponClass } from '../data/weapons';
 import { STATUSES, type StatusApply, type StatusId } from '../data/statuses';
 import { Enemy } from '../objects/Enemy';
 import { Bullet } from '../objects/Bullet';
@@ -39,7 +33,8 @@ import { SkillSystem } from '../systems/SkillSystem';
 import { StatusSet } from '../systems/Status';
 import { RigPool } from '../systems/RigPool';
 import { Fx } from '../systems/Fx';
-import { controls } from '../systems/Controls';
+import { controls, readPad } from '../systems/Controls';
+import { addDangerPatterns } from '../systems/Danger';
 import { audio } from '../systems/Audio';
 import { save, persist, markSeen } from '../systems/Save';
 import { paintArena } from '../art/ArenaArt';
@@ -48,6 +43,28 @@ import { tx } from '../i18n';
 import { checkAchievements, setInRun } from '../systems/Achievements';
 import { TalentSystem, waveGrowthMods } from '../systems/Talents';
 import { saveRun } from '../systems/RunState';
+import { minionStats, bossStats } from '../systems/EnemyScaling';
+import { applyWaveRules, describeEvent, isSuperBossWave, mutations, reviveCost, type RunEventDef } from '../systems/RunEvents';
+import { button, text as uiText } from '../ui/UI';
+import { skinActive } from '../systems/Progress';
+import { SKIN_OF, applySkin } from '../data/skins';
+import { BARKS, EASTER_EGGS, BARK_CHANCE, BARK_COOLDOWN, type BarkKind } from '../data/barks';
+import { stageMusic, bossMusic } from '../systems/Music';
+import { WaveQuestTracker } from '../systems/WaveQuests';
+import { weatherForWave, WEATHER_MAP, WEATHER_RULE_KEY } from '../systems/Weather';
+import { mechanicOpen } from '../systems/Mechanics';
+import { AURA_WEAPON_IDS } from '../data/evolutions';
+import { boomOffset, BOOM_PASSES } from '../systems/BoomPaths';
+
+/** 开发者沙盒（?dev）：不刷怪、不计时、不掉落、不结算；玩家阵亡时原地复活。其余行为由开发者界面通过 onStep 驱动 */
+export interface SandboxOpts {
+  /** 是否运行章节地形机制（油渍、地鼠、冰面…） */
+  terrain: boolean;
+  /** 本次沙盒的阵亡次数（非无敌模式下统计） */
+  deaths: number;
+  /** 按本章本波的真实刷怪逻辑持续出怪 */
+  waves?: boolean;
+}
 
 export interface HitInfo {
   dmg: number;
@@ -62,6 +79,8 @@ export interface HitInfo {
   explosion?: boolean;
   /** 武器词条带来的暴击伤害 %，暴击时与道具暴击伤害相加后统一结算 */
   critBonus?: number;
+  /** 天赋追加的伤害（子弹 / 爆炸）：不再触发天赋 */
+  echo?: boolean;
 }
 
 interface Pickup {
@@ -97,6 +116,8 @@ interface SpawnMark {
 
 const isDebuff = (id: StatusId) => STATUSES[id].kind === 'debuff';
 const HEADLESS_MODE = new URLSearchParams(location.search).has('headless');
+/** L4：敌方子弹达到这个数量时开启弹幕降噪 */
+const NOISE_BULLETS = 24;
 /** 调试：window.__dmg = [] 后记录玩家受到的每次伤害 */
 const DEBUG_DMG = {
   push: (r: unknown[]) => {
@@ -108,10 +129,14 @@ const DEBUG_DMG = {
 export class GameScene extends Phaser.Scene {
   /** 调试：每帧模拟步数（用于自动化平衡测试）；Infinity = 每帧在 simBudgetMs 内尽可能多跑 */
   static simSpeed = 1;
+  /** 开发者沙盒：慢放倍率（< 1 慢放，仅在 simSpeed ≤ 1 时生效） */
+  static simScale = 1;
   /** 加速模拟时每帧最多占用的毫秒数（0 = 不限，按 simSpeed 固定步数） */
   static simBudgetMs = 0;
   /** 调试：每个模拟步开始前回调（测试机器人按模拟时间决策，与帧率无关） */
   static onStep: ((g: GameScene) => void) | null = null;
+  /** 开发者沙盒配置；null = 正常游戏 */
+  static sandbox: SandboxOpts | null = null;
 
   arena!: Phaser.Geom.Rectangle;
   player!: Rig;
@@ -119,6 +144,9 @@ export class GameScene extends Phaser.Scene {
   enemies: Enemy[] = [];
   bullets: Bullet[] = [];
   enemyBullets: Bullet[] = [];
+  /** L4：弹幕降噪状态与敌弹描边层 */
+  private noisy = false;
+  private dangerRing: Phaser.GameObjects.Graphics | null = null;
   pickups: Pickup[] = [];
   hazards: Hazard[] = [];
   marks: SpawnMark[] = [];
@@ -150,6 +178,9 @@ export class GameScene extends Phaser.Scene {
   shieldT = 0;
   shieldUp = false;
   lsCd = 0;
+  /** 吸血：本批触发时设下的冷却值与已触发次数（用于契合武器同批连续触发） */
+  lsCdSet = 0;
+  lsBatch = 0;
   killCounter = 0;
   eliteSpawned = false;
   keys!: Record<string, Phaser.Input.Keyboard.Key>;
@@ -175,6 +206,23 @@ export class GameScene extends Phaser.Scene {
   slippery = false;
   velX = 0;
   velY = 0;
+  /** H1：本波随机事件（null = 普通波） */
+  waveEvent: RunEventDef | null = null;
+  /** H1「宝箱怪潮」：宝箱掉率倍数与额外上限 */
+  eventCrateMult = 1;
+  eventCrateCap = 0;
+  /** 荆棘词缀反伤的每秒累计窗口 */
+  private thornyWin = { t: -99999, used: 0 };
+  /** 隐身技能的诱饵位置：非空时敌人追它（见 SkillStyles） */
+  decoy: { x: number; y: number } | null = null;
+  /** H5：本波小任务 */
+  readonly waveQuests = new WaveQuestTracker();
+  /** F7：上次说台词的时间（秒，场景时钟） */
+  private barkAt = -999;
+  /** G4：本局是否已召唤真结局 Boss */
+  finalSpawned = false;
+  /** B6：正在等待玩家决定是否花钱复活 */
+  reviveOffer = false;
 
   constructor() {
     super('Game');
@@ -187,6 +235,10 @@ export class GameScene extends Phaser.Scene {
     this.enemies = [];
     this.bullets = [];
     this.enemyBullets = [];
+    this.noisy = false;
+    this.dangerRing = null;
+    this.decoy = null;
+    this.thornyWin = { t: -99999, used: 0 };
     this.pickups = [];
     this.hazards = [];
     this.marks = [];
@@ -205,8 +257,44 @@ export class GameScene extends Phaser.Scene {
     this.overtime = 0;
     this.tookDamage = false;
     setInRun(true);
+    const sandbox = GameScene.sandbox;
+    // H1 / H3 / B5：本波事件、危险路线、无尽变异的规则在刷怪与属性计算之前写入
+    this.waveEvent = sandbox ? null : applyWaveRules();
+    // H6：天气（按局种子、章节与波次决定，读档后不变；挑战与练习模式始终晴天）
+    {
+      const prev = run.weather;
+      run.weather = weatherForWave(run.chapterId, run.wave, String(run.challenge?.seed ?? run.startedAt), {
+        enabled: !run.challenge && !sandbox && mechanicOpen('weather'),
+      });
+      const w = WEATHER_MAP[run.weather];
+      if (w.rule) run.extraRules[WEATHER_RULE_KEY] = w.rule;
+      else delete run.extraRules[WEATHER_RULE_KEY];
+      run.dirty();
+      if (run.weather !== prev && run.weather !== 'clear')
+        this.time.delayedCall(1200, () =>
+          this.events.emit('terrain', `${w.icon} ${tx(w.name[0], w.name[1])}：${tx(w.desc[0], w.desc[1])}`),
+        );
+    }
+    // H5：局内小任务
+    this.waveQuests.reset();
+    if (!sandbox && mechanicOpen('quests')) {
+      const q = this.waveQuests.start(run.wave, run.rand(`quest:${run.wave}`), {
+        isBoss: run.isBossWave(),
+        hasElite: run.isEliteWave(),
+        hasSkill: true,
+        hasAura: run.weapons.some((x) => AURA_WEAPON_IDS.has(x.id)),
+      });
+      if (q)
+        this.time.delayedCall(2600, () =>
+          this.events.emit('terrain', `${q.icon} ${tx(q.name[0], q.name[1])}：${tx(q.desc[0], q.desc[1])}`),
+        );
+    }
+    this.eventCrateMult = this.waveEvent?.id === 'chest_horde' ? 4 : 1;
+    this.eventCrateCap = this.waveEvent?.id === 'chest_horde' ? 3 : 0;
+    this.reviveOffer = false;
+    this.finalSpawned = false;
     // 每波开始时自动保存，暂停后可“保存并退出”，下次从本波开始继续
-    if (!HEADLESS_MODE) saveRun('wave');
+    if (!HEADLESS_MODE && !sandbox) saveRun('wave');
     this.enrageStacks = 0;
     this.pressureT = 0;
     this.pstatus = new StatusSet();
@@ -224,7 +312,14 @@ export class GameScene extends Phaser.Scene {
     this.fx = new Fx(this);
 
     const c = run.char;
-    this.player = new Rig(this, c.look, `char_${c.id}`, BALANCE.player.radius * 1.25);
+    // F6：装备皮肤时用换色后的外观（独立缓存键）
+    const skin = skinActive(c.id);
+    this.player = new Rig(
+      this,
+      skin ? applySkin(c.look, SKIN_OF[c.id]) : c.look,
+      `char_${c.id}${skin ? '_skin' : ''}`,
+      BALANCE.player.radius * 1.25,
+    );
     this.add.existing(this.player);
     this.player.setPosition(A.width / 2, A.height / 2);
     this.player.play('spawn', true);
@@ -267,26 +362,55 @@ export class GameScene extends Phaser.Scene {
 
     this.keys = this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,ESC,P') as Record<string, Phaser.Input.Keyboard.Key>;
 
-    this.timeLeft = waveDuration(run.wave);
+    this.timeLeft = sandbox ? 999 : waveDuration(run.wave, run.isBossWave());
     this.spawnT = 0.5;
-    if (run.isBossWave()) {
+    if (!sandbox && run.isBossWave()) {
       const bossId = run.bossForWave();
       this.time.delayedCall(800, () => this.queueSpawn(bossId, true));
+      // B2：无尽第 30 / 45 / 60…波是超级 Boss 波，再来一只不同的 Boss
+      if (isSuperBossWave(run.wave)) {
+        let second = run.bossForWave();
+        for (let i = 0; i < 6 && second === bossId; i++) second = run.bossForWave();
+        this.time.delayedCall(2600, () => this.queueSpawn(second, true));
+        this.time.delayedCall(900, () =>
+          this.terrainNotice(tx('超级 Boss 波：两只 Boss 同时来袭！', 'Super Boss wave: two bosses at once!')),
+        );
+      }
     }
+    if (this.waveEvent) this.startWaveEvent(this.waveEvent);
+    if (!sandbox && run.hardRoute)
+      this.time.delayedCall(600, () =>
+        this.terrainNotice(tx('危险路线：敌人更强，奖励更多', 'Dangerous route: tougher foes, better rewards')),
+      );
+    const muts = sandbox ? [] : mutations(run.wave);
+    if (muts.length && run.wave % 5 === 1)
+      this.time.delayedCall(1200, () =>
+        this.terrainNotice(
+          tx(
+            `变异加剧：精英与 Boss 必带 ${muts.length} 个变异词缀`,
+            `Mutation grows: elites and bosses carry ${muts.length} mutation affix(es)`,
+          ),
+        ),
+      );
 
     if (!HEADLESS_MODE) {
       this.scene.launch('Hud');
       this.scene.bringToTop('Hud');
     }
     // 章节音乐；Boss 登场时切到 Boss 战音乐，Boss 倒下后切回章节音乐
-    audio.playMusic(this, ch.music);
-    if (run.wave === 1) TERRAIN_INFO[ch.id]?.forEach((m, i) => this.time.delayedCall(1500 + i * 2600, () => this.terrainNotice(m)));
+    audio.playMusic(this, stageMusic(ch.music, run.wave, run.endless));
+    if (!sandbox && run.wave === 1)
+      TERRAIN_INFO[ch.id]?.forEach((m, i) => this.time.delayedCall(1500 + i * 2600, () => this.terrainNotice(m)));
     // 新手引导：第 1 波讲移动，技能第一次就绪时讲技能；精英 / Boss 出场时各讲一次
-    if (run.wave === 1) this.time.delayedCall(500, () => tip('move', this));
-    if (!seenTip('skill')) this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this) });
+    if (!sandbox && run.wave === 1) this.time.delayedCall(500, () => tip('move', this, true));
+    if (!sandbox && !seenTip('skill'))
+      this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this, true) });
     this.events.on('bossSpawn', (e: Enemy) => {
-      if (e.boss) tip(e.boss.elite ? 'elite' : 'boss', this);
+      if (e.boss && !GameScene.sandbox) tip(e.boss.elite ? 'elite' : 'boss', this, true);
+      if (e.boss && !e.boss.elite) this.bark('boss');
     });
+    this.barkAt = -999;
+    if (!sandbox) this.time.delayedCall(900, () => this.bark('start'));
     audio.play(this, 'wave');
     this.events.once('shutdown', () => {
       this.weapons.destroy();
@@ -307,6 +431,7 @@ export class GameScene extends Phaser.Scene {
     s.luck += t.luck;
     s.lifeSteal += t.lifeSteal;
     s.dodge = Math.min(s.dodge, run.dodgeCap);
+    s.auraSize = Math.min(s.auraSize, BALANCE.auraSizeCap);
     // 吸血不设百分比上限：强度由触发冷却（每秒最多回复量）限制，见 BALANCE.player.lifeStealTickCd
     this.rangeMult = Math.max(0.3, 1 + t.range / 100);
     this.statusDmgBonus = run.specials.statusDmg;
@@ -333,10 +458,21 @@ export class GameScene extends Phaser.Scene {
       this.tweens.timeScale = Math.max(1, (steps * 1000) / 60 / Math.max(1, dms));
       return;
     }
-    this.time.timeScale = 1;
-    this.tweens.timeScale = 1;
+    this.time.timeScale = GameScene.simScale;
+    this.tweens.timeScale = GameScene.simScale;
     if (!this.dead) GameScene.onStep?.(this);
-    this.step(Math.min(dms / 1000, 1 / 20));
+    this.step(Math.min(dms / 1000, 1 / 20) * GameScene.simScale);
+  }
+
+  /** 开发者沙盒：场景暂停时手动推进一个 1/60 秒的模拟步（单步调试） */
+  devFrame(): void {
+    if (this.dead) return;
+    const ts = this.time.timeScale;
+    this.time.timeScale = 0;
+    GameScene.onStep?.(this);
+    this.advanceClock(1000 / 60);
+    this.step(1 / 60, true);
+    this.time.timeScale = ts;
   }
 
   /** 手动推进场景计时器 ms 毫秒（自动推进已被 timeScale = 0 关闭） */
@@ -348,9 +484,13 @@ export class GameScene extends Phaser.Scene {
     c.timeScale = 0;
   }
 
-  private step(dt: number): void {
-    if (this.dead || !this.sys.isActive()) return;
-    if (Phaser.Input.Keyboard.JustDown(this.keys.ESC) || Phaser.Input.Keyboard.JustDown(this.keys.P) || controls.pausePressed) {
+  private step(dt: number, force = false): void {
+    if (this.dead || (!force && !this.sys.isActive())) return;
+    const sandbox = GameScene.sandbox;
+    if (
+      !sandbox &&
+      (Phaser.Input.Keyboard.JustDown(this.keys.ESC) || Phaser.Input.Keyboard.JustDown(this.keys.P) || controls.pausePressed)
+    ) {
       controls.pausePressed = false;
       this.scene.pause();
       this.scene.pause('Hud');
@@ -360,10 +500,14 @@ export class GameScene extends Phaser.Scene {
     this.grid.clear();
     for (const e of this.enemies) if (e.alive) this.grid.insert(e);
     this.updatePlayerStatus(dt);
-    this.terrain.update(dt);
+    if (!sandbox || sandbox.terrain) this.terrain.update(dt);
     this.updatePlayer(dt);
-    if (!this.waveOver) {
-      this.updateTimer(dt);
+    // 沙盒可选「真实刷怪」：按本章本波的刷怪逻辑出怪，但不计时、不结算
+    if (!this.waveOver && (!sandbox || sandbox.waves)) {
+      if (!sandbox) {
+        this.updateTimer(dt);
+        this.waveQuests.tick(dt);
+      }
       this.updateSpawning(dt);
     }
     this.weapons.update(dt);
@@ -439,6 +583,7 @@ export class GameScene extends Phaser.Scene {
         this.cleanseT = 0;
         if (st.list.some((x) => isDebuff(x.id))) {
           st.cleanse();
+          this.talent.onCleanse();
           this.fx.ring(this.player.x, this.player.y, 70, 0xfff3b0, 400);
         }
       }
@@ -450,6 +595,13 @@ export class GameScene extends Phaser.Scene {
     const k = this.keys;
     let mx = controls.joyX,
       my = controls.joyY;
+    const pad = readPad();
+    if (pad.connected && (pad.x || pad.y)) {
+      mx = pad.x;
+      my = pad.y;
+    }
+    if (pad.skill) controls.skillPressed = true;
+    if (pad.pause) controls.pausePressed = true;
     if (k.A.isDown || k.LEFT.isDown) mx = -1;
     if (k.D.isDown || k.RIGHT.isDown) mx = 1;
     if (k.W.isDown || k.UP.isDown) my = -1;
@@ -537,6 +689,7 @@ export class GameScene extends Phaser.Scene {
 
   heal(n: number, show = true): void {
     if (n <= 0 || this.pstatus.totals.noHeal || this.dead) return;
+    n *= run.rules.heal;
     const before = run.hp;
     run.hp = Math.min(this.stats.maxHp, run.hp + n);
     if (show && run.hp - before >= 1) this.fx.number(this.player.x, this.player.y - 20, run.hp - before, '#52ff8a');
@@ -597,6 +750,8 @@ export class GameScene extends Phaser.Scene {
     this.cameras.main.flash(80, 120, 0, 0, false);
     this.applyPlayerStatus(sp.onHurtSelf);
     this.talent.onHurt();
+    this.bark('hurt');
+    this.waveQuests.onHurt();
     if (source?.alive) {
       for (const d of sp.onHurtEnemy) source.status.apply(d);
       const th = sp.thorns + this.pstatus.totals.reflect;
@@ -619,6 +774,22 @@ export class GameScene extends Phaser.Scene {
 
   private onPlayerDeath(): void {
     if (this.dead) return;
+    // 开发者沙盒：不结算，原地满血复活并计数
+    const sandbox = GameScene.sandbox;
+    if (sandbox) {
+      sandbox.deaths++;
+      run.hp = this.stats.maxHp;
+      this.iframes = 1;
+      this.pstatus.cleanse();
+      this.fx.ring(this.player.x, this.player.y, 160, 0xff3b30, 500, true);
+      this.fx.label(
+        this.player.x,
+        this.player.y - 40,
+        tx(`阵亡 ×${sandbox.deaths}（沙盒复活）`, `Died ×${sandbox.deaths} (sandbox revive)`),
+        '#ff6b6b',
+      );
+      return;
+    }
     if (this.talent.preventDeath()) return;
     // 天赋「不屈」：每局一次，以少量生命站起来
     const cd = treeTotals().cheatDeath;
@@ -636,11 +807,79 @@ export class GameScene extends Phaser.Scene {
       run.hp = Math.ceil(this.stats.maxHp * 0.5);
       this.iframes = 2;
       this.pstatus.cleanse();
+      this.talent.onCleanse();
       this.fx.ring(this.player.x, this.player.y, 300, 0xffd166, 700, true);
       this.fx.label(this.player.x, this.player.y, tx('凤凰涅槃！', 'Phoenix Rebirth!'), '#ffd166');
       for (const b of this.enemyBullets) if (b.alive) b.kill();
       return;
     }
+    // B6：无尽模式可花本局番茄籽复活一次
+    if (run.endless && !run.endlessRevived && !this.reviveOffer && run.seeds >= reviveCost(run.wave) && !HEADLESS_MODE) {
+      this.offerRevive();
+      return;
+    }
+    this.finalDeath();
+  }
+
+  /** B6：暂停战斗，询问是否花钱复活 */
+  private offerRevive(): void {
+    this.reviveOffer = true;
+    this.dead = true; // 暂停模拟步
+    run.hp = 0;
+    const cost = reviveCost(run.wave);
+    const W = this.scale.width,
+      H = this.scale.height;
+    const shade = this.add.rectangle(0, 0, W, H, 0x000000, 0.6).setOrigin(0).setScrollFactor(0).setDepth(30000);
+    const title = uiText(this, W / 2, H / 2 - 90, tx('倒下了……', 'You fell…'), 40, '#ff6b6b')
+      .setOrigin(0.5)
+      .setScrollFactor(0)
+      .setDepth(30001);
+    const sub = uiText(
+      this,
+      W / 2,
+      H / 2 - 40,
+      tx('无尽模式每局可以复活一次（本局成绩会标记为复活过）', 'Once per endless run you may revive (the run is marked as revived)'),
+      18,
+      '#c9a9a6',
+    )
+      .setOrigin(0.5)
+      .setScrollFactor(0)
+      .setDepth(30001);
+    const parts: Phaser.GameObjects.GameObject[] = [shade, title, sub];
+    const close = () => parts.forEach((o) => o.destroy());
+    const yes = button(this, W / 2 - 140, H / 2 + 40, 240, 60, tx(`复活 🌱${cost}`, `Revive 🌱${cost}`), () => {
+      close();
+      run.seeds -= cost;
+      run.endlessRevived = true;
+      save.meta.endlessRevives++;
+      bump('endlessRevives');
+      this.reviveOffer = false;
+      this.dead = false;
+      run.hp = this.stats.maxHp;
+      this.iframes = 2.5;
+      this.pstatus.cleanse();
+      for (const b of this.enemyBullets) if (b.alive) b.kill();
+      this.fx.ring(this.player.x, this.player.y, 300, 0x52ff8a, 700, true);
+    });
+    const no = button(
+      this,
+      W / 2 + 140,
+      H / 2 + 40,
+      240,
+      60,
+      tx('就此结束', 'End run'),
+      () => {
+        close();
+        this.reviveOffer = false;
+        this.finalDeath();
+      },
+      0x555555,
+    );
+    for (const b of [yes, no]) b.setScrollFactor(0).setDepth(30002);
+    parts.push(yes, no);
+  }
+
+  private finalDeath(): void {
     run.hp = 0;
     this.dead = true;
     audio.play(this, 'die');
@@ -655,6 +894,79 @@ export class GameScene extends Phaser.Scene {
     });
   }
 
+  /** F7：角色台词气泡（按场合概率触发，有冷却；角色专属彩蛋优先） */
+  bark(kind: BarkKind): void {
+    if (HEADLESS_MODE || GameScene.sandbox || this.dead) return;
+    const now = this.time.now / 1000;
+    if (now - this.barkAt < BARK_COOLDOWN || Math.random() > BARK_CHANCE[kind]) return;
+    this.barkAt = now;
+    const eggs = EASTER_EGGS.filter((e) => e.charId === run.charId && e.kind === kind);
+    const [zh, en] =
+      eggs.length && Math.random() < 0.5 ? eggs[Math.floor(Math.random() * eggs.length)].text : Phaser.Utils.Array.GetRandom(BARKS[kind]);
+    const t = uiText(this, this.player.x, this.player.y - 70, tx(zh, en), 18, '#fff4ea')
+      .setOrigin(0.5)
+      .setDepth(13000);
+    t.setBackgroundColor('#1a0a0ccc').setPadding(8, 4, 8, 4);
+    const follow = () => t.setPosition(this.player.x, t.y);
+    this.events.on('postupdate', follow);
+    this.tweens.add({
+      targets: t,
+      y: t.y - 24,
+      alpha: { from: 1, to: 0 },
+      delay: 1300,
+      duration: 500,
+      onComplete: () => {
+        this.events.off('postupdate', follow);
+        t.destroy();
+      },
+    });
+  }
+
+  /** H1：事件波的表现与持续效果 */
+  private startWaveEvent(ev: RunEventDef): void {
+    this.time.delayedCall(700, () => this.terrainNotice(`${ev.icon} ${tx(ev.name[0], ev.name[1])}：${describeEvent(ev)}`));
+    if (ev.id === 'gold_rain')
+      this.time.addEvent({
+        delay: 1200,
+        loop: true,
+        callback: () => {
+          if (this.waveOver || this.dead) return;
+          const a = Math.random() * Math.PI * 2,
+            d = 80 + Math.random() * 260;
+          const x = Phaser.Math.Clamp(this.player.x + Math.cos(a) * d, this.arena.x + 30, this.arena.right - 30);
+          const y = Phaser.Math.Clamp(this.player.y + Math.sin(a) * d, this.arena.y + 30, this.arena.bottom - 30);
+          this.dropPickup('seed', x, y, 1 + Math.floor(run.wave / 4), 1);
+        },
+      });
+    if (ev.id === 'darkness' && !HEADLESS_MODE) {
+      const W = this.scale.width,
+        H = this.scale.height;
+      const dark = this.add
+        .rectangle(0, 0, W * 3, H * 3, 0x000000, 0.78)
+        .setOrigin(0.5)
+        .setScrollFactor(0)
+        .setDepth(19000);
+      dark.setPosition(W / 2, H / 2);
+      const hole = this.make.graphics({}, false);
+      const mask = hole.createGeometryMask();
+      mask.setInvertAlpha(true);
+      dark.setMask(mask);
+      const upd = () => {
+        const cam = this.cameras.main;
+        hole
+          .clear()
+          .fillStyle(0xffffff)
+          .fillCircle(this.player.x - cam.scrollX, this.player.y - cam.scrollY, 260);
+      };
+      this.events.on('postupdate', upd);
+      this.events.once('waveEnd', () => {
+        this.events.off('postupdate', upd);
+        dark.destroy();
+      });
+      this.events.once('shutdown', () => this.events.off('postupdate', upd));
+    }
+  }
+
   recordProgress(): void {
     const key = `${run.charId}_${run.chapterId}`;
     save.bestWave[key] = Math.max(save.bestWave[key] ?? 0, run.wave);
@@ -664,12 +976,13 @@ export class GameScene extends Phaser.Scene {
   }
 
   shake(intensity: number, dur: number): void {
-    if (save.settings.shake) this.cameras.main.shake(dur, intensity);
+    if (save.settings.shake) this.cameras.main.shake(dur, intensity * (save.settings.shakeScale ?? 1));
   }
 
   // ---------------- 波次与刷怪 ----------------
   private updateTimer(dt: number): void {
     this.timeLeft -= dt;
+    run.waveSec[run.wave] = (run.waveSec[run.wave] ?? 0) + dt;
     if (run.isBossWave()) {
       if (this.timeLeft <= 0 && this.boss?.alive && !this.boss.enraged) {
         this.boss.enraged = true;
@@ -697,7 +1010,7 @@ export class GameScene extends Phaser.Scene {
       this.timeLeft = Math.max(0, this.timeLeft);
       return;
     }
-    const dur = waveDuration(run.wave);
+    const dur = waveDuration(run.wave, run.isBossWave());
     if (run.isEliteWave() && !this.eliteSpawned && this.timeLeft < dur * 0.75) {
       this.eliteSpawned = true;
       this.queueSpawn(run.eliteForWave(), true);
@@ -727,7 +1040,7 @@ export class GameScene extends Phaser.Scene {
     if (this.aliveCount() >= BALANCE.maxEnemies) return;
     const pool = run.chapter.pool.filter((p) => w >= p.from && (p.to === undefined || w <= p.to));
     const total = pool.reduce((a, p) => a + p.weight, 0);
-    let batch = Math.round(spawnBatch(w) * (run.mod('swarm') ? 1.4 : 1));
+    let batch = Math.round(spawnBatch(w) * (run.mod('swarm') ? 1.4 : 1) * run.rules.spawn);
     if (boss) batch = Math.ceil(batch / 2);
     // 第 7 波起有概率出现“词缀精英小怪”
     const affixedAlive = this.enemies.filter((e) => e.alive && !e.boss && e.affixes.length).length;
@@ -744,7 +1057,7 @@ export class GameScene extends Phaser.Scene {
       const def = ENEMY_MAP[pick.enemy];
       const group = def.group ?? 1;
       const [cx, cy] = this.randomSpawnPos();
-      const champ = run.mod('champions') ? 3 : 1;
+      const champ = (run.mod('champions') ? 3 : 1) * run.rules.champ;
       const affixed =
         w >= 7 && affixedAlive < (2 + run.chapterId / 2) * champ && Math.random() < 0.015 * (w - 5) * (0.8 + run.chapterId * 0.2) * champ;
       if (affixed) {
@@ -809,51 +1122,52 @@ export class GameScene extends Phaser.Scene {
     if (!e) return null;
     const def = ENEMY_MAP[id];
     markSeen('enemies', id);
-    const ch = run.chapter;
+    const ms = minionStats(def, run.wave, run.chapter);
+    const R = run.rules;
     e.spawnMinion(
       this,
       def,
       x,
       y,
-      Math.round(enemyHp(def.hp, def.hpGrowth, run.wave, ch.hpMult) * (run.mod('giants') ? 1.5 : run.mod('swarm') ? 0.75 : 1)),
-      enemyDamage(def.dmg, def.dmgGrowth, run.wave, ch.dmgMult),
-      ch.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1),
+      Math.round(ms.hp * (run.mod('giants') ? 1.5 : run.mod('swarm') ? 0.75 : 1) * R.enemyHp),
+      Math.max(1, Math.round(ms.dmg * R.enemyDmg)),
+      ms.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1) * R.enemySpeed,
       affixes,
     );
     return e;
   }
 
-  private spawnBossNow(id: string, x: number, y: number): void {
+  /** 立即生成精英 / Boss。affixes 传入时替代随机词缀（开发者界面用） */
+  spawnBossNow(id: string, x: number, y: number, affixes?: AffixId[]): Enemy | null {
     const e = this.freeEnemy();
-    if (!e) return;
+    if (!e) return null;
     const def = BOSS_MAP[id];
     markSeen('bosses', id);
-    const ch = run.chapter;
     // 精英 / Boss 的随波次缩放系数统一由 balance.ts 提供（不再在此散落 magic number）
-    const hp = Math.round(
-      def.hp *
-        chapterScale(ch.bossHpMult, run.wave) *
-        (def.elite ? eliteHpScale(run.wave) : bossHpScale()) *
-        endlessHp(run.wave) *
-        (run.mod('tough_bosses') ? 1.5 : 1),
-    );
-    const dmg = Math.round(
-      def.dmg * bossDmgScale() * chapterScale(ch.dmgMult, run.wave) * (def.elite ? eliteDmgScale(run.wave) : 1) * endlessDmg(run.wave),
-    );
-    // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加
-    const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0);
-    const affixes = def.elite ? this.rollAffixes(nAffix).filter((a) => !(def.affixes ?? []).includes(a)) : [];
+    const R = run.rules;
+    const base = bossStats(def, run.wave, run.chapter, run.mod('tough_bosses') ? 1.5 : 1);
+    const hp = Math.round(base.hp * R.enemyHp * R.eliteHp);
+    const dmg = Math.max(1, Math.round(base.dmg * R.enemyDmg));
+    // 词缀数量：第 1~2 章第 5 波精英无随机词缀，之后逐步增加；危机等级可再加
+    const nAffix = (run.wave >= 10 ? 1 : 0) + (run.chapterId >= 3 ? 1 : 0) + (run.chapterId >= 5 ? 1 : 0) + R.eliteAffix;
+    affixes ??= def.elite ? this.rollAffixes(nAffix) : [];
+    // B5：无尽变异词缀，精英与 Boss 必带
+    if (!GameScene.sandbox) for (const m of mutations(run.wave)) if (!affixes.includes(m)) affixes.push(m);
+    affixes = affixes.filter((a) => !(def.affixes ?? []).includes(a));
     e.spawnBoss(this, def, x, y, hp, dmg, affixes);
+    // A6：危机 10 / 15 / 20 时 Boss 学会新招式
+    if (!def.elite && R.bossSkill > 0) addDangerPatterns(e, R.bossSkill);
     if (!def.elite) {
       this.boss = e;
-      audio.playMusic(this, 'bgm_boss');
+      audio.playMusic(this, bossMusic(id === TRUE_FINAL_BOSS_ID));
     }
     this.events.emit('bossSpawn', e);
     this.shake(0.01, 300);
+    return e;
   }
 
   private endWave(): void {
-    if (this.waveOver) return;
+    if (this.waveOver || GameScene.sandbox) return;
     this.waveOver = true;
     audio.play(this, 'wave');
     for (const e of this.enemies)
@@ -870,6 +1184,8 @@ export class GameScene extends Phaser.Scene {
     for (const p of this.pickups) if (p.alive && p.kind !== 'seed') p.magnet = true;
     this.pstatus.cleanse();
     this.player.play('victory', true);
+    this.barkAt = -999;
+    this.bark('win');
     const s = this.stats;
     if (s.harvest > 0) {
       run.earn(Math.round(s.harvest), 'harvest');
@@ -877,6 +1193,34 @@ export class GameScene extends Phaser.Scene {
       run.harvestBonus += Math.max(1, Math.ceil(s.harvest * BALANCE.harvestGrowth));
       run.dirty();
     }
+    // 遗物：每波额外番茄籽 / 宝箱；B1 无尽每 10 波一次遗物三选一
+    const rf = run.relicFx.flags;
+    if (rf.waveSeeds) run.earn(rf.waveSeeds, 'relic');
+    // H5：小任务结算
+    const qr = this.waveQuests.finish();
+    if (qr) {
+      run.earn(qr.seeds, 'quest');
+      run.addXp(qr.xp);
+      this.events.emit('terrain', tx(`✅ 小任务完成：+${qr.seeds} 番茄籽`, `✅ Quest complete: +${qr.seeds} Seeds`));
+    }
+    if (rf.waveCrates) run.pendingCrates += rf.waveCrates;
+    if (run.endless && run.wave % 10 === 0) {
+      run.pendingRelics++;
+      bump('endlessRelics');
+    }
+    if (run.endless) {
+      if (isSuperBossWave(run.wave)) bump('superBossWins');
+      bumpMax('mutationMax', mutations(run.wave).length);
+      if (this.waveEvent) bump('endlessEvents');
+      if (run.hardRoute) bump('endlessHardRoutes');
+    }
+    // H3：危险路线完成，额外一个宝箱
+    if (run.hardRoute) {
+      run.pendingCrates++;
+      run.hardRoute = false;
+      bump('hardRoutes');
+    }
+    if (this.waveEvent) bump(`event:${this.waveEvent.id}`);
     const interest = run.specials.interest;
     if (interest > 0) run.earn(Math.min(run.wave * 6, Math.floor((run.seeds * interest) / 100)), 'interest'); // 利息有上限，防止滚雪球
     const growth = waveGrowthMods(run.charId);
@@ -888,6 +1232,7 @@ export class GameScene extends Phaser.Scene {
     this.killCounter = 0;
     if (!this.tookDamage) {
       save.stats.perfectWaves++;
+      run.perfectWaves++;
       bump(`chPerfect:${run.chapterId}`);
     }
     bump('waves');
@@ -917,7 +1262,8 @@ export class GameScene extends Phaser.Scene {
       this.scene.stop('Hud');
       if (run.isBossWave() && !run.endless) {
         this.recordProgress();
-        this.scene.start('Result', { win: true });
+        // G4：击败腐烂之王后先播真结局
+        this.scene.start(run.chapterId === 7 && this.finalSpawned ? 'Ending' : 'Result', { win: true });
       } else {
         this.scene.start('LevelUp');
       }
@@ -950,7 +1296,11 @@ export class GameScene extends Phaser.Scene {
       if (e.contactCd > 0 || e.status.totals.disable || e.def?.critter) continue;
       e.contactCd = 0.5;
       e.rig?.play('attack');
-      this.damagePlayer(e.dmg * e.dealtMult, e, e.attackDebuffs(e.state === 'charge' ? e.chargeDebuff : undefined));
+      this.damagePlayer(
+        e.dmg * e.dealtMult * BALANCE.enemyHit.contact,
+        e,
+        e.attackDebuffs(e.state === 'charge' ? e.chargeDebuff : undefined),
+      );
       if (this.iframes > 0) break;
     }
   }
@@ -985,7 +1335,7 @@ export class GameScene extends Phaser.Scene {
       b.setDepth(12000);
       this.bullets.push(b);
     }
-    return b.fire(key, x, y, angle, speed, life, radius);
+    return b.fire(key, x, y, angle, speed, life, radius).setAlpha(this.noisy ? 0.6 : 1);
   }
 
   private updateBullets(dt: number): void {
@@ -994,20 +1344,29 @@ export class GameScene extends Phaser.Scene {
     for (const b of this.bullets) {
       if (!b.alive) continue;
       if (b.kind === 'boomerang') {
-        b.outT -= dt;
-        if (b.outT <= 0 && !b.returning) {
-          b.returning = true;
+        // 沿曲线飞行：局部原点从出手点过渡到玩家当前位置，t = 1 时正好回到手里
+        b.pathT += dt;
+        const t = Math.min(1, b.pathT / b.pathDur);
+        const pass = Math.min(BOOM_PASSES[b.path] - 1, Math.floor(t * BOOM_PASSES[b.path]));
+        if (pass !== b.pathPass) {
+          b.pathPass = pass;
           b.hitSet.clear();
         }
-        if (b.returning) {
-          const ang = Math.atan2(p.y - b.y, p.x - b.x);
-          const sp = Math.hypot(b.vx, b.vy);
-          b.vx = Math.cos(ang) * sp;
-          b.vy = Math.sin(ang) * sp;
-          if (Phaser.Math.Distance.Between(b.x, b.y, p.x, p.y) < 30) {
-            b.kill();
-            continue;
-          }
+        const ox = b.sx + (p.x - b.sx) * t,
+          oy = b.sy + (p.y - b.sy) * t;
+        const { u, v } = boomOffset(b.path, t, b.pathReach, b.pathSide);
+        const c = Math.cos(b.pathAng),
+          sn = Math.sin(b.pathAng);
+        const nx = ox + u * c - v * sn,
+          ny = oy + u * sn + v * c;
+        if (dt > 0) {
+          b.vx = (nx - b.x) / dt;
+          b.vy = (ny - b.y) / dt;
+        }
+        b.setPosition(nx, ny);
+        if (t >= 1) {
+          b.kill();
+          continue;
         }
       } else {
         b.life -= dt;
@@ -1017,14 +1376,30 @@ export class GameScene extends Phaser.Scene {
           continue;
         }
       }
-      b.x += b.vx * dt;
-      b.y += b.vy * dt;
+      if (b.kind !== 'boomerang') {
+        // 追踪弹：朝最近的敌人逐渐转向
+        if (b.homing > 0) {
+          const t = this.grid.nearest(b.x, b.y, 320, b.hitSet);
+          if (t) {
+            const cur = Math.atan2(b.vy, b.vx);
+            const want = Math.atan2(t.y - b.y, t.x - b.x);
+            const ang = Phaser.Math.Angle.RotateTo(cur, want, b.homing * dt);
+            const sp = Math.hypot(b.vx, b.vy);
+            b.vx = Math.cos(ang) * sp;
+            b.vy = Math.sin(ang) * sp;
+            b.rotation = ang;
+          }
+        }
+        b.x += b.vx * dt;
+        b.y += b.vy * dt;
+      }
       if (b.spin) b.rotation += b.spin * dt;
       if (b.kind === 'flame') {
         b.setScale(b.scale + dt * 3);
         b.setAlpha(Math.min(1, b.life * 3));
       }
-      if (b.x < a.x - 40 || b.x > a.right + 40 || b.y < a.y - 40 || b.y > a.bottom + 40) {
+      // 回旋镖的曲线可能短暂越过场地边缘，但总会飞回来，不在这里销毁
+      if (b.kind !== 'boomerang' && (b.x < a.x - 40 || b.x > a.right + 40 || b.y < a.y - 40 || b.y > a.bottom + 40)) {
         b.kill();
         continue;
       }
@@ -1048,14 +1423,27 @@ export class GameScene extends Phaser.Scene {
         status: b.status,
         cls: 'ranged',
         weaponId: b.src || undefined,
+        echo: b.echo || undefined,
       };
       if (b.kind === 'rocket') {
         this.rocketBoom(b);
         b.kill();
         continue;
       }
+      const fullHp = b.refundFull && target.hp >= target.maxHp;
       this.fx.hit(b.x, b.y, b.rotation, b.crit);
       this.weaponHit(target, info, b.x - b.vx * 0.05, b.y - b.vy * 0.05);
+      // 芦笋弓手：打满血敌人这一下不消耗穿透
+      if (fullHp) continue;
+      // 玉米枪手：每飞行 100 距离多一次穿透
+      if (b.pierce <= 0 && b.distPierce > 0) {
+        const far = Math.min(b.distPierce, Math.floor(Math.hypot(b.x - b.sx, b.y - b.sy) / 100));
+        if (far > b.distUsed) {
+          b.distUsed++;
+          b.dmg *= 0.85;
+          continue;
+        }
+      }
       if (b.pierce > 0) {
         b.pierce--;
         b.dmg *= b.kind === 'flame' || b.kind === 'boomerang' ? 1 : 0.8;
@@ -1075,7 +1463,38 @@ export class GameScene extends Phaser.Scene {
           continue;
         }
       }
+      if (b.split > 0) this.splitBullet(b);
       b.kill();
+    }
+  }
+
+  /** 道具「分裂」：子弹打完最后一下后朝前方扇形分出碎片。
+   *  碎片伤害按层递减、不会再打已命中过的敌人，层数与全场碎片数都有上限。 */
+  private splitBullet(b: Bullet): void {
+    const S = BALANCE.split;
+    let live = 0;
+    for (const x of this.bullets) if (x.alive && x.gen > 0) live++;
+    if (live + S.shards > S.maxLive) return;
+    const sp = Math.hypot(b.vx, b.vy) * 0.9;
+    const base = Math.atan2(b.vy, b.vx);
+    const spread = Phaser.Math.DegToRad(S.spread);
+    const key = b.texture.key;
+    for (let k = 0; k < S.shards; k++) {
+      const ang = base - spread / 2 + (S.shards > 1 ? (spread * k) / (S.shards - 1) : spread / 2);
+      const f = this.spawnPlayerBullet(key, b.x, b.y, ang, sp, S.life, Math.max(5, b.radius * 0.8));
+      f.dmg = b.dmg * S.dmg;
+      f.crit = b.crit;
+      f.critBonus = b.critBonus;
+      f.knockback = b.knockback * 0.5;
+      f.effect = b.effect;
+      f.lifeSteal = b.lifeSteal;
+      f.status = b.status;
+      f.src = b.src;
+      f.echo = b.echo;
+      f.gen = b.gen + 1;
+      f.split = b.split - 1;
+      for (const e of b.hitSet) f.hitSet.add(e);
+      f.setScale(Math.pow(0.75, f.gen));
     }
   }
 
@@ -1083,9 +1502,18 @@ export class GameScene extends Phaser.Scene {
     this.explode(
       b.x,
       b.y,
-      b.effect?.explode ?? 60,
+      (b.effect?.explode ?? 60) * b.areaMul,
       b.dmg,
-      { dmg: b.dmg, crit: b.crit, critBonus: b.critBonus, effect: b.effect, knockback: 20, status: b.status, weaponId: b.src || undefined },
+      {
+        dmg: b.dmg,
+        crit: b.crit,
+        critBonus: b.critBonus,
+        effect: b.effect,
+        knockback: 20,
+        status: b.status,
+        weaponId: b.src || undefined,
+        echo: b.echo || undefined,
+      },
       0xff5400,
     );
   }
@@ -1093,8 +1521,22 @@ export class GameScene extends Phaser.Scene {
   private updateEnemyBullets(dt: number): void {
     const a = this.arena,
       p = this.player;
+    // L4：敌方弹幕多时降噪——敌弹加红色描边、我方子弹调淡，敌我一眼分清
+    let alive = 0;
+    for (const b of this.enemyBullets) if (b.alive) alive++;
+    const busy = alive >= NOISE_BULLETS;
+    if (busy !== this.noisy) {
+      this.noisy = busy;
+      for (const b of this.bullets) b.setAlpha(busy ? 0.6 : 1);
+      if (!busy) this.dangerRing?.clear();
+    }
+    if (busy) {
+      this.dangerRing ??= this.add.graphics().setDepth(4);
+      this.dangerRing.clear().lineStyle(3, 0xff1744, 0.9);
+    }
     for (const b of this.enemyBullets) {
       if (!b.alive) continue;
+      if (busy) this.dangerRing!.strokeCircle(b.x, b.y, b.radius + 4);
       b.life -= dt;
       b.x += b.vx * dt;
       b.y += b.vy * dt;
@@ -1127,14 +1569,22 @@ export class GameScene extends Phaser.Scene {
     let dmg = info.dmg;
     let crit = info.crit;
     // 标记：必定暴击
+    let marked = false;
     if (!crit && e.status.has('mark')) {
       crit = true;
+      marked = true;
       dmg *= 1.5;
       e.status.remove('mark');
     }
+    // 天赋：契合武器对特定目标的额外暴击（致盲、满血、冰冻、减益……）
+    const wasCrit = crit;
+    const [tCrit, tCritDmg] = this.talent.preHit(e, info, crit, marked);
+    crit = tCrit;
+    if (crit && !wasCrit) dmg *= WEAPON_MAP[info.weaponId ?? '']?.critMult ?? 1.5;
+    const hctx = this.talent.ctx(e, info);
     // 暴击伤害：武器词条 + 道具 / 角色 / 天赋相加成一个池子，总加成不超过 critDmgCap（不再两层相乘）
     if (crit) {
-      const cd = Math.min(BALANCE.critDmgCap, sp.critDmg + (info.critBonus ?? 0));
+      const cd = Math.min(BALANCE.critDmgCap, sp.critDmg + (info.critBonus ?? 0) + tCritDmg);
       if (cd > 0) dmg *= 1 + cd / 100;
     }
     if (info.knockback && e.knockResist < 1) {
@@ -1150,37 +1600,56 @@ export class GameScene extends Phaser.Scene {
     if (eff?.burn) e.status.apply({ id: 'burn', dur: eff.burn.dur, value: eff.burn.dps * 0.5 + s.elemental * 0.3 }, statusScale);
     else if (sp.burnChance && Math.random() * 100 < sp.burnChance)
       e.status.apply({ id: 'burn', dur: 2.5, value: 1 + s.elemental * 0.3 }, statusScale);
+    if (eff?.poison) e.status.apply({ id: 'poison', dur: eff.poison.dur, stacks: eff.poison.stacks }, statusScale);
     for (const st of info.status ?? []) e.status.apply(st, statusScale);
     for (const st of sp.onHit) e.status.apply(st, statusScale);
     this.applyPlayerStatus(sp.onHitSelf);
     // 荆棘词缀反伤
-    if (info.cls === 'melee' && e.affixes.includes('thorny')) this.hurtDirect(Math.max(1, dmg * 0.05), '#6a994e');
-    // 吸血（参考土豆兄弟）：每次命中按吸血率概率回 1 点；吸到后 lifeStealTickCd 秒内不能再吸，
-    // 即每秒最多回复 1 / lifeStealTickCd 点。吸血率本身不设上限，群体伤害也不打折（触发冷却已足够限制）。
+    // 按实际伤害、经护甲、单次与每秒封顶；受击无敌期间不反伤（见 balance.thornyReflect）
+    if (info.cls === 'melee' && e.affixes.includes('thorny') && this.iframes <= 0) {
+      const now = this.time.now;
+      if (now - this.thornyWin.t >= 1000 || now < this.thornyWin.t) this.thornyWin = { t: now, used: 0 };
+      const r = thornyReflect(Math.min(dmg, e.hp), s.maxHp, s.armor, this.thornyWin.used);
+      if (r > 0) {
+        this.thornyWin.used += r;
+        this.hurtDirect(r, '#6a994e');
+      }
+    }
+    // 吸血（参考土豆兄弟）：每次命中按吸血率概率回 max(1, 2% 最大生命)；吸到后 lifeStealTickCd 秒内不能再吸。
+    // 大蒜伯爵契合武器：冷却减半，且同一次群体命中（同一步内、冷却尚未走动）最多连续触发 favoredBurst 次。
     const ls = (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult();
-    if (ls > 0 && this.lsCd <= 0 && Math.random() * 100 < ls) {
-      this.lsCd = BALANCE.player.lifeStealTickCd;
-      this.heal(1, false);
+    if (ls > 0) {
+      const rule = this.talent.lifeStealRule(info.weaponId);
+      // 冷却刚被本批触发设下、还没经过任何时间推进 → 视为同一次群体命中
+      const sameBatch = this.lsCd > 0 && this.lsCd === this.lsCdSet && this.lsBatch < rule.burst;
+      if ((this.lsCd <= 0 || sameBatch) && Math.random() * 100 < ls) {
+        this.lsBatch = sameBatch ? this.lsBatch + 1 : 1;
+        this.lsCd = this.lsCdSet = sameBatch ? this.lsCd : BALANCE.player.lifeStealTickCd * rule.cdMult;
+        this.heal(lifeStealHeal(s.maxHp), false);
+      }
     }
     const lh = sp.lightningOnHit;
-    dmg *= this.talent.dmgMult(e, info);
-    this.talent.onHit(e, info);
     this.lastHit = { crit, explosion: !!info.explosion };
     const alive = this.damageEnemy(e, dmg, { crit });
     this.lastHit = { crit: false, explosion: false };
+    this.talent.afterHit(e, info, crit, hctx, dmg);
     if (lh && Math.random() * 100 < lh) {
       const t = alive ? e : this.grid.nearest(e.x, e.y, 200);
-      if (t?.alive) {
-        this.fx.bolt(
-          [
-            { x: t.x, y: t.y - 400 },
-            { x: t.x, y: t.y },
-          ],
-          0xfff3b0,
-        );
-        this.damageEnemy(t, 5 + s.elemental * 1.5, { color: '#fff3b0' });
-      }
+      if (t?.alive) this.skyBolt(t);
     }
+  }
+
+  /** 从天而降的落雷（茄子法师的特性与天赋共用） */
+  skyBolt(t: Enemy): void {
+    if (!t.alive) return;
+    this.fx.bolt(
+      [
+        { x: t.x, y: t.y - 400 },
+        { x: t.x, y: t.y },
+      ],
+      0xfff3b0,
+    );
+    this.damageEnemy(t, 5 + this.stats.elemental * 1.5, { color: '#fff3b0' });
   }
 
   /** 返回敌人是否仍然存活 */
@@ -1201,7 +1670,9 @@ export class GameScene extends Phaser.Scene {
     bumpMax('maxHit', Math.round(dmg));
     // 局后统计：按来源累计实际造成的伤害（不计溢出）
     const src = opts.dot ? 'dot' : this.dmgSrc || 'other';
-    run.dmgBy[src] = (run.dmgBy[src] ?? 0) + Math.min(dmg, Math.max(0, e.hp + dmg));
+    const dealt = Math.min(dmg, Math.max(0, e.hp + dmg));
+    run.dmgBy[src] = (run.dmgBy[src] ?? 0) + dealt;
+    run.waveDmg[run.wave] = (run.waveDmg[run.wave] ?? 0) + dealt;
     if (opts.crit) bump('crits');
     this.fx.number(e.x, e.y - e.radius, dmg, opts.color ?? '#ffffff', opts.crit);
     if (!opts.dot) {
@@ -1236,16 +1707,21 @@ export class GameScene extends Phaser.Scene {
     this.fx.burst(e.x, e.y, color, e.isBoss ? 40 : 8);
     this.fx.splat(e.x, e.y, color, e.radius);
     this.applyPlayerStatus(sp.onKillSelf);
+    this.bark('kill');
+    this.waveQuests.onKill(e.isElite || e.isBoss, AURA_WEAPON_IDS.has(this.dmgSrc));
     // 天赋「战意」：击杀补怒气，最多叠到上限
     const kr = treeTotals().killRage;
     if (kr && (this.pstatus.get('rage')?.stacks ?? 0) < kr) this.applyPlayerStatus([{ id: 'rage', dur: 2 }]);
     // 经验沿用原公式；货币按怪物血量成长放大（血越厚掉得越多），避免后期买不起
     if (e.boss) {
       save.killedBosses[e.boss.id] = (save.killedBosses[e.boss.id] ?? 0) + 1;
-      if (e.boss.elite) save.stats.eliteKills++;
-      else {
+      if (e.boss.elite) {
+        save.stats.eliteKills++;
+        // C2：击败第 5 / 10 波精英获得一次遗物三选一（无尽模式改由每 10 波里程碑发放）
+        if (!run.endless && !GameScene.sandbox) run.pendingRelics++;
+      } else {
         save.stats.bossKills++;
-        audio.playMusic(this, run.chapter.music);
+        audio.playMusic(this, stageMusic(run.chapter.music, run.wave, run.endless));
         if (run.endless) bump('endlessBosses');
         if (e.enraged) save.stats.overtimeWins++;
       }
@@ -1268,7 +1744,21 @@ export class GameScene extends Phaser.Scene {
       this.dropPickup('crate', e.x, e.y, 1);
       if (e.boss && !e.boss.elite) {
         this.shake(0.02, 600);
-        this.time.delayedCall(400, () => this.endWave());
+        // G4：第 7 章的 Boss 倒下后，真结局 Boss「腐烂之王」登场（只出现一次）
+        if (run.chapterId === 7 && !run.endless && e.boss.id !== TRUE_FINAL_BOSS_ID && !this.finalSpawned && !GameScene.sandbox) {
+          this.finalSpawned = true;
+          this.terrainNotice(tx('大地在颤抖……腐烂之王降临！', 'The ground trembles… the Rot King descends!'));
+          this.time.delayedCall(2000, () => this.queueSpawn(TRUE_FINAL_BOSS_ID, true));
+          this.timeLeft = waveDuration(run.wave, run.isBossWave());
+          this.overtime = 0;
+          this.enrageStacks = 0;
+        } else {
+          // B2：超级 Boss 波要两只都倒下（含尚未落地的 Boss 预警）才结束
+          const other = this.enemies.find((x) => x.alive && x !== e && x.boss && !x.boss.elite);
+          if (other) this.boss = other;
+          else if (!this.marks.some((m) => m.boss && BOSS_MAP[m.id] && !BOSS_MAP[m.id].elite))
+            this.time.delayedCall(400, () => this.endWave());
+        }
       }
     } else if (e.isElite) {
       // 词缀小怪：25% 概率宝箱，计入每波上限
@@ -1281,8 +1771,8 @@ export class GameScene extends Phaser.Scene {
         this.fruitsDropped++;
         this.dropPickup('fruit', e.x, e.y, 1);
       } else if (
-        this.cratesDropped < BALANCE.cratesPerWave + (sp.crateMult > 1 ? 1 : 0) &&
-        Math.random() < crateDropChance(s.luck) * sp.crateMult
+        this.cratesDropped < BALANCE.cratesPerWave + (sp.crateMult > 1 ? 1 : 0) + this.eventCrateCap &&
+        Math.random() < crateDropChance(s.luck) * sp.crateMult * this.eventCrateMult
       ) {
         this.cratesDropped++;
         this.dropPickup('crate', e.x, e.y, 1);
@@ -1298,6 +1788,11 @@ export class GameScene extends Phaser.Scene {
       });
     }
     const d = e.def;
+    // H4 词缀「分裂」：小怪分裂出 2 只同类（不带词缀）；精英 / Boss 分裂出本章小怪
+    if (e.affixes.includes('splitting') && !this.waveOver) {
+      const sid = d?.id ?? run.chapter.pool[0]?.enemy;
+      for (let i = 0; sid && i < 2; i++) this.spawnEnemyNow(sid, e.x + Phaser.Math.Between(-30, 30), e.y + Phaser.Math.Between(-30, 30));
+    }
     if (d?.splitInto && !this.waveOver) {
       for (let i = 0; i < (d.splitCount ?? 2); i++) {
         const m = this.spawnEnemyNow(d.splitInto, e.x + Phaser.Math.Between(-20, 20), e.y + Phaser.Math.Between(-20, 20));
@@ -1317,7 +1812,7 @@ export class GameScene extends Phaser.Scene {
       }
     }
     if (sp.killHeal && run.kills % sp.killHeal === 0) this.heal(1);
-    this.talent.onKill(e, this.lastHit.crit, this.lastHit.explosion);
+    this.talent.onKill(e, this.lastHit.explosion, this.dmgSrc);
   }
 
   explode(x: number, y: number, r: number, dmg: number, info: HitInfo, color: number, goldDrop = false): void {
@@ -1330,6 +1825,7 @@ export class GameScene extends Phaser.Scene {
       this.weaponHit(e, { ...info, dmg, knockback: 25, explosion: true }, x, y);
       if (goldDrop && !e.alive) this.dropPickup('seed', e.x, e.y, 1);
     }
+    this.talent.onExplode(x, y, r, dmg, info);
   }
 
   // ---------------- 敌人攻击接口 ----------------
@@ -1350,7 +1846,7 @@ export class GameScene extends Phaser.Scene {
     const k = this.textures.exists(key) ? key : 'proj_enemy';
     b.fire(k, x, y, ang, speed, 5, 9 * scale);
     b.setScale(scale);
-    b.dmg = dmg;
+    b.dmg = Math.max(1, Math.round(dmg * BALANCE.enemyHit.bullet));
     b.slow = slow;
     b.debuffs = debuffs;
     b.owner = owner;
@@ -1608,6 +2104,8 @@ export class GameScene extends Phaser.Scene {
 
   // ---------------- 掉落物 ----------------
   private dropPickup(kind: Pickup['kind'], x: number, y: number, value: number, xp = value): void {
+    // 沙盒不掉落：拾取会改变经验、等级与资金，破坏构筑的可复现性
+    if (GameScene.sandbox) return;
     const key = kind === 'seed' ? 'pickup_seed' : kind === 'fruit' ? 'pickup_fruit' : 'pickup_crate';
     let p = this.pickups.find((q) => !q.alive && q.kind === kind);
     if (p) {
@@ -1664,12 +2162,13 @@ export class GameScene extends Phaser.Scene {
       run.earn(p.value + bonus, 'pickup');
       run.addXp(p.xp + bonusXp);
       if (bonus) this.fx.label(p.img.x, p.img.y - 10, '×2', '#52ff8a');
-      if (!seenTip('seeds')) tip('seeds', this);
+      if (!seenTip('seeds')) tip('seeds', this, true);
       audio.play(this, 'pickup', 0.03);
     } else if (p.kind === 'fruit') {
       bump('fruits');
       const bonus = this.talent.fruitSeeds();
       if (bonus) run.earn(bonus, 'talent');
+      this.talent.onFruit();
       this.heal(Math.max(3, Math.round(this.stats.maxHp * 0.08 * (1 + run.specials.fruitHeal / 100))));
       this.fx.ring(this.player.x, this.player.y, 50, 0x52ff8a, 300);
       audio.play(this, 'pickup');

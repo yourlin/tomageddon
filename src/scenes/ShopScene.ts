@@ -9,6 +9,7 @@ import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { run, saveRun, type ShopOffer, type OwnedWeapon } from '../systems/RunState';
 import { WEAPONS, WEAPON_MAP, TIER_PRICE_MULT, TIER_NAMES, WEAPON_SETS } from '../data/weapons';
+import { isFavoredWeapon, affinityText } from '../data/affinity';
 import { ALL_ITEMS, ITEM_MAP } from '../data/items';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
 import {
@@ -19,8 +20,8 @@ import {
   pickWeaponTier,
   shopPrice,
   sellPrice,
-  isBossWaveNo,
-  isEliteWaveNo,
+  isBossWaveFor,
+  isEliteWaveFor,
   regenPerSecond,
   lifeStealMaxPerSecond,
 } from '../data/balance';
@@ -28,7 +29,13 @@ import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSyst
 import { text, button, panel, COLORS, fitImage, hitArea, toast, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { markSeen, persist } from '../systems/Save';
-import { tx } from '../i18n';
+import { tx, lang } from '../i18n';
+import { GameScene } from './GameScene';
+import { rollRelics, grantRelic } from '../systems/Relics';
+import { RELIC_MAP, RELIC_KIND_INFO, describeRelic, describeRule } from '../data/relics';
+import { routeChoiceAvailable, HARD_ROUTE_RULE } from '../systems/RunEvents';
+import { mechanicOpen, merchantKinds, MERCHANT_MIN_WAVE, MERCHANT_CHANCE } from '../systems/Mechanics';
+import { ITEM_COMBOS, describeCombo } from '../data/gearExtra';
 import { tagName } from '../i18n/apply';
 import { checkAchievements, setInRun } from '../systems/Achievements';
 import { freeFirstReroll } from '../systems/Talents';
@@ -46,9 +53,25 @@ import {
   canForge,
 } from '../systems/WeaponMods';
 
+/** 商店标价：completedWave 为刚打完的波次（商店卖的是下一波的价格），计入折扣与挑战修饰 */
+export function offerPrice(base: number, completedWave = run.wave): number {
+  return Math.max(
+    1,
+    Math.round(
+      shopPrice(base, completedWave + 1) * (1 - run.specials.shopDiscount / 100) * (run.mod('rich_start') ? 1.25 : 1) * run.rules.shopPrice,
+    ),
+  );
+}
+/** 道具基础价随波次上浮（前 8 波逐步 +30%），再交给 offerPrice */
+export const itemBasePrice = (price: number, completedWave = run.wave): number => price * (1 + 0.3 * Math.min(1, completedWave / 8));
+
 export class ShopScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
   private popup: Phaser.GameObjects.Container | null = null;
+  /** 右侧面板当前页签 */
+  private sideTab: 'stats' | 'char' = 'stats';
+  /** 当前弹窗的选项（供自动化测试读取；空 = 没有弹窗） */
+  modalChoices: { label: string; enabled: boolean; pick: () => void }[] = [];
 
   constructor() {
     super('Shop');
@@ -72,18 +95,88 @@ export class ShopScene extends Phaser.Scene {
     this.layer = this.add.container(0, 0);
     this.draw();
     // 新手引导：商店基础 → 合成 → 词条与打造 → 进化
-    tip('shop');
+    tip('shop', this);
     if (run.weapons.some((a) => run.weapons.some((b) => b.uid !== a.uid && b.id === a.id && b.tier === a.tier && a.tier < 3)))
-      tip('combine');
-    if (run.weapons.some((w) => w.tier >= 2)) tip('affix');
-    if (run.weapons.some((w) => run.canEvolve(w))) tip('evolve');
+      tip('combine', this);
+    if (run.weapons.some((w) => w.tier >= 2)) tip('affix', this);
+    if (run.weapons.some((w) => run.canEvolve(w))) tip('evolve', this);
+    this.maybeMerchant();
+    if (run.merchant && !run.merchant.done) tip('merchant', this);
+  }
+
+  /** H2：第 4 章起、本章第 6 波后每次商店 18% 概率出现神秘商人（见 Mechanics.ts） */
+  private maybeMerchant(): void {
+    if (GameScene.sandbox) return;
+    if (!run.merchant || run.merchant.wave !== run.wave) {
+      run.merchant = null;
+      const R = run.rand(`merchant:${run.wave}`);
+      if (mechanicOpen('merchant') && run.wave >= MERCHANT_MIN_WAVE && R() < MERCHANT_CHANCE) {
+        const r = rollRelics(1, R, merchantKinds())[0];
+        if (r) run.merchant = { wave: run.wave, relic: r.id, price: Math.round(offerPrice(28 + run.wave * 6)), done: false };
+      }
+    }
+    const m = run.merchant;
+    if (!m || m.done) return;
+    const r = RELIC_MAP[m.relic];
+    const zh = lang === 'zh';
+    const lines = [
+      `${r.icon} ${r.name[zh ? 0 : 1]}  ·  ${RELIC_KIND_INFO[r.kind].name[zh ? 0 : 1]}`,
+      ...describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id),
+    ];
+    this.modal(tx('🧙 神秘商人出现了', '🧙 A Mysterious Merchant appears'), lines, [
+      {
+        label: tx(`买下 🌱${m.price}`, `Buy 🌱${m.price}`),
+        color: COLORS.green,
+        enabled: run.seeds >= m.price,
+        onClick: () => {
+          run.seeds -= m.price;
+          m.done = true;
+          grantRelic(m.relic);
+          bump('merchantBuys');
+          audio.play(this, 'buy');
+          this.draw();
+        },
+      },
+      {
+        label: tx('离开', 'Leave'),
+        color: 0x555555,
+        onClick: () => {
+          m.done = true;
+          saveRun();
+        },
+      },
+    ]);
+  }
+
+  /** 居中弹窗：标题 + 文字 + 一排按钮（点任一按钮关闭） */
+  private modal(title: string, lines: string[], btns: { label: string; color: number; enabled?: boolean; onClick: () => void }[]): void {
+    const W = this.scale.width,
+      H = this.scale.height;
+    const c = this.add.container(0, 0).setDepth(200);
+    c.add(this.add.rectangle(0, 0, W, H, 0x000000, 0.6).setOrigin(0).setInteractive());
+    const pw = Math.min(560, W - 40),
+      ph = 300;
+    const x = (W - pw) / 2,
+      y = (H - ph) / 2;
+    c.add(panel(this, x, y, pw, ph, COLORS.panelLight, COLORS.gold));
+    c.add(text(this, W / 2, y + 36, title, 28, '#ffd166').setOrigin(0.5));
+    c.add(text(this, W / 2, y + 70, lines.join('\n'), 18, '#fff4ea', { align: 'center', wordWrap: { width: pw - 40 } }).setOrigin(0.5, 0));
+    const bw = Math.min(220, (pw - 40) / btns.length - 16);
+    this.modalChoices = [];
+    btns.forEach((b, i) => {
+      const bx = W / 2 + (i - (btns.length - 1) / 2) * (bw + 16);
+      const pick = () => {
+        this.modalChoices = [];
+        c.destroy();
+        b.onClick();
+      };
+      this.modalChoices.push({ label: b.label, enabled: b.enabled ?? true, pick });
+      c.add(button(this, bx, y + ph - 44, bw, 54, b.label, pick, b.color, 18).setEnabled(b.enabled ?? true));
+    });
   }
 
   private price(base: number): number {
-    return Math.max(
-      1,
-      Math.round(shopPrice(base, run.wave + 1) * (1 - run.specials.shopDiscount / 100) * (run.mod('rich_start') ? 1.25 : 1)),
-    );
+    return offerPrice(base);
   }
 
   /** 货架是否可用：为当前波次生成，且至少还有一件没卖出（全部买光时 buy() 会立即免费补货） */
@@ -92,7 +185,8 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private rollShop(keepLocked: boolean): void {
-    const kept = keepLocked ? run.shop.filter((o) => o.locked && !o.sold) : [];
+    // 锁定保留的道具若已达持有上限（比如在别处拿到了同款），刷新时一并移除
+    const kept = keepLocked ? run.shop.filter((o) => o.locked && !o.sold && (o.kind !== 'item' || run.canTakeItem(o.id))) : [];
     // 挑战模式：按「波次 + 第几次刷新」取固定的随机序列
     if (run.shopRollWave !== run.wave) {
       run.shopRollWave = run.wave;
@@ -103,8 +197,7 @@ export class ShopScene extends Phaser.Scene {
     const onlyCls = run.mod('melee_only') ? 'melee' : run.mod('ranged_only') ? 'ranged' : run.mod('elemental_only') ? 'elemental' : null;
     const weaponPool = onlyCls ? WEAPONS.filter((w) => w.cls === onlyCls) : WEAPONS;
     const offers: ShopOffer[] = [...kept];
-    const luck = run.stats.luck;
-    const wave = run.wave + 1;
+    const luck = run.stats.luck; // 武器品质 / 道具稀有度只看幸运，与波次无关
     // 进化催化剂：持有可进化的 T3+ 武器但还没有对应道具时，20% 概率直接上架
     const need = EVOLUTIONS.filter(
       (e) => !run.items[e.item] && run.weapons.some((w) => w.id === e.from && w.tier >= 2) && !offers.some((o) => o.id === e.item),
@@ -115,7 +208,7 @@ export class ShopScene extends Phaser.Scene {
         kind: 'item',
         id: it.id,
         tier: it.rarity,
-        price: this.price(it.price * (1 + 0.3 * Math.min(1, run.wave / 8))),
+        price: this.price(itemBasePrice(it.price)),
         locked: false,
         sold: false,
       });
@@ -129,18 +222,20 @@ export class ShopScene extends Phaser.Scene {
         // 超武不进商店：抽到时改为原武器
         if (def.evolvedFrom) def = WEAPON_MAP[def.evolvedFrom];
         if (onlyCls && def.cls !== onlyCls) def = pickOf(weaponPool, R);
-        const tier = Math.max(def.minTier ?? 0, pickWeaponTier(wave, luck, run.chapter.t4Mult, R));
+        const tier = Math.max(def.minTier ?? 0, pickWeaponTier(luck, run.chapter.t4Mult, R));
         offers.push({ kind: 'weapon', id: def.id, tier, price: this.price(def.price * TIER_PRICE_MULT[tier]), locked: false, sold: false });
       } else {
-        const rar = pickRarity(wave, luck, R);
-        const pool = ALL_ITEMS.filter((i) => i.rarity === rar && (!i.max || (run.items[i.id] ?? 0) < i.max));
+        const rar = pickRarity(luck, R);
+        // 已持有 + 本货架已上架（未售出）的数量达到上限的道具不再刷出
+        const onShelf = (id: string) => offers.filter((o) => o.kind === 'item' && o.id === id && !o.sold).length;
+        const pool = ALL_ITEMS.filter((i) => i.rarity === rar && (run.items[i.id] ?? 0) + onShelf(i.id) < run.itemCap(i.id));
         if (!pool.length) continue;
         const it = pickOf(pool, R);
         offers.push({
           kind: 'item',
           id: it.id,
           tier: it.rarity,
-          price: this.price(it.price * (1 + 0.3 * Math.min(1, run.wave / 8))),
+          price: this.price(itemBasePrice(it.price)),
           locked: false,
           sold: false,
         });
@@ -171,9 +266,9 @@ export class ShopScene extends Phaser.Scene {
         130,
         30,
         tx(`第 ${run.wave} 波完成 · 即将进入第 ${run.wave + 1} 波`, `Wave ${run.wave} complete · next: wave ${run.wave + 1}`) +
-          ((run.endless ? isBossWaveNo(run.wave + 1) : run.wave + 1 === BALANCE.waves.bossWave)
+          (isBossWaveFor(run.chapterId, run.wave + 1, run.endless)
             ? tx('（BOSS）', ' (BOSS)')
-            : (run.endless ? isEliteWaveNo(run.wave + 1) : BALANCE.waves.eliteWaves.includes(run.wave + 1))
+            : isEliteWaveFor(run.chapterId, run.wave + 1, run.endless)
               ? tx('（精英）', ' (Elite)')
               : ''),
         20,
@@ -213,7 +308,8 @@ export class ShopScene extends Phaser.Scene {
           ),
           d.desc,
         ];
-        if (run.char.favored.includes(d.id)) lines.unshift(tx('★ 契合武器 · 伤害 +20%', '★ Synergy · +20% damage'));
+        if (isFavoredWeapon(run.char.favored, d))
+          lines.unshift(tx('★ 契合武器 · 伤害 +10%：', '★ Synergy · +10% damage: ') + affinityText(run.charId));
         const ev = EVOLUTION_OF[d.id];
         if (ev) lines.push(tx(`✨ T4 + ${ITEM_MAP[ev.item].name} 可进化`, `✨ T4 + ${ITEM_MAP[ev.item].name} evolves`));
         if (affixSlots(o.tier))
@@ -223,6 +319,12 @@ export class ShopScene extends Phaser.Scene {
         name = it.name;
         icon = itemIconKey(this, it);
         lines = describeItem(it);
+        // G7：与这件道具有关的组合（已持有另一件时标 ✓）
+        for (const c of ITEM_COMBOS.filter((x) => x.item === it.id || x.needs === it.id)) {
+          const other = c.item === it.id ? c.needs : c.item;
+          const [zh, en] = describeCombo(c, (id) => ITEM_MAP[id]?.name ?? id);
+          lines.push(`${(run.items[other] ?? 0) > 0 ? '✓ ' : '⚭ '}${tx(zh, en)}`);
+        }
         // 进化催化剂：持有对应武器时提示
         const evoFor = EVOLUTIONS.filter((e) => e.item === it.id && run.weapons.some((w) => w.id === e.from));
         if (evoFor.length)
@@ -336,28 +438,107 @@ export class ShopScene extends Phaser.Scene {
     const sx = W * 0.7,
       sw = W - sx - 16;
     L.add(panel(this, sx, 76, sw, H - 180));
-    L.add(text(this, sx + 16, 86, tx('属性', 'Stats'), 22, '#ffd166'));
+    // 右侧面板分两页：属性 / 角色（契合武器 + 天赋），选中的页签在本次商店内保持
+    const tabW = (sw - 40) / 2;
+    (['stats', 'char'] as const).forEach((tab, i) => {
+      const on = this.sideTab === tab;
+      L.add(
+        button(
+          this,
+          sx + 16 + tabW / 2 + i * (tabW + 8),
+          100,
+          tabW,
+          34,
+          tab === 'stats' ? tx('属性', 'Stats') : tx('角色', 'Character'),
+          () => {
+            if (this.sideTab === tab) return;
+            this.sideTab = tab;
+            this.draw();
+          },
+          on ? COLORS.primary : 0x4a2228,
+          18,
+        ),
+      );
+    });
+    if (this.sideTab === 'char') this.drawCharPanel(sx, 128, sw, H - 112);
+    else this.drawStatsPanel(sx, sw, H);
+
+    this.drawBottomButtons(sx, sw, H);
+  }
+
+  /** 角色页：契合武器（标出已持有）、契合特效、天赋与特性 */
+  private drawCharPanel(sx: number, top: number, sw: number, bottom: number): void {
+    const L = this.layer;
+    const c = run.char;
+    const ww = sw - 32;
+    let y = top;
+    const add = (str: string, size: number, color: string, gap = 4): void => {
+      if (y > bottom - size) return;
+      const t = text(this, sx + 16, y, str, size, color, { wordWrap: { width: ww, useAdvancedWrap: true }, lineSpacing: 2 });
+      L.add(t);
+      y += t.height + gap;
+    };
+    add(`${c.name} · ${c.title}`, 18, '#ffd166', 8);
+    add(tx('★ 契合武器', '★ Synergy weapons'), 16, '#ffb347', 6);
+    const iconS = 34;
+    for (const fid of c.favored) {
+      const d = WEAPON_MAP[fid];
+      if (!d) continue;
+      const owned = run.weapons.filter((w) => isFavoredWeapon([fid], WEAPON_MAP[w.id])).length;
+      const key = this.textures.exists(`icon_weapon_${d.id}`) ? `icon_weapon_${d.id}` : `weapon_${d.id}`;
+      L.add(fitImage(this.add.image(sx + 16 + iconS / 2, y + iconS / 2, key), iconS));
+      L.add(text(this, sx + 24 + iconS, y + iconS / 2, d.name, 15, '#fff4ea').setOrigin(0, 0.5));
+      if (owned)
+        L.add(
+          text(
+            this,
+            sx + sw - 16,
+            y + iconS / 2,
+            tx(`✓ 已持有${owned > 1 ? ` ×${owned}` : ''}`, `✓ Owned${owned > 1 ? ` ×${owned}` : ''}`),
+            13,
+            '#52ff8a',
+          ).setOrigin(1, 0.5),
+        );
+      y += iconS + 4;
+    }
+    y += 4;
+    add(tx('契合特效（伤害 +10%）', 'Synergy effect (+10% dmg)'), 15, '#ffb347', 2);
+    add(affinityText(c.id), 14, '#ffe8a3', 10);
+    add(tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 15, '#ffb347', 2);
+    add(c.talent.desc, 14, '#fff4ea', 10);
+    if (c.traits.length) {
+      add(tx('特性', 'Traits'), 15, '#ffb347', 2);
+      for (const tr of c.traits) add(`· ${tr}`, 13, COLORS.textDim, 2);
+    }
+  }
+
+  private drawStatsPanel(sx: number, sw: number, H: number): void {
+    const L = this.layer;
     const s = run.stats;
-    const lineH = Math.min(26, (H - 250) / STAT_ORDER.length);
+    const lineH = Math.min(26, (H - 272) / STAT_ORDER.length);
+    const fs = Math.max(12, Math.min(16, Math.floor(lineH)));
     STAT_ORDER.forEach((k, i) => {
-      const cap = k === 'dodge' ? run.dodgeCap : Infinity;
+      const cap = run.statCap(k);
       const v = Math.min(s[k], cap);
       const info = STAT_INFO[k];
-      const y = 120 + i * lineH;
-      L.add(text(this, sx + 16, y, info.name, 16, info.color));
+      const y = 128 + i * lineH;
+      L.add(text(this, sx + 16, y, info.name, fs, info.color));
       const col = v > 0 ? '#52ff8a' : v < 0 ? '#ff6b6b' : '#fff4ea';
       L.add(
         text(
           this,
           sx + sw - 16,
           y,
-          `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(`(${regenPerSecond(v).toFixed(2)}/秒)`, ` (${regenPerSecond(v).toFixed(2)}/s)`) : ''}${k === 'lifeSteal' && v > 0 ? tx(`(≤${lifeStealMaxPerSecond()}/秒)`, ` (≤${lifeStealMaxPerSecond()}/s)`) : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
-          16,
+          `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(`(${regenPerSecond(v).toFixed(2)}/秒)`, ` (${regenPerSecond(v).toFixed(2)}/s)`) : ''}${k === 'lifeSteal' && v > 0 ? tx(`(≤${lifeStealMaxPerSecond(s.maxHp)}/秒)`, ` (≤${lifeStealMaxPerSecond(s.maxHp)}/s)`) : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
+          fs,
           col,
         ).setOrigin(1, 0),
       );
     });
+  }
 
+  private drawBottomButtons(sx: number, sw: number, H: number): void {
+    const L = this.layer;
     // 底部按钮
     const rp = this.rerollCost();
     const left = run.maxRerolls - run.rerolls,
@@ -396,6 +577,10 @@ export class ShopScene extends Phaser.Scene {
       run.addWeapon(o.id, o.tier);
       bump('weaponsBought');
     } else {
+      if (!run.canTakeItem(o.id)) {
+        toast(this, tx(`已达持有上限（${run.itemCap(o.id)} 件）`, `Holding limit reached (${run.itemCap(o.id)})`));
+        return;
+      }
       run.addItem(o.id);
       bump('itemsBought');
       bump(`rarityBought:${o.tier}`);
@@ -414,10 +599,11 @@ export class ShopScene extends Phaser.Scene {
 
   /** 刷新价格：随章节与波次上涨；当前货架每买走一件，价格 ×0.75 */
   private rerollCost(): number {
-    const free = (freeFirstReroll(run.charId) ? 1 : 0) + treeTotals().freeRerolls + (run.mod('one_reroll') ? 1 : 0);
+    const free =
+      (freeFirstReroll(run.charId) ? 1 : 0) + treeTotals().freeRerolls + (run.mod('one_reroll') ? 1 : 0) + run.relicFx.flags.freeRerolls;
     if (run.rerolls < free) return 0;
     const bought = run.shop.filter((x) => x.sold).length;
-    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * Math.pow(0.75, bought)));
+    return Math.max(1, Math.round(rerollPrice(run.wave, run.rerolls, run.chapterId) * Math.pow(0.75, bought) * run.rules.rerollPrice));
   }
 
   private weaponPopup(w: OwnedWeapon, x: number, y: number): void {
@@ -650,6 +836,28 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private nextWave(): void {
+    if (this.modalChoices.length) return; // 已有弹窗（路线 / 商人）时忽略重复点击
+    // H3：每 3 波一次路线选择（挑战模式不提供，保证同一种子同一难度）
+    if (!run.challenge && !GameScene.sandbox && mechanicOpen('route') && routeChoiceAvailable(run.wave + 1)) {
+      const hard = describeRule(HARD_ROUTE_RULE).join(tx('，', ', '));
+      this.modal(
+        tx('选择路线', 'Choose a Route'),
+        [
+          tx('普通路线：照常进行', 'Normal route: business as usual'),
+          tx(`危险路线：${hard}，结束时额外 1 个宝箱`, `Dangerous route: ${hard}, plus 1 crate at the end`),
+        ],
+        [
+          { label: tx('普通路线', 'Normal'), color: COLORS.primary, onClick: () => this.startNext(false) },
+          { label: tx('危险路线 ☠', 'Dangerous ☠'), color: 0x9d0208, onClick: () => this.startNext(true) },
+        ],
+      );
+      return;
+    }
+    this.startNext(false);
+  }
+
+  private startNext(hard: boolean): void {
+    run.hardRoute = hard;
     run.wave++;
     run.shop.forEach((o) => {
       if (!o.locked) o.sold = true;

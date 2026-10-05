@@ -12,7 +12,7 @@ export const rankOf = (id: string): number => save.talents[id] ?? 0;
 
 /** 成就累计给的天赋点 */
 export function talentPointsEarned(): number {
-  let n = 0;
+  let n = save.meta.bonusTp;
   for (const a of ACHIEVEMENTS) if (a.tp) for (let i = 0; i < achTier(a.id); i++) n += a.tp[i] ?? 0;
   return n;
 }
@@ -64,6 +64,37 @@ export function setTalents(t: Record<string, number>): void {
 export function resetBranch(b?: BranchId): void {
   for (const n of TALENT_NODES) if (!b || n.branch === b) delete save.talents[n.id];
   changed();
+}
+
+// ---------------- I1 大师层（金番茄购买，无限层） ----------------
+/** 大师层每层轮流提升的属性（小幅，6 层一轮） */
+export const MASTER_CYCLE: [keyof StatMods, number][] = [
+  ['damage', 1],
+  ['maxHp', 1],
+  ['attackSpeed', 1],
+  ['armor', 0.5],
+  ['luck', 1],
+  ['regen', 0.5],
+];
+export const nodesMaxTotal = (): number => TALENT_NODES.reduce((s, n) => s + n.max, 0);
+/** 天赋树全部点满才开放大师层 */
+export const masterUnlocked = (): boolean => TALENT_NODES.every((n) => rankOf(n.id) >= n.max);
+/** 购买第 layer+1 层的价格（金番茄） */
+export const masterCost = (layer = save.meta.master): number => 40 + 10 * layer;
+export function masterMods(layers = save.meta.master): StatMods {
+  const m: StatMods = {};
+  for (let i = 0; i < layers; i++) {
+    const [k, v] = MASTER_CYCLE[i % MASTER_CYCLE.length];
+    m[k] = Math.round(((m[k] ?? 0) + v) * 10) / 10;
+  }
+  return m;
+}
+export function buyMaster(): boolean {
+  if (!masterUnlocked() || save.meta.gold < masterCost()) return false;
+  save.meta.gold -= masterCost();
+  save.meta.master++;
+  changed();
+  return true;
 }
 
 // ---------------- 效果汇总 ----------------
@@ -138,6 +169,7 @@ export function treeTotals(): TreeTotals {
     for (const k of NUM_KEYS) t[k] += (fx[k] ?? 0) * r;
     if (fx.castSelf) t.castSelf.push(...fx.castSelf);
   }
+  for (const [k, v] of Object.entries(masterMods()) as [keyof StatMods, number][]) t.mods[k] = (t.mods[k] ?? 0) + v;
   t.skillEcho = Math.min(40, t.skillEcho);
   t.execute = Math.min(20, t.execute);
   cache = t;

@@ -1,6 +1,6 @@
 {
   "name": "tomageddon",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "番茄酱 Tomageddon：蔬果大战腐烂的浏览器割草生存 Roguelite",
   "homepage": "https://yourlin.github.io/tomageddon/",
   "repository": {
@@ -15,6 +15,13 @@
     "release:major": "npm version major --no-git-tag-version && vite build",
     "preview": "vite preview --host",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check:split": "node scripts/check-dev-split.mjs",
+    "build:steam": "vite build --mode steam --outDir dist-steam && node scripts/steam-prune.mjs",
+    "steam:dev": "npm run build:steam && electron .",
+    "steam:pack": "npm run build:steam && electron-builder --win --dir",
+    "steam:capsules": "vite build && node scripts/steam-capsules.mjs",
     "docs": "tsx scripts/gen-docs.ts",
     "docs:images": "node scripts/export-images.mjs",
     "balance": "vite build && node scripts/batch.mjs",
@@ -33,11 +40,14 @@
   "type": "module",
   "dependencies": {
     "phaser": "^3.90.0",
-    "qrcode": "^1.5.4"
+    "qrcode": "^1.5.4",
+    "steamworks.js": "0.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/qrcode": "^1.5.6",
+    "electron": "44.5.1",
+    "electron-builder": "26.15.3",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.12.0",
@@ -46,7 +56,32 @@
     "tsx": "^4.23.15",
     "typescript": "~6.0.0",
     "typescript-eslint": "^8.71.0",
-    "vite": "^8.3.1"
+    "vite": "^8.3.1",
+    "vitest": "5.0.3"
   },
-  "private": true
+  "private": true,
+  "main": "electron/main.cjs",
+  "build": {
+    "appId": "io.github.yourlin.tomageddon",
+    "productName": "Tomageddon",
+    "directories": {
+      "output": "release-steam"
+    },
+    "files": [
+      "electron/**/*",
+      "dist-steam/**/*",
+      "package.json"
+    ],
+    "asar": false,
+    "extraFiles": [
+      {
+        "from": "steam/steam_appid.txt",
+        "to": "steam_appid.txt"
+      }
+    ],
+    "win": {
+      "target": "dir",
+      "icon": "public/icons/icon-512.png"
+    }
+  }
 }

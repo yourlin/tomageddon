@@ -2,6 +2,7 @@
 import Phaser from 'phaser';
 import { tx } from '../i18n';
 import { overlayRoot } from './ForceLandscape';
+import { nativeToggleFullscreen } from '../platform';
 
 const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
 export const IS_WECHAT = /MicroMessenger/i.test(ua);
@@ -26,6 +27,8 @@ export function toggleFullscreen(scene: Phaser.Scene): boolean {
   const now = performance.now();
   if (now - lastToggle < 600) return true;
   lastToggle = now;
+  // Steam 版：窗口级全屏
+  if (nativeToggleFullscreen() !== null) return true;
   const sm = scene.scale;
   if (sm.isFullscreen) {
     sm.stopFullscreen();

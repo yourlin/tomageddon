@@ -1,5 +1,6 @@
 // 更新日志：最新版本默认展开，历史版本折叠（点击标题展开/收起）；完整改动指向 git 提交记录
 import Phaser from 'phaser';
+import { openExternal } from '../platform';
 import { text, button, panel, COLORS, autoRelayout, hitArea } from '../ui/UI';
 import { CHANGELOG } from '../data/changelog';
 import { tx, lang } from '../i18n';
@@ -31,7 +32,7 @@ export class ChangelogScene extends Phaser.Scene {
       250,
       52,
       tx('查看完整改动 ↗', 'Full changelog ↗'),
-      () => window.open(`${__REPO_URL__}/blob/main/${lang === 'en' ? 'docs/en' : 'docs'}/CHANGELOG.md`, '_blank', 'noopener'),
+      () => openExternal(`${__REPO_URL__}/blob/main/${lang === 'en' ? 'docs/en' : 'docs'}/CHANGELOG.md`),
       0x4a6fa5,
       19,
     );

@@ -5,7 +5,7 @@ import { rng } from '../art/Painter';
 
 type Wave = OscillatorType;
 
-interface TrackSpec {
+export interface TrackSpec {
   bpm: number;
   root: number; // 贝斯根音（MIDI）
   scale: number[];
@@ -32,6 +32,9 @@ const MAJOR = [0, 2, 4, 5, 7, 9, 11],
   MINOR = [0, 2, 3, 5, 7, 8, 10],
   DORIAN = [0, 2, 3, 5, 7, 9, 10];
 const PHRYGIAN = [0, 1, 3, 5, 7, 8, 10];
+const LYDIAN = [0, 2, 4, 6, 7, 9, 11],
+  LOCRIAN = [0, 1, 3, 5, 6, 8, 10],
+  HARMONIC_MINOR = [0, 2, 3, 5, 7, 8, 11];
 const FOUR = 'x...x...x...x...',
   BACK = '....x.......x...',
   OFF8 = '..x...x...x...x.';
@@ -184,7 +187,83 @@ export const TRACKS: Record<string, TrackSpec> = {
     lead: { wave: 'sawtooth', oct: 2, density: 0.78 },
     vol: 1.05,
   },
+  // 第六章 温室：明亮但诡异——Lydian 升四级的 II 大三和弦，三连感铃音琶音 + 轻摇摆，像阳光下过于鲜艳的植物
+  bgm_greenhouse: {
+    bpm: 108,
+    root: 40,
+    scale: LYDIAN,
+    prog: [0, 1, 5, 1, 0, 1, 3, 4],
+    swing: 0.08,
+    kick: 'x.....x...x.....',
+    snare: '........x.......',
+    clap: '............x...',
+    hat: '..x...x...x...xx',
+    bass: '0..0..2.0..7..1.',
+    bassWave: 'triangle',
+    bassCut: 750,
+    arp: '012.120.201.0123',
+    arpWave: 'sine',
+    arpOct: 3,
+    pad: true,
+    lead: { wave: 'sine', oct: 2, density: 0.38, bell: true },
+    vol: 0.92,
+  },
+  // 第七章 / 真结局 腐烂花园：84 BPM 半拍 Doom，Locrian 减五度低音 + 失真锯齿贝斯，稀疏鼓点与厚重 Pad，阴暗压抑
+  bgm_rotgarden: {
+    bpm: 84,
+    root: 31,
+    scale: LOCRIAN,
+    prog: [0, 0, 1, 4, 0, 5, 1, 6],
+    kick: 'x.......x.x.....',
+    snare: '........x.......',
+    hat: 'x...x...x...x...',
+    open: '..............x.',
+    bass: '0...0..00...1.0.',
+    bassWave: 'sawtooth',
+    bassCut: 520,
+    dist: true,
+    arp: '0...2...1...3...',
+    arpWave: 'triangle',
+    arpOct: 2,
+    pad: true,
+    lead: { wave: 'sawtooth', oct: 2, density: 0.28 },
+    vol: 1,
+  },
+  // 无尽高波数：176 BPM 和声小调 Drum & Bass 式碎拍，十六分滚动失真贝斯 + 三度跳进高速琶音，紧张急促
+  bgm_endless_deep: {
+    bpm: 176,
+    root: 36,
+    scale: HARMONIC_MINOR,
+    prog: [0, 5, 3, 4, 0, 5, 1, 4],
+    kick: 'x.x.......x..x..',
+    snare: '....x..x....x...',
+    clap: '....x.......x...',
+    hat: 'xxXxxxXxxxXxxXxX',
+    open: '......x.......x.',
+    bass: '0707.0700707.373',
+    bassWave: 'square',
+    bassCut: 1500,
+    dist: true,
+    arp: '0213021302130213',
+    arpWave: 'square',
+    arpOct: 3,
+    lead: { wave: 'square', oct: 2, density: 0.65 },
+    vol: 1.05,
+  },
 };
+
+/** 无尽模式从该波次起换成高波数曲目 */
+export const ENDLESS_DEEP_WAVE = 30;
+
+/** 战斗场景的常规（非 Boss）曲目：无尽模式高波数改为 bgm_endless_deep，否则用章节音乐 */
+export function stageMusic(chapterMusic: string, wave: number, endless: boolean): string {
+  return endless && wave >= ENDLESS_DEEP_WAVE ? 'bgm_endless_deep' : chapterMusic;
+}
+
+/** Boss 登场曲目：真结局 Boss 用腐烂花园主题，其余用通用 Boss 战音乐 */
+export function bossMusic(isTrueFinal: boolean): string {
+  return isTrueFinal ? 'bgm_rotgarden' : 'bgm_boss';
+}
 
 const mtof = (m: number) => 440 * 2 ** ((m - 69) / 12);
 

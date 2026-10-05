@@ -4,18 +4,24 @@ import { text, button, panel, COLORS, fitImage, autoRelayout } from '../ui/UI';
 import { portraitKey } from '../ui/Portrait';
 import { CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
-import { makeChallenge, MODIFIER_MAP, type ChallengeDef } from '../data/challenges';
+import { makeChallenge, MODIFIER_MAP, STREAK_REWARDS, challengeCode, parseChallengeCode, type ChallengeDef } from '../data/challenges';
+import { promptText } from '../ui/DomInput';
 import { run, clearRun } from '../systems/RunState';
 import { save, persist } from '../systems/Save';
 import { counter } from '../systems/Counters';
 import { checkAchievements } from '../systems/Achievements';
 import { dayKey } from '../systems/Rng';
 import { tx, lang } from '../i18n';
+import { chapterWaves } from '../data/balance';
+import { toast } from '../ui/UI';
+import { tip } from '../systems/Tutorial';
+import { decodeBuild } from '../systems/BuildCode';
+import { startPractice } from '../systems/Practice';
 
 const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
 
 /** 距离下次刷新的剩余时间文字 */
-function resetIn(kind: 'daily' | 'weekly'): string {
+function resetIn(kind: ChallengeDef['kind']): string {
   const now = new Date();
   // 每日：明天 0 点；每周：下周一 0 点
   const days = kind === 'daily' ? 1 : (8 - (now.getDay() || 7)) % 7 || 7;
@@ -52,6 +58,27 @@ export class ChallengeScene extends Phaser.Scene {
       { wordWrap: { width: W - 220, useAdvancedWrap: true } },
     );
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
+    // D6：输入别人分享的种子（或任意文字）打同一局
+    button(
+      this,
+      W - 250,
+      44,
+      160,
+      52,
+      tx('输入种子', 'Enter Seed'),
+      () => {
+        void promptText(tx('输入挑战种子或分享码', 'Enter a seed or share code'), 'daily:2026-10-04').then((code) => {
+          const c = code ? parseChallengeCode(code) : null;
+          if (c) this.begin(c);
+        });
+      },
+      0x2a6f97,
+      20,
+    );
+    // J4：自定义挑战；J3：练习模式（导入构筑码，默认最近一局）
+    button(this, W - 430, 44, 180, 52, tx('🛠️ 自定义挑战', '🛠️ Custom'), () => this.scene.start('CustomChallenge'), 0x7b2cbf, 19);
+    button(this, W - 630, 44, 180, 52, tx('🎯 练习模式', '🎯 Practice'), () => this.practice(), 0x2d6a4f, 19);
+    tip('practice', this);
     const cw = (W - 72) / 2;
     this.card(makeChallenge('daily'), 24, 116, cw, 440);
     this.card(makeChallenge('weekly'), 48 + cw, 116, cw, 440);
@@ -63,7 +90,20 @@ export class ChallengeScene extends Phaser.Scene {
       this,
       W - 24,
       y,
-      tx(`连续挑战 ${streak} 天 · 最长 ${counter('dailyStreakBest')} 天`, `Streak ${streak} day(s) · best ${counter('dailyStreakBest')}`),
+      (() => {
+        const nx = STREAK_REWARDS.find((r) => streak < r.days);
+        const base = tx(
+          `连续挑战 ${streak} 天 · 最长 ${counter('dailyStreakBest')} 天`,
+          `Streak ${streak} day(s) · best ${counter('dailyStreakBest')}`,
+        );
+        return nx
+          ? base +
+              tx(
+                ` · 连续 ${nx.days} 天奖励 🥇${nx.gold}${nx.tp ? ` +${nx.tp} 天赋点` : ''}`,
+                ` · ${nx.days}-day reward 🥇${nx.gold}${nx.tp ? ` +${nx.tp} TP` : ''}`,
+              )
+          : base;
+      })(),
       16,
       COLORS.textDim,
     ).setOrigin(1, 0);
@@ -93,6 +133,27 @@ export class ChallengeScene extends Phaser.Scene {
     void H;
   }
 
+  private practice(): void {
+    const last = save.history.find((r) => r.build)?.build ?? '';
+    void promptText(tx('粘贴构筑分享码（默认是最近一局）', 'Paste a build code (defaults to your last run)'), 'TMG1-…', last).then(
+      (code) => {
+        if (!code) return;
+        const b = decodeBuild(code);
+        if (!b) return toast(this, tx('构筑码无效', 'Invalid build code'), '#ff6b6b');
+        startPractice(this, b);
+      },
+    );
+  }
+
+  private begin(c: ChallengeDef): void {
+    clearRun();
+    save.charRuns[c.charId] = (save.charRuns[c.charId] ?? 0) + 1;
+    persist();
+    checkAchievements();
+    run.startChallenge(c);
+    this.scene.start('Game');
+  }
+
   private card(c: ChallengeDef, x: number, y: number, w: number, h: number): void {
     const daily = c.kind === 'daily';
     panel(this, x, y, w, h, COLORS.panel, daily ? 0xc1121f : 0x9d4edd);
@@ -100,6 +161,14 @@ export class ChallengeScene extends Phaser.Scene {
       fontStyle: 'bold',
     });
     text(this, x + w - 20, y + 24, `${c.key} · ${resetIn(c.kind)}`, 14, COLORS.textDim).setOrigin(1, 0);
+    // D5：分享码，点击复制
+    const code = challengeCode(c);
+    const ct = text(this, x + w - 20, y + 44, tx(`分享码 ${code} 📋`, `Share code ${code} 📋`), 13, '#9bf6ff')
+      .setOrigin(1, 0)
+      .setInteractive({ useHandCursor: true });
+    ct.on('pointerup', () => {
+      void navigator.clipboard?.writeText(code).then(() => ct.setText(tx('已复制 ✓', 'Copied ✓')));
+    });
     const ch = CHARACTER_MAP[c.charId];
     fitImage(this.add.image(x + 70, y + 120, portraitKey(this, 'char', c.charId)), 100);
     text(this, x + 140, y + 74, ch.name, 24, '#fff4ea', { fontStyle: 'bold' });
@@ -107,7 +176,7 @@ export class ChallengeScene extends Phaser.Scene {
       this,
       x + 140,
       y + 108,
-      `${CHAPTERS[c.chapterId - 1].name} · ${c.endless ? tx('无尽模式（比坚持的波数）', 'Endless (how far can you go)') : tx('15 波', '15 waves')}`,
+      `${CHAPTERS[c.chapterId - 1].name} · ${c.endless ? tx('无尽模式（比坚持的波数）', 'Endless (how far can you go)') : tx(`${chapterWaves(c.chapterId)} 波`, `${chapterWaves(c.chapterId)} waves`)}`,
       16,
       COLORS.text,
     );
@@ -143,14 +212,7 @@ export class ChallengeScene extends Phaser.Scene {
       w - 40,
       56,
       rec ? tx('再次挑战', 'Try again') : tx('开始挑战', 'Start'),
-      () => {
-        clearRun();
-        save.charRuns[c.charId] = (save.charRuns[c.charId] ?? 0) + 1;
-        persist();
-        checkAchievements();
-        run.startChallenge(c);
-        this.scene.start('Game');
-      },
+      () => this.begin(c),
       daily ? 0xc1121f : 0x7b2cbf,
       24,
     );

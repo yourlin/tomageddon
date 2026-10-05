@@ -1,20 +1,32 @@
 // 英文覆盖：武器 / 武器标签 / 状态 / 章节 / 属性 / 技能类型 / 稀有度
 import type { ChaptersEn, StatsEn, StatusesEn, WeaponsEn, WeaponTagsEn } from '../types';
+import { EXTRA_WEAPONS_EN } from '../../data/gearExtra';
+import { AFFINITY_WEAPONS_EN } from '../../data/weaponsAffinity';
+import { EXTRA_CHAPTER_EN } from '../../data/chaptersExtra';
 
 export const EN_WEAPONS: WeaponsEn = {
   // ---- 进化超武 ----
   hell_trident: { name: 'Hell Trident', desc: 'A trident soaked in hot sauce — it sets whatever it pierces ablaze.' },
-  titan_pin: { name: 'Titan Pin', desc: 'Weighted with an iron wok; every sweep stuns a crowd.' },
+  titan_pin: { name: 'Titan Pin', desc: 'Weighted with an iron wok; it spins a full circle around you and stuns everything nearby.' },
   paoding_blade: { name: 'Master Chef Blade', desc: 'Cuts through effortlessly — every slice is lethal.' },
-  dragon_cleaver: { name: 'Dragon Cleaver', desc: 'Forged from a whole knife set; it cleaves through anything.' },
+  dragon_cleaver: {
+    name: 'Dragon Cleaver',
+    desc: 'Forged from a whole knife set: an X-shaped double slash, then a dragon-slaying blade wave that pierces a whole line.',
+  },
   pea_gatling: { name: 'Pea Gatling', desc: 'A whole sack of peas, fired nonstop.' },
   ketchup_flood: { name: 'Ketchup Flood', desc: 'An endless torrent of ketchup that drowns everything.' },
   devil_missile: { name: 'Devil Pepper Missile', desc: 'Off the heat scale — double the blast radius.' },
-  thor_whisk: { name: 'Thunder Whisk', desc: 'Tesla-charged lightning that keeps jumping through the horde.' },
+  thor_whisk: {
+    name: 'Thunder Whisk',
+    desc: "Tesla-charged lightning that keeps jumping through the horde, finished by a guaranteed-crit Thor's hammer bolt from the sky.",
+  },
   vampire_garlic: { name: 'Vampire Garlic', desc: 'Even vampires love garlic now: the aura drains life.' },
   blueberry_railgun: { name: 'Blueberry Railgun', desc: 'Magnetically accelerated blueberries pierce whole lines of enemies.' },
   golden_corn: { name: 'Golden Popcorn Cannon', desc: 'Golden popcorn that bursts in every direction.' },
-  anise_storm: { name: 'Anise Storm', desc: 'Feather-light star anise that never stops bouncing.' },
+  anise_storm: {
+    name: 'Anise Storm',
+    desc: 'Feather-light star anise that flies out, loops three ellipses and comes back, hitting again on every loop.',
+  },
   fork: { name: 'Tomato Fork', desc: 'A humble three-pronged fork. Thrusts forward.' },
   rolling_pin: { name: 'Rolling Pin', desc: 'Sweeps a wide area and knocks enemies back.' },
   knife: { name: "Chef's Knife", desc: 'Fast thrusts with high crit.' },
@@ -29,7 +41,7 @@ export const EN_WEAPONS: WeaponsEn = {
   soda: { name: 'Iced Soda', desc: 'Icy bubbles pierce enemies and slow them by 40%.' },
   garlic_aura: { name: 'Garlic Aura', desc: 'Continuously damages nearby enemies (every 0.5s).' },
   pepper_mine: { name: 'Pepper Mine', desc: 'Lays mines around you that explode when enemies step on them.' },
-  onion_boomerang: { name: 'Onion Boomerang', desc: 'Flies out and returns, piercing everything in its path.' },
+  onion_boomerang: { name: 'Onion Boomerang', desc: 'Curves out in an arc and loops back, piercing everything in its path.' },
   broccoli_staff: { name: 'Broccoli Staff', desc: 'Unleashes chain lightning that jumps between enemies.' },
   sauce_gatling: { name: 'Sauce Gatling', desc: 'A sauce machine gun that sprays like crazy.' },
   cleaver: { name: 'Meat Cleaver', desc: 'Mighty sweep. Kills have a 20% chance to drop extra Seeds.' },
@@ -40,7 +52,7 @@ export const EN_WEAPONS: WeaponsEn = {
   ladle: { name: 'Soup Ladle', desc: 'A sweep of hot soup. Hits grant extra Life Steal Chance.' },
   baguette_sword: { name: 'Baguette Blade', desc: 'Huge-reach bread sweep. Scales with Max HP.' },
   cucumber_katana: { name: 'Cucumber Katana', desc: 'A crisp slash with very high crit.' },
-  pizza_cutter: { name: 'Pizza Cutter', desc: 'Flung out and pulled back, slicing everything en route.' },
+  pizza_cutter: { name: 'Pizza Cutter', desc: 'Rolls out in a zigzag and back, slicing everything en route.' },
   chopsticks: { name: 'Chopsticks', desc: 'Lightning-fast pokes. Quick and precise.' },
   bamboo_spear: { name: 'Bamboo Spear', desc: 'Slow but mighty thrust with extra-long reach.' },
   pineapple_mace: { name: 'Pineapple Mace', desc: 'A spiky pineapple slam that sets off a small blast.' },
@@ -50,7 +62,10 @@ export const EN_WEAPONS: WeaponsEn = {
   bean_bazooka: { name: 'Bean Bazooka', desc: 'Fires a giant bean pod for a massive explosion.' },
   cherry_bomb: { name: 'Cherry Bombs', desc: 'Lobs cherries in pairs, each one exploding.' },
   blueberry_sniper: { name: 'Blueberry Sniper', desc: 'Ultra-long-range precision shots with high crit.' },
-  plate_frisbee: { name: 'Plate Frisbee', desc: 'A thrown plate that smacks enemies again on the way back.' },
+  plate_frisbee: {
+    name: 'Plate Frisbee',
+    desc: 'A thrown plate that swings wide at the far end and smacks enemies again on the way back.',
+  },
   seed_spitter: { name: 'Seed Spitter', desc: 'Pew-pew-pew! Rapid-fire melon seeds.' },
   carrot_crossbow: { name: 'Carrot Crossbow', desc: 'Pointy carrot bolts pierce a whole line of enemies.' },
   honey_blaster: { name: 'Honey Blaster', desc: 'Sticky honey shots slow enemies by 35%.' },
@@ -63,7 +78,10 @@ export const EN_WEAPONS: WeaponsEn = {
   mint_frost_mine: { name: 'Mint Frost Mine', desc: 'Cool minty mines whose blast leaves enemies crawling.' },
   thunder_durian: { name: 'Thunder Durian', desc: 'Hurls a charged durian that explodes and stuns.' },
   dragonfruit_orb: { name: 'Dragonfruit Orb', desc: 'A blazing dragonfruit that bounces and ignites enemies.' },
-  star_anise_shuriken: { name: 'Star Anise Star', desc: 'A spice shuriken that boomerangs back, burning foes.' },
+  star_anise_shuriken: {
+    name: 'Star Anise Star',
+    desc: 'A spice shuriken that spirals across the front and boomerangs back, burning foes.',
+  },
   lemon_battery: { name: 'Lemon Battery', desc: 'Powerful shock with fewer jumps, but it stuns.' },
 };
 
@@ -94,6 +112,8 @@ export const EN_STATUSES: StatusesEn = {
   mark: { name: 'Mark', desc: 'The next hit taken is a guaranteed crit', glyph: 'MK' },
   silence: { name: 'Silence', desc: 'Cannot use skills', glyph: 'SI' },
   rot: { name: 'Rot', desc: 'Max HP effects reduced. Attack Speed -10%', glyph: 'RO' },
+  soaked: { name: 'Soaked', desc: 'Move Speed -10% and Attack Speed -8% per stack. Stacks up to 3', glyph: 'SO' },
+  corrode: { name: 'Corrode', desc: 'Takes acid damage per stack every second. Damage taken +6% per stack. Stacks up to 4', glyph: 'CO' },
 
   haste: { name: 'Haste', desc: 'Move Speed and Attack Speed increased', glyph: 'HA' },
   rage: { name: 'Rage', desc: 'Damage dealt increased', glyph: 'RA' },
@@ -107,6 +127,8 @@ export const EN_STATUSES: StatusesEn = {
   enrage: { name: 'Enrage', desc: 'Move Speed +30%, Damage +30%', glyph: 'EN' },
   lucky: { name: 'Lucky', desc: 'Luck increased', glyph: 'LU' },
   vampiric: { name: 'Bloodlust', desc: 'Life Steal Chance +4% per stack', glyph: 'VA' },
+  tailwind: { name: 'Tailwind', desc: 'Move Speed +12% and Dodge +4% per stack. Stacks up to 3', glyph: 'TW' },
+  hardened: { name: 'Hardened', desc: 'Armor +3 and Damage taken -10% per stack. Stacks up to 2', glyph: 'HD' },
 };
 
 export const EN_CHAPTERS: ChaptersEn = {
@@ -122,7 +144,11 @@ export const EN_CHAPTERS: ChaptersEn = {
   2: {
     name: 'Chapter 2 · Wild Garden',
     desc: 'Bugs have overrun the garden. Watch out for the healing toadstools.',
-    terrain: ['Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit', 'Gophers: Pop out of burrows to throw rocks'],
+    terrain: [
+      'Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit',
+      'Gophers: Pop out of burrows to throw rocks',
+      'Sprinklers: Periodically spray water, Soaking players and monsters in range (Move and Attack Speed reduced)',
+    ],
   },
   3: {
     name: 'Chapter 3 · Frozen Fridge',
@@ -135,12 +161,17 @@ export const EN_CHAPTERS: ChaptersEn = {
     terrain: [
       'Quicksand Pit: Pulls players and monsters toward the center and deals damage',
       'Falling Trash: Watch for warning circles on the ground',
+      'Acid Leak: Acid pools bubble up near you, dealing damage and inflicting Corrode',
     ],
   },
   5: {
     name: 'Chapter 5 · Ketchup Factory',
     desc: 'The source of all rot. Defeat the Rotten Chef and save Ketchup Town!',
-    terrain: ['Conveyor Belts: Push all units standing on them', 'Steam Valves: Periodically blast scalding steam'],
+    terrain: [
+      'Conveyor Belts: Push all units standing on them',
+      'Steam Valves: Periodically blast scalding steam',
+      'Air Vents: Stand on a vent to gain Tailwind (more Move Speed and Dodge); monsters get blown away',
+    ],
   },
 };
 
@@ -191,3 +222,10 @@ export const EN_SKILL_TYPES: Record<string, string> = {
 };
 
 export const EN_RARITY: string[] = ['Common', 'Rare', 'Epic', 'Legendary'];
+
+// 1.4.0：第 6 / 7 章
+Object.assign(EN_CHAPTERS, EXTRA_CHAPTER_EN);
+
+// 1.4.0 G5 / G7：新武器、超武与道具
+Object.assign(EN_WEAPONS, EXTRA_WEAPONS_EN);
+Object.assign(EN_WEAPONS, AFFINITY_WEAPONS_EN);

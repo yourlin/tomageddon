@@ -1,5 +1,5 @@
 // 成就：每项读取一个指标（见 systems/Achievements.ts 的 METRICS），分若干等级（铜 → 银 → 金 → 钻石），
-// 每达到一级获得成就点，成就点可在选角界面购买角色。
+// 每达到一级获得成就点（累计成绩）；部分成就达成指定等级后会解锁角色（见 characters.ts 的 unlock）。
 // 文字自带中英文（[中文, English]）；{n} 替换为当前等级目标值，{char} 替换为角色名，{x} 替换为 subject 的名字。
 // 难度越高奖励越多：入门等级 1~3 点，中等 5~15 点，高难 30~150 点。
 import { CHARACTERS } from './characters';
@@ -12,6 +12,7 @@ import { DEBUFF_IDS } from './statuses';
 import { CHAPTERS } from './chapters';
 import { EVOLUTIONS } from './evolutions';
 import type { SkillType } from './characters';
+import { ACHIEVEMENTS_14 } from './achievements14';
 
 export type AchCategory =
   | 'combat'
@@ -503,7 +504,11 @@ const GLOBAL: AchievementDef[] = [
 ];
 
 /** 角色成就：开局、通关、波次、等级、击杀、精英、逐章通关（每名角色 11 项） */
-const CH_CLEAR_POINTS = [8, 15, 25, 40, 60];
+// 第 6、7 章（腐烂温室 / 腐烂菜园）后加；再加章节时也会按最后一档递增，不会出现 NaN
+const CH_CLEAR_POINTS = [8, 15, 25, 40, 60, 85, 115];
+const CH_CLEAR_ICONS = ['🍳', '🌱', '❄️', '🗑️', '🏭', '🍄', '🥀'];
+const chClearPoints = (i: number) =>
+  CH_CLEAR_POINTS[i] ?? CH_CLEAR_POINTS[CH_CLEAR_POINTS.length - 1] + 30 * (i - CH_CLEAR_POINTS.length + 1);
 const PER_CHARACTER: AchievementDef[] = CHARACTERS.flatMap((c) => {
   const C = (def: AchievementDef): AchievementDef => ({ ...def, charId: c.id });
   return [
@@ -600,11 +605,11 @@ const PER_CHARACTER: AchievementDef[] = CHARACTERS.flatMap((c) => {
         K(
           `char_ch${ch.id}_${c.id}`,
           'character',
-          ['🍳', '🌱', '❄️', '🗑️', '🏭'][i],
+          CH_CLEAR_ICONS[i] ?? '🏆',
           [`{char}·第${ch.id}章`, `{char} · Chapter ${ch.id}`],
           [`使用{char}通关第 ${ch.id} 章`, `Clear Chapter ${ch.id} as {char}`],
           `charClear:${c.id}:${ch.id}`,
-          [[1, CH_CLEAR_POINTS[i]]],
+          [[1, chClearPoints(i)]],
         ),
       ),
     ),
@@ -1004,6 +1009,8 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   ...PER_SKILL,
   ...ENDLESS,
   ...PER_CHARACTER,
+  // 1.4.0：危机等级、遗物、事件波、无尽专属、角色任务与觉醒
+  ...ACHIEVEMENTS_14,
 ];
 /** 天赋点奖励：只有里程碑成就给，总计约 80 点（≈ 精通 2.5 个天赋方向）；首次通关第 1 章约得 7 点 */
 export const TALENT_REWARDS: Record<string, number[]> = {

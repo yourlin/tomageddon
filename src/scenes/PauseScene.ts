@@ -1,14 +1,15 @@
 // 暂停菜单（覆盖在战斗之上）
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
-import { run, clearRun } from '../systems/RunState';
+import { run, clearRun, restoreFreeSnapshot } from '../systems/RunState';
+import { inPractice, exitPractice } from '../systems/Practice';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
 import { WEAPON_MAP, TIER_NAMES } from '../data/weapons';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { save, persist } from '../systems/Save';
-import { regenPerSecond, lifeStealMaxPerSecond } from '../data/balance';
+import { regenPerSecond, lifeStealMaxPerSecond, lifeStealHeal } from '../data/balance';
 
 export class PauseScene extends Phaser.Scene {
   constructor() {
@@ -31,13 +32,16 @@ export class PauseScene extends Phaser.Scene {
       const x = W / 2 - 390 + Math.floor(i / col) * 250,
         y = 130 + (i % col) * 26;
       const info = STAT_INFO[k];
-      const cap = k === 'dodge' ? run.dodgeCap : Infinity;
+      const cap = run.statCap(k);
       const v = Math.min(s[k], cap);
       const regenTxt =
         k === 'regen'
           ? tx(`（${regenPerSecond(v).toFixed(2)}/秒）`, ` (${regenPerSecond(v).toFixed(2)}/s)`)
           : k === 'lifeSteal' && v > 0
-            ? tx(`（命中回 1 血，≤${lifeStealMaxPerSecond()}/秒）`, ` (heal 1 on hit, ≤${lifeStealMaxPerSecond()}/s)`)
+            ? tx(
+                `（命中回 ${lifeStealHeal(s.maxHp)} 血，≤${lifeStealMaxPerSecond(s.maxHp)}/秒）`,
+                ` (heal ${lifeStealHeal(s.maxHp)} on hit, ≤${lifeStealMaxPerSecond(s.maxHp)}/s)`,
+              )
             : '';
       text(
         this,
@@ -90,6 +94,12 @@ export class PauseScene extends Phaser.Scene {
       24,
     );
     button(this, W / 2, by, 180, 64, tx('全屏', 'Fullscreen'), () => toggleFullscreen(this), 0x3a7d44, 22);
+    // J3：练习模式只有「退出练习」，不保存、不清除存档里的进行中对局
+    if (inPractice()) {
+      button(this, W / 2 + 285, by, 370, 64, tx('退出练习', 'Quit practice'), () => exitPractice(this), 0x7a2e35, 24);
+      this.input.keyboard?.once('keydown-ESC', () => this.resume());
+      return;
+    }
     button(this, W / 2 + 190, by, 180, 64, tx('保存退出', 'Save & Quit'), () => this.saveAndQuit(), 0xb07d2b, 22);
     button(
       this,
@@ -100,6 +110,7 @@ export class PauseScene extends Phaser.Scene {
       tx('放弃本局', 'Abandon Run'),
       () => {
         clearRun();
+        restoreFreeSnapshot();
         audio.stopMusic();
         this.scene.stop('Hud');
         this.scene.stop('Game');

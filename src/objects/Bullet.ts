@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import type { Enemy } from './Enemy';
 import type { WeaponEffect } from '../data/weapons';
 import type { StatusApply } from '../data/statuses';
+import type { BoomPath } from '../systems/BoomPaths';
 
 export class Bullet extends Phaser.GameObjects.Image {
   alive = false;
@@ -14,14 +15,25 @@ export class Bullet extends Phaser.GameObjects.Image {
   life = 1; // 剩余存活秒数
   pierce = 0;
   bounce = 0;
+  /** 命中后还能再分裂几层（道具「分裂」提供，只用于武器子弹） */
+  split = 0;
+  /** 第几代碎片：0 = 武器原始子弹 */
+  gen = 0;
   knockback = 0;
   effect: WeaponEffect | undefined;
   lifeSteal = 0;
   hitSet = new Set<Enemy>();
   kind: 'normal' | 'rocket' | 'flame' | 'boomerang' = 'normal';
-  // 回旋镖
-  returning = false;
-  outT = 0;
+  // 回旋镖：按 BoomPaths 的曲线飞行
+  path: BoomPath = 'arc';
+  pathT = 0; // 已飞行秒数
+  pathDur = 1; // 整趟耗时
+  pathAng = 0; // 出手方向
+  pathSide = 1; // 往哪边拐
+  pathReach = 300; // 最远距离
+  pathPass = 0; // 当前处于第几段（换段时清空命中记录）
+  sx = 0; // 出手点
+  sy = 0;
   // 敌方子弹
   slow = 0;
   spin = 0;
@@ -31,6 +43,17 @@ export class Bullet extends Phaser.GameObjects.Image {
   owner: Enemy | null = null;
   status: StatusApply[] | undefined; // 玩家子弹附带的状态
   critBonus = 0; // 武器词条暴击伤害 %（命中时与道具暴击伤害合并结算）
+  /** 天赋追加的子弹：命中不再触发天赋 */
+  echo = false;
+  /** 追踪转向速度（弧度/秒），0 = 直线 */
+  homing = 0;
+  /** 玉米枪手：按飞行距离额外穿透的上限，与已用掉的次数 */
+  distPierce = 0;
+  distUsed = 0;
+  /** 芦笋弓手：打满血敌人不消耗穿透 */
+  refundFull = false;
+  /** 爆炸范围倍率（契合特效） */
+  areaMul = 1;
 
   constructor(scene: Phaser.Scene) {
     super(scene, 0, 0, 'proj_player');
@@ -47,12 +70,17 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.alive = true;
     this.pierce = 0;
     this.bounce = 0;
+    this.split = 0;
+    this.gen = 0;
     this.knockback = 0;
     this.effect = undefined;
     this.lifeSteal = 0;
     this.hitSet.clear();
     this.kind = 'normal';
-    this.returning = false;
+    this.pathT = 0;
+    this.pathPass = 0;
+    this.sx = x;
+    this.sy = y;
     this.slow = 0;
     this.spin = 0;
     this.src = '';
@@ -61,6 +89,12 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.status = undefined;
     this.crit = false;
     this.critBonus = 0;
+    this.echo = false;
+    this.homing = 0;
+    this.distPierce = 0;
+    this.distUsed = 0;
+    this.refundFull = false;
+    this.areaMul = 1;
     return this;
   }
 

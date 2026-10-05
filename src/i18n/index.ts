@@ -1,5 +1,6 @@
 // 多语言：中文 / English。语言在启动时确定，切换语言后重新加载页面。
 // 优先级：URL ?lang=zh|en > 存档设置 > 浏览器语言；测试模式（?headless）固定中文。
+import { storage } from '../platform';
 export type Lang = 'zh' | 'en';
 
 const SAVE_KEY = 'tomato_sister_save_v1';
@@ -11,7 +12,7 @@ function detect(): Lang {
   if (forced === 'zh' || forced === 'en') return forced;
   if (q.has('headless')) return 'zh';
   try {
-    const saved = JSON.parse(localStorage.getItem(SAVE_KEY) ?? '{}')?.settings?.lang;
+    const saved = JSON.parse(storage.getItem(SAVE_KEY) ?? '{}')?.settings?.lang;
     if (saved === 'zh' || saved === 'en') return saved;
   } catch {}
   return navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en';

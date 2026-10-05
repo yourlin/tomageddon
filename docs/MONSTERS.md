@@ -2,13 +2,13 @@
 
 **中文** · [English](en/MONSTERS.md)
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · **怪物** · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · **怪物** · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-小怪 75 种 · 地形生物 2 种 · 精英 30 名 · Boss 15 名 · 精英词缀 12 种。
+小怪 87 种 · 地形生物 2 种 · 精英 34 名 · Boss 18 名 · 精英词缀 20 种。
 
-每章第 5、10 波出现精英，第 15 波为 Boss，均从该章的池子中随机抽取。各章出现哪些怪物见[关卡](CHAPTERS.md)。
+每 5 波出现一只精英（第 1–4 章为第 5、10 波），每章最后一波为 Boss（第 1–4 章为第 15 波，第 5 章起章节更长），均从该章的池子中随机抽取。各章出现哪些怪物见[关卡](CHAPTERS.md)。
 
 敌人生命与伤害随波次成长并乘以章节倍率；攻击附带的状态见[状态效果](SKILLS.md#statuses)。
 
@@ -100,6 +100,18 @@
 | <img src="images/enemy/bottling_bot.png" width="32" height="32" alt=""> [灌装机器人](#enemy-bottling_bot) | 召唤 | 34（每波 +80%） | 3（每波 +0.65） | 45 | 4 | - |
 | <img src="images/enemy/welder_bug.png" width="32" height="32" alt=""> [焊枪虫](#enemy-welder_bug) | 远程射击 | 14（每波 +65%） | 2（每波 +0.65） | 95 | 2 | [灼烧](SKILLS.md#status-burn) 2s |
 | <img src="images/enemy/press_piston.png" width="32" height="32" alt=""> [冲压活塞](#enemy-press_piston) | 蓄力冲撞 | 26（每波 +75%） | 3（每波 +0.8） | 70 | 3 | - |
+| <img src="images/enemy/blight_sprout.png" width="32" height="32" alt=""> [枯萎嫩芽](#enemy-blight_sprout) | 追击 | 5（每波 +50%） | 1（每波 +0.5） | 130 | 1 | - |
+| <img src="images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [菌蚊](#enemy-fungus_gnat) | 游荡 | 9（每波 +55%） | 2（每波 +0.45） | 145 | 1 | [致盲](SKILLS.md#status-blind) 1.2s（25%） |
+| <img src="images/enemy/rot_chili.png" width="32" height="32" alt=""> [腐辣椒](#enemy-rot_chili) | 远程射击 | 13（每波 +65%） | 2（每波 +0.6） | 105 | 2 | [灼烧](SKILLS.md#status-burn) 2s |
+| <img src="images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [流汗黄瓜](#enemy-slime_cucumber) | 留下黏液 | 18（每波 +70%） | 2（每波 +0.6） | 80 | 2 | [黏液](SKILLS.md#status-sticky) 1.5s |
+| <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](#enemy-spore_puff) | 自爆 | 10（每波 +60%） | 4（每波 +0.85） | 125 | 2 | 3层[中毒](SKILLS.md#status-poison) 3s |
+| <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](#enemy-vine_lasher) | 蓄力冲撞 | 24（每波 +75%） | 3（每波 +0.8） | 75 | 3 | 2层[流血](SKILLS.md#status-bleed) 3s |
+| <img src="images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [霉变南瓜](#enemy-moldy_pumpkin) | 死亡分裂 | 30（每波 +75%） | 3（每波 +0.7） | 65 | 3 | - |
+| <img src="images/enemy/compost_heap.png" width="32" height="32" alt=""> [堆肥桶](#enemy-compost_heap) | 召唤 | 34（每波 +80%） | 3（每波 +0.65） | 45 | 4 | - |
+| <img src="images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [烂心卷心菜](#enemy-rot_cabbage) | 追击 | 32（每波 +80%） | 3（每波 +0.75） | 75 | 3 | [腐烂](SKILLS.md#status-rot) 3s |
+| <img src="images/enemy/zombie_carrot.png" width="32" height="32" alt=""> [僵尸胡萝卜](#enemy-zombie_carrot) | 蓄力冲撞 | 24（每波 +75%） | 3（每波 +0.8） | 80 | 3 | [腐烂](SKILLS.md#status-rot) 3s |
+| <img src="images/enemy/rot_sprinkler.png" width="32" height="32" alt=""> [腐水洒水器](#enemy-rot_sprinkler) | 治疗同伴 | 22（每波 +70%） | 2（每波 +0.5） | 70 | 3 | - |
+| <img src="images/enemy/blight_onion.png" width="32" height="32" alt=""> [枯萎洋葱](#enemy-blight_onion) | 远程射击 | 15（每波 +65%） | 2（每波 +0.6） | 95 | 2 | [致盲](SKILLS.md#status-blind) 1.5s（35%） |
 
 <a id="enemy-mold"></a>
 
@@ -133,7 +145,7 @@
 | 伤害 | 1（每波 +0.5） |
 | 速度 | 150 |
 | 掉落番茄籽 | 1 |
-| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 2+ 波；[第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 1+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 1+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 1~6 波 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 2+ 波；[第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 1+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 1+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 1~6 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 1~6 波 |
 
 <a id="enemy-maggot"></a>
 
@@ -221,7 +233,7 @@
 | 速度 | 135 |
 | 掉落番茄籽 | 1 |
 | 特殊 | 自爆半径 85 |
-| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 9+ 波；[第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 10+ 波；[第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 6+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 6+ 波 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 9+ 波；[第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 10+ 波；[第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 6+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 6+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 6+ 波 |
 
 <a id="enemy-snail"></a>
 
@@ -258,7 +270,7 @@
 | 掉落番茄籽 | 2 |
 | 攻击附带 | [中毒](SKILLS.md#status-poison) 3s |
 | 特殊 | 每 3s 射击 2 发 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 5+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 6+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 5+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 6+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 5+ 波 |
 
 <a id="enemy-splitter"></a>
 
@@ -276,7 +288,7 @@
 | 速度 | 75 |
 | 掉落番茄籽 | 2 |
 | 特殊 | 死亡分裂为 3 只[霉菌团](#enemy-mold) |
-| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 11+ 波；[第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 6+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 9+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 7+ 波 |
+| 出现 | [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) 第 11+ 波；[第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 6+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 9+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 7+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 7+ 波 |
 
 <a id="enemy-mushroom"></a>
 
@@ -294,7 +306,7 @@
 | 速度 | 60 |
 | 掉落番茄籽 | 3 |
 | 特殊 | 治疗半径 180 内同伴 0.2 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 5+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 7+ 波；[第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 8+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 5+ 波；[第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 7+ 波；[第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 8+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 5+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 6+ 波 |
 
 <a id="enemy-brood"></a>
 
@@ -331,7 +343,7 @@
 | 掉落番茄籽 | 2 |
 | 攻击附带 | [流血](SKILLS.md#status-bleed) 3s（30%） |
 | 特殊 | 每 3s 冲撞 |
-| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 7+ 波；[第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 5+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波 |
+| 出现 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) 第 7+ 波；[第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) 第 5+ 波；[第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 5+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 6+ 波 |
 
 <a id="enemy-ice_cube"></a>
 
@@ -746,7 +758,7 @@
 | 伤害 | 1（每波 +0.4） |
 | 速度 | 135 |
 | 掉落番茄籽 | 1 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 2+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 2+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 1~7 波 |
 
 <a id="enemy-garden_slug"></a>
 
@@ -764,7 +776,7 @@
 | 速度 | 55 |
 | 掉落番茄籽 | 2 |
 | 攻击附带 | [黏液](SKILLS.md#status-sticky) 2s |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 4+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 4+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 3+ 波 |
 
 <a id="enemy-weevil"></a>
 
@@ -782,7 +794,7 @@
 | 速度 | 85 |
 | 掉落番茄籽 | 2 |
 | 特殊 | 每 2.8s 冲撞 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 5+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 5+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 5+ 波 |
 
 <a id="enemy-thorn_weed"></a>
 
@@ -801,7 +813,7 @@
 | 掉落番茄籽 | 2 |
 | 攻击附带 | [流血](SKILLS.md#status-bleed) 3s（35%） |
 | 特殊 | 每 2.8s 射击 3 发 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 6+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 6+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 4+ 波 |
 
 <a id="enemy-caterpillar"></a>
 
@@ -818,7 +830,7 @@
 | 伤害 | 1（每波 +0.6） |
 | 速度 | 90 |
 | 掉落番茄籽 | 1 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 2+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 2+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 1~8 波 |
 
 <a id="enemy-ladybug_bomb"></a>
 
@@ -836,7 +848,7 @@
 | 速度 | 125 |
 | 掉落番茄籽 | 1 |
 | 特殊 | 自爆半径 85 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 8+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 8+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 6+ 波 |
 
 <a id="enemy-rotten_potato"></a>
 
@@ -854,7 +866,7 @@
 | 速度 | 60 |
 | 掉落番茄籽 | 3 |
 | 特殊 | 死亡分裂为 4 只[蚜虫](#enemy-aphid) |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 10+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 10+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 7+ 波 |
 
 <a id="enemy-locust"></a>
 
@@ -890,7 +902,7 @@
 | 掉落番茄籽 | 2 |
 | 攻击附带 | [流血](SKILLS.md#status-bleed) 3s（40%） |
 | 特殊 | 每 3.2s 冲撞 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 9+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 9+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 8+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 5+ 波 |
 
 <a id="enemy-pollen_bloom"></a>
 
@@ -909,7 +921,7 @@
 | 掉落番茄籽 | 2 |
 | 攻击附带 | [中毒](SKILLS.md#status-poison) 3s |
 | 特殊 | 每 3s 射击 2 发 |
-| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 7+ 波 |
+| 出现 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) 第 7+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 6+ 波 |
 
 <a id="enemy-frost_mite"></a>
 
@@ -1338,7 +1350,7 @@
 | 速度 | 70 |
 | 掉落番茄籽 | 3 |
 | 特殊 | 死亡分裂为 3 只[酱汁滴](#enemy-sauce_drip) |
-| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 8+ 波 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 8+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 10+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 9+ 波 |
 
 <a id="enemy-steam_imp"></a>
 
@@ -1375,7 +1387,7 @@
 | 速度 | 75 |
 | 掉落番茄籽 | 3 |
 | 攻击附带 | [破甲](SKILLS.md#status-armorBreak) 4s |
-| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 7+ 波 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 7+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 8+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 9+ 波 |
 
 <a id="enemy-label_ghost"></a>
 
@@ -1448,7 +1460,227 @@
 | 速度 | 70 |
 | 掉落番茄籽 | 3 |
 | 特殊 | 每 3.4s 冲撞 |
-| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 9+ 波 |
+| 出现 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) 第 9+ 波；[第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 11+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 10+ 波 |
+
+<a id="enemy-blight_sprout"></a>
+
+### 枯萎嫩芽
+
+<img src="images/enemy/blight_sprout.png" width="96" height="96" alt="">
+
+> 刚冒头就烂掉的幼苗，成群扑来。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 5（每波 +50%） |
+| 伤害 | 1（每波 +0.5） |
+| 速度 | 130 |
+| 掉落番茄籽 | 1 |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 1~5 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 1~5 波 |
+
+<a id="enemy-fungus_gnat"></a>
+
+### 菌蚊
+
+<img src="images/enemy/fungus_gnat.png" width="96" height="96" alt="">
+
+> 从潮湿花盆里飞出的小蚊子，叮咬可能致盲。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 游荡 |
+| 生命 | 9（每波 +55%） |
+| 伤害 | 2（每波 +0.45） |
+| 速度 | 145 |
+| 掉落番茄籽 | 1 |
+| 攻击附带 | [致盲](SKILLS.md#status-blind) 1.2s（25%） |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 2+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 1+ 波 |
+
+<a id="enemy-rot_chili"></a>
+
+### 腐辣椒
+
+<img src="images/enemy/rot_chili.png" width="96" height="96" alt="">
+
+> 发霉的朝天椒，远远喷出灼烧辣籽。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 13（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 105 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [灼烧](SKILLS.md#status-burn) 2s |
+| 特殊 | 每 2.4s 射击 3 发 |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 3+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 4+ 波 |
+
+<a id="enemy-slime_cucumber"></a>
+
+### 流汗黄瓜
+
+<img src="images/enemy/slime_cucumber.png" width="96" height="96" alt="">
+
+> 闷在温室里发酵的黄瓜，一路淌下粘液。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 留下黏液 |
+| 生命 | 18（每波 +70%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 80 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [黏液](SKILLS.md#status-sticky) 1.5s |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 3+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 3+ 波 |
+
+<a id="enemy-spore_puff"></a>
+
+### 孢子马勃
+
+<img src="images/enemy/spore_puff.png" width="96" height="96" alt="">
+
+> 圆滚滚的毒蘑菇球，凑近就炸出毒孢子。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 自爆 |
+| 生命 | 10（每波 +60%） |
+| 伤害 | 4（每波 +0.85） |
+| 速度 | 125 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | 3层[中毒](SKILLS.md#status-poison) 3s |
+| 特殊 | 自爆半径 100 |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 4+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 3+ 波 |
+
+<a id="enemy-vine_lasher"></a>
+
+### 腐藤鞭
+
+<img src="images/enemy/vine_lasher.png" width="96" height="96" alt="">
+
+> 缠满倒刺的烂藤，蓄力后猛抽过来。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 24（每波 +75%） |
+| 伤害 | 3（每波 +0.8） |
+| 速度 | 75 |
+| 掉落番茄籽 | 3 |
+| 攻击附带 | 2层[流血](SKILLS.md#status-bleed) 3s |
+| 特殊 | 每 3.2s 冲撞 |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 5+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 4+ 波 |
+
+<a id="enemy-moldy_pumpkin"></a>
+
+### 霉变南瓜
+
+<img src="images/enemy/moldy_pumpkin.png" width="96" height="96" alt="">
+
+> 烂透的南瓜，被打破就滚出一窝枯萎嫩芽。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 死亡分裂 |
+| 生命 | 30（每波 +75%） |
+| 伤害 | 3（每波 +0.7） |
+| 速度 | 65 |
+| 掉落番茄籽 | 3 |
+| 特殊 | 死亡分裂为 4 只[枯萎嫩芽](#enemy-blight_sprout) |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 7+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 6+ 波 |
+
+<a id="enemy-compost_heap"></a>
+
+### 堆肥桶
+
+<img src="images/enemy/compost_heap.png" width="96" height="96" alt="">
+
+> 咕嘟冒泡的堆肥桶，不停孵出菌蚊。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 召唤 |
+| 生命 | 34（每波 +80%） |
+| 伤害 | 3（每波 +0.65） |
+| 速度 | 45 |
+| 掉落番茄籽 | 4 |
+| 特殊 | 召唤 3 只[菌蚊](#enemy-fungus_gnat) |
+| 出现 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) 第 9+ 波；[第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 8+ 波 |
+
+<a id="enemy-rot_cabbage"></a>
+
+### 烂心卷心菜
+
+<img src="images/enemy/rot_cabbage.png" width="96" height="96" alt="">
+
+> 一层层烂叶裹着的重型菜头，碰到会染上腐烂。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 追击 |
+| 生命 | 32（每波 +80%） |
+| 伤害 | 3（每波 +0.75） |
+| 速度 | 75 |
+| 掉落番茄籽 | 3 |
+| 攻击附带 | [腐烂](SKILLS.md#status-rot) 3s |
+| 出现 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 2+ 波 |
+
+<a id="enemy-zombie_carrot"></a>
+
+### 僵尸胡萝卜
+
+<img src="images/enemy/zombie_carrot.png" width="96" height="96" alt="">
+
+> 从烂泥里拔出来的胡萝卜，蓄力后一头扎来。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 蓄力冲撞 |
+| 生命 | 24（每波 +75%） |
+| 伤害 | 3（每波 +0.8） |
+| 速度 | 80 |
+| 掉落番茄籽 | 3 |
+| 攻击附带 | [腐烂](SKILLS.md#status-rot) 3s |
+| 特殊 | 每 3s 冲撞 |
+| 出现 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 3+ 波 |
+
+<a id="enemy-rot_sprinkler"></a>
+
+### 腐水洒水器
+
+<img src="images/enemy/rot_sprinkler.png" width="96" height="96" alt="">
+
+> 喷洒腐水的洒水器，给周围的怪物浇水回血。先打它！
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 治疗同伴 |
+| 生命 | 22（每波 +70%） |
+| 伤害 | 2（每波 +0.5） |
+| 速度 | 70 |
+| 掉落番茄籽 | 3 |
+| 特殊 | 治疗半径 200 内同伴 0.2 |
+| 出现 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 6+ 波 |
+
+<a id="enemy-blight_onion"></a>
+
+### 枯萎洋葱
+
+<img src="images/enemy/blight_onion.png" width="96" height="96" alt="">
+
+> 一剥就流泪的烂洋葱，远程喷出呛眼的辛辣汁。
+
+| 项目 | 数值 |
+| --- | --- |
+| 行为 | 远程射击 |
+| 生命 | 15（每波 +65%） |
+| 伤害 | 2（每波 +0.6） |
+| 速度 | 95 |
+| 掉落番茄籽 | 2 |
+| 攻击附带 | [致盲](SKILLS.md#status-blind) 1.5s（35%） |
+| 特殊 | 每 2.5s 射击 2 发 |
+| 出现 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) 第 4+ 波 |
 
 <a id="enemy-rabbit"></a>
 
@@ -1499,6 +1731,8 @@
 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | <img src="images/boss/ice_golem.png" width="32" height="32" alt=""> [冰晶傀儡](#boss-ice_golem)、<img src="images/boss/popsicle_twins.png" width="32" height="32" alt=""> [冰棍双子](#boss-popsicle_twins)、<img src="images/boss/frozen_fish.png" width="32" height="32" alt=""> [冻鱼武士](#boss-frozen_fish)、<img src="images/boss/snow_rat.png" width="32" height="32" alt=""> [雪鼠刺客](#boss-snow_rat)、<img src="images/boss/milk_slime.png" width="32" height="32" alt=""> [变质牛奶怪](#boss-milk_slime)、<img src="images/boss/frost_penguin.png" width="32" height="32" alt=""> [冰霜企鹅](#boss-frost_penguin) |
 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | <img src="images/boss/tire_beast.png" width="32" height="32" alt=""> [轮胎兽](#boss-tire_beast)、<img src="images/boss/can_king.png" width="32" height="32" alt=""> [易拉罐之王](#boss-can_king)、<img src="images/boss/rag_wraith.png" width="32" height="32" alt=""> [抹布怨灵](#boss-rag_wraith)、<img src="images/boss/battery_bug.png" width="32" height="32" alt=""> [漏电电池虫](#boss-battery_bug)、<img src="images/boss/garbage_rat.png" width="32" height="32" alt=""> [垃圾鼠王](#boss-garbage_rat)、<img src="images/boss/oil_titan.png" width="32" height="32" alt=""> [石油泰坦](#boss-oil_titan) |
 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | <img src="images/boss/conveyor_worm.png" width="32" height="32" alt=""> [传送带蠕虫](#boss-conveyor_worm)、<img src="images/boss/ketchup_golem.png" width="32" height="32" alt=""> [番茄酱傀儡](#boss-ketchup_golem)、<img src="images/boss/security_bot.png" width="32" height="32" alt=""> [保安机器人](#boss-security_bot)、<img src="images/boss/press_machine.png" width="32" height="32" alt=""> [冲压机](#boss-press_machine)、<img src="images/boss/chef_minion.png" width="32" height="32" alt=""> [腐烂副厨](#boss-chef_minion)、<img src="images/boss/furnace_imp.png" width="32" height="32" alt=""> [熔炉小鬼](#boss-furnace_imp) |
+| [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) | <img src="images/boss/pumpkin_brute.png" width="32" height="32" alt=""> [南瓜蛮汉](#boss-pumpkin_brute)、<img src="images/boss/spore_matron.png" width="32" height="32" alt=""> [孢子女王](#boss-spore_matron) |
+| [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) | <img src="images/boss/carrot_knight.png" width="32" height="32" alt=""> [胡萝卜亡骑](#boss-carrot_knight)、<img src="images/boss/onion_witch.png" width="32" height="32" alt=""> [洋葱巫婆](#boss-onion_witch) |
 
 <a id="boss-roach_general"></a>
 
@@ -2018,11 +2252,81 @@
 | 招式 | 螺旋弹幕 ×5 命中附带 2层[灼烧](SKILLS.md#status-burn) 3s（每 5s）<br>瞬移（每 4s） |
 | 固定词缀 | [迅捷](#affixes) |
 
+<a id="boss-pumpkin_brute"></a>
+
+### 南瓜蛮汉
+
+<img src="images/boss/pumpkin_brute.png" width="96" height="96" alt="">
+
+> 烂成空壳的巨型南瓜，横冲直撞、落地震地。
+
+| 项目 | 数值 |
+| --- | --- |
+| 章节 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) |
+| 基础生命 | 580 |
+| 伤害 | 7 |
+| 速度 | 75 |
+| 掉落番茄籽 | 42 |
+| 招式 | 预警冲锋（每 4s）<br>预警砸地 ×3 命中附带 [眩晕](SKILLS.md#status-stun) 0.6s（每 5s） |
+| 固定词缀 | [坚甲](#affixes) |
+
+<a id="boss-spore_matron"></a>
+
+### 孢子女王
+
+<img src="images/boss/spore_matron.png" width="96" height="96" alt="">
+
+> 温室角落里的巨型马勃，散播毒雾、催生孢子。
+
+| 项目 | 数值 |
+| --- | --- |
+| 章节 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) |
+| 基础生命 | 520 |
+| 伤害 | 6 |
+| 速度 | 60 |
+| 掉落番茄籽 | 42 |
+| 招式 | 召唤 3 只[孢子马勃](MONSTERS.md#enemy-spore_puff)（每 7s）<br>危险区 ×4 命中附带 3层[中毒](SKILLS.md#status-poison) 3s（每 5s）<br>环形弹 ×14（每 4s） |
+
+<a id="boss-carrot_knight"></a>
+
+### 胡萝卜亡骑
+
+<img src="images/boss/carrot_knight.png" width="96" height="96" alt="">
+
+> 披着烂叶披风的僵尸胡萝卜骑士，冲锋后乱刺。
+
+| 项目 | 数值 |
+| --- | --- |
+| 章节 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) |
+| 基础生命 | 640 |
+| 伤害 | 7 |
+| 速度 | 95 |
+| 掉落番茄籽 | 46 |
+| 招式 | 预警冲锋（每 3.5s）<br>乱射 ×10 命中附带 [腐烂](SKILLS.md#status-rot) 3s（每 3s）<br>瞬移（每 6s） |
+| 固定词缀 | [迅捷](#affixes) |
+
+<a id="boss-onion_witch"></a>
+
+### 洋葱巫婆
+
+<img src="images/boss/onion_witch.png" width="96" height="96" alt="">
+
+> 一层层剥开全是诅咒的老洋葱，让人泪流满面。
+
+| 项目 | 数值 |
+| --- | --- |
+| 章节 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) |
+| 基础生命 | 560 |
+| 伤害 | 6 |
+| 速度 | 70 |
+| 掉落番茄籽 | 46 |
+| 招式 | 环形弹 ×16 命中附带 [致盲](SKILLS.md#status-blind) 1.5s（40%）（每 4s）<br>扇形瞄准 ×3 命中附带 [诅咒](SKILLS.md#status-curse) 3s（每 2.4s）<br>强化 自身/同伴获得 [急速](SKILLS.md#status-haste) 4s、[再生](SKILLS.md#status-regen) 4s（每 10s） |
+
 <a id="bosses"></a>
 
 ## Boss
 
-第 15 波出现，生命降到一半进入第二阶段。波次持续 90 秒，超时后 Boss 狂暴：此后每 10 秒 Boss 伤害 ×1.25，并叠加一层狂暴威压（每秒扣除玩家 3% 最大生命 × 1.25^层数，无视闪避、护甲与无敌帧，不设上限），保证战斗一定会结束。
+每章最后一波出现，生命降到一半进入第二阶段。波次持续 90 秒，超时后 Boss 狂暴：此后每 10 秒 Boss 伤害 ×1.25，并叠加一层狂暴威压（每秒扣除玩家 3% 最大生命 × 1.25^层数，无视闪避、护甲与无敌帧，不设上限），保证战斗一定会结束。
 
 | 章节 | Boss |
 | --- | --- |
@@ -2031,6 +2335,8 @@
 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | <img src="images/boss/frost_rat_king.png" width="32" height="32" alt=""> [冰霜鼠王](#boss-frost_rat_king)、<img src="images/boss/ice_cream_tyrant.png" width="32" height="32" alt=""> [冰淇淋暴君](#boss-ice_cream_tyrant)、<img src="images/boss/freezer_heart.png" width="32" height="32" alt=""> [冰柜之心](#boss-freezer_heart) |
 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | <img src="images/boss/trash_golem.png" width="32" height="32" alt=""> [垃圾巨像](#boss-trash_golem)、<img src="images/boss/toxic_barrel.png" width="32" height="32" alt=""> [毒液桶魔](#boss-toxic_barrel)、<img src="images/boss/scrap_dragon.png" width="32" height="32" alt=""> [废铁巨龙](#boss-scrap_dragon) |
 | [第五章 · 番茄酱工厂](CHAPTERS.md#chapter-5) | <img src="images/boss/rotten_chef.png" width="32" height="32" alt=""> [腐烂大厨](#boss-rotten_chef)、<img src="images/boss/factory_core.png" width="32" height="32" alt=""> [工厂主脑](#boss-factory_core)、<img src="images/boss/ketchup_leviathan.png" width="32" height="32" alt=""> [番茄酱海怪](#boss-ketchup_leviathan) |
+| [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) | <img src="images/boss/blight_gardener.png" width="32" height="32" alt=""> [枯萎园丁](#boss-blight_gardener) |
+| [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) | <img src="images/boss/rot_mother.png" width="32" height="32" alt=""> [腐土之母](#boss-rot_mother)、<img src="images/boss/rot_king.png" width="32" height="32" alt=""> [腐烂之王](#boss-rot_king) |
 
 <a id="boss-mold_king"></a>
 
@@ -2302,6 +2608,60 @@
 | 招式 | 危险区 ×6 命中附带 [黏液](SKILLS.md#status-sticky) 2s、2层[流血](SKILLS.md#status-bleed) 3s（每 4s）<br>螺旋弹幕 ×7（每 6s）<br>预警砸地 ×4（每 5s） |
 | 二阶段 | 生命 ≤ 50%：移速 ×1.2，冷却 ×0.7；新增 召唤 4 只[油污怪](MONSTERS.md#enemy-oil_blob)（每 7s）、乱射 ×14（每 2.5s） |
 
+<a id="boss-blight_gardener"></a>
+
+### 枯萎园丁 · 第六章 Boss
+
+<img src="images/boss/blight_gardener.png" width="96" height="96" alt="">
+
+> 把温室变成腐烂苗圃的疯园丁，挥着生锈的修枝剪。
+
+| 项目 | 数值 |
+| --- | --- |
+| 章节 | [第六章 · 腐烂温室](CHAPTERS.md#chapter-6) |
+| 基础生命 | 4200 |
+| 伤害 | 9 |
+| 速度 | 80 |
+| 掉落番茄籽 | 132 |
+| 招式 | 扇形瞄准 ×5 命中附带 2层[流血](SKILLS.md#status-bleed) 3s（每 2.2s）<br>危险区 ×5 命中附带 2层[中毒](SKILLS.md#status-poison) 3s、[黏液](SKILLS.md#status-sticky) 1.5s（每 5s）<br>召唤 5 只[枯萎嫩芽](MONSTERS.md#enemy-blight_sprout)（每 8s）<br>预警冲锋（每 5s） |
+| 二阶段 | 生命 ≤ 50%：移速 ×1.25，冷却 ×0.7；新增 螺旋弹幕 ×7 命中附带 [中毒](SKILLS.md#status-poison) 2s（每 7s）、召唤 2 只[腐藤鞭](MONSTERS.md#enemy-vine_lasher)（每 9s）；获得 [暴怒](SKILLS.md#status-enrage) 999s |
+
+<a id="boss-rot_mother"></a>
+
+### 腐土之母 · 第七章 Boss
+
+<img src="images/boss/rot_mother.png" width="96" height="96" alt="">
+
+> 整座菜园腐烂的温床，从烂泥里不断孕育新的腐烂。
+
+| 项目 | 数值 |
+| --- | --- |
+| 章节 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) |
+| 基础生命 | 4600 |
+| 伤害 | 10 |
+| 速度 | 55 |
+| 掉落番茄籽 | 144 |
+| 招式 | 危险区 ×6 命中附带 [腐烂](SKILLS.md#status-rot) 4s（每 4.5s）<br>召唤 3 只[烂心卷心菜](MONSTERS.md#enemy-rot_cabbage)（每 8s）<br>螺旋弹幕 ×7（每 6s）<br>预警砸地 ×4（每 5s） |
+| 二阶段 | 生命 ≤ 50%：移速 ×1.25，冷却 ×0.7；新增 召唤 1 只[腐水洒水器](MONSTERS.md#enemy-rot_sprinkler)（每 9s）、乱射 ×14 命中附带 [虚弱](SKILLS.md#status-weaken) 3s（每 2.5s） |
+
+<a id="boss-rot_king"></a>
+
+### 腐烂之王 · 真结局 Boss
+
+<img src="images/boss/rot_king.png" width="96" height="96" alt="">
+
+> 所有腐烂的真正源头——腐烂大厨也不过是他的一枚棋子。
+
+| 项目 | 数值 |
+| --- | --- |
+| 章节 | [第七章 · 腐烂菜园](CHAPTERS.md#chapter-7) |
+| 基础生命 | 6000 |
+| 伤害 | 11 |
+| 速度 | 70 |
+| 掉落番茄籽 | 200 |
+| 招式 | 环形弹 ×20 命中附带 [腐烂](SKILLS.md#status-rot) 3s（每 3.5s）<br>扇形瞄准 ×7 命中附带 [诅咒](SKILLS.md#status-curse) 3s（每 2.2s）<br>预警冲锋（每 5s）<br>预警砸地 ×5 命中附带 [眩晕](SKILLS.md#status-stun) 0.6s（每 6s）<br>危险区 ×6 命中附带 3层[中毒](SKILLS.md#status-poison) 3s、[黏液](SKILLS.md#status-sticky) 1.5s（每 5s）<br>召唤 3 只[僵尸胡萝卜](MONSTERS.md#enemy-zombie_carrot)（每 9s）<br>瞬移（每 7s） |
+| 二阶段 | 生命 ≤ 50%：移速 ×1.3，冷却 ×0.65；新增 螺旋弹幕 ×8 命中附带 [腐烂](SKILLS.md#status-rot) 2s（每 7s）、预警激光 命中附带 2层[灼烧](SKILLS.md#status-burn) 3s（每 5s）、乱射 ×16 命中附带 [虚弱](SKILLS.md#status-weaken) 3s（每 3s）、强化 自身/同伴获得 [屏障](SKILLS.md#status-barrier) 3s（每 12s）；获得 [暴怒](SKILLS.md#status-enrage) 999s |
+
 <a id="affixes"></a>
 
 ## 精英词缀
@@ -2320,9 +2680,17 @@
 | 护盾 | 每 8 秒获得 3 秒屏障 |
 | 爆裂 | 死亡时爆炸 |
 | 吸血 | 造成伤害时回复生命 |
-| 荆棘 | 反弹 20% 近战伤害 |
+| 荆棘 | 近战命中时反弹 5% 伤害（经护甲减免，单次最多 2%、每秒最多 8% 最大生命） |
 | 统帅 | 周围怪物获得急速 |
+| 巨大 | 生命 +60%，体型变大 |
+| 残暴 | 伤害 +40% |
+| 灼热 | 攻击附带 2 层灼烧 |
+| 撕裂 | 攻击附带 2 层流血 |
+| 衰弱 | 攻击附带虚弱 |
+| 不屈 | 免疫减速、眩晕与击退 |
+| 富有 | 掉落番茄籽 ×3 |
+| 分裂 | 死亡时分裂出 2 只同类小怪 |
 
 ---
 
-[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · **怪物** · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)
+[README](../README.md) · [角色](CHARACTERS.md) · [技能](SKILLS.md) · [武器](WEAPONS.md) · [道具](ITEMS.md) · **怪物** · [关卡](CHAPTERS.md) · [成就](ACHIEVEMENTS.md) · [天赋](TALENTS.md) · [遗物](RELICS.md) · [危机](DANGER.md) · [任务](QUESTS.md) · [设计文档](GDD.md) · [数值表](DATA_TABLES.md) · [更新日志](CHANGELOG.md)

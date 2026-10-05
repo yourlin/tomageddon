@@ -1,6 +1,7 @@
 // 小怪数据。hp/dmg 会随波次（growth）与章节倍率成长。
 import type { RigSpec } from '../art/RigSpec';
 import type { StatusApply } from './statuses';
+import { EXTRA_ENEMIES } from './chaptersExtra';
 
 export type EnemyBehavior = 'chase' | 'wander' | 'charger' | 'shooter' | 'bomber' | 'splitter' | 'healer' | 'summoner' | 'trail' | 'flee';
 
@@ -26,7 +27,8 @@ export interface EnemyDef {
   windup?: number;
   shootCd?: number;
   projSpeed?: number;
-  projDmg?: number;
+  /** 子弹伤害 = 接触伤害 × projMult（默认 1）。接触伤害已含波次 / 章节 / 无尽成长、精英与词缀、危机等级，子弹随之成长 */
+  projMult?: number;
   keepDist?: number;
   shots?: number;
   spread?: number;
@@ -145,7 +147,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.6,
     projSpeed: 260,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 300,
     shots: 1,
     look: {
@@ -293,7 +295,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 3,
     projSpeed: 280,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 250,
     shots: 2,
     spread: 24,
@@ -449,7 +451,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 3.2,
     projSpeed: 220,
-    projDmg: 2,
+    projMult: 0.3,
     keepDist: 200,
     shots: 6,
     spread: 360,
@@ -513,7 +515,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.4,
     projSpeed: 380,
-    projDmg: 3,
+    projMult: 0.5,
     keepDist: 320,
     shots: 3,
     spread: 12,
@@ -744,7 +746,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.2,
     projSpeed: 420,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 280,
     shots: 2,
     spread: 16,
@@ -777,7 +779,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 3,
     projSpeed: 240,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 260,
     shots: 1,
     onHit: [S('curse', 3)],
@@ -892,7 +894,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.8,
     projSpeed: 250,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 280,
     shots: 1,
     look: {
@@ -1188,7 +1190,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.8,
     projSpeed: 300,
-    projDmg: 2,
+    projMult: 0.45,
     keepDist: 260,
     shots: 3,
     spread: 30,
@@ -1372,7 +1374,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 3,
     projSpeed: 230,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 280,
     shots: 2,
     spread: 20,
@@ -1551,7 +1553,7 @@ export const ENEMIES: EnemyDef[] = [
     group: 2,
     shootCd: 2.4,
     projSpeed: 320,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 260,
     shots: 1,
     projSlow: 20,
@@ -1647,7 +1649,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 3,
     projSpeed: 300,
-    projDmg: 2,
+    projMult: 0.45,
     keepDist: 280,
     shots: 3,
     spread: 36,
@@ -1862,7 +1864,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.5,
     projSpeed: 340,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 300,
     shots: 1,
     projKey: 'proj_rock',
@@ -2070,7 +2072,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.2,
     projSpeed: 380,
-    projDmg: 2,
+    projMult: 0.6,
     keepDist: 300,
     shots: 2,
     spread: 14,
@@ -2254,7 +2256,7 @@ export const ENEMIES: EnemyDef[] = [
     behavior: 'shooter',
     shootCd: 2.6,
     projSpeed: 320,
-    projDmg: 3,
+    projMult: 0.5,
     keepDist: 250,
     shots: 3,
     spread: 20,
@@ -2356,7 +2358,7 @@ export const ENEMIES: EnemyDef[] = [
     life: 5,
     shootCd: 1.4,
     projSpeed: 330,
-    projDmg: 2,
+    projMult: 0.5,
     keepDist: 9999,
     shots: 1,
     projKey: 'proj_rock',
@@ -2376,4 +2378,6 @@ export const ENEMIES: EnemyDef[] = [
   },
 ];
 
+// 1.4.0：第 6 / 7 章新增的敌人（G2）
+ENEMIES.push(...EXTRA_ENEMIES);
 export const ENEMY_MAP: Record<string, EnemyDef> = Object.fromEntries(ENEMIES.map((e) => [e.id, e]));

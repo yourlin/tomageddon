@@ -14,6 +14,8 @@ import { Rig } from '../objects/Rig';
 import { weaponDamage } from './WeaponSystem';
 import { WEAPON_MAP } from '../data/weapons';
 import { castFx, drainLines } from './SkillFx';
+import { STYLES, type DashSpec, type Lingering, type SkillHost } from './SkillStyles';
+import { STYLES_2 } from './SkillStyles2';
 import { tx } from '../i18n';
 import { HEAL_SCALE, DRAIN_PER_HIT, DRAIN_MAX_PCT } from '../data/skills';
 
@@ -28,17 +30,21 @@ interface Field {
   info: HitInfo;
 }
 
-export class SkillSystem {
+export class SkillSystem implements SkillHost {
   skill: SkillDef;
   cd = 3;
   buffT = 0;
   buffMods: StatMods | null = null;
   ghostT = 0;
-  dash: { t: number; vx: number; vy: number; hit: Set<Enemy>; info: HitInfo } | null = null;
+  dash: DashSpec | null = null;
+  /** 角色专属演出的持续效果（云雾、火焰带、金钟…） */
+  effects: Lingering[] = [];
+  /** 专属演出给的额外无敌时间 */
+  invulnT = 0;
   clone: { rig: Rig; t: number; shoot: number; dmg: number } | null = null;
   fields: Field[] = [];
 
-  constructor(private g: GameScene) {
+  constructor(readonly g: GameScene) {
     this.skill = run.char.skill;
     this.cd = 0; // 每波开局技能冷却重置
   }
@@ -50,7 +56,7 @@ export class SkillSystem {
     return this.cd <= 0;
   }
   get invulnerable(): boolean {
-    return this.ghostT > 0 || this.dash !== null;
+    return this.ghostT > 0 || this.dash !== null || this.invulnT > 0;
   }
 
   /** 当前武器平均单次伤害（技能伤害的基准，保证与普攻同一量级） */
@@ -72,7 +78,7 @@ export class SkillSystem {
     return base * Phaser.Math.Clamp(1 + s.range / 600, 0.8, 1.4) * Math.max(0.5, 1 + s.skillRange / 100);
   }
 
-  private dur(base: number): number {
+  dur(base: number): number {
     return base * Math.max(0.5, 1 + this.g.stats.skillDur / 100);
   }
 
@@ -135,6 +141,7 @@ export class SkillSystem {
     const s = g.stats;
     const p = g.player;
     this.cd = this.maxCd;
+    g.waveQuests.onSkill();
     // 天赋：施法回复、施法增益、回响（立刻冷却完毕）
     const tt = treeTotals();
     if (tt.castHeal) g.heal(Math.max(1, Math.round((g.stats.maxHp * tt.castHeal) / 100)));
@@ -147,11 +154,37 @@ export class SkillSystem {
     bump(`cast:${sk.type}`);
     audio.play(g, 'skill');
     p.play('cast', true);
-    castFx(g, sk, sk.type === 'buff' || sk.type === 'ghost' ? this.dur(sk.duration ?? 3) : 0, Math.atan2(g.moveY || 0.0001, g.moveX || 1));
+    const style = STYLES[run.charId] ?? STYLES_2[run.charId];
+    castFx(
+      g,
+      sk,
+      sk.type === 'buff' || sk.type === 'ghost' ? this.dur(sk.duration ?? 3) : 0,
+      Math.atan2(g.moveY || 0.0001, g.moveX || 1),
+      !!style,
+    );
     const status = this.statuses(sk.status);
     const info: HitInfo = { dmg: this.damage(s), crit: false, knockback: 30, lifeSteal: 0, status, weaponId: 'skill' };
     if (sk.selfStatus) g.applyPlayerStatus(this.statuses(sk.selfStatus));
     if (sk.xp) run.addXp(sk.xp);
+    // 1.4.0：角色专属演出与机制（替换该技能类型的通用实现）
+    if (style) {
+      if (sk.type === 'ghost' || sk.type === 'buff') {
+        this.buffT = this.dur(sk.duration ?? 2.5);
+        if (sk.type === 'ghost') this.ghostT = this.buffT;
+        this.buffMods = sk.mods ?? null;
+        g.recalcStats();
+      }
+      if (sk.type === 'dash' && sk.heal) g.heal(Math.round(s.maxHp * sk.heal * HEAL_SCALE));
+      let dx = g.moveX,
+        dy = g.moveY;
+      if (!dx && !dy) {
+        dx = g.facing;
+        dy = 0;
+      }
+      const len = Math.hypot(dx, dy) || 1;
+      style({ host: this, g, sk, info, status, dir: { x: dx / len, y: dy / len } });
+      return;
+    }
 
     switch (sk.type) {
       case 'nova': {
@@ -392,16 +425,44 @@ export class SkillSystem {
       const d = this.dash;
       d.t -= dt;
       const p = g.player;
-      p.x = Phaser.Math.Clamp(p.x + d.vx * dt, g.arena.x + 20, g.arena.right - 20);
-      p.y = Phaser.Math.Clamp(p.y + d.vy * dt, g.arena.y + 20, g.arena.bottom - 20);
-      g.fx.afterimage(p, this.skill.color);
-      for (const e of [...g.grid.query(p.x, p.y, 50, g.tmp)]) {
-        if (d.hit.has(e)) continue;
-        d.hit.add(e);
-        g.weaponHit(e, { ...d.info, knockback: 80 }, p.x, p.y);
+      const A = g.arena;
+      let nx = p.x + d.vx * dt,
+        ny = p.y + d.vy * dt;
+      if (d.bounce) {
+        if (nx < A.x + 20 || nx > A.right - 20) d.vx = -d.vx;
+        if (ny < A.y + 20 || ny > A.bottom - 20) d.vy = -d.vy;
       }
-      if (d.t <= 0) this.dash = null;
+      nx = Phaser.Math.Clamp(nx, A.x + 20, A.right - 20);
+      ny = Phaser.Math.Clamp(ny, A.y + 20, A.bottom - 20);
+      p.x = nx;
+      p.y = ny;
+      if (!d.noAfterimage) g.fx.afterimage(p, this.skill.color);
+      d.onStep?.(dt);
+      if (!d.noHit) {
+        const now = g.time.now;
+        for (const e of [...g.grid.query(p.x, p.y, d.hitR ?? 50, g.tmp)]) {
+          if (d.rehit) {
+            d.rehitAt ??= new Map();
+            if (now - (d.rehitAt.get(e) ?? -1e9) < d.rehit * 1000) continue;
+            d.rehitAt.set(e, now);
+          } else if (d.hit.has(e)) continue;
+          d.hit.add(e);
+          g.weaponHit(e, { ...d.info, knockback: d.knock ?? 80 }, p.x, p.y);
+        }
+      }
+      if (d.t <= 0) {
+        this.dash = null;
+        d.onEnd?.();
+      }
     }
+    if (this.invulnT > 0) this.invulnT -= dt;
+    // 专属演出的持续效果
+    for (const e of this.effects) {
+      e.t -= dt;
+      e.tick?.(dt, Math.max(0, e.t));
+      if (e.t <= 0) e.end?.();
+    }
+    this.effects = this.effects.filter((e) => e.t > 0);
     // 领域
     for (const f of this.fields) {
       f.t -= dt;
@@ -444,7 +505,19 @@ export class SkillSystem {
     }
   }
 
+  linger(e: Lingering): void {
+    this.effects.push(e);
+  }
+  setDash(d: DashSpec): void {
+    this.dash = d;
+  }
+
   destroy(): void {
+    // 只在场景 shutdown 时调用：此时显示列表、粒子和伤害数字都已销毁，
+    // 不能再执行持续效果的 end（柠檬刺客的现身突袭、洋葱的爆炸等会造成伤害、生成飘字，
+    // 访问已销毁的 Text 会抛错并卡死场景重启）。效果创建的对象都挂在场景上，会随场景一起清理。
+    this.effects = [];
+    this.g.decoy = null;
     this.clone?.rig.destroy();
     this.clone = null;
     for (const f of this.fields) {

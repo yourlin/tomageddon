@@ -2,6 +2,7 @@
 // 攻击由若干“招式”组成；招式可附带 Debuff（打在玩家身上）或 Buff（强化自己/同伴）。
 import type { RigSpec } from '../art/RigSpec';
 import type { StatusApply } from './statuses';
+import { EXTRA_BOSSES, TRUE_FINAL_BOSS_ID } from './chaptersExtra';
 
 export type PatternType = 'ring' | 'spiral' | 'aimed' | 'charge' | 'summon' | 'slam' | 'hazard' | 'laser' | 'teleport' | 'buff' | 'scatter';
 
@@ -22,7 +23,27 @@ export interface Pattern {
 }
 
 export type AffixId =
-  'swift' | 'armored' | 'berserk' | 'regen' | 'frost' | 'venom' | 'cursed' | 'shielded' | 'explosive' | 'vampiric' | 'thorny' | 'commander';
+  | 'swift'
+  | 'armored'
+  | 'berserk'
+  | 'regen'
+  | 'frost'
+  | 'venom'
+  | 'cursed'
+  | 'shielded'
+  | 'explosive'
+  | 'vampiric'
+  | 'thorny'
+  | 'commander'
+  // H4（1.4.0）新增 8 种，可与旧词缀叠加
+  | 'giant'
+  | 'brutal'
+  | 'burning'
+  | 'bleeding'
+  | 'weakening'
+  | 'unstoppable'
+  | 'rich'
+  | 'splitting';
 
 export interface AffixDef {
   id: AffixId;
@@ -43,8 +64,16 @@ export const AFFIXES: Record<AffixId, AffixDef> = {
   shielded: { id: 'shielded', name: '护盾', color: 0x4cc9f0, desc: '每 8 秒获得 3 秒屏障' },
   explosive: { id: 'explosive', name: '爆裂', color: 0xff7b00, desc: '死亡时爆炸' },
   vampiric: { id: 'vampiric', name: '吸血', color: 0x9d0208, desc: '造成伤害时回复生命' },
-  thorny: { id: 'thorny', name: '荆棘', color: 0x6a994e, desc: '反弹 20% 近战伤害' },
+  thorny: { id: 'thorny', name: '荆棘', color: 0x6a994e, desc: '近战命中时反弹 5% 伤害（经护甲减免，单次最多 2%、每秒最多 8% 最大生命）' },
   commander: { id: 'commander', name: '统帅', color: 0xffd166, desc: '周围怪物获得急速' },
+  giant: { id: 'giant', name: '巨大', color: 0x8d6e63, desc: '生命 +60%，体型变大' },
+  brutal: { id: 'brutal', name: '残暴', color: 0xe63946, desc: '伤害 +40%' },
+  burning: { id: 'burning', name: '灼热', color: 0xff9f1c, desc: '攻击附带 2 层灼烧' },
+  bleeding: { id: 'bleeding', name: '撕裂', color: 0xb5179e, desc: '攻击附带 2 层流血' },
+  weakening: { id: 'weakening', name: '衰弱', color: 0x9d8189, desc: '攻击附带虚弱' },
+  unstoppable: { id: 'unstoppable', name: '不屈', color: 0xf4a261, desc: '免疫减速、眩晕与击退' },
+  rich: { id: 'rich', name: '富有', color: 0xffe066, desc: '掉落番茄籽 ×3' },
+  splitting: { id: 'splitting', name: '分裂', color: 0x80ed99, desc: '死亡时分裂出 2 只同类小怪' },
 };
 export const AFFIX_IDS = Object.keys(AFFIXES) as AffixId[];
 
@@ -1491,7 +1520,11 @@ const BOSS_LIST: BossDef[] = [
   ),
 ];
 
+// 1.4.0：第 6 / 7 章精英与 Boss、真结局 Boss（G1–G4）。真结局 Boss 不进随机池，只在第 7 章最后单独登场
+ELITES.push(...EXTRA_BOSSES.filter((b) => b.elite));
+BOSS_LIST.push(...EXTRA_BOSSES.filter((b) => !b.elite));
 export const BOSSES: BossDef[] = [...ELITES, ...BOSS_LIST];
 export const BOSS_MAP: Record<string, BossDef> = Object.fromEntries(BOSSES.map((b) => [b.id, b]));
 export const elitePool = (chapter: number) => ELITES.filter((e) => e.chapter === chapter);
-export const bossPool = (chapter: number) => BOSS_LIST.filter((e) => e.chapter === chapter);
+export const bossPool = (chapter: number) => BOSS_LIST.filter((e) => e.chapter === chapter && e.id !== TRUE_FINAL_BOSS_ID);
+export { TRUE_FINAL_BOSS_ID };

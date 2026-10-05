@@ -4,6 +4,7 @@ import type { StatusId } from '../data/statuses';
 import Phaser from 'phaser';
 import type { EnemyDef } from '../data/enemies';
 import { AFFIXES, type AffixId, type BossDef, type Pattern } from '../data/bosses';
+import { drawAffixDeco } from './AffixDeco';
 import type { StatusApply } from '../data/statuses';
 import type { GameScene } from '../scenes/GameScene';
 import { StatusSet } from '../systems/Status';
@@ -39,6 +40,8 @@ export class Enemy {
   rig: Rig | null = null;
   rigKey = '';
   ring: Phaser.GameObjects.Image | null = null;
+  /** 精英词缀装饰（每帧重画） */
+  deco: Phaser.GameObjects.Graphics | null = null;
   affixes: AffixId[] = [];
   status = Object.assign(new StatusSet(), { onApplied: (id: StatusId) => bump(`inflict:${id}`) });
   hp = 1;
@@ -85,6 +88,9 @@ export class Enemy {
     if (this.affixes.includes('frost')) out.push({ id: 'slow', dur: 2, stacks: 2 });
     if (this.affixes.includes('venom')) out.push({ id: 'poison', dur: 4, stacks: 3 });
     if (this.affixes.includes('cursed')) out.push({ id: 'curse', dur: 3 });
+    if (this.affixes.includes('burning')) out.push({ id: 'burn', dur: 3, stacks: 2 });
+    if (this.affixes.includes('bleeding')) out.push({ id: 'bleed', dur: 3, stacks: 2 });
+    if (this.affixes.includes('weakening')) out.push({ id: 'weaken', dur: 3 });
     return out;
   }
 
@@ -160,17 +166,31 @@ export class Enemy {
   private applyAffixes(g: GameScene): void {
     if (this.affixes.includes('swift')) this.speed *= 1.35;
     if (this.affixes.includes('armored')) this.knockResist = 1;
+    if (this.affixes.includes('giant')) {
+      this.hp = this.maxHp = Math.round(this.maxHp * 1.6);
+      this.radius *= 1.2;
+    }
+    if (this.affixes.includes('brutal')) this.dmg = Math.round(this.dmg * 1.4);
+    if (this.affixes.includes('unstoppable')) {
+      this.knockResist = 1;
+      this.status.ccResist = 1;
+    }
+    if (this.affixes.includes('rich')) this.seeds *= 3;
     if (this.affixes.length || this.boss) {
       const col = this.affixes.length ? AFFIXES[this.affixes[0]].color : (this.boss!.look.aura ?? 0xff3b30);
       this.ring = g.add.image(this.x, this.y, 'fx_ring').setTint(col).setAlpha(0.55).setDepth(2);
       this.ring.setScale((this.radius * 2.6) / 128, (this.radius * 1.3) / 128);
     }
+    this.deco?.destroy();
+    this.deco = this.affixes.length ? g.add.graphics() : null;
   }
 
   kill(g: GameScene, animate = true): void {
     this.alive = false;
     this.ring?.destroy();
     this.ring = null;
+    this.deco?.destroy();
+    this.deco = null;
     const rig = this.rig;
     const key = this.rigKey;
     this.rig = null;
@@ -192,8 +212,14 @@ export class Enemy {
     return Math.max(0.2, 1 + this.status.totals.dmgDealt / 100) * (this.enraged ? 1.3 : 1);
   }
 
+  /** 攻击 / 技能冷却推进倍率（急速、浸湿、腐烂等 attackSpeed 汇总；下限 0.3） */
+  get actRate(): number {
+    return Math.max(0.3, 1 + this.status.totals.attackSpeed / 100);
+  }
+
   tick(dt: number, g: GameScene): void {
-    const p = g.player;
+    // 隐身技能留下的诱饵：敌人会去追诱饵而不是玩家
+    const p = g.decoy ?? g.player;
     const dx = p.x - this.x,
       dy = p.y - this.y;
     const dist = Math.hypot(dx, dy) || 1;
@@ -250,6 +276,10 @@ export class Enemy {
     rig.setPosition(this.x, this.y).setDepth(this.y);
     rig.tick(dt, moveAmt, dx, nx, ny);
     if (this.ring) this.ring.setPosition(this.x, this.y + this.radius * 0.85).setRotation(this.ring.rotation + dt * 1.5);
+    if (this.deco) {
+      this.deco.clear().setDepth(this.y + 0.5);
+      drawAffixDeco(this.deco, this.affixes, this.x, this.y - this.radius * 0.2, this.radius, g.time.now / 1000);
+    }
     if (st.version !== this.tintVer) {
       this.tintVer = st.version;
       rig.setStatusTint(
@@ -263,9 +293,13 @@ export class Enemy {
                 ? 0xc8a2ff
                 : st.has('slow')
                   ? 0xbfe9ff
-                  : this.enraged
-                    ? 0xff9a9a
-                    : -1,
+                  : st.has('corrode')
+                    ? 0xd4e09b
+                    : st.has('soaked')
+                      ? 0xa0c4ff
+                      : this.enraged
+                        ? 0xff9a9a
+                        : -1,
       );
     }
   }
@@ -292,7 +326,7 @@ export class Enemy {
 
   private minionAI(dt: number, g: GameScene, nx: number, ny: number, dist: number): [number, number] {
     const d = this.def!;
-    this.actT -= dt;
+    this.actT -= dt * this.actRate;
     const s = this.speed;
     const noAttack = this.status.totals.noAttack;
     const rig = this.rig!;
@@ -350,7 +384,7 @@ export class Enemy {
               d.shots ?? 1,
               d.spread ?? 0,
               d.projSpeed ?? 250,
-              (d.projDmg ?? this.dmg) * this.dealtMult,
+              this.dmg * (d.projMult ?? 1) * this.dealtMult,
               d.projSlow ?? 0,
               d.projKey ?? 'proj_enemy',
               1,
@@ -442,7 +476,7 @@ export class Enemy {
     }
     const noAttack = this.status.totals.noAttack;
     for (let i = 0; i < this.patterns.length && !noAttack; i++) {
-      this.patternT[i] -= dt;
+      this.patternT[i] -= dt * this.actRate;
       if (this.patternT[i] > 0) continue;
       const p = this.patterns[i];
       this.patternT[i] = p.cd * cdMult;

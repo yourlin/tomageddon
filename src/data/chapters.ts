@@ -1,9 +1,10 @@
-// 关卡（章节）：每章 15 波，第 5/10 波出现精英，第 15 波 Boss。
+// 关卡（章节）：第 1–4 章每章 15 波，第 5 章起 20 波并每章 +5（最多 50，见 balance.chapterWaves）；每 5 波精英，最后一波 Boss。
 //
 // 【难度倍率已参数化】hpMult / dmgMult / bossHpMult / speedMult 不再手填，
 // 而是在文件末尾由 balance.ts 的 chapterHpMult() 等几何级数函数按 chapter.id 统一派生，
 // 保证「单调递增、不断裂」。各章仅保留美术、刷怪池、lootMult / t4Mult 等本就应按章定制的字段。
 import { chapterHpMult, chapterDmgMult, chapterBossHpMult, chapterSpeedMult } from './balance';
+import { EXTRA_CHAPTERS, EXTRA_MUSIC_FALLBACK, TERRAIN_INFO_EXTRA, HIDDEN_CHAPTER_IDS } from './chaptersExtra';
 
 export interface SpawnEntry {
   enemy: string;
@@ -232,6 +233,12 @@ export const CHAPTERS: ChapterDef[] = [
   },
 ];
 
+// 1.4.0：第 6 章（危机 5 解锁）与隐藏第 7 章（G1 / G3）。新曲目未写之前回退到已有曲目
+CHAPTERS.push(...EXTRA_CHAPTERS.map((c) => ({ ...c, music: EXTRA_MUSIC_FALLBACK[c.music] ?? c.music })));
+/** 普通流程的章节数（通关第 5 章即「通关游戏」；第 6 / 7 章另有解锁条件） */
+export const BASE_CHAPTERS = 5;
+export { HIDDEN_CHAPTER_IDS };
+
 // ── 难度倍率统一派生（覆盖上方手填值）──────────────────────────────
 // 由 balance.ts 的几何级数函数按 chapter.id 生成，保证单调递增、无断裂。
 // 原手填曲线存在不合理：hpMult 1→2.9→3.1→2.7→3.4（第 4 章不升反降），
@@ -246,8 +253,13 @@ for (const ch of CHAPTERS) {
 /** 各章地形机关说明（战斗第 1 波提示，也用于文档生成） */
 export const TERRAIN_INFO: Record<number, string[]> = {
   1: ['热油飞溅：地面会溅起灼烧油池', '下水道口：定期钻出小怪', '偶尔会有新鲜番茄从天而降'],
-  2: ['兔子洞：兔子四处逃窜，击败掉落番茄籽与果实', '土拨鼠：从地洞探头扔石头'],
+  2: [
+    '兔子洞：兔子四处逃窜，击败掉落番茄籽与果实',
+    '土拨鼠：从地洞探头扔石头',
+    '自动洒水器：周期性喷洒，范围内的玩家与怪物都会浸湿（移速、攻速降低）',
+  ],
   3: ['冰面：在冰上会打滑，但速度更快', '冷风：周期性狂风吹动所有单位并减速'],
-  4: ['流沙坑：会把人和怪物吸入中心，并造成伤害', '垃圾坠落：注意地面的预警圈'],
-  5: ['传送带：推动站在上面的所有单位', '蒸汽阀门：周期性喷出灼热蒸汽'],
+  4: ['流沙坑：会把人和怪物吸入中心，并造成伤害', '垃圾坠落：注意地面的预警圈', '酸液泄漏：脚边会冒出酸液池，造成伤害并附加腐蚀'],
+  5: ['传送带：推动站在上面的所有单位', '蒸汽阀门：周期性喷出灼热蒸汽', '鼓风口：站在风口上获得顺风（移速、闪避提高），怪物会被吹开'],
+  ...TERRAIN_INFO_EXTRA,
 };

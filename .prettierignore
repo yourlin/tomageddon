@@ -1,5 +1,10 @@
 dist
+dist-steam
+release-steam
 node_modules
 docs
 public
 package-lock.json
+.kiro
+promo
+*.md

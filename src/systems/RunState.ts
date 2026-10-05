@@ -1,5 +1,5 @@
 // 一局游戏的状态：角色、武器、道具、属性、经验、番茄籽
-import { MODIFIER_MAP, makeChallenge, challengeScore, type ChallengeDef, type ModifierId } from '../data/challenges';
+import { MODIFIER_MAP, makeChallenge, challengeScore, STREAK_REWARDS, type ChallengeDef, type ModifierId } from '../data/challenges';
 import { hashSeed, mulberry32, pickOf, shuffleWith, dayNumber, type Rand } from './Rng';
 import { EVOLUTION_OF } from '../data/evolutions';
 import { treeTotals } from './TalentTree';
@@ -7,14 +7,62 @@ import { bump, bumpMax, counter } from './Counters';
 import { BASE_STATS, addMods, type Stats, type StatMods } from '../data/stats';
 import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPON_MAP, WEAPON_SETS, type WeaponDef } from '../data/weapons';
-import { ITEM_MAP, type ItemSpecial } from '../data/items';
+import { ITEM_MAP, itemCapFor, type ItemSpecial } from '../data/items';
 import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
-import { BALANCE, xpToNext, isBossWaveNo, isEliteWaveNo } from '../data/balance';
-import { markSeen, save, type RunRecord } from './Save';
+import { BALANCE, xpToNext, chapterWaves, isBossWaveFor, isEliteWaveFor } from '../data/balance';
+import { markSeen, save, persistDisabled, type RunRecord, type SaveData } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
+import { dangerLevels, MAX_DANGER, type RuleDelta } from '../data/danger';
+import { storage } from '../platform';
+import { relicTotals, type RelicTotals } from '../data/relics';
+import { AWAKENINGS } from '../data/awakenings';
+import { ITEM_COMBOS, type ItemCombo } from '../data/gearExtra';
+import { encodeBuild, snapshotRun } from './BuildCode';
+import { WEATHER_MAP, type WeatherId } from './Weather';
+
+/** 汇总后的规则：倍率（1 = 不变）与计数 */
+export interface RunExt {
+  danger: number;
+  relics: string[];
+  endlessRevived: boolean;
+  events: Record<number, string>;
+  hardRoute: boolean;
+  awakened: boolean;
+  pendingRelics?: number;
+  merchant?: MerchantOffer | null;
+  perfectWaves?: number;
+  masteryDmg?: number;
+  waveDmg?: Record<number, number>;
+  waveSec?: Record<number, number>;
+}
+/** H2：神秘商人（某次商店随机出现，卖一件交易 / 诅咒遗物） */
+export interface MerchantOffer {
+  wave: number;
+  relic: string;
+  price: number;
+  done: boolean;
+}
+/** 其他系统挂到 RunState 的回调（避免循环依赖）：读档后重算遗物规则等 */
+export const runHooks: { onLoad: (() => void) | null; onStart: (() => void) | null } = { onLoad: null, onStart: null };
+
+export interface Rules {
+  enemyHp: number;
+  enemyDmg: number;
+  enemySpeed: number;
+  spawn: number;
+  champ: number;
+  eliteHp: number;
+  eliteAffix: number;
+  bossSkill: number;
+  shopPrice: number;
+  rerollPrice: number;
+  heal: number;
+  xp: number;
+  income: number;
+}
 
 export interface OwnedWeapon {
   uid: number;
@@ -45,9 +93,11 @@ export interface Specials {
   doubleSeed: number;
   interest: number;
   lightningOnHit: number;
+  split: number;
   killHeal: number;
   shopDiscount: number;
   rerolls: number;
+  legendCap: number;
   onHit: StatusApply[];
   onHitSelf: StatusApply[];
   onKillSelf: StatusApply[];
@@ -88,6 +138,8 @@ export class RunState {
   cheatDeathUsed = false;
   /** 本局获得的成就点（结算界面展示） */
   achPoints = 0;
+  /** 本局通过达成成就新解锁的角色 id（结算界面展示） */
+  newChars: string[] = [];
   /** 加成池：上一波留在地上的番茄籽与经验，本波拾取时双倍返还 */
   bonusSeeds = 0;
   bonusXp = 0;
@@ -102,6 +154,113 @@ export class RunState {
   shopWave = -1;
   /** 每日 / 每周挑战（种子、修饰） */
   challenge: ChallengeDef | null = null;
+  /** 番茄危机等级 0–20（挑战模式固定为 0） */
+  danger = 0;
+  /** 本局持有的遗物 id（C 模块） */
+  relics: string[] = [];
+  /** 无尽模式本局是否已花钱复活过（B6） */
+  endlessRevived = false;
+  /** 本局已发生的随机事件波（H1）：波次 → 事件 id */
+  events: Record<number, string> = {};
+  /** 波间路线（H3）：下一波是否选了「危险路线」 */
+  hardRoute = false;
+  /** 本局觉醒是否生效（F2，开局时按存档设置决定） */
+  awakened = false;
+  /** 待选择的遗物三选一次数（C2：精英奖励、无尽里程碑） */
+  pendingRelics = 0;
+  /** H2：本次商店的神秘商人 */
+  merchant: MerchantOffer | null = null;
+  /** 本局无伤完成的波次（角色任务用） */
+  perfectWaves = 0;
+  /** F3：熟练度专属天赋的全伤害 %（开局时由 Progress 写入） */
+  masteryDmg = 0;
+  /** J1：每波造成的伤害与该波持续秒数（局后 DPS 曲线） */
+  waveDmg: Record<number, number> = {};
+  waveSec: Record<number, number> = {};
+  /** H6：本波天气（不存档，每波开始时由 GameScene 按种子重算） */
+  weather: WeatherId = 'clear';
+  private relicCache: RelicTotals | null = null;
+  /** 当前持有遗物（含已集齐套装）的汇总效果 */
+  get relicFx(): RelicTotals {
+    return (this.relicCache ??= relicTotals(this.relics));
+  }
+  saveExt(): RunExt {
+    return {
+      danger: this.danger,
+      relics: this.relics,
+      endlessRevived: this.endlessRevived,
+      events: this.events,
+      hardRoute: this.hardRoute,
+      awakened: this.awakened,
+      pendingRelics: this.pendingRelics,
+      merchant: this.merchant,
+      perfectWaves: this.perfectWaves,
+      masteryDmg: this.masteryDmg,
+      waveDmg: this.waveDmg,
+      waveSec: this.waveSec,
+    };
+  }
+  loadExt(e: RunExt | null): void {
+    this.danger = e?.danger ?? 0;
+    this.relics = [...(e?.relics ?? [])];
+    this.endlessRevived = !!e?.endlessRevived;
+    this.events = { ...(e?.events ?? {}) };
+    this.hardRoute = !!e?.hardRoute;
+    this.awakened = !!e?.awakened;
+    this.pendingRelics = e?.pendingRelics ?? 0;
+    this.merchant = e?.merchant ?? null;
+    this.perfectWaves = e?.perfectWaves ?? 0;
+    this.masteryDmg = e?.masteryDmg ?? 0;
+    this.waveDmg = { ...(e?.waveDmg ?? {}) };
+    this.waveSec = { ...(e?.waveSec ?? {}) };
+    this.extraRules = {};
+    runHooks.onLoad?.();
+  }
+  /** 其他规则来源（遗物、事件波、无尽变异），key 为来源名，由各系统写入后调用 dirty() */
+  extraRules: Record<string, RuleDelta> = {};
+  private rulesCache: Rules | null = null;
+  /** 汇总后的规则倍率（危机等级 + 遗物 + 事件 + 变异） */
+  get rules(): Rules {
+    if (this.rulesCache) return this.rulesCache;
+    const sum: Required<RuleDelta> = {
+      enemyHp: 0,
+      enemyDmg: 0,
+      enemySpeed: 0,
+      spawn: 0,
+      champ: 0,
+      eliteHp: 0,
+      eliteAffix: 0,
+      bossSkill: 0,
+      shopPrice: 0,
+      rerollPrice: 0,
+      heal: 0,
+      xp: 0,
+      income: 0,
+    };
+    const add = (d: RuleDelta) => {
+      for (const [k, v] of Object.entries(d) as [keyof RuleDelta, number][]) sum[k] += v;
+    };
+    for (const l of dangerLevels(this.danger)) add(l.rule);
+    add(this.relicFx.rule);
+    for (const d of Object.values(this.extraRules)) add(d);
+    const m = (v: number) => Math.max(0, 1 + v / 100);
+    this.rulesCache = {
+      enemyHp: m(sum.enemyHp),
+      enemyDmg: m(sum.enemyDmg),
+      enemySpeed: m(sum.enemySpeed),
+      spawn: m(sum.spawn),
+      champ: m(sum.champ),
+      eliteHp: m(sum.eliteHp),
+      eliteAffix: sum.eliteAffix,
+      bossSkill: sum.bossSkill,
+      shopPrice: m(sum.shopPrice),
+      rerollPrice: m(sum.rerollPrice),
+      heal: m(sum.heal),
+      xp: m(sum.xp),
+      income: m(sum.income),
+    };
+    return this.rulesCache;
+  }
   /** 是否启用了某个挑战修饰 */
   mod(id: ModifierId): boolean {
     return !!this.challenge?.modifiers.includes(id);
@@ -112,8 +271,18 @@ export class RunState {
   }
   /** 开始一局挑战 */
   startChallenge(c: ChallengeDef): void {
-    this.start(c.charId, c.chapterId, c.endless);
+    this.start(c.charId, c.chapterId, c.endless, 0);
+    // 挑战模式人人公平：撤销熟练度开局奖励与觉醒
+    this.items = {};
+    this.seeds = treeTotals().startSeeds;
+    this.masteryDmg = 0;
+    this.awakened = false;
     this.challenge = c;
+    // J4：自定义挑战不计成就——记下成就相关统计，局后（或放弃时）还原
+    freeSnapshot =
+      c.kind === 'free'
+        ? JSON.stringify({ counters: save.counters, stats: save.stats, kills: save.totalKills, bosses: save.killedBosses })
+        : null;
     const r = this.rand('setup');
     const ep = shuffleWith([...elitePool(c.chapterId)], r);
     this.eliteIds = [ep[0].id, ep[1].id];
@@ -129,6 +298,11 @@ export class RunState {
   /** 本局开始时间（用于战绩里的用时） */
   startedAt = 0;
   earn(v: number, src: string): void {
+    // 危机等级「歉收」等规则：只影响拾取与收获（随机取整，小额掉落也按比例生效）
+    if (v > 0 && (src === 'pickup' || src === 'harvest') && this.rules.income !== 1) {
+      const x = v * this.rules.income;
+      v = Math.floor(x) + (Math.random() < x - Math.floor(x) ? 1 : 0);
+    }
     this.seeds += v;
     if (v > 0) save.stats.seedsEarned += v;
     const w = (this.income[this.wave] ??= {});
@@ -145,11 +319,23 @@ export class RunState {
     return CHAPTERS[this.chapterId - 1];
   }
 
-  start(charId: string, chapterId: number, endless = false): void {
+  start(charId: string, chapterId: number, endless = false, danger = this.danger): void {
     this.endless = endless;
     this.challenge = null;
+    this.danger = Math.max(0, Math.min(MAX_DANGER, danger));
+    this.extraRules = {};
+    this.relics = [];
+    this.pendingRelics = 0;
+    this.merchant = null;
+    this.perfectWaves = 0;
+    this.masteryDmg = 0;
+    this.awakened = false;
+    this.endlessRevived = false;
+    this.events = {};
+    this.hardRoute = false;
     this.shopRollWave = -1;
     this.achPoints = 0;
+    this.newChars = [];
     this.bonusSeeds = 0;
     this.bonusXp = 0;
     this.charId = charId;
@@ -161,6 +347,8 @@ export class RunState {
     this.kills = 0;
     this.income = {};
     this.dmgBy = {};
+    this.waveDmg = {};
+    this.waveSec = {};
     this.startedAt = Date.now();
     this.items = {};
     this.levelMods = {};
@@ -180,6 +368,7 @@ export class RunState {
     this.weapons = this.char.startWeapons.map((id) => ({ uid: uidSeq++, id, tier: 0 }));
     for (const id of this.char.startWeapons) markSeen('weapons', id);
     this.seeds = treeTotals().startSeeds;
+    runHooks.onStart?.();
     this.dirty();
     this.hp = this.stats.maxHp;
   }
@@ -187,6 +376,8 @@ export class RunState {
   dirty(): void {
     this.cache = null;
     this.specialCache = null;
+    this.rulesCache = null;
+    this.relicCache = null;
   }
 
   get stats(): Stats {
@@ -210,6 +401,21 @@ export class RunState {
       if (this.mod('glass_cannon')) s.maxHp *= 0.6;
       if (this.mod('vampire')) s.regen = Math.min(0, s.regen);
     }
+    // G7 道具组合：同时持有两件道具时额外加成（不随叠加数倍增）
+    for (const c of this.activeCombos()) addMods(s, c.bonus);
+    // H6 天气
+    addMods(s, WEATHER_MAP[this.weather].mods);
+    // F2 觉醒 / F3 熟练度专属天赋
+    if (this.awakened && AWAKENINGS[this.charId]?.mods) addMods(s, AWAKENINGS[this.charId].mods!);
+    s.damage += this.masteryDmg;
+    // 遗物：属性与规则型效果（归零只清掉正值，负面效果保留）
+    const rf = this.relicFx;
+    for (const m of rf.mods) addMods(s, m);
+    if (rf.flags.noRegen) s.regen = Math.min(0, s.regen);
+    if (rf.flags.noLifeSteal) s.lifeSteal = Math.min(0, s.lifeSteal);
+    if (rf.flags.noDodge) s.dodge = Math.min(0, s.dodge);
+    if (rf.flags.noArmor) s.armor = Math.min(0, s.armor);
+    s.maxHp *= rf.flags.maxHpMult;
     s.maxHp = Math.max(1, Math.round(s.maxHp));
     this.cache = s;
     return s;
@@ -227,9 +433,11 @@ export class RunState {
       doubleSeed: 0,
       interest: 0,
       lightningOnHit: 0,
+      split: 0,
       killHeal: 0,
       shopDiscount: this.char.shopDiscount ?? 0,
       rerolls: 0,
+      legendCap: 0,
       onHit: [],
       onHitSelf: [],
       onKillSelf: [],
@@ -257,9 +465,11 @@ export class RunState {
       sp.doubleSeed += (x.doubleSeed ?? 0) * n;
       sp.interest += (x.interest ?? 0) * n;
       sp.lightningOnHit += (x.lightningOnHit ?? 0) * n;
+      sp.split += (x.split ?? 0) * n;
       if (x.killHeal) sp.killHeal = sp.killHeal ? Math.min(sp.killHeal, x.killHeal) : x.killHeal;
       sp.shopDiscount += (x.shopDiscount ?? 0) * n;
       sp.rerolls += (x.rerolls ?? 0) * n;
+      sp.legendCap += (x.legendCap ?? 0) * n;
       for (let i = 0; i < n; i++) {
         if (x.onHit) sp.onHit.push(...x.onHit);
         if (x.onHitSelf) sp.onHitSelf.push(...x.onHitSelf);
@@ -281,12 +491,21 @@ export class RunState {
     apply(this.char.special, 1);
     for (const [x, r] of treeTotals().specials) apply(x, r);
     for (const [id, n] of Object.entries(this.items)) apply(ITEM_MAP[id].special, n);
+    for (const x of this.relicFx.specials) apply(x, 1);
+    for (const c of this.activeCombos()) apply(c.special, 1);
+    if (this.awakened) apply(AWAKENINGS[this.charId]?.special, 1);
     sp.shopDiscount = Math.min(50, sp.shopDiscount);
     sp.doubleSeed = Math.min(40, sp.doubleSeed);
     sp.critDmg = Math.min(BALANCE.critDmgCap, sp.critDmg);
     sp.lightningOnHit = Math.min(BALANCE.lightningCap, sp.lightningOnHit);
+    sp.split = Math.min(BALANCE.split.cap, sp.split);
     this.specialCache = sp;
     return sp;
+  }
+
+  /** 当前生效的道具组合（G7） */
+  activeCombos(): ItemCombo[] {
+    return ITEM_COMBOS.filter((c) => (this.items[c.item] ?? 0) > 0 && (this.items[c.needs] ?? 0) > 0);
   }
 
   get maxWeapons(): number {
@@ -295,6 +514,13 @@ export class RunState {
 
   get dodgeCap(): number {
     return this.char.dodgeCap ?? BALANCE.player.dodgeCap;
+  }
+
+  /** 属性面板显示用的上限：闪避、光环范围有上限，其余无上限 */
+  statCap(k: string): number {
+    if (k === 'dodge') return this.dodgeCap;
+    if (k === 'auraSize') return BALANCE.auraSizeCap;
+    return Infinity;
   }
 
   setCounts(): Record<string, number> {
@@ -313,7 +539,7 @@ export class RunState {
   }
 
   addXp(amount: number): void {
-    this.xp += amount * (1 + this.stats.xpGain / 100);
+    this.xp += amount * (1 + this.stats.xpGain / 100) * this.rules.xp;
     while (this.xp >= xpToNext(this.level)) {
       this.xp -= xpToNext(this.level);
       this.level++;
@@ -325,6 +551,17 @@ export class RunState {
       this.dirty();
       this.hp += 1;
     }
+  }
+
+  /** 这件道具在本局的持有上限（传说默认 1，可被角色 / 天赋等的 legendCap 提高）；Infinity = 无上限 */
+  itemCap(id: string): number {
+    const it = ITEM_MAP[id];
+    return it ? itemCapFor(it, this.specials.legendCap) : 0;
+  }
+
+  /** 还能再拿一件吗（商店、宝箱、奖励等所有获取途径都用它判定） */
+  canTakeItem(id: string): boolean {
+    return (this.items[id] ?? 0) < this.itemCap(id);
   }
 
   addItem(id: string): void {
@@ -392,7 +629,8 @@ export class RunState {
   /** 可进化：T4 + 持有对应道具 */
   canEvolve(w: OwnedWeapon): boolean {
     const e = EVOLUTION_OF[w.id];
-    return !!e && w.tier >= 3 && (this.items[e.item] ?? 0) > 0;
+    const minTier = this.relicFx.flags.evolveEarly.includes(w.id) ? 2 : 3;
+    return !!e && w.tier >= minTier && (this.items[e.item] ?? 0) > 0;
   }
 
   /** 进化：原地替换武器 id，保留词条与打造等级 */
@@ -419,22 +657,29 @@ export class RunState {
     return Math.min(10, 3 + this.specials.rerolls);
   }
 
+  /** 本章波数（第 5 章起变长，见 chapterWaves） */
+  get waveCount(): number {
+    return chapterWaves(this.chapterId);
+  }
   isBossWave(): boolean {
-    return this.endless ? isBossWaveNo(this.wave) : this.wave === BALANCE.waves.bossWave;
+    return isBossWaveFor(this.chapterId, this.wave, this.endless);
   }
   isEliteWave(): boolean {
-    return this.endless ? isEliteWaveNo(this.wave) : BALANCE.waves.eliteWaves.includes(this.wave);
+    return isEliteWaveFor(this.chapterId, this.wave, this.endless);
   }
-  /** 本波精英：第一轮用开局抽好的两名，无尽模式之后每次重新抽 */
+  /** 本波精英：本章内轮流用开局抽好的两名，无尽模式之后每次重新抽 */
   eliteForWave(): string {
-    if (this.wave <= BALANCE.waves.count) return this.eliteIds[this.wave === BALANCE.waves.eliteWaves[0] ? 0 : 1];
+    if (this.wave <= this.waveCount) {
+      const k = Math.max(0, Math.floor(this.wave / BALANCE.waves.eliteEvery) - 1);
+      return this.eliteIds[k % this.eliteIds.length];
+    }
     const pool = elitePool(this.chapterId);
     return pool[Math.floor(Math.random() * pool.length)].id;
   }
-  /** 本波 Boss：第一轮用开局抽好的，无尽模式第 30 波起从全部章节的 Boss 里抽 */
+  /** 本波 Boss：本章用开局抽好的，无尽模式第 30 波起从全部章节的 Boss 里抽 */
   bossForWave(): string {
-    if (this.wave <= BALANCE.waves.count) return this.bossId;
-    const pool = this.wave >= 30 ? CHAPTERS.flatMap((c) => bossPool(c.id)) : bossPool(this.chapterId);
+    if (this.wave <= this.waveCount) return this.bossId;
+    const pool = this.wave >= this.waveCount + BALANCE.waves.bossWave ? CHAPTERS.flatMap((c) => bossPool(c.id)) : bossPool(this.chapterId);
     return pool[Math.floor(Math.random() * pool.length)].id;
   }
 }
@@ -444,6 +689,7 @@ const RUN_KEY = 'tomato_sister_run_v1';
 /** 局内存档：每波结束时保存，刷新页面后可继续 */
 /** 保存对局；phase = 'wave' 表示保存于某一波开始时（继续游戏将直接从该波开始） */
 export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
+  if (persistDisabled()) return;
   try {
     const d = {
       v: 1,
@@ -474,9 +720,11 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
       dmgBy: run.dmgBy,
       income: run.income,
       startedAt: run.startedAt,
+      // 1.4.0：危机等级、遗物、无尽复活等
+      ext: run.saveExt(),
       savedAt: Date.now(),
     };
-    localStorage.setItem(RUN_KEY, JSON.stringify(d));
+    storage.setItem(RUN_KEY, JSON.stringify(d));
   } catch {
     /* 忽略 */
   }
@@ -484,7 +732,7 @@ export function saveRun(phase: 'shop' | 'wave' = 'shop'): void {
 
 export function hasSavedRun(): { charId: string; chapterId: number; wave: number; phase?: 'shop' | 'wave'; endless?: boolean } | null {
   try {
-    const raw = localStorage.getItem(RUN_KEY);
+    const raw = storage.getItem(RUN_KEY);
     if (!raw) return null;
     const d = JSON.parse(raw);
     return d.v === 1 && CHARACTER_MAP[d.charId] ? d : null;
@@ -526,10 +774,19 @@ export function loadRun(): boolean {
     dmgBy: d.dmgBy ?? {},
     startedAt: d.startedAt ?? Date.now(),
   });
+  run.loadExt((d.ext as RunExt | undefined) ?? null);
   run.dirty();
   run.hp = run.stats.maxHp;
   return true;
 }
+
+/** D3：最近一次结算拿到的连续挑战奖励（结算界面展示后清空） */
+export let streakReward: { days: number; gold: number; tp: number } | null = null;
+export const takeStreakReward = () => {
+  const r = streakReward;
+  streakReward = null;
+  return r;
+};
 
 /** 把本局写入战绩（结算时调用一次） */
 export function recordHistory(win: boolean): RunRecord {
@@ -545,6 +802,9 @@ export function recordHistory(win: boolean): RunRecord {
     level: run.level,
     kills: run.kills,
     sec: Math.round((Date.now() - run.startedAt) / 1000),
+    danger: run.danger || undefined,
+    relics: run.relics.length ? [...run.relics] : undefined,
+    revived: run.endlessRevived || undefined,
     weapons: run.weapons.map((w) => ({ id: w.id, tier: w.tier, forge: w.forge })),
     items: Object.values(run.items).reduce((a, b) => a + b, 0),
     dmg: Object.entries(run.dmgBy)
@@ -552,6 +812,7 @@ export function recordHistory(win: boolean): RunRecord {
       .sort((a, b) => b[1] - a[1])
       .slice(0, 10),
     income,
+    dps: Array.from({ length: run.wave }, (_, i) => Math.round((run.waveDmg[i + 1] ?? 0) / Math.max(1, run.waveSec[i + 1] ?? 1))),
   };
   if (run.challenge) {
     const c = run.challenge;
@@ -576,16 +837,52 @@ export function recordHistory(win: boolean): RunRecord {
       save.counters.dailyStreak = streak;
       save.counters.dailyLastDay = dn;
       bumpMax('dailyStreakBest', streak);
+      // D3：本轮连续天数达到 3 / 7 / 30 天各领一次奖励（断签后重新计）
+      const st = save.meta.streak;
+      if (streak === 1) st.claimed = [];
+      st.days = streak;
+      st.best = Math.max(st.best, streak);
+      st.last = c.key;
+      for (const r of STREAK_REWARDS)
+        if (streak >= r.days && !st.claimed.includes(r.days)) {
+          st.claimed.push(r.days);
+          save.meta.gold += r.gold;
+          save.meta.goldEarned += r.gold;
+          save.meta.bonusTp += r.tp;
+          bump('goldEarned', r.gold);
+          streakReward = r;
+        }
     }
   }
+  rec.build = encodeBuild(snapshotRun(run));
+  restoreFreeSnapshot();
   save.history.unshift(rec);
   save.history.length = Math.min(save.history.length, 30);
   return rec;
 }
 
+let freeSnapshot: string | null = null;
+/** J4：自定义挑战进行中（成就检查暂停） */
+export const freeChallengeActive = (): boolean => freeSnapshot !== null;
+/** J4：还原自定义挑战开始前的成就统计 */
+export function restoreFreeSnapshot(): void {
+  if (!freeSnapshot) return;
+  const d = JSON.parse(freeSnapshot) as {
+    counters: SaveData['counters'];
+    stats: SaveData['stats'];
+    kills: number;
+    bosses: SaveData['killedBosses'];
+  };
+  save.counters = d.counters;
+  save.stats = d.stats;
+  save.totalKills = d.kills;
+  save.killedBosses = d.bosses;
+  freeSnapshot = null;
+}
+
 export function clearRun(): void {
   try {
-    localStorage.removeItem(RUN_KEY);
+    storage.removeItem(RUN_KEY);
   } catch {
     /* 忽略 */
   }

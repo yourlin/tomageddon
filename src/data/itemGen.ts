@@ -14,7 +14,7 @@ export const STAT_COST: Partial<Record<StatKey, number>> = {
   rangedPct: 1.4,
   elementalPct: 1.4,
   auraPct: 1.3,
-  auraSize: 0.8,
+  auraSize: 1.4,
   explodeSize: 0.8,
   melee: 4.5,
   ranged: 4.5,
@@ -31,7 +31,7 @@ export const STAT_COST: Partial<Record<StatKey, number>> = {
   xpGain: 0.9,
   skillCd: 1.5,
   skillDmg: 0.9,
-  skillRange: 0.7,
+  skillRange: 1.3,
   skillDur: 0.8,
 };
 /** 各稀有度预算与价格系数 */
@@ -790,7 +790,6 @@ function build(): ItemDef[] {
         mods,
         special,
         series: sname,
-        max: special?.waveStartSelf || special?.periodicSelf || special?.cleanseEvery ? 2 : undefined,
         icon: { shape, color: shiftHue(color, i), color2 },
       });
     });
