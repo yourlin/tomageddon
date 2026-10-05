@@ -233,9 +233,9 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Blood Feast**：Below 50% HP, Life Steal Chance doubles and favored weapons gain +30% attack speed |
-| Traits | +10% Life Steal Chance; -3 HP Regen; +5% Damage |
-| Stat modifiers | -3 HP Regen, +10% Life Steal Chance, +5% All Damage |
+| Talent | **Blood Feast**：Below 50% HP, Life Steal Chance doubles. Favored weapons gain +30% attack speed, half the Life Steal cooldown, and up to 3 Life Steal procs per group hit |
+| Traits | +10% Life Steal Chance; +15 Max HP; +5% Damage |
+| Stat modifiers | +15 Max HP, +10% Life Steal Chance, +5% All Damage |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
 | Active skill | [Blood Domain](SKILLS.md#skill-garlic) [Drain Heal] cooldown 14s — Drain life from nearby enemies and inflict Bleed. |
 | Unlock | Achievement [Elite Hunter (Silver)](ACHIEVEMENTS.md#ach-elites): Defeat 10 elites |

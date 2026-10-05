@@ -10,7 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
-- [v1.4.0 · 2026-10-04](#v1-4-0)
+- [v1.4.0 · 2026-10-05](#v1-4-0)
 - [v1.3.2 · 2026-10-03](#v1-3-2)
 - [v1.3.1 · 2026-10-03](#v1-3-1)
 - [v1.3.0 · 2026-10-01](#v1-3-0)
@@ -20,7 +20,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 <a id="v1-4-0"></a>
 
-## v1.4.0 · 2026-10-04
+## v1.4.0 · 2026-10-05
 
 **"After the Credits": a 20-level Tomato Danger ladder, relics, character quests and Awakenings, chapters 6/7 and a true ending — plenty to chase after your first clear**
 

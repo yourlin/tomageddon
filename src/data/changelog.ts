@@ -13,7 +13,7 @@ export interface ChangeEntry {
 export const CHANGELOG: ChangeEntry[] = [
   {
     version: '1.4.0',
-    date: '2026-10-04',
+    date: '2026-10-05',
     highlight: [
       '「通关之后」：番茄危机 20 级难度阶梯、遗物、角色任务与觉醒、第 6/7 章与真结局，通关后还有很长的路可以走',
       '"After the Credits": a 20-level Tomato Danger ladder, relics, character quests and Awakenings, chapters 6/7 and a true ending — plenty to chase after your first clear',
