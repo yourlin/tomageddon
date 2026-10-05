@@ -1,11 +1,12 @@
 // 局内随机性（H1 事件波、H3 危险路线）与无尽变异（B5）：数据 + 判定，GameScene 只负责表现
 import type { RuleDelta } from '../data/danger';
 import { AFFIX_IDS, type AffixId } from '../data/bosses';
-import { BALANCE } from '../data/balance';
+import { BALANCE, chapterWaves, isBossWaveFor, isEliteWaveFor } from '../data/balance';
 import { hashSeed, mulberry32 } from './Rng';
 import { run } from './RunState';
 import { tx } from '../i18n';
 import { describeRule } from '../data/relics';
+import { mechanicOpen } from './Mechanics';
 
 export type EventId = 'gold_rain' | 'chest_horde' | 'merchant_raid' | 'darkness';
 
@@ -58,13 +59,15 @@ const rnd = (key: string) => mulberry32(hashSeed(`${run.challenge?.seed ?? run.s
 /** H1：每 15 波一轮里随机 1–2 个事件波（避开第 1–2 波、精英波与 Boss 波） */
 export function eventForWave(wave: number): EventId | null {
   if (run.events[wave]) return run.events[wave] as EventId;
-  const cycle = Math.floor((wave - 1) / BALANCE.waves.bossWave);
+  if (!mechanicOpen('events')) return null;
+  // 每 15 波一段，每段随机 1–2 个事件波（避开每段前 2 波、精英波与 Boss 波）
+  const L = BALANCE.waves.bossWave;
+  const cycle = Math.floor((wave - 1) / L);
   const r = rnd(`events:${cycle}`);
-  const base = cycle * BALANCE.waves.bossWave;
-  const cand = Array.from({ length: BALANCE.waves.bossWave }, (_, i) => base + i + 1).filter((w) => {
-    const k = ((w - 1) % BALANCE.waves.bossWave) + 1;
-    return k >= 3 && k < BALANCE.waves.bossWave && !BALANCE.waves.eliteWaves.includes(k);
-  });
+  const base = cycle * L;
+  const cand = Array.from({ length: L }, (_, i) => base + i + 1).filter(
+    (w) => (w - 1) % L >= 2 && !isBossWaveFor(run.chapterId, w, run.endless) && !isEliteWaveFor(run.chapterId, w, run.endless),
+  );
   const n = r() < 0.5 ? 1 : 2;
   const picks: number[] = [];
   while (picks.length < n && cand.length) picks.push(cand.splice(Math.floor(r() * cand.length), 1)[0]);
@@ -78,14 +81,19 @@ export function eventForWave(wave: number): EventId | null {
 export const HARD_ROUTE_RULE: RuleDelta = { enemyHp: 25, enemyDmg: 20, income: 50 };
 /** H3：每 3 波提供一次路线选择（下一波不是精英 / Boss 波） */
 export function routeChoiceAvailable(nextWave: number): boolean {
-  const k = ((nextWave - 1) % BALANCE.waves.bossWave) + 1;
-  return nextWave >= 3 && nextWave % 3 === 0 && k !== BALANCE.waves.bossWave && !BALANCE.waves.eliteWaves.includes(k);
+  return (
+    nextWave >= 3 &&
+    nextWave % 3 === 0 &&
+    !isBossWaveFor(run.chapterId, nextWave, run.endless) &&
+    !isEliteWaveFor(run.chapterId, nextWave, run.endless)
+  );
 }
 
-/** B5：无尽模式第 15 波之后每 5 波获得一个变异词缀（精英 / Boss 必带，词缀小怪更常见） */
+/** B5：无尽模式进入后（本章最后一波之后）每 5 波获得一个变异词缀（精英 / Boss 必带，词缀小怪更常见） */
 export function mutations(wave: number): AffixId[] {
-  if (!run.endless || wave <= BALANCE.waves.count) return [];
-  const n = Math.floor((wave - BALANCE.waves.count) / 5);
+  const n0 = chapterWaves(run.chapterId);
+  if (!run.endless || wave <= n0) return [];
+  const n = Math.floor((wave - n0) / 5);
   const pool = [...AFFIX_IDS];
   const out: AffixId[] = [];
   const r = rnd('mutations');
@@ -94,8 +102,9 @@ export function mutations(wave: number): AffixId[] {
 }
 export const mutationRule = (n: number): RuleDelta => ({ champ: n * 25 });
 
-/** B2：无尽第 30 / 45 / 60…波出现两只 Boss */
-export const isSuperBossWave = (wave: number): boolean => run.endless && wave >= 30 && wave % BALANCE.waves.bossWave === 0;
+/** B2：无尽模式中「本章波数 + 15」起的每个 Boss 波出现两只 Boss（15 波的章节即第 30 / 45 / 60…波） */
+export const isSuperBossWave = (wave: number): boolean =>
+  run.endless && wave >= chapterWaves(run.chapterId) + BALANCE.waves.bossWave && isBossWaveFor(run.chapterId, wave, true);
 
 /** B6：无尽复活价格 */
 export const reviveCost = (wave: number): number => 30 + wave * 10;

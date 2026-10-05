@@ -18,6 +18,7 @@ import { dayKey } from '../systems/Rng';
 import { persist } from '../systems/Save';
 import { titleName, unlockedTitles } from '../data/titles';
 import { shouldShowWhatsNew, showWhatsNew } from '../ui/WhatsNew';
+import { gateSceneStart, MENU_PORTRAITS } from './BootScene';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -25,6 +26,8 @@ export class MenuScene extends Phaser.Scene {
   }
 
   create(): void {
+    // 启动贴图还在后台生成时，离开主菜单要先等它们就绪（期间显示加载页）
+    gateSceneStart(this);
     setInRun(false);
     checkAchievements();
     autoRelayout(this);
@@ -43,8 +46,12 @@ export class MenuScene extends Phaser.Scene {
     }
     // I6：菜园随进度变繁茂（通关章节、危机等级、真结局都会让花草变多）
     this.drawGarden(W, H);
-    // 飘落的角色
-    const chars = CHARACTERS.map((c) => portraitKey(this, 'char', c.id));
+    // 飘落的角色：优先用启动时已生成的头像，其余头像在后台生成，这里不再一次生成全部
+    let chars = CHARACTERS.map((c) => `portrait_char_${c.id}`).filter((k) => this.textures.exists(k));
+    if (chars.length < MENU_PORTRAITS)
+      chars = Phaser.Utils.Array.Shuffle(CHARACTERS.slice())
+        .slice(0, MENU_PORTRAITS)
+        .map((c) => portraitKey(this, 'char', c.id));
     for (let i = 0; i < 10; i++) {
       const img = this.add.image(Phaser.Math.Between(0, W), Phaser.Math.Between(-H, 0), Phaser.Utils.Array.GetRandom(chars)).setAlpha(0.35);
       img.setScale(Phaser.Math.FloatBetween(0.4, 0.8));

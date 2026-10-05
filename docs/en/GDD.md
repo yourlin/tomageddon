@@ -8,7 +8,7 @@
 | Genre | Top-down 2D horde / arena survival roguelite |
 | Platform | Browser (PC + mobile landscape), Phaser 3 (WebGL) + TypeScript + Vite |
 | Art | **100% procedurally drawn**: Canvas 2D cartoon rendering + part-based skeletal animation + state machine |
-| Run length | About 12~18 minutes (15 waves) |
+| Run length | About 12~30 minutes (15 waves in chapters 1–4; 20 / 25 / 30 in chapters 5 / 6 / 7) |
 | Content | 39 characters · 62 weapons · 600 items · 89 monsters · 34 elites · 18 bosses · 20 elite affixes · 32 buffs/debuffs · 7 chapters (1 hidden) · 45 relics · Danger 0–20 |
 | Setting | Ketchup Town is being consumed by "the rot". Tomato Sister and her produce friends fight their way from the kitchen to the Ketchup Factory to defeat the source of the rot. |
 
@@ -20,11 +20,11 @@ Topic docs: [Characters](CHARACTERS.md) · [Skills & Statuses](SKILLS.md) · [We
 Pick a character + chapter (each run randomly draws 2 elites and 1 boss)
   └─ Combat wave (20~60 s, boss wave 90 s; the boss enrages on timeout)
        ├─ Move to dodge bullet patterns / warning circles / lasers / charges
-       ├─ Weapons auto-target and attack; the character skill is cast manually
+       ├─ Weapons auto-target and attack; the character skill casts automatically or manually (toggle next to the pause button)
        ├─ Buff/debuff interplay (Poison, Freeze, Curse vs Shield, Rage, Haste...)
        └─ Kills drop Seeds (XP + currency), fruit (healing), chests (items)
   └─ Wave end: Harvest, interest → level up and pick stats → open chests → shop (buy/sell, combine, reroll, lock)
-  └─ Elites on waves 5/10, random "affixed elite monsters" from wave 7, boss on wave 15
+  └─ An elite every 5 waves, random "affixed elite monsters" from wave 7, the boss on the last wave of the chapter (wave 15 in chapters 1–4)
 Clearing a chapter unlocks the next one; specific achievements unlock new characters
 ```
 
@@ -34,6 +34,8 @@ Clearing a chapter unlocks the next one; specific achievements unlock new charac
 | --- | --- | --- | --- |
 | PC | WASD / arrow keys | Space | ESC / P |
 | Mobile | Press anywhere on the left half of the screen for a floating joystick | Skill button at bottom right (shows cooldown) | Button at top right |
+
+In combat, the AUTO / MANUAL button left of the pause button switches skill casting at any time; it shares the Settings option and saves immediately.
 
 `EXPAND` scaling (fixed 720 logical height, width adapts from 16:9 to 21:9); portrait mode prompts to rotate to landscape; the game auto-pauses when backgrounded.
 
@@ -105,7 +107,7 @@ Each character = stat modifiers + starting weapons + passive traits + a **signat
 - Area = base radius × (1 + Range/600, clamped to 0.8~1.4) × (1 + Skill Area%)
 - Duration (field/buff/invulnerability/clone/applied statuses) × (1 + Skill Duration%)
 - Cooldown × (1 − Skill Cooldown%, at most −70%); cooldowns reset at the start of every wave
-- Skills auto-cast by default (timed by skill form); switch to manual in Settings
+- Skills auto-cast by default (timed by skill form); switch to manual in Settings or with the button next to pause in combat
 - **CD is computed automatically from power** (`src/data/skills.ts`):
   `CD = (8 + 0.9×damage score + control score + buff score) × 0.65`, clamped to 8–30 s
   - Damage score = coefficient × estimated hit count (larger area and more projectiles mean more hits)
@@ -143,7 +145,7 @@ Chase, wander, wind-up charge, keep distance and shoot, self-destruct, split, he
 Swift, Armored, Berserk, Regenerating, Frost, Venomous, Cursed, Shielded, Explosive, Vampiric, Thorny, Commander.
 Elites: +1 random affix from wave 10, +1 from chapter 3, and another +1 from chapter 5. From wave 7, monsters have a chance to spawn as "affixed elites" (HP ×3.5, drops ×4, guaranteed chest).
 
-## 9. Chapters (7 chapters × 15 waves, chapter 7 hidden)
+## 9. Chapters (7 chapters, chapter 7 hidden)
 
 | Chapter | Scene | HP | Damage | Features |
 | --- | --- | --- | --- | --- |
@@ -153,6 +155,7 @@ Elites: +1 random affix from wave 10, +1 from chapter 3, and another +1 from cha
 | 4 City Junkyard | Cracked concrete, oil stains, garbage | ×2.6 (elites/bosses ×1.6) | ×1.5 | Blind, Armor Break, splitting |
 | 5 Ketchup Factory | Metal plates, hazard stripes, sauce pools | ×3.2 (elites/bosses ×2.4) | ×1.65 | All monsters mixed + Curse |
 
+- **Waves per chapter** (`balance.chapterWaves`): 15 in chapters 1–4; 20 in chapter 5, then +5 per chapter up to 50 (25 in chapter 6, 30 in chapter 7). An elite every 5 waves (the 2 drawn at the start take turns), the boss on the last wave
 - Chapter multipliers **ramp in gradually**: `1 + (multiplier−1) × (0.1 + 0.9 × (wave−1)/14)`, since every chapter starts from level 0
 - Let w = wave−1: HP `base × (1 + growth × w^0.9) × chapter factor` (sublinear, fast early and slower later; elites/bosses use a separate chapter multiplier); damage `(base + growth×(0.4w + 0.03w²)) × chapter factor` (gentle early, accelerating late)
 - Wave duration `min(20+5w, 60)`; spawn interval `max(1.0, 2.1−0.075×wave)`; per batch `3 + 0.4×wave`; on-screen cap 260
@@ -184,8 +187,8 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 | Shop price | `base × (1 + 0.2(wave−1)) + 0.5×wave`, then multiplied by discount (capped at 50%); weapon T2/T3/T4 = T1 × 2.1 / 4 / 7.5 |
 | Reroll limit | Up to 3 rerolls per shop by default; the Reroll Ticket and VIP Card items raise it, up to 10; buying everything restocks for free (not counted) |
 | Reroll price | `(5 + 2×wave + rerolls this wave × (2 + 0.8×wave)) × (1 + 0.3×(chapter−1))`, −25% for every item bought in this shop |
-| Rarity | Improves with wave and Luck; Legendary appears from wave 7 |
-| Weapon tiers | Separate tier table: T3 from wave 6; T4 chance `0.003 × (wave−7)^1.6 × Luck × chapter factor` (chapters 1~5: ×1 / 1.1 / 1.25 / 1.4 / 1.55). Target at wave 15: ~50% of players own 1 T4, 30% own 2, 10% own 3 |
+| Rarity / weapon tier / upgrade rank | **Tiered by Luck only**, independent of the wave (`BALANCE.luckTiers`): tier 2 (Rare / T2 / rank II) starts at 5 Luck with 3%, 40% at 100 Luck (cap 50%); tier 3 (Epic / T3 / rank III) from 15 Luck with 2%, 20% at 100 (cap 30%); tier 4 (Legendary / T4 / rank IV) from 30 Luck with 1%, 5% at 100 (cap 10%), following a square-root curve (fast first, then slow); the rest goes to the lowest tier. Below a threshold that tier cannot appear. Weapon T4 is further multiplied by the chapter factor (chapters 1~5: ×1 / 1.1 / 1.25 / 1.4 / 1.55); crates use the same table as shop items |
+| Legendary item cap | Each legendary item can be held at most once by default (`LEGEND_ITEM_CAP`); once at the cap, shops and crates stop offering it. The `legendCap` special raises it, and an item can override it with `max` |
 | Interest | 10% per Piggy Bank, capped at 6×wave per wave (prevents snowballing) |
 | Uncollected Seeds | Not auto-collected at wave end; they go into a bonus pool, and next wave every Seed you pick up grants the same amount again until the pool runs out |
 | HP | Fully restored at the start of each wave; 0.5 s invulnerability after being hit |
@@ -214,8 +217,8 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 
 ### 10.4 Endless Mode
 
-- After clearing a chapter, its Endless mode can be toggled on the character select screen: no wave limit, 15-wave cycles (elites on waves 5/10, a boss on 15), elites and bosses rerolled each cycle, bosses from every chapter from wave 30
-- After wave 15, monsters grow in compounding segments: waves 16–30 HP ×1.12 and damage ×1.09 per wave, 31–45 ×1.08 / ×1.06, 46+ ×1.05 / ×1.04 (continuous curve, `BALANCE.endless.segments`); income keeps pace with shop inflation; defeating a boss continues the run until you fall
+- After clearing a chapter, its Endless mode can be toggled on the character select screen: after the chapter's last wave there is no limit, in 15-wave cycles (elites on waves 5/10, a boss on 15), elites and bosses rerolled each cycle, bosses from every chapter from the second endless cycle
+- After the chapter's last wave, monsters grow in compounding segments (for a 15-wave chapter): waves 16–30 HP ×1.12 and damage ×1.09 per wave, 31–45 ×1.08 / ×1.06, 46+ ×1.05 / ×1.04; longer chapters shift these segments back (continuous curve, `BALANCE.endless.segments`); income keeps pace with shop inflation; defeating a boss continues the run until you fall
 - Best waves are recorded globally, per chapter and per character, feeding the Endless achievements
 
 ### 10.5 Weapon Evolution
@@ -240,9 +243,10 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 1.4.0 gives players who have cleared the game something to chase long-term. Full data: [Relics](RELICS.md) · [Tomato Danger](DANGER.md) · [Character Quests](QUESTS.md).
 
 - **Tomato Danger (`data/danger.ts`, `systems/Danger.ts`)**: a 0–20 difficulty ladder; clearing level N of a chapter unlocks N+1 for that chapter, and each level stacks one more rule (enemy HP / damage, champion rate, boss moves, shop prices, weaker healing…). Bosses gain moves at Danger 10 / 15 / 20. Rules share `RuleDelta` with challenge modifiers and are merged by `RunState`. Reward multiplier `1 + 0.12L + 0.0035L²` (about ×4.8 at 20). Chapter 6 opens after any chapter is cleared at Danger ≥5; hidden Chapter 7 needs chapters 1–5 all cleared at Danger ≥10, and its boss leads into the true final boss
-- **Relics (`data/relics.ts`, `systems/Relics.ts`)**: 45 relics in three kinds (boon / trade / curse) and 8 sets (3-piece bonus). Sources: pick-of-3 after the wave 5 and 10 elites, every 10 Endless waves, and the Mysterious Merchant. Descriptions are generated entirely from data
-- **Deeper Endless**: milestone rewards every 10 waves; two bosses at once on waves 30 / 45 / 60…; one more mutation affix every 5 waves after wave 15; one paid revive per run (recorded separately)
+- **Relics (`data/relics.ts`, `systems/Relics.ts`)**: 45 relics in three kinds (boon / trade / curse) and 8 sets (3-piece bonus). Sources: pick-of-3 after each chapter elite, every 10 Endless waves, and the Mysterious Merchant. Chapter 1 offers only boons; trade relics join from chapter 2 and curses from chapter 3. Descriptions are generated entirely from data
+- **Deeper Endless**: milestone rewards every 10 waves; two bosses at once on every boss wave from the second endless cycle (waves 30 / 45 / 60… in a 15-wave chapter); one more mutation affix every 5 waves after the chapter's last wave; one paid revive per run (recorded separately)
 - **Run variety (`systems/RunEvents.ts`)**: 1–2 random event waves per 15 (gold rain, chest horde, merchant raid, darkness); a risky-route choice every 3 waves (stronger next wave, +50% income); the Mysterious Merchant; in-wave mini-quests (`systems/WaveQuests.ts`); weather (`systems/Weather.ts`, always clear in challenges and practice)
+- **Mechanics unlock chapter by chapter (`systems/Mechanics.ts`)**: chapter 1 has only the core loop; event waves and mini-quests from chapter 2; risky routes and weather from chapter 3; the Mysterious Merchant from chapter 4 (18% per shop after wave 6 of the chapter; trade relics only in chapter 4, curses from chapter 5). Endless keeps the chapter's unlocks
 - **Character depth (`data/quests.ts`, `data/awakenings.ts`, `systems/Progress.ts`)**: 3 quests for each of the 39 characters (117 total) unlock a toggleable Awakening passive; Mastery 1–10 rewards starting seeds, a starting item, all-damage and a free skin; one skin per character (bought with Golden Tomatoes); in-combat barks
 - **Meta progression**: Golden Tomatoes come only from Danger and Endless and buy talent master tiers (unlimited small layers once the tree is maxed) and skins; collection overview, titles, and a menu garden that grows with progress
 - **Tools**: build codes, practice mode (DPS dummies, nothing recorded), custom challenges (no achievements), a post-run DPS chart, history filters and personal bests

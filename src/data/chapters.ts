@@ -1,4 +1,4 @@
-// 关卡（章节）：每章 15 波，第 5/10 波出现精英，第 15 波 Boss。
+// 关卡（章节）：第 1–4 章每章 15 波，第 5 章起 20 波并每章 +5（最多 50，见 balance.chapterWaves）；每 5 波精英，最后一波 Boss。
 //
 // 【难度倍率已参数化】hpMult / dmgMult / bossHpMult / speedMult 不再手填，
 // 而是在文件末尾由 balance.ts 的 chapterHpMult() 等几何级数函数按 chapter.id 统一派生，

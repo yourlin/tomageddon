@@ -42,12 +42,12 @@ Ketchup Town is being eaten away by "the Rot": mold, pests and possessed kitchen
 ### Core loop
 
 1. **Pick a character and chapter**: every [character](docs/en/CHARACTERS.md) has unique stats, traits, a **signature talent** (a unique mechanic that changes how they play), starting weapons and an active skill.
-2. **Fight waves**: 15 waves per chapter, 20–60 seconds each. Weapons aim and fire on their own; you dodge bullets, telegraphed zones, lasers and charges, and time your [skill](docs/en/SKILLS.md).
-3. **Elites and bosses**: [elites](docs/en/MONSTERS.md#elites) on waves 5 and 10, a [boss](docs/en/MONSTERS.md#bosses) on wave 15 (after 90 seconds it enrages, with damage stacking until the fight is decided). Each run draws them at random from the chapter pool.
+2. **Fight waves**: 15 waves per chapter in chapters 1–4; from chapter 5, 20 waves and +5 per chapter (up to 50); 20–60 seconds each. Weapons aim and fire on their own; you dodge bullets, telegraphed zones, lasers and charges, and time your [skill](docs/en/SKILLS.md).
+3. **Elites and bosses**: [elites](docs/en/MONSTERS.md#elites) every 5 waves, a [boss](docs/en/MONSTERS.md#bosses) on the last wave of each chapter (after 90 seconds it enrages, with damage stacking until the fight is decided). Each run draws them at random from the chapter pool.
 4. **Between waves**: harvest & interest → level-up choices → open crates → shop for [weapons](docs/en/WEAPONS.md) and [items](docs/en/ITEMS.md), combine, reroll, lock.
 5. **Achievements & unlocks**: clearing a [chapter](docs/en/CHAPTERS.md) unlocks the next one; [achievements](docs/en/ACHIEVEMENTS.md) (Bronze/Silver/Gold/Diamond tiers) grant points, and every locked character is tied to one achievement that unlocks it automatically.
 6. **Talent tree**: milestone achievements also grant talent points to spend on the [talent maps](docs/en/TALENTS.md) of 6 branches — boost your starting stats or gain special abilities (knives on dodge, healing on cast, executes, a last stand…), with free resets at any time.
-7. **Endless mode**: after clearing a chapter you can play it in Endless — no wave limit, elites and a boss every 15 waves, ever-stronger monsters. How far can you go?
+7. **Endless mode**: after clearing a chapter you can play it in Endless — no wave limit after the chapter's last wave, elites and a boss every 15 waves, ever-stronger monsters. How far can you go?
 8. **Weapon evolution**: a T4 weapon plus a specific item evolves in the shop into one of 12 [super weapons](docs/en/WEAPONS.md#evolution), keeping its affixes and forge level.
 9. **Daily / weekly challenges**: a fixed character, chapter, set of [rule modifiers](docs/en/CHAPTERS.md#challenges) and shop every day and every week — everyone gets the same rolls; your best and streak are recorded.
 

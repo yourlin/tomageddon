@@ -108,7 +108,7 @@ export const EXTRA_WEAPONS: WeaponDef[] = [
     range: 210,
     scaling: { ranged: 0.9 },
     critMult: 1.5,
-    effect: { explode: 90, lifeSteal: 3 },
+    effect: { explode: 120, lifeSteal: 3 },
     price: 26,
   },
   {
@@ -158,7 +158,7 @@ export const EXTRA_WEAPONS: WeaponDef[] = [
     scaling: { ranged: 0.8 },
     critMult: 2.5,
     critBonus: 10,
-    effect: { explode: 70 },
+    effect: { explode: 95 },
     price: 26,
   },
   // ---------------- 元素 ----------------
@@ -288,7 +288,7 @@ export const EXTRA_EVOLUTIONS_SPEC: ExtraEvolutionSpec[] = [
       desc: '泡打粉让胡椒雷膨胀，布雷更快、炸得更大还会灼烧。',
       dmg: 1.7,
       cd: 0.65,
-      extra: { effect: { explode: 150, burn: { dps: 4, dur: 2 } } },
+      extra: { effect: { explode: 195, burn: { dps: 4, dur: 2 } } },
     },
   },
   {
@@ -324,7 +324,7 @@ export const EXTRA_EVOLUTIONS_SPEC: ExtraEvolutionSpec[] = [
       name: '鲜味核弹',
       desc: '发酵百年的酱油炸弹，爆炸巨大并大幅提高吸血概率。',
       dmg: 1.9,
-      extra: { effect: { explode: 140, lifeSteal: 6 } },
+      extra: { effect: { explode: 185, lifeSteal: 6 } },
     },
   },
 ];
@@ -422,7 +422,7 @@ export const EXTRA_ITEMS: ItemDef[] = [
     name: '涡轮马达',
     rarity: 1,
     price: 38,
-    mods: { attackSpeed: 6, auraSize: 10, auraPct: 6, maxHp: -2 },
+    mods: { attackSpeed: 6, auraSize: 6, auraPct: 6, maxHp: -2 },
     icon: { shape: 'gear', color: 0x4361ee, color2: 0xffd166 },
   },
   {
@@ -556,7 +556,7 @@ export const EXTRA_ITEMS: ItemDef[] = [
     name: '盐灯',
     rarity: 2,
     price: 70,
-    mods: { auraPct: 12, auraSize: 15, maxHp: -3 },
+    mods: { auraPct: 12, auraSize: 10, maxHp: -3 },
     special: { aura: { radius: 130, every: 1.5, status: [{ id: 'weaken', dur: 2, stacks: 1 }] } },
     icon: { shape: 'gem', color: 0xffafcc, color2: 0xff7b00 },
   },
@@ -568,7 +568,6 @@ export const EXTRA_ITEMS: ItemDef[] = [
     price: 125,
     mods: { damage: 10, crit: 6, harvest: 10, luck: 10 },
     special: { sameWeaponBonus: 5 },
-    max: 1,
     icon: { shape: 'star', color: 0xe63946, color2: 0xffd166 },
   },
   {
@@ -632,7 +631,7 @@ export const ITEM_COMBOS: ItemCombo[] = [
   { item: 'samurai_tsuba', needs: 'sharpener', bonus: { crit: 5, meleePct: 8 } },
   { item: 'static_apron', needs: 'tesla_coil', bonus: { elemental: 2 }, special: { lightningOnHit: 8 } },
   { item: 'mortar_pestle', needs: 'scope', bonus: { rangedPct: 10, range: 30 } },
-  { item: 'salt_lamp', needs: 'turbo_motor', bonus: { auraPct: 10, auraSize: 10 } },
+  { item: 'salt_lamp', needs: 'turbo_motor', bonus: { auraPct: 10, auraSize: 6 } },
   { item: 'michelin_star', needs: 'chef_hat', bonus: { damage: 6, maxHp: 5 } },
   { item: 'dragon_wok', needs: 'powder_keg', bonus: { explodeSize: 25 }, special: { burnChance: 10 } },
   { item: 'sauce_grail', needs: 'vampire_cape', bonus: { lifeSteal: 5, maxHp: 10 } },

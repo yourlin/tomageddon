@@ -101,7 +101,7 @@ export class ResultScene extends Phaser.Scene {
         tx(`角色：${run.char.name}`, `Character: ${run.char.name}`),
         run.endless
           ? tx(`到达波次：${run.wave}（最佳 ${counter('endlessBest')}）`, `Wave reached: ${run.wave} (best ${counter('endlessBest')})`)
-          : tx(`到达波次：${run.wave} / 15`, `Wave reached: ${run.wave} / 15`),
+          : tx(`到达波次：${run.wave} / ${run.waveCount}`, `Wave reached: ${run.wave} / ${run.waveCount}`),
         tx(`等级：${run.level}`, `Level: ${run.level}`),
         tx(`击杀：${run.kills}`, `Kills: ${run.kills}`),
         tx(

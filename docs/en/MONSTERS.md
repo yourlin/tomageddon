@@ -8,7 +8,7 @@
 
 87 monsters · 2 terrain critters · 34 elites · 18 bosses · 20 elite affixes.
 
-Elites appear on waves 5 and 10 and the boss on wave 15, drawn at random from the chapter pool. See [Chapters](CHAPTERS.md) for which monsters appear where.
+An elite appears every 5 waves (waves 5 and 10 in chapters 1–4) and the boss on the last wave of the chapter (wave 15 in chapters 1–4; chapters get longer from chapter 5), drawn at random from the chapter pool. See [Chapters](CHAPTERS.md) for which monsters appear where.
 
 Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; see [status effects](SKILLS.md#statuses) for inflicted statuses.
 
@@ -2326,7 +2326,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 
 ## Boss
 
-Appear on wave 15 and enter phase two at half HP. The wave lasts 90 seconds; after that the boss enrages: every 10 seconds its damage ×1.25 and one stack of enrage pressure is added (the player loses 3% Max HP × 1.25^stacks per second, ignoring dodge, armor and invulnerability, uncapped), so the fight always ends.
+Appear on the last wave of a chapter and enter phase two at half HP. The wave lasts 90 seconds; after that the boss enrages: every 10 seconds its damage ×1.25 and one stack of enrage pressure is added (the player loses 3% Max HP × 1.25^stacks per second, ignoring dodge, armor and invulnerability, uncapped), so the fight always ends.
 
 | Chapter | Boss |
 | --- | --- |

@@ -384,7 +384,7 @@ export class Enemy {
               d.shots ?? 1,
               d.spread ?? 0,
               d.projSpeed ?? 250,
-              (d.projDmg ?? this.dmg) * this.dealtMult,
+              this.dmg * (d.projMult ?? 1) * this.dealtMult,
               d.projSlow ?? 0,
               d.projKey ?? 'proj_enemy',
               1,

@@ -7,6 +7,7 @@ import { CHAPTERS, BASE_CHAPTERS } from '../data/chapters';
 import { MODIFIERS, makeFreeChallenge, challengeCode, type FreeOpts } from '../data/challenges';
 import { run, clearRun } from '../systems/RunState';
 import { tx, lang } from '../i18n';
+import { chapterWaves } from '../data/balance';
 
 const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
 
@@ -96,7 +97,7 @@ export class CustomChallengeScene extends Phaser.Scene {
         240,
         130,
         44,
-        tx('15 波', '15 waves'),
+        tx(`${chapterWaves(o.chapterId)} 波`, `${chapterWaves(o.chapterId)} waves`),
         () => ((o.endless = false), this.draw()),
         !o.endless ? 0xe09f3e : 0x3a2a2c,
         16,

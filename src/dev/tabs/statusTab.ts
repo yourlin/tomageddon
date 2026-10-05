@@ -29,7 +29,7 @@ function effectText(d: StatusDef): string {
     pct(d.dodge, '闪避'),
     pct(d.range, '射程'),
     flat(d.luck, '幸运'),
-    pct(d.lifeSteal, '吸血'),
+    pct(d.lifeSteal, '吸血概率'),
     d.regen ? `回复 ${fmt(d.regen)}/秒` : '',
     d.reflect ? `反弹 ${fmt(d.reflect)}` : '',
     d.disable ? '无法行动' : '',

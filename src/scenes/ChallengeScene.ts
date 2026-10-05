@@ -12,6 +12,7 @@ import { counter } from '../systems/Counters';
 import { checkAchievements } from '../systems/Achievements';
 import { dayKey } from '../systems/Rng';
 import { tx, lang } from '../i18n';
+import { chapterWaves } from '../data/balance';
 import { toast } from '../ui/UI';
 import { tip } from '../systems/Tutorial';
 import { decodeBuild } from '../systems/BuildCode';
@@ -175,7 +176,7 @@ export class ChallengeScene extends Phaser.Scene {
       this,
       x + 140,
       y + 108,
-      `${CHAPTERS[c.chapterId - 1].name} · ${c.endless ? tx('无尽模式（比坚持的波数）', 'Endless (how far can you go)') : tx('15 波', '15 waves')}`,
+      `${CHAPTERS[c.chapterId - 1].name} · ${c.endless ? tx('无尽模式（比坚持的波数）', 'Endless (how far can you go)') : tx(`${chapterWaves(c.chapterId)} 波`, `${chapterWaves(c.chapterId)} waves`)}`,
       16,
       COLORS.text,
     );

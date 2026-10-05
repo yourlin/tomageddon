@@ -10,11 +10,12 @@ import { run, saveRun } from '../systems/RunState';
 import { LEVELUP_OPTIONS, ALL_ITEMS, type ItemDef } from '../data/items';
 import { WEAPON_MAP } from '../data/weapons';
 import { formatMod, type StatKey } from '../data/stats';
-import { BALANCE, RARITY, pickRarity, rerollPrice, shopPrice, sellPrice } from '../data/balance';
+import { BALANCE, RARITY, pickRarity, pickUpgradeRarity, rerollPrice, shopPrice, sellPrice } from '../data/balance';
 import { text, button, panel, COLORS, fitImage, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { tx, lang } from '../i18n';
 import { rollRelics, grantRelic } from '../systems/Relics';
+import { relicKindsOpen } from '../systems/Mechanics';
 import { describeRelic, RELIC_KIND_INFO, RELIC_SET_MAP, relicSetCounts, RELIC_SET_SIZE, type RelicDef } from '../data/relics';
 
 export class LevelUpScene extends Phaser.Scene {
@@ -80,10 +81,8 @@ export class LevelUpScene extends Phaser.Scene {
     const cls = new Set(run.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => (d.kind === 'aura' ? 'aura' : d.cls)));
     const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };
     const own = new Set<string>([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
-    // 爆炸范围：只在持有爆炸类武器（命中/落点爆炸）时提供
-    const EXPLODE_KEY = 'explodeSize';
-    if (run.weapons.some((w) => WEAPON_MAP[w.id]?.effect?.explode)) own.add(EXPLODE_KEY);
-    const gated = [...Object.values(CLASS_KEY), EXPLODE_KEY] as string[];
+    // 流派伤害只在持有对应流派武器时提供；爆炸范围不在升级选项里（只能靠道具获得）
+    const gated = Object.values(CLASS_KEY) as string[];
     const pool = LEVELUP_OPTIONS.filter((o) => !gated.includes(o.key) || own.has(o.key));
     const R = run.rand(`lvl:${run.level}:${run.pendingLevelUps}:${this.rerolls}`);
     const opts = shuffleWith([...pool], R).slice(0, n);
@@ -91,7 +90,7 @@ export class LevelUpScene extends Phaser.Scene {
       ch = 280;
     const x0 = W / 2 - (n * (cw + 16) - 16) / 2;
     opts.forEach((o, i) => {
-      const rar = pickRarity(run.wave, run.stats.luck, R, BALANCE.legendUpgrade);
+      const rar = pickUpgradeRarity(run.stats.luck, R);
       const v = o.values[rar];
       const x = x0 + i * (cw + 16),
         y = 140;
@@ -154,7 +153,8 @@ export class LevelUpScene extends Phaser.Scene {
       H = this.scale.height;
     const L = this.layer;
     const R = run.rand(`crate:${run.wave}:${run.pendingCrates}`);
-    const rar = Math.min(3, pickRarity(run.wave, run.stats.luck + 20, R));
+    // 与商店道具同一张幸运分层表（不再额外 +20 幸运，否则幸运 0 也能开出史诗 / 传说）
+    const rar = Math.min(3, pickRarity(run.stats.luck, R));
     const pool = ALL_ITEMS.filter((it) => it.rarity === rar && run.canTakeItem(it.id));
     const item: ItemDef = pickOf(pool.length ? pool : ALL_ITEMS.filter((i) => i.rarity === 0), R);
     this.options = [];
@@ -224,7 +224,7 @@ export class LevelUpScene extends Phaser.Scene {
       H = this.scale.height;
     const L = this.layer;
     const R = run.rand(`relic:${run.wave}:${run.pendingRelics}`);
-    const picks = rollRelics(3, R);
+    const picks = rollRelics(3, R, relicKindsOpen());
     this.options = [];
     this.crateItem = null;
     this.relicChoices = picks;

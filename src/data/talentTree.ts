@@ -65,6 +65,10 @@ export interface TalentNode {
   /** 地图坐标（以核心为原点，像素） */
   x: number;
   y: number;
+  /** 所在道路的基准角度（度，核心为 undefined）；天赋界面按它给道路排序 */
+  road?: number;
+  /** 离核心第几步（核心为 0） */
+  step: number;
 }
 
 export interface BranchDef {
@@ -129,7 +133,7 @@ export const BRANCHES: BranchDef[] = [
 ];
 
 // ---------------- 节点编写工具 ----------------
-type Def = Omit<TalentNode, 'branch' | 'x' | 'y' | 'parent'> & { at: [number, number]; parent?: string };
+type Def = Omit<TalentNode, 'branch' | 'x' | 'y' | 'parent' | 'step'> & { at: [number, number]; parent?: string };
 const ST = (id: StatusApply['id'], dur: number, chance?: number, stacks?: number): StatusApply => ({ id, dur, chance, stacks });
 
 /**
@@ -140,7 +144,7 @@ function road(branch: BranchId, angle: number, nodes: Omit<Def, 'at'>[], from = 
   let parent = from;
   return nodes.map((n, i) => {
     const step = startStep + i;
-    const d: Def = { ...n, parent, at: [angle + jitter(n.id) * 7, step] };
+    const d: Def = { ...n, parent, road: angle, at: [angle + jitter(n.id) * 7, step] };
     parent = n.id;
     return d;
   });
@@ -154,7 +158,7 @@ function place(branch: BranchId, defs: Def[]): TalentNode[] {
   return defs.map(({ at, ...n }) => {
     const a = (at[0] * Math.PI) / 180,
       dist = at[1] * 118 + (n.kind === 'keystone' ? 18 : 0);
-    return { ...n, branch, x: Math.round(Math.cos(a) * dist), y: Math.round(Math.sin(a) * dist * 0.58) };
+    return { ...n, branch, step: at[1], x: Math.round(Math.cos(a) * dist), y: Math.round(Math.sin(a) * dist * 0.58) };
   });
 }
 const core = (branch: BranchId, n: Omit<Def, 'at' | 'kind' | 'id'>): Def => ({ ...n, id: `${branch}_core`, kind: 'core', at: [0, 0] });

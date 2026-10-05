@@ -114,7 +114,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Heart of Tomato**：After each wave, permanently gain +1 Max HP and +1% Damage |
+| Talent | **Heart of Tomato**：After each wave, permanently gain +1 Max HP and +2% favored-weapon combo chance (max +20%) |
 | Traits | +5% Damage; +1 HP Regen |
 | Stat modifiers | +1 HP Regen, +5% All Damage |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
@@ -131,7 +131,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Knight's Shield**：Each point of Armor grants +1.5% melee damage |
+| Talent | **Knight's Shield**：Each point of Armor gives favored weapons +2% sweep & blast area (max +40%); hits on enemies with 3+ Armor Break stun for 0.3s |
 | Traits | +3 Armor; +3 Melee Damage; Ranged Damage -50% |
 | Stat modifiers | +5 Max HP, +3 Melee Damage, +3 Armor, Ranged damage ×0.5 |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
@@ -148,7 +148,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Fuel the Fire**：+30% damage to Burning enemies |
+| Talent | **Fuel the Fire**：Favored weapon hits on Burning enemies throw sparks that deal 30% damage around them |
 | Traits | +3 Elemental Damage; -2 Max HP; All hits have a 25% chance to Burn |
 | Stat modifiers | -2 Max HP, +3 Elemental Damage |
 | Starting weapons | [Mustard Flamer](WEAPONS.md#weapon-mustard_flamer) |
@@ -165,7 +165,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Suppressing Fire**：+6% damage per 100 distance to the target (max +30%) |
+| Talent | **Suppressing Fire**：Favored bullets gain +1 pierce for every 100 distance travelled (max +3) |
 | Traits | +3 Ranged Damage; +50 Range; +3 Max HP; Melee Damage -50% |
 | Stat modifiers | +3 Max HP, +3 Ranged Damage, +50 Range, Melee damage ×0.5 |
 | Starting weapons | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) |
@@ -182,7 +182,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Thick Rind**：Take 10% less damage; +1% damage per 10 Max HP |
+| Talent | **Thick Rind**：Take 10% less damage; every 20 Max HP gives favored weapons +5% area (max +50%) |
 | Traits | +25 Max HP; +2 Armor; -12% Move Speed; -10% Attack Speed |
 | Stat modifiers | +25 Max HP, -10% Attack Speed, +2 Armor, -12% Move Speed |
 | Starting weapons | [Melon Hammer](WEAPONS.md#weapon-watermelon_hammer) |
@@ -199,8 +199,8 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Sour Strike**：+40% Crit Damage; crit kills heal 1 HP |
-| Traits | +20% Crit Chance; +10% Dodge; -4 Max HP |
+| Talent | **Sour Strike**：A favored weapon crit instantly resets that weapon's cooldown (once per second per weapon) |
+| Traits | +20% Crit Chance; +10% Dodge; -4 Max HP; +40% Crit Damage |
 | Stat modifiers | -4 Max HP, +20% Crit Chance, +10% Dodge, +5% Move Speed |
 | Starting weapons | [Chef's Knife](WEAPONS.md#weapon-knife) |
 | Active skill | [Sour Mist](SKILLS.md#skill-lemon) [Stealth] cooldown 11s — Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance. |
@@ -216,8 +216,8 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Thunder Power**：10% chance on hit to call lightning; scales with Elemental Damage |
-| Traits | +4 Elemental Damage; +10 Luck; +3 Max HP; Melee Damage -70% |
+| Talent | **Thunder Power**：Each jump of a favored chain has a 15% chance to call down a lightning strike |
+| Traits | +4 Elemental Damage; +10 Luck; +3 Max HP; Melee Damage -70%; 10% chance on hit to call lightning |
 | Stat modifiers | +3 Max HP, +4 Elemental Damage, +10 Luck, Melee damage ×0.3 |
 | Starting weapons | [Broccoli Staff](WEAPONS.md#weapon-broccoli_staff) |
 | Active skill | [Purple Thunder](SKILLS.md#skill-eggplant) [Screen Clear] cooldown 14s — Lightning blankets the screen, striking every enemy and briefly Stunning them. |
@@ -233,7 +233,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Blood Feast**：Life Steal Chance is doubled below 50% HP |
+| Talent | **Blood Feast**：Below 50% HP, Life Steal Chance doubles and favored weapons gain +30% attack speed |
 | Traits | +10% Life Steal Chance; -3 HP Regen; +5% Damage |
 | Stat modifiers | -3 HP Regen, +10% Life Steal Chance, +5% All Damage |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
@@ -250,7 +250,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Twin Bond**：+5% damage per pair of identical weapons |
+| Talent | **Twin Bond**：Each pair of identical favored weapons gives favored weapons +1 more projectile (max +2) |
 | Traits | 8 weapon slots; -10% Damage |
 | Stat modifiers | -10% All Damage, 8 weapon slots |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Chef's Knife](WEAPONS.md#weapon-knife) |
@@ -267,7 +267,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Pirate's Share**：Earn 8% interest on your Seeds after each wave (cap rises with waves) |
+| Talent | **Pirate's Share**：Earn 8% interest on your seeds after each wave (cap rises with waves); every 100 seeds held gives favored weapons +1 bounce (max +3) |
 | Traits | Shop prices -15%; +20 Luck; +10 Harvest |
 | Stat modifiers | -3 Max HP, +20 Luck, +10 Harvest, Shop discount 15% |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
@@ -284,7 +284,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Ghost Ambush**：+40% damage for 1.5s after a dodge |
+| Talent | **Ghost Ambush**：After a successful dodge, favored weapons gain +40% attack speed for 1.5s |
 | Traits | +25% Dodge; Dodge cap 75%; -4 Max HP |
 | Stat modifiers | -4 Max HP, +25% Dodge, +8% Move Speed, Dodge cap 75% |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
@@ -301,7 +301,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Rising Star**：Each level-up also grants +1% Damage and +1 Max HP permanently |
+| Talent | **Rising Star**：Each level-up grants +1 Max HP; every 4 levels favored weapons gain a permanent upgrade in turn: +15% range, +1 projectile, +1 pierce, +5% crit |
 | Traits | +40% XP Gain; 5 choices on level up |
 | Stat modifiers | -3 Max HP, +40% XP Gain, 5 level-up choices |
 | Starting weapons | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) |
@@ -318,7 +318,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Gale Step**：+4% damage per 10% bonus Move Speed |
+| Talent | **Gale Step**：Every +10% Move Speed gives favored weapons +4% attack speed |
 | Traits | +20% Move Speed; +15% Attack Speed; -1 Armor |
 | Stat modifiers | +15% Attack Speed, -1 Armor, +20% Move Speed |
 | Starting weapons | [Onion Boomerang](WEAPONS.md#weapon-onion_boomerang) |
@@ -335,7 +335,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Blast Science**：Explosion damage +10% per wave |
+| Talent | **Blast Science**：Favored weapon blasts have a 30% chance to set off a second blast at the edge (50% damage); +3% per wave (max 60%) |
 | Traits | +2 Elemental Damage; +5% Damage; Kills have a 15% chance to explode |
 | Stat modifiers | +5% All Damage, +2 Elemental Damage, +30 Range |
 | Starting weapons | [Pepper Mine](WEAPONS.md#weapon-pepper_mine), [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |
@@ -352,7 +352,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Tear Gas**：When hit, Blind nearby enemies for 2s (at most once per 3s) |
+| Talent | **Tear Gas**：When hit, Blind nearby enemies for 2s (at most once every 3s); favored weapons get +30% crit chance against Blinded enemies |
 | Traits | +4 Armor; +10 Max HP; Reflect 15 damage when hit |
 | Stat modifiers | +10 Max HP, +2 HP Regen, +4 Armor, -5% Move Speed |
 | Starting weapons | [Frying Pan](WEAPONS.md#weapon-pan) |
@@ -369,7 +369,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Spore Burst**：Poisoned enemies spread 3 Poison stacks to nearby enemies on death |
+| Talent | **Spore Burst**：Poisoned enemies burst into 3 homing spores on death and apply 3 stacks of Poison to nearby enemies |
 | Traits | +2 Elemental Damage; All hits have a 30% chance to Poison |
 | Stat modifiers | +2 Elemental Damage, +5 Luck |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
@@ -386,8 +386,8 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Knockout Punch**：Melee hits have a 12% chance to Stun for 0.6s |
-| Traits | +4 Melee Damage; +2 Armor; +5 Max HP; Kills stack Rage (+4% Damage each) |
+| Talent | **Knockout Punch**：Favored weapon hits on Stunned enemies release a shockwave dealing 50% damage around them |
+| Traits | +4 Melee Damage; +2 Armor; +5 Max HP; Kills stack Rage (+4% Damage each); 12% chance on hit to Stun for 0.6s |
 | Stat modifiers | +5 Max HP, +4 Melee Damage, +2 Armor, Elemental damage ×0.5 |
 | Starting weapons | [Frying Pan](WEAPONS.md#weapon-pan) |
 | Active skill | [Ground Pound](SKILLS.md#skill-coconut) [Nova Burst] cooldown 21s — Slam the ground to Stun enemies and inflict Armor Break. |
@@ -403,7 +403,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Sleight of Hand**：Become Invulnerable for 1s every 8s |
+| Talent | **Sleight of Hand**：Gain 1s of invulnerability every 8s; favored hits have a 15% chance to conjure a phantom shot at another enemy (60% damage), guaranteed while invulnerable |
 | Traits | +10 Luck; +3 Max HP; 20% chance to Confuse enemies when attacked |
 | Stat modifiers | +3 Max HP, +1 Ranged Damage, +1 Elemental Damage, +10 Luck |
 | Starting weapons | [Ketchup Bottle](WEAPONS.md#weapon-ketchup) |
@@ -420,7 +420,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Rapid Volley**：+2% damage per 10% Attack Speed |
+| Talent | **Rapid Volley**：Each favored shot adds 1 Hot Barrel stack (+1% attack speed, max 30); stacks reset after 1s without firing |
 | Traits | +20% Attack Speed; -8% Damage; 10% chance to gain Haste when shooting |
 | Stat modifiers | -8% All Damage, +1 Ranged Damage, +20% Attack Speed |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter) |
@@ -437,7 +437,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Pea Legion**：+3% damage per weapon held |
+| Talent | **Pea Legion**：Each weapon you hold gives favored bullets +8% chance to split in two |
 | Traits | +2 Ranged Damage; Start with 2 Pea Shooters; +3% Damage per duplicate weapon |
 | Stat modifiers | +3 Max HP, +2 Ranged Damage |
 | Starting weapons | [Pea Shooter](WEAPONS.md#weapon-pea_shooter), [Pea Shooter](WEAPONS.md#weapon-pea_shooter) |
@@ -454,7 +454,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Angel's Grace**：Once per wave, survive a lethal hit with 1 HP and 2s of invulnerability |
+| Talent | **Angel's Grace**：The first lethal hit each wave leaves you at 1 HP with 2s of invulnerability; while shielded, favored weapons gain +1 pierce and heal on every hit (max 3 per second) |
 | Traits | +5 HP Regen; Gain 15 Shield at the start of each wave; -10% Damage |
 | Stat modifiers | +5 Max HP, +5 HP Regen, -10% All Damage |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
@@ -471,8 +471,8 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Dragon Breath**：+40% damage over time (Burn, Poison, etc.) |
-| Traits | +2 Melee/Elemental Damage; +5 Max HP; Melee hits have a 20% chance to Burn |
+| Talent | **Dragon Breath**：Favored weapon hits on Burning enemies unleash a short dragon breath (3 flames, 40% damage) |
+| Traits | +2 Melee/Elemental Damage; +5 Max HP; Melee hits have a 20% chance to Burn; +40% damage over time |
 | Stat modifiers | +5 Max HP, +2 Melee Damage, +2 Elemental Damage, +5% Move Speed |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
 | Active skill | [Dragonflame Charge](SKILLS.md#skill-dragonfruit) [Dash] cooldown 12s — Charge forward, applying 4 stacks of Burn along the path. |
@@ -488,7 +488,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Berserker Blood**：+6% damage per 10% HP missing |
+| Talent | **Berserker Blood**：Every 10% HP lost gives favored weapons +6% attack speed and +3% area |
 | Traits | +15% Damage; +3% Life Steal Chance; -1 Armor; Gain Rage when damaged |
 | Stat modifiers | +3% Life Steal Chance, +15% All Damage, -1 Armor |
 | Starting weapons | [Meat Cleaver](WEAPONS.md#weapon-cleaver) |
@@ -505,7 +505,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Heartpiercer**：+40% damage to enemies above 80% HP |
+| Talent | **Heartpiercer**：Favored weapons always crit enemies at full HP, and that hit does not use up pierce |
 | Traits | +80 Range; +10% Crit Chance; Hits have a 15% chance to Mark enemies (next hit always crits) |
 | Stat modifiers | +1 Ranged Damage, +10% Crit Chance, +80 Range, Melee damage ×0.6 |
 | Starting weapons | [Corn Cannon](WEAPONS.md#weapon-corn_cannon) |
@@ -522,7 +522,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Gourmet**：Picking up fruit also grants Seeds (more in later waves) |
+| Talent | **Gourmet**：Picking up fruit grants bonus seeds (scales with wave) and gives favored weapons +25% attack speed and +20% area for 5s |
 | Traits | +20 Harvest; Fruit healing doubled; -5% Damage |
 | Stat modifiers | +5 Max HP, -5% All Damage, +20 Harvest |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
@@ -539,7 +539,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Weak Spot**：+20% damage to enemies with any debuff |
+| Talent | **Weak Spot**：Favored weapons get +5% crit chance per distinct debuff on the target |
 | Traits | +8% Crit Chance; +3 Max HP; +1 Melee Damage; Hits have a 20% chance to apply Vulnerable; Crit Damage +30% |
 | Stat modifiers | +3 Max HP, +1 Melee Damage, +8% Crit Chance, +10 Luck |
 | Starting weapons | [Chef's Knife](WEAPONS.md#weapon-knife) |
@@ -556,7 +556,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Lucky Streak**：+1% damage per 10 Luck; the first shop reroll each wave is free |
+| Talent | **Lucky Streak**：First shop reroll each wave is free; every 10 Luck gives favored projectiles a 1% chance to become Lucky Envelopes (guaranteed crit, +2 bounce, max 30%) |
 | Traits | +40 Luck; Crate drop rate doubled |
 | Stat modifiers | +40 Luck |
 | Starting weapons | [Tomato Slingshot](WEAPONS.md#weapon-slingshot) |
@@ -573,7 +573,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Stench Aura**：Nearby enemies are constantly Vulnerable |
+| Talent | **Stench Aura**：Favored hits add 1 Stench stack to the enemy; at 5 stacks it bursts into 8 spikes (40% damage) |
 | Traits | +3 Armor; +10 Max HP; -4% Move Speed; Reflect 10 damage; Nearby enemies are constantly Weakened |
 | Stat modifiers | +10 Max HP, +3 Armor, -4% Move Speed |
 | Starting weapons | [Garlic Aura](WEAPONS.md#weapon-garlic_aura) |
@@ -590,7 +590,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Mech Plating**：Take 15% less damage |
+| Talent | **Mech Plating**：Take 15% less damage; while shielded, favored weapons gain +30% attack speed and +1 projectile |
 | Traits | +5 Armor; +10 Max HP; -10% Dodge; Gain 20 Shield every 12s |
 | Stat modifiers | +10 Max HP, +5 Armor, -10% Dodge, -10% Move Speed |
 | Starting weapons | [Sauce Gatling](WEAPONS.md#weapon-sauce_gatling) |
@@ -607,7 +607,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Zen Stillness**：While standing still, take 25% less damage and heal 2% Max HP per second |
+| Talent | **Zen Stillness**：While standing still: take 25% less damage, regenerate 2% Max HP per second, and favored weapons have a 50% combo chance (60% damage) |
 | Traits | +15% Dodge; +3 HP Regen; Gain Focus on successful dodge |
 | Stat modifiers | +3 HP Regen, +15% Dodge, +5% Move Speed, Ranged damage ×0.7 |
 | Starting weapons | [Rolling Pin](WEAPONS.md#weapon-rolling_pin) |
@@ -624,7 +624,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Frostbite**：+35% damage to Slowed or Frozen enemies |
+| Talent | **Frostbite**：Favored weapons always crit Frozen enemies and shatter the ice, dealing 50% damage around them |
 | Traits | +3 Elemental Damage; +3 Max HP; Hits have an 8% chance to Freeze enemies for 1s |
 | Stat modifiers | +3 Max HP, +3 Elemental Damage, +5% Attack Speed |
 | Starting weapons | [Iced Soda](WEAPONS.md#weapon-soda) |
@@ -641,7 +641,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Late Bloomer**：+1.5% damage per level |
+| Talent | **Late Bloomer**：Each level gives favored weapons +1% attack speed (max +40%); every 5 levels +1 pierce (max +3) |
 | Traits | +80% XP Gain; -8% Damage; -3 Max HP; 5 choices on level up |
 | Stat modifiers | -3 Max HP, -8% All Damage, +80% XP Gain, 5 level-up choices |
 | Starting weapons | [Tomato Fork](WEAPONS.md#weapon-fork) |
@@ -658,7 +658,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Chain Reaction**：Enemies killed by explosions have a 40% chance to explode again |
+| Talent | **Chain Reaction**：Enemies killed by explosions have a 40% chance to explode again, throwing 2 sparks |
 | Traits | +8% Damage; Kills have a 25% chance to explode; Explosions inflict Burn |
 | Stat modifiers | -5 Max HP, +8% All Damage, +2 Elemental Damage |
 | Starting weapons | [Chili Rocket](WEAPONS.md#weapon-chili_rocket) |
@@ -675,7 +675,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Bean Army**：+40% Skill Duration and -15% Skill Cooldown: bean clones last longer and come out more often |
+| Talent | **Bean Army**：While a bean clone is out, favored weapons gain +50% attack speed |
 | Traits | +40% Skill Duration; +15% Skill Cooldown Reduction; +3 Max HP; -5% Damage |
 | Stat modifiers | +3 Max HP, -5% All Damage, +15% Skill Cooldown, +40% Skill Duration |
 | Starting weapons | [Popcorn Popper](WEAPONS.md#weapon-popcorn_machine) |
@@ -692,7 +692,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Thorn for Thorn**：When hurt, gain 1 stack of Thorns for 4s (each reflects 5 damage, max 5) |
+| Talent | **Thorn for Thorn**：When hurt, gain 1 stack of Thorns for 4s (each reflects 5 damage, max 5); favored spikes gain +1 pierce |
 | Traits | +4 Armor; +12 Max HP; -6% Move Speed; -5% Damage; Reflect 25 damage when hurt |
 | Stat modifiers | +12 Max HP, -5% All Damage, +4 Armor, -6% Move Speed |
 | Starting weapons | [Whirl Whisk](WEAPONS.md#weapon-whisk_spin) |
@@ -709,8 +709,8 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Seed Torrent**：On kill, gain 1 stack of Haste for 2s (+10% Move & Attack Speed, max 3) |
-| Traits | 7 weapon slots; +25% Attack Speed; +2 Ranged Damage; -12% Damage; -2 Max HP; Melee Damage -50% |
+| Talent | **Seed Torrent**：Kills with favored weapons burst into 3 pomegranate seeds (50% damage) |
+| Traits | 7 weapon slots; +25% Attack Speed; +2 Ranged Damage; -12% Damage; -2 Max HP; Melee Damage -50%; Gain 1 stack of Haste on kill |
 | Stat modifiers | -2 Max HP, -12% All Damage, +2 Ranged Damage, +25% Attack Speed, Melee damage ×0.5, 7 weapon slots |
 | Starting weapons | [Seed Spitter](WEAPONS.md#weapon-seed_spitter), [Olive Launcher](WEAPONS.md#weapon-olive_launcher) |
 | Active skill | [Seed Burst](SKILLS.md#skill-pomegranate) [Ring Barrage] cooldown 8s — Spray 30 pomegranate seeds in all directions. |
@@ -726,8 +726,8 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Taro Barrier**：Can hold only 1 weapon; enemies within 170 burn every second |
-| Traits | 1 weapon slot; +35% Aura Damage; +25% Aura Size; +40% Skill Damage; +20% Skill Cooldown Reduction; +6 Max HP; +2 Elemental Damage |
+| Talent | **Taro Barrier**：Favored auras pulse outward every 3s: radius briefly ×1.5, dealing one hit and knocking enemies back |
+| Traits | 1 weapon slot; +35% Aura Damage; +25% Aura Size; +40% Skill Damage; +20% Skill Cooldown Reduction; +6 Max HP; +2 Elemental Damage; Enemies within 170 burn every second |
 | Stat modifiers | +6 Max HP, +35% Aura Damage, +25% Aura Size, +2 Elemental Damage, +20% Skill Cooldown, +40% Skill Damage, 1 weapon slots |
 | Starting weapons | [Curry Aura](WEAPONS.md#weapon-curry_aura) |
 | Active skill | [Taro Paste Field](SKILLS.md#skill-taro) [Binding Field] cooldown 30s — Create a 6s taro field that Burns and Slows enemies inside. |
@@ -743,7 +743,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Layer upon Layer**：Revive once per run; cleanse your debuffs every 8s |
+| Talent | **Layer upon Layer**：Revive once per run; cleanse your debuffs every 8s; after each cleanse or revive, favored weapons gain +30% attack speed for 5s |
 | Traits | +8 Max HP; +2 Armor; +2 HP Regen; -8% Damage; Gain 1 stack of Fortify when hurt |
 | Stat modifiers | +8 Max HP, +2 HP Regen, -8% All Damage, +2 Armor |
 | Starting weapons | [Soup Ladle](WEAPONS.md#weapon-ladle) |
@@ -760,7 +760,7 @@ See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.
 
 | Field | Value |
 | --- | --- |
-| Talent | **Dark Pact**：Hits have a 20% chance to Rot and 8% to Curse (no healing, +10% damage taken) |
+| Talent | **Dark Pact**：Hits have a 20% chance to Rot and 8% to Curse; favored hits on Cursed enemies spread the Curse to 1 nearby enemy |
 | Traits | +3 Elemental Damage; +5 Luck; -2 Max HP; Hits inflict Rot and Curse |
 | Stat modifiers | -2 Max HP, +3 Elemental Damage, +5 Luck |
 | Starting weapons | [Dragonfruit Orb](WEAPONS.md#weapon-dragonfruit_orb) |

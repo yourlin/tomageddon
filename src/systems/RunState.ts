@@ -11,7 +11,7 @@ import { ITEM_MAP, itemCapFor, type ItemSpecial } from '../data/items';
 import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
-import { BALANCE, xpToNext, isBossWaveNo, isEliteWaveNo } from '../data/balance';
+import { BALANCE, xpToNext, chapterWaves, isBossWaveFor, isEliteWaveFor } from '../data/balance';
 import { markSeen, save, persistDisabled, type RunRecord, type SaveData } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
@@ -516,6 +516,13 @@ export class RunState {
     return this.char.dodgeCap ?? BALANCE.player.dodgeCap;
   }
 
+  /** 属性面板显示用的上限：闪避、光环范围有上限，其余无上限 */
+  statCap(k: string): number {
+    if (k === 'dodge') return this.dodgeCap;
+    if (k === 'auraSize') return BALANCE.auraSizeCap;
+    return Infinity;
+  }
+
   setCounts(): Record<string, number> {
     const counts: Record<string, number> = {};
     const seen = new Set<string>();
@@ -650,22 +657,30 @@ export class RunState {
     return Math.min(10, 3 + this.specials.rerolls);
   }
 
+  /** 本章波数（第 5 章起变长，见 chapterWaves） */
+  get waveCount(): number {
+    return chapterWaves(this.chapterId);
+  }
   isBossWave(): boolean {
-    return this.endless ? isBossWaveNo(this.wave) : this.wave === BALANCE.waves.bossWave;
+    return isBossWaveFor(this.chapterId, this.wave, this.endless);
   }
   isEliteWave(): boolean {
-    return this.endless ? isEliteWaveNo(this.wave) : BALANCE.waves.eliteWaves.includes(this.wave);
+    return isEliteWaveFor(this.chapterId, this.wave, this.endless);
   }
-  /** 本波精英：第一轮用开局抽好的两名，无尽模式之后每次重新抽 */
+  /** 本波精英：本章内轮流用开局抽好的两名，无尽模式之后每次重新抽 */
   eliteForWave(): string {
-    if (this.wave <= BALANCE.waves.count) return this.eliteIds[this.wave === BALANCE.waves.eliteWaves[0] ? 0 : 1];
+    if (this.wave <= this.waveCount) {
+      const k = Math.max(0, Math.floor(this.wave / BALANCE.waves.eliteEvery) - 1);
+      return this.eliteIds[k % this.eliteIds.length];
+    }
     const pool = elitePool(this.chapterId);
     return pool[Math.floor(Math.random() * pool.length)].id;
   }
-  /** 本波 Boss：第一轮用开局抽好的，无尽模式第 30 波起从全部章节的 Boss 里抽 */
+  /** 本波 Boss：本章用开局抽好的，无尽模式第 30 波起从全部章节的 Boss 里抽 */
   bossForWave(): string {
-    if (this.wave <= BALANCE.waves.count) return this.bossId;
-    const pool = this.wave >= 30 ? CHAPTERS.flatMap((c) => bossPool(c.id)) : bossPool(this.chapterId);
+    if (this.wave <= this.waveCount) return this.bossId;
+    const pool =
+      this.wave >= this.waveCount + BALANCE.waves.bossWave ? CHAPTERS.flatMap((c) => bossPool(c.id)) : bossPool(this.chapterId);
     return pool[Math.floor(Math.random() * pool.length)].id;
   }
 }

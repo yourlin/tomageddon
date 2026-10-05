@@ -35,14 +35,26 @@ const ENDLESS = process.argv.includes('--endless');
 const NO_TALENTS = arg('no-talents', '');
 const TALENT_BUDGET = { none: 0, mid: 40, full: 79 }[TALENTS] ?? Number(TALENTS);
 const PORT = 4174;
-const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const CHROME =
+  process.env.CHROME ??
+  (process.platform === 'win32'
+    ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
+    : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
 const PROGRESS = new URL('./.batch-progress.json', import.meta.url);
 const RESULTS = new URL('./.batch-results.json', import.meta.url);
 const JOB_TIMEOUT = Number(arg('timeout', '240')) * 1000; // 单局超时（秒）
 const MAX_RETRY = 2;
 
-const server = spawn('npx', ['vite', 'preview', '--port', String(PORT), '--strictPort'], { stdio: 'ignore' });
-const PAGE_URL = `http://localhost:${PORT}/?headless=1`;
+const server = spawn('npx', ['vite', 'preview', '--host', '127.0.0.1', '--port', String(PORT), '--strictPort'], {
+  stdio: 'ignore',
+  shell: process.platform === 'win32',
+});
+const PAGE_URL = `http://127.0.0.1:${PORT}/?headless=1`;
+/** ????????Windows ? shell ???? cmd???????????????? vite ??????? */
+function killServer() {
+  if (process.platform === 'win32' && server.pid) spawn('taskkill', ['/pid', String(server.pid), '/T', '/F'], { stdio: 'ignore' });
+  else server.kill();
+}
 for (let i = 0; ; i++) {
   try {
     if ((await fetch(PAGE_URL)).ok) break;
@@ -51,7 +63,7 @@ for (let i = 0; ; i++) {
   }
   if (i > 50) {
     console.error('预览服务启动失败（端口被占用或未 build？）');
-    server.kill();
+    killServer();
     process.exit(1);
   }
   await new Promise((r) => setTimeout(r, 200));
@@ -144,7 +156,7 @@ async function shutdown(sig) {
   saveProgress();
   report(false);
   await browser.close().catch(() => {});
-  server.kill();
+  killServer();
   process.exit(130);
 }
 process.on('SIGINT', () => shutdown('SIGINT'));
@@ -295,7 +307,7 @@ progress();
 if (stopping) await new Promise(() => {}); // 交给 shutdown 收尾退出
 console.log('');
 await browser.close();
-server.kill();
+killServer();
 
 // ---------- 汇总 ----------
 const complete = state.results.length >= jobs.length;

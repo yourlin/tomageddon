@@ -1,7 +1,9 @@
-// 天赋树界面：每个专精方向是一张「地图」，核心天赋居中，道路向外延展；不同方向有各自的地形背景
+// 天赋树界面：六个专精方向整合在一张放射状星盘上（参考《盐和避难所》）。
+// 中心是起点，每个方向占一个 60° 扇区，扇区用该方向颜色的淡色背景区分；核心天赋靠近中心，道路向外延伸。
+// 操作：点天赋选中，再点一次加点；右键或长按退点；拖动平移，滚轮 / 双指 / 右下角按钮缩放。
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout, toast } from '../ui/UI';
-import { BRANCHES, BRANCH_MAP, TALENT_NODES, branchCost, type BranchId, type TalentNode, type NodeKind } from '../data/talentTree';
+import { BRANCHES, BRANCH_MAP, TALENT_NODES, TALENT_MAP, branchCost, type BranchId, type TalentNode, type NodeKind } from '../data/talentTree';
 import {
   rankOf,
   raise,
@@ -19,14 +21,20 @@ import {
   masterMods,
   buyMaster,
   MASTER_CYCLE,
+  type RaiseBlock,
 } from '../systems/TalentTree';
 import { save, persist } from '../systems/Save';
 import { STAT_INFO } from '../data/stats';
 import { tx, lang } from '../i18n';
 import { audio } from '../systems/Audio';
 
-const MAP = { x: 20, y: 128, w: 860, h: 572 };
-const NODE_R: Record<NodeKind, number> = { core: 34, minor: 21, notable: 25, star: 27, keystone: 38 };
+/** 世界坐标布局：核心离中心 R0，每一步向外 DR，同一方向的道路之间隔 GAP 度 */
+const R0 = 120;
+const DR = 100;
+const GAP = 11.5;
+const SECTOR = 60;
+const EXTENT = 545;
+const NODE_R: Record<NodeKind, number> = { core: 26, minor: 16, notable: 19, star: 21, keystone: 28 };
 const KIND_NAME: Record<NodeKind, [string, string]> = {
   core: ['核心天赋', 'Core'],
   minor: ['属性天赋', 'Attribute'],
@@ -34,15 +42,57 @@ const KIND_NAME: Record<NodeKind, [string, string]> = {
   star: ['明星天赋 · 可点 5 级', 'Star talent · up to 5 ranks'],
   keystone: ['终极天赋', 'Keystone'],
 };
+const INFO_W = 330;
+const TOP = 84;
+const LONG_PRESS_MS = 450;
+const DRAG_PX = 8;
 const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
+const rad = (deg: number): number => (deg * Math.PI) / 180;
+
+/** 每个方向扇区的中心角度（力量在正上方，顺时针排列） */
+const BRANCH_ANGLE = Object.fromEntries(BRANCHES.map((b, i) => [b.id, -90 + i * SECTOR])) as Record<BranchId, number>;
+/** 每个方向的道路按基准角度排序后的序号 */
+const ROAD_INDEX: Record<string, { idx: number; count: number }> = (() => {
+  const out: Record<string, { idx: number; count: number }> = {};
+  for (const b of BRANCHES) {
+    const mine = TALENT_NODES.filter((n) => n.branch === b.id);
+    const roads = [...new Set(mine.flatMap((n) => (n.road === undefined ? [] : [n.road])))].sort((a, c) => a - c);
+    for (const n of mine) if (n.road !== undefined) out[n.id] = { idx: roads.indexOf(n.road), count: roads.length };
+  }
+  return out;
+})();
+
+function nodePos(n: TalentNode): [number, number] {
+  const base = BRANCH_ANGLE[n.branch];
+  if (n.kind === 'core') return [Math.cos(rad(base)) * R0, Math.sin(rad(base)) * R0];
+  const { idx, count } = ROAD_INDEX[n.id];
+  const a = rad(base + (idx - (count - 1) / 2) * GAP);
+  const r = R0 + 30 + n.step * DR + (n.kind === 'keystone' ? 14 : 0);
+  return [Math.cos(a) * r, Math.sin(a) * r];
+}
+
+/** 离开界面时记住镜头，下次回来还在原处 */
+const view = { zoom: 0, sx: 0, sy: 0 };
 
 export class TalentTreeScene extends Phaser.Scene {
-  private branch: BranchId = 'might';
   private selected: TalentNode | null = null;
-  private layer!: Phaser.GameObjects.Container;
-  private tabs: ReturnType<typeof button>[] = [];
+  private world!: Phaser.GameObjects.Container;
+  private ui!: Phaser.GameObjects.Container;
+  private mapCam!: Phaser.Cameras.Scene2D.Camera;
+  private building = false;
+  private halos: Phaser.GameObjects.Arc[] = [];
   private pointsText!: Phaser.GameObjects.Text;
   private masterBtn!: ReturnType<typeof button>;
+  private vp = { x: 0, y: 0, w: 0, h: 0 };
+  private fitZoom = 0.5;
+  // 指针状态：拖动 / 长按 / 双指缩放
+  private downInView = false;
+  private moved = false;
+  private downAt = { x: 0, y: 0 };
+  private nodeHandled = false;
+  private longTimer: Phaser.Time.TimerEvent | null = null;
+  private longFired = false;
+  private pinchDist = 0;
 
   constructor() {
     super('TalentTree');
@@ -50,71 +100,213 @@ export class TalentTreeScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    const W = this.scale.width;
-    this.cameras.main.setBackgroundColor(COLORS.bg);
+    const W = this.scale.width,
+      H = this.scale.height;
+    this.selected = null;
+    this.vp = { x: 20, y: TOP, w: W - 20 - INFO_W - 14 - 20, h: H - TOP - 16 };
+    this.fitZoom = Math.min(this.vp.w, this.vp.h) / (EXTENT * 2);
+
+    // 星盘用单独的镜头（只渲染视口区域，可平移缩放），先渲染；主镜头透明、后渲染，界面和飘字盖在星盘上
+    this.mapCam = this.cameras.add(this.vp.x, this.vp.y, this.vp.w, this.vp.h, false, 'talentMap');
+    this.mapCam.setBackgroundColor(0x0d0507);
+    const cams = this.cameras.cameras;
+    cams.splice(cams.indexOf(this.mapCam), 1);
+    cams.unshift(this.mapCam);
+    const main = this.cameras.main;
+    const onAdded = (go: Phaser.GameObjects.GameObject) => (this.building ? main.ignore(go) : this.mapCam.ignore(go));
+    this.events.on(Phaser.Scenes.Events.ADDED_TO_SCENE, onAdded);
+    this.events.once('shutdown', () => {
+      this.events.off(Phaser.Scenes.Events.ADDED_TO_SCENE, onAdded);
+      view.zoom = this.mapCam.zoom;
+      view.sx = this.mapCam.scrollX;
+      view.sy = this.mapCam.scrollY;
+    });
+
+    if (view.zoom > 0) {
+      this.mapCam.setZoom(Phaser.Math.Clamp(view.zoom, this.fitZoom * 0.9, 1.8));
+      this.mapCam.setScroll(view.sx, view.sy);
+      this.clampScroll();
+    } else {
+      this.mapCam.setZoom(this.fitZoom);
+      this.mapCam.centerOn(0, 0);
+    }
+
+    // 视口以外的背景（主镜头透明，画四块把视口围起来）
+    const bg = this.add.graphics();
+    bg.fillStyle(COLORS.bg, 1)
+      .fillRect(0, 0, W, this.vp.y)
+      .fillRect(0, this.vp.y + this.vp.h, W, H)
+      .fillRect(0, 0, this.vp.x, H)
+      .fillRect(this.vp.x + this.vp.w, 0, W, H);
+    bg.lineStyle(3, COLORS.border, 1).strokeRoundedRect(this.vp.x - 3, this.vp.y - 3, this.vp.w + 6, this.vp.h + 6, 8);
+
     text(this, 24, 18, tx('天赋树', 'Talent Tree'), 36);
-    this.pointsText = text(this, 200, 30, '', 20, '#ffd166');
+    this.pointsText = text(this, 180, 30, '', 20, '#ffd166');
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
-    button(
-      this,
-      W - 250,
-      44,
-      160,
-      52,
-      tx('全部重置', 'Reset all'),
-      () => {
-        resetBranch();
-        audio.play(this, 'buy');
-        toast(this, tx('天赋已全部重置', 'All talents reset'), '#52ff8a');
-        this.draw();
-      },
-      0x7a2e35,
-      19,
-    );
+    button(this, W - 250, 44, 160, 52, tx('全部重置', 'Reset all'), () => this.resetAll(), 0x7a2e35, 19);
     // I1：大师层——天赋点满后用金番茄购买，每层小幅提升，无上限
     this.masterBtn = button(this, W - 440, 44, 200, 52, '', () => this.buyMasterLayer(), 0x8a6d1f, 18);
-    const tw = (W - 40) / BRANCHES.length;
-    this.tabs = BRANCHES.map((b, i) =>
-      button(
-        this,
-        20 + tw / 2 + i * tw,
-        100,
-        tw - 8,
-        44,
-        '',
-        () => {
-          this.branch = b.id;
-          this.selected = null;
-          this.draw();
-        },
-        b.color,
-        18,
-      ),
-    );
-    this.layer = this.add.container(0, 0);
+    // 缩放按钮（叠在视口右下角）
+    const zx = this.vp.x + this.vp.w - 30,
+      zy = this.vp.y + this.vp.h - 30;
+    button(this, zx, zy - 100, 44, 44, '＋', () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.mapCam.zoom * 1.25), 0x3d1d22, 24);
+    button(this, zx, zy - 50, 44, 44, '－', () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.mapCam.zoom / 1.25), 0x3d1d22, 24);
+    button(this, zx, zy, 44, 44, '⤢', () => this.fitView(), 0x3d1d22, 22);
+
+    this.world = this.addWorld(() => this.add.container(0, 0));
+    this.ui = this.add.container(0, 0);
+    this.setupInput();
     this.draw();
   }
 
-  private draw(): void {
-    this.layer.removeAll(true);
-    const b = BRANCH_MAP[this.branch];
-    const free = talentPointsFree();
-    this.pointsText.setText(
-      tx(
-        `可用天赋点 ${free} · 已获得 ${talentPointsEarned()} / ${talentPointsTotal()}（完成里程碑成就获得） · 🥇${save.meta.gold}`,
-        `Free points ${free} · earned ${talentPointsEarned()} / ${talentPointsTotal()} (from milestone achievements) · 🥇${save.meta.gold}`,
-      ),
-    );
-    this.masterBtn.setLabel(tx(`🥇 大师层 ${save.meta.master}`, `🥇 Master ${save.meta.master}`));
-    this.masterBtn.setAlpha(masterUnlocked() ? 1 : 0.55);
-    BRANCHES.forEach((x, i) => {
-      this.tabs[i].setLabel(`${pick(x.name)}  ${branchSpent(x.id)}/${branchCost(x.id)}`);
-      this.tabs[i].setAlpha(x.id === this.branch ? 1 : 0.55);
+  /** 在 fn 里创建的对象只在星盘镜头里显示 */
+  private addWorld<T>(fn: () => T): T {
+    this.building = true;
+    try {
+      return fn();
+    } finally {
+      this.building = false;
+    }
+  }
+
+  private vpCenter(): { x: number; y: number } {
+    return { x: this.vp.x + this.vp.w / 2, y: this.vp.y + this.vp.h / 2 };
+  }
+
+  private inView(p: Phaser.Input.Pointer): boolean {
+    const { x, y, w, h } = this.vp;
+    return p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h;
+  }
+
+  // ---------------- 平移 / 缩放 ----------------
+  private zoomAt(px: number, py: number, z: number): void {
+    const cam = this.mapCam;
+    const nz = Phaser.Math.Clamp(z, this.fitZoom * 0.9, 1.8);
+    const hw = cam.width / 2,
+      hh = cam.height / 2;
+    // 屏幕点 (px,py) 下的世界坐标在缩放前后保持不变
+    const wx = cam.scrollX + hw + (px - cam.x - hw) / cam.zoom;
+    const wy = cam.scrollY + hh + (py - cam.y - hh) / cam.zoom;
+    cam.setZoom(nz);
+    cam.setScroll(wx - hw - (px - cam.x - hw) / nz, wy - hh - (py - cam.y - hh) / nz);
+    this.clampScroll();
+  }
+
+  private fitView(): void {
+    this.mapCam.setZoom(this.fitZoom);
+    this.mapCam.centerOn(0, 0);
+  }
+
+  private clampScroll(): void {
+    const cam = this.mapCam;
+    const lim = EXTENT - 80;
+    const cx = Phaser.Math.Clamp(cam.scrollX + cam.width / 2, -lim, lim);
+    const cy = Phaser.Math.Clamp(cam.scrollY + cam.height / 2, -lim, lim);
+    cam.setScroll(cx - cam.width / 2, cy - cam.height / 2);
+  }
+
+  private setupInput(): void {
+    this.input.mouse?.disableContextMenu();
+    this.input.addPointer(1);
+    this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
+      if (this.input.pointer1.isDown && this.input.pointer2.isDown) {
+        this.pinchDist = Phaser.Math.Distance.Between(this.input.pointer1.x, this.input.pointer1.y, this.input.pointer2.x, this.input.pointer2.y);
+        this.moved = true;
+        this.cancelLongPress();
+        return;
+      }
+      this.downInView = this.inView(p);
+      this.moved = false;
+      this.nodeHandled = false;
+      this.downAt = { x: p.x, y: p.y };
     });
-    this.drawLand(b.id);
-    this.drawRoads();
-    for (const n of TALENT_NODES) if (n.branch === this.branch) this.drawNode(n);
-    this.drawInfo();
+    this.input.on('pointermove', (p: Phaser.Input.Pointer) => {
+      const p1 = this.input.pointer1,
+        p2 = this.input.pointer2;
+      if (p1.isDown && p2.isDown && this.pinchDist > 0) {
+        const d = Phaser.Math.Distance.Between(p1.x, p1.y, p2.x, p2.y);
+        this.zoomAt((p1.x + p2.x) / 2, (p1.y + p2.y) / 2, (this.mapCam.zoom * d) / this.pinchDist);
+        this.pinchDist = d;
+        return;
+      }
+      if (!p.isDown || !this.downInView) return;
+      if (!this.moved && Phaser.Math.Distance.Between(p.x, p.y, this.downAt.x, this.downAt.y) > DRAG_PX) {
+        this.moved = true;
+        this.cancelLongPress();
+      }
+      if (this.moved) {
+        this.mapCam.scrollX -= (p.x - p.prevPosition.x) / this.mapCam.zoom;
+        this.mapCam.scrollY -= (p.y - p.prevPosition.y) / this.mapCam.zoom;
+        this.clampScroll();
+      }
+    });
+    this.input.on('pointerup', (p: Phaser.Input.Pointer) => {
+      this.cancelLongPress();
+      if (!this.input.pointer1.isDown || !this.input.pointer2.isDown) this.pinchDist = 0;
+      // 点在星盘空白处：取消选中
+      if (this.downInView && this.inView(p) && !this.moved && !this.nodeHandled && this.selected) {
+        this.selected = null;
+        this.draw();
+      }
+      this.downInView = false;
+    });
+    this.input.on('wheel', (p: Phaser.Input.Pointer, _o: unknown, _dx: number, dy: number) => {
+      if (this.inView(p)) this.zoomAt(p.x, p.y, this.mapCam.zoom * (dy > 0 ? 1 / 1.12 : 1.12));
+    });
+  }
+
+  private cancelLongPress(): void {
+    this.longTimer?.remove();
+    this.longTimer = null;
+  }
+
+  // ---------------- 加点 / 退点 ----------------
+  private blockText(n: TalentNode, block: RaiseBlock): string {
+    switch (block) {
+      case 'max':
+        return tx('已经点满了', 'Already maxed');
+      case 'parent':
+        return tx('需要先点亮相连的上一个天赋', 'Unlock the connected talent first');
+      case 'branch':
+        return tx(
+          `需要在本方向投入 ${n.needPoints} 点（当前 ${branchSpent(n.branch)}）`,
+          `Needs ${n.needPoints} points in this branch (now ${branchSpent(n.branch)})`,
+        );
+      case 'points':
+        return tx('天赋点不足：完成里程碑成就可获得', 'Not enough points — earn more from milestone achievements');
+      default:
+        return '';
+    }
+  }
+
+  private tryRaise(n: TalentNode): void {
+    const block = raiseBlock(n);
+    if (block) {
+      audio.play(this, 'click');
+      toast(this, this.blockText(n, block), block === 'max' ? '#ffd166' : '#ff6b6b');
+      return;
+    }
+    raise(n);
+    audio.play(this, 'levelup');
+    this.draw();
+  }
+
+  private tryLower(n: TalentNode): void {
+    if (rankOf(n.id) <= 0) return;
+    if (!lower(n)) {
+      toast(this, tx('有后续天赋依赖它，先退掉后面的天赋', 'Later talents depend on this — refund those first'), '#ff6b6b');
+      return;
+    }
+    audio.play(this, 'buy');
+    this.draw();
+  }
+
+  private resetAll(): void {
+    resetBranch();
+    this.selected = null;
+    audio.play(this, 'buy');
+    toast(this, tx('天赋已全部重置', 'All talents reset'), '#52ff8a');
+    this.draw();
   }
 
   private buyMasterLayer(): void {
@@ -150,405 +342,274 @@ export class TalentTreeScene extends Phaser.Scene {
     this.draw();
   }
 
-  // ---------------- 地图背景 ----------------
-  private drawLand(id: BranchId): void {
-    const { x, y, w, h } = MAP;
-    const g = this.add.graphics();
-    this.layer.add(g);
-    const rnd = new Phaser.Math.RandomDataGenerator([id]);
-    const R = (a: number, b: number) => rnd.realInRange(a, b);
-    const P = () => [R(x + 10, x + w - 10), R(y + 10, y + h - 10)] as const;
-    const LAND: Record<BranchId, { base: [number, number]; draw: () => void }> = {
-      might: {
-        base: [0x2a0a06, 0x4a130b],
-        draw: () => {
-          // 熔岩河：几条发光的弯曲河道 + 余烬
-          for (let k = 0; k < 4; k++) {
-            const pts: Phaser.Math.Vector2[] = [];
-            let px = x - 20,
-              py = R(y, y + h);
-            while (px < x + w + 20) {
-              pts.push(new Phaser.Math.Vector2(px, py));
-              px += R(60, 120);
-              py = Phaser.Math.Clamp(py + R(-70, 70), y, y + h);
-            }
-            const curve = new Phaser.Curves.Spline(pts);
-            g.lineStyle(18, 0xff5400, 0.18).strokePoints(curve.getPoints(80));
-            g.lineStyle(6, 0xff9e00, 0.5).strokePoints(curve.getPoints(80));
-          }
-          for (let k = 0; k < 26; k++) {
-            const [cx, cy] = P();
-            g.lineStyle(2, 0x1a0503, 0.7);
-            g.beginPath().moveTo(cx, cy);
-            let lx = cx,
-              ly = cy;
-            for (let s = 0; s < 4; s++) {
-              lx += R(-22, 22);
-              ly += R(-22, 22);
-              g.lineTo(lx, ly);
-            }
-            g.strokePath();
-          }
-          for (let k = 0; k < 70; k++) {
-            const [cx, cy] = P();
-            g.fillStyle(rnd.pick([0xffb703, 0xff7b00, 0xff4b3e]), R(0.25, 0.7)).fillCircle(cx, cy, R(1, 3));
-          }
-        },
-      },
-      guard: {
-        base: [0x0b1e33, 0x14365a],
-        draw: () => {
-          // 冰原浮冰 + 堡垒城墙 + 雪
-          for (let k = 0; k < 14; k++) {
-            const [cx, cy] = P();
-            const r = R(30, 80),
-              pts: Phaser.Math.Vector2[] = [];
-            for (let s = 0; s < 7; s++) {
-              const a = (s / 7) * Math.PI * 2 + R(-0.3, 0.3);
-              pts.push(new Phaser.Math.Vector2(cx + Math.cos(a) * r * R(0.6, 1), cy + Math.sin(a) * r * 0.6 * R(0.6, 1)));
-            }
-            g.fillStyle(0xcaf0f8, 0.1).fillPoints(pts, true);
-            g.lineStyle(2, 0x90e0ef, 0.25).strokePoints(pts, true);
-          }
-          // 城墙：地图四周的砖墙
-          g.fillStyle(0x6c757d, 0.35);
-          for (let bx = x; bx < x + w; bx += 34) {
-            g.fillRect(bx + 2, y + 2, 30, 12);
-            g.fillRect(bx + 2, y + h - 14, 30, 12);
-          }
-          for (let k = 0; k < 90; k++) {
-            const [cx, cy] = P();
-            g.fillStyle(0xffffff, R(0.25, 0.7)).fillCircle(cx, cy, R(0.8, 2.2));
-          }
-        },
-      },
-      agility: {
-        base: [0x0b2416, 0x1b4332],
-        draw: () => {
-          // 森林：成簇的树冠 + 风的流线
-          for (let k = 0; k < 60; k++) {
-            const [cx, cy] = P();
-            const r = R(10, 22);
-            g.fillStyle(rnd.pick([0x2d6a4f, 0x40916c, 0x1b4332]), 0.7);
-            g.fillCircle(cx, cy, r)
-              .fillCircle(cx + r * 0.7, cy + r * 0.3, r * 0.8)
-              .fillCircle(cx - r * 0.6, cy + r * 0.4, r * 0.7);
-            g.fillStyle(0x081c15, 0.5).fillEllipse(cx, cy + r * 0.9, r * 2.2, r * 0.5);
-          }
-          for (let k = 0; k < 12; k++) {
-            const [cx, cy] = P();
-            const len = R(60, 140);
-            g.lineStyle(2, 0xd8f3dc, 0.25);
-            g.beginPath().arc(cx, cy, len, -0.5, 0.3).strokePath();
-          }
-        },
-      },
-      arcane: {
-        base: [0x10002b, 0x240046],
-        draw: () => {
-          // 星空：星云、群星与星座连线
-          for (let k = 0; k < 6; k++) {
-            const [cx, cy] = P();
-            g.fillStyle(rnd.pick([0x7b2cbf, 0x5a189a, 0x3c096c]), 0.2).fillEllipse(cx, cy, R(160, 320), R(80, 160));
-          }
-          for (let k = 0; k < 150; k++) {
-            const [cx, cy] = P();
-            g.fillStyle(0xffffff, R(0.2, 0.9)).fillCircle(cx, cy, R(0.5, 1.8));
-          }
-          for (let k = 0; k < 5; k++) {
-            let [cx, cy] = P();
-            g.lineStyle(1, 0xe0aaff, 0.35);
-            for (let s = 0; s < 4; s++) {
-              const nx = cx + R(-60, 60),
-                ny = cy + R(-40, 40);
-              g.lineBetween(cx, cy, nx, ny);
-              g.fillStyle(0xe0aaff, 0.9).fillCircle(nx, ny, 2.2);
-              cx = nx;
-              cy = ny;
-            }
-          }
-        },
-      },
-      fortune: {
-        base: [0x3a2a05, 0x5c4210],
-        draw: () => {
-          // 麦田：一垄垄麦穗 + 阳光 + 篱笆
-          for (let row = y + 20; row < y + h; row += 26) {
-            const off = R(-10, 10);
-            for (let cx = x + off; cx < x + w; cx += 9) {
-              const hgt = R(6, 12);
-              g.lineStyle(2, rnd.pick([0xe9c46a, 0xf4a261, 0xffd166]), 0.22).lineBetween(cx, row, cx + 2, row - hgt);
-            }
-          }
-          for (let k = 0; k < 9; k++) {
-            const a = -Math.PI / 2 + (k - 4) * 0.18;
-            g.lineStyle(14, 0xfff3b0, 0.05).lineBetween(
-              x + w - 60,
-              y + 40,
-              x + w - 60 + Math.cos(a + Math.PI) * 600,
-              y + 40 - Math.sin(a) * 600,
-            );
-          }
-          g.fillStyle(0xffe066, 0.5).fillCircle(x + w - 60, y + 40, 26);
-          g.lineStyle(3, 0x6b4f1d, 0.6);
-          for (let fx = x + 30; fx < x + 260; fx += 22) g.lineBetween(fx, y + h - 50, fx, y + h - 26);
-          g.lineBetween(x + 30, y + h - 44, x + 258, y + h - 44).lineBetween(x + 30, y + h - 32, x + 258, y + h - 32);
-        },
-      },
-      alchemy: {
-        base: [0x041f1a, 0x0b3d33],
-        draw: () => {
-          // 毒沼：浑浊水洼、气泡与芦苇
-          for (let k = 0; k < 16; k++) {
-            const [cx, cy] = P();
-            g.fillStyle(rnd.pick([0x2a9d8f, 0x06d6a0, 0x118ab2]), 0.14).fillEllipse(cx, cy, R(70, 180), R(30, 80));
-          }
-          for (let k = 0; k < 40; k++) {
-            const [cx, cy] = P();
-            const r = R(2, 7);
-            g.lineStyle(1.5, 0xb7e4c7, 0.5).strokeCircle(cx, cy, r);
-            g.fillStyle(0xffffff, 0.35).fillCircle(cx - r * 0.3, cy - r * 0.3, r * 0.25);
-          }
-          for (let k = 0; k < 30; k++) {
-            const [cx, cy] = P();
-            g.lineStyle(2, 0x588157, 0.6).lineBetween(cx, cy, cx + R(-4, 4), cy - R(14, 26));
-          }
-        },
-      },
-    };
-    const land = LAND[id];
-    g.fillGradientStyle(land.base[0], land.base[0], land.base[1], land.base[1], 1).fillRect(x, y, w, h);
-    land.draw();
-    // 羊皮纸地图边框、指南针与地名牌
-    const b = BRANCH_MAP[id];
-    g.lineStyle(6, 0x2b1a10, 1).strokeRoundedRect(x, y, w, h, 14);
-    g.lineStyle(2, b.color, 0.8).strokeRoundedRect(x + 6, y + 6, w - 12, h - 12, 10);
-    const cx = x + w - 52,
-      cy = y + h - 52;
-    g.lineStyle(2, 0xfff4ea, 0.45).strokeCircle(cx, cy, 30);
-    g.fillStyle(0xfff4ea, 0.5)
-      .fillTriangle(cx, cy - 34, cx - 6, cy, cx + 6, cy)
-      .fillTriangle(cx, cy + 34, cx - 6, cy, cx + 6, cy);
-    g.fillStyle(0xfff4ea, 0.3)
-      .fillTriangle(cx - 34, cy, cx, cy - 6, cx, cy + 6)
-      .fillTriangle(cx + 34, cy, cx, cy - 6, cx, cy + 6);
-    this.layer.add(
-      text(this, cx, cy - 46, 'N', 14, '#fff4ea')
-        .setOrigin(0.5)
-        .setAlpha(0.6),
+  // ---------------- 绘制 ----------------
+  private draw(): void {
+    this.tweens.killTweensOf(this.halos);
+    this.halos = [];
+    this.world.removeAll(true);
+    this.ui.removeAll(true);
+    const free = talentPointsFree();
+    this.pointsText.setText(
+      tx(
+        `可用天赋点 ${free} · 已获得 ${talentPointsEarned()} / ${talentPointsTotal()}（完成里程碑成就获得） · 🥇${save.meta.gold}`,
+        `Free points ${free} · earned ${talentPointsEarned()} / ${talentPointsTotal()} (from milestone achievements) · 🥇${save.meta.gold}`,
+      ),
     );
-    const sign = panel(this, x + 18, y + 16, 230, 58, 0x2b1a10, b.color);
-    sign.setAlpha(0.92);
-    this.layer.add(sign);
-    this.layer.add(text(this, x + 32, y + 22, `${pick(b.name)} · ${pick(b.land)}`, 20, b.css, { fontStyle: 'bold' }));
-    this.layer.add(text(this, x + 32, y + 48, pick(b.desc), 13, COLORS.textDim));
+    this.masterBtn.setLabel(tx(`🥇 大师层 ${save.meta.master}`, `🥇 Master ${save.meta.master}`));
+    this.masterBtn.setAlpha(masterUnlocked() ? 1 : 0.55);
+    this.addWorld(() => {
+      this.drawBoard();
+      this.drawRoads();
+      for (const n of TALENT_NODES) this.drawNode(n);
+    });
+    this.drawInfo();
   }
 
-  /** 每个方向按自身范围拉伸铺满地图（各方向道路长短不同） */
-  private pos(n: TalentNode): [number, number] {
-    const list = TALENT_NODES.filter((x) => x.branch === n.branch);
-    const mx = Math.max(...list.map((x) => Math.abs(x.x))),
-      my = Math.max(...list.map((x) => Math.abs(x.y)));
-    const kx = (MAP.w / 2 - 80) / Math.max(1, mx),
-      ky = (MAP.h / 2 - 70) / Math.max(1, my);
-    return [MAP.x + MAP.w / 2 + n.x * kx, MAP.y + MAP.h / 2 + 18 + n.y * ky];
+  /** 世界里的文字：放大镜头时也清晰 */
+  private wtext(x: number, y: number, s: string, size: number, color = COLORS.text, opts: Partial<Phaser.Types.GameObjects.Text.TextStyle> = {}) {
+    const t = text(this, x, y, s, size, color, { resolution: 2, ...opts }).setOrigin(0.5);
+    this.world.add(t);
+    return t;
   }
 
-  /** 道路：未开通为虚线，已开通为亮色实线 */
-  private drawRoads(): void {
+  /** 星盘背景：每个方向一块淡色扇区 + 同心环 + 扇区分隔线 + 中心起点 */
+  private drawBoard(): void {
     const g = this.add.graphics();
-    this.layer.add(g);
-    const color = BRANCH_MAP[this.branch].color;
-    for (const n of TALENT_NODES) {
-      if (n.branch !== this.branch || !n.parent) continue;
-      const p = TALENT_NODES.find((x) => x.id === n.parent)!;
-      const [x1, y1] = this.pos(p),
-        [x2, y2] = this.pos(n);
-      const lit = rankOf(n.id) > 0;
-      if (lit) {
-        g.lineStyle(9, color, 0.25).lineBetween(x1, y1, x2, y2);
-        g.lineStyle(4, color, 1).lineBetween(x1, y1, x2, y2);
-        continue;
-      }
-      const len = Math.hypot(x2 - x1, y2 - y1),
-        dx = (x2 - x1) / len,
-        dy = (y2 - y1) / len;
-      g.lineStyle(3, 0xfff4ea, rankOf(p.id) > 0 ? 0.6 : 0.25);
-      for (let d = 0; d < len; d += 14)
-        g.lineBetween(x1 + dx * d, y1 + dy * d, x1 + dx * Math.min(len, d + 7), y1 + dy * Math.min(len, d + 7));
+    this.world.add(g);
+    g.fillStyle(0x120709, 1).fillCircle(0, 0, EXTENT);
+    for (const b of BRANCHES) {
+      const a = BRANCH_ANGLE[b.id];
+      const a0 = rad(a - SECTOR / 2),
+        a1 = rad(a + SECTOR / 2);
+      // 从内到外几层叠加，越靠外颜色越明显，像淡淡的渐变
+      g.fillStyle(b.color, 0.05).slice(0, 0, EXTENT - 10, a0, a1, false).fillPath();
+      g.fillStyle(b.color, 0.04).slice(0, 0, R0 + 3.6 * DR, a0, a1, false).fillPath();
+      g.fillStyle(0x120709, 0.5).slice(0, 0, R0 - 40, a0, a1, false).fillPath();
+      // 外圈色带
+      g.lineStyle(26, b.color, 0.16).beginPath().arc(0, 0, EXTENT - 23, a0 + 0.01, a1 - 0.01).strokePath();
+    }
+    g.lineStyle(1, 0xfff4ea, 0.07);
+    for (let k = 0; k <= 3; k++) g.strokeCircle(0, 0, k ? R0 + 30 + k * DR : R0);
+    g.lineStyle(2, 0xfff4ea, 0.12);
+    for (const b of BRANCHES) {
+      const a = rad(BRANCH_ANGLE[b.id] + SECTOR / 2);
+      g.lineBetween(Math.cos(a) * 60, Math.sin(a) * 60, Math.cos(a) * (EXTENT - 10), Math.sin(a) * (EXTENT - 10));
+    }
+    g.lineStyle(3, 0x7a2e35, 1).strokeCircle(0, 0, EXTENT);
+    // 点点星光
+    const rnd = new Phaser.Math.RandomDataGenerator(['talent-board']);
+    for (let k = 0; k < 160; k++) {
+      const a = rnd.realInRange(0, Math.PI * 2),
+        r = rnd.realInRange(70, EXTENT - 40);
+      g.fillStyle(0xfff4ea, rnd.realInRange(0.05, 0.25)).fillCircle(Math.cos(a) * r, Math.sin(a) * r, rnd.realInRange(0.6, 1.8));
+    }
+    // 方向名字与进度（外圈色带上）
+    for (const b of BRANCHES) {
+      const a = rad(BRANCH_ANGLE[b.id]);
+      const r = EXTENT - 23;
+      this.wtext(Math.cos(a) * r, Math.sin(a) * r, `${pick(b.name)}  ${branchSpent(b.id)}/${branchCost(b.id)}`, 20, b.css, {
+        fontStyle: 'bold',
+        strokeThickness: 5,
+      });
     }
   }
 
+  /** 道路：未开通为虚线，已开通为亮色实线；中心起点连到每个核心 */
+  private drawRoads(): void {
+    const g = this.add.graphics();
+    this.world.add(g);
+    const dashed = (x1: number, y1: number, x2: number, y2: number, alpha: number) => {
+      const len = Math.hypot(x2 - x1, y2 - y1),
+        dx = (x2 - x1) / len,
+        dy = (y2 - y1) / len;
+      g.lineStyle(2.5, 0xfff4ea, alpha);
+      for (let d = 0; d < len; d += 12) g.lineBetween(x1 + dx * d, y1 + dy * d, x1 + dx * Math.min(len, d + 6), y1 + dy * Math.min(len, d + 6));
+    };
+    const solid = (x1: number, y1: number, x2: number, y2: number, color: number) => {
+      g.lineStyle(8, color, 0.25).lineBetween(x1, y1, x2, y2);
+      g.lineStyle(3.5, color, 1).lineBetween(x1, y1, x2, y2);
+    };
+    for (const n of TALENT_NODES) {
+      const color = BRANCH_MAP[n.branch].color;
+      const [x2, y2] = nodePos(n);
+      let x1: number,
+        y1: number,
+        parentLit = true;
+      if (n.parent) {
+        const p = TALENT_MAP[n.parent];
+        [x1, y1] = nodePos(p);
+        parentLit = rankOf(p.id) > 0;
+      } else {
+        const a = Math.atan2(y2, x2);
+        x1 = Math.cos(a) * 46;
+        y1 = Math.sin(a) * 46;
+      }
+      if (rankOf(n.id) > 0) solid(x1, y1, x2, y2, color);
+      else dashed(x1, y1, x2, y2, parentLit ? 0.55 : 0.2);
+    }
+    // 中心起点
+    g.fillStyle(0x2b1418, 1).fillCircle(0, 0, 46);
+    g.lineStyle(4, 0xffd166, 0.9).strokeCircle(0, 0, 46);
+    g.lineStyle(1.5, 0xffd166, 0.4).strokeCircle(0, 0, 54);
+    this.wtext(0, -8, '🍅', 40);
+    this.wtext(0, 26, String(talentPointsFree()), 18, '#ffd166', { fontStyle: 'bold', strokeThickness: 4 });
+  }
+
   private drawNode(n: TalentNode): void {
-    const [x, y] = this.pos(n);
+    const [x, y] = nodePos(n);
     const r = NODE_R[n.kind],
       rank = rankOf(n.id),
       b = BRANCH_MAP[n.branch];
-    const can = !raiseBlock(n),
+    const block = raiseBlock(n);
+    const can = !block,
       maxed = rank >= n.max,
-      locked = rank === 0 && !can && raiseBlock(n) !== 'points';
+      locked = rank === 0 && !can && block !== 'points';
     const g = this.add.graphics();
-    this.layer.add(g);
-    if (this.selected?.id === n.id) g.lineStyle(4, 0xffffff, 1).strokeCircle(x, y, r + 9);
+    this.world.add(g);
+    if (this.selected?.id === n.id) {
+      g.lineStyle(4, 0xffffff, 1).strokeCircle(x, y, r + 9);
+      g.lineStyle(10, 0xffffff, 0.15).strokeCircle(x, y, r + 9);
+    }
     // 外框：明星天赋是星形光芒，终极天赋是六边形
     if (n.kind === 'star' || n.kind === 'keystone') {
       const k = n.kind === 'keystone' ? 6 : 10,
         pts: Phaser.Math.Vector2[] = [];
       for (let i = 0; i < k; i++) {
         const a = (i / k) * Math.PI * 2 - Math.PI / 2;
-        const rr = n.kind === 'keystone' ? r + 8 : i % 2 ? r + 2 : r + 10;
+        const rr = n.kind === 'keystone' ? r + 7 : i % 2 ? r + 2 : r + 8;
         pts.push(new Phaser.Math.Vector2(x + Math.cos(a) * rr, y + Math.sin(a) * rr));
       }
       g.fillStyle(maxed ? 0xffd166 : rank ? b.color : 0x3a3a3a, locked ? 0.4 : 0.9).fillPoints(pts, true);
     }
-    g.fillStyle(0x000000, 0.45).fillCircle(x + 2, y + 4, r);
+    g.fillStyle(0x000000, 0.45).fillCircle(x + 2, y + 3, r);
     g.fillStyle(rank ? b.color : 0x2b2b2b, locked ? 0.55 : 1).fillCircle(x, y, r);
-    g.lineStyle(n.kind === 'minor' ? 3 : 4, maxed ? 0xffd166 : rank ? 0xfff4ea : can ? b.color : 0x6c6c6c, 1).strokeCircle(x, y, r);
+    g.lineStyle(n.kind === 'minor' ? 2.5 : 3.5, maxed ? 0xffd166 : rank ? 0xfff4ea : can ? b.color : 0x6c6c6c, 1).strokeCircle(x, y, r);
     if (can && !rank) {
       // 可以点的天赋：呼吸光圈
-      const halo = this.add.circle(x, y, r + 5).setStrokeStyle(3, b.color, 0.9);
-      this.tweens.add({ targets: halo, scale: 1.18, alpha: 0.2, duration: 800, yoyo: true, repeat: -1 });
-      this.layer.add(halo);
+      const halo = this.add.circle(x, y, r + 4).setStrokeStyle(2.5, b.color, 0.9);
+      this.tweens.add({ targets: halo, scale: 1.2, alpha: 0.2, duration: 800, yoyo: true, repeat: -1 });
+      this.halos.push(halo);
+      this.world.add(halo);
     }
-    const icon = text(this, x, y, n.icon, Math.round(r * 1.05)).setOrigin(0.5);
+    const icon = this.wtext(x, y, n.icon, Math.round(r * 1.05));
     if (locked) icon.setAlpha(0.4);
-    this.layer.add(icon);
     if (n.max > 1 || rank)
-      this.layer.add(
-        text(this, x, y + r + 11, `${rank}/${n.max}`, 14, maxed ? '#ffd166' : rank ? '#fff4ea' : COLORS.textDim, {
-          strokeThickness: 4,
-        }).setOrigin(0.5),
-      );
-    const hit = this.add.circle(x, y, r + 8, 0, 0).setInteractive({ useHandCursor: true });
-    hit.on('pointerup', () => {
-      this.selected = n;
-      this.draw();
+      this.wtext(x, y + r + 9, `${rank}/${n.max}`, 12, maxed ? '#ffd166' : rank ? '#fff4ea' : COLORS.textDim, { strokeThickness: 4 });
+    const hit = this.add.circle(x, y, r + 7, 0, 0).setInteractive({ useHandCursor: true });
+    hit.on('pointerdown', (p: Phaser.Input.Pointer) => {
+      this.longFired = false;
+      if (p.rightButtonDown()) return;
+      this.cancelLongPress();
+      // 长按退点（手机）
+      this.longTimer = this.time.delayedCall(LONG_PRESS_MS, () => {
+        this.longTimer = null;
+        if (this.moved) return;
+        this.longFired = true;
+        this.selected = n;
+        this.tryLower(n);
+        this.draw();
+      });
     });
-    this.layer.add(hit);
+    hit.on('pointerup', (p: Phaser.Input.Pointer) => {
+      this.nodeHandled = true;
+      this.cancelLongPress();
+      if (this.moved || this.longFired) return;
+      if (p.rightButtonReleased()) {
+        this.selected = n;
+        this.tryLower(n);
+        this.draw();
+        return;
+      }
+      if (this.selected?.id === n.id) this.tryRaise(n);
+      else {
+        audio.play(this, 'click');
+        this.selected = n;
+        this.draw();
+      }
+    });
+    this.world.add(hit);
   }
 
   // ---------------- 右侧信息栏 ----------------
   private drawInfo(): void {
     const W = this.scale.width;
-    const x = MAP.x + MAP.w + 14,
-      y = MAP.y,
-      w = W - x - 20,
-      h = MAP.h;
-    const b = BRANCH_MAP[this.branch];
-    this.layer.add(panel(this, x, y, w, h, COLORS.panel, b.color));
-    const spent = branchSpent(this.branch),
-      cost = branchCost(this.branch);
-    this.layer.add(text(this, x + 18, y + 14, `${pick(b.name)} · ${spent} / ${cost}`, 22, b.css, { fontStyle: 'bold' }));
-    const bar = this.add.graphics();
-    bar.fillStyle(0x1a0a0c, 1).fillRoundedRect(x + 18, y + 46, w - 36, 10, 5);
-    if (spent) bar.fillStyle(b.color, 1).fillRoundedRect(x + 18, y + 46, Math.max(10, ((w - 36) * spent) / cost), 10, 5);
-    this.layer.add(bar);
-    this.layer.add(
-      button(
-        this,
-        x + w - 80,
-        y + 82,
-        130,
-        36,
-        tx('重置本方向', 'Reset branch'),
-        () => {
-          resetBranch(this.branch);
-          this.selected = null;
-          this.draw();
-        },
-        0x7a2e35,
-        15,
-      ),
-    );
+    const x = W - INFO_W - 20,
+      y = this.vp.y,
+      w = INFO_W,
+      h = this.vp.h;
+    const add = <T extends Phaser.GameObjects.GameObject>(o: T): T => (this.ui.add(o), o);
+    const wrap = { wordWrap: { width: w - 36, useAdvancedWrap: true }, lineSpacing: 4 };
     const n = this.selected;
+    add(panel(this, x, y, w, h, COLORS.panel, n ? BRANCH_MAP[n.branch].color : COLORS.border));
+    const bar = (by: number, id: BranchId) => {
+      const b = BRANCH_MAP[id],
+        spent = branchSpent(id),
+        cost = branchCost(id);
+      const g = add(this.add.graphics());
+      g.fillStyle(0x1a0a0c, 1).fillRoundedRect(x + 18, by, w - 36, 8, 4);
+      if (spent) g.fillStyle(b.color, 1).fillRoundedRect(x + 18, by, Math.max(8, ((w - 36) * spent) / cost), 8, 4);
+    };
+    const hint = tx(
+      '· 点击天赋选中，再点一次加点\n· 右键或长按天赋退点\n· 拖动平移，滚轮或双指缩放',
+      '· Tap a talent to select it, tap again to learn\n· Right-click or long-press to refund\n· Drag to pan, scroll or pinch to zoom',
+    );
     if (!n) {
-      this.layer.add(
+      add(text(this, x + 18, y + 14, tx('六大方向', 'Six branches'), 22, COLORS.text, { fontStyle: 'bold' }));
+      let ty = y + 50;
+      for (const b of BRANCHES) {
+        add(text(this, x + 18, ty, pick(b.name), 17, b.css, { fontStyle: 'bold' }));
+        add(text(this, x + w - 18, ty, `${branchSpent(b.id)} / ${branchCost(b.id)}`, 15, COLORS.textDim).setOrigin(1, 0));
+        add(text(this, x + 18, ty + 23, pick(b.desc), 12, COLORS.textDim));
+        bar(ty + 42, b.id);
+        ty += 58;
+      }
+      add(
         text(
           this,
           x + 18,
-          y + 120,
-          tx(
-            '点击地图上的天赋查看详情并加点。\n\n· 从中心的核心天赋开始，沿道路向外解锁\n· 少数明星天赋可以点 5 级\n· 终极天赋需要在本方向投入足够的点数\n· 天赋可随时免费重置\n· 全部天赋点大约够精通 2 个半方向',
-            'Tap a talent on the map to see details and spend points.\n\n· Start from the core in the middle and follow the roads outward\n· A few star talents go up to 5 ranks\n· Keystones need enough points spent in the branch\n· Reset any time for free\n· All points together master about 2.5 branches',
-          ),
-          16,
+          ty + 8,
+          hint +
+            tx(
+              '\n· 从靠近中心的核心天赋开始，沿道路向外解锁\n· 终极天赋需要在本方向投入足够点数\n· 「全部重置」免费，随时可用',
+              '\n· Start from a core near the center and follow the roads outward\n· Keystones need enough points spent in their branch\n· "Reset all" is free and always available',
+            ),
+          14,
           COLORS.text,
-          { wordWrap: { width: w - 36, useAdvancedWrap: true }, lineSpacing: 6 },
+          wrap,
         ),
       );
       return;
     }
+    const b = BRANCH_MAP[n.branch];
     const rank = rankOf(n.id);
-    let ty = y + 120;
-    this.layer.add(text(this, x + 18, ty, `${n.icon} ${nodeText(n, 'name')}`, 24, '#fff4ea', { fontStyle: 'bold' }));
+    add(text(this, x + 18, y + 14, `${pick(b.name)} · ${branchSpent(n.branch)} / ${branchCost(n.branch)}`, 20, b.css, { fontStyle: 'bold' }));
+    bar(y + 44, n.branch);
+    let ty = y + 70;
+    add(text(this, x + 18, ty, `${n.icon} ${nodeText(n, 'name')}`, 24, '#fff4ea', { fontStyle: 'bold' }));
     ty += 36;
-    this.layer.add(text(this, x + 18, ty, `${pick(KIND_NAME[n.kind])} · ${tx('等级', 'Rank')} ${rank} / ${n.max}`, 15, b.css));
+    add(text(this, x + 18, ty, `${pick(KIND_NAME[n.kind])} · ${tx('等级', 'Rank')} ${rank} / ${n.max}`, 15, b.css));
     ty += 30;
-    const wrap = { wordWrap: { width: w - 36, useAdvancedWrap: true }, lineSpacing: 4 };
     if (rank) {
-      const t = text(this, x + 18, ty, `${tx('当前', 'Now')}：${nodeText(n, 'desc', rank)}`, 17, COLORS.text, wrap);
-      this.layer.add(t);
+      const t = add(text(this, x + 18, ty, `${tx('当前', 'Now')}：${nodeText(n, 'desc', rank)}`, 17, COLORS.text, wrap));
       ty += t.height + 10;
     }
     if (rank < n.max) {
-      const t = text(
-        this,
-        x + 18,
-        ty,
-        `${rank ? tx('下一级', 'Next') : tx('效果', 'Effect')}：${nodeText(n, 'desc', rank + 1)}`,
-        17,
-        '#9be564',
-        wrap,
+      const t = add(
+        text(this, x + 18, ty, `${rank ? tx('下一级', 'Next') : tx('效果', 'Effect')}：${nodeText(n, 'desc', rank + 1)}`, 17, '#9be564', wrap),
       );
-      this.layer.add(t);
       ty += t.height + 10;
     }
     const block = raiseBlock(n);
-    const why =
-      block === 'parent'
-        ? tx('需要先点亮相连的上一个天赋', 'Unlock the connected talent first')
-        : block === 'branch'
-          ? tx(
-              `需要在本方向投入 ${n.needPoints} 点（当前 ${branchSpent(n.branch)}）`,
-              `Needs ${n.needPoints} points in this branch (now ${branchSpent(n.branch)})`,
-            )
-          : block === 'points'
-            ? tx('天赋点不足：完成里程碑成就可获得', 'Not enough points — earn more from milestone achievements')
-            : '';
-    if (why) this.layer.add(text(this, x + 18, ty + 4, why, 15, '#ff8f8f', wrap));
-    const by = y + h - 50;
-    this.layer.add(
-      button(
-        this,
-        x + w / 2 - 72,
-        by,
-        128,
-        52,
-        tx('－ 退点', '－ Refund'),
-        () => {
-          if (lower(n)) audio.play(this, 'buy');
-          else toast(this, tx('有后续天赋依赖它，先退掉后面的天赋', 'Later talents depend on this — refund those first'), '#ff6b6b');
-          this.draw();
-        },
-        0x7a2e35,
-        19,
-      ).setEnabled(canLower(n)),
-    );
-    this.layer.add(
-      button(
-        this,
-        x + w / 2 + 72,
-        by,
-        128,
-        52,
-        tx('＋ 加点', '＋ Learn'),
-        () => {
-          if (raise(n)) audio.play(this, 'levelup');
-          this.draw();
-        },
-        COLORS.green,
-        19,
-      ).setEnabled(!block),
-    );
+    const status =
+      block && block !== 'max'
+        ? { s: this.blockText(n, block), c: '#ff8f8f' }
+        : block === 'max'
+          ? { s: tx('已点满', 'Maxed'), c: '#ffd166' }
+          : { s: tx('▶ 再点一次这个天赋即可加点', '▶ Tap this talent again to learn it'), c: '#52ff8a' };
+    const st = add(text(this, x + 18, ty + 4, status.s, 15, status.c, wrap));
+    ty += st.height + 14;
+    if (rank > 0 && !canLower(n))
+      add(text(this, x + 18, ty, tx('有后续天赋依赖它，暂时不能退点', 'Later talents depend on this — cannot refund yet'), 14, COLORS.textDim, wrap));
+    add(text(this, x + 18, y + h - 16, hint, 13, COLORS.textDim, wrap).setOrigin(0, 1));
   }
 }

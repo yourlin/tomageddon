@@ -7,6 +7,7 @@ import { BALANCE, explodeSizeMultiplier, armorMultiplier } from '../data/balance
 import { run } from '../systems/RunState';
 import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
 import { WEAPON_MAP } from '../data/weapons';
+import { isFavoredWeapon } from '../data/affinity';
 import type { SkillDef } from '../data/characters';
 import { skillHealPct } from '../data/skills';
 import { fmt } from './dom';
@@ -128,10 +129,10 @@ export function weaponCalc(def: WeaponDef, tier: number): WeaponCalc {
   if (e?.burn) effects.push(`灼烧 ${e.burn.dps}/s ${e.burn.dur}s`);
   if (e?.slow) effects.push(`减速 ${e.slow.pct}% ${e.slow.dur}s`);
   if (e?.stun) effects.push(`眩晕 ${e.stun}s`);
-  if (e?.lifeSteal) effects.push(`吸血 +${e.lifeSteal}%`);
+  if (e?.lifeSteal) effects.push(`吸血概率 +${e.lifeSteal}%`);
   if (def.knockback) effects.push(`击退 ${def.knockback}`);
   if (def.critBonus) effects.push(`暴击率 +${def.critBonus}%`);
-  if (run.char.favored.includes(def.id)) effects.push('★契合 +20%');
+  if (isFavoredWeapon(run.char.favored, def)) effects.push('★契合 +10%');
   return { dmg, cd, range, count, critChance, critMult, hit, dps: perAttack / cd, explode, multi, effects };
 }
 
@@ -177,7 +178,7 @@ export function skillCalc(sk: SkillDef): { cd: number; dmg: number; radius: numb
 export function minionTraits(d: EnemyDef): string[] {
   const t: string[] = [BEHAVIOR_NAME[d.behavior] ?? d.behavior];
   if (d.behavior === 'shooter')
-    t.push(`射击 ${d.shots ?? 1} 发${d.spread ? `/${d.spread}°` : ''} 每 ${d.shootCd ?? 2.5}s${d.projDmg ? ` 弹伤 ${d.projDmg}` : ''}`);
+    t.push(`射击 ${d.shots ?? 1} 发${d.spread ? `/${d.spread}°` : ''} 每 ${d.shootCd ?? 2.5}s${d.projMult !== undefined ? ` 弹伤 ×${d.projMult}` : ''}`);
   if (d.behavior === 'charger') t.push(`蓄力 ${d.windup ?? 0.5}s 冲速 ${d.chargeSpeed ?? 500} 每 ${d.chargeCd ?? 3}s`);
   if (d.behavior === 'bomber') t.push(`引信 ${d.fuse ?? 0.8}s 半径 ${d.blastRadius ?? 80}`);
   if (d.behavior === 'healer') t.push(`治疗 ${(d.healAmount ?? 0.2) * 100}% 半径 ${d.healRadius ?? 180} 每 ${d.healCd ?? 3}s`);

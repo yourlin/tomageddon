@@ -6,6 +6,7 @@ import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { CHARACTERS, type CharacterDef } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import { WEAPON_MAP } from '../data/weapons';
+import { affinityText } from '../data/affinity';
 import { SKILL_TYPE_NAME } from '../data/skills';
 import { describeMods } from '../data/stats';
 import { save, persist, isUnlocked } from '../systems/Save';
@@ -15,7 +16,7 @@ import { run, clearRun } from '../systems/RunState';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast } from '../ui/UI';
 import { tx, lang } from '../i18n';
 import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
-import { dangerReward } from '../data/balance';
+import { dangerReward, chapterWaves } from '../data/balance';
 import { chapterAvailable, chapterCleared, chapterVisible } from '../systems/Danger';
 import {
   questDone,
@@ -319,11 +320,12 @@ export class CharSelectScene extends Phaser.Scene {
           add(
             20,
             y,
-            tx('契合武器（伤害 +20%）：', 'Synergy weapons (+20% dmg): ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
+            tx('契合武器（伤害 +10%）：', 'Synergy weapons (+10% dmg): ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
             16,
             '#ffd166',
             pw - 40,
-          ) + 4;
+          ) + 2;
+        y += add(30, y, tx('契合特效：', 'Synergy effect: ') + affinityText(c.id), 15, '#ffe8a3', pw - 60) + 4;
       }
       if (this.page === 1) {
         const best = save.bestWave[`${c.id}_${this.chapter}`];
@@ -451,8 +453,8 @@ export class CharSelectScene extends Phaser.Scene {
           : tx(`通关第 ${this.chapter - 1} 章解锁`, `Clear Chapter ${this.chapter - 1} to unlock`)
         : this.endless
           ? tx(
-              `无尽模式：不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），越往后怪物越强，直到倒下为止。本章最佳：第 ${endlessBest} 波`,
-              `Endless: no wave limit, 15-wave cycles (elites on 5/10, a boss on 15), monsters keep getting stronger until you fall. Best here: wave ${endlessBest}`,
+              `无尽模式：打完本章 ${chapterWaves(this.chapter)} 波后不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），越往后怪物越强，直到倒下为止。本章最佳：第 ${endlessBest} 波`,
+              `Endless: after this chapter's ${chapterWaves(this.chapter)} waves there is no limit, in 15-wave cycles (elites on 5/10, a boss on 15); monsters keep getting stronger until you fall. Best here: wave ${endlessBest}`,
             )
           : ch.desc + dangerLine,
     );

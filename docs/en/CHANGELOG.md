@@ -27,15 +27,24 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 - Tomato Danger 0–20: each clear unlocks the next level, each level stacks one more rule, and rewards scale up
 - 45 new relics in 8 sets from elites, Endless milestones and the Mysterious Merchant — they bend the rules, not just stats
-- Deeper Endless: milestone rewards every 10 waves, super bosses at 30/45/60, mutations and one revive
+- Deeper Endless: milestone rewards every 10 waves, double-boss waves, mutations and one revive
 - Every character gets 3 quests, an Awakening, Mastery 1–10 and a skin; 6 new characters
 - Characters now unlock automatically from specific achievements instead of being bought with points
 - Chapter 6 "Rotting Greenhouse", hidden Chapter 7 "Rot Garden" and a true final boss
 - 12 new weapons, 8 evolutions, 30 new items and 23 item combos
-- Event waves, risky routes, the Mysterious Merchant, in-wave mini-quests, weather and 5 new terrain hazards
+- Event waves, risky routes, the Mysterious Merchant, in-wave mini-quests, weather and 5 new terrain hazards — introduced chapter by chapter from chapter 2
+- Longer chapters from chapter 5: 20 waves, then +5 per chapter (up to 50), with an elite every 5 waves
+- Shop weapon tiers, item rarity and upgrade ranks are now tiered by Luck only: T2 from 5 Luck, T3 from 15, T4 only from 30
+- Each legendary item can be held once by default; a skill AUTO / MANUAL toggle now sits next to the pause button
 - Daily / weekly streak rewards, seed sharing, custom challenges and practice mode
 - Talent master tiers, a collection overview, titles, 76 new achievements, build codes and a post-run DPS chart
 - Skill visuals reworked: similar skills now look and play differently
+- Aura weapons get themed effects by name — shimmering glows, orbiting props and particles instead of a plain ring
+- Sweep super weapons get signature moves: Titan Pin full spin, Dragon Cleaver X-slash, Iron Bastion Pan shield bash that shatters bullets, Melon Quake aftershocks
+- Boomerangs now fly curved paths (teardrop, hook, serpentine, spiral); Anise Storm loops three times at range and can hit on every loop
+- Chain lightning super weapons call down extra strikes; mines have their own look and explosion color
+- Resetting your save now takes three confirmations (countdown, moved button, 3-second hold) to prevent accidents
+- Character details split into Basics / Progress pages; fixed the achievement total showing NaN
 - Fixed Thorny reflection being able to one-shot high-damage melee builds (now capped per hit and per second)
 - Settings: damage number density, shake strength, particle amount, joystick and button size, gamepad support, and save import/export
 

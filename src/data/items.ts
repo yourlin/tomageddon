@@ -44,7 +44,7 @@ export interface ItemDef {
   price: number;
   mods: StatMods;
   special?: ItemSpecial;
-  /** 最多持有数量。不填时：传说道具默认 LEGEND_ITEM_CAP，其余无上限；填了就以它为准（可用于放宽个别传说道具） */
+  /** 最多持有数量。不填时按稀有度默认（RARITY_ITEM_CAP：普通 3、稀有 2、史诗 1、传说 1）；填了就以它为准 */
   max?: number;
   icon?: { shape: string; color: number; color2: number; glyph?: string };
   series?: string;
@@ -76,7 +76,6 @@ export const ITEMS: ItemDef[] = [
     price: 18,
     mods: {},
     special: { rerolls: 1 },
-    max: 3,
     icon: { shape: 'scroll', color: 0xffd166, color2: 0xe63946 },
   },
   { id: 'firecracker', name: '小鞭炮', rarity: 0, price: 15, mods: { explodeSize: 10 } },
@@ -102,7 +101,6 @@ export const ITEMS: ItemDef[] = [
     price: 30,
     mods: {},
     special: { interest: 10 },
-    max: 3,
     desc: '每波结束获得当前番茄籽 10% 的利息（每波上限 6×波次）',
   },
   {
@@ -151,7 +149,6 @@ export const ITEMS: ItemDef[] = [
     price: 46,
     mods: { ranged: 1, rangedPct: -6 },
     special: { split: 1 },
-    max: 2,
     icon: { shape: 'fruit', color: 0xc1121f, color2: 0xffafcc },
   },
   // ---------- 史诗 ----------
@@ -162,7 +159,6 @@ export const ITEMS: ItemDef[] = [
     price: 55,
     mods: { luck: 5 },
     special: { rerolls: 2 },
-    max: 2,
     icon: { shape: 'book', color: 0x9d4edd, color2: 0xffd166 },
   },
   {
@@ -191,7 +187,6 @@ export const ITEMS: ItemDef[] = [
     price: 70,
     mods: { dodge: 3 },
     special: { shield: 10 },
-    max: 1,
     desc: '每 10 秒获得一次抵挡伤害的泡泡护盾',
   },
   {
@@ -203,8 +198,8 @@ export const ITEMS: ItemDef[] = [
     special: { burnChance: 20 },
     desc: '所有命中 20% 概率造成灼烧',
   },
-  { id: 'backpack', name: '双肩背包', rarity: 2, price: 80, mods: { speed: -3 }, special: { weaponSlot: 1 }, max: 2, desc: '武器栏 +1' },
-  { id: 'coupon', name: '优惠券', rarity: 2, price: 55, mods: {}, special: { shopDiscount: 10 }, max: 3, desc: '商店价格 -10%' },
+  { id: 'backpack', name: '双肩背包', rarity: 3, price: 120, mods: { speed: -3 }, special: { weaponSlot: 1 }, desc: '武器栏 +1' },
+  { id: 'coupon', name: '优惠券', rarity: 2, price: 55, mods: {}, special: { shopDiscount: 10 }, desc: '商店价格 -10%' },
   { id: 'protein', name: '蛋白粉', rarity: 2, price: 75, mods: { maxHp: 10, melee: 2, speed: -2 } },
   { id: 'pressure_cooker', name: '高压锅', rarity: 2, price: 70, mods: { explodeSize: 30, armor: 1 } },
   {
@@ -214,7 +209,6 @@ export const ITEMS: ItemDef[] = [
     price: 78,
     mods: { ranged: 2, attackSpeed: -4 },
     special: { split: 1 },
-    max: 2,
     icon: { shape: 'orb', color: 0xb5838d, color2: 0xf8edeb },
   },
   // ---------- 传说 ----------
@@ -226,7 +220,6 @@ export const ITEMS: ItemDef[] = [
     price: 110,
     mods: { regen: 3 },
     special: { revive: 1 },
-    max: 1,
     desc: '死亡时以 50% 生命复活一次',
   },
   { id: 'chef_knife_set', name: '大厨刀具套装', rarity: 3, price: 130, mods: { melee: 8, crit: 8, attackSpeed: 8, ranged: -4 } },
@@ -256,21 +249,21 @@ export const ITEM_MAP: Record<string, ItemDef> = Object.fromEntries(ALL_ITEMS.ma
 export const LEGEND_RARITY = 3;
 /** 每种传说道具默认最多持有 1 件 */
 export const LEGEND_ITEM_CAP = 1;
+/** 各稀有度默认持有上限：普通 3 件、稀有 2 件、史诗 1 件、传说 1 件 */
+export const RARITY_ITEM_CAP = [3, 2, 1, LEGEND_ITEM_CAP];
 
-/** 道具的基础持有上限（不含加成）；undefined = 无上限 */
-export function baseItemCap(it: ItemDef): number | undefined {
-  if (it.max !== undefined) return it.max;
-  return it.rarity >= LEGEND_RARITY ? LEGEND_ITEM_CAP : undefined;
+/** 道具的基础持有上限（不含加成）：填了 max 以 max 为准，否则按稀有度 */
+export function baseItemCap(it: ItemDef): number {
+  return it.max ?? RARITY_ITEM_CAP[Math.min(it.rarity, RARITY_ITEM_CAP.length - 1)];
 }
 
-/** 实际持有上限：传说道具再加上 specials.legendCap（角色、天赋等提供）；Infinity = 无上限 */
+/** 实际持有上限：传说道具再加上 specials.legendCap（角色、天赋等提供） */
 export function itemCapFor(it: ItemDef, legendBonus = 0): number {
-  const base = baseItemCap(it);
-  if (base === undefined) return Infinity;
-  return base + (it.rarity >= LEGEND_RARITY ? Math.max(0, legendBonus) : 0);
+  return baseItemCap(it) + (it.rarity >= LEGEND_RARITY ? Math.max(0, legendBonus) : 0);
 }
 
-/** 升级时的属性选项（按稀有度数值不同）。attackClass 为 null 表示所有流派通用 */
+/** 升级时的属性选项（按稀有度数值不同）。attackClass 为 null 表示所有流派通用。
+ *  光环范围、技能范围、爆炸范围不在升级选项里：只能靠道具 / 天赋等获得（避免范围无限膨胀） */
 export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }[] = [
   { key: 'maxHp', values: [3, 6, 9, 12] },
   { key: 'regen', values: [2, 3, 4, 5] },
@@ -279,8 +272,6 @@ export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }
   { key: 'rangedPct', values: [6, 10, 14, 19] },
   { key: 'elementalPct', values: [6, 10, 14, 19] },
   { key: 'auraPct', values: [7, 11, 16, 21] },
-  { key: 'auraSize', values: [6, 10, 14, 20] },
-  { key: 'explodeSize', values: [8, 12, 16, 22] },
   { key: 'melee', values: [2, 3, 4, 5] },
   { key: 'ranged', values: [1, 2, 3, 4] },
   { key: 'elemental', values: [1, 2, 3, 4] },

@@ -11,6 +11,7 @@ import {
   incomeCalib,
   incomeTarget,
   rarityWeights,
+  upgradeRarityWeights,
   weaponTierWeights,
   dangerReward,
   dangerMult,
@@ -46,6 +47,12 @@ describe('敌人成长曲线', () => {
       dmg = d;
     }
   });
+  it('伤害成长指数独立且比血量平缓：同样的成长系数下，第 15 波伤害倍数低于血量倍数', () => {
+    expect(BALANCE.enemyDmgGrowthExp).toBeLessThan(BALANCE.enemyGrowthExp);
+    const hpX = enemyHp(1000, 0.5, 15, 1) / enemyHp(1000, 0.5, 1, 1);
+    const dmgX = enemyDamage(1000, 0.5, 15, 1) / enemyDamage(1000, 0.5, 1, 1);
+    expect(dmgX).toBeLessThan(hpX);
+  });
   it('同一波次章节越后越强', () => {
     for (const w of [1, 5, 10, 15, 30])
       for (let c = 2; c <= BALANCE.chapterCount; c++)
@@ -69,21 +76,64 @@ describe('经济', () => {
 });
 
 describe('概率表', () => {
-  it('稀有度权重合法且归一化', () => {
-    for (let w = 1; w <= 40; w++)
-      for (const luck of [-50, 0, 50, 200]) {
-        const ws = rarityWeights(w, luck);
+  it('道具稀有度权重合法、归一化，且与波次无关', () => {
+    for (const luck of [-200, -50, 0, 50, 200, 1000]) {
+      const ws = rarityWeights(luck);
+      for (const x of ws) expect(x).toBeGreaterThanOrEqual(0);
+      expect(ws.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 6);
+    }
+  });
+  it('武器品质权重合法、归一化，且与波次无关', () => {
+    for (const luck of [-200, 0, 100, 1000])
+      for (const t4 of [1, 1.5]) {
+        const ws = weaponTierWeights(luck, t4);
         for (const x of ws) expect(x).toBeGreaterThanOrEqual(0);
         expect(ws.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 6);
       }
   });
-  it('武器品质权重合法且归一化', () => {
-    for (let w = 1; w <= 40; w++)
-      for (const luck of [0, 100]) {
-        const ws = weaponTierWeights(w, luck);
-        for (const x of ws) expect(x).toBeGreaterThanOrEqual(0);
-        expect(ws.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 6);
+  it('幸运越高，高档概率单调不减、最低档单调不增', () => {
+    for (const f of [rarityWeights, (l: number) => weaponTierWeights(l)]) {
+      let prev = f(-100);
+      for (let l = -90; l <= 500; l += 10) {
+        const cur = f(l);
+        expect(cur[0]).toBeLessThanOrEqual(prev[0] + 1e-9);
+        expect(cur[3]).toBeGreaterThanOrEqual(prev[3] - 1e-9);
+        prev = cur;
       }
+    }
+  });
+  it('升级属性选项的稀有度权重合法且归一化', () => {
+    for (const luck of [-50, 0, 50, 200, 1000]) {
+      const ws = upgradeRarityWeights(luck);
+      for (const x of ws) expect(x).toBeGreaterThanOrEqual(0);
+      expect(ws.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 6);
+    }
+  });
+  it('幸运分层：未到门槛的档位概率为 0，高档门槛依次升高', () => {
+    for (const [key, f] of [
+      ['weapon', (l: number) => weaponTierWeights(l)],
+      ['item', rarityWeights],
+      ['upgrade', upgradeRarityWeights],
+    ] as const) {
+      const tiers = BALANCE.luckTiers[key];
+      for (let i = 1; i < tiers.length; i++) expect(tiers[i].from).toBeGreaterThan(tiers[i - 1].from);
+      // 低幸运只出最低档
+      expect(f(tiers[0].from - 1)).toEqual([1, 0, 0, 0]);
+      expect(f(-100)).toEqual([1, 0, 0, 0]);
+      tiers.forEach((t, i) => {
+        expect(f(t.from - 1)[i + 1]).toBe(0);
+        expect(f(t.from)[i + 1]).toBeCloseTo(t.start / 100, 6);
+      });
+    }
+  });
+  it('幸运曲线：T4 在幸运 30 时 1%、100 时 5%，先快后慢', () => {
+    const t4 = (l: number) => weaponTierWeights(l)[3];
+    expect(t4(29)).toBe(0);
+    expect(t4(30)).toBeCloseTo(0.01, 6);
+    expect(t4(100)).toBeCloseTo(0.05, 6);
+    // 前 35 点涨得比后 35 点多
+    expect(t4(65) - t4(30)).toBeGreaterThan(t4(100) - t4(65));
+    expect(t4(1000)).toBeLessThanOrEqual(BALANCE.luckTiers.weapon[2].cap / 100 + 1e-9);
   });
 });
 

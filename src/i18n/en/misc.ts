@@ -1,6 +1,7 @@
 // 英文覆盖：武器 / 武器标签 / 状态 / 章节 / 属性 / 技能类型 / 稀有度
 import type { ChaptersEn, StatsEn, StatusesEn, WeaponsEn, WeaponTagsEn } from '../types';
 import { EXTRA_WEAPONS_EN } from '../../data/gearExtra';
+import { AFFINITY_WEAPONS_EN } from '../../data/weaponsAffinity';
 import { EXTRA_CHAPTER_EN } from '../../data/chaptersExtra';
 
 export const EN_WEAPONS: WeaponsEn = {
@@ -227,3 +228,4 @@ Object.assign(EN_CHAPTERS, EXTRA_CHAPTER_EN);
 
 // 1.4.0 G5 / G7：新武器、超武与道具
 Object.assign(EN_WEAPONS, EXTRA_WEAPONS_EN);
+Object.assign(EN_WEAPONS, AFFINITY_WEAPONS_EN);

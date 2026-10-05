@@ -1,6 +1,6 @@
 // 传说道具持有上限：默认每种 1 件，max 可单独放宽，legendCap（角色 / 天赋等）可提高
 import { describe, it, expect } from 'vitest';
-import { ALL_ITEMS, LEGEND_RARITY, LEGEND_ITEM_CAP, baseItemCap, itemCapFor, type ItemDef } from '../src/data/items';
+import { ALL_ITEMS, LEGEND_RARITY, LEGEND_ITEM_CAP, LEVELUP_OPTIONS, RARITY_ITEM_CAP, baseItemCap, itemCapFor, type ItemDef } from '../src/data/items';
 import { run } from '../src/systems/RunState';
 
 const legends = ALL_ITEMS.filter((i) => i.rarity >= LEGEND_RARITY);
@@ -13,10 +13,36 @@ describe('传说道具持有上限', () => {
     expect(LEGEND_ITEM_CAP).toBe(1);
   });
 
-  it('非传说道具不受影响：没填 max 就无上限', () => {
-    const common = ALL_ITEMS.find((i) => i.rarity < LEGEND_RARITY && i.max === undefined)!;
-    expect(baseItemCap(common)).toBeUndefined();
-    expect(itemCapFor(common, 5)).toBe(Infinity);
+  it('非传说道具按稀有度有默认上限：普通 3、稀有 2、史诗 1，legendCap 不影响', () => {
+    for (const r of [0, 1, 2]) {
+      const it = ALL_ITEMS.find((i) => i.rarity === r && i.max === undefined)!;
+      expect(baseItemCap(it)).toBe(RARITY_ITEM_CAP[r]);
+      expect(itemCapFor(it, 5)).toBe(RARITY_ITEM_CAP[r]);
+    }
+    expect(RARITY_ITEM_CAP).toEqual([3, 2, 1, 1]);
+  });
+
+  it('所有道具都有上限，且不超过稀有度默认值', () => {
+    for (const it of ALL_ITEMS) {
+      expect(Number.isFinite(baseItemCap(it))).toBe(true);
+      expect(baseItemCap(it)).toBeLessThanOrEqual(RARITY_ITEM_CAP[it.rarity]);
+    }
+  });
+
+  it('加武器栏的道具都是传说', () => {
+    for (const it of ALL_ITEMS) if (it.special?.weaponSlot) expect(it.rarity).toBe(LEGEND_RARITY);
+  });
+
+  it('升级选项不提供光环范围与技能范围', () => {
+    const keys = LEVELUP_OPTIONS.map((o) => o.key);
+    expect(keys).not.toContain('auraSize');
+    expect(keys).not.toContain('skillRange');
+  });
+
+  it('道具按上限买满，技能范围合计不超过 +225%', () => {
+    const total = ALL_ITEMS.reduce((s, i) => s + Math.max(0, i.mods.skillRange ?? 0) * baseItemCap(i), 0);
+    expect(total).toBeGreaterThan(0);
+    expect(total).toBeLessThanOrEqual(225);
   });
 
   it('单个道具可以用 max 覆盖默认上限（以后放宽个别传说道具）', () => {

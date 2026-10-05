@@ -7,13 +7,19 @@ import { text } from '../ui/UI';
 import { xpToNext } from '../data/balance';
 import type { GameScene } from './GameScene';
 import type { Enemy } from '../objects/Enemy';
-import { STATUSES } from '../data/statuses';
+import { STATUSES, type StatusId } from '../data/statuses';
+import type { StatusEntry } from '../systems/Status';
+import { statusIconKey, STATUS_ICON_SIZE, STATUS_EMOJI } from '../art/StatusArt';
 import { AFFIXES } from '../data/bosses';
 import { FONT } from '../systems/Textures';
 import { tx, lang } from '../i18n';
-import { save } from '../systems/Save';
+import { save, persist } from '../systems/Save';
 import { RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic } from '../data/relics';
 import { WEAPON_MAP } from '../data/weapons';
+
+/** 技能按钮：徽章图标显示尺寸，与徽章内圈面半径（SkillIconArt 里内圈半径为 39.5 / 100） */
+const SKILL_ICON = 112;
+const SKILL_FACE = SKILL_ICON * 0.395;
 
 export class HudScene extends Phaser.Scene {
   private g!: GameScene;
@@ -27,12 +33,15 @@ export class HudScene extends Phaser.Scene {
   private bossName!: Phaser.GameObjects.Text;
   private skillBtn!: Phaser.GameObjects.Container;
   private skillGfx!: Phaser.GameObjects.Graphics;
+  private skillIcon!: Phaser.GameObjects.Image | Phaser.GameObjects.Text;
   private skillCdText!: Phaser.GameObjects.Text;
   private joyBase!: Phaser.GameObjects.Image;
   private joyKnob!: Phaser.GameObjects.Image;
   private joyId = -1;
   private joyOrigin = new Phaser.Math.Vector2();
   private bosses: Enemy[] = [];
+  /** 精英 / Boss 方位指示：屏幕外的边缘箭头 + 射程外的头顶箭头 */
+  private markers!: Phaser.GameObjects.Graphics;
   private isTouch = false;
   private statusIcons: {
     c: Phaser.GameObjects.Container;
@@ -40,7 +49,16 @@ export class HudScene extends Phaser.Scene {
     t: Phaser.GameObjects.Text;
     n: Phaser.GameObjects.Text;
     arc: Phaser.GameObjects.Graphics;
+    nbg: Phaser.GameObjects.Graphics;
+    id: StatusId | null;
   }[] = [];
+  private statusTip!: Phaser.GameObjects.Container;
+  private statusTipBg!: Phaser.GameObjects.Graphics;
+  private statusTipText!: Phaser.GameObjects.Text;
+  /** 当前显示说明的状态图标序号，-1 表示没有 */
+  private statusTipIdx = -1;
+  /** 触屏点按显示的说明在这个时间（ms）后自动收起 */
+  private statusTipUntil = 0;
 
   constructor() {
     super('Hud');
@@ -144,6 +162,7 @@ export class HudScene extends Phaser.Scene {
     this.weatherFx = this.add.graphics().setDepth(-10);
     this.weatherDrops = [];
     this.weatherAcc = 0;
+    this.markers = this.add.graphics().setDepth(-5);
     // H5：小任务进度
     this.questText = text(this, 20, 136, '', 15, '#9bf6ff');
     this.bars = this.add.graphics();
@@ -157,21 +176,31 @@ export class HudScene extends Phaser.Scene {
     this.bossName = text(this, W / 2, H - 70, '', 20, '#ffb4a2')
       .setOrigin(0.5)
       .setVisible(false);
-    // 玩家状态图标
+    // 玩家状态图标（悬停 / 点按显示效果说明）
     this.statusIcons = [];
     for (let i = 0; i < 10; i++) {
-      const c = this.add.container(40 + i * 40, 140).setVisible(false);
-      const bg = this.add.image(0, 0, 'ui_status').setScale(0.85);
+      const c = this.add.container(40 + i * 48, 140).setVisible(false);
+      const bg = this.add.image(0, 0, statusIconKey(this, 'haste'));
       const arc = this.add.graphics();
-      const t = this.add
-        .text(0, 0, '', { fontFamily: FONT, fontSize: '15px', color: '#ffffff', fontStyle: 'bold', stroke: '#000', strokeThickness: 3 })
-        .setOrigin(0.5);
+      const t = this.add.text(0, 0, '', { fontFamily: FONT, fontSize: '1px' }).setVisible(false);
+      const nbg = this.add.graphics();
       const n = this.add
-        .text(13, 11, '', { fontFamily: FONT, fontSize: '11px', color: '#ffffff', stroke: '#000', strokeThickness: 3 })
+        .text(15, 14, '', { fontFamily: FONT, fontSize: '12px', color: '#ffffff', fontStyle: 'bold', stroke: '#000', strokeThickness: 3 })
         .setOrigin(0.5);
-      c.add([bg, arc, t, n]);
-      this.statusIcons.push({ c, bg, t, n, arc });
+      c.add([arc, bg, t, nbg, n]);
+      c.setSize(STATUS_ICON_SIZE, STATUS_ICON_SIZE).setInteractive({ useHandCursor: true });
+      c.on('pointerover', () => this.showStatusTip(i, false));
+      c.on('pointerout', () => this.hideStatusTip());
+      c.on('pointerdown', () => {
+        if (this.statusTipIdx === i && this.isTouch) this.hideStatusTip();
+        else this.showStatusTip(i, this.isTouch);
+      });
+      this.statusIcons.push({ c, bg, t, n, arc, nbg, id: null });
     }
+    this.statusTipBg = this.add.graphics();
+    this.statusTipText = text(this, 0, 0, '', 14, '#ffffff', { wordWrap: { width: 250, useAdvancedWrap: true }, lineSpacing: 3 });
+    this.statusTip = this.add.container(0, 0, [this.statusTipBg, this.statusTipText]).setDepth(60).setVisible(false);
+    this.statusTipIdx = -1;
 
     // 暂停按钮
     const pause = this.add.container(W - 50, 46);
@@ -196,14 +225,55 @@ export class HudScene extends Phaser.Scene {
     this.skillBtn = this.add.container(bx, by);
     this.skillBtn.setScale(bs);
     this.skillGfx = this.add.graphics();
-    const skName = text(this, 0, 18, sk.name, 16).setOrigin(0.5);
+    // 徽章图标本身就是按钮（不再外套圆圈）；技能名与按键提示放在图标下方
+    const skName = text(this, 0, 68, sk.name, 15).setOrigin(0.5);
     const icon = this.textures.exists(`skill_${run.charId}`)
-      ? this.add.image(0, -8, `skill_${run.charId}`).setDisplaySize(56, 56)
-      : text(this, 0, -12, '★', 34, '#ffffff').setOrigin(0.5);
-    this.skillCdText = text(this, 0, -8, '', 30).setOrigin(0.5);
-    const hint = save.settings.autoSkill ? tx('自动', 'AUTO') : this.isTouch ? '' : tx('[空格]', '[Space]');
-    const keyHint = text(this, 0, 64, hint, 14, save.settings.autoSkill ? '#52ff8a' : '#c9a9a6').setOrigin(0.5);
-    this.skillBtn.add([this.skillGfx, icon, skName, this.skillCdText, keyHint]);
+      ? this.add.image(0, -6, `skill_${run.charId}`).setDisplaySize(SKILL_ICON, SKILL_ICON)
+      : text(this, 0, -6, '★', 40, '#ffffff').setOrigin(0.5);
+    this.skillIcon = icon;
+    this.skillCdText = text(this, 0, -6, '', 34).setOrigin(0.5);
+    const keyHint = text(this, 0, 86, '', 14).setOrigin(0.5);
+    // 自动释放：图标外圈一圈绿色弧段持续旋转
+    const autoRing = this.add.graphics().setPosition(0, -6);
+    const rr = SKILL_ICON / 2 + 7;
+    autoRing.lineStyle(9, 0x52ff8a, 0.22).strokeCircle(0, 0, rr);
+    for (let i = 0; i < 3; i++) {
+      const a = (i / 3) * Math.PI * 2;
+      autoRing
+        .lineStyle(5, 0x52ff8a, 0.95)
+        .beginPath()
+        .arc(0, 0, rr, a, a + 1.3)
+        .strokePath();
+      // 弧段头部的亮点，旋转方向更明显
+      autoRing.fillStyle(0xeaffef, 1).fillCircle(Math.cos(a + 1.3) * rr, Math.sin(a + 1.3) * rr, 3.5);
+    }
+    this.tweens.add({ targets: autoRing, angle: 360, duration: 2400, repeat: -1 });
+    this.skillBtn.add([autoRing, icon, this.skillGfx, skName, this.skillCdText, keyHint]);
+
+    // 技能自动 / 手动切换（暂停键左边，随时一键切换，立即保存）
+    const auto = this.add.container(W - 122, 46);
+    const ag = this.add.graphics();
+    const aLabel = text(this, 0, -6, '', 15).setOrigin(0.5);
+    const aSub = text(this, 0, 13, tx('技能', 'SKILL'), 11, '#ffffff').setOrigin(0.5);
+    auto.add([ag, aLabel, aSub]).setSize(64, 64).setInteractive({ useHandCursor: true });
+    const paintAuto = () => {
+      const on = !!save.settings.autoSkill;
+      ag.clear()
+        .fillStyle(0x000000, 0.4)
+        .fillCircle(0, 0, 30)
+        .lineStyle(3, on ? 0x52ff8a : 0xc9a9a6, 0.95)
+        .strokeCircle(0, 0, 28);
+      aLabel.setText(on ? tx('自动', 'AUTO') : tx('手动', 'MAN')).setColor(on ? '#52ff8a' : '#ffffff');
+      autoRing.setVisible(on);
+      keyHint.setText(on ? tx('自动', 'AUTO') : this.isTouch ? '' : tx('[空格]', '[Space]')).setColor(on ? '#52ff8a' : '#c9a9a6');
+    };
+    paintAuto();
+    auto.on('pointerdown', () => {
+      save.settings.autoSkill = !save.settings.autoSkill;
+      persist();
+      paintAuto();
+      this.tweens.add({ targets: auto, scale: { from: 1.18, to: 1 }, duration: 160 });
+    });
     this.skillBtn.setSize(130, 130).setInteractive();
     this.skillBtn.on('pointerdown', (p: Phaser.Input.Pointer) => {
       controls.skillPressed = true;
@@ -309,6 +379,160 @@ export class HudScene extends Phaser.Scene {
     this.scene.restart();
   }
 
+  /**
+   * 精英 / Boss 方位指示（屏幕空间）：
+   * - 在屏幕外：屏幕边缘画脉动箭头，指向它的方向，离得越近箭头越不透明；
+   * - 在屏幕内但超出玩家最大武器射程：头顶间歇出现向下的跳动箭头（每 1.6 秒亮 0.7 秒）。
+   * Boss 红色、精英金色；Boss 箭头更大。
+   */
+  private drawMarkers(): void {
+    const gr = this.markers;
+    gr.clear();
+    if (!this.bosses.length) return;
+    const g = this.g;
+    const cam = g.cameras.main;
+    const wv = cam.worldView;
+    const z = cam.zoom;
+    const W = this.scale.width,
+      H = this.scale.height;
+    const now = this.time.now;
+    const pulse = 0.5 + 0.5 * Math.sin(now / 140);
+    const p = g.player;
+    const range = g.weapons.maxRange;
+    // 边缘箭头的可用区域：避开顶部 HUD 与底部 Boss 血条
+    const L = 46,
+      R = W - 46,
+      T = 46,
+      B = H - 92;
+    const cx = W / 2,
+      cy = H / 2;
+    for (const e of this.bosses) {
+      const isBoss = !!e.boss && !e.boss.elite;
+      const col = isBoss ? 0xff3b3b : 0xffc23d;
+      const sx = (e.x - wv.x) * z;
+      const sy = (e.y - wv.y) * z;
+      const er = e.radius * z;
+      const onScreen = sx > -er && sx < W + er && sy > -er && sy < H + er;
+      if (!onScreen) {
+        const dx = sx - cx,
+          dy = sy - cy;
+        const kx = dx > 0 ? (R - cx) / dx : dx < 0 ? (L - cx) / dx : Infinity;
+        const ky = dy > 0 ? (B - cy) / dy : dy < 0 ? (T - cy) / dy : Infinity;
+        const k = Math.min(kx, ky);
+        const ax = cx + dx * k,
+          ay = cy + dy * k;
+        const a = Math.atan2(dy, dx);
+        const sc = (isBoss ? 1.35 : 1) * (1 + 0.15 * pulse);
+        // 越远越淡（但不低于 0.55），保证一眼能看到
+        const far = Math.hypot(e.x - p.x, e.y - p.y);
+        const alpha = Math.max(0.55, 1 - Math.max(0, far - 600) / 2400);
+        const c = Math.cos(a),
+          s = Math.sin(a);
+        const pt = (fx: number, fy: number): [number, number] => [ax + (fx * c - fy * s) * sc, ay + (fx * s + fy * c) * sc];
+        const tip = pt(26, 0),
+          l = pt(4, -14),
+          r = pt(4, 14);
+        gr.fillStyle(0x000000, 0.45 * alpha).fillCircle(ax, ay, 17 * sc);
+        gr.lineStyle(3, 0x1b1b1b, alpha).fillStyle(col, alpha);
+        gr.fillTriangle(tip[0], tip[1], l[0], l[1], r[0], r[1]);
+        gr.strokeTriangle(tip[0], tip[1], l[0], l[1], r[0], r[1]);
+        gr.fillCircle(ax, ay, 11 * sc).strokeCircle(ax, ay, 11 * sc);
+        // 中心记号：Boss 画叉，精英画星点
+        gr.lineStyle(2.5, 0xffffff, alpha);
+        if (isBoss) {
+          const q = 5 * sc;
+          gr.lineBetween(ax - q, ay - q, ax + q, ay + q).lineBetween(ax - q, ay + q, ax + q, ay - q);
+        } else gr.fillStyle(0xffffff, alpha).fillCircle(ax, ay, 4 * sc);
+        continue;
+      }
+      // 屏幕内：超出射程时头顶间歇箭头
+      if (Math.hypot(e.x - p.x, e.y - p.y) - e.radius <= range) continue;
+      const ph = (now % 1600) / 1600;
+      if (ph > 0.44) continue;
+      const fade = Math.min(1, ph / 0.06, (0.44 - ph) / 0.08);
+      const bob = Math.sin(ph * Math.PI * 6) * 6;
+      const sc = isBoss ? 1.9 : 1.5;
+      // 精英 / Boss 的头饰与词缀装饰会画到半径之外，所以箭头放在 1.7 倍半径之上
+      const hx = sx,
+        hy = sy - er * 1.7 - 26 * sc + bob;
+      gr.lineStyle(3, 0x1b1b1b, fade).fillStyle(col, fade);
+      gr.fillTriangle(hx, hy + 12 * sc, hx - 11 * sc, hy - 6 * sc, hx + 11 * sc, hy - 6 * sc);
+      gr.strokeTriangle(hx, hy + 12 * sc, hx - 11 * sc, hy - 6 * sc, hx + 11 * sc, hy - 6 * sc);
+    }
+  }
+
+  private showStatusTip(i: number, touch: boolean): void {
+    if (!this.statusIcons[i]?.id) return;
+    this.statusTipIdx = i;
+    this.statusTipUntil = touch ? this.time.now + 3000 : 0;
+    this.statusTip.setVisible(true);
+    this.updateStatusTip(this.g?.pstatus.list ?? []);
+  }
+
+  private hideStatusTip(): void {
+    this.statusTipIdx = -1;
+    this.statusTip?.setVisible(false);
+  }
+
+  /** 刷新说明框：内容随层数、剩余时间实时变化；状态消失或触屏超时后收起 */
+  private updateStatusTip(list: StatusEntry[]): void {
+    const i = this.statusTipIdx;
+    if (i < 0) return;
+    const e = list[i];
+    if (!e || (this.statusTipUntil && this.time.now > this.statusTipUntil)) return this.hideStatusTip();
+    const d = STATUSES[e.id];
+    const buff = d.kind === 'buff';
+    const k = e.stacks;
+    const fx: string[] = [];
+    const pct = (v: number | undefined, zh: string, en: string) => {
+      if (v) fx.push(`${tx(zh, en)} ${v * k > 0 ? '+' : ''}${Math.round(v * k * 10) / 10}%`);
+    };
+    const flat = (v: number | undefined, zh: string, en: string) => {
+      if (v) fx.push(`${tx(zh, en)} ${v * k > 0 ? '+' : ''}${Math.round(v * k * 10) / 10}`);
+    };
+    pct(d.speed, '移速', 'Speed');
+    pct(d.attackSpeed, '攻速', 'Attack speed');
+    pct(d.dmgDealt, '造成伤害', 'Damage dealt');
+    pct(d.dmgTaken, '受到伤害', 'Damage taken');
+    flat(d.armor, '护甲', 'Armor');
+    pct(d.crit, '暴击', 'Crit');
+    pct(d.dodge, '闪避', 'Dodge');
+    pct(d.range, '射程', 'Range');
+    flat(d.luck, '幸运', 'Luck');
+    pct(d.lifeSteal, '吸血', 'Life steal');
+    if (d.regen) fx.push(tx(`每秒回复 ${Math.round(d.regen * k * 10) / 10}`, `Regen ${Math.round(d.regen * k * 10) / 10}/s`));
+    if (d.dps) fx.push(tx(`每秒伤害 ${Math.round(d.dps * k * 10) / 10}`, `${Math.round(d.dps * k * 10) / 10} dmg/s`));
+    if (d.reflect) fx.push(tx(`反弹伤害 ${Math.round(d.reflect * k)}`, `Reflects ${Math.round(d.reflect * k)} dmg`));
+    const lines = [
+      `${STATUS_EMOJI[e.id]} ${d.name}  ${buff ? tx('【增益】', '[Buff]') : tx('【减益】', '[Debuff]')}`,
+      d.desc,
+    ];
+    if (fx.length) lines.push(fx.join(tx('，', ', ')));
+    const meta: string[] = [];
+    if (d.maxStacks > 1) meta.push(tx(`层数 ${k}/${d.maxStacks}`, `Stacks ${k}/${d.maxStacks}`));
+    if (e.id === 'shield') meta.push(tx(`护盾值 ${Math.round(e.value)}`, `Shield ${Math.round(e.value)}`));
+    meta.push(e.dur < 900 ? tx(`剩余 ${Math.max(0, e.t).toFixed(1)} 秒`, `${Math.max(0, e.t).toFixed(1)}s left`) : tx('持续生效', 'Permanent'));
+    lines.push(meta.join(' · '));
+    const str = lines.join('\n');
+    const t = this.statusTipText;
+    if (t.text !== str) {
+      t.setText(str);
+      const w = t.width + 20,
+        h = t.height + 14;
+      t.setPosition(10, 7);
+      this.statusTipBg
+        .clear()
+        .fillStyle(0x1a0a0c, 0.94)
+        .fillRoundedRect(0, 0, w, h, 8)
+        .lineStyle(2, buff ? 0xffc93c : 0xd6243f, 1)
+        .strokeRoundedRect(0, 0, w, h, 8);
+    }
+    const ic = this.statusIcons[i].c;
+    const W = this.scale.width;
+    const tw = t.width + 20;
+    this.statusTip.setPosition(Phaser.Math.Clamp(ic.x - 22, 8, W - tw - 8), ic.y + STATUS_ICON_SIZE / 2 + 6);
+  }
+
   update(_t: number, dms: number): void {
     const g = this.g;
     if (!g || !g.stats) return;
@@ -338,30 +562,44 @@ export class HudScene extends Phaser.Scene {
     this.timeText.setText(run.isBossWave() && g.boss?.enraged ? tx('狂暴', 'ENRAGED') : String(Math.ceil(g.timeLeft)));
     this.timeText.setColor(g.timeLeft <= 5 && !run.isBossWave() ? '#ff6b6b' : '#fff4ea');
 
-    // 状态图标
+    // 状态图标：排在小任务文字下面，避免和文字重叠
     const list = g.pstatus.list;
+    const iconY = this.questText.text ? this.questText.y + this.questText.height + 6 + STATUS_ICON_SIZE / 2 : 140;
     this.statusIcons.forEach((ic, i) => {
       const e = list[i];
       if (!e) {
         ic.c.setVisible(false);
+        ic.id = null;
         return;
       }
       const d = STATUSES[e.id];
-      ic.c.setVisible(true);
-      ic.bg.setTint(d.color);
-      ic.t.setText(d.glyph).setColor(d.kind === 'buff' ? '#ffffff' : '#ffe0e0');
-      ic.n.setText(e.stacks > 1 ? String(e.stacks) : e.id === 'shield' ? String(Math.round(e.value)) : '');
+      ic.c.setVisible(true).setPosition(40 + i * 48, iconY);
+      if (ic.id !== e.id) {
+        ic.bg.setTexture(statusIconKey(this, e.id));
+        ic.id = e.id;
+      }
+      const num = e.stacks > 1 ? String(e.stacks) : e.id === 'shield' ? String(Math.round(e.value)) : '';
+      ic.n.setText(num);
+      ic.nbg.clear();
+      if (num) {
+        const w = Math.max(16, ic.n.width + 6);
+        ic.nbg.fillStyle(0x1a0a0c, 0.9).fillRoundedRect(15 - w / 2, 6, w, 16, 8).lineStyle(1.5, 0xffffff, 0.8).strokeRoundedRect(15 - w / 2, 6, w, 16, 8);
+      }
       ic.arc.clear();
       if (e.dur < 900) {
-        ic.arc.lineStyle(3, d.kind === 'buff' ? 0xffffff : 0x1b1b1b, 0.9);
+        const r = STATUS_ICON_SIZE / 2 - 1;
+        ic.arc.lineStyle(4, 0x000000, 0.45).strokeCircle(0, 0, r);
+        ic.arc.lineStyle(3, d.kind === 'buff' ? 0xffe680 : 0xff5a6e, 1);
         ic.arc.beginPath();
-        ic.arc.arc(0, 0, 17, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.max(0, e.t / e.dur), false);
+        ic.arc.arc(0, 0, r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.max(0, e.t / e.dur), false);
         ic.arc.strokePath();
       }
     });
+    this.updateStatusTip(list);
 
     // Boss 血条
     this.bosses = this.bosses.filter((e) => e.alive);
+    this.drawMarkers();
     const W = this.scale.width,
       H = this.scale.height;
     if (this.bosses.length) {
@@ -381,16 +619,22 @@ export class HudScene extends Phaser.Scene {
     const sk = g.skill;
     const sg = this.skillGfx;
     sg.clear();
-    const color = run.char.skill.color;
-    sg.fillStyle(0x000000, 0.45).fillCircle(0, 0, 60);
-    sg.fillStyle(color, sk.ready ? 0.9 : 0.35).fillCircle(0, 0, 54);
-    sg.lineStyle(4, 0xffffff, sk.ready ? 0.9 : 0.3).strokeCircle(0, 0, 56);
+    // 没有图标贴图时的兜底底色
+    if (!(this.skillIcon instanceof Phaser.GameObjects.Image))
+      sg.fillStyle(run.char.skill.color, sk.ready ? 0.9 : 0.35).fillCircle(0, -6, SKILL_FACE);
     if (!sk.ready) {
+      // 冷却遮罩只盖住徽章的内圈面
       const pct = sk.cd / sk.maxCd;
-      sg.fillStyle(0x000000, 0.5)
-        .slice(0, 0, 54, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * pct, false)
+      sg.fillStyle(0x000000, 0.55)
+        .slice(0, -6, SKILL_FACE, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * pct, false)
         .fillPath();
       this.skillCdText.setText(String(Math.ceil(sk.cd)));
     } else this.skillCdText.setText('');
+    // 冷却中图标变灰变暗，就绪时恢复原色
+    this.skillIcon.setAlpha(sk.ready ? 1 : 0.45);
+    if (this.skillIcon instanceof Phaser.GameObjects.Image) {
+      if (sk.ready) this.skillIcon.clearTint();
+      else this.skillIcon.setTint(0x8a8a8a);
+    }
   }
 }

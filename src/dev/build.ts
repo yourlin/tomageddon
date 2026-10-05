@@ -8,7 +8,7 @@ import { ALL_ITEMS, ITEM_MAP, LEVELUP_OPTIONS, type ItemDef } from '../data/item
 import { EVOLUTIONS } from '../data/evolutions';
 import { TALENT_NODES } from '../data/talentTree';
 import type { StatKey, StatMods } from '../data/stats';
-import { BALANCE, incomeTarget, pickRarity, pickWeaponTier, rerollPrice, sellPrice } from '../data/balance';
+import { BALANCE, incomeTarget, pickRarity, pickUpgradeRarity, pickWeaponTier, rerollPrice, sellPrice } from '../data/balance';
 import { save } from '../systems/Save';
 import { setTalents, treeTotals } from '../systems/TalentTree';
 import { levelGrowthMods, waveGrowthMods, freeFirstReroll } from '../systems/Talents';
@@ -264,8 +264,7 @@ export function rollShelf(b: DevBuild, prev?: Shelf): Shelf {
   applyBuild(b);
   const R = Math.random;
   const offers: ShelfOffer[] = [];
-  const luck = run.stats.luck;
-  const wave = b.wave; // ShopScene 里是 run.wave + 1（run.wave 为刚打完的波）
+  const luck = run.stats.luck; // 武器品质 / 道具稀有度只看幸运，与波次无关
   const need = EVOLUTIONS.filter((e) => !run.items[e.item] && run.weapons.some((w) => w.id === e.from && w.tier >= 2));
   if (need.length && R() < 0.2) {
     const it = ITEM_MAP[pickOf(need, R).item];
@@ -276,10 +275,10 @@ export function rollShelf(b: DevBuild, prev?: Shelf): Shelf {
       let def = R() < 0.18 ? WEAPON_MAP[pickOf(run.char.favored, R)] : pickOf(WEAPONS, R);
       if (run.weapons.length && R() < 0.25) def = WEAPON_MAP[pickOf(run.weapons, R).id];
       if (def.evolvedFrom) def = WEAPON_MAP[def.evolvedFrom];
-      const tier = Math.max(def.minTier ?? 0, pickWeaponTier(wave, luck, run.chapter.t4Mult, R));
+      const tier = Math.max(def.minTier ?? 0, pickWeaponTier(luck, run.chapter.t4Mult, R));
       offers.push({ kind: 'weapon', id: def.id, tier, price: weaponPrice(b, def.id, tier), sold: false });
     } else {
-      const rar = pickRarity(wave, luck, R);
+      const rar = pickRarity(luck, R);
       const pool = ALL_ITEMS.filter((i) => i.rarity === rar && run.canTakeItem(i.id));
       if (!pool.length) continue;
       const it = pickOf(pool, R);
@@ -309,13 +308,12 @@ export function rerollShelf(b: DevBuild, shelf: Shelf): { shelf: Shelf; err?: st
 }
 
 // ---------------- 升级加点 ----------------
-/** 与 LevelUpScene 相同的选项池：只提供当前武器涉及的流派伤害与爆炸范围 */
+/** 与 LevelUpScene 相同的选项池：只提供当前武器涉及的流派伤害（爆炸范围不在升级选项里） */
 export function levelPool(): typeof LEVELUP_OPTIONS {
   const cls = new Set(run.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => (d.kind === 'aura' ? 'aura' : d.cls)));
   const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };
   const own = new Set<string>([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
-  if (run.weapons.some((w) => WEAPON_MAP[w.id]?.effect?.explode)) own.add('explodeSize');
-  const gated = [...Object.values(CLASS_KEY), 'explodeSize'];
+  const gated: string[] = Object.values(CLASS_KEY);
   return LEVELUP_OPTIONS.filter((o) => !gated.includes(o.key) || own.has(o.key));
 }
 
@@ -326,7 +324,7 @@ export function autoLevelPicks(b: DevBuild): void {
   while (b.levelPicks.length < b.level) {
     const opts = shuffleWith([...levelPool()], Math.random).slice(0, n);
     const o = opts[Math.floor(Math.random() * opts.length)];
-    b.levelPicks.push({ key: o.key as StatKey, rarity: pickRarity(b.wave, run.stats.luck, Math.random, BALANCE.legendUpgrade) });
+    b.levelPicks.push({ key: o.key as StatKey, rarity: pickUpgradeRarity(run.stats.luck) });
   }
 }
 

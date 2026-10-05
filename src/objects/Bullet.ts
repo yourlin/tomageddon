@@ -43,6 +43,17 @@ export class Bullet extends Phaser.GameObjects.Image {
   owner: Enemy | null = null;
   status: StatusApply[] | undefined; // 玩家子弹附带的状态
   critBonus = 0; // 武器词条暴击伤害 %（命中时与道具暴击伤害合并结算）
+  /** 天赋追加的子弹：命中不再触发天赋 */
+  echo = false;
+  /** 追踪转向速度（弧度/秒），0 = 直线 */
+  homing = 0;
+  /** 玉米枪手：按飞行距离额外穿透的上限，与已用掉的次数 */
+  distPierce = 0;
+  distUsed = 0;
+  /** 芦笋弓手：打满血敌人不消耗穿透 */
+  refundFull = false;
+  /** 爆炸范围倍率（契合特效） */
+  areaMul = 1;
 
   constructor(scene: Phaser.Scene) {
     super(scene, 0, 0, 'proj_player');
@@ -78,6 +89,12 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.status = undefined;
     this.crit = false;
     this.critBonus = 0;
+    this.echo = false;
+    this.homing = 0;
+    this.distPierce = 0;
+    this.distUsed = 0;
+    this.refundFull = false;
+    this.areaMul = 1;
     return this;
   }
 

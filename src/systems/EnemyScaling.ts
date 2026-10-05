@@ -8,8 +8,10 @@ import {
   endlessDmg,
   eliteHpScale,
   eliteDmgScale,
+  eliteDmgMult,
   bossHpScale,
   bossDmgScale,
+  chapterWaves,
 } from '../data/balance';
 import type { EnemyDef } from '../data/enemies';
 import type { BossDef } from '../data/bosses';
@@ -26,11 +28,15 @@ export function minionStats(def: EnemyDef, wave: number, ch: ChapterDef): { hp: 
 
 /** 精英 / Boss：生命与基础伤害（招式伤害 = 基础伤害 × 招式 dmg 系数）。hpMult 为挑战修饰等额外倍率 */
 export function bossStats(def: BossDef, wave: number, ch: ChapterDef, hpMult = 1): { hp: number; dmg: number } {
+  const from = chapterWaves(ch.id);
   const hp = Math.round(
-    def.hp * chapterScale(ch.bossHpMult, wave) * (def.elite ? eliteHpScale(wave) : bossHpScale()) * endlessHp(wave) * hpMult,
+    def.hp * chapterScale(ch.bossHpMult, wave) * (def.elite ? eliteHpScale(wave) : bossHpScale()) * endlessHp(wave, from) * hpMult,
   );
   const dmg = Math.round(
-    def.dmg * bossDmgScale() * chapterScale(ch.dmgMult, wave) * (def.elite ? eliteDmgScale(wave) : 1) * endlessDmg(wave),
+    def.dmg *
+      chapterScale(ch.dmgMult, wave) *
+      (def.elite ? eliteDmgMult() * eliteDmgScale(wave, from) : bossDmgScale(ch.id)) *
+      endlessDmg(wave, from),
   );
   return { hp, dmg };
 }

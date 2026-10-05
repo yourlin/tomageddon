@@ -17,11 +17,12 @@ import {
   regenPerSecond,
   explodeSizeMultiplier,
   thornyReflect,
+  lifeStealHeal,
 } from '../data/balance';
 import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
 import { BOSS_MAP, AFFIX_IDS, TRUE_FINAL_BOSS_ID, type AffixId, type Pattern } from '../data/bosses';
-import type { WeaponEffect, WeaponClass } from '../data/weapons';
+import { WEAPON_MAP, type WeaponEffect, type WeaponClass } from '../data/weapons';
 import { STATUSES, type StatusApply, type StatusId } from '../data/statuses';
 import { Enemy } from '../objects/Enemy';
 import { Bullet } from '../objects/Bullet';
@@ -51,6 +52,7 @@ import { BARKS, EASTER_EGGS, BARK_CHANCE, BARK_COOLDOWN, type BarkKind } from '.
 import { stageMusic, bossMusic } from '../systems/Music';
 import { WaveQuestTracker } from '../systems/WaveQuests';
 import { weatherForWave, WEATHER_MAP, WEATHER_RULE_KEY } from '../systems/Weather';
+import { mechanicOpen } from '../systems/Mechanics';
 import { AURA_WEAPON_IDS } from '../data/evolutions';
 import { boomOffset, BOOM_PASSES } from '../systems/BoomPaths';
 
@@ -77,6 +79,8 @@ export interface HitInfo {
   explosion?: boolean;
   /** 武器词条带来的暴击伤害 %，暴击时与道具暴击伤害相加后统一结算 */
   critBonus?: number;
+  /** 天赋追加的伤害（子弹 / 爆炸）：不再触发天赋 */
+  echo?: boolean;
 }
 
 interface Pickup {
@@ -174,6 +178,9 @@ export class GameScene extends Phaser.Scene {
   shieldT = 0;
   shieldUp = false;
   lsCd = 0;
+  /** 吸血：本批触发时设下的冷却值与已触发次数（用于契合武器同批连续触发） */
+  lsCdSet = 0;
+  lsBatch = 0;
   killCounter = 0;
   eliteSpawned = false;
   keys!: Record<string, Phaser.Input.Keyboard.Key>;
@@ -257,7 +264,7 @@ export class GameScene extends Phaser.Scene {
     {
       const prev = run.weather;
       run.weather = weatherForWave(run.chapterId, run.wave, String(run.challenge?.seed ?? run.startedAt), {
-        enabled: !run.challenge && !sandbox,
+        enabled: !run.challenge && !sandbox && mechanicOpen('weather'),
       });
       const w = WEATHER_MAP[run.weather];
       if (w.rule) run.extraRules[WEATHER_RULE_KEY] = w.rule;
@@ -270,7 +277,7 @@ export class GameScene extends Phaser.Scene {
     }
     // H5：局内小任务
     this.waveQuests.reset();
-    if (!sandbox) {
+    if (!sandbox && mechanicOpen('quests')) {
       const q = this.waveQuests.start(run.wave, run.rand(`quest:${run.wave}`), {
         isBoss: run.isBossWave(),
         hasElite: run.isEliteWave(),
@@ -355,7 +362,7 @@ export class GameScene extends Phaser.Scene {
 
     this.keys = this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,ESC,P') as Record<string, Phaser.Input.Keyboard.Key>;
 
-    this.timeLeft = sandbox ? 999 : waveDuration(run.wave);
+    this.timeLeft = sandbox ? 999 : waveDuration(run.wave, run.isBossWave());
     this.spawnT = 0.5;
     if (!sandbox && run.isBossWave()) {
       const bossId = run.bossForWave();
@@ -424,6 +431,7 @@ export class GameScene extends Phaser.Scene {
     s.luck += t.luck;
     s.lifeSteal += t.lifeSteal;
     s.dodge = Math.min(s.dodge, run.dodgeCap);
+    s.auraSize = Math.min(s.auraSize, BALANCE.auraSizeCap);
     // 吸血不设百分比上限：强度由触发冷却（每秒最多回复量）限制，见 BALANCE.player.lifeStealTickCd
     this.rangeMult = Math.max(0.3, 1 + t.range / 100);
     this.statusDmgBonus = run.specials.statusDmg;
@@ -575,6 +583,7 @@ export class GameScene extends Phaser.Scene {
         this.cleanseT = 0;
         if (st.list.some((x) => isDebuff(x.id))) {
           st.cleanse();
+          this.talent.onCleanse();
           this.fx.ring(this.player.x, this.player.y, 70, 0xfff3b0, 400);
         }
       }
@@ -798,6 +807,7 @@ export class GameScene extends Phaser.Scene {
       run.hp = Math.ceil(this.stats.maxHp * 0.5);
       this.iframes = 2;
       this.pstatus.cleanse();
+      this.talent.onCleanse();
       this.fx.ring(this.player.x, this.player.y, 300, 0xffd166, 700, true);
       this.fx.label(this.player.x, this.player.y, tx('凤凰涅槃！', 'Phoenix Rebirth!'), '#ffd166');
       for (const b of this.enemyBullets) if (b.alive) b.kill();
@@ -1000,7 +1010,7 @@ export class GameScene extends Phaser.Scene {
       this.timeLeft = Math.max(0, this.timeLeft);
       return;
     }
-    const dur = waveDuration(run.wave);
+    const dur = waveDuration(run.wave, run.isBossWave());
     if (run.isEliteWave() && !this.eliteSpawned && this.timeLeft < dur * 0.75) {
       this.eliteSpawned = true;
       this.queueSpawn(run.eliteForWave(), true);
@@ -1286,7 +1296,11 @@ export class GameScene extends Phaser.Scene {
       if (e.contactCd > 0 || e.status.totals.disable || e.def?.critter) continue;
       e.contactCd = 0.5;
       e.rig?.play('attack');
-      this.damagePlayer(e.dmg * e.dealtMult, e, e.attackDebuffs(e.state === 'charge' ? e.chargeDebuff : undefined));
+      this.damagePlayer(
+        e.dmg * e.dealtMult * BALANCE.enemyHit.contact,
+        e,
+        e.attackDebuffs(e.state === 'charge' ? e.chargeDebuff : undefined),
+      );
       if (this.iframes > 0) break;
     }
   }
@@ -1363,6 +1377,19 @@ export class GameScene extends Phaser.Scene {
         }
       }
       if (b.kind !== 'boomerang') {
+        // 追踪弹：朝最近的敌人逐渐转向
+        if (b.homing > 0) {
+          const t = this.grid.nearest(b.x, b.y, 320, b.hitSet);
+          if (t) {
+            const cur = Math.atan2(b.vy, b.vx);
+            const want = Math.atan2(t.y - b.y, t.x - b.x);
+            const ang = Phaser.Math.Angle.RotateTo(cur, want, b.homing * dt);
+            const sp = Math.hypot(b.vx, b.vy);
+            b.vx = Math.cos(ang) * sp;
+            b.vy = Math.sin(ang) * sp;
+            b.rotation = ang;
+          }
+        }
         b.x += b.vx * dt;
         b.y += b.vy * dt;
       }
@@ -1396,14 +1423,27 @@ export class GameScene extends Phaser.Scene {
         status: b.status,
         cls: 'ranged',
         weaponId: b.src || undefined,
+        echo: b.echo || undefined,
       };
       if (b.kind === 'rocket') {
         this.rocketBoom(b);
         b.kill();
         continue;
       }
+      const fullHp = b.refundFull && target.hp >= target.maxHp;
       this.fx.hit(b.x, b.y, b.rotation, b.crit);
       this.weaponHit(target, info, b.x - b.vx * 0.05, b.y - b.vy * 0.05);
+      // 芦笋弓手：打满血敌人这一下不消耗穿透
+      if (fullHp) continue;
+      // 玉米枪手：每飞行 100 距离多一次穿透
+      if (b.pierce <= 0 && b.distPierce > 0) {
+        const far = Math.min(b.distPierce, Math.floor(Math.hypot(b.x - b.sx, b.y - b.sy) / 100));
+        if (far > b.distUsed) {
+          b.distUsed++;
+          b.dmg *= 0.85;
+          continue;
+        }
+      }
       if (b.pierce > 0) {
         b.pierce--;
         b.dmg *= b.kind === 'flame' || b.kind === 'boomerang' ? 1 : 0.8;
@@ -1450,6 +1490,7 @@ export class GameScene extends Phaser.Scene {
       f.lifeSteal = b.lifeSteal;
       f.status = b.status;
       f.src = b.src;
+      f.echo = b.echo;
       f.gen = b.gen + 1;
       f.split = b.split - 1;
       for (const e of b.hitSet) f.hitSet.add(e);
@@ -1461,9 +1502,18 @@ export class GameScene extends Phaser.Scene {
     this.explode(
       b.x,
       b.y,
-      b.effect?.explode ?? 60,
+      (b.effect?.explode ?? 60) * b.areaMul,
       b.dmg,
-      { dmg: b.dmg, crit: b.crit, critBonus: b.critBonus, effect: b.effect, knockback: 20, status: b.status, weaponId: b.src || undefined },
+      {
+        dmg: b.dmg,
+        crit: b.crit,
+        critBonus: b.critBonus,
+        effect: b.effect,
+        knockback: 20,
+        status: b.status,
+        weaponId: b.src || undefined,
+        echo: b.echo || undefined,
+      },
       0xff5400,
     );
   }
@@ -1519,14 +1569,22 @@ export class GameScene extends Phaser.Scene {
     let dmg = info.dmg;
     let crit = info.crit;
     // 标记：必定暴击
+    let marked = false;
     if (!crit && e.status.has('mark')) {
       crit = true;
+      marked = true;
       dmg *= 1.5;
       e.status.remove('mark');
     }
+    // 天赋：契合武器对特定目标的额外暴击（致盲、满血、冰冻、减益……）
+    const wasCrit = crit;
+    const [tCrit, tCritDmg] = this.talent.preHit(e, info, crit, marked);
+    crit = tCrit;
+    if (crit && !wasCrit) dmg *= WEAPON_MAP[info.weaponId ?? '']?.critMult ?? 1.5;
+    const hctx = this.talent.ctx(e, info);
     // 暴击伤害：武器词条 + 道具 / 角色 / 天赋相加成一个池子，总加成不超过 critDmgCap（不再两层相乘）
     if (crit) {
-      const cd = Math.min(BALANCE.critDmgCap, sp.critDmg + (info.critBonus ?? 0));
+      const cd = Math.min(BALANCE.critDmgCap, sp.critDmg + (info.critBonus ?? 0) + tCritDmg);
       if (cd > 0) dmg *= 1 + cd / 100;
     }
     if (info.knockback && e.knockResist < 1) {
@@ -1542,6 +1600,7 @@ export class GameScene extends Phaser.Scene {
     if (eff?.burn) e.status.apply({ id: 'burn', dur: eff.burn.dur, value: eff.burn.dps * 0.5 + s.elemental * 0.3 }, statusScale);
     else if (sp.burnChance && Math.random() * 100 < sp.burnChance)
       e.status.apply({ id: 'burn', dur: 2.5, value: 1 + s.elemental * 0.3 }, statusScale);
+    if (eff?.poison) e.status.apply({ id: 'poison', dur: eff.poison.dur, stacks: eff.poison.stacks }, statusScale);
     for (const st of info.status ?? []) e.status.apply(st, statusScale);
     for (const st of sp.onHit) e.status.apply(st, statusScale);
     this.applyPlayerStatus(sp.onHitSelf);
@@ -1556,32 +1615,41 @@ export class GameScene extends Phaser.Scene {
         this.hurtDirect(r, '#6a994e');
       }
     }
-    // 吸血（参考土豆兄弟）：每次命中按吸血率概率回 1 点；吸到后 lifeStealTickCd 秒内不能再吸，
-    // 即每秒最多回复 1 / lifeStealTickCd 点。吸血率本身不设上限，群体伤害也不打折（触发冷却已足够限制）。
+    // 吸血（参考土豆兄弟）：每次命中按吸血率概率回 max(1, 2% 最大生命)；吸到后 lifeStealTickCd 秒内不能再吸。
+    // 大蒜伯爵契合武器：冷却减半，且同一次群体命中（同一步内、冷却尚未走动）最多连续触发 favoredBurst 次。
     const ls = (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult();
-    if (ls > 0 && this.lsCd <= 0 && Math.random() * 100 < ls) {
-      this.lsCd = BALANCE.player.lifeStealTickCd;
-      this.heal(1, false);
+    if (ls > 0) {
+      const rule = this.talent.lifeStealRule(info.weaponId);
+      // 冷却刚被本批触发设下、还没经过任何时间推进 → 视为同一次群体命中
+      const sameBatch = this.lsCd > 0 && this.lsCd === this.lsCdSet && this.lsBatch < rule.burst;
+      if ((this.lsCd <= 0 || sameBatch) && Math.random() * 100 < ls) {
+        this.lsBatch = sameBatch ? this.lsBatch + 1 : 1;
+        this.lsCd = this.lsCdSet = sameBatch ? this.lsCd : BALANCE.player.lifeStealTickCd * rule.cdMult;
+        this.heal(lifeStealHeal(s.maxHp), false);
+      }
     }
     const lh = sp.lightningOnHit;
-    dmg *= this.talent.dmgMult(e, info);
-    this.talent.onHit(e, info);
     this.lastHit = { crit, explosion: !!info.explosion };
     const alive = this.damageEnemy(e, dmg, { crit });
     this.lastHit = { crit: false, explosion: false };
+    this.talent.afterHit(e, info, crit, hctx, dmg);
     if (lh && Math.random() * 100 < lh) {
       const t = alive ? e : this.grid.nearest(e.x, e.y, 200);
-      if (t?.alive) {
-        this.fx.bolt(
-          [
-            { x: t.x, y: t.y - 400 },
-            { x: t.x, y: t.y },
-          ],
-          0xfff3b0,
-        );
-        this.damageEnemy(t, 5 + s.elemental * 1.5, { color: '#fff3b0' });
-      }
+      if (t?.alive) this.skyBolt(t);
     }
+  }
+
+  /** 从天而降的落雷（茄子法师的特性与天赋共用） */
+  skyBolt(t: Enemy): void {
+    if (!t.alive) return;
+    this.fx.bolt(
+      [
+        { x: t.x, y: t.y - 400 },
+        { x: t.x, y: t.y },
+      ],
+      0xfff3b0,
+    );
+    this.damageEnemy(t, 5 + this.stats.elemental * 1.5, { color: '#fff3b0' });
   }
 
   /** 返回敌人是否仍然存活 */
@@ -1681,7 +1749,7 @@ export class GameScene extends Phaser.Scene {
           this.finalSpawned = true;
           this.terrainNotice(tx('大地在颤抖……腐烂之王降临！', 'The ground trembles… the Rot King descends!'));
           this.time.delayedCall(2000, () => this.queueSpawn(TRUE_FINAL_BOSS_ID, true));
-          this.timeLeft = waveDuration(run.wave);
+          this.timeLeft = waveDuration(run.wave, run.isBossWave());
           this.overtime = 0;
           this.enrageStacks = 0;
         } else {
@@ -1744,7 +1812,7 @@ export class GameScene extends Phaser.Scene {
       }
     }
     if (sp.killHeal && run.kills % sp.killHeal === 0) this.heal(1);
-    this.talent.onKill(e, this.lastHit.crit, this.lastHit.explosion);
+    this.talent.onKill(e, this.lastHit.explosion, this.dmgSrc);
   }
 
   explode(x: number, y: number, r: number, dmg: number, info: HitInfo, color: number, goldDrop = false): void {
@@ -1757,6 +1825,7 @@ export class GameScene extends Phaser.Scene {
       this.weaponHit(e, { ...info, dmg, knockback: 25, explosion: true }, x, y);
       if (goldDrop && !e.alive) this.dropPickup('seed', e.x, e.y, 1);
     }
+    this.talent.onExplode(x, y, r, dmg, info);
   }
 
   // ---------------- 敌人攻击接口 ----------------
@@ -1777,7 +1846,7 @@ export class GameScene extends Phaser.Scene {
     const k = this.textures.exists(key) ? key : 'proj_enemy';
     b.fire(k, x, y, ang, speed, 5, 9 * scale);
     b.setScale(scale);
-    b.dmg = dmg;
+    b.dmg = Math.max(1, Math.round(dmg * BALANCE.enemyHit.bullet));
     b.slow = slow;
     b.debuffs = debuffs;
     b.owner = owner;
@@ -2099,6 +2168,7 @@ export class GameScene extends Phaser.Scene {
       bump('fruits');
       const bonus = this.talent.fruitSeeds();
       if (bonus) run.earn(bonus, 'talent');
+      this.talent.onFruit();
       this.heal(Math.max(3, Math.round(this.stats.maxHp * 0.08 * (1 + run.specials.fruitHeal / 100))));
       this.fx.ring(this.player.x, this.player.y, 50, 0x52ff8a, 300);
       audio.play(this, 'pickup');

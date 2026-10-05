@@ -102,7 +102,7 @@ async function drawPoster(scene: Phaser.Scene, win: boolean): Promise<HTMLCanvas
   // 本局战绩
   const items = Object.values(run.items).reduce((a, b) => a + b, 0);
   const stats: [string, string][] = [
-    [tx('到达波次', 'Wave'), `${run.wave} / 15`],
+    [tx('到达波次', 'Wave'), `${run.wave} / ${run.waveCount}`],
     [tx('击杀', 'Kills'), run.kills.toLocaleString()],
     [tx('等级', 'Level'), String(run.level)],
     [tx('武器 / 道具', 'Gear'), `${run.weapons.length} / ${items}`],

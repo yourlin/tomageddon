@@ -9,7 +9,7 @@ import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { save, persist } from '../systems/Save';
-import { regenPerSecond, lifeStealMaxPerSecond } from '../data/balance';
+import { regenPerSecond, lifeStealMaxPerSecond, lifeStealHeal } from '../data/balance';
 
 export class PauseScene extends Phaser.Scene {
   constructor() {
@@ -32,13 +32,16 @@ export class PauseScene extends Phaser.Scene {
       const x = W / 2 - 390 + Math.floor(i / col) * 250,
         y = 130 + (i % col) * 26;
       const info = STAT_INFO[k];
-      const cap = k === 'dodge' ? run.dodgeCap : Infinity;
+      const cap = run.statCap(k);
       const v = Math.min(s[k], cap);
       const regenTxt =
         k === 'regen'
           ? tx(`（${regenPerSecond(v).toFixed(2)}/秒）`, ` (${regenPerSecond(v).toFixed(2)}/s)`)
           : k === 'lifeSteal' && v > 0
-            ? tx(`（命中回 1 血，≤${lifeStealMaxPerSecond()}/秒）`, ` (heal 1 on hit, ≤${lifeStealMaxPerSecond()}/s)`)
+            ? tx(
+                `（命中回 ${lifeStealHeal(s.maxHp)} 血，≤${lifeStealMaxPerSecond(s.maxHp)}/秒）`,
+                ` (heal ${lifeStealHeal(s.maxHp)} on hit, ≤${lifeStealMaxPerSecond(s.maxHp)}/s)`,
+              )
             : '';
       text(
         this,

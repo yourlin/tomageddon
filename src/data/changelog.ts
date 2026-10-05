@@ -28,8 +28,8 @@ export const CHANGELOG: ChangeEntry[] = [
         '45 new relics in 8 sets from elites, Endless milestones and the Mysterious Merchant — they bend the rules, not just stats',
       ],
       [
-        '无尽模式深化：每 10 波里程碑奖励、第 30/45/60 波超级 Boss、变异词缀、一次复活',
-        'Deeper Endless: milestone rewards every 10 waves, super bosses at 30/45/60, mutations and one revive',
+        '无尽模式深化：每 10 波里程碑奖励、超级双 Boss、变异词缀、一次复活',
+        'Deeper Endless: milestone rewards every 10 waves, double-boss waves, mutations and one revive',
       ],
       [
         '每名角色 3 个专属任务、觉醒被动、1–10 级熟练度与一套皮肤；新增 6 名角色',
@@ -45,8 +45,20 @@ export const CHANGELOG: ChangeEntry[] = [
       ],
       ['12 把新武器、8 组进化、30 个新道具与 23 条道具组合', '12 new weapons, 8 evolutions, 30 new items and 23 item combos'],
       [
-        '事件波、危险路线、神秘商人、局内小任务、天气与 5 种新地形机关',
-        'Event waves, risky routes, the Mysterious Merchant, in-wave mini-quests, weather and 5 new terrain hazards',
+        '事件波、危险路线、神秘商人、局内小任务、天气与 5 种新地形机关；这些机制从第 2 章起按章节逐步出现',
+        'Event waves, risky routes, the Mysterious Merchant, in-wave mini-quests, weather and 5 new terrain hazards — introduced chapter by chapter from chapter 2',
+      ],
+      [
+        '第 5 章起关卡变长：第 5 章 20 波，之后每章 +5 波（最多 50 波），每 5 波一只精英',
+        'Longer chapters from chapter 5: 20 waves, then +5 per chapter (up to 50), with an elite every 5 waves',
+      ],
+      [
+        '商店武器品质、道具稀有度与升级属性等级改为只按幸运分层：幸运 5 起出 T2，15 起出 T3，30 起才可能出 T4',
+        'Shop weapon tiers, item rarity and upgrade ranks are now tiered by Luck only: T2 from 5 Luck, T3 from 15, T4 only from 30',
+      ],
+      [
+        '每种传说道具默认最多持有 1 件；战斗中暂停键旁新增技能「自动 / 手动」切换按钮',
+        'Each legendary item can be held once by default; a skill AUTO / MANUAL toggle now sits next to the pause button',
       ],
       [
         '每日 / 每周挑战连续奖励、种子分享、自定义挑战与练习模式',
@@ -57,6 +69,30 @@ export const CHANGELOG: ChangeEntry[] = [
         'Talent master tiers, a collection overview, titles, 76 new achievements, build codes and a post-run DPS chart',
       ],
       ['技能演出全面重做：同类技能各有不同的动画与效果', 'Skill visuals reworked: similar skills now look and play differently'],
+      [
+        '光环武器按名字各有专属特效：若隐若现的光晕、环绕物与粒子，不再只是一个圈',
+        'Aura weapons get themed effects by name — shimmering glows, orbiting props and particles instead of a plain ring',
+      ],
+      [
+        '横扫超武各有专属招式：擎天擀面柱 360° 回旋、屠龙菜刀交叉双斩、铸铁壁垒锅盾击拍碎子弹、西瓜震地锤砸地余震',
+        'Sweep super weapons get signature moves: Titan Pin full spin, Dragon Cleaver X-slash, Iron Bastion Pan shield bash that shatters bullets, Melon Quake aftershocks',
+      ],
+      [
+        '回旋镖改为曲线飞行（泪滴、甩弯、蛇形、螺旋），八角风暴远端连转三圈且每圈可再命中',
+        'Boomerangs now fly curved paths (teardrop, hook, serpentine, spiral); Anise Storm loops three times at range and can hit on every loop',
+      ],
+      [
+        '连锁闪电超武追加天降落雷；地雷按名字有专属造型与爆炸颜色',
+        'Chain lightning super weapons call down extra strikes; mines have their own look and explosion color',
+      ],
+      [
+        '重置存档改为三步确认（倒数、换位、长按 3 秒），防止误删',
+        'Resetting your save now takes three confirmations (countdown, moved button, 3-second hold) to prevent accidents',
+      ],
+      [
+        '选角详情拆成基本 / 成长两页；修复成就页总成就点显示 NaN',
+        'Character details split into Basics / Progress pages; fixed the achievement total showing NaN',
+      ],
       [
         '修复荆棘词缀反伤可能秒杀高伤害近战构筑的问题（现在有单次与每秒上限）',
         'Fixed Thorny reflection being able to one-shot high-damage melee builds (now capped per hit and per second)',
@@ -78,7 +114,7 @@ export const CHANGELOG: ChangeEntry[] = [
       {
         icon: '🏺',
         title: ['遗物', 'Relics'],
-        desc: ['击败第 5、10 波精英三选一，改变一局的玩法', 'Beat the wave 5 and 10 elites to pick one of three run-changing relics'],
+        desc: ['击败章节精英后三选一，改变一局的玩法', 'Beat a chapter elite to pick one of three run-changing relics'],
       },
       {
         icon: '📜',
@@ -99,6 +135,22 @@ export const CHANGELOG: ChangeEntry[] = [
         icon: '♾️',
         title: ['无尽与每日挑战', 'Endless & dailies'],
         desc: ['超级 Boss、变异、连续挑战奖励与种子分享', 'Super bosses, mutations, streak rewards and seed sharing'],
+      },
+      {
+        icon: '📏',
+        title: ['更长的关卡', 'Longer chapters'],
+        desc: [
+          '第 5 章起每章 20 波并逐章 +5 波；新机制随章节逐步登场',
+          'From chapter 5: 20 waves, +5 per chapter; new mechanics arrive chapter by chapter',
+        ],
+      },
+      {
+        icon: '🍀',
+        title: ['幸运分层', 'Luck tiers'],
+        desc: [
+          '幸运决定能出什么：5 起 T2、15 起 T3、30 起才有 T4 与传说',
+          'Luck decides what can drop: T2 from 5, T3 from 15, T4 and legendaries only from 30',
+        ],
       },
     ],
   },
