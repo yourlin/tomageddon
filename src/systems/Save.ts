@@ -45,6 +45,8 @@ export interface SaveData {
   killedBosses: Record<string, number>;
   /** 已阅读过更新日志的版本号（用于主菜单红点） */
   seenVersion?: string;
+  /** 已弹过「新玩法解锁」卡片的里程碑（见 systems/Reveal）；老存档没有这个字段，首次读到时把已开放的直接记为已看过 */
+  revealSeen?: string[];
   /** 成就用累计统计 */
   stats: AchStats;
   /** 成就计数器（见 systems/Counters.ts） */

@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v1.5.2 · 2026-10-08](#v1-5-2)
 - [v1.5.1 · 2026-10-08](#v1-5-1)
 - [v1.5.0 · 2026-10-08](#v1-5-0)
 - [v1.4.0 · 2026-10-05](#v1-4-0)
@@ -19,6 +20,18 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-5-2"></a>
+
+## v1.5.2 · 2026-10-08
+
+**Features unfold step by step: hidden until unlocked, the menu shows your next unlock and a card pops when one opens; chapter select now shows all 7 chapters as thumbnails**
+
+
+- Endless, Danger, Daily challenges, Golden Tomatoes, skins, the talent tree and Master talents stay hidden until unlocked; Danger rules only tease the next level as "???"
+- The main menu shows your next unlock — what to do and what opens; a card pops up when a feature opens, with a shortcut to it
+- The results screen tells you what is left for the next feature and the closest character unlock
+- Chapter select shows all 7 chapters as thumbnails — locked ones in gray, the hidden chapter as "?"
 
 <a id="v1-5-1"></a>
 

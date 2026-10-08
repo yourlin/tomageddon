@@ -346,3 +346,32 @@ export function paintArena(scene: Phaser.Scene, ch: number): string {
     }
   });
 }
+
+/**
+ * 章节缩略图（选关用）：画完整场地再缩小到 w×h；gray = 灰度 + 压暗（未解锁）。
+ * 只为缩略图临时画的大场地贴图画完就删掉（7 张 1300×850 常驻太占显存）
+ */
+export function arenaThumb(scene: Phaser.Scene, ch: number, w: number, h: number, gray = false): string {
+  const key = `arena_thumb_${ch}_${w}x${h}${gray ? '_g' : ''}`;
+  if (scene.textures.exists(key)) return key;
+  const bigKey = `arena_gen_${ch}`;
+  const had = scene.textures.exists(bigKey);
+  const src = scene.textures.get(paintArena(scene, ch)).getSourceImage() as CanvasImageSource;
+  const tex = scene.textures.createCanvas(key, w, h);
+  if (!tex) return key;
+  const ctx = tex.getContext();
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(src, 0, 0, W, H, 0, 0, w, h);
+  if (gray) {
+    const img = ctx.getImageData(0, 0, w, h);
+    const d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const l = (d[i] * 0.3 + d[i + 1] * 0.59 + d[i + 2] * 0.11) * 0.55;
+      d[i] = d[i + 1] = d[i + 2] = l;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+  tex.refresh();
+  if (!had) scene.textures.remove(bigKey);
+  return key;
+}

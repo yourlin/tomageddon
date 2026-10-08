@@ -12,6 +12,32 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.5.2',
+    date: '2026-10-08',
+    highlight: [
+      '玩法循序渐进：解锁前不再露出，主菜单提示下一个解锁，开放时弹卡片；选关改为 7 个章节缩略图',
+      'Features unfold step by step: hidden until unlocked, the menu shows your next unlock and a card pops when one opens; chapter select now shows all 7 chapters as thumbnails',
+    ],
+    items: [
+      [
+        '无尽、危机、每日挑战、金番茄、皮肤、天赋树、大师天赋在解锁前不显示；危机规则只露出下一级的「？？？」',
+        'Endless, Danger, Daily challenges, Golden Tomatoes, skins, the talent tree and Master talents stay hidden until unlocked; Danger rules only tease the next level as "???"',
+      ],
+      [
+        '主菜单显示「下一个解锁」：做什么、开放什么；新玩法开放时弹出说明卡片，可直接跳过去看看',
+        'The main menu shows your next unlock — what to do and what opens; a card pops up when a feature opens, with a shortcut to it',
+      ],
+      [
+        '结算页提示离下一个玩法还差什么，以及离解锁最近的角色和进度',
+        'The results screen tells you what is left for the next feature and the closest character unlock',
+      ],
+      [
+        '选关改为 7 个章节缩略图直接点选，未解锁的为灰色，隐藏章节显示「？」',
+        'Chapter select shows all 7 chapters as thumbnails — locked ones in gray, the hidden chapter as "?"',
+      ],
+    ],
+  },
+  {
     version: '1.5.1',
     date: '2026-10-08',
     highlight: [
