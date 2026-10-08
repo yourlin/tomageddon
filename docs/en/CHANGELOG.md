@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v1.5.0 · 2026-10-08](#v1-5-0)
 - [v1.4.0 · 2026-10-05](#v1-4-0)
 - [v1.3.2 · 2026-10-03](#v1-3-2)
 - [v1.3.1 · 2026-10-03](#v1-3-1)
@@ -17,6 +18,29 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-5-0"></a>
+
+## v1.5.0 · 2026-10-08
+
+**"The Crafting Road": weapons match characters by tag, 60 new fusion weapons, a crafting table and storage — craft T3 → T4 → super weapons; sharper visuals and 4 skins per character**
+
+
+- Character synergy now works by weapon tag: any weapon with a synergy tag counts (+10% damage and triggers the talent)
+- 60 new fusion weapons (199 total): every T3 has at least 2 recipes to T4, every T4 has a unique recipe; super weapons are crafted from two specific T4s
+- Recipes need specific items: T4s need specific Epic items, super weapons the catalyst + 1 specific Legendary; the shop restocks missing items when you are close
+- Crafting table: category filters, a recommended view (synergy first) and a horizontal upgrade tree; tap a weapon to see its recipes and what is missing
+- 6-slot storage: weapons bought with a full bar go to storage; swap, sell or use them as recipe materials
+- The shop never sells T4s; buying it out counts as a reroll; prices use the seed icon; stats show in two columns with icons
+- HiDPI rendering: sharp on high-density screens and the desktop build (toggle in Settings); the desktop build starts fullscreen
+- Mobile: larger touch targets; the shop, weapon popup and crafting table are scaled up
+- Redesigned pause screen: character and equipped weapons on the left (hover or tap for stats), two-column stats on the right
+- Character "traits" and "stat modifiers" merged into one "Stats & traits" list generated from the real values
+- Character unlocks are paced out: usually 0–2 per run as you progress; unlock toasts and the results screen show the character
+- 4 skins per character (120 / 160 / 200 / 250 Golden Tomatoes; the first is free at Mastery 10), cosmetic only
+- 81 new achievements: fusion weapons, the crafting table, challenge modifiers, the talent tree and Master talents; "Fully Legendary" now also counts in Endless after wave 15
+- Titles: categories, rarity, search and glowing title badges; the share poster shows more stats and your build
+- Negative stats show in red; damage / heal numbers are bigger and last longer; damage-over-time numbers are colored by status (Burn red, Poison green…); fixed tapping "Combine" sometimes selling the weapon
 
 <a id="v1-4-0"></a>
 

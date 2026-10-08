@@ -13,7 +13,7 @@ import type { ChapterDef } from './chapters';
 import type { StatusApply } from './statuses';
 import type { RigSpec } from '../art/RigSpec';
 import type { BossesEn, ChaptersEn, EnemiesEn } from '../i18n/types';
-import { BALANCE } from './balance';
+import { BALANCE, chapterHpMult, chapterDmgMult, chapterBossHpMult } from './balance';
 
 const S = (id: StatusApply['id'], dur: number, stacks = 1, chance?: number): StatusApply => ({ id, dur, stacks, chance });
 
@@ -39,16 +39,10 @@ export function isCh7Unlocked(bestDanger: Readonly<Record<number, number | undef
   return BASE_CHAPTER_IDS.every((id) => (bestDanger[id] ?? -1) >= CH7_DANGER_ALL);
 }
 
-// ════════════════════════════ 章节倍率（建议值）════════════════════════════
+// ════════════════════════════ 章节倍率 ════════════════════════════
 
-/**
- * 现有曲线：chapterMult(ch, end) = end^((ch-1)/(N-1))，N = 5（第五章正好到 end）。
- * 第六、七章沿用「同一公比」外推（t > 1），即 end^(5/4)、end^(6/4)，第 1-5 章数值保持不变。
- * 这里固定用 N = 5 归一化，避免主会话把 chapterCount 改成 7 后本表跟着漂移。
- */
-const CURVE_BASE_CHAPTERS = 5;
+/** 第六、七章的倍率与其余章节同源：直接取 balance.ts 的 chapterHpMult() 等函数（第 3 章起按 chapterCurve.late 公比递增） */
 const round2 = (v: number): number => Math.round(v * 100) / 100;
-const extrapolate = (end: number, ch: number): number => round2(Math.pow(end, (ch - 1) / (CURVE_BASE_CHAPTERS - 1)));
 
 export interface ChapterMultSet {
   hp: number;
@@ -58,17 +52,12 @@ export interface ChapterMultSet {
 }
 
 const multFor = (ch: number): ChapterMultSet => ({
-  hp: extrapolate(BALANCE.chapterCurve.hpEnd, ch),
-  dmg: extrapolate(BALANCE.chapterCurve.dmgEnd, ch),
-  bossHp: extrapolate(BALANCE.chapterCurve.bossHpEnd, ch),
+  hp: chapterHpMult(ch),
+  dmg: chapterDmgMult(ch),
+  bossHp: chapterBossHpMult(ch),
   speed: round2(1 + BALANCE.chapterCurve.speedStep * (ch - 1)),
 });
 
-/**
- * 建议的第六 / 七章倍率（按当前 balance：hpEnd 3.4 / dmgEnd 1.7 / bossHpEnd 2.4 / speedStep 0.05）：
- *   第六章 hp 4.62 · dmg 1.94 · bossHp 2.99 · speed 1.25
- *   第七章 hp 6.27 · dmg 2.22 · bossHp 3.72 · speed 1.30
- */
 export const EXTRA_CHAPTER_MULT: Record<6 | 7, ChapterMultSet> = {
   6: multFor(6),
   7: multFor(7),
@@ -148,9 +137,9 @@ const CH6_ENEMIES: EnemyDef[] = [
     speed: 105,
     seeds: 2,
     behavior: 'shooter',
-    shootCd: 2.4,
+    shootCd: 3.5,
     projSpeed: 340,
-    projMult: 0.5,
+    projMult: 0.4,
     keepDist: 280,
     shots: 3,
     spread: 22,
@@ -378,7 +367,7 @@ const CH7_ENEMIES: EnemyDef[] = [
     hp: 24,
     hpGrowth: 0.75,
     dmg: 3,
-    dmgGrowth: 0.8,
+    dmgGrowth: 0.65,
     speed: 80,
     seeds: 3,
     behavior: 'charger',
@@ -860,8 +849,6 @@ export const EXTRA_CHAPTERS: ChapterDef[] = [
     lineColor: 0x3f4d31,
     hpMult: EXTRA_CHAPTER_MULT[6].hp,
     bossHpMult: EXTRA_CHAPTER_MULT[6].bossHp,
-    lootMult: 1.6,
-    t4Mult: 1.7,
     dmgMult: EXTRA_CHAPTER_MULT[6].dmg,
     speedMult: EXTRA_CHAPTER_MULT[6].speed,
     pool: [
@@ -900,8 +887,6 @@ export const EXTRA_CHAPTERS: ChapterDef[] = [
     lineColor: 0x33281c,
     hpMult: EXTRA_CHAPTER_MULT[7].hp,
     bossHpMult: EXTRA_CHAPTER_MULT[7].bossHp,
-    lootMult: 1.7,
-    t4Mult: 1.85,
     dmgMult: EXTRA_CHAPTER_MULT[7].dmg,
     speedMult: EXTRA_CHAPTER_MULT[7].speed,
     pool: [

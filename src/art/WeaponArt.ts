@@ -2,6 +2,8 @@
 import { type Ctx, rgb, darken, lighten, toon, ellipsePath, roundRectPath, starPath, glow, OUTLINE } from './Painter';
 import { EXTRA_WEAPON_ART, EXTRA_EVOLVED_ART } from '../data/gearExtra';
 import { AFFINITY_WEAPON_ART } from '../data/weaponsAffinity';
+import { GEN_WEAPON_ART } from '../data/weaponsGen';
+import { FUSED_WEAPON_ART } from '../data/recipes';
 
 const handle = (ctx: Ctx, x0: number, x1: number, y: number, h: number, c = 0x8d5b3a) => {
   roundRectPath(ctx, x0, y - h / 2, x1 - x0, h, h / 2);
@@ -93,7 +95,7 @@ function drawEvolved(ctx: Ctx, base: string, tint: number): void {
 export function drawWeapon(ctx: Ctx, id: string): void {
   const evo = EVOLVED_ART[id] ?? EXTRA_EVOLVED_ART[id];
   if (evo) return drawEvolved(ctx, evo[0], evo[1]);
-  const ex = EXTRA_WEAPON_ART[id] ?? AFFINITY_WEAPON_ART[id];
+  const ex = EXTRA_WEAPON_ART[id] ?? AFFINITY_WEAPON_ART[id] ?? GEN_WEAPON_ART[id] ?? FUSED_WEAPON_ART[id];
   if (ex) return drawTinted(ctx, ex[0], ex[1]);
   const cy = 32;
   switch (id) {

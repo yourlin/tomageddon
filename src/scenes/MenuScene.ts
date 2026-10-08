@@ -15,10 +15,11 @@ import { toggleFullscreen } from '../systems/Fullscreen';
 import { paint } from '../art/Painter';
 import { openExternal, SHOW_DONATE, IS_STEAM, quitApp } from '../platform';
 import { dayKey } from '../systems/Rng';
-import { persist } from '../systems/Save';
-import { titleName, unlockedTitles } from '../data/titles';
+import { unlockedTitles } from '../data/titles';
+import { titleBadge } from '../ui/TitleBadge';
 import { shouldShowWhatsNew, showWhatsNew } from '../ui/WhatsNew';
 import { gateSceneStart, MENU_PORTRAITS } from './BootScene';
+import { VW, VH } from '../systems/HiDpi';
 
 export class MenuScene extends Phaser.Scene {
   constructor() {
@@ -31,8 +32,8 @@ export class MenuScene extends Phaser.Scene {
     setInRun(false);
     checkAchievements();
     autoRelayout(this);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     audio.playMusic(this, 'bgm_menu');
     if (this.textures.exists('bg_menu')) {
       const bg = this.add.image(W / 2, H / 2, 'bg_menu');
@@ -446,22 +447,19 @@ export class MenuScene extends Phaser.Scene {
     });
   }
 
+  /** 称号：佩戴中显示徽章，否则显示入口；点击打开称号选择界面 */
   private drawTitle(W: number, y: number): void {
-    const list = unlockedTitles(save.achievements);
-    if (!list.length) return;
-    const label = (): string =>
-      save.meta.title
-        ? tx(`称号「${titleName(save.meta.title)}」 · 点击切换`, `Title "${titleName(save.meta.title)}" · click to change`)
-        : tx('🎖️ 选择称号', '🎖️ Pick a title');
-    const t = text(this, W / 2, y, label(), 17, '#ffd166')
+    const n = unlockedTitles(save.achievements).length;
+    const open = () => this.scene.start('Title', { from: 'Menu' });
+    const badge = save.meta.title ? titleBadge(this, W / 2, y, save.meta.title, 16) : null;
+    if (badge) {
+      badge.setInteractive({ useHandCursor: true }).on('pointerup', open);
+      return;
+    }
+    text(this, W / 2, y, n ? tx(`🎖️ 选择称号（已解锁 ${n}）`, `🎖️ Pick a title (${n})`) : tx('🎖️ 称号', '🎖️ Titles'), 17, '#ffd166')
       .setOrigin(0.5)
-      .setInteractive({ useHandCursor: true });
-    t.on('pointerup', () => {
-      const opts = ['', ...list];
-      save.meta.title = opts[(opts.indexOf(save.meta.title) + 1) % opts.length];
-      persist();
-      t.setText(label());
-    });
+      .setInteractive({ useHandCursor: true })
+      .on('pointerup', open);
   }
 
   /** I6：进度越多，菜园越繁茂；分数 0~40 */

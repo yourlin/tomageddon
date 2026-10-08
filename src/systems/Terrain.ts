@@ -8,7 +8,7 @@
 import Phaser from 'phaser';
 import type { GameScene } from '../scenes/GameScene';
 import { run } from './RunState';
-import { chapterScale } from '../data/balance';
+import { chapterScale, chapterWaves } from '../data/balance';
 import { rng } from '../art/Painter';
 import { tx } from '../i18n';
 import type { StatusApply } from '../data/statuses';
@@ -212,7 +212,7 @@ export class Terrain {
   private dmg(base: number): number {
     // 地形伤害随波次明显成长（二次项），后期热油、坠物等也有威胁
     const w = run.wave - 1;
-    return base * (1 + 0.3 * w + 0.02 * w * w) * chapterScale(run.chapter.dmgMult, run.wave);
+    return base * (1 + 0.3 * w + 0.02 * w * w) * chapterScale(run.chapter.dmgMult, run.wave, chapterWaves(run.chapterId));
   }
 
   private tick(key: string, dt: number, every: number, minWave = 1): boolean {

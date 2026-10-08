@@ -1,0 +1,195 @@
+{
+  "$comment": "平衡测试检测项：report.mjs 按此逐项判定（通过 / 偏离 / 严重）。enabled 关闭某项；range 为 [下限, 上限]（null = 不限）；warn 为偏离多少以内算「偏离」，超过算「严重」。用 --checks <文件> 换一套标准。 每项可加 \"endless\": false 或 \"chapter\": false，限定只在章节模式或无尽模式下判定。",
+  "checks": [
+    {
+      "id": "chapterWinRate",
+      "enabled": true,
+      "name": "各章通关率",
+      "unit": "%",
+      "targets": {
+        "1": [85, 98],
+        "2": [65, 85],
+        "3": [30, 45],
+        "4": [20, 35],
+        "5": [12, 28],
+        "6": [5, 10],
+        "7": [1, 8]
+      },
+      "warn": 10,
+      "advice": {
+        "low": "下调本章 chapterCurve.late 公比，或本章主要受伤来源敌人的血量 / 伤害",
+        "high": "提高本章 chapterCurve.late 公比，或加快刷怪密度"
+      }
+    },
+    {
+      "id": "difficultyMonotonic",
+      "enabled": true,
+      "name": "难度单调递增（后一章通关率不高于前一章 + 容差）",
+      "tolerance": 10,
+      "advice": "后一章比前一章更容易：提高后一章倍率或调整其刷怪池"
+    },
+    {
+      "id": "deathCliff",
+      "enabled": true,
+      "name": "阵亡集中度（单一波次阵亡占比）",
+      "unit": "%",
+      "range": [null, 35],
+      "warn": 15,
+      "minDeaths": 10,
+      "advice": "阵亡集中在某一波 = 难度断崖：检查该波新登场的怪物（pool 的 from）或 Boss / 精英强度"
+    },
+    {
+      "id": "bossWaveDeaths",
+      "enabled": true,
+      "name": "Boss 波阵亡占比",
+      "unit": "%",
+      "range": [null, 50],
+      "warn": 20,
+      "minDeaths": 10,
+      "advice": "阵亡大多在 Boss 波：小怪波压力不足或 Boss 过强，调 Boss 血量 / 伤害或小怪成长"
+    },
+    {
+      "id": "topKiller",
+      "enabled": true,
+      "name": "单一敌人伤害占比（阵亡局）",
+      "unit": "%",
+      "range": [null, 40],
+      "warn": 15,
+      "advice": "某个敌人造成了过多伤害：下调它的伤害、射速或推迟登场波次"
+    },
+    {
+      "id": "charSpread",
+      "enabled": true,
+      "name": "角色强弱（通关率与章节平均之差，第 1–3 章平均）",
+      "unit": " 百分点",
+      "chapters": [1, 2, 3],
+      "range": [-25, 25],
+      "warn": 15,
+      "advice": {
+        "low": "加强该角色前期输出或减轻代价",
+        "high": "削弱该角色核心加成"
+      },
+      "minRuns": 4
+    },
+    {
+      "id": "wave1Drop",
+      "enabled": true,
+      "name": "第 1 波掉落番茄籽（击杀数 × 每只价值，默认只看第 1 章）",
+      "unit": " 枚",
+      "range": [30, 40],
+      "warn": 5,
+      "advice": "调 BALANCE.loot.perSeed",
+      "chapters": [1]
+    },
+    {
+      "id": "bankRatio",
+      "enabled": true,
+      "name": "最后离店存款占累计收入",
+      "unit": "%",
+      "range": [null, 25],
+      "warn": 15,
+      "advice": "钱花不完：提高 BALANCE.priceGrowth.quad 或降低 BALANCE.loot.perSeed"
+    },
+    {
+      "id": "t4AtEnd",
+      "enabled": true,
+      "name": "到达最后一波时持有 ≥1 把 T4 的对局",
+      "unit": "%",
+      "range": [15, 45],
+      "warn": 10,
+      "advice": {
+        "low": "提高合成暴击 BALANCE.mergeBonus 或 T2 / T3 商店概率",
+        "high": "降低 BALANCE.mergeBonus"
+      }
+    },
+    {
+      "id": "statCaps",
+      "enabled": true,
+      "name": "防御属性封顶的对局（护甲 ≥45 或闪避 ≥60）",
+      "unit": "%",
+      "range": [null, 20],
+      "warn": 15,
+      "advice": "封顶太常见：降低护甲 / 闪避道具数值，或下调上限",
+      "endless": false
+    },
+    {
+      "id": "timeouts",
+      "enabled": true,
+      "name": "超时局数",
+      "unit": " 局",
+      "range": [null, 0],
+      "warn": 3,
+      "advice": "有对局超时：可能卡死或打不死，查看逐局明细"
+    },
+    {
+      "id": "endlessReach",
+      "enabled": true,
+      "name": "无尽模式：最远到达波次（防止打不死）",
+      "unit": " 波",
+      "range": [null, 80],
+      "warn": 20,
+      "advice": "无尽打得太久：提高 BALANCE.endless.dmg 复利，或下调护甲 / 闪避上限"
+    },
+    {
+      "id": "endlessMedian",
+      "enabled": true,
+      "name": "无尽模式：阵亡波次中位数",
+      "unit": " 波",
+      "range": [25, 50],
+      "warn": 10,
+      "advice": {
+        "low": "无尽过难：降低 BALANCE.endless.dmg",
+        "high": "无尽过易：提高 BALANCE.endless.dmg"
+      }
+    },
+    {
+      "id": "t4Wave",
+      "enabled": true,
+      "name": "平均首次拿到 T4 的波次",
+      "unit": " 波",
+      "range": [6, 11],
+      "warn": 2,
+      "chapter": true,
+      "advice": {
+        "low": "T4 来得太早：提高配方道具数量或降低 T3 出现率",
+        "high": "T4 来得太晚：减少配方道具、提高 T2 / T3 出现率或番茄籽掉落"
+      }
+    },
+    {
+      "id": "t4Rate",
+      "enabled": true,
+      "name": "拿到过 T4 的对局比例",
+      "unit": "%",
+      "range": [40, 85],
+      "warn": 15,
+      "advice": {
+        "low": "大部分对局拿不到 T4：简化配方或提高掉落",
+        "high": "几乎人人都有 T4：提高配方门槛"
+      }
+    },
+    {
+      "id": "superRate",
+      "enabled": true,
+      "name": "拿到过超武的对局比例",
+      "unit": "%",
+      "range": [0, 20],
+      "warn": 10,
+      "advice": {
+        "low": "超武几乎拿不到：减少超武配方的道具数量",
+        "high": "超武太容易：增加配方道具或提高材料品质要求"
+      }
+    },
+    {
+      "id": "craftCount",
+      "enabled": true,
+      "name": "每局合成次数（中位数）",
+      "unit": " 次",
+      "range": [1, 6],
+      "warn": 2,
+      "advice": {
+        "low": "几乎没有合成：检查配方材料是否太难凑",
+        "high": "合成过于频繁：提高配方门槛"
+      }
+    }
+  ]
+}

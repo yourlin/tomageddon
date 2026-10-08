@@ -1,4 +1,4 @@
-# 成就（1190 项）
+# 成就（1433 项）
 
 **中文** · [English](en/ACHIEVEMENTS.md)
 
@@ -6,7 +6,7 @@
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 46335 点。
+成就分为多个等级（🥉 铜 → 🥈 银 → 🥇 金 → 💎 钻石，单级成就直接为金牌），每达成一级获得成就点，全部成就点共 53389 点。
 
 除默认的 4 名外，每名[角色](CHARACTERS.md)都绑定一项成就，达成该成就的指定等级后自动解锁；成就点只作为累计成绩展示。解锁时屏幕顶部会弹出提示，主菜单「成就」可查看全部进度，可解锁角色的成就会标出 🔓。
 
@@ -38,39 +38,39 @@
 | <img src="images/char/carrot.png" width="32" height="32" alt=""> [胡萝卜骑士](CHARACTERS.md#char-carrot) | 默认解锁 |
 | <img src="images/char/chili.png" width="32" height="32" alt=""> [辣椒姐](CHARACTERS.md#char-chili) | 默认解锁 |
 | <img src="images/char/corn.png" width="32" height="32" alt=""> [玉米枪手](CHARACTERS.md#char-corn) | 默认解锁 |
-| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](CHARACTERS.md#char-watermelon) | 达成成就 [水果补给（银）](#ach-fruits)：累计吃到 50 个果实 |
-| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](CHARACTERS.md#char-lemon) | 达成成就 [会心一击（铜）](#ach-crits)：累计造成 100 次暴击 |
+| <img src="images/char/watermelon.png" width="32" height="32" alt=""> [西瓜胖墩](CHARACTERS.md#char-watermelon) | 达成成就 [水果补给（金）](#ach-fruits)：累计吃到 500 个果实 |
+| <img src="images/char/lemon.png" width="32" height="32" alt=""> [柠檬刺客](CHARACTERS.md#char-lemon) | 达成成就 [会心一击（银）](#ach-crits)：累计造成 5,000 次暴击 |
 | <img src="images/char/eggplant.png" width="32" height="32" alt=""> [茄子法师](CHARACTERS.md#char-eggplant) | 达成成就 [大招成瘾（银）](#ach-casts)：累计释放 100 次技能 |
 | <img src="images/char/garlic.png" width="32" height="32" alt=""> [大蒜伯爵](CHARACTERS.md#char-garlic) | 达成成就 [精英猎手（银）](#ach-elites)：累计击败 10 名精英 |
-| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](CHARACTERS.md#char-blueberry) | 达成成就 [多面手（铜）](#ach-chars_won)：用 3 名不同角色通关 |
-| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](CHARACTERS.md#char-pineapple) | 达成成就 [小有积蓄（铜）](#ach-rich)：同时持有 200 番茄籽 |
+| <img src="images/char/blueberry.png" width="32" height="32" alt=""> [蓝莓双子](CHARACTERS.md#char-blueberry) | 达成成就 [多面手（银）](#ach-chars_won)：用 10 名不同角色通关 |
+| <img src="images/char/pineapple.png" width="32" height="32" alt=""> [菠萝船长](CHARACTERS.md#char-pineapple) | 达成成就 [小有积蓄（钻石）](#ach-rich)：同时持有 3,000 番茄籽 |
 | <img src="images/char/pumpkin.png" width="32" height="32" alt=""> [南瓜幽灵](CHARACTERS.md#char-pumpkin) | 达成成就 [菜园守护者](#ach-clear_2)：通关第二章 |
 | <img src="images/char/strawberry.png" width="32" height="32" alt=""> [草莓偶像](CHARACTERS.md#char-strawberry) | 达成成就 [茁壮成长（银）](#ach-level)：单局达到 20 级 |
-| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](CHARACTERS.md#char-ginger) | 达成成就 [毫发无伤（银）](#ach-perfect)：累计 10 次无伤完成波次 |
-| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](CHARACTERS.md#char-avocado) | 达成成就 [神兵利器（铜）](#ach-t4)：累计合成 1 把 T4 武器 |
+| <img src="images/char/ginger.png" width="32" height="32" alt=""> [生姜忍者](CHARACTERS.md#char-ginger) | 达成成就 [毫发无伤（金）](#ach-perfect)：累计 50 次无伤完成波次 |
+| <img src="images/char/avocado.png" width="32" height="32" alt=""> [牛油果博士](CHARACTERS.md#char-avocado) | 达成成就 [神兵利器（银）](#ach-t4)：累计合成 5 把 T4 武器 |
 | <img src="images/char/onion.png" width="32" height="32" alt=""> [洋葱大叔](CHARACTERS.md#char-onion) | 达成成就 [屡败屡战（银）](#ach-deaths)：累计阵亡 10 次 |
-| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](CHARACTERS.md#char-mushroom) | 达成成就 [中毒专家（铜）](#ach-inflict_poison)：对敌人施加 50 次【中毒】 |
+| <img src="images/char/mushroom.png" width="32" height="32" alt=""> [蘑菇巫医](CHARACTERS.md#char-mushroom) | 达成成就 [中毒专家（金）](#ach-inflict_poison)：对敌人施加 20,000 次【中毒】 |
 | <img src="images/char/coconut.png" width="32" height="32" alt=""> [椰子拳师](CHARACTERS.md#char-coconut) | 达成成就 [厨房清扫](#ach-clear_1)：通关第一章 |
-| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](CHARACTERS.md#char-grape) | 达成成就 [开箱达人（银）](#ach-crates)：累计打开 50 个宝箱 |
+| <img src="images/char/grape.png" width="32" height="32" alt=""> [葡萄魔术师](CHARACTERS.md#char-grape) | 达成成就 [开箱达人（金）](#ach-crates)：累计打开 300 个宝箱 |
 | <img src="images/char/cherry.png" width="32" height="32" alt=""> [樱桃双枪](CHARACTERS.md#char-cherry) | 达成成就 [枪械套装（铜）](#ach-set_枪械)：单局持有 2 把【枪械】武器 |
-| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](CHARACTERS.md#char-pea) | 达成成就 [番茄酱风暴（银）](#ach-kills)：累计击败 1,000 只怪物 |
+| <img src="images/char/pea.png" width="32" height="32" alt=""> [豌豆士兵](CHARACTERS.md#char-pea) | 达成成就 [番茄酱风暴（金）](#ach-kills)：累计击败 10,000 只怪物 |
 | <img src="images/char/peach.png" width="32" height="32" alt=""> [蜜桃天使](CHARACTERS.md#char-peach) | 达成成就 [凤凰涅槃](#ach-revive)：在战斗中复活 1 次 |
-| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](CHARACTERS.md#char-dragonfruit) | 达成成就 [灼烧专家（银）](#ach-inflict_burn)：对敌人施加 1,000 次【灼烧】 |
-| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](CHARACTERS.md#char-beet) | 达成成就 [割草机（银）](#ach-run_kills)：单局击败 800 只怪物 |
+| <img src="images/char/dragonfruit.png" width="32" height="32" alt=""> [火龙果龙骑](CHARACTERS.md#char-dragonfruit) | 达成成就 [灼烧专家（金）](#ach-inflict_burn)：对敌人施加 20,000 次【灼烧】 |
+| <img src="images/char/beet.png" width="32" height="32" alt=""> [甜菜狂战士](CHARACTERS.md#char-beet) | 达成成就 [Boss 终结者（银）](#ach-bosses)：累计击败 5 名 Boss |
 | <img src="images/char/asparagus.png" width="32" height="32" alt=""> [芦笋弓手](CHARACTERS.md#char-asparagus) | 达成成就 [一击必杀（银）](#ach-max_hit)：单次造成 5,000 点伤害 |
 | <img src="images/char/sweetpotato.png" width="32" height="32" alt=""> [红薯厨神](CHARACTERS.md#char-sweetpotato) | 达成成就 [厨具套装（银）](#ach-set_厨具)：单局持有 4 把【厨具】武器 |
-| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](CHARACTERS.md#char-kiwi) | 达成成就 [怪物学者（铜）](#ach-codex_monsters)：在图鉴中发现 20 种小怪 |
-| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](CHARACTERS.md#char-lychee) | 达成成就 [番茄大亨（银）](#ach-earned)：累计获得 20,000 番茄籽 |
-| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](CHARACTERS.md#char-durian) | 达成成就 [Boss 终结者（银）](#ach-bosses)：累计击败 5 名 Boss |
+| <img src="images/char/kiwi.png" width="32" height="32" alt=""> [猕猴桃侦探](CHARACTERS.md#char-kiwi) | 达成成就 [军火库（银）](#ach-codex_weapons)：在图鉴中发现 25 把武器 |
+| <img src="images/char/lychee.png" width="32" height="32" alt=""> [荔枝公主](CHARACTERS.md#char-lychee) | 达成成就 [番茄大亨（钻石）](#ach-earned)：累计获得 500,000 番茄籽 |
+| <img src="images/char/durian.png" width="32" height="32" alt=""> [榴莲霸王](CHARACTERS.md#char-durian) | 达成成就 [Boss 终结者（金）](#ach-bosses)：累计击败 15 名 Boss |
 | <img src="images/char/bellpepper.png" width="32" height="32" alt=""> [青椒机甲](CHARACTERS.md#char-bellpepper) | 达成成就 [垃圾场之王](#ach-clear_4)：通关第四章 |
 | <img src="images/char/wintermelon.png" width="32" height="32" alt=""> [冬瓜和尚](CHARACTERS.md#char-wintermelon) | 达成成就 [绝地反击（铜）](#ach-overtime)：在 Boss 狂暴后将其击败 1 次 |
 | <img src="images/char/bittermelon.png" width="32" height="32" alt=""> [苦瓜冰法](CHARACTERS.md#char-bittermelon) | 达成成就 [破冰者](#ach-clear_3)：通关第三章 |
 | <img src="images/char/sprout.png" width="32" height="32" alt=""> [豆芽学徒](CHARACTERS.md#char-sprout) | 达成成就 [步步高升（银）](#ach-levelups)：累计升级选择 200 次属性 |
 | <img src="images/char/wasabi.png" width="32" height="32" alt=""> [山葵爆破手](CHARACTERS.md#char-wasabi) | 达成成就 [爆破套装（银）](#ach-set_爆破)：单局持有 4 把【爆破】武器 |
 | <img src="images/char/soybean.png" width="32" height="32" alt=""> [黄豆军师](CHARACTERS.md#char-soybean) | 达成成就 [全员集结（银）](#ach-chars_owned)：拥有 20 名角色 |
-| <img src="images/char/jackfruit.png" width="32" height="32" alt=""> [菠萝蜜卫士](CHARACTERS.md#char-jackfruit) | 达成成就 [精英怪克星（银）](#ach-champions)：累计击败 50 只词缀精英怪 |
-| <img src="images/char/pomegranate.png" width="32" height="32" alt=""> [石榴炮手](CHARACTERS.md#char-pomegranate) | 达成成就 [番茄酱风暴（金）](#ach-kills)：累计击败 10,000 只怪物 |
-| <img src="images/char/taro.png" width="32" height="32" alt=""> [芋头术士](CHARACTERS.md#char-taro) | 达成成就 [进化论（铜）](#ach-evolutions)：累计进化武器 1 次 |
+| <img src="images/char/jackfruit.png" width="32" height="32" alt=""> [菠萝蜜卫士](CHARACTERS.md#char-jackfruit) | 达成成就 [精英怪克星（金）](#ach-champions)：累计击败 500 只词缀精英怪 |
+| <img src="images/char/pomegranate.png" width="32" height="32" alt=""> [石榴炮手](CHARACTERS.md#char-pomegranate) | 达成成就 [番茄酱风暴（钻石）](#ach-kills)：累计击败 50,000 只怪物 |
+| <img src="images/char/taro.png" width="32" height="32" alt=""> [芋头术士](CHARACTERS.md#char-taro) | 达成成就 [神兵利器（金）](#ach-t4)：累计合成 20 把 T4 武器 |
 | <img src="images/char/cabbage.png" width="32" height="32" alt=""> [卷心菜老兵](CHARACTERS.md#char-cabbage) | 达成成就 [常胜将军（银）](#ach-wins)：累计通关 10 次 |
 | <img src="images/char/blackberry.png" width="32" height="32" alt=""> [黑莓女巫](CHARACTERS.md#char-blackberry) | 达成成就 [腐烂终结](#ach-clear_5)：通关第五章，击败腐烂之源 |
 
@@ -225,6 +225,10 @@
 | <a id="ach-death_w1"></a>🤕 出师未捷 | 在第 1 波阵亡 | 🥇 1（+2 点） |
 | <a id="ach-levelups"></a>⬆️ 步步高升 | 累计升级选择 N 次属性 | 🥉 10（+1 点）<br>🥈 200（+5 点）<br>🥇 2,000（+20 点） |
 | <a id="ach-crates"></a>🎁 开箱达人 | 累计打开 N 个宝箱 | 🥉 1（+1 点）<br>🥈 50（+5 点）<br>🥇 300（+15 点） |
+| <a id="ach-talent_spent"></a>🌳 枝繁叶茂 | 在天赋树上投入 N 点 | 🥉 10（+3 点）<br>🥈 40（+10 点）<br>🥇 75（+30 点） |
+| <a id="ach-talent_branch"></a>🌿 一门深入 | 在单个天赋方向上投入 N 点 | 🥉 10（+5 点）<br>🥈 25（+15 点） |
+| <a id="ach-talent_wide"></a>🍀 博采众长 | 在 N 个天赋方向上各投入至少 10 点 | 🥉 3（+10 点）<br>🥈 6（+30 点） |
+| <a id="ach-talent_master"></a>👑 宗师之路 | 完成 N 层大师天赋 | 🥉 1（+10 点）<br>🥈 10（+30 点）<br>🥇 30（+80 点） |
 | <a id="ach-event_gold_rain"></a>🌧️ 金币雨 | 经历 3 次金币雨 | 🥇 3（+3 点） |
 | <a id="ach-event_chest_horde"></a>📦 宝箱怪潮 | 经历 3 次宝箱怪潮 | 🥇 3（+3 点） |
 | <a id="ach-event_merchant_raid"></a>🛒 商人突袭 | 经历 3 次商人突袭 | 🥇 3（+3 点） |
@@ -270,13 +274,28 @@
 | <a id="ach-win_pure_melee"></a>🥊 纯粹近战 | 只用近战武器（至少 4 把）通关 | 🥇 1（+25 点 · 天赋点 +1） |
 | <a id="ach-win_pure_ranged"></a>🏹 纯粹远程 | 只用远程武器（至少 4 把）通关 | 🥇 1（+25 点 · 天赋点 +1） |
 | <a id="ach-win_pure_elemental"></a>🔮 纯粹元素 | 只用元素武器（至少 4 把）通关 | 🥇 1（+25 点 · 天赋点 +1） |
-| <a id="ach-win_all_t4"></a>👑 全副神兵 | 通关时持有 6 把 T4 武器 | 🥇 1（+120 点 · 天赋点 +2） |
+| <a id="ach-win_all_t4"></a>👑 全副神兵 | 通关时持有 6 把 T4 武器（无尽模式撑过第 15 波后也算） | 🥇 1（+120 点 · 天赋点 +2） |
 | <a id="ach-win_hoarder"></a>🎒 满载而归 | 通关时持有 60 件道具 | 🥇 1（+40 点 · 天赋点 +1） |
 | <a id="ach-daily_runs"></a>🗓️ 每日打卡 | 参加 N 次每日挑战 | 🥉 1（+2 点）<br>🥈 10（+8 点）<br>🥇 50（+25 点） |
 | <a id="ach-daily_wins"></a>🏆 今日之星 | 通关 N 次每日挑战 | 🥉 1（+5 点）<br>🥈 10（+20 点）<br>🥇 30（+50 点） |
 | <a id="ach-daily_streak"></a>🔥 风雨无阻 | 连续 N 天参加每日挑战 | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 30（+60 点） |
 | <a id="ach-weekly_runs"></a>♾️ 周末战士 | 参加 N 次每周挑战 | 🥉 1（+3 点）<br>🥈 10（+15 点） |
 | <a id="ach-weekly_best"></a>🏔️ 本周之巅 | 每周挑战中完成第 N 波 | 🥉 20（+5 点）<br>🥈 30（+15 点）<br>🥇 45（+40 点） |
+| <a id="ach-mod_swift_foes"></a>💨 疾风怪潮·破关 | 在带「疾风怪潮」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_glass_cannon"></a>🍷 玻璃大炮·破关 | 在带「玻璃大炮」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_melee_only"></a>🥊 近战之日·破关 | 在带「近战之日」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_ranged_only"></a>🏹 远程之日·破关 | 在带「远程之日」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_elemental_only"></a>🔮 元素之日·破关 | 在带「元素之日」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_rich_start"></a>💰 富家子弟·破关 | 在带「富家子弟」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_champions"></a>✨ 精英横行·破关 | 在带「精英横行」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_giants"></a>🗿 巨人国度·破关 | 在带「巨人国度」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_swarm"></a>🐜 蜂拥而至·破关 | 在带「蜂拥而至」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_vampire"></a>🧛 吸血之夜·破关 | 在带「吸血之夜」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_one_reroll"></a>🎯 一锤定音·破关 | 在带「一锤定音」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_lucky_day"></a>🍀 幸运日·破关 | 在带「幸运日」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_scholar"></a>📚 学霸·破关 | 在带「学霸」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_tough_bosses"></a>👹 强敌·破关 | 在带「强敌」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
+| <a id="ach-mod_skill_spam"></a>🌟 技能狂欢·破关 | 在带「技能狂欢」的挑战中通关（每周挑战坚持到第 20 波） | 🥇 1（+8 点） |
 | <a id="ach-danger_max"></a>🍅 番茄危机 | 通关番茄危机 N 级 | 🥉 1（+3 点）<br>🥈 5（+10 点）<br>🥇 10（+25 点）<br>💎 15（+50 点）<br>undefined 20（+100 点） |
 | <a id="ach-danger_wins"></a>🔥 危机常客 | 在危机等级下通关 N 次 | 🥉 1（+2 点）<br>🥈 10（+10 点）<br>🥇 50（+40 点） |
 | <a id="ach-danger_ch_1"></a>📈 第 1 章危机 | 第 1 章通关危机 N 级 | 🥉 5（+5 点）<br>🥈 10（+15 点）<br>🥇 20（+50 点） |
@@ -301,6 +320,7 @@
 | <a id="ach-forge_fail"></a>💔 失败是成功之母 | 打造失败 N 次 | 🥉 1（+1 点）<br>🥈 20（+5 点）<br>🥇 100（+15 点） |
 | <a id="ach-forge_max"></a>🔥 千锤百炼 | 把任意武器打造到 +N | 🥉 3（+5 点）<br>🥈 7（+20 点 · 天赋点 +1）<br>🥇 10（+60 点 · 天赋点 +1） |
 | <a id="ach-affix_rerolls"></a>🎲 词条赌徒 | 累计洗练词条 N 次 | 🥉 1（+1 点）<br>🥈 50（+5 点）<br>🥇 500（+20 点） |
+| <a id="ach-crafts"></a>📜 照方抓药 | 按配方合成 N 次 | 🥉 1（+3 点）<br>🥈 10（+10 点）<br>🥇 50（+30 点） |
 
 <a id="cat-arsenal"></a>
 
@@ -506,27 +526,250 @@
 | <a id="ach-wpn_got_asparagus_bow"></a>🗡️ 芦笋长弓收藏者 | 累计获得 N 次芦笋长弓 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
 | <a id="ach-wpn_t4_asparagus_bow"></a>💎 神兵·芦笋长弓 | 获得 N 把 T4 芦笋长弓 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
 | <a id="ach-wpn_forge_asparagus_bow"></a>🔨 芦笋长弓匠心 | 将芦笋长弓打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
-| <a id="ach-evolutions"></a>✨ 进化论 | 累计进化武器 N 次 | 🥉 1（+5 点）<br>🥈 10（+20 点）<br>🥇 50（+60 点） |
-| <a id="ach-evolve_hell_trident"></a>🌟 地狱三叉戟诞生 | 首次进化出「地狱三叉戟」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_titan_pin"></a>🌟 擎天擀面柱诞生 | 首次进化出「擎天擀面柱」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_paoding_blade"></a>🌟 庖丁神刀诞生 | 首次进化出「庖丁神刀」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_dragon_cleaver"></a>🌟 屠龙菜刀诞生 | 首次进化出「屠龙菜刀」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_pea_gatling"></a>🌟 豌豆加特林诞生 | 首次进化出「豌豆加特林」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_ketchup_flood"></a>🌟 番茄酱洪流诞生 | 首次进化出「番茄酱洪流」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_devil_missile"></a>🌟 魔鬼椒导弹诞生 | 首次进化出「魔鬼椒导弹」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_thor_whisk"></a>🌟 雷神打蛋器诞生 | 首次进化出「雷神打蛋器」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_vampire_garlic"></a>🌟 吸血鬼大蒜诞生 | 首次进化出「吸血鬼大蒜」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_blueberry_railgun"></a>🌟 蓝莓电磁炮诞生 | 首次进化出「蓝莓电磁炮」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_golden_corn"></a>🌟 黄金爆米花炮诞生 | 首次进化出「黄金爆米花炮」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_anise_storm"></a>🌟 八角风暴诞生 | 首次进化出「八角风暴」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_iron_bastion_pan"></a>🌟 铸铁壁垒锅诞生 | 首次进化出「铸铁壁垒锅」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_melon_quake"></a>🌟 西瓜震地锤诞生 | 首次进化出「西瓜震地锤」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_storm_broccoli"></a>🌟 风暴西兰花诞生 | 首次进化出「风暴西兰花」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_mustard_dragon"></a>🌟 芥末龙息诞生 | 首次进化出「芥末龙息」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_pepper_minefield"></a>🌟 胡椒雷区诞生 | 首次进化出「胡椒雷区」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_tsunami_katana"></a>🌟 怒涛芥末刀诞生 | 首次进化出「怒涛芥末刀」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_tornado_blender"></a>🌟 龙卷破壁机诞生 | 首次进化出「龙卷破壁机」 | 🥇 1（+20 点） |
-| <a id="ach-evolve_umami_bomb"></a>🌟 鲜味核弹诞生 | 首次进化出「鲜味核弹」 | 🥇 1（+20 点） |
+| <a id="ach-wpn_got_candy_cane"></a>🗡️ 拐杖糖锤收藏者 | 累计获得 N 次拐杖糖锤 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_candy_cane"></a>💎 神兵·拐杖糖锤 | 获得 N 把 T4 拐杖糖锤 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_candy_cane"></a>🔨 拐杖糖锤匠心 | 将拐杖糖锤打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_macaron_gun"></a>🗡️ 马卡龙连发收藏者 | 累计获得 N 次马卡龙连发 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_macaron_gun"></a>💎 神兵·马卡龙连发 | 获得 N 把 T4 马卡龙连发 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_macaron_gun"></a>🔨 马卡龙连发匠心 | 将马卡龙连发打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_cream_torch"></a>🗡️ 奶油喷枪收藏者 | 累计获得 N 次奶油喷枪 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_cream_torch"></a>💎 神兵·奶油喷枪 | 获得 N 把 T4 奶油喷枪 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_cream_torch"></a>🔨 奶油喷枪匠心 | 将奶油喷枪打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_donut_ring"></a>🗡️ 甜甜圈飞环收藏者 | 累计获得 N 次甜甜圈飞环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_donut_ring"></a>💎 神兵·甜甜圈飞环 | 获得 N 把 T4 甜甜圈飞环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_donut_ring"></a>🔨 甜甜圈飞环匠心 | 将甜甜圈飞环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_caramel_aura"></a>🗡️ 焦糖光环收藏者 | 累计获得 N 次焦糖光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_caramel_aura"></a>💎 神兵·焦糖光环 | 获得 N 把 T4 焦糖光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_caramel_aura"></a>🔨 焦糖光环匠心 | 将焦糖光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_choco_mine"></a>🗡️ 巧克力地雷收藏者 | 累计获得 N 次巧克力地雷 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_choco_mine"></a>💎 神兵·巧克力地雷 | 获得 N 把 T4 巧克力地雷 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_choco_mine"></a>🔨 巧克力地雷匠心 | 将巧克力地雷打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_popping_candy"></a>🗡️ 跳跳糖电击收藏者 | 累计获得 N 次跳跳糖电击 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_popping_candy"></a>💎 神兵·跳跳糖电击 | 获得 N 把 T4 跳跳糖电击 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_popping_candy"></a>🔨 跳跳糖电击匠心 | 将跳跳糖电击打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_popsicle_blade"></a>🗡️ 冰棍刺剑收藏者 | 累计获得 N 次冰棍刺剑 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_popsicle_blade"></a>💎 神兵·冰棍刺剑 | 获得 N 把 T4 冰棍刺剑 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_popsicle_blade"></a>🔨 冰棍刺剑匠心 | 将冰棍刺剑打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_icecream_hammer"></a>🗡️ 雪糕大锤收藏者 | 累计获得 N 次雪糕大锤 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_icecream_hammer"></a>💎 神兵·雪糕大锤 | 获得 N 把 T4 雪糕大锤 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_icecream_hammer"></a>🔨 雪糕大锤匠心 | 将雪糕大锤打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_shaved_ice_gun"></a>🗡️ 刨冰机枪收藏者 | 累计获得 N 次刨冰机枪 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_shaved_ice_gun"></a>💎 神兵·刨冰机枪 | 获得 N 把 T4 刨冰机枪 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_shaved_ice_gun"></a>🔨 刨冰机枪匠心 | 将刨冰机枪打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_slush_spray"></a>🗡️ 冰沙喷雾收藏者 | 累计获得 N 次冰沙喷雾 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_slush_spray"></a>💎 神兵·冰沙喷雾 | 获得 N 把 T4 冰沙喷雾 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_slush_spray"></a>🔨 冰沙喷雾匠心 | 将冰沙喷雾打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_frost_aura"></a>🗡️ 寒霜光环收藏者 | 累计获得 N 次寒霜光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_frost_aura"></a>💎 神兵·寒霜光环 | 获得 N 把 T4 寒霜光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_frost_aura"></a>🔨 寒霜光环匠心 | 将寒霜光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_glacier_mortar"></a>🗡️ 冰川迫击炮收藏者 | 累计获得 N 次冰川迫击炮 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_glacier_mortar"></a>💎 神兵·冰川迫击炮 | 获得 N 把 T4 冰川迫击炮 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_glacier_mortar"></a>🔨 冰川迫击炮匠心 | 将冰川迫击炮打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_icicle_volley"></a>🗡️ 冰锥连射收藏者 | 累计获得 N 次冰锥连射 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_icicle_volley"></a>💎 神兵·冰锥连射 | 获得 N 把 T4 冰锥连射 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_icicle_volley"></a>🔨 冰锥连射匠心 | 将冰锥连射打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_shock_wok"></a>🗡️ 电磁炒锅收藏者 | 累计获得 N 次电磁炒锅 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_shock_wok"></a>💎 神兵·电磁炒锅 | 获得 N 把 T4 电磁炒锅 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_shock_wok"></a>🔨 电磁炒锅匠心 | 将电磁炒锅打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_volt_fork"></a>🗡️ 高压电叉收藏者 | 累计获得 N 次高压电叉 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_volt_fork"></a>💎 神兵·高压电叉 | 获得 N 把 T4 高压电叉 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_volt_fork"></a>🔨 高压电叉匠心 | 将高压电叉打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_microwave_cannon"></a>🗡️ 微波炉炮收藏者 | 累计获得 N 次微波炉炮 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_microwave_cannon"></a>💎 神兵·微波炉炮 | 获得 N 把 T4 微波炉炮 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_microwave_cannon"></a>🔨 微波炉炮匠心 | 将微波炉炮打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_rice_cooker_aura"></a>🗡️ 电饭煲光环收藏者 | 累计获得 N 次电饭煲光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_rice_cooker_aura"></a>💎 神兵·电饭煲光环 | 获得 N 把 T4 电饭煲光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_rice_cooker_aura"></a>🔨 电饭煲光环匠心 | 将电饭煲光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_grill_arc"></a>🗡️ 电烤架收藏者 | 累计获得 N 次电烤架 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_grill_arc"></a>💎 神兵·电烤架 | 获得 N 把 T4 电烤架 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_grill_arc"></a>🔨 电烤架匠心 | 将电烤架打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_mixer_storm"></a>🗡️ 电动打蛋机收藏者 | 累计获得 N 次电动打蛋机 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_mixer_storm"></a>💎 神兵·电动打蛋机 | 获得 N 把 T4 电动打蛋机 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_mixer_storm"></a>🔨 电动打蛋机匠心 | 将电动打蛋机打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_toaster_zap"></a>🗡️ 吐司闪电收藏者 | 累计获得 N 次吐司闪电 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_toaster_zap"></a>💎 神兵·吐司闪电 | 获得 N 把 T4 吐司闪电 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_toaster_zap"></a>🔨 吐司闪电匠心 | 将吐司闪电打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_toxic_spike"></a>🗡️ 毒菇刺收藏者 | 累计获得 N 次毒菇刺 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_toxic_spike"></a>💎 神兵·毒菇刺 | 获得 N 把 T4 毒菇刺 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_toxic_spike"></a>🔨 毒菇刺匠心 | 将毒菇刺打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_spore_cannon"></a>🗡️ 孢子炮收藏者 | 累计获得 N 次孢子炮 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_spore_cannon"></a>💎 神兵·孢子炮 | 获得 N 把 T4 孢子炮 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_spore_cannon"></a>🔨 孢子炮匠心 | 将孢子炮打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_miasma_sprayer"></a>🗡️ 毒雾喷壶收藏者 | 累计获得 N 次毒雾喷壶 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_miasma_sprayer"></a>💎 神兵·毒雾喷壶 | 获得 N 把 T4 毒雾喷壶 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_miasma_sprayer"></a>🔨 毒雾喷壶匠心 | 将毒雾喷壶打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_rot_aura"></a>🗡️ 腐菌光环收藏者 | 累计获得 N 次腐菌光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_rot_aura"></a>💎 神兵·腐菌光环 | 获得 N 把 T4 腐菌光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_rot_aura"></a>🔨 腐菌光环匠心 | 将腐菌光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_toadstool_mine"></a>🗡️ 毒蘑菇雷收藏者 | 累计获得 N 次毒蘑菇雷 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_toadstool_mine"></a>💎 神兵·毒蘑菇雷 | 获得 N 把 T4 毒蘑菇雷 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_toadstool_mine"></a>🔨 毒蘑菇雷匠心 | 将毒蘑菇雷打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_mycelium_boomerang"></a>🗡️ 菌丝回旋镖收藏者 | 累计获得 N 次菌丝回旋镖 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_mycelium_boomerang"></a>💎 神兵·菌丝回旋镖 | 获得 N 把 T4 菌丝回旋镖 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_mycelium_boomerang"></a>🔨 菌丝回旋镖匠心 | 将菌丝回旋镖打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_blowpipe"></a>🗡️ 毒刺吹管收藏者 | 累计获得 N 次毒刺吹管 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_blowpipe"></a>💎 神兵·毒刺吹管 | 获得 N 把 T4 毒刺吹管 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_blowpipe"></a>🔨 毒刺吹管匠心 | 将毒刺吹管打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_bbq_skewer"></a>🗡️ 烤肉长签收藏者 | 累计获得 N 次烤肉长签 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_bbq_skewer"></a>💎 神兵·烤肉长签 | 获得 N 把 T4 烤肉长签 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_bbq_skewer"></a>🔨 烤肉长签匠心 | 将烤肉长签打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_coal_tongs"></a>🗡️ 炭火钳收藏者 | 累计获得 N 次炭火钳 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_coal_tongs"></a>💎 神兵·炭火钳 | 获得 N 把 T4 炭火钳 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_coal_tongs"></a>🔨 炭火钳匠心 | 将炭火钳打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_bbq_sauce_cannon"></a>🗡️ 烧烤酱炮收藏者 | 累计获得 N 次烧烤酱炮 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_bbq_sauce_cannon"></a>💎 神兵·烧烤酱炮 | 获得 N 把 T4 烧烤酱炮 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_bbq_sauce_cannon"></a>🔨 烧烤酱炮匠心 | 将烧烤酱炮打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_charcoal_aura"></a>🗡️ 炭烤光环收藏者 | 累计获得 N 次炭烤光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_charcoal_aura"></a>💎 神兵·炭烤光环 | 获得 N 把 T4 炭烤光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_charcoal_aura"></a>🔨 炭烤光环匠心 | 将炭烤光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_ember_mine"></a>🗡️ 火炭雷收藏者 | 累计获得 N 次火炭雷 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_ember_mine"></a>💎 神兵·火炭雷 | 获得 N 把 T4 火炭雷 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_ember_mine"></a>🔨 火炭雷匠心 | 将火炭雷打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_cumin_star"></a>🗡️ 孜然飞镖收藏者 | 累计获得 N 次孜然飞镖 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_cumin_star"></a>💎 神兵·孜然飞镖 | 获得 N 把 T4 孜然飞镖 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_cumin_star"></a>🔨 孜然飞镖匠心 | 将孜然飞镖打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_hot_sauce_gun"></a>🗡️ 辣酱手枪收藏者 | 累计获得 N 次辣酱手枪 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_hot_sauce_gun"></a>💎 神兵·辣酱手枪 | 获得 N 把 T4 辣酱手枪 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_hot_sauce_gun"></a>🔨 辣酱手枪匠心 | 将辣酱手枪打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_sushi_blade"></a>🗡️ 寿司刀收藏者 | 累计获得 N 次寿司刀 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_sushi_blade"></a>💎 神兵·寿司刀 | 获得 N 把 T4 寿司刀 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_sushi_blade"></a>🔨 寿司刀匠心 | 将寿司刀打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_twin_cleavers"></a>🗡️ 双持菜刀收藏者 | 累计获得 N 次双持菜刀 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_twin_cleavers"></a>💎 神兵·双持菜刀 | 获得 N 把 T4 双持菜刀 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_twin_cleavers"></a>🔨 双持菜刀匠心 | 将双持菜刀打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_knife_case"></a>🗡️ 飞刀匣收藏者 | 累计获得 N 次飞刀匣 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_knife_case"></a>💎 神兵·飞刀匣 | 获得 N 把 T4 飞刀匣 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_knife_case"></a>🔨 飞刀匣匠心 | 将飞刀匣打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_blade_aura"></a>🗡️ 刃风光环收藏者 | 累计获得 N 次刃风光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_blade_aura"></a>💎 神兵·刃风光环 | 获得 N 把 T4 刃风光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_blade_aura"></a>🔨 刃风光环匠心 | 将刃风光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_grater_sweep"></a>🗡️ 刨丝刀收藏者 | 累计获得 N 次刨丝刀 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_grater_sweep"></a>💎 神兵·刨丝刀 | 获得 N 把 T4 刨丝刀 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_grater_sweep"></a>🔨 刨丝刀匠心 | 将刨丝刀打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_chili_shuriken"></a>🗡️ 剁椒飞轮收藏者 | 累计获得 N 次剁椒飞轮 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_chili_shuriken"></a>💎 神兵·剁椒飞轮 | 获得 N 把 T4 剁椒飞轮 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_chili_shuriken"></a>🔨 剁椒飞轮匠心 | 将剁椒飞轮打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_mandoline"></a>🗡️ 切片器收藏者 | 累计获得 N 次切片器 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_mandoline"></a>💎 神兵·切片器 | 获得 N 把 T4 切片器 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_mandoline"></a>🔨 切片器匠心 | 将切片器打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_coconut_cannon"></a>🗡️ 椰子炮收藏者 | 累计获得 N 次椰子炮 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_coconut_cannon"></a>💎 神兵·椰子炮 | 获得 N 把 T4 椰子炮 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_coconut_cannon"></a>🔨 椰子炮匠心 | 将椰子炮打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_pumpkin_mortar"></a>🗡️ 南瓜迫击炮收藏者 | 累计获得 N 次南瓜迫击炮 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_pumpkin_mortar"></a>💎 神兵·南瓜迫击炮 | 获得 N 把 T4 南瓜迫击炮 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_pumpkin_mortar"></a>🔨 南瓜迫击炮匠心 | 将南瓜迫击炮打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_melon_grenade"></a>🗡️ 西瓜榴弹收藏者 | 累计获得 N 次西瓜榴弹 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_melon_grenade"></a>💎 神兵·西瓜榴弹 | 获得 N 把 T4 西瓜榴弹 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_melon_grenade"></a>🔨 西瓜榴弹匠心 | 将西瓜榴弹打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_potato_mine"></a>🗡️ 土豆地雷收藏者 | 累计获得 N 次土豆地雷 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_potato_mine"></a>💎 神兵·土豆地雷 | 获得 N 把 T4 土豆地雷 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_potato_mine"></a>🔨 土豆地雷匠心 | 将土豆地雷打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_corn_scatter"></a>🗡️ 玉米散弹收藏者 | 累计获得 N 次玉米散弹 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_corn_scatter"></a>💎 神兵·玉米散弹 | 获得 N 把 T4 玉米散弹 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_corn_scatter"></a>🔨 玉米散弹匠心 | 将玉米散弹打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_pea_sniper"></a>🗡️ 豆荚狙击收藏者 | 累计获得 N 次豆荚狙击 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_pea_sniper"></a>💎 神兵·豆荚狙击 | 获得 N 把 T4 豆荚狙击 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_pea_sniper"></a>🔨 豆荚狙击匠心 | 将豆荚狙击打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_mint_aura"></a>🗡️ 薄荷清凉光环收藏者 | 累计获得 N 次薄荷清凉光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_mint_aura"></a>💎 神兵·薄荷清凉光环 | 获得 N 把 T4 薄荷清凉光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_mint_aura"></a>🔨 薄荷清凉光环匠心 | 将薄荷清凉光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_pepper_storm_aura"></a>🗡️ 胡椒风暴收藏者 | 累计获得 N 次胡椒风暴 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_pepper_storm_aura"></a>💎 神兵·胡椒风暴 | 获得 N 把 T4 胡椒风暴 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_pepper_storm_aura"></a>🔨 胡椒风暴匠心 | 将胡椒风暴打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_honey_aura"></a>🗡️ 蜂蜜光环收藏者 | 累计获得 N 次蜂蜜光环 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_honey_aura"></a>💎 神兵·蜂蜜光环 | 获得 N 把 T4 蜂蜜光环 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_honey_aura"></a>🔨 蜂蜜光环匠心 | 将蜂蜜光环打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_teapot_storm"></a>🗡️ 茶壶雷暴收藏者 | 累计获得 N 次茶壶雷暴 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_teapot_storm"></a>💎 神兵·茶壶雷暴 | 获得 N 把 T4 茶壶雷暴 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_teapot_storm"></a>🔨 茶壶雷暴匠心 | 将茶壶雷暴打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_jelly_bounce"></a>🗡️ 果冻弹收藏者 | 累计获得 N 次果冻弹 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_jelly_bounce"></a>💎 神兵·果冻弹 | 获得 N 把 T4 果冻弹 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_jelly_bounce"></a>🔨 果冻弹匠心 | 将果冻弹打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-wpn_got_syrup_sprayer"></a>🗡️ 糖浆喷枪收藏者 | 累计获得 N 次糖浆喷枪 | 🥉 1（+1 点）<br>🥈 10（+3 点）<br>🥇 30（+8 点） |
+| <a id="ach-wpn_t4_syrup_sprayer"></a>💎 神兵·糖浆喷枪 | 获得 N 把 T4 糖浆喷枪 | 🥉 1（+10 点）<br>🥈 5（+30 点） |
+| <a id="ach-wpn_forge_syrup_sprayer"></a>🔨 糖浆喷枪匠心 | 将糖浆喷枪打造到 +N | 🥉 3（+5 点）<br>🥈 7（+15 点）<br>🥇 10（+40 点） |
+| <a id="ach-evolutions"></a>✨ 进化论 | 累计合成超武 N 次 | 🥉 1（+5 点）<br>🥈 10（+20 点）<br>🥇 50（+60 点） |
+| <a id="ach-evolve_hell_trident"></a>🌟 地狱三叉戟诞生 | 首次合成超武「地狱三叉戟」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_titan_pin"></a>🌟 擎天擀面柱诞生 | 首次合成超武「擎天擀面柱」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_paoding_blade"></a>🌟 庖丁神刀诞生 | 首次合成超武「庖丁神刀」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_dragon_cleaver"></a>🌟 屠龙菜刀诞生 | 首次合成超武「屠龙菜刀」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_pea_gatling"></a>🌟 豌豆加特林诞生 | 首次合成超武「豌豆加特林」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_ketchup_flood"></a>🌟 番茄酱洪流诞生 | 首次合成超武「番茄酱洪流」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_devil_missile"></a>🌟 魔鬼椒导弹诞生 | 首次合成超武「魔鬼椒导弹」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_thor_whisk"></a>🌟 雷神打蛋器诞生 | 首次合成超武「雷神打蛋器」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_vampire_garlic"></a>🌟 吸血鬼大蒜诞生 | 首次合成超武「吸血鬼大蒜」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_blueberry_railgun"></a>🌟 蓝莓电磁炮诞生 | 首次合成超武「蓝莓电磁炮」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_golden_corn"></a>🌟 黄金爆米花炮诞生 | 首次合成超武「黄金爆米花炮」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_anise_storm"></a>🌟 八角风暴诞生 | 首次合成超武「八角风暴」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_iron_bastion_pan"></a>🌟 铸铁壁垒锅诞生 | 首次合成超武「铸铁壁垒锅」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_melon_quake"></a>🌟 西瓜震地锤诞生 | 首次合成超武「西瓜震地锤」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_storm_broccoli"></a>🌟 风暴西兰花诞生 | 首次合成超武「风暴西兰花」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_mustard_dragon"></a>🌟 芥末龙息诞生 | 首次合成超武「芥末龙息」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_pepper_minefield"></a>🌟 胡椒雷区诞生 | 首次合成超武「胡椒雷区」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_tsunami_katana"></a>🌟 怒涛芥末刀诞生 | 首次合成超武「怒涛芥末刀」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_tornado_blender"></a>🌟 龙卷破壁机诞生 | 首次合成超武「龙卷破壁机」 | 🥇 1（+20 点） |
+| <a id="ach-evolve_umami_bomb"></a>🌟 鲜味核弹诞生 | 首次合成超武「鲜味核弹」 | 🥇 1（+20 点） |
+| <a id="ach-fused_kinds"></a>🧬 融合大师 | 合成过 N 种不同的融合武器 | 🥉 5（+10 点）<br>🥈 20（+30 点）<br>🥇 60（+100 点） |
+| <a id="ach-fuse_sushi_twin_blade"></a>🧪 双刃寿司刀铸成 | 首次合成「双刃寿司刀」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_blast_pea_cannon"></a>🧪 爆裂豌豆炮铸成 | 首次合成「爆裂豌豆炮」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_curry_garlic_field"></a>🧪 咖喱蒜香结界铸成 | 首次合成「咖喱蒜香结界」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_thunder_orchard"></a>🧪 雷霆果园铸成 | 首次合成「雷霆果园」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_frost_cleaver"></a>🧪 霜刃剁骨刀铸成 | 首次合成「霜刃剁骨刀」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_toxic_gatling"></a>🧪 毒雾加特林铸成 | 首次合成「毒雾加特林」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_inferno_mortar"></a>🧪 炎狱迫击炮铸成 | 首次合成「炎狱迫击炮」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_storm_whisk_pan"></a>🧪 雷霆铁壁锅铸成 | 首次合成「雷霆铁壁锅」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_railgun_sniper"></a>🧪 电磁蓝莓狙铸成 | 首次合成「电磁蓝莓狙」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_honey_frost_aura"></a>🧪 蜜霜结界铸成 | 首次合成「蜜霜结界」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_spore_minefield"></a>🧪 孢子雷区铸成 | 首次合成「孢子雷区」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_candy_shotgun"></a>🧪 糖果霰弹枪铸成 | 首次合成「糖果霰弹枪」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_dragon_breath_flame"></a>🧪 龙息喷流铸成 | 首次合成「龙息喷流」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_coconut_quake_mace"></a>🧪 椰雷流星锤铸成 | 首次合成「椰雷流星锤」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_anise_frost_storm"></a>🧪 霜星八角铸成 | 首次合成「霜星八角」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_holy_salt_barrier"></a>🧪 圣盐结界铸成 | 首次合成「圣盐结界」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_knife_ember_mine"></a>🧪 烈焰菜刀铸成 | 首次合成「烈焰菜刀」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_thunder_durian_volt_fork"></a>🧪 贯穿雷霆榴莲铸成 | 首次合成「贯穿雷霆榴莲」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_plate_frisbee_onion_boomerang"></a>🧪 鲜果餐盘飞碟铸成 | 首次合成「鲜果餐盘飞碟」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_candy_cane_glacier_mortar"></a>🧪 霜寒拐杖糖锤铸成 | 首次合成「霜寒拐杖糖锤」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_corn_scatter_grater_sweep"></a>🧪 致命玉米散弹铸成 | 首次合成「致命玉米散弹」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_sea_urchin_mine_dragonfruit_orb"></a>🧪 烈焰海胆雷铸成 | 首次合成「烈焰海胆雷」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_twin_cleavers_ketchup"></a>🧪 散射双持菜刀铸成 | 首次合成「散射双持菜刀」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_jelly_bounce_chili_shuriken"></a>🧪 烈焰果冻弹铸成 | 首次合成「烈焰果冻弹」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_slush_spray_caramel_aura"></a>🧪 蚀骨冰沙喷雾铸成 | 首次合成「蚀骨冰沙喷雾」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_skewer_soy_pistol"></a>🧪 酱爆烤串签铸成 | 首次合成「酱爆烤串签」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_cucumber_katana_soda"></a>🧪 霜寒黄瓜武士刀铸成 | 首次合成「霜寒黄瓜武士刀」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_corn_cannon_blade_aura"></a>🧪 锐锋玉米加农铸成 | 首次合成「锐锋玉米加农」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_grill_arc_pepper_storm_aura"></a>🧪 酱爆电烤架铸成 | 首次合成「酱爆电烤架」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_teapot_storm_charcoal_aura"></a>🧪 烈焰茶壶雷暴铸成 | 首次合成「烈焰茶壶雷暴」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_honey_blaster_pumpkin_mortar"></a>🧪 烈焰蜂蜜喷枪铸成 | 首次合成「烈焰蜂蜜喷枪」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_popcorn_machine_rot_aura"></a>🧪 剧毒爆米花机铸成 | 首次合成「剧毒爆米花机」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_donut_ring_dynamite_drumstick"></a>🧪 爆裂甜甜圈飞环铸成 | 首次合成「爆裂甜甜圈飞环」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_spatula_slingshot"></a>🧪 连环锅铲铸成 | 首次合成「连环锅铲」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_cola_zapper_mixer_storm"></a>🧪 主厨可乐电击枪铸成 | 首次合成「主厨可乐电击枪」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_bean_bazooka_soy_bomb"></a>🧪 酱爆豆子火箭筒铸成 | 首次合成「酱爆豆子火箭筒」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_steam_kettle_asparagus_bow"></a>🧪 贯穿蒸汽水壶铸成 | 首次合成「贯穿蒸汽水壶」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_lightning_whisk_pepper_grinder"></a>🧪 贯穿闪电打蛋器铸成 | 首次合成「贯穿闪电打蛋器」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_choco_mine_bbq_torch"></a>🧪 烈焰巧克力地雷铸成 | 首次合成「烈焰巧克力地雷」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_cherry_bomb_bamboo_spear"></a>🧪 致命樱桃炸弹铸成 | 首次合成「致命樱桃炸弹」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_kitchen_scissors_toxic_spike"></a>🧪 剧毒厨房剪刀铸成 | 首次合成「剧毒厨房剪刀」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_carrot_crossbow_fork"></a>🧪 主厨胡萝卜弩铸成 | 首次合成「主厨胡萝卜弩」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_spore_sprayer_shaved_ice_gun"></a>🧪 霜寒孢子喷壶铸成 | 首次合成「霜寒孢子喷壶」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_popsicle_blade_olive_launcher"></a>🧪 连环冰棍刺剑铸成 | 首次合成「连环冰棍刺剑」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_bbq_skewer_cream_torch"></a>🧪 霜寒烤肉长签铸成 | 首次合成「霜寒烤肉长签」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_coconut_gloves_ice_cube_tray"></a>🧪 霜寒椰壳拳套铸成 | 首次合成「霜寒椰壳拳套」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_knife_case_microwave_cannon"></a>🧪 爆裂飞刀匣铸成 | 首次合成「爆裂飞刀匣」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_coal_tongs_whisk_spin"></a>🧪 霜寒炭火钳铸成 | 首次合成「霜寒炭火钳」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_toaster_zap_hot_sauce_gun"></a>🧪 烈焰吐司闪电铸成 | 首次合成「烈焰吐司闪电」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_ladle_watermelon_hammer"></a>🧪 爆裂汤勺铸成 | 首次合成「爆裂汤勺」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_mint_frost_mine_blender_aura"></a>🧪 致命薄荷冰雷铸成 | 首次合成「致命薄荷冰雷」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_melon_grenade_pumpkin_lantern"></a>🧪 贯穿西瓜榴弹铸成 | 首次合成「贯穿西瓜榴弹」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_blowpipe_syrup_sprayer"></a>🧪 烈焰毒刺吹管铸成 | 首次合成「烈焰毒刺吹管」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_chopsticks_pepper_spray"></a>🧪 烈焰竹筷铸成 | 首次合成「烈焰竹筷」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_pizza_cutter_potato_mine"></a>🧪 爆裂披萨滚刀铸成 | 首次合成「爆裂披萨滚刀」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_popping_candy_rolling_pin"></a>🧪 重击跳跳糖电击铸成 | 首次合成「重击跳跳糖电击」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_baguette_sword_spore_cannon"></a>🧪 剧毒法棍剑铸成 | 首次合成「剧毒法棍剑」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_mycelium_boomerang_rice_cooker_aura"></a>🧪 霜寒菌丝回旋镖铸成 | 首次合成「霜寒菌丝回旋镖」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_cumin_star_mandoline"></a>🧪 贯穿孜然飞镖铸成 | 首次合成「贯穿孜然飞镖」 | 🥇 1（+8 点） |
+| <a id="ach-fuse_fz_meat_tenderizer_seed_spitter"></a>🧪 鲜果松肉锤铸成 | 首次合成「鲜果松肉锤」 | 🥇 1（+8 点） |
 
 <a id="cat-collection"></a>
 
@@ -670,7 +913,7 @@
 
 | 成就 | 条件 | 等级目标与奖励 |
 | --- | --- | --- |
-| <a id="ach-codex_weapons"></a>🗡️ 军火库 | 在图鉴中发现 N 把武器 | 🥉 9（+2 点）<br>🥈 25（+8 点）<br>🥇 66（+30 点 · 天赋点 +1） |
+| <a id="ach-codex_weapons"></a>🗡️ 军火库 | 在图鉴中发现 N 把武器 | 🥉 9（+2 点）<br>🥈 25（+8 点）<br>🥇 180（+30 点 · 天赋点 +1） |
 | <a id="ach-codex_items"></a>📦 道具百科 | 在图鉴中发现 N 件道具 | 🥉 50（+3 点）<br>🥈 200（+10 点）<br>🥇 603（+60 点 · 天赋点 +1） |
 | <a id="ach-codex_monsters"></a>🔬 怪物学者 | 在图鉴中发现 N 种小怪 | 🥉 20（+3 点）<br>🥈 87（+30 点 · 天赋点 +1） |
 | <a id="ach-codex_bosses"></a>📜 猎魔名录 | 在图鉴中发现 N 名精英与 Boss | 🥉 15（+10 点）<br>🥈 52（+50 点 · 天赋点 +1） |

@@ -13,6 +13,7 @@ import { ENEMY_MAP } from '../data/enemies';
 import { WEAPON_MAP } from '../data/weapons';
 import { weaponRange } from '../systems/WeaponSystem';
 import { applyBuild, type DevBuild, type DevWeapon } from './build';
+import { RES } from '../systems/HiDpi';
 
 export type AttackMode = 'ai' | 'none' | 'manual';
 export interface SpawnOpts {
@@ -623,7 +624,7 @@ export class Sandbox {
   applyCamera(): void {
     if (!this.running) return;
     const cam = this.g.cameras.main;
-    cam.setZoom(this.zoom);
+    cam.setZoom(this.zoom * RES); // 逻辑缩放 × 高清渲染倍率
     if (this.camMode === 'player') cam.startFollow(this.g.player, true, 0.12, 0.12);
     else if (this.camMode === 'target') {
       const t = [...this.tracked].reverse().find((x) => this.isAlive(x));
@@ -633,7 +634,7 @@ export class Sandbox {
   }
   setZoom(z: number): void {
     this.zoom = Phaser.Math.Clamp(z, 0.3, 3);
-    if (this.running) this.g.cameras.main.setZoom(this.zoom);
+    if (this.running) this.g.cameras.main.setZoom(this.zoom * RES);
   }
   pan(dx: number, dy: number): void {
     if (!this.running) return;

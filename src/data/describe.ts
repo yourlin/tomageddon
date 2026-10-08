@@ -1,9 +1,16 @@
 // 道具 / 特效的文字描述（自动生成）
 import type { ItemDef, ItemSpecial } from './items';
-import { describeMods } from './stats';
+import { describeMods, STAT_INFO, type StatKey } from './stats';
+import { WEAPON_SETS, type WeaponDef } from './weapons';
+import { weaponTags } from './weaponTags';
 import { STATUSES, type StatusApply } from './statuses';
 import { tx } from '../i18n';
-import { BALANCE } from './balance';
+import { BALANCE, armorMultiplier, speedBonusPct } from './balance';
+
+/** 角色的「属性与特性」：属性修正（按数值自动生成，与实际生效一致）+ 特性里的特殊效果（特性不再重复写属性） */
+export function charTraitLines(c: { mods: Parameters<typeof describeMods>[0]; traits: string[] }): string[] {
+  return [...describeMods(c.mods), ...c.traits];
+}
 
 const st = (a: StatusApply) =>
   `${a.stacks && a.stacks > 1 ? a.stacks + tx('层', '× ') : ''}${STATUSES[a.id].name}${a.value && a.id === 'shield' ? tx(`（${a.value}）`, ` (${a.value})`) : ''}`;
@@ -14,6 +21,7 @@ export function describeSpecial(s: ItemSpecial | undefined): string[] {
   if (!s) return [];
   const out: string[] = [];
   if (s.onHit) out.push(tx(`命中时${list(s.onHit)}`, `On hit: ${list(s.onHit)}`));
+  if (s.onAuraHit) out.push(tx(`光环武器命中时${list(s.onAuraHit)}`, `On aura weapon hit: ${list(s.onAuraHit)}`));
   if (s.onHitSelf) out.push(tx(`命中时自身获得${list(s.onHitSelf)}`, `On hit, gain ${list(s.onHitSelf)}`));
   if (s.onKillSelf) out.push(tx(`击杀时获得${list(s.onKillSelf)}`, `On kill, gain ${list(s.onKillSelf)}`));
   if (s.onHurtSelf) out.push(tx(`受伤时获得${list(s.onHurtSelf)}`, `When hurt, gain ${list(s.onHurtSelf)}`));
@@ -74,4 +82,59 @@ export function describeSpecial(s: ItemSpecial | undefined): string[] {
 
 export function describeItem(it: ItemDef): string[] {
   return [...describeMods(it.mods), ...(it.desc ? [it.desc] : describeSpecial(it.special))];
+}
+
+/** 武器的伤害类型（决定吃哪个「分类伤害 %」）：光环武器算光环，其余按武器类别；icon 为类型图标纹理（见 Textures） */
+export function weaponDmgType(def: WeaponDef): { key: StatKey; name: string; color: string; icon: string } {
+  const key: StatKey =
+    def.kind === 'aura' ? 'auraPct' : def.cls === 'melee' ? 'meleePct' : def.cls === 'ranged' ? 'rangedPct' : 'elementalPct';
+  const name = {
+    auraPct: tx('光环', 'Aura'),
+    meleePct: tx('近战', 'Melee'),
+    rangedPct: tx('远程', 'Ranged'),
+    elementalPct: tx('元素', 'Elemental'),
+  }[key as 'auraPct'];
+  const icon = `dmgtype_${key === 'auraPct' ? 'aura' : def.cls}`;
+  return { key, name, color: STAT_INFO[key].color, icon };
+}
+
+/** 移动速度点数的实际加速说明，例：「(+18%)」「(−10%)」「(+95%·趋近上限 +120%)」 */
+export function speedText(points: number): string {
+  const p = Math.round(speedBonusPct(points));
+  return `(${p >= 0 ? '+' : ''}${p}%)`;
+}
+
+/** 护甲的减伤说明，例：「(减伤 50%)」「(减伤 75%·上限)」 */
+export function armorText(armor: number): string {
+  const r = Math.round((1 - armorMultiplier(armor)) * 100);
+  const capped = armorMultiplier(armor) <= BALANCE.armorMinTaken;
+  return tx(`(减伤 ${r}%${capped ? '·上限' : ''})`, ` (−${r}% dmg${capped ? ', cap' : ''})`);
+}
+
+/** 单把武器上显示的武器套装说明：每个相关标签一行，含持有数、当前生效档与下一档。
+ *  counts 为当前各标签件数（RunState.setCounts）；adding 表示这把还没持有（商店预览），按买下后的件数显示 */
+export function describeWeaponSets(
+  def: WeaponDef,
+  counts: Record<string, number>,
+  adding = false,
+  tagName: (t: string) => string = (t) => t,
+): string[] {
+  const out: string[] = [];
+  for (const t of weaponTags(def)) {
+    const set = WEAPON_SETS[t];
+    if (!set) continue;
+    const n = (counts[t] ?? 0) + (adding ? 1 : 0);
+    const ks = Object.keys(set.bonus)
+      .map(Number)
+      .sort((a, b) => a - b);
+    const cur = ks.filter((k) => n >= k).pop();
+    const next = ks.find((k) => n < k);
+    const mods = (k: number) => describeMods(set.bonus[k] as Parameters<typeof describeMods>[0]).join(' ');
+    const parts: string[] = [];
+    if (cur !== undefined) parts.push(tx(`生效 ${mods(cur)}`, `active ${mods(cur)}`));
+    if (next !== undefined) parts.push(tx(`${next} 把 ${mods(next)}`, `${next}: ${mods(next)}`));
+    else parts.push(tx('已满', 'maxed'));
+    out.push(tx(`✦ ${tagName(t)}套装（${n} 把）：`, `✦ ${tagName(t)} set (${n}): `) + parts.join(tx('；', '; ')));
+  }
+  return out;
 }

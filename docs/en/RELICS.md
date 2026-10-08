@@ -24,7 +24,7 @@ Relics are new in 1.4.0: each one bends the rules instead of just adding stats. 
 | ☀️ Grow Lamp | Greenhouse | +2 HP Regen; +8 Harvest |
 | 💧 Drip Hose | Greenhouse | +3 HP Regen; Gain 10 Seeds after each wave |
 | 🏠 Glass Roof | Greenhouse | +8 Max HP; +3 Armor |
-| 🪙 Lucky Coin | Fortune | +25 Luck |
+| 🪙 Lucky Coin | Fortune | +10 Luck |
 | 🐷 Piggy Bank | Fortune | Earn 5% interest each wave |
 | 🎫 Golden Ticket | Fortune | 1 free reroll(s) per shop |
 | 👨‍🍳 Chef's Hat | Kitchen | +12% Melee Weapon Dmg; +5% Attack Speed |
@@ -32,7 +32,7 @@ Relics are new in 1.4.0: each one bends the rules instead of just adding stats. 
 | 🪵 Old Cutting Board | Kitchen | +3 Melee Damage; +4 Armor |
 | 🧑‍🌾 Scarecrow | Field | +10 Max HP; Reflect 6 damage when hurt |
 | 🔱 Pitchfork | Field | +3 Ranged Damage; +40 Range |
-| 🔑 Tractor Key | Field | +10% Move Speed; +60 Pickup Range |
+| 🔑 Tractor Key | Field | +5 Move Speed; +60 Pickup Range |
 | 📒 Study Notes | — | +25% XP Gain; +1 level-up choice(s) |
 | 🎁 Mystery Box | — | Gain 1 crate(s) after each wave |
 | 🔥 Phoenix Seed | — | Revive 1 time(s) on death |
@@ -50,19 +50,19 @@ Relics are new in 1.4.0: each one bends the rules instead of just adding stats. 
 | Relic | Set | Effect |
 | --- | --- | --- |
 | 🩸 Blood Pact | Night | +15% Life Steal Chance; HP Regen does nothing |
-| 🦇 Bat Wing | Night | +12% Dodge; +8% Move Speed; Armor does nothing |
+| 🦇 Bat Wing | Night | +12% Dodge; +4 Move Speed; Armor does nothing |
 | 🌙 Moon Shard | Night | +12% Crit Chance; -20% all healing |
 | 💔 Glass Heart | Glass | +25% All Damage; Max HP ×0.75 |
 | 🔍 Crystal Lens | Glass | +10% Crit Chance; +60 Range; You cannot dodge |
 | 🧊 Thin Ice Charm | Glass | +18% Attack Speed; +10% enemy damage |
-| 🛡️ Iron Skin | Stone | +10 Armor; -12% Move Speed |
+| 🛡️ Iron Skin | Stone | +10 Armor; -6 Move Speed |
 | 🥾 Stone Boots | Stone | +25 Max HP; -10% Dodge |
 | ⚓ Anchor | Stone | +20% Melee Weapon Dmg; -8% Attack Speed |
 | 💰 Greedy Sack | — | +15% shop prices; +25% Seed income |
 | 🍔 Fast Food | — | +15 Max HP; Life Steal does nothing |
 | ⚙️ Overclock Chip | — | -8 Max HP; +25% Attack Speed |
 | 🏮 Hermit's Lantern | — | +25% Skill Cooldown; +20% Skill Damage; -15% XP gain |
-| 👛 Heavy Purse | — | -8% Move Speed; Gain 25 Seeds after each wave |
+| 👛 Heavy Purse | — | -4 Move Speed; Gain 25 Seeds after each wave |
 
 <a id="kind-curse"></a>
 
@@ -74,8 +74,8 @@ Relics are new in 1.4.0: each one bends the rules instead of just adding stats. 
 | 👑 Rotten Crown | Plague | +20% All Damage; +20% enemy HP |
 | 🎭 Plague Mask | Plague | Damage over time +30%; +100% champion rate |
 | 🌕 Blood Moon | — | +10% Life Steal Chance; +15% All Damage; +25% enemy damage; +10% enemy speed |
-| 🎲 Cursed Dice | — | +60 Luck; +50% reroll price |
-| ⏰ Doom Clock | — | +20% Attack Speed; +10% Move Speed; +15% enemy speed |
+| 🎲 Cursed Dice | — | +24 Luck; +50% reroll price |
+| ⏰ Doom Clock | — | +20% Attack Speed; +5 Move Speed; +15% enemy speed |
 | 📜 Tax Collector's Ledger | — | +20 Luck; +20 Harvest; +25% shop prices |
 | 🌰 Giant Seed | — | +30 Max HP; +10% All Damage; +10% enemy HP; +40% elite & boss HP |
 | 🧪 Witch's Brew | — | +25% Elemental Weapon Dmg; Damage over time +25%; -30% all healing |
@@ -90,7 +90,7 @@ Relics are new in 1.4.0: each one bends the rules instead of just adding stats. 
 | Greenhouse | ☀️ Grow Lamp, 💧 Drip Hose, 🏠 Glass Roof | +4 HP Regen; +15 Harvest |
 | Fortune | 🪙 Lucky Coin, 🐷 Piggy Bank, 🎫 Golden Ticket | 1 free reroll(s) per shop; Gain 20 Seeds after each wave |
 | Kitchen | 👨‍🍳 Chef's Hat, 🧂 Spice Rack, 🪵 Old Cutting Board | +12% All Damage; Crit Damage +20% |
-| Field | 🧑‍🌾 Scarecrow, 🔱 Pitchfork, 🔑 Tractor Key | +15 Max HP; +8% Move Speed; Reflect 8 damage when hurt |
+| Field | 🧑‍🌾 Scarecrow, 🔱 Pitchfork, 🔑 Tractor Key | +15 Max HP; +4 Move Speed; Reflect 8 damage when hurt |
 | Night | 🩸 Blood Pact, 🦇 Bat Wing, 🌙 Moon Shard | +8% Life Steal Chance; +6% Dodge |
 | Glass | 💔 Glass Heart, 🔍 Crystal Lens, 🧊 Thin Ice Charm | +15% All Damage; +8% Crit Chance |
 | Stone | 🛡️ Iron Skin, 🥾 Stone Boots, ⚓ Anchor | +20 Max HP; +6 Armor |

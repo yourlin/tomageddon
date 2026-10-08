@@ -1,5 +1,5 @@
 // L1：开发者构筑（src/dev/build.ts）与游戏共用的商店 / 合成 / 撤销逻辑
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import {
   newBuild,
   buyWeapon,
@@ -44,6 +44,7 @@ describe('开发者构筑', () => {
   });
 
   it('同名同品质可以合成为高一级', () => {
+    vi.spyOn(Math, 'random').mockReturnValue(0.99); // 不触发合成暴击（+2 级）
     const id = b.weapons[0].id;
     buyWeapon(b, id, 0);
     // 武器栏未满时购买不会自动合成
@@ -52,6 +53,7 @@ describe('开发者构筑', () => {
       expect(combineWeapon(b, i)).toBe(true);
       expect(b.weapons.some((w) => w.id === id && w.tier === 1)).toBe(true);
     } else expect(b.weapons.some((w) => w.id === id && w.tier === 1)).toBe(true);
+    vi.restoreAllMocks();
   });
 
   it('出售武器返还资金（负花费）', () => {

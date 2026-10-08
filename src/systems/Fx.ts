@@ -5,6 +5,9 @@ import { save } from './Save';
 
 export class Fx {
   private texts: Phaser.GameObjects.Text[] = [];
+  /** 角色掉血 / 回血专用的飘字池：比伤害数字大、停留更久，不会被满屏的敌人伤害数字挤掉回收 */
+  private playerTexts: Phaser.GameObjects.Text[] = [];
+  private playerIdx = 0;
   private textIdx = 0;
   private emitter: Phaser.GameObjects.Particles.ParticleEmitter;
   private lines: Phaser.GameObjects.Graphics;
@@ -26,6 +29,21 @@ export class Fx {
         .setVisible(false);
       this.texts.push(t);
     }
+    for (let i = 0; i < 8; i++)
+      this.playerTexts.push(
+        scene.add
+          .text(0, 0, '', {
+            fontFamily: FONT,
+            fontSize: '34px',
+            color: '#ffffff',
+            stroke: '#1a0a0c',
+            strokeThickness: 7,
+            fontStyle: 'bold',
+          })
+          .setOrigin(0.5)
+          .setDepth(20010)
+          .setVisible(false),
+      );
     this.emitter = scene.add
       .particles(0, 0, 'fx_spark', {
         speed: { min: 80, max: 260 },
@@ -61,6 +79,36 @@ export class Fx {
       scale: 1,
       duration: 600,
       ease: 'Cubic.easeOut',
+      onComplete: () => t.setVisible(false),
+    });
+  }
+
+  /**
+   * 角色掉血 / 回血飘字：带正负号、字号 34、先放大再回弹，停留约 1.2 秒。
+   * 不受「伤害数字密度」影响（角色血量变化总要看得到），仍受「显示伤害数字」开关控制。
+   */
+  playerNumber(x: number, y: number, v: number, kind: 'hurt' | 'heal', color?: string): void {
+    if (!save.settings.showDmg) return;
+    const n = Math.round(v);
+    if (n < 1) return;
+    const t = this.playerTexts[this.playerIdx];
+    this.playerIdx = (this.playerIdx + 1) % this.playerTexts.length;
+    this.scene.tweens.killTweensOf(t);
+    const heal = kind === 'heal';
+    t.setText(`${heal ? '+' : '−'}${n}`)
+      .setPosition(x + Phaser.Math.Between(-14, 14), y - 26)
+      .setColor(color ?? (heal ? '#52ff8a' : '#ff4d4d'))
+      .setVisible(true)
+      .setAlpha(1)
+      .setScale(0.6);
+    // 弹出：0.15 秒放大到 1.25 倍再回到 1，然后 1.05 秒内上浮并淡出
+    this.scene.tweens.chain({
+      targets: t,
+      tweens: [
+        { scale: 1.25, duration: 150, ease: 'Back.easeOut' },
+        { scale: 1, duration: 120, ease: 'Quad.easeOut' },
+        { y: t.y - 58, alpha: 0, duration: 930, ease: 'Cubic.easeIn' },
+      ],
       onComplete: () => t.setVisible(false),
     });
   }

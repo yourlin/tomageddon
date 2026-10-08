@@ -87,6 +87,8 @@ function createWindow() {
     minHeight: 540,
     backgroundColor: '#1a0a0c',
     title: 'Tomageddon',
+    // 默认全屏启动；F11 / Alt+Enter 或游戏内全屏按钮可切回窗口（窗口模式用上面的 1600×900）
+    fullscreen: true,
     icon: path.join(__dirname, 'icon.png'),
     autoHideMenuBar: true,
     webPreferences: {
@@ -107,7 +109,7 @@ function createWindow() {
           const img = await win.webContents.capturePage();
           fs.writeFileSync(process.env.TOMA_SMOKE, img.toPNG());
           const info = await win.webContents.executeJavaScript(
-            'window.tomaSteam.storageWrite("tomageddon_smoke", "{\\"ok\\":1}"), JSON.stringify({ steam: !!window.tomaSteam, ready: window.tomaSteam && window.tomaSteam.steamReady(), scenes: window.game && window.game.scene.getScenes(true).map(s => s.sys.settings.key) })',
+            'window.tomaSteam.storageWrite("tomageddon_smoke", "{\\"ok\\":1}"), JSON.stringify({ steam: !!window.tomaSteam, ready: window.tomaSteam && window.tomaSteam.steamReady(), canvas: !!document.querySelector("canvas"), backing: (c => c && [c.width, c.height, Math.round(c.clientWidth * devicePixelRatio), Math.round(c.clientHeight * devicePixelRatio)])(document.querySelector("canvas")), devGlobals: typeof window.run !== "undefined" || typeof window.__dev !== "undefined" })',
           );
           await new Promise((r) => setTimeout(r, 500));
           console.log('[smoke]', info);

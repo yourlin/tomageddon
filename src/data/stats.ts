@@ -1,7 +1,7 @@
 // 角色属性系统（属性面板）
 export interface Stats {
   maxHp: number; // 最大生命
-  regen: number; // 生命再生（参考土豆兄弟）：回复速度 = 0.20 + (regen-1)×0.089 生命/秒，见 regenPerSecond()
+  regen: number; // 生命再生：回复速度收益递减、趋近每秒 10 点，见 regenPerSecond()
   lifeSteal: number; // 吸血 %：每次命中有该概率回复 1 点生命；无百分比上限，每秒最多回复量由触发冷却限制
   damage: number; // 全伤害 %：所有武器伤害乘算（少量来源：部分角色、天赋与经典道具）
   meleePct: number; // 近战武器伤害 %
@@ -81,7 +81,7 @@ export const STAT_INFO: Record<StatKey, { name: string; pct?: boolean; color: st
   range: { name: '射程', color: '#a29bfe' },
   armor: { name: '护甲', color: '#b2bec3' },
   dodge: { name: '闪避', pct: true, color: '#81ecec' },
-  speed: { name: '移动速度', pct: true, color: '#55efc4' },
+  speed: { name: '移动速度', color: '#55efc4' },
   luck: { name: '幸运', color: '#fdcb6e' },
   harvest: { name: '收获', color: '#e17055' },
   pickup: { name: '拾取范围', color: '#74b9ff' },

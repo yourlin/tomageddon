@@ -8,7 +8,33 @@ import { save, persist } from './Save';
 import { achTier } from './Achievements';
 import { lang } from '../i18n';
 
-export const rankOf = (id: string): number => save.talents[id] ?? 0;
+// ---------------- 天赋方案：默认方案 + 角色专属方案 ----------------
+/** 当前方案：null = 默认方案；角色 id = 该角色的方案（没有定制时继承默认方案） */
+let profile: string | null = null;
+export function setTalentProfile(charId: string | null): void {
+  if (profile === charId) return;
+  profile = charId;
+  cache = null;
+}
+export const talentProfile = (): string | null => profile;
+/** 该角色是否有自己的天赋方案 */
+export const hasCustomTalents = (charId: string): boolean => !!save.charTalents[charId];
+/** 当前方案的等级表（角色没有定制时就是默认方案） */
+function ranks(): Record<string, number> {
+  return (profile && save.charTalents[profile]) || save.talents;
+}
+/** 要修改时取可写的等级表：角色还没定制就先复制一份默认方案（写时复制） */
+function writable(): Record<string, number> {
+  if (!profile) return save.talents;
+  return (save.charTalents[profile] ??= { ...save.talents });
+}
+/** 删除角色的专属方案，恢复继承默认方案 */
+export function clearCustomTalents(charId: string): void {
+  delete save.charTalents[charId];
+  changed();
+}
+
+export const rankOf = (id: string): number => ranks()[id] ?? 0;
 
 /** 成就累计给的天赋点 */
 export function talentPointsEarned(): number {
@@ -17,18 +43,26 @@ export function talentPointsEarned(): number {
   return n;
 }
 export const talentPointsTotal = (): number => ACHIEVEMENTS.reduce((s, a) => s + (a.tp ?? []).reduce((x, y) => x + y, 0), 0);
-export const talentPointsSpent = (): number => Object.values(save.talents).reduce((a, b) => a + b, 0);
+/** 当前方案已用的点数（各方案共用同一份天赋点，各自独立分配） */
+export const talentPointsSpent = (): number => Object.values(ranks()).reduce((a, b) => a + b, 0);
 export const talentPointsFree = (): number => talentPointsEarned() - talentPointsSpent();
 export const branchSpent = (b: BranchId): number => TALENT_NODES.filter((n) => n.branch === b).reduce((s, n) => s + rankOf(n.id), 0);
 
-export type RaiseBlock = 'max' | 'points' | 'parent' | 'branch' | null;
+export type RaiseBlock = 'max' | 'points' | 'parent' | 'branch' | 'exclusive' | null;
 /** 不能加点的原因；null 表示可以加 */
 export function raiseBlock(n: TalentNode): RaiseBlock {
   if (rankOf(n.id) >= n.max) return 'max';
   if (n.parent && rankOf(n.parent) <= 0) return 'parent';
   if (n.needPoints && branchSpent(n.branch) < n.needPoints) return 'branch';
+  if (exclusiveTaken(n)) return 'exclusive';
   if (talentPointsFree() <= 0) return 'points';
   return null;
+}
+
+/** 同一互斥组里已经点了别的天赋（二选一的关键天赋） */
+export function exclusiveTaken(n: TalentNode): TalentNode | undefined {
+  if (!n.exclusive) return undefined;
+  return TALENT_NODES.find((o) => o.id !== n.id && o.exclusive === n.exclusive && rankOf(o.id) > 0);
 }
 
 /** 退点后是否仍然合法：子天赋还在用它，或终极天赋的投入要求会被打破时不能退 */
@@ -42,19 +76,20 @@ export function canLower(n: TalentNode): boolean {
 
 export function raise(n: TalentNode): boolean {
   if (raiseBlock(n)) return false;
-  save.talents[n.id] = rankOf(n.id) + 1;
+  writable()[n.id] = rankOf(n.id) + 1;
   changed();
   return true;
 }
 export function lower(n: TalentNode): boolean {
   if (!canLower(n)) return false;
   const r = rankOf(n.id) - 1;
-  if (r > 0) save.talents[n.id] = r;
-  else delete save.talents[n.id];
+  const t = writable();
+  if (r > 0) t[n.id] = r;
+  else delete t[n.id];
   changed();
   return true;
 }
-/** 直接写入一套天赋（测试用：平衡测试按预设加点，不检查天赋点） */
+/** 直接写入默认方案（测试用：平衡测试按预设加点，不检查天赋点；角色没有专属方案时开局即继承它） */
 export function setTalents(t: Record<string, number>): void {
   save.talents = { ...t };
   changed();
@@ -62,7 +97,8 @@ export function setTalents(t: Record<string, number>): void {
 
 /** 重置：免费、随时可用 */
 export function resetBranch(b?: BranchId): void {
-  for (const n of TALENT_NODES) if (!b || n.branch === b) delete save.talents[n.id];
+  const t = writable();
+  for (const n of TALENT_NODES) if (!b || n.branch === b) delete t[n.id];
   changed();
 }
 
@@ -76,9 +112,11 @@ export const MASTER_CYCLE: [keyof StatMods, number][] = [
   ['luck', 1],
   ['regen', 0.5],
 ];
-export const nodesMaxTotal = (): number => TALENT_NODES.reduce((s, n) => s + n.max, 0);
-/** 天赋树全部点满才开放大师层 */
-export const masterUnlocked = (): boolean => TALENT_NODES.every((n) => rankOf(n.id) >= n.max);
+/** 天赋树全部点满才开放大师层；二选一的关键天赋每组点满其中一个即可 */
+export const masterUnlocked = (): boolean =>
+  TALENT_NODES.every(
+    (n) => rankOf(n.id) >= n.max || (!!n.exclusive && TALENT_NODES.some((o) => o.exclusive === n.exclusive && rankOf(o.id) >= o.max)),
+  );
 /** 购买第 layer+1 层的价格（金番茄） */
 export const masterCost = (layer = save.meta.master): number => 40 + 10 * layer;
 export function masterMods(layers = save.meta.master): StatMods {
@@ -116,6 +154,14 @@ export interface TreeTotals {
   killRage: number;
   critHeal: number;
   killSeeds: number;
+  meleeQuake: number;
+  meleeBreak: number;
+  rangedFar: number;
+  rangedPierce: number;
+  elemBurst: number;
+  elemDebuffDmg: number;
+  auraSlow: number;
+  auraPulse: number;
 }
 
 let cache: TreeTotals | null = null;
@@ -123,6 +169,15 @@ function changed(): void {
   cache = null;
   persist();
 }
+
+/** 本局通过升级「局内天赋」获得的额外等级（只在本局生效，叠加在天赋树等级上、不超过上限）；由 RunState 写入 */
+let runRanks: Record<string, number> = {};
+export function setRunTalents(r: Record<string, number>): void {
+  runRanks = r;
+  cache = null;
+}
+/** 天赋树等级 + 本局等级（不超过上限） */
+export const effectiveRank = (id: string): number => Math.min(TALENT_MAP[id]?.max ?? 0, rankOf(id) + (runRanks[id] ?? 0));
 
 const NUM_KEYS = [
   'dodgeKnives',
@@ -138,6 +193,14 @@ const NUM_KEYS = [
   'killRage',
   'critHeal',
   'killSeeds',
+  'meleeQuake',
+  'meleeBreak',
+  'rangedFar',
+  'rangedPierce',
+  'elemBurst',
+  'elemDebuffDmg',
+  'auraSlow',
+  'auraPulse',
 ] as const satisfies readonly (keyof TreeFx & keyof TreeTotals)[];
 
 export function treeTotals(): TreeTotals {
@@ -159,9 +222,18 @@ export function treeTotals(): TreeTotals {
     killRage: 0,
     critHeal: 0,
     killSeeds: 0,
+    meleeQuake: 0,
+    meleeBreak: 0,
+    rangedFar: 0,
+    rangedPierce: 0,
+    elemBurst: 0,
+    elemDebuffDmg: 0,
+    auraSlow: 0,
+    auraPulse: 0,
   };
-  for (const [id, r] of Object.entries(save.talents)) {
+  for (const id of new Set([...Object.keys(ranks()), ...Object.keys(runRanks)])) {
     const n = TALENT_MAP[id];
+    const r = effectiveRank(id);
     if (!n || r <= 0) continue;
     const fx = n.fx;
     for (const [k, v] of Object.entries(fx.mods ?? {}) as [keyof StatMods, number][]) t.mods[k] = (t.mods[k] ?? 0) + v * r;

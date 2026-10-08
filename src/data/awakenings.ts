@@ -45,9 +45,8 @@ const LIST: AwakeningDef[] = [
   {
     charId: 'corn',
     name: ['神枪手', 'Deadeye'],
-    desc: ['击杀时获得 1 层专注（4 秒）；+40 射程，+2 远程伤害', 'Gain 1 Focus stack (4s) on kill; +40 range, +2 ranged damage'],
-    mods: { range: 40, ranged: 2 },
-    special: { onKillSelf: [S('focus', 4, 1)] },
+    desc: ['+4% 暴击率；+40 射程，+2 远程伤害', '+4% crit chance; +40 range, +2 ranged damage'],
+    mods: { range: 40, ranged: 2, crit: 4 },
   },
   {
     charId: 'watermelon',
@@ -110,11 +109,11 @@ const LIST: AwakeningDef[] = [
     charId: 'ginger',
     name: ['影分身之术', 'Shadow Step'],
     desc: [
-      '击杀时获得 1 层急速（2 秒）；命中 20% 概率流血 1 层（3 秒）；+5% 移速',
-      'Gain 1 Haste stack (2s) on kill; hits have a 20% chance to Bleed for 1 stack (3s); +5% speed',
+      '命中 20% 概率流血 1 层（3 秒）；+3 移动速度，+5% 攻速',
+      'Hits have a 20% chance to Bleed for 1 stack (3s); +3 Move Speed, +5% attack speed',
     ],
-    mods: { speed: 5 },
-    special: { onKillSelf: [S('haste', 2, 1)], onHit: [S('bleed', 3, 1, 20)] },
+    mods: { speed: 3, attackSpeed: 5 },
+    special: { onHit: [S('bleed', 3, 1, 20)] },
   },
   {
     charId: 'avocado',
@@ -156,16 +155,15 @@ const LIST: AwakeningDef[] = [
   {
     charId: 'grape',
     name: ['帽子戏法', 'Hat Trick'],
-    desc: ['命中 8% 概率使敌人混乱 2 秒；+10 幸运', 'Hits have an 8% chance to Confuse for 2s; +10 luck'],
-    mods: { luck: 10 },
+    desc: ['命中 8% 概率使敌人混乱 2 秒；+4 幸运', 'Hits have an 8% chance to Confuse for 2s; +4 luck'],
+    mods: { luck: 4 },
     special: { onHit: [S('confuse', 2, 1, 8)] },
   },
   {
     charId: 'cherry',
     name: ['弹雨狂欢', 'Bullet Frenzy'],
-    desc: ['击杀时获得 1 层怒气（3 秒）；+8% 攻速', 'Gain 1 Rage stack (3s) on kill; +8% attack speed'],
-    mods: { attackSpeed: 8 },
-    special: { onKillSelf: [S('rage', 3, 1)] },
+    desc: ['+5% 伤害；+8% 攻速', '+5% damage; +8% attack speed'],
+    mods: { attackSpeed: 8, damage: 5 },
   },
   {
     charId: 'pea',
@@ -193,12 +191,9 @@ const LIST: AwakeningDef[] = [
   {
     charId: 'beet',
     name: ['嗜血狂潮', 'Bloodlust'],
-    desc: [
-      '每击杀 10 名敌人回复 1 生命；击杀时获得 1 层嗜血（3 秒）；+5% 伤害',
-      'Heal 1 HP every 10 kills; gain 1 Vampiric stack (3s) on kill; +5% damage',
-    ],
-    mods: { damage: 5 },
-    special: { killHeal: 10, onKillSelf: [S('vampiric', 3, 1)] },
+    desc: ['每击杀 10 名敌人回复 1 生命；+3% 吸血概率；+5% 伤害', 'Heal 1 HP every 10 kills; +3% life steal chance; +5% damage'],
+    mods: { damage: 5, lifeSteal: 3 },
+    special: { killHeal: 10 },
   },
   {
     charId: 'asparagus',
@@ -221,17 +216,17 @@ const LIST: AwakeningDef[] = [
     charId: 'kiwi',
     name: ['放大镜', 'Magnifier'],
     desc: [
-      '每 2 秒以 25% 概率标记周围 180 范围内的敌人（2 秒）；+5 幸运',
-      'Every 2s, 25% chance to Mark each enemy within 180 range (2s); +5 luck',
+      '每 2 秒以 25% 概率标记周围 180 范围内的敌人（2 秒）；+2 幸运',
+      'Every 2s, 25% chance to Mark each enemy within 180 range (2s); +2 luck',
     ],
-    mods: { luck: 5 },
+    mods: { luck: 2 },
     special: { aura: { radius: 180, every: 2, status: [S('mark', 2, 1, 25)] } },
   },
   {
     charId: 'lychee',
     name: ['王室宝库', 'Royal Treasury'],
-    desc: ['番茄籽 20% 概率翻倍；每波商店刷新次数上限 +1；+10 幸运', '20% chance to double Seeds; +1 shop reroll limit per wave; +10 luck'],
-    mods: { luck: 10 },
+    desc: ['番茄籽 20% 概率翻倍；每波商店刷新次数上限 +1；+4 幸运', '20% chance to double Seeds; +1 shop reroll limit per wave; +4 luck'],
+    mods: { luck: 4 },
     special: { doubleSeed: 20, rerolls: 1 },
   },
   {
@@ -278,9 +273,8 @@ const LIST: AwakeningDef[] = [
   {
     charId: 'wasabi',
     name: ['辛辣冲击波', 'Pungent Shockwave'],
-    desc: ['击杀时获得 1 层怒气（3 秒）；+40% 爆炸范围', 'Gain 1 Rage stack (3s) on kill; +40% explosion size'],
-    mods: { explodeSize: 40 },
-    special: { onKillSelf: [S('rage', 3, 1)] },
+    desc: ['+5% 伤害；+40% 爆炸范围', '+5% damage; +40% explosion size'],
+    mods: { explodeSize: 40, damage: 5 },
   },
   // ---------- 1.4.0 新角色 ----------
   {
@@ -324,8 +318,8 @@ const LIST: AwakeningDef[] = [
   {
     charId: 'blackberry',
     name: ['黑暗仪式', 'Dark Ritual'],
-    desc: ['持续伤害 +30%；+10 幸运', 'Damage over time +30%; +10 luck'],
-    mods: { luck: 10 },
+    desc: ['持续伤害 +30%；+4 幸运', 'Damage over time +30%; +4 luck'],
+    mods: { luck: 4 },
     special: { statusDmg: 30 },
   },
 ];

@@ -38,7 +38,13 @@ export default tseslint.config(
   },
   {
     // 这些脚本中 page.evaluate 的回调在浏览器里执行
-    files: ['scripts/batch.mjs', 'scripts/export-images.mjs', 'scripts/promo/record.mjs'],
+    files: [
+      'scripts/batch.mjs',
+      'scripts/export-images.mjs',
+      'scripts/export-anim.mjs',
+      'scripts/export-combat-anim.mjs',
+      'scripts/promo/record.mjs',
+    ],
     languageOptions: { globals: { ...globals.node, ...globals.browser, game: 'readonly', run: 'readonly' } },
   },
   {

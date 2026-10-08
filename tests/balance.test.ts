@@ -84,12 +84,11 @@ describe('概率表', () => {
     }
   });
   it('武器品质权重合法、归一化，且与波次无关', () => {
-    for (const luck of [-200, 0, 100, 1000])
-      for (const t4 of [1, 1.5]) {
-        const ws = weaponTierWeights(luck, t4);
-        for (const x of ws) expect(x).toBeGreaterThanOrEqual(0);
-        expect(ws.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 6);
-      }
+    for (const luck of [-200, 0, 100, 1000]) {
+      const ws = weaponTierWeights(luck);
+      for (const x of ws) expect(x).toBeGreaterThanOrEqual(0);
+      expect(ws.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 6);
+    }
   });
   it('幸运越高，高档概率单调不减、最低档单调不增', () => {
     for (const f of [rarityWeights, (l: number) => weaponTierWeights(l)]) {
@@ -126,14 +125,15 @@ describe('概率表', () => {
       });
     }
   });
-  it('幸运曲线：T4 在幸运 30 时 1%、100 时 5%，先快后慢', () => {
-    const t4 = (l: number) => weaponTierWeights(l)[3];
-    expect(t4(29)).toBe(0);
-    expect(t4(30)).toBeCloseTo(0.01, 6);
-    expect(t4(100)).toBeCloseTo(0.05, 6);
+  it('武器品质：商店不出 T4；T3 在幸运 30 时 0.3%、100 时 1.5%，无论幸运多高不超过 2%', () => {
+    const t3 = (l: number) => weaponTierWeights(l)[2];
+    for (const l of [0, 50, 100, 500, 10000]) expect(weaponTierWeights(l)[3]).toBe(0);
+    expect(t3(29)).toBe(0);
+    expect(t3(30)).toBeCloseTo(0.003, 6);
+    expect(t3(100)).toBeCloseTo(0.015, 6);
     // 前 35 点涨得比后 35 点多
-    expect(t4(65) - t4(30)).toBeGreaterThan(t4(100) - t4(65));
-    expect(t4(1000)).toBeLessThanOrEqual(BALANCE.luckTiers.weapon[2].cap / 100 + 1e-9);
+    expect(t3(65) - t3(30)).toBeGreaterThan(t3(100) - t3(65));
+    expect(t3(10000)).toBeLessThanOrEqual(0.02 + 1e-9);
   });
 });
 

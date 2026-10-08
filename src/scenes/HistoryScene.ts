@@ -10,6 +10,7 @@ import { counter } from '../systems/Counters';
 import { sourceLabel } from './RunStatsScene';
 import { tx } from '../i18n';
 import type { RunRecord } from '../systems/Save';
+import { VW, VH } from '../systems/HiDpi';
 
 const PER_PAGE = 7;
 
@@ -71,7 +72,7 @@ export class HistoryScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    const W = this.scale.width;
+    const W = VW(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     text(this, 24, 18, tx('战绩', 'History'), 36);
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
@@ -105,7 +106,7 @@ export class HistoryScene extends Phaser.Scene {
 
   /** 筛选 / 排序 / 个人最佳 切换按钮 */
   private drawBar(): void {
-    const W = this.scale.width;
+    const W = VW(this);
     const y = 180;
     const chip = (x: number, w: number, label: string, on: boolean, cb: () => void): void => {
       const b = button(this, x + w / 2, y, w, 34, label, cb, on ? 0xe09f3e : 0x3a2a2c, 15);
@@ -139,7 +140,7 @@ export class HistoryScene extends Phaser.Scene {
   }
 
   private drawBests(): void {
-    const W = this.scale.width;
+    const W = VW(this);
     const { endless, fastest } = personalBests();
     const L = this.layer;
     const col = (x: number, title: string, rows: string[]): void => {
@@ -170,8 +171,8 @@ export class HistoryScene extends Phaser.Scene {
     this.layer.removeAll(true);
     this.drawBar();
     if (this.best) return this.drawBests();
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     const list = filterHistory(save.history, this.filter, this.sort);
     const pages = Math.ceil(list.length / PER_PAGE);
     const rowH = 58,

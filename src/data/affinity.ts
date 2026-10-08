@@ -1,15 +1,21 @@
-// 契合武器：每名角色 3 把与天赋呼应的武器（characters.ts 的 favored）。
+// 契合武器：每名角色契合 1–2 个武器标签（characters.ts 的 favored，见 data/weaponTags.ts），带任意一个这些标签的武器都是契合武器。
 // 使用契合武器时：伤害 +10%，并获得该角色专属的「契合特效」；天赋（systems/Talents.ts）再在此基础上强化契合武器。
-// 超武按进化前的武器判定契合，进化后特效保留。
 import { lang } from '../i18n';
+import { weaponTags } from './weaponTags';
+import { WEAPONS, type WeaponDef } from './weapons';
 
 /** 契合武器的基础伤害倍率 */
 export const FAVORED_DMG = 1.1;
 
-/** 武器是否为该角色的契合武器（超武按 evolvedFrom 判定） */
-export function isFavoredWeapon(favored: readonly string[], def: { id: string; evolvedFrom?: string } | undefined): boolean {
+/** 武器是否为该角色的契合武器：武器的标签里有任意一个角色契合的标签 */
+export function isFavoredWeapon(favored: readonly string[], def: WeaponDef | undefined): boolean {
   if (!def) return false;
-  return favored.includes(def.id) || (!!def.evolvedFrom && favored.includes(def.evolvedFrom));
+  return weaponTags(def).some((t) => favored.includes(t));
+}
+
+/** 角色的全部契合武器（商店里能买到的基础武器） */
+export function favoredWeapons(c: { favored: readonly string[] }): WeaponDef[] {
+  return WEAPONS.filter((w) => !w.evolvedFrom && isFavoredWeapon(c.favored, w));
 }
 
 /** 契合特效说明 [中文, English] */

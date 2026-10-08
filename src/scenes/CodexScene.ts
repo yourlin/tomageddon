@@ -1,12 +1,13 @@
 // 图鉴：角色 / 武器 / 道具 / 怪物 / Boss
 import { EVOLVED_WEAPONS, EVOLUTION_OF } from '../data/evolutions';
 import Phaser from 'phaser';
-import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, statLines } from '../ui/UI';
 import { CHARACTERS } from '../data/characters';
-import { WEAPONS, WEAPON_MAP } from '../data/weapons';
+import { WEAPONS, WEAPON_MAP, TIER_NAMES, type WeaponDef } from '../data/weapons';
+import { RECIPES, RECIPE_BY_TO, slotLabel, type Recipe } from '../data/recipes';
 import { affinityText } from '../data/affinity';
 import { ALL_ITEMS, ITEM_MAP, baseItemCap } from '../data/items';
-import { describeItem } from '../data/describe';
+import { charTraitLines, describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { portraitKey } from '../ui/Portrait';
 import { AFFIXES } from '../data/bosses';
@@ -18,9 +19,12 @@ import { isUnlocked, isSeen } from '../systems/Save';
 import { unlockHint } from '../systems/Achievements';
 import { tx, lang } from '../i18n';
 import { save } from '../systems/Save';
-import { RELICS, RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic } from '../data/relics';
+import { RELICS, RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic, describeRelicSet } from '../data/relics';
 import { FONT } from '../systems/Textures';
 import { ITEM_COMBOS, describeCombo } from '../data/gearExtra';
+import { weaponTags } from '../data/weaponTags';
+import { tagName } from '../i18n/apply';
+import { VW, VH } from '../systems/HiDpi';
 
 const PATTERN_NAME: Record<string, string> = {
   ring: tx('环形弹', 'Ring'),
@@ -36,12 +40,52 @@ const PATTERN_NAME: Record<string, string> = {
   scatter: tx('乱射', 'Scatter'),
 };
 
+/** 配方是不是「把自己升到 T4」（两把材料都是它自己） */
+const selfUp = (r: Recipe): boolean => r.from.every(([id]) => id === r.to);
+
+/** 武器的合成说明：怎么做出它（T4 / 超武），或者它能合成出什么 */
+function recipeLine(w: WeaponDef): string {
+  const made = RECIPE_BY_TO[w.id];
+  const mats = (r: Recipe) =>
+    r.from.map(([id, t]) => `${WEAPON_MAP[id]?.name ?? id} ${TIER_NAMES[t]}`).join(' + ') +
+    ' + ' +
+    r.items.map(slotLabel).join(tx('、', ', '));
+  if (made && !selfUp(made)) return tx(`✨ 合成：${mats(made)}`, `✨ Recipe: ${mats(made)}`);
+  const into = RECIPES.filter((r) => !selfUp(r) && r.from.some(([id]) => id === w.id)).map((r) => WEAPON_MAP[r.to]?.name ?? r.to);
+  if (into.length) return tx(`✨ 可合成：${into.join('、')}`, `✨ Crafts into: ${into.join(', ')}`);
+  return made
+    ? tx(`升到 ${TIER_NAMES[3]}：${mats(made)}`, `Upgrade to ${TIER_NAMES[3]}: ${mats(made)}`)
+    : tx(`基础价格 ${w.price}`, `Base price ${w.price}`);
+}
+
+/** 武器按合成链排序：每把基础武器后面紧跟由它合成出来的 T4 武器与超武 */
+function weaponsByRecipeChain(): WeaponDef[] {
+  const out: WeaponDef[] = [];
+  const done = new Set<string>();
+  const push = (w: WeaponDef | undefined) => {
+    if (w && !done.has(w.id)) {
+      done.add(w.id);
+      out.push(w);
+    }
+  };
+  for (const w of WEAPONS) {
+    if (w.minTier) continue; // 只能合成的 T4 武器跟在它的材料后面
+    push(w);
+    // 由它参与合成的产物（其他 T4 / 超武）
+    for (const r of RECIPES) if (!selfUp(r) && r.from.some(([id]) => id === w.id)) push(WEAPON_MAP[r.to]);
+  }
+  for (const w of [...WEAPONS, ...EVOLVED_WEAPONS]) push(w); // 兜底：没进链的也要能查到
+  return out;
+}
+
 type Tab = 'char' | 'weapon' | 'item' | 'relic' | 'enemy' | 'boss';
 interface Entry {
   key: string;
   name: string;
   color: string;
   lines: string[];
+  /** 武器条目：用来画合成树 */
+  weaponId?: string;
 }
 
 export class CodexScene extends Phaser.Scene {
@@ -56,7 +100,7 @@ export class CodexScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    const W = this.scale.width;
+    const W = VW(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     text(this, 24, 18, tx('图鉴', 'Codex'), 36);
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
@@ -92,7 +136,10 @@ export class CodexScene extends Phaser.Scene {
 
   /** 未发现的条目只显示剪影与提示 */
   private lock(e: Entry, seen: boolean, hint: string): Entry {
-    return seen ? e : { key: e.key, name: '？？？', color: '#888888', lines: [tx('尚未发现', 'Not discovered yet'), hint] };
+    // 未发现：只隐藏名字与数值，仍保留 weaponId，让合成树能画出灰色轮廓的节点
+    return seen
+      ? e
+      : { key: e.key, name: '？？？', color: '#888888', lines: [tx('尚未发现', 'Not discovered yet'), hint], weaponId: e.weaponId };
   }
 
   private entries(): Entry[] {
@@ -110,46 +157,34 @@ export class CodexScene extends Phaser.Scene {
                   c.title,
                   c.desc,
                   tx(`天赋【${c.talent.name}】${c.talent.desc}`, `Talent [${c.talent.name}] ${c.talent.desc}`),
-                  tx('契合武器：', 'Synergy weapons: ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
+                  tx('契合标签：', 'Synergy tags: ') + c.favored.map(tagName).join(tx('、', ', ')),
                   tx('契合特效（伤害 +10%）：', 'Synergy effect (+10% dmg): ') + affinityText(c.id),
-                  ...c.traits,
+                  ...charTraitLines(c),
                   tx(`技能【${c.skill.name}】${c.skill.desc}`, `Skill [${c.skill.name}] ${c.skill.desc}`),
                 ],
               }
             : { key: portraitKey(this, 'char', c.id), name: '？？？', color: '#888888', lines: [unlockHint(c)] },
         );
       case 'weapon':
-        return [...WEAPONS, ...EVOLVED_WEAPONS].map((w) =>
+        return weaponsByRecipeChain().map((w) =>
           L(
             'weapons',
             w.id,
             {
               key: `icon_weapon_${w.id}`,
               name: w.name,
-              color: '#9be564',
+              color: w.minTier ? (EVOLUTION_OF[w.evolvedFrom ?? ''] || w.evolvedFrom ? '#ffd166' : '#6ec6ff') : '#9be564',
+              weaponId: w.id,
               lines: [
-                `[${w.tags.join('/')}] ${w.desc}`,
+                `[${weaponTags(w).map(tagName).join('/')}] ${w.desc}`,
                 tx(`伤害 ${w.damage.join('/')}`, `Damage ${w.damage.join('/')}`),
                 tx(`冷却 ${w.cooldown.join('/')} 秒`, `Cooldown ${w.cooldown.join('/')}s`),
                 tx(`射程 ${w.range} · 暴击倍率 x${w.critMult}`, `Range ${w.range} · Crit multiplier x${w.critMult}`),
-                w.evolvedFrom
-                  ? tx(
-                      `✨ 进化：${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
-                      `✨ Evolution: ${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
-                    )
-                  : EVOLUTION_OF[w.id]
-                    ? tx(
-                        `T4 + ${ITEM_MAP[EVOLUTION_OF[w.id].item].name} 可进化为「${EVOLUTION_OF[w.id].to.name}」`,
-                        `T4 + ${ITEM_MAP[EVOLUTION_OF[w.id].item].name} evolves into ${EVOLUTION_OF[w.id].to.name}`,
-                      )
-                    : tx(`基础价格 ${w.price}`, `Base price ${w.price}`),
+                recipeLine(w),
               ],
             },
-            w.evolvedFrom
-              ? tx(
-                  `进化获得：${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
-                  `Obtained by evolving ${WEAPON_MAP[w.evolvedFrom].name} T4 + ${ITEM_MAP[EVOLUTION_OF[w.evolvedFrom].item].name}`,
-                )
+            w.minTier
+              ? tx('按配方合成后解锁', 'Unlocked after crafting it')
               : tx('在商店中出现或获得后解锁', 'Unlocked after it appears in the shop or is obtained'),
           ),
         );
@@ -189,9 +224,7 @@ export class CodexScene extends Phaser.Scene {
             lines: [
               k.name[zh ? 0 : 1] + (r.set ? ` · ${tx('套装', 'Set')} ${RELIC_SET_MAP[r.set].name[zh ? 0 : 1]}` : ''),
               ...describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id),
-              ...(r.set
-                ? [tx('集齐 3 件套装效果：', '3-piece set bonus: ') + describeRelic(RELIC_SET_MAP[r.set]).join(tx('，', ', '))]
-                : []),
+              ...(r.set ? [describeRelicSet(r)!] : []),
             ],
           };
           return this.lock(e, save.meta.relics.includes(r.id), tx('在一局中获得后解锁', 'Unlocked after obtaining it in a run'));
@@ -255,8 +288,8 @@ export class CodexScene extends Phaser.Scene {
   }
 
   private draw(): void {
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.layer.removeAll(true);
     const list = this.entries();
     const found = list.filter((e) => e.name !== '？？？').length;
@@ -327,7 +360,7 @@ export class CodexScene extends Phaser.Scene {
       return t;
     }
     const img = fitImage(this.add.image(x, y, this.resolve(e.key)), size);
-    if (e.name === '？？？') img.setTint(0x000000);
+    if (e.name === '？？？') img.setTint(0x6a6a6a).setAlpha(0.5); // 未解锁：灰色轮廓
     return img;
   }
 
@@ -343,8 +376,8 @@ export class CodexScene extends Phaser.Scene {
   }
 
   private show(e: Entry | undefined): void {
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.detail.removeAll(true);
     if (!e) return;
     const x = W * 0.58,
@@ -352,8 +385,48 @@ export class CodexScene extends Phaser.Scene {
     this.detail.add(panel(this, x, 90, w, H - 120));
     this.detail.add(this.icon(x + w / 2, 190, e, 150));
     this.detail.add(text(this, x + w / 2, 290, e.name, 30, e.color).setOrigin(0.5));
-    this.detail.add(
-      text(this, x + 24, 330, e.lines.filter(Boolean).join('\n'), 17, '#fff4ea', { wordWrap: { width: w - 48 }, lineSpacing: 6 }),
-    );
+    // 逐行上色：负向属性（道具代价，如「−1 护甲」）用红色
+    const body = statLines(this, x + 24, 330, e.lines.filter(Boolean), 17, '#fff4ea', w - 48, 6);
+    this.detail.add(body.box);
+    if (e.weaponId) this.recipeTree(e.weaponId, x + 24, 340 + body.height, w - 48);
+  }
+
+  /** 合成树：产出它的配方（材料 → 它）与它能合成出的东西，未解锁的节点灰色轮廓 */
+  private recipeTree(id: string, x: number, y: number, w: number): void {
+    const made = RECIPE_BY_TO[id];
+    const into = RECIPES.filter((r) => !selfUp(r) && r.from.some(([m]) => m === id));
+    if (!made && !into.length) return;
+    let ty = y;
+    const node = (nx: number, ny: number, wid: string, label: string) => {
+      const seen = isSeen('weapons', wid);
+      const img = fitImage(this.add.image(nx + 18, ny + 18, `icon_weapon_${wid}`), 36);
+      if (!seen) img.setTint(0x6a6a6a).setAlpha(0.5);
+      this.detail.add(img);
+      this.detail.add(text(this, nx + 40, ny + 9, seen ? label : '？？？', 14, seen ? '#fff4ea' : '#888888'));
+    };
+    const row = (r: Recipe, title: string) => {
+      this.detail.add(text(this, x, ty, title, 15, '#ffb347'));
+      ty += 22;
+      r.from.forEach(([mid, t]) => {
+        node(x + 8, ty, mid, `${WEAPON_MAP[mid]?.name ?? mid} ${TIER_NAMES[t]}`);
+        ty += 40;
+      });
+      this.detail.add(
+        text(this, x + 8, ty, `＋ ${r.items.map(slotLabel).join(tx('、', ', '))}`, 13, COLORS.textDim, {
+          wordWrap: { width: w - 16 },
+        }),
+      );
+      ty += 26;
+    };
+    if (made && !selfUp(made)) row(made, tx('合成需要', 'Crafted from'));
+    else if (made) row(made, tx(`升到 ${TIER_NAMES[3]} 需要`, `Upgrade to ${TIER_NAMES[3]}`));
+    if (into.length) {
+      this.detail.add(text(this, x, ty, tx('可合成为', 'Crafts into'), 15, '#ffb347'));
+      ty += 22;
+      for (const r of into) {
+        node(x + 8, ty, r.to, WEAPON_MAP[r.to]?.name ?? r.to);
+        ty += 40;
+      }
+    }
   }
 }

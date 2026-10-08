@@ -17,6 +17,8 @@ import { CHAIN_STYLE, chainColor, chainFollowUp } from './ChainFx';
 import { MINE_BOOM_COLOR } from '../art/MineArt';
 import { isFavoredWeapon, FAVORED_DMG } from '../data/affinity';
 import type { AffMods, ShotMods } from './Talents';
+import { CLONE_WEAPON_MULT } from '../data/skills';
+import { treeTotals } from './TalentTree';
 
 const PROJ_KEY: Record<string, string> = {
   slingshot: 'proj_tomato',
@@ -52,7 +54,10 @@ export function weaponRange(def: WeaponDef, s: Stats, ow?: OwnedWeapon, extraAur
     return Math.max(60, def.range * (1 + size / 100) + affixTotals(ow).range);
   }
   const bonus = def.cls === 'melee' ? s.range * 0.5 : s.range;
-  return Math.max(def.cls === 'melee' ? 70 : 120, def.range + bonus + affixTotals(ow).range);
+  // 射程下限：负射程最多把近战武器削到基础射程的 rangeFloor.melee、远程削到 rangeFloor.ranged
+  const fl = BALANCE.rangeFloor;
+  const floor = def.cls === 'melee' ? Math.max(fl.meleeMin, def.range * fl.melee) : Math.max(fl.rangedMin, def.range * fl.ranged);
+  return Math.max(floor, def.range + bonus + affixTotals(ow).range);
 }
 
 /** extraSpeed：契合特效 / 天赋带来的攻速 %，与攻速属性相加后按同一条曲线换算 */
@@ -176,7 +181,11 @@ export class WeaponSystem {
         ghostT: 0,
       };
       if (def.kind === 'aura') {
-        const look = AURA_LOOK[def.id] ?? AURA_LOOK[def.evolvedFrom ?? ''] ?? { color: 0xc8f7c5, style: 'spark' as const };
+        const tplLook = def.template ? AURA_LOOK[def.template] : undefined;
+        const look =
+          AURA_LOOK[def.id] ??
+          AURA_LOOK[def.evolvedFrom ?? ''] ??
+          (tplLook ? { color: def.projTint ?? tplLook.color, style: tplLook.style } : { color: 0xc8f7c5, style: 'spark' as const });
         wr.aura = new AuraFx(g, look.color, look.style);
       }
       this.list.push(wr);
@@ -202,7 +211,7 @@ export class WeaponSystem {
         if (def.kind === 'thrust' || def.kind === 'sweep') range *= 1 + cv.area / 200;
       }
       if (range > maxRange) maxRange = range;
-      const spd = m?.atkSpd ?? 0;
+      const spd = (m?.atkSpd ?? 0) + g.superBuffs.attackSpeed(def);
       // 柠檬刺客：暴击后重置这把武器的冷却（每把每秒最多一次）
       if (w.resetCd > 0) w.resetCd -= dt;
       if (talent.resetReq.has(def.id) && w.resetCd <= 0) {
@@ -279,10 +288,12 @@ export class WeaponSystem {
       // 地雷
       if (w.mines.length) this.updateMines(w, dt);
 
-      // 芋头术士：契合光环每 3 秒向外脉冲一次
-      if (def.kind === 'aura' && talent.auraPulse(def) && (w.pulseT += dt) >= 3) {
+      // 光环脉冲：芋头术士的契合光环每 3 秒（范围 ×1.5，并抵消敌弹）；天赋「脉动」让所有光环每 4 秒（范围 ×1.3）
+      const taroPulse = talent.auraPulse(def);
+      const pulseEvery = taroPulse ? 3 : treeTotals().auraPulse ? 4 : 0;
+      if (def.kind === 'aura' && pulseEvery && (w.pulseT += dt) >= pulseEvery) {
         w.pulseT = 0;
-        this.auraPulse(w, range * 1.5);
+        this.auraPulse(w, range * (taroPulse ? 1.5 : 1.3), taroPulse);
       }
 
       w.cd -= dt;
@@ -332,6 +343,7 @@ export class WeaponSystem {
     w.shot = g.talent.onFire(w.def);
     if (combo) w.dmgMul = w.mods?.comboMult ?? 0.6;
     this.fire(w, hx, hy, t, range);
+    this.echo(w, range);
     w.dmgMul = 1;
     const cv = convert(w.def, w.mods, w.shot);
     w.shot = null;
@@ -349,33 +361,69 @@ export class WeaponSystem {
     });
   }
 
+  /** 蓝莓双子的分身：本体每次出手，分身各自就近索敌，用同一把武器以 CLONE_WEAPON_MULT 伤害再打一次 */
+  private echo(w: WRun, range: number): void {
+    const g = this.g;
+    const k = w.def.kind;
+    if (!g.weaponClones.length || k === 'mine' || k === 'aura') return;
+    const s = g.stats;
+    const mul = w.dmgMul,
+      ang = w.animAngle,
+      sweep = w.sweep;
+    const melee = k === 'sweep' || k === 'thrust';
+    w.dmgMul = mul * CLONE_WEAPON_MULT;
+    for (const c of g.weaponClones) {
+      const t = melee ? this.nearestReachable(k, c.x, c.y, range) : g.grid.nearest(c.x, c.y, range + 20);
+      if (!t) continue;
+      const a = (w.animAngle = Math.atan2(t.y - c.y, t.x - c.x));
+      if (k === 'sweep' && !SWEEP_STYLE[w.def.id]) {
+        // 普通横扫没有刀光演出可复用：分身一次结算整个扇区
+        const half = Math.min(Math.PI, sweepHalfArc(undefined) * (1 + convert(w.def, w.mods, w.shot).area / 200));
+        for (const e of [...g.grid.query(c.x, c.y, range, g.tmp)]) {
+          const d = Phaser.Math.Angle.Wrap(Math.atan2(e.y - c.y, e.x - c.x) - a);
+          if (Math.abs(d) < half || Math.hypot(e.x - c.x, e.y - c.y) < e.radius + 30) this.hit(e, w, s, c.x, c.y);
+        }
+        g.fxSweep(c.x, c.y, a, range);
+      } else this.fire(w, c.x, c.y, t, range);
+    }
+    w.dmgMul = mul;
+    w.animAngle = ang;
+    w.sweep = sweep;
+  }
+
   private info(w: WRun, s: Stats): HitInfo {
     const def = w.def;
     const m = w.mods;
     const sm = w.shot;
-    let dmg = weaponDamage(def, w.owned.tier, s, w.owned) * w.dmgMul * (sm?.mult ?? 1);
+    let dmg = weaponDamage(def, w.owned.tier, s, w.owned) * w.dmgMul * (sm?.mult ?? 1) * this.g.talent.favDmgMult(def);
+    // 超武增益·怒气：按层数增伤；满层时这一击爆发并震出冲击波
+    const rage = this.g.superBuffs.hitMult(def);
+    dmg *= rage.mult;
     const ax = affixTotals(w.owned);
     const same = run.specials.sameWeaponBonus;
     if (same) dmg *= 1 + (same * run.weapons.filter((x) => x.id === def.id).length) / 100;
     const crit = !!sm?.forceCrit || Math.random() * 100 < s.crit + (def.critBonus ?? 0) + ax.crit + (m?.crit ?? 0);
     // 这里只乘武器自身的暴击倍率；词条暴击伤害随 HitInfo.critBonus 传给 weaponHit，
     // 与道具 / 角色 / 天赋的暴击伤害合并成一个加法池（上限 BALANCE.critDmgCap）
-    if (crit) dmg *= def.critMult;
+    if (crit) dmg *= def.critMult * this.g.superBuffs.onCrit(def);
     const status: StatusApply[] = [];
     if (ax.burn) status.push({ id: 'burn', dur: 3, stacks: 1, chance: ax.burn });
     if (ax.poison) status.push({ id: 'poison', dur: 4, stacks: 1, chance: ax.poison });
     if (ax.slow) status.push({ id: 'slow', dur: 2, stacks: 1, chance: ax.slow });
     if (m) status.push(...m.status);
+    if (sm?.stun) status.push({ id: 'stun', dur: sm.stun });
     return {
       crit,
       knockback: (def.knockback ?? 0) + (m?.knock ?? 0) + (sm?.knock ?? 0),
       effect: def.effect,
-      lifeSteal: (def.effect?.lifeSteal ?? 0) + ax.lifeSteal + (m?.lifeSteal ?? 0),
+      lifeSteal:
+        (def.effect?.lifeSteal ?? 0) + ax.lifeSteal + (m?.lifeSteal ?? 0) + this.g.superBuffs.lifeSteal(def, run.hp / Math.max(1, s.maxHp)),
       status: status.length ? status : undefined,
       dmg,
       weaponId: def.id,
       cls: def.cls,
       critBonus: ax.critDmg + (m?.critDmg ?? 0),
+      rageBurst: rage.burst || undefined,
     };
   }
 
@@ -430,12 +478,18 @@ export class WeaponSystem {
         // 契合额外弹丸没有自带散射时，给一个小角度散开
         const spread = Phaser.Math.DegToRad(def.spread ?? (cv.count > 0 ? 10 + 4 * cv.count : 0));
         const pid = def.evolvedFrom ?? def.id;
+        // 批量生成的武器没有自己的子弹贴图：依次找自己 → 进化前 → 外观模板
+        const tpl = def.template ?? '';
         const key =
           def.projKey && g.textures.exists(def.projKey)
             ? def.projKey
             : g.textures.exists(`proj_${pid}`)
               ? `proj_${pid}`
-              : (PROJ_KEY[pid] ?? 'proj_player');
+              : PROJ_KEY[pid]
+                ? PROJ_KEY[pid]
+                : tpl && g.textures.exists(`proj_${tpl}`)
+                  ? `proj_${tpl}`
+                  : (PROJ_KEY[tpl] ?? 'proj_player');
         const speed = (def.projSpeed ?? 600) * (1 + (w.mods?.projSpd ?? 0) / 100);
         for (let k = 0; k < count; k++) {
           let ang = a;
@@ -451,7 +505,7 @@ export class WeaponSystem {
           b.lifeSteal = i.lifeSteal ?? 0;
           b.status = i.status;
           b.src = def.id;
-          b.pierce = (def.pierce?.[tier] ?? 0) + cv.pierce;
+          b.pierce = (def.pierce?.[tier] ?? 0) + cv.pierce + (def.cls === 'ranged' ? treeTotals().rangedPierce : 0);
           b.bounce = (def.bounce?.[tier] ?? 0) + cv.bounce;
           b.areaMul = areaMul;
           b.homing = def.homing ?? 0;
@@ -561,21 +615,35 @@ export class WeaponSystem {
     this.g.weaponHit(e, i, fx, fy);
   }
 
+  /** 超武增益·怒气满层爆发的冲击波（命中结算后调用） */
+  rageBurst(x: number, y: number, dmg: number, info: HitInfo): void {
+    const R = BALANCE.superBuff.rage;
+    this.g.explode(x, y, R.boomR, dmg * R.boomDmg, { ...info, echo: true, explosion: true }, 0xff4b3e);
+  }
+
   private fireAura(w: WRun, range: number): void {
     const g = this.g;
     const s = g.stats;
     const hits = [...g.grid.query(g.player.x, g.player.y, range, g.tmp)];
     for (const e of hits) this.hit(e, w, s, g.player.x, g.player.y);
     if (w.aura && hits.length) w.aura.pulse(hits);
+    // 蓝莓双子的分身也带着光环
+    if (!g.weaponClones.length) return;
+    w.dmgMul = CLONE_WEAPON_MULT;
+    for (const c of g.weaponClones) for (const e of [...g.grid.query(c.x, c.y, range, g.tmp)]) this.hit(e, w, s, c.x, c.y);
+    w.dmgMul = 1;
   }
 
-  /** 芋头术士：光环向外脉冲一圈，造成一次伤害并击退 */
-  private auraPulse(w: WRun, range: number): void {
+  /** 光环向外脉冲一圈，造成一次伤害并击退；clearBullets：芋香结界同时抵消范围内的敌弹 */
+  private auraPulse(w: WRun, range: number, clearBullets: boolean): void {
     const g = this.g;
     const s = g.stats;
     const p = g.player;
-    const look = AURA_LOOK[w.def.id] ?? AURA_LOOK[w.def.evolvedFrom ?? ''];
+    const look =
+      AURA_LOOK[w.def.id] ?? AURA_LOOK[w.def.evolvedFrom ?? ''] ?? (w.def.template ? { color: w.def.projTint ?? 0xcdb4db } : undefined);
     g.fx.ring(p.x, p.y, range, look?.color ?? 0xcdb4db, 420, true);
+    // 芋香结界：脉冲同时抵消范围内的敌弹
+    if (clearBullets) for (const b of g.enemyBullets) if (b.alive && Math.hypot(b.x - p.x, b.y - p.y) < range) b.kill();
     for (const e of [...g.grid.query(p.x, p.y, range, g.tmp)]) {
       const i = this.info(w, s);
       g.weaponHit(e, { ...i, knockback: (i.knockback ?? 0) + 40 }, p.x, p.y);
@@ -591,7 +659,8 @@ export class WeaponSystem {
     const x = Phaser.Math.Clamp(p.x + Math.cos(ang) * r, g.arena.x + 20, g.arena.right - 20);
     const y = Phaser.Math.Clamp(p.y + Math.sin(ang) * r, g.arena.y + 20, g.arena.bottom - 20);
     const def = w.def;
-    const key = [`mine_${def.id}`, `mine_${def.evolvedFrom ?? ''}`].find((k) => g.textures.exists(k)) ?? 'mine';
+    const key =
+      [`mine_${def.id}`, `mine_${def.evolvedFrom ?? ''}`, `mine_${def.template ?? ''}`].find((k) => g.textures.exists(k)) ?? 'mine';
     // 超武的雷大一圈，并带一点转角，摆在地上不至于千篇一律
     const img = g.add
       .image(p.x, p.y, key)
@@ -617,7 +686,14 @@ export class WeaponSystem {
       if (g.grid.query(m.img.x, m.img.y, triggerR, g.tmp).length) {
         m.alive = false;
         const i = this.info(w, g.stats);
-        g.explode(m.img.x, m.img.y, boomR, i.dmg, i, MINE_BOOM_COLOR[w.def.id] ?? MINE_BOOM_COLOR[w.def.evolvedFrom ?? ''] ?? 0xff5400);
+        g.explode(
+          m.img.x,
+          m.img.y,
+          boomR,
+          i.dmg,
+          i,
+          MINE_BOOM_COLOR[w.def.id] ?? MINE_BOOM_COLOR[w.def.evolvedFrom ?? ''] ?? w.def.projTint ?? 0xff5400,
+        );
         m.img.destroy();
       }
     }

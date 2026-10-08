@@ -230,9 +230,9 @@ export function renderData(ctx: DevCtx): HTMLElement {
       h('div', { class: 'muted small' }, '章节倍率（x = 章节）'),
       lineChart(
         [
-          ['HP', COLORS[0], chs.map((c) => chapterMult(c, cc.hpEnd))],
-          ['伤害', COLORS[1], chs.map((c) => chapterMult(c, cc.dmgEnd))],
-          ['Boss HP', COLORS[2], chs.map((c) => chapterMult(c, cc.bossHpEnd))],
+          ['HP', COLORS[0], chs.map((c) => chapterMult(c, cc.hpEnd, cc.late.hp))],
+          ['伤害', COLORS[1], chs.map((c) => chapterMult(c, cc.dmgEnd, cc.late.dmg))],
+          ['Boss HP', COLORS[2], chs.map((c) => chapterMult(c, cc.bossHpEnd, cc.late.bossHp))],
         ],
         { h: 130 },
       ),
@@ -241,7 +241,7 @@ export function renderData(ctx: DevCtx): HTMLElement {
         chs.map((c, i) => [
           `第${c}章`,
           COLORS[i % COLORS.length],
-          waves.map((w) => growthCurve(10, 0.5, w) * chapterScale(chapterMult(c, cc.hpEnd), w)),
+          waves.map((w) => growthCurve(10, 0.5, w) * chapterScale(chapterMult(c, cc.hpEnd, cc.late.hp), w)),
         ]),
       ),
       h('div', { class: 'muted small' }, '每波番茄籽收入目标 · 无尽 HP 复利（16–40 波）'),

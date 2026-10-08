@@ -1,6 +1,6 @@
 // 敌人逻辑对象（小怪 / 精英 / Boss）。渲染交给 Rig，状态效果交给 StatusSet。
 import { bump } from '../systems/Counters';
-import type { StatusId } from '../data/statuses';
+import { dotColor, type StatusId } from '../data/statuses';
 import Phaser from 'phaser';
 import type { EnemyDef } from '../data/enemies';
 import { AFFIXES, type AffixId, type BossDef, type Pattern } from '../data/bosses';
@@ -10,10 +10,12 @@ import type { GameScene } from '../scenes/GameScene';
 import { StatusSet } from '../systems/Status';
 import type { Rig } from './Rig';
 import { tx } from '../i18n';
-import { seedValue } from '../data/balance';
-import { run } from '../systems/RunState';
+import { BALANCE, seedValue } from '../data/balance';
 
 let enemySeq = 1;
+
+/** 远程小怪的射程（见 BALANCE.enemyRanged） */
+export const shooterRange = (d: EnemyDef): number => (d.keepDist ?? 280) * BALANCE.enemyRanged.rangeMult;
 
 /** 前两波掉落加成：保证第一波结束就能买得起道具 */
 
@@ -136,7 +138,7 @@ export class Enemy {
     this.dmg = Math.round(dmg * (affixes.length ? 1.3 : 1));
     this.speed = def.speed * speedMult * Phaser.Math.FloatBetween(0.9, 1.1);
     this.seeds = def.seeds * (affixes.length ? 4 : 1);
-    this.lootMult = seedValue(run.wave) * run.chapter.lootMult;
+    this.lootMult = seedValue();
     this.knockResist = def.knockResist ?? 0;
     this.actT = Phaser.Math.FloatBetween(0.5, def.shootCd ?? def.chargeCd ?? def.summonCd ?? def.healCd ?? 1.5);
     this.lifeT = def.life ?? 0;
@@ -152,7 +154,7 @@ export class Enemy {
     this.dmg = dmg;
     this.speed = def.speed;
     this.seeds = def.seeds;
-    this.lootMult = seedValue(run.wave) * run.chapter.lootMult;
+    this.lootMult = seedValue();
     this.knockResist = 0.95;
     this.status.ccResist = def.elite ? 0.5 : 0.75;
     this.patterns = [...def.patterns];
@@ -229,8 +231,11 @@ export class Enemy {
 
     const dot = st.update(dt);
     if (dot > 0) {
-      g.damageEnemy(this, dot * (1 + g.statusDmgBonus / 100), { color: '#c0ff7a', dot: true });
-      if (!this.alive) return;
+      // 每种持续伤害各跳一个数字，颜色区分（灼烧红、中毒绿……）
+      for (const p of st.dotParts) {
+        g.damageEnemy(this, p.dmg * (1 + g.statusDmgBonus / 100), { color: dotColor(p.id), dot: true });
+        if (!this.alive) return;
+      }
     }
     this.contactCd -= dt;
     if (this.lifeT > 0) {
@@ -369,28 +374,45 @@ export class Enemy {
         }
         return [this.dirX * (d.chargeSpeed ?? 500), this.dirY * (d.chargeSpeed ?? 500)];
       }
-      case 'shooter':
+      case 'shooter': {
+        // 射程边缘游走：远了靠近、太近后退，在射程内绕着玩家横向移动（每隔一段时间换方向），只在射程内开火
+        const ER = BALANCE.enemyRanged;
+        const range = shooterRange(d);
+        let mx: number, my: number;
+        if (dist > range * 0.95) [mx, my] = [nx, ny];
+        else if (dist < range * 0.6) [mx, my] = [-nx * 0.8, -ny * 0.8];
+        else {
+          const side = Math.sin(g.time.now / 1700 + this.wander * 3) > 0 ? 0.55 : -0.55;
+          const radial = Phaser.Math.Clamp((dist - range * ER.hover) / (range * 0.2), -1, 1) * 0.5;
+          mx = -ny * side + nx * radial;
+          my = nx * side + ny * radial;
+        }
+        if (this.actT <= 0 && !noAttack && dist <= range) {
+          this.actT = d.shootCd ?? 2.5;
+          rig.play('attack');
+          g.enemyShoot(
+            this,
+            d.shots ?? 1,
+            d.spread ?? 0,
+            d.projSpeed ?? 250,
+            this.dmg * (d.projMult ?? 1) * this.dealtMult,
+            d.projSlow ?? 0,
+            d.projKey ?? 'proj_enemy',
+            1,
+            this.attackDebuffs(),
+            undefined,
+            this.isElite ? undefined : range * ER.bulletReach,
+          );
+        }
+        return [mx * s, my * s];
+      }
       case 'healer': {
         const keep = d.keepDist ?? 280;
         let m = 0;
         if (dist > keep) m = 1;
         else if (dist < keep * 0.7) m = -0.8;
         if (this.actT <= 0 && !noAttack) {
-          if (d.behavior === 'shooter' && dist < keep + 200) {
-            this.actT = d.shootCd ?? 2.5;
-            rig.play('attack');
-            g.enemyShoot(
-              this,
-              d.shots ?? 1,
-              d.spread ?? 0,
-              d.projSpeed ?? 250,
-              this.dmg * (d.projMult ?? 1) * this.dealtMult,
-              d.projSlow ?? 0,
-              d.projKey ?? 'proj_enemy',
-              1,
-              this.attackDebuffs(),
-            );
-          } else if (d.behavior === 'healer') {
+          if (d.behavior === 'healer') {
             this.actT = d.healCd ?? 3;
             rig.play('cast');
             g.healEnemiesAround(this, d.healRadius ?? 180, d.healAmount ?? 0.2);

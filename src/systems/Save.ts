@@ -26,6 +26,8 @@ export interface SaveData {
     btnScale?: number;
     showFps: boolean;
     fpsLimit: number;
+    /** 高清渲染（按屏幕物理像素渲染，更清晰但更耗 GPU）；改动后重启生效 */
+    hiDpi: boolean;
     lang?: 'zh' | 'en';
     autoSkill: boolean;
   };
@@ -47,8 +49,10 @@ export interface SaveData {
   stats: AchStats;
   /** 成就计数器（见 systems/Counters.ts） */
   counters: Record<string, number>;
-  /** 天赋树：节点 id → 等级 */
+  /** 天赋树（默认方案）：节点 id → 等级 */
   talents: Record<string, number>;
+  /** 角色专属天赋方案：角色 id → 节点 id → 等级；没有的角色继承默认方案 */
+  charTalents: Record<string, Record<string, number>>;
   /** 最近的对局记录（新的在前，最多 30 条） */
   history: RunRecord[];
   /** 已看过的新手提示 */
@@ -201,7 +205,7 @@ const DEFAULT: SaveData = {
   wins: 0,
   bestWave: {},
   charWins: {},
-  settings: { sfx: 0.7, music: 0.5, shake: true, showDmg: true, showFps: false, fpsLimit: 60, autoSkill: true },
+  settings: { sfx: 0.7, music: 0.5, shake: true, showDmg: true, showFps: false, fpsLimit: 60, autoSkill: true, hiDpi: true },
   seen: { items: [], weapons: [], enemies: [], bosses: [] },
   achievements: {},
   ownedChars: [],
@@ -211,6 +215,7 @@ const DEFAULT: SaveData = {
   stats: { eliteKills: 0, bossKills: 0, overtimeWins: 0, perfectWaves: 0, revives: 0, t4Crafted: 0, seedsEarned: 0 },
   counters: {},
   talents: {},
+  charTalents: {},
   history: [],
   challenges: {},
   tutorial: {},
@@ -254,6 +259,7 @@ export function normalize(input: unknown): SaveData {
     stats: { ...DEFAULT.stats, ...(d.stats ?? {}) },
     counters: { ...(d.counters ?? {}) },
     talents: { ...(d.talents ?? {}) },
+    charTalents: { ...(d.charTalents ?? {}) },
     history: Array.isArray(d.history) ? d.history : [],
     challenges: { ...(d.challenges ?? {}) },
     tutorial: { ...(d.tutorial ?? {}) },

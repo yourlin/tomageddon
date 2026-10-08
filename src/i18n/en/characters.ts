@@ -7,7 +7,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'All-Rounder',
     desc: 'Guardian of Ketchup Town. Well-balanced in every way — perfect for beginners.',
     talent: { name: 'Heart of Tomato', desc: 'After each wave, permanently gain +1 Max HP and +2% favored-weapon combo chance (max +20%)' },
-    traits: ['+5% Damage', '+1 HP Regen'],
+    traits: [],
     skill: { name: 'Ketchup Burst', desc: 'Splatter ketchup everywhere, damaging and slowing enemies.' },
   },
   carrot: {
@@ -18,7 +18,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: "Knight's Shield",
       desc: 'Each point of Armor gives favored weapons +2% sweep & blast area (max +40%); hits on enemies with 3+ Armor Break stun for 0.3s',
     },
-    traits: ['+3 Armor', '+3 Melee Damage', 'Ranged Damage -50%'],
+    traits: ['Ranged Damage -50%'],
     skill: { name: 'Knight Charge', desc: 'An invulnerable charge that stuns every enemy in its path.' },
   },
   chili: {
@@ -26,7 +26,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Fire Expert',
     desc: 'Hot-tempered and fiery — flames follow wherever she goes.',
     talent: { name: 'Fuel the Fire', desc: 'Favored weapon hits on Burning enemies throw sparks that deal 30% damage around them' },
-    traits: ['+3 Elemental Damage', '-2 Max HP', 'All hits have a 25% chance to Burn'],
+    traits: ['All hits have a 25% chance to Burn'],
     skill: { name: 'Flame Nova', desc: 'A fiery shockwave that applies 3 stacks of Burn.' },
   },
   corn: {
@@ -34,7 +34,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Sharpshooter',
     desc: 'A Wild West gunslinger who blasts through anything with kernels.',
     talent: { name: 'Suppressing Fire', desc: 'Favored bullets gain +1 pierce for every 100 distance travelled (max +3)' },
-    traits: ['+3 Ranged Damage', '+50 Range', '+3 Max HP', 'Melee Damage -50%'],
+    traits: ['Melee Damage -50%'],
     skill: { name: 'Popcorn Barrage', desc: 'Fire 18 popcorn shots in all directions.' },
   },
   watermelon: {
@@ -42,7 +42,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Heavy Tank',
     desc: 'A big, round bruiser with a seriously thick rind.',
     talent: { name: 'Thick Rind', desc: 'Take 10% less damage; every 20 Max HP gives favored weapons +5% area (max +50%)' },
-    traits: ['+25 Max HP', '+2 Armor', '-12% Move Speed', '-10% Attack Speed'],
+    traits: [],
     skill: { name: 'Melon Roll', desc: 'Roll into enemies and restore 4.5% Max HP.' },
   },
   lemon: {
@@ -50,7 +50,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Crit Assassin',
     desc: 'A sour little assassin who kills in a single strike.',
     talent: { name: 'Sour Strike', desc: "A favored weapon crit instantly resets that weapon's cooldown (once per second per weapon)" },
-    traits: ['+20% Crit Chance', '+10% Dodge', '-4 Max HP', '+40% Crit Damage'],
+    traits: ['+40% Crit Damage'],
     skill: { name: 'Sour Mist', desc: 'Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance.' },
   },
   eggplant: {
@@ -58,7 +58,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Thunder Mage',
     desc: 'A purple-robed mage who calls down lightning to punish pests.',
     talent: { name: 'Thunder Power', desc: 'Each jump of a favored chain has a 15% chance to call down a lightning strike' },
-    traits: ['+4 Elemental Damage', '+10 Luck', '+3 Max HP', 'Melee Damage -70%', '10% chance on hit to call lightning'],
+    traits: ['Melee Damage -70%', '10% chance on hit to call lightning'],
     skill: { name: 'Purple Thunder', desc: 'Lightning blankets the screen, striking every enemy and briefly Stunning them.' },
   },
   garlic: {
@@ -67,9 +67,9 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'An ancient vampire... made entirely of garlic.',
     talent: {
       name: 'Blood Feast',
-      desc: 'Below 50% HP, Life Steal Chance doubles. Favored weapons gain +30% attack speed, half the Life Steal cooldown, and up to 3 Life Steal procs per group hit',
+      desc: 'A blood mist makes enemies within 160 Bleed every second. Favored weapons deal more damage the more HP you are missing (+60% at empty), with half the Life Steal cooldown and up to 3 Life Steal procs per group hit',
     },
-    traits: ['+10% Life Steal Chance', '+15 Max HP', '+5% Damage'],
+    traits: ['Enemies within 160 Bleed every second'],
     skill: { name: 'Blood Domain', desc: 'Drain life from nearby enemies and inflict Bleed.' },
   },
   blueberry: {
@@ -77,8 +77,11 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Weapon Master',
     desc: 'Inseparable twins who can carry more weapons.',
     talent: { name: 'Twin Bond', desc: 'Each pair of identical favored weapons gives favored weapons +1 more projectile (max +2)' },
-    traits: ['8 weapon slots', '-10% Damage'],
-    skill: { name: 'Twin Clone', desc: 'Summon a clone that auto-fires for 8s.' },
+    traits: ['8 weapon slots'],
+    skill: {
+      name: 'Twin Clone',
+      desc: 'Summon 2 clones for 8s that attack with all your weapons (50% damage) and block bullets; clones explode when destroyed or expired.',
+    },
   },
   pineapple: {
     name: 'Captain Pineapple',
@@ -88,7 +91,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: "Pirate's Share",
       desc: 'Earn 8% interest on your seeds after each wave (cap rises with waves); every 100 seeds held gives favored weapons +1 bounce (max +3)',
     },
-    traits: ['Shop prices -15%', '+20 Luck', '+10 Harvest'],
+    traits: ['Shop prices -15%'],
     skill: {
       name: 'Golden Cannon',
       desc: 'Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds.',
@@ -99,7 +102,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Dodge Master',
     desc: 'A little Halloween ghost, always floating about.',
     talent: { name: 'Ghost Ambush', desc: 'After a successful dodge, favored weapons gain +40% attack speed for 1.5s' },
-    traits: ['+25% Dodge', 'Dodge cap 75%', '-4 Max HP'],
+    traits: ['Dodge cap 75%'],
     skill: { name: 'Spirit Form', desc: 'Become Invulnerable for 2.5s and gain a big speed boost.' },
   },
   strawberry: {
@@ -110,7 +113,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Rising Star',
       desc: 'Each level-up grants +1 Max HP; every 4 levels favored weapons gain a permanent upgrade in turn: +15% range, +1 projectile, +1 pierce, +5% crit',
     },
-    traits: ['+40% XP Gain', '5 choices on level up'],
+    traits: ['5 choices on level up'],
     skill: { name: 'Fan Cheer', desc: 'Gain 3 stacks of Haste + 5 stacks of Rage for 6s.' },
   },
   ginger: {
@@ -118,7 +121,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Wind Ninja',
     desc: 'A ginger ninja who comes and goes without a trace.',
     talent: { name: 'Gale Step', desc: 'Every +10% Move Speed gives favored weapons +4% attack speed' },
-    traits: ['+20% Move Speed', '+15% Attack Speed', '-1 Armor'],
+    traits: [],
     skill: { name: 'Shadow Slash', desc: 'Dash forward with a slash that inflicts Bleed.' },
   },
   avocado: {
@@ -129,7 +132,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Blast Science',
       desc: 'Favored weapon blasts have a 30% chance to set off a second blast at the edge (50% damage); +3% per wave (max 60%)',
     },
-    traits: ['+2 Elemental Damage', '+5% Damage', 'Kills have a 15% chance to explode'],
+    traits: ['Kills have a 15% chance to explode'],
     skill: { name: 'Core Overload', desc: 'Trigger 5 chain explosions.' },
   },
   onion: {
@@ -140,7 +143,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Tear Gas',
       desc: 'When hit, Blind nearby enemies for 2s (at most once every 3s); favored weapons get +30% crit chance against Blinded enemies',
     },
-    traits: ['+4 Armor', '+10 Max HP', 'Reflect 15 damage when hit'],
+    traits: ['Reflect 15 damage when hit'],
     skill: { name: 'Tear Gas Zone', desc: 'Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside.' },
   },
   mushroom: {
@@ -151,15 +154,18 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Spore Burst',
       desc: 'Poisoned enemies burst into 3 homing spores on death and apply 3 stacks of Poison to nearby enemies',
     },
-    traits: ['+2 Elemental Damage', 'All hits have a 30% chance to Poison'],
+    traits: ['All hits have a 30% chance to Poison'],
     skill: { name: 'Spore Cloud', desc: 'Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area.' },
   },
   coconut: {
     name: 'Coconut Boxer',
     title: 'Heavy Hitter',
     desc: 'Beneath the hard shell beats a fiery fighter’s heart.',
-    talent: { name: 'Knockout Punch', desc: 'Favored weapon hits on Stunned enemies release a shockwave dealing 50% damage around them' },
-    traits: ['+4 Melee Damage', '+2 Armor', '+5 Max HP', 'Kills stack Rage (+4% Damage each)', '12% chance on hit to Stun for 0.6s'],
+    talent: {
+      name: 'Knockout Punch',
+      desc: 'Every 4th favored punch deals ×2.5 damage and always Stuns for 0.4s; favored hits on Stunned enemies release a shockwave dealing 50% damage around them',
+    },
+    traits: ['12% chance on hit to Stun for 0.6s'],
     skill: { name: 'Ground Pound', desc: 'Slam the ground to Stun enemies and inflict Armor Break.' },
   },
   grape: {
@@ -170,7 +176,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Sleight of Hand',
       desc: 'Gain 1s of invulnerability every 8s; favored hits have a 15% chance to conjure a phantom shot at another enemy (60% damage), guaranteed while invulnerable',
     },
-    traits: ['+10 Luck', '+3 Max HP', '20% chance to Confuse enemies when attacked'],
+    traits: ['20% chance to Confuse enemies when attacked'],
     skill: { name: 'Grape Clone', desc: 'Summon a clone that auto-fires for 8s.' },
   },
   cherry: {
@@ -179,9 +185,9 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Two cherries on one stem, with lightning-fast trigger fingers.',
     talent: {
       name: 'Rapid Volley',
-      desc: 'Each favored shot adds 1 Hot Barrel stack (+1% attack speed, max 30); stacks reset after 1s without firing',
+      desc: 'Each favored shot adds 1 Hot Barrel stack (+1% attack speed); at 20 stacks you Overheat for 2s (-30% attack speed) and the stacks reset; stacks also reset after 1s without firing',
     },
-    traits: ['+20% Attack Speed', '-8% Damage', '10% chance to gain Haste when shooting'],
+    traits: [],
     skill: { name: 'Dual Barrage', desc: 'Fire 12 bullets in a row at the nearest enemy.' },
   },
   pea: {
@@ -189,7 +195,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Legionnaire',
     desc: 'Little soldiers fresh out of the pod — strength in numbers.',
     talent: { name: 'Pea Legion', desc: 'Each weapon you hold gives favored bullets +8% chance to split in two' },
-    traits: ['+2 Ranged Damage', 'Start with 2 Pea Shooters', '+3% Damage per duplicate weapon'],
+    traits: ['Start with 2 Pea Shooters', '+3% Damage per duplicate weapon'],
     skill: { name: 'Pea Turret', desc: 'Rapid-fire 16 peas at the nearest enemy.' },
   },
   peach: {
@@ -198,9 +204,9 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A gentle angel who watches over every friend.',
     talent: {
       name: "Angel's Grace",
-      desc: 'The first lethal hit each wave leaves you at 1 HP with 2s of invulnerability; while shielded, favored weapons gain +1 pierce and heal on every hit (max 3 per second)',
+      desc: 'Every 0.8s, auto-fire a homing holy bolt at the nearest enemy (damage = 6 + Ranged Damage + 50% HP Regen; 2 bolts while shielded). The first lethal hit each wave leaves you at 1 HP with 2s of invulnerability; while shielded, favored weapons gain +1 pierce and heal on every hit (max 3 per second)',
     },
-    traits: ['+5 HP Regen', 'Gain 15 Shield at the start of each wave', '-10% Damage'],
+    traits: ['Gain 15 Shield at the start of each wave'],
     skill: { name: 'Angel’s Blessing', desc: 'Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s.' },
   },
   dragonfruit: {
@@ -208,15 +214,15 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Flame Knight',
     desc: 'A knight with dragon blood — flames follow every charge.',
     talent: { name: 'Dragon Breath', desc: 'Favored weapon hits on Burning enemies unleash a short dragon breath (3 flames, 40% damage)' },
-    traits: ['+2 Melee/Elemental Damage', '+5 Max HP', 'Melee hits have a 20% chance to Burn', '+40% damage over time'],
-    skill: { name: 'Dragonflame Charge', desc: 'Charge forward, applying 4 stacks of Burn along the path.' },
+    traits: ['Melee hits have a 20% chance to Burn', '+40% damage over time'],
+    skill: { name: 'Dragonflame Charge', desc: 'Charge forward, applying 4 stacks of Burn for 5s along the path.' },
   },
   beet: {
     name: 'Beet Berserker',
     title: 'Berserker',
     desc: 'A blood-red beet who gets stronger the longer the fight goes.',
     talent: { name: 'Berserker Blood', desc: 'Every 10% HP lost gives favored weapons +6% attack speed and +3% area' },
-    traits: ['+15% Damage', '+3% Life Steal Chance', '-1 Armor', 'Gain Rage when damaged'],
+    traits: ['Gain Rage when damaged'],
     skill: { name: 'Frenzy', desc: 'Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s.' },
   },
   asparagus: {
@@ -224,7 +230,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Marksman',
     desc: 'A tall, slender asparagus who never misses.',
     talent: { name: 'Heartpiercer', desc: 'Favored weapons always crit enemies at full HP, and that hit does not use up pierce' },
-    traits: ['+80 Range', '+10% Crit Chance', 'Hits have a 15% chance to Mark enemies (next hit always crits)'],
+    traits: ['Hits have a 15% chance to Mark enemies (next hit always crits)'],
     skill: { name: 'Heartpiercer', desc: 'Fire 8 piercing arrows at the enemy with the highest HP and Mark the target.' },
   },
   sweetpotato: {
@@ -235,7 +241,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Gourmet',
       desc: 'Picking up fruit grants bonus seeds (scales with wave) and gives favored weapons +25% attack speed and +20% area for 5s',
     },
-    traits: ['+20 Harvest', 'Fruit healing doubled', '-5% Damage'],
+    traits: ['Fruit healing doubled'],
     skill: { name: 'Roast Yam Feast', desc: 'Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen.' },
   },
   kiwi: {
@@ -243,7 +249,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Weakness Seeker',
     desc: 'A fuzzy detective who spots an enemy’s weakness at a glance.',
     talent: { name: 'Weak Spot', desc: 'Favored weapons get +5% crit chance per distinct debuff on the target' },
-    traits: ['+8% Crit Chance', '+3 Max HP', '+1 Melee Damage', 'Hits have a 20% chance to apply Vulnerable', 'Crit Damage +30%'],
+    traits: ['Hits have a 20% chance to apply Vulnerable', 'Crit Damage +30%'],
     skill: { name: 'One Truth', desc: 'See through every enemy on screen: apply Mark and 2 stacks of Vulnerable.' },
   },
   lychee: {
@@ -254,15 +260,18 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Lucky Streak',
       desc: 'First shop reroll each wave is free; every 10 Luck gives favored projectiles a 1% chance to become Lucky Envelopes (guaranteed crit, +2 bounce, max 30%)',
     },
-    traits: ['+40 Luck', 'Crate drop rate doubled'],
+    traits: ['Crate drop rate doubled'],
     skill: { name: 'Princess’s Luck', desc: 'Gain 5 stacks of Lucky + 3 stacks of Focus for 6s.' },
   },
   durian: {
     name: 'Durian Overlord',
     title: 'Spiked Tyrant',
     desc: 'Covered in spikes and infamous for the stench. Who dares come close?',
-    talent: { name: 'Stench Aura', desc: 'Favored hits add 1 Stench stack to the enemy; at 5 stacks it bursts into 8 spikes (40% damage)' },
-    traits: ['+3 Armor', '+10 Max HP', '-4% Move Speed', 'Reflect 10 damage', 'Nearby enemies are constantly Weakened'],
+    talent: {
+      name: 'Stench Aura',
+      desc: 'Every 1.5s, throw a stink spike at the nearest enemy (damage = 4 + Elemental Damage + 50% Armor; inflicts 2 Poison stacks and Weaken). Favored hits add 1 Stench stack to the enemy; at 3 stacks it bursts into 8 spikes (50% damage)',
+    },
+    traits: ['Reflect 10 damage', 'Enemies within 160 are constantly Weakened and gain 2 Poison stacks every second'],
     skill: { name: 'Stink Bomb', desc: 'Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies.' },
   },
   bellpepper: {
@@ -273,7 +282,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Mech Plating',
       desc: 'Take 15% less damage; while shielded, favored weapons gain +30% attack speed and +1 projectile',
     },
-    traits: ['+5 Armor', '+10 Max HP', '-10% Dodge', 'Gain 20 Shield every 12s'],
+    traits: ['Gain 20 Shield every 12s'],
     skill: { name: 'Drone Support', desc: 'Deploy a drone for 8s.' },
   },
   wintermelon: {
@@ -284,7 +293,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Zen Stillness',
       desc: 'While standing still: take 25% less damage, regenerate 2% Max HP per second, and favored weapons have a 50% combo chance (60% damage)',
     },
-    traits: ['+15% Dodge', '+3 HP Regen', 'Gain Focus on successful dodge'],
+    traits: ['Gain Focus on successful dodge'],
     skill: { name: 'Golden Bell', desc: 'Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify.' },
   },
   bittermelon: {
@@ -292,7 +301,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Frost Mage',
     desc: 'A bitter-looking ice mage who freezes everything in sight.',
     talent: { name: 'Frostbite', desc: 'Favored weapons always crit Frozen enemies and shatter the ice, dealing 50% damage around them' },
-    traits: ['+3 Elemental Damage', '+3 Max HP', 'Hits have an 8% chance to Freeze enemies for 1s'],
+    traits: ['Hits have an 8% chance to Freeze enemies for 1s'],
     skill: { name: 'Frozen Domain', desc: 'Unleash a 5s frost field around you that Slows and Freezes enemies who enter.' },
   },
   sprout: {
@@ -303,7 +312,7 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Late Bloomer',
       desc: 'Each level gives favored weapons +1% attack speed (max +40%); every 5 levels +1 pierce (max +3)',
     },
-    traits: ['+80% XP Gain', '-8% Damage', '-3 Max HP', '5 choices on level up'],
+    traits: ['5 choices on level up'],
     skill: { name: 'Growth Spurt', desc: 'Gain 12 XP and 5s of Haste.' },
   },
   wasabi: {
@@ -311,7 +320,7 @@ export const EN_CHARACTERS: CharactersEn = {
     title: 'Demolition Maniac',
     desc: 'A hair-trigger wasabi — it goes right up your nose, and it’s deadly.',
     talent: { name: 'Chain Reaction', desc: 'Enemies killed by explosions have a 40% chance to explode again, throwing 2 sparks' },
-    traits: ['+8% Damage', 'Kills have a 25% chance to explode', 'Explosions inflict Burn'],
+    traits: ['Kills have a 25% chance to explode', 'Explosions inflict Burn'],
     skill: { name: 'Wasabi Nuke', desc: 'Launch a wasabi nuke at the enemy horde for a massive, burning explosion.' },
   },
 };

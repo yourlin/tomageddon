@@ -58,7 +58,8 @@ try {
     for (const c of CHARACTERS) out.push(['char', c.id, await snap(portraitKey(scene, 'char', c.id), 128)]);
     for (const e of ENEMIES) out.push(['enemy', e.id, await snap(portraitKey(scene, 'enemy', e.id), 128)]);
     for (const b of BOSSES) out.push(['boss', b.id, await snap(portraitKey(scene, 'boss', b.id), 128)]);
-    for (const w of [...WEAPONS, ...EVOLVED_WEAPONS]) out.push(['weapon', w.id, await snap(`icon_weapon_${w.id}`, 96)]);
+    for (const w of [...WEAPONS, ...EVOLVED_WEAPONS])
+      out.push(['weapon', w.id, await snap(scene.textures.exists(`icon_weapon_${w.id}`) ? `icon_weapon_${w.id}` : `weapon_${w.id}`, 96)]);
     for (const it of ALL_ITEMS) out.push(['item', it.id, await snap(itemIconKey(scene, it), 64)]);
     return out;
   });

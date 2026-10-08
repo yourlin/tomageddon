@@ -1,6 +1,7 @@
 // 武器数据。每把武器 4 个品质（T1~T4），两把同名同品质可在商店合成升一级。
 import { EXTRA_WEAPONS } from './gearExtra';
 import { AFFINITY_WEAPONS } from './weaponsAffinity';
+import { buildGenWeapons } from './weaponsGen';
 import { auraBaseRadius } from './balance';
 export type WeaponClass = 'melee' | 'ranged' | 'elemental';
 export type WeaponKind =
@@ -55,6 +56,10 @@ export interface WeaponDef {
   minTier?: number; // 商店最低出现品质（0 起）
   /** 进化超武：由哪把武器进化而来（不进商店池） */
   evolvedFrom?: string;
+  /** 超武自带的叠层增益（只有部分超武有，见 systems/SuperBuffs.ts） */
+  superBuff?: 'rage' | 'haste' | 'focus' | 'vampiric';
+  /** 批量生成的武器：外观模板（子弹、地雷、光环贴图找不到自己的时，用模板武器的） */
+  template?: string;
 }
 
 export const TIER_PRICE_MULT = [1, 2.1, 4, 7.5];
@@ -869,9 +874,25 @@ export const WEAPONS: WeaponDef[] = [
 WEAPONS.push(...EXTRA_WEAPONS);
 // 契合武器改版：4 把角色主题武器
 WEAPONS.push(...AFFINITY_WEAPONS);
+// 武器扩充：8 个主题系列 54 把（以现有武器为模板生成，见 weaponsGen.ts）
+WEAPONS.push(...buildGenWeapons(Object.fromEntries(WEAPONS.map((w) => [w.id, w]))));
 // 光环默认半径由 T1 威力反推（伤害越高半径越小，至少 1.5 个身位）；进化超武在此基础上再乘进化射程倍率
 for (const w of WEAPONS) if (w.kind === 'aura') w.range = auraBaseRadius(w);
 export const WEAPON_MAP: Record<string, WeaponDef> = Object.fromEntries(WEAPONS.map((w) => [w.id, w]));
+
+/** 商店能卖的武器：超武（evolvedFrom）与合成专属 T4（minTier）只能按配方合成，不进商店 */
+export const isShopWeapon = (w: WeaponDef): boolean => !w.evolvedFrom && !w.minTier;
+/** 商店出售的最高品质：T4 只能合成（0 = T1，2 = T3） */
+export const SHOP_MAX_TIER = 2;
+
+/** 合成专属 T4 与超武由 data/recipes.ts、data/evolutions.ts 在加载后注册进来（避免循环依赖） */
+export function registerWeapons(list: WeaponDef[]): void {
+  for (const w of list) {
+    if (WEAPON_MAP[w.id]) continue;
+    WEAPONS.push(w);
+    WEAPON_MAP[w.id] = w;
+  }
+}
 
 /** 武器套装：持有 N 把带某标签的武器时获得加成 */
 export const WEAPON_SETS: Record<string, { name: string; bonus: Record<number, Partial<Record<string, number>>> }> = {

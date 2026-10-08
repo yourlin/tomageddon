@@ -17,6 +17,7 @@ import { toast } from '../ui/UI';
 import { tip } from '../systems/Tutorial';
 import { decodeBuild } from '../systems/BuildCode';
 import { startPractice } from '../systems/Practice';
+import { VW, VH } from '../systems/HiDpi';
 
 const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
 
@@ -41,8 +42,8 @@ export class ChallengeScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     text(this, 24, 18, tx('每日 / 每周挑战', 'Daily / Weekly Challenges'), 36);
     text(

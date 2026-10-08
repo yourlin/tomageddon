@@ -15,6 +15,8 @@ import {
   crateDropChance,
   chapterScale,
   regenPerSecond,
+  chapterWaves,
+  lootHarvestMult,
   explodeSizeMultiplier,
   thornyReflect,
   lifeStealHeal,
@@ -23,13 +25,14 @@ import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
 import { BOSS_MAP, AFFIX_IDS, TRUE_FINAL_BOSS_ID, type AffixId, type Pattern } from '../data/bosses';
 import { WEAPON_MAP, type WeaponEffect, type WeaponClass } from '../data/weapons';
-import { STATUSES, type StatusApply, type StatusId } from '../data/statuses';
+import { STATUSES, dotColor, type StatusApply, type StatusId } from '../data/statuses';
 import { Enemy } from '../objects/Enemy';
 import { Bullet } from '../objects/Bullet';
 import { Rig } from '../objects/Rig';
 import { SpatialGrid } from '../systems/Grid';
 import { WeaponSystem } from '../systems/WeaponSystem';
 import { SkillSystem } from '../systems/SkillSystem';
+import { SuperBuffs, SUPER_BUFF_NAME, type SuperBuffKind } from '../systems/SuperBuffs';
 import { StatusSet } from '../systems/Status';
 import { RigPool } from '../systems/RigPool';
 import { Fx } from '../systems/Fx';
@@ -39,15 +42,15 @@ import { audio } from '../systems/Audio';
 import { save, persist, markSeen } from '../systems/Save';
 import { paintArena } from '../art/ArenaArt';
 import { Terrain, TERRAIN_INFO } from '../systems/Terrain';
-import { tx } from '../i18n';
+import { tx, lang } from '../i18n';
 import { checkAchievements, setInRun } from '../systems/Achievements';
 import { TalentSystem, waveGrowthMods } from '../systems/Talents';
 import { saveRun } from '../systems/RunState';
 import { minionStats, bossStats } from '../systems/EnemyScaling';
 import { applyWaveRules, describeEvent, isSuperBossWave, mutations, reviveCost, type RunEventDef } from '../systems/RunEvents';
 import { button, text as uiText } from '../ui/UI';
-import { skinActive } from '../systems/Progress';
-import { SKIN_OF, applySkin } from '../data/skins';
+import { activeSkin } from '../systems/Progress';
+import { applySkin } from '../data/skins';
 import { BARKS, EASTER_EGGS, BARK_CHANCE, BARK_COOLDOWN, type BarkKind } from '../data/barks';
 import { stageMusic, bossMusic } from '../systems/Music';
 import { WaveQuestTracker } from '../systems/WaveQuests';
@@ -55,6 +58,7 @@ import { weatherForWave, WEATHER_MAP, WEATHER_RULE_KEY } from '../systems/Weathe
 import { mechanicOpen } from '../systems/Mechanics';
 import { AURA_WEAPON_IDS } from '../data/evolutions';
 import { boomOffset, BOOM_PASSES } from '../systems/BoomPaths';
+import { VW, VH } from '../systems/HiDpi';
 
 /** 开发者沙盒（?dev）：不刷怪、不计时、不掉落、不结算；玩家阵亡时原地复活。其余行为由开发者界面通过 onStep 驱动 */
 export interface SandboxOpts {
@@ -81,6 +85,8 @@ export interface HitInfo {
   critBonus?: number;
   /** 天赋追加的伤害（子弹 / 爆炸）：不再触发天赋 */
   echo?: boolean;
+  /** 超武增益·怒气满层爆发：命中后震出冲击波 */
+  rageBurst?: boolean;
 }
 
 interface Pickup {
@@ -126,6 +132,14 @@ const DEBUG_DMG = {
   },
 };
 
+export interface BulletShield {
+  x: number;
+  y: number;
+  r: number;
+  color?: number;
+  block?: (dmg: number) => void;
+}
+
 export class GameScene extends Phaser.Scene {
   /** 调试：每帧模拟步数（用于自动化平衡测试）；Infinity = 每帧在 simBudgetMs 内尽可能多跑 */
   static simSpeed = 1;
@@ -158,6 +172,8 @@ export class GameScene extends Phaser.Scene {
   rigs!: RigPool;
   weapons!: WeaponSystem;
   skill!: SkillSystem;
+  /** 超武增益（击败精英触发，只强化带该增益的那把超武） */
+  superBuffs!: SuperBuffs;
   stats!: Stats;
   rangeMult = 1;
   statusDmgBonus = 0;
@@ -211,10 +227,16 @@ export class GameScene extends Phaser.Scene {
   /** H1「宝箱怪潮」：宝箱掉率倍数与额外上限 */
   eventCrateMult = 1;
   eventCrateCap = 0;
+  /** 天赋「震地」：近战命中计数（每第 3 次触发冲击波） */
+  private meleeHits = 0;
   /** 荆棘词缀反伤的每秒累计窗口 */
   private thornyWin = { t: -99999, used: 0 };
   /** 隐身技能的诱饵位置：非空时敌人追它（见 SkillStyles） */
   decoy: { x: number; y: number } | null = null;
+  /** 挡子弹的区域（芋头结界、蓝莓分身）：敌弹进入圆内即被抵消，block 收到被挡子弹的伤害 */
+  bulletShields: BulletShield[] = [];
+  /** 拿着本体武器一起攻击的分身位置（蓝莓双子），见 WeaponSystem.echo */
+  weaponClones: { x: number; y: number }[] = [];
   /** H5：本波小任务 */
   readonly waveQuests = new WaveQuestTracker();
   /** F7：上次说台词的时间（秒，场景时钟） */
@@ -238,6 +260,8 @@ export class GameScene extends Phaser.Scene {
     this.noisy = false;
     this.dangerRing = null;
     this.decoy = null;
+    this.bulletShields = [];
+    this.weaponClones = [];
     this.thornyWin = { t: -99999, used: 0 };
     this.pickups = [];
     this.hazards = [];
@@ -313,13 +337,8 @@ export class GameScene extends Phaser.Scene {
 
     const c = run.char;
     // F6：装备皮肤时用换色后的外观（独立缓存键）
-    const skin = skinActive(c.id);
-    this.player = new Rig(
-      this,
-      skin ? applySkin(c.look, SKIN_OF[c.id]) : c.look,
-      `char_${c.id}${skin ? '_skin' : ''}`,
-      BALANCE.player.radius * 1.25,
-    );
+    const skin = activeSkin(c.id);
+    this.player = new Rig(this, applySkin(c.look, skin), `char_${c.id}${skin ? `_${skin.id}` : ''}`, BALANCE.player.radius * 1.25);
     this.add.existing(this.player);
     this.player.setPosition(A.width / 2, A.height / 2);
     this.player.play('spawn', true);
@@ -331,6 +350,9 @@ export class GameScene extends Phaser.Scene {
     this.weapons = new WeaponSystem(this);
     this.skill = new SkillSystem(this);
     this.talent = new TalentSystem(this);
+    this.superBuffs = new SuperBuffs(
+      () => new Set(run.weapons.map((w) => WEAPON_MAP[w.id].superBuff).filter((b): b is SuperBuffKind => !!b)),
+    );
     run.hp = this.stats.maxHp; // 每波开始回满生命
     const sp = run.specials;
     for (const s of sp.waveStartSelf) this.pstatus.apply(s);
@@ -422,7 +444,8 @@ export class GameScene extends Phaser.Scene {
     const s: Stats = { ...run.stats };
     if (this.skill?.buffMods) addMods(s, this.skill.buffMods);
     const t = this.pstatus.totals;
-    s.speed += Math.max(-50, t.speed);
+    // 状态效果（急速、减速……）的移速是敌我共用的 %，换算成玩家的移速点数
+    s.speed += Math.max(-50, t.speed) / BALANCE.speed.perPoint;
     s.attackSpeed += t.attackSpeed;
     s.damage += t.dmgDealt;
     s.armor += t.armor;
@@ -513,6 +536,7 @@ export class GameScene extends Phaser.Scene {
     this.weapons.update(dt);
     this.skill.update(dt);
     this.talent.update(dt);
+    this.superBuffs.update(dt);
     for (const e of this.enemies) if (e.alive) e.tick(dt, this);
     if (this.dying.length) {
       for (const r of this.dying) r.tick(dt, 0, 0);
@@ -553,8 +577,10 @@ export class GameScene extends Phaser.Scene {
     const st = this.pstatus;
     const dot = st.update(dt);
     // 玩家承受的持续伤害随波次与章节成长（早期生命值低，避免被毒死）
-    if (dot > 0 && !this.waveOver)
-      this.hurtDirect(dot * (0.35 + 0.045 * (run.wave - 1)) * chapterScale(run.chapter.dmgMult, run.wave), '#9ef01a');
+    if (dot > 0 && !this.waveOver) {
+      const k = (0.35 + 0.045 * (run.wave - 1)) * chapterScale(run.chapter.dmgMult, run.wave, chapterWaves(run.chapterId));
+      for (const p of st.dotParts) this.hurtDirect(p.dmg * k, dotColor(p.id));
+    }
     if (st.version !== this.statusVer) {
       this.statusVer = st.version;
       this.recalcStats();
@@ -692,7 +718,7 @@ export class GameScene extends Phaser.Scene {
     n *= run.rules.heal;
     const before = run.hp;
     run.hp = Math.min(this.stats.maxHp, run.hp + n);
-    if (show && run.hp - before >= 1) this.fx.number(this.player.x, this.player.y - 20, run.hp - before, '#52ff8a');
+    if (show && run.hp - before >= 1) this.fx.playerNumber(this.player.x, this.player.y - 20, run.hp - before, 'heal');
   }
 
   /** 不经过闪避/护甲的直接伤害（持续伤害） */
@@ -703,7 +729,7 @@ export class GameScene extends Phaser.Scene {
     run.hp -= dmg;
     this.tookDamage = true;
     DEBUG_DMG?.push([run.wave, Math.round(this.timeLeft), 'dot:' + color, Math.round(dmg * 10) / 10]);
-    if (dmg >= 1) this.fx.number(this.player.x, this.player.y - 10, dmg, color);
+    if (dmg >= 1) this.fx.playerNumber(this.player.x, this.player.y - 10, dmg, 'hurt', color);
     if (run.hp <= 0) this.onPlayerDeath();
   }
 
@@ -744,7 +770,7 @@ export class GameScene extends Phaser.Scene {
     ]);
     this.iframes = BALANCE.player.iframes;
     this.player.play('hurt');
-    this.fx.number(this.player.x, this.player.y - 10, dmg, '#ff4d4d');
+    this.fx.playerNumber(this.player.x, this.player.y - 10, dmg, 'hurt');
     audio.play(this, 'hurt', 0.1);
     this.shake(0.008, 120);
     this.cameras.main.flash(80, 120, 0, 0, false);
@@ -768,7 +794,7 @@ export class GameScene extends Phaser.Scene {
     run.hp -= dmg;
     this.tookDamage = true;
     DEBUG_DMG?.push([run.wave, 0, 'enrage-pressure', dmg]);
-    this.fx.number(this.player.x, this.player.y - 10, dmg, '#ff3b30');
+    this.fx.playerNumber(this.player.x, this.player.y - 10, dmg, 'hurt', '#ff3b30');
     if (run.hp <= 0) this.onPlayerDeath();
   }
 
@@ -827,8 +853,8 @@ export class GameScene extends Phaser.Scene {
     this.dead = true; // 暂停模拟步
     run.hp = 0;
     const cost = reviveCost(run.wave);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     const shade = this.add.rectangle(0, 0, W, H, 0x000000, 0.6).setOrigin(0).setScrollFactor(0).setDepth(30000);
     const title = uiText(this, W / 2, H / 2 - 90, tx('倒下了……', 'You fell…'), 40, '#ff6b6b')
       .setOrigin(0.5)
@@ -939,8 +965,8 @@ export class GameScene extends Phaser.Scene {
         },
       });
     if (ev.id === 'darkness' && !HEADLESS_MODE) {
-      const W = this.scale.width,
-        H = this.scale.height;
+      const W = VW(this),
+        H = VH(this);
       const dark = this.add
         .rectangle(0, 0, W * 3, H * 3, 0x000000, 0.78)
         .setOrigin(0.5)
@@ -1190,7 +1216,8 @@ export class GameScene extends Phaser.Scene {
     if (s.harvest > 0) {
       run.earn(Math.round(s.harvest), 'harvest');
       run.addXp(s.harvest);
-      run.harvestBonus += Math.max(1, Math.ceil(s.harvest * BALANCE.harvestGrowth));
+      // 每波成长只按基础收获（道具 / 角色 / 升级）计算，不把已成长的部分算进去——避免无尽模式复利滚雪球
+      run.harvestBonus += Math.max(1, Math.ceil(Math.max(0, s.harvest - run.harvestBonus) * BALANCE.harvestGrowth));
       run.dirty();
     }
     // 遗物：每波额外番茄籽 / 宝箱；B1 无尽每 10 波一次遗物三选一
@@ -1245,6 +1272,8 @@ export class GameScene extends Phaser.Scene {
       bumpMax(`endlessBest:ch:${run.chapterId}`, run.wave);
       bumpMax(`endlessBest:char:${run.charId}`, run.wave);
       bumpMax('endlessRunKills', run.kills);
+      // 无尽模式也算「通关时持有 6 把 T4」：撑过普通模式的 15 波后，任意一波结束时满足即可（只记 1 次）
+      if (run.wave >= 15 && run.holdsAllT4()) bumpMax('winAllT4', 1);
     }
     persist();
     checkAchievements();
@@ -1545,6 +1574,7 @@ export class GameScene extends Phaser.Scene {
         b.kill();
         continue;
       }
+      if (this.bulletShields.length && this.shieldBlocks(b)) continue;
       const dx = b.x - p.x,
         dy = b.y - p.y,
         rr = b.radius + BALANCE.player.radius - 6;
@@ -1557,6 +1587,21 @@ export class GameScene extends Phaser.Scene {
         b.kill();
       }
     }
+  }
+
+  /** 敌弹撞上挡子弹区域：抵消并返回 true */
+  private shieldBlocks(b: Bullet): boolean {
+    for (const sh of this.bulletShields) {
+      const dx = b.x - sh.x,
+        dy = b.y - sh.y,
+        rr = sh.r + b.radius;
+      if (dx * dx + dy * dy >= rr * rr) continue;
+      this.fx.burst(b.x, b.y, sh.color ?? 0xcdb4db, 4);
+      b.kill();
+      sh.block?.(b.dmg);
+      return true;
+    }
+    return false;
   }
 
   // ---------------- 伤害结算 ----------------
@@ -1593,6 +1638,8 @@ export class GameScene extends Phaser.Scene {
       e.kvx += Math.cos(ang) * k;
       e.kvy += Math.sin(ang) * k;
     }
+    // 元素共鸣（天赋）看的是这一击之前身上的减益
+    const wasDebuffed = e.status.list.some((x) => isDebuff(x.id));
     // 武器自带效果 → 状态
     const statusScale = 1 + s.elemental * 0.08;
     if (eff?.slow) e.status.apply({ id: 'slow', dur: eff.slow.dur, stacks: Math.max(1, Math.round(eff.slow.pct / 15)) });
@@ -1603,6 +1650,8 @@ export class GameScene extends Phaser.Scene {
     if (eff?.poison) e.status.apply({ id: 'poison', dur: eff.poison.dur, stacks: eff.poison.stacks }, statusScale);
     for (const st of info.status ?? []) e.status.apply(st, statusScale);
     for (const st of sp.onHit) e.status.apply(st, statusScale);
+    if (sp.onAuraHit.length && WEAPON_MAP[info.weaponId ?? '']?.kind === 'aura')
+      for (const st of sp.onAuraHit) e.status.apply(st, statusScale);
     this.applyPlayerStatus(sp.onHitSelf);
     // 荆棘词缀反伤
     // 按实际伤害、经护甲、单次与每秒封顶；受击无敌期间不反伤（见 balance.thornyReflect）
@@ -1615,9 +1664,11 @@ export class GameScene extends Phaser.Scene {
         this.hurtDirect(r, '#6a994e');
       }
     }
+    // 天赋树：伤害类型专精（爆炸、追加攻击不再触发，避免连锁）
+    if (!info.explosion && !info.echo) dmg = this.specHit(e, info, dmg, wasDebuffed);
     // 吸血（参考土豆兄弟）：每次命中按吸血率概率回 max(1, 2% 最大生命)；吸到后 lifeStealTickCd 秒内不能再吸。
     // 大蒜伯爵契合武器：冷却减半，且同一次群体命中（同一步内、冷却尚未走动）最多连续触发 favoredBurst 次。
-    const ls = (s.lifeSteal + (info.lifeSteal ?? 0)) * this.talent.lifeStealMult();
+    const ls = s.lifeSteal + (info.lifeSteal ?? 0);
     if (ls > 0) {
       const rule = this.talent.lifeStealRule(info.weaponId);
       // 冷却刚被本批触发设下、还没经过任何时间推进 → 视为同一次群体命中
@@ -1631,6 +1682,7 @@ export class GameScene extends Phaser.Scene {
     const lh = sp.lightningOnHit;
     this.lastHit = { crit, explosion: !!info.explosion };
     const alive = this.damageEnemy(e, dmg, { crit });
+    if (info.rageBurst) this.weapons.rageBurst(e.x, e.y, dmg, info);
     this.lastHit = { crit: false, explosion: false };
     this.talent.afterHit(e, info, crit, hctx, dmg);
     if (lh && Math.random() * 100 < lh) {
@@ -1650,6 +1702,39 @@ export class GameScene extends Phaser.Scene {
       0xfff3b0,
     );
     this.damageEnemy(t, 5 + this.stats.elemental * 1.5, { color: '#fff3b0' });
+  }
+
+  /** 击败精英：触发 / 叠加持有超武的增益，并在头顶飘字 */
+  private onEliteKill(e: Enemy): void {
+    const got = this.superBuffs.onEliteKill();
+    got.forEach((b, i) => {
+      const n = SUPER_BUFF_NAME[b.kind][lang === 'en' ? 1 : 0];
+      this.fx.label(e.x, e.y - e.radius - 20 - i * 22, `${n} ×${b.stacks}`, '#ffd166');
+    });
+  }
+
+  /** 天赋树的伤害类型专精：近战（碎甲、震地）/ 远程（远射）/ 元素（共鸣、过载）/ 光环（黏滞）；返回修正后的伤害 */
+  private specHit(e: Enemy, info: HitInfo, dmg: number, wasDebuffed: boolean): number {
+    const tt = treeTotals();
+    const aura = WEAPON_MAP[info.weaponId ?? '']?.kind === 'aura';
+    if (aura) {
+      if (tt.auraSlow && Math.random() * 100 < tt.auraSlow) e.status.apply({ id: 'slow', dur: 1.5 });
+    } else if (info.cls === 'melee') {
+      if (tt.meleeBreak && Math.random() * 100 < tt.meleeBreak) e.status.apply({ id: 'armorBreak', dur: 3 });
+      if (tt.meleeQuake && ++this.meleeHits % 3 === 0) {
+        const q = (dmg * tt.meleeQuake) / 100;
+        this.explode(e.x, e.y, 70, q, { ...info, dmg: q, echo: true }, 0xffb347);
+      }
+    } else if (info.cls === 'ranged') {
+      if (tt.rangedFar && Phaser.Math.Distance.Between(this.player.x, this.player.y, e.x, e.y) > 260) dmg *= 1 + tt.rangedFar / 100;
+    } else if (info.cls === 'elemental') {
+      if (tt.elemDebuffDmg && wasDebuffed) dmg *= 1 + tt.elemDebuffDmg / 100;
+      if (tt.elemBurst && Math.random() * 100 < tt.elemBurst) {
+        const q = dmg * 0.5;
+        this.explode(e.x, e.y, 60, q, { ...info, dmg: q, echo: true }, 0x6ec6ff);
+      }
+    }
+    return dmg;
   }
 
   /** 返回敌人是否仍然存活 */
@@ -1728,7 +1813,8 @@ export class GameScene extends Phaser.Scene {
     }
     const boss = e.isBoss || e.isElite;
     let xp = boss ? e.seeds : Math.floor(e.seeds * (run.wave <= 5 ? 1 : BALANCE.seedMult) + Math.random());
-    let seeds = Math.floor(e.seeds * e.lootMult + Math.random());
+    // 番茄籽：每只怪固定价值（与波次、章节无关），只受收获加成
+    let seeds = Math.floor(e.seeds * e.lootMult * lootHarvestMult(s.harvest) + Math.random());
     if (sp.doubleSeed && Math.random() * 100 < sp.doubleSeed) {
       seeds *= 2;
       xp *= 2;
@@ -1761,6 +1847,7 @@ export class GameScene extends Phaser.Scene {
         }
       }
     } else if (e.isElite) {
+      this.onEliteKill(e);
       // 词缀小怪：25% 概率宝箱，计入每波上限
       if (this.cratesDropped < BALANCE.cratesPerWave + 1 && Math.random() < 0.25) {
         this.cratesDropped++;
@@ -1840,11 +1927,13 @@ export class GameScene extends Phaser.Scene {
     scale: number,
     debuffs: StatusApply[] | undefined,
     owner: Enemy,
+    maxDist?: number,
   ): void {
     const b = this.enemyBullets.find((b) => !b.alive);
     if (!b) return;
     const k = this.textures.exists(key) ? key : 'proj_enemy';
-    b.fire(k, x, y, ang, speed, 5, 9 * scale);
+    // maxDist：普通小怪子弹的最远飞行距离（射程 × bulletReach）；精英 / Boss 不传，飞满 5 秒
+    b.fire(k, x, y, ang, speed, maxDist ? Math.min(5, maxDist / Math.max(1, speed)) : 5, 9 * scale);
     b.setScale(scale);
     b.dmg = Math.max(1, Math.round(dmg * BALANCE.enemyHit.bullet));
     b.slow = slow;
@@ -1865,12 +1954,14 @@ export class GameScene extends Phaser.Scene {
     scale = 1,
     debuffs?: StatusApply[],
     fixedAngle?: number,
+    maxDist?: number,
   ): void {
     const base = fixedAngle ?? Math.atan2(this.player.y - e.y, this.player.x - e.x);
-    const spread = Phaser.Math.DegToRad(spreadDeg);
+    // 多发子弹相邻夹角至少 minGapDeg，保证弹与弹之间能钻过去
+    const spread = Phaser.Math.DegToRad(spreadDeg >= 360 ? 360 : Math.max(spreadDeg, (n - 1) * BALANCE.enemyRanged.minGapDeg));
     for (let i = 0; i < n; i++) {
       const ang = n === 1 ? base : spreadDeg >= 360 ? (i / n) * Math.PI * 2 : base - spread / 2 + (spread * i) / (n - 1);
-      this.enemyBullet(key, e.x, e.y, ang, speed, Math.max(1, Math.round(dmg)), slow, scale, debuffs, e);
+      this.enemyBullet(key, e.x, e.y, ang, speed, Math.max(1, Math.round(dmg)), slow, scale, debuffs, e, maxDist);
     }
   }
 

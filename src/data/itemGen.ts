@@ -24,7 +24,7 @@ export const STAT_COST: Partial<Record<StatKey, number>> = {
   range: 0.3,
   armor: 4.5,
   dodge: 3,
-  speed: 1.8,
+  speed: 3.6,
   luck: 1.1,
   harvest: 1.5,
   pickup: 0.3,
@@ -204,7 +204,7 @@ const SERIES: Series[] = [
     0xadb5bd,
     0x6b4226,
     'bleed',
-    'range',
+    'rangedPct',
     '水果刀,削皮刀,面包刀,剔骨刀,片鱼刀,斩骨刀,柳刃刀,大马士革刀,屠龙菜刀,名匠之刃',
   ],
   [
@@ -303,7 +303,7 @@ const SERIES: Series[] = [
     0x52b788,
     0xd8f3dc,
     'regenHurt',
-    'damage',
+    'speed',
     '薄荷叶,甘草,枸杞,金银花,人参须,灵芝片,雪莲,千年人参,仙草,生命之树叶',
   ],
   [
@@ -380,7 +380,7 @@ const SERIES: Series[] = [
     0xfff3b0,
     0xffd166,
     'regenHurt',
-    'damage',
+    'armor',
     '鸡蛋,鹌鹑蛋,鸭蛋,咸蛋,皮蛋,溏心蛋,鸵鸟蛋,金蛋,龙蛋,混沌之卵',
   ],
   [
@@ -402,7 +402,7 @@ const SERIES: Series[] = [
     0xe9c46a,
     0x6b4226,
     'seeds',
-    'damage',
+    'pickup',
     '葵花籽,南瓜子,西瓜子,莲子,松子,银杏果,魔豆,星光种子,世界树种子,创世之种',
   ],
   [
@@ -435,7 +435,7 @@ const SERIES: Series[] = [
     0x264653,
     0xe9c46a,
     'confuseHurt',
-    'damage',
+    'speed',
     '毛线帽,棒球帽,渔夫帽,贝雷帽,礼帽,魔术帽,将军帽,隐身斗笠,魔王之冠,百变神帽',
   ],
   [
@@ -446,7 +446,7 @@ const SERIES: Series[] = [
     0xf4a261,
     0xe76f51,
     'stun',
-    'range',
+    'ranged',
     '洗碗手套,隔热手套,棉手套,皮手套,拳击手套,铁手套,烈焰拳套,巨人护手,雷霆拳套,神之手',
   ],
   [
@@ -512,7 +512,7 @@ const SERIES: Series[] = [
     0x9d4edd,
     0xffd166,
     'cleanse',
-    'damage',
+    'maxHp',
     '平安符,红绳,幸运硬币,护身石,驱虫香囊,圣徽,守护水晶,天使之泪,神明加护,永恒守护',
   ],
   [
@@ -611,7 +611,7 @@ const SERIES: Series[] = [
     0xff9f1c,
     0x2ec4b6,
     'luckyWave',
-    'damage',
+    'armor',
     '弹力球,陀螺,积木,拼图,魔方,遥控车,机器人玩具,限定手办,传说卡牌,童心之匣',
   ],
   [
@@ -644,7 +644,7 @@ const SERIES: Series[] = [
     0xfff3b0,
     0xffd166,
     'cleanse',
-    'damage',
+    'xpGain',
     '白蜡烛,圣水,念珠,祈祷书,天使雕像,圣光碎片,神圣护符,神之祝福,圣杯,光明之心',
   ],
   [
@@ -721,7 +721,7 @@ const SERIES: Series[] = [
     0x4cc9f0,
     0xffffff,
     null,
-    'damage',
+    'skillCd',
     '扩音喇叭,放大镜片,延时沙漏,共鸣水晶,聚能棱镜,时之砂,空间罗盘,永恒沙漏,星辰罗盘,天穹法器',
   ],
   [
@@ -736,6 +736,12 @@ const SERIES: Series[] = [
     '星星贴纸,流星碎片,星砂,月光石,北极星,星座图,银河之尘,超新星,星辰之核,宇宙之眼',
   ],
 ];
+
+/** 代价属性 → 与之对应的正向属性：代价不超过正向加成的 60% */
+const PEN_PAIR: Partial<Record<StatKey, StatKey>> = { ranged: 'melee', rangedPct: 'meleePct' };
+
+/** 只出现在超武上的叠层增益原型 */
+const SUPER_ONLY = new Set<Arch>(['rageKill', 'hasteKill', 'vampKill', 'focusHit']);
 
 const RARITY_OF = [0, 0, 0, 0, 1, 1, 1, 2, 2, 3];
 
@@ -755,7 +761,8 @@ function build(): ItemDef[] {
       const mods: StatMods = {};
       let special: ItemSpecial | undefined;
       // 稀有及以上的特效
-      const hasSpecial = !!arch && (rarity >= 2 || (rarity === 1 && i % 2 === 0));
+      // 叠层增益（怒气 / 急速 / 嗜血 / 专注）只给超武：这几个原型不再生成特效，预算全部转成属性
+      const hasSpecial = !!arch && !SUPER_ONLY.has(arch) && (rarity >= 2 || (rarity === 1 && i % 2 === 0));
       // 普通道具奇数位只加一项属性
       const pShare = rarity === 0 && i % 2 === 1 ? 1 : 0.6;
       // 代价规则（参考土豆兄弟）：
@@ -774,6 +781,11 @@ function build(): ItemDef[] {
       if (hasSpecial) {
         const sb = budget * (rarity === 3 ? 0.35 : 0.45);
         special = makeSpecial(arch!, sb);
+        // 光环系列（主属性是光环伤害 / 光环范围）：命中效果只在光环武器命中时触发，不作用于其他武器
+        if (special.onHit && stats.some((k) => k === 'auraPct' || k === 'auraSize')) {
+          special = { ...special, onAuraHit: special.onHit };
+          delete special.onHit;
+        }
         statBudget -= sb;
       }
       // 属性分配：主 60% / 副 40%（名字位置轮换，让同系列有变化）
@@ -781,6 +793,12 @@ function build(): ItemDef[] {
         s2 = stats[i % 3 === 2 ? 0 : 1];
       mods[p] = (mods[p] ?? 0) + round((statBudget * pShare) / (STAT_COST[p] ?? 1), p);
       if (pShare < 1) mods[s2] = (mods[s2] ?? 0) + round((statBudget * (1 - pShare)) / (STAT_COST[s2] ?? 1), s2);
+      // 近战系的代价是削减远程伤害（不再削射程），且削减量少于自身加的近战伤害
+      const pair = PEN_PAIR[drawback];
+      if (pair && mods[drawback] && mods[pair]) {
+        mods[drawback] = -Math.min(-mods[drawback]!, Math.max(1, Math.floor(mods[pair]! * 0.6)));
+        mods[pair] = Math.max(mods[pair]!, 1 - mods[drawback]!);
+      }
       const price = Math.round(RARITY_BUDGET[rarity] * PRICE_MULT[rarity] + 3);
       out.push({
         id: `${sid}_${i}`,

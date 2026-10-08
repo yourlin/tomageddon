@@ -13,7 +13,8 @@ import type { StatusApply } from '../data/statuses';
 import { STATUSES } from '../data/statuses';
 import { WEAPON_MAP, type WeaponDef } from '../data/weapons';
 import { isFavoredWeapon } from '../data/affinity';
-import { BALANCE } from '../data/balance';
+import { BALANCE, speedBonusPct } from '../data/balance';
+import { tx } from '../i18n';
 import { run } from './RunState';
 
 /** 每完成一波的永久成长 */
@@ -58,6 +59,8 @@ export interface ShotMods {
   count: number;
   /** 额外穿透（本次开火） */
   pierce: number;
+  /** 本次开火必定眩晕（秒） */
+  stun?: number;
   /** 每颗子弹生成后的加工 */
   bullet?: (b: Bullet) => void;
 }
@@ -94,6 +97,9 @@ function emptyMods(): AffMods {
   };
 }
 
+/** 樱桃双枪「连珠炮」的过热循环：每发 +1 层热枪（攻速 +1%），叠到 max 层后过热 overheat 秒（攻速 −overheatSlow%）并清零 */
+export const CHERRY_HEAT = { max: 20, overheat: 2, overheatSlow: 30 };
+
 export class TalentSystem {
   private readonly id: string;
   private readonly fav: readonly string[];
@@ -105,6 +111,8 @@ export class TalentSystem {
   private saved = false; // 蜜桃天使：本波是否已触发保命
   private heat = 0; // 樱桃双枪：热枪层数
   private heatT = 0;
+  /** 樱桃双枪：过热剩余时间（期间攻速 −30%、不叠热枪） */
+  private overheatT = 0;
   private fedT = 0; // 红薯厨神：吃饱窗口
   private vetT = 0; // 卷心菜老兵：净化后攻速窗口
   private punch = new Map<string, number>(); // 椰子拳师：各武器出拳计数
@@ -113,6 +121,8 @@ export class TalentSystem {
   private lastWave = -1;
   private lastFavDmg = 10; // 最近一次契合命中伤害（击杀追加弹用）
   private healCd = 0;
+  /** 菠萝蜜卫士「刺针齐射」/ 蜜桃天使「圣光弹」：自动攻击计时 */
+  private autoT = 0;
   /** 各类追加效果的冷却（秒），防止大量命中同帧刷屏 */
   private cds: Record<string, number> = {};
   /** 柠檬刺客：本帧请求重置冷却的武器 id */
@@ -174,10 +184,6 @@ export class TalentSystem {
       case 'eggplant':
         m.chain = 1;
         break;
-      case 'garlic':
-        m.status.push(S('bleed', 3, 1, 25));
-        if (run.hp < s.maxHp * 0.5) m.atkSpd = 30;
-        break;
       case 'blueberry': {
         const n: Record<string, number> = {};
         for (const w of run.weapons) if (this.isFavored(WEAPON_MAP[w.id])) n[w.id] = (n[w.id] ?? 0) + 1;
@@ -205,7 +211,7 @@ export class TalentSystem {
       }
       case 'ginger':
         m.count = 1;
-        m.atkSpd = Math.max(0, s.speed) * 0.4;
+        m.atkSpd = speedBonusPct(s.speed) * 0.4;
         break;
       case 'avocado':
         m.area = 20;
@@ -221,7 +227,7 @@ export class TalentSystem {
         m.count = 1;
         break;
       case 'cherry':
-        m.atkSpd = 15 + this.heat;
+        m.atkSpd = this.overheatT > 0 ? 15 - CHERRY_HEAT.overheatSlow : 15 + this.heat;
         break;
       case 'pea':
         m.pierce = 1;
@@ -298,8 +304,9 @@ export class TalentSystem {
         const n = (this.punch.get(def.id) ?? 0) + 1;
         this.punch.set(def.id, n % 4);
         if (n % 4 === 0) {
-          sm.mult = 2;
+          sm.mult = 2.5;
           sm.knock = 30;
+          sm.stun = 0.4;
         }
         break;
       }
@@ -312,7 +319,12 @@ export class TalentSystem {
         }
         break;
       case 'cherry':
-        this.heat = Math.min(30, this.heat + 1);
+        // 过热循环：叠满热枪后过热一段时间（攻速下降、清零），之后重新叠
+        if (this.overheatT <= 0 && ++this.heat >= CHERRY_HEAT.max) {
+          this.heat = 0;
+          this.overheatT = CHERRY_HEAT.overheat;
+          this.g.fx.label(this.g.player.x, this.g.player.y - 50, tx('过热！', 'Overheat!'), '#ff4d6d');
+        }
         this.heatT = 1;
         break;
       case 'corn':
@@ -334,7 +346,7 @@ export class TalentSystem {
       }
       case 'lychee': {
         if (bulletish && Math.random() < 0.15) sm.count = 1;
-        const ch = Math.min(0.3, Math.max(0, this.g.stats.luck) / 1000);
+        const ch = Math.min(0.3, Math.max(0, this.g.stats.luck) / 400);
         const cm = def.critMult;
         sm.bullet = (b) => {
           if (Math.random() >= ch) return;
@@ -448,10 +460,10 @@ export class TalentSystem {
         break;
       case 'durian': {
         const n = (this.stench.get(e) ?? 0) + 1;
-        if (n >= 5 && this.ready('stench', 0.2)) {
+        if (n >= 3 && this.ready('stench', 0.2)) {
           this.stench.set(e, 0);
-          this.radial(e.x, e.y, 8, dmg * 0.4, 'proj_player', 0xc9a227, src, 0);
-        } else this.stench.set(e, Math.min(5, n));
+          this.radial(e.x, e.y, 8, dmg * 0.5, 'proj_player', 0xc9a227, src, 0);
+        } else this.stench.set(e, Math.min(3, n));
         break;
       }
       case 'bittermelon':
@@ -546,8 +558,19 @@ export class TalentSystem {
         }
       });
     }
-    if (this.id === 'pomegranate' && this.isFavoredId(src))
-      this.radial(e.x, e.y, 3, this.lastFavDmg * 0.5, 'proj_seed_spitter', 0xff4d6d, src, 0, Math.random() * Math.PI);
+    // 籽弹倾泻：契合武器击杀爆出 3 颗籽弹；籽弹击杀时再爆一轮（籽弹连锁，最多 1 次）
+    if (this.id === 'pomegranate' && (this.isFavoredId(src) || src === 'pom_seed'))
+      this.radial(
+        e.x,
+        e.y,
+        3,
+        this.lastFavDmg * 0.5,
+        'proj_seed_spitter',
+        0xff4d6d,
+        src === 'pom_seed' ? 'pom_seed2' : 'pom_seed',
+        0,
+        Math.random() * Math.PI,
+      );
   }
 
   onDodge(): void {
@@ -604,8 +627,12 @@ export class TalentSystem {
     }
   }
 
-  lifeStealMult(): number {
-    return this.id === 'garlic' && run.hp < this.g.stats.maxHp * 0.5 ? 2 : 1;
+  /** 契合武器的伤害倍率：大蒜伯爵按已损失生命增伤（满血 ×1，空血 ×1.6）；卷心菜老兵每层坚韧 +5% */
+  favDmgMult(def: WeaponDef): number {
+    if (!this.isFavored(def)) return 1;
+    if (this.id === 'garlic') return 1 + 0.6 * Math.max(0, 1 - run.hp / Math.max(1, this.g.stats.maxHp));
+    if (this.id === 'cabbage') return 1 + 0.05 * this.g.pstatus.stacks('fortify');
+    return 1;
   }
 
   /** 大蒜伯爵「血之盛宴」：契合武器的吸血冷却缩短、同一次群体命中可连续触发数次（见 BALANCE.lifeSteal） */
@@ -629,11 +656,78 @@ export class TalentSystem {
     if (this.healCd > 0) this.healCd -= dt;
     for (const k in this.cds) if (this.cds[k] > 0) this.cds[k] -= dt;
     if (this.heatT > 0 && (this.heatT -= dt) <= 0) this.heat = 0;
+    if (this.overheatT > 0) this.overheatT -= dt;
     switch (this.id) {
       case 'grape':
         if ((this.invulnT += dt) >= 8) {
           this.invulnT = 0;
           g.applyPlayerStatus([{ id: 'invuln', dur: 1 }]);
+        }
+        break;
+      case 'jackfruit':
+        // 刺针齐射：每 1.2 秒向最近的敌人射出 3 根穿透刺针（伤害随护甲、最大生命成长），前期也有稳定输出
+        if ((this.autoT += dt) >= 1.2) {
+          const p = g.player,
+            t = g.grid.nearest(p.x, p.y, 360);
+          if (t) {
+            this.autoT = 0;
+            const s = g.stats,
+              a = Math.atan2(t.y - p.y, t.x - p.x);
+            for (const d of [-0.18, 0, 0.18]) {
+              const b = this.shot(p.x, p.y, a + d, 560, 0.7, 5 + s.armor + s.maxHp * 0.05, 'proj_player', 0x6a994e, 'talent');
+              if (b) b.pierce = 1;
+            }
+          }
+        }
+        break;
+      case 'durian':
+        // 臭刺投掷：每 1.5 秒向最近的敌人掷出臭刺（伤害随元素伤害、护甲成长），附带中毒与虚弱——够得着站远的射手
+        if ((this.autoT += dt) >= 1.5) {
+          const p = g.player,
+            t = g.grid.nearest(p.x, p.y, 400);
+          if (t) {
+            this.autoT = 0;
+            const s = g.stats;
+            const b = this.shot(
+              p.x,
+              p.y,
+              Math.atan2(t.y - p.y, t.x - p.x),
+              520,
+              0.85,
+              4 + s.elemental + s.armor * 0.5,
+              'proj_player',
+              0xc9a227,
+              'talent',
+            );
+            if (b) b.status = [S('poison', 3, 2), S('weaken', 2, 1)];
+          }
+        }
+        break;
+      case 'peach':
+        // 圣光弹：每 0.8 秒向最近的敌人发射追踪光弹（伤害随远程伤害、生命再生成长），有护盾时一次 2 枚
+        if ((this.autoT += dt) >= 0.8) {
+          const p = g.player,
+            t = g.grid.nearest(p.x, p.y, 420);
+          if (t) {
+            this.autoT = 0;
+            const s = g.stats,
+              a = Math.atan2(t.y - p.y, t.x - p.x);
+            const n = g.pstatus.has('shield') ? 2 : 1;
+            for (let k = 0; k < n; k++) {
+              const b = this.shot(
+                p.x,
+                p.y,
+                a + (k - (n - 1) / 2) * 0.3,
+                520,
+                0.9,
+                6 + s.ranged + s.regen * 0.5,
+                'proj_player',
+                0xffc8dd,
+                'talent',
+              );
+              if (b) b.homing = 6;
+            }
+          }
         }
         break;
       case 'wintermelon':

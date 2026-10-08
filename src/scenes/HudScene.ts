@@ -14,8 +14,9 @@ import { AFFIXES } from '../data/bosses';
 import { FONT } from '../systems/Textures';
 import { tx, lang } from '../i18n';
 import { save, persist } from '../systems/Save';
-import { RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic } from '../data/relics';
+import { RELIC_MAP, RELIC_KIND_INFO, RELIC_SET_MAP, describeRelic, describeRelicSet, relicSetCounts } from '../data/relics';
 import { WEAPON_MAP } from '../data/weapons';
+import { VW, VH, viewZoom } from '../systems/HiDpi';
 
 /** 技能按钮：徽章图标显示尺寸，与徽章内圈面半径（SkillIconArt 里内圈半径为 39.5 / 100） */
 const SKILL_ICON = 112;
@@ -68,6 +69,7 @@ export class HudScene extends Phaser.Scene {
     const owned = run.relics.map((id) => RELIC_MAP[id]).filter(Boolean);
     if (!owned.length) return;
     const zh = lang === 'zh';
+    const setN = relicSetCounts(run.relics);
     const perRow = 8;
     let tipBox: Phaser.GameObjects.Container | null = null;
     const hide = () => {
@@ -86,6 +88,8 @@ export class HudScene extends Phaser.Scene {
       const show = () => {
         hide();
         const lines = [r.name[zh ? 0 : 1], ...describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id)];
+        const sl = describeRelicSet(r, r.set ? setN[r.set] : 0);
+        if (sl) lines.push(sl);
         const t = text(this, 0, 0, lines.join('\n'), 15, '#ffffff', { wordWrap: { width: 260 } }).setOrigin(1, 0);
         const bg = this.add.graphics();
         bg.fillStyle(0x1a0a0c, 0.92)
@@ -121,13 +125,13 @@ export class HudScene extends Phaser.Scene {
     const v = WEATHER_MAP[run.weather].visual;
     const g = this.weatherFx;
     g.clear();
-    if (v.overlayAlpha > 0) g.fillStyle(v.overlay, v.overlayAlpha).fillRect(0, 0, this.scale.width, this.scale.height);
+    if (v.overlayAlpha > 0) g.fillStyle(v.overlay, v.overlayAlpha).fillRect(0, 0, VW(this), VH(this));
     if (v.kind === 'none' || (save.settings.particles ?? 1) <= 0) {
       this.weatherDrops.length = 0;
       return;
     }
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     const rate = v.density * (W / 960) * (save.settings.particles ?? 1);
     this.weatherAcc += rate * dt;
     while (this.weatherAcc >= 1 && this.weatherDrops.length < 400) {
@@ -155,8 +159,8 @@ export class HudScene extends Phaser.Scene {
     this.bosses = [];
     this.joyId = -1;
     this.isTouch = this.sys.game.device.input.touch;
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
 
     // H6：天气层（屏幕空间，画在 HUD 最底下）
     this.weatherFx = this.add.graphics().setDepth(-10);
@@ -392,9 +396,10 @@ export class HudScene extends Phaser.Scene {
     const g = this.g;
     const cam = g.cameras.main;
     const wv = cam.worldView;
-    const z = cam.zoom;
-    const W = this.scale.width,
-      H = this.scale.height;
+    // 逻辑缩放（高清渲染下相机实际 zoom 含渲染倍率，HUD 用的是逻辑坐标）
+    const z = viewZoom(cam);
+    const W = VW(this),
+      H = VH(this);
     const now = this.time.now;
     const pulse = 0.5 + 0.5 * Math.sin(now / 140);
     const p = g.player;
@@ -527,7 +532,7 @@ export class HudScene extends Phaser.Scene {
         .strokeRoundedRect(0, 0, w, h, 8);
     }
     const ic = this.statusIcons[i].c;
-    const W = this.scale.width;
+    const W = VW(this);
     const tw = t.width + 20;
     this.statusTip.setPosition(Phaser.Math.Clamp(ic.x - 22, 8, W - tw - 8), ic.y + STATUS_ICON_SIZE / 2 + 6);
   }
@@ -603,8 +608,8 @@ export class HudScene extends Phaser.Scene {
     // Boss 血条
     this.bosses = this.bosses.filter((e) => e.alive);
     this.drawMarkers();
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     if (this.bosses.length) {
       const e = this.bosses[0];
       const bw = Math.min(700, W * 0.6);

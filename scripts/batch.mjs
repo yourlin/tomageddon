@@ -1,11 +1,12 @@
 // 并行无头平衡测试（支持中断续跑，每次产出 HTML 报告）
-// 用法：npm run build && node scripts/batch.mjs --chapters 1,2,3 --runs 2 [--workers 8] [--speed max]
-//   --speed：每帧模拟步数，默认 max（每帧 10ms 预算内尽可能多跑）
+// 用法：npm run build && node scripts/batch.mjs --chapters 1,2,3 --runs 2 [--workers 8] [--speed max] [--budget 30]
+//   --speed：每帧模拟步数，默认 max（每帧在 --budget 毫秒预算内尽可能多跑，默认 30）
 //   --workers：并发上限（默认 CPU 核数 − 1）；--min-workers：并发下限（默认核数的 40%）；
 //   --cpu：目标整机 CPU 占用率（默认 80），并发数在上下限之间据此动态调整
+//   --checks：检测项配置（默认 scripts/balance-checks.json），报告按它逐项判定通过 / 偏离 / 严重
 //   意外中断后用相同参数重新运行即可从断点继续；加 --fresh 放弃进度从头跑
 // 需要本机安装 Google Chrome。
-// 报告：docs/reports/balance-<时间>.html（每次一份）、docs/BALANCE_REPORT.html/.md（最新）
+// 报告：reports/balance-<时间>.html（每次一份）、reports/BALANCE_REPORT.html/.md（最新）；reports/ 不进仓库
 // 进度：scripts/.batch-progress.json（每局完成即写入，全部完成后转存为 .batch-results.json）
 import puppeteer from 'puppeteer-core';
 import { spawn } from 'node:child_process';
@@ -25,15 +26,18 @@ const CPU_TARGET = Number(arg('cpu', '80'));
 // 最低并发数：即使整机被其他程序占用也不低于此值（默认 CPU 核数的 40%）
 const MIN_WORKERS = Math.min(WORKERS, Number(arg('min-workers', String(Math.max(2, Math.round(availableParallelism() * 0.4))))));
 const SPEED = arg('speed', 'max') === 'max' ? 'max' : Number(arg('speed'));
+// 极速模式每帧的模拟预算（毫秒）：不渲染时帧率低也无妨，预算越大吞吐越高（默认 30）
+const BUDGET = Number(arg('budget', '30'));
 const ONLY = arg('chars', '');
 const FRESH = process.argv.includes('--fresh');
 // 天赋预设：none 不点（基准）· mid 40 点（中期玩家）· full 79 点（全部天赋点）
-const TALENTS = arg('talents', 'none');
+// 默认按可获得天赋点的 20% 加点（约 16 / 79 点）；也可以 none / mid / full / 具体点数 / 百分比
+const TALENTS = arg('talents', '20%');
 // 无尽模式：不限波数，打到阵亡为止（报告里的波次即到达的最远波次）
 const ENDLESS = process.argv.includes('--endless');
 // 测试用：从天赋预设里去掉指定天赋（逗号分隔），用来找出过强的天赋
 const NO_TALENTS = arg('no-talents', '');
-const TALENT_BUDGET = { none: 0, mid: 40, full: 79 }[TALENTS] ?? Number(TALENTS);
+const TALENT_BUDGET = { none: 0, mid: 40, full: 79 }[TALENTS] ?? (TALENTS.endsWith('%') ? TALENTS : Number(TALENTS));
 const PORT = 4174;
 const CHROME =
   process.env.CHROME ??
@@ -43,6 +47,8 @@ const CHROME =
 const PROGRESS = new URL('./.batch-progress.json', import.meta.url);
 const RESULTS = new URL('./.batch-results.json', import.meta.url);
 const JOB_TIMEOUT = Number(arg('timeout', '240')) * 1000; // 单局超时（秒）
+/** 章节波数（与 balance.chapterWaves 一致）：第 1–4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50 */
+const chapterWaves = (ch) => (ch <= 4 ? 15 : Math.min(50, 20 + (ch - 5) * 5));
 const MAX_RETRY = 2;
 
 const server = spawn('npx', ['vite', 'preview', '--host', '127.0.0.1', '--port', String(PORT), '--strictPort'], {
@@ -74,7 +80,7 @@ const botSrc = readFileSync(new URL('./bot2.js', import.meta.url), 'utf8');
 const browser = await puppeteer.launch({
   executablePath: CHROME,
   headless: true,
-  protocolTimeout: JOB_TIMEOUT + 120000,
+  protocolTimeout: JOB_TIMEOUT * 4 + 120000, // 覆盖最长的单局（无尽 ×4、长章节 ×2）
   handleSIGINT: false,
   handleSIGTERM: false,
   handleSIGHUP: false,
@@ -107,6 +113,8 @@ const jobs = [];
 for (const ch of CHAPTERS) for (const id of chars) for (let r = 0; r < RUNS; r++) jobs.push({ id, ch, run: r, key: `${ch}:${id}:${r}` });
 
 // ---------- 进度：相同参数自动续跑 ----------
+// 检测项配置（报告逐项判定，见 scripts/balance-checks.json）
+const CHECKS = arg('checks', '');
 const config = { chapters: CHAPTERS, runs: RUNS, speed: SPEED, chars, talents: TALENTS, endless: ENDLESS, noTalents: NO_TALENTS };
 let state = {
   meta: { ...config, version: VERSION, workers: WORKERS, names, total: jobs.length, startedAt: Date.now(), elapsedMs: 0, resumed: 0 },
@@ -143,7 +151,7 @@ function saveProgress() {
 saveProgress();
 
 function report(complete) {
-  const file = writeReports({ ...state.meta, complete, finishedAt: Date.now() }, state.results);
+  const file = writeReports({ ...state.meta, complete, finishedAt: Date.now(), ...(CHECKS ? { checksFile: CHECKS } : {}) }, state.results);
   console.log(`报告：${file}`);
 }
 
@@ -171,10 +179,10 @@ const t0 = Date.now();
 const retries = {};
 async function playJob(page, job) {
   return page.evaluate(
-    async ({ id, ch, speed, limit, talents, endless, noTalents }) => {
+    async ({ id, ch, speed, budget, limit, talents, endless, noTalents }) => {
       window.__dmg = [];
       window.botTalents(id, talents, noTalents ? noTalents.split(',') : []);
-      window.startBot2(id, ch, speed);
+      window.startBot2(id, ch, speed, budget);
       if (endless) window.run.endless = true;
       const t = performance.now();
       while (!window.__botState.done) {
@@ -196,6 +204,7 @@ async function playJob(page, job) {
       for (const [, , src, d] of window.__dmg) agg[src] = (agg[src] || 0) + d;
       return {
         ...window.__botState,
+        perSeed: window.__dev.BALANCE?.loot.perSeed,
         topDmg: Object.entries(agg)
           .sort((a, b) => b[1] - a[1])
           .slice(0, 3)
@@ -206,7 +215,9 @@ async function playJob(page, job) {
     {
       ...job,
       speed: SPEED,
-      limit: ENDLESS ? JOB_TIMEOUT * 4 : JOB_TIMEOUT,
+      budget: BUDGET,
+      // 长章节（20 / 25 / 30 波）按波数放大单局超时，避免第 7 章这种 30 波章节没打完就被判超时
+      limit: ENDLESS ? JOB_TIMEOUT * 4 : JOB_TIMEOUT * Math.max(1, chapterWaves(job.ch) / 15),
       talents: TALENT_BUDGET,
       endless: ENDLESS,
       noTalents: NO_TALENTS,
@@ -314,7 +325,8 @@ const complete = state.results.length >= jobs.length;
 saveProgress();
 report(complete);
 if (complete) {
-  writeFileSync(RESULTS, JSON.stringify(state.results, null, 1));
+  // 连同元信息一起存：之后单独重新生成报告（report.mjs）时，章节、局数、用时等不会丢
+  writeFileSync(RESULTS, JSON.stringify({ meta: { ...state.meta, finishedAt: Date.now() }, results: state.results }, null, 1));
   unlinkSync(PROGRESS);
 } else {
   console.log(`有 ${jobs.length - state.results.length} 局未完成，进度已保留，重新运行可续跑`);

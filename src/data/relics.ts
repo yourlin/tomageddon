@@ -5,7 +5,7 @@ import type { ItemSpecial } from './items';
 import type { RuleDelta } from './danger';
 import { describeMods } from './stats';
 import { describeSpecial } from './describe';
-import { tx } from '../i18n';
+import { tx, lang } from '../i18n';
 
 export type RelicKind = 'boon' | 'trade' | 'curse';
 
@@ -63,7 +63,7 @@ export const RELICS: RelicDef[] = [
   R('sun_lamp', '☀️', '温室日灯', 'Grow Lamp', 'boon', { set: 'greenhouse', mods: { harvest: 8, regen: 2 } }),
   R('drip_hose', '💧', '滴灌水管', 'Drip Hose', 'boon', { set: 'greenhouse', mods: { regen: 3 }, flags: { waveSeeds: 10 } }),
   R('glass_roof', '🏠', '温室玻璃顶', 'Glass Roof', 'boon', { set: 'greenhouse', mods: { armor: 3, maxHp: 8 } }),
-  R('lucky_coin', '🪙', '幸运铜板', 'Lucky Coin', 'boon', { set: 'fortune', mods: { luck: 25 } }),
+  R('lucky_coin', '🪙', '幸运铜板', 'Lucky Coin', 'boon', { set: 'fortune', mods: { luck: 10 } }),
   R('piggy_bank', '🐷', '存钱罐', 'Piggy Bank', 'boon', { set: 'fortune', special: { interest: 5 } }),
   R('golden_ticket', '🎫', '金色彩票', 'Golden Ticket', 'boon', { set: 'fortune', flags: { freeRerolls: 1 } }),
   R('chef_hat', '👨‍🍳', '主厨高帽', "Chef's Hat", 'boon', { set: 'kitchen', mods: { meleePct: 12, attackSpeed: 5 } }),
@@ -71,7 +71,7 @@ export const RELICS: RelicDef[] = [
   R('cutting_board', '🪵', '老砧板', 'Old Cutting Board', 'boon', { set: 'kitchen', mods: { armor: 4, melee: 3 } }),
   R('scarecrow', '🧑‍🌾', '稻草人', 'Scarecrow', 'boon', { set: 'field', special: { thorns: 6 }, mods: { maxHp: 10 } }),
   R('pitchfork', '🔱', '干草叉', 'Pitchfork', 'boon', { set: 'field', mods: { ranged: 3, range: 40 } }),
-  R('tractor_key', '🔑', '拖拉机钥匙', 'Tractor Key', 'boon', { set: 'field', mods: { speed: 10, pickup: 60 } }),
+  R('tractor_key', '🔑', '拖拉机钥匙', 'Tractor Key', 'boon', { set: 'field', mods: { speed: 5, pickup: 60 } }),
   R('study_notes', '📒', '错题本', 'Study Notes', 'boon', { mods: { xpGain: 25 }, flags: { levelChoices: 1 } }),
   R('gift_box', '🎁', '神秘礼盒', 'Mystery Box', 'boon', { flags: { waveCrates: 1 } }),
   R('phoenix_seed', '🔥', '凤凰种子', 'Phoenix Seed', 'boon', { special: { revive: 1 } }),
@@ -79,27 +79,27 @@ export const RELICS: RelicDef[] = [
 
   // ---------- 交易型（有代价） ----------
   R('blood_pact', '🩸', '血之契约', 'Blood Pact', 'trade', { set: 'night', mods: { lifeSteal: 15 }, flags: { noRegen: true } }),
-  R('bat_wing', '🦇', '蝙蝠翅膀', 'Bat Wing', 'trade', { set: 'night', mods: { dodge: 12, speed: 8 }, flags: { noArmor: true } }),
+  R('bat_wing', '🦇', '蝙蝠翅膀', 'Bat Wing', 'trade', { set: 'night', mods: { dodge: 12, speed: 4 }, flags: { noArmor: true } }),
   R('moon_shard', '🌙', '月之碎片', 'Moon Shard', 'trade', { set: 'night', mods: { crit: 12 }, rule: { heal: -20 } }),
   R('glass_heart', '💔', '玻璃心', 'Glass Heart', 'trade', { set: 'glass', mods: { damage: 25 }, flags: { maxHpMult: 0.75 } }),
   R('crystal_lens', '🔍', '水晶透镜', 'Crystal Lens', 'trade', { set: 'glass', mods: { crit: 10, range: 60 }, flags: { noDodge: true } }),
   R('thin_ice', '🧊', '薄冰护符', 'Thin Ice Charm', 'trade', { set: 'glass', mods: { attackSpeed: 18 }, rule: { enemyDmg: 10 } }),
-  R('iron_skin', '🛡️', '铁皮', 'Iron Skin', 'trade', { set: 'stone', mods: { armor: 10, speed: -12 } }),
+  R('iron_skin', '🛡️', '铁皮', 'Iron Skin', 'trade', { set: 'stone', mods: { armor: 10, speed: -6 } }),
   R('stone_boots', '🥾', '石头靴', 'Stone Boots', 'trade', { set: 'stone', mods: { maxHp: 25, dodge: -10 } }),
   R('anchor', '⚓', '铁锚', 'Anchor', 'trade', { set: 'stone', mods: { meleePct: 20, attackSpeed: -8 } }),
   R('greedy_sack', '💰', '贪婪麻袋', 'Greedy Sack', 'trade', { rule: { income: 25, shopPrice: 15 } }),
   R('fast_food', '🍔', '速食套餐', 'Fast Food', 'trade', { mods: { maxHp: 15 }, flags: { noLifeSteal: true } }),
   R('overclock', '⚙️', '超频芯片', 'Overclock Chip', 'trade', { mods: { attackSpeed: 25, maxHp: -8 } }),
   R('hermit_lamp', '🏮', '隐士提灯', "Hermit's Lantern", 'trade', { mods: { skillCd: 25, skillDmg: 20 }, rule: { xp: -15 } }),
-  R('heavy_purse', '👛', '沉甸甸的钱包', 'Heavy Purse', 'trade', { flags: { waveSeeds: 25 }, mods: { speed: -8 } }),
+  R('heavy_purse', '👛', '沉甸甸的钱包', 'Heavy Purse', 'trade', { flags: { waveSeeds: 25 }, mods: { speed: -4 } }),
 
   // ---------- 诅咒型（高风险高收益） ----------
   R('swarm_bell', '🔔', '虫群铃铛', 'Swarm Bell', 'curse', { set: 'plague', rule: { spawn: 30, income: 30, xp: 20 } }),
   R('rot_crown', '👑', '腐烂王冠', 'Rotten Crown', 'curse', { set: 'plague', rule: { enemyHp: 20 }, mods: { damage: 20 } }),
   R('plague_mask', '🎭', '瘟疫面具', 'Plague Mask', 'curse', { set: 'plague', rule: { champ: 100 }, special: { statusDmg: 30 } }),
   R('blood_moon', '🌕', '血月', 'Blood Moon', 'curse', { rule: { enemyDmg: 25, enemySpeed: 10 }, mods: { lifeSteal: 10, damage: 15 } }),
-  R('cursed_dice', '🎲', '诅咒骰子', 'Cursed Dice', 'curse', { mods: { luck: 60 }, rule: { rerollPrice: 50 } }),
-  R('doom_clock', '⏰', '末日时钟', 'Doom Clock', 'curse', { rule: { enemySpeed: 15 }, mods: { attackSpeed: 20, speed: 10 } }),
+  R('cursed_dice', '🎲', '诅咒骰子', 'Cursed Dice', 'curse', { mods: { luck: 24 }, rule: { rerollPrice: 50 } }),
+  R('doom_clock', '⏰', '末日时钟', 'Doom Clock', 'curse', { rule: { enemySpeed: 15 }, mods: { attackSpeed: 20, speed: 5 } }),
   R('tax_collector', '📜', '收税官的账本', "Tax Collector's Ledger", 'curse', { rule: { shopPrice: 25 }, mods: { harvest: 20, luck: 20 } }),
   R('giant_seed', '🌰', '巨人种子', 'Giant Seed', 'curse', { rule: { eliteHp: 40, enemyHp: 10 }, mods: { maxHp: 30, damage: 10 } }),
   R('witch_brew', '🧪', '女巫汤', "Witch's Brew", 'curse', { rule: { heal: -30 }, mods: { elementalPct: 25 }, special: { statusDmg: 25 } }),
@@ -132,7 +132,7 @@ export const RELIC_SETS: RelicSetDef[] = [
   { id: 'greenhouse', name: ['温室', 'Greenhouse'], mods: { harvest: 15, regen: 4 } },
   { id: 'fortune', name: ['财运', 'Fortune'], flags: { freeRerolls: 1, waveSeeds: 20 } },
   { id: 'kitchen', name: ['厨房', 'Kitchen'], mods: { damage: 12 }, special: { critDmg: 20 } },
-  { id: 'field', name: ['田野', 'Field'], mods: { speed: 8, maxHp: 15 }, special: { thorns: 8 } },
+  { id: 'field', name: ['田野', 'Field'], mods: { speed: 4, maxHp: 15 }, special: { thorns: 8 } },
   { id: 'night', name: ['夜行', 'Night'], mods: { lifeSteal: 8, dodge: 6 } },
   { id: 'glass', name: ['玻璃', 'Glass'], mods: { damage: 15, crit: 8 } },
   { id: 'stone', name: ['磐石', 'Stone'], mods: { armor: 6, maxHp: 20 } },
@@ -266,6 +266,19 @@ export function describeRelic(
   weaponName?: (id: string) => string,
 ): string[] {
   return [...describeMods(r.mods ?? {}), ...describeSpecial(r.special), ...describeRule(r.rule), ...describeFlags(r.flags, weaponName)];
+}
+
+/** 单件遗物上显示的套装说明；n 为本局该套装件数（不传则只显示套装效果，如图鉴） */
+export function describeRelicSet(r: RelicDef, n?: number): string | null {
+  if (!r.set) return null;
+  const sd = RELIC_SET_MAP[r.set];
+  const name = sd.name[lang === 'en' ? 1 : 0];
+  const prog = n === undefined ? '' : `${Math.min(n, RELIC_SET_SIZE)}/${RELIC_SET_SIZE}${n >= RELIC_SET_SIZE ? ' ✓' : ''}`;
+  const bonus = describeRelic(sd).join(tx('，', ', '));
+  return tx(
+    `✦ 套装「${name}」${prog}：集齐 ${RELIC_SET_SIZE} 件 ${bonus}`,
+    `✦ ${name} set${prog && ' ' + prog}: ${RELIC_SET_SIZE}-piece ${bonus}`,
+  );
 }
 
 export const RELIC_KIND_INFO: Record<RelicKind, { name: [string, string]; color: number; css: string }> = {

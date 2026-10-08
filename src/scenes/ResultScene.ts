@@ -6,7 +6,8 @@ import { bump, bumpMax, counter } from '../systems/Counters';
 import { WEAPON_MAP } from '../data/weapons';
 import Phaser from 'phaser';
 import { showcaseRig } from '../ui/Portrait';
-import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, autoRelayout, fitImage } from '../ui/UI';
+import { portraitKey } from '../ui/Portrait';
 import { run, clearRun, recordHistory } from '../systems/RunState';
 import { save, persist, type RunRecord } from '../systems/Save';
 import { CHARACTER_MAP } from '../data/characters';
@@ -17,6 +18,8 @@ import { checkAchievements, setInRun } from '../systems/Achievements';
 import { showSharePoster } from '../systems/SharePoster';
 import { settleDanger, type DangerResult } from '../systems/Danger';
 import { settleProgress, type ProgressResult } from '../systems/Progress';
+import { VW, VH } from '../systems/HiDpi';
+import { titleBadge } from '../ui/TitleBadge';
 
 export class ResultScene extends Phaser.Scene {
   private record!: RunRecord;
@@ -27,8 +30,8 @@ export class ResultScene extends Phaser.Scene {
 
   create(data: { win: boolean; counted?: boolean; recorded?: boolean; danger?: DangerResult; progress?: ProgressResult }): void {
     autoRelayout(this, data);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     audio.stopMusic();
     clearRun();
@@ -43,7 +46,7 @@ export class ResultScene extends Phaser.Scene {
       if (run.hp <= run.stats.maxHp * 0.1) bump('winLowHp');
       const classes = new Set(run.weapons.map((w) => WEAPON_MAP[w.id].cls));
       if (run.weapons.length >= 4 && classes.size === 1) bump(`winPure:${[...classes][0]}`);
-      if (run.weapons.length >= 6 && run.weapons.every((w) => w.tier === 3)) bump('winAllT4');
+      if (run.holdsAllT4()) bump('winAllT4');
       if (Object.values(run.items).reduce((x, y) => x + y, 0) >= 60) bump('winHoarder');
       persist();
       audio.play(this, 'levelup');
@@ -92,6 +95,8 @@ export class ResultScene extends Phaser.Scene {
       COLORS.textDim,
     ).setOrigin(0.5);
     const hero = showcaseRig(this, 'char', run.charId, W / 2 - 250, 290, 70);
+    // 佩戴中的称号：显示在主角形象下方
+    if (save.meta.title) titleBadge(this, W / 2 - 250, 400, save.meta.title, 15);
     if (data.win) hero.play('victory', true);
     text(
       this,
@@ -195,19 +200,40 @@ export class ResultScene extends Phaser.Scene {
       y += 30;
     }
     // 本局获得的成就点（累计成绩），以及本局达成成就新解锁的角色
+    // 顶部对齐（与上面熟练度那行一致；原来按中线对齐会和它叠在一起）
     text(this, W / 2, y, tx(`本局获得成就点 +${run.achPoints}`, `Achievement points this run +${run.achPoints}`), 22, '#ffd166').setOrigin(
       0.5,
+      0,
     );
-    if (newChars.length)
+    // 新解锁的角色：放在面板右侧（属性文字旁的空白处）展示形象 + 名字，2 列网格，最多 4 名，形象 76px
+    if (newChars.length) {
+      const shown = newChars.slice(0, 4);
+      const colX = W / 2 + 275,
+        cell = 112,
+        size = 76;
+      const rows = Math.ceil(shown.length / 2);
+      const top = 290 - (rows * 118) / 2 + 10; // 与左侧主角形象（y = 290）竖向居中
       text(
         this,
-        W / 2,
-        y + 34,
-        tx(`新角色解锁：${newChars.map((c) => c.name).join('、')}`, `New characters: ${newChars.map((c) => c.name).join(', ')}`),
+        colX,
+        top - 30,
+        tx('🎉 新角色解锁', '🎉 New characters') +
+          (newChars.length > shown.length ? tx(`（共 ${newChars.length} 名）`, ` (${newChars.length})`) : ''),
         18,
         '#52ff8a',
-        { wordWrap: { width: 720, useAdvancedWrap: true }, align: 'center' },
       ).setOrigin(0.5, 0);
+      shown.forEach((c, i) => {
+        const inRow = Math.min(2, shown.length - Math.floor(i / 2) * 2);
+        const cx = colX + ((i % 2) - (inRow - 1) / 2) * cell;
+        const cy = top + Math.floor(i / 2) * 118 + size / 2;
+        // 先缩放到位、记下目标缩放，再从 0 弹出来引起注意
+        const img = fitImage(this.add.image(cx, cy, portraitKey(this, 'char', c.id)), size);
+        const k = img.scaleX;
+        img.setScale(0);
+        this.tweens.add({ targets: img, scale: k, duration: 380, delay: 200 + i * 120, ease: 'Back.Out' });
+        text(this, cx, cy + size / 2 + 2, c.name, 16, '#fff4ea').setOrigin(0.5, 0);
+      });
+    }
 
     button(
       this,

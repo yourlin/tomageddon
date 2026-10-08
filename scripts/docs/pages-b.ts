@@ -92,8 +92,7 @@ export function monstersDoc(): void {
     regular.map((e) => [`${img('enemy', e.id)} [${e.name}](#enemy-${e.id})`, BEH[e.behavior] ?? e.behavior, `${e.hp}${growHp(e.hpGrowth)}`, `${e.dmg}${growDmg(e.dmgGrowth)}`, e.speed, e.seeds, stApply(e.onHit) || '-']),
   );
   for (const e of [...regular, ...critters]) {
-    d.h3(`${e.name}${e.critter ? tx('（地形生物）', ' (terrain critter)') : ''}`, `enemy-${e.id}`, false);
-    d.p(img('enemy', e.id, 96), '', `> ${e.desc}`);
+    const title = `${e.name}${e.critter ? tx('（地形生物）', ' (terrain critter)') : ''}`;
     const special = [
       e.splitInto ? tx(`死亡分裂为 ${e.splitCount ?? 2} 只${lnk.enemy(e.splitInto, '')}`, `Splits into ${e.splitCount ?? 2}× ${lnk.enemy(e.splitInto, '')} on death`) : '',
       e.summon ? tx(`召唤 ${e.summonCount ?? 1} 只${lnk.enemy(e.summon, '')}`, `Summons ${e.summonCount ?? 1}× ${lnk.enemy(e.summon, '')}`) : '',
@@ -114,11 +113,10 @@ export function monstersDoc(): void {
     if (e.onHit) rows.push([tx('攻击附带', 'Inflicts'), stApply(e.onHit)]);
     if (special) rows.push([tx('特殊', 'Special'), special]);
     rows.push([tx('出现', 'Appears in'), enemyAppear(e.id).join(tx('；', '; ')) || tx('由其他怪物召唤/分裂', 'Summoned or split from other monsters')]);
-    d.table([tx('项目', 'Field'), tx('数值', 'Value')], rows);
+    d.card(`enemy-${e.id}`, title, img('enemy', e.id, 112, 'webp'), title, e.desc, rows, false);
   }
   const bossSection = (b: BossDef) => {
-    d.h3(`${b.name}${b.elite ? '' : ` · ${b.title}`}`, `boss-${b.id}`, false);
-    d.p(img('boss', b.id, 96), '', `> ${b.desc}`);
+    const title = `${b.name}${b.elite ? '' : ` · ${b.title}`}`;
     const rows: [string, string | number][] = [
       [tx('章节', 'Chapter'), lnk.chapter(b.chapter)],
       [tx('基础生命', 'Base HP'), b.hp],
@@ -141,7 +139,7 @@ export function monstersDoc(): void {
         ),
       ]);
     }
-    d.table([tx('项目', 'Field'), tx('数值', 'Value')], rows);
+    d.card(`boss-${b.id}`, title, img('boss', b.id, 128, 'webp'), title, b.desc, rows, false);
   };
   const pool = (elite: boolean) =>
     CHAPTERS.map((c) => [

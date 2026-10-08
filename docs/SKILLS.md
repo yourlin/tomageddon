@@ -96,656 +96,500 @@
 
 <a id="skill-tomato"></a>
 
-### 番茄酱爆（番茄妹）
-
-<img src="images/char/tomato.png" width="64" height="64" alt="">
-
-> 炸开番茄酱，造成伤害并减速敌人。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [番茄妹](CHARACTERS.md#char-tomato) |
-| 形态 | 周身爆发 |
-| 冷却 | 17s |
-| 伤害系数 | ×2.2 |
-| 半径 | 180 |
-| 对敌施加 | 3层[减速](#status-slow) 3s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/tomato.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">番茄酱爆（番茄妹）</th></tr>
+<tr><td colspan="2"><i>炸开番茄酱，造成伤害并减速敌人。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-tomato">番茄妹</a></td></tr>
+<tr><td nowrap>形态</td><td>周身爆发</td></tr>
+<tr><td nowrap>冷却</td><td>17s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2.2</td></tr>
+<tr><td nowrap>半径</td><td>180</td></tr>
+<tr><td nowrap>对敌施加</td><td>3层<a href="#status-slow">减速</a> 3s</td></tr>
+</table>
 
 <a id="skill-carrot"></a>
 
-### 骑士冲锋（胡萝卜骑士）
-
-<img src="images/char/carrot.png" width="64" height="64" alt="">
-
-> 无敌冲锋，撞晕沿途敌人。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [胡萝卜骑士](CHARACTERS.md#char-carrot) |
-| 形态 | 突进冲撞 |
-| 冷却 | 11s |
-| 伤害系数 | ×2 |
-| 冲刺距离 | 320 |
-| 对敌施加 | [眩晕](#status-stun) 0.8s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/carrot.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">骑士冲锋（胡萝卜骑士）</th></tr>
+<tr><td colspan="2"><i>无敌冲锋，撞晕沿途敌人。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-carrot">胡萝卜骑士</a></td></tr>
+<tr><td nowrap>形态</td><td>突进冲撞</td></tr>
+<tr><td nowrap>冷却</td><td>11s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2</td></tr>
+<tr><td nowrap>冲刺距离</td><td>320</td></tr>
+<tr><td nowrap>对敌施加</td><td><a href="#status-stun">眩晕</a> 0.8s</td></tr>
+</table>
 
 <a id="skill-chili"></a>
 
-### 烈焰新星（辣椒姐）
-
-<img src="images/char/chili.png" width="64" height="64" alt="">
-
-> 火焰冲击波，叠加 3 层灼烧。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [辣椒姐](CHARACTERS.md#char-chili) |
-| 形态 | 周身爆发 |
-| 冷却 | 20s |
-| 伤害系数 | ×2.2 |
-| 半径 | 200 |
-| 对敌施加 | 3层[灼烧](#status-burn) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/chili.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">烈焰新星（辣椒姐）</th></tr>
+<tr><td colspan="2"><i>火焰冲击波，叠加 3 层灼烧。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-chili">辣椒姐</a></td></tr>
+<tr><td nowrap>形态</td><td>周身爆发</td></tr>
+<tr><td nowrap>冷却</td><td>20s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2.2</td></tr>
+<tr><td nowrap>半径</td><td>200</td></tr>
+<tr><td nowrap>对敌施加</td><td>3层<a href="#status-burn">灼烧</a> 4s</td></tr>
+</table>
 
 <a id="skill-corn"></a>
 
-### 爆米花弹幕（玉米枪手）
-
-<img src="images/char/corn.png" width="64" height="64" alt="">
-
-> 向四周发射 18 发爆米花。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [玉米枪手](CHARACTERS.md#char-corn) |
-| 形态 | 环形弹幕 |
-| 冷却 | 8s |
-| 伤害系数 | ×0.7 |
-| 数量 | 18 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/corn.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">爆米花弹幕（玉米枪手）</th></tr>
+<tr><td colspan="2"><i>向四周发射 18 发爆米花。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-corn">玉米枪手</a></td></tr>
+<tr><td nowrap>形态</td><td>环形弹幕</td></tr>
+<tr><td nowrap>冷却</td><td>8s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.7</td></tr>
+<tr><td nowrap>数量</td><td>18</td></tr>
+</table>
 
 <a id="skill-watermelon"></a>
 
-### 西瓜翻滚（西瓜胖墩）
-
-<img src="images/char/watermelon.png" width="64" height="64" alt="">
-
-> 翻滚冲撞并回复 4.5% 最大生命。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [西瓜胖墩](CHARACTERS.md#char-watermelon) |
-| 形态 | 突进冲撞 |
-| 冷却 | 13s |
-| 伤害系数 | ×2 |
-| 冲刺距离 | 260 |
-| 回复 | 4.5% 最大生命 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/watermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">西瓜翻滚（西瓜胖墩）</th></tr>
+<tr><td colspan="2"><i>翻滚冲撞并回复 4.5% 最大生命。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-watermelon">西瓜胖墩</a></td></tr>
+<tr><td nowrap>形态</td><td>突进冲撞</td></tr>
+<tr><td nowrap>冷却</td><td>13s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2</td></tr>
+<tr><td nowrap>冲刺距离</td><td>260</td></tr>
+<tr><td nowrap>回复</td><td>4.5% 最大生命</td></tr>
+</table>
 
 <a id="skill-lemon"></a>
 
-### 酸雾隐身（柠檬刺客）
-
-<img src="images/char/lemon.png" width="64" height="64" alt="">
-
-> 隐身 3 秒（无敌），暴击 +50%。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [柠檬刺客](CHARACTERS.md#char-lemon) |
-| 形态 | 无敌潜行 |
-| 冷却 | 11s |
-| 持续 | 2.5s |
-| 属性增益 | +50% 暴击率，+20% 移动速度 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/lemon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">酸雾隐身（柠檬刺客）</th></tr>
+<tr><td colspan="2"><i>隐身 3 秒（无敌），暴击 +50%。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-lemon">柠檬刺客</a></td></tr>
+<tr><td nowrap>形态</td><td>无敌潜行</td></tr>
+<tr><td nowrap>冷却</td><td>11s</td></tr>
+<tr><td nowrap>持续</td><td>2.5s</td></tr>
+<tr><td nowrap>属性增益</td><td>+50% 暴击率，+10 移动速度</td></tr>
+</table>
 
 <a id="skill-eggplant"></a>
 
-### 紫雷天罚（茄子法师）
-
-<img src="images/char/eggplant.png" width="64" height="64" alt="">
-
-> 天雷覆盖全屏，劈中所有敌人并短暂眩晕。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [茄子法师](CHARACTERS.md#char-eggplant) |
-| 形态 | 全屏攻击 |
-| 冷却 | 14s |
-| 伤害系数 | ×0.9 |
-| 对敌施加 | [眩晕](#status-stun) 0.4s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/eggplant.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">紫雷天罚（茄子法师）</th></tr>
+<tr><td colspan="2"><i>天雷覆盖全屏，劈中所有敌人并短暂眩晕。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-eggplant">茄子法师</a></td></tr>
+<tr><td nowrap>形态</td><td>全屏攻击</td></tr>
+<tr><td nowrap>冷却</td><td>14s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.9</td></tr>
+<tr><td nowrap>对敌施加</td><td><a href="#status-stun">眩晕</a> 0.4s</td></tr>
+</table>
 
 <a id="skill-garlic"></a>
 
-### 血之领域（大蒜伯爵）
-
-<img src="images/char/garlic.png" width="64" height="64" alt="">
-
-> 吸取周围敌人生命，施加流血。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [大蒜伯爵](CHARACTERS.md#char-garlic) |
-| 形态 | 吸取回复 |
-| 冷却 | 14s |
-| 伤害系数 | ×1 |
-| 半径 | 200 |
-| 对敌施加 | 3层[流血](#status-bleed) 4s |
-| 吸取 | 每命中 1 个敌人 +0.5 生命（最多 6% 最大生命） |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="images/skill/garlic.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">血之领域（大蒜伯爵）</th></tr>
+<tr><td colspan="2"><i>吸取周围敌人生命，施加流血。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-garlic">大蒜伯爵</a></td></tr>
+<tr><td nowrap>形态</td><td>吸取回复</td></tr>
+<tr><td nowrap>冷却</td><td>14s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×1</td></tr>
+<tr><td nowrap>半径</td><td>200</td></tr>
+<tr><td nowrap>对敌施加</td><td>3层<a href="#status-bleed">流血</a> 4s</td></tr>
+<tr><td nowrap>吸取</td><td>每命中 1 个敌人 +0.5 生命（最多 6% 最大生命）</td></tr>
+</table>
 
 <a id="skill-blueberry"></a>
 
-### 双子分身（蓝莓双子）
-
-<img src="images/char/blueberry.png" width="64" height="64" alt="">
-
-> 召唤分身 8 秒自动射击。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [蓝莓双子](CHARACTERS.md#char-blueberry) |
-| 形态 | 召唤分身 |
-| 冷却 | 10s |
-| 伤害系数 | ×0.45 |
-| 持续 | 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/blueberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">双子分身（蓝莓双子）</th></tr>
+<tr><td colspan="2"><i>召唤 2 个分身 8 秒，拿着你的全部武器一起攻击（50% 伤害），身体能挡子弹；分身被打掉或消失时尸体爆炸。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-blueberry">蓝莓双子</a></td></tr>
+<tr><td nowrap>形态</td><td>召唤分身</td></tr>
+<tr><td nowrap>冷却</td><td>10s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.45</td></tr>
+<tr><td nowrap>持续</td><td>8s</td></tr>
+</table>
 
 <a id="skill-pineapple"></a>
 
-### 黄金炮击（菠萝船长）
-
-<img src="images/char/pineapple.png" width="64" height="64" alt="">
-
-> 向敌群最密集处发射黄金炮弹，大范围爆炸，击杀必掉番茄籽。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [菠萝船长](CHARACTERS.md#char-pineapple) |
-| 形态 | 发射 AOE |
-| 冷却 | 16s |
-| 伤害系数 | ×3.2 |
-| 半径 | 150 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/pineapple.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">黄金炮击（菠萝船长）</th></tr>
+<tr><td colspan="2"><i>向敌群最密集处发射黄金炮弹，大范围爆炸，击杀必掉番茄籽。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-pineapple">菠萝船长</a></td></tr>
+<tr><td nowrap>形态</td><td>发射 AOE</td></tr>
+<tr><td nowrap>冷却</td><td>16s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×3.2</td></tr>
+<tr><td nowrap>半径</td><td>150</td></tr>
+</table>
 
 <a id="skill-pumpkin"></a>
 
-### 灵体化（南瓜幽灵）
-
-<img src="images/char/pumpkin.png" width="64" height="64" alt="">
-
-> 无敌 2.5 秒并大幅加速。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [南瓜幽灵](CHARACTERS.md#char-pumpkin) |
-| 形态 | 无敌潜行 |
-| 冷却 | 11s |
-| 持续 | 2.5s |
-| 属性增益 | +60% 移动速度 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/pumpkin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">灵体化（南瓜幽灵）</th></tr>
+<tr><td colspan="2"><i>无敌 2.5 秒并大幅加速。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-pumpkin">南瓜幽灵</a></td></tr>
+<tr><td nowrap>形态</td><td>无敌潜行</td></tr>
+<tr><td nowrap>冷却</td><td>11s</td></tr>
+<tr><td nowrap>持续</td><td>2.5s</td></tr>
+<tr><td nowrap>属性增益</td><td>+30 移动速度</td></tr>
+</table>
 
 <a id="skill-strawberry"></a>
 
-### 应援打 Call（草莓偶像）
-
-<img src="images/char/strawberry.png" width="64" height="64" alt="">
-
-> 6 秒内急速 3 层 + 怒气 5 层。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [草莓偶像](CHARACTERS.md#char-strawberry) |
-| 形态 | 自身增益 |
-| 冷却 | 13s |
-| 持续 | 6s |
-| 自身获得 | 3层[急速](#status-haste) 6s、5层[怒气](#status-rage) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/strawberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">应援打 Call（草莓偶像）</th></tr>
+<tr><td colspan="2"><i>6 秒内急速 3 层 + 怒气 5 层。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-strawberry">草莓偶像</a></td></tr>
+<tr><td nowrap>形态</td><td>自身增益</td></tr>
+<tr><td nowrap>冷却</td><td>13s</td></tr>
+<tr><td nowrap>持续</td><td>6s</td></tr>
+<tr><td nowrap>自身获得</td><td>3层<a href="#status-haste">急速</a> 6s、5层<a href="#status-rage">怒气</a> 6s</td></tr>
+</table>
 
 <a id="skill-ginger"></a>
 
-### 瞬影斩（生姜忍者）
-
-<img src="images/char/ginger.png" width="64" height="64" alt="">
-
-> 突进斩击，施加流血。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [生姜忍者](CHARACTERS.md#char-ginger) |
-| 形态 | 突进冲撞 |
-| 冷却 | 11s |
-| 伤害系数 | ×2 |
-| 冲刺距离 | 360 |
-| 对敌施加 | 2层[流血](#status-bleed) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/ginger.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">瞬影斩（生姜忍者）</th></tr>
+<tr><td colspan="2"><i>突进斩击，施加流血。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-ginger">生姜忍者</a></td></tr>
+<tr><td nowrap>形态</td><td>突进冲撞</td></tr>
+<tr><td nowrap>冷却</td><td>11s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2</td></tr>
+<tr><td nowrap>冲刺距离</td><td>360</td></tr>
+<tr><td nowrap>对敌施加</td><td>2层<a href="#status-bleed">流血</a> 4s</td></tr>
+</table>
 
 <a id="skill-avocado"></a>
 
-### 核心过载（牛油果博士）
-
-<img src="images/char/avocado.png" width="64" height="64" alt="">
-
-> 连环爆炸 5 次。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [牛油果博士](CHARACTERS.md#char-avocado) |
-| 形态 | 多点轰炸 |
-| 冷却 | 11s |
-| 伤害系数 | ×1.6 |
-| 半径 | 90 |
-| 数量 | 5 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/avocado.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">核心过载（牛油果博士）</th></tr>
+<tr><td colspan="2"><i>连环爆炸 5 次。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-avocado">牛油果博士</a></td></tr>
+<tr><td nowrap>形态</td><td>多点轰炸</td></tr>
+<tr><td nowrap>冷却</td><td>11s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×1.6</td></tr>
+<tr><td nowrap>半径</td><td>90</td></tr>
+<tr><td nowrap>数量</td><td>5</td></tr>
+</table>
 
 <a id="skill-onion"></a>
 
-### 催泪领域（洋葱大叔）
-
-<img src="images/char/onion.png" width="64" height="64" alt="">
-
-> 释放 5 秒催泪瓦斯区域，区域内敌人大幅减速并致盲。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [洋葱大叔](CHARACTERS.md#char-onion) |
-| 形态 | 禁锢领域 |
-| 冷却 | 12s |
-| 伤害系数 | ×0.4 |
-| 半径 | 180 |
-| 持续 | 5s |
-| 对敌施加 | 3层[减速](#status-slow) 1s、[致盲](#status-blind) 1s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="images/skill/onion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">催泪领域（洋葱大叔）</th></tr>
+<tr><td colspan="2"><i>释放 5 秒催泪瓦斯区域，区域内敌人大幅减速并致盲。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-onion">洋葱大叔</a></td></tr>
+<tr><td nowrap>形态</td><td>禁锢领域</td></tr>
+<tr><td nowrap>冷却</td><td>12s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.4</td></tr>
+<tr><td nowrap>半径</td><td>180</td></tr>
+<tr><td nowrap>持续</td><td>5s</td></tr>
+<tr><td nowrap>对敌施加</td><td>3层<a href="#status-slow">减速</a> 1s、<a href="#status-blind">致盲</a> 1s</td></tr>
+</table>
 
 <a id="skill-mushroom"></a>
 
-### 孢子云（蘑菇巫医）
-
-<img src="images/char/mushroom.png" width="64" height="64" alt="">
-
-> 对大范围内敌人施加 5 层中毒与 2 层虚弱。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [蘑菇巫医](CHARACTERS.md#char-mushroom) |
-| 形态 | 群体减益 |
-| 冷却 | 19s |
-| 伤害系数 | ×0.3 |
-| 半径 | 320 |
-| 对敌施加 | 5层[中毒](#status-poison) 6s、2层[虚弱](#status-weaken) 5s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/mushroom.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">孢子云（蘑菇巫医）</th></tr>
+<tr><td colspan="2"><i>对大范围内敌人施加 5 层中毒与 2 层虚弱。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-mushroom">蘑菇巫医</a></td></tr>
+<tr><td nowrap>形态</td><td>群体减益</td></tr>
+<tr><td nowrap>冷却</td><td>19s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.3</td></tr>
+<tr><td nowrap>半径</td><td>320</td></tr>
+<tr><td nowrap>对敌施加</td><td>5层<a href="#status-poison">中毒</a> 6s、2层<a href="#status-weaken">虚弱</a> 5s</td></tr>
+</table>
 
 <a id="skill-coconut"></a>
 
-### 震地拳（椰子拳师）
-
-<img src="images/char/coconut.png" width="64" height="64" alt="">
-
-> 重击地面，眩晕并破甲。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [椰子拳师](CHARACTERS.md#char-coconut) |
-| 形态 | 周身爆发 |
-| 冷却 | 21s |
-| 伤害系数 | ×2.2 |
-| 半径 | 170 |
-| 对敌施加 | [眩晕](#status-stun) 1.2s、3层[破甲](#status-armorBreak) 6s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/coconut.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">震地拳（椰子拳师）</th></tr>
+<tr><td colspan="2"><i>重击地面，眩晕并破甲。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-coconut">椰子拳师</a></td></tr>
+<tr><td nowrap>形态</td><td>周身爆发</td></tr>
+<tr><td nowrap>冷却</td><td>21s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2.2</td></tr>
+<tr><td nowrap>半径</td><td>170</td></tr>
+<tr><td nowrap>对敌施加</td><td><a href="#status-stun">眩晕</a> 1.2s、3层<a href="#status-armorBreak">破甲</a> 6s</td></tr>
+</table>
 
 <a id="skill-grape"></a>
 
-### 葡萄分身（葡萄魔术师）
-
-<img src="images/char/grape.png" width="64" height="64" alt="">
-
-> 召唤分身 8 秒自动射击。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [葡萄魔术师](CHARACTERS.md#char-grape) |
-| 形态 | 召唤分身 |
-| 冷却 | 10s |
-| 伤害系数 | ×0.45 |
-| 持续 | 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/grape.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">葡萄分身（葡萄魔术师）</th></tr>
+<tr><td colspan="2"><i>召唤分身 8 秒自动射击。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-grape">葡萄魔术师</a></td></tr>
+<tr><td nowrap>形态</td><td>召唤分身</td></tr>
+<tr><td nowrap>冷却</td><td>10s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.45</td></tr>
+<tr><td nowrap>持续</td><td>8s</td></tr>
+</table>
 
 <a id="skill-cherry"></a>
 
-### 双枪连射（樱桃双枪）
-
-<img src="images/char/cherry.png" width="64" height="64" alt="">
-
-> 对最近的敌人连续射出 12 发子弹。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [樱桃双枪](CHARACTERS.md#char-cherry) |
-| 形态 | 单体连发 |
-| 冷却 | 11s |
-| 伤害系数 | ×0.9 |
-| 数量 | 12 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/cherry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">双枪连射（樱桃双枪）</th></tr>
+<tr><td colspan="2"><i>对最近的敌人连续射出 12 发子弹。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-cherry">樱桃双枪</a></td></tr>
+<tr><td nowrap>形态</td><td>单体连发</td></tr>
+<tr><td nowrap>冷却</td><td>11s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.9</td></tr>
+<tr><td nowrap>数量</td><td>12</td></tr>
+</table>
 
 <a id="skill-pea"></a>
 
-### 豌豆炮台（豌豆士兵）
-
-<img src="images/char/pea.png" width="64" height="64" alt="">
-
-> 对最近的敌人高速连发 16 颗豌豆。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [豌豆士兵](CHARACTERS.md#char-pea) |
-| 形态 | 单体连发 |
-| 冷却 | 10s |
-| 伤害系数 | ×0.6 |
-| 数量 | 16 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/pea.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">豌豆炮台（豌豆士兵）</th></tr>
+<tr><td colspan="2"><i>对最近的敌人高速连发 16 颗豌豆。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-pea">豌豆士兵</a></td></tr>
+<tr><td nowrap>形态</td><td>单体连发</td></tr>
+<tr><td nowrap>冷却</td><td>10s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.6</td></tr>
+<tr><td nowrap>数量</td><td>16</td></tr>
+</table>
 
 <a id="skill-peach"></a>
 
-### 天使祝福（蜜桃天使）
-
-<img src="images/char/peach.png" width="64" height="64" alt="">
-
-> 吸取周围敌人生命并回复 9% 最大生命，无敌 1.5 秒。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [蜜桃天使](CHARACTERS.md#char-peach) |
-| 形态 | 吸取回复 |
-| 冷却 | 21s |
-| 伤害系数 | ×1 |
-| 半径 | 150 |
-| 自身获得 | [无敌](#status-invuln) 1.5s |
-| 回复 | 9% 最大生命 |
-| 吸取 | 每命中 1 个敌人 +0.5 生命（最多 6% 最大生命） |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="images/skill/peach.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">天使祝福（蜜桃天使）</th></tr>
+<tr><td colspan="2"><i>吸取周围敌人生命并回复 9% 最大生命，无敌 1.5 秒。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-peach">蜜桃天使</a></td></tr>
+<tr><td nowrap>形态</td><td>吸取回复</td></tr>
+<tr><td nowrap>冷却</td><td>21s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×1</td></tr>
+<tr><td nowrap>半径</td><td>150</td></tr>
+<tr><td nowrap>自身获得</td><td><a href="#status-invuln">无敌</a> 1.5s</td></tr>
+<tr><td nowrap>回复</td><td>9% 最大生命</td></tr>
+<tr><td nowrap>吸取</td><td>每命中 1 个敌人 +0.5 生命（最多 6% 最大生命）</td></tr>
+</table>
 
 <a id="skill-dragonfruit"></a>
 
-### 龙焰冲锋（火龙果龙骑）
-
-<img src="images/char/dragonfruit.png" width="64" height="64" alt="">
-
-> 冲锋并在路径上叠加 4 层灼烧。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [火龙果龙骑](CHARACTERS.md#char-dragonfruit) |
-| 形态 | 突进冲撞 |
-| 冷却 | 12s |
-| 伤害系数 | ×2 |
-| 冲刺距离 | 330 |
-| 对敌施加 | 4层[灼烧](#status-burn) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/dragonfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">龙焰冲锋（火龙果龙骑）</th></tr>
+<tr><td colspan="2"><i>冲锋并在路径上叠加 4 层灼烧，灼烧持续 5 秒。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-dragonfruit">火龙果龙骑</a></td></tr>
+<tr><td nowrap>形态</td><td>突进冲撞</td></tr>
+<tr><td nowrap>冷却</td><td>12s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2</td></tr>
+<tr><td nowrap>冲刺距离</td><td>330</td></tr>
+<tr><td nowrap>对敌施加</td><td>4层<a href="#status-burn">灼烧</a> 5s</td></tr>
+</table>
 
 <a id="skill-beet"></a>
 
-### 狂暴（甜菜狂战士）
-
-<img src="images/char/beet.png" width="64" height="64" alt="">
-
-> 6 秒暴怒（移速、伤害 +30%）与嗜血。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [甜菜狂战士](CHARACTERS.md#char-beet) |
-| 形态 | 自身增益 |
-| 冷却 | 13s |
-| 持续 | 6s |
-| 自身获得 | [暴怒](#status-enrage) 6s、3层[嗜血](#status-vampiric) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/beet.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">狂暴（甜菜狂战士）</th></tr>
+<tr><td colspan="2"><i>6 秒暴怒（移速、伤害 +30%）与嗜血。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-beet">甜菜狂战士</a></td></tr>
+<tr><td nowrap>形态</td><td>自身增益</td></tr>
+<tr><td nowrap>冷却</td><td>13s</td></tr>
+<tr><td nowrap>持续</td><td>6s</td></tr>
+<tr><td nowrap>自身获得</td><td><a href="#status-enrage">暴怒</a> 6s、3层<a href="#status-vampiric">嗜血</a> 6s</td></tr>
+</table>
 
 <a id="skill-asparagus"></a>
 
-### 穿心箭（芦笋弓手）
-
-<img src="images/char/asparagus.png" width="64" height="64" alt="">
-
-> 向生命最高的敌人连射 8 支穿透箭，并标记目标。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [芦笋弓手](CHARACTERS.md#char-asparagus) |
-| 形态 | 单体连发 |
-| 冷却 | 12s |
-| 伤害系数 | ×1.3 |
-| 数量 | 8 |
-| 对敌施加 | [标记](#status-mark) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/asparagus.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">穿心箭（芦笋弓手）</th></tr>
+<tr><td colspan="2"><i>向生命最高的敌人连射 8 支穿透箭，并标记目标。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-asparagus">芦笋弓手</a></td></tr>
+<tr><td nowrap>形态</td><td>单体连发</td></tr>
+<tr><td nowrap>冷却</td><td>12s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×1.3</td></tr>
+<tr><td nowrap>数量</td><td>8</td></tr>
+<tr><td nowrap>对敌施加</td><td><a href="#status-mark">标记</a> 4s</td></tr>
+</table>
 
 <a id="skill-sweetpotato"></a>
 
-### 烤红薯盛宴（红薯厨神）
-
-<img src="images/char/sweetpotato.png" width="64" height="64" alt="">
-
-> 吸取周围敌人生命并回复 9% 最大生命，获得 5 层再生。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [红薯厨神](CHARACTERS.md#char-sweetpotato) |
-| 形态 | 吸取回复 |
-| 冷却 | 24s |
-| 伤害系数 | ×1 |
-| 半径 | 160 |
-| 自身获得 | 5层[再生](#status-regen) 6s |
-| 回复 | 9% 最大生命 |
-| 吸取 | 每命中 1 个敌人 +0.5 生命（最多 6% 最大生命） |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="images/skill/sweetpotato.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">烤红薯盛宴（红薯厨神）</th></tr>
+<tr><td colspan="2"><i>吸取周围敌人生命并回复 9% 最大生命，获得 5 层再生。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-sweetpotato">红薯厨神</a></td></tr>
+<tr><td nowrap>形态</td><td>吸取回复</td></tr>
+<tr><td nowrap>冷却</td><td>24s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×1</td></tr>
+<tr><td nowrap>半径</td><td>160</td></tr>
+<tr><td nowrap>自身获得</td><td>5层<a href="#status-regen">再生</a> 6s</td></tr>
+<tr><td nowrap>回复</td><td>9% 最大生命</td></tr>
+<tr><td nowrap>吸取</td><td>每命中 1 个敌人 +0.5 生命（最多 6% 最大生命）</td></tr>
+</table>
 
 <a id="skill-kiwi"></a>
 
-### 真相只有一个（猕猴桃侦探）
-
-<img src="images/char/kiwi.png" width="64" height="64" alt="">
-
-> 看穿全屏敌人：施加标记与 2 层易伤。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [猕猴桃侦探](CHARACTERS.md#char-kiwi) |
-| 形态 | 群体减益 |
-| 冷却 | 15s |
-| 伤害系数 | ×0.2 |
-| 半径 | 900 |
-| 对敌施加 | [标记](#status-mark) 6s、2层[易伤](#status-vulnerable) 6s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/kiwi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">真相只有一个（猕猴桃侦探）</th></tr>
+<tr><td colspan="2"><i>看穿全屏敌人：施加标记与 2 层易伤。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-kiwi">猕猴桃侦探</a></td></tr>
+<tr><td nowrap>形态</td><td>群体减益</td></tr>
+<tr><td nowrap>冷却</td><td>15s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.2</td></tr>
+<tr><td nowrap>半径</td><td>900</td></tr>
+<tr><td nowrap>对敌施加</td><td><a href="#status-mark">标记</a> 6s、2层<a href="#status-vulnerable">易伤</a> 6s</td></tr>
+</table>
 
 <a id="skill-lychee"></a>
 
-### 公主的好运（荔枝公主）
-
-<img src="images/char/lychee.png" width="64" height="64" alt="">
-
-> 6 秒好运 5 层 + 专注 3 层。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [荔枝公主](CHARACTERS.md#char-lychee) |
-| 形态 | 自身增益 |
-| 冷却 | 10s |
-| 持续 | 6s |
-| 自身获得 | 5层[好运](#status-lucky) 6s、3层[专注](#status-focus) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/lychee.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">公主的好运（荔枝公主）</th></tr>
+<tr><td colspan="2"><i>6 秒好运 5 层 + 专注 3 层。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-lychee">荔枝公主</a></td></tr>
+<tr><td nowrap>形态</td><td>自身增益</td></tr>
+<tr><td nowrap>冷却</td><td>10s</td></tr>
+<tr><td nowrap>持续</td><td>6s</td></tr>
+<tr><td nowrap>自身获得</td><td>5层<a href="#status-lucky">好运</a> 6s、3层<a href="#status-focus">专注</a> 6s</td></tr>
+</table>
 
 <a id="skill-durian"></a>
 
-### 臭气熏天（榴莲霸王）
-
-<img src="images/char/durian.png" width="64" height="64" alt="">
-
-> 对周围敌人施加中毒、3 层虚弱与混乱。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [榴莲霸王](CHARACTERS.md#char-durian) |
-| 形态 | 群体减益 |
-| 冷却 | 21s |
-| 伤害系数 | ×0.4 |
-| 半径 | 240 |
-| 对敌施加 | 4层[中毒](#status-poison) 5s、3层[虚弱](#status-weaken) 5s、[混乱](#status-confuse) 3s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/durian.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">臭气熏天（榴莲霸王）</th></tr>
+<tr><td colspan="2"><i>对周围敌人施加中毒、3 层虚弱与混乱。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-durian">榴莲霸王</a></td></tr>
+<tr><td nowrap>形态</td><td>群体减益</td></tr>
+<tr><td nowrap>冷却</td><td>21s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.4</td></tr>
+<tr><td nowrap>半径</td><td>240</td></tr>
+<tr><td nowrap>对敌施加</td><td>4层<a href="#status-poison">中毒</a> 5s、3层<a href="#status-weaken">虚弱</a> 5s、<a href="#status-confuse">混乱</a> 3s</td></tr>
+</table>
 
 <a id="skill-bellpepper"></a>
 
-### 无人机支援（青椒机甲）
-
-<img src="images/char/bellpepper.png" width="64" height="64" alt="">
-
-> 部署无人机 8 秒。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [青椒机甲](CHARACTERS.md#char-bellpepper) |
-| 形态 | 召唤分身 |
-| 冷却 | 10s |
-| 伤害系数 | ×0.45 |
-| 持续 | 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/bellpepper.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">无人机支援（青椒机甲）</th></tr>
+<tr><td colspan="2"><i>部署无人机 8 秒。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-bellpepper">青椒机甲</a></td></tr>
+<tr><td nowrap>形态</td><td>召唤分身</td></tr>
+<tr><td nowrap>冷却</td><td>10s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.45</td></tr>
+<tr><td nowrap>持续</td><td>8s</td></tr>
+</table>
 
 <a id="skill-wintermelon"></a>
 
-### 金钟罩（冬瓜和尚）
-
-<img src="images/char/wintermelon.png" width="64" height="64" alt="">
-
-> 冥想 2 秒无敌，获得 5 层坚韧。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [冬瓜和尚](CHARACTERS.md#char-wintermelon) |
-| 形态 | 无敌潜行 |
-| 冷却 | 16s |
-| 持续 | 2s |
-| 自身获得 | 5层[坚韧](#status-fortify) 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/wintermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">金钟罩（冬瓜和尚）</th></tr>
+<tr><td colspan="2"><i>冥想 2 秒无敌，获得 5 层坚韧。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-wintermelon">冬瓜和尚</a></td></tr>
+<tr><td nowrap>形态</td><td>无敌潜行</td></tr>
+<tr><td nowrap>冷却</td><td>16s</td></tr>
+<tr><td nowrap>持续</td><td>2s</td></tr>
+<tr><td nowrap>自身获得</td><td>5层<a href="#status-fortify">坚韧</a> 8s</td></tr>
+</table>
 
 <a id="skill-bittermelon"></a>
 
-### 冰封领域（苦瓜冰法）
-
-<img src="images/char/bittermelon.png" width="64" height="64" alt="">
-
-> 在身边展开 5 秒冰封领域，敌人进入后减速并被冻结。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [苦瓜冰法](CHARACTERS.md#char-bittermelon) |
-| 形态 | 禁锢领域 |
-| 冷却 | 16s |
-| 伤害系数 | ×0.5 |
-| 半径 | 170 |
-| 持续 | 5s |
-| 对敌施加 | 3层[减速](#status-slow) 1s、[冰冻](#status-freeze) 0.8s（25%） |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="images/skill/bittermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">冰封领域（苦瓜冰法）</th></tr>
+<tr><td colspan="2"><i>在身边展开 5 秒冰封领域，敌人进入后减速并被冻结。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-bittermelon">苦瓜冰法</a></td></tr>
+<tr><td nowrap>形态</td><td>禁锢领域</td></tr>
+<tr><td nowrap>冷却</td><td>16s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.5</td></tr>
+<tr><td nowrap>半径</td><td>170</td></tr>
+<tr><td nowrap>持续</td><td>5s</td></tr>
+<tr><td nowrap>对敌施加</td><td>3层<a href="#status-slow">减速</a> 1s、<a href="#status-freeze">冰冻</a> 0.8s（25%）</td></tr>
+</table>
 
 <a id="skill-sprout"></a>
 
-### 拔苗助长（豆芽学徒）
-
-<img src="images/char/sprout.png" width="64" height="64" alt="">
-
-> 获得 12 点经验与 5 秒急速。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [豆芽学徒](CHARACTERS.md#char-sprout) |
-| 形态 | 自身增益 |
-| 冷却 | 10s |
-| 持续 | 5s |
-| 自身获得 | 2层[急速](#status-haste) 5s |
-| 经验 | +12 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/sprout.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">拔苗助长（豆芽学徒）</th></tr>
+<tr><td colspan="2"><i>获得 12 点经验与 5 秒急速。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-sprout">豆芽学徒</a></td></tr>
+<tr><td nowrap>形态</td><td>自身增益</td></tr>
+<tr><td nowrap>冷却</td><td>10s</td></tr>
+<tr><td nowrap>持续</td><td>5s</td></tr>
+<tr><td nowrap>自身获得</td><td>2层<a href="#status-haste">急速</a> 5s</td></tr>
+<tr><td nowrap>经验</td><td>+12</td></tr>
+</table>
 
 <a id="skill-wasabi"></a>
 
-### 冲鼻核弹（山葵爆破手）
-
-<img src="images/char/wasabi.png" width="64" height="64" alt="">
-
-> 向敌群发射山葵核弹，超大范围爆炸并灼烧。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [山葵爆破手](CHARACTERS.md#char-wasabi) |
-| 形态 | 发射 AOE |
-| 冷却 | 23s |
-| 伤害系数 | ×2.8 |
-| 半径 | 190 |
-| 对敌施加 | 3层[灼烧](#status-burn) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/wasabi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">冲鼻核弹（山葵爆破手）</th></tr>
+<tr><td colspan="2"><i>向敌群发射山葵核弹，超大范围爆炸并灼烧。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-wasabi">山葵爆破手</a></td></tr>
+<tr><td nowrap>形态</td><td>发射 AOE</td></tr>
+<tr><td nowrap>冷却</td><td>23s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×2.8</td></tr>
+<tr><td nowrap>半径</td><td>190</td></tr>
+<tr><td nowrap>对敌施加</td><td>3层<a href="#status-burn">灼烧</a> 4s</td></tr>
+</table>
 
 <a id="skill-soybean"></a>
 
-### 豆兵出阵（黄豆军师）
-
-<img src="images/char/soybean.png" width="64" height="64" alt="">
-
-> 召唤豆兵分身 10 秒自动射击。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [黄豆军师](CHARACTERS.md#char-soybean) |
-| 形态 | 召唤分身 |
-| 冷却 | 14s |
-| 伤害系数 | ×0.6 |
-| 持续 | 10s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/soybean.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">豆兵出阵（黄豆军师）</th></tr>
+<tr><td colspan="2"><i>召唤豆兵分身 10 秒自动射击。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-soybean">黄豆军师</a></td></tr>
+<tr><td nowrap>形态</td><td>召唤分身</td></tr>
+<tr><td nowrap>冷却</td><td>14s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.6</td></tr>
+<tr><td nowrap>持续</td><td>10s</td></tr>
+</table>
 
 <a id="skill-jackfruit"></a>
 
-### 千刺甲（菠萝蜜卫士）
-
-<img src="images/char/jackfruit.png" width="64" height="64" alt="">
-
-> 6 秒内获得 5 层荆棘与 3 层坚韧。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [菠萝蜜卫士](CHARACTERS.md#char-jackfruit) |
-| 形态 | 自身增益 |
-| 冷却 | 12s |
-| 持续 | 6s |
-| 自身获得 | 5层[荆棘](#status-thorns) 6s、3层[坚韧](#status-fortify) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/jackfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">千刺甲（菠萝蜜卫士）</th></tr>
+<tr><td colspan="2"><i>6 秒内获得 5 层荆棘与 3 层坚韧。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-jackfruit">菠萝蜜卫士</a></td></tr>
+<tr><td nowrap>形态</td><td>自身增益</td></tr>
+<tr><td nowrap>冷却</td><td>12s</td></tr>
+<tr><td nowrap>持续</td><td>6s</td></tr>
+<tr><td nowrap>自身获得</td><td>5层<a href="#status-thorns">荆棘</a> 6s、3层<a href="#status-fortify">坚韧</a> 6s</td></tr>
+</table>
 
 <a id="skill-pomegranate"></a>
 
-### 石榴籽爆裂（石榴炮手）
-
-<img src="images/char/pomegranate.png" width="64" height="64" alt="">
-
-> 向四周喷射 30 颗石榴籽。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [石榴炮手](CHARACTERS.md#char-pomegranate) |
-| 形态 | 环形弹幕 |
-| 冷却 | 8s |
-| 伤害系数 | ×0.5 |
-| 数量 | 30 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/pomegranate.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">石榴籽爆裂（石榴炮手）</th></tr>
+<tr><td colspan="2"><i>向四周喷射 30 颗石榴籽。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-pomegranate">石榴炮手</a></td></tr>
+<tr><td nowrap>形态</td><td>环形弹幕</td></tr>
+<tr><td nowrap>冷却</td><td>8s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.5</td></tr>
+<tr><td nowrap>数量</td><td>30</td></tr>
+</table>
 
 <a id="skill-taro"></a>
 
-### 芋泥结界（芋头术士）
-
-<img src="images/char/taro.png" width="64" height="64" alt="">
-
-> 展开 6 秒芋泥结界，持续灼烧并减速区域内敌人。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [芋头术士](CHARACTERS.md#char-taro) |
-| 形态 | 禁锢领域 |
-| 冷却 | 30s |
-| 伤害系数 | ×1.6 |
-| 半径 | 230 |
-| 持续 | 6s |
-| 对敌施加 | 2层[灼烧](#status-burn) 2s、2层[减速](#status-slow) 1s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="images/skill/taro.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">芋泥结界（芋头术士）</th></tr>
+<tr><td colspan="2"><i>展开 6 秒芋泥结界，持续灼烧并减速区域内敌人，挡住飞入结界的敌弹。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-taro">芋头术士</a></td></tr>
+<tr><td nowrap>形态</td><td>禁锢领域</td></tr>
+<tr><td nowrap>冷却</td><td>30s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×1.6</td></tr>
+<tr><td nowrap>半径</td><td>230</td></tr>
+<tr><td nowrap>持续</td><td>6s</td></tr>
+<tr><td nowrap>对敌施加</td><td>2层<a href="#status-burn">灼烧</a> 2s、2层<a href="#status-slow">减速</a> 1s</td></tr>
+</table>
 
 <a id="skill-cabbage"></a>
 
-### 不倒金身（卷心菜老兵）
-
-<img src="images/char/cabbage.png" width="64" height="64" alt="">
-
-> 5 秒屏障（受到伤害 -40%）、5 层坚韧与 3 层再生。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [卷心菜老兵](CHARACTERS.md#char-cabbage) |
-| 形态 | 自身增益 |
-| 冷却 | 15s |
-| 持续 | 5s |
-| 自身获得 | [屏障](#status-barrier) 5s、5层[坚韧](#status-fortify) 5s、3层[再生](#status-regen) 5s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/cabbage.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">不倒金身（卷心菜老兵）</th></tr>
+<tr><td colspan="2"><i>5 秒屏障（受到伤害 -40%）、5 层坚韧与 3 层再生。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-cabbage">卷心菜老兵</a></td></tr>
+<tr><td nowrap>形态</td><td>自身增益</td></tr>
+<tr><td nowrap>冷却</td><td>15s</td></tr>
+<tr><td nowrap>持续</td><td>5s</td></tr>
+<tr><td nowrap>自身获得</td><td><a href="#status-barrier">屏障</a> 5s、5层<a href="#status-fortify">坚韧</a> 5s、3层<a href="#status-regen">再生</a> 5s</td></tr>
+</table>
 
 <a id="skill-blackberry"></a>
 
-### 枯萎咒（黑莓女巫）
-
-<img src="images/char/blackberry.png" width="64" height="64" alt="">
-
-> 诅咒周围敌人，施加 3 层腐烂并沉默 3 秒。
-
-| 项目 | 数值 |
-| --- | --- |
-| 角色 | [黑莓女巫](CHARACTERS.md#char-blackberry) |
-| 形态 | 群体减益 |
-| 冷却 | 16s |
-| 伤害系数 | ×0.3 |
-| 半径 | 280 |
-| 对敌施加 | [诅咒](#status-curse) 6s、3层[腐烂](#status-rot) 6s、[沉默](#status-silence) 3s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/blackberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">枯萎咒（黑莓女巫）</th></tr>
+<tr><td colspan="2"><i>诅咒周围敌人，施加 3 层腐烂并沉默 3 秒。</i></td></tr>
+<tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-blackberry">黑莓女巫</a></td></tr>
+<tr><td nowrap>形态</td><td>群体减益</td></tr>
+<tr><td nowrap>冷却</td><td>16s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.3</td></tr>
+<tr><td nowrap>半径</td><td>280</td></tr>
+<tr><td nowrap>对敌施加</td><td><a href="#status-curse">诅咒</a> 6s、3层<a href="#status-rot">腐烂</a> 6s、<a href="#status-silence">沉默</a> 3s</td></tr>
+</table>
 
 <a id="statuses"></a>
 

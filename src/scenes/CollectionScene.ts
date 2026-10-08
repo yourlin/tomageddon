@@ -13,7 +13,7 @@ import { RELICS, RELIC_KIND_INFO } from '../data/relics';
 import { ACHIEVEMENTS } from '../data/achievements';
 import { ENEMIES } from '../data/enemies';
 import { BOSSES } from '../data/bosses';
-import { SKINS } from '../data/skins';
+import { SKINS, SKIN_OF } from '../data/skins';
 import { QUESTS } from '../data/quests';
 import { skinOwned, questDone } from '../systems/Progress';
 import { achTier, unlockHint } from '../systems/Achievements';
@@ -21,6 +21,7 @@ import { unlockedTitles } from '../data/titles';
 import { itemIconKey } from '../art/ItemArt';
 import { portraitKey } from '../ui/Portrait';
 import { audio } from '../systems/Audio';
+import { VW, VH } from '../systems/HiDpi';
 
 export interface CollectionRow {
   /** 稳定 id：记录「上次看到时有几个」用 */
@@ -50,7 +51,7 @@ export function collectionRows(): CollectionRow[] {
     },
     { id: 'title', name: ['称号', 'Titles'], have: unlockedTitles(save.achievements).length, total: ACHIEVEMENTS.length },
     { id: 'quest', name: ['角色任务', 'Quests'], have: QUESTS.filter((q) => questDone(q)).length, total: QUESTS.length },
-    { id: 'skin', name: ['皮肤', 'Skins'], have: SKINS.filter((s) => skinOwned(s.charId)).length, total: SKINS.length },
+    { id: 'skin', name: ['皮肤', 'Skins'], have: SKINS.filter((s) => skinOwned(s.id)).length, total: SKINS.length },
   ];
 }
 
@@ -124,8 +125,8 @@ export class CollectionScene extends Phaser.Scene {
   create(): void {
     autoRelayout(this);
     this.drawer = null;
-    const W = this.scale.width;
-    const H = this.scale.height;
+    const W = VW(this);
+    const H = VH(this);
     this.cameras.main.setBackgroundColor(0x170b09);
     const rows = collectionRows();
     const pct = collectionPercent(rows);
@@ -404,9 +405,15 @@ export class CollectionScene extends Phaser.Scene {
       case 'skin':
         return SKINS.map((s) => ({
           name: `${CHARACTER_MAP[s.charId]?.name ?? ''} · ${s.name[zh ? 0 : 1]}`,
-          have: skinOwned(s.charId),
+          have: skinOwned(s.id),
           key: () => portraitKey(this, 'char', s.charId),
-          hint: tx('商店里用金番茄购买，或角色熟练度 10 级', 'Buy with golden tomatoes, or reach mastery 10'),
+          hint:
+            SKIN_OF[s.charId]?.id === s.id
+              ? tx(
+                  `选角界面用 🥇${s.price} 金番茄购买，或角色熟练度 10 级免费`,
+                  `Buy for 🥇${s.price} in character select, or free at Mastery 10`,
+                )
+              : tx(`选角界面用 🥇${s.price} 金番茄购买`, `Buy for 🥇${s.price} in character select`),
         }));
       default:
         return null; // 成就等级、称号：数量太多，去成就页看
@@ -414,8 +421,8 @@ export class CollectionScene extends Phaser.Scene {
   }
 
   private openDrawer(r: CollectionRow): void {
-    const W = this.scale.width;
-    const H = this.scale.height;
+    const W = VW(this);
+    const H = VH(this);
     const color = SAUCE[r.id] ?? 0xe63946;
     const x = 330;
     const y = 96;

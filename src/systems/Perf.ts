@@ -1,7 +1,7 @@
 // 帧率上限与帧数显示
 import Phaser from 'phaser';
 import { save } from './Save';
-import { overlayRoot } from './ForceLandscape';
+import { overlayRoot } from './OverlayRoot';
 
 export const FPS_OPTIONS = [30, 60, 90, 120];
 

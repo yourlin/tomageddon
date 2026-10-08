@@ -2,16 +2,19 @@
 import { MODIFIER_MAP, makeChallenge, challengeScore, STREAK_REWARDS, type ChallengeDef, type ModifierId } from '../data/challenges';
 import { hashSeed, mulberry32, pickOf, shuffleWith, dayNumber, type Rand } from './Rng';
 import { EVOLUTION_OF } from '../data/evolutions';
-import { treeTotals } from './TalentTree';
+import { treeTotals, setRunTalents, setTalentProfile } from './TalentTree';
 import { bump, bumpMax, counter } from './Counters';
 import { BASE_STATS, addMods, type Stats, type StatMods } from '../data/stats';
 import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
-import { WEAPON_MAP, WEAPON_SETS, type WeaponDef } from '../data/weapons';
+import { WEAPON_MAP, WEAPON_SETS, TIER_PRICE_MULT, type WeaponDef } from '../data/weapons';
+import { isFavoredWeapon, favoredWeapons } from '../data/affinity';
+import { missingItems, itemPicks, RECIPE_BY_TO, type Recipe } from '../data/recipes';
+import { weaponTags } from '../data/weaponTags';
 import { ITEM_MAP, itemCapFor, type ItemSpecial } from '../data/items';
 import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
-import { BALANCE, xpToNext, chapterWaves, isBossWaveFor, isEliteWaveFor } from '../data/balance';
+import { BALANCE, xpToNext, chapterWaves, isBossWaveFor, isEliteWaveFor, shopPrice, sellPrice } from '../data/balance';
 import { markSeen, save, persistDisabled, type RunRecord, type SaveData } from './Save';
 import { levelGrowthMods } from './Talents';
 import { ensureAffixes, type WeaponAffix } from './WeaponMods';
@@ -37,6 +40,10 @@ export interface RunExt {
   masteryDmg?: number;
   waveDmg?: Record<number, number>;
   waveSec?: Record<number, number>;
+  /** 本局通过升级获得的局内天赋等级 */
+  runTalents?: Record<string, number>;
+  /** 仓库里的武器 */
+  storage?: OwnedWeapon[];
 }
 /** H2：神秘商人（某次商店随机出现，卖一件交易 / 诅咒遗物） */
 export interface MerchantOffer {
@@ -99,6 +106,8 @@ export interface Specials {
   rerolls: number;
   legendCap: number;
   onHit: StatusApply[];
+  /** 只有光环武器命中时才施加（光环系列道具） */
+  onAuraHit: StatusApply[];
   onHitSelf: StatusApply[];
   onKillSelf: StatusApply[];
   onHurtSelf: StatusApply[];
@@ -117,8 +126,34 @@ export interface Specials {
 
 let uidSeq = 1;
 
+/** 合成后的品质：+1 级，并有 BALANCE.mergeBonus 概率再 +1（合成暴击）；同名合成最高只到 T3，T4 只能走配方 */
+export function mergeTier(tier: number, rnd: () => number = Math.random): number {
+  return Math.min(2, tier + (rnd() < BALANCE.mergeBonus ? 2 : 1));
+}
+
+/** 默认开局武器：角色原初始武器里的契合武器，没有则取第一把契合武器 */
+export function defaultStartWeapon(c: CharacterDef): string {
+  return c.startWeapons.find((w) => isFavoredWeapon(c.favored, WEAPON_MAP[w])) ?? favoredWeapons(c).filter((w) => !w.minTier)[0].id;
+}
+
 export class RunState {
   charId = 'tomato';
+  /** 局内天赋：本局升级时三选一获得的天赋等级（叠加在天赋树上，只在本局生效） */
+  runTalents: Record<string, number> = {};
+  /** 身家：持有番茄籽 + 武器栏里所有武器按下一波商店价格计算的售价（刷新价格用） */
+  netWorth(): number {
+    let v = this.seeds;
+    for (const w of this.weapons) v += sellPrice(shopPrice(WEAPON_MAP[w.id].price * TIER_PRICE_MULT[w.tier], this.wave + 1));
+    return v;
+  }
+  /** 获得 1 级局内天赋 */
+  addRunTalent(id: string): void {
+    this.runTalents[id] = (this.runTalents[id] ?? 0) + 1;
+    setRunTalents(this.runTalents);
+    this.dirty();
+  }
+  /** 本局（以及「再来一局」沿用）的开局武器 */
+  startWeaponId = '';
   chapterId = 1;
   wave = 1;
   level = 0;
@@ -127,6 +162,8 @@ export class RunState {
   hp = 30;
   kills = 0;
   weapons: OwnedWeapon[] = [];
+  /** 仓库：不参与战斗，但可以和武器栏互换、出售，合成时也能当材料（BALANCE.storageSlots 格） */
+  storage: OwnedWeapon[] = [];
   items: Record<string, number> = {};
   levelMods: StatMods = {};
   pendingLevelUps = 0;
@@ -198,6 +235,8 @@ export class RunState {
       masteryDmg: this.masteryDmg,
       waveDmg: this.waveDmg,
       waveSec: this.waveSec,
+      runTalents: this.runTalents,
+      storage: this.storage,
     };
   }
   loadExt(e: RunExt | null): void {
@@ -213,6 +252,9 @@ export class RunState {
     this.masteryDmg = e?.masteryDmg ?? 0;
     this.waveDmg = { ...(e?.waveDmg ?? {}) };
     this.waveSec = { ...(e?.waveSec ?? {}) };
+    this.runTalents = { ...(e?.runTalents ?? {}) };
+    this.storage = [...(e?.storage ?? [])];
+    setRunTalents(this.runTalents);
     this.extraRules = {};
     runHooks.onLoad?.();
   }
@@ -319,7 +361,10 @@ export class RunState {
     return CHAPTERS[this.chapterId - 1];
   }
 
-  start(charId: string, chapterId: number, endless = false, danger = this.danger): void {
+  /** 开局武器：从角色的契合武器里三选一（不传则沿用上一局的选择，再没有则取默认，见 defaultStartWeapon） */
+  start(charId: string, chapterId: number, endless = false, danger = this.danger, startWeapon?: string): void {
+    // 天赋：用该角色的专属方案（没有时继承默认方案）
+    setTalentProfile(charId);
     this.endless = endless;
     this.challenge = null;
     this.danger = Math.max(0, Math.min(MAX_DANGER, danger));
@@ -360,13 +405,20 @@ export class RunState {
     this.revivesUsed = 0;
     this.cheatDeathUsed = false;
     this.harvestBonus = 0;
+    this.runTalents = {};
+    setRunTalents(this.runTalents);
     // 每局随机抽取精英与 Boss
     const ep = [...elitePool(chapterId)].sort(() => Math.random() - 0.5);
     this.eliteIds = [ep[0].id, ep[1].id];
     const bp = bossPool(chapterId);
     this.bossId = bp[Math.floor(Math.random() * bp.length)].id;
-    this.weapons = this.char.startWeapons.map((id) => ({ uid: uidSeq++, id, tier: 0 }));
-    for (const id of this.char.startWeapons) markSeen('weapons', id);
+    const sw =
+      startWeapon ??
+      (isFavoredWeapon(this.char.favored, WEAPON_MAP[this.startWeaponId]) ? this.startWeaponId : defaultStartWeapon(this.char));
+    this.startWeaponId = sw;
+    this.weapons = [{ uid: uidSeq++, id: sw, tier: 0 }];
+    this.storage = [];
+    markSeen('weapons', sw);
     this.seeds = treeTotals().startSeeds;
     runHooks.onStart?.();
     this.dirty();
@@ -439,6 +491,7 @@ export class RunState {
       rerolls: 0,
       legendCap: 0,
       onHit: [],
+      onAuraHit: [],
       onHitSelf: [],
       onKillSelf: [],
       onHurtSelf: [],
@@ -472,6 +525,7 @@ export class RunState {
       sp.legendCap += (x.legendCap ?? 0) * n;
       for (let i = 0; i < n; i++) {
         if (x.onHit) sp.onHit.push(...x.onHit);
+        if (x.onAuraHit) sp.onAuraHit.push(...x.onAuraHit);
         if (x.onHitSelf) sp.onHitSelf.push(...x.onHitSelf);
         if (x.onKillSelf) sp.onKillSelf.push(...x.onKillSelf);
         if (x.onHurtSelf) sp.onHurtSelf.push(...x.onHurtSelf);
@@ -529,7 +583,7 @@ export class RunState {
     for (const w of this.weapons) {
       if (seen.has(w.id)) continue; // 同名武器只计一次
       seen.add(w.id);
-      for (const t of WEAPON_MAP[w.id].tags) counts[t] = (counts[t] ?? 0) + 1;
+      for (const t of weaponTags(WEAPON_MAP[w.id])) counts[t] = (counts[t] ?? 0) + 1;
     }
     return counts;
   }
@@ -585,20 +639,50 @@ export class RunState {
   /** 尝试加入武器：栏位满时若能合成则自动合成 */
   canAddWeapon(id: string, tier: number): boolean {
     if (this.weapons.length < this.maxWeapons) return true;
-    return tier < 3 && this.weapons.some((w) => w.id === id && w.tier === tier);
+    if (this.absorbTarget(id)) return true;
+    if (tier < 3 && this.weapons.some((w) => w.id === id && w.tier === tier)) return true;
+    // 武器栏满时自动进仓库
+    return this.storage.length < this.storageMax;
+  }
+
+  /** 芋头术士「同类吞噬」：栏位满时买入任意契合武器，不占格子，而是让手上的契合武器升级。
+   *  返回被升级的武器（品质最低、未满 T4 的契合武器）；不满足条件时为 undefined */
+  absorbTarget(id: string): OwnedWeapon | undefined {
+    if (this.charId !== 'taro' || !isFavoredWeapon(this.char.favored, WEAPON_MAP[id]) || this.weapons.length < this.maxWeapons)
+      return undefined;
+    return this.weapons
+      .filter((w) => w.tier < 3 && isFavoredWeapon(this.char.favored, WEAPON_MAP[w.id]))
+      .sort((a, b) => a.tier - b.tier)[0];
   }
 
   addWeapon(id: string, tier: number): void {
     markSeen('weapons', id);
     if (this.weapons.length >= this.maxWeapons) {
+      // 芋头术士：吞噬同类，升 1 级；买入的品质更高时直接升到该品质
+      const host = this.absorbTarget(id);
+      if (host) {
+        host.tier = Math.max(mergeTier(host.tier), Math.min(3, tier));
+        if (host.tier === 3) bump(`t4:${host.id}`);
+        ensureAffixes(host, this.stats.luck);
+        this.dirty();
+        return;
+      }
       const same = this.weapons.find((w) => w.id === id && w.tier === tier && tier < 3);
       if (same) {
-        same.tier++;
+        same.tier = mergeTier(same.tier);
         if (same.tier === 3) bump(`t4:${id}`);
         ensureAffixes(same, this.stats.luck);
         this.dirty();
         return;
       }
+      // 都不行：进仓库（不参与战斗，可在商店取回或当合成材料）
+      if (this.storage.length >= this.storageMax) return;
+      const sw: OwnedWeapon = { uid: uidSeq++, id, tier };
+      ensureAffixes(sw, this.stats.luck);
+      this.storage.push(sw);
+      bump(`weaponGot:${id}`);
+      if (tier === 3) bump(`t4:${id}`);
+      this.dirty();
       return;
     }
     const w: OwnedWeapon = { uid: uidSeq++, id, tier };
@@ -609,46 +693,139 @@ export class RunState {
     this.dirty();
   }
 
-  /** 合成：两把同名同品质 -> 品质 +1 */
-  combine(uid: number): boolean {
-    const w = this.weapons.find((x) => x.uid === uid);
-    if (!w || w.tier >= 3) return false;
-    const other = this.weapons.find((x) => x.uid !== uid && x.id === w.id && x.tier === w.tier);
-    if (!other) return false;
+  /** 合成：两把同名同品质 -> 品质 +1（仓库里的武器也能当材料） */
+  /** 返回升了几级（0 = 不能合成；2 = 触发合成暴击，见 mergeTier） */
+  combine(uid: number): number {
+    const w = this.allWeapons.find((x) => x.uid === uid);
+    if (!w || w.tier >= 2) return 0; // T3 之后只能按配方合成 T4
+    const other = this.allWeapons.find((x) => x.uid !== uid && x.id === w.id && x.tier === w.tier);
+    if (!other) return 0;
     this.weapons = this.weapons.filter((x) => x.uid !== other.uid);
-    w.tier++;
+    this.storage = this.storage.filter((x) => x.uid !== other.uid);
+    const from = w.tier;
+    w.tier = mergeTier(w.tier);
     ensureAffixes(w, this.stats.luck);
     if (w.tier === 3) {
       save.stats.t4Crafted++;
       bump(`t4:${w.id}`);
     }
     this.dirty();
+    return w.tier - from;
+  }
+
+  // ---------------- 配方合成（T4 与超武） ----------------
+  /** 这条配方当前能不能合成：两把材料武器（武器栏或仓库，品质相符）+ 道具齐全 */
+  canCraft(r: Recipe): boolean {
+    return !!this.craftMaterials(r) && missingItems(r, this.items).length === 0;
+  }
+  /** 找出配方需要的两把武器（同一把不能重复用） */
+  craftMaterials(r: Recipe): OwnedWeapon[] | null {
+    const pool = [...this.allWeapons];
+    const out: OwnedWeapon[] = [];
+    for (const [id, tier] of r.from) {
+      const i = pool.findIndex((w) => w.id === id && w.tier === tier);
+      if (i < 0) return null;
+      out.push(pool.splice(i, 1)[0]);
+    }
+    return out;
+  }
+  /** 按配方合成：消耗两把材料武器与道具，产出放到第一把材料的位置（武器栏或仓库） */
+  craft(r: Recipe): boolean {
+    const mats = this.craftMaterials(r);
+    if (!mats || missingItems(r, this.items).length) return false;
+    const toStorage = this.inStorage(mats[0].uid);
+    for (const m of mats) this.removeWeapon(m.uid);
+    // 逐槽扣掉实际用到的道具
+    for (const id of itemPicks(r, this.items)) {
+      if (!id) continue;
+      this.items[id] = (this.items[id] ?? 0) - 1;
+      if (this.items[id] <= 0) delete this.items[id];
+    }
+    const w: OwnedWeapon = { uid: uidSeq++, id: r.to, tier: 3 };
+    ensureAffixes(w, this.stats.luck);
+    if (toStorage && this.storage.length < this.storageMax) this.storage.push(w);
+    else if (this.weapons.length < this.maxWeapons) this.weapons.push(w);
+    else if (this.storage.length < this.storageMax) this.storage.push(w);
+    else this.weapons.push(w); // 极端情况：两把材料刚腾出位置，直接放武器栏
+    markSeen('weapons', r.to);
+    bump(`weaponGot:${r.to}`);
+    bump('crafts');
+    // 超武单独计数（不算「合成 T4」）：合成表、商店武器弹窗两个入口都走这里
+    if (r.kind === 'super') {
+      bump('evolutions');
+      bump(`evolve:${r.to}`);
+    } else {
+      bump(`t4:${r.to}`);
+      save.stats.t4Crafted++;
+    }
+    this.dirty();
     return true;
+  }
+
+  /** 「全副神兵」：武器栏至少 6 把且全是 T4（普通模式通关时判定；无尽模式撑过第 15 波后每波结束判定） */
+  holdsAllT4(): boolean {
+    return this.weapons.length >= 6 && this.weapons.every((w) => w.tier === 3);
   }
 
   /** 可进化：T4 + 持有对应道具 */
+  /** 这把 T4 能不能合成它的超武（超武配方：两把指定 T4 + 催化道具 + 其他道具） */
   canEvolve(w: OwnedWeapon): boolean {
-    const e = EVOLUTION_OF[w.id];
-    const minTier = this.relicFx.flags.evolveEarly.includes(w.id) ? 2 : 3;
-    return !!e && w.tier >= minTier && (this.items[e.item] ?? 0) > 0;
+    const r = this.superRecipeFor(w);
+    return !!r && this.canCraft(r);
   }
-
-  /** 进化：原地替换武器 id，保留词条与打造等级 */
+  /** 这把武器对应的超武配方（它要是配方里的那把 T4 主材料；T3 走 T4 配方，不走这里） */
+  superRecipeFor(w: OwnedWeapon): Recipe | undefined {
+    const e = EVOLUTION_OF[w.id];
+    if (!e || w.tier < 3) return undefined;
+    const r = RECIPE_BY_TO[e.to.id];
+    return r && r.from[0][0] === w.id && r.from[0][1] === w.tier ? r : undefined;
+  }
+  /** 合成超武（原「进化」入口，现走配方） */
   evolve(uid: number): boolean {
-    const w = this.weapons.find((x) => x.uid === uid);
-    if (!w || !this.canEvolve(w)) return false;
-    const to = EVOLUTION_OF[w.id].to.id;
-    w.id = to;
-    markSeen('weapons', to);
-    bump('evolutions');
-    bump(`evolve:${to}`);
-    this.dirty();
-    return true;
+    const w = this.allWeapons.find((x) => x.uid === uid);
+    const r = w && this.superRecipeFor(w);
+    return !!r && this.craft(r);
   }
 
   removeWeapon(uid: number): void {
     this.weapons = this.weapons.filter((x) => x.uid !== uid);
+    this.storage = this.storage.filter((x) => x.uid !== uid);
     this.dirty();
+  }
+
+  // ---------------- 仓库 ----------------
+  get storageMax(): number {
+    return BALANCE.storageSlots;
+  }
+  /** 武器栏 + 仓库里的全部武器（合成材料、图鉴等用） */
+  get allWeapons(): OwnedWeapon[] {
+    return [...this.weapons, ...this.storage];
+  }
+  inStorage(uid: number): boolean {
+    return this.storage.some((w) => w.uid === uid);
+  }
+  /** 存入仓库（武器栏至少保留一把）；成功返回 true */
+  toStorage(uid: number): boolean {
+    const w = this.weapons.find((x) => x.uid === uid);
+    if (!w || this.weapons.length <= 1 || this.storage.length >= this.storageMax) return false;
+    this.weapons = this.weapons.filter((x) => x.uid !== uid);
+    this.storage.push(w);
+    this.dirty();
+    return true;
+  }
+  /** 从仓库取回武器栏（栏位满时与 swapUid 对调）；成功返回 true */
+  fromStorage(uid: number, swapUid?: number): boolean {
+    const w = this.storage.find((x) => x.uid === uid);
+    if (!w) return false;
+    if (this.weapons.length >= this.maxWeapons) {
+      const out = this.weapons.find((x) => x.uid === swapUid);
+      if (!out) return false;
+      this.weapons = this.weapons.filter((x) => x.uid !== out.uid);
+      this.storage = this.storage.filter((x) => x.uid !== uid).concat(out);
+    } else this.storage = this.storage.filter((x) => x.uid !== uid);
+    this.weapons.push(w);
+    this.dirty();
+    return true;
   }
 
   /** 每波商店刷新次数上限：默认 3，道具可增加，最多 10 */
@@ -774,6 +951,7 @@ export function loadRun(): boolean {
     dmgBy: d.dmgBy ?? {},
     startedAt: d.startedAt ?? Date.now(),
   });
+  setTalentProfile(run.charId);
   run.loadExt((d.ext as RunExt | undefined) ?? null);
   run.dirty();
   run.hp = run.stats.maxHp;
@@ -829,6 +1007,7 @@ export function recordHistory(win: boolean): RunRecord {
     // 挑战成就计数：次数、通关、每周最佳波次、每日连续天数
     bump(`${c.kind}Runs`);
     if (win) bump(`${c.kind}Wins`);
+    if (win || (c.kind === 'weekly' && run.wave >= 20)) for (const m of c.modifiers) bump(`modClear:${m}`);
     if (c.kind === 'weekly') bumpMax('weeklyBest', run.wave);
     if (c.kind === 'daily') {
       const dn = dayNumber();

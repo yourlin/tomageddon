@@ -48,7 +48,7 @@ Ketchup Town is being eaten away by "the Rot": mold, pests and possessed kitchen
 5. **Achievements & unlocks**: clearing a [chapter](docs/en/CHAPTERS.md) unlocks the next one; [achievements](docs/en/ACHIEVEMENTS.md) (Bronze/Silver/Gold/Diamond tiers) grant points, and every locked character is tied to one achievement that unlocks it automatically.
 6. **Talent tree**: milestone achievements also grant talent points to spend on the [talent maps](docs/en/TALENTS.md) of 6 branches — boost your starting stats or gain special abilities (knives on dodge, healing on cast, executes, a last stand…), with free resets at any time.
 7. **Endless mode**: after clearing a chapter you can play it in Endless — no wave limit after the chapter's last wave, elites and a boss every 15 waves, ever-stronger monsters. How far can you go?
-8. **Weapon evolution**: a T4 weapon plus a specific item evolves in the shop into one of 12 [super weapons](docs/en/WEAPONS.md#evolution), keeping its affixes and forge level.
+8. **The crafting road**: two identical weapons combine one tier up to T3; from T3, [recipes](docs/en/WEAPONS.md#craft-graph) turn two specific weapons + specific items into a T4 (including 60 fusion weapons), and two specific T4s + a catalyst craft one of 20 [super weapons](docs/en/WEAPONS.md#evolution); the shop's crafting table shows upgrade trees and missing materials by category or recommendation.
 9. **Daily / weekly challenges**: a fixed character, chapter, set of [rule modifiers](docs/en/CHAPTERS.md#challenges) and shop every day and every week — everyone gets the same rolls; your best and streak are recorded.
 
 After each run you can open "Run stats" (damage by source, seeds per wave), and "History" on the main menu keeps your last 30 runs. New players get short tips the first time they meet each system (re-enable them in Settings).
@@ -83,16 +83,16 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 
 | Category        | Count        | Notes                                                                                                                                                                          | Docs                                                                        |
 | --------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| Characters      | 33           | All-rounders, melee tanks, marksmen, elemental/status, crit assassins, dodge/survival, economy/growth, explosives/berserkers                                                   | [Characters](docs/en/CHARACTERS.md)                                         |
-| Skills          | 33           | 13 forms: nova, missile, screen clear, focused barrage, binding field, mass debuff, self buff, stealth, dash, strikes, ring, drain heal, clones; cooldowns computed from power | [Skills](docs/en/SKILLS.md)                                                 |
-| Statuses        | 28           | 16 debuffs + 12 buffs, shared by players and enemies                                                                                                                           | [Status effects](docs/en/SKILLS.md#statuses)                                |
-| Weapons         | 50 + 12      | Melee 17 / ranged 18 / elemental 15, 9 attack types, 4 tiers; most characters have favored weapons (+20% damage); plus 12 evolved super weapons                                                                                                                            | [Weapons](docs/en/WEAPONS.md)                                               |
-| Items           | 566          | 46 classic items + 52 themed series × 10, power-budgeted per rarity                                                                                                            | [Items](docs/en/ITEMS.md)                                                   |
-| Monsters        | 75 + 2       | 75 monsters (10 AI behaviors) + 2 terrain critters, 15 per chapter                                                                                                                             | [Monsters](docs/en/MONSTERS.md)                                             |
-| Elites / Bosses | 30 / 15      | 11 attack patterns, phase two, enrage; 12 elite affixes                                                                                                                        | [Elites](docs/en/MONSTERS.md#elites) · [Bosses](docs/en/MONSTERS.md#bosses) |
-| Achievements    | 865          | Tiered medals (Bronze/Silver/Gold/Diamond), bigger rewards for harder goals; covers monsters, weapons, item series, skills, statuses, chapters, challenges, Endless and every character; specific achievements unlock characters, milestones also grant talent points | [Achievements](docs/en/ACHIEVEMENTS.md)                                     |
-| Talent tree     | 6 × 81       | Might, Guard, Agility, Arcane, Fortune, Alchemy — laid out like maps; all points together master about 2.5 branches                                                           | [Talents](docs/en/TALENTS.md)                                               |
-| Chapters        | 5 × 15 waves | Midnight Kitchen, Wild Garden, Frozen Fridge, City Junkyard, Ketchup Factory; 2–3 terrain hazards each; cleared chapters unlock their Endless mode (no wave limit)               | [Chapters](docs/en/CHAPTERS.md)                                             |
+| Characters | 39 | All-rounders, melee tanks, marksmen, elemental/status, crit assassins, dodge/survival, economy/growth, explosives/berserkers; each has 3 quests, an Awakening, Mastery and 4 skins | [Characters](docs/en/CHARACTERS.md) |
+| Skills | 39 | 13 forms: nova, missile, screen clear, focused barrage, binding field, mass debuff, self buff, stealth, dash, strikes, ring, drain heal, clones; cooldowns computed from power | [Skills](docs/en/SKILLS.md) |
+| Statuses | 32 | 18 debuffs + 14 buffs, shared by players and enemies | [Status effects](docs/en/SKILLS.md#statuses) |
+| Weapons | 120 + 60 + 20 | 120 base weapons (melee 37 / ranged 42 / elemental 41), 9 attack types, 4 tiers; characters match weapons by tag (+10% damage); plus 60 fusion weapons (T4, crafted by recipe) and 20 super weapons (crafted from two T4s), 199 recipes in total | [Weapons](docs/en/WEAPONS.md) |
+| Items | 603 | 83 classic items + 52 themed series × 10, power-budgeted per rarity | [Items](docs/en/ITEMS.md) |
+| Monsters | 87 + 2 | 87 monsters (10 AI behaviors) + 2 terrain critters | [Monsters](docs/en/MONSTERS.md) |
+| Elites / Bosses | 34 / 18 | 11 attack patterns, phase two, enrage; 20 elite affixes | [Elites](docs/en/MONSTERS.md#elites) · [Bosses](docs/en/MONSTERS.md#bosses) |
+| Achievements | 1433 | Tiered medals (Bronze/Silver/Gold/Diamond), bigger rewards for harder goals; covers monsters, weapons, item series, skills, statuses, chapters, challenges, Endless and every character; specific achievements unlock characters, milestones also grant talent points | [Achievements](docs/en/ACHIEVEMENTS.md) |
+| Talent tree | 6 × 95 | Might, Guard, Agility, Arcane, Fortune, Alchemy — 95 nodes laid out like maps; all points together master about 2.5 branches, then unlimited Master layers open up | [Talents](docs/en/TALENTS.md) |
+| Chapters | 7 | Midnight Kitchen, Wild Garden, Frozen Fridge, City Junkyard, Ketchup Factory, Rotting Greenhouse, Rot Garden; chapters 1–4 have 15 waves, then 20 from chapter 5 and +5 per chapter; 2–3 terrain hazards each; cleared chapters unlock their Endless mode (no wave limit) | [Chapters](docs/en/CHAPTERS.md) |
 
 Procedural art: Canvas cartoon shading + part-based rigs + 12 animation states (idle/move/attack/hurt/windup/charge/stun/freeze/cast/spawn/death/victory).
 
@@ -153,16 +153,19 @@ All numbers live in `src/data/`: `balance.ts` (global formulas), `characters.ts`
 ### Balance testing
 
 ```bash
-npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [--cpu 80] [--speed max] [--chars corn,tomato] [--timeout 240] [--talents none|mid|full] [--endless] [--no-talents id,id] [--fresh]
+npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [--cpu 80] [--speed max] [--budget 30] [--chars corn,tomato] [--timeout 240] [--talents none|mid|full] [--endless] [--no-talents id,id] [--checks checks.json] [--fresh]
 ```
 
 - Runs headless Chrome pages in parallel; concurrency adapts to whole-machine CPU load (target `--cpu`, default 80%, between `--min-workers` and `--workers`, default 40% of cores to cores−1), at low process priority, with a progress bar showing elapsed and estimated remaining time. Test mode skips rendering; `--speed max` (default) simulates as many steps per frame as fit in the time budget
-- Every run writes an HTML report: `docs/reports/balance-<time>.html` (unfinished runs get a `-partial` suffix); `docs/BALANCE_REPORT.html` / `.md` is the latest. Reports are not committed
+- Every run writes an HTML report: `reports/balance-<time>.html` (unfinished runs get a `-partial` suffix); `reports/BALANCE_REPORT.html` / `.md` is the latest. `reports/` is in `.gitignore`. Reports are not committed
 - Progress is saved to `scripts/.batch-progress.json` after every game; after an interruption (Ctrl+C, crash, power loss) **rerun with the same options to resume**; `--fresh` starts over
-- Talent presets: `--talents none` (default baseline) / `mid` (40 points, a mid-game player) / `full` (all 79 points), auto-allocated by each character's main class; `--no-talents` removes specific talents to find overpowered ones
+- Talent presets: default `--talents 20%` (20% of all obtainable talent points, about 16 / 79, used as the baseline); also `none` / `mid` (40 points) / `full` (all 79 points) / a point count / another percentage, auto-allocated by each character's main class; `--no-talents` removes specific talents to find overpowered ones
 - `--endless` tests Endless mode; the reported wave is the furthest reached
 - Reports track per-wave economy, stats, items and weapon tiers (P50 / P90 / range), the T4 distribution and the evolved-weapon rate; `node scripts/econ.mjs` prints a quick summary
-- Regenerate a report manually: `node scripts/report.mjs`
+- `--budget`: simulation budget per frame in max-speed mode (ms, default 30); nothing is rendered in test mode, so a larger budget means higher throughput
+- **Checks**: the report grades each item in `scripts/balance-checks.json` as pass / off / severe with a suggested fix (win rate per chapter, monotonic difficulty, death cliffs, boss-wave deaths, single-enemy damage share, character spread, wave-1 drop, bank ratio, T4, defense caps, timeouts, endless reach / median); add or remove items, change targets, or pass `--checks` to use another set
+- Regenerate a report manually: `node scripts/report.mjs [results file] [--checks checks.json] [--advice notes.html]` (`--advice` inserts hand-written conclusions at the top)
+- While iterating, run only `--chapters 1,2 --runs 1`; run every chapter before finalizing
 
 ### Trailer
 

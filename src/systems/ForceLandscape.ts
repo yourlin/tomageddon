@@ -1,6 +1,7 @@
 // 强制横屏：手机竖屏时（含微信等无法锁定屏幕方向的浏览器）把游戏容器旋转 90° 铺满屏幕，
 // 并修正 Phaser 的尺寸计算与触摸坐标。手机真正横过来时自动恢复正常显示。
 import Phaser from 'phaser';
+import { RES } from './HiDpi';
 
 const IS_TOUCH = typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches;
 let rotated = false;
@@ -8,8 +9,7 @@ let rotated = false;
 /** 当前是否处于强制横屏（画面旋转）状态 */
 export const isRotated = (): boolean => rotated;
 
-/** 覆盖层（提示、弹窗）挂载点：放在游戏容器内，旋转时一起旋转 */
-export const overlayRoot = (): HTMLElement => document.getElementById('game') ?? document.body;
+export { overlayRoot } from './OverlayRoot';
 
 type ScaleInternals = Phaser.Scale.ScaleManager & { parentSize: Phaser.Structs.Size; parent: HTMLElement };
 type InputInternals = Phaser.Input.InputManager & {
@@ -49,8 +49,9 @@ export function installForceLandscape(game: Phaser.Game): void {
     if (!rotated) return orig(pointer, pageX, pageY, wasMove);
     const u = pageY,
       v = stage.clientWidth - pageX;
-    const x = (u * sm.width) / root.clientWidth,
-      y = (v * sm.height) / root.clientHeight;
+    // 高清渲染：sm.width/height 是物理像素，指针要给游戏代码逻辑坐标（与 HiDpi 的 transformPointer 补丁一致）
+    const x = (u * sm.width) / root.clientWidth / RES,
+      y = (v * sm.height) / root.clientHeight / RES;
     const p0 = pointer.position,
       p1 = pointer.prevPosition;
     p1.x = p0.x;

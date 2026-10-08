@@ -1,12 +1,12 @@
 // 平衡测试报告生成（HTML + Markdown）
-// 单独使用：node scripts/report.mjs [结果文件]   默认读取 scripts/.batch-progress.json 或 scripts/.batch-results.json
+// 单独使用：node scripts/report.mjs [结果文件] [--checks 检测项.json] [--advice 结论.html]   默认读取 scripts/.batch-progress.json 或 scripts/.batch-results.json
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const DOCS = new URL('../docs/', import.meta.url);
+const OUT = new URL('../reports/', import.meta.url);
 /** 每章波数：第 1-4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50（与 src/data/balance.ts 的 chapterWaves 保持一致） */
 const chapterWaves = (ch) => (ch <= 4 ? 15 : Math.min(50, 20 + (ch - 5) * 5));
-const TALENT_NAME = { none: '不点（基准）', mid: '中期 40 点', full: '全部 79 点' };
+const TALENT_NAME = { none: '不点', mid: '中期 40 点', full: '全部 79 点', '20%': '20%（约 16 点，基准）' };
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const avg = (l, k) => (l.length ? l.reduce((a, r) => a + (r[k] ?? 0), 0) / l.length : 0);
@@ -32,6 +32,7 @@ const CHECKPOINTS = [1, 5, 10, 14];
 const METRICS = [
   ['累计收入', (w) => w.earned],
   ['持有番茄籽', (w) => w.seeds],
+  ['累计花费', (w) => w.spentAll ?? w.spent + (w.reroll ?? 0)],
   ['购物花费', (w) => w.spent],
   ['刷新花费', (w) => w.reroll],
   ['刷新次数', (w) => w.rerolls],
@@ -43,6 +44,9 @@ const METRICS = [
   ['武器数', (w) => w.weapons],
   ['T3+ 武器', (w) => w.wTier[2] + w.wTier[3]],
   ['T4 武器', (w) => w.wTier[3]],
+  ['超武', (w) => w.supers ?? w.evolved ?? 0],
+  ['仓库武器', (w) => w.stored ?? 0],
+  ['合成次数', (w) => w.crafts ?? 0],
   ['最高打造', (w) => w.forge],
   ['最大生命', (w) => w.stats.maxHp],
   ['全伤害%', (w) => w.stats.damage],
@@ -123,6 +127,293 @@ function summarize(results, chapters, names) {
     rows.sort((a, b) => b.win / b.n - a.win / a.n || b.wave - a.wave);
     return { ch, n: rs.length, win: rs.filter((r) => r.win).length, wave: avg(rs, 'wave'), rows, runs: rs };
   });
+}
+
+/** 检测项配置（scripts/balance-checks.json，可用 --checks 换一份） */
+export const DEFAULT_CHECKS = fileURLToPath(new URL('./balance-checks.json', import.meta.url));
+export function loadChecks(file = DEFAULT_CHECKS) {
+  return existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')).checks.filter((c) => c.enabled !== false) : [];
+}
+
+/** v 相对 [lo, hi] 的偏离量（0 = 在范围内） */
+const outOf = (v, [lo, hi]) =>
+  lo !== null && lo !== undefined && v < lo ? v - lo : hi !== null && hi !== undefined && v > hi ? v - hi : 0;
+const fmtRange = ([lo, hi], unit = '') =>
+  lo !== null && lo !== undefined && hi !== null && hi !== undefined
+    ? `${lo} ~ ${hi}${unit}`
+    : lo !== null && lo !== undefined
+      ? `≥ ${lo}${unit}`
+      : `≤ ${hi}${unit}`;
+const pickAdvice = (a, off) => (typeof a === 'string' ? a : off < 0 ? a?.low : a?.high) ?? '';
+const median = (l) => quant(l, 0.5);
+
+/**
+ * 逐项检测：返回 [{ name, scope, value, target, lv: 'ok' | 'warn' | 'bad', advice }]
+ * lv：在范围内为 ok；偏离不超过 warn 为 warn；超过为 bad
+ */
+export function runChecks(checks, S, results, meta) {
+  const out = [];
+  const live = S.filter((c) => c.n);
+  const rate = (c) => pct(c.win, c.n);
+  const lost = (rs) => rs.filter((r) => !r.win && !r.timeout);
+  const add = (c, scope, v, range, unit = c.unit ?? '') => {
+    const off = outOf(v, range);
+    out.push({
+      name: c.name,
+      scope,
+      value: `${fmt(v)}${unit}`,
+      target: fmtRange(range, unit),
+      lv: off === 0 ? 'ok' : Math.abs(off) <= (c.warn ?? 0) ? 'warn' : 'bad',
+      advice: off === 0 ? '' : pickAdvice(c.advice, off),
+    });
+  };
+  const endless = !!meta.endless;
+  for (const c of checks) {
+    // 每项可用 "endless": false / "chapter": false 限定只在章节模式 / 无尽模式下判定
+    if ((endless && c.endless === false) || (!endless && c.chapter === false)) continue;
+    switch (c.id) {
+      case 'chapterWinRate':
+        if (endless) break;
+        for (const ch of live) if (c.targets?.[ch.ch]) add(c, `第 ${ch.ch} 章`, rate(ch), c.targets[ch.ch]);
+        break;
+      case 'difficultyMonotonic':
+        if (endless) break;
+        for (let i = 1; i < live.length; i++) {
+          const up = rate(live[i]) - rate(live[i - 1]);
+          out.push({
+            name: c.name,
+            scope: `第 ${live[i - 1].ch} → ${live[i].ch} 章`,
+            value: `${up >= 0 ? '+' : ''}${up} 百分点`,
+            target: `≤ +${c.tolerance ?? 0}`,
+            lv: up <= (c.tolerance ?? 0) ? 'ok' : 'warn',
+            advice: up <= (c.tolerance ?? 0) ? '' : c.advice,
+          });
+        }
+        break;
+      case 'deathCliff':
+      case 'bossWaveDeaths':
+        for (const ch of live) {
+          const d = lost(ch.runs);
+          if (d.length < (c.minDeaths ?? 1)) continue;
+          if (c.id === 'deathCliff') {
+            const by = {};
+            for (const r of d) by[r.wave] = (by[r.wave] ?? 0) + 1;
+            const [w, n] = Object.entries(by).sort((a, b) => b[1] - a[1])[0];
+            add(c, `第 ${ch.ch} 章（第 ${w} 波）`, pct(n, d.length), c.range);
+          } else {
+            const W = chapterWaves(ch.ch);
+            const boss = d.filter((r) => (endless ? r.wave % 15 === 0 : r.wave === W)).length;
+            add(c, `第 ${ch.ch} 章`, pct(boss, d.length), c.range);
+          }
+        }
+        break;
+      case 'topKiller':
+        for (const ch of live) {
+          const agg = {};
+          for (const r of lost(ch.runs))
+            // 只统计具体敌人（去掉地形 / 弹幕 / 持续伤害 / 狂暴威压等非敌人来源）
+            for (const [k, v] of parseDmg(r.topDmg)) if (!/^(dot|bullet|enrage|hazard|other)/.test(k)) agg[k] = (agg[k] ?? 0) + v;
+          const tot = Object.values(agg).reduce((a, b) => a + b, 0);
+          if (!tot) continue;
+          const [k, v] = Object.entries(agg).sort((a, b) => b[1] - a[1])[0];
+          add(c, `第 ${ch.ch} 章 · ${k}`, pct(v, tot), c.range);
+        }
+        break;
+      case 'charSpread': {
+        if (endless) break;
+        const chs = live.filter((ch) => !c.chapters || c.chapters.includes(ch.ch));
+        // 每个角色在这些章节里至少 minRuns 局才判定（样本太少时通关率只有 0 / 100%，没有意义）
+        const diff = {},
+          n = {};
+        for (const ch of chs)
+          for (const r of ch.rows) {
+            (diff[r.id] ??= []).push(pct(r.win, r.n) - rate(ch));
+            n[r.id] = (n[r.id] ?? 0) + r.n;
+          }
+        const ids = Object.keys(diff).filter((id) => n[id] >= (c.minRuns ?? 4));
+        if (!ids.length) {
+          out.push({
+            name: c.name,
+            scope: '样本不足',
+            value: '–',
+            target: `每角色 ≥ ${c.minRuns ?? 4} 局`,
+            lv: 'ok',
+            advice: '用 --runs 2 以上再看',
+          });
+          break;
+        }
+        const avgOf = (id) => Math.round(diff[id].reduce((a, b) => a + b, 0) / diff[id].length);
+        const [lo, hi] = c.range;
+        for (const [side, pick, sign] of [
+          ['偏弱', (v) => v < lo, -1],
+          ['偏强', (v) => v > hi, 1],
+        ]) {
+          const l = ids
+            .map((id) => [id, avgOf(id)])
+            .filter(([, v]) => pick(v))
+            .sort((a, b) => sign * (b[1] - a[1]));
+          const off = l.length ? outOf(l[0][1], c.range) : 0;
+          out.push({
+            name: c.name,
+            scope: side,
+            value: l.length ? l.map(([id, v]) => `${meta.names?.[id] ?? id} ${v > 0 ? '+' : ''}${v}`).join('、') : '无',
+            target: fmtRange(c.range, c.unit),
+            lv: !l.length ? 'ok' : Math.abs(off) <= (c.warn ?? 0) ? 'warn' : 'bad',
+            advice: l.length ? pickAdvice(c.advice, sign) : '',
+          });
+        }
+        break;
+      }
+      case 'wave1Drop': {
+        if (endless) break;
+        const chs = c.chapters ?? [1];
+        const v = results
+          .filter((r) => chs.includes(r.ch))
+          .map((r) => (r.waves?.[0] && r.perSeed ? r.waves[0].kills * r.perSeed : NaN))
+          .filter((x) => !Number.isNaN(x));
+        if (v.length) add(c, `第 ${chs.join('、')} 章`, median(v), c.range);
+        break;
+      }
+      case 'bankRatio': {
+        const v = results
+          .map((r) => r.waves?.[r.waves.length - 1])
+          .filter((w) => w && w.earned > 0)
+          .map((w) => (w.seeds / w.earned) * 100);
+        if (v.length) add(c, '中位数', median(v), c.range);
+        break;
+      }
+      case 't4AtEnd': {
+        if (endless) break;
+        const d = t4Dist(results);
+        if (d.n) add(c, `${d.n} 局`, d.ge[0], c.range);
+        break;
+      }
+      case 'statCaps': {
+        const v = results.map((r) => r.waves?.[r.waves.length - 1]?.stats).filter(Boolean);
+        if (v.length)
+          add(c, `${v.length} 局`, pct(v.filter((s) => (s.armor ?? 0) >= 45 || (s.dodge ?? 0) >= 60).length, v.length), c.range);
+        break;
+      }
+      case 't4Wave':
+      case 't4Rate':
+      case 'superRate':
+      case 'craftCount': {
+        if (endless) break;
+        const rs = results.filter((r) => r.waves?.length);
+        if (!rs.length) break;
+        if (c.id === 't4Wave') {
+          const v = rs.map(T4_AT).filter((x) => x !== null);
+          if (v.length) add(c, `${v.length} 局拿到 T4`, median(v), c.range);
+        } else if (c.id === 't4Rate') add(c, `${rs.length} 局`, pct(rs.filter((r) => T4_AT(r) !== null).length, rs.length), c.range);
+        else if (c.id === 'superRate') add(c, `${rs.length} 局`, pct(rs.filter((r) => SUPER_AT(r) !== null).length, rs.length), c.range);
+        else add(c, `${rs.length} 局`, median(rs.map((r) => r.waves[r.waves.length - 1].crafts ?? 0)), c.range);
+        break;
+      }
+      case 'timeouts':
+        add(c, `${results.length} 局`, results.filter((r) => r.timeout).length, c.range);
+        break;
+      case 'endlessReach':
+      case 'endlessMedian': {
+        if (!endless) break;
+        const w = results.map((r) => r.wave ?? 0);
+        if (w.length) add(c, `${w.length} 局`, c.id === 'endlessReach' ? Math.max(...w) : median(w), c.range);
+        break;
+      }
+    }
+  }
+  return out;
+}
+
+/** 首次满足条件的波次（没达到时返回 null） */
+const firstWave = (r, f) => r.waves?.find((w) => f(w))?.wave ?? null;
+const T3_AT = (r) => firstWave(r, (w) => w.wTier[2] + w.wTier[3] >= 1);
+const T4_AT = (r) => firstWave(r, (w) => w.wTier[3] >= 1);
+const SUPER_AT = (r) => firstWave(r, (w) => (w.supers ?? w.evolved ?? 0) >= 1);
+
+/** 每个角色平均在第几波拿到 T3 / T4 / 超武，以及累计收入与花费 */
+function craftProgressHtml(results, names) {
+  const by = {};
+  for (const r of results) (by[r.charId] ??= []).push(r);
+  const rows = Object.entries(by)
+    .map(([id, l]) => {
+      const pick = (f) => {
+        const v = l.map(f).filter((x) => x !== null);
+        return { avg: v.length ? v.reduce((a, b) => a + b, 0) / v.length : null, pct: pct(v.length, l.length) };
+      };
+      const last = l.map((r) => r.waves?.[r.waves.length - 1]).filter(Boolean);
+      return {
+        id,
+        name: names[id] ?? id,
+        n: l.length,
+        win: pct(l.filter((r) => r.win).length, l.length),
+        t3: pick(T3_AT),
+        t4: pick(T4_AT),
+        sup: pick(SUPER_AT),
+        earned: last.length ? median(last.map((w) => w.earned)) : 0,
+        spent: last.length ? median(last.map((w) => w.spentAll ?? w.spent + (w.reroll ?? 0))) : 0,
+        crafts: last.length ? median(last.map((w) => w.crafts ?? 0)) : 0,
+      };
+    })
+    .sort((a, b) => (a.t4.avg ?? 99) - (b.t4.avg ?? 99) || b.win - a.win);
+  const cell = (x) =>
+    x.avg === null ? '<td class="num muted">–</td>' : `<td class="num">${fmt(x.avg)}<small class="muted"> ${x.pct}%</small></td>`;
+  return `<p class="lede">「第几波」是平均首次拿到的波次，后面的百分比是有多少局拿到过。累计收入 / 花费取每局最后一次离店时的中位数。</p>
+  <div class="scroll"><table class="list"><thead><tr><th>角色</th><th class="num">通关率</th><th class="num">T3</th><th class="num">T4</th><th class="num">超武</th><th class="num">合成次数</th><th class="num">累计收入</th><th class="num">累计花费</th></tr></thead>
+  <tbody>${rows
+    .map(
+      (r) =>
+        `<tr><th scope="row">${esc(r.name)}</th><td class="num">${r.win}%</td>${cell(r.t3)}${cell(r.t4)}${cell(r.sup)}<td class="num">${fmt(r.crafts)}</td><td class="num">${fmt(r.earned)}</td><td class="num">${fmt(r.spent)}</td></tr>`,
+    )
+    .join('')}</tbody></table></div>`;
+}
+
+/** 每波的累计收入与累计花费（全部对局的中位数） */
+function economyHtml(results) {
+  const byWave = {};
+  for (const r of results) for (const w of r.waves ?? []) (byWave[w.wave] ??= []).push(w);
+  const waves = Object.keys(byWave)
+    .map(Number)
+    .sort((a, b) => a - b)
+    .filter((w) => byWave[w].length >= 5);
+  if (!waves.length) return '<p class="muted">数据不足</p>';
+  const rows = waves.map((w) => {
+    const l = byWave[w];
+    return {
+      w,
+      n: l.length,
+      earned: median(l.map((x) => x.earned)),
+      spent: median(l.map((x) => x.spentAll ?? x.spent + (x.reroll ?? 0))),
+      seeds: median(l.map((x) => x.seeds)),
+    };
+  });
+  const max = Math.max(...rows.map((r) => r.earned));
+  return `<p class="lede">每波离店时的累计收入、累计花费与持有番茄籽（中位数）。条形按累计收入的比例绘制。</p>
+  <div class="scroll"><table class="list"><thead><tr><th class="num">波次</th><th class="w">累计收入</th><th class="num">累计花费</th><th class="num">持有</th><th class="num">花费占比</th><th class="num">局数</th></tr></thead>
+  <tbody>${rows
+    .map(
+      (r) =>
+        `<tr><th scope="row" class="num">${r.w}</th><td><div class="bar"><i style="width:${((r.earned / max) * 100).toFixed(1)}%"></i><span>${fmt(r.earned)}</span></div></td><td class="num">${fmt(r.spent)}</td><td class="num">${fmt(r.seeds)}</td><td class="num">${pct(r.spent, r.earned)}%</td><td class="num muted">${r.n}</td></tr>`,
+    )
+    .join('')}</tbody></table></div>`;
+}
+
+const LV_CLS = { ok: 'good', warn: 'warn', bad: 'bad' };
+const LV_NAME = { ok: '通过', warn: '偏离', bad: '严重' };
+function checksHtml(list) {
+  if (!list.length) return '<p class="muted">没有启用的检测项</p>';
+  const bad = list.filter((x) => x.lv === 'bad').length,
+    warn = list.filter((x) => x.lv === 'warn').length;
+  const order = { bad: 0, warn: 1, ok: 2 };
+  return `<p class="lede">共 ${list.length} 项：<span class="badge bad">严重 ${bad}</span> <span class="badge warn">偏离 ${warn}</span> <span class="badge good">通过 ${list.length - bad - warn}</span>。标准与修改方向在 <code>scripts/balance-checks.json</code>，可增删、改目标或用 <code>--checks</code> 换一份。</p>
+  <div class="scroll"><table class="list"><thead><tr><th>结果</th><th>检测项</th><th>范围</th><th class="num">实测</th><th class="num">目标</th><th>修改方向</th></tr></thead><tbody>${[
+    ...list,
+  ]
+    .sort((a, b) => order[a.lv] - order[b.lv])
+    .map(
+      (a) =>
+        `<tr><td style="width:56px"><span class="badge ${LV_CLS[a.lv]}">${LV_NAME[a.lv]}</span></td><th scope="row" style="text-align:left">${esc(a.name)}</th><td>${esc(a.scope)}</td><td class="num">${esc(a.value)}</td><td class="num muted">${esc(a.target)}</td><td class="src">${esc(a.advice)}</td></tr>`,
+    )
+    .join('')}</tbody></table></div>`;
 }
 
 export function renderMarkdown(meta, results) {
@@ -451,6 +742,30 @@ summary small{margin-left:12px}
     <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
   </header>
 
+  ${
+    meta.adviceHtml
+      ? `<section class="advice">
+    <h2>本次改动、结论与调整建议</h2>
+    ${meta.adviceHtml}
+  </section>`
+      : ''
+  }
+
+  <section>
+    <h2>检测项</h2>
+    ${checksHtml(runChecks(loadChecks(meta.checksFile), S, results, meta))}
+  </section>
+
+  <section>
+    <h2>合成进度：各角色拿到 T3 / T4 / 超武的波次</h2>
+    ${craftProgressHtml(results, meta.names)}
+  </section>
+
+  <section>
+    <h2>经济曲线：每波累计收入与花费</h2>
+    ${economyHtml(results)}
+  </section>
+
   <section>
     <h2>每局死在哪一波</h2>
     <p class="lede">每一格是一波，数字是死在这一波的局数，颜色越深死得越多。带红色底线的是 Boss 波，最右边绿色格是通关局数。</p>
@@ -480,27 +795,79 @@ summary small{margin-left:12px}
   // 存活带的格子按顺序长出来（唯一的入场动画）
   document.querySelectorAll('.cells').forEach((row, ri) =>
     row.querySelectorAll('.c').forEach((c, i) => c.style.setProperty('--i', ri * 60 + i * 18)));
+
+  // 表头点击排序：整列能当数字读就按数值排，否则按文本；再点同一列反向。
+  // econ / mx 是「指标在行、章节在列」的转置表，排序没有意义，跳过。
+  var numOf = function (txt) {
+    var m = String(txt).replace(/[, ]/g, '').match(/-?[0-9]+(?:[.][0-9]+)?/);
+    return m ? parseFloat(m[0]) : null;
+  };
+  document.querySelectorAll('table').forEach(function (tb) {
+    if (tb.classList.contains('econ') || tb.classList.contains('mx')) return;
+    var body = tb.tBodies[0];
+    var head = tb.tHead && tb.tHead.rows[tb.tHead.rows.length - 1];
+    if (!body || !head || body.rows.length < 2) return;
+    var cells = [].slice.call(head.cells);
+    cells.forEach(function (th, i) {
+      th.style.cursor = 'pointer';
+      th.style.userSelect = 'none';
+      th.title = (th.title ? th.title + ' · ' : '') + '点击排序';
+      th.addEventListener('click', function () {
+        var dir = th.dataset.dir === 'asc' ? -1 : 1;
+        cells.forEach(function (o) {
+          var old = o.querySelector('.sarw');
+          if (old) old.remove();
+          if (o !== th) delete o.dataset.dir;
+        });
+        th.dataset.dir = dir === 1 ? 'asc' : 'desc';
+        var arrow = document.createElement('span');
+        arrow.className = 'sarw';
+        arrow.textContent = dir === 1 ? ' ▲' : ' ▼';
+        arrow.style.opacity = '0.7';
+        th.appendChild(arrow);
+        var txt = function (r) {
+          return r.cells[i] ? r.cells[i].textContent.trim() : '';
+        };
+        var rows = [].slice.call(body.rows);
+        var allNum = rows.every(function (r) {
+          return numOf(txt(r)) !== null;
+        });
+        rows.sort(function (a, b) {
+          return allNum ? (numOf(txt(a)) - numOf(txt(b))) * dir : txt(a).localeCompare(txt(b), 'zh') * dir;
+        });
+        rows.forEach(function (r) {
+          body.appendChild(r);
+        });
+      });
+    });
+  });
 </script>
 </body></html>`;
 }
 
-/** 写出报告：docs/reports/balance-<时间>.html（存档）+ docs/BALANCE_REPORT.html/.md（最新） */
+/** 写出报告：reports/balance-<时间>.html（存档）+ reports/BALANCE_REPORT.html/.md（最新）；reports/ 不进仓库 */
 export function writeReports(meta, results) {
-  const reports = new URL('reports/', DOCS);
+  const reports = OUT;
   mkdirSync(reports, { recursive: true });
   const html = renderHtml(meta, results);
   const file = new URL(`balance-${fileStamp(new Date(meta.startedAt))}${meta.complete ? '' : '-partial'}.html`, reports);
   writeFileSync(file, html);
-  writeFileSync(new URL('BALANCE_REPORT.html', DOCS), html);
-  writeFileSync(new URL('BALANCE_REPORT.md', DOCS), renderMarkdown(meta, results));
+  writeFileSync(new URL('BALANCE_REPORT.html', OUT), html);
+  writeFileSync(new URL('BALANCE_REPORT.md', OUT), renderMarkdown(meta, results));
   return fileURLToPath(file);
 }
 
 // 直接运行：从进度文件或结果文件重新生成报告
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const flag = (k) => {
+    const i = process.argv.indexOf(`--${k}`);
+    return i >= 0 ? process.argv[i + 1] : undefined;
+  };
+  const advice = flag('advice') ? readFileSync(flag('advice'), 'utf8') : '';
+  const checksFile = flag('checks');
+  const pos = process.argv.slice(2).filter((x, i, l) => !x.startsWith('--') && !l[i - 1]?.startsWith('--'));
   const src =
-    process.argv[2] ??
-    ['./.batch-progress.json', './.batch-results.json'].map((p) => fileURLToPath(new URL(p, import.meta.url))).find(existsSync);
+    pos[0] ?? ['./.batch-progress.json', './.batch-results.json'].map((p) => fileURLToPath(new URL(p, import.meta.url))).find(existsSync);
   if (!src) {
     console.error('找不到结果文件');
     process.exit(1);
@@ -522,5 +889,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         finishedAt: Date.now(),
       }
     : { ...data.meta, finishedAt: data.meta.finishedAt ?? Date.now(), complete: data.results.length >= data.meta.total };
-  console.log('报告：' + writeReports(meta, results));
+  console.log('报告：' + writeReports({ ...meta, adviceHtml: advice, ...(checksFile ? { checksFile } : {}) }, results));
 }

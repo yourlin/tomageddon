@@ -7,6 +7,7 @@ import { audio } from '../systems/Audio';
 import { FPS_OPTIONS, applyFpsLimit, setFpsDisplay } from '../systems/Perf';
 import { errorLog, errorReport, clearErrorLog } from '../systems/ErrorLog';
 import { tx, lang } from '../i18n';
+import { VW, VH, RES } from '../systems/HiDpi';
 
 const pct = (v: number) => `${Math.round(v * 100)}%`;
 /** 在 opts 里循环取下一个值 */
@@ -23,8 +24,8 @@ export class SettingsScene extends Phaser.Scene {
   create(data?: { from?: string }): void {
     this.fromPause = data?.from === 'pause';
     autoRelayout(this, data);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.resetDialog = undefined;
     if (this.fromPause) this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.7).setInteractive();
     else this.cameras.main.setBackgroundColor(COLORS.bg);
@@ -105,6 +106,16 @@ export class SettingsScene extends Phaser.Scene {
           () => (lang === 'en' ? 'English' : '中文'),
           () => {
             st.lang = lang === 'en' ? 'zh' : 'en';
+            persist();
+            location.reload();
+          },
+        ],
+        // 高清渲染：按屏幕物理像素渲染（高分屏 / 全屏更清晰，GPU 负担更大）；渲染倍率在启动时确定，切换后重新加载
+        [
+          tx('高清渲染', 'High-res rendering'),
+          () => (st.hiDpi !== false ? tx(`开（${RES}×）`, `On (${RES}×)`) : tx('关（更省电）', 'Off (saves power)')),
+          () => {
+            st.hiDpi = st.hiDpi === false;
             persist();
             location.reload();
           },
@@ -235,8 +246,8 @@ export class SettingsScene extends Phaser.Scene {
    */
   private openResetDialog(step: 1 | 2 | 3): void {
     this.closeResetDialog();
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     const c = this.add.container(0, 0).setDepth(2000);
     this.resetDialog = c;
     const mask = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.75).setInteractive();

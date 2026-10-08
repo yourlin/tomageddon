@@ -3,6 +3,8 @@ import { ACHIEVEMENTS, ACH_MAP, TIER_MEDALS, TIER_NAME, type AchievementDef, typ
 import { unlockPlatformAchievement } from '../platform';
 import { CHARACTERS, CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPONS } from '../data/weapons';
+import { FUSED_WEAPONS } from '../data/recipes';
+import { TALENT_NODES, BRANCHES } from '../data/talentTree';
 import { ENEMIES } from '../data/enemies';
 import { BOSSES, BOSS_MAP } from '../data/bosses';
 import { ALL_ITEMS, ITEM_MAP } from '../data/items';
@@ -18,7 +20,8 @@ import { counter } from './Counters';
 import { save, persist, isUnlocked, isSeen } from './Save';
 import { run, freeChallengeActive } from './RunState';
 import { lang, tx } from '../i18n';
-import { overlayRoot } from './ForceLandscape';
+import { overlayRoot } from './OverlayRoot';
+import { DEV_DISABLED } from '../dev/flag';
 
 /** 是否处于对局中（对局类指标只在对局中统计） */
 let inRun = false;
@@ -28,6 +31,10 @@ export function setInRun(v: boolean): void {
 
 const regularEnemies = () => ENEMIES.filter((e) => !e.critter);
 const runItemCount = () => Object.values(run.items).reduce((a, b) => a + b, 0);
+const talentSchemes = (): Record<string, number>[] => [save.talents, ...Object.values(save.charTalents)];
+const branchPoints = (t: Record<string, number>, b: string): number =>
+  TALENT_NODES.filter((n) => n.branch === b).reduce((s, n) => s + (t[n.id] ?? 0), 0);
+
 const METRICS: Record<AchMetric, (a: AchievementDef) => number> = {
   totalKills: () => save.totalKills,
   runKills: () => (inRun ? run.kills : 0),
@@ -40,6 +47,12 @@ const METRICS: Record<AchMetric, (a: AchievementDef) => number> = {
   wins: () => save.wins,
   charsWon: () => CHARACTERS.filter((c) => (save.charWins[c.id] ?? 0) > 0).length,
   charsOwned: () => CHARACTERS.filter(isUnlocked).length,
+  fusedKinds: () => FUSED_WEAPONS.filter((w) => counter(`weaponGot:${w.id}`) > 0).length,
+  // 天赋：默认方案与各角色专属方案里取最好的一套
+  talentSpent: () => Math.max(...talentSchemes().map((t) => Object.values(t).reduce((a, b) => a + b, 0))),
+  talentBranchBest: () => Math.max(...talentSchemes().flatMap((t) => BRANCHES.map((b) => branchPoints(t, b.id)))),
+  talentBranches10: () => Math.max(...talentSchemes().map((t) => BRANCHES.filter((b) => branchPoints(t, b.id) >= 10).length)),
+  masterLayer: () => save.meta.master,
   runLevel: () => (inRun ? run.level : 0),
   runItems: () => (inRun ? runItemCount() : 0),
   runWeapons: () => (inRun ? run.weapons.length : 0),
@@ -92,6 +105,7 @@ function subjectName(a: AchievementDef): string {
 const TOTALS: Partial<Record<AchMetric, () => number>> = {
   charsWon: () => CHARACTERS.length,
   charsOwned: () => CHARACTERS.length,
+  fusedKinds: () => FUSED_WEAPONS.length,
   seenWeapons: () => WEAPONS.length,
   seenItems: () => ALL_ITEMS.length,
   seenEnemies: () => regularEnemies().length,
@@ -222,16 +236,27 @@ export function checkAchievements(): number {
 }
 
 // ---------------- 解锁提示（DOM 覆盖层，跨场景显示） ----------------
-const HEADLESS = typeof location !== 'undefined' && new URLSearchParams(location.search).has('headless');
-const queue: (() => void)[] = [];
+const HEADLESS = !DEV_DISABLED && typeof location !== 'undefined' && new URLSearchParams(location.search).has('headless');
+const queue: (() => void | Promise<void>)[] = [];
 let showing = false;
+
+/** 提示条停靠位置：默认顶部正中；商店把它挪到底部正中（顶部正中是持有的番茄籽，会被挡住） */
+let toastAnchor: 'top' | 'bottom' = 'top';
+export function setToastAnchor(a: 'top' | 'bottom'): void {
+  toastAnchor = a;
+}
+const toastEdge = () => (toastAnchor === 'top' ? 'top:14px' : 'bottom:14px');
+/** 滑出屏幕外的位置（顶部往上、底部往下） */
+const toastHidden = () => (toastAnchor === 'top' ? 'translate(-50%,-130%)' : 'translate(-50%,130%)');
 
 function notify(a: AchievementDef, tier: number, points: number): void {
   if (HEADLESS || typeof document === 'undefined') return;
   queue.push(() => {
     const el = document.createElement('div');
+    const hidden = toastHidden();
     el.style.cssText =
-      'position:fixed;left:50%;top:14px;transform:translate(-50%,-130%);z-index:30;display:flex;align-items:center;gap:12px;' +
+      `position:fixed;left:50%;${toastEdge()};transform:${toastHidden()};z-index:30;` +
+      'display:flex;align-items:center;gap:12px;' +
       'padding:10px 18px;border-radius:12px;background:rgba(40,16,20,0.94);border:2px solid #ffd166;color:#fff4ea;' +
       'font:15px "PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:transform .35s ease;pointer-events:none;';
     const tl = tierLabel(a, tier);
@@ -243,7 +268,7 @@ function notify(a: AchievementDef, tier: number, points: number): void {
       `<div style="opacity:.75;font-size:12px">${achText(a, 'desc', tier - 1)}</div></span>`;
     overlayRoot().appendChild(el);
     requestAnimationFrame(() => (el.style.transform = 'translate(-50%,0)'));
-    setTimeout(() => (el.style.transform = 'translate(-50%,-130%)'), 3000);
+    setTimeout(() => (el.style.transform = hidden), 3000);
     setTimeout(() => {
       el.remove();
       next();
@@ -252,26 +277,48 @@ function notify(a: AchievementDef, tier: number, points: number): void {
   if (!showing) next();
 }
 
+/** 角色形象图（data URL）：由 main.ts 注册（形象是 Phaser 动态纹理，成就系统本身不依赖 Phaser）；取不到时提示条用 🎉 */
+let charPortrait: ((id: string) => Promise<string | null>) | null = null;
+export function setCharPortraitProvider(fn: (id: string) => Promise<string | null>): void {
+  charPortrait = fn;
+}
+
+/** 解锁提示条的内容：有形象图就展示形象，取不到时退回 🎉（抽成纯函数便于测试） */
+export function charToastHtml(c: CharacterDef, src: string | null): string {
+  const a = c.unlock ? ACH_MAP[c.unlock.ach] : undefined;
+  return (
+    (src
+      ? `<img src="${src}" alt="" style="width:64px;height:64px;margin:-6px 0;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))">`
+      : `<span style="font-size:30px">🎉</span>`) +
+    `<span>` +
+    `<div style="color:#52ff8a;font-size:12px">${tx('新角色解锁', 'New character unlocked')}</div>` +
+    `<div style="font-weight:bold;font-size:17px">${c.name}</div>` +
+    (a
+      ? `<div style="opacity:.75;font-size:12px">${tx('达成成就', 'Achievement')}「${achText(a, 'name', c.unlock!.tier - 1)}」</div>`
+      : '') +
+    `</span>`
+  );
+}
+
 function notifyChar(c: CharacterDef): void {
   if (HEADLESS || typeof document === 'undefined') return;
-  queue.push(() => {
+  queue.push(async () => {
+    // 形象取不到或超时都不能卡住提示队列（队列是串行的，卡住会让后面的成就提示全部不显示）
+    const src = await Promise.race([
+      (charPortrait?.(c.id) ?? Promise.resolve(null)).catch(() => null),
+      new Promise<null>((r) => setTimeout(() => r(null), 1200)),
+    ]);
     const el = document.createElement('div');
+    const hidden = toastHidden();
     el.style.cssText =
-      'position:fixed;left:50%;top:14px;transform:translate(-50%,-130%);z-index:30;display:flex;align-items:center;gap:12px;' +
+      `position:fixed;left:50%;${toastEdge()};transform:${toastHidden()};z-index:30;` +
+      'display:flex;align-items:center;gap:12px;' +
       'padding:10px 18px;border-radius:12px;background:rgba(16,40,24,0.95);border:2px solid #52ff8a;color:#f0fff4;' +
       'font:15px "PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:transform .35s ease;pointer-events:none;';
-    const a = c.unlock ? ACH_MAP[c.unlock.ach] : undefined;
-    el.innerHTML =
-      `<span style="font-size:30px">🎉</span><span>` +
-      `<div style="color:#52ff8a;font-size:12px">${tx('新角色解锁', 'New character unlocked')}</div>` +
-      `<div style="font-weight:bold;font-size:17px">${c.name}</div>` +
-      (a
-        ? `<div style="opacity:.75;font-size:12px">${tx('达成成就', 'Achievement')}「${achText(a, 'name', c.unlock!.tier - 1)}」</div>`
-        : '') +
-      `</span>`;
+    el.innerHTML = charToastHtml(c, src);
     overlayRoot().appendChild(el);
     requestAnimationFrame(() => (el.style.transform = 'translate(-50%,0)'));
-    setTimeout(() => (el.style.transform = 'translate(-50%,-130%)'), 3400);
+    setTimeout(() => (el.style.transform = hidden), 3400);
     setTimeout(() => {
       el.remove();
       next();
@@ -284,14 +331,16 @@ function notifyMore(n: number, points: number): void {
   if (HEADLESS || typeof document === 'undefined') return;
   queue.push(() => {
     const el = document.createElement('div');
+    const hidden = toastHidden();
     el.style.cssText =
-      'position:fixed;left:50%;top:14px;transform:translate(-50%,-130%);z-index:30;padding:10px 18px;border-radius:12px;' +
+      `position:fixed;left:50%;${toastEdge()};transform:${toastHidden()};z-index:30;` +
+      'padding:10px 18px;border-radius:12px;' +
       'background:rgba(40,16,20,0.94);border:2px solid #ffd166;color:#fff4ea;font:15px "PingFang SC","Microsoft YaHei",sans-serif;' +
       'box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:transform .35s ease;pointer-events:none;';
     el.innerHTML = `🏆 ${tx(`另有 ${n} 项成就解锁`, `${n} more achievements unlocked`)} · <b style="color:#ffd166">+${points} ${tx('成就点', 'pts')}</b>`;
     overlayRoot().appendChild(el);
     requestAnimationFrame(() => (el.style.transform = 'translate(-50%,0)'));
-    setTimeout(() => (el.style.transform = 'translate(-50%,-130%)'), 2400);
+    setTimeout(() => (el.style.transform = hidden), 2400);
     setTimeout(() => {
       el.remove();
       next();
@@ -303,5 +352,5 @@ function notifyMore(n: number, points: number): void {
 function next(): void {
   const show = queue.shift();
   showing = !!show;
-  show?.();
+  void show?.();
 }
