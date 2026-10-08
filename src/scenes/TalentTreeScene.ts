@@ -36,6 +36,7 @@ import {
   hasCustomTalents,
   clearCustomTalents,
 } from '../systems/TalentTree';
+import { reveal } from '../systems/Reveal';
 import { save, persist, isUnlocked } from '../systems/Save';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { STAT_INFO } from '../data/stats';
@@ -475,6 +476,7 @@ export class TalentTreeScene extends Phaser.Scene {
     );
     this.masterBtn.setLabel(tx(`🥇 大师层 ${save.meta.master}`, `🥇 Master ${save.meta.master}`));
     this.masterBtn.setAlpha(masterUnlocked() ? 1 : 0.55);
+    this.masterBtn.setVisible(reveal.master()); // 天赋树点满前不显示大师层
     this.profText.setText(this.profileLabel());
     const pid = this.profiles[this.profIdx];
     this.inheritBtn.setVisible(!!pid && hasCustomTalents(pid));

@@ -4,11 +4,12 @@ import { talentPointsFree } from '../systems/TalentTree';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { paintArena } from '../art/ArenaArt';
-import { text, button, COLORS, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { run, hasSavedRun, loadRun } from '../systems/RunState';
 import { save, unlockedCount, isUnlocked } from '../systems/Save';
+import { reveal, nextUnlockLine, takeNewMilestones, type Milestone } from '../systems/Reveal';
 import { lang, tx } from '../i18n';
 import { checkAchievements, setInRun, pointsEarned } from '../systems/Achievements';
 import { toggleFullscreen } from '../systems/Fullscreen';
@@ -183,9 +184,23 @@ export class MenuScene extends Phaser.Scene {
       ).setOrigin(0, 0.5);
     }
     button(this, W / 2, by, 320, 72, tx('开始游戏', 'Start'), () => this.scene.start('CharSelect'), COLORS.primary, 32);
-    button(this, W / 2, by + 80, 320, 58, tx('🗓️ 每日 / 每周挑战', '🗓️ Daily / Weekly'), () => this.scene.start('Challenge'), 0xc1121f, 24);
+    // 每日 / 每周挑战：首次通关第 1 章前不显示，下面的托盘与称号整体上移
+    const chal = reveal.challenges();
+    const up = chal ? 0 : 70;
+    if (chal)
+      button(
+        this,
+        W / 2,
+        by + 80,
+        320,
+        58,
+        tx('🗓️ 每日 / 每周挑战', '🗓️ Daily / Weekly'),
+        () => this.scene.start('Challenge'),
+        0xc1121f,
+        24,
+      );
     // D4：今日挑战状态与刷新倒计时
-    {
+    if (chal) {
       const rec = save.challenges[`daily:${dayKey()}`];
       const now = new Date();
       const ms = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime() - now.getTime();
@@ -206,9 +221,12 @@ export class MenuScene extends Phaser.Scene {
       ).setOrigin(0, 0.5);
     }
     // 次要入口收进一条托盘：天赋（成长）| 图鉴 · 收藏 · 成就 · 战绩（记录），统一配色，悬停才点亮
-    this.drawDock(W / 2, by + 162);
+    this.drawDock(W / 2, by + 162 - up);
     // I5：称号——点击在已解锁称号间切换（含「无称号」）
-    this.drawTitle(W, by + 244);
+    this.drawTitle(W, by + 244 - up);
+    // 下一个解锁：只说条件和玩法名字，给玩家一个前进方向
+    const nextLine = nextUnlockLine();
+    if (nextLine) text(this, W / 2, by + 282 - up, nextLine, 15, '#9bf6ff').setOrigin(0.5);
     // 设置 / 全屏：右上角圆形图标，与 GitHub 图标排成一列
     this.roundIcon(W - 44, 104, 'gear', tx('设置', 'Settings'), () => this.scene.start('Settings'));
     this.roundIcon(W - 44, 164, 'fullscreen', tx('全屏', 'Fullscreen'), () => toggleFullscreen(this));
@@ -218,8 +236,8 @@ export class MenuScene extends Phaser.Scene {
       W - 20,
       H - 20,
       tx(
-        `成就点 🏅${pointsEarned()} · 金番茄 🥇${save.meta.gold} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
-        `Points 🏅${pointsEarned()} · Golden 🥇${save.meta.gold} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
+        `成就点 🏅${pointsEarned()}${reveal.gold() ? ` · 金番茄 🥇${save.meta.gold}` : ''} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
+        `Points 🏅${pointsEarned()}${reveal.gold() ? ` · Golden 🥇${save.meta.gold}` : ''} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
       ),
       16,
       COLORS.textDim,
@@ -228,6 +246,12 @@ export class MenuScene extends Phaser.Scene {
     // M4：老玩家首次进入新版本，先弹「新功能」，本次不再叠加新手提示
     if (shouldShowWhatsNew(__APP_VERSION__)) {
       showWhatsNew(this, __APP_VERSION__, () => this.scene.start('Changelog'));
+      return;
+    }
+    // 刚开放的玩法：逐张弹「新玩法解锁」卡片，本次不再叠加新手提示
+    const fresh = takeNewMilestones();
+    if (fresh.length) {
+      this.showUnlockCards(fresh);
       return;
     }
     // 新手引导：天赋点、新解锁的角色、挑战
@@ -378,8 +402,18 @@ export class MenuScene extends Phaser.Scene {
 
   /** 次要入口托盘：一块暗色底板，5 个「图标 + 小字」格子；天赋单独成组（会影响下一局），其余是记录类 */
   private drawDock(cx: number, cy: number): void {
+    const talents = reveal.talents(); // 第一次获得天赋点前不显示天赋入口
     const items: [string, string, string, string][] = [
-      ['talent', tx('天赋', 'Talents'), 'TalentTree', tx('花点数强化下一局', 'Spend points for your next run')],
+      ...(talents
+        ? [
+            ['talent', tx('天赋', 'Talents'), 'TalentTree', tx('花点数强化下一局', 'Spend points for your next run')] as [
+              string,
+              string,
+              string,
+              string,
+            ],
+          ]
+        : []),
       ['codex', tx('图鉴', 'Codex'), 'Codex', tx('角色、武器、敌人资料', 'Characters, weapons, enemies')],
       ['collect', tx('收藏', 'Collect'), 'Collection', tx('看看还缺哪些', 'See what you are missing')],
       ['awards', tx('成就', 'Awards'), 'Achievements', tx('成就与成就点', 'Achievements and points')],
@@ -388,14 +422,14 @@ export class MenuScene extends Phaser.Scene {
     const TW = 74,
       TH = 72,
       GAP = 4,
-      SEP = 18; // 天赋与记录组之间的分隔
+      SEP = talents ? 18 : 0; // 天赋与记录组之间的分隔
     const total = items.length * TW + (items.length - 1) * GAP + SEP;
     const left = cx - total / 2;
     const tray = this.add.graphics();
     tray.fillStyle(0x12070a, 0.72).fillRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
     tray.lineStyle(2, 0x7a2e35, 0.8).strokeRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
     const sepX = left + TW + GAP / 2 + SEP / 2;
-    tray.lineStyle(2, 0x7a2e35, 0.9).lineBetween(sepX, cy - TH / 2 + 8, sepX, cy + TH / 2 - 8);
+    if (talents) tray.lineStyle(2, 0x7a2e35, 0.9).lineBetween(sepX, cy - TH / 2 + 8, sepX, cy + TH / 2 - 8);
     const hint = text(this, cx, cy + TH / 2 + 22, '', 15, COLORS.textDim)
       .setOrigin(0.5)
       .setAlpha(0);
@@ -448,6 +482,41 @@ export class MenuScene extends Phaser.Scene {
   }
 
   /** 称号：佩戴中显示徽章，否则显示入口；点击打开称号选择界面 */
+  /** 「新玩法解锁」卡片：图标 + 玩法名 + 一句话说明，「去看看」直接跳到对应界面；多张依次弹出 */
+  private showUnlockCards(list: Milestone[]): void {
+    const [m, ...rest] = list;
+    if (!m) return;
+    const W = VW(this),
+      H = VH(this);
+    const c = this.add.container(0, 0).setDepth(5000);
+    const dim = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.6).setInteractive();
+    const pw = 560,
+      ph = 300,
+      x = W / 2 - pw / 2,
+      y = H / 2 - ph / 2;
+    c.add([dim, panel(this, x, y, pw, ph, COLORS.panel, 0xffd166)]);
+    c.add(text(this, W / 2, y + 34, tx('✨ 新玩法解锁！', '✨ New feature unlocked!'), 20, '#ffd166').setOrigin(0.5));
+    c.add(text(this, W / 2, y + 92, m.icon, 52).setOrigin(0.5));
+    c.add(text(this, W / 2, y + 150, tx(m.reward[0], m.reward[1]), 26, '#ffffff').setOrigin(0.5));
+    c.add(
+      text(this, W / 2, y + 190, tx(m.desc[0], m.desc[1]), 16, COLORS.textDim, {
+        wordWrap: { width: pw - 60, useAdvancedWrap: true },
+        align: 'center',
+      }).setOrigin(0.5, 0),
+    );
+    const next = () => {
+      c.destroy();
+      if (rest.length) this.showUnlockCards(rest);
+    };
+    c.add(
+      button(this, W / 2 - 110, y + ph - 40, 180, 52, tx('去看看', 'Take a look'), () => this.scene.start(m.scene), COLORS.primary, 20),
+    );
+    c.add(button(this, W / 2 + 110, y + ph - 40, 180, 52, tx('知道了', 'Got it'), next, 0x555555, 20));
+    c.setAlpha(0);
+    this.tweens.add({ targets: c, alpha: 1, duration: 220 });
+    audio.play(this, 'levelup');
+  }
+
   private drawTitle(W: number, y: number): void {
     const n = unlockedTitles(save.achievements).length;
     const open = () => this.scene.start('Title', { from: 'Menu' });

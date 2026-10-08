@@ -9,12 +9,13 @@ import { showcaseRig } from '../ui/Portrait';
 import { text, button, panel, COLORS, autoRelayout, fitImage } from '../ui/UI';
 import { portraitKey } from '../ui/Portrait';
 import { run, clearRun, recordHistory } from '../systems/RunState';
-import { save, persist, type RunRecord } from '../systems/Save';
-import { CHARACTER_MAP } from '../data/characters';
+import { save, persist, isUnlocked, type RunRecord } from '../systems/Save';
+import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS, BASE_CHAPTERS } from '../data/chapters';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
-import { checkAchievements, setInRun } from '../systems/Achievements';
+import { checkAchievements, setInRun, unlockProgress, unlockRequirement } from '../systems/Achievements';
+import { resultHook } from '../systems/Reveal';
 import { showSharePoster } from '../systems/SharePoster';
 import { settleDanger, type DangerResult } from '../systems/Danger';
 import { settleProgress, type ProgressResult } from '../systems/Progress';
@@ -205,6 +206,26 @@ export class ResultScene extends Phaser.Scene {
       0.5,
       0,
     );
+    // 钩子：离下一个玩法还差什么；离解锁最近的角色（进度过三成才提）
+    const hooks = [resultHook()];
+    const near = CHARACTERS.filter((c) => c.unlock && !isUnlocked(c))
+      .map((c) => ({ c, p: unlockProgress(c) }))
+      .filter(({ p }) => p.goal > 0 && p.value < p.goal && p.value / p.goal >= 0.3)
+      .sort((a, b) => b.p.value / b.p.goal - a.p.value / a.p.goal)[0];
+    if (near)
+      hooks.push(
+        tx(
+          `🎯 离解锁「${near.c.name}」最近：${unlockRequirement(near.c)}（${near.p.value}/${near.p.goal}）`,
+          `🎯 Closest unlock, ${near.c.name}: ${unlockRequirement(near.c)} (${near.p.value}/${near.p.goal})`,
+        ),
+      );
+    const hookText = hooks.filter(Boolean).join('\n');
+    if (hookText)
+      text(this, W / 2, y + 36, hookText, 16, '#9bf6ff', {
+        wordWrap: { width: 740, useAdvancedWrap: true },
+        align: 'center',
+        lineSpacing: 6,
+      }).setOrigin(0.5, 0);
     // 新解锁的角色：放在面板右侧（属性文字旁的空白处）展示形象 + 名字，2 列网格，最多 4 名，形象 76px
     if (newChars.length) {
       const shown = newChars.slice(0, 4);

@@ -3,6 +3,7 @@ import { bump, counter } from '../systems/Counters';
 import { tip } from '../systems/Tutorial';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
+import { arenaThumb } from '../art/ArenaArt';
 import { CHARACTERS, type CharacterDef } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import { WEAPON_MAP } from '../data/weapons';
@@ -35,6 +36,7 @@ import {
   equipSkin,
 } from '../systems/Progress';
 import { SKINS_OF, skinName } from '../data/skins';
+import { reveal } from '../systems/Reveal';
 import { questsOf } from '../data/quests';
 import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { dangerUnlocked, dangerBest, hasGoldFrame } from '../systems/Danger';
@@ -50,6 +52,7 @@ export class CharSelectScene extends Phaser.Scene {
   private detail!: Phaser.GameObjects.Container;
   private cards: { c: CharacterDef; g: Phaser.GameObjects.Graphics; x: number; y: number; s: number }[] = [];
   private chapterText!: Phaser.GameObjects.Text;
+  private chThumbs: { n: number; frame: Phaser.GameObjects.Graphics; w: number; h: number; name: string }[] = [];
   private chapterDesc!: Phaser.GameObjects.Text;
   private startBtn!: ReturnType<typeof button>;
   private endlessBtn!: ReturnType<typeof button>;
@@ -145,38 +148,37 @@ export class CharSelectScene extends Phaser.Scene {
     // 章节选择
     const cy = H - 130;
     panel(this, 30, cy - 20, W - 60, 110, COLORS.panelLight);
-    button(
-      this,
-      80,
-      cy + 35,
-      64,
-      64,
-      '◀',
-      () => {
-        this.chapter = Math.max(1, this.chapter - 1);
-        while (this.chapter > 1 && !chapterVisible(this.chapter)) this.chapter--;
+    // 7 个章节的缩略图一字排开，点击选择；未解锁的灰色 + 🔒，隐藏章节解锁前显示「？」
+    const TW = 68,
+      TH = 44,
+      TG = 8;
+    this.chThumbs = CHAPTERS.map((chDef, idx) => {
+      const n = idx + 1;
+      const x = 46 + idx * (TW + TG) + TW / 2,
+        y = cy + 6;
+      const g = this.add.container(x, y);
+      const frame = this.add.graphics();
+      const img = this.add.image(0, 0, arenaThumb(this, n, TW, TH, !chapterAvailable(n))).setDisplaySize(TW, TH);
+      const hidden = !chapterVisible(n);
+      const badge = text(this, -TW / 2 + 4, -TH / 2 + 2, String(n), 13, '#ffffff', { stroke: '#000000', strokeThickness: 3 });
+      const mark = text(this, 0, 2, hidden ? '？' : chapterAvailable(n) ? '' : '🔒', hidden ? 22 : 16, '#ffffff', {
+        stroke: '#000000',
+        strokeThickness: 3,
+      }).setOrigin(0.5);
+      g.add([img, frame, badge, mark]);
+      g.setSize(TW + 6, TH + 6).setInteractive({ useHandCursor: true });
+      g.on('pointerup', () => {
+        if (hidden) {
+          toast(this, tx('隐藏章节：满足特殊条件后揭晓', 'Hidden chapter: revealed once you meet a special condition'), '#ffd166');
+          return;
+        }
+        this.chapter = n;
         this.refresh();
-      },
-      0x7a2e35,
-      28,
-    );
-    button(
-      this,
-      W * 0.62,
-      cy + 35,
-      64,
-      64,
-      '▶',
-      () => {
-        const next = Math.min(CHAPTERS.length, this.chapter + 1);
-        if (chapterVisible(next)) this.chapter = next;
-        this.refresh();
-      },
-      0x7a2e35,
-      28,
-    );
-    this.chapterText = text(this, 130, cy, '', 26, '#ffd166');
-    this.chapterDesc = text(this, 130, cy + 40, '', 18, COLORS.textDim, { wordWrap: { width: W * 0.62 - 180 } });
+      });
+      return { n, frame, w: TW, h: TH, name: chDef.name };
+    });
+    this.chapterText = text(this, 46 + CHAPTERS.length * (TW + TG) + 6, cy - 6, '', 22, '#ffd166');
+    this.chapterDesc = text(this, 46, cy + 34, '', 16, COLORS.textDim, { wordWrap: { width: W * 0.62 - 10 - 46 } });
     this.endlessBtn = button(
       this,
       W * 0.62 + 130,
@@ -201,9 +203,12 @@ export class CharSelectScene extends Phaser.Scene {
     );
     // 番茄危机等级选择（A4）：◀ 等级 ▶，点等级查看叠加的全部规则
     const dx = W * 0.62 + 130;
-    button(this, dx - 66, cy + 60, 36, 38, '◀', () => this.setDanger(this.danger - 1), 0x7a2e35, 18);
+    const dPrev = button(this, dx - 66, cy + 60, 36, 38, '◀', () => this.setDanger(this.danger - 1), 0x7a2e35, 18);
     this.dangerBtn = button(this, dx, cy + 60, 90, 38, '', () => this.showDangerRules(), 0x9d0208, 17);
-    button(this, dx + 66, cy + 60, 36, 38, '▶', () => this.setDanger(this.danger + 1), 0x7a2e35, 18);
+    const dNext = button(this, dx + 66, cy + 60, 36, 38, '▶', () => this.setDanger(this.danger + 1), 0x7a2e35, 18);
+    // 无尽、危机在首次通关前不显示（见 systems/Reveal）
+    this.endlessBtn.setVisible(reveal.endless());
+    for (const b of [dPrev, this.dangerBtn, dNext]) b.setVisible(reveal.danger());
     this.startBtn = button(this, W - 150, cy + 35, 220, 76, tx('出发！', 'Go!'), () => this.start(), COLORS.primary, 32);
     this.refresh();
   }
@@ -404,7 +409,7 @@ export class CharSelectScene extends Phaser.Scene {
         }
         // F6：皮肤（每名角色 4 套，金番茄购买；第 1 套熟练度 10 级免费）：原皮 + 各套各一行，点击换上 / 购买
         const skins = SKINS_OF[c.id] ?? [];
-        if (skins.length && unlocked) {
+        if (skins.length && unlocked && reveal.skins()) {
           const cur = activeSkin(c.id);
           d.add(
             text(this, 20, y, tx(`🎨 皮肤（拥有 🥇${save.meta.gold} 金番茄）`, `🎨 Skins (you have 🥇${save.meta.gold})`), 14, '#ffb347'),
@@ -465,9 +470,14 @@ export class CharSelectScene extends Phaser.Scene {
             `Danger ${this.danger}: ${DANGER_LEVELS[this.danger - 1].desc[1]} and ${this.danger - 1} more · reward ×${dangerReward(this.danger)}`,
           )
         : '';
-    this.chapterText.setText(
-      `${ch.name}  ${chUnlocked ? '' : '🔒'}  ${tx(`（怪物生命 x${ch.hpMult} 伤害 x${ch.dmgMult}）`, `(HP x${ch.hpMult} · DMG x${ch.dmgMult})`)}`,
-    );
+    // 缩略图选中框
+    for (const t of this.chThumbs)
+      t.frame
+        .clear()
+        .lineStyle(t.n === this.chapter ? 3 : 1.5, t.n === this.chapter ? 0xffd166 : 0x000000, t.n === this.chapter ? 1 : 0.6)
+        .strokeRoundedRect(-t.w / 2 - 2, -t.h / 2 - 2, t.w + 4, t.h + 4, 5);
+    this.chapterText.setText(`${ch.name}${chUnlocked ? '' : ' 🔒'}`);
+    const mult = tx(`怪物生命 x${ch.hpMult} 伤害 x${ch.dmgMult} · `, `HP x${ch.hpMult} · DMG x${ch.dmgMult} · `);
     const endlessBest = counter(`endlessBest:ch:${ch.id}`);
     this.chapterDesc.setText(
       !chUnlocked
@@ -479,7 +489,7 @@ export class CharSelectScene extends Phaser.Scene {
               `无尽模式：打完本章 ${chapterWaves(this.chapter)} 波后不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），越往后怪物越强，直到倒下为止。本章最佳：第 ${endlessBest} 波`,
               `Endless: after this chapter's ${chapterWaves(this.chapter)} waves there is no limit, in 15-wave cycles (elites on 5/10, a boss on 15); monsters keep getting stronger until you fall. Best here: wave ${endlessBest}`,
             )
-          : ch.desc + dangerLine,
+          : mult + ch.desc + dangerLine,
     );
     if (unlocked) {
       this.startBtn.setLabel(tx('出发！', 'Go!'));
@@ -538,7 +548,8 @@ export class CharSelectScene extends Phaser.Scene {
       ).setOrigin(0.5),
     );
     const max = dangerUnlocked(this.chapter);
-    DANGER_LEVELS.forEach((d, i) => {
+    // 只列已解锁的等级，下一级显示为「？？？」（不提前剧透后面的规则）
+    DANGER_LEVELS.filter((d) => d.level <= max + 1).forEach((d, i) => {
       const on = d.level <= this.danger;
       const locked = d.level > max;
       const color = on ? '#ffd166' : locked ? '#6b5450' : COLORS.textDim;
@@ -547,7 +558,12 @@ export class CharSelectScene extends Phaser.Scene {
           this,
           W / 2 - pw / 2 + 24,
           H / 2 - ph / 2 + 56 + i * 26,
-          `${d.level}. ${d.icon} ${d.name[lang === 'en' ? 1 : 0]} — ${d.desc[lang === 'en' ? 1 : 0]}${locked ? ' 🔒' : ''}`,
+          locked
+            ? tx(
+                `${d.level}. ？？？ — 通关危机 ${max} 后揭晓${DANGER_LEVELS.length - max - 1 > 0 ? `（之后还有 ${DANGER_LEVELS.length - max - 1} 级）` : ''}`,
+                `${d.level}. ??? — clear Danger ${max} to reveal${DANGER_LEVELS.length - max - 1 > 0 ? ` (${DANGER_LEVELS.length - max - 1} more after)` : ''}`,
+              )
+            : `${d.level}. ${d.icon} ${d.name[lang === 'en' ? 1 : 0]} — ${d.desc[lang === 'en' ? 1 : 0]}`,
           16,
           color,
         ),
