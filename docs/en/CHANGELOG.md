@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v1.5.1 · 2026-10-08](#v1-5-1)
 - [v1.5.0 · 2026-10-08](#v1-5-0)
 - [v1.4.0 · 2026-10-05](#v1-4-0)
 - [v1.3.2 · 2026-10-03](#v1-3-2)
@@ -18,6 +19,16 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v1.2.0 · 2026-10-01](#v1-2-0)
 - [v1.1.0 · 2026-09-30](#v1-1-0)
 - [v1.0.0 · 2026-09-29](#v1-0-0)
+
+<a id="v1-5-1"></a>
+
+## v1.5.1 · 2026-10-08
+
+**Fixed shop card buttons overlapping the frame; updated super weapon wording**
+
+
+- Shop card buy / lock buttons no longer overlap the card frame (most visible with the larger touch layout)
+- Shop item cards, the collection and tutorial tips now describe crafting super weapons by recipe instead of "evolving"
 
 <a id="v1-5-0"></a>
 

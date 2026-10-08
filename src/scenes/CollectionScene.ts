@@ -370,7 +370,10 @@ export class CollectionScene extends Phaser.Scene {
           name: w.name,
           have: seen.weapons.includes(w.id),
           key: wIcon(w.id),
-          hint: tx('把基础武器升到 T4，再配上对应道具进化', 'Evolve the base weapon at T4 with its paired item'),
+          hint: tx(
+            '两把指定的 T4 + 催化道具 + 1 件传说道具，在合成表里合成',
+            'Craft from two specific T4s + the catalyst + 1 Legendary item at the crafting table',
+          ),
         }));
       case 'item':
         return ITEMS.map((it) => ({ name: it.name, have: seen.items.includes(it.id), key: () => itemIconKey(this, it), hint: findHint }));

@@ -12,6 +12,24 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.5.1',
+    date: '2026-10-08',
+    highlight: [
+      '商店卡片按钮与边框重叠修复，超武相关文字更新',
+      'Fixed shop card buttons overlapping the frame; updated super weapon wording',
+    ],
+    items: [
+      [
+        '商店商品卡底部的购买 / 锁定按钮不再压到卡片边框（触屏放大时尤其明显）',
+        'Shop card buy / lock buttons no longer overlap the card frame (most visible with the larger touch layout)',
+      ],
+      [
+        '商店道具卡、图鉴与新手提示里的「进化」说法改为按配方合成超武',
+        'Shop item cards, the collection and tutorial tips now describe crafting super weapons by recipe instead of "evolving"',
+      ],
+    ],
+  },
+  {
     version: '1.5.0',
     date: '2026-10-08',
     highlight: [
