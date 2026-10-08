@@ -334,6 +334,9 @@ export class ShopScene extends Phaser.Scene {
     const cw = (leftW - 3 * 14) / 4,
       ch = 300,
       cy = 76;
+    // 购买 / 锁定按钮：按实际高度（触屏放大）放在卡片底部，连同按钮阴影（4）离边框留 12
+    const bh = tu(44);
+    const by = cy + ch - 12 - 4 - bh / 2;
     run.shop.forEach((o, i) => {
       const x = 20 + i * (cw + 14);
       if (o.sold) {
@@ -396,13 +399,13 @@ export class ShopScene extends Phaser.Scene {
           const [zh, en] = describeCombo(c, (id) => ITEM_MAP[id]?.name ?? id);
           lines.push(`${(run.items[other] ?? 0) > 0 ? '✓ ' : '⚭ '}${tx(zh, en)}`);
         }
-        // 进化催化剂：持有对应武器时提示
+        // 超武催化道具：持有配方主材料武器时提示
         const evoFor = EVOLUTIONS.filter((e) => e.item === it.id && run.weapons.some((w) => w.id === e.from));
         if (evoFor.length)
           lines.unshift(
             tx(
-              `✨ 可让${evoFor.map((e) => WEAPON_MAP[e.from].name).join('、')}进化`,
-              `✨ Evolves ${evoFor.map((e) => WEAPON_MAP[e.from].name).join(', ')}`,
+              `✨ 超武${evoFor.map((e) => `「${e.to.name}」`).join('')}的催化道具`,
+              `✨ Catalyst for ${evoFor.map((e) => e.to.name).join(', ')}`,
             ),
           );
       }
@@ -425,7 +428,7 @@ export class ShopScene extends Phaser.Scene {
       // 负向属性（道具代价，如「−1 护甲」）用红色
       // 说明文字放不下时：先按顺序省略次要的行（超武增益长说明 → 套装 → 武器说明），
       // 还放不下就只显示放得下的行、末行加「…」。字号不缩小（缩小后太难读）
-      const room = cy + ch - 30 - tu(44) / 2 - 8 - (cy + 142);
+      const room = by - bh / 2 - 8 - (cy + 142);
       let shown = [...lines];
       let desc = statLines(this, x + 10, cy + 142, shown, tu(13), '#fff4ea', cw - 20);
       for (const drop of optional) {
@@ -451,18 +454,14 @@ export class ShopScene extends Phaser.Scene {
       }
       L.add(desc.box);
       const can = run.seeds >= o.price && (o.kind === 'item' || run.canAddWeapon(o.id, o.tier));
-      L.add(
-        button(this, x + cw / 2 - 22, cy + ch - 30, cw - 64, tu(44), `🌱 ${o.price}`, () => this.buy(o), COLORS.green, tu(20)).setEnabled(
-          can,
-        ),
-      );
+      L.add(button(this, x + cw / 2 - 22, by, cw - 64, bh, `🌱 ${o.price}`, () => this.buy(o), COLORS.green, tu(20)).setEnabled(can));
       L.add(
         button(
           this,
           x + cw - 24,
-          cy + ch - 30,
+          by,
           40,
-          44,
+          bh,
           o.locked ? '🔒' : '🔓',
           () => {
             o.locked = !o.locked;

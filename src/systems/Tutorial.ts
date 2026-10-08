@@ -83,10 +83,10 @@ const TIPS: Record<TipKey, () => [string, string]> = {
     ),
   ],
   evolve: () => [
-    tx('武器进化！', 'Weapon evolution!'),
+    tx('可以合成超武了！', 'Super weapon ready!'),
     tx(
-      '你的 IV 级武器已经集齐进化道具了：点开带 ✨ 的武器，把它进化成超武。进化保留原来的词条和打造等级。',
-      'Your tier IV weapon has its evolution item: tap the ✨ weapon to evolve it into a super weapon. Affixes and forge level are kept.',
+      '超武配方的两把 T4 和道具都齐了：点开带 ✨ 的武器，按配方合成超武（会消耗两把材料武器和道具）。',
+      'You have both T4s and the items for a super weapon recipe: tap the ✨ weapon to craft it (uses up both weapons and the items).',
     ),
   ],
   elite: () => [
