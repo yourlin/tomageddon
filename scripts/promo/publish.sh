@@ -9,5 +9,5 @@ for L in zh en; do
   ffmpeg -v error -y -i "$SRC" -c:v libvpx-vp9 -crf 34 -b:v 0 -row-mt 1 -deadline good -cpu-used 3 \
     -c:a libopus -b:a 128k "public/promo/tomageddon-promo-$L.webm"
   ffmpeg -v error -y -ss $POSTER_AT -i "$SRC" -frames:v 1 -vf "scale=1280:-1" -q:v 3 "docs/images/promo-poster-$L.jpg"
-  echo "$L：public/promo/tomageddon-promo-$L.webm · docs/images/promo-poster-$L.jpg"
+  echo "${L}：public/promo/tomageddon-promo-$L.webm · docs/images/promo-poster-$L.jpg"
 done

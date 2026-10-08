@@ -5,6 +5,7 @@ import { CHARACTER_MAP } from '../data/characters';
 import { ENEMY_MAP } from '../data/enemies';
 import { BOSS_MAP } from '../data/bosses';
 import type { RigSpec } from '../art/RigSpec';
+import { applySkin, type SkinDef } from '../data/skins';
 
 export type PortraitKind = 'char' | 'enemy' | 'boss';
 
@@ -29,8 +30,16 @@ export function portraitKey(scene: Phaser.Scene, kind: PortraitKind, id: string)
 }
 
 /** 可动的展示角色（自动播放待机/偶尔庆祝） */
-export function showcaseRig(scene: Phaser.Scene, kind: PortraitKind, id: string, x: number, y: number, radius: number): Rig {
-  const rig = new Rig(scene, lookOf(kind, id), `${kind}_${id}`, radius);
+export function showcaseRig(
+  scene: Phaser.Scene,
+  kind: PortraitKind,
+  id: string,
+  x: number,
+  y: number,
+  radius: number,
+  skin?: SkinDef,
+): Rig {
+  const rig = new Rig(scene, applySkin(lookOf(kind, id), skin), `${kind}_${id}${skin ? `_${skin.id}` : ''}`, radius);
   scene.add.existing(rig);
   rig.setPosition(x, y);
   rig.play('spawn', true);

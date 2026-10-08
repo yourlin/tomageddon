@@ -4,6 +4,7 @@ import { CHANGELOG } from '../data/changelog';
 import { save, persist } from '../systems/Save';
 import { tx, lang } from '../i18n';
 import { text, button, panel, COLORS } from './UI';
+import { VW, VH } from '../systems/HiDpi';
 
 /** 是否需要弹：当前版本有 news、玩家玩过旧版本（有开局记录或看过旧版更新日志）、还没看过本版本 */
 export function shouldShowWhatsNew(version: string): boolean {
@@ -18,8 +19,8 @@ export function shouldShowWhatsNew(version: string): boolean {
 export function showWhatsNew(scene: Phaser.Scene, version: string, onLog: () => void): void {
   const e = CHANGELOG[0];
   const news = e.news ?? [];
-  const W = scene.scale.width,
-    H = scene.scale.height;
+  const W = VW(scene),
+    H = VH(scene);
   const pick = (t: [string, string]) => (lang === 'en' ? t[1] : t[0]);
   const root = scene.add.container(0, 0).setDepth(5000);
   const mask = scene.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.6).setInteractive();

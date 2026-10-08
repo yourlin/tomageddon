@@ -20,6 +20,7 @@ export interface ItemSpecial {
   rerolls?: number; // 每波商店刷新次数上限 +N（总上限 10）
   legendCap?: number; // 每种传说道具的持有上限 +N（角色 / 天赋 / 遗物等均可提供）
   onHit?: StatusApply[]; // 命中时对敌人施加
+  onAuraHit?: StatusApply[]; // 只有光环武器命中时才对敌人施加（光环系列道具）
   onHitSelf?: StatusApply[]; // 命中时对自己施加
   onKillSelf?: StatusApply[]; // 击杀时对自己施加
   onHurtSelf?: StatusApply[]; // 受伤时对自己施加
@@ -56,12 +57,12 @@ export const ITEMS: ItemDef[] = [
   // ---------- 普通 ----------
   { id: 'band_aid', name: '创可贴', rarity: 0, price: 12, mods: { maxHp: 3 } },
   { id: 'tomato_juice', name: '番茄汁', rarity: 0, price: 14, mods: { regen: 2 } },
-  { id: 'toothpick', name: '牙签', rarity: 0, price: 13, mods: { melee: 2, range: -5 } },
+  { id: 'toothpick', name: '牙签', rarity: 0, price: 13, mods: { melee: 2, ranged: -1 } },
   { id: 'rubber_band', name: '橡皮筋', rarity: 0, price: 13, mods: { ranged: 2 } },
   { id: 'lighter', name: '打火机', rarity: 0, price: 13, mods: { elemental: 2 } },
   { id: 'apron', name: '围裙', rarity: 0, price: 15, mods: { armor: 2 } },
   { id: 'coffee', name: '黑咖啡', rarity: 0, price: 15, mods: { attackSpeed: 6, maxHp: -1 } },
-  { id: 'sneakers', name: '旧球鞋', rarity: 0, price: 14, mods: { speed: 5 } },
+  { id: 'sneakers', name: '旧球鞋', rarity: 0, price: 14, mods: { speed: 3 } },
   { id: 'clover', name: '四叶草', rarity: 0, price: 12, mods: { luck: 8 } },
   { id: 'seed_bag', name: '种子袋', rarity: 0, price: 16, mods: { harvest: 6 } },
   { id: 'magnet', name: '冰箱贴', rarity: 0, price: 10, mods: { pickup: 30 } },
@@ -85,15 +86,15 @@ export const ITEMS: ItemDef[] = [
     name: '强力磁铁',
     rarity: 1,
     price: 30,
-    mods: { pickup: 80, harvest: 6, speed: -3 },
+    mods: { pickup: 80, harvest: 6, speed: -2 },
     icon: { shape: 'heart', color: 0x4361ee, color2: 0xadb5bd },
   },
   { id: 'chef_hat', name: '厨师帽', rarity: 1, price: 35, mods: { melee: 4, armor: 1, maxHp: 5, ranged: -2 } },
   { id: 'scope', name: '瞄准镜', rarity: 1, price: 38, mods: { ranged: 4, range: 40, crit: 5, attackSpeed: -5 } },
   { id: 'battery', name: '电池', rarity: 1, price: 36, mods: { elemental: 4, attackSpeed: 7, maxHp: -3 } },
   { id: 'mosquito', name: '蚊子标本', rarity: 1, price: 40, mods: { lifeSteal: 4, maxHp: -2 } },
-  { id: 'energy_drink', name: '能量饮料', rarity: 1, price: 38, mods: { attackSpeed: 10, speed: 3, regen: -1 } },
-  { id: 'helmet', name: '锅盖头盔', rarity: 1, price: 40, mods: { armor: 3, speed: -3 } },
+  { id: 'energy_drink', name: '能量饮料', rarity: 1, price: 38, mods: { attackSpeed: 10, speed: 2, regen: -1 } },
+  { id: 'helmet', name: '锅盖头盔', rarity: 1, price: 40, mods: { armor: 3, speed: -2 } },
   {
     id: 'piggy_bank',
     name: '存钱罐',
@@ -117,7 +118,7 @@ export const ITEMS: ItemDef[] = [
     name: '仙人掌',
     rarity: 1,
     price: 34,
-    mods: { armor: 3, speed: -3 },
+    mods: { armor: 3, speed: -2 },
     special: { thorns: 8 },
     desc: '受到伤害时对攻击者造成 8 点伤害',
   },
@@ -126,18 +127,18 @@ export const ITEMS: ItemDef[] = [
     name: '招财猫',
     rarity: 1,
     price: 38,
-    mods: { luck: 18, damage: -4 },
+    mods: { luck: 18, maxHp: -2 },
     special: { doubleSeed: 10 },
     desc: '10% 概率番茄籽翻倍',
   },
-  { id: 'running_shoes', name: '跑鞋', rarity: 1, price: 38, mods: { speed: 12, dodge: 2, armor: -1 } },
-  { id: 'lemonade', name: '柠檬水', rarity: 1, price: 36, mods: { regen: 4, maxHp: 4, damage: -4 } },
+  { id: 'running_shoes', name: '跑鞋', rarity: 1, price: 38, mods: { speed: 6, dodge: 2, armor: -1 } },
+  { id: 'lemonade', name: '柠檬水', rarity: 1, price: 36, mods: { regen: 4, maxHp: 4, speed: -2 } },
   {
     id: 'bandage_roll',
     name: '绷带卷',
     rarity: 1,
     price: 40,
-    mods: { maxHp: 7, regen: 1, speed: -3 },
+    mods: { maxHp: 7, regen: 1, speed: -2 },
     special: { killHeal: 25 },
     desc: '每击杀 25 个敌人回复 1 生命',
   },
@@ -169,7 +170,7 @@ export const ITEMS: ItemDef[] = [
     mods: { pickup: 150, luck: 5 },
     icon: { shape: 'box', color: 0x2ec4b6, color2: 0xe9ecef },
   },
-  { id: 'iron_wok', name: '铁锅盾', rarity: 2, price: 70, mods: { armor: 5, maxHp: 5, speed: -5 } },
+  { id: 'iron_wok', name: '铁锅盾', rarity: 2, price: 70, mods: { armor: 5, maxHp: 5, speed: -3 } },
   { id: 'sharpener', name: '磨刀石', rarity: 2, price: 72, mods: { crit: 10, melee: 3 } },
   {
     id: 'tesla_coil',
@@ -198,9 +199,9 @@ export const ITEMS: ItemDef[] = [
     special: { burnChance: 20 },
     desc: '所有命中 20% 概率造成灼烧',
   },
-  { id: 'backpack', name: '双肩背包', rarity: 3, price: 120, mods: { speed: -3 }, special: { weaponSlot: 1 }, desc: '武器栏 +1' },
+  { id: 'backpack', name: '双肩背包', rarity: 3, price: 120, mods: { speed: -2 }, special: { weaponSlot: 1 }, desc: '武器栏 +1' },
   { id: 'coupon', name: '优惠券', rarity: 2, price: 55, mods: {}, special: { shopDiscount: 10 }, desc: '商店价格 -10%' },
-  { id: 'protein', name: '蛋白粉', rarity: 2, price: 75, mods: { maxHp: 10, melee: 2, speed: -2 } },
+  { id: 'protein', name: '蛋白粉', rarity: 2, price: 75, mods: { maxHp: 10, melee: 2, speed: -1 } },
   { id: 'pressure_cooker', name: '高压锅', rarity: 2, price: 70, mods: { explodeSize: 30, armor: 1 } },
   {
     id: 'onion_layers',
@@ -212,7 +213,7 @@ export const ITEMS: ItemDef[] = [
     icon: { shape: 'orb', color: 0xb5838d, color2: 0xf8edeb },
   },
   // ---------- 传说 ----------
-  { id: 'golden_tomato', name: '黄金番茄', rarity: 3, price: 120, mods: { damage: 15, maxHp: 10, luck: 15, speed: -5 } },
+  { id: 'golden_tomato', name: '黄金番茄', rarity: 3, price: 120, mods: { damage: 15, maxHp: 10, luck: 15, speed: -3 } },
   {
     id: 'phoenix_feather',
     name: '凤凰羽毛',
@@ -224,9 +225,9 @@ export const ITEMS: ItemDef[] = [
   },
   { id: 'chef_knife_set', name: '大厨刀具套装', rarity: 3, price: 130, mods: { melee: 8, crit: 8, attackSpeed: 8, ranged: -4 } },
   { id: 'railgun_core', name: '电磁核心', rarity: 3, price: 130, mods: { ranged: 8, range: 60, attackSpeed: 8, melee: -4 } },
-  { id: 'grandma_recipe', name: '外婆的秘方', rarity: 3, price: 115, mods: { harvest: 25, xpGain: 25, luck: 20, damage: -8 } },
+  { id: 'grandma_recipe', name: '外婆的秘方', rarity: 3, price: 115, mods: { harvest: 25, xpGain: 25, luck: 20, armor: -3 } },
   { id: 'vampire_cape', name: '吸血鬼披风', rarity: 3, price: 125, mods: { lifeSteal: 10, damage: 8, dodge: 5, regen: -3 } },
-  { id: 'powder_keg', name: '火药桶', rarity: 3, price: 115, mods: { explodeSize: 50, damage: 5, speed: -3 } },
+  { id: 'powder_keg', name: '火药桶', rarity: 3, price: 115, mods: { explodeSize: 50, damage: 5, speed: -2 } },
   {
     id: 'cluster_tomato',
     name: '串串番茄',
@@ -242,6 +243,43 @@ export const ITEMS: ItemDef[] = [
 // 1.4.0 G7：新道具 30 个
 ITEMS.push(...EXTRA_ITEMS);
 export const ALL_ITEMS: ItemDef[] = [...ITEMS, ...GENERATED_ITEMS];
+
+/** 百分比类加成（全伤害、各类伤害 %、攻速、暴击、光环、爆炸、技能、经验）防属性爆炸：
+ *  道具上的正向数值统一 × PCT_ITEM_SCALE（至少 1），代价（负值）不变 */
+export const PCT_SCALED_KEYS: (keyof StatMods)[] = [
+  'damage',
+  'meleePct',
+  'rangedPct',
+  'elementalPct',
+  'auraPct',
+  'auraSize',
+  'explodeSize',
+  'attackSpeed',
+  'crit',
+  'xpGain',
+  'skillCd',
+  'skillDmg',
+  'skillRange',
+  'skillDur',
+];
+export const PCT_ITEM_SCALE = 0.4;
+/** 道具幸运上限（普通 / 稀有 / 史诗 / 传说）：幸运决定商店武器品质与道具稀有度，加太多会过早拿到跨档装备 */
+export const LUCK_ITEM_CAP = [3, 5, 7, 10];
+/** 道具闪避上限 %（普通 / 稀有 / 史诗 / 传说）：闪避是概率免伤，叠太高会站着不动也打不死 */
+export const DODGE_ITEM_CAP = [2, 3, 4, 6];
+export const PCT_LEVELUP_SCALE = 0.5;
+const scalePct = (v: number, k: number): number => (v > 0 ? Math.max(1, Math.round(v * k)) : v);
+for (const it of ALL_ITEMS) {
+  const lk = it.mods.luck;
+  if (lk !== undefined && lk > 0) it.mods.luck = Math.min(lk, LUCK_ITEM_CAP[Math.min(3, it.rarity)]);
+  const dg = it.mods.dodge;
+  if (dg !== undefined && dg > 0) it.mods.dodge = Math.min(dg, DODGE_ITEM_CAP[Math.min(3, it.rarity)]);
+}
+for (const it of ALL_ITEMS)
+  for (const key of PCT_SCALED_KEYS) {
+    const v = it.mods[key];
+    if (v !== undefined) it.mods[key] = scalePct(v, PCT_ITEM_SCALE);
+  }
 
 export const ITEM_MAP: Record<string, ItemDef> = Object.fromEntries(ALL_ITEMS.map((i) => [i.id, i]));
 
@@ -263,11 +301,13 @@ export function itemCapFor(it: ItemDef, legendBonus = 0): number {
 }
 
 /** 升级时的属性选项（按稀有度数值不同）。attackClass 为 null 表示所有流派通用。
- *  光环范围、技能范围、爆炸范围不在升级选项里：只能靠道具 / 天赋等获得（避免范围无限膨胀） */
+ *  光环范围、技能范围、爆炸范围、拾取范围不在升级选项里：只能靠道具 / 天赋等获得（避免范围无限膨胀）。
+ *  百分比类数值按 PCT_LEVELUP_SCALE 缩减（见 LEVELUP_OPTIONS 末尾） */
 export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }[] = [
   { key: 'maxHp', values: [3, 6, 9, 12] },
-  { key: 'regen', values: [2, 3, 4, 5] },
-  { key: 'lifeSteal', values: [1, 2, 3, 4] },
+  // 回血类（生命再生、吸血）每次升级只加 1 点，不随升级稀有度提高
+  { key: 'regen', values: [1, 1, 1, 1] },
+  { key: 'lifeSteal', values: [1, 1, 1, 1] },
   { key: 'meleePct', values: [6, 10, 14, 19] },
   { key: 'rangedPct', values: [6, 10, 14, 19] },
   { key: 'elementalPct', values: [6, 10, 14, 19] },
@@ -279,11 +319,11 @@ export const LEVELUP_OPTIONS: { key: keyof StatMods & string; values: number[] }
   { key: 'crit', values: [3, 5, 7, 9] },
   { key: 'range', values: [15, 30, 45, 60] },
   { key: 'armor', values: [1, 2, 3, 4] },
-  { key: 'dodge', values: [3, 6, 9, 12] },
-  { key: 'pickup', values: [15, 25, 40, 60] },
-  { key: 'speed', values: [3, 6, 9, 12] },
-  { key: 'luck', values: [5, 10, 15, 20] },
+  { key: 'dodge', values: [1, 2, 3, 4] },
+  { key: 'speed', values: [1, 2, 3, 4] },
+  { key: 'luck', values: [1, 2, 3, 4] },
   { key: 'harvest', values: [5, 8, 10, 12] },
   { key: 'skillDmg', values: [8, 12, 16, 22] },
   { key: 'skillCd', values: [4, 6, 8, 10] },
 ];
+for (const o of LEVELUP_OPTIONS) if (PCT_SCALED_KEYS.includes(o.key)) o.values = o.values.map((v) => scalePct(v, PCT_LEVELUP_SCALE));

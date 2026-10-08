@@ -70,3 +70,6 @@ if (!('document' in globalThis))
   });
 for (const k of ['addEventListener', 'removeEventListener'])
   if (typeof (globalThis as Record<string, unknown>)[k] !== 'function') (globalThis as Record<string, unknown>)[k] = () => {};
+// 解锁提示条（DOM 覆盖层）用到 requestAnimationFrame
+if (typeof (globalThis as Record<string, unknown>).requestAnimationFrame !== 'function')
+  Object.assign(globalThis, { requestAnimationFrame: (f: () => void) => setTimeout(f, 0) });

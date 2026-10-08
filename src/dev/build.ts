@@ -3,18 +3,19 @@
 // 保证模拟出来的状态与真实一局在同样的花费下能达到的状态一致。
 import { run, type OwnedWeapon } from '../systems/RunState';
 import { CHARACTER_MAP } from '../data/characters';
-import { WEAPON_MAP, WEAPONS, TIER_PRICE_MULT } from '../data/weapons';
+import { WEAPON_MAP, WEAPONS, TIER_PRICE_MULT, isShopWeapon, SHOP_MAX_TIER } from '../data/weapons';
 import { ALL_ITEMS, ITEM_MAP, LEVELUP_OPTIONS, type ItemDef } from '../data/items';
-import { EVOLUTIONS } from '../data/evolutions';
 import { TALENT_NODES } from '../data/talentTree';
 import type { StatKey, StatMods } from '../data/stats';
-import { BALANCE, incomeTarget, pickRarity, pickUpgradeRarity, pickWeaponTier, rerollPrice, sellPrice } from '../data/balance';
+import { BALANCE, expectedSpawns, seedValue, pickRarity, pickUpgradeRarity, pickWeaponTier, rerollPrice, sellPrice } from '../data/balance';
 import { save } from '../systems/Save';
 import { setTalents, treeTotals } from '../systems/TalentTree';
 import { levelGrowthMods, waveGrowthMods, freeFirstReroll } from '../systems/Talents';
 import { forgeCost, forgeChance, canForge, type WeaponAffix } from '../systems/WeaponMods';
 import { offerPrice, itemBasePrice } from '../scenes/ShopScene';
 import { pickOf, shuffleWith } from '../systems/Rng';
+import { favoredWeapons, isFavoredWeapon } from '../data/affinity';
+import { missingItems, wantedRecipeItems, type Recipe } from '../data/recipes';
 
 export interface DevWeapon {
   id: string;
@@ -218,7 +219,34 @@ export function sellWeapon(b: DevBuild, idx: number): void {
 export function combineWeapon(b: DevBuild, idx: number): boolean {
   const w = b.weapons[idx];
   if (!w) return false;
-  return transact(b, `合成 ${WEAPON_MAP[w.id].name} → T${w.tier + 2}`, 0, () => run.combine(run.weapons[idx].uid));
+  return transact(b, `合成 ${WEAPON_MAP[w.id].name} → T${w.tier + 2}`, 0, () => run.combine(run.weapons[idx].uid) > 0);
+}
+
+/** 按配方合成：缺的材料武器与道具按商店价补齐后直接合成（开发者一键走完配方链） */
+export function craftWeapon(b: DevBuild, r: Recipe): string | null {
+  applyBuild(b);
+  // 还缺哪些材料武器（已有的先抵扣）
+  const have = run.allWeapons.map((w) => ({ id: w.id, tier: w.tier }));
+  const needW: DevWeapon[] = [];
+  for (const [id, tier] of r.from) {
+    const i = have.findIndex((w) => w.id === id && w.tier === tier);
+    if (i >= 0) have.splice(i, 1);
+    else needW.push({ id, tier });
+  }
+  const needI = missingItems(r, run.items).map((i) => r.items[i][0]);
+  const cost = needW.reduce((a, w) => a + weaponPrice(b, w.id, w.tier), 0) + needI.reduce((a, id) => a + itemPrice(b, ITEM_MAP[id]), 0);
+  if (!canAfford(b, cost)) return `资金不足（补齐材料需要 ${cost}）`;
+  const snapW = [...b.weapons],
+    snapI = { ...b.items };
+  b.weapons = [...b.weapons, ...needW];
+  for (const id of needI) b.items[id] = (b.items[id] ?? 0) + 1;
+  const label = `按配方合成 ${WEAPON_MAP[r.to].name}${needW.length || needI.length ? `（补 ${needW.length} 武器 / ${needI.length} 道具）` : ''}`;
+  if (!transact(b, label, cost, () => run.craft(r))) {
+    b.weapons = snapW;
+    b.items = snapI;
+    return '合成失败：材料或栏位不满足';
+  }
+  return null;
 }
 
 export function evolveWeapon(b: DevBuild, idx: number): boolean {
@@ -265,17 +293,22 @@ export function rollShelf(b: DevBuild, prev?: Shelf): Shelf {
   const R = Math.random;
   const offers: ShelfOffer[] = [];
   const luck = run.stats.luck; // 武器品质 / 道具稀有度只看幸运，与波次无关
-  const need = EVOLUTIONS.filter((e) => !run.items[e.item] && run.weapons.some((w) => w.id === e.from && w.tier >= 2));
-  if (need.length && R() < 0.2) {
-    const it = ITEM_MAP[pickOf(need, R).item];
+  // 与 ShopScene 一致：配方材料武器快凑齐时，25% 概率上架一件配方还缺的道具（契合配方优先）
+  const need = wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.char.favored, WEAPON_MAP[to])).filter((id) =>
+    run.canTakeItem(id),
+  );
+  if (need.length && R() < 0.25) {
+    const it = ITEM_MAP[need[Math.floor(Math.pow(R(), 2) * need.length)]];
     offers.push({ kind: 'item', id: it.id, tier: it.rarity, price: itemPrice(b, it), sold: false });
   }
   while (offers.length < BALANCE.shopSlots) {
     if (R() < (run.weapons.length < run.maxWeapons ? 0.4 : 0.25)) {
-      let def = R() < 0.18 ? WEAPON_MAP[pickOf(run.char.favored, R)] : pickOf(WEAPONS, R);
-      if (run.weapons.length && R() < 0.25) def = WEAPON_MAP[pickOf(run.weapons, R).id];
-      if (def.evolvedFrom) def = WEAPON_MAP[def.evolvedFrom];
-      const tier = Math.max(def.minTier ?? 0, pickWeaponTier(luck, run.chapter.t4Mult, R));
+      // 与 ShopScene 一致：合成专属 T4 / 超武不进商店，最高只卖 T3
+      const favPool = favoredWeapons(run.char).filter(isShopWeapon);
+      const sellable = run.allWeapons.filter((w) => isShopWeapon(WEAPON_MAP[w.id]));
+      let def = favPool.length && R() < 0.18 ? pickOf(favPool, R) : pickOf(WEAPONS.filter(isShopWeapon), R);
+      if (sellable.length && R() < BALANCE.shopOwnedChance) def = WEAPON_MAP[pickOf(sellable, R).id];
+      const tier = Math.min(SHOP_MAX_TIER, pickWeaponTier(luck, R));
       offers.push({ kind: 'weapon', id: def.id, tier, price: weaponPrice(b, def.id, tier), sold: false });
     } else {
       const rar = pickRarity(luck, R);
@@ -294,7 +327,7 @@ export function shelfRerollCost(b: DevBuild, shelf: Shelf): number {
   const free = (freeFirstReroll(b.charId) ? 1 : 0) + treeTotals().freeRerolls;
   if (shelf.rerolls < free) return 0;
   const bought = shelf.offers.filter((o) => o.sold).length;
-  return Math.max(1, Math.round(rerollPrice(completedWave(b), shelf.rerolls, b.chapterId) * Math.pow(0.75, bought)));
+  return Math.max(1, Math.round(rerollPrice(completedWave(b), shelf.rerolls, b.chapterId, run.netWorth()) * Math.pow(0.75, bought)));
 }
 
 export function rerollShelf(b: DevBuild, shelf: Shelf): { shelf: Shelf; err?: string } {
@@ -328,11 +361,11 @@ export function autoLevelPicks(b: DevBuild): void {
   }
 }
 
-/** 期望资金：前 wave-1 波按收入目标曲线（× 章节掉落倍率）累加，再加天赋开局资金 */
+/** 期望资金：前 wave-1 波按期望刷怪数 × 固定番茄籽价值 × 拾取率校准累加，再加天赋开局资金 */
 export function expectedBudget(b: DevBuild): number {
   applyBuild(b);
   let sum = treeTotals().startSeeds;
-  for (let w = 1; w < b.wave; w++) sum += incomeTarget(w) * run.chapter.lootMult;
+  for (let w = 1; w < b.wave; w++) sum += expectedSpawns(w) * seedValue() * BALANCE.income.calib;
   return Math.round(sum);
 }
 

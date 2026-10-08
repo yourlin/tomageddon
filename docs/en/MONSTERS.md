@@ -40,7 +40,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 | <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](#enemy-rat) | Charger | 12 (+65%/wave) | 2 (+0.7/wave) | 115 | 2 | [Bleed](SKILLS.md#status-bleed) 3s (30%) |
 | <img src="../images/enemy/ice_cube.png" width="32" height="32" alt=""> [Ice Cube](#enemy-ice_cube) | Shooter | 15 (+65%/wave) | 2 (+0.6/wave) | 70 | 2 | [Slow](SKILLS.md#status-slow) 2s |
 | <img src="../images/enemy/trash_bag.png" width="32" height="32" alt=""> [Trash Bag](#enemy-trash_bag) | Splits on death | 28 (+75%/wave) | 3 (+0.7/wave) | 65 | 3 | - |
-| <img src="../images/enemy/robot_can.png" width="32" height="32" alt=""> [Can Bot](#enemy-robot_can) | Shooter | 20 (+70%/wave) | 2 (+0.7/wave) | 90 | 3 | - |
+| <img src="../images/enemy/robot_can.png" width="32" height="32" alt=""> [Can Bot](#enemy-robot_can) | Shooter | 16 (+70%/wave) | 2 (+0.7/wave) | 90 | 3 | - |
 | <img src="../images/enemy/bee.png" width="32" height="32" alt=""> [Venom Bee](#enemy-bee) | Wander | 5 (+55%/wave) | 1 (+0.55/wave) | 160 | 1 | [Poison](SKILLS.md#status-poison) 3s |
 | <img src="../images/enemy/worm.png" width="32" height="32" alt=""> [Mud Worm](#enemy-worm) | Charger | 9 (+60%/wave) | 2 (+0.6/wave) | 90 | 1 | - |
 | <img src="../images/enemy/frost_mosquito.png" width="32" height="32" alt=""> [Frost Mosquito](#enemy-frost_mosquito) | Wander | 5 (+55%/wave) | 1 (+0.5/wave) | 140 | 1 | [Freeze](SKILLS.md#status-freeze) 0.5s (5%), [Slow](SKILLS.md#status-slow) 2s |
@@ -109,1614 +109,1258 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 | <img src="../images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [Moldy Pumpkin](#enemy-moldy_pumpkin) | Splits on death | 30 (+75%/wave) | 3 (+0.7/wave) | 65 | 3 | - |
 | <img src="../images/enemy/compost_heap.png" width="32" height="32" alt=""> [Compost Bin](#enemy-compost_heap) | Summoner | 34 (+80%/wave) | 3 (+0.65/wave) | 45 | 4 | - |
 | <img src="../images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [Rotheart Cabbage](#enemy-rot_cabbage) | Chase | 32 (+80%/wave) | 3 (+0.75/wave) | 75 | 3 | [Rot](SKILLS.md#status-rot) 3s |
-| <img src="../images/enemy/zombie_carrot.png" width="32" height="32" alt=""> [Zombie Carrot](#enemy-zombie_carrot) | Charger | 24 (+75%/wave) | 3 (+0.8/wave) | 80 | 3 | [Rot](SKILLS.md#status-rot) 3s |
+| <img src="../images/enemy/zombie_carrot.png" width="32" height="32" alt=""> [Zombie Carrot](#enemy-zombie_carrot) | Charger | 24 (+75%/wave) | 3 (+0.65/wave) | 80 | 3 | [Rot](SKILLS.md#status-rot) 3s |
 | <img src="../images/enemy/rot_sprinkler.png" width="32" height="32" alt=""> [Rot Sprinkler](#enemy-rot_sprinkler) | Healer | 22 (+70%/wave) | 2 (+0.5/wave) | 70 | 3 | - |
 | <img src="../images/enemy/blight_onion.png" width="32" height="32" alt=""> [Blight Onion](#enemy-blight_onion) | Shooter | 15 (+65%/wave) | 2 (+0.6/wave) | 95 | 2 | [Blind](SKILLS.md#status-blind) 1.5s (35%) |
 
 <a id="enemy-mold"></a>
 
-### Mold Blob
-
-<img src="../images/enemy/mold.png" width="96" height="96" alt="">
-
-> The most common pest, creeping slowly toward you.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 5 (+45%/wave) |
-| Damage | 1 (+0.6/wave) |
-| Speed | 95 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 1+; [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 1~8; [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 1~6; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 1~5; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 1~4 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/mold.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Mold Blob</th></tr>
+<tr><td colspan="2"><i>The most common pest, creeping slowly toward you.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>5 (+45%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 1+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 1~8; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 1~6; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 1~5; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 1~5</td></tr>
+</table>
 
 <a id="enemy-fly"></a>
 
-### Fruit Fly
-
-<img src="../images/enemy/fly.png" width="96" height="96" alt="">
-
-> Fast but fragile, flitting around erratically.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 3 (+50%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 150 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 2+; [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 1+; [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 1+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 1~6; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 1~6 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/fly.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Fruit Fly</th></tr>
+<tr><td colspan="2"><i>Fast but fragile, flitting around erratically.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>3 (+50%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>150</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 2+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 1+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 1+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 1~8; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 1~9</td></tr>
+</table>
 
 <a id="enemy-maggot"></a>
 
-### Maggot
-
-<img src="../images/enemy/maggot.png" width="96" height="96" alt="">
-
-> Winds up, then charges at high speed.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 7 (+55%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 70 |
-| Seeds dropped | 1 |
-| Special | Charges every 3s |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 4+; [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/maggot.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Maggot</th></tr>
+<tr><td colspan="2"><i>Winds up, then charges at high speed.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>7 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 4+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-rotten_apple"></a>
 
-### Rotten Apple
-
-<img src="../images/enemy/rotten_apple.png" width="96" height="96" alt="">
-
-> Keeps its distance and spits rotten apple cores.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 6 (+55%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 80 |
-| Seeds dropped | 2 |
-| Special | Shoots every 2.6s |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 3+; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 2+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/rotten_apple.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rotten Apple</th></tr>
+<tr><td colspan="2"><i>Keeps its distance and spits rotten apple cores.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>6 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Shoots every 2.6s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 3+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-cockroach"></a>
 
-### Cockroach
-
-<img src="../images/enemy/cockroach.png" width="96" height="96" alt="">
-
-> Thick-skinned and hard to knock back.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 22 (+70%/wave) |
-| Damage | 2 (+0.8/wave) |
-| Speed | 85 |
-| Seeds dropped | 2 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 7+; [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 5+; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 3+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/cockroach.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Cockroach</th></tr>
+<tr><td colspan="2"><i>Thick-skinned and hard to knock back.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>22 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.8/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>85</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 7+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 5+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-ant"></a>
 
-### Army Ant
-
-<img src="../images/enemy/ant.png" width="96" height="96" alt="">
-
-> Always shows up with the whole squad.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 2 (+45%/wave) |
-| Damage | 1 (+0.4/wave) |
-| Speed | 150 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 6+; [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 3+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/ant.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Army Ant</th></tr>
+<tr><td colspan="2"><i>Always shows up with the whole squad.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>2 (+45%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>150</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 6+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-beetle"></a>
 
-### Bomb Beetle
-
-<img src="../images/enemy/beetle.png" width="96" height="96" alt="">
-
-> Blows itself up up close. Dodge it!
-
-| Field | Value |
-| --- | --- |
-| Behavior | Bomber |
-| HP | 6 (+55%/wave) |
-| Damage | 4 (+0.9/wave) |
-| Speed | 135 |
-| Seeds dropped | 1 |
-| Special | Blast radius 85 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 9+; [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 10+; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 6+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 6+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/beetle.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Bomb Beetle</th></tr>
+<tr><td colspan="2"><i>Blows itself up up close. Dodge it!</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Bomber</td></tr>
+<tr><td nowrap>HP</td><td>6 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>4 (+0.9/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>135</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Special</td><td>Blast radius 85</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 9+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 10+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 8+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-snail"></a>
 
-### Snot Snail
-
-<img src="../images/enemy/snail.png" width="96" height="96" alt="">
-
-> Crawls slowly, leaving a trail of slowing slime.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Slime trail |
-| HP | 16 (+70%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 50 |
-| Seeds dropped | 2 |
-| Inflicts | [Sticky](SKILLS.md#status-sticky) 2s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 2+; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/snail.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Snot Snail</th></tr>
+<tr><td colspan="2"><i>Crawls slowly, leaving a trail of slowing slime.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Slime trail</td></tr>
+<tr><td nowrap>HP</td><td>16 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>50</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-sticky">Sticky</a> 2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 2+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-spider"></a>
 
-### Venom Spider
-
-<img src="../images/enemy/spider.png" width="96" height="96" alt="">
-
-> Spits slowing webs laced with poison.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 10 (+60%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 100 |
-| Seeds dropped | 2 |
-| Inflicts | [Poison](SKILLS.md#status-poison) 3s |
-| Special | Shoots 2× every 3s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 5+; [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 6+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 5+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 5+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/spider.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Venom Spider</th></tr>
+<tr><td colspan="2"><i>Spits slowing webs laced with poison.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>100</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-poison">Poison</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 2× every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 5+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 6+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 8+</td></tr>
+</table>
 
 <a id="enemy-splitter"></a>
 
-### Split Mold
-
-<img src="../images/enemy/splitter.png" width="96" height="96" alt="">
-
-> Splits into several Mold Blobs on death.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Splits on death |
-| HP | 18 (+70%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 75 |
-| Seeds dropped | 2 |
-| Special | Splits into 3× [Mold Blob](#enemy-mold) on death |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 11+; [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 6+; [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 9+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 7+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 7+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/splitter.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Split Mold</th></tr>
+<tr><td colspan="2"><i>Splits into several Mold Blobs on death.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Splits on death</td></tr>
+<tr><td nowrap>HP</td><td>18 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Splits into 3× <a href="#enemy-mold">Mold Blob</a> on death</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 11+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 6+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 9+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 9+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 11+</td></tr>
+</table>
 
 <a id="enemy-mushroom"></a>
 
-### Toxic Shroom
-
-<img src="../images/enemy/mushroom.png" width="96" height="96" alt="">
-
-> Heals nearby monsters. Kill it first!
-
-| Field | Value |
-| --- | --- |
-| Behavior | Healer |
-| HP | 14 (+65%/wave) |
-| Damage | 1 (+0.4/wave) |
-| Speed | 60 |
-| Seeds dropped | 3 |
-| Special | Heals allies within 180 for 0.2 |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 5+; [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 7+; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 8+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 5+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 5+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/mushroom.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Toxic Shroom</th></tr>
+<tr><td colspan="2"><i>Heals nearby monsters. Kill it first!</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Healer</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Heals allies within 180 for 0.2</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 5+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 7+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 8+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 8+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
+</table>
 
 <a id="enemy-brood"></a>
 
-### Brood Mother
-
-<img src="../images/enemy/brood.png" width="96" height="96" alt="">
-
-> Keeps hatching Fruit Flies nonstop.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Summoner |
-| HP | 30 (+80%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 45 |
-| Seeds dropped | 4 |
-| Special | Summons 3× [Fruit Fly](#enemy-fly) |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 8+; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 5+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/brood.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Brood Mother</th></tr>
+<tr><td colspan="2"><i>Keeps hatching Fruit Flies nonstop.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Summoner</td></tr>
+<tr><td nowrap>HP</td><td>30 (+80%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>45</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>4</td></tr>
+<tr><td nowrap>Special</td><td>Summons 3× <a href="#enemy-fly">Fruit Fly</a></td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 8+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 8+</td></tr>
+</table>
 
 <a id="enemy-rat"></a>
 
-### Sewer Rat
-
-<img src="../images/enemy/rat.png" width="96" height="96" alt="">
-
-> A speedy rodent that rams in and bites to cause Bleed.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 12 (+65%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 115 |
-| Seeds dropped | 2 |
-| Inflicts | [Bleed](SKILLS.md#status-bleed) 3s (30%) |
-| Special | Charges every 3s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 7+; [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 5+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 5+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 6+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/rat.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Sewer Rat</th></tr>
+<tr><td colspan="2"><i>A speedy rodent that rams in and bites to cause Bleed.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>12 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>115</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-bleed">Bleed</a> 3s (30%)</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 7+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-ice_cube"></a>
 
-### Ice Cube
-
-<img src="../images/enemy/ice_cube.png" width="96" height="96" alt="">
-
-> Shoots ice shards in all directions that Slow you.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 15 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 70 |
-| Seeds dropped | 2 |
-| Inflicts | [Slow](SKILLS.md#status-slow) 2s |
-| Special | Shoots 6× every 3.2s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 3+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 4+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/ice_cube.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Ice Cube</th></tr>
+<tr><td colspan="2"><i>Shoots ice shards in all directions that Slow you.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>15 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-slow">Slow</a> 2s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 6× every 3.2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 3+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-trash_bag"></a>
 
-### Trash Bag
-
-<img src="../images/enemy/trash_bag.png" width="96" height="96" alt="">
-
-> Bursts open to release a swarm of Fruit Flies.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Splits on death |
-| HP | 28 (+75%/wave) |
-| Damage | 3 (+0.7/wave) |
-| Speed | 65 |
-| Seeds dropped | 3 |
-| Special | Splits into 4× [Fruit Fly](#enemy-fly) on death |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 5+; [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 5+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/trash_bag.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Trash Bag</th></tr>
+<tr><td colspan="2"><i>Bursts open to release a swarm of Fruit Flies.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Splits on death</td></tr>
+<tr><td nowrap>HP</td><td>28 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>65</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Splits into 4× <a href="#enemy-fly">Fruit Fly</a> on death</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-robot_can"></a>
 
-### Can Bot
-
-<img src="../images/enemy/robot_can.png" width="96" height="96" alt="">
-
-> A haywire robot that fires three-round bursts.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 20 (+70%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 90 |
-| Seeds dropped | 3 |
-| Special | Shoots 3× every 2.4s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/robot_can.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Can Bot</th></tr>
+<tr><td colspan="2"><i>A haywire robot that fires three-round bursts.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>16 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 3× every 2.8s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-bee"></a>
 
-### Venom Bee
-
-<img src="../images/enemy/bee.png" width="96" height="96" alt="">
-
-> Stings with Poison and travels in swarms.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 5 (+55%/wave) |
-| Damage | 1 (+0.55/wave) |
-| Speed | 160 |
-| Seeds dropped | 1 |
-| Inflicts | [Poison](SKILLS.md#status-poison) 3s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 4+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/bee.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Venom Bee</th></tr>
+<tr><td colspan="2"><i>Stings with Poison and travels in swarms.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>5 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.55/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>160</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-poison">Poison</a> 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-worm"></a>
 
-### Mud Worm
-
-<img src="../images/enemy/worm.png" width="96" height="96" alt="">
-
-> Bursts out of the soil for a surprise attack.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 9 (+60%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 90 |
-| Seeds dropped | 1 |
-| Special | Charges every 2.6s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 4+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/worm.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Mud Worm</th></tr>
+<tr><td colspan="2"><i>Bursts out of the soil for a surprise attack.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>9 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 2.6s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-frost_mosquito"></a>
 
-### Frost Mosquito
-
-<img src="../images/enemy/frost_mosquito.png" width="96" height="96" alt="">
-
-> Its bite can Freeze you solid.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 5 (+55%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 140 |
-| Seeds dropped | 1 |
-| Inflicts | [Freeze](SKILLS.md#status-freeze) 0.5s (5%), [Slow](SKILLS.md#status-slow) 2s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 4+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/frost_mosquito.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Frost Mosquito</th></tr>
+<tr><td colspan="2"><i>Its bite can Freeze you solid.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>5 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>140</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-freeze">Freeze</a> 0.5s (5%), <a href="SKILLS.md#status-slow">Slow</a> 2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-frozen_shrimp"></a>
 
-### Frozen Shrimp
-
-<img src="../images/enemy/frozen_shrimp.png" width="96" height="96" alt="">
-
-> A rock-hard frozen shrimp whose charge Slows you.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 18 (+70%/wave) |
-| Damage | 3 (+0.7/wave) |
-| Speed | 80 |
-| Seeds dropped | 2 |
-| Inflicts | 2× [Slow](SKILLS.md#status-slow) 3s |
-| Special | Charges every 3s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 6+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/frozen_shrimp.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Frozen Shrimp</th></tr>
+<tr><td colspan="2"><i>A rock-hard frozen shrimp whose charge Slows you.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>18 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td>2× <a href="SKILLS.md#status-slow">Slow</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-can_crab"></a>
 
-### Can Crab
-
-<img src="../images/enemy/can_crab.png" width="96" height="96" alt="">
-
-> A hermit crab wearing a soda can that reflects damage.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 30 (+75%/wave) |
-| Damage | 3 (+0.7/wave) |
-| Speed | 70 |
-| Seeds dropped | 3 |
-| Inflicts | [Armor Break](SKILLS.md#status-armorBreak) 4s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 7+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/can_crab.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Can Crab</th></tr>
+<tr><td colspan="2"><i>A hermit crab wearing a soda can that reflects damage.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>30 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-armorBreak">Armor Break</a> 4s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 7+</td></tr>
+</table>
 
 <a id="enemy-rag_ghost"></a>
 
-### Rag Ghost
-
-<img src="../images/enemy/rag_ghost.png" width="96" height="96" alt="">
-
-> A ghost born from a dirty dishrag; its touch Blinds.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 14 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 105 |
-| Seeds dropped | 2 |
-| Inflicts | [Blind](SKILLS.md#status-blind) 3s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 5+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/rag_ghost.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rag Ghost</th></tr>
+<tr><td colspan="2"><i>A ghost born from a dirty dishrag; its touch Blinds.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>105</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-blind">Blind</a> 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-oil_blob"></a>
 
-### Grease Blob
-
-<img src="../images/enemy/oil_blob.png" width="96" height="96" alt="">
-
-> Leaves slick oil puddles; contact causes Weaken.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Slime trail |
-| HP | 20 (+70%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 70 |
-| Seeds dropped | 2 |
-| Inflicts | [Weaken](SKILLS.md#status-weaken) 3s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/oil_blob.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Grease Blob</th></tr>
+<tr><td colspan="2"><i>Leaves slick oil puddles; contact causes Weaken.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Slime trail</td></tr>
+<tr><td nowrap>HP</td><td>20 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-weaken">Weaken</a> 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-gear_bug"></a>
 
-### Gear Bug
-
-<img src="../images/enemy/gear_bug.png" width="96" height="96" alt="">
-
-> A mechanical beetle that fires Armor Break spikes.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 16 (+70%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 95 |
-| Seeds dropped | 2 |
-| Inflicts | [Armor Break](SKILLS.md#status-armorBreak) 4s |
-| Special | Shoots 2× every 2.2s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 4+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/gear_bug.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Gear Bug</th></tr>
+<tr><td colspan="2"><i>A mechanical beetle that fires Armor Break spikes.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>16 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-armorBreak">Armor Break</a> 4s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 2× every 2.8s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-curse_doll"></a>
 
-### Curse Doll
-
-<img src="../images/enemy/curse_doll.png" width="96" height="96" alt="">
-
-> A drifting rag doll whose Curse stops you from healing.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 12 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 90 |
-| Seeds dropped | 3 |
-| Inflicts | [Curse](SKILLS.md#status-curse) 3s |
-| Special | Shoots every 3s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 5+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/curse_doll.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Curse Doll</th></tr>
+<tr><td colspan="2"><i>A drifting rag doll whose Curse stops you from healing.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>12 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-curse">Curse</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-burnt_toast"></a>
 
-### Burnt Toast
-
-<img src="../images/enemy/burnt_toast.png" width="96" height="96" alt="">
-
-> Toast left in way too long; its touch can Burn.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 8 (+55%/wave) |
-| Damage | 1 (+0.6/wave) |
-| Speed | 90 |
-| Seeds dropped | 1 |
-| Inflicts | [Burn](SKILLS.md#status-burn) 2s (40%) |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/burnt_toast.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Burnt Toast</th></tr>
+<tr><td colspan="2"><i>Toast left in way too long; its touch can Burn.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>8 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-burn">Burn</a> 2s (40%)</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-grease_drop"></a>
 
-### Grease Drop
-
-<img src="../images/enemy/grease_drop.png" width="96" height="96" alt="">
-
-> Hot oil droplets spattering all over the place.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 3 (+45%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 155 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 2+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/grease_drop.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Grease Drop</th></tr>
+<tr><td colspan="2"><i>Hot oil droplets spattering all over the place.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>3 (+45%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>155</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-dust_bunny"></a>
 
-### Dust Bunny
-
-<img src="../images/enemy/dust_bunny.png" width="96" height="96" alt="">
-
-> A fluffy dust ball that drifts out from under the fridge.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 4 (+50%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 120 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 3+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/dust_bunny.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Dust Bunny</th></tr>
+<tr><td colspan="2"><i>A fluffy dust ball that drifts out from under the fridge.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>4 (+50%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>120</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-sour_milk"></a>
 
-### Sour Milk Carton
-
-<img src="../images/enemy/sour_milk.png" width="96" height="96" alt="">
-
-> An expired carton that squirts sour milk from afar.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 6 (+55%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 75 |
-| Seeds dropped | 2 |
-| Special | Shoots every 2.8s |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 4+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/sour_milk.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Sour Milk Carton</th></tr>
+<tr><td colspan="2"><i>An expired carton that squirts sour milk from afar.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>6 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Shoots every 2.8s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-crumb_mite"></a>
 
-### Crumb Mite
-
-<img src="../images/enemy/crumb_mite.png" width="96" height="96" alt="">
-
-> Tiny mites that swarm out of bread crumbs.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 2 (+40%/wave) |
-| Damage | 1 (+0.4/wave) |
-| Speed | 140 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 2+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/crumb_mite.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Crumb Mite</th></tr>
+<tr><td colspan="2"><i>Tiny mites that swarm out of bread crumbs.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>2 (+40%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>140</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-moldy_bread"></a>
 
-### Moldy Bread
-
-<img src="../images/enemy/moldy_bread.png" width="96" height="96" alt="">
-
-> Crumbles into a swarm of Crumb Mites when broken.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Splits on death |
-| HP | 14 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 70 |
-| Seeds dropped | 2 |
-| Special | Splits into 3× [Crumb Mite](#enemy-crumb_mite) on death |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 9+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/moldy_bread.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Moldy Bread</th></tr>
+<tr><td colspan="2"><i>Crumbles into a swarm of Crumb Mites when broken.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Splits on death</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Splits into 3× <a href="#enemy-crumb_mite">Crumb Mite</a> on death</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-stink_egg"></a>
 
-### Stink Egg
-
-<img src="../images/enemy/stink_egg.png" width="96" height="96" alt="">
-
-> Rolls up and bursts into a Poison stink cloud.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Bomber |
-| HP | 5 (+50%/wave) |
-| Damage | 3 (+0.8/wave) |
-| Speed | 130 |
-| Seeds dropped | 1 |
-| Inflicts | 2× [Poison](SKILLS.md#status-poison) 3s |
-| Special | Blast radius 80 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 8+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/stink_egg.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Stink Egg</th></tr>
+<tr><td colspan="2"><i>Rolls up and bursts into a Poison stink cloud.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Bomber</td></tr>
+<tr><td nowrap>HP</td><td>5 (+50%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.8/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>130</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Inflicts</td><td>2× <a href="SKILLS.md#status-poison">Poison</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Blast radius 80</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 8+</td></tr>
+</table>
 
 <a id="enemy-sponge_slug"></a>
 
-### Dish Sponge
-
-<img src="../images/enemy/sponge_slug.png" width="96" height="96" alt="">
-
-> A soggy sponge leaving a Sticky trail of dirty water.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Slime trail |
-| HP | 12 (+60%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 60 |
-| Seeds dropped | 2 |
-| Inflicts | [Sticky](SKILLS.md#status-sticky) 2s |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/sponge_slug.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Dish Sponge</th></tr>
+<tr><td colspan="2"><i>A soggy sponge leaving a Sticky trail of dirty water.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Slime trail</td></tr>
+<tr><td nowrap>HP</td><td>12 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-sticky">Sticky</a> 2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-teabag_ghost"></a>
 
-### Teabag Ghost
-
-<img src="../images/enemy/teabag_ghost.png" width="96" height="96" alt="">
-
-> A soggy teabag that steeps its allies back to health.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Healer |
-| HP | 10 (+60%/wave) |
-| Damage | 1 (+0.4/wave) |
-| Speed | 65 |
-| Seeds dropped | 3 |
-| Special | Heals allies within 170 for 0.15 |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 10+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/teabag_ghost.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Teabag Ghost</th></tr>
+<tr><td colspan="2"><i>A soggy teabag that steeps its allies back to health.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Healer</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>65</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Heals allies within 170 for 0.15</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 10+</td></tr>
+</table>
 
 <a id="enemy-pan_beetle"></a>
 
-### Pan Beetle
-
-<img src="../images/enemy/pan_beetle.png" width="96" height="96" alt="">
-
-> Lurks under the frying pan, then charges out.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 10 (+60%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 80 |
-| Seeds dropped | 1 |
-| Special | Charges every 3s |
-| Appears in | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) waves 5+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/pan_beetle.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Pan Beetle</th></tr>
+<tr><td colspan="2"><i>Lurks under the frying pan, then charges out.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-aphid"></a>
 
-### Aphid
-
-<img src="../images/enemy/aphid.png" width="96" height="96" alt="">
-
-> Tiny green bugs that come in thick clusters.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 2 (+45%/wave) |
-| Damage | 1 (+0.4/wave) |
-| Speed | 135 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 2+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 1~7 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/aphid.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Aphid</th></tr>
+<tr><td colspan="2"><i>Tiny green bugs that come in thick clusters.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>2 (+45%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>135</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 2+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 1~11</td></tr>
+</table>
 
 <a id="enemy-garden_slug"></a>
 
-### Garden Slug
-
-<img src="../images/enemy/garden_slug.png" width="96" height="96" alt="">
-
-> A slimy slug that leaves Sticky goo everywhere.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Slime trail |
-| HP | 14 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 55 |
-| Seeds dropped | 2 |
-| Inflicts | [Sticky](SKILLS.md#status-sticky) 2s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 4+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/garden_slug.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Garden Slug</th></tr>
+<tr><td colspan="2"><i>A slimy slug that leaves Sticky goo everywhere.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Slime trail</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-sticky">Sticky</a> 2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 4+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-weevil"></a>
 
-### Weevil
-
-<img src="../images/enemy/weevil.png" width="96" height="96" alt="">
-
-> A long-snouted beetle that lowers its head and rams.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 11 (+60%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 85 |
-| Seeds dropped | 2 |
-| Special | Charges every 2.8s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 5+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 5+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/weevil.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Weevil</th></tr>
+<tr><td colspan="2"><i>A long-snouted beetle that lowers its head and rams.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>11 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>85</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 2.8s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 5+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-thorn_weed"></a>
 
-### Thorn Weed
-
-<img src="../images/enemy/thorn_weed.png" width="96" height="96" alt="">
-
-> Flings thorn volleys that cause Bleed.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 8 (+55%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 60 |
-| Seeds dropped | 2 |
-| Inflicts | [Bleed](SKILLS.md#status-bleed) 3s (35%) |
-| Special | Shoots 3× every 2.8s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 6+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 4+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/thorn_weed.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Thorn Weed</th></tr>
+<tr><td colspan="2"><i>Flings thorn volleys that cause Bleed.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>8 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-bleed">Bleed</a> 3s (35%)</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 3× every 2.8s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 6+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-caterpillar"></a>
 
-### Cabbage Worm
-
-<img src="../images/enemy/caterpillar.png" width="96" height="96" alt="">
-
-> A chubby caterpillar fattened on your veggies.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 9 (+60%/wave) |
-| Damage | 1 (+0.6/wave) |
-| Speed | 90 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 2+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 1~8 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/caterpillar.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Cabbage Worm</th></tr>
+<tr><td colspan="2"><i>A chubby caterpillar fattened on your veggies.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>9 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 2+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 1~15</td></tr>
+</table>
 
 <a id="enemy-ladybug_bomb"></a>
 
-### Boom Ladybug
-
-<img src="../images/enemy/ladybug_bomb.png" width="96" height="96" alt="">
-
-> Those spots on its back? Fuses.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Bomber |
-| HP | 6 (+55%/wave) |
-| Damage | 4 (+0.85/wave) |
-| Speed | 125 |
-| Seeds dropped | 1 |
-| Special | Blast radius 85 |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 8+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/ladybug_bomb.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Boom Ladybug</th></tr>
+<tr><td colspan="2"><i>Those spots on its back? Fuses.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Bomber</td></tr>
+<tr><td nowrap>HP</td><td>6 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>4 (+0.85/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>125</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Special</td><td>Blast radius 85</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 8+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
+</table>
 
 <a id="enemy-rotten_potato"></a>
 
-### Rotten Potato
-
-<img src="../images/enemy/rotten_potato.png" width="96" height="96" alt="">
-
-> A hollowed-out spud packed with Aphids.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Splits on death |
-| HP | 20 (+70%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 60 |
-| Seeds dropped | 3 |
-| Special | Splits into 4× [Aphid](#enemy-aphid) on death |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 10+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 7+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/rotten_potato.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rotten Potato</th></tr>
+<tr><td colspan="2"><i>A hollowed-out spud packed with Aphids.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Splits on death</td></tr>
+<tr><td nowrap>HP</td><td>20 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Splits into 4× <a href="#enemy-aphid">Aphid</a> on death</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 10+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 13+</td></tr>
+</table>
 
 <a id="enemy-locust"></a>
 
-### Locust
-
-<img src="../images/enemy/locust.png" width="96" height="96" alt="">
-
-> Sweeps across the garden like a gust of wind.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 4 (+50%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 165 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 3+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/locust.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Locust</th></tr>
+<tr><td colspan="2"><i>Sweeps across the garden like a gust of wind.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>4 (+50%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>165</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-mantis"></a>
 
-### Blade Mantis
-
-<img src="../images/enemy/mantis.png" width="96" height="96" alt="">
-
-> Dashes in with scythe arms that cause Bleed.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 12 (+65%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 95 |
-| Seeds dropped | 2 |
-| Inflicts | [Bleed](SKILLS.md#status-bleed) 3s (40%) |
-| Special | Charges every 3.2s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 9+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 8+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 5+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/mantis.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Blade Mantis</th></tr>
+<tr><td colspan="2"><i>Dashes in with scythe arms that cause Bleed.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>12 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-bleed">Bleed</a> 3s (40%)</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3.2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 9+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 13+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-pollen_bloom"></a>
 
-### Toxic Bloom
-
-<img src="../images/enemy/pollen_bloom.png" width="96" height="96" alt="">
-
-> Spits clumps of Poison pollen.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 7 (+55%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 55 |
-| Seeds dropped | 2 |
-| Inflicts | [Poison](SKILLS.md#status-poison) 3s |
-| Special | Shoots 2× every 3s |
-| Appears in | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) waves 7+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 6+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/pollen_bloom.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Toxic Bloom</th></tr>
+<tr><td colspan="2"><i>Spits clumps of Poison pollen.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>7 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-poison">Poison</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 2× every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 7+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-frost_mite"></a>
 
-### Frost Mite
-
-<img src="../images/enemy/frost_mite.png" width="96" height="96" alt="">
-
-> Tiny bugs hiding in the frost layer.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 3 (+45%/wave) |
-| Damage | 1 (+0.4/wave) |
-| Speed | 135 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 2+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/frost_mite.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Frost Mite</th></tr>
+<tr><td colspan="2"><i>Tiny bugs hiding in the frost layer.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>3 (+45%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>135</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-freezer_burn"></a>
 
-### Freezer Burn
-
-<img src="../images/enemy/freezer_burn.png" width="96" height="96" alt="">
-
-> A rock-hard hunk of frozen meat that refuses to budge.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 24 (+75%/wave) |
-| Damage | 3 (+0.7/wave) |
-| Speed | 65 |
-| Seeds dropped | 3 |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 9+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/freezer_burn.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Freezer Burn</th></tr>
+<tr><td colspan="2"><i>A rock-hard hunk of frozen meat that refuses to budge.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>24 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>65</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-ice_slime"></a>
 
-### Ice Slime
-
-<img src="../images/enemy/ice_slime.png" width="96" height="96" alt="">
-
-> Shatters into a swarm of Frost Mites on death.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Splits on death |
-| HP | 16 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 75 |
-| Seeds dropped | 2 |
-| Special | Splits into 3× [Frost Mite](#enemy-frost_mite) on death |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 7+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/ice_slime.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Ice Slime</th></tr>
+<tr><td colspan="2"><i>Shatters into a swarm of Frost Mites on death.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Splits on death</td></tr>
+<tr><td nowrap>HP</td><td>16 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Splits into 3× <a href="#enemy-frost_mite">Frost Mite</a> on death</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 7+</td></tr>
+</table>
 
 <a id="enemy-moldy_cheese"></a>
 
-### Moldy Cheese
-
-<img src="../images/enemy/moldy_cheese.png" width="96" height="96" alt="">
-
-> Fuzzy cheese dripping a Poison mold trail.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Slime trail |
-| HP | 14 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 60 |
-| Seeds dropped | 2 |
-| Inflicts | [Poison](SKILLS.md#status-poison) 3s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 5+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/moldy_cheese.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Moldy Cheese</th></tr>
+<tr><td colspan="2"><i>Fuzzy cheese dripping a Poison mold trail.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Slime trail</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-poison">Poison</a> 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-popsicle_bat"></a>
 
-### Popsicle Bat
-
-<img src="../images/enemy/popsicle_bat.png" width="96" height="96" alt="">
-
-> A popsicle turned bat, flapping around in pairs.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 6 (+55%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 150 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 2+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/popsicle_bat.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Popsicle Bat</th></tr>
+<tr><td colspan="2"><i>A popsicle turned bat, flapping around in pairs.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>6 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>150</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-frozen_pea"></a>
 
-### Frozen Pea
-
-<img src="../images/enemy/frozen_pea.png" width="96" height="96" alt="">
-
-> Pops out of the freezer bag to fire icy peas.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 6 (+55%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 85 |
-| Seeds dropped | 1 |
-| Special | Shoots every 2.4s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/frozen_pea.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Frozen Pea</th></tr>
+<tr><td colspan="2"><i>Pops out of the freezer bag to fire icy peas.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>6 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>85</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Special</td><td>Shoots every 2.4s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-leftover_box"></a>
 
-### Leftover Box
-
-<img src="../images/enemy/leftover_box.png" width="96" height="96" alt="">
-
-> A forgotten lunchbox that keeps breeding Frost Mites.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Summoner |
-| HP | 26 (+75%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 45 |
-| Seeds dropped | 4 |
-| Special | Summons 3× [Frost Mite](#enemy-frost_mite) |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 10+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/leftover_box.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Leftover Box</th></tr>
+<tr><td colspan="2"><i>A forgotten lunchbox that keeps breeding Frost Mites.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Summoner</td></tr>
+<tr><td nowrap>HP</td><td>26 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>45</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>4</td></tr>
+<tr><td nowrap>Special</td><td>Summons 3× <a href="#enemy-frost_mite">Frost Mite</a></td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 10+</td></tr>
+</table>
 
 <a id="enemy-jelly_cube"></a>
 
-### Jelly Cube
-
-<img src="../images/enemy/jelly_cube.png" width="96" height="96" alt="">
-
-> Chilled jelly that bounces in to ram you.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 14 (+65%/wave) |
-| Damage | 2 (+0.65/wave) |
-| Speed | 80 |
-| Seeds dropped | 2 |
-| Special | Charges every 2.6s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 4+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/jelly_cube.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Jelly Cube</th></tr>
+<tr><td colspan="2"><i>Chilled jelly that bounces in to ram you.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.65/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 2.6s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-icicle_imp"></a>
 
-### Icicle Imp
-
-<img src="../images/enemy/icicle_imp.png" width="96" height="96" alt="">
-
-> Fires fans of sharp icicles that Slow.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 9 (+60%/wave) |
-| Damage | 2 (+0.55/wave) |
-| Speed | 90 |
-| Seeds dropped | 2 |
-| Inflicts | [Slow](SKILLS.md#status-slow) 2s |
-| Special | Shoots 3× every 3s |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 6+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/icicle_imp.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Icicle Imp</th></tr>
+<tr><td colspan="2"><i>Fires fans of sharp icicles that Slow.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>9 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.55/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-slow">Slow</a> 2s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 3× every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-frozen_soda"></a>
 
-### Frozen Soda
-
-<img src="../images/enemy/frozen_soda.png" width="96" height="96" alt="">
-
-> A bulging frozen can that bursts with a Freeze chance.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Bomber |
-| HP | 7 (+55%/wave) |
-| Damage | 4 (+0.85/wave) |
-| Speed | 120 |
-| Seeds dropped | 1 |
-| Inflicts | [Freeze](SKILLS.md#status-freeze) 0.6s (30%) |
-| Special | Blast radius 90 |
-| Appears in | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) waves 8+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/frozen_soda.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Frozen Soda</th></tr>
+<tr><td colspan="2"><i>A bulging frozen can that bursts with a Freeze chance.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Bomber</td></tr>
+<tr><td nowrap>HP</td><td>7 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>4 (+0.85/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>120</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-freeze">Freeze</a> 0.6s (30%)</td></tr>
+<tr><td nowrap>Special</td><td>Blast radius 90</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 8+</td></tr>
+</table>
 
 <a id="enemy-rust_crab"></a>
 
-### Rust Crab
-
-<img src="../images/enemy/rust_crab.png" width="96" height="96" alt="">
-
-> A rusty tin crab that charges sideways.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 22 (+70%/wave) |
-| Damage | 3 (+0.7/wave) |
-| Speed | 75 |
-| Seeds dropped | 2 |
-| Special | Charges every 3s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 7+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/rust_crab.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rust Crab</th></tr>
+<tr><td colspan="2"><i>A rusty tin crab that charges sideways.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>22 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 7+</td></tr>
+</table>
 
 <a id="enemy-oil_slick"></a>
 
-### Oil Slick
-
-<img src="../images/enemy/oil_slick.png" width="96" height="96" alt="">
-
-> A thin film of motor oil leaving a Sticky trail.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Slime trail |
-| HP | 16 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 75 |
-| Seeds dropped | 2 |
-| Inflicts | [Sticky](SKILLS.md#status-sticky) 2s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 5+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/oil_slick.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Oil Slick</th></tr>
+<tr><td colspan="2"><i>A thin film of motor oil leaving a Sticky trail.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Slime trail</td></tr>
+<tr><td nowrap>HP</td><td>16 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-sticky">Sticky</a> 2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-bag_ghost"></a>
 
-### Bag Ghost
-
-<img src="../images/enemy/bag_ghost.png" width="96" height="96" alt="">
-
-> A drifting plastic bag that wraps your face to Blind you.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 10 (+60%/wave) |
-| Damage | 2 (+0.55/wave) |
-| Speed | 115 |
-| Seeds dropped | 2 |
-| Inflicts | [Blind](SKILLS.md#status-blind) 2s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/bag_ghost.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Bag Ghost</th></tr>
+<tr><td colspan="2"><i>A drifting plastic bag that wraps your face to Blind you.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.55/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>115</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-blind">Blind</a> 2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-battery_mite"></a>
 
-### Leaky Battery
-
-<img src="../images/enemy/battery_mite.png" width="96" height="96" alt="">
-
-> A swollen battery that explodes with a Stun chance.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Bomber |
-| HP | 8 (+55%/wave) |
-| Damage | 4 (+0.85/wave) |
-| Speed | 125 |
-| Seeds dropped | 1 |
-| Inflicts | [Stun](SKILLS.md#status-stun) 0.5s (35%) |
-| Special | Blast radius 90 |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 6+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/battery_mite.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Leaky Battery</th></tr>
+<tr><td colspan="2"><i>A swollen battery that explodes with a Stun chance.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Bomber</td></tr>
+<tr><td nowrap>HP</td><td>8 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>4 (+0.85/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>125</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-stun">Stun</a> 0.5s (35%)</td></tr>
+<tr><td nowrap>Special</td><td>Blast radius 90</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-tire_roller"></a>
 
-### Tire Roller
-
-<img src="../images/enemy/tire_roller.png" width="96" height="96" alt="">
-
-> A scrap tire that rolls in and flattens everything.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 24 (+75%/wave) |
-| Damage | 3 (+0.75/wave) |
-| Speed | 70 |
-| Seeds dropped | 2 |
-| Special | Charges every 3.4s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 8+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/tire_roller.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Tire Roller</th></tr>
+<tr><td colspan="2"><i>A scrap tire that rolls in and flattens everything.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>24 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.75/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3.4s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 8+</td></tr>
+</table>
 
 <a id="enemy-scrap_drone"></a>
 
-### Scrap Drone
-
-<img src="../images/enemy/scrap_drone.png" width="96" height="96" alt="">
-
-> A cobbled-together drone that lobs scrap metal.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 10 (+60%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 110 |
-| Seeds dropped | 2 |
-| Special | Shoots every 2.5s |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 4+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/scrap_drone.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Scrap Drone</th></tr>
+<tr><td colspan="2"><i>A cobbled-together drone that lobs scrap metal.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>110</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Shoots every 2.5s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-glass_shard"></a>
 
-### Glass Shard
-
-<img src="../images/enemy/glass_shard.png" width="96" height="96" alt="">
-
-> Razor-sharp broken glass; one brush causes Bleed.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 12 (+60%/wave) |
-| Damage | 2 (+0.7/wave) |
-| Speed | 100 |
-| Seeds dropped | 2 |
-| Inflicts | [Bleed](SKILLS.md#status-bleed) 3s (40%) |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/glass_shard.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Glass Shard</th></tr>
+<tr><td colspan="2"><i>Razor-sharp broken glass; one brush causes Bleed.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>12 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>100</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-bleed">Bleed</a> 3s (40%)</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 3+</td></tr>
+</table>
 
 <a id="enemy-rusty_nail"></a>
 
-### Rusty Nail
-
-<img src="../images/enemy/rusty_nail.png" width="96" height="96" alt="">
-
-> Rusty nails that skitter around in packs.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 4 (+45%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 140 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 2+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/rusty_nail.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rusty Nail</th></tr>
+<tr><td colspan="2"><i>Rusty nails that skitter around in packs.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>4 (+45%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>140</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-junk_heap"></a>
 
-### Junk Heap
-
-<img src="../images/enemy/junk_heap.png" width="96" height="96" alt="">
-
-> A squirming pile of junk that shakes out Rusty Nails.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Summoner |
-| HP | 32 (+80%/wave) |
-| Damage | 3 (+0.65/wave) |
-| Speed | 40 |
-| Seeds dropped | 4 |
-| Special | Summons 3× [Rusty Nail](#enemy-rusty_nail) |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 11+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/junk_heap.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Junk Heap</th></tr>
+<tr><td colspan="2"><i>A squirming pile of junk that shakes out Rusty Nails.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Summoner</td></tr>
+<tr><td nowrap>HP</td><td>32 (+80%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.65/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>40</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>4</td></tr>
+<tr><td nowrap>Special</td><td>Summons 3× <a href="#enemy-rusty_nail">Rusty Nail</a></td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 11+</td></tr>
+</table>
 
 <a id="enemy-junk_radio"></a>
 
-### Busted Radio
-
-<img src="../images/enemy/junk_radio.png" width="96" height="96" alt="">
-
-> Blares static that heals nearby monsters.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Healer |
-| HP | 16 (+65%/wave) |
-| Damage | 1 (+0.4/wave) |
-| Speed | 55 |
-| Seeds dropped | 3 |
-| Special | Heals allies within 180 for 0.2 |
-| Appears in | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) waves 9+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/junk_radio.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Busted Radio</th></tr>
+<tr><td colspan="2"><i>Blares static that heals nearby monsters.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Healer</td></tr>
+<tr><td nowrap>HP</td><td>16 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Heals allies within 180 for 0.2</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 9+</td></tr>
+</table>
 
 <a id="enemy-conveyor_gremlin"></a>
 
-### Belt Gremlin
-
-<img src="../images/enemy/conveyor_gremlin.png" width="96" height="96" alt="">
-
-> Zips up and down the assembly line causing chaos.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 12 (+60%/wave) |
-| Damage | 2 (+0.45/wave) |
-| Speed | 125 |
-| Seeds dropped | 2 |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 2+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/conveyor_gremlin.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Belt Gremlin</th></tr>
+<tr><td colspan="2"><i>Zips up and down the assembly line causing chaos.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>12 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.45/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>125</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-sauce_drip"></a>
 
-### Sauce Drip
-
-<img src="../images/enemy/sauce_drip.png" width="96" height="96" alt="">
-
-> Drips of Ketchup that rush in as a group.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 5 (+50%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 130 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 2+ |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/sauce_drip.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Sauce Drip</th></tr>
+<tr><td colspan="2"><i>Drips of Ketchup that rush in as a group.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>5 (+50%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>130</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-cap_drone"></a>
 
-### Cap Drone
-
-<img src="../images/enemy/cap_drone.png" width="96" height="96" alt="">
-
-> A spinning bottle cap that fires soda bursts.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 12 (+65%/wave) |
-| Damage | 2 (+0.65/wave) |
-| Speed | 115 |
-| Seeds dropped | 2 |
-| Special | Shoots 2× every 2.2s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/cap_drone.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Cap Drone</th></tr>
+<tr><td colspan="2"><i>A spinning bottle cap that fires soda bursts.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>12 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.65/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>115</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 2× every 2.8s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 4+</td></tr>
+</table>
 
 <a id="enemy-ketchup_slime"></a>
 
-### Ketchup Slime
-
-<img src="../images/enemy/ketchup_slime.png" width="96" height="96" alt="">
-
-> Corrupted Ketchup that splatters into Sauce Drips.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Splits on death |
-| HP | 28 (+75%/wave) |
-| Damage | 3 (+0.7/wave) |
-| Speed | 70 |
-| Seeds dropped | 3 |
-| Special | Splits into 3× [Sauce Drip](#enemy-sauce_drip) on death |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 8+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 10+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 9+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/ketchup_slime.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Ketchup Slime</th></tr>
+<tr><td colspan="2"><i>Corrupted Ketchup that splatters into Sauce Drips.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Splits on death</td></tr>
+<tr><td nowrap>HP</td><td>28 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Splits into 3× <a href="#enemy-sauce_drip">Sauce Drip</a> on death</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 10+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 16+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 17+</td></tr>
+</table>
 
 <a id="enemy-steam_imp"></a>
 
-### Steam Imp
-
-<img src="../images/enemy/steam_imp.png" width="96" height="96" alt="">
-
-> Rushes in and erupts in scalding, Burning steam.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Bomber |
-| HP | 10 (+60%/wave) |
-| Damage | 4 (+0.9/wave) |
-| Speed | 135 |
-| Seeds dropped | 2 |
-| Inflicts | 2× [Burn](SKILLS.md#status-burn) 3s |
-| Special | Blast radius 95 |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 4+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/steam_imp.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Steam Imp</th></tr>
+<tr><td colspan="2"><i>Rushes in and erupts in scalding, Burning steam.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Bomber</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>4 (+0.9/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>135</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td>2× <a href="SKILLS.md#status-burn">Burn</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Blast radius 95</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-rivet_bot"></a>
 
-### Rivet Bot
-
-<img src="../images/enemy/rivet_bot.png" width="96" height="96" alt="">
-
-> A heavy riveted robot whose punches cause Armor Break.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 32 (+80%/wave) |
-| Damage | 3 (+0.75/wave) |
-| Speed | 75 |
-| Seeds dropped | 3 |
-| Inflicts | [Armor Break](SKILLS.md#status-armorBreak) 4s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 7+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 8+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 9+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/rivet_bot.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rivet Bot</th></tr>
+<tr><td colspan="2"><i>A heavy riveted robot whose punches cause Armor Break.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>32 (+80%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.75/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-armorBreak">Armor Break</a> 4s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 9+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 13+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 17+</td></tr>
+</table>
 
 <a id="enemy-label_ghost"></a>
 
-### Label Ghost
-
-<img src="../images/enemy/label_ghost.png" width="96" height="96" alt="">
-
-> A torn-off label whose Curse stops you from healing.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 14 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 110 |
-| Seeds dropped | 2 |
-| Inflicts | [Curse](SKILLS.md#status-curse) 3s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 5+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/label_ghost.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Label Ghost</th></tr>
+<tr><td colspan="2"><i>A torn-off label whose Curse stops you from healing.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>110</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-curse">Curse</a> 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+</td></tr>
+</table>
 
 <a id="enemy-bottling_bot"></a>
 
-### Bottling Bot
-
-<img src="../images/enemy/bottling_bot.png" width="96" height="96" alt="">
-
-> A haywire bottler pumping out endless Sauce Drips.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Summoner |
-| HP | 34 (+80%/wave) |
-| Damage | 3 (+0.65/wave) |
-| Speed | 45 |
-| Seeds dropped | 4 |
-| Special | Summons 3× [Sauce Drip](#enemy-sauce_drip) |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 11+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/bottling_bot.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Bottling Bot</th></tr>
+<tr><td colspan="2"><i>A haywire bottler pumping out endless Sauce Drips.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Summoner</td></tr>
+<tr><td nowrap>HP</td><td>34 (+80%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.65/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>45</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>4</td></tr>
+<tr><td nowrap>Special</td><td>Summons 3× <a href="#enemy-sauce_drip">Sauce Drip</a></td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 14+</td></tr>
+</table>
 
 <a id="enemy-welder_bug"></a>
 
-### Welder Bug
-
-<img src="../images/enemy/welder_bug.png" width="96" height="96" alt="">
-
-> Sprays welding sparks that Burn.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 14 (+65%/wave) |
-| Damage | 2 (+0.65/wave) |
-| Speed | 95 |
-| Seeds dropped | 2 |
-| Inflicts | [Burn](SKILLS.md#status-burn) 2s |
-| Special | Shoots 3× every 2.6s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 6+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/welder_bug.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Welder Bug</th></tr>
+<tr><td colspan="2"><i>Sprays welding sparks that Burn.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>14 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.65/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-burn">Burn</a> 2s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 3× every 2.6s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 8+</td></tr>
+</table>
 
 <a id="enemy-press_piston"></a>
 
-### Press Piston
-
-<img src="../images/enemy/press_piston.png" width="96" height="96" alt="">
-
-> Winds up, then slams forward with crushing force.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 26 (+75%/wave) |
-| Damage | 3 (+0.8/wave) |
-| Speed | 70 |
-| Seeds dropped | 3 |
-| Special | Charges every 3.4s |
-| Appears in | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) waves 9+; [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 11+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 10+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/press_piston.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Press Piston</th></tr>
+<tr><td colspan="2"><i>Winds up, then slams forward with crushing force.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>26 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.8/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3.4s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 12+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 18+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 19+</td></tr>
+</table>
 
 <a id="enemy-blight_sprout"></a>
 
-### Blight Sprout
-
-<img src="../images/enemy/blight_sprout.png" width="96" height="96" alt="">
-
-> Seedlings that rot the moment they sprout, rushing in as a swarm.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 5 (+50%/wave) |
-| Damage | 1 (+0.5/wave) |
-| Speed | 130 |
-| Seeds dropped | 1 |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 1~5; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 1~5 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/blight_sprout.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Blight Sprout</th></tr>
+<tr><td colspan="2"><i>Seedlings that rot the moment they sprout, rushing in as a swarm.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>5 (+50%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>130</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 1~8; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 1~9</td></tr>
+</table>
 
 <a id="enemy-fungus_gnat"></a>
 
-### Fungus Gnat
-
-<img src="../images/enemy/fungus_gnat.png" width="96" height="96" alt="">
-
-> Tiny gnats from soggy flowerpots; their bite may Blind.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Wander |
-| HP | 9 (+55%/wave) |
-| Damage | 2 (+0.45/wave) |
-| Speed | 145 |
-| Seeds dropped | 1 |
-| Inflicts | [Blind](SKILLS.md#status-blind) 1.2s (25%) |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 2+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 1+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/fungus_gnat.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Fungus Gnat</th></tr>
+<tr><td colspan="2"><i>Tiny gnats from soggy flowerpots; their bite may Blind.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Wander</td></tr>
+<tr><td nowrap>HP</td><td>9 (+55%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.45/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>145</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>1</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-blind">Blind</a> 1.2s (25%)</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 2+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 1+</td></tr>
+</table>
 
 <a id="enemy-rot_chili"></a>
 
-### Rotten Chili
-
-<img src="../images/enemy/rot_chili.png" width="96" height="96" alt="">
-
-> A moldy chili pepper that spits Burning seeds from afar.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 13 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 105 |
-| Seeds dropped | 2 |
-| Inflicts | [Burn](SKILLS.md#status-burn) 2s |
-| Special | Shoots 3× every 2.4s |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 3+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 4+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/rot_chili.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rotten Chili</th></tr>
+<tr><td colspan="2"><i>A moldy chili pepper that spits Burning seeds from afar.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>13 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>105</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-burn">Burn</a> 2s</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 3× every 3.5s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 4+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 7+</td></tr>
+</table>
 
 <a id="enemy-slime_cucumber"></a>
 
-### Sweaty Cucumber
-
-<img src="../images/enemy/slime_cucumber.png" width="96" height="96" alt="">
-
-> A fermenting cucumber that leaves a Sticky slime trail.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Slime trail |
-| HP | 18 (+70%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 80 |
-| Seeds dropped | 2 |
-| Inflicts | [Sticky](SKILLS.md#status-sticky) 1.5s |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 3+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 3+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/slime_cucumber.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Sweaty Cucumber</th></tr>
+<tr><td colspan="2"><i>A fermenting cucumber that leaves a Sticky slime trail.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Slime trail</td></tr>
+<tr><td nowrap>HP</td><td>18 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-sticky">Sticky</a> 1.5s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 4+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-spore_puff"></a>
 
-### Spore Puffball
-
-<img src="../images/enemy/spore_puff.png" width="96" height="96" alt="">
-
-> A round toxic puffball that bursts into Poison spores up close.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Bomber |
-| HP | 10 (+60%/wave) |
-| Damage | 4 (+0.85/wave) |
-| Speed | 125 |
-| Seeds dropped | 2 |
-| Inflicts | 3× [Poison](SKILLS.md#status-poison) 3s |
-| Special | Blast radius 100 |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 4+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 3+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/spore_puff.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Spore Puffball</th></tr>
+<tr><td colspan="2"><i>A round toxic puffball that bursts into Poison spores up close.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Bomber</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>4 (+0.85/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>125</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td>3× <a href="SKILLS.md#status-poison">Poison</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Blast radius 100</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 6+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-vine_lasher"></a>
 
-### Rot Vine
-
-<img src="../images/enemy/vine_lasher.png" width="96" height="96" alt="">
-
-> A barbed rotten vine that winds up and lashes in to cause Bleed.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 24 (+75%/wave) |
-| Damage | 3 (+0.8/wave) |
-| Speed | 75 |
-| Seeds dropped | 3 |
-| Inflicts | 2× [Bleed](SKILLS.md#status-bleed) 3s |
-| Special | Charges every 3.2s |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 5+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 4+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/vine_lasher.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rot Vine</th></tr>
+<tr><td colspan="2"><i>A barbed rotten vine that winds up and lashes in to cause Bleed.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>24 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.8/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Inflicts</td><td>2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3.2s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 8+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 7+</td></tr>
+</table>
 
 <a id="enemy-moldy_pumpkin"></a>
 
-### Moldy Pumpkin
-
-<img src="../images/enemy/moldy_pumpkin.png" width="96" height="96" alt="">
-
-> A rotten pumpkin that spills out Blight Sprouts when broken.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Splits on death |
-| HP | 30 (+75%/wave) |
-| Damage | 3 (+0.7/wave) |
-| Speed | 65 |
-| Seeds dropped | 3 |
-| Special | Splits into 4× [Blight Sprout](#enemy-blight_sprout) on death |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 7+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/moldy_pumpkin.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Moldy Pumpkin</th></tr>
+<tr><td colspan="2"><i>A rotten pumpkin that spills out Blight Sprouts when broken.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Splits on death</td></tr>
+<tr><td nowrap>HP</td><td>30 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.7/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>65</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Splits into 4× <a href="#enemy-blight_sprout">Blight Sprout</a> on death</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 11+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
+</table>
 
 <a id="enemy-compost_heap"></a>
 
-### Compost Bin
-
-<img src="../images/enemy/compost_heap.png" width="96" height="96" alt="">
-
-> A bubbling compost bin that keeps hatching Fungus Gnats.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Summoner |
-| HP | 34 (+80%/wave) |
-| Damage | 3 (+0.65/wave) |
-| Speed | 45 |
-| Seeds dropped | 4 |
-| Special | Summons 3× [Fungus Gnat](#enemy-fungus_gnat) |
-| Appears in | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) waves 9+; [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 8+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/compost_heap.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Compost Bin</th></tr>
+<tr><td colspan="2"><i>A bubbling compost bin that keeps hatching Fungus Gnats.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Summoner</td></tr>
+<tr><td nowrap>HP</td><td>34 (+80%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.65/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>45</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>4</td></tr>
+<tr><td nowrap>Special</td><td>Summons 3× <a href="#enemy-fungus_gnat">Fungus Gnat</a></td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 14+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 15+</td></tr>
+</table>
 
 <a id="enemy-rot_cabbage"></a>
 
-### Rotheart Cabbage
-
-<img src="../images/enemy/rot_cabbage.png" width="96" height="96" alt="">
-
-> A heavy head of rotten leaves whose touch spreads Rot.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Chase |
-| HP | 32 (+80%/wave) |
-| Damage | 3 (+0.75/wave) |
-| Speed | 75 |
-| Seeds dropped | 3 |
-| Inflicts | [Rot](SKILLS.md#status-rot) 3s |
-| Appears in | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 2+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/rot_cabbage.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rotheart Cabbage</th></tr>
+<tr><td colspan="2"><i>A heavy head of rotten leaves whose touch spreads Rot.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Chase</td></tr>
+<tr><td nowrap>HP</td><td>32 (+80%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.75/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-rot">Rot</a> 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 2+</td></tr>
+</table>
 
 <a id="enemy-zombie_carrot"></a>
 
-### Zombie Carrot
-
-<img src="../images/enemy/zombie_carrot.png" width="96" height="96" alt="">
-
-> A carrot pulled from the muck that winds up and dives at you.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Charger |
-| HP | 24 (+75%/wave) |
-| Damage | 3 (+0.8/wave) |
-| Speed | 80 |
-| Seeds dropped | 3 |
-| Inflicts | [Rot](SKILLS.md#status-rot) 3s |
-| Special | Charges every 3s |
-| Appears in | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 3+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/zombie_carrot.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Zombie Carrot</th></tr>
+<tr><td colspan="2"><i>A carrot pulled from the muck that winds up and dives at you.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Charger</td></tr>
+<tr><td nowrap>HP</td><td>24 (+75%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>3 (+0.65/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-rot">Rot</a> 3s</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 5+</td></tr>
+</table>
 
 <a id="enemy-rot_sprinkler"></a>
 
-### Rot Sprinkler
-
-<img src="../images/enemy/rot_sprinkler.png" width="96" height="96" alt="">
-
-> Waters nearby monsters with rot-water to heal them. Kill it first!
-
-| Field | Value |
-| --- | --- |
-| Behavior | Healer |
-| HP | 22 (+70%/wave) |
-| Damage | 2 (+0.5/wave) |
-| Speed | 70 |
-| Seeds dropped | 3 |
-| Special | Heals allies within 200 for 0.2 |
-| Appears in | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 6+ |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/enemy/rot_sprinkler.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Rot Sprinkler</th></tr>
+<tr><td colspan="2"><i>Waters nearby monsters with rot-water to heal them. Kill it first!</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Healer</td></tr>
+<tr><td nowrap>HP</td><td>22 (+70%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Special</td><td>Heals allies within 200 for 0.2</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
+</table>
 
 <a id="enemy-blight_onion"></a>
 
-### Blight Onion
-
-<img src="../images/enemy/blight_onion.png" width="96" height="96" alt="">
-
-> A tear-jerking rotten onion that sprays Blinding juice from range.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 15 (+65%/wave) |
-| Damage | 2 (+0.6/wave) |
-| Speed | 95 |
-| Seeds dropped | 2 |
-| Inflicts | [Blind](SKILLS.md#status-blind) 1.5s (35%) |
-| Special | Shoots 2× every 2.5s |
-| Appears in | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) waves 4+ |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/blight_onion.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Blight Onion</th></tr>
+<tr><td colspan="2"><i>A tear-jerking rotten onion that sprays Blinding juice from range.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>15 (+65%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.6/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>2</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-blind">Blind</a> 1.5s (35%)</td></tr>
+<tr><td nowrap>Special</td><td>Shoots 2× every 2.5s</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 7+</td></tr>
+</table>
 
 <a id="enemy-rabbit"></a>
 
-### Garden Bunny (terrain critter)
-
-<img src="../images/enemy/rabbit.png" width="96" height="96" alt="">
-
-> Pops out of its burrow and scurries off; drops Seeds and fruit when defeated.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Flee |
-| HP | 6 (+50%/wave) |
-| Damage | 0 (+0/wave) |
-| Speed | 170 |
-| Seeds dropped | 4 |
-| Appears in | Summoned or split from other monsters |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/enemy/rabbit.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Garden Bunny (terrain critter)</th></tr>
+<tr><td colspan="2"><i>Pops out of its burrow and scurries off; drops Seeds and fruit when defeated.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Flee</td></tr>
+<tr><td nowrap>HP</td><td>6 (+50%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>0 (+0/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>170</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>4</td></tr>
+<tr><td nowrap>Appears in</td><td>Summoned or split from other monsters</td></tr>
+</table>
 
 <a id="enemy-gopher"></a>
 
-### Gopher (terrain critter)
-
-<img src="../images/enemy/gopher.png" width="96" height="96" alt="">
-
-> Peeks out of its hole to throw Stun-chance rocks, then ducks back underground.
-
-| Field | Value |
-| --- | --- |
-| Behavior | Shooter |
-| HP | 10 (+60%/wave) |
-| Damage | 2 (+0.5/wave) |
-| Speed | 0 |
-| Seeds dropped | 3 |
-| Inflicts | [Stun](SKILLS.md#status-stun) 0.4s (25%) |
-| Special | Shoots every 1.4s |
-| Appears in | Summoned or split from other monsters |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/enemy/gopher.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">Gopher (terrain critter)</th></tr>
+<tr><td colspan="2"><i>Peeks out of its hole to throw Stun-chance rocks, then ducks back underground.</i></td></tr>
+<tr><td nowrap>Behavior</td><td>Shooter</td></tr>
+<tr><td nowrap>HP</td><td>10 (+60%/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2 (+0.5/wave)</td></tr>
+<tr><td nowrap>Speed</td><td>0</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>3</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-stun">Stun</a> 0.4s (25%)</td></tr>
+<tr><td nowrap>Special</td><td>Shoots every 1.4s</td></tr>
+<tr><td nowrap>Appears in</td><td>Summoned or split from other monsters</td></tr>
+</table>
 
 <a id="elites"></a>
 
@@ -1736,591 +1380,455 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 
 <a id="boss-roach_general"></a>
 
-### General Roach
-
-<img src="../images/boss/roach_general.png" width="96" height="96" alt="">
-
-> Leader of the roach legion, clad in bottle-cap armor.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 320 |
-| Damage | 4 |
-| Speed | 90 |
-| Seeds dropped | 22 |
-| Attacks | Telegraphed charge (every 4s)<br>Ring ×10 (every 5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/roach_general.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">General Roach</th></tr>
+<tr><td colspan="2"><i>Leader of the roach legion, clad in bottle-cap armor.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>320</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>22</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge (every 4s)<br>Ring ×10 (every 5s)</td></tr>
+</table>
 
 <a id="boss-mold_elder"></a>
 
-### Mold Elder
-
-<img src="../images/boss/mold_elder.png" width="96" height="96" alt="">
-
-> An ancient mold colony that summons its offspring.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 300 |
-| Damage | 3 |
-| Speed | 60 |
-| Seeds dropped | 22 |
-| Attacks | Summon 5× [Mold Blob](MONSTERS.md#enemy-mold) (every 6s)<br>Aimed fan ×3 inflicts 2× [Poison](SKILLS.md#status-poison) 3s (every 2.5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/mold_elder.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mold Elder</th></tr>
+<tr><td colspan="2"><i>An ancient mold colony that summons its offspring.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>300</td></tr>
+<tr><td nowrap>Damage</td><td>3</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>22</td></tr>
+<tr><td nowrap>Attacks</td><td>Summon 5× <a href="MONSTERS.md#enemy-mold">Mold Blob</a> (every 6s)<br>Aimed fan ×3 inflicts 2× <a href="SKILLS.md#status-poison">Poison</a> 3s (every 2.5s)</td></tr>
+</table>
 
 <a id="boss-greasy_pan"></a>
 
-### Greasy Pan
-
-<img src="../images/boss/greasy_pan.png" width="96" height="96" alt="">
-
-> A frying pan so caked in old grease it came to life.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 360 |
-| Damage | 4 |
-| Speed | 70 |
-| Seeds dropped | 22 |
-| Attacks | Telegraphed slam ×2 inflicts 2× [Burn](SKILLS.md#status-burn) 3s (every 4s)<br>Scatter ×8 inflicts [Sticky](SKILLS.md#status-sticky) 1.5s (every 3.5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/greasy_pan.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Greasy Pan</th></tr>
+<tr><td colspan="2"><i>A frying pan so caked in old grease it came to life.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>360</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>22</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed slam ×2 inflicts 2× <a href="SKILLS.md#status-burn">Burn</a> 3s (every 4s)<br>Scatter ×8 inflicts <a href="SKILLS.md#status-sticky">Sticky</a> 1.5s (every 3.5s)</td></tr>
+</table>
 
 <a id="boss-fork_knight"></a>
 
-### Fork Knight
-
-<img src="../images/boss/fork_knight.png" width="96" height="96" alt="">
-
-> A corrupted fork that dashes in to skewer you.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 300 |
-| Damage | 5 |
-| Speed | 100 |
-| Seeds dropped | 22 |
-| Attacks | Telegraphed charge inflicts 2× [Bleed](SKILLS.md#status-bleed) 3s (every 3s)<br>Aimed fan ×5 (every 3s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/fork_knight.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Fork Knight</th></tr>
+<tr><td colspan="2"><i>A corrupted fork that dashes in to skewer you.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>300</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>100</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>22</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge inflicts 2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s (every 3s)<br>Aimed fan ×5 (every 3s)</td></tr>
+</table>
 
 <a id="boss-fly_swarm_king"></a>
 
-### Lord of the Flies
-
-<img src="../images/boss/fly_swarm_king.png" width="96" height="96" alt="">
-
-> A giant, endlessly buzzing fly.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 280 |
-| Damage | 3 |
-| Speed | 120 |
-| Seeds dropped | 22 |
-| Attacks | Summon 5× [Fruit Fly](MONSTERS.md#enemy-fly) (every 5s)<br>Teleport (every 6s)<br>Ring ×12 (every 4s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/fly_swarm_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Lord of the Flies</th></tr>
+<tr><td colspan="2"><i>A giant, endlessly buzzing fly.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>280</td></tr>
+<tr><td nowrap>Damage</td><td>3</td></tr>
+<tr><td nowrap>Speed</td><td>120</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>22</td></tr>
+<tr><td nowrap>Attacks</td><td>Summon 5× <a href="MONSTERS.md#enemy-fly">Fruit Fly</a> (every 5s)<br>Teleport (every 6s)<br>Ring ×12 (every 4s)</td></tr>
+</table>
 
 <a id="boss-rotten_onion"></a>
 
-### Rotten Onion
-
-<img src="../images/boss/rotten_onion.png" width="96" height="96" alt="">
-
-> A rotten onion that leaks tear-jerking toxic gas.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 340 |
-| Damage | 3 |
-| Speed | 70 |
-| Seeds dropped | 22 |
-| Attacks | Hazard zone ×3 inflicts [Blind](SKILLS.md#status-blind) 2s (every 5s)<br>Ring ×10 inflicts [Weaken](SKILLS.md#status-weaken) 3s (every 4s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/rotten_onion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rotten Onion</th></tr>
+<tr><td colspan="2"><i>A rotten onion that leaks tear-jerking toxic gas.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>340</td></tr>
+<tr><td nowrap>Damage</td><td>3</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>22</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×3 inflicts <a href="SKILLS.md#status-blind">Blind</a> 2s (every 5s)<br>Ring ×10 inflicts <a href="SKILLS.md#status-weaken">Weaken</a> 3s (every 4s)</td></tr>
+</table>
 
 <a id="boss-rat_captain"></a>
 
-### Captain Rat
-
-<img src="../images/boss/rat_captain.png" width="96" height="96" alt="">
-
-> A rat boss sporting a bottle-cap helmet.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 380 |
-| Damage | 4 |
-| Speed | 110 |
-| Seeds dropped | 26 |
-| Attacks | Telegraphed charge inflicts [Bleed](SKILLS.md#status-bleed) 3s (every 3s)<br>Aimed fan ×5 (every 3.5s)<br>Summon 3× [Sewer Rat](MONSTERS.md#enemy-rat) (every 8s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/rat_captain.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Captain Rat</th></tr>
+<tr><td colspan="2"><i>A rat boss sporting a bottle-cap helmet.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>380</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>110</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>26</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge inflicts <a href="SKILLS.md#status-bleed">Bleed</a> 3s (every 3s)<br>Aimed fan ×5 (every 3.5s)<br>Summon 3× <a href="MONSTERS.md#enemy-rat">Sewer Rat</a> (every 8s)</td></tr>
+</table>
 
 <a id="boss-snail_tank"></a>
 
-### Tank Snail
-
-<img src="../images/boss/snail_tank.png" width="96" height="96" alt="">
-
-> A giant snail hauling an iron shell.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 480 |
-| Damage | 4 |
-| Speed | 45 |
-| Seeds dropped | 26 |
-| Attacks | Hazard zone ×4 inflicts [Sticky](SKILLS.md#status-sticky) 2s (every 4s)<br>Empower self/allies gain [Barrier](SKILLS.md#status-barrier) 4s (every 10s) |
-| Fixed affixes | [Armored](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/snail_tank.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Tank Snail</th></tr>
+<tr><td colspan="2"><i>A giant snail hauling an iron shell.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>480</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>45</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>26</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×4 inflicts <a href="SKILLS.md#status-sticky">Sticky</a> 2s (every 4s)<br>Empower self/allies gain <a href="SKILLS.md#status-barrier">Barrier</a> 4s (every 10s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Armored</a></td></tr>
+</table>
 
 <a id="boss-queen_bee"></a>
 
-### Queen Bee
-
-<img src="../images/boss/queen_bee.png" width="96" height="96" alt="">
-
-> The queen who commands the Venom Bees.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 330 |
-| Damage | 3 |
-| Speed | 100 |
-| Seeds dropped | 26 |
-| Attacks | Summon 4× [Venom Bee](MONSTERS.md#enemy-bee) (every 5s)<br>Aimed fan ×3 inflicts 3× [Poison](SKILLS.md#status-poison) 4s (every 2.5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/queen_bee.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Queen Bee</th></tr>
+<tr><td colspan="2"><i>The queen who commands the Venom Bees.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>330</td></tr>
+<tr><td nowrap>Damage</td><td>3</td></tr>
+<tr><td nowrap>Speed</td><td>100</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>26</td></tr>
+<tr><td nowrap>Attacks</td><td>Summon 4× <a href="MONSTERS.md#enemy-bee">Venom Bee</a> (every 5s)<br>Aimed fan ×3 inflicts 3× <a href="SKILLS.md#status-poison">Poison</a> 4s (every 2.5s)</td></tr>
+</table>
 
 <a id="boss-scarecrow"></a>
 
-### Evil Scarecrow
-
-<img src="../images/boss/scarecrow.png" width="96" height="96" alt="">
-
-> A scarecrow possessed by the rot.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 350 |
-| Damage | 4 |
-| Speed | 70 |
-| Seeds dropped | 26 |
-| Attacks | Teleport (every 5s)<br>Ring ×14 inflicts [Confuse](SKILLS.md#status-confuse) 1.5s (40%) (every 3.5s)<br>Summon 4× [Mud Worm](MONSTERS.md#enemy-worm) (every 9s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/scarecrow.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Evil Scarecrow</th></tr>
+<tr><td colspan="2"><i>A scarecrow possessed by the rot.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>350</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>26</td></tr>
+<tr><td nowrap>Attacks</td><td>Teleport (every 5s)<br>Ring ×14 inflicts <a href="SKILLS.md#status-confuse">Confuse</a> 1.5s (40%) (every 3.5s)<br>Summon 4× <a href="MONSTERS.md#enemy-worm">Mud Worm</a> (every 9s)</td></tr>
+</table>
 
 <a id="boss-spider_matron"></a>
 
-### Spider Matron
-
-<img src="../images/boss/spider_matron.png" width="96" height="96" alt="">
-
-> A giant venomous spider weaving webs across the garden.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 360 |
-| Damage | 4 |
-| Speed | 80 |
-| Seeds dropped | 26 |
-| Attacks | Scatter ×10 inflicts 2× [Poison](SKILLS.md#status-poison) 3s (every 3s)<br>Summon 3× [Venom Spider](MONSTERS.md#enemy-spider) (every 7s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/spider_matron.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spider Matron</th></tr>
+<tr><td colspan="2"><i>A giant venomous spider weaving webs across the garden.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>360</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>26</td></tr>
+<tr><td nowrap>Attacks</td><td>Scatter ×10 inflicts 2× <a href="SKILLS.md#status-poison">Poison</a> 3s (every 3s)<br>Summon 3× <a href="MONSTERS.md#enemy-spider">Venom Spider</a> (every 7s)</td></tr>
+</table>
 
 <a id="boss-mushroom_king"></a>
 
-### Shroom King
-
-<img src="../images/boss/mushroom_king.png" width="96" height="96" alt="">
-
-> King of the toxic mushrooms, with a massive cap.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 340 |
-| Damage | 3 |
-| Speed | 55 |
-| Seeds dropped | 26 |
-| Attacks | Empower self/allies gain 3× [Regen](SKILLS.md#status-regen) 4s, [Haste](SKILLS.md#status-haste) 4s (every 7s)<br>Hazard zone ×3 inflicts 3× [Poison](SKILLS.md#status-poison) 3s (every 4s) |
-| Fixed affixes | [Regenerating](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/mushroom_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Shroom King</th></tr>
+<tr><td colspan="2"><i>King of the toxic mushrooms, with a massive cap.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>340</td></tr>
+<tr><td nowrap>Damage</td><td>3</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>26</td></tr>
+<tr><td nowrap>Attacks</td><td>Empower self/allies gain 3× <a href="SKILLS.md#status-regen">Regen</a> 4s, <a href="SKILLS.md#status-haste">Haste</a> 4s (every 7s)<br>Hazard zone ×3 inflicts 3× <a href="SKILLS.md#status-poison">Poison</a> 3s (every 4s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Regenerating</a></td></tr>
+</table>
 
 <a id="boss-ice_golem"></a>
 
-### Ice Golem
-
-<img src="../images/boss/ice_golem.png" width="96" height="96" alt="">
-
-> A golem frozen together deep inside the fridge.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 420 |
-| Damage | 4 |
-| Speed | 55 |
-| Seeds dropped | 30 |
-| Attacks | Telegraphed slam ×1 inflicts [Freeze](SKILLS.md#status-freeze) 1s (every 4s)<br>Ring ×12 (every 4.5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/ice_golem.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ice Golem</th></tr>
+<tr><td colspan="2"><i>A golem frozen together deep inside the fridge.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>420</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>30</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed slam ×1 inflicts <a href="SKILLS.md#status-freeze">Freeze</a> 1s (every 4s)<br>Ring ×12 (every 4.5s)</td></tr>
+</table>
 
 <a id="boss-popsicle_twins"></a>
 
-### Popsicle Twins
-
-<img src="../images/boss/popsicle_twins.png" width="96" height="96" alt="">
-
-> Two popsicles sharing one stick.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 380 |
-| Damage | 4 |
-| Speed | 85 |
-| Seeds dropped | 30 |
-| Attacks | Spiral ×4 (every 6s)<br>Telegraphed charge inflicts 2× [Slow](SKILLS.md#status-slow) 3s (every 4s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/popsicle_twins.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Popsicle Twins</th></tr>
+<tr><td colspan="2"><i>Two popsicles sharing one stick.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>380</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>85</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>30</td></tr>
+<tr><td nowrap>Attacks</td><td>Spiral ×4 (every 6s)<br>Telegraphed charge inflicts 2× <a href="SKILLS.md#status-slow">Slow</a> 3s (every 4s)</td></tr>
+</table>
 
 <a id="boss-frozen_fish"></a>
 
-### Frozen Fish Samurai
-
-<img src="../images/boss/frozen_fish.png" width="96" height="96" alt="">
-
-> A fish frozen so stiff it works as a sword.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 400 |
-| Damage | 5 |
-| Speed | 95 |
-| Seeds dropped | 30 |
-| Attacks | Telegraphed laser inflicts [Freeze](SKILLS.md#status-freeze) 0.8s (every 5s)<br>Telegraphed charge (every 3.5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/frozen_fish.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frozen Fish Samurai</th></tr>
+<tr><td colspan="2"><i>A fish frozen so stiff it works as a sword.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>400</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>30</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed laser inflicts <a href="SKILLS.md#status-freeze">Freeze</a> 0.8s (every 5s)<br>Telegraphed charge (every 3.5s)</td></tr>
+</table>
 
 <a id="boss-snow_rat"></a>
 
-### Snow Rat Assassin
-
-<img src="../images/boss/snow_rat.png" width="96" height="96" alt="">
-
-> A white-furred rodent assassin.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 330 |
-| Damage | 5 |
-| Speed | 130 |
-| Seeds dropped | 30 |
-| Attacks | Teleport (every 3.5s)<br>Aimed fan ×3 inflicts 2× [Bleed](SKILLS.md#status-bleed) 3s (every 2s) |
-| Fixed affixes | [Swift](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/snow_rat.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Snow Rat Assassin</th></tr>
+<tr><td colspan="2"><i>A white-furred rodent assassin.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>330</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>130</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>30</td></tr>
+<tr><td nowrap>Attacks</td><td>Teleport (every 3.5s)<br>Aimed fan ×3 inflicts 2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s (every 2s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Swift</a></td></tr>
+</table>
 
 <a id="boss-milk_slime"></a>
 
-### Spoiled Milk Slime
-
-<img src="../images/boss/milk_slime.png" width="96" height="96" alt="">
-
-> A slime curdled from expired milk.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 450 |
-| Damage | 3 |
-| Speed | 60 |
-| Seeds dropped | 30 |
-| Attacks | Hazard zone ×4 inflicts [Weaken](SKILLS.md#status-weaken) 3s, [Sticky](SKILLS.md#status-sticky) 2s (every 4s)<br>Summon 4× [Mold Blob](MONSTERS.md#enemy-mold) (every 7s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/milk_slime.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spoiled Milk Slime</th></tr>
+<tr><td colspan="2"><i>A slime curdled from expired milk.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>450</td></tr>
+<tr><td nowrap>Damage</td><td>3</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>30</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×4 inflicts <a href="SKILLS.md#status-weaken">Weaken</a> 3s, <a href="SKILLS.md#status-sticky">Sticky</a> 2s (every 4s)<br>Summon 4× <a href="MONSTERS.md#enemy-mold">Mold Blob</a> (every 7s)</td></tr>
+</table>
 
 <a id="boss-frost_penguin"></a>
 
-### Frost Penguin
-
-<img src="../images/boss/frost_penguin.png" width="96" height="96" alt="">
-
-> A cold-hearted penguin that slides in to ram you.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 380 |
-| Damage | 4 |
-| Speed | 90 |
-| Seeds dropped | 30 |
-| Attacks | Telegraphed charge inflicts 2× [Slow](SKILLS.md#status-slow) 2s (every 3s)<br>Ring ×16 (every 4s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/frost_penguin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Penguin</th></tr>
+<tr><td colspan="2"><i>A cold-hearted penguin that slides in to ram you.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>380</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>30</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge inflicts 2× <a href="SKILLS.md#status-slow">Slow</a> 2s (every 3s)<br>Ring ×16 (every 4s)</td></tr>
+</table>
 
 <a id="boss-tire_beast"></a>
 
-### Tire Beast
-
-<img src="../images/boss/tire_beast.png" width="96" height="96" alt="">
-
-> A beast built from a pile of scrap tires.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 480 |
-| Damage | 5 |
-| Speed | 80 |
-| Seeds dropped | 34 |
-| Attacks | Telegraphed charge (every 3s)<br>Telegraphed slam ×3 (every 5s) |
-| Fixed affixes | [Armored](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/tire_beast.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Tire Beast</th></tr>
+<tr><td colspan="2"><i>A beast built from a pile of scrap tires.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>480</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>34</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge (every 3s)<br>Telegraphed slam ×3 (every 5s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Armored</a></td></tr>
+</table>
 
 <a id="boss-can_king"></a>
 
-### Can King
-
-<img src="../images/boss/can_king.png" width="96" height="96" alt="">
-
-> The giant king of all Can Crabs.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 520 |
-| Damage | 5 |
-| Speed | 65 |
-| Seeds dropped | 34 |
-| Attacks | Scatter ×10 inflicts 2× [Armor Break](SKILLS.md#status-armorBreak) 4s (every 3s)<br>Summon 3× [Can Crab](MONSTERS.md#enemy-can_crab) (every 8s) |
-| Fixed affixes | [Thorny](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/can_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Can King</th></tr>
+<tr><td colspan="2"><i>The giant king of all Can Crabs.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>520</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>65</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>34</td></tr>
+<tr><td nowrap>Attacks</td><td>Scatter ×10 inflicts 2× <a href="SKILLS.md#status-armorBreak">Armor Break</a> 4s (every 3s)<br>Summon 3× <a href="MONSTERS.md#enemy-can_crab">Can Crab</a> (every 8s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Thorny</a></td></tr>
+</table>
 
 <a id="boss-rag_wraith"></a>
 
-### Rag Wraith
-
-<img src="../images/boss/rag_wraith.png" width="96" height="96" alt="">
-
-> A vengeful spirit made of countless dirty rags.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 400 |
-| Damage | 4 |
-| Speed | 95 |
-| Seeds dropped | 34 |
-| Attacks | Teleport (every 4s)<br>Ring ×14 inflicts [Blind](SKILLS.md#status-blind) 2s, [Curse](SKILLS.md#status-curse) 2s (every 3.5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/rag_wraith.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rag Wraith</th></tr>
+<tr><td colspan="2"><i>A vengeful spirit made of countless dirty rags.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>400</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>34</td></tr>
+<tr><td nowrap>Attacks</td><td>Teleport (every 4s)<br>Ring ×14 inflicts <a href="SKILLS.md#status-blind">Blind</a> 2s, <a href="SKILLS.md#status-curse">Curse</a> 2s (every 3.5s)</td></tr>
+</table>
 
 <a id="boss-battery_bug"></a>
 
-### Leaky Battery Bug
-
-<img src="../images/boss/battery_bug.png" width="96" height="96" alt="">
-
-> A sparky bug hatched from a discarded battery.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 420 |
-| Damage | 5 |
-| Speed | 85 |
-| Seeds dropped | 34 |
-| Attacks | Telegraphed laser inflicts [Stun](SKILLS.md#status-stun) 0.6s (every 4s)<br>Scatter ×8 (every 3s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/battery_bug.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Leaky Battery Bug</th></tr>
+<tr><td colspan="2"><i>A sparky bug hatched from a discarded battery.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>420</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>85</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>34</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed laser inflicts <a href="SKILLS.md#status-stun">Stun</a> 0.6s (every 4s)<br>Scatter ×8 (every 3s)</td></tr>
+</table>
 
 <a id="boss-garbage_rat"></a>
 
-### Garbage Rat King
-
-<img src="../images/boss/garbage_rat.png" width="96" height="96" alt="">
-
-> A fat rat who rules the junkyard.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 520 |
-| Damage | 5 |
-| Speed | 80 |
-| Seeds dropped | 34 |
-| Attacks | Summon 5× [Sewer Rat](MONSTERS.md#enemy-rat) (every 6s)<br>Telegraphed charge inflicts 2× [Bleed](SKILLS.md#status-bleed) 3s (every 4s) |
-| Fixed affixes | [Commander](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/garbage_rat.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Garbage Rat King</th></tr>
+<tr><td colspan="2"><i>A fat rat who rules the junkyard.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>520</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>34</td></tr>
+<tr><td nowrap>Attacks</td><td>Summon 5× <a href="MONSTERS.md#enemy-rat">Sewer Rat</a> (every 6s)<br>Telegraphed charge inflicts 2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s (every 4s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Commander</a></td></tr>
+</table>
 
 <a id="boss-oil_titan"></a>
 
-### Oil Titan
-
-<img src="../images/boss/oil_titan.png" width="96" height="96" alt="">
-
-> A giant formed from spilled crude oil.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 500 |
-| Damage | 4 |
-| Speed | 55 |
-| Seeds dropped | 34 |
-| Attacks | Hazard zone ×5 inflicts [Sticky](SKILLS.md#status-sticky) 2s, 2× [Burn](SKILLS.md#status-burn) 3s (every 4s)<br>Ring ×16 (every 4s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/oil_titan.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Oil Titan</th></tr>
+<tr><td colspan="2"><i>A giant formed from spilled crude oil.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>500</td></tr>
+<tr><td nowrap>Damage</td><td>4</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>34</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×5 inflicts <a href="SKILLS.md#status-sticky">Sticky</a> 2s, 2× <a href="SKILLS.md#status-burn">Burn</a> 3s (every 4s)<br>Ring ×16 (every 4s)</td></tr>
+</table>
 
 <a id="boss-conveyor_worm"></a>
 
-### Conveyor Worm
-
-<img src="../images/boss/conveyor_worm.png" width="96" height="96" alt="">
-
-> A giant mechanized worm.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 520 |
-| Damage | 6 |
-| Speed | 100 |
-| Seeds dropped | 38 |
-| Attacks | Telegraphed charge (every 2.8s)<br>Scatter ×10 inflicts 2× [Armor Break](SKILLS.md#status-armorBreak) 4s (every 3s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/conveyor_worm.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Conveyor Worm</th></tr>
+<tr><td colspan="2"><i>A giant mechanized worm.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>520</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>100</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>38</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge (every 2.8s)<br>Scatter ×10 inflicts 2× <a href="SKILLS.md#status-armorBreak">Armor Break</a> 4s (every 3s)</td></tr>
+</table>
 
 <a id="boss-ketchup_golem"></a>
 
-### Ketchup Golem
-
-<img src="../images/boss/ketchup_golem.png" width="96" height="96" alt="">
-
-> A golem filled with corrupted Ketchup.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 560 |
-| Damage | 5 |
-| Speed | 65 |
-| Seeds dropped | 38 |
-| Attacks | Hazard zone ×4 inflicts 2× [Burn](SKILLS.md#status-burn) 3s, [Sticky](SKILLS.md#status-sticky) 1.5s (every 4s)<br>Ring ×16 (every 3.5s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/ketchup_golem.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ketchup Golem</th></tr>
+<tr><td colspan="2"><i>A golem filled with corrupted Ketchup.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>560</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>65</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>38</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×4 inflicts 2× <a href="SKILLS.md#status-burn">Burn</a> 3s, <a href="SKILLS.md#status-sticky">Sticky</a> 1.5s (every 4s)<br>Ring ×16 (every 3.5s)</td></tr>
+</table>
 
 <a id="boss-security_bot"></a>
 
-### Security Bot
-
-<img src="../images/boss/security_bot.png" width="96" height="96" alt="">
-
-> The factory security guard on patrol.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 500 |
-| Damage | 6 |
-| Speed | 85 |
-| Seeds dropped | 38 |
-| Attacks | Telegraphed laser (every 3.5s)<br>Aimed fan ×3 inflicts [Stun](SKILLS.md#status-stun) 0.4s (30%) (every 2s)<br>Empower self/allies gain [Barrier](SKILLS.md#status-barrier) 3s (every 9s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/security_bot.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Security Bot</th></tr>
+<tr><td colspan="2"><i>The factory security guard on patrol.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>500</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>85</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>38</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed laser (every 3.5s)<br>Aimed fan ×3 inflicts <a href="SKILLS.md#status-stun">Stun</a> 0.4s (30%) (every 2s)<br>Empower self/allies gain <a href="SKILLS.md#status-barrier">Barrier</a> 3s (every 9s)</td></tr>
+</table>
 
 <a id="boss-press_machine"></a>
 
-### Stamping Press
-
-<img src="../images/boss/press_machine.png" width="96" height="96" alt="">
-
-> A massive press that flattens everything it slams.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 600 |
-| Damage | 7 |
-| Speed | 50 |
-| Seeds dropped | 38 |
-| Attacks | Telegraphed slam ×3 inflicts [Stun](SKILLS.md#status-stun) 0.8s (every 3s) |
-| Fixed affixes | [Armored](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/press_machine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Stamping Press</th></tr>
+<tr><td colspan="2"><i>A massive press that flattens everything it slams.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>600</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>50</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>38</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed slam ×3 inflicts <a href="SKILLS.md#status-stun">Stun</a> 0.8s (every 3s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Armored</a></td></tr>
+</table>
 
 <a id="boss-chef_minion"></a>
 
-### Rotten Sous Chef
-
-<img src="../images/boss/chef_minion.png" width="96" height="96" alt="">
-
-> The Rotten Chef's trusty right hand.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 520 |
-| Damage | 5 |
-| Speed | 90 |
-| Seeds dropped | 38 |
-| Attacks | Aimed fan ×5 inflicts 2× [Poison](SKILLS.md#status-poison) 3s (every 2.2s)<br>Teleport (every 5s)<br>Summon 2× [Can Bot](MONSTERS.md#enemy-robot_can) (every 8s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/chef_minion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rotten Sous Chef</th></tr>
+<tr><td colspan="2"><i>The Rotten Chef's trusty right hand.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>520</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>90</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>38</td></tr>
+<tr><td nowrap>Attacks</td><td>Aimed fan ×5 inflicts 2× <a href="SKILLS.md#status-poison">Poison</a> 3s (every 2.2s)<br>Teleport (every 5s)<br>Summon 2× <a href="MONSTERS.md#enemy-robot_can">Can Bot</a> (every 8s)</td></tr>
+</table>
 
 <a id="boss-furnace_imp"></a>
 
-### Furnace Imp
-
-<img src="../images/boss/furnace_imp.png" width="96" height="96" alt="">
-
-> A fiery imp born in the furnace.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 460 |
-| Damage | 6 |
-| Speed | 110 |
-| Seeds dropped | 38 |
-| Attacks | Spiral ×5 inflicts 2× [Burn](SKILLS.md#status-burn) 3s (every 5s)<br>Teleport (every 4s) |
-| Fixed affixes | [Swift](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/furnace_imp.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Furnace Imp</th></tr>
+<tr><td colspan="2"><i>A fiery imp born in the furnace.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>460</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>110</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>38</td></tr>
+<tr><td nowrap>Attacks</td><td>Spiral ×5 inflicts 2× <a href="SKILLS.md#status-burn">Burn</a> 3s (every 5s)<br>Teleport (every 4s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Swift</a></td></tr>
+</table>
 
 <a id="boss-pumpkin_brute"></a>
 
-### Pumpkin Brute
-
-<img src="../images/boss/pumpkin_brute.png" width="96" height="96" alt="">
-
-> A giant hollow pumpkin that charges and quakes the ground.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) |
-| Base HP | 580 |
-| Damage | 7 |
-| Speed | 75 |
-| Seeds dropped | 42 |
-| Attacks | Telegraphed charge (every 4s)<br>Telegraphed slam ×3 inflicts [Stun](SKILLS.md#status-stun) 0.6s (every 5s) |
-| Fixed affixes | [Armored](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/pumpkin_brute.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pumpkin Brute</th></tr>
+<tr><td colspan="2"><i>A giant hollow pumpkin that charges and quakes the ground.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a></td></tr>
+<tr><td nowrap>Base HP</td><td>580</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>42</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge (every 4s)<br>Telegraphed slam ×3 inflicts <a href="SKILLS.md#status-stun">Stun</a> 0.6s (every 5s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Armored</a></td></tr>
+</table>
 
 <a id="boss-spore_matron"></a>
 
-### Spore Matron
-
-<img src="../images/boss/spore_matron.png" width="96" height="96" alt="">
-
-> A giant puffball spreading toxic fog and hatching spores.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) |
-| Base HP | 520 |
-| Damage | 6 |
-| Speed | 60 |
-| Seeds dropped | 42 |
-| Attacks | Summon 3× [Spore Puffball](MONSTERS.md#enemy-spore_puff) (every 7s)<br>Hazard zone ×4 inflicts 3× [Poison](SKILLS.md#status-poison) 3s (every 5s)<br>Ring ×14 (every 4s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/spore_matron.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spore Matron</th></tr>
+<tr><td colspan="2"><i>A giant puffball spreading toxic fog and hatching spores.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a></td></tr>
+<tr><td nowrap>Base HP</td><td>520</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>42</td></tr>
+<tr><td nowrap>Attacks</td><td>Summon 3× <a href="MONSTERS.md#enemy-spore_puff">Spore Puffball</a> (every 7s)<br>Hazard zone ×4 inflicts 3× <a href="SKILLS.md#status-poison">Poison</a> 3s (every 5s)<br>Ring ×14 (every 4s)</td></tr>
+</table>
 
 <a id="boss-carrot_knight"></a>
 
-### Carrot Revenant
-
-<img src="../images/boss/carrot_knight.png" width="96" height="96" alt="">
-
-> A zombie carrot knight in a rotten-leaf cape; charges, then stabs wildly.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) |
-| Base HP | 640 |
-| Damage | 7 |
-| Speed | 95 |
-| Seeds dropped | 46 |
-| Attacks | Telegraphed charge (every 3.5s)<br>Scatter ×10 inflicts [Rot](SKILLS.md#status-rot) 3s (every 3s)<br>Teleport (every 6s) |
-| Fixed affixes | [Swift](#affixes) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/carrot_knight.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Carrot Revenant</th></tr>
+<tr><td colspan="2"><i>A zombie carrot knight in a rotten-leaf cape; charges, then stabs wildly.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>640</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>95</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>46</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge (every 3.5s)<br>Scatter ×10 inflicts <a href="SKILLS.md#status-rot">Rot</a> 3s (every 3s)<br>Teleport (every 6s)</td></tr>
+<tr><td nowrap>Fixed affixes</td><td><a href="#affixes">Swift</a></td></tr>
+</table>
 
 <a id="boss-onion_witch"></a>
 
-### Onion Witch
-
-<img src="../images/boss/onion_witch.png" width="96" height="96" alt="">
-
-> An old onion with curses in every layer. Bring tissues.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) |
-| Base HP | 560 |
-| Damage | 6 |
-| Speed | 70 |
-| Seeds dropped | 46 |
-| Attacks | Ring ×16 inflicts [Blind](SKILLS.md#status-blind) 1.5s (40%) (every 4s)<br>Aimed fan ×3 inflicts [Curse](SKILLS.md#status-curse) 3s (every 2.4s)<br>Empower self/allies gain [Haste](SKILLS.md#status-haste) 4s, [Regen](SKILLS.md#status-regen) 4s (every 10s) |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/onion_witch.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Onion Witch</th></tr>
+<tr><td colspan="2"><i>An old onion with curses in every layer. Bring tissues.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>560</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>46</td></tr>
+<tr><td nowrap>Attacks</td><td>Ring ×16 inflicts <a href="SKILLS.md#status-blind">Blind</a> 1.5s (40%) (every 4s)<br>Aimed fan ×3 inflicts <a href="SKILLS.md#status-curse">Curse</a> 3s (every 2.4s)<br>Empower self/allies gain <a href="SKILLS.md#status-haste">Haste</a> 4s, <a href="SKILLS.md#status-regen">Regen</a> 4s (every 10s)</td></tr>
+</table>
 
 <a id="bosses"></a>
 
@@ -2340,327 +1848,255 @@ Appear on the last wave of a chapter and enter phase two at half HP. The wave la
 
 <a id="boss-mold_king"></a>
 
-### Mold King · Chapter 1 Boss
-
-<img src="../images/boss/mold_king.png" width="96" height="96" alt="">
-
-> The king of mold, lurking in the kitchen sink.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 1800 |
-| Damage | 5 |
-| Speed | 55 |
-| Seeds dropped | 72 |
-| Attacks | Ring ×14 (every 3.5s)<br>Summon 6× [Mold Blob](MONSTERS.md#enemy-mold) (every 7s)<br>Telegraphed slam ×3 (every 6s) |
-| Phase two | At ≤ 50% HP: speed ×1.3, cooldowns ×0.8; adds Spiral ×6 inflicts 2× [Poison](SKILLS.md#status-poison) 3s (every 8s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/mold_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mold King · Chapter 1 Boss</th></tr>
+<tr><td colspan="2"><i>The king of mold, lurking in the kitchen sink.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>1800</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>72</td></tr>
+<tr><td nowrap>Attacks</td><td>Ring ×14 (every 3.5s)<br>Summon 6× <a href="MONSTERS.md#enemy-mold">Mold Blob</a> (every 7s)<br>Telegraphed slam ×3 (every 6s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.3, cooldowns ×0.8; adds Spiral ×6 inflicts 2× <a href="SKILLS.md#status-poison">Poison</a> 3s (every 8s)</td></tr>
+</table>
 
 <a id="boss-grease_chef"></a>
 
-### Grease Chef · Chapter 1 Boss
-
-<img src="../images/boss/grease_chef.png" width="96" height="96" alt="">
-
-> A century of range-hood grease that came to life.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 1900 |
-| Damage | 5 |
-| Speed | 60 |
-| Seeds dropped | 72 |
-| Attacks | Hazard zone ×4 inflicts 2× [Burn](SKILLS.md#status-burn) 3s, [Blind](SKILLS.md#status-blind) 1.5s (every 5s)<br>Aimed fan ×5 (every 2.5s)<br>Telegraphed laser (every 6s) |
-| Phase two | At ≤ 50% HP: speed ×1.2, cooldowns ×0.8; adds Ring ×18 (every 3s); gains [Enrage](SKILLS.md#status-enrage) 999s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/grease_chef.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Grease Chef · Chapter 1 Boss</th></tr>
+<tr><td colspan="2"><i>A century of range-hood grease that came to life.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>1900</td></tr>
+<tr><td nowrap>Damage</td><td>5</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>72</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×4 inflicts 2× <a href="SKILLS.md#status-burn">Burn</a> 3s, <a href="SKILLS.md#status-blind">Blind</a> 1.5s (every 5s)<br>Aimed fan ×5 (every 2.5s)<br>Telegraphed laser (every 6s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.2, cooldowns ×0.8; adds Ring ×18 (every 3s); gains <a href="SKILLS.md#status-enrage">Enrage</a> 999s</td></tr>
+</table>
 
 <a id="boss-cockroach_emperor"></a>
 
-### Roach Emperor · Chapter 1 Boss
-
-<img src="../images/boss/cockroach_emperor.png" width="96" height="96" alt="">
-
-> The unkillable roach emperor with shocking regeneration.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) |
-| Base HP | 2000 |
-| Damage | 6 |
-| Speed | 75 |
-| Seeds dropped | 72 |
-| Attacks | Telegraphed charge (every 3.5s)<br>Summon 4× [Cockroach](MONSTERS.md#enemy-cockroach) (every 6s)<br>Empower self/allies gain 5× [Regen](SKILLS.md#status-regen) 4s (every 12s) |
-| Phase two | At ≤ 40% HP: speed ×1.3, cooldowns ×0.75; adds Scatter ×12 inflicts 2× [Armor Break](SKILLS.md#status-armorBreak) 5s (every 3s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/cockroach_emperor.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Roach Emperor · Chapter 1 Boss</th></tr>
+<tr><td colspan="2"><i>The unkillable roach emperor with shocking regeneration.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Base HP</td><td>2000</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>75</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>72</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge (every 3.5s)<br>Summon 4× <a href="MONSTERS.md#enemy-cockroach">Cockroach</a> (every 6s)<br>Empower self/allies gain 5× <a href="SKILLS.md#status-regen">Regen</a> 4s (every 12s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 40% HP: speed ×1.3, cooldowns ×0.75; adds Scatter ×12 inflicts 2× <a href="SKILLS.md#status-armorBreak">Armor Break</a> 5s (every 3s)</td></tr>
+</table>
 
 <a id="boss-locust_queen"></a>
 
-### Locust Queen · Chapter 2 Boss
-
-<img src="../images/boss/locust_queen.png" width="96" height="96" alt="">
-
-> The swarm queen who devours entire gardens.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 2200 |
-| Damage | 6 |
-| Speed | 80 |
-| Seeds dropped | 84 |
-| Attacks | Telegraphed charge (every 4s)<br>Summon 6× [Fruit Fly](MONSTERS.md#enemy-fly) (every 6s)<br>Aimed fan ×5 (every 2.8s) |
-| Phase two | At ≤ 50% HP: speed ×1.25, cooldowns ×0.75; adds Ring ×18 (every 4s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/locust_queen.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Locust Queen · Chapter 2 Boss</th></tr>
+<tr><td colspan="2"><i>The swarm queen who devours entire gardens.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>2200</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>84</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed charge (every 4s)<br>Summon 6× <a href="MONSTERS.md#enemy-fly">Fruit Fly</a> (every 6s)<br>Aimed fan ×5 (every 2.8s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.25, cooldowns ×0.75; adds Ring ×18 (every 4s)</td></tr>
+</table>
 
 <a id="boss-rotten_pumpkin"></a>
 
-### Rotten Pumpkin King · Chapter 2 Boss
-
-<img src="../images/boss/rotten_pumpkin.png" width="96" height="96" alt="">
-
-> A giant pumpkin abandoned after Halloween.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 2400 |
-| Damage | 6 |
-| Speed | 55 |
-| Seeds dropped | 84 |
-| Attacks | Telegraphed slam ×4 (every 4.5s)<br>Summon 4× [Mud Worm](MONSTERS.md#enemy-worm) (every 7s)<br>Spiral ×5 inflicts [Curse](SKILLS.md#status-curse) 3s (every 8s) |
-| Phase two | At ≤ 50% HP: speed ×1.2, cooldowns ×0.75; adds Teleport (every 5s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/rotten_pumpkin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rotten Pumpkin King · Chapter 2 Boss</th></tr>
+<tr><td colspan="2"><i>A giant pumpkin abandoned after Halloween.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>2400</td></tr>
+<tr><td nowrap>Damage</td><td>6</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>84</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed slam ×4 (every 4.5s)<br>Summon 4× <a href="MONSTERS.md#enemy-worm">Mud Worm</a> (every 7s)<br>Spiral ×5 inflicts <a href="SKILLS.md#status-curse">Curse</a> 3s (every 8s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.2, cooldowns ×0.75; adds Teleport (every 5s)</td></tr>
+</table>
 
 <a id="boss-mole_general"></a>
 
-### General Mole · Chapter 2 Boss
-
-<img src="../images/boss/mole_general.png" width="96" height="96" alt="">
-
-> A mole general who dug countless tunnels under the garden.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) |
-| Base HP | 2300 |
-| Damage | 7 |
-| Speed | 70 |
-| Seeds dropped | 84 |
-| Attacks | Teleport (every 4s)<br>Telegraphed slam ×2 inflicts [Stun](SKILLS.md#status-stun) 0.6s (every 3.5s)<br>Scatter ×12 (every 3s) |
-| Phase two | At ≤ 50% HP: speed ×1.2, cooldowns ×0.7; adds Summon 4× [Mud Worm](MONSTERS.md#enemy-worm) (every 7s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/mole_general.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">General Mole · Chapter 2 Boss</th></tr>
+<tr><td colspan="2"><i>A mole general who dug countless tunnels under the garden.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>2300</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>84</td></tr>
+<tr><td nowrap>Attacks</td><td>Teleport (every 4s)<br>Telegraphed slam ×2 inflicts <a href="SKILLS.md#status-stun">Stun</a> 0.6s (every 3.5s)<br>Scatter ×12 (every 3s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.2, cooldowns ×0.7; adds Summon 4× <a href="MONSTERS.md#enemy-worm">Mud Worm</a> (every 7s)</td></tr>
+</table>
 
 <a id="boss-frost_rat_king"></a>
 
-### Frost Rat King · Chapter 3 Boss
-
-<img src="../images/boss/frost_rat_king.png" width="96" height="96" alt="">
-
-> The bone-chilling rat king who rules the fridge.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 2600 |
-| Damage | 7 |
-| Speed | 70 |
-| Seeds dropped | 96 |
-| Attacks | Spiral ×5 (every 7s)<br>Telegraphed charge inflicts [Freeze](SKILLS.md#status-freeze) 0.8s (every 5s)<br>Hazard zone ×4 (every 6s) |
-| Phase two | At ≤ 50% HP: speed ×1.2, cooldowns ×0.75; adds Summon 4× [Sewer Rat](MONSTERS.md#enemy-rat) (every 7s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/frost_rat_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Rat King · Chapter 3 Boss</th></tr>
+<tr><td colspan="2"><i>The bone-chilling rat king who rules the fridge.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>2600</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>96</td></tr>
+<tr><td nowrap>Attacks</td><td>Spiral ×5 (every 7s)<br>Telegraphed charge inflicts <a href="SKILLS.md#status-freeze">Freeze</a> 0.8s (every 5s)<br>Hazard zone ×4 (every 6s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.2, cooldowns ×0.75; adds Summon 4× <a href="MONSTERS.md#enemy-rat">Sewer Rat</a> (every 7s)</td></tr>
+</table>
 
 <a id="boss-ice_cream_tyrant"></a>
 
-### Ice Cream Tyrant · Chapter 3 Boss
-
-<img src="../images/boss/ice_cream_tyrant.png" width="96" height="96" alt="">
-
-> A tyrant stacked from three scoops of ice cream.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 2700 |
-| Damage | 7 |
-| Speed | 60 |
-| Seeds dropped | 96 |
-| Attacks | Ring ×16 (every 3s)<br>Telegraphed laser inflicts [Freeze](SKILLS.md#status-freeze) 1s (every 5s)<br>Summon 4× [Ice Cube](MONSTERS.md#enemy-ice_cube) (every 8s) |
-| Phase two | At ≤ 50% HP: speed ×1.2, cooldowns ×0.75; adds Spiral ×6 (every 7s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/ice_cream_tyrant.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ice Cream Tyrant · Chapter 3 Boss</th></tr>
+<tr><td colspan="2"><i>A tyrant stacked from three scoops of ice cream.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>2700</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>60</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>96</td></tr>
+<tr><td nowrap>Attacks</td><td>Ring ×16 (every 3s)<br>Telegraphed laser inflicts <a href="SKILLS.md#status-freeze">Freeze</a> 1s (every 5s)<br>Summon 4× <a href="MONSTERS.md#enemy-ice_cube">Ice Cube</a> (every 8s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.2, cooldowns ×0.75; adds Spiral ×6 (every 7s)</td></tr>
+</table>
 
 <a id="boss-freezer_heart"></a>
 
-### Freezer Heart · Chapter 3 Boss
-
-<img src="../images/boss/freezer_heart.png" width="96" height="96" alt="">
-
-> An icy core born inside the freezer's compressor.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) |
-| Base HP | 2500 |
-| Damage | 7 |
-| Speed | 50 |
-| Seeds dropped | 96 |
-| Attacks | Teleport (every 5s)<br>Scatter ×12 (every 2.5s)<br>Hazard zone ×5 inflicts [Freeze](SKILLS.md#status-freeze) 0.8s (every 5s) |
-| Phase two | At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Ring ×20 (every 3s); gains [Barrier](SKILLS.md#status-barrier) 5s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/freezer_heart.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Freezer Heart · Chapter 3 Boss</th></tr>
+<tr><td colspan="2"><i>An icy core born inside the freezer's compressor.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a></td></tr>
+<tr><td nowrap>Base HP</td><td>2500</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>50</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>96</td></tr>
+<tr><td nowrap>Attacks</td><td>Teleport (every 5s)<br>Scatter ×12 (every 2.5s)<br>Hazard zone ×5 inflicts <a href="SKILLS.md#status-freeze">Freeze</a> 0.8s (every 5s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Ring ×20 (every 3s); gains <a href="SKILLS.md#status-barrier">Barrier</a> 5s</td></tr>
+</table>
 
 <a id="boss-trash_golem"></a>
 
-### Trash Colossus · Chapter 4 Boss
-
-<img src="../images/boss/trash_golem.png" width="96" height="96" alt="">
-
-> A behemoth piled up from the city's garbage.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 3200 |
-| Damage | 8 |
-| Speed | 45 |
-| Seeds dropped | 108 |
-| Attacks | Telegraphed slam ×4 (every 4.5s)<br>Aimed fan ×3 (every 2.5s)<br>Summon 2× [Trash Bag](MONSTERS.md#enemy-trash_bag) (every 8s) |
-| Phase two | At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Ring ×20 (every 3.5s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/trash_golem.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Trash Colossus · Chapter 4 Boss</th></tr>
+<tr><td colspan="2"><i>A behemoth piled up from the city's garbage.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>3200</td></tr>
+<tr><td nowrap>Damage</td><td>8</td></tr>
+<tr><td nowrap>Speed</td><td>45</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>108</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed slam ×4 (every 4.5s)<br>Aimed fan ×3 (every 2.5s)<br>Summon 2× <a href="MONSTERS.md#enemy-trash_bag">Trash Bag</a> (every 8s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Ring ×20 (every 3.5s)</td></tr>
+</table>
 
 <a id="boss-toxic_barrel"></a>
 
-### Toxic Barrel Fiend · Chapter 4 Boss
-
-<img src="../images/boss/toxic_barrel.png" width="96" height="96" alt="">
-
-> A leaking barrel of toxic chemicals.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 3000 |
-| Damage | 7 |
-| Speed | 55 |
-| Seeds dropped | 108 |
-| Attacks | Hazard zone ×5 inflicts 3× [Poison](SKILLS.md#status-poison) 4s (every 3.5s)<br>Spiral ×6 inflicts 2× [Poison](SKILLS.md#status-poison) 3s (every 7s)<br>Summon 3× [Grease Blob](MONSTERS.md#enemy-oil_blob) (every 8s) |
-| Phase two | At ≤ 50% HP: speed ×1.2, cooldowns ×0.7; adds Scatter ×14 inflicts [Weaken](SKILLS.md#status-weaken) 3s (every 2.5s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/toxic_barrel.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toxic Barrel Fiend · Chapter 4 Boss</th></tr>
+<tr><td colspan="2"><i>A leaking barrel of toxic chemicals.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>3000</td></tr>
+<tr><td nowrap>Damage</td><td>7</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>108</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×5 inflicts 3× <a href="SKILLS.md#status-poison">Poison</a> 4s (every 3.5s)<br>Spiral ×6 inflicts 2× <a href="SKILLS.md#status-poison">Poison</a> 3s (every 7s)<br>Summon 3× <a href="MONSTERS.md#enemy-oil_blob">Grease Blob</a> (every 8s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.2, cooldowns ×0.7; adds Scatter ×14 inflicts <a href="SKILLS.md#status-weaken">Weaken</a> 3s (every 2.5s)</td></tr>
+</table>
 
 <a id="boss-scrap_dragon"></a>
 
-### Scrap Dragon · Chapter 4 Boss
-
-<img src="../images/boss/scrap_dragon.png" width="96" height="96" alt="">
-
-> A mechanical dragon pieced together from scrap metal.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) |
-| Base HP | 3300 |
-| Damage | 8 |
-| Speed | 70 |
-| Seeds dropped | 108 |
-| Attacks | Telegraphed laser inflicts 3× [Burn](SKILLS.md#status-burn) 3s (every 4.5s)<br>Telegraphed charge (every 4s)<br>Spiral ×5 inflicts [Burn](SKILLS.md#status-burn) 2s (every 7s) |
-| Phase two | At ≤ 50% HP: speed ×1.25, cooldowns ×0.7; adds Summon 3× [Gear Bug](MONSTERS.md#enemy-gear_bug) (every 8s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/scrap_dragon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Scrap Dragon · Chapter 4 Boss</th></tr>
+<tr><td colspan="2"><i>A mechanical dragon pieced together from scrap metal.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a></td></tr>
+<tr><td nowrap>Base HP</td><td>3300</td></tr>
+<tr><td nowrap>Damage</td><td>8</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>108</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed laser inflicts 3× <a href="SKILLS.md#status-burn">Burn</a> 3s (every 4.5s)<br>Telegraphed charge (every 4s)<br>Spiral ×5 inflicts <a href="SKILLS.md#status-burn">Burn</a> 2s (every 7s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.25, cooldowns ×0.7; adds Summon 3× <a href="MONSTERS.md#enemy-gear_bug">Gear Bug</a> (every 8s)</td></tr>
+</table>
 
 <a id="boss-rotten_chef"></a>
 
-### Rotten Chef · Chapter 5 Boss
-
-<img src="../images/boss/rotten_chef.png" width="96" height="96" alt="">
-
-> The tomato factory's crooked head chef, source of all rot.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 4000 |
-| Damage | 9 |
-| Speed | 85 |
-| Seeds dropped | 120 |
-| Attacks | Aimed fan ×7 inflicts [Rot](SKILLS.md#status-rot) 4s (every 2.2s)<br>Telegraphed charge (every 5s)<br>Telegraphed slam ×5 (every 6s)<br>Summon 3× [Can Bot](MONSTERS.md#enemy-robot_can) (every 9s) |
-| Phase two | At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Spiral ×8 (every 7s), Hazard zone ×5 inflicts [Curse](SKILLS.md#status-curse) 3s (every 6s); gains [Enrage](SKILLS.md#status-enrage) 999s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/rotten_chef.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rotten Chef · Chapter 5 Boss</th></tr>
+<tr><td colspan="2"><i>The tomato factory's crooked head chef, source of all rot.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>4000</td></tr>
+<tr><td nowrap>Damage</td><td>9</td></tr>
+<tr><td nowrap>Speed</td><td>85</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>120</td></tr>
+<tr><td nowrap>Attacks</td><td>Aimed fan ×7 inflicts <a href="SKILLS.md#status-rot">Rot</a> 4s (every 2.2s)<br>Telegraphed charge (every 5s)<br>Telegraphed slam ×5 (every 6s)<br>Summon 3× <a href="MONSTERS.md#enemy-robot_can">Can Bot</a> (every 9s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Spiral ×8 (every 7s), Hazard zone ×5 inflicts <a href="SKILLS.md#status-curse">Curse</a> 3s (every 6s); gains <a href="SKILLS.md#status-enrage">Enrage</a> 999s</td></tr>
+</table>
 
 <a id="boss-factory_core"></a>
 
-### Factory Core · Chapter 5 Boss
-
-<img src="../images/boss/factory_core.png" width="96" height="96" alt="">
-
-> The evil AI running the whole Ketchup Factory.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 3800 |
-| Damage | 9 |
-| Speed | 50 |
-| Seeds dropped | 120 |
-| Attacks | Telegraphed laser (every 3.5s)<br>Summon 3× [Can Bot](MONSTERS.md#enemy-robot_can) (every 7s)<br>Teleport (every 5s)<br>Empower self/allies gain [Barrier](SKILLS.md#status-barrier) 4s (every 10s) |
-| Phase two | At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Ring ×22 inflicts [Silence](SKILLS.md#status-silence) 2s (30%) (every 2.5s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/factory_core.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Factory Core · Chapter 5 Boss</th></tr>
+<tr><td colspan="2"><i>The evil AI running the whole Ketchup Factory.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>3800</td></tr>
+<tr><td nowrap>Damage</td><td>9</td></tr>
+<tr><td nowrap>Speed</td><td>50</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>120</td></tr>
+<tr><td nowrap>Attacks</td><td>Telegraphed laser (every 3.5s)<br>Summon 3× <a href="MONSTERS.md#enemy-robot_can">Can Bot</a> (every 7s)<br>Teleport (every 5s)<br>Empower self/allies gain <a href="SKILLS.md#status-barrier">Barrier</a> 4s (every 10s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.3, cooldowns ×0.7; adds Ring ×22 inflicts <a href="SKILLS.md#status-silence">Silence</a> 2s (30%) (every 2.5s)</td></tr>
+</table>
 
 <a id="boss-ketchup_leviathan"></a>
 
-### Ketchup Leviathan · Chapter 5 Boss
-
-<img src="../images/boss/ketchup_leviathan.png" width="96" height="96" alt="">
-
-> A colossal monster churning in a vat of Ketchup.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 5 · Ketchup Factory](CHAPTERS.md#chapter-5) |
-| Base HP | 4200 |
-| Damage | 9 |
-| Speed | 55 |
-| Seeds dropped | 120 |
-| Attacks | Hazard zone ×6 inflicts [Sticky](SKILLS.md#status-sticky) 2s, 2× [Bleed](SKILLS.md#status-bleed) 3s (every 4s)<br>Spiral ×7 (every 6s)<br>Telegraphed slam ×4 (every 5s) |
-| Phase two | At ≤ 50% HP: speed ×1.2, cooldowns ×0.7; adds Summon 4× [Grease Blob](MONSTERS.md#enemy-oil_blob) (every 7s), Scatter ×14 (every 2.5s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/ketchup_leviathan.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ketchup Leviathan · Chapter 5 Boss</th></tr>
+<tr><td colspan="2"><i>A colossal monster churning in a vat of Ketchup.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a></td></tr>
+<tr><td nowrap>Base HP</td><td>4200</td></tr>
+<tr><td nowrap>Damage</td><td>9</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>120</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×6 inflicts <a href="SKILLS.md#status-sticky">Sticky</a> 2s, 2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s (every 4s)<br>Spiral ×7 (every 6s)<br>Telegraphed slam ×4 (every 5s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.2, cooldowns ×0.7; adds Summon 4× <a href="MONSTERS.md#enemy-oil_blob">Grease Blob</a> (every 7s), Scatter ×14 (every 2.5s)</td></tr>
+</table>
 
 <a id="boss-blight_gardener"></a>
 
-### Blight Gardener · Chapter 6 Boss
-
-<img src="../images/boss/blight_gardener.png" width="96" height="96" alt="">
-
-> A mad gardener who turned the greenhouse into a rot nursery, swinging rusty shears.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 6 · Rotting Greenhouse](CHAPTERS.md#chapter-6) |
-| Base HP | 4200 |
-| Damage | 9 |
-| Speed | 80 |
-| Seeds dropped | 132 |
-| Attacks | Aimed fan ×5 inflicts 2× [Bleed](SKILLS.md#status-bleed) 3s (every 2.2s)<br>Hazard zone ×5 inflicts 2× [Poison](SKILLS.md#status-poison) 3s, [Sticky](SKILLS.md#status-sticky) 1.5s (every 5s)<br>Summon 5× [Blight Sprout](MONSTERS.md#enemy-blight_sprout) (every 8s)<br>Telegraphed charge (every 5s) |
-| Phase two | At ≤ 50% HP: speed ×1.25, cooldowns ×0.7; adds Spiral ×7 inflicts [Poison](SKILLS.md#status-poison) 2s (every 7s), Summon 2× [Rot Vine](MONSTERS.md#enemy-vine_lasher) (every 9s); gains [Enrage](SKILLS.md#status-enrage) 999s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/blight_gardener.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blight Gardener · Chapter 6 Boss</th></tr>
+<tr><td colspan="2"><i>A mad gardener who turned the greenhouse into a rot nursery, swinging rusty shears.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a></td></tr>
+<tr><td nowrap>Base HP</td><td>4200</td></tr>
+<tr><td nowrap>Damage</td><td>9</td></tr>
+<tr><td nowrap>Speed</td><td>80</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>132</td></tr>
+<tr><td nowrap>Attacks</td><td>Aimed fan ×5 inflicts 2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s (every 2.2s)<br>Hazard zone ×5 inflicts 2× <a href="SKILLS.md#status-poison">Poison</a> 3s, <a href="SKILLS.md#status-sticky">Sticky</a> 1.5s (every 5s)<br>Summon 5× <a href="MONSTERS.md#enemy-blight_sprout">Blight Sprout</a> (every 8s)<br>Telegraphed charge (every 5s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.25, cooldowns ×0.7; adds Spiral ×7 inflicts <a href="SKILLS.md#status-poison">Poison</a> 2s (every 7s), Summon 2× <a href="MONSTERS.md#enemy-vine_lasher">Rot Vine</a> (every 9s); gains <a href="SKILLS.md#status-enrage">Enrage</a> 999s</td></tr>
+</table>
 
 <a id="boss-rot_mother"></a>
 
-### Mother of Rot · Chapter 7 Boss
-
-<img src="../images/boss/rot_mother.png" width="96" height="96" alt="">
-
-> The seedbed of the garden’s decay, endlessly birthing new rot from the mud.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) |
-| Base HP | 4600 |
-| Damage | 10 |
-| Speed | 55 |
-| Seeds dropped | 144 |
-| Attacks | Hazard zone ×6 inflicts [Rot](SKILLS.md#status-rot) 4s (every 4.5s)<br>Summon 3× [Rotheart Cabbage](MONSTERS.md#enemy-rot_cabbage) (every 8s)<br>Spiral ×7 (every 6s)<br>Telegraphed slam ×4 (every 5s) |
-| Phase two | At ≤ 50% HP: speed ×1.25, cooldowns ×0.7; adds Summon 1× [Rot Sprinkler](MONSTERS.md#enemy-rot_sprinkler) (every 9s), Scatter ×14 inflicts [Weaken](SKILLS.md#status-weaken) 3s (every 2.5s) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/rot_mother.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mother of Rot · Chapter 7 Boss</th></tr>
+<tr><td colspan="2"><i>The seedbed of the garden’s decay, endlessly birthing new rot from the mud.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>4600</td></tr>
+<tr><td nowrap>Damage</td><td>10</td></tr>
+<tr><td nowrap>Speed</td><td>55</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>144</td></tr>
+<tr><td nowrap>Attacks</td><td>Hazard zone ×6 inflicts <a href="SKILLS.md#status-rot">Rot</a> 4s (every 4.5s)<br>Summon 3× <a href="MONSTERS.md#enemy-rot_cabbage">Rotheart Cabbage</a> (every 8s)<br>Spiral ×7 (every 6s)<br>Telegraphed slam ×4 (every 5s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.25, cooldowns ×0.7; adds Summon 1× <a href="MONSTERS.md#enemy-rot_sprinkler">Rot Sprinkler</a> (every 9s), Scatter ×14 inflicts <a href="SKILLS.md#status-weaken">Weaken</a> 3s (every 2.5s)</td></tr>
+</table>
 
 <a id="boss-rot_king"></a>
 
-### Rot King · True Final Boss
-
-<img src="../images/boss/rot_king.png" width="96" height="96" alt="">
-
-> The true source of all rot. Even the Rotten Chef was only his pawn.
-
-| Field | Value |
-| --- | --- |
-| Chapter | [Chapter 7 · Rot Garden](CHAPTERS.md#chapter-7) |
-| Base HP | 6000 |
-| Damage | 11 |
-| Speed | 70 |
-| Seeds dropped | 200 |
-| Attacks | Ring ×20 inflicts [Rot](SKILLS.md#status-rot) 3s (every 3.5s)<br>Aimed fan ×7 inflicts [Curse](SKILLS.md#status-curse) 3s (every 2.2s)<br>Telegraphed charge (every 5s)<br>Telegraphed slam ×5 inflicts [Stun](SKILLS.md#status-stun) 0.6s (every 6s)<br>Hazard zone ×6 inflicts 3× [Poison](SKILLS.md#status-poison) 3s, [Sticky](SKILLS.md#status-sticky) 1.5s (every 5s)<br>Summon 3× [Zombie Carrot](MONSTERS.md#enemy-zombie_carrot) (every 9s)<br>Teleport (every 7s) |
-| Phase two | At ≤ 50% HP: speed ×1.3, cooldowns ×0.65; adds Spiral ×8 inflicts [Rot](SKILLS.md#status-rot) 2s (every 7s), Telegraphed laser inflicts 2× [Burn](SKILLS.md#status-burn) 3s (every 5s), Scatter ×16 inflicts [Weaken](SKILLS.md#status-weaken) 3s (every 3s), Empower self/allies gain [Barrier](SKILLS.md#status-barrier) 3s (every 12s); gains [Enrage](SKILLS.md#status-enrage) 999s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/rot_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rot King · True Final Boss</th></tr>
+<tr><td colspan="2"><i>The true source of all rot. Even the Rotten Chef was only his pawn.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a></td></tr>
+<tr><td nowrap>Base HP</td><td>6000</td></tr>
+<tr><td nowrap>Damage</td><td>11</td></tr>
+<tr><td nowrap>Speed</td><td>70</td></tr>
+<tr><td nowrap>Seeds dropped</td><td>200</td></tr>
+<tr><td nowrap>Attacks</td><td>Ring ×20 inflicts <a href="SKILLS.md#status-rot">Rot</a> 3s (every 3.5s)<br>Aimed fan ×7 inflicts <a href="SKILLS.md#status-curse">Curse</a> 3s (every 2.2s)<br>Telegraphed charge (every 5s)<br>Telegraphed slam ×5 inflicts <a href="SKILLS.md#status-stun">Stun</a> 0.6s (every 6s)<br>Hazard zone ×6 inflicts 3× <a href="SKILLS.md#status-poison">Poison</a> 3s, <a href="SKILLS.md#status-sticky">Sticky</a> 1.5s (every 5s)<br>Summon 3× <a href="MONSTERS.md#enemy-zombie_carrot">Zombie Carrot</a> (every 9s)<br>Teleport (every 7s)</td></tr>
+<tr><td nowrap>Phase two</td><td>At ≤ 50% HP: speed ×1.3, cooldowns ×0.65; adds Spiral ×8 inflicts <a href="SKILLS.md#status-rot">Rot</a> 2s (every 7s), Telegraphed laser inflicts 2× <a href="SKILLS.md#status-burn">Burn</a> 3s (every 5s), Scatter ×16 inflicts <a href="SKILLS.md#status-weaken">Weaken</a> 3s (every 3s), Empower self/allies gain <a href="SKILLS.md#status-barrier">Barrier</a> 3s (every 12s); gains <a href="SKILLS.md#status-enrage">Enrage</a> 999s</td></tr>
+</table>
 
 <a id="affixes"></a>
 

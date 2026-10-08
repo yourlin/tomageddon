@@ -8,6 +8,7 @@ import { MODIFIERS, makeFreeChallenge, challengeCode, type FreeOpts } from '../d
 import { run, clearRun } from '../systems/RunState';
 import { tx, lang } from '../i18n';
 import { chapterWaves } from '../data/balance';
+import { VW, VH } from '../systems/HiDpi';
 
 const pick = (t: [string, string]): string => (lang === 'en' ? t[1] : t[0]);
 
@@ -21,7 +22,7 @@ export class CustomChallengeScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    const W = this.scale.width;
+    const W = VW(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     text(this, 24, 18, tx('🛠️ 自定义挑战', '🛠️ Custom Challenge'), 36);
     text(
@@ -44,8 +45,8 @@ export class CustomChallengeScene extends Phaser.Scene {
   private draw(): void {
     this.layer.removeAll(true);
     const L = this.layer;
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     const o = this.o;
     // 角色
     const ci = CHARACTERS.findIndex((c) => c.id === o.charId);

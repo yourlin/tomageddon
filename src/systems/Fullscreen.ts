@@ -1,7 +1,7 @@
 // 全屏：支持时进入全屏并锁定横屏；不支持的环境（iPhone Safari、iPhone 微信等）弹出操作指引
 import Phaser from 'phaser';
 import { tx } from '../i18n';
-import { overlayRoot } from './ForceLandscape';
+import { overlayRoot } from './OverlayRoot';
 import { nativeToggleFullscreen } from '../platform';
 
 const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';

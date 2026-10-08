@@ -1,11 +1,12 @@
 // 角色专属技能演出（第二批）：分身、环形弹幕、连射、导弹、治疗、领域、自身增益
 import Phaser from 'phaser';
-import type { GameScene, HitInfo } from '../scenes/GameScene';
+import type { BulletShield, GameScene, HitInfo } from '../scenes/GameScene';
 import type { Enemy } from '../objects/Enemy';
 import { Rig } from '../objects/Rig';
 import { run } from './RunState';
 import { audio } from './Audio';
-import { HEAL_SCALE } from '../data/skills';
+import { HEAL_SCALE, CLONE_HP_PCT, CLONE_BOOM_R, CLONE_BOOM_MULT } from '../data/skills';
+import { WEAPON_MAP } from '../data/weapons';
 import type { StyleCtx } from './SkillStyles';
 
 const ADD = Phaser.BlendModes.ADD;
@@ -64,7 +65,9 @@ function makeRig(g: GameScene, scale = 0.9, tint = -1): Rig {
 // 分身类：四种完全不同的召唤物
 // ================================================================
 
-/** 蓝莓双子：左右各一个分身，以玩家为中心对称旋转，两者之间连着能量线 */
+/** 蓝莓双子：左右各一个分身，以玩家为中心对称旋转，两者之间连着能量线。
+ *  分身拿着本体的全部武器一起攻击（伤害 CLONE_WEAPON_MULT，见 WeaponSystem.echo），身体能挡子弹；
+ *  被打掉或时间到时，分身的尸体会爆炸。 */
 function twinClones(c: StyleCtx): void {
   const { g, host, sk, info } = c;
   const dur = host.dur(sk.duration ?? 8);
@@ -72,35 +75,83 @@ function twinClones(c: StyleCtx): void {
   for (const r of rigs) r.setAlpha(0.8);
   const link = g.add.graphics().setDepth(10500).setBlendMode(ADD);
   let a = 0;
-  const cd = [0, 0.25];
+  const hpMax = Math.max(10, g.stats.maxHp * CLONE_HP_PCT);
+  interface Twin {
+    rig: Rig;
+    hp: number;
+    alive: boolean;
+    pos: { x: number; y: number };
+    shield: BulletShield;
+    /** 分身手里的本体武器（只是外观，攻击由 WeaponSystem.echo 结算） */
+    guns: Phaser.GameObjects.Image[];
+  }
+  const twins: Twin[] = rigs.map((rig) => {
+    const guns = run.weapons.map((w) => {
+      const img = g.add.image(rig.x, rig.y, `weapon_${WEAPON_MAP[w.id].id}`).setAlpha(0.85);
+      return img.setScale(40 / Math.max(img.width, img.height));
+    });
+    const tw: Twin = {
+      guns,
+      rig,
+      hp: hpMax,
+      alive: true,
+      pos: { x: rig.x, y: rig.y },
+      shield: { x: rig.x, y: rig.y, r: rig.radius * 0.9 + 6, color: 0x74c0fc },
+    };
+    tw.shield.block = (dmg) => {
+      tw.hp -= dmg;
+      if (tw.hp <= 0) pop(tw);
+    };
+    g.weaponClones.push(tw.pos);
+    g.bulletShields.push(tw.shield);
+    return tw;
+  });
+  // 分身倒下：从武器 / 挡弹列表移除，尸体原地爆炸
+  const pop = (tw: Twin): void => {
+    if (!tw.alive) return;
+    tw.alive = false;
+    g.weaponClones = g.weaponClones.filter((x) => x !== tw.pos);
+    g.bulletShields = g.bulletShields.filter((x) => x !== tw.shield);
+    g.explode(tw.rig.x, tw.rig.y, host.radius(CLONE_BOOM_R), info.dmg * CLONE_BOOM_MULT, info, 0x4dabf7);
+    g.shake(0.006, 140);
+    for (const gun of tw.guns) gun.destroy();
+    tw.rig.die(() => tw.rig.destroy());
+  };
   host.linger({
     t: dur,
     tick: (dt) => {
       const p = g.player;
       a += dt * 1.6;
       link.clear();
-      rigs.forEach((r, i) => {
+      twins.forEach((tw, i) => {
+        if (!tw.alive) return;
+        const r = tw.rig;
         const ang = a + i * Math.PI;
         const ox = r.x;
         r.x = p.x + Math.cos(ang) * 90;
         r.y = p.y + Math.sin(ang) * 50 - 10;
         r.setDepth(r.y);
+        tw.pos.x = tw.shield.x = r.x;
+        tw.pos.y = tw.shield.y = r.y;
         const t = g.grid.nearest(r.x, r.y, 450);
         r.tick(dt, Math.min(1, Math.abs(r.x - ox) / (dt * 150 + 0.001)), t ? t.x - r.x : 1);
-        cd[i] -= dt;
-        if (cd[i] <= 0 && t) {
-          cd[i] = 0.5;
-          r.play('attack');
-          const b = g.spawnPlayerBullet('proj_pea', r.x, r.y, Math.atan2(t.y - r.y, t.x - r.x), 760, 0.7, 9);
-          b.dmg = info.dmg;
-          b.setTint(0x4dabf7);
-        }
+        // 武器环绕分身、朝向最近的敌人
+        const aim = t ? Math.atan2(t.y - r.y, t.x - r.x) : 0;
+        tw.guns.forEach((gun, k) => {
+          const sa = (k / tw.guns.length) * Math.PI * 2 - Math.PI / 2;
+          gun
+            .setPosition(r.x + Math.cos(sa) * 30, r.y + 5 + Math.sin(sa) * 22)
+            .setRotation(aim)
+            .setFlipY(Math.cos(aim) < 0)
+            .setDepth(r.y + 1);
+        });
       });
-      link.lineStyle(3, 0x74c0fc, 0.6 + Math.sin(g.time.now / 90) * 0.3).lineBetween(rigs[0].x, rigs[0].y, rigs[1].x, rigs[1].y);
+      if (twins[0].alive && twins[1].alive)
+        link.lineStyle(3, 0x74c0fc, 0.6 + Math.sin(g.time.now / 90) * 0.3).lineBetween(rigs[0].x, rigs[0].y, rigs[1].x, rigs[1].y);
     },
     end: () => {
       link.destroy();
-      for (const r of rigs) r.die(() => r.destroy());
+      for (const tw of twins) pop(tw);
     },
   });
 }

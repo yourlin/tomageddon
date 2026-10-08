@@ -35,7 +35,8 @@ describe('精英 / Boss 伤害', () => {
   });
 
   // 各章 Boss 碰撞打死典型构筑的目标次数：第 1 章约 8 下，逐章递减到第 7 章约 3 下
-  const GOAL: Record<number, number> = { 1: 8, 2: 7, 3: 6, 4: 6, 5: 5, 6: 4, 7: 3 };
+  // 第 2 章 Boss 按平衡测试结果下调过伤害（阵亡 75% 集中在第 2 章 Boss 波），目标放宽到 8 下
+  const GOAL: Record<number, number> = { 1: 8, 2: 8, 3: 6, 4: 6, 5: 5, 6: 4, 7: 3 };
   const hitsToKill = (b: (typeof BOSSES)[number]): number => {
     const t = TYPICAL[b.chapter];
     const raw = bossStats(b, chapterWaves(b.chapter), chOf(b.chapter)).dmg * BALANCE.enemyHit.contact;

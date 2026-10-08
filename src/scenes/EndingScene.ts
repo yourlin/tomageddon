@@ -5,6 +5,7 @@ import { save, persist } from '../systems/Save';
 import { bump } from '../systems/Counters';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
+import { VW, VH } from '../systems/HiDpi';
 
 const LINES: [string, string][] = [
   ['腐烂之王倒下了。', 'The Rot King has fallen.'],
@@ -20,8 +21,8 @@ export class EndingScene extends Phaser.Scene {
   }
 
   create(): void {
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.cameras.main.setBackgroundColor(0x0a0604);
     save.meta.trueEnding = (save.meta.trueEnding ?? 0) + 1;
     bump('trueEndings');

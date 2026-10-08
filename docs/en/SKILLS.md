@@ -96,656 +96,500 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <a id="skill-tomato"></a>
 
-### Ketchup Burst (Tomato Sister)
-
-<img src="../images/char/tomato.png" width="64" height="64" alt="">
-
-> Splatter ketchup everywhere, damaging and slowing enemies.
-
-| Field | Value |
-| --- | --- |
-| Character | [Tomato Sister](CHARACTERS.md#char-tomato) |
-| Form | Nova Burst |
-| Cooldown | 17s |
-| Damage multiplier | ×2.2 |
-| Radius | 180 |
-| Inflicts | 3× [Slow](#status-slow) 3s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/tomato.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ketchup Burst (Tomato Sister)</th></tr>
+<tr><td colspan="2"><i>Splatter ketchup everywhere, damaging and slowing enemies.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-tomato">Tomato Sister</a></td></tr>
+<tr><td nowrap>Form</td><td>Nova Burst</td></tr>
+<tr><td nowrap>Cooldown</td><td>17s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Radius</td><td>180</td></tr>
+<tr><td nowrap>Inflicts</td><td>3× <a href="#status-slow">Slow</a> 3s</td></tr>
+</table>
 
 <a id="skill-carrot"></a>
 
-### Knight Charge (Carrot Knight)
-
-<img src="../images/char/carrot.png" width="64" height="64" alt="">
-
-> An invulnerable charge that stuns every enemy in its path.
-
-| Field | Value |
-| --- | --- |
-| Character | [Carrot Knight](CHARACTERS.md#char-carrot) |
-| Form | Dash |
-| Cooldown | 11s |
-| Damage multiplier | ×2 |
-| Dash distance | 320 |
-| Inflicts | [Stun](#status-stun) 0.8s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/carrot.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Knight Charge (Carrot Knight)</th></tr>
+<tr><td colspan="2"><i>An invulnerable charge that stuns every enemy in its path.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-carrot">Carrot Knight</a></td></tr>
+<tr><td nowrap>Form</td><td>Dash</td></tr>
+<tr><td nowrap>Cooldown</td><td>11s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Dash distance</td><td>320</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="#status-stun">Stun</a> 0.8s</td></tr>
+</table>
 
 <a id="skill-chili"></a>
 
-### Flame Nova (Chili Sis)
-
-<img src="../images/char/chili.png" width="64" height="64" alt="">
-
-> A fiery shockwave that applies 3 stacks of Burn.
-
-| Field | Value |
-| --- | --- |
-| Character | [Chili Sis](CHARACTERS.md#char-chili) |
-| Form | Nova Burst |
-| Cooldown | 20s |
-| Damage multiplier | ×2.2 |
-| Radius | 200 |
-| Inflicts | 3× [Burn](#status-burn) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/chili.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Flame Nova (Chili Sis)</th></tr>
+<tr><td colspan="2"><i>A fiery shockwave that applies 3 stacks of Burn.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-chili">Chili Sis</a></td></tr>
+<tr><td nowrap>Form</td><td>Nova Burst</td></tr>
+<tr><td nowrap>Cooldown</td><td>20s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Radius</td><td>200</td></tr>
+<tr><td nowrap>Inflicts</td><td>3× <a href="#status-burn">Burn</a> 4s</td></tr>
+</table>
 
 <a id="skill-corn"></a>
 
-### Popcorn Barrage (Corn Gunner)
-
-<img src="../images/char/corn.png" width="64" height="64" alt="">
-
-> Fire 18 popcorn shots in all directions.
-
-| Field | Value |
-| --- | --- |
-| Character | [Corn Gunner](CHARACTERS.md#char-corn) |
-| Form | Ring Barrage |
-| Cooldown | 8s |
-| Damage multiplier | ×0.7 |
-| Count | 18 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/corn.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Popcorn Barrage (Corn Gunner)</th></tr>
+<tr><td colspan="2"><i>Fire 18 popcorn shots in all directions.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-corn">Corn Gunner</a></td></tr>
+<tr><td nowrap>Form</td><td>Ring Barrage</td></tr>
+<tr><td nowrap>Cooldown</td><td>8s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.7</td></tr>
+<tr><td nowrap>Count</td><td>18</td></tr>
+</table>
 
 <a id="skill-watermelon"></a>
 
-### Melon Roll (Chubby Melon)
-
-<img src="../images/char/watermelon.png" width="64" height="64" alt="">
-
-> Roll into enemies and restore 4.5% Max HP.
-
-| Field | Value |
-| --- | --- |
-| Character | [Chubby Melon](CHARACTERS.md#char-watermelon) |
-| Form | Dash |
-| Cooldown | 13s |
-| Damage multiplier | ×2 |
-| Dash distance | 260 |
-| Heal | 4.5% Max HP |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/watermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Melon Roll (Chubby Melon)</th></tr>
+<tr><td colspan="2"><i>Roll into enemies and restore 4.5% Max HP.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-watermelon">Chubby Melon</a></td></tr>
+<tr><td nowrap>Form</td><td>Dash</td></tr>
+<tr><td nowrap>Cooldown</td><td>13s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Dash distance</td><td>260</td></tr>
+<tr><td nowrap>Heal</td><td>4.5% Max HP</td></tr>
+</table>
 
 <a id="skill-lemon"></a>
 
-### Sour Mist (Lemon Assassin)
-
-<img src="../images/char/lemon.png" width="64" height="64" alt="">
-
-> Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance.
-
-| Field | Value |
-| --- | --- |
-| Character | [Lemon Assassin](CHARACTERS.md#char-lemon) |
-| Form | Stealth |
-| Cooldown | 11s |
-| Duration | 2.5s |
-| Stat boost | +50% Crit Chance, +20% Move Speed |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/lemon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Sour Mist (Lemon Assassin)</th></tr>
+<tr><td colspan="2"><i>Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-lemon">Lemon Assassin</a></td></tr>
+<tr><td nowrap>Form</td><td>Stealth</td></tr>
+<tr><td nowrap>Cooldown</td><td>11s</td></tr>
+<tr><td nowrap>Duration</td><td>2.5s</td></tr>
+<tr><td nowrap>Stat boost</td><td>+50% Crit Chance, +10 Move Speed</td></tr>
+</table>
 
 <a id="skill-eggplant"></a>
 
-### Purple Thunder (Eggplant Mage)
-
-<img src="../images/char/eggplant.png" width="64" height="64" alt="">
-
-> Lightning blankets the screen, striking every enemy and briefly Stunning them.
-
-| Field | Value |
-| --- | --- |
-| Character | [Eggplant Mage](CHARACTERS.md#char-eggplant) |
-| Form | Screen Clear |
-| Cooldown | 14s |
-| Damage multiplier | ×0.9 |
-| Inflicts | [Stun](#status-stun) 0.4s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/eggplant.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Purple Thunder (Eggplant Mage)</th></tr>
+<tr><td colspan="2"><i>Lightning blankets the screen, striking every enemy and briefly Stunning them.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-eggplant">Eggplant Mage</a></td></tr>
+<tr><td nowrap>Form</td><td>Screen Clear</td></tr>
+<tr><td nowrap>Cooldown</td><td>14s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.9</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="#status-stun">Stun</a> 0.4s</td></tr>
+</table>
 
 <a id="skill-garlic"></a>
 
-### Blood Domain (Count Garlic)
-
-<img src="../images/char/garlic.png" width="64" height="64" alt="">
-
-> Drain life from nearby enemies and inflict Bleed.
-
-| Field | Value |
-| --- | --- |
-| Character | [Count Garlic](CHARACTERS.md#char-garlic) |
-| Form | Drain Heal |
-| Cooldown | 14s |
-| Damage multiplier | ×1 |
-| Radius | 200 |
-| Inflicts | 3× [Bleed](#status-bleed) 4s |
-| Drain | +0.5 HP per enemy hit (max 6% Max HP) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/garlic.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blood Domain (Count Garlic)</th></tr>
+<tr><td colspan="2"><i>Drain life from nearby enemies and inflict Bleed.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-garlic">Count Garlic</a></td></tr>
+<tr><td nowrap>Form</td><td>Drain Heal</td></tr>
+<tr><td nowrap>Cooldown</td><td>14s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×1</td></tr>
+<tr><td nowrap>Radius</td><td>200</td></tr>
+<tr><td nowrap>Inflicts</td><td>3× <a href="#status-bleed">Bleed</a> 4s</td></tr>
+<tr><td nowrap>Drain</td><td>+0.5 HP per enemy hit (max 6% Max HP)</td></tr>
+</table>
 
 <a id="skill-blueberry"></a>
 
-### Twin Clone (Blueberry Twins)
-
-<img src="../images/char/blueberry.png" width="64" height="64" alt="">
-
-> Summon a clone that auto-fires for 8s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Blueberry Twins](CHARACTERS.md#char-blueberry) |
-| Form | Summon Clone |
-| Cooldown | 10s |
-| Damage multiplier | ×0.45 |
-| Duration | 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/blueberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Twin Clone (Blueberry Twins)</th></tr>
+<tr><td colspan="2"><i>Summon 2 clones for 8s that attack with all your weapons (50% damage) and block bullets; clones explode when destroyed or expired.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-blueberry">Blueberry Twins</a></td></tr>
+<tr><td nowrap>Form</td><td>Summon Clone</td></tr>
+<tr><td nowrap>Cooldown</td><td>10s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.45</td></tr>
+<tr><td nowrap>Duration</td><td>8s</td></tr>
+</table>
 
 <a id="skill-pineapple"></a>
 
-### Golden Cannon (Captain Pineapple)
-
-<img src="../images/char/pineapple.png" width="64" height="64" alt="">
-
-> Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds.
-
-| Field | Value |
-| --- | --- |
-| Character | [Captain Pineapple](CHARACTERS.md#char-pineapple) |
-| Form | AOE Missile |
-| Cooldown | 16s |
-| Damage multiplier | ×3.2 |
-| Radius | 150 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pineapple.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Golden Cannon (Captain Pineapple)</th></tr>
+<tr><td colspan="2"><i>Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pineapple">Captain Pineapple</a></td></tr>
+<tr><td nowrap>Form</td><td>AOE Missile</td></tr>
+<tr><td nowrap>Cooldown</td><td>16s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×3.2</td></tr>
+<tr><td nowrap>Radius</td><td>150</td></tr>
+</table>
 
 <a id="skill-pumpkin"></a>
 
-### Spirit Form (Pumpkin Ghost)
-
-<img src="../images/char/pumpkin.png" width="64" height="64" alt="">
-
-> Become Invulnerable for 2.5s and gain a big speed boost.
-
-| Field | Value |
-| --- | --- |
-| Character | [Pumpkin Ghost](CHARACTERS.md#char-pumpkin) |
-| Form | Stealth |
-| Cooldown | 11s |
-| Duration | 2.5s |
-| Stat boost | +60% Move Speed |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pumpkin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spirit Form (Pumpkin Ghost)</th></tr>
+<tr><td colspan="2"><i>Become Invulnerable for 2.5s and gain a big speed boost.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pumpkin">Pumpkin Ghost</a></td></tr>
+<tr><td nowrap>Form</td><td>Stealth</td></tr>
+<tr><td nowrap>Cooldown</td><td>11s</td></tr>
+<tr><td nowrap>Duration</td><td>2.5s</td></tr>
+<tr><td nowrap>Stat boost</td><td>+30 Move Speed</td></tr>
+</table>
 
 <a id="skill-strawberry"></a>
 
-### Fan Cheer (Strawberry Idol)
-
-<img src="../images/char/strawberry.png" width="64" height="64" alt="">
-
-> Gain 3 stacks of Haste + 5 stacks of Rage for 6s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Strawberry Idol](CHARACTERS.md#char-strawberry) |
-| Form | Self Buff |
-| Cooldown | 13s |
-| Duration | 6s |
-| Self gains | 3× [Haste](#status-haste) 6s, 5× [Rage](#status-rage) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/strawberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Fan Cheer (Strawberry Idol)</th></tr>
+<tr><td colspan="2"><i>Gain 3 stacks of Haste + 5 stacks of Rage for 6s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-strawberry">Strawberry Idol</a></td></tr>
+<tr><td nowrap>Form</td><td>Self Buff</td></tr>
+<tr><td nowrap>Cooldown</td><td>13s</td></tr>
+<tr><td nowrap>Duration</td><td>6s</td></tr>
+<tr><td nowrap>Self gains</td><td>3× <a href="#status-haste">Haste</a> 6s, 5× <a href="#status-rage">Rage</a> 6s</td></tr>
+</table>
 
 <a id="skill-ginger"></a>
 
-### Shadow Slash (Ginger Ninja)
-
-<img src="../images/char/ginger.png" width="64" height="64" alt="">
-
-> Dash forward with a slash that inflicts Bleed.
-
-| Field | Value |
-| --- | --- |
-| Character | [Ginger Ninja](CHARACTERS.md#char-ginger) |
-| Form | Dash |
-| Cooldown | 11s |
-| Damage multiplier | ×2 |
-| Dash distance | 360 |
-| Inflicts | 2× [Bleed](#status-bleed) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/ginger.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Shadow Slash (Ginger Ninja)</th></tr>
+<tr><td colspan="2"><i>Dash forward with a slash that inflicts Bleed.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-ginger">Ginger Ninja</a></td></tr>
+<tr><td nowrap>Form</td><td>Dash</td></tr>
+<tr><td nowrap>Cooldown</td><td>11s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Dash distance</td><td>360</td></tr>
+<tr><td nowrap>Inflicts</td><td>2× <a href="#status-bleed">Bleed</a> 4s</td></tr>
+</table>
 
 <a id="skill-avocado"></a>
 
-### Core Overload (Dr. Avocado)
-
-<img src="../images/char/avocado.png" width="64" height="64" alt="">
-
-> Trigger 5 chain explosions.
-
-| Field | Value |
-| --- | --- |
-| Character | [Dr. Avocado](CHARACTERS.md#char-avocado) |
-| Form | Multi-Strike |
-| Cooldown | 11s |
-| Damage multiplier | ×1.6 |
-| Radius | 90 |
-| Count | 5 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/avocado.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Core Overload (Dr. Avocado)</th></tr>
+<tr><td colspan="2"><i>Trigger 5 chain explosions.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-avocado">Dr. Avocado</a></td></tr>
+<tr><td nowrap>Form</td><td>Multi-Strike</td></tr>
+<tr><td nowrap>Cooldown</td><td>11s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×1.6</td></tr>
+<tr><td nowrap>Radius</td><td>90</td></tr>
+<tr><td nowrap>Count</td><td>5</td></tr>
+</table>
 
 <a id="skill-onion"></a>
 
-### Tear Gas Zone (Uncle Onion)
-
-<img src="../images/char/onion.png" width="64" height="64" alt="">
-
-> Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside.
-
-| Field | Value |
-| --- | --- |
-| Character | [Uncle Onion](CHARACTERS.md#char-onion) |
-| Form | Binding Field |
-| Cooldown | 12s |
-| Damage multiplier | ×0.4 |
-| Radius | 180 |
-| Duration | 5s |
-| Inflicts | 3× [Slow](#status-slow) 1s, [Blind](#status-blind) 1s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/onion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Tear Gas Zone (Uncle Onion)</th></tr>
+<tr><td colspan="2"><i>Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-onion">Uncle Onion</a></td></tr>
+<tr><td nowrap>Form</td><td>Binding Field</td></tr>
+<tr><td nowrap>Cooldown</td><td>12s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.4</td></tr>
+<tr><td nowrap>Radius</td><td>180</td></tr>
+<tr><td nowrap>Duration</td><td>5s</td></tr>
+<tr><td nowrap>Inflicts</td><td>3× <a href="#status-slow">Slow</a> 1s, <a href="#status-blind">Blind</a> 1s</td></tr>
+</table>
 
 <a id="skill-mushroom"></a>
 
-### Spore Cloud (Mushroom Shaman)
-
-<img src="../images/char/mushroom.png" width="64" height="64" alt="">
-
-> Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area.
-
-| Field | Value |
-| --- | --- |
-| Character | [Mushroom Shaman](CHARACTERS.md#char-mushroom) |
-| Form | Mass Debuff |
-| Cooldown | 19s |
-| Damage multiplier | ×0.3 |
-| Radius | 320 |
-| Inflicts | 5× [Poison](#status-poison) 6s, 2× [Weaken](#status-weaken) 5s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/mushroom.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spore Cloud (Mushroom Shaman)</th></tr>
+<tr><td colspan="2"><i>Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-mushroom">Mushroom Shaman</a></td></tr>
+<tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
+<tr><td nowrap>Cooldown</td><td>19s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.3</td></tr>
+<tr><td nowrap>Radius</td><td>320</td></tr>
+<tr><td nowrap>Inflicts</td><td>5× <a href="#status-poison">Poison</a> 6s, 2× <a href="#status-weaken">Weaken</a> 5s</td></tr>
+</table>
 
 <a id="skill-coconut"></a>
 
-### Ground Pound (Coconut Boxer)
-
-<img src="../images/char/coconut.png" width="64" height="64" alt="">
-
-> Slam the ground to Stun enemies and inflict Armor Break.
-
-| Field | Value |
-| --- | --- |
-| Character | [Coconut Boxer](CHARACTERS.md#char-coconut) |
-| Form | Nova Burst |
-| Cooldown | 21s |
-| Damage multiplier | ×2.2 |
-| Radius | 170 |
-| Inflicts | [Stun](#status-stun) 1.2s, 3× [Armor Break](#status-armorBreak) 6s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/coconut.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ground Pound (Coconut Boxer)</th></tr>
+<tr><td colspan="2"><i>Slam the ground to Stun enemies and inflict Armor Break.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-coconut">Coconut Boxer</a></td></tr>
+<tr><td nowrap>Form</td><td>Nova Burst</td></tr>
+<tr><td nowrap>Cooldown</td><td>21s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Radius</td><td>170</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="#status-stun">Stun</a> 1.2s, 3× <a href="#status-armorBreak">Armor Break</a> 6s</td></tr>
+</table>
 
 <a id="skill-grape"></a>
 
-### Grape Clone (Grape Magician)
-
-<img src="../images/char/grape.png" width="64" height="64" alt="">
-
-> Summon a clone that auto-fires for 8s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Grape Magician](CHARACTERS.md#char-grape) |
-| Form | Summon Clone |
-| Cooldown | 10s |
-| Damage multiplier | ×0.45 |
-| Duration | 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/grape.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Grape Clone (Grape Magician)</th></tr>
+<tr><td colspan="2"><i>Summon a clone that auto-fires for 8s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-grape">Grape Magician</a></td></tr>
+<tr><td nowrap>Form</td><td>Summon Clone</td></tr>
+<tr><td nowrap>Cooldown</td><td>10s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.45</td></tr>
+<tr><td nowrap>Duration</td><td>8s</td></tr>
+</table>
 
 <a id="skill-cherry"></a>
 
-### Dual Barrage (Cherry Gunslinger)
-
-<img src="../images/char/cherry.png" width="64" height="64" alt="">
-
-> Fire 12 bullets in a row at the nearest enemy.
-
-| Field | Value |
-| --- | --- |
-| Character | [Cherry Gunslinger](CHARACTERS.md#char-cherry) |
-| Form | Focused Barrage |
-| Cooldown | 11s |
-| Damage multiplier | ×0.9 |
-| Count | 12 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/cherry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Dual Barrage (Cherry Gunslinger)</th></tr>
+<tr><td colspan="2"><i>Fire 12 bullets in a row at the nearest enemy.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-cherry">Cherry Gunslinger</a></td></tr>
+<tr><td nowrap>Form</td><td>Focused Barrage</td></tr>
+<tr><td nowrap>Cooldown</td><td>11s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.9</td></tr>
+<tr><td nowrap>Count</td><td>12</td></tr>
+</table>
 
 <a id="skill-pea"></a>
 
-### Pea Turret (Pea Soldier)
-
-<img src="../images/char/pea.png" width="64" height="64" alt="">
-
-> Rapid-fire 16 peas at the nearest enemy.
-
-| Field | Value |
-| --- | --- |
-| Character | [Pea Soldier](CHARACTERS.md#char-pea) |
-| Form | Focused Barrage |
-| Cooldown | 10s |
-| Damage multiplier | ×0.6 |
-| Count | 16 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pea.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pea Turret (Pea Soldier)</th></tr>
+<tr><td colspan="2"><i>Rapid-fire 16 peas at the nearest enemy.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pea">Pea Soldier</a></td></tr>
+<tr><td nowrap>Form</td><td>Focused Barrage</td></tr>
+<tr><td nowrap>Cooldown</td><td>10s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.6</td></tr>
+<tr><td nowrap>Count</td><td>16</td></tr>
+</table>
 
 <a id="skill-peach"></a>
 
-### Angel’s Blessing (Peach Angel)
-
-<img src="../images/char/peach.png" width="64" height="64" alt="">
-
-> Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Peach Angel](CHARACTERS.md#char-peach) |
-| Form | Drain Heal |
-| Cooldown | 21s |
-| Damage multiplier | ×1 |
-| Radius | 150 |
-| Self gains | [Invulnerable](#status-invuln) 1.5s |
-| Heal | 9% Max HP |
-| Drain | +0.5 HP per enemy hit (max 6% Max HP) |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/skill/peach.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Angel’s Blessing (Peach Angel)</th></tr>
+<tr><td colspan="2"><i>Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-peach">Peach Angel</a></td></tr>
+<tr><td nowrap>Form</td><td>Drain Heal</td></tr>
+<tr><td nowrap>Cooldown</td><td>21s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×1</td></tr>
+<tr><td nowrap>Radius</td><td>150</td></tr>
+<tr><td nowrap>Self gains</td><td><a href="#status-invuln">Invulnerable</a> 1.5s</td></tr>
+<tr><td nowrap>Heal</td><td>9% Max HP</td></tr>
+<tr><td nowrap>Drain</td><td>+0.5 HP per enemy hit (max 6% Max HP)</td></tr>
+</table>
 
 <a id="skill-dragonfruit"></a>
 
-### Dragonflame Charge (Dragonfruit Rider)
-
-<img src="../images/char/dragonfruit.png" width="64" height="64" alt="">
-
-> Charge forward, applying 4 stacks of Burn along the path.
-
-| Field | Value |
-| --- | --- |
-| Character | [Dragonfruit Rider](CHARACTERS.md#char-dragonfruit) |
-| Form | Dash |
-| Cooldown | 12s |
-| Damage multiplier | ×2 |
-| Dash distance | 330 |
-| Inflicts | 4× [Burn](#status-burn) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/dragonfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Dragonflame Charge (Dragonfruit Rider)</th></tr>
+<tr><td colspan="2"><i>Charge forward, applying 4 stacks of Burn for 5s along the path.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-dragonfruit">Dragonfruit Rider</a></td></tr>
+<tr><td nowrap>Form</td><td>Dash</td></tr>
+<tr><td nowrap>Cooldown</td><td>12s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Dash distance</td><td>330</td></tr>
+<tr><td nowrap>Inflicts</td><td>4× <a href="#status-burn">Burn</a> 5s</td></tr>
+</table>
 
 <a id="skill-beet"></a>
 
-### Frenzy (Beet Berserker)
-
-<img src="../images/char/beet.png" width="64" height="64" alt="">
-
-> Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Beet Berserker](CHARACTERS.md#char-beet) |
-| Form | Self Buff |
-| Cooldown | 13s |
-| Duration | 6s |
-| Self gains | [Enrage](#status-enrage) 6s, 3× [Bloodlust](#status-vampiric) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/beet.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frenzy (Beet Berserker)</th></tr>
+<tr><td colspan="2"><i>Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-beet">Beet Berserker</a></td></tr>
+<tr><td nowrap>Form</td><td>Self Buff</td></tr>
+<tr><td nowrap>Cooldown</td><td>13s</td></tr>
+<tr><td nowrap>Duration</td><td>6s</td></tr>
+<tr><td nowrap>Self gains</td><td><a href="#status-enrage">Enrage</a> 6s, 3× <a href="#status-vampiric">Bloodlust</a> 6s</td></tr>
+</table>
 
 <a id="skill-asparagus"></a>
 
-### Heartpiercer (Asparagus Archer)
-
-<img src="../images/char/asparagus.png" width="64" height="64" alt="">
-
-> Fire 8 piercing arrows at the enemy with the highest HP and Mark the target.
-
-| Field | Value |
-| --- | --- |
-| Character | [Asparagus Archer](CHARACTERS.md#char-asparagus) |
-| Form | Focused Barrage |
-| Cooldown | 12s |
-| Damage multiplier | ×1.3 |
-| Count | 8 |
-| Inflicts | [Mark](#status-mark) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/asparagus.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Heartpiercer (Asparagus Archer)</th></tr>
+<tr><td colspan="2"><i>Fire 8 piercing arrows at the enemy with the highest HP and Mark the target.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-asparagus">Asparagus Archer</a></td></tr>
+<tr><td nowrap>Form</td><td>Focused Barrage</td></tr>
+<tr><td nowrap>Cooldown</td><td>12s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×1.3</td></tr>
+<tr><td nowrap>Count</td><td>8</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="#status-mark">Mark</a> 4s</td></tr>
+</table>
 
 <a id="skill-sweetpotato"></a>
 
-### Roast Yam Feast (Chef Yam)
-
-<img src="../images/char/sweetpotato.png" width="64" height="64" alt="">
-
-> Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen.
-
-| Field | Value |
-| --- | --- |
-| Character | [Chef Yam](CHARACTERS.md#char-sweetpotato) |
-| Form | Drain Heal |
-| Cooldown | 24s |
-| Damage multiplier | ×1 |
-| Radius | 160 |
-| Self gains | 5× [Regen](#status-regen) 6s |
-| Heal | 9% Max HP |
-| Drain | +0.5 HP per enemy hit (max 6% Max HP) |
+<table>
+<tr><td rowspan="10" align="center" valign="middle"><img src="../images/skill/sweetpotato.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Roast Yam Feast (Chef Yam)</th></tr>
+<tr><td colspan="2"><i>Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-sweetpotato">Chef Yam</a></td></tr>
+<tr><td nowrap>Form</td><td>Drain Heal</td></tr>
+<tr><td nowrap>Cooldown</td><td>24s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×1</td></tr>
+<tr><td nowrap>Radius</td><td>160</td></tr>
+<tr><td nowrap>Self gains</td><td>5× <a href="#status-regen">Regen</a> 6s</td></tr>
+<tr><td nowrap>Heal</td><td>9% Max HP</td></tr>
+<tr><td nowrap>Drain</td><td>+0.5 HP per enemy hit (max 6% Max HP)</td></tr>
+</table>
 
 <a id="skill-kiwi"></a>
 
-### One Truth (Kiwi Detective)
-
-<img src="../images/char/kiwi.png" width="64" height="64" alt="">
-
-> See through every enemy on screen: apply Mark and 2 stacks of Vulnerable.
-
-| Field | Value |
-| --- | --- |
-| Character | [Kiwi Detective](CHARACTERS.md#char-kiwi) |
-| Form | Mass Debuff |
-| Cooldown | 15s |
-| Damage multiplier | ×0.2 |
-| Radius | 900 |
-| Inflicts | [Mark](#status-mark) 6s, 2× [Vulnerable](#status-vulnerable) 6s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/kiwi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">One Truth (Kiwi Detective)</th></tr>
+<tr><td colspan="2"><i>See through every enemy on screen: apply Mark and 2 stacks of Vulnerable.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-kiwi">Kiwi Detective</a></td></tr>
+<tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
+<tr><td nowrap>Cooldown</td><td>15s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.2</td></tr>
+<tr><td nowrap>Radius</td><td>900</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="#status-mark">Mark</a> 6s, 2× <a href="#status-vulnerable">Vulnerable</a> 6s</td></tr>
+</table>
 
 <a id="skill-lychee"></a>
 
-### Princess’s Luck (Lychee Princess)
-
-<img src="../images/char/lychee.png" width="64" height="64" alt="">
-
-> Gain 5 stacks of Lucky + 3 stacks of Focus for 6s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Lychee Princess](CHARACTERS.md#char-lychee) |
-| Form | Self Buff |
-| Cooldown | 10s |
-| Duration | 6s |
-| Self gains | 5× [Lucky](#status-lucky) 6s, 3× [Focus](#status-focus) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/lychee.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Princess’s Luck (Lychee Princess)</th></tr>
+<tr><td colspan="2"><i>Gain 5 stacks of Lucky + 3 stacks of Focus for 6s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-lychee">Lychee Princess</a></td></tr>
+<tr><td nowrap>Form</td><td>Self Buff</td></tr>
+<tr><td nowrap>Cooldown</td><td>10s</td></tr>
+<tr><td nowrap>Duration</td><td>6s</td></tr>
+<tr><td nowrap>Self gains</td><td>5× <a href="#status-lucky">Lucky</a> 6s, 3× <a href="#status-focus">Focus</a> 6s</td></tr>
+</table>
 
 <a id="skill-durian"></a>
 
-### Stink Bomb (Durian Overlord)
-
-<img src="../images/char/durian.png" width="64" height="64" alt="">
-
-> Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies.
-
-| Field | Value |
-| --- | --- |
-| Character | [Durian Overlord](CHARACTERS.md#char-durian) |
-| Form | Mass Debuff |
-| Cooldown | 21s |
-| Damage multiplier | ×0.4 |
-| Radius | 240 |
-| Inflicts | 4× [Poison](#status-poison) 5s, 3× [Weaken](#status-weaken) 5s, [Confuse](#status-confuse) 3s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/durian.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Stink Bomb (Durian Overlord)</th></tr>
+<tr><td colspan="2"><i>Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-durian">Durian Overlord</a></td></tr>
+<tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
+<tr><td nowrap>Cooldown</td><td>21s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.4</td></tr>
+<tr><td nowrap>Radius</td><td>240</td></tr>
+<tr><td nowrap>Inflicts</td><td>4× <a href="#status-poison">Poison</a> 5s, 3× <a href="#status-weaken">Weaken</a> 5s, <a href="#status-confuse">Confuse</a> 3s</td></tr>
+</table>
 
 <a id="skill-bellpepper"></a>
 
-### Drone Support (Pepper Mech)
-
-<img src="../images/char/bellpepper.png" width="64" height="64" alt="">
-
-> Deploy a drone for 8s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Pepper Mech](CHARACTERS.md#char-bellpepper) |
-| Form | Summon Clone |
-| Cooldown | 10s |
-| Damage multiplier | ×0.45 |
-| Duration | 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/bellpepper.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Drone Support (Pepper Mech)</th></tr>
+<tr><td colspan="2"><i>Deploy a drone for 8s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-bellpepper">Pepper Mech</a></td></tr>
+<tr><td nowrap>Form</td><td>Summon Clone</td></tr>
+<tr><td nowrap>Cooldown</td><td>10s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.45</td></tr>
+<tr><td nowrap>Duration</td><td>8s</td></tr>
+</table>
 
 <a id="skill-wintermelon"></a>
 
-### Golden Bell (Monk Gourd)
-
-<img src="../images/char/wintermelon.png" width="64" height="64" alt="">
-
-> Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify.
-
-| Field | Value |
-| --- | --- |
-| Character | [Monk Gourd](CHARACTERS.md#char-wintermelon) |
-| Form | Stealth |
-| Cooldown | 16s |
-| Duration | 2s |
-| Self gains | 5× [Fortify](#status-fortify) 8s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/wintermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Golden Bell (Monk Gourd)</th></tr>
+<tr><td colspan="2"><i>Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-wintermelon">Monk Gourd</a></td></tr>
+<tr><td nowrap>Form</td><td>Stealth</td></tr>
+<tr><td nowrap>Cooldown</td><td>16s</td></tr>
+<tr><td nowrap>Duration</td><td>2s</td></tr>
+<tr><td nowrap>Self gains</td><td>5× <a href="#status-fortify">Fortify</a> 8s</td></tr>
+</table>
 
 <a id="skill-bittermelon"></a>
 
-### Frozen Domain (Bitter Melon Mage)
-
-<img src="../images/char/bittermelon.png" width="64" height="64" alt="">
-
-> Unleash a 5s frost field around you that Slows and Freezes enemies who enter.
-
-| Field | Value |
-| --- | --- |
-| Character | [Bitter Melon Mage](CHARACTERS.md#char-bittermelon) |
-| Form | Binding Field |
-| Cooldown | 16s |
-| Damage multiplier | ×0.5 |
-| Radius | 170 |
-| Duration | 5s |
-| Inflicts | 3× [Slow](#status-slow) 1s, [Freeze](#status-freeze) 0.8s (25%) |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/bittermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frozen Domain (Bitter Melon Mage)</th></tr>
+<tr><td colspan="2"><i>Unleash a 5s frost field around you that Slows and Freezes enemies who enter.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-bittermelon">Bitter Melon Mage</a></td></tr>
+<tr><td nowrap>Form</td><td>Binding Field</td></tr>
+<tr><td nowrap>Cooldown</td><td>16s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.5</td></tr>
+<tr><td nowrap>Radius</td><td>170</td></tr>
+<tr><td nowrap>Duration</td><td>5s</td></tr>
+<tr><td nowrap>Inflicts</td><td>3× <a href="#status-slow">Slow</a> 1s, <a href="#status-freeze">Freeze</a> 0.8s (25%)</td></tr>
+</table>
 
 <a id="skill-sprout"></a>
 
-### Growth Spurt (Sprout Apprentice)
-
-<img src="../images/char/sprout.png" width="64" height="64" alt="">
-
-> Gain 12 XP and 5s of Haste.
-
-| Field | Value |
-| --- | --- |
-| Character | [Sprout Apprentice](CHARACTERS.md#char-sprout) |
-| Form | Self Buff |
-| Cooldown | 10s |
-| Duration | 5s |
-| Self gains | 2× [Haste](#status-haste) 5s |
-| XP | +12 |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/sprout.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Growth Spurt (Sprout Apprentice)</th></tr>
+<tr><td colspan="2"><i>Gain 12 XP and 5s of Haste.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-sprout">Sprout Apprentice</a></td></tr>
+<tr><td nowrap>Form</td><td>Self Buff</td></tr>
+<tr><td nowrap>Cooldown</td><td>10s</td></tr>
+<tr><td nowrap>Duration</td><td>5s</td></tr>
+<tr><td nowrap>Self gains</td><td>2× <a href="#status-haste">Haste</a> 5s</td></tr>
+<tr><td nowrap>XP</td><td>+12</td></tr>
+</table>
 
 <a id="skill-wasabi"></a>
 
-### Wasabi Nuke (Wasabi Bomber)
-
-<img src="../images/char/wasabi.png" width="64" height="64" alt="">
-
-> Launch a wasabi nuke at the enemy horde for a massive, burning explosion.
-
-| Field | Value |
-| --- | --- |
-| Character | [Wasabi Bomber](CHARACTERS.md#char-wasabi) |
-| Form | AOE Missile |
-| Cooldown | 23s |
-| Damage multiplier | ×2.8 |
-| Radius | 190 |
-| Inflicts | 3× [Burn](#status-burn) 4s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/wasabi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Wasabi Nuke (Wasabi Bomber)</th></tr>
+<tr><td colspan="2"><i>Launch a wasabi nuke at the enemy horde for a massive, burning explosion.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-wasabi">Wasabi Bomber</a></td></tr>
+<tr><td nowrap>Form</td><td>AOE Missile</td></tr>
+<tr><td nowrap>Cooldown</td><td>23s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×2.8</td></tr>
+<tr><td nowrap>Radius</td><td>190</td></tr>
+<tr><td nowrap>Inflicts</td><td>3× <a href="#status-burn">Burn</a> 4s</td></tr>
+</table>
 
 <a id="skill-soybean"></a>
 
-### Bean Troops (Strategist Soy)
-
-<img src="../images/char/soybean.png" width="64" height="64" alt="">
-
-> Summon a bean clone that auto-fires for 10s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Strategist Soy](CHARACTERS.md#char-soybean) |
-| Form | Summon Clone |
-| Cooldown | 14s |
-| Damage multiplier | ×0.6 |
-| Duration | 10s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/soybean.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Bean Troops (Strategist Soy)</th></tr>
+<tr><td colspan="2"><i>Summon a bean clone that auto-fires for 10s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-soybean">Strategist Soy</a></td></tr>
+<tr><td nowrap>Form</td><td>Summon Clone</td></tr>
+<tr><td nowrap>Cooldown</td><td>14s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.6</td></tr>
+<tr><td nowrap>Duration</td><td>10s</td></tr>
+</table>
 
 <a id="skill-jackfruit"></a>
 
-### Thousand Spikes (Jackfruit Guard)
-
-<img src="../images/char/jackfruit.png" width="64" height="64" alt="">
-
-> Gain 5 stacks of Thorns and 3 stacks of Fortify for 6s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Jackfruit Guard](CHARACTERS.md#char-jackfruit) |
-| Form | Self Buff |
-| Cooldown | 12s |
-| Duration | 6s |
-| Self gains | 5× [Thorns](#status-thorns) 6s, 3× [Fortify](#status-fortify) 6s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/jackfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Thousand Spikes (Jackfruit Guard)</th></tr>
+<tr><td colspan="2"><i>Gain 5 stacks of Thorns and 3 stacks of Fortify for 6s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-jackfruit">Jackfruit Guard</a></td></tr>
+<tr><td nowrap>Form</td><td>Self Buff</td></tr>
+<tr><td nowrap>Cooldown</td><td>12s</td></tr>
+<tr><td nowrap>Duration</td><td>6s</td></tr>
+<tr><td nowrap>Self gains</td><td>5× <a href="#status-thorns">Thorns</a> 6s, 3× <a href="#status-fortify">Fortify</a> 6s</td></tr>
+</table>
 
 <a id="skill-pomegranate"></a>
 
-### Seed Burst (Pomegranate Gunner)
-
-<img src="../images/char/pomegranate.png" width="64" height="64" alt="">
-
-> Spray 30 pomegranate seeds in all directions.
-
-| Field | Value |
-| --- | --- |
-| Character | [Pomegranate Gunner](CHARACTERS.md#char-pomegranate) |
-| Form | Ring Barrage |
-| Cooldown | 8s |
-| Damage multiplier | ×0.5 |
-| Count | 30 |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pomegranate.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Seed Burst (Pomegranate Gunner)</th></tr>
+<tr><td colspan="2"><i>Spray 30 pomegranate seeds in all directions.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pomegranate">Pomegranate Gunner</a></td></tr>
+<tr><td nowrap>Form</td><td>Ring Barrage</td></tr>
+<tr><td nowrap>Cooldown</td><td>8s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.5</td></tr>
+<tr><td nowrap>Count</td><td>30</td></tr>
+</table>
 
 <a id="skill-taro"></a>
 
-### Taro Paste Field (Taro Mystic)
-
-<img src="../images/char/taro.png" width="64" height="64" alt="">
-
-> Create a 6s taro field that Burns and Slows enemies inside.
-
-| Field | Value |
-| --- | --- |
-| Character | [Taro Mystic](CHARACTERS.md#char-taro) |
-| Form | Binding Field |
-| Cooldown | 30s |
-| Damage multiplier | ×1.6 |
-| Radius | 230 |
-| Duration | 6s |
-| Inflicts | 2× [Burn](#status-burn) 2s, 2× [Slow](#status-slow) 1s |
+<table>
+<tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/taro.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Taro Paste Field (Taro Mystic)</th></tr>
+<tr><td colspan="2"><i>Create a 6s taro field that Burns and Slows enemies inside and blocks enemy bullets entering it.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-taro">Taro Mystic</a></td></tr>
+<tr><td nowrap>Form</td><td>Binding Field</td></tr>
+<tr><td nowrap>Cooldown</td><td>30s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×1.6</td></tr>
+<tr><td nowrap>Radius</td><td>230</td></tr>
+<tr><td nowrap>Duration</td><td>6s</td></tr>
+<tr><td nowrap>Inflicts</td><td>2× <a href="#status-burn">Burn</a> 2s, 2× <a href="#status-slow">Slow</a> 1s</td></tr>
+</table>
 
 <a id="skill-cabbage"></a>
 
-### Steadfast Body (Cabbage Veteran)
-
-<img src="../images/char/cabbage.png" width="64" height="64" alt="">
-
-> 5s Barrier (-40% damage taken), 5 stacks of Fortify and 3 stacks of Regen.
-
-| Field | Value |
-| --- | --- |
-| Character | [Cabbage Veteran](CHARACTERS.md#char-cabbage) |
-| Form | Self Buff |
-| Cooldown | 15s |
-| Duration | 5s |
-| Self gains | [Barrier](#status-barrier) 5s, 5× [Fortify](#status-fortify) 5s, 3× [Regen](#status-regen) 5s |
+<table>
+<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/cabbage.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Steadfast Body (Cabbage Veteran)</th></tr>
+<tr><td colspan="2"><i>5s Barrier (-40% damage taken), 5 stacks of Fortify and 3 stacks of Regen.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-cabbage">Cabbage Veteran</a></td></tr>
+<tr><td nowrap>Form</td><td>Self Buff</td></tr>
+<tr><td nowrap>Cooldown</td><td>15s</td></tr>
+<tr><td nowrap>Duration</td><td>5s</td></tr>
+<tr><td nowrap>Self gains</td><td><a href="#status-barrier">Barrier</a> 5s, 5× <a href="#status-fortify">Fortify</a> 5s, 3× <a href="#status-regen">Regen</a> 5s</td></tr>
+</table>
 
 <a id="skill-blackberry"></a>
 
-### Withering Hex (Blackberry Witch)
-
-<img src="../images/char/blackberry.png" width="64" height="64" alt="">
-
-> Curse nearby enemies, apply 3 stacks of Rot and Silence them for 3s.
-
-| Field | Value |
-| --- | --- |
-| Character | [Blackberry Witch](CHARACTERS.md#char-blackberry) |
-| Form | Mass Debuff |
-| Cooldown | 16s |
-| Damage multiplier | ×0.3 |
-| Radius | 280 |
-| Inflicts | [Curse](#status-curse) 6s, 3× [Rot](#status-rot) 6s, [Silence](#status-silence) 3s |
+<table>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/blackberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Withering Hex (Blackberry Witch)</th></tr>
+<tr><td colspan="2"><i>Curse nearby enemies, apply 3 stacks of Rot and Silence them for 3s.</i></td></tr>
+<tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-blackberry">Blackberry Witch</a></td></tr>
+<tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
+<tr><td nowrap>Cooldown</td><td>16s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×0.3</td></tr>
+<tr><td nowrap>Radius</td><td>280</td></tr>
+<tr><td nowrap>Inflicts</td><td><a href="#status-curse">Curse</a> 6s, 3× <a href="#status-rot">Rot</a> 6s, <a href="#status-silence">Silence</a> 3s</td></tr>
+</table>
 
 <a id="statuses"></a>
 

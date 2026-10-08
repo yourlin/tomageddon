@@ -112,7 +112,7 @@ export const MODIFIERS: ModifierDef[] = [
     desc: ['每次商店只能刷新 1 次，但这一次免费', 'One reroll per shop, but it is free'],
     weight: 1,
   },
-  { id: 'lucky_day', icon: '🍀', name: ['幸运日', 'Lucky Day'], desc: ['幸运 +60', '+60 Luck'], mods: { luck: 60 }, weight: -1 },
+  { id: 'lucky_day', icon: '🍀', name: ['幸运日', 'Lucky Day'], desc: ['幸运 +24', '+24 Luck'], mods: { luck: 24 }, weight: -1 },
   { id: 'scholar', icon: '📚', name: ['学霸', 'Scholar'], desc: ['经验获取 +100%', '+100% XP gain'], mods: { xpGain: 100 }, weight: -1 },
   {
     id: 'tough_bosses',

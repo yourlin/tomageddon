@@ -5,6 +5,7 @@ import { text, button, panel, COLORS, autoRelayout, hitArea } from '../ui/UI';
 import { CHANGELOG } from '../data/changelog';
 import { tx, lang } from '../i18n';
 import { save, persist } from '../systems/Save';
+import { VW, VH } from '../systems/HiDpi';
 
 export class ChangelogScene extends Phaser.Scene {
   /** 展开的版本号，默认最新 */
@@ -21,7 +22,7 @@ export class ChangelogScene extends Phaser.Scene {
     autoRelayout(this);
     save.seenVersion = __APP_VERSION__;
     persist();
-    const W = this.scale.width;
+    const W = VW(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     text(this, 24, 18, tx('更新日志', "What's New"), 36);
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
@@ -51,7 +52,7 @@ export class ChangelogScene extends Phaser.Scene {
   private draw(): void {
     this.layer?.destroy();
     const L = (this.layer = this.add.container(0, -this.scrollY));
-    const W = this.scale.width;
+    const W = VW(this);
     const cw = Math.min(980, W - 80);
     const x = (W - cw) / 2;
     let y = 108;
@@ -106,7 +107,7 @@ export class ChangelogScene extends Phaser.Scene {
         COLORS.textDim,
       ).setOrigin(0.5, 0),
     );
-    this.maxScroll = Math.max(0, y + 80 - this.scale.height);
+    this.maxScroll = Math.max(0, y + 80 - VH(this));
     this.scrollY = Math.min(this.scrollY, this.maxScroll);
     L.setY(-this.scrollY);
   }

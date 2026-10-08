@@ -31,18 +31,23 @@ import {
   buyMaster,
   MASTER_CYCLE,
   type RaiseBlock,
+  exclusiveTaken,
+  setTalentProfile,
+  hasCustomTalents,
+  clearCustomTalents,
 } from '../systems/TalentTree';
-import { save, persist } from '../systems/Save';
+import { save, persist, isUnlocked } from '../systems/Save';
+import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { STAT_INFO } from '../data/stats';
 import { tx, lang } from '../i18n';
 import { audio } from '../systems/Audio';
+import { VW, VH, RES } from '../systems/HiDpi';
 
 /** 世界坐标布局：核心离中心 R0，每一步向外 DR，同一方向的道路之间隔 GAP 度 */
 const R0 = 120;
 const DR = 100;
 const GAP = 11.5;
 const SECTOR = 60;
-const EXTENT = 545;
 const NODE_R: Record<NodeKind, number> = { core: 26, minor: 16, notable: 19, star: 21, keystone: 28 };
 const KIND_NAME: Record<NodeKind, [string, string]> = {
   core: ['核心天赋', 'Core'],
@@ -71,17 +76,47 @@ const ROAD_INDEX: Record<string, { idx: number; count: number }> = (() => {
   return out;
 })();
 
-function nodePos(n: TalentNode): [number, number] {
+/** 每个方向各条道路（按序号）上非终极天赋的最远一步 */
+const ROAD_STEPS: Record<string, number[]> = (() => {
+  const out: Record<string, number[]> = {};
+  for (const b of BRANCHES) {
+    const steps: number[] = [];
+    for (const n of TALENT_NODES)
+      if (n.branch === b.id && n.kind !== 'keystone' && ROAD_INDEX[n.id])
+        steps[ROAD_INDEX[n.id].idx] = Math.max(steps[ROAD_INDEX[n.id].idx] ?? 0, n.step);
+    out[b.id] = steps.map((x) => x ?? 0);
+  }
+  return out;
+})();
+
+/** 道路间隔：道路多时收窄，保证整个方向不超出自己的扇区 */
+const gapFor = (count: number): number => Math.min(GAP, (SECTOR - 6) / Math.max(1, count));
+
+export function nodePos(n: TalentNode): [number, number] {
   const base = BRANCH_ANGLE[n.branch];
   if (n.kind === 'core') return [Math.cos(rad(base)) * R0, Math.sin(rad(base)) * R0];
   const { idx, count } = ROAD_INDEX[n.id];
-  const a = rad(base + (idx - (count - 1) / 2) * GAP);
-  const r = R0 + 30 + n.step * DR + (n.kind === 'keystone' ? 14 : 0);
+  const gap = gapFor(count);
+  let slot = idx - (count - 1) / 2;
+  let r = R0 + 30 + n.step * DR + (n.kind === 'keystone' ? 14 : 0);
+  if (n.exclusive) {
+    // 二选一的关键天赋：两个并排（lane ±0.5），整体往扇区内侧收；
+    // 并放到相邻两条道路最外侧天赋之外半步，避免压到边界和相邻道路的天赋
+    const edge = (count - 1) / 2 - 0.5;
+    slot = Phaser.Math.Clamp(slot, -edge, edge);
+    const c = Math.round(slot + (count - 1) / 2);
+    const near = ROAD_STEPS[n.branch].slice(Math.max(0, c - 1), c + 2);
+    r = R0 + 30 + Math.max(n.step + 0.5, ...near.map((x) => x + 0.6)) * DR;
+  }
+  const a = rad(base + (slot + (n.lane ?? 0)) * gap);
   return [Math.cos(a) * r, Math.sin(a) * r];
 }
 
-/** 离开界面时记住镜头，下次回来还在原处 */
-const view = { zoom: 0, sx: 0, sy: 0 };
+/** 地图半径：按最外侧的天赋自动放大（专精道路比原来更长） */
+const EXTENT = Math.max(545, ...TALENT_NODES.map((n) => Math.hypot(...nodePos(n)) + 70));
+
+/** 离开界面时记住镜头和正在编辑的方案，下次回来还在原处 */
+const view: { zoom: number; sx: number; sy: number; profile: string | null } = { zoom: 0, sx: 0, sy: 0, profile: null };
 
 export class TalentTreeScene extends Phaser.Scene {
   private selected: TalentNode | null = null;
@@ -102,6 +137,11 @@ export class TalentTreeScene extends Phaser.Scene {
   private longTimer: Phaser.Time.TimerEvent | null = null;
   private longFired = false;
   private pinchDist = 0;
+  /** 可编辑的天赋方案：null = 默认方案，其余为已解锁角色 */
+  private profiles: (string | null)[] = [null];
+  private profIdx = 0;
+  private profText!: Phaser.GameObjects.Text;
+  private inheritBtn!: ReturnType<typeof button>;
 
   constructor() {
     super('TalentTree');
@@ -109,14 +149,15 @@ export class TalentTreeScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.selected = null;
     this.vp = { x: 20, y: TOP, w: W - 20 - INFO_W - 14 - 20, h: H - TOP - 16 };
     this.fitZoom = Math.min(this.vp.w, this.vp.h) / (EXTENT * 2);
 
     // 星盘用单独的镜头（只渲染视口区域，可平移缩放），先渲染；主镜头透明、后渲染，界面和飘字盖在星盘上
-    this.mapCam = this.cameras.add(this.vp.x, this.vp.y, this.vp.w, this.vp.h, false, 'talentMap');
+    // 高清渲染：相机视口与缩放都是物理像素（逻辑 × RES）；本场景的缩放值一律用逻辑缩放，见 lz() / setLz()
+    this.mapCam = this.cameras.add(this.vp.x * RES, this.vp.y * RES, this.vp.w * RES, this.vp.h * RES, false, 'talentMap');
     this.mapCam.setBackgroundColor(0x0d0507);
     const cams = this.cameras.cameras;
     cams.splice(cams.indexOf(this.mapCam), 1);
@@ -126,17 +167,23 @@ export class TalentTreeScene extends Phaser.Scene {
     this.events.on(Phaser.Scenes.Events.ADDED_TO_SCENE, onAdded);
     this.events.once('shutdown', () => {
       this.events.off(Phaser.Scenes.Events.ADDED_TO_SCENE, onAdded);
-      view.zoom = this.mapCam.zoom;
+      view.zoom = this.lz();
       view.sx = this.mapCam.scrollX;
       view.sy = this.mapCam.scrollY;
+      view.profile = this.profiles[this.profIdx];
+      // 离开天赋界面后回到默认方案（开局时由 RunState 切到该角色的方案）
+      setTalentProfile(null);
     });
+    this.profiles = [null, ...CHARACTERS.filter((c) => isUnlocked(c)).map((c) => c.id)];
+    this.profIdx = Math.max(0, this.profiles.indexOf(view.profile));
+    setTalentProfile(this.profiles[this.profIdx]);
 
     if (view.zoom > 0) {
-      this.mapCam.setZoom(Phaser.Math.Clamp(view.zoom, this.fitZoom * 0.9, 1.8));
+      this.setLz(Phaser.Math.Clamp(view.zoom, this.fitZoom * 0.9, 1.8));
       this.mapCam.setScroll(view.sx, view.sy);
       this.clampScroll();
     } else {
-      this.mapCam.setZoom(this.fitZoom);
+      this.setLz(this.fitZoom);
       this.mapCam.centerOn(0, 0);
     }
 
@@ -149,27 +196,24 @@ export class TalentTreeScene extends Phaser.Scene {
       .fillRect(this.vp.x + this.vp.w, 0, W, H);
     bg.lineStyle(3, COLORS.border, 1).strokeRoundedRect(this.vp.x - 3, this.vp.y - 3, this.vp.w + 6, this.vp.h + 6, 8);
 
-    text(this, 24, 18, tx('天赋树', 'Talent Tree'), 36);
-    this.pointsText = text(this, 180, 30, '', 20, '#ffd166');
+    const title = text(this, 24, 18, tx('天赋树', 'Talent Tree'), 36);
+    this.pointsText = text(this, title.x + title.width + 24, 30, '', 20, '#ffd166');
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
     button(this, W - 250, 44, 160, 52, tx('全部重置', 'Reset all'), () => this.resetAll(), 0x7a2e35, 19);
     // I1：大师层——天赋点满后用金番茄购买，每层小幅提升，无上限
     this.masterBtn = button(this, W - 440, 44, 200, 52, '', () => this.buyMasterLayer(), 0x8a6d1f, 18);
+    // 天赋方案：默认方案 / 各角色的专属方案（没有定制的角色继承默认方案）
+    const px = this.vp.x + 14,
+      py = this.vp.y + 14;
+    button(this, px + 20, py + 20, 40, 40, '◀', () => this.switchProfile(-1), 0x3d1d22, 20);
+    button(this, px + 66, py + 20, 40, 40, '▶', () => this.switchProfile(1), 0x3d1d22, 20);
+    this.profText = text(this, px + 96, py + 2, '', 16, '#fff4ea', { stroke: '#000000', strokeThickness: 3 });
+    this.inheritBtn = button(this, px + 85, py + 68, 150, 36, tx('恢复继承默认', 'Use default'), () => this.useDefault(), 0x5a3a20, 15);
     // 缩放按钮（叠在视口右下角）
     const zx = this.vp.x + this.vp.w - 30,
       zy = this.vp.y + this.vp.h - 30;
-    button(
-      this,
-      zx,
-      zy - 100,
-      44,
-      44,
-      '＋',
-      () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.mapCam.zoom * 1.25),
-      0x3d1d22,
-      24,
-    );
-    button(this, zx, zy - 50, 44, 44, '－', () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.mapCam.zoom / 1.25), 0x3d1d22, 24);
+    button(this, zx, zy - 100, 44, 44, '＋', () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.lz() * 1.25), 0x3d1d22, 24);
+    button(this, zx, zy - 50, 44, 44, '－', () => this.zoomAt(this.vpCenter().x, this.vpCenter().y, this.lz() / 1.25), 0x3d1d22, 24);
     button(this, zx, zy, 44, 44, '⤢', () => this.fitView(), 0x3d1d22, 22);
 
     this.world = this.addWorld(() => this.add.container(0, 0));
@@ -198,21 +242,32 @@ export class TalentTreeScene extends Phaser.Scene {
   }
 
   // ---------------- 平移 / 缩放 ----------------
+  /** 星盘的逻辑缩放（相机实际 zoom 含高清渲染倍率） */
+  private lz(): number {
+    return this.mapCam.zoom / RES;
+  }
+  private setLz(z: number): void {
+    this.mapCam.setZoom(z * RES);
+  }
+
+  /** 以屏幕点 (px, py)（逻辑坐标）为中心缩放到逻辑缩放 z */
   private zoomAt(px: number, py: number, z: number): void {
     const cam = this.mapCam;
-    const nz = Phaser.Math.Clamp(z, this.fitZoom * 0.9, 1.8);
+    const nz = Phaser.Math.Clamp(z, this.fitZoom * 0.9, 1.8) * RES;
     const hw = cam.width / 2,
       hh = cam.height / 2;
-    // 屏幕点 (px,py) 下的世界坐标在缩放前后保持不变
-    const wx = cam.scrollX + hw + (px - cam.x - hw) / cam.zoom;
-    const wy = cam.scrollY + hh + (py - cam.y - hh) / cam.zoom;
+    // 相机按物理像素工作：把逻辑屏幕点换算过去，屏幕点下的世界坐标在缩放前后保持不变
+    const X = px * RES,
+      Y = py * RES;
+    const wx = cam.scrollX + hw + (X - cam.x - hw) / cam.zoom;
+    const wy = cam.scrollY + hh + (Y - cam.y - hh) / cam.zoom;
     cam.setZoom(nz);
-    cam.setScroll(wx - hw - (px - cam.x - hw) / nz, wy - hh - (py - cam.y - hh) / nz);
+    cam.setScroll(wx - hw - (X - cam.x - hw) / nz, wy - hh - (Y - cam.y - hh) / nz);
     this.clampScroll();
   }
 
   private fitView(): void {
-    this.mapCam.setZoom(this.fitZoom);
+    this.setLz(this.fitZoom);
     this.mapCam.centerOn(0, 0);
   }
 
@@ -249,7 +304,7 @@ export class TalentTreeScene extends Phaser.Scene {
         p2 = this.input.pointer2;
       if (p1.isDown && p2.isDown && this.pinchDist > 0) {
         const d = Phaser.Math.Distance.Between(p1.x, p1.y, p2.x, p2.y);
-        this.zoomAt((p1.x + p2.x) / 2, (p1.y + p2.y) / 2, (this.mapCam.zoom * d) / this.pinchDist);
+        this.zoomAt((p1.x + p2.x) / 2, (p1.y + p2.y) / 2, (this.lz() * d) / this.pinchDist);
         this.pinchDist = d;
         return;
       }
@@ -259,8 +314,9 @@ export class TalentTreeScene extends Phaser.Scene {
         this.cancelLongPress();
       }
       if (this.moved) {
-        this.mapCam.scrollX -= (p.x - p.prevPosition.x) / this.mapCam.zoom;
-        this.mapCam.scrollY -= (p.y - p.prevPosition.y) / this.mapCam.zoom;
+        // 指针是逻辑坐标，换成物理像素再除以相机实际缩放
+        this.mapCam.scrollX -= ((p.x - p.prevPosition.x) * RES) / this.mapCam.zoom;
+        this.mapCam.scrollY -= ((p.y - p.prevPosition.y) * RES) / this.mapCam.zoom;
         this.clampScroll();
       }
     });
@@ -275,7 +331,7 @@ export class TalentTreeScene extends Phaser.Scene {
       this.downInView = false;
     });
     this.input.on('wheel', (p: Phaser.Input.Pointer, _o: unknown, _dx: number, dy: number) => {
-      if (this.inView(p)) this.zoomAt(p.x, p.y, this.mapCam.zoom * (dy > 0 ? 1 / 1.12 : 1.12));
+      if (this.inView(p)) this.zoomAt(p.x, p.y, this.lz() * (dy > 0 ? 1 / 1.12 : 1.12));
     });
   }
 
@@ -298,6 +354,13 @@ export class TalentTreeScene extends Phaser.Scene {
         );
       case 'points':
         return tx('天赋点不足：完成里程碑成就可获得', 'Not enough points — earn more from milestone achievements');
+      case 'exclusive': {
+        const o = exclusiveTaken(n);
+        return tx(
+          `与「${o ? nodeText(o, 'name') : ''}」二选一：先退掉它`,
+          `Exclusive with "${o ? nodeText(o, 'name') : ''}" — refund it first`,
+        );
+      }
       default:
         return '';
     }
@@ -323,6 +386,37 @@ export class TalentTreeScene extends Phaser.Scene {
     }
     audio.play(this, 'buy');
     this.draw();
+  }
+
+  /** 切换正在编辑的天赋方案 */
+  private switchProfile(d: number): void {
+    this.profIdx = (this.profIdx + d + this.profiles.length) % this.profiles.length;
+    setTalentProfile(this.profiles[this.profIdx]);
+    this.selected = null;
+    audio.play(this, 'click');
+    this.draw();
+  }
+
+  /** 删掉当前角色的专属方案，改回继承默认方案 */
+  private useDefault(): void {
+    const id = this.profiles[this.profIdx];
+    if (!id || !hasCustomTalents(id)) return;
+    clearCustomTalents(id);
+    this.selected = null;
+    toast(this, tx('已恢复继承默认方案', 'Now using the default build'), '#52ff8a');
+    this.draw();
+  }
+
+  private profileLabel(): string {
+    const id = this.profiles[this.profIdx];
+    if (!id) return tx('方案：默认\n未定制的角色都继承它', 'Build: Default\nCharacters without their own build use it');
+    const name = CHARACTER_MAP[id]?.name ?? id;
+    return hasCustomTalents(id)
+      ? tx(`方案：${name}（专属）\n只在用该角色开局时生效`, `Build: ${name} (custom)\nUsed when starting as this character`)
+      : tx(
+          `方案：${name}（继承默认）\n加点或退点后自动另存为专属方案`,
+          `Build: ${name} (inherits default)\nChanging a talent saves a custom build`,
+        );
   }
 
   private resetAll(): void {
@@ -376,11 +470,14 @@ export class TalentTreeScene extends Phaser.Scene {
     this.pointsText.setText(
       tx(
         `可用天赋点 ${free} · 已获得 ${talentPointsEarned()} / ${talentPointsTotal()}（完成里程碑成就获得） · 🥇${save.meta.gold}`,
-        `Free points ${free} · earned ${talentPointsEarned()} / ${talentPointsTotal()} (from milestone achievements) · 🥇${save.meta.gold}`,
+        `Points ${free} · earned ${talentPointsEarned()} / ${talentPointsTotal()} via milestones · 🥇${save.meta.gold}`,
       ),
     );
     this.masterBtn.setLabel(tx(`🥇 大师层 ${save.meta.master}`, `🥇 Master ${save.meta.master}`));
     this.masterBtn.setAlpha(masterUnlocked() ? 1 : 0.55);
+    this.profText.setText(this.profileLabel());
+    const pid = this.profiles[this.profIdx];
+    this.inheritBtn.setVisible(!!pid && hasCustomTalents(pid));
     this.addWorld(() => {
       this.drawBoard();
       this.drawRoads();
@@ -573,7 +670,7 @@ export class TalentTreeScene extends Phaser.Scene {
 
   // ---------------- 右侧信息栏 ----------------
   private drawInfo(): void {
-    const W = this.scale.width;
+    const W = VW(this);
     const x = W - INFO_W - 20,
       y = this.vp.y,
       w = INFO_W,
@@ -632,6 +729,21 @@ export class TalentTreeScene extends Phaser.Scene {
     ty += 36;
     add(text(this, x + 18, ty, `${pick(KIND_NAME[n.kind])} · ${tx('等级', 'Rank')} ${rank} / ${n.max}`, 15, b.css));
     ty += 30;
+    // 二选一的关键天赋：标出另一个选项
+    const rival = n.exclusive ? TALENT_NODES.find((o) => o.id !== n.id && o.exclusive === n.exclusive) : undefined;
+    if (rival) {
+      add(
+        text(
+          this,
+          x + 18,
+          ty,
+          tx(`二选一：与「${nodeText(rival, 'name')}」互斥`, `Pick one: exclusive with "${nodeText(rival, 'name')}"`),
+          15,
+          '#ffd166',
+        ),
+      );
+      ty += 26;
+    }
     if (rank) {
       const t = add(text(this, x + 18, ty, `${tx('当前', 'Now')}：${nodeText(n, 'desc', rank)}`, 17, COLORS.text, wrap));
       ty += t.height + 10;

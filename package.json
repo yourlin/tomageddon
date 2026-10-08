@@ -1,6 +1,6 @@
 {
   "name": "tomageddon",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "番茄酱 Tomageddon：蔬果大战腐烂的浏览器割草生存 Roguelite",
   "homepage": "https://yourlin.github.io/tomageddon/",
   "repository": {
@@ -24,6 +24,7 @@
     "steam:capsules": "vite build && node scripts/steam-capsules.mjs",
     "docs": "tsx scripts/gen-docs.ts",
     "docs:images": "node scripts/export-images.mjs",
+    "docs:anim": "node scripts/export-anim.mjs && node scripts/export-combat-anim.mjs",
     "balance": "vite build && node scripts/batch.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -32,7 +33,8 @@
     "promo:record": "node scripts/promo/record.mjs && PROMO_LANG=en node scripts/promo/record.mjs",
     "promo:edit": "bash scripts/promo/edit.sh zh && bash scripts/promo/edit.sh en",
     "promo:publish": "bash scripts/promo/publish.sh",
-    "promo:overlays": "node -e \"import('qrcode').then((Q) => Q.default.toFile('promo/overlay/qr.png', require('./package.json').homepage, { width: 420, margin: 1 }))\" && python3 scripts/promo/overlays.py zh && python3 scripts/promo/overlays.py en"
+    "promo:overlays": "node -e \"import('qrcode').then((Q) => Q.default.toFile('promo/overlay/qr.png', require('./package.json').homepage, { width: 420, margin: 1 }))\" && python3 scripts/promo/overlays.py zh && python3 scripts/promo/overlays.py en",
+    "steam:pack:mac": "npm run build:steam && electron-builder --mac --dir"
   },
   "keywords": [],
   "author": "",
@@ -70,7 +72,9 @@
     "files": [
       "electron/**/*",
       "dist-steam/**/*",
-      "package.json"
+      "package.json",
+      "!node_modules/**/*",
+      "node_modules/steamworks.js/**/*"
     ],
     "asar": false,
     "extraFiles": [
@@ -82,6 +86,12 @@
     "win": {
       "target": "dir",
       "icon": "public/icons/icon-512.png"
+    },
+    "mac": {
+      "target": "dir",
+      "icon": "public/icons/icon-512.png",
+      "category": "public.app-category.games",
+      "identity": null
     }
   }
 }

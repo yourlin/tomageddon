@@ -8,12 +8,16 @@ import { CHAPTERS } from '../data/chapters';
 import { WEAPON_MAP } from '../data/weapons';
 import { affinityText } from '../data/affinity';
 import { SKILL_TYPE_NAME } from '../data/skills';
-import { describeMods } from '../data/stats';
 import { save, persist, isUnlocked } from '../systems/Save';
 import { unlockHint, unlockProgress, checkAchievements, achTier, medalOf } from '../systems/Achievements';
 import { ACH_MAP } from '../data/achievements';
-import { run, clearRun } from '../systems/RunState';
-import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast } from '../ui/UI';
+import { run, clearRun, defaultStartWeapon } from '../systems/RunState';
+import { hasCustomTalents } from '../systems/TalentTree';
+import { charTraitLines, weaponDmgType } from '../data/describe';
+import { favoredWeapons } from '../data/affinity';
+import { TAG_MAP } from '../data/weaponTags';
+import { tagName } from '../i18n/apply';
+import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, statLines } from '../ui/UI';
 import { tx, lang } from '../i18n';
 import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
 import { dangerReward, chapterWaves } from '../data/balance';
@@ -26,14 +30,16 @@ import {
   awakeningOf,
   masteryLabel,
   skinOwned,
-  skinActive,
+  activeSkin,
   buySkin,
-  toggleSkin,
+  equipSkin,
 } from '../systems/Progress';
-import { SKIN_OF, skinName } from '../data/skins';
+import { SKINS_OF, skinName } from '../data/skins';
 import { questsOf } from '../data/quests';
 import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { dangerUnlocked, dangerBest, hasGoldFrame } from '../systems/Danger';
+import { VW, VH } from '../systems/HiDpi';
+import { titleBadge } from '../ui/TitleBadge';
 
 /** 未解锁角色的剪影颜色 */
 const LOCKED_TINT = 0x5c5c66;
@@ -52,6 +58,7 @@ export class CharSelectScene extends Phaser.Scene {
   private static lastDanger: Record<number, number> = {};
   private danger = 0;
   private dangerPanel: Phaser.GameObjects.Container | null = null;
+  private weaponPanel: Phaser.GameObjects.Container | null = null;
   /** 无尽模式（通关该章后可选） */
   private endless = false;
   private showcase: ReturnType<typeof showcaseRig> | null = null;
@@ -65,14 +72,23 @@ export class CharSelectScene extends Phaser.Scene {
 
   create(): void {
     autoRelayout(this);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
+    this.weaponPanel = null;
     this.chapter = Math.min(save.clearedChapters + 1, CHAPTERS.length);
     this.cards = [];
     if (!isUnlocked(this.selected)) this.selected = CHARACTERS[0];
 
-    text(this, 30, 20, tx('选择角色', 'Choose Character'), 36).setOrigin(0, 0);
+    const head = text(this, 30, 20, tx('选择角色', 'Choose Character'), 36).setOrigin(0, 0);
+    // 佩戴中的称号：标题旁边，点击去换
+    if (save.meta.title) {
+      const b = titleBadge(this, 0, head.y + head.height / 2, save.meta.title, 15);
+      if (b) {
+        b.x = head.x + head.width + 20 + b.width / 2;
+        b.setInteractive({ useHandCursor: true }).on('pointerup', () => this.scene.start('Title', { from: 'CharSelect' }));
+      }
+    }
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
     {
       const owned = CHARACTERS.filter(isUnlocked).length;
@@ -205,7 +221,7 @@ export class CharSelectScene extends Phaser.Scene {
     const unlocked = isUnlocked(c);
     const d = this.detail;
     d.removeAll(true);
-    const pw = this.scale.width * 0.5 - 40;
+    const pw = VW(this) * 0.5 - 40;
     this.showcase?.destroy();
     this.showcase = null;
     if (!unlocked) {
@@ -234,7 +250,7 @@ export class CharSelectScene extends Phaser.Scene {
         }).setOrigin(0.5),
       );
     } else {
-      this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62);
+      this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62, activeSkin(c.id));
       this.showcase.setDepth(10);
       d.add(text(this, 180, 24, c.name, 34, '#ffffff'));
       d.add(text(this, 180, 70, c.title, 20, '#ffd166'));
@@ -252,6 +268,12 @@ export class CharSelectScene extends Phaser.Scene {
         d.add(t);
         return t.height;
       };
+      // 多行逐行上色（负向属性红色），返回总高度
+      const addLines = (x: number, yy: number, lines: string[], size: number, color: string, wrap: number) => {
+        const r = statLines(this, x, yy, lines, size, color, wrap);
+        d.add(r.box);
+        return r.height;
+      };
       // 详情分两页：基本（天赋/特性/技能/武器）与成长（战绩/熟练度/任务/觉醒/皮肤），内容多时不会溢出面板
       const pageBtn = text(this, pw - 20, 24, this.page === 0 ? tx('成长 ▸', 'Progress ▸') : tx('◂ 基本', '◂ Basics'), 18, '#9bf6ff')
         .setOrigin(1, 0)
@@ -265,31 +287,24 @@ export class CharSelectScene extends Phaser.Scene {
       if (this.page === 0) {
         y += add(20, y, tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 21, '#ffd166') + 4;
         y += add(30, y, c.talent.desc, 16, '#fff4ea', pw - 60) + 10;
-        y += add(20, y, tx('特性', 'Traits'), 21, '#ffb347') + 4;
-        const traits = [...c.traits];
-        if (!traits.length) traits.push(...describeMods(c.mods));
+        y += add(20, y, tx('属性与特性', 'Stats & traits'), 21, '#ffb347') + 4;
+        const traits = charTraitLines(c);
         const half = Math.ceil(traits.length / 2);
         const colW = (pw - 60) / 2;
-        const hL = add(
+        const hL = addLines(
           30,
           y,
-          traits
-            .slice(0, half)
-            .map((t) => '• ' + t)
-            .join('\n'),
+          traits.slice(0, half).map((t) => '• ' + t),
           16,
           '#fff4ea',
           colW - 10,
         );
         const hR =
           traits.length > 1
-            ? add(
+            ? addLines(
                 30 + colW,
                 y,
-                traits
-                  .slice(half)
-                  .map((t) => '• ' + t)
-                  .join('\n'),
+                traits.slice(half).map((t) => '• ' + t),
                 16,
                 '#fff4ea',
                 colW - 10,
@@ -312,15 +327,20 @@ export class CharSelectScene extends Phaser.Scene {
           add(
             20,
             y,
-            tx('初始武器：', 'Starting weapons: ') + c.startWeapons.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
-            17,
+            tx('初始武器：契合武器三选一', 'Start: pick 1 of 3 synergy weapons') +
+              ' · ' +
+              (hasCustomTalents(c.id) ? tx('天赋：专属方案', 'Talents: custom') : tx('天赋：继承默认方案', 'Talents: default')),
+            16,
             '#9be564',
+            pw - 40,
           ) + 2;
         y +=
           add(
             20,
             y,
-            tx('契合武器（伤害 +10%）：', 'Synergy weapons (+10% dmg): ') + c.favored.map((w) => WEAPON_MAP[w].name).join(tx('、', ', ')),
+            tx('契合标签（伤害 +10%）：', 'Synergy tags (+10% dmg): ') +
+              c.favored.map((t) => `${TAG_MAP[t]?.icon ?? ''}${tagName(t)}`).join(tx('、', ', ')) +
+              tx(`（共 ${favoredWeapons(c).length} 把武器）`, ` (${favoredWeapons(c).length} weapons)`),
             16,
             '#ffd166',
             pw - 40,
@@ -382,38 +402,41 @@ export class CharSelectScene extends Phaser.Scene {
           d.add(t);
           y += t.height + 2;
         }
-        // F6：皮肤（金番茄购买 / 熟练度 10 级免费），点击购买或切换
-        const sk = SKIN_OF[c.id];
-        if (sk && unlocked) {
-          const owned = skinOwned(c.id);
-          const active = skinActive(c.id);
-          const label = owned
-            ? tx(
-                `🎨 皮肤「${skinName(sk, false)}」${active ? '（使用中，点击换回）' : '（点击换上）'}`,
-                `🎨 Skin "${skinName(sk, true)}" ${active ? '(equipped — click to remove)' : '(click to equip)'}`,
-              )
-            : tx(
-                `🎨 皮肤「${skinName(sk, false)}」 🥇${sk.price}（拥有 🥇${save.meta.gold}，熟练度 10 级免费）`,
-                `🎨 Skin "${skinName(sk, true)}" 🥇${sk.price} (you have 🥇${save.meta.gold}; free at Mastery 10)`,
-              );
-          const st = text(
-            this,
-            20,
-            y,
-            label,
-            14,
-            owned ? (active ? '#ffd166' : '#fff4ea') : save.meta.gold >= sk.price ? '#52ff8a' : '#888888',
-            {
-              wordWrap: { width: pw - 40, useAdvancedWrap: true },
-            },
-          ).setInteractive({ useHandCursor: true });
-          st.on('pointerup', () => {
-            if (owned) toggleSkin(c.id);
-            else if (!buySkin(c.id)) return toast(this, tx('金番茄不够', 'Not enough Golden Tomatoes'), '#ff6b6b');
-            persist();
-            this.refresh();
-          });
-          d.add(st);
+        // F6：皮肤（每名角色 4 套，金番茄购买；第 1 套熟练度 10 级免费）：原皮 + 各套各一行，点击换上 / 购买
+        const skins = SKINS_OF[c.id] ?? [];
+        if (skins.length && unlocked) {
+          const cur = activeSkin(c.id);
+          d.add(
+            text(this, 20, y, tx(`🎨 皮肤（拥有 🥇${save.meta.gold} 金番茄）`, `🎨 Skins (you have 🥇${save.meta.gold})`), 14, '#ffb347'),
+          );
+          y += 20;
+          const rows: { id: string; label: string; color: string }[] = [
+            { id: '', label: tx('原皮', 'Original'), color: cur ? '#fff4ea' : '#ffd166' },
+            ...skins.map((sk, k) => {
+              const owned = skinOwned(sk.id);
+              const name = skinName(sk, lang === 'en');
+              const free = k === 0 ? tx('，熟练度 10 级免费', '; free at Mastery 10') : '';
+              return {
+                id: sk.id,
+                label: owned ? name : tx(`${name}  🥇${sk.price}${free}`, `${name}  🥇${sk.price}${free}`),
+                color: cur?.id === sk.id ? '#ffd166' : owned ? '#fff4ea' : save.meta.gold >= sk.price ? '#52ff8a' : '#888888',
+              };
+            }),
+          ];
+          for (const r of rows) {
+            const on = (cur?.id ?? '') === r.id;
+            const st = text(this, 30, y, `${on ? '▶ ' : '· '}${r.label}${on ? tx('（使用中）', ' (equipped)') : ''}`, 14, r.color, {
+              wordWrap: { width: pw - 50, useAdvancedWrap: true },
+            }).setInteractive({ useHandCursor: true });
+            st.on('pointerup', () => {
+              if (!r.id || skinOwned(r.id)) equipSkin(c.id, r.id);
+              else if (!buySkin(r.id)) return toast(this, tx('金番茄不够', 'Not enough Golden Tomatoes'), '#ff6b6b');
+              persist();
+              this.refresh();
+            });
+            d.add(st);
+            y += st.height + 2;
+          }
         }
       }
     }
@@ -491,8 +514,8 @@ export class CharSelectScene extends Phaser.Scene {
       this.dangerPanel = null;
       return;
     }
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     const c = this.add.container(0, 0).setDepth(100);
     const bg = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.6).setInteractive();
     bg.on('pointerup', () => this.showDangerRules());
@@ -549,11 +572,84 @@ export class CharSelectScene extends Phaser.Scene {
       toast(this, unlockHint(c), '#ff6b6b');
       return;
     }
+    this.showWeaponPick();
+  }
+
+  /** 开局武器：从角色的 3 把契合武器里选 1 把（点空白处取消） */
+  private showWeaponPick(): void {
+    this.weaponPanel?.destroy();
+    const ch = this.selected;
+    const W = VW(this),
+      H = VH(this);
+    const c = this.add.container(0, 0).setDepth(100);
+    this.weaponPanel = c;
+    const close = () => {
+      c.destroy();
+      if (this.weaponPanel === c) this.weaponPanel = null;
+    };
+    const bg = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.85).setInteractive();
+    bg.on('pointerup', close);
+    c.add(bg);
+    c.add(text(this, W / 2, H / 2 - 230, tx('选择开局武器', 'Choose your starting weapon'), 30, '#ffd166').setOrigin(0.5));
+    c.add(
+      text(
+        this,
+        W / 2,
+        H / 2 - 192,
+        tx('从契合标签的武器里随机 3 把，三选一（契合武器伤害 +10%）', 'Pick one of 3 random synergy-tag weapons (+10% damage)'),
+        16,
+        COLORS.textDim,
+      ).setOrigin(0.5),
+    );
+    const cw = 250,
+      chh = 330,
+      gap = 24;
+    // 从契合标签的全部武器里随机 3 把（上一局选过的那把保留在第一个）
+    const pool = favoredWeapons(ch).filter((w) => !w.minTier);
+    const prev = pool.some((w) => w.id === run.startWeaponId) ? run.startWeaponId : defaultStartWeapon(ch);
+    const rest = Phaser.Utils.Array.Shuffle(pool.filter((w) => w.id !== prev).map((w) => w.id));
+    const picks = [prev, ...rest].slice(0, 3);
+    picks.forEach((id, i) => {
+      const d = WEAPON_MAP[id];
+      const x = W / 2 + (i - 1) * (cw + gap) - cw / 2,
+        y = H / 2 - 160;
+      const dt = weaponDmgType(d);
+      c.add(panel(this, x, y, cw, chh, COLORS.panel, id === prev ? COLORS.gold : 0x6b5450));
+      c.add(fitImage(this.add.image(x + 24, y + 24, dt.icon), 34));
+      c.add(
+        fitImage(this.add.image(x + cw / 2, y + 70, this.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`), 84),
+      );
+      c.add(text(this, x + cw / 2, y + 128, d.name, 22, '#fff4ea').setOrigin(0.5));
+      c.add(text(this, x + cw / 2, y + 152, tx(`${dt.name}武器`, `${dt.name} Weapon`), 14, dt.color).setOrigin(0.5));
+      c.add(
+        text(
+          this,
+          x + 14,
+          y + 176,
+          [
+            tx(
+              `伤害 ${d.damage[0]}  冷却 ${d.cooldown[0]}s  射程 ${d.range}`,
+              `DMG ${d.damage[0]}  CD ${d.cooldown[0]}s  Range ${d.range}`,
+            ),
+            d.desc,
+          ].join('\n'),
+          14,
+          '#fff4ea',
+          { wordWrap: { width: cw - 28, useAdvancedWrap: true }, lineSpacing: 3 },
+        ),
+      );
+      c.add(button(this, x + cw / 2, y + chh - 32, cw - 40, 44, tx('选择', 'Pick'), () => this.begin(id), COLORS.green, 20));
+    });
+  }
+
+  private begin(startWeapon: string): void {
+    this.weaponPanel?.destroy();
+    this.weaponPanel = null;
     clearRun();
     save.charRuns[this.selected.id] = (save.charRuns[this.selected.id] ?? 0) + 1;
     persist();
     checkAchievements();
-    run.start(this.selected.id, this.chapter, this.endless, this.danger);
+    run.start(this.selected.id, this.chapter, this.endless, this.danger, startWeapon);
     if (this.endless) bump('endlessRuns');
     this.scene.start('Game');
   }

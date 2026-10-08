@@ -9,6 +9,7 @@ import { TALENT_NODES, BRANCHES, type BranchId } from '../../data/talentTree';
 import { run } from '../../systems/RunState';
 import { save, type RunRecord } from '../../systems/Save';
 import { weaponCalc } from '../info';
+import { favoredWeapons } from '../../data/affinity';
 import {
   applyBuild,
   newBuild,
@@ -66,7 +67,7 @@ const saveB = (b: DevBuild | null) => (b ? localStorage.setItem(B_KEY, JSON.stri
 export function typicalBuild(charId: string, chapterId: number, wave: number, rng = Math.random): DevBuild {
   const b = newBuild(charId);
   b.chapterId = chapterId;
-  const fav = new Set(CHARACTER_MAP[charId].favored);
+  const fav = new Set(favoredWeapons(CHARACTER_MAP[charId]).map((w) => w.id));
   for (let w = 2; w <= wave; w++) {
     b.wave = w;
     b.budget = expectedBudget(b);

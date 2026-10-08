@@ -5,7 +5,6 @@ import { CHARACTERS, CHARACTER_MAP } from '../../data/characters';
 import { SKILL_TYPE_NAME, skillPower } from '../../data/skills';
 import { save } from '../../systems/Save';
 import { run } from '../../systems/RunState';
-import { WEAPON_MAP } from '../../data/weapons';
 import { skillCalc, statusText } from '../info';
 import { numericFields, getAt, setOverride, findOverride } from '../overrides';
 
@@ -43,11 +42,7 @@ export function renderSkills(ctx: DevCtx): HTMLElement {
       h('div', { class: 'muted' }, k.lines.join(' · ')),
       h('div', { class: 'muted' }, `威力分：伤害 ${fmt(pw.dmg)} · 控制 ${fmt(pw.ctrl)} · 增益 ${fmt(pw.buff)}（决定基础冷却）`),
       h('div', null, `天赋【${c.talent.name}】${c.talent.desc}`),
-      h(
-        'div',
-        { class: 'muted' },
-        `特性：${c.traits.join('、')} · 契合武器：${c.favored.map((id) => WEAPON_MAP[id]?.name ?? id).join('、')}`,
-      ),
+      h('div', { class: 'muted' }, `特性：${c.traits.join('、')} · 契合标签：${c.favored.join('、')}`),
       h(
         'div',
         { class: 'row' },

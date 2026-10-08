@@ -12,6 +12,96 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '1.5.0',
+    date: '2026-10-08',
+    highlight: [
+      '「合成之路」：武器按标签契合角色，新增 60 把融合武器、合成表与仓库，T3 → T4 → 超武一路合成；画面高清化，每名角色 4 套皮肤',
+      '"The Crafting Road": weapons match characters by tag, 60 new fusion weapons, a crafting table and storage — craft T3 → T4 → super weapons; sharper visuals and 4 skins per character',
+    ],
+    items: [
+      [
+        '角色契合改为按武器标签：带契合标签的任意武器都算契合武器（伤害 +10% 并触发角色天赋）',
+        'Character synergy now works by weapon tag: any weapon with a synergy tag counts (+10% damage and triggers the talent)',
+      ],
+      [
+        '新增 60 把融合武器（共 199 把）：每把 T3 至少有 2 条配方升到 T4，每把 T4 的配方唯一；超武改为 2 把指定 T4 合成',
+        '60 new fusion weapons (199 total): every T3 has at least 2 recipes to T4, every T4 has a unique recipe; super weapons are crafted from two specific T4s',
+      ],
+      [
+        '配方要求指定道具：T4 要指定的史诗道具，超武要催化道具 + 1 件指定传说道具；快凑齐时商店会补货缺的道具',
+        'Recipes need specific items: T4s need specific Epic items, super weapons the catalyst + 1 specific Legendary; the shop restocks missing items when you are close',
+      ],
+      [
+        '合成表：分类筛选、推荐视图（契合武器优先）、横向升级树，点自己的武器就能看到可走的配方和缺的材料',
+        'Crafting table: category filters, a recommended view (synergy first) and a horizontal upgrade tree; tap a weapon to see its recipes and what is missing',
+      ],
+      [
+        '仓库 6 格：武器栏满时买的武器自动进仓库，可对调、出售，也能当合成材料',
+        '6-slot storage: weapons bought with a full bar go to storage; swap, sell or use them as recipe materials',
+      ],
+      [
+        '商店不再卖 T4；买光商店算一次刷新；价格改用番茄籽图标；属性两列带图标显示',
+        'The shop never sells T4s; buying it out counts as a reroll; prices use the seed icon; stats show in two columns with icons',
+      ],
+      [
+        '高清渲染：按屏幕像素密度渲染，桌面版和高分屏不再发糊（设置里可关）；桌面版默认全屏',
+        'HiDPI rendering: sharp on high-density screens and the desktop build (toggle in Settings); the desktop build starts fullscreen',
+      ],
+      [
+        '移动端：按钮触控区加大，商店、武器弹窗、合成表整体放大',
+        'Mobile: larger touch targets; the shop, weapon popup and crafting table are scaled up',
+      ],
+      [
+        '暂停界面重做：左边角色与装备武器（悬停或点按看属性），右边两列属性',
+        'Redesigned pause screen: character and equipped weapons on the left (hover or tap for stats), two-column stats on the right',
+      ],
+      [
+        '角色的「被动特性」和「属性修正」合并为「属性与特性」，数值按实际生效自动生成',
+        'Character "traits" and "stat modifiers" merged into one "Stats & traits" list generated from the real values',
+      ],
+      [
+        '角色解锁节奏调整：一局一般解锁 0–2 名，随进度慢慢解锁；解锁提示与结算页展示角色形象',
+        'Character unlocks are paced out: usually 0–2 per run as you progress; unlock toasts and the results screen show the character',
+      ],
+      [
+        '每名角色 4 套皮肤（金番茄 120 / 160 / 200 / 250，第 1 套熟练度 10 级免费），纯外观',
+        '4 skins per character (120 / 160 / 200 / 250 Golden Tomatoes; the first is free at Mastery 10), cosmetic only',
+      ],
+      [
+        '新增 81 项成就：融合武器、合成表、挑战规则修饰、天赋树与大师天赋；「全副神兵」在无尽模式撑过第 15 波后也算',
+        '81 new achievements: fusion weapons, the crafting table, challenge modifiers, the talent tree and Master talents; "Fully Legendary" now also counts in Endless after wave 15',
+      ],
+      [
+        '称号：分类、稀有度、搜索与带光效的称号徽章；分享战绩海报加入更多数据和本局构筑',
+        'Titles: categories, rarity, search and glowing title badges; the share poster shows more stats and your build',
+      ],
+      [
+        '负面属性显示为红色；受伤 / 回血数字更大、停留更久；持续伤害按状态分色跳字（灼烧红、中毒绿……）；修复点「合成」可能误卖武器的问题',
+        'Negative stats show in red; damage / heal numbers are bigger and last longer; damage-over-time numbers are colored by status (Burn red, Poison green…); fixed tapping "Combine" sometimes selling the weapon',
+      ],
+    ],
+    news: [
+      {
+        icon: '🧪',
+        title: ['合成之路', 'The Crafting Road'],
+        desc: ['商店里打开合成表，T3 → T4 → 超武，按配方一路合成', 'Open the crafting table in the shop and craft T3 → T4 → super weapons'],
+      },
+      {
+        icon: '🏷️',
+        title: ['标签契合', 'Tag synergy'],
+        desc: ['带契合标签的武器都算契合武器，选角界面可查看', 'Any weapon with a synergy tag counts — check it on character select'],
+      },
+      {
+        icon: '🎨',
+        title: ['4 套皮肤', '4 skins each'],
+        desc: [
+          '每名角色 4 套皮肤，在选角界面用金番茄购买',
+          'Every character has 4 skins — buy them on character select with Golden Tomatoes',
+        ],
+      },
+    ],
+  },
+  {
     version: '1.4.0',
     date: '2026-10-05',
     highlight: [

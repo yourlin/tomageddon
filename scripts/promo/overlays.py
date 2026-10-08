@@ -24,19 +24,21 @@ def font(size):
 CAPTIONS = {
     "zh": [
         ("cap_combat", "大招一开，满屏清场", "Ultimates that clear the screen", "#ff4b3e"),
-        ("cap_boss", "77 种小怪 · 45 精英与 Boss", "77 monsters · 45 elites & bosses", "#b5179e"),
+        ("cap_boss", "89 种小怪 · 52 精英与 Boss", "89 monsters · 52 elites & bosses", "#b5179e"),
         ("cap_levelup", "升级构筑，每局都不一样", "A new build every run", "#52b788"),
-        ("cap_shop", "566 件道具 · 50 种武器", "566 items · 50 weapons", "#ffb703"),
-        ("cap_forge", "洗词条 · 打造 +10", "Reroll affixes · Forge to +10", "#9d4edd"),
-        ("cap_unlock", "33 名角色 · 成就解锁", "33 heroes to unlock", "#3a86ff"),
+        ("cap_shop", "603 件道具 · 200 种武器", "603 items · 200 weapons", "#ffb703"),
+        ("cap_craft", "仓库囤货 · 配方合成超武", "Stash & craft super weapons", "#9d4edd"),
+        ("cap_talent", "天赋专精 · 19 种武器标签", "Talent trees · 19 weapon tags", "#4cc9f0"),
+        ("cap_unlock", "39 名角色 · 成就解锁", "39 heroes to unlock", "#3a86ff"),
     ],
     "en": [
         ("cap_combat", "Ultimates That Clear The Screen", "Mow down endless hordes", "#ff4b3e"),
-        ("cap_boss", "77 Monsters · 45 Elites & Bosses", "New foes every run", "#b5179e"),
+        ("cap_boss", "89 Monsters · 52 Elites & Bosses", "New foes every run", "#b5179e"),
         ("cap_levelup", "Build As You Fight", "A new combo every run", "#52b788"),
-        ("cap_shop", "566 Items · 50 Weapons", "Buy, combine, stack up", "#ffb703"),
-        ("cap_forge", "Reroll Affixes · Forge to +10", "Chase the perfect weapon", "#9d4edd"),
-        ("cap_unlock", "33 Heroes to Unlock", "Earned through achievements", "#3a86ff"),
+        ("cap_shop", "603 Items · 200 Weapons", "Buy, combine, stack up", "#ffb703"),
+        ("cap_craft", "Stash & Craft Super Weapons", "155 recipes to chase", "#9d4edd"),
+        ("cap_talent", "Talent Trees · 19 Weapon Tags", "Specialize your damage", "#4cc9f0"),
+        ("cap_unlock", "39 Heroes to Unlock", "Earned through achievements", "#3a86ff"),
     ],
 }
 

@@ -137,7 +137,19 @@ export const EVOLUTIONS: EvolutionDef[] = [
 
 // 1.4.0 G6：新进化 8 组
 EVOLUTIONS.push(...EXTRA_EVOLUTIONS_SPEC.map((x) => evolve(x.from, x.item, x.boost)));
+/** 超武自带的叠层增益（只有 8 把有，每种 2 把；其余 12 把是各自独有的招式，见 SkillStyles / WeaponSystem） */
+const SUPER_BUFFS: Record<string, NonNullable<WeaponDef['superBuff']>> = {
+  dragon_cleaver: 'rage',
+  hell_trident: 'rage',
+  pea_gatling: 'haste',
+  ketchup_flood: 'haste',
+  paoding_blade: 'focus',
+  tsunami_katana: 'focus',
+  vampire_garlic: 'vampiric',
+  umami_bomb: 'vampiric',
+};
 export const EVOLVED_WEAPONS: WeaponDef[] = EVOLUTIONS.map((e) => e.to);
+for (const w of EVOLVED_WEAPONS) if (SUPER_BUFFS[w.id]) w.superBuff = SUPER_BUFFS[w.id];
 export const EVOLUTION_OF: Record<string, EvolutionDef> = Object.fromEntries(EVOLUTIONS.map((e) => [e.from, e]));
 // 超武也要能通过 WEAPON_MAP 查到（战斗、存档、图鉴共用）
 for (const w of EVOLVED_WEAPONS) WEAPON_MAP[w.id] = w;

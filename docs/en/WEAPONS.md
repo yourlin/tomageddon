@@ -1,4 +1,4 @@
-# Weapons (66)
+# Weapons (180)
 
 [中文](../WEAPONS.md) · **English**
 
@@ -37,6 +37,41 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
   - [Blender](#weapon-blender_aura)
   - [Dynamite Drumstick](#weapon-dynamite_drumstick)
   - [Coconut Gloves](#weapon-coconut_gloves)
+  - [Candy Cane Club](#weapon-candy_cane)
+  - [Popsicle Rapier](#weapon-popsicle_blade)
+  - [Ice Cream Maul](#weapon-icecream_hammer)
+  - [Shock Wok](#weapon-shock_wok)
+  - [Volt Fork](#weapon-volt_fork)
+  - [Toadstool Spike](#weapon-toxic_spike)
+  - [BBQ Skewer](#weapon-bbq_skewer)
+  - [Coal Tongs](#weapon-coal_tongs)
+  - [Sushi Blade](#weapon-sushi_blade)
+  - [Twin Cleavers](#weapon-twin_cleavers)
+  - [Blade Wind Aura](#weapon-blade_aura)
+  - [Grater Blade](#weapon-grater_sweep)
+  - [Chili Saw](#weapon-chili_shuriken)
+  - [Mandoline](#weapon-mandoline)
+  - [Pepper Storm](#weapon-pepper_storm_aura)
+  - [Twin Sushi Blade](#weapon-sushi_twin_blade)
+  - [Frost Cleaver](#weapon-frost_cleaver)
+  - [Storm Bastion Pan](#weapon-storm_whisk_pan)
+  - [Coconut Quake Mace](#weapon-coconut_quake_mace)
+  - [Blazing Chef's Knife](#weapon-fz_knife_ember_mine)
+  - [Frost Candy Cane Club](#weapon-fz_candy_cane_glacier_mortar)
+  - [Scatter Twin Cleavers](#weapon-fz_twin_cleavers_ketchup)
+  - [Saucy BBQ Skewer](#weapon-fz_skewer_soy_pistol)
+  - [Frost Cucumber Katana](#weapon-fz_cucumber_katana_soda)
+  - [Chain Spatula](#weapon-fz_spatula_slingshot)
+  - [Toxic Kitchen Shears](#weapon-fz_kitchen_scissors_toxic_spike)
+  - [Chain Popsicle Rapier](#weapon-fz_popsicle_blade_olive_launcher)
+  - [Frost BBQ Skewer](#weapon-fz_bbq_skewer_cream_torch)
+  - [Frost Coconut Gloves](#weapon-fz_coconut_gloves_ice_cube_tray)
+  - [Frost Coal Tongs](#weapon-fz_coal_tongs_whisk_spin)
+  - [Explosive Soup Ladle](#weapon-fz_ladle_watermelon_hammer)
+  - [Blazing Chopsticks](#weapon-fz_chopsticks_pepper_spray)
+  - [Explosive Pizza Cutter](#weapon-fz_pizza_cutter_potato_mine)
+  - [Toxic Baguette Blade](#weapon-fz_baguette_sword_spore_cannon)
+  - [Fresh Meat Tenderizer](#weapon-fz_meat_tenderizer_seed_spitter)
 - [Ranged Weapons](#class-ranged)
   - [Tomato Slingshot](#weapon-slingshot)
   - [Pea Shooter](#weapon-pea_shooter)
@@ -62,6 +97,44 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
   - [Jam Mortar](#weapon-jam_mortar)
   - [Sea Urchin Mine](#weapon-sea_urchin_mine)
   - [Asparagus Longbow](#weapon-asparagus_bow)
+  - [Macaron Repeater](#weapon-macaron_gun)
+  - [Donut Ring](#weapon-donut_ring)
+  - [Chocolate Mine](#weapon-choco_mine)
+  - [Shaved Ice Gun](#weapon-shaved_ice_gun)
+  - [Glacier Mortar](#weapon-glacier_mortar)
+  - [Microwave Cannon](#weapon-microwave_cannon)
+  - [Spore Cannon](#weapon-spore_cannon)
+  - [Mycelium Boomerang](#weapon-mycelium_boomerang)
+  - [Toxic Blowpipe](#weapon-blowpipe)
+  - [BBQ Sauce Cannon](#weapon-bbq_sauce_cannon)
+  - [Hot Sauce Pistol](#weapon-hot_sauce_gun)
+  - [Knife Case](#weapon-knife_case)
+  - [Coconut Cannon](#weapon-coconut_cannon)
+  - [Pumpkin Mortar](#weapon-pumpkin_mortar)
+  - [Melon Grenade](#weapon-melon_grenade)
+  - [Potato Mine](#weapon-potato_mine)
+  - [Corn Scattergun](#weapon-corn_scatter)
+  - [Pod Sniper](#weapon-pea_sniper)
+  - [Blast Pea Cannon](#weapon-blast_pea_cannon)
+  - [Toxic Gatling](#weapon-toxic_gatling)
+  - [Inferno Mortar](#weapon-inferno_mortar)
+  - [Railgun Sniper](#weapon-railgun_sniper)
+  - [Candy Scattergun](#weapon-candy_shotgun)
+  - [Fresh Plate Frisbee](#weapon-fz_plate_frisbee_onion_boomerang)
+  - [Lethal Corn Scattergun](#weapon-fz_corn_scatter_grater_sweep)
+  - [Blazing Sea Urchin Mine](#weapon-fz_sea_urchin_mine_dragonfruit_orb)
+  - [Keen Corn Cannon](#weapon-fz_corn_cannon_blade_aura)
+  - [Blazing Honey Blaster](#weapon-fz_honey_blaster_pumpkin_mortar)
+  - [Toxic Popcorn Popper](#weapon-fz_popcorn_machine_rot_aura)
+  - [Explosive Donut Ring](#weapon-fz_donut_ring_dynamite_drumstick)
+  - [Saucy Bean Bazooka](#weapon-fz_bean_bazooka_soy_bomb)
+  - [Blazing Chocolate Mine](#weapon-fz_choco_mine_bbq_torch)
+  - [Lethal Cherry Bombs](#weapon-fz_cherry_bomb_bamboo_spear)
+  - [Chef's Carrot Crossbow](#weapon-fz_carrot_crossbow_fork)
+  - [Explosive Knife Case](#weapon-fz_knife_case_microwave_cannon)
+  - [Piercing Melon Grenade](#weapon-fz_melon_grenade_pumpkin_lantern)
+  - [Blazing Toxic Blowpipe](#weapon-fz_blowpipe_syrup_sprayer)
+  - [Frost Mycelium Boomerang](#weapon-fz_mycelium_boomerang_rice_cooker_aura)
 - [Elemental Weapons](#class-elemental)
   - [Mustard Flamer](#weapon-mustard_flamer)
   - [Iced Soda](#weapon-soda)
@@ -83,7 +156,52 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
   - [Hotpot Breath](#weapon-hotpot_breath)
   - [Pumpkin Lantern](#weapon-pumpkin_lantern)
   - [Spore Sprayer](#weapon-spore_sprayer)
-- [Weapon Evolution (20 super weapons)](#evolution)
+  - [Cream Torch](#weapon-cream_torch)
+  - [Caramel Aura](#weapon-caramel_aura)
+  - [Popping Zap](#weapon-popping_candy)
+  - [Slush Spray](#weapon-slush_spray)
+  - [Frost Aura](#weapon-frost_aura)
+  - [Icicle Volley](#weapon-icicle_volley)
+  - [Rice Cooker Aura](#weapon-rice_cooker_aura)
+  - [Arc Grill](#weapon-grill_arc)
+  - [Storm Mixer](#weapon-mixer_storm)
+  - [Toaster Zap](#weapon-toaster_zap)
+  - [Miasma Sprayer](#weapon-miasma_sprayer)
+  - [Rot Aura](#weapon-rot_aura)
+  - [Toadstool Mine](#weapon-toadstool_mine)
+  - [Charcoal Aura](#weapon-charcoal_aura)
+  - [Ember Mine](#weapon-ember_mine)
+  - [Cumin Star](#weapon-cumin_star)
+  - [Mint Aura](#weapon-mint_aura)
+  - [Honey Aura](#weapon-honey_aura)
+  - [Teapot Storm](#weapon-teapot_storm)
+  - [Jelly Bounce](#weapon-jelly_bounce)
+  - [Syrup Sprayer](#weapon-syrup_sprayer)
+  - [Curry Garlic Field](#weapon-curry_garlic_field)
+  - [Thunder Orchard](#weapon-thunder_orchard)
+  - [Honeyfrost Field](#weapon-honey_frost_aura)
+  - [Spore Minefield](#weapon-spore_minefield)
+  - [Dragon Breath](#weapon-dragon_breath_flame)
+  - [Frost Anise Storm](#weapon-anise_frost_storm)
+  - [Holy Salt Barrier](#weapon-holy_salt_barrier)
+  - [Piercing Thunder Durian](#weapon-fz_thunder_durian_volt_fork)
+  - [Blazing Jelly Bounce](#weapon-fz_jelly_bounce_chili_shuriken)
+  - [Searing Slush Spray](#weapon-fz_slush_spray_caramel_aura)
+  - [Saucy Arc Grill](#weapon-fz_grill_arc_pepper_storm_aura)
+  - [Blazing Teapot Storm](#weapon-fz_teapot_storm_charcoal_aura)
+  - [Chef's Cola Zapper](#weapon-fz_cola_zapper_mixer_storm)
+  - [Piercing Steam Kettle](#weapon-fz_steam_kettle_asparagus_bow)
+  - [Piercing Zap Whisk](#weapon-fz_lightning_whisk_pepper_grinder)
+  - [Frost Spore Sprayer](#weapon-fz_spore_sprayer_shaved_ice_gun)
+  - [Blazing Toaster Zap](#weapon-fz_toaster_zap_hot_sauce_gun)
+  - [Lethal Mint Frost Mine](#weapon-fz_mint_frost_mine_blender_aura)
+  - [Heavy Popping Zap](#weapon-fz_popping_candy_rolling_pin)
+  - [Piercing Cumin Star](#weapon-fz_cumin_star_mandoline)
+- [Crafting Graph](#craft-graph)
+  - [Melee (65 recipes)](#craft-graph-melee)
+  - [Ranged (67 recipes)](#craft-graph-ranged)
+  - [Elemental (67 recipes)](#craft-graph-elemental)
+- [Super Weapons (20)](#evolution)
 
 <a id="overview"></a>
 
@@ -157,6 +275,120 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/spore_sprayer.png" width="32" height="32" alt=""> [Spore Sprayer](#weapon-spore_sprayer) | Elemental | Bullet | Produce/Elemental | 5 / 8 / 13 / 20 | 0.7 / 0.65 / 0.6 / 0.54 | 330 | 22 |
 | <img src="../images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [Coconut Gloves](#weapon-coconut_gloves) | Melee | Thrust | Produce | 5 / 9 / 14 / 22 | 0.42 / 0.4 / 0.37 / 0.34 | 95 | 20 |
 | <img src="../images/weapon/asparagus_bow.png" width="32" height="32" alt=""> [Asparagus Longbow](#weapon-asparagus_bow) | Ranged | Bullet | Produce | 14 / 24 / 37 / 56 | 1.1 / 1.04 / 0.97 / 0.88 | 520 | 26 |
+| <img src="../images/weapon/candy_cane.png" width="32" height="32" alt=""> [Candy Cane Club](#weapon-candy_cane) | Melee | Sweep | Dessert/Blunt | 11 / 18 / 29 / 43 | 1.25 / 1.18 / 1.1 / 1 | 130 | 19 |
+| <img src="../images/weapon/macaron_gun.png" width="32" height="32" alt=""> [Macaron Repeater](#weapon-macaron_gun) | Ranged | Bullet | Dessert/Firearm | 3 / 4 / 6 / 8 | 0.32 / 0.29 / 0.26 / 0.22 | 400 | 22 |
+| <img src="../images/weapon/cream_torch.png" width="32" height="32" alt=""> [Cream Torch](#weapon-cream_torch) | Elemental | Flame | Dessert | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 200 | 29 |
+| <img src="../images/weapon/donut_ring.png" width="32" height="32" alt=""> [Donut Ring](#weapon-donut_ring) | Ranged | Boomerang | Dessert | 11 / 18 / 28 / 42 | 1.5 / 1.4 / 1.3 / 1.2 | 330 | 25 |
+| <img src="../images/weapon/caramel_aura.png" width="32" height="32" alt=""> [Caramel Aura](#weapon-caramel_aura) | Elemental | Aura | Dessert | 3 / 5 / 6 / 10 | 0.5 / 0.5 / 0.5 / 0.5 | 131 | 33 |
+| <img src="../images/weapon/choco_mine.png" width="32" height="32" alt=""> [Chocolate Mine](#weapon-choco_mine) | Ranged | Mine | Dessert | 13 / 23 / 35 / 53 | 2 / 1.9 / 1.75 / 1.6 | 220 | 25 |
+| <img src="../images/weapon/popping_candy.png" width="32" height="32" alt=""> [Popping Zap](#weapon-popping_candy) | Elemental | Chain Lightning | Dessert | 8 / 13 / 20 / 30 | 0.95 / 0.88 / 0.8 / 0.72 | 440 | 29 |
+| <img src="../images/weapon/popsicle_blade.png" width="32" height="32" alt=""> [Popsicle Rapier](#weapon-popsicle_blade) | Melee | Thrust | Sharp/Dessert | 9 / 14 / 23 / 34 | 0.8 / 0.75 / 0.69 / 0.62 | 140 | 25 |
+| <img src="../images/weapon/icecream_hammer.png" width="32" height="32" alt=""> [Ice Cream Maul](#weapon-icecream_hammer) | Melee | Sweep | Blunt/Dessert | 21 / 34 / 53 / 80 | 1.9 / 1.8 / 1.7 / 1.55 | 110 | 31 |
+| <img src="../images/weapon/shaved_ice_gun.png" width="32" height="32" alt=""> [Shaved Ice Gun](#weapon-shaved_ice_gun) | Ranged | Bullet | Firearm | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | 27 |
+| <img src="../images/weapon/slush_spray.png" width="32" height="32" alt=""> [Slush Spray](#weapon-slush_spray) | Elemental | Flame | Dessert | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | 29 |
+| <img src="../images/weapon/frost_aura.png" width="32" height="32" alt=""> [Frost Aura](#weapon-frost_aura) | Elemental | Aura |  | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 134 | 31 |
+| <img src="../images/weapon/glacier_mortar.png" width="32" height="32" alt=""> [Glacier Mortar](#weapon-glacier_mortar) | Ranged | Rocket | Firearm | 15 / 26 / 40 / 61 | 2 / 1.9 / 1.78 / 1.6 | 460 | 33 |
+| <img src="../images/weapon/icicle_volley.png" width="32" height="32" alt=""> [Icicle Volley](#weapon-icicle_volley) | Elemental | Bullet |  | 5 / 7 / 11 / 16 | 1 / 0.95 / 0.88 / 0.8 | 340 | 27 |
+| <img src="../images/weapon/shock_wok.png" width="32" height="32" alt=""> [Shock Wok](#weapon-shock_wok) | Melee | Sweep | Kitchenware/Blunt | 16 / 27 / 41 / 63 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | 26 |
+| <img src="../images/weapon/volt_fork.png" width="32" height="32" alt=""> [Volt Fork](#weapon-volt_fork) | Melee | Thrust | Kitchenware | 7 / 13 / 20 / 31 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 16 |
+| <img src="../images/weapon/microwave_cannon.png" width="32" height="32" alt=""> [Microwave Cannon](#weapon-microwave_cannon) | Ranged | Rocket | Kitchenware/Firearm | 20 / 32 / 50 / 76 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 35 |
+| <img src="../images/weapon/rice_cooker_aura.png" width="32" height="32" alt=""> [Rice Cooker Aura](#weapon-rice_cooker_aura) | Elemental | Aura | Kitchenware | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 143 | 31 |
+| <img src="../images/weapon/grill_arc.png" width="32" height="32" alt=""> [Arc Grill](#weapon-grill_arc) | Elemental | Chain Lightning | Kitchenware | 9 / 14 / 22 / 34 | 1.1 / 1 / 0.92 / 0.84 | 420 | 31 |
+| <img src="../images/weapon/mixer_storm.png" width="32" height="32" alt=""> [Storm Mixer](#weapon-mixer_storm) | Elemental | Chain Lightning | Kitchenware | 6 / 10 / 15 / 23 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | 31 |
+| <img src="../images/weapon/toaster_zap.png" width="32" height="32" alt=""> [Toaster Zap](#weapon-toaster_zap) | Elemental | Chain Lightning | Kitchenware/Dessert | 11 / 19 / 29 / 45 | 1.3 / 1.2 / 1.1 / 1 | 360 | 31 |
+| <img src="../images/weapon/toxic_spike.png" width="32" height="32" alt=""> [Toadstool Spike](#weapon-toxic_spike) | Melee | Thrust | Produce/Sharp | 11 / 20 / 31 / 48 | 1.05 / 1 / 0.92 / 0.84 | 185 | 25 |
+| <img src="../images/weapon/spore_cannon.png" width="32" height="32" alt=""> [Spore Cannon](#weapon-spore_cannon) | Ranged | Bullet | Produce/Firearm | 5 / 9 / 13 / 20 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 23 |
+| <img src="../images/weapon/miasma_sprayer.png" width="32" height="32" alt=""> [Miasma Sprayer](#weapon-miasma_sprayer) | Elemental | Flame | Produce | 2 / 4 / 6 / 9 | 0.18 / 0.16 / 0.14 / 0.12 | 150 | 27 |
+| <img src="../images/weapon/rot_aura.png" width="32" height="32" alt=""> [Rot Aura](#weapon-rot_aura) | Elemental | Aura | Produce | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 149 | 31 |
+| <img src="../images/weapon/toadstool_mine.png" width="32" height="32" alt=""> [Toadstool Mine](#weapon-toadstool_mine) | Elemental | Mine | Produce | 18 / 31 / 47 / 72 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 26 |
+| <img src="../images/weapon/mycelium_boomerang.png" width="32" height="32" alt=""> [Mycelium Boomerang](#weapon-mycelium_boomerang) | Ranged | Boomerang | Produce | 9 / 15 / 23 / 36 | 1.4 / 1.3 / 1.2 / 1.1 | 360 | 25 |
+| <img src="../images/weapon/blowpipe.png" width="32" height="32" alt=""> [Toxic Blowpipe](#weapon-blowpipe) | Ranged | Bullet | Produce | 10 / 17 / 26 / 40 | 1.05 / 1 / 0.92 / 0.84 | 460 | 26 |
+| <img src="../images/weapon/bbq_skewer.png" width="32" height="32" alt=""> [BBQ Skewer](#weapon-bbq_skewer) | Melee | Thrust | Sauce/Sharp | 17 / 29 / 45 / 69 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | 29 |
+| <img src="../images/weapon/coal_tongs.png" width="32" height="32" alt=""> [Coal Tongs](#weapon-coal_tongs) | Melee | Sweep | Kitchenware/Blunt | 12 / 20 / 32 / 49 | 1.1 / 1.05 / 1 / 0.9 | 125 | 27 |
+| <img src="../images/weapon/bbq_sauce_cannon.png" width="32" height="32" alt=""> [BBQ Sauce Cannon](#weapon-bbq_sauce_cannon) | Ranged | Rocket | Sauce/Firearm | 13 / 22 / 34 / 52 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | 31 |
+| <img src="../images/weapon/charcoal_aura.png" width="32" height="32" alt=""> [Charcoal Aura](#weapon-charcoal_aura) | Elemental | Aura | Sauce | 3 / 5 / 7 / 10 | 0.5 / 0.5 / 0.5 / 0.5 | 133 | 33 |
+| <img src="../images/weapon/ember_mine.png" width="32" height="32" alt=""> [Ember Mine](#weapon-ember_mine) | Elemental | Mine | Sauce | 18 / 31 / 47 / 72 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 26 |
+| <img src="../images/weapon/cumin_star.png" width="32" height="32" alt=""> [Cumin Star](#weapon-cumin_star) | Elemental | Boomerang | Sauce/Sharp | 7 / 12 / 18 / 28 | 1.3 / 1.2 / 1.1 / 1 | 320 | 29 |
+| <img src="../images/weapon/hot_sauce_gun.png" width="32" height="32" alt=""> [Hot Sauce Pistol](#weapon-hot_sauce_gun) | Ranged | Bullet | Sauce/Firearm | 6 / 11 / 16 / 24 | 0.55 / 0.5 / 0.46 / 0.42 | 380 | 21 |
+| <img src="../images/weapon/sushi_blade.png" width="32" height="32" alt=""> [Sushi Blade](#weapon-sushi_blade) | Melee | Thrust | Sharp/Kitchenware | 5 / 9 / 14 / 23 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | 21 |
+| <img src="../images/weapon/twin_cleavers.png" width="32" height="32" alt=""> [Twin Cleavers](#weapon-twin_cleavers) | Melee | Sweep | Sharp/Kitchenware | 8 / 13 / 21 / 31 | 0.85 / 0.8 / 0.74 / 0.68 | 105 | 23 |
+| <img src="../images/weapon/knife_case.png" width="32" height="32" alt=""> [Knife Case](#weapon-knife_case) | Ranged | Bullet | Sharp | 4 / 7 / 11 / 15 | 0.5 / 0.46 / 0.42 / 0.38 | 400 | 27 |
+| <img src="../images/weapon/blade_aura.png" width="32" height="32" alt=""> [Blade Wind Aura](#weapon-blade_aura) | Melee | Aura | Sharp | 4 / 5 / 8 / 13 | 0.45 / 0.43 / 0.41 / 0.38 | 118 | 29 |
+| <img src="../images/weapon/grater_sweep.png" width="32" height="32" alt=""> [Grater Blade](#weapon-grater_sweep) | Melee | Sweep | Sharp/Kitchenware | 9 / 15 / 24 / 36 | 1.05 / 1 / 0.92 / 0.84 | 115 | 17 |
+| <img src="../images/weapon/chili_shuriken.png" width="32" height="32" alt=""> [Chili Saw](#weapon-chili_shuriken) | Melee | Boomerang | Sharp/Sauce | 8 / 13 / 20 / 31 | 1.3 / 1.2 / 1.1 / 1 | 230 | 27 |
+| <img src="../images/weapon/mandoline.png" width="32" height="32" alt=""> [Mandoline](#weapon-mandoline) | Melee | Thrust | Sharp/Kitchenware | 5 / 8 / 13 / 19 | 0.5 / 0.46 / 0.42 / 0.38 | 155 | 19 |
+| <img src="../images/weapon/coconut_cannon.png" width="32" height="32" alt=""> [Coconut Cannon](#weapon-coconut_cannon) | Ranged | Rocket | Produce/Firearm | 22 / 36 / 56 / 84 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 36 |
+| <img src="../images/weapon/pumpkin_mortar.png" width="32" height="32" alt=""> [Pumpkin Mortar](#weapon-pumpkin_mortar) | Ranged | Rocket | Produce/Firearm | 15 / 26 / 40 / 61 | 2 / 1.9 / 1.78 / 1.6 | 460 | 33 |
+| <img src="../images/weapon/melon_grenade.png" width="32" height="32" alt=""> [Melon Grenade](#weapon-melon_grenade) | Ranged | Rocket | Produce | 9 / 14 / 22 / 34 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 29 |
+| <img src="../images/weapon/potato_mine.png" width="32" height="32" alt=""> [Potato Mine](#weapon-potato_mine) | Ranged | Mine | Produce | 15 / 25 / 39 / 59 | 2 / 1.9 / 1.75 / 1.6 | 220 | 25 |
+| <img src="../images/weapon/corn_scatter.png" width="32" height="32" alt=""> [Corn Scattergun](#weapon-corn_scatter) | Ranged | Bullet | Produce/Firearm | 4 / 6 / 9 / 14 | 1 / 0.95 / 0.88 / 0.8 | 240 | 27 |
+| <img src="../images/weapon/pea_sniper.png" width="32" height="32" alt=""> [Pod Sniper](#weapon-pea_sniper) | Ranged | Bullet | Produce/Firearm | 22 / 37 / 58 / 85 | 1.9 / 1.8 / 1.65 / 1.5 | 650 | 33 |
+| <img src="../images/weapon/mint_aura.png" width="32" height="32" alt=""> [Mint Aura](#weapon-mint_aura) | Elemental | Aura | Produce | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 136 | 31 |
+| <img src="../images/weapon/pepper_storm_aura.png" width="32" height="32" alt=""> [Pepper Storm](#weapon-pepper_storm_aura) | Melee | Aura | Sauce/Kitchenware | 3 / 5 / 7 / 11 | 0.45 / 0.45 / 0.42 / 0.4 | 133 | 23 |
+| <img src="../images/weapon/honey_aura.png" width="32" height="32" alt=""> [Honey Aura](#weapon-honey_aura) | Elemental | Aura | Dessert | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 141 | 31 |
+| <img src="../images/weapon/teapot_storm.png" width="32" height="32" alt=""> [Teapot Storm](#weapon-teapot_storm) | Elemental | Chain Lightning | Kitchenware | 7 / 13 / 19 / 29 | 0.95 / 0.88 / 0.8 / 0.72 | 440 | 29 |
+| <img src="../images/weapon/jelly_bounce.png" width="32" height="32" alt=""> [Jelly Bounce](#weapon-jelly_bounce) | Elemental | Bullet | Dessert | 7 / 11 / 17 / 26 | 1 / 0.95 / 0.88 / 0.8 | 400 | 29 |
+| <img src="../images/weapon/syrup_sprayer.png" width="32" height="32" alt=""> [Syrup Sprayer](#weapon-syrup_sprayer) | Elemental | Flame | Dessert | 2 / 3 / 5 / 7 | 0.2 / 0.18 / 0.16 / 0.14 | 200 | 29 |
+| <img src="../images/weapon/sushi_twin_blade.png" width="32" height="32" alt=""> [Twin Sushi Blade](#weapon-sushi_twin_blade) | Melee | Thrust | Sharp/Sauce/Kitchenware | 11 / 19 / 30 / 45 | 0.6 / 0.55 / 0.5 / 0.44 | 158 | 34 |
+| <img src="../images/weapon/blast_pea_cannon.png" width="32" height="32" alt=""> [Blast Pea Cannon](#weapon-blast_pea_cannon) | Ranged | Bullet | Firearm/Produce/Elemental | 15 / 26 / 42 / 64 | 0.32 / 0.29 / 0.26 / 0.22 | 473 | 39 |
+| <img src="../images/weapon/curry_garlic_field.png" width="32" height="32" alt=""> [Curry Garlic Field](#weapon-curry_garlic_field) | Elemental | Aura | Sauce/Elemental/Produce | 4 / 7 / 10 / 14 | 0.5 / 0.5 / 0.5 / 0.5 | 147 | 42 |
+| <img src="../images/weapon/thunder_orchard.png" width="32" height="32" alt=""> [Thunder Orchard](#weapon-thunder_orchard) | Elemental | Chain Lightning | Produce/Elemental | 13 / 22 / 34 / 52 | 1.1 / 1 / 0.92 / 0.84 | 441 | 39 |
+| <img src="../images/weapon/frost_cleaver.png" width="32" height="32" alt=""> [Frost Cleaver](#weapon-frost_cleaver) | Melee | Sweep | Kitchenware/Sharp/Blunt | 23 / 37 / 58 / 88 | 1.1 / 1.05 / 1 / 0.9 | 131 | 40 |
+| <img src="../images/weapon/toxic_gatling.png" width="32" height="32" alt=""> [Toxic Gatling](#weapon-toxic_gatling) | Ranged | Bullet | Firearm/Sauce/Produce | 4 / 7 / 9 / 12 | 0.16 / 0.14 / 0.12 / 0.1 | 441 | 52 |
+| <img src="../images/weapon/inferno_mortar.png" width="32" height="32" alt=""> [Inferno Mortar](#weapon-inferno_mortar) | Ranged | Rocket | Sauce/Demolition/Firearm | 18 / 30 / 46 / 70 | 1.8 / 1.7 / 1.6 / 1.4 | 483 | 42 |
+| <img src="../images/weapon/storm_whisk_pan.png" width="32" height="32" alt=""> [Storm Bastion Pan](#weapon-storm_whisk_pan) | Melee | Sweep | Kitchenware/Blunt | 20 / 33 / 51 / 77 | 1.6 / 1.5 / 1.4 / 1.3 | 126 | 34 |
+| <img src="../images/weapon/railgun_sniper.png" width="32" height="32" alt=""> [Railgun Sniper](#weapon-railgun_sniper) | Ranged | Bullet | Firearm/Produce | 29 / 48 / 75 / 110 | 1.9 / 1.8 / 1.65 / 1.5 | 683 | 43 |
+| <img src="../images/weapon/honey_frost_aura.png" width="32" height="32" alt=""> [Honeyfrost Field](#weapon-honey_frost_aura) | Elemental | Aura | Dessert | 3 / 6 / 9 / 12 | 0.5 / 0.5 / 0.5 / 0.5 | 148 | 40 |
+| <img src="../images/weapon/spore_minefield.png" width="32" height="32" alt=""> [Spore Minefield](#weapon-spore_minefield) | Elemental | Mine | Produce/Elemental/Demolition | 22 / 37 / 57 / 88 | 2.5 / 2.3 / 2.1 / 1.8 | 210 | 34 |
+| <img src="../images/weapon/candy_shotgun.png" width="32" height="32" alt=""> [Candy Scattergun](#weapon-candy_shotgun) | Ranged | Bullet | Firearm/Produce/Dessert | 4 / 8 / 11 / 17 | 0.32 / 0.29 / 0.26 / 0.22 | 420 | 34 |
+| <img src="../images/weapon/dragon_breath_flame.png" width="32" height="32" alt=""> [Dragon Breath](#weapon-dragon_breath_flame) | Elemental | Flame | Sauce/Elemental | 3 / 4 / 7 / 11 | 0.2 / 0.18 / 0.16 / 0.14 | 210 | 39 |
+| <img src="../images/weapon/coconut_quake_mace.png" width="32" height="32" alt=""> [Coconut Quake Mace](#weapon-coconut_quake_mace) | Melee | Sweep | Produce/Demolition/Firearm | 24 / 40 / 62 / 92 | 1.8 / 1.7 / 1.6 / 1.45 | 504 | 47 |
+| <img src="../images/weapon/anise_frost_storm.png" width="32" height="32" alt=""> [Frost Anise Storm](#weapon-anise_frost_storm) | Elemental | Boomerang | Sharp/Elemental | 10 / 17 / 25 / 39 | 1 / 0.95 / 0.88 / 0.8 | 357 | 36 |
+| <img src="../images/weapon/holy_salt_barrier.png" width="32" height="32" alt=""> [Holy Salt Barrier](#weapon-holy_salt_barrier) | Elemental | Aura | Sharp/Elemental/Produce | 3 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 160 | 40 |
+| <img src="../images/weapon/fz_knife_ember_mine.png" width="32" height="32" alt=""> [Blazing Chef's Knife](#weapon-fz_knife_ember_mine) | Melee | Thrust | Kitchenware/Sharp/Sauce | 20 / 34 / 52 / 79 | 0.6 / 0.55 / 0.5 / 0.44 | 210 | 34 |
+| <img src="../images/weapon/fz_thunder_durian_volt_fork.png" width="32" height="32" alt=""> [Piercing Thunder Durian](#weapon-fz_thunder_durian_volt_fork) | Elemental | Rocket | Produce/Elemental/Demolition | 18 / 30 / 46 / 70 | 0.9 / 0.85 / 0.78 / 0.7 | 420 | 42 |
+| <img src="../images/weapon/fz_plate_frisbee_onion_boomerang.png" width="32" height="32" alt=""> [Fresh Plate Frisbee](#weapon-fz_plate_frisbee_onion_boomerang) | Ranged | Boomerang | Kitchenware/Produce | 13 / 22 / 34 / 52 | 1.4 / 1.3 / 1.2 / 1.1 | 378 | 31 |
+| <img src="../images/weapon/fz_candy_cane_glacier_mortar.png" width="32" height="32" alt=""> [Frost Candy Cane Club](#weapon-fz_candy_cane_glacier_mortar) | Melee | Sweep | Dessert/Blunt/Firearm | 17 / 29 / 44 / 67 | 1.25 / 1.18 / 1.1 / 1 | 483 | 43 |
+| <img src="../images/weapon/fz_corn_scatter_grater_sweep.png" width="32" height="32" alt=""> [Lethal Corn Scattergun](#weapon-fz_corn_scatter_grater_sweep) | Ranged | Bullet | Produce/Firearm/Sharp | 10 / 17 / 26 / 40 | 1 / 0.95 / 0.88 / 0.8 | 252 | 35 |
+| <img src="../images/weapon/fz_sea_urchin_mine_dragonfruit_orb.png" width="32" height="32" alt=""> [Blazing Sea Urchin Mine](#weapon-fz_sea_urchin_mine_dragonfruit_orb) | Ranged | Mine | Sharp/Demolition/Produce | 14 / 24 / 37 / 57 | 1 / 0.95 / 0.88 / 0.8 | 420 | 36 |
+| <img src="../images/weapon/fz_twin_cleavers_ketchup.png" width="32" height="32" alt=""> [Scatter Twin Cleavers](#weapon-fz_twin_cleavers_ketchup) | Melee | Sweep | Sharp/Kitchenware/Sauce | 9 / 14 / 23 / 34 | 0.75 / 0.7 / 0.65 / 0.6 | 294 | 30 |
+| <img src="../images/weapon/fz_jelly_bounce_chili_shuriken.png" width="32" height="32" alt=""> [Blazing Jelly Bounce](#weapon-fz_jelly_bounce_chili_shuriken) | Elemental | Bullet | Dessert/Sharp/Sauce | 9 / 14 / 22 / 34 | 1 / 0.95 / 0.88 / 0.8 | 420 | 38 |
+| <img src="../images/weapon/fz_slush_spray_caramel_aura.png" width="32" height="32" alt=""> [Searing Slush Spray](#weapon-fz_slush_spray_caramel_aura) | Elemental | Flame | Dessert | 3 / 6 / 8 / 12 | 0.26 / 0.24 / 0.21 / 0.18 | 179 | 43 |
+| <img src="../images/weapon/fz_skewer_soy_pistol.png" width="32" height="32" alt=""> [Saucy BBQ Skewer](#weapon-fz_skewer_soy_pistol) | Melee | Thrust | Kitchenware/Sharp/Firearm | 13 / 23 / 36 / 56 | 0.55 / 0.5 / 0.46 / 0.42 | 399 | 31 |
+| <img src="../images/weapon/fz_cucumber_katana_soda.png" width="32" height="32" alt=""> [Frost Cucumber Katana](#weapon-fz_cucumber_katana_soda) | Melee | Thrust | Produce/Sharp/Elemental | 10 / 17 / 26 / 40 | 0.75 / 0.7 / 0.65 / 0.58 | 420 | 31 |
+| <img src="../images/weapon/fz_corn_cannon_blade_aura.png" width="32" height="32" alt=""> [Keen Corn Cannon](#weapon-fz_corn_cannon_blade_aura) | Ranged | Bullet | Firearm/Sharp | 18 / 31 / 48 / 75 | 0.45 / 0.43 / 0.41 / 0.38 | 546 | 38 |
+| <img src="../images/weapon/fz_grill_arc_pepper_storm_aura.png" width="32" height="32" alt=""> [Saucy Arc Grill](#weapon-fz_grill_arc_pepper_storm_aura) | Elemental | Chain Lightning | Kitchenware/Sauce | 10 / 15 / 24 / 37 | 0.45 / 0.45 / 0.42 / 0.4 | 441 | 40 |
+| <img src="../images/weapon/fz_teapot_storm_charcoal_aura.png" width="32" height="32" alt=""> [Blazing Teapot Storm](#weapon-fz_teapot_storm_charcoal_aura) | Elemental | Chain Lightning | Kitchenware/Sauce | 8 / 14 / 21 / 32 | 0.5 / 0.5 / 0.5 / 0.5 | 462 | 43 |
+| <img src="../images/weapon/fz_honey_blaster_pumpkin_mortar.png" width="32" height="32" alt=""> [Blazing Honey Blaster](#weapon-fz_honey_blaster_pumpkin_mortar) | Ranged | Bullet | Sauce/Produce/Firearm | 17 / 29 / 44 / 67 | 0.7 / 0.66 / 0.6 / 0.54 | 483 | 43 |
+| <img src="../images/weapon/fz_popcorn_machine_rot_aura.png" width="32" height="32" alt=""> [Toxic Popcorn Popper](#weapon-fz_popcorn_machine_rot_aura) | Ranged | Mine | Firearm/Demolition/Produce | 15 / 26 / 41 / 62 | 0.5 / 0.5 / 0.5 / 0.5 | 231 | 40 |
+| <img src="../images/weapon/fz_donut_ring_dynamite_drumstick.png" width="32" height="32" alt=""> [Explosive Donut Ring](#weapon-fz_donut_ring_dynamite_drumstick) | Ranged | Boomerang | Dessert/Demolition | 19 / 32 / 50 / 75 | 1.5 / 1.4 / 1.3 / 1.2 | 347 | 39 |
+| <img src="../images/weapon/fz_spatula_slingshot.png" width="32" height="32" alt=""> [Chain Spatula](#weapon-fz_spatula_slingshot) | Melee | Sweep | Kitchenware/Produce | 10 / 18 / 28 / 42 | 0.95 / 0.9 / 0.83 / 0.75 | 399 | 21 |
+| <img src="../images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [Chef's Cola Zapper](#weapon-fz_cola_zapper_mixer_storm) | Elemental | Chain Lightning | Firearm/Elemental/Kitchenware | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 40 |
+| <img src="../images/weapon/fz_bean_bazooka_soy_bomb.png" width="32" height="32" alt=""> [Saucy Bean Bazooka](#weapon-fz_bean_bazooka_soy_bomb) | Ranged | Rocket | Firearm/Demolition/Sauce | 24 / 40 / 62 / 92 | 2.2 / 2.05 / 1.9 / 1.7 | 504 | 44 |
+| <img src="../images/weapon/fz_steam_kettle_asparagus_bow.png" width="32" height="32" alt=""> [Piercing Steam Kettle](#weapon-fz_steam_kettle_asparagus_bow) | Elemental | Flame | Kitchenware/Elemental/Produce | 15 / 26 / 41 / 62 | 0.26 / 0.24 / 0.21 / 0.18 | 546 | 36 |
+| <img src="../images/weapon/fz_lightning_whisk_pepper_grinder.png" width="32" height="32" alt=""> [Piercing Zap Whisk](#weapon-fz_lightning_whisk_pepper_grinder) | Elemental | Chain Lightning | Kitchenware/Elemental/Firearm | 8 / 13 / 20 / 30 | 0.5 / 0.46 / 0.42 / 0.38 | 420 | 39 |
+| <img src="../images/weapon/fz_choco_mine_bbq_torch.png" width="32" height="32" alt=""> [Blazing Chocolate Mine](#weapon-fz_choco_mine_bbq_torch) | Ranged | Mine | Dessert/Firearm/Sauce | 14 / 25 / 39 / 58 | 0.2 / 0.18 / 0.16 / 0.14 | 231 | 39 |
+| <img src="../images/weapon/fz_cherry_bomb_bamboo_spear.png" width="32" height="32" alt=""> [Lethal Cherry Bombs](#weapon-fz_cherry_bomb_bamboo_spear) | Ranged | Rocket | Produce/Demolition | 21 / 35 / 55 / 85 | 1.5 / 1.42 / 1.32 / 1.2 | 378 | 36 |
+| <img src="../images/weapon/fz_kitchen_scissors_toxic_spike.png" width="32" height="32" alt=""> [Toxic Kitchen Shears](#weapon-fz_kitchen_scissors_toxic_spike) | Melee | Sweep | Kitchenware/Sharp/Produce | 12 / 22 / 34 / 53 | 0.85 / 0.8 / 0.74 / 0.68 | 194 | 33 |
+| <img src="../images/weapon/fz_carrot_crossbow_fork.png" width="32" height="32" alt=""> [Chef's Carrot Crossbow](#weapon-fz_carrot_crossbow_fork) | Ranged | Bullet | Produce/Kitchenware | 13 / 22 / 34 / 52 | 0.9 / 0.85 / 0.78 / 0.7 | 483 | 33 |
+| <img src="../images/weapon/fz_spore_sprayer_shaved_ice_gun.png" width="32" height="32" alt=""> [Frost Spore Sprayer](#weapon-fz_spore_sprayer_shaved_ice_gun) | Elemental | Bullet | Produce/Elemental/Firearm | 6 / 9 / 14 / 22 | 0.22 / 0.2 / 0.18 / 0.16 | 378 | 35 |
+| <img src="../images/weapon/fz_popsicle_blade_olive_launcher.png" width="32" height="32" alt=""> [Chain Popsicle Rapier](#weapon-fz_popsicle_blade_olive_launcher) | Melee | Thrust | Sharp/Dessert/Firearm | 10 / 15 / 25 / 37 | 0.8 / 0.75 / 0.69 / 0.62 | 420 | 33 |
+| <img src="../images/weapon/fz_bbq_skewer_cream_torch.png" width="32" height="32" alt=""> [Frost BBQ Skewer](#weapon-fz_bbq_skewer_cream_torch) | Melee | Thrust | Sauce/Sharp/Dessert | 19 / 32 / 50 / 76 | 0.2 / 0.18 / 0.16 / 0.14 | 210 | 38 |
+| <img src="../images/weapon/fz_coconut_gloves_ice_cube_tray.png" width="32" height="32" alt=""> [Frost Coconut Gloves](#weapon-fz_coconut_gloves_ice_cube_tray) | Melee | Thrust | Produce/Kitchenware/Elemental | 6 / 10 / 15 / 24 | 0.42 / 0.4 / 0.37 / 0.34 | 357 | 34 |
+| <img src="../images/weapon/fz_knife_case_microwave_cannon.png" width="32" height="32" alt=""> [Explosive Knife Case](#weapon-fz_knife_case_microwave_cannon) | Ranged | Bullet | Sharp/Kitchenware/Firearm | 22 / 35 / 55 / 84 | 0.5 / 0.46 / 0.42 / 0.38 | 504 | 46 |
+| <img src="../images/weapon/fz_coal_tongs_whisk_spin.png" width="32" height="32" alt=""> [Frost Coal Tongs](#weapon-fz_coal_tongs_whisk_spin) | Melee | Sweep | Kitchenware/Blunt | 13 / 22 / 35 / 54 | 0.45 / 0.45 / 0.42 / 0.4 | 144 | 35 |
+| <img src="../images/weapon/fz_toaster_zap_hot_sauce_gun.png" width="32" height="32" alt=""> [Blazing Toaster Zap](#weapon-fz_toaster_zap_hot_sauce_gun) | Elemental | Chain Lightning | Kitchenware/Dessert/Sauce | 12 / 21 / 32 / 50 | 0.55 / 0.5 / 0.46 / 0.42 | 399 | 40 |
+| <img src="../images/weapon/fz_ladle_watermelon_hammer.png" width="32" height="32" alt=""> [Explosive Soup Ladle](#weapon-fz_ladle_watermelon_hammer) | Melee | Sweep | Kitchenware/Sauce/Produce | 33 / 55 / 88 / 132 | 1.15 / 1.1 / 1.02 / 0.94 | 147 | 46 |
+| <img src="../images/weapon/fz_mint_frost_mine_blender_aura.png" width="32" height="32" alt=""> [Lethal Mint Frost Mine](#weapon-fz_mint_frost_mine_blender_aura) | Elemental | Mine | Produce/Elemental/Demolition | 18 / 30 / 46 / 70 | 0.45 / 0.43 / 0.41 / 0.38 | 231 | 36 |
+| <img src="../images/weapon/fz_melon_grenade_pumpkin_lantern.png" width="32" height="32" alt=""> [Piercing Melon Grenade](#weapon-fz_melon_grenade_pumpkin_lantern) | Ranged | Rocket | Produce/Elemental | 10 / 17 / 26 / 41 | 0.8 / 0.75 / 0.7 / 0.62 | 441 | 38 |
+| <img src="../images/weapon/fz_blowpipe_syrup_sprayer.png" width="32" height="32" alt=""> [Blazing Toxic Blowpipe](#weapon-fz_blowpipe_syrup_sprayer) | Ranged | Bullet | Produce/Dessert | 11 / 19 / 29 / 44 | 0.2 / 0.18 / 0.16 / 0.14 | 483 | 38 |
+| <img src="../images/weapon/fz_chopsticks_pepper_spray.png" width="32" height="32" alt=""> [Blazing Chopsticks](#weapon-fz_chopsticks_pepper_spray) | Melee | Thrust | Kitchenware/Elemental | 6 / 10 / 15 / 23 | 0.18 / 0.16 / 0.14 / 0.12 | 163 | 34 |
+| <img src="../images/weapon/fz_pizza_cutter_potato_mine.png" width="32" height="32" alt=""> [Explosive Pizza Cutter](#weapon-fz_pizza_cutter_potato_mine) | Melee | Boomerang | Kitchenware/Sharp/Produce | 17 / 28 / 43 / 65 | 1.3 / 1.2 / 1.1 / 1 | 242 | 34 |
+| <img src="../images/weapon/fz_popping_candy_rolling_pin.png" width="32" height="32" alt=""> [Heavy Popping Zap](#weapon-fz_popping_candy_rolling_pin) | Elemental | Chain Lightning | Dessert/Kitchenware | 13 / 22 / 35 / 53 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 38 |
+| <img src="../images/weapon/fz_baguette_sword_spore_cannon.png" width="32" height="32" alt=""> [Toxic Baguette Blade](#weapon-fz_baguette_sword_spore_cannon) | Melee | Sweep | Produce/Firearm | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | 30 |
+| <img src="../images/weapon/fz_mycelium_boomerang_rice_cooker_aura.png" width="32" height="32" alt=""> [Frost Mycelium Boomerang](#weapon-fz_mycelium_boomerang_rice_cooker_aura) | Ranged | Boomerang | Produce/Kitchenware | 10 / 17 / 25 / 40 | 0.5 / 0.5 / 0.5 / 0.5 | 378 | 40 |
+| <img src="../images/weapon/fz_cumin_star_mandoline.png" width="32" height="32" alt=""> [Piercing Cumin Star](#weapon-fz_cumin_star_mandoline) | Elemental | Boomerang | Sauce/Sharp/Kitchenware | 8 / 13 / 20 / 31 | 0.5 / 0.46 / 0.42 / 0.38 | 336 | 38 |
+| <img src="../images/weapon/fz_meat_tenderizer_seed_spitter.png" width="32" height="32" alt=""> [Fresh Meat Tenderizer](#weapon-fz_meat_tenderizer_seed_spitter) | Melee | Sweep | Kitchenware/Firearm/Produce | 24 / 40 / 62 / 92 | 0.22 / 0.2 / 0.18 / 0.16 | 378 | 39 |
 
 <a id="affixes"></a>
 
@@ -164,14 +396,14 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 - T3 weapons roll 1 random affix and T4 weapons roll 2; affixes have tiers I–IV (I common, IV rare; higher Luck favours higher tiers)
 - Reroll affixes in the shop: all at once costs `8 + 2×wave`, a single affix costs 2.5× that
-- T4 weapons can be forged for +8% damage per level, up to +10; each level costs 1.45× more, and a failed forge only costs the fee
+- T4 weapons can be forged for +5% damage per level, up to +10; each level costs 1.45× more, and a failed forge only costs the fee
 
 | Affix | I | II | III | IV |
 | --- | --- | --- | --- | --- |
-| Damage +N% | 8 | 14 | 22 | 32 |
-| Attack Speed +N% | 6 | 10 | 15 | 22 |
-| Crit Chance +N% | 4 | 7 | 11 | 16 |
-| Crit Damage +N% | 15 | 25 | 40 | 60 |
+| Damage +N% | 6 | 10 | 15 | 22 |
+| Attack Speed +N% | 4 | 7 | 10 | 15 |
+| Crit Chance +N% | 3 | 5 | 8 | 11 |
+| Crit Damage +N% | 10 | 18 | 28 | 42 |
 | Range +N | 20 | 35 | 55 | 80 |
 | Life Steal Chance +N% | 1 | 2 | 3 | 5 |
 | N% chance to Burn | 8 | 14 | 22 | 32 |
@@ -188,465 +420,972 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 <a id="weapon-fork"></a>
 
-### Tomato Fork
-
-<img src="../images/weapon/fork.png" width="64" height="64" alt="">
-
-> A humble three-pronged fork. Thrusts forward.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Kitchenware |
-| Damage T1–T4 | 8 / 14 / 22 / 34 |
-| Cooldown T1–T4 | 0.9s / 0.85s / 0.78s / 0.7s |
-| Range | 150 |
-| Scaling | Melee Damage ×1 |
-| Crit multiplier | ×2 |
-| Effects | Knockback 10 |
-| T1 price | 15 |
-| Starting weapon of | [Tomato Sister](CHARACTERS.md#char-tomato), [Sprout Apprentice](CHARACTERS.md#char-sprout) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fork.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Tomato Fork</th></tr>
+<tr><td colspan="2"><i>A humble three-pronged fork. Thrusts forward.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 14 / 22 / 34</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
+<tr><td nowrap>Range</td><td>150</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 10</td></tr>
+<tr><td nowrap>T1 price</td><td>15</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-tomato">Tomato Sister</a></td></tr>
+</table>
 
 <a id="weapon-rolling_pin"></a>
 
-### Rolling Pin
-
-<img src="../images/weapon/rolling_pin.png" width="64" height="64" alt="">
-
-> Sweeps a wide area and knocks enemies back.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Kitchenware |
-| Damage T1–T4 | 12 / 20 / 32 / 48 |
-| Cooldown T1–T4 | 1.25s / 1.18s / 1.1s / 1s |
-| Range | 130 |
-| Scaling | Melee Damage ×1 |
-| Crit multiplier | ×1.5 |
-| Effects | Knockback 30 |
-| T1 price | 18 |
-| Starting weapon of | [Carrot Knight](CHARACTERS.md#char-carrot), [Dragonfruit Rider](CHARACTERS.md#char-dragonfruit), [Chef Yam](CHARACTERS.md#char-sweetpotato), [Monk Gourd](CHARACTERS.md#char-wintermelon) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/rolling_pin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rolling Pin</th></tr>
+<tr><td colspan="2"><i>Sweeps a wide area and knocks enemies back.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 20 / 32 / 48</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.25s / 1.18s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>130</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>18</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-carrot">Carrot Knight</a>, <a href="CHARACTERS.md#char-sweetpotato">Chef Yam</a></td></tr>
+</table>
 
 <a id="weapon-knife"></a>
 
-### Chef's Knife
-
-<img src="../images/weapon/knife.png" width="64" height="64" alt="">
-
-> Fast thrusts with high crit.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Kitchenware, Sharp |
-| Damage T1–T4 | 6 / 10 / 16 / 25 |
-| Cooldown T1–T4 | 0.6s / 0.55s / 0.5s / 0.44s |
-| Range | 130 |
-| Scaling | Melee Damage ×0.8 |
-| Crit multiplier | ×2.5 |
-| Effects | +15% Crit Chance |
-| T1 price | 20 |
-| Starting weapon of | [Lemon Assassin](CHARACTERS.md#char-lemon), [Blueberry Twins](CHARACTERS.md#char-blueberry), [Kiwi Detective](CHARACTERS.md#char-kiwi) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/knife.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chef's Knife</th></tr>
+<tr><td colspan="2"><i>Fast thrusts with high crit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 16 / 25</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.6s / 0.55s / 0.5s / 0.44s</td></tr>
+<tr><td nowrap>Range</td><td>130</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>+15% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>20</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-lemon">Lemon Assassin</a>, <a href="CHARACTERS.md#char-blueberry">Blueberry Twins</a>, <a href="CHARACTERS.md#char-kiwi">Kiwi Detective</a></td></tr>
+</table>
 
 <a id="weapon-pan"></a>
 
-### Frying Pan
-
-<img src="../images/weapon/pan.png" width="64" height="64" alt="">
-
-> Heavy sweep that stuns enemies for 0.4s. Damage scales with Armor.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Kitchenware |
-| Damage T1–T4 | 18 / 30 / 46 / 70 |
-| Cooldown T1–T4 | 1.6s / 1.5s / 1.4s / 1.3s |
-| Range | 120 |
-| Scaling | Melee Damage ×1.2, Armor ×1 |
-| Crit multiplier | ×1.5 |
-| Effects | Stun 0.4s, Knockback 20 |
-| T1 price | 25 |
-| Starting weapon of | [Uncle Onion](CHARACTERS.md#char-onion), [Coconut Boxer](CHARACTERS.md#char-coconut) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pan.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frying Pan</th></tr>
+<tr><td colspan="2"><i>Heavy sweep that stuns enemies for 0.4s. Damage scales with Armor.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>18 / 30 / 46 / 70</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.6s / 1.5s / 1.4s / 1.3s</td></tr>
+<tr><td nowrap>Range</td><td>120</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.2, Armor ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.4s, Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-onion">Uncle Onion</a>, <a href="CHARACTERS.md#char-coconut">Coconut Boxer</a></td></tr>
+</table>
 
 <a id="weapon-watermelon_hammer"></a>
 
-### Melon Hammer
-
-<img src="../images/weapon/watermelon_hammer.png" width="64" height="64" alt="">
-
-> Smashes the ground for a huge explosion.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Produce, Demolition |
-| Damage T1–T4 | 30 / 50 / 80 / 120 |
-| Cooldown T1–T4 | 2.2s / 2.1s / 2s / 1.8s |
-| Range | 140 |
-| Scaling | Melee Damage ×1.5, Max HP ×0.1 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 100, Knockback 40 |
-| T1 price | 35 |
-| Starting weapon of | [Chubby Melon](CHARACTERS.md#char-watermelon) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/watermelon_hammer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Melon Hammer</th></tr>
+<tr><td colspan="2"><i>Smashes the ground for a huge explosion.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>30 / 50 / 80 / 120</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.2s / 2.1s / 2s / 1.8s</td></tr>
+<tr><td nowrap>Range</td><td>140</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.5, Max HP ×0.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 100, Knockback 40</td></tr>
+<tr><td nowrap>T1 price</td><td>35</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-watermelon">Chubby Melon</a></td></tr>
+</table>
 
 <a id="weapon-cleaver"></a>
 
-### Meat Cleaver
-
-<img src="../images/weapon/cleaver.png" width="64" height="64" alt="">
-
-> Mighty sweep. Kills have a 20% chance to drop extra Seeds.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Kitchenware, Sharp |
-| Damage T1–T4 | 13 / 22 / 35 / 54 |
-| Cooldown T1–T4 | 1.1s / 1.05s / 1s / 0.9s |
-| Range | 125 |
-| Scaling | Melee Damage ×1 |
-| Crit multiplier | ×2 |
-| Effects | Knockback 15, +5% Crit Chance |
-| T1 price | 26 |
-| Starting weapon of | [Beet Berserker](CHARACTERS.md#char-beet) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/cleaver.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Meat Cleaver</th></tr>
+<tr><td colspan="2"><i>Mighty sweep. Kills have a 20% chance to drop extra Seeds.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 35 / 54</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1.05s / 1s / 0.9s</td></tr>
+<tr><td nowrap>Range</td><td>125</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 15, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-spatula"></a>
 
-### Spatula
-
-<img src="../images/weapon/spatula.png" width="64" height="64" alt="">
-
-> Quick, light sweep that flips enemies far away.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Kitchenware |
-| Damage T1–T4 | 9 / 16 / 25 / 38 |
-| Cooldown T1–T4 | 1.05s / 1s / 0.92s / 0.84s |
-| Range | 115 |
-| Scaling | Melee Damage ×0.8 |
-| Crit multiplier | ×1.5 |
-| Effects | Knockback 38 |
-| T1 price | 16 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/spatula.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spatula</th></tr>
+<tr><td colspan="2"><i>Quick, light sweep that flips enemies far away.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 16 / 25 / 38</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.05s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>115</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 38</td></tr>
+<tr><td nowrap>T1 price</td><td>16</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-whisk_spin"></a>
 
-### Whirl Whisk
-
-<img src="../images/weapon/whisk_spin.png" width="64" height="64" alt="">
-
-> Whisks around you, damaging and slowing nearby enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Aura |
-| Tags | Kitchenware |
-| Damage T1–T4 | 3 / 5 / 8 / 12 |
-| Cooldown T1–T4 | 0.45s / 0.45s / 0.42s / 0.4s |
-| Range | 137 |
-| Scaling | Melee Damage ×0.4 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 20% for 0.6s |
-| T1 price | 22 |
-| Starting weapon of | [Jackfruit Guard](CHARACTERS.md#char-jackfruit) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/whisk_spin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Whirl Whisk</th></tr>
+<tr><td colspan="2"><i>Whisks around you, damaging and slowing nearby enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 8 / 12</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.45s / 0.42s / 0.4s</td></tr>
+<tr><td nowrap>Range</td><td>137</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.4</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 0.6s</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-wintermelon">Monk Gourd</a>, <a href="CHARACTERS.md#char-jackfruit">Jackfruit Guard</a></td></tr>
+</table>
 
 <a id="weapon-meat_tenderizer"></a>
 
-### Meat Tenderizer
-
-<img src="../images/weapon/meat_tenderizer.png" width="64" height="64" alt="">
-
-> Heavy smash that stuns for 0.6s. Scales with Armor.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Kitchenware |
-| Damage T1–T4 | 22 / 36 / 56 / 84 |
-| Cooldown T1–T4 | 1.9s / 1.8s / 1.7s / 1.55s |
-| Range | 110 |
-| Scaling | Melee Damage ×1.3, Armor ×0.5 |
-| Crit multiplier | ×1.5 |
-| Effects | Stun 0.6s, Knockback 25 |
-| T1 price | 30 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/meat_tenderizer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Meat Tenderizer</th></tr>
+<tr><td colspan="2"><i>Heavy smash that stuns for 0.6s. Scales with Armor.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>22 / 36 / 56 / 84</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.9s / 1.8s / 1.7s / 1.55s</td></tr>
+<tr><td nowrap>Range</td><td>110</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.3, Armor ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.6s, Knockback 25</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-skewer"></a>
 
-### BBQ Skewer
-
-<img src="../images/weapon/skewer.png" width="64" height="64" alt="">
-
-> Long-reach thrust that leaves enemies sizzling.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Kitchenware, Sharp |
-| Damage T1–T4 | 12 / 21 / 33 / 51 |
-| Cooldown T1–T4 | 1.05s / 1s / 0.92s / 0.84s |
-| Range | 185 |
-| Scaling | Melee Damage ×0.9 |
-| Crit multiplier | ×2 |
-| Effects | Burn 2/s for 2s |
-| T1 price | 24 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/skewer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">BBQ Skewer</th></tr>
+<tr><td colspan="2"><i>Long-reach thrust that leaves enemies sizzling.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 21 / 33 / 51</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.05s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>185</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s</td></tr>
+<tr><td nowrap>T1 price</td><td>24</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-ladle"></a>
 
-### Soup Ladle
-
-<img src="../images/weapon/ladle.png" width="64" height="64" alt="">
-
-> A sweep of hot soup. Hits grant extra Life Steal Chance.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Kitchenware, Sauce |
-| Damage T1–T4 | 10 / 17 / 27 / 41 |
-| Cooldown T1–T4 | 1.15s / 1.1s / 1.02s / 0.94s |
-| Range | 120 |
-| Scaling | Melee Damage ×0.9, Max HP ×0.05 |
-| Crit multiplier | ×1.5 |
-| Effects | +3% Life Steal Chance, Knockback 20 |
-| T1 price | 20 |
-| Starting weapon of | [Cabbage Veteran](CHARACTERS.md#char-cabbage) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/ladle.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Soup Ladle</th></tr>
+<tr><td colspan="2"><i>A sweep of hot soup. Hits grant extra Life Steal Chance.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 27 / 41</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.15s / 1.1s / 1.02s / 0.94s</td></tr>
+<tr><td nowrap>Range</td><td>120</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.9, Max HP ×0.05</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>+3% Life Steal Chance, Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>20</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-cabbage">Cabbage Veteran</a></td></tr>
+</table>
 
 <a id="weapon-baguette_sword"></a>
 
-### Baguette Blade
-
-<img src="../images/weapon/baguette_sword.png" width="64" height="64" alt="">
-
-> Huge-reach bread sweep. Scales with Max HP.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Produce |
-| Damage T1–T4 | 11 / 19 / 30 / 46 |
-| Cooldown T1–T4 | 1.3s / 1.22s / 1.14s / 1.04s |
-| Range | 140 |
-| Scaling | Melee Damage ×1, Max HP ×0.15 |
-| Crit multiplier | ×1.5 |
-| Effects | Knockback 25 |
-| T1 price | 22 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/baguette_sword.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Baguette Blade</th></tr>
+<tr><td colspan="2"><i>Huge-reach bread sweep. Scales with Max HP.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 19 / 30 / 46</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.22s / 1.14s / 1.04s</td></tr>
+<tr><td nowrap>Range</td><td>140</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1, Max HP ×0.15</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 25</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-cucumber_katana"></a>
 
-### Cucumber Katana
-
-<img src="../images/weapon/cucumber_katana.png" width="64" height="64" alt="">
-
-> A crisp slash with very high crit.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Produce, Sharp |
-| Damage T1–T4 | 9 / 15 / 24 / 36 |
-| Cooldown T1–T4 | 0.8s / 0.75s / 0.69s / 0.62s |
-| Range | 140 |
-| Scaling | Melee Damage ×0.9 |
-| Crit multiplier | ×2.5 |
-| Effects | +10% Crit Chance |
-| T1 price | 24 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/cucumber_katana.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Cucumber Katana</th></tr>
+<tr><td colspan="2"><i>A crisp slash with very high crit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 24 / 36</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.69s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>140</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>+10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>24</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-pizza_cutter"></a>
 
-### Pizza Cutter
-
-<img src="../images/weapon/pizza_cutter.png" width="64" height="64" alt="">
-
-> Rolls out in a zigzag and back, slicing everything en route.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Boomerang |
-| Tags | Kitchenware, Sharp |
-| Damage T1–T4 | 9 / 15 / 24 / 36 |
-| Cooldown T1–T4 | 1.3s / 1.2s / 1.1s / 1s |
-| Range | 230 |
-| Scaling | Melee Damage ×0.8 |
-| Crit multiplier | ×2 |
-| Effects | - |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pizza_cutter.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pizza Cutter</th></tr>
+<tr><td colspan="2"><i>Rolls out in a zigzag and back, slicing everything en route.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 24 / 36</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>230</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-chopsticks"></a>
 
-### Chopsticks
-
-<img src="../images/weapon/chopsticks.png" width="64" height="64" alt="">
-
-> Lightning-fast pokes. Quick and precise.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Kitchenware |
-| Damage T1–T4 | 5 / 9 / 14 / 21 |
-| Cooldown T1–T4 | 0.5s / 0.46s / 0.42s / 0.38s |
-| Range | 155 |
-| Scaling | Melee Damage ×0.7 |
-| Crit multiplier | ×2 |
-| Effects | +5% Crit Chance |
-| T1 price | 18 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/chopsticks.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chopsticks</th></tr>
+<tr><td colspan="2"><i>Lightning-fast pokes. Quick and precise.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 9 / 14 / 21</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>155</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>+5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>18</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-bamboo_spear"></a>
 
-### Bamboo Spear
-
-<img src="../images/weapon/bamboo_spear.png" width="64" height="64" alt="">
-
-> Slow but mighty thrust with extra-long reach.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Produce |
-| Damage T1–T4 | 19 / 32 / 50 / 77 |
-| Cooldown T1–T4 | 1.5s / 1.42s / 1.32s / 1.2s |
-| Range | 200 |
-| Scaling | Melee Damage ×1.2 |
-| Crit multiplier | ×2 |
-| Effects | Knockback 20 |
-| T1 price | 28 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/bamboo_spear.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Bamboo Spear</th></tr>
+<tr><td colspan="2"><i>Slow but mighty thrust with extra-long reach.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>19 / 32 / 50 / 77</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.5s / 1.42s / 1.32s / 1.2s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.2</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-pineapple_mace"></a>
 
-### Pineapple Mace
-
-<img src="../images/weapon/pineapple_mace.png" width="64" height="64" alt="">
-
-> A spiky pineapple slam that sets off a small blast.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Produce, Demolition |
-| Damage T1–T4 | 20 / 34 / 53 / 80 |
-| Cooldown T1–T4 | 1.8s / 1.7s / 1.6s / 1.45s |
-| Range | 130 |
-| Scaling | Melee Damage ×1.3 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 75, Knockback 30 |
-| T1 price | 32 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pineapple_mace.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pineapple Mace</th></tr>
+<tr><td colspan="2"><i>A spiky pineapple slam that sets off a small blast.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>20 / 34 / 53 / 80</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.8s / 1.7s / 1.6s / 1.45s</td></tr>
+<tr><td nowrap>Range</td><td>130</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 75, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>32</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-beet">Beet Berserker</a></td></tr>
+</table>
 
 <a id="weapon-wasabi_katana"></a>
 
-### Wasabi Katana
-
-<img src="../images/weapon/wasabi_katana.png" width="64" height="64" alt="">
-
-> A wasabi-smeared blade: thrusts burn and crit often.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Sharp, Sauce |
-| Damage T1–T4 | 10 / 17 / 27 / 41 |
-| Cooldown T1–T4 | 0.85s / 0.8s / 0.74s / 0.67s |
-| Range | 150 |
-| Scaling | Melee Damage ×0.9 |
-| Crit multiplier | ×2.2 |
-| Effects | Burn 2/s for 1.5s, +8% Crit Chance |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/wasabi_katana.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Wasabi Katana</th></tr>
+<tr><td colspan="2"><i>A wasabi-smeared blade: thrusts burn and crit often.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 27 / 41</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.85s / 0.8s / 0.74s / 0.67s</td></tr>
+<tr><td nowrap>Range</td><td>150</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, +8% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-kitchen_scissors"></a>
 
-### Kitchen Shears
-
-<img src="../images/weapon/kitchen_scissors.png" width="64" height="64" alt="">
-
-> Snip-snip! Fast sweeping cuts with high crit.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Kitchenware, Sharp |
-| Damage T1–T4 | 8 / 14 / 22 / 33 |
-| Cooldown T1–T4 | 0.85s / 0.8s / 0.74s / 0.68s |
-| Range | 105 |
-| Scaling | Melee Damage ×0.8 |
-| Crit multiplier | ×2.2 |
-| Effects | Knockback 8, +10% Crit Chance |
-| T1 price | 22 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/kitchen_scissors.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Kitchen Shears</th></tr>
+<tr><td colspan="2"><i>Snip-snip! Fast sweeping cuts with high crit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 14 / 22 / 33</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.85s / 0.8s / 0.74s / 0.68s</td></tr>
+<tr><td nowrap>Range</td><td>105</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 8, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-blender_aura"></a>
 
-### Blender
-
-<img src="../images/weapon/blender_aura.png" width="64" height="64" alt="">
-
-> Spinning blades around you keep slicing nearby enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Aura |
-| Tags | Kitchenware, Sharp |
-| Damage T1–T4 | 4 / 6 / 9 / 14 |
-| Cooldown T1–T4 | 0.45s / 0.43s / 0.41s / 0.38s |
-| Range | 121 |
-| Scaling | Melee Damage ×0.5 |
-| Crit multiplier | ×2 |
-| Effects | +5% Crit Chance |
-| T1 price | 28 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/blender_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blender</th></tr>
+<tr><td colspan="2"><i>Spinning blades around you keep slicing nearby enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 6 / 9 / 14</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>121</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>+5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-dynamite_drumstick"></a>
 
-### Dynamite Drumstick
-
-<img src="../images/weapon/dynamite_drumstick.png" width="64" height="64" alt="">
-
-> A drumstick strapped with dynamite — every swing blows up a crowd. Scales with Max HP.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Sweep |
-| Tags | Demolition |
-| Damage T1–T4 | 17 / 29 / 45 / 68 |
-| Cooldown T1–T4 | 1.7s / 1.6s / 1.5s / 1.36s |
-| Range | 120 |
-| Scaling | Melee Damage ×1.1, Max HP ×0.1 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 85, Knockback 30 |
-| T1 price | 30 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/dynamite_drumstick.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Dynamite Drumstick</th></tr>
+<tr><td colspan="2"><i>A drumstick strapped with dynamite — every swing blows up a crowd. Scales with Max HP.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>17 / 29 / 45 / 68</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.7s / 1.6s / 1.5s / 1.36s</td></tr>
+<tr><td nowrap>Range</td><td>120</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.1, Max HP ×0.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 85, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-coconut_gloves"></a>
 
-### Coconut Gloves
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/coconut_gloves.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Coconut Gloves</th></tr>
+<tr><td colspan="2"><i>Coconut-shell gloves: rapid short-range punches that knock enemies back.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 9 / 14 / 22</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.42s / 0.4s / 0.37s / 0.34s</td></tr>
+<tr><td nowrap>Range</td><td>95</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.85</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.8</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 14</td></tr>
+<tr><td nowrap>T1 price</td><td>20</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
-<img src="../images/weapon/coconut_gloves.png" width="64" height="64" alt="">
+<a id="weapon-candy_cane"></a>
 
-> Coconut-shell gloves: rapid short-range punches that knock enemies back.
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/candy_cane.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Candy Cane Club</th></tr>
+<tr><td colspan="2"><i>A rock-hard candy cane that sweeps and briefly stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert, Blunt</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 18 / 29 / 43</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.25s / 1.18s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>130</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.3s, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>19</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
-| Field | Value |
-| --- | --- |
-| Class / attack | Melee / Thrust |
-| Tags | Produce |
-| Damage T1–T4 | 5 / 9 / 14 / 22 |
-| Cooldown T1–T4 | 0.42s / 0.4s / 0.37s / 0.34s |
-| Range | 95 |
-| Scaling | Melee Damage ×0.85 |
-| Crit multiplier | ×1.8 |
-| Effects | Knockback 14 |
-| T1 price | 20 |
-| Starting weapon of | - |
+<a id="weapon-popsicle_blade"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/popsicle_blade.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Popsicle Rapier</th></tr>
+<tr><td colspan="2"><i>A rapier carved from a popsicle; hits slow.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 14 / 23 / 34</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.69s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>140</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 30% for 1s, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-icecream_hammer"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/icecream_hammer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ice Cream Maul</th></tr>
+<tr><td colspan="2"><i>A frozen ice cream lump; hits heavily slow.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Blunt, Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>21 / 34 / 53 / 80</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.9s / 1.8s / 1.7s / 1.55s</td></tr>
+<tr><td nowrap>Range</td><td>110</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.3, Armor ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 45% for 1.5s, Knockback 25</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-shock_wok"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/shock_wok.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Shock Wok</th></tr>
+<tr><td colspan="2"><i>An electrified wok; hits stun longer.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Blunt</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>16 / 27 / 41 / 63</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.6s / 1.5s / 1.4s / 1.3s</td></tr>
+<tr><td nowrap>Range</td><td>120</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.2, Armor ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.6s, Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-volt_fork"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/volt_fork.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Volt Fork</th></tr>
+<tr><td colspan="2"><i>A charged fork that pierces and stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>7 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
+<tr><td nowrap>Range</td><td>150</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.25s, Pierce 1/1/2/2, Knockback 10</td></tr>
+<tr><td nowrap>T1 price</td><td>16</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-toxic_spike"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/toxic_spike.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toadstool Spike</th></tr>
+<tr><td colspan="2"><i>A poisoned mushroom spike.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 20 / 31 / 48</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.05s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>185</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-bbq_skewer"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/bbq_skewer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">BBQ Skewer</th></tr>
+<tr><td colspan="2"><i>A red-hot skewer that burns on hit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>17 / 29 / 45 / 69</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.5s / 1.42s / 1.32s / 1.2s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.2</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-coal_tongs"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/coal_tongs.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Coal Tongs</th></tr>
+<tr><td colspan="2"><i>Sweeps with glowing coals that burn.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Blunt</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 20 / 32 / 49</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1.05s / 1s / 0.9s</td></tr>
+<tr><td nowrap>Range</td><td>125</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Knockback 15, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>27</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-sushi_blade"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/sushi_blade.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Sushi Blade</th></tr>
+<tr><td colspan="2"><i>An ultra-thin blade with huge crit damage.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 9 / 14 / 23</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.6s / 0.55s / 0.5s / 0.44s</td></tr>
+<tr><td nowrap>Range</td><td>130</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.6</td></tr>
+<tr><td nowrap>Effects</td><td>+10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>21</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-twin_cleavers"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/twin_cleavers.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Twin Cleavers</th></tr>
+<tr><td colspan="2"><i>A cleaver in each hand; crits often.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 21 / 31</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.85s / 0.8s / 0.74s / 0.68s</td></tr>
+<tr><td nowrap>Range</td><td>105</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 8, +8% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>23</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-blade_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/blade_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blade Wind Aura</th></tr>
+<tr><td colspan="2"><i>Whirling blades that crit often.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 5 / 8 / 13</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>118</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>+10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-grater_sweep"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/grater_sweep.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Grater Blade</th></tr>
+<tr><td colspan="2"><i>A grater sweep with high crit chance.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 24 / 36</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.05s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>115</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 38, +12% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>17</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-chili_shuriken"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/chili_shuriken.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chili Saw</th></tr>
+<tr><td colspan="2"><i>A chili-coated saw that crits and burns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>230</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.1</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s</td></tr>
+<tr><td nowrap>T1 price</td><td>27</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-mandoline"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/mandoline.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mandoline</th></tr>
+<tr><td colspan="2"><i>Slices through a line; crits often.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 8 / 13 / 19</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>155</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/2/2/3, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>19</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-pepper_storm_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pepper_storm_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pepper Storm</th></tr>
+<tr><td colspan="2"><i>A peppery whirlwind that burns nearby foes.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.45s / 0.42s / 0.4s</td></tr>
+<tr><td nowrap>Range</td><td>133</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.4</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s</td></tr>
+<tr><td nowrap>T1 price</td><td>23</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-sushi_twin_blade"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/sushi_twin_blade.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Twin Sushi Blade</th></tr>
+<tr><td colspan="2"><i>Two famed blades forged into one: fast, brutal crits that leave embers behind.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Sauce, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 19 / 30 / 45</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.6s / 0.55s / 0.5s / 0.44s</td></tr>
+<tr><td nowrap>Range</td><td>158</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.02</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.6</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-frost_cleaver"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/frost_cleaver.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Cleaver</th></tr>
+<tr><td colspan="2"><i>Cold forged into the blade; every swing slows.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp, Blunt</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>23 / 37 / 58 / 88</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1.05s / 1s / 0.9s</td></tr>
+<tr><td nowrap>Range</td><td>131</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.38, Armor ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 45% for 1.5s, Knockback 15, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-storm_whisk_pan"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/storm_whisk_pan.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Storm Bastion Pan</th></tr>
+<tr><td colspan="2"><i>A pan welded to an electric whisk: stuns armor and all.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Blunt</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>20 / 33 / 51 / 77</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.6s / 1.5s / 1.4s / 1.3s</td></tr>
+<tr><td nowrap>Range</td><td>126</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.44, Armor ×1.2</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.7s, Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-coconut_quake_mace"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/coconut_quake_mace.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Coconut Quake Mace</th></tr>
+<tr><td colspan="2"><i>Coconut shells strapped to a mace: each slam booms.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Demolition, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>24 / 40 / 62 / 92</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.8s / 1.7s / 1.6s / 1.45s</td></tr>
+<tr><td nowrap>Range</td><td>504</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.78, Ranged Damage ×0.78</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 120, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>47</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_knife_ember_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_knife_ember_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Chef's Knife</th></tr>
+<tr><td colspan="2"><i>Ember Mine forged into Chef's Knife: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>20 / 34 / 52 / 79</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.6s / 0.55s / 0.5s / 0.44s</td></tr>
+<tr><td nowrap>Range</td><td>210</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.48, Elemental Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 4/s for 2s, Explosion radius 150, +15% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_candy_cane_glacier_mortar"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_candy_cane_glacier_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Candy Cane Club</th></tr>
+<tr><td colspan="2"><i>Glacier Mortar forged into Candy Cane Club: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert, Blunt, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>17 / 29 / 44 / 67</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.25s / 1.18s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>483</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.6, Ranged Damage ×0.66</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 2s, Stun 0.3s, Explosion radius 100, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>43</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_twin_cleavers_ketchup"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_twin_cleavers_ketchup.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Scatter Twin Cleavers</th></tr>
+<tr><td colspan="2"><i>Ketchup Bottle forged into Twin Cleavers: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Kitchenware, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 14 / 23 / 34</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.75s / 0.7s / 0.65s / 0.6s</td></tr>
+<tr><td nowrap>Range</td><td>294</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.48, Ranged Damage ×0.36</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>+5% Life Steal Chance, Knockback 8, +8% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_skewer_soy_pistol"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_skewer_soy_pistol.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Saucy BBQ Skewer</th></tr>
+<tr><td colspan="2"><i>Soy Pistol forged into BBQ Skewer: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 23 / 36 / 56</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.55s / 0.5s / 0.46s / 0.42s</td></tr>
+<tr><td nowrap>Range</td><td>399</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.54, Ranged Damage ×0.42</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, +2% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_cucumber_katana_soda"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_cucumber_katana_soda.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Cucumber Katana</th></tr>
+<tr><td colspan="2"><i>Iced Soda forged into Cucumber Katana: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Sharp, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.75s / 0.7s / 0.65s / 0.58s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.54, Elemental Damage ×0.54</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 40% for 1.5s, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_spatula_slingshot"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_spatula_slingshot.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chain Spatula</th></tr>
+<tr><td colspan="2"><i>Tomato Slingshot forged into Spatula: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 18 / 28 / 42</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.9s / 0.83s / 0.75s</td></tr>
+<tr><td nowrap>Range</td><td>399</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.48, Ranged Damage ×0.54</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 38</td></tr>
+<tr><td nowrap>T1 price</td><td>21</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_kitchen_scissors_toxic_spike"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_kitchen_scissors_toxic_spike.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toxic Kitchen Shears</th></tr>
+<tr><td colspan="2"><i>Toadstool Spike forged into Kitchen Shears: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 22 / 34 / 53</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.85s / 0.8s / 0.74s / 0.68s</td></tr>
+<tr><td nowrap>Range</td><td>194</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.02</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 8, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_popsicle_blade_olive_launcher"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_popsicle_blade_olive_launcher.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chain Popsicle Rapier</th></tr>
+<tr><td colspan="2"><i>Olive Launcher forged into Popsicle Rapier: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Dessert, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 15 / 25 / 37</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.69s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.54, Ranged Damage ×0.48</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 30% for 1s, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_bbq_skewer_cream_torch"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_bbq_skewer_cream_torch.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost BBQ Skewer</th></tr>
+<tr><td colspan="2"><i>Cream Torch forged into BBQ Skewer: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Sharp, Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>19 / 32 / 50 / 76</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>210</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.72, Elemental Damage ×0.15</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Slow 30% for 1s, Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>38</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_coconut_gloves_ice_cube_tray"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_coconut_gloves_ice_cube_tray.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Coconut Gloves</th></tr>
+<tr><td colspan="2"><i>Ice Cube Tray forged into Coconut Gloves: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Kitchenware, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 24</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.42s / 0.4s / 0.37s / 0.34s</td></tr>
+<tr><td nowrap>Range</td><td>357</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.51, Elemental Damage ×0.36</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.8</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 1.2s, Knockback 14</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_coal_tongs_whisk_spin"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_coal_tongs_whisk_spin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Coal Tongs</th></tr>
+<tr><td colspan="2"><i>Whirl Whisk forged into Coal Tongs: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Blunt</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 35 / 54</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.45s / 0.42s / 0.4s</td></tr>
+<tr><td nowrap>Range</td><td>144</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.84</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Slow 20% for 0.6s, Knockback 15, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>35</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_ladle_watermelon_hammer"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_ladle_watermelon_hammer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Explosive Soup Ladle</th></tr>
+<tr><td colspan="2"><i>Melon Hammer forged into Soup Ladle: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sauce, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>33 / 55 / 88 / 132</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.15s / 1.1s / 1.02s / 0.94s</td></tr>
+<tr><td nowrap>Range</td><td>147</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×1.44, Max HP ×0.09</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 100, +3% Life Steal Chance, Knockback 20</td></tr>
+<tr><td nowrap>T1 price</td><td>46</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_chopsticks_pepper_spray"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_chopsticks_pepper_spray.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Chopsticks</th></tr>
+<tr><td colspan="2"><i>Pepper Spray forged into Chopsticks: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 23</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.18s / 0.16s / 0.14s / 0.12s</td></tr>
+<tr><td nowrap>Range</td><td>163</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.42, Elemental Damage ×0.15</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 1.5s, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_pizza_cutter_potato_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_pizza_cutter_potato_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Explosive Pizza Cutter</th></tr>
+<tr><td colspan="2"><i>Potato Mine forged into Pizza Cutter: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sharp, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>17 / 28 / 43 / 65</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>242</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.48, Ranged Damage ×0.54</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 125</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_baguette_sword_spore_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_baguette_sword_spore_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toxic Baguette Blade</th></tr>
+<tr><td colspan="2"><i>Spore Cannon forged into Baguette Blade: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 21 / 33 / 51</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.6, Max HP ×0.09, Ranged Damage ×0.48</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 25</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_meat_tenderizer_seed_spitter"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_meat_tenderizer_seed_spitter.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Fresh Meat Tenderizer</th></tr>
+<tr><td colspan="2"><i>Seed Spitter forged into Meat Tenderizer: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Firearm, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>24 / 40 / 62 / 92</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.22s / 0.2s / 0.18s / 0.16s</td></tr>
+<tr><td nowrap>Range</td><td>378</td></tr>
+<tr><td nowrap>Scaling</td><td>Melee Damage ×0.78, Armor ×0.3, Ranged Damage ×0.27</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.6s, Knockback 25</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="class-ranged"></a>
 
@@ -654,507 +1393,1057 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 <a id="weapon-slingshot"></a>
 
-### Tomato Slingshot
-
-<img src="../images/weapon/slingshot.png" width="64" height="64" alt="">
-
-> Launches tomatoes that bounce to the next enemy on hit.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Produce |
-| Damage T1–T4 | 8 / 13 / 20 / 30 |
-| Cooldown T1–T4 | 0.95s / 0.9s / 0.83s / 0.75s |
-| Range | 380 |
-| Scaling | Ranged Damage ×0.9 |
-| Crit multiplier | ×1.5 |
-| Effects | Bounce 1/1/2/3 |
-| T1 price | 15 |
-| Starting weapon of | [Captain Pineapple](CHARACTERS.md#char-pineapple), [Peach Angel](CHARACTERS.md#char-peach), [Lychee Princess](CHARACTERS.md#char-lychee) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/slingshot.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Tomato Slingshot</th></tr>
+<tr><td colspan="2"><i>Launches tomatoes that bounce to the next enemy on hit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 20 / 30</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.9s / 0.83s / 0.75s</td></tr>
+<tr><td nowrap>Range</td><td>380</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Bounce 1/1/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>15</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pineapple">Captain Pineapple</a>, <a href="CHARACTERS.md#char-lychee">Lychee Princess</a>, <a href="CHARACTERS.md#char-sprout">Sprout Apprentice</a></td></tr>
+</table>
 
 <a id="weapon-pea_shooter"></a>
 
-### Pea Shooter
-
-<img src="../images/weapon/pea_shooter.png" width="64" height="64" alt="">
-
-> Rapid-fire pea barrage.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Produce |
-| Damage T1–T4 | 4 / 6 / 9 / 13 |
-| Cooldown T1–T4 | 0.32s / 0.29s / 0.26s / 0.22s |
-| Range | 400 |
-| Scaling | Ranged Damage ×0.6 |
-| Crit multiplier | ×1.5 |
-| Effects | - |
-| T1 price | 22 |
-| Starting weapon of | [Blueberry Twins](CHARACTERS.md#char-blueberry), [Cherry Gunslinger](CHARACTERS.md#char-cherry), [Pea Soldier](CHARACTERS.md#char-pea) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pea_shooter.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pea Shooter</th></tr>
+<tr><td colspan="2"><i>Rapid-fire pea barrage.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 6 / 9 / 13</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.32s / 0.29s / 0.26s / 0.22s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-blueberry">Blueberry Twins</a>, <a href="CHARACTERS.md#char-cherry">Cherry Gunslinger</a></td></tr>
+</table>
 
 <a id="weapon-chili_rocket"></a>
 
-### Chili Rocket
-
-<img src="../images/weapon/chili_rocket.png" width="64" height="64" alt="">
-
-> Explodes on hit and burns enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Rocket |
-| Tags | Firearm, Elemental, Demolition |
-| Damage T1–T4 | 14 / 24 / 38 / 58 |
-| Cooldown T1–T4 | 1.8s / 1.7s / 1.6s / 1.4s |
-| Range | 450 |
-| Scaling | Ranged Damage ×1, Elemental Damage ×0.5 |
-| Crit multiplier | ×1.5 |
-| Effects | Burn 3/s for 2s, Explosion radius 90 |
-| T1 price | 30 |
-| Starting weapon of | [Dr. Avocado](CHARACTERS.md#char-avocado), [Wasabi Bomber](CHARACTERS.md#char-wasabi) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/chili_rocket.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chili Rocket</th></tr>
+<tr><td colspan="2"><i>Explodes on hit and burns enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Elemental, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>14 / 24 / 38 / 58</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.8s / 1.7s / 1.6s / 1.4s</td></tr>
+<tr><td nowrap>Range</td><td>450</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1, Elemental Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Explosion radius 90</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-avocado">Dr. Avocado</a>, <a href="CHARACTERS.md#char-wasabi">Wasabi Bomber</a></td></tr>
+</table>
 
 <a id="weapon-corn_cannon"></a>
 
-### Corn Cannon
-
-<img src="../images/weapon/corn_cannon.png" width="64" height="64" alt="">
-
-> Fires corn kernel shells that pierce multiple enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm |
-| Damage T1–T4 | 16 / 28 / 44 / 68 |
-| Cooldown T1–T4 | 1.1s / 1s / 0.92s / 0.84s |
-| Range | 520 |
-| Scaling | Ranged Damage ×1.2 |
-| Crit multiplier | ×2 |
-| Effects | Pierce 3/4/5/6, Knockback 15 |
-| T1 price | 28 |
-| Starting weapon of | [Corn Gunner](CHARACTERS.md#char-corn), [Asparagus Archer](CHARACTERS.md#char-asparagus) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/corn_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Corn Cannon</th></tr>
+<tr><td colspan="2"><i>Fires corn kernel shells that pierce multiple enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>16 / 28 / 44 / 68</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>520</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.2</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-corn">Corn Gunner</a>, <a href="CHARACTERS.md#char-asparagus">Asparagus Archer</a></td></tr>
+</table>
 
 <a id="weapon-ketchup"></a>
 
-### Ketchup Bottle
-
-<img src="../images/weapon/ketchup.png" width="64" height="64" alt="">
-
-> Sprays ketchup in a cone. Hits grant extra Life Steal Chance.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Sauce |
-| Damage T1–T4 | 5 / 8 / 12 / 17 |
-| Cooldown T1–T4 | 0.75s / 0.7s / 0.65s / 0.6s |
-| Range | 280 |
-| Scaling | Ranged Damage ×0.6 |
-| Crit multiplier | ×1.5 |
-| Effects | +5% Life Steal Chance, Projectiles 3/3/4/5 |
-| T1 price | 20 |
-| Starting weapon of | [Strawberry Idol](CHARACTERS.md#char-strawberry), [Grape Magician](CHARACTERS.md#char-grape) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/ketchup.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ketchup Bottle</th></tr>
+<tr><td colspan="2"><i>Sprays ketchup in a cone. Hits grant extra Life Steal Chance.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 8 / 12 / 17</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.75s / 0.7s / 0.65s / 0.6s</td></tr>
+<tr><td nowrap>Range</td><td>280</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>+5% Life Steal Chance, Projectiles 3/3/4/5</td></tr>
+<tr><td nowrap>T1 price</td><td>20</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-grape">Grape Magician</a></td></tr>
+</table>
 
 <a id="weapon-onion_boomerang"></a>
 
-### Onion Boomerang
-
-<img src="../images/weapon/onion_boomerang.png" width="64" height="64" alt="">
-
-> Curves out in an arc and loops back, piercing everything in its path.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Boomerang |
-| Tags | Produce |
-| Damage T1–T4 | 10 / 17 / 26 / 40 |
-| Cooldown T1–T4 | 1.4s / 1.3s / 1.2s / 1.1s |
-| Range | 360 |
-| Scaling | Ranged Damage ×0.9 |
-| Crit multiplier | ×1.5 |
-| Effects | - |
-| T1 price | 24 |
-| Starting weapon of | [Ginger Ninja](CHARACTERS.md#char-ginger) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/onion_boomerang.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Onion Boomerang</th></tr>
+<tr><td colspan="2"><i>Curves out in an arc and loops back, piercing everything in its path.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.4s / 1.3s / 1.2s / 1.1s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>24</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-sauce_gatling"></a>
 
-### Sauce Gatling
-
-<img src="../images/weapon/sauce_gatling.png" width="64" height="64" alt="">
-
-> A sauce machine gun that sprays like crazy.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Sauce |
-| Damage T1–T4 | 4 / 6 / 8 / 11 |
-| Cooldown T1–T4 | 0.16s / 0.14s / 0.12s / 0.1s |
-| Range | 420 |
-| Scaling | Ranged Damage ×0.4 |
-| Crit multiplier | ×1.5 |
-| Effects | +1% Life Steal Chance |
-| T1 price | 40 |
-| Starting weapon of | [Pepper Mech](CHARACTERS.md#char-bellpepper) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/sauce_gatling.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Sauce Gatling</th></tr>
+<tr><td colspan="2"><i>A sauce machine gun that sprays like crazy.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 6 / 8 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.16s / 0.14s / 0.12s / 0.1s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.4</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>+1% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-bellpepper">Pepper Mech</a></td></tr>
+</table>
 
 <a id="weapon-olive_launcher"></a>
 
-### Olive Launcher
-
-<img src="../images/weapon/olive_launcher.png" width="64" height="64" alt="">
-
-> Slippery olives bounce between enemies again and again.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Produce |
-| Damage T1–T4 | 6 / 10 / 15 / 23 |
-| Cooldown T1–T4 | 0.8s / 0.75s / 0.7s / 0.62s |
-| Range | 400 |
-| Scaling | Ranged Damage ×0.8 |
-| Crit multiplier | ×1.5 |
-| Effects | Bounce 2/2/3/4 |
-| T1 price | 22 |
-| Starting weapon of | [Pomegranate Gunner](CHARACTERS.md#char-pomegranate) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/olive_launcher.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Olive Launcher</th></tr>
+<tr><td colspan="2"><i>Slippery olives bounce between enemies again and again.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 23</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Bounce 2/2/3/4</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-popcorn_machine"></a>
 
-### Popcorn Popper
-
-<img src="../images/weapon/popcorn_machine.png" width="64" height="64" alt="">
-
-> Scatters kernels that POP when enemies get close.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Mine |
-| Tags | Firearm, Demolition |
-| Damage T1–T4 | 14 / 24 / 37 / 56 |
-| Cooldown T1–T4 | 2s / 1.9s / 1.75s / 1.6s |
-| Range | 220 |
-| Scaling | Ranged Damage ×0.9 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 100 |
-| T1 price | 24 |
-| Starting weapon of | [Strategist Soy](CHARACTERS.md#char-soybean) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/popcorn_machine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Popcorn Popper</th></tr>
+<tr><td colspan="2"><i>Scatters kernels that POP when enemies get close.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>14 / 24 / 37 / 56</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.75s / 1.6s</td></tr>
+<tr><td nowrap>Range</td><td>220</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 100</td></tr>
+<tr><td nowrap>T1 price</td><td>24</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-soybean">Strategist Soy</a></td></tr>
+</table>
 
 <a id="weapon-grape_shotgun"></a>
 
-### Grape Shotgun
-
-<img src="../images/weapon/grape_shotgun.png" width="64" height="64" alt="">
-
-> Blasts a close-range bunch of grapes with knockback.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Produce |
-| Damage T1–T4 | 4 / 7 / 10 / 15 |
-| Cooldown T1–T4 | 1s / 0.95s / 0.88s / 0.8s |
-| Range | 240 |
-| Scaling | Ranged Damage ×0.5 |
-| Crit multiplier | ×1.5 |
-| Effects | Projectiles 5/5/6/7, Knockback 12 |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/grape_shotgun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Grape Shotgun</th></tr>
+<tr><td colspan="2"><i>Blasts a close-range bunch of grapes with knockback.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 7 / 10 / 15</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>240</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Projectiles 5/5/6/7, Knockback 12</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pomegranate">Pomegranate Gunner</a></td></tr>
+</table>
 
 <a id="weapon-bean_bazooka"></a>
 
-### Bean Bazooka
-
-<img src="../images/weapon/bean_bazooka.png" width="64" height="64" alt="">
-
-> Fires a giant bean pod for a massive explosion.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Rocket |
-| Tags | Firearm, Demolition |
-| Damage T1–T4 | 22 / 36 / 56 / 84 |
-| Cooldown T1–T4 | 2.4s / 2.25s / 2.1s / 1.9s |
-| Range | 480 |
-| Scaling | Ranged Damage ×1.3 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 115, Knockback 30 |
-| T1 price | 34 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/bean_bazooka.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Bean Bazooka</th></tr>
+<tr><td colspan="2"><i>Fires a giant bean pod for a massive explosion.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>22 / 36 / 56 / 84</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.4s / 2.25s / 2.1s / 1.9s</td></tr>
+<tr><td nowrap>Range</td><td>480</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 115, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-cherry_bomb"></a>
 
-### Cherry Bombs
-
-<img src="../images/weapon/cherry_bomb.png" width="64" height="64" alt="">
-
-> Lobs cherries in pairs, each one exploding.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Rocket |
-| Tags | Produce, Demolition |
-| Damage T1–T4 | 10 / 17 / 26 / 40 |
-| Cooldown T1–T4 | 1.6s / 1.5s / 1.4s / 1.3s |
-| Range | 360 |
-| Scaling | Ranged Damage ×0.8 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 70, Projectiles 2/2/2/3 |
-| T1 price | 28 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/cherry_bomb.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Cherry Bombs</th></tr>
+<tr><td colspan="2"><i>Lobs cherries in pairs, each one exploding.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.6s / 1.5s / 1.4s / 1.3s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 70, Projectiles 2/2/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-blueberry_sniper"></a>
 
-### Blueberry Sniper
-
-<img src="../images/weapon/blueberry_sniper.png" width="64" height="64" alt="">
-
-> Ultra-long-range precision shots with high crit.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Produce |
-| Damage T1–T4 | 26 / 44 / 68 / 100 |
-| Cooldown T1–T4 | 1.9s / 1.8s / 1.65s / 1.5s |
-| Range | 650 |
-| Scaling | Ranged Damage ×1.5 |
-| Crit multiplier | ×2.5 |
-| Effects | Pierce 1/1/2/2, +10% Crit Chance |
-| T1 price | 32 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/blueberry_sniper.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blueberry Sniper</th></tr>
+<tr><td colspan="2"><i>Ultra-long-range precision shots with high crit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>26 / 44 / 68 / 100</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.9s / 1.8s / 1.65s / 1.5s</td></tr>
+<tr><td nowrap>Range</td><td>650</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>32</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-plate_frisbee"></a>
 
-### Plate Frisbee
-
-<img src="../images/weapon/plate_frisbee.png" width="64" height="64" alt="">
-
-> A thrown plate that swings wide at the far end and smacks enemies again on the way back.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Boomerang |
-| Tags | Kitchenware |
-| Damage T1–T4 | 12 / 20 / 31 / 47 |
-| Cooldown T1–T4 | 1.5s / 1.4s / 1.3s / 1.2s |
-| Range | 330 |
-| Scaling | Ranged Damage ×1 |
-| Crit multiplier | ×1.5 |
-| Effects | Knockback 15 |
-| T1 price | 24 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/plate_frisbee.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Plate Frisbee</th></tr>
+<tr><td colspan="2"><i>A thrown plate that swings wide at the far end and smacks enemies again on the way back.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 20 / 31 / 47</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.5s / 1.4s / 1.3s / 1.2s</td></tr>
+<tr><td nowrap>Range</td><td>330</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>24</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-seed_spitter"></a>
 
-### Seed Spitter
-
-<img src="../images/weapon/seed_spitter.png" width="64" height="64" alt="">
-
-> Pew-pew-pew! Rapid-fire melon seeds.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Produce |
-| Damage T1–T4 | 3 / 5 / 7 / 10 |
-| Cooldown T1–T4 | 0.22s / 0.2s / 0.18s / 0.16s |
-| Range | 360 |
-| Scaling | Ranged Damage ×0.45 |
-| Crit multiplier | ×1.5 |
-| Effects | - |
-| T1 price | 26 |
-| Starting weapon of | [Pomegranate Gunner](CHARACTERS.md#char-pomegranate) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/seed_spitter.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Seed Spitter</th></tr>
+<tr><td colspan="2"><i>Pew-pew-pew! Rapid-fire melon seeds.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 10</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.22s / 0.2s / 0.18s / 0.16s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.45</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-carrot_crossbow"></a>
 
-### Carrot Crossbow
-
-<img src="../images/weapon/carrot_crossbow.png" width="64" height="64" alt="">
-
-> Pointy carrot bolts pierce a whole line of enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Produce |
-| Damage T1–T4 | 12 / 20 / 31 / 47 |
-| Cooldown T1–T4 | 1.05s / 1s / 0.92s / 0.84s |
-| Range | 460 |
-| Scaling | Ranged Damage ×1 |
-| Crit multiplier | ×2 |
-| Effects | Pierce 2/3/3/4 |
-| T1 price | 25 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/carrot_crossbow.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Carrot Crossbow</th></tr>
+<tr><td colspan="2"><i>Pointy carrot bolts pierce a whole line of enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 20 / 31 / 47</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.05s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>460</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-honey_blaster"></a>
 
-### Honey Blaster
-
-<img src="../images/weapon/honey_blaster.png" width="64" height="64" alt="">
-
-> Sticky honey shots slow enemies by 35%.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Sauce |
-| Damage T1–T4 | 6 / 10 / 15 / 22 |
-| Cooldown T1–T4 | 0.7s / 0.66s / 0.6s / 0.54s |
-| Range | 360 |
-| Scaling | Ranged Damage ×0.7 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 35% for 1.5s |
-| T1 price | 22 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/honey_blaster.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Honey Blaster</th></tr>
+<tr><td colspan="2"><i>Sticky honey shots slow enemies by 35%.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 22</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.7s / 0.66s / 0.6s / 0.54s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 35% for 1.5s</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-strawberry">Strawberry Idol</a>, <a href="CHARACTERS.md#char-peach">Peach Angel</a></td></tr>
+</table>
 
 <a id="weapon-soy_pistol"></a>
 
-### Soy Pistol
-
-<img src="../images/weapon/soy_pistol.png" width="64" height="64" alt="">
-
-> Steady sidearm. Hits grant extra Life Steal Chance.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Sauce |
-| Damage T1–T4 | 7 / 12 / 18 / 27 |
-| Cooldown T1–T4 | 0.55s / 0.5s / 0.46s / 0.42s |
-| Range | 380 |
-| Scaling | Ranged Damage ×0.7 |
-| Crit multiplier | ×1.5 |
-| Effects | +2% Life Steal Chance |
-| T1 price | 20 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/soy_pistol.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Soy Pistol</th></tr>
+<tr><td colspan="2"><i>Steady sidearm. Hits grant extra Life Steal Chance.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>7 / 12 / 18 / 27</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.55s / 0.5s / 0.46s / 0.42s</td></tr>
+<tr><td nowrap>Range</td><td>380</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>+2% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>20</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-pepper_grinder"></a>
 
-### Pepper Grinder Gun
-
-<img src="../images/weapon/pepper_grinder.png" width="64" height="64" alt="">
-
-> Fires sharp peppercorns at high speed that pierce and crit often.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Firearm, Sharp |
-| Damage T1–T4 | 6 / 10 / 15 / 22 |
-| Cooldown T1–T4 | 0.5s / 0.46s / 0.42s / 0.38s |
-| Range | 400 |
-| Scaling | Ranged Damage ×0.7 |
-| Crit multiplier | ×2.2 |
-| Effects | Pierce 1/1/1/2, +8% Crit Chance |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pepper_grinder.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pepper Grinder Gun</th></tr>
+<tr><td colspan="2"><i>Fires sharp peppercorns at high speed that pierce and crit often.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 22</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/1/2, +8% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-soy_bomb"></a>
 
-### Soy Bomb
-
-<img src="../images/weapon/soy_bomb.png" width="64" height="64" alt="">
-
-> Lays soy sauce bombs that explode. Hits grant extra Life Steal Chance.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Mine |
-| Tags | Sauce, Demolition |
-| Damage T1–T4 | 15 / 25 / 39 / 60 |
-| Cooldown T1–T4 | 2.2s / 2.05s / 1.9s / 1.7s |
-| Range | 210 |
-| Scaling | Ranged Damage ×0.9 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 120, +3% Life Steal Chance |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/soy_bomb.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Soy Bomb</th></tr>
+<tr><td colspan="2"><i>Lays soy sauce bombs that explode. Hits grant extra Life Steal Chance.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 25 / 39 / 60</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.2s / 2.05s / 1.9s / 1.7s</td></tr>
+<tr><td nowrap>Range</td><td>210</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 120, +3% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-bbq_torch"></a>
 
-### BBQ Torch
-
-<img src="../images/weapon/bbq_torch.png" width="64" height="64" alt="">
-
-> Saucy flames with infinite pierce that burn. Hits grant extra Life Steal Chance.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Flame |
-| Tags | Firearm, Sauce |
-| Damage T1–T4 | 2 / 3 / 5 / 8 |
-| Cooldown T1–T4 | 0.2s / 0.18s / 0.16s / 0.14s |
-| Range | 190 |
-| Scaling | Ranged Damage ×0.25 |
-| Crit multiplier | ×1.5 |
-| Effects | Burn 2/s for 2s, +1% Life Steal Chance |
-| T1 price | 30 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/bbq_torch.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">BBQ Torch</th></tr>
+<tr><td colspan="2"><i>Saucy flames with infinite pierce that burn. Hits grant extra Life Steal Chance.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>2 / 3 / 5 / 8</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>190</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.25</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, +1% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-jam_mortar"></a>
 
-### Jam Mortar
-
-<img src="../images/weapon/jam_mortar.png" width="64" height="64" alt="">
-
-> Lobs a glob of jam that explodes and sticks enemies (30% slow).
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Rocket |
-| Tags | Sauce, Demolition |
-| Damage T1–T4 | 16 / 27 / 42 / 64 |
-| Cooldown T1–T4 | 2s / 1.9s / 1.78s / 1.6s |
-| Range | 460 |
-| Scaling | Ranged Damage ×1.1 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 30% for 1.5s, Explosion radius 95, Knockback 15 |
-| T1 price | 32 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/jam_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Jam Mortar</th></tr>
+<tr><td colspan="2"><i>Lobs a glob of jam that explodes and sticks enemies (30% slow).</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>16 / 27 / 42 / 64</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.78s / 1.6s</td></tr>
+<tr><td nowrap>Range</td><td>460</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 30% for 1.5s, Explosion radius 95, Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>32</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-sea_urchin_mine"></a>
 
-### Sea Urchin Mine
-
-<img src="../images/weapon/sea_urchin_mine.png" width="64" height="64" alt="">
-
-> Spiky urchin mines whose blasts crit easily.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Mine |
-| Tags | Sharp, Demolition |
-| Damage T1–T4 | 13 / 22 / 34 / 52 |
-| Cooldown T1–T4 | 1.9s / 1.8s / 1.65s / 1.5s |
-| Range | 230 |
-| Scaling | Ranged Damage ×0.8 |
-| Crit multiplier | ×2.5 |
-| Effects | Explosion radius 95, +10% Crit Chance |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/sea_urchin_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Sea Urchin Mine</th></tr>
+<tr><td colspan="2"><i>Spiky urchin mines whose blasts crit easily.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 34 / 52</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.9s / 1.8s / 1.65s / 1.5s</td></tr>
+<tr><td nowrap>Range</td><td>230</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 95, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-asparagus_bow"></a>
 
-### Asparagus Longbow
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/asparagus_bow.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Asparagus Longbow</th></tr>
+<tr><td colspan="2"><i>A long, slender asparagus bow with great range; arrows pierce several enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>14 / 24 / 37 / 56</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1.04s / 0.97s / 0.88s</td></tr>
+<tr><td nowrap>Range</td><td>520</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
-<img src="../images/weapon/asparagus_bow.png" width="64" height="64" alt="">
+<a id="weapon-macaron_gun"></a>
 
-> A long, slender asparagus bow with great range; arrows pierce several enemies.
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/macaron_gun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Macaron Repeater</th></tr>
+<tr><td colspan="2"><i>Fires two macarons at a time.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 4 / 6 / 8</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.32s / 0.29s / 0.26s / 0.22s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Projectiles 2/2/3/3</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
-| Field | Value |
-| --- | --- |
-| Class / attack | Ranged / Bullet |
-| Tags | Produce |
-| Damage T1–T4 | 14 / 24 / 37 / 56 |
-| Cooldown T1–T4 | 1.1s / 1.04s / 0.97s / 0.88s |
-| Range | 520 |
-| Scaling | Ranged Damage ×1.1 |
-| Crit multiplier | ×2.2 |
-| Effects | Pierce 2/3/3/4, +5% Crit Chance |
-| T1 price | 26 |
-| Starting weapon of | - |
+<a id="weapon-donut_ring"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/donut_ring.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Donut Ring</th></tr>
+<tr><td colspan="2"><i>Hurls donuts — two at a time from T3.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 18 / 28 / 42</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.5s / 1.4s / 1.3s / 1.2s</td></tr>
+<tr><td nowrap>Range</td><td>330</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Projectiles 1/1/2/2, Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-choco_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/choco_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chocolate Mine</th></tr>
+<tr><td colspan="2"><i>Bursts into hot chocolate that slows enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 23 / 35 / 53</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.75s / 1.6s</td></tr>
+<tr><td nowrap>Range</td><td>220</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 35% for 1.5s, Explosion radius 100</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-shaved_ice_gun"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/shaved_ice_gun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Shaved Ice Gun</th></tr>
+<tr><td colspan="2"><i>Rapid-fire ice shavings that slow on hit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 10</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.22s / 0.2s / 0.18s / 0.16s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.45</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 0.8s</td></tr>
+<tr><td nowrap>T1 price</td><td>27</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-glacier_mortar"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/glacier_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Glacier Mortar</th></tr>
+<tr><td colspan="2"><i>Lobs ice blocks that explode and chill.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 26 / 40 / 61</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.78s / 1.6s</td></tr>
+<tr><td nowrap>Range</td><td>460</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 2s, Explosion radius 100, Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-microwave_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/microwave_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Microwave Cannon</th></tr>
+<tr><td colspan="2"><i>Blasts a microwave pulse that explodes and stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>20 / 32 / 50 / 76</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.4s / 2.25s / 2.1s / 1.9s</td></tr>
+<tr><td nowrap>Range</td><td>480</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.3s, Explosion radius 110, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>35</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-spore_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/spore_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spore Cannon</th></tr>
+<tr><td colspan="2"><i>Fires spores that poison and split on hit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 9 / 13 / 20</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Bounce 2/2/3/4</td></tr>
+<tr><td nowrap>T1 price</td><td>23</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-mycelium_boomerang"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/mycelium_boomerang.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mycelium Boomerang</th></tr>
+<tr><td colspan="2"><i>A mycelium-wrapped boomerang that poisons.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 23 / 36</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.4s / 1.3s / 1.2s / 1.1s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-blowpipe"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/blowpipe.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toxic Blowpipe</th></tr>
+<tr><td colspan="2"><i>Shoots darts that pierce and apply 2 Poison.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.05s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>460</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-bbq_sauce_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/bbq_sauce_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">BBQ Sauce Cannon</th></tr>
+<tr><td colspan="2"><i>Explosive BBQ sauce that burns and slows.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 34 / 52</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.8s / 1.7s / 1.6s / 1.4s</td></tr>
+<tr><td nowrap>Range</td><td>450</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1, Elemental Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Slow 20% for 1s, Explosion radius 90</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-hot_sauce_gun"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/hot_sauce_gun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Hot Sauce Pistol</th></tr>
+<tr><td colspan="2"><i>Shoots hot sauce that burns on hit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 11 / 16 / 24</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.55s / 0.5s / 0.46s / 0.42s</td></tr>
+<tr><td nowrap>Range</td><td>380</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s</td></tr>
+<tr><td nowrap>T1 price</td><td>21</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-knife_case"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/knife_case.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Knife Case</th></tr>
+<tr><td colspan="2"><i>Flings several piercing knives at once.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 7 / 11 / 15</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Projectiles 2/2/3/3, +8% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>27</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-coconut_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/coconut_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Coconut Cannon</th></tr>
+<tr><td colspan="2"><i>Fires whole coconuts with a huge blast.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>22 / 36 / 56 / 84</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.4s / 2.25s / 2.1s / 1.9s</td></tr>
+<tr><td nowrap>Range</td><td>480</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 135, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>36</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-pumpkin_mortar"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pumpkin_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pumpkin Mortar</th></tr>
+<tr><td colspan="2"><i>Lobs pumpkin bombs that explode and burn.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 26 / 40 / 61</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.78s / 1.6s</td></tr>
+<tr><td nowrap>Range</td><td>460</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Explosion radius 100, Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-melon_grenade"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/melon_grenade.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Melon Grenade</th></tr>
+<tr><td colspan="2"><i>Throws several melon grenades at once.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 14 / 22 / 34</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.6s / 1.5s / 1.4s / 1.3s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 80, Projectiles 2/2/3/3</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-potato_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/potato_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Potato Mine</th></tr>
+<tr><td colspan="2"><i>A buried potato with a big, loud blast.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 25 / 39 / 59</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.75s / 1.6s</td></tr>
+<tr><td nowrap>Range</td><td>220</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 125</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-corn_scatter"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/corn_scatter.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Corn Scattergun</th></tr>
+<tr><td colspan="2"><i>Blasts a handful of corn kernels.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 6 / 9 / 14</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>240</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Projectiles 5/5/6/7, Knockback 12</td></tr>
+<tr><td nowrap>T1 price</td><td>27</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-pea_sniper"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pea_sniper.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pod Sniper</th></tr>
+<tr><td colspan="2"><i>High-velocity pods that pierce a whole line.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>22 / 37 / 58 / 85</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.9s / 1.8s / 1.65s / 1.5s</td></tr>
+<tr><td nowrap>Range</td><td>650</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pea">Pea Soldier</a></td></tr>
+</table>
+
+<a id="weapon-blast_pea_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/blast_pea_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blast Pea Cannon</th></tr>
+<tr><td colspan="2"><i>A pea shooter mated to a launcher: every pea detonates.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 26 / 42 / 64</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.32s / 0.29s / 0.26s / 0.22s</td></tr>
+<tr><td nowrap>Range</td><td>473</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.96, Elemental Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Explosion radius 70</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-toxic_gatling"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/toxic_gatling.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toxic Gatling</th></tr>
+<tr><td colspan="2"><i>A sauce gatling loaded with toxin: nothing stands in the spray.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Sauce, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 7 / 9 / 12</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.16s / 0.14s / 0.12s / 0.1s</td></tr>
+<tr><td nowrap>Range</td><td>441</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.24, Elemental Damage ×0.15</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>52</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-inferno_mortar"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/inferno_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Inferno Mortar</th></tr>
+<tr><td colspan="2"><i>Jam mortar laced with BBQ sauce: impact becomes an inferno.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Demolition, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>18 / 30 / 46 / 70</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.8s / 1.7s / 1.6s / 1.4s</td></tr>
+<tr><td nowrap>Range</td><td>483</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.26, Elemental Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 5/s for 3s, Explosion radius 120, Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>42</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-railgun_sniper"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/railgun_sniper.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Railgun Sniper</th></tr>
+<tr><td colspan="2"><i>A blueberry sniper with a rail core: one shot, one line.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>29 / 48 / 75 / 110</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.9s / 1.8s / 1.65s / 1.5s</td></tr>
+<tr><td nowrap>Range</td><td>683</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 5/6/7/8, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>43</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-candy_shotgun"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/candy_shotgun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Candy Scattergun</th></tr>
+<tr><td colspan="2"><i>A chamber full of hard candy, devastating up close.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Produce, Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 8 / 11 / 17</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.32s / 0.29s / 0.26s / 0.22s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.66</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Projectiles 6/6/7/8, Knockback 12</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_plate_frisbee_onion_boomerang"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_plate_frisbee_onion_boomerang.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Fresh Plate Frisbee</th></tr>
+<tr><td colspan="2"><i>Onion Boomerang forged into Plate Frisbee: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 34 / 52</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.4s / 1.3s / 1.2s / 1.1s</td></tr>
+<tr><td nowrap>Range</td><td>378</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.14</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_corn_scatter_grater_sweep"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_corn_scatter_grater_sweep.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Lethal Corn Scattergun</th></tr>
+<tr><td colspan="2"><i>Grater Blade forged into Corn Scattergun: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Firearm, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>252</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.3, Melee Damage ×0.48</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Projectiles 5/5/6/7, Knockback 12, +12% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>35</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_sea_urchin_mine_dragonfruit_orb"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_sea_urchin_mine_dragonfruit_orb.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Sea Urchin Mine</th></tr>
+<tr><td colspan="2"><i>Dragonfruit Orb forged into Sea Urchin Mine: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Demolition, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>14 / 24 / 37 / 57</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.48, Elemental Damage ×0.48</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Explosion radius 95, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>36</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_corn_cannon_blade_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_corn_cannon_blade_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Keen Corn Cannon</th></tr>
+<tr><td colspan="2"><i>Blade Wind Aura forged into Corn Cannon: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>18 / 31 / 48 / 75</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>546</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.72, Melee Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, Knockback 15, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>38</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_honey_blaster_pumpkin_mortar"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_honey_blaster_pumpkin_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Honey Blaster</th></tr>
+<tr><td colspan="2"><i>Pumpkin Mortar forged into Honey Blaster: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Produce, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>17 / 29 / 44 / 67</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.7s / 0.66s / 0.6s / 0.54s</td></tr>
+<tr><td nowrap>Range</td><td>483</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.08</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Slow 35% for 1.5s, Explosion radius 100</td></tr>
+<tr><td nowrap>T1 price</td><td>43</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_popcorn_machine_rot_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_popcorn_machine_rot_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toxic Popcorn Popper</th></tr>
+<tr><td colspan="2"><i>Rot Aura forged into Popcorn Popper: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Demolition, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 26 / 41 / 62</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>231</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.54, Elemental Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 100</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_donut_ring_dynamite_drumstick"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_donut_ring_dynamite_drumstick.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Explosive Donut Ring</th></tr>
+<tr><td colspan="2"><i>Dynamite Drumstick forged into Donut Ring: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>19 / 32 / 50 / 75</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.5s / 1.4s / 1.3s / 1.2s</td></tr>
+<tr><td nowrap>Range</td><td>347</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6, Melee Damage ×0.66, Max HP ×0.06</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 85, Projectiles 1/1/2/2, Knockback 15</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_bean_bazooka_soy_bomb"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_bean_bazooka_soy_bomb.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Saucy Bean Bazooka</th></tr>
+<tr><td colspan="2"><i>Soy Bomb forged into Bean Bazooka: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Demolition, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>24 / 40 / 62 / 92</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.2s / 2.05s / 1.9s / 1.7s</td></tr>
+<tr><td nowrap>Range</td><td>504</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.32</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 120, +3% Life Steal Chance, Knockback 30</td></tr>
+<tr><td nowrap>T1 price</td><td>44</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_choco_mine_bbq_torch"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_choco_mine_bbq_torch.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Chocolate Mine</th></tr>
+<tr><td colspan="2"><i>BBQ Torch forged into Chocolate Mine: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert, Firearm, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>14 / 25 / 39 / 58</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>231</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.69</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Slow 35% for 1.5s, Explosion radius 100, +1% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_cherry_bomb_bamboo_spear"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_cherry_bomb_bamboo_spear.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Lethal Cherry Bombs</th></tr>
+<tr><td colspan="2"><i>Bamboo Spear forged into Cherry Bombs: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>21 / 35 / 55 / 85</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.5s / 1.42s / 1.32s / 1.2s</td></tr>
+<tr><td nowrap>Range</td><td>378</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.48, Melee Damage ×0.72</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 70, Projectiles 2/2/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>36</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_carrot_crossbow_fork"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_carrot_crossbow_fork.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chef's Carrot Crossbow</th></tr>
+<tr><td colspan="2"><i>Tomato Fork forged into Carrot Crossbow: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 34 / 52</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
+<tr><td nowrap>Range</td><td>483</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6, Melee Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_knife_case_microwave_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_knife_case_microwave_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Explosive Knife Case</th></tr>
+<tr><td colspan="2"><i>Microwave Cannon forged into Knife Case: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Kitchenware, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>22 / 35 / 55 / 84</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>504</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×1.2</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.3s, Explosion radius 110, Pierce 1/1/2/2, Projectiles 2/2/3/3, +8% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>46</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_melon_grenade_pumpkin_lantern"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_melon_grenade_pumpkin_lantern.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Piercing Melon Grenade</th></tr>
+<tr><td colspan="2"><i>Pumpkin Lantern forged into Melon Grenade: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 41</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>441</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.48, Elemental Damage ×0.51</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.8</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 80, Projectiles 2/2/3/3</td></tr>
+<tr><td nowrap>T1 price</td><td>38</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_blowpipe_syrup_sprayer"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_blowpipe_syrup_sprayer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Toxic Blowpipe</th></tr>
+<tr><td colspan="2"><i>Syrup Sprayer forged into Toxic Blowpipe: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 19 / 29 / 44</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>483</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6, Elemental Damage ×0.15</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Slow 20% for 0.8s, Pierce 1/1/2/2</td></tr>
+<tr><td nowrap>T1 price</td><td>38</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_mycelium_boomerang_rice_cooker_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_mycelium_boomerang_rice_cooker_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Mycelium Boomerang</th></tr>
+<tr><td colspan="2"><i>Rice Cooker Aura forged into Mycelium Boomerang: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 25 / 40</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>378</td></tr>
+<tr><td nowrap>Scaling</td><td>Ranged Damage ×0.54, Elemental Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 15% for 0.5s, Stun 0.1s</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="class-elemental"></a>
 
@@ -1162,431 +2451,1721 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 <a id="weapon-mustard_flamer"></a>
 
-### Mustard Flamer
-
-<img src="../images/weapon/mustard_flamer.png" width="64" height="64" alt="">
-
-> Short-range flames with infinite pierce that burn enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Flame |
-| Tags | Sauce, Elemental |
-| Damage T1–T4 | 2 / 3 / 5 / 8 |
-| Cooldown T1–T4 | 0.2s / 0.18s / 0.16s / 0.14s |
-| Range | 200 |
-| Scaling | Elemental Damage ×0.25 |
-| Crit multiplier | ×1.5 |
-| Effects | Burn 2/s for 2s |
-| T1 price | 28 |
-| Starting weapon of | [Chili Sis](CHARACTERS.md#char-chili) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/mustard_flamer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mustard Flamer</th></tr>
+<tr><td colspan="2"><i>Short-range flames with infinite pierce that burn enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>2 / 3 / 5 / 8</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.25</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-chili">Chili Sis</a></td></tr>
+</table>
 
 <a id="weapon-soda"></a>
 
-### Iced Soda
-
-<img src="../images/weapon/soda.png" width="64" height="64" alt="">
-
-> Icy bubbles pierce enemies and slow them by 40%.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Bullet |
-| Tags | Elemental |
-| Damage T1–T4 | 9 / 15 / 22 / 32 |
-| Cooldown T1–T4 | 0.75s / 0.7s / 0.65s / 0.58s |
-| Range | 400 |
-| Scaling | Elemental Damage ×0.9 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 40% for 1.5s, Pierce 1/1/2/2 |
-| T1 price | 22 |
-| Starting weapon of | [Pumpkin Ghost](CHARACTERS.md#char-pumpkin), [Mushroom Shaman](CHARACTERS.md#char-mushroom), [Bitter Melon Mage](CHARACTERS.md#char-bittermelon) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/soda.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Iced Soda</th></tr>
+<tr><td colspan="2"><i>Icy bubbles pierce enemies and slow them by 40%.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 22 / 32</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.75s / 0.7s / 0.65s / 0.58s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 40% for 1.5s, Pierce 1/1/2/2</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-bittermelon">Bitter Melon Mage</a></td></tr>
+</table>
 
 <a id="weapon-garlic_aura"></a>
 
-### Garlic Aura
-
-<img src="../images/weapon/garlic_aura.png" width="64" height="64" alt="">
-
-> Continuously damages nearby enemies (every 0.5s).
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Aura |
-| Tags | Produce, Elemental |
-| Damage T1–T4 | 4 / 6 / 9 / 13 |
-| Cooldown T1–T4 | 0.5s / 0.5s / 0.5s / 0.5s |
-| Range | 133 |
-| Scaling | Elemental Damage ×0.5 |
-| Crit multiplier | ×1.5 |
-| Effects | - |
-| T1 price | 30 |
-| Starting weapon of | [Count Garlic](CHARACTERS.md#char-garlic), [Durian Overlord](CHARACTERS.md#char-durian) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/garlic_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Garlic Aura</th></tr>
+<tr><td colspan="2"><i>Continuously damages nearby enemies (every 0.5s).</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 6 / 9 / 13</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>133</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-garlic">Count Garlic</a>, <a href="CHARACTERS.md#char-durian">Durian Overlord</a></td></tr>
+</table>
 
 <a id="weapon-pepper_mine"></a>
 
-### Pepper Mine
-
-<img src="../images/weapon/pepper_mine.png" width="64" height="64" alt="">
-
-> Lays mines around you that explode when enemies step on them.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Mine |
-| Tags | Elemental, Demolition |
-| Damage T1–T4 | 20 / 34 / 52 / 80 |
-| Cooldown T1–T4 | 2.5s / 2.3s / 2.1s / 1.8s |
-| Range | 200 |
-| Scaling | Elemental Damage ×1 |
-| Crit multiplier | ×1.5 |
-| Effects | Explosion radius 150 |
-| T1 price | 25 |
-| Starting weapon of | [Dr. Avocado](CHARACTERS.md#char-avocado) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pepper_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pepper Mine</th></tr>
+<tr><td colspan="2"><i>Lays mines around you that explode when enemies step on them.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Elemental, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>20 / 34 / 52 / 80</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.5s / 2.3s / 2.1s / 1.8s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 150</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-avocado">Dr. Avocado</a></td></tr>
+</table>
 
 <a id="weapon-broccoli_staff"></a>
 
-### Broccoli Staff
-
-<img src="../images/weapon/broccoli_staff.png" width="64" height="64" alt="">
-
-> Unleashes chain lightning that jumps between enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Chain Lightning |
-| Tags | Produce, Elemental |
-| Damage T1–T4 | 10 / 17 / 26 / 40 |
-| Cooldown T1–T4 | 1.1s / 1s / 0.92s / 0.84s |
-| Range | 420 |
-| Scaling | Elemental Damage ×1 |
-| Crit multiplier | ×1.5 |
-| Effects | Chains 2/3/4/6 times |
-| T1 price | 30 |
-| Starting weapon of | [Eggplant Mage](CHARACTERS.md#char-eggplant) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/broccoli_staff.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Broccoli Staff</th></tr>
+<tr><td colspan="2"><i>Unleashes chain lightning that jumps between enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Chains 2/3/4/6 times</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-eggplant">Eggplant Mage</a></td></tr>
+</table>
 
 <a id="weapon-ice_cube_tray"></a>
 
-### Ice Cube Tray
-
-<img src="../images/weapon/ice_cube_tray.png" width="64" height="64" alt="">
-
-> Flings a row of ice cubes that heavily slow enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Bullet |
-| Tags | Kitchenware, Elemental |
-| Damage T1–T4 | 5 / 8 / 12 / 18 |
-| Cooldown T1–T4 | 1s / 0.95s / 0.88s / 0.8s |
-| Range | 340 |
-| Scaling | Elemental Damage ×0.6 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 50% for 1.2s, Projectiles 3/3/4/4 |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/ice_cube_tray.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ice Cube Tray</th></tr>
+<tr><td colspan="2"><i>Flings a row of ice cubes that heavily slow enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 8 / 12 / 18</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>340</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 1.2s, Projectiles 3/3/4/4</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-lightning_whisk"></a>
 
-### Zap Whisk
-
-<img src="../images/weapon/lightning_whisk.png" width="64" height="64" alt="">
-
-> Whips up current that jumps between even more enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Chain Lightning |
-| Tags | Kitchenware, Elemental |
-| Damage T1–T4 | 7 / 12 / 18 / 27 |
-| Cooldown T1–T4 | 0.95s / 0.9s / 0.82s / 0.74s |
-| Range | 380 |
-| Scaling | Elemental Damage ×0.8 |
-| Crit multiplier | ×1.5 |
-| Effects | Chains 3/4/5/7 times |
-| T1 price | 30 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/lightning_whisk.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Zap Whisk</th></tr>
+<tr><td colspan="2"><i>Whips up current that jumps between even more enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>7 / 12 / 18 / 27</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.9s / 0.82s / 0.74s</td></tr>
+<tr><td nowrap>Range</td><td>380</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Chains 3/4/5/7 times</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-steam_kettle"></a>
 
-### Steam Kettle
-
-<img src="../images/weapon/steam_kettle.png" width="64" height="64" alt="">
-
-> A wide blast of steam that pierces and slows.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Flame |
-| Tags | Kitchenware, Elemental |
-| Damage T1–T4 | 3 / 5 / 7 / 11 |
-| Cooldown T1–T4 | 0.26s / 0.24s / 0.21s / 0.18s |
-| Range | 170 |
-| Scaling | Elemental Damage ×0.3 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 20% for 1s, Knockback 4 |
-| T1 price | 28 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/steam_kettle.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Steam Kettle</th></tr>
+<tr><td colspan="2"><i>A wide blast of steam that pierces and slows.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.26s / 0.24s / 0.21s / 0.18s</td></tr>
+<tr><td nowrap>Range</td><td>170</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 1s, Knockback 4</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-curry_aura"></a>
 
-### Curry Aura
-
-<img src="../images/weapon/curry_aura.png" width="64" height="64" alt="">
-
-> Rich curry fumes burn all nearby enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Aura |
-| Tags | Sauce, Elemental |
-| Damage T1–T4 | 3 / 5 / 7 / 11 |
-| Cooldown T1–T4 | 0.5s / 0.5s / 0.5s / 0.5s |
-| Range | 140 |
-| Scaling | Elemental Damage ×0.4 |
-| Crit multiplier | ×1.5 |
-| Effects | Burn 2/s for 2s |
-| T1 price | 32 |
-| Starting weapon of | [Taro Mystic](CHARACTERS.md#char-taro) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/curry_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Curry Aura</th></tr>
+<tr><td colspan="2"><i>Rich curry fumes burn all nearby enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>140</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.4</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s</td></tr>
+<tr><td nowrap>T1 price</td><td>32</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-taro">Taro Mystic</a></td></tr>
+</table>
 
 <a id="weapon-pepper_spray"></a>
 
-### Pepper Spray
-
-<img src="../images/weapon/pepper_spray.png" width="64" height="64" alt="">
-
-> Point-blank spicy powder that burns hard.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Flame |
-| Tags | Elemental |
-| Damage T1–T4 | 2 / 4 / 6 / 9 |
-| Cooldown T1–T4 | 0.18s / 0.16s / 0.14s / 0.12s |
-| Range | 150 |
-| Scaling | Elemental Damage ×0.25 |
-| Crit multiplier | ×1.5 |
-| Effects | Burn 3/s for 1.5s |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pepper_spray.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pepper Spray</th></tr>
+<tr><td colspan="2"><i>Point-blank spicy powder that burns hard.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>2 / 4 / 6 / 9</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.18s / 0.16s / 0.14s / 0.12s</td></tr>
+<tr><td nowrap>Range</td><td>150</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.25</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 1.5s</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-mint_frost_mine"></a>
 
-### Mint Frost Mine
-
-<img src="../images/weapon/mint_frost_mine.png" width="64" height="64" alt="">
-
-> Cool minty mines whose blast leaves enemies crawling.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Mine |
-| Tags | Produce, Elemental, Demolition |
-| Damage T1–T4 | 16 / 27 / 42 / 64 |
-| Cooldown T1–T4 | 2.6s / 2.4s / 2.2s / 1.9s |
-| Range | 220 |
-| Scaling | Elemental Damage ×0.9 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 50% for 2s, Explosion radius 160 |
-| T1 price | 26 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/mint_frost_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mint Frost Mine</th></tr>
+<tr><td colspan="2"><i>Cool minty mines whose blast leaves enemies crawling.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>16 / 27 / 42 / 64</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.6s / 2.4s / 2.2s / 1.9s</td></tr>
+<tr><td nowrap>Range</td><td>220</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.9</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 2s, Explosion radius 160</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-thunder_durian"></a>
 
-### Thunder Durian
-
-<img src="../images/weapon/thunder_durian.png" width="64" height="64" alt="">
-
-> Hurls a charged durian that explodes and stuns.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Rocket |
-| Tags | Produce, Elemental, Demolition |
-| Damage T1–T4 | 16 / 27 / 42 / 64 |
-| Cooldown T1–T4 | 2.2s / 2.1s / 1.95s / 1.75s |
-| Range | 400 |
-| Scaling | Elemental Damage ×1 |
-| Crit multiplier | ×1.5 |
-| Effects | Stun 0.35s, Explosion radius 100 |
-| T1 price | 32 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/thunder_durian.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Thunder Durian</th></tr>
+<tr><td colspan="2"><i>Hurls a charged durian that explodes and stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>16 / 27 / 42 / 64</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.2s / 2.1s / 1.95s / 1.75s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.35s, Explosion radius 100</td></tr>
+<tr><td nowrap>T1 price</td><td>32</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-dragonfruit_orb"></a>
 
-### Dragonfruit Orb
-
-<img src="../images/weapon/dragonfruit_orb.png" width="64" height="64" alt="">
-
-> A blazing dragonfruit that bounces and ignites enemies.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Bullet |
-| Tags | Produce, Elemental |
-| Damage T1–T4 | 8 / 13 / 20 / 30 |
-| Cooldown T1–T4 | 1s / 0.95s / 0.88s / 0.8s |
-| Range | 400 |
-| Scaling | Elemental Damage ×0.8 |
-| Crit multiplier | ×1.5 |
-| Effects | Burn 3/s for 2s, Bounce 1/2/2/3 |
-| T1 price | 28 |
-| Starting weapon of | [Blackberry Witch](CHARACTERS.md#char-blackberry) |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/dragonfruit_orb.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Dragonfruit Orb</th></tr>
+<tr><td colspan="2"><i>A blazing dragonfruit that bounces and ignites enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 20 / 30</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Bounce 1/2/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-blackberry">Blackberry Witch</a></td></tr>
+</table>
 
 <a id="weapon-star_anise_shuriken"></a>
 
-### Star Anise Star
-
-<img src="../images/weapon/star_anise_shuriken.png" width="64" height="64" alt="">
-
-> A spice shuriken that spirals across the front and boomerangs back, burning foes.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Boomerang |
-| Tags | Sharp, Elemental |
-| Damage T1–T4 | 9 / 15 / 23 / 35 |
-| Cooldown T1–T4 | 1.3s / 1.2s / 1.1s / 1s |
-| Range | 320 |
-| Scaling | Elemental Damage ×0.8 |
-| Crit multiplier | ×2 |
-| Effects | Burn 2/s for 1.5s |
-| T1 price | 28 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/star_anise_shuriken.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Star Anise Star</th></tr>
+<tr><td colspan="2"><i>A spice shuriken that spirals across the front and boomerangs back, burning foes.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 23 / 35</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>320</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-ginger">Ginger Ninja</a></td></tr>
+</table>
 
 <a id="weapon-lemon_battery"></a>
 
-### Lemon Battery
-
-<img src="../images/weapon/lemon_battery.png" width="64" height="64" alt="">
-
-> Powerful shock with fewer jumps, but it stuns.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Chain Lightning |
-| Tags | Produce, Elemental |
-| Damage T1–T4 | 12 / 20 / 31 / 47 |
-| Cooldown T1–T4 | 1.3s / 1.2s / 1.1s / 1s |
-| Range | 360 |
-| Scaling | Elemental Damage ×1.1 |
-| Crit multiplier | ×1.5 |
-| Effects | Stun 0.25s, Chains 1/2/2/3 times |
-| T1 price | 30 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/lemon_battery.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Lemon Battery</th></tr>
+<tr><td colspan="2"><i>Powerful shock with fewer jumps, but it stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 20 / 31 / 47</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.25s, Chains 1/2/2/3 times</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-salt_aura"></a>
 
-### Sea Salt Ward
-
-<img src="../images/weapon/salt_aura.png" width="64" height="64" alt="">
-
-> Sharp salt crystals orbit you, slicing nearby enemies with high crit.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Aura |
-| Tags | Sharp, Elemental |
-| Damage T1–T4 | 3 / 5 / 8 / 12 |
-| Cooldown T1–T4 | 0.5s / 0.5s / 0.5s / 0.5s |
-| Range | 152 |
-| Scaling | Elemental Damage ×0.45 |
-| Crit multiplier | ×2 |
-| Effects | +10% Crit Chance |
-| T1 price | 30 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/salt_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Sea Salt Ward</th></tr>
+<tr><td colspan="2"><i>Sharp salt crystals orbit you, slicing nearby enemies with high crit.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 8 / 12</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>152</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.45</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>+10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-cola_zapper"></a>
 
-### Cola Zapper
-
-<img src="../images/weapon/cola_zapper.png" width="64" height="64" alt="">
-
-> Charged cola bubbles jump between enemies and slow them. Slightly scales with Ranged Damage.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Chain Lightning |
-| Tags | Firearm, Elemental |
-| Damage T1–T4 | 8 / 14 / 21 / 32 |
-| Cooldown T1–T4 | 0.95s / 0.88s / 0.8s / 0.72s |
-| Range | 440 |
-| Scaling | Elemental Damage ×0.7, Ranged Damage ×0.3 |
-| Crit multiplier | ×1.5 |
-| Effects | Slow 20% for 1s, Chains 2/3/4/5 times |
-| T1 price | 28 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/cola_zapper.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Cola Zapper</th></tr>
+<tr><td colspan="2"><i>Charged cola bubbles jump between enemies and slow them. Slightly scales with Ranged Damage.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 14 / 21 / 32</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.88s / 0.8s / 0.72s</td></tr>
+<tr><td nowrap>Range</td><td>440</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.7, Ranged Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 1s, Chains 2/3/4/5 times</td></tr>
+<tr><td nowrap>T1 price</td><td>28</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
 <a id="weapon-hotpot_breath"></a>
 
-### Hotpot Breath
-
-<img src="../images/weapon/hotpot_breath.png" width="64" height="64" alt="">
-
-> Spews scalding chili oil that burns hard. Hits grant extra Life Steal Chance.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Flame |
-| Tags | Sauce, Elemental |
-| Damage T1–T4 | 3 / 4 / 6 / 10 |
-| Cooldown T1–T4 | 0.22s / 0.2s / 0.18s / 0.16s |
-| Range | 165 |
-| Scaling | Elemental Damage ×0.3 |
-| Crit multiplier | ×1.5 |
-| Effects | Burn 3/s for 2s, +1% Life Steal Chance |
-| T1 price | 30 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/hotpot_breath.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Hotpot Breath</th></tr>
+<tr><td colspan="2"><i>Spews scalding chili oil that burns hard. Hits grant extra Life Steal Chance.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 4 / 6 / 10</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.22s / 0.2s / 0.18s / 0.16s</td></tr>
+<tr><td nowrap>Range</td><td>165</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, +1% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-dragonfruit">Dragonfruit Rider</a></td></tr>
+</table>
 
 <a id="weapon-pumpkin_lantern"></a>
 
-### Pumpkin Lantern
-
-<img src="../images/weapon/pumpkin_lantern.png" width="64" height="64" alt="">
-
-> Releases slow will-o-wisps from a jack-o-lantern. They home in on enemies and pass through them.
-
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Bullet |
-| Tags | Produce, Elemental |
-| Damage T1–T4 | 9 / 15 / 24 / 37 |
-| Cooldown T1–T4 | 0.8s / 0.75s / 0.7s / 0.62s |
-| Range | 420 |
-| Scaling | Elemental Damage ×0.85 |
-| Crit multiplier | ×1.8 |
-| Effects | Pierce 1/1/2/3 |
-| T1 price | 24 |
-| Starting weapon of | - |
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/pumpkin_lantern.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pumpkin Lantern</th></tr>
+<tr><td colspan="2"><i>Releases slow will-o-wisps from a jack-o-lantern. They home in on enemies and pass through them.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 24 / 37</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.85</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.8</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>24</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pumpkin">Pumpkin Ghost</a></td></tr>
+</table>
 
 <a id="weapon-spore_sprayer"></a>
 
-### Spore Sprayer
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/spore_sprayer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spore Sprayer</th></tr>
+<tr><td colspan="2"><i>Sprays toxic spore clumps that Poison on hit and burst into two smaller spores.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 8 / 13 / 20</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.7s / 0.65s / 0.6s / 0.54s</td></tr>
+<tr><td nowrap>Range</td><td>330</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.7</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
+<tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-mushroom">Mushroom Shaman</a></td></tr>
+</table>
 
-<img src="../images/weapon/spore_sprayer.png" width="64" height="64" alt="">
+<a id="weapon-cream_torch"></a>
 
-> Sprays toxic spore clumps that Poison on hit and burst into two smaller spores.
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/cream_torch.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Cream Torch</th></tr>
+<tr><td colspan="2"><i>Sprays sticky cream that slows enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>2 / 3 / 5 / 8</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.25</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 30% for 1s</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
 
-| Field | Value |
-| --- | --- |
-| Class / attack | Elemental / Bullet |
-| Tags | Produce, Elemental |
-| Damage T1–T4 | 5 / 8 / 13 / 20 |
-| Cooldown T1–T4 | 0.7s / 0.65s / 0.6s / 0.54s |
-| Range | 330 |
-| Scaling | Elemental Damage ×0.7 |
-| Crit multiplier | ×1.5 |
-| Effects | - |
-| T1 price | 22 |
-| Starting weapon of | - |
+<a id="weapon-caramel_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/caramel_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Caramel Aura</th></tr>
+<tr><td colspan="2"><i>Scalding caramel that burns and slows nearby foes.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 6 / 10</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>131</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.4</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Slow 15% for 0.6s</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-popping_candy"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/popping_candy.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Popping Zap</th></tr>
+<tr><td colspan="2"><i>Crackling candy current that leaps and briefly stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 20 / 30</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.88s / 0.8s / 0.72s</td></tr>
+<tr><td nowrap>Range</td><td>440</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.7, Ranged Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.15s, Chains 2/3/4/5 times</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-slush_spray"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/slush_spray.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Slush Spray</th></tr>
+<tr><td colspan="2"><i>A slushy mist that strongly slows.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.26s / 0.24s / 0.21s / 0.18s</td></tr>
+<tr><td nowrap>Range</td><td>170</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 40% for 1.2s, Knockback 4</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-frost_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/frost_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Aura</th></tr>
+<tr><td colspan="2"><i>A chilling aura that slows nearby enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td></td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>134</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.45</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 30% for 0.8s, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-icicle_volley"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/icicle_volley.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Icicle Volley</th></tr>
+<tr><td colspan="2"><i>Fires three piercing icicles at once.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td></td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>5 / 7 / 11 / 16</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>340</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 1.2s, Pierce 1/2/2/3, Projectiles 3/3/4/4</td></tr>
+<tr><td nowrap>T1 price</td><td>27</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-rice_cooker_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/rice_cooker_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rice Cooker Aura</th></tr>
+<tr><td colspan="2"><i>A sparking rice cooker that shocks nearby foes.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 8 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>143</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 15% for 0.5s, Stun 0.1s</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-grill_arc"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/grill_arc.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Arc Grill</th></tr>
+<tr><td colspan="2"><i>Arcs from an electric grill that leap and burn.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 14 / 22 / 34</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Chains 2/3/4/6 times</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-mixer_storm"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/mixer_storm.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Storm Mixer</th></tr>
+<tr><td colspan="2"><i>A high-speed mixer whose lightning jumps further.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 23</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.9s / 0.82s / 0.74s</td></tr>
+<tr><td nowrap>Range</td><td>380</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Chains 4/5/6/8 times</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-toaster_zap"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/toaster_zap.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toaster Zap</th></tr>
+<tr><td colspan="2"><i>Lightning popped from a toaster; leaps and stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 19 / 29 / 45</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>360</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1.1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.25s, Chains 2/2/3/4 times</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-miasma_sprayer"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/miasma_sprayer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Miasma Sprayer</th></tr>
+<tr><td colspan="2"><i>Sprays toxic mist that keeps enemies poisoned.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>2 / 4 / 6 / 9</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.18s / 0.16s / 0.14s / 0.12s</td></tr>
+<tr><td nowrap>Range</td><td>150</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.25</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>27</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-rot_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/rot_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rot Aura</th></tr>
+<tr><td colspan="2"><i>Rotting spores that poison nearby enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 8 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>149</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-toadstool_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/toadstool_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Toadstool Mine</th></tr>
+<tr><td colspan="2"><i>Bursts into spores that apply 2 Poison stacks.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>18 / 31 / 47 / 72</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.5s / 2.3s / 2.1s / 1.8s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 140</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-charcoal_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/charcoal_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Charcoal Aura</th></tr>
+<tr><td colspan="2"><i>Smoldering coals that burn nearby enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 10</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>133</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.4</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-ember_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/ember_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ember Mine</th></tr>
+<tr><td colspan="2"><i>Explodes into embers that burn.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>18 / 31 / 47 / 72</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.5s / 2.3s / 2.1s / 1.8s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 4/s for 2s, Explosion radius 150</td></tr>
+<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-cumin_star"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/cumin_star.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Cumin Star</th></tr>
+<tr><td colspan="2"><i>Cumin-coated stars, two at a time, that burn.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Sharp</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>7 / 12 / 18 / 28</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>Range</td><td>320</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Projectiles 2/2/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-mint_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/mint_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mint Aura</th></tr>
+<tr><td colspan="2"><i>Cool mint that slows nearby enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 7 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>136</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.45</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 25% for 0.8s, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-honey_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/honey_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Honey Aura</th></tr>
+<tr><td colspan="2"><i>Sticky honey that slows and drains life.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 5 / 8 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>141</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.5</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 30% for 0.8s, +2% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-teapot_storm"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/teapot_storm.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Teapot Storm</th></tr>
+<tr><td colspan="2"><i>A boiling teapot hurls lightning that slows.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>7 / 13 / 19 / 29</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.88s / 0.8s / 0.72s</td></tr>
+<tr><td nowrap>Range</td><td>440</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.7, Ranged Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 25% for 1s, Chains 2/3/4/6 times</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-jelly_bounce"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/jelly_bounce.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Jelly Bounce</th></tr>
+<tr><td colspan="2"><i>Bouncy jelly shots that slow enemies.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>7 / 11 / 17 / 26</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>400</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 1s, Bounce 1/2/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-syrup_sprayer"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/syrup_sprayer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Syrup Sprayer</th></tr>
+<tr><td colspan="2"><i>Sprays scalding syrup that burns and slows.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>2 / 3 / 5 / 7</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>200</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.25</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Slow 20% for 0.8s</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-curry_garlic_field"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/curry_garlic_field.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Curry Garlic Field</th></tr>
+<tr><td colspan="2"><i>Two auras intertwined: burning foes while draining their life.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Elemental, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 7 / 10 / 14</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>147</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.54</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, +4% Life Steal Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>42</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-thunder_orchard"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/thunder_orchard.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Thunder Orchard</th></tr>
+<tr><td colspan="2"><i>Broccoli wired to a lemon battery: lightning leaps further and stuns.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 34 / 52</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.1s / 1s / 0.92s / 0.84s</td></tr>
+<tr><td nowrap>Range</td><td>441</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1.26</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.3s, Chains 3/4/5/7 times</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-honey_frost_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/honey_frost_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Honeyfrost Field</th></tr>
+<tr><td colspan="2"><i>Honey and frost in one sticky field: slow and weakened.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 6 / 9 / 12</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>148</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.57</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 45% for 1.2s, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-spore_minefield"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/spore_minefield.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spore Minefield</th></tr>
+<tr><td colspan="2"><i>Toadstool and pepper mines laid together: a field of toxic blasts.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>22 / 37 / 57 / 88</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>2.5s / 2.3s / 2.1s / 1.8s</td></tr>
+<tr><td nowrap>Range</td><td>210</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×1.2</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Explosion radius 165</td></tr>
+<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-dragon_breath_flame"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/dragon_breath_flame.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Dragon Breath</th></tr>
+<tr><td colspan="2"><i>Hotpot breath spiked with mustard: a longer, hotter flame.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 4 / 7 / 11</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>Range</td><td>210</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.33</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 6/s for 3s</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-anise_frost_storm"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/anise_frost_storm.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Anise Storm</th></tr>
+<tr><td colspan="2"><i>Anise stars sheathed in frost, chilling everything on the way back.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Elemental</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 25 / 39</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>357</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.84</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 40% for 1.5s, Projectiles 2/2/3/3</td></tr>
+<tr><td nowrap>T1 price</td><td>36</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-holy_salt_barrier"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/holy_salt_barrier.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Holy Salt Barrier</th></tr>
+<tr><td colspan="2"><i>Sea salt and mint in a razor field that cuts and slows.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Aura</td></tr>
+<tr><td nowrap>Tags</td><td>Sharp, Elemental, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 6 / 9 / 13</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>160</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.54</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 30% for 1s, +12% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_thunder_durian_volt_fork"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_thunder_durian_volt_fork.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Piercing Thunder Durian</th></tr>
+<tr><td colspan="2"><i>Volt Fork forged into Thunder Durian: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Rocket</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>18 / 30 / 46 / 70</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.6, Melee Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.25s, Explosion radius 100</td></tr>
+<tr><td nowrap>T1 price</td><td>42</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_jelly_bounce_chili_shuriken"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_jelly_bounce_chili_shuriken.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Jelly Bounce</th></tr>
+<tr><td colspan="2"><i>Chili Saw forged into Jelly Bounce: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert, Sharp, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 14 / 22 / 34</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.48, Melee Damage ×0.48</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.1</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Slow 20% for 1s, Bounce 1/2/2/3</td></tr>
+<tr><td nowrap>T1 price</td><td>38</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_slush_spray_caramel_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_slush_spray_caramel_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Searing Slush Spray</th></tr>
+<tr><td colspan="2"><i>Caramel Aura forged into Slush Spray: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>3 / 6 / 8 / 12</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.26s / 0.24s / 0.21s / 0.18s</td></tr>
+<tr><td nowrap>Range</td><td>179</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.42</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Slow 15% for 0.6s, Knockback 4</td></tr>
+<tr><td nowrap>T1 price</td><td>43</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_grill_arc_pepper_storm_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_grill_arc_pepper_storm_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Saucy Arc Grill</th></tr>
+<tr><td colspan="2"><i>Pepper Storm forged into Arc Grill: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 15 / 24 / 37</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.45s / 0.42s / 0.4s</td></tr>
+<tr><td nowrap>Range</td><td>441</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.6, Melee Damage ×0.24</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Chains 2/3/4/6 times</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_teapot_storm_charcoal_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_teapot_storm_charcoal_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Teapot Storm</th></tr>
+<tr><td colspan="2"><i>Charcoal Aura forged into Teapot Storm: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 14 / 21 / 32</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>Range</td><td>462</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.66, Ranged Damage ×0.18</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Slow 25% for 1s, Chains 2/3/4/6 times</td></tr>
+<tr><td nowrap>T1 price</td><td>43</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_cola_zapper_mixer_storm"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_cola_zapper_mixer_storm.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Chef's Cola Zapper</th></tr>
+<tr><td colspan="2"><i>Storm Mixer forged into Cola Zapper: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Firearm, Elemental, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 23 / 35</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.88s / 0.8s / 0.72s</td></tr>
+<tr><td nowrap>Range</td><td>462</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.9, Ranged Damage ×0.18</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 1s, Chains 4/5/6/8 times</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_steam_kettle_asparagus_bow"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_steam_kettle_asparagus_bow.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Piercing Steam Kettle</th></tr>
+<tr><td colspan="2"><i>Asparagus Longbow forged into Steam Kettle: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Flame</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Elemental, Produce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 26 / 41 / 62</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.26s / 0.24s / 0.21s / 0.18s</td></tr>
+<tr><td nowrap>Range</td><td>546</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.18, Ranged Damage ×0.66</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 1s, Knockback 4, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>36</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_lightning_whisk_pepper_grinder"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_lightning_whisk_pepper_grinder.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Piercing Zap Whisk</th></tr>
+<tr><td colspan="2"><i>Pepper Grinder Gun forged into Zap Whisk: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Elemental, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 20 / 30</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>420</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.48, Ranged Damage ×0.42</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
+<tr><td nowrap>Effects</td><td>Chains 3/4/5/7 times, +8% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_spore_sprayer_shaved_ice_gun"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_spore_sprayer_shaved_ice_gun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frost Spore Sprayer</th></tr>
+<tr><td colspan="2"><i>Shaved Ice Gun forged into Spore Sprayer: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Bullet</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental, Firearm</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 9 / 14 / 22</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.22s / 0.2s / 0.18s / 0.16s</td></tr>
+<tr><td nowrap>Range</td><td>378</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.42, Ranged Damage ×0.27</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 0.8s</td></tr>
+<tr><td nowrap>T1 price</td><td>35</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_toaster_zap_hot_sauce_gun"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_toaster_zap_hot_sauce_gun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blazing Toaster Zap</th></tr>
+<tr><td colspan="2"><i>Hot Sauce Pistol forged into Toaster Zap: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Kitchenware, Dessert, Sauce</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 21 / 32 / 50</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.55s / 0.5s / 0.46s / 0.42s</td></tr>
+<tr><td nowrap>Range</td><td>399</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.66, Ranged Damage ×0.42</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Stun 0.25s, Chains 2/2/3/4 times</td></tr>
+<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_mint_frost_mine_blender_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_mint_frost_mine_blender_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Lethal Mint Frost Mine</th></tr>
+<tr><td colspan="2"><i>Blender forged into Mint Frost Mine: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Mine</td></tr>
+<tr><td nowrap>Tags</td><td>Produce, Elemental, Demolition</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>18 / 30 / 46 / 70</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>231</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.54, Melee Damage ×0.3</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 2s, Explosion radius 160, +5% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>36</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_popping_candy_rolling_pin"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_popping_candy_rolling_pin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Heavy Popping Zap</th></tr>
+<tr><td colspan="2"><i>Rolling Pin forged into Popping Zap: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
+<tr><td nowrap>Tags</td><td>Dessert, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 22 / 35 / 53</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.88s / 0.8s / 0.72s</td></tr>
+<tr><td nowrap>Range</td><td>462</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.42, Ranged Damage ×0.18, Melee Damage ×0.6</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
+<tr><td nowrap>Effects</td><td>Stun 0.15s, Chains 2/3/4/5 times</td></tr>
+<tr><td nowrap>T1 price</td><td>38</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_cumin_star_mandoline"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/fz_cumin_star_mandoline.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Piercing Cumin Star</th></tr>
+<tr><td colspan="2"><i>Mandoline forged into Cumin Star: keeps its attack style and carries both weapons' effects.</i></td></tr>
+<tr><td nowrap>Class / attack</td><td>Elemental / Boomerang</td></tr>
+<tr><td nowrap>Tags</td><td>Sauce, Sharp, Kitchenware</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>Range</td><td>336</td></tr>
+<tr><td nowrap>Scaling</td><td>Elemental Damage ×0.48, Melee Damage ×0.42</td></tr>
+<tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Projectiles 2/2/2/3, +10% Crit Chance</td></tr>
+<tr><td nowrap>T1 price</td><td>38</td></tr>
+<tr><td nowrap>Starting weapon of</td><td>-</td></tr>
+</table>
+
+<a id="craft-graph"></a>
+
+## Crafting Graph
+
+Arrows point from materials to results: two T3 weapons → T4, two T4 weapons → super weapon (each recipe also needs specific items; see the crafting table in the shop). Same-name pairs combine one tier up for T1–T3 and are omitted here.
+
+<a id="craft-graph-melee"></a>
+
+### Melee (65 recipes)
+
+```mermaid
+flowchart LR
+  classDef t2 fill:#f3e8ff,stroke:#8a4fd0
+  classDef t3 fill:#fff3d6,stroke:#d09a1f
+  classDef t4 fill:#ffe1e1,stroke:#d04a4a,stroke-width:2px
+  fork_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fork.png' width='28' height='28'/><br/>Tomato Fork T4"]:::t3
+  fork_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fork.png' width='28' height='28'/><br/>Tomato Fork T3"]:::t2
+  rolling_pin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rolling_pin.png' width='28' height='28'/><br/>Rolling Pin T4"]:::t3
+  rolling_pin_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rolling_pin.png' width='28' height='28'/><br/>Rolling Pin T3"]:::t2
+  knife_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/knife.png' width='28' height='28'/><br/>Chef's Knife T4"]:::t3
+  knife_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/knife.png' width='28' height='28'/><br/>Chef's Knife T3"]:::t2
+  pan_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pan.png' width='28' height='28'/><br/>Frying Pan T4"]:::t3
+  pan_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pan.png' width='28' height='28'/><br/>Frying Pan T3"]:::t2
+  watermelon_hammer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/watermelon_hammer.png' width='28' height='28'/><br/>Melon Hammer T4"]:::t3
+  watermelon_hammer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/watermelon_hammer.png' width='28' height='28'/><br/>Melon Hammer T3"]:::t2
+  cleaver_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cleaver.png' width='28' height='28'/><br/>Meat Cleaver T4"]:::t3
+  cleaver_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cleaver.png' width='28' height='28'/><br/>Meat Cleaver T3"]:::t2
+  spatula_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spatula.png' width='28' height='28'/><br/>Spatula T4"]:::t3
+  spatula_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spatula.png' width='28' height='28'/><br/>Spatula T3"]:::t2
+  whisk_spin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/whisk_spin.png' width='28' height='28'/><br/>Whirl Whisk T4"]:::t3
+  whisk_spin_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/whisk_spin.png' width='28' height='28'/><br/>Whirl Whisk T3"]:::t2
+  meat_tenderizer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/meat_tenderizer.png' width='28' height='28'/><br/>Meat Tenderizer T4"]:::t3
+  meat_tenderizer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/meat_tenderizer.png' width='28' height='28'/><br/>Meat Tenderizer T3"]:::t2
+  skewer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/skewer.png' width='28' height='28'/><br/>BBQ Skewer T4"]:::t3
+  skewer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/skewer.png' width='28' height='28'/><br/>BBQ Skewer T3"]:::t2
+  ladle_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ladle.png' width='28' height='28'/><br/>Soup Ladle T4"]:::t3
+  ladle_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ladle.png' width='28' height='28'/><br/>Soup Ladle T3"]:::t2
+  baguette_sword_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/baguette_sword.png' width='28' height='28'/><br/>Baguette Blade T4"]:::t3
+  baguette_sword_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/baguette_sword.png' width='28' height='28'/><br/>Baguette Blade T3"]:::t2
+  cucumber_katana_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cucumber_katana.png' width='28' height='28'/><br/>Cucumber Katana T4"]:::t3
+  cucumber_katana_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cucumber_katana.png' width='28' height='28'/><br/>Cucumber Katana T3"]:::t2
+  pizza_cutter_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pizza_cutter.png' width='28' height='28'/><br/>Pizza Cutter T4"]:::t3
+  pizza_cutter_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pizza_cutter.png' width='28' height='28'/><br/>Pizza Cutter T3"]:::t2
+  chopsticks_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chopsticks.png' width='28' height='28'/><br/>Chopsticks T4"]:::t3
+  chopsticks_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chopsticks.png' width='28' height='28'/><br/>Chopsticks T3"]:::t2
+  bamboo_spear_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bamboo_spear.png' width='28' height='28'/><br/>Bamboo Spear T4"]:::t3
+  bamboo_spear_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bamboo_spear.png' width='28' height='28'/><br/>Bamboo Spear T3"]:::t2
+  pineapple_mace_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pineapple_mace.png' width='28' height='28'/><br/>Pineapple Mace T4"]:::t3
+  pineapple_mace_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pineapple_mace.png' width='28' height='28'/><br/>Pineapple Mace T3"]:::t2
+  wasabi_katana_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/wasabi_katana.png' width='28' height='28'/><br/>Wasabi Katana T4"]:::t3
+  wasabi_katana_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/wasabi_katana.png' width='28' height='28'/><br/>Wasabi Katana T3"]:::t2
+  kitchen_scissors_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/kitchen_scissors.png' width='28' height='28'/><br/>Kitchen Shears T4"]:::t3
+  kitchen_scissors_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/kitchen_scissors.png' width='28' height='28'/><br/>Kitchen Shears T3"]:::t2
+  blender_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blender_aura.png' width='28' height='28'/><br/>Blender T4"]:::t3
+  blender_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blender_aura.png' width='28' height='28'/><br/>Blender T3"]:::t2
+  dynamite_drumstick_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dynamite_drumstick.png' width='28' height='28'/><br/>Dynamite Drumstick T4"]:::t3
+  dynamite_drumstick_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dynamite_drumstick.png' width='28' height='28'/><br/>Dynamite Drumstick T3"]:::t2
+  coconut_gloves_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_gloves.png' width='28' height='28'/><br/>Coconut Gloves T4"]:::t3
+  coconut_gloves_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_gloves.png' width='28' height='28'/><br/>Coconut Gloves T3"]:::t2
+  candy_cane_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/candy_cane.png' width='28' height='28'/><br/>Candy Cane Club T4"]:::t3
+  candy_cane_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/candy_cane.png' width='28' height='28'/><br/>Candy Cane Club T3"]:::t2
+  popsicle_blade_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popsicle_blade.png' width='28' height='28'/><br/>Popsicle Rapier T4"]:::t3
+  popsicle_blade_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popsicle_blade.png' width='28' height='28'/><br/>Popsicle Rapier T3"]:::t2
+  icecream_hammer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/icecream_hammer.png' width='28' height='28'/><br/>Ice Cream Maul T4"]:::t3
+  icecream_hammer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/icecream_hammer.png' width='28' height='28'/><br/>Ice Cream Maul T3"]:::t2
+  shock_wok_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/shock_wok.png' width='28' height='28'/><br/>Shock Wok T4"]:::t3
+  shock_wok_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/shock_wok.png' width='28' height='28'/><br/>Shock Wok T3"]:::t2
+  volt_fork_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/volt_fork.png' width='28' height='28'/><br/>Volt Fork T4"]:::t3
+  volt_fork_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/volt_fork.png' width='28' height='28'/><br/>Volt Fork T3"]:::t2
+  toxic_spike_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/toxic_spike.png' width='28' height='28'/><br/>Toadstool Spike T4"]:::t3
+  toxic_spike_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/toxic_spike.png' width='28' height='28'/><br/>Toadstool Spike T3"]:::t2
+  bbq_skewer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bbq_skewer.png' width='28' height='28'/><br/>BBQ Skewer T4"]:::t3
+  bbq_skewer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bbq_skewer.png' width='28' height='28'/><br/>BBQ Skewer T3"]:::t2
+  coal_tongs_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coal_tongs.png' width='28' height='28'/><br/>Coal Tongs T4"]:::t3
+  coal_tongs_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coal_tongs.png' width='28' height='28'/><br/>Coal Tongs T3"]:::t2
+  sushi_blade_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sushi_blade.png' width='28' height='28'/><br/>Sushi Blade T4"]:::t3
+  sushi_blade_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sushi_blade.png' width='28' height='28'/><br/>Sushi Blade T3"]:::t2
+  twin_cleavers_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/twin_cleavers.png' width='28' height='28'/><br/>Twin Cleavers T4"]:::t3
+  twin_cleavers_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/twin_cleavers.png' width='28' height='28'/><br/>Twin Cleavers T3"]:::t2
+  blade_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blade_aura.png' width='28' height='28'/><br/>Blade Wind Aura T4"]:::t3
+  blade_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blade_aura.png' width='28' height='28'/><br/>Blade Wind Aura T3"]:::t2
+  grater_sweep_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grater_sweep.png' width='28' height='28'/><br/>Grater Blade T4"]:::t3
+  grater_sweep_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grater_sweep.png' width='28' height='28'/><br/>Grater Blade T3"]:::t2
+  chili_shuriken_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chili_shuriken.png' width='28' height='28'/><br/>Chili Saw T4"]:::t3
+  chili_shuriken_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chili_shuriken.png' width='28' height='28'/><br/>Chili Saw T3"]:::t2
+  mandoline_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mandoline.png' width='28' height='28'/><br/>Mandoline T4"]:::t3
+  mandoline_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mandoline.png' width='28' height='28'/><br/>Mandoline T3"]:::t2
+  pepper_storm_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_storm_aura.png' width='28' height='28'/><br/>Pepper Storm T4"]:::t3
+  pepper_storm_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_storm_aura.png' width='28' height='28'/><br/>Pepper Storm T3"]:::t2
+  sushi_twin_blade_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sushi_twin_blade.png' width='28' height='28'/><br/>Twin Sushi Blade T4"]:::t3
+  frost_cleaver_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/frost_cleaver.png' width='28' height='28'/><br/>Frost Cleaver T4"]:::t3
+  storm_whisk_pan_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/storm_whisk_pan.png' width='28' height='28'/><br/>Storm Bastion Pan T4"]:::t3
+  coconut_quake_mace_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_quake_mace.png' width='28' height='28'/><br/>Coconut Quake Mace T4"]:::t3
+  coconut_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_cannon.png' width='28' height='28'/><br/>Coconut Cannon T3"]:::t2
+  fz_knife_ember_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_knife_ember_mine.png' width='28' height='28'/><br/>Blazing Chef's Knife T4"]:::t3
+  ember_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ember_mine.png' width='28' height='28'/><br/>Ember Mine T3"]:::t2
+  fz_candy_cane_glacier_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_candy_cane_glacier_mortar.png' width='28' height='28'/><br/>Frost Candy Cane Club T4"]:::t3
+  glacier_mortar_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/glacier_mortar.png' width='28' height='28'/><br/>Glacier Mortar T3"]:::t2
+  fz_twin_cleavers_ketchup_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_twin_cleavers_ketchup.png' width='28' height='28'/><br/>Scatter Twin Cleavers T4"]:::t3
+  ketchup_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup.png' width='28' height='28'/><br/>Ketchup Bottle T3"]:::t2
+  fz_skewer_soy_pistol_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_skewer_soy_pistol.png' width='28' height='28'/><br/>Saucy BBQ Skewer T4"]:::t3
+  soy_pistol_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soy_pistol.png' width='28' height='28'/><br/>Soy Pistol T3"]:::t2
+  fz_cucumber_katana_soda_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cucumber_katana_soda.png' width='28' height='28'/><br/>Frost Cucumber Katana T4"]:::t3
+  soda_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soda.png' width='28' height='28'/><br/>Iced Soda T3"]:::t2
+  fz_spatula_slingshot_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_spatula_slingshot.png' width='28' height='28'/><br/>Chain Spatula T4"]:::t3
+  slingshot_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/slingshot.png' width='28' height='28'/><br/>Tomato Slingshot T3"]:::t2
+  fz_kitchen_scissors_toxic_spike_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_kitchen_scissors_toxic_spike.png' width='28' height='28'/><br/>Toxic Kitchen Shears T4"]:::t3
+  fz_popsicle_blade_olive_launcher_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_popsicle_blade_olive_launcher.png' width='28' height='28'/><br/>Chain Popsicle Rapier T4"]:::t3
+  olive_launcher_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/olive_launcher.png' width='28' height='28'/><br/>Olive Launcher T3"]:::t2
+  fz_bbq_skewer_cream_torch_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_bbq_skewer_cream_torch.png' width='28' height='28'/><br/>Frost BBQ Skewer T4"]:::t3
+  cream_torch_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cream_torch.png' width='28' height='28'/><br/>Cream Torch T3"]:::t2
+  fz_coconut_gloves_ice_cube_tray_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_coconut_gloves_ice_cube_tray.png' width='28' height='28'/><br/>Frost Coconut Gloves T4"]:::t3
+  ice_cube_tray_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ice_cube_tray.png' width='28' height='28'/><br/>Ice Cube Tray T3"]:::t2
+  fz_coal_tongs_whisk_spin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_coal_tongs_whisk_spin.png' width='28' height='28'/><br/>Frost Coal Tongs T4"]:::t3
+  fz_ladle_watermelon_hammer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_ladle_watermelon_hammer.png' width='28' height='28'/><br/>Explosive Soup Ladle T4"]:::t3
+  fz_chopsticks_pepper_spray_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_chopsticks_pepper_spray.png' width='28' height='28'/><br/>Blazing Chopsticks T4"]:::t3
+  pepper_spray_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_spray.png' width='28' height='28'/><br/>Pepper Spray T3"]:::t2
+  fz_pizza_cutter_potato_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_pizza_cutter_potato_mine.png' width='28' height='28'/><br/>Explosive Pizza Cutter T4"]:::t3
+  potato_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/potato_mine.png' width='28' height='28'/><br/>Potato Mine T3"]:::t2
+  fz_baguette_sword_spore_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_baguette_sword_spore_cannon.png' width='28' height='28'/><br/>Toxic Baguette Blade T4"]:::t3
+  spore_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_cannon.png' width='28' height='28'/><br/>Spore Cannon T3"]:::t2
+  fz_meat_tenderizer_seed_spitter_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_meat_tenderizer_seed_spitter.png' width='28' height='28'/><br/>Fresh Meat Tenderizer T4"]:::t3
+  seed_spitter_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/seed_spitter.png' width='28' height='28'/><br/>Seed Spitter T3"]:::t2
+  hell_trident_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hell_trident.png' width='28' height='28'/><br/>Hell Trident Super"]:::t4
+  titan_pin_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/titan_pin.png' width='28' height='28'/><br/>Titan Pin Super"]:::t4
+  paoding_blade_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/paoding_blade.png' width='28' height='28'/><br/>Master Chef Blade Super"]:::t4
+  dragon_cleaver_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragon_cleaver.png' width='28' height='28'/><br/>Dragon Cleaver Super"]:::t4
+  iron_bastion_pan_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/iron_bastion_pan.png' width='28' height='28'/><br/>Iron Bastion Pan Super"]:::t4
+  melon_quake_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/melon_quake.png' width='28' height='28'/><br/>Melon Quake Super"]:::t4
+  coconut_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_cannon.png' width='28' height='28'/><br/>Coconut Cannon T4"]:::t3
+  tsunami_katana_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/tsunami_katana.png' width='28' height='28'/><br/>Tsunami Katana Super"]:::t4
+  tornado_blender_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/tornado_blender.png' width='28' height='28'/><br/>Tornado Blender Super"]:::t4
+  fork_2 --> fork_3
+  rolling_pin_2 --> rolling_pin_3
+  knife_2 --> knife_3
+  pan_2 --> pan_3
+  watermelon_hammer_2 --> watermelon_hammer_3
+  cleaver_2 --> cleaver_3
+  spatula_2 --> spatula_3
+  whisk_spin_2 --> whisk_spin_3
+  meat_tenderizer_2 --> meat_tenderizer_3
+  skewer_2 --> skewer_3
+  ladle_2 --> ladle_3
+  baguette_sword_2 --> baguette_sword_3
+  cucumber_katana_2 --> cucumber_katana_3
+  pizza_cutter_2 --> pizza_cutter_3
+  chopsticks_2 --> chopsticks_3
+  bamboo_spear_2 --> bamboo_spear_3
+  pineapple_mace_2 --> pineapple_mace_3
+  wasabi_katana_2 --> wasabi_katana_3
+  kitchen_scissors_2 --> kitchen_scissors_3
+  blender_aura_2 --> blender_aura_3
+  dynamite_drumstick_2 --> dynamite_drumstick_3
+  coconut_gloves_2 --> coconut_gloves_3
+  candy_cane_2 --> candy_cane_3
+  popsicle_blade_2 --> popsicle_blade_3
+  icecream_hammer_2 --> icecream_hammer_3
+  shock_wok_2 --> shock_wok_3
+  volt_fork_2 --> volt_fork_3
+  toxic_spike_2 --> toxic_spike_3
+  bbq_skewer_2 --> bbq_skewer_3
+  coal_tongs_2 --> coal_tongs_3
+  sushi_blade_2 --> sushi_blade_3
+  twin_cleavers_2 --> twin_cleavers_3
+  blade_aura_2 --> blade_aura_3
+  grater_sweep_2 --> grater_sweep_3
+  chili_shuriken_2 --> chili_shuriken_3
+  mandoline_2 --> mandoline_3
+  pepper_storm_aura_2 --> pepper_storm_aura_3
+  wasabi_katana_2 --> sushi_twin_blade_3
+  sushi_blade_2 --> sushi_twin_blade_3
+  cleaver_2 --> frost_cleaver_3
+  icecream_hammer_2 --> frost_cleaver_3
+  pan_2 --> storm_whisk_pan_3
+  shock_wok_2 --> storm_whisk_pan_3
+  pineapple_mace_2 --> coconut_quake_mace_3
+  coconut_cannon_2 --> coconut_quake_mace_3
+  knife_2 --> fz_knife_ember_mine_3
+  ember_mine_2 --> fz_knife_ember_mine_3
+  candy_cane_2 --> fz_candy_cane_glacier_mortar_3
+  glacier_mortar_2 --> fz_candy_cane_glacier_mortar_3
+  twin_cleavers_2 --> fz_twin_cleavers_ketchup_3
+  ketchup_2 --> fz_twin_cleavers_ketchup_3
+  skewer_2 --> fz_skewer_soy_pistol_3
+  soy_pistol_2 --> fz_skewer_soy_pistol_3
+  cucumber_katana_2 --> fz_cucumber_katana_soda_3
+  soda_2 --> fz_cucumber_katana_soda_3
+  spatula_2 --> fz_spatula_slingshot_3
+  slingshot_2 --> fz_spatula_slingshot_3
+  kitchen_scissors_2 --> fz_kitchen_scissors_toxic_spike_3
+  toxic_spike_2 --> fz_kitchen_scissors_toxic_spike_3
+  popsicle_blade_2 --> fz_popsicle_blade_olive_launcher_3
+  olive_launcher_2 --> fz_popsicle_blade_olive_launcher_3
+  bbq_skewer_2 --> fz_bbq_skewer_cream_torch_3
+  cream_torch_2 --> fz_bbq_skewer_cream_torch_3
+  coconut_gloves_2 --> fz_coconut_gloves_ice_cube_tray_3
+  ice_cube_tray_2 --> fz_coconut_gloves_ice_cube_tray_3
+  coal_tongs_2 --> fz_coal_tongs_whisk_spin_3
+  whisk_spin_2 --> fz_coal_tongs_whisk_spin_3
+  ladle_2 --> fz_ladle_watermelon_hammer_3
+  watermelon_hammer_2 --> fz_ladle_watermelon_hammer_3
+  chopsticks_2 --> fz_chopsticks_pepper_spray_3
+  pepper_spray_2 --> fz_chopsticks_pepper_spray_3
+  pizza_cutter_2 --> fz_pizza_cutter_potato_mine_3
+  potato_mine_2 --> fz_pizza_cutter_potato_mine_3
+  baguette_sword_2 --> fz_baguette_sword_spore_cannon_3
+  spore_cannon_2 --> fz_baguette_sword_spore_cannon_3
+  meat_tenderizer_2 --> fz_meat_tenderizer_seed_spitter_3
+  seed_spitter_2 --> fz_meat_tenderizer_seed_spitter_3
+  fork_3 --> hell_trident_4
+  volt_fork_3 --> hell_trident_4
+  rolling_pin_3 --> titan_pin_4
+  candy_cane_3 --> titan_pin_4
+  knife_3 --> paoding_blade_4
+  sushi_blade_3 --> paoding_blade_4
+  cleaver_3 --> dragon_cleaver_4
+  pan_3 --> iron_bastion_pan_4
+  shock_wok_3 --> iron_bastion_pan_4
+  watermelon_hammer_3 --> melon_quake_4
+  coconut_cannon_3 --> melon_quake_4
+  wasabi_katana_3 --> tsunami_katana_4
+  sushi_twin_blade_3 --> tsunami_katana_4
+  blender_aura_3 --> tornado_blender_4
+  blade_aura_3 --> tornado_blender_4
+```
+
+<a id="craft-graph-ranged"></a>
+
+### Ranged (67 recipes)
+
+```mermaid
+flowchart LR
+  classDef t2 fill:#f3e8ff,stroke:#8a4fd0
+  classDef t3 fill:#fff3d6,stroke:#d09a1f
+  classDef t4 fill:#ffe1e1,stroke:#d04a4a,stroke-width:2px
+  slingshot_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/slingshot.png' width='28' height='28'/><br/>Tomato Slingshot T4"]:::t3
+  slingshot_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/slingshot.png' width='28' height='28'/><br/>Tomato Slingshot T3"]:::t2
+  pea_shooter_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pea_shooter.png' width='28' height='28'/><br/>Pea Shooter T4"]:::t3
+  pea_shooter_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pea_shooter.png' width='28' height='28'/><br/>Pea Shooter T3"]:::t2
+  chili_rocket_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chili_rocket.png' width='28' height='28'/><br/>Chili Rocket T4"]:::t3
+  chili_rocket_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chili_rocket.png' width='28' height='28'/><br/>Chili Rocket T3"]:::t2
+  corn_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/corn_cannon.png' width='28' height='28'/><br/>Corn Cannon T4"]:::t3
+  corn_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/corn_cannon.png' width='28' height='28'/><br/>Corn Cannon T3"]:::t2
+  ketchup_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup.png' width='28' height='28'/><br/>Ketchup Bottle T4"]:::t3
+  ketchup_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup.png' width='28' height='28'/><br/>Ketchup Bottle T3"]:::t2
+  onion_boomerang_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/onion_boomerang.png' width='28' height='28'/><br/>Onion Boomerang T4"]:::t3
+  onion_boomerang_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/onion_boomerang.png' width='28' height='28'/><br/>Onion Boomerang T3"]:::t2
+  olive_launcher_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/olive_launcher.png' width='28' height='28'/><br/>Olive Launcher T4"]:::t3
+  olive_launcher_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/olive_launcher.png' width='28' height='28'/><br/>Olive Launcher T3"]:::t2
+  popcorn_machine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popcorn_machine.png' width='28' height='28'/><br/>Popcorn Popper T4"]:::t3
+  popcorn_machine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popcorn_machine.png' width='28' height='28'/><br/>Popcorn Popper T3"]:::t2
+  grape_shotgun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grape_shotgun.png' width='28' height='28'/><br/>Grape Shotgun T4"]:::t3
+  grape_shotgun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grape_shotgun.png' width='28' height='28'/><br/>Grape Shotgun T3"]:::t2
+  bean_bazooka_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bean_bazooka.png' width='28' height='28'/><br/>Bean Bazooka T4"]:::t3
+  bean_bazooka_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bean_bazooka.png' width='28' height='28'/><br/>Bean Bazooka T3"]:::t2
+  cherry_bomb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cherry_bomb.png' width='28' height='28'/><br/>Cherry Bombs T4"]:::t3
+  cherry_bomb_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cherry_bomb.png' width='28' height='28'/><br/>Cherry Bombs T3"]:::t2
+  blueberry_sniper_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blueberry_sniper.png' width='28' height='28'/><br/>Blueberry Sniper T4"]:::t3
+  blueberry_sniper_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blueberry_sniper.png' width='28' height='28'/><br/>Blueberry Sniper T3"]:::t2
+  plate_frisbee_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/plate_frisbee.png' width='28' height='28'/><br/>Plate Frisbee T4"]:::t3
+  plate_frisbee_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/plate_frisbee.png' width='28' height='28'/><br/>Plate Frisbee T3"]:::t2
+  seed_spitter_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/seed_spitter.png' width='28' height='28'/><br/>Seed Spitter T4"]:::t3
+  seed_spitter_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/seed_spitter.png' width='28' height='28'/><br/>Seed Spitter T3"]:::t2
+  carrot_crossbow_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/carrot_crossbow.png' width='28' height='28'/><br/>Carrot Crossbow T4"]:::t3
+  carrot_crossbow_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/carrot_crossbow.png' width='28' height='28'/><br/>Carrot Crossbow T3"]:::t2
+  honey_blaster_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/honey_blaster.png' width='28' height='28'/><br/>Honey Blaster T4"]:::t3
+  honey_blaster_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/honey_blaster.png' width='28' height='28'/><br/>Honey Blaster T3"]:::t2
+  soy_pistol_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soy_pistol.png' width='28' height='28'/><br/>Soy Pistol T4"]:::t3
+  soy_pistol_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soy_pistol.png' width='28' height='28'/><br/>Soy Pistol T3"]:::t2
+  pepper_grinder_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_grinder.png' width='28' height='28'/><br/>Pepper Grinder Gun T4"]:::t3
+  pepper_grinder_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_grinder.png' width='28' height='28'/><br/>Pepper Grinder Gun T3"]:::t2
+  soy_bomb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soy_bomb.png' width='28' height='28'/><br/>Soy Bomb T4"]:::t3
+  soy_bomb_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soy_bomb.png' width='28' height='28'/><br/>Soy Bomb T3"]:::t2
+  bbq_torch_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bbq_torch.png' width='28' height='28'/><br/>BBQ Torch T4"]:::t3
+  bbq_torch_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bbq_torch.png' width='28' height='28'/><br/>BBQ Torch T3"]:::t2
+  jam_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/jam_mortar.png' width='28' height='28'/><br/>Jam Mortar T4"]:::t3
+  jam_mortar_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/jam_mortar.png' width='28' height='28'/><br/>Jam Mortar T3"]:::t2
+  sea_urchin_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sea_urchin_mine.png' width='28' height='28'/><br/>Sea Urchin Mine T4"]:::t3
+  sea_urchin_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sea_urchin_mine.png' width='28' height='28'/><br/>Sea Urchin Mine T3"]:::t2
+  asparagus_bow_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/asparagus_bow.png' width='28' height='28'/><br/>Asparagus Longbow T4"]:::t3
+  asparagus_bow_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/asparagus_bow.png' width='28' height='28'/><br/>Asparagus Longbow T3"]:::t2
+  macaron_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/macaron_gun.png' width='28' height='28'/><br/>Macaron Repeater T4"]:::t3
+  macaron_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/macaron_gun.png' width='28' height='28'/><br/>Macaron Repeater T3"]:::t2
+  donut_ring_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/donut_ring.png' width='28' height='28'/><br/>Donut Ring T4"]:::t3
+  donut_ring_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/donut_ring.png' width='28' height='28'/><br/>Donut Ring T3"]:::t2
+  choco_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/choco_mine.png' width='28' height='28'/><br/>Chocolate Mine T4"]:::t3
+  choco_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/choco_mine.png' width='28' height='28'/><br/>Chocolate Mine T3"]:::t2
+  shaved_ice_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/shaved_ice_gun.png' width='28' height='28'/><br/>Shaved Ice Gun T4"]:::t3
+  shaved_ice_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/shaved_ice_gun.png' width='28' height='28'/><br/>Shaved Ice Gun T3"]:::t2
+  glacier_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/glacier_mortar.png' width='28' height='28'/><br/>Glacier Mortar T4"]:::t3
+  glacier_mortar_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/glacier_mortar.png' width='28' height='28'/><br/>Glacier Mortar T3"]:::t2
+  microwave_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/microwave_cannon.png' width='28' height='28'/><br/>Microwave Cannon T4"]:::t3
+  microwave_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/microwave_cannon.png' width='28' height='28'/><br/>Microwave Cannon T3"]:::t2
+  spore_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_cannon.png' width='28' height='28'/><br/>Spore Cannon T4"]:::t3
+  spore_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_cannon.png' width='28' height='28'/><br/>Spore Cannon T3"]:::t2
+  mycelium_boomerang_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mycelium_boomerang.png' width='28' height='28'/><br/>Mycelium Boomerang T4"]:::t3
+  mycelium_boomerang_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mycelium_boomerang.png' width='28' height='28'/><br/>Mycelium Boomerang T3"]:::t2
+  blowpipe_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blowpipe.png' width='28' height='28'/><br/>Toxic Blowpipe T4"]:::t3
+  blowpipe_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blowpipe.png' width='28' height='28'/><br/>Toxic Blowpipe T3"]:::t2
+  bbq_sauce_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bbq_sauce_cannon.png' width='28' height='28'/><br/>BBQ Sauce Cannon T4"]:::t3
+  bbq_sauce_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bbq_sauce_cannon.png' width='28' height='28'/><br/>BBQ Sauce Cannon T3"]:::t2
+  hot_sauce_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hot_sauce_gun.png' width='28' height='28'/><br/>Hot Sauce Pistol T4"]:::t3
+  hot_sauce_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hot_sauce_gun.png' width='28' height='28'/><br/>Hot Sauce Pistol T3"]:::t2
+  knife_case_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/knife_case.png' width='28' height='28'/><br/>Knife Case T4"]:::t3
+  knife_case_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/knife_case.png' width='28' height='28'/><br/>Knife Case T3"]:::t2
+  coconut_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_cannon.png' width='28' height='28'/><br/>Coconut Cannon T4"]:::t3
+  coconut_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_cannon.png' width='28' height='28'/><br/>Coconut Cannon T3"]:::t2
+  pumpkin_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pumpkin_mortar.png' width='28' height='28'/><br/>Pumpkin Mortar T4"]:::t3
+  pumpkin_mortar_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pumpkin_mortar.png' width='28' height='28'/><br/>Pumpkin Mortar T3"]:::t2
+  melon_grenade_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/melon_grenade.png' width='28' height='28'/><br/>Melon Grenade T4"]:::t3
+  melon_grenade_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/melon_grenade.png' width='28' height='28'/><br/>Melon Grenade T3"]:::t2
+  potato_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/potato_mine.png' width='28' height='28'/><br/>Potato Mine T4"]:::t3
+  potato_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/potato_mine.png' width='28' height='28'/><br/>Potato Mine T3"]:::t2
+  corn_scatter_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/corn_scatter.png' width='28' height='28'/><br/>Corn Scattergun T4"]:::t3
+  corn_scatter_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/corn_scatter.png' width='28' height='28'/><br/>Corn Scattergun T3"]:::t2
+  pea_sniper_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pea_sniper.png' width='28' height='28'/><br/>Pod Sniper T4"]:::t3
+  pea_sniper_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pea_sniper.png' width='28' height='28'/><br/>Pod Sniper T3"]:::t2
+  blast_pea_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blast_pea_cannon.png' width='28' height='28'/><br/>Blast Pea Cannon T4"]:::t3
+  toxic_gatling_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/toxic_gatling.png' width='28' height='28'/><br/>Toxic Gatling T4"]:::t3
+  sauce_gatling_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sauce_gatling.png' width='28' height='28'/><br/>Sauce Gatling T3"]:::t2
+  miasma_sprayer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/miasma_sprayer.png' width='28' height='28'/><br/>Miasma Sprayer T3"]:::t2
+  inferno_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/inferno_mortar.png' width='28' height='28'/><br/>Inferno Mortar T4"]:::t3
+  railgun_sniper_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/railgun_sniper.png' width='28' height='28'/><br/>Railgun Sniper T4"]:::t3
+  candy_shotgun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/candy_shotgun.png' width='28' height='28'/><br/>Candy Scattergun T4"]:::t3
+  fz_plate_frisbee_onion_boomerang_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_plate_frisbee_onion_boomerang.png' width='28' height='28'/><br/>Fresh Plate Frisbee T4"]:::t3
+  fz_corn_scatter_grater_sweep_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_corn_scatter_grater_sweep.png' width='28' height='28'/><br/>Lethal Corn Scattergun T4"]:::t3
+  grater_sweep_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grater_sweep.png' width='28' height='28'/><br/>Grater Blade T3"]:::t2
+  fz_sea_urchin_mine_dragonfruit_orb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_sea_urchin_mine_dragonfruit_orb.png' width='28' height='28'/><br/>Blazing Sea Urchin Mine T4"]:::t3
+  dragonfruit_orb_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragonfruit_orb.png' width='28' height='28'/><br/>Dragonfruit Orb T3"]:::t2
+  fz_corn_cannon_blade_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_corn_cannon_blade_aura.png' width='28' height='28'/><br/>Keen Corn Cannon T4"]:::t3
+  blade_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blade_aura.png' width='28' height='28'/><br/>Blade Wind Aura T3"]:::t2
+  fz_honey_blaster_pumpkin_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_honey_blaster_pumpkin_mortar.png' width='28' height='28'/><br/>Blazing Honey Blaster T4"]:::t3
+  fz_popcorn_machine_rot_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_popcorn_machine_rot_aura.png' width='28' height='28'/><br/>Toxic Popcorn Popper T4"]:::t3
+  rot_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rot_aura.png' width='28' height='28'/><br/>Rot Aura T3"]:::t2
+  fz_donut_ring_dynamite_drumstick_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_donut_ring_dynamite_drumstick.png' width='28' height='28'/><br/>Explosive Donut Ring T4"]:::t3
+  dynamite_drumstick_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dynamite_drumstick.png' width='28' height='28'/><br/>Dynamite Drumstick T3"]:::t2
+  fz_bean_bazooka_soy_bomb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_bean_bazooka_soy_bomb.png' width='28' height='28'/><br/>Saucy Bean Bazooka T4"]:::t3
+  fz_choco_mine_bbq_torch_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_choco_mine_bbq_torch.png' width='28' height='28'/><br/>Blazing Chocolate Mine T4"]:::t3
+  fz_cherry_bomb_bamboo_spear_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cherry_bomb_bamboo_spear.png' width='28' height='28'/><br/>Lethal Cherry Bombs T4"]:::t3
+  bamboo_spear_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bamboo_spear.png' width='28' height='28'/><br/>Bamboo Spear T3"]:::t2
+  fz_carrot_crossbow_fork_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_carrot_crossbow_fork.png' width='28' height='28'/><br/>Chef's Carrot Crossbow T4"]:::t3
+  fork_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fork.png' width='28' height='28'/><br/>Tomato Fork T3"]:::t2
+  fz_knife_case_microwave_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_knife_case_microwave_cannon.png' width='28' height='28'/><br/>Explosive Knife Case T4"]:::t3
+  fz_melon_grenade_pumpkin_lantern_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_melon_grenade_pumpkin_lantern.png' width='28' height='28'/><br/>Piercing Melon Grenade T4"]:::t3
+  pumpkin_lantern_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pumpkin_lantern.png' width='28' height='28'/><br/>Pumpkin Lantern T3"]:::t2
+  fz_blowpipe_syrup_sprayer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_blowpipe_syrup_sprayer.png' width='28' height='28'/><br/>Blazing Toxic Blowpipe T4"]:::t3
+  syrup_sprayer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/syrup_sprayer.png' width='28' height='28'/><br/>Syrup Sprayer T3"]:::t2
+  fz_mycelium_boomerang_rice_cooker_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_mycelium_boomerang_rice_cooker_aura.png' width='28' height='28'/><br/>Frost Mycelium Boomerang T4"]:::t3
+  rice_cooker_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rice_cooker_aura.png' width='28' height='28'/><br/>Rice Cooker Aura T3"]:::t2
+  pea_gatling_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pea_gatling.png' width='28' height='28'/><br/>Pea Gatling Super"]:::t4
+  ketchup_flood_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup_flood.png' width='28' height='28'/><br/>Ketchup Flood Super"]:::t4
+  devil_missile_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/devil_missile.png' width='28' height='28'/><br/>Devil Pepper Missile Super"]:::t4
+  blueberry_railgun_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blueberry_railgun.png' width='28' height='28'/><br/>Blueberry Railgun Super"]:::t4
+  golden_corn_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/golden_corn.png' width='28' height='28'/><br/>Golden Popcorn Cannon Super"]:::t4
+  umami_bomb_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/umami_bomb.png' width='28' height='28'/><br/>Umami Nuke Super"]:::t4
+  ember_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ember_mine.png' width='28' height='28'/><br/>Ember Mine T4"]:::t3
+  slingshot_2 --> slingshot_3
+  pea_shooter_2 --> pea_shooter_3
+  chili_rocket_2 --> chili_rocket_3
+  corn_cannon_2 --> corn_cannon_3
+  ketchup_2 --> ketchup_3
+  onion_boomerang_2 --> onion_boomerang_3
+  olive_launcher_2 --> olive_launcher_3
+  popcorn_machine_2 --> popcorn_machine_3
+  grape_shotgun_2 --> grape_shotgun_3
+  bean_bazooka_2 --> bean_bazooka_3
+  cherry_bomb_2 --> cherry_bomb_3
+  blueberry_sniper_2 --> blueberry_sniper_3
+  plate_frisbee_2 --> plate_frisbee_3
+  seed_spitter_2 --> seed_spitter_3
+  carrot_crossbow_2 --> carrot_crossbow_3
+  honey_blaster_2 --> honey_blaster_3
+  soy_pistol_2 --> soy_pistol_3
+  pepper_grinder_2 --> pepper_grinder_3
+  soy_bomb_2 --> soy_bomb_3
+  bbq_torch_2 --> bbq_torch_3
+  jam_mortar_2 --> jam_mortar_3
+  sea_urchin_mine_2 --> sea_urchin_mine_3
+  asparagus_bow_2 --> asparagus_bow_3
+  macaron_gun_2 --> macaron_gun_3
+  donut_ring_2 --> donut_ring_3
+  choco_mine_2 --> choco_mine_3
+  shaved_ice_gun_2 --> shaved_ice_gun_3
+  glacier_mortar_2 --> glacier_mortar_3
+  microwave_cannon_2 --> microwave_cannon_3
+  spore_cannon_2 --> spore_cannon_3
+  mycelium_boomerang_2 --> mycelium_boomerang_3
+  blowpipe_2 --> blowpipe_3
+  bbq_sauce_cannon_2 --> bbq_sauce_cannon_3
+  hot_sauce_gun_2 --> hot_sauce_gun_3
+  knife_case_2 --> knife_case_3
+  coconut_cannon_2 --> coconut_cannon_3
+  pumpkin_mortar_2 --> pumpkin_mortar_3
+  melon_grenade_2 --> melon_grenade_3
+  potato_mine_2 --> potato_mine_3
+  corn_scatter_2 --> corn_scatter_3
+  pea_sniper_2 --> pea_sniper_3
+  pea_shooter_2 --> blast_pea_cannon_3
+  chili_rocket_2 --> blast_pea_cannon_3
+  sauce_gatling_2 --> toxic_gatling_3
+  miasma_sprayer_2 --> toxic_gatling_3
+  jam_mortar_2 --> inferno_mortar_3
+  bbq_sauce_cannon_2 --> inferno_mortar_3
+  blueberry_sniper_2 --> railgun_sniper_3
+  pea_sniper_2 --> railgun_sniper_3
+  grape_shotgun_2 --> candy_shotgun_3
+  macaron_gun_2 --> candy_shotgun_3
+  plate_frisbee_2 --> fz_plate_frisbee_onion_boomerang_3
+  onion_boomerang_2 --> fz_plate_frisbee_onion_boomerang_3
+  corn_scatter_2 --> fz_corn_scatter_grater_sweep_3
+  grater_sweep_2 --> fz_corn_scatter_grater_sweep_3
+  sea_urchin_mine_2 --> fz_sea_urchin_mine_dragonfruit_orb_3
+  dragonfruit_orb_2 --> fz_sea_urchin_mine_dragonfruit_orb_3
+  corn_cannon_2 --> fz_corn_cannon_blade_aura_3
+  blade_aura_2 --> fz_corn_cannon_blade_aura_3
+  honey_blaster_2 --> fz_honey_blaster_pumpkin_mortar_3
+  pumpkin_mortar_2 --> fz_honey_blaster_pumpkin_mortar_3
+  popcorn_machine_2 --> fz_popcorn_machine_rot_aura_3
+  rot_aura_2 --> fz_popcorn_machine_rot_aura_3
+  donut_ring_2 --> fz_donut_ring_dynamite_drumstick_3
+  dynamite_drumstick_2 --> fz_donut_ring_dynamite_drumstick_3
+  bean_bazooka_2 --> fz_bean_bazooka_soy_bomb_3
+  soy_bomb_2 --> fz_bean_bazooka_soy_bomb_3
+  choco_mine_2 --> fz_choco_mine_bbq_torch_3
+  bbq_torch_2 --> fz_choco_mine_bbq_torch_3
+  cherry_bomb_2 --> fz_cherry_bomb_bamboo_spear_3
+  bamboo_spear_2 --> fz_cherry_bomb_bamboo_spear_3
+  carrot_crossbow_2 --> fz_carrot_crossbow_fork_3
+  fork_2 --> fz_carrot_crossbow_fork_3
+  knife_case_2 --> fz_knife_case_microwave_cannon_3
+  microwave_cannon_2 --> fz_knife_case_microwave_cannon_3
+  melon_grenade_2 --> fz_melon_grenade_pumpkin_lantern_3
+  pumpkin_lantern_2 --> fz_melon_grenade_pumpkin_lantern_3
+  blowpipe_2 --> fz_blowpipe_syrup_sprayer_3
+  syrup_sprayer_2 --> fz_blowpipe_syrup_sprayer_3
+  mycelium_boomerang_2 --> fz_mycelium_boomerang_rice_cooker_aura_3
+  rice_cooker_aura_2 --> fz_mycelium_boomerang_rice_cooker_aura_3
+  pea_shooter_3 --> pea_gatling_4
+  blast_pea_cannon_3 --> pea_gatling_4
+  ketchup_3 --> ketchup_flood_4
+  hot_sauce_gun_3 --> ketchup_flood_4
+  chili_rocket_3 --> devil_missile_4
+  inferno_mortar_3 --> devil_missile_4
+  blueberry_sniper_3 --> blueberry_railgun_4
+  railgun_sniper_3 --> blueberry_railgun_4
+  corn_cannon_3 --> golden_corn_4
+  corn_scatter_3 --> golden_corn_4
+  soy_bomb_3 --> umami_bomb_4
+  ember_mine_3 --> umami_bomb_4
+```
+
+<a id="craft-graph-elemental"></a>
+
+### Elemental (67 recipes)
+
+```mermaid
+flowchart LR
+  classDef t2 fill:#f3e8ff,stroke:#8a4fd0
+  classDef t3 fill:#fff3d6,stroke:#d09a1f
+  classDef t4 fill:#ffe1e1,stroke:#d04a4a,stroke-width:2px
+  mustard_flamer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mustard_flamer.png' width='28' height='28'/><br/>Mustard Flamer T4"]:::t3
+  mustard_flamer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mustard_flamer.png' width='28' height='28'/><br/>Mustard Flamer T3"]:::t2
+  soda_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soda.png' width='28' height='28'/><br/>Iced Soda T4"]:::t3
+  soda_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soda.png' width='28' height='28'/><br/>Iced Soda T3"]:::t2
+  garlic_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/garlic_aura.png' width='28' height='28'/><br/>Garlic Aura T4"]:::t3
+  garlic_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/garlic_aura.png' width='28' height='28'/><br/>Garlic Aura T3"]:::t2
+  pepper_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_mine.png' width='28' height='28'/><br/>Pepper Mine T4"]:::t3
+  pepper_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_mine.png' width='28' height='28'/><br/>Pepper Mine T3"]:::t2
+  broccoli_staff_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/broccoli_staff.png' width='28' height='28'/><br/>Broccoli Staff T4"]:::t3
+  broccoli_staff_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/broccoli_staff.png' width='28' height='28'/><br/>Broccoli Staff T3"]:::t2
+  ice_cube_tray_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ice_cube_tray.png' width='28' height='28'/><br/>Ice Cube Tray T4"]:::t3
+  ice_cube_tray_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ice_cube_tray.png' width='28' height='28'/><br/>Ice Cube Tray T3"]:::t2
+  lightning_whisk_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lightning_whisk.png' width='28' height='28'/><br/>Zap Whisk T4"]:::t3
+  lightning_whisk_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lightning_whisk.png' width='28' height='28'/><br/>Zap Whisk T3"]:::t2
+  steam_kettle_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/steam_kettle.png' width='28' height='28'/><br/>Steam Kettle T4"]:::t3
+  steam_kettle_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/steam_kettle.png' width='28' height='28'/><br/>Steam Kettle T3"]:::t2
+  curry_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/curry_aura.png' width='28' height='28'/><br/>Curry Aura T4"]:::t3
+  curry_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/curry_aura.png' width='28' height='28'/><br/>Curry Aura T3"]:::t2
+  pepper_spray_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_spray.png' width='28' height='28'/><br/>Pepper Spray T4"]:::t3
+  pepper_spray_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_spray.png' width='28' height='28'/><br/>Pepper Spray T3"]:::t2
+  mint_frost_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mint_frost_mine.png' width='28' height='28'/><br/>Mint Frost Mine T4"]:::t3
+  mint_frost_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mint_frost_mine.png' width='28' height='28'/><br/>Mint Frost Mine T3"]:::t2
+  thunder_durian_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/thunder_durian.png' width='28' height='28'/><br/>Thunder Durian T4"]:::t3
+  thunder_durian_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/thunder_durian.png' width='28' height='28'/><br/>Thunder Durian T3"]:::t2
+  dragonfruit_orb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragonfruit_orb.png' width='28' height='28'/><br/>Dragonfruit Orb T4"]:::t3
+  dragonfruit_orb_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragonfruit_orb.png' width='28' height='28'/><br/>Dragonfruit Orb T3"]:::t2
+  star_anise_shuriken_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/star_anise_shuriken.png' width='28' height='28'/><br/>Star Anise Star T4"]:::t3
+  star_anise_shuriken_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/star_anise_shuriken.png' width='28' height='28'/><br/>Star Anise Star T3"]:::t2
+  lemon_battery_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lemon_battery.png' width='28' height='28'/><br/>Lemon Battery T4"]:::t3
+  lemon_battery_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lemon_battery.png' width='28' height='28'/><br/>Lemon Battery T3"]:::t2
+  salt_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/salt_aura.png' width='28' height='28'/><br/>Sea Salt Ward T4"]:::t3
+  salt_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/salt_aura.png' width='28' height='28'/><br/>Sea Salt Ward T3"]:::t2
+  cola_zapper_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cola_zapper.png' width='28' height='28'/><br/>Cola Zapper T4"]:::t3
+  cola_zapper_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cola_zapper.png' width='28' height='28'/><br/>Cola Zapper T3"]:::t2
+  hotpot_breath_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hotpot_breath.png' width='28' height='28'/><br/>Hotpot Breath T4"]:::t3
+  hotpot_breath_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hotpot_breath.png' width='28' height='28'/><br/>Hotpot Breath T3"]:::t2
+  pumpkin_lantern_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pumpkin_lantern.png' width='28' height='28'/><br/>Pumpkin Lantern T4"]:::t3
+  pumpkin_lantern_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pumpkin_lantern.png' width='28' height='28'/><br/>Pumpkin Lantern T3"]:::t2
+  spore_sprayer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_sprayer.png' width='28' height='28'/><br/>Spore Sprayer T4"]:::t3
+  spore_sprayer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_sprayer.png' width='28' height='28'/><br/>Spore Sprayer T3"]:::t2
+  cream_torch_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cream_torch.png' width='28' height='28'/><br/>Cream Torch T4"]:::t3
+  cream_torch_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cream_torch.png' width='28' height='28'/><br/>Cream Torch T3"]:::t2
+  caramel_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/caramel_aura.png' width='28' height='28'/><br/>Caramel Aura T4"]:::t3
+  caramel_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/caramel_aura.png' width='28' height='28'/><br/>Caramel Aura T3"]:::t2
+  popping_candy_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popping_candy.png' width='28' height='28'/><br/>Popping Zap T4"]:::t3
+  popping_candy_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popping_candy.png' width='28' height='28'/><br/>Popping Zap T3"]:::t2
+  slush_spray_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/slush_spray.png' width='28' height='28'/><br/>Slush Spray T4"]:::t3
+  slush_spray_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/slush_spray.png' width='28' height='28'/><br/>Slush Spray T3"]:::t2
+  frost_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/frost_aura.png' width='28' height='28'/><br/>Frost Aura T4"]:::t3
+  frost_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/frost_aura.png' width='28' height='28'/><br/>Frost Aura T3"]:::t2
+  icicle_volley_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/icicle_volley.png' width='28' height='28'/><br/>Icicle Volley T4"]:::t3
+  icicle_volley_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/icicle_volley.png' width='28' height='28'/><br/>Icicle Volley T3"]:::t2
+  rice_cooker_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rice_cooker_aura.png' width='28' height='28'/><br/>Rice Cooker Aura T4"]:::t3
+  rice_cooker_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rice_cooker_aura.png' width='28' height='28'/><br/>Rice Cooker Aura T3"]:::t2
+  grill_arc_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grill_arc.png' width='28' height='28'/><br/>Arc Grill T4"]:::t3
+  grill_arc_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grill_arc.png' width='28' height='28'/><br/>Arc Grill T3"]:::t2
+  mixer_storm_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mixer_storm.png' width='28' height='28'/><br/>Storm Mixer T4"]:::t3
+  mixer_storm_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mixer_storm.png' width='28' height='28'/><br/>Storm Mixer T3"]:::t2
+  toaster_zap_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/toaster_zap.png' width='28' height='28'/><br/>Toaster Zap T4"]:::t3
+  toaster_zap_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/toaster_zap.png' width='28' height='28'/><br/>Toaster Zap T3"]:::t2
+  miasma_sprayer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/miasma_sprayer.png' width='28' height='28'/><br/>Miasma Sprayer T4"]:::t3
+  miasma_sprayer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/miasma_sprayer.png' width='28' height='28'/><br/>Miasma Sprayer T3"]:::t2
+  rot_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rot_aura.png' width='28' height='28'/><br/>Rot Aura T4"]:::t3
+  rot_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rot_aura.png' width='28' height='28'/><br/>Rot Aura T3"]:::t2
+  toadstool_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/toadstool_mine.png' width='28' height='28'/><br/>Toadstool Mine T4"]:::t3
+  toadstool_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/toadstool_mine.png' width='28' height='28'/><br/>Toadstool Mine T3"]:::t2
+  charcoal_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/charcoal_aura.png' width='28' height='28'/><br/>Charcoal Aura T4"]:::t3
+  charcoal_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/charcoal_aura.png' width='28' height='28'/><br/>Charcoal Aura T3"]:::t2
+  ember_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ember_mine.png' width='28' height='28'/><br/>Ember Mine T4"]:::t3
+  ember_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ember_mine.png' width='28' height='28'/><br/>Ember Mine T3"]:::t2
+  cumin_star_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cumin_star.png' width='28' height='28'/><br/>Cumin Star T4"]:::t3
+  cumin_star_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cumin_star.png' width='28' height='28'/><br/>Cumin Star T3"]:::t2
+  mint_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mint_aura.png' width='28' height='28'/><br/>Mint Aura T4"]:::t3
+  mint_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mint_aura.png' width='28' height='28'/><br/>Mint Aura T3"]:::t2
+  honey_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/honey_aura.png' width='28' height='28'/><br/>Honey Aura T4"]:::t3
+  honey_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/honey_aura.png' width='28' height='28'/><br/>Honey Aura T3"]:::t2
+  teapot_storm_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/teapot_storm.png' width='28' height='28'/><br/>Teapot Storm T4"]:::t3
+  teapot_storm_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/teapot_storm.png' width='28' height='28'/><br/>Teapot Storm T3"]:::t2
+  jelly_bounce_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/jelly_bounce.png' width='28' height='28'/><br/>Jelly Bounce T4"]:::t3
+  jelly_bounce_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/jelly_bounce.png' width='28' height='28'/><br/>Jelly Bounce T3"]:::t2
+  syrup_sprayer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/syrup_sprayer.png' width='28' height='28'/><br/>Syrup Sprayer T4"]:::t3
+  syrup_sprayer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/syrup_sprayer.png' width='28' height='28'/><br/>Syrup Sprayer T3"]:::t2
+  curry_garlic_field_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/curry_garlic_field.png' width='28' height='28'/><br/>Curry Garlic Field T4"]:::t3
+  thunder_orchard_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/thunder_orchard.png' width='28' height='28'/><br/>Thunder Orchard T4"]:::t3
+  honey_frost_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/honey_frost_aura.png' width='28' height='28'/><br/>Honeyfrost Field T4"]:::t3
+  spore_minefield_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_minefield.png' width='28' height='28'/><br/>Spore Minefield T4"]:::t3
+  dragon_breath_flame_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragon_breath_flame.png' width='28' height='28'/><br/>Dragon Breath T4"]:::t3
+  anise_frost_storm_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/anise_frost_storm.png' width='28' height='28'/><br/>Frost Anise Storm T4"]:::t3
+  holy_salt_barrier_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/holy_salt_barrier.png' width='28' height='28'/><br/>Holy Salt Barrier T4"]:::t3
+  fz_thunder_durian_volt_fork_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_thunder_durian_volt_fork.png' width='28' height='28'/><br/>Piercing Thunder Durian T4"]:::t3
+  volt_fork_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/volt_fork.png' width='28' height='28'/><br/>Volt Fork T3"]:::t2
+  fz_jelly_bounce_chili_shuriken_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_jelly_bounce_chili_shuriken.png' width='28' height='28'/><br/>Blazing Jelly Bounce T4"]:::t3
+  chili_shuriken_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chili_shuriken.png' width='28' height='28'/><br/>Chili Saw T3"]:::t2
+  fz_slush_spray_caramel_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_slush_spray_caramel_aura.png' width='28' height='28'/><br/>Searing Slush Spray T4"]:::t3
+  fz_grill_arc_pepper_storm_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_grill_arc_pepper_storm_aura.png' width='28' height='28'/><br/>Saucy Arc Grill T4"]:::t3
+  pepper_storm_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_storm_aura.png' width='28' height='28'/><br/>Pepper Storm T3"]:::t2
+  fz_teapot_storm_charcoal_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_teapot_storm_charcoal_aura.png' width='28' height='28'/><br/>Blazing Teapot Storm T4"]:::t3
+  fz_cola_zapper_mixer_storm_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cola_zapper_mixer_storm.png' width='28' height='28'/><br/>Chef's Cola Zapper T4"]:::t3
+  fz_steam_kettle_asparagus_bow_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_steam_kettle_asparagus_bow.png' width='28' height='28'/><br/>Piercing Steam Kettle T4"]:::t3
+  asparagus_bow_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/asparagus_bow.png' width='28' height='28'/><br/>Asparagus Longbow T3"]:::t2
+  fz_lightning_whisk_pepper_grinder_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_lightning_whisk_pepper_grinder.png' width='28' height='28'/><br/>Piercing Zap Whisk T4"]:::t3
+  pepper_grinder_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_grinder.png' width='28' height='28'/><br/>Pepper Grinder Gun T3"]:::t2
+  fz_spore_sprayer_shaved_ice_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_spore_sprayer_shaved_ice_gun.png' width='28' height='28'/><br/>Frost Spore Sprayer T4"]:::t3
+  shaved_ice_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/shaved_ice_gun.png' width='28' height='28'/><br/>Shaved Ice Gun T3"]:::t2
+  fz_toaster_zap_hot_sauce_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_toaster_zap_hot_sauce_gun.png' width='28' height='28'/><br/>Blazing Toaster Zap T4"]:::t3
+  hot_sauce_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hot_sauce_gun.png' width='28' height='28'/><br/>Hot Sauce Pistol T3"]:::t2
+  fz_mint_frost_mine_blender_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_mint_frost_mine_blender_aura.png' width='28' height='28'/><br/>Lethal Mint Frost Mine T4"]:::t3
+  blender_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blender_aura.png' width='28' height='28'/><br/>Blender T3"]:::t2
+  fz_popping_candy_rolling_pin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_popping_candy_rolling_pin.png' width='28' height='28'/><br/>Heavy Popping Zap T4"]:::t3
+  rolling_pin_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rolling_pin.png' width='28' height='28'/><br/>Rolling Pin T3"]:::t2
+  fz_cumin_star_mandoline_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cumin_star_mandoline.png' width='28' height='28'/><br/>Piercing Cumin Star T4"]:::t3
+  mandoline_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mandoline.png' width='28' height='28'/><br/>Mandoline T3"]:::t2
+  thor_whisk_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/thor_whisk.png' width='28' height='28'/><br/>Thunder Whisk Super"]:::t4
+  vampire_garlic_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/vampire_garlic.png' width='28' height='28'/><br/>Vampire Garlic Super"]:::t4
+  anise_storm_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/anise_storm.png' width='28' height='28'/><br/>Anise Storm Super"]:::t4
+  storm_broccoli_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/storm_broccoli.png' width='28' height='28'/><br/>Storm Broccoli Super"]:::t4
+  mustard_dragon_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mustard_dragon.png' width='28' height='28'/><br/>Mustard Dragon Super"]:::t4
+  pepper_minefield_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_minefield.png' width='28' height='28'/><br/>Pepper Minefield Super"]:::t4
+  mustard_flamer_2 --> mustard_flamer_3
+  soda_2 --> soda_3
+  garlic_aura_2 --> garlic_aura_3
+  pepper_mine_2 --> pepper_mine_3
+  broccoli_staff_2 --> broccoli_staff_3
+  ice_cube_tray_2 --> ice_cube_tray_3
+  lightning_whisk_2 --> lightning_whisk_3
+  steam_kettle_2 --> steam_kettle_3
+  curry_aura_2 --> curry_aura_3
+  pepper_spray_2 --> pepper_spray_3
+  mint_frost_mine_2 --> mint_frost_mine_3
+  thunder_durian_2 --> thunder_durian_3
+  dragonfruit_orb_2 --> dragonfruit_orb_3
+  star_anise_shuriken_2 --> star_anise_shuriken_3
+  lemon_battery_2 --> lemon_battery_3
+  salt_aura_2 --> salt_aura_3
+  cola_zapper_2 --> cola_zapper_3
+  hotpot_breath_2 --> hotpot_breath_3
+  pumpkin_lantern_2 --> pumpkin_lantern_3
+  spore_sprayer_2 --> spore_sprayer_3
+  cream_torch_2 --> cream_torch_3
+  caramel_aura_2 --> caramel_aura_3
+  popping_candy_2 --> popping_candy_3
+  slush_spray_2 --> slush_spray_3
+  frost_aura_2 --> frost_aura_3
+  icicle_volley_2 --> icicle_volley_3
+  rice_cooker_aura_2 --> rice_cooker_aura_3
+  grill_arc_2 --> grill_arc_3
+  mixer_storm_2 --> mixer_storm_3
+  toaster_zap_2 --> toaster_zap_3
+  miasma_sprayer_2 --> miasma_sprayer_3
+  rot_aura_2 --> rot_aura_3
+  toadstool_mine_2 --> toadstool_mine_3
+  charcoal_aura_2 --> charcoal_aura_3
+  ember_mine_2 --> ember_mine_3
+  cumin_star_2 --> cumin_star_3
+  mint_aura_2 --> mint_aura_3
+  honey_aura_2 --> honey_aura_3
+  teapot_storm_2 --> teapot_storm_3
+  jelly_bounce_2 --> jelly_bounce_3
+  syrup_sprayer_2 --> syrup_sprayer_3
+  curry_aura_2 --> curry_garlic_field_3
+  garlic_aura_2 --> curry_garlic_field_3
+  broccoli_staff_2 --> thunder_orchard_3
+  lemon_battery_2 --> thunder_orchard_3
+  honey_aura_2 --> honey_frost_aura_3
+  frost_aura_2 --> honey_frost_aura_3
+  toadstool_mine_2 --> spore_minefield_3
+  pepper_mine_2 --> spore_minefield_3
+  hotpot_breath_2 --> dragon_breath_flame_3
+  mustard_flamer_2 --> dragon_breath_flame_3
+  star_anise_shuriken_2 --> anise_frost_storm_3
+  icicle_volley_2 --> anise_frost_storm_3
+  salt_aura_2 --> holy_salt_barrier_3
+  mint_aura_2 --> holy_salt_barrier_3
+  thunder_durian_2 --> fz_thunder_durian_volt_fork_3
+  volt_fork_2 --> fz_thunder_durian_volt_fork_3
+  jelly_bounce_2 --> fz_jelly_bounce_chili_shuriken_3
+  chili_shuriken_2 --> fz_jelly_bounce_chili_shuriken_3
+  slush_spray_2 --> fz_slush_spray_caramel_aura_3
+  caramel_aura_2 --> fz_slush_spray_caramel_aura_3
+  grill_arc_2 --> fz_grill_arc_pepper_storm_aura_3
+  pepper_storm_aura_2 --> fz_grill_arc_pepper_storm_aura_3
+  teapot_storm_2 --> fz_teapot_storm_charcoal_aura_3
+  charcoal_aura_2 --> fz_teapot_storm_charcoal_aura_3
+  cola_zapper_2 --> fz_cola_zapper_mixer_storm_3
+  mixer_storm_2 --> fz_cola_zapper_mixer_storm_3
+  steam_kettle_2 --> fz_steam_kettle_asparagus_bow_3
+  asparagus_bow_2 --> fz_steam_kettle_asparagus_bow_3
+  lightning_whisk_2 --> fz_lightning_whisk_pepper_grinder_3
+  pepper_grinder_2 --> fz_lightning_whisk_pepper_grinder_3
+  spore_sprayer_2 --> fz_spore_sprayer_shaved_ice_gun_3
+  shaved_ice_gun_2 --> fz_spore_sprayer_shaved_ice_gun_3
+  toaster_zap_2 --> fz_toaster_zap_hot_sauce_gun_3
+  hot_sauce_gun_2 --> fz_toaster_zap_hot_sauce_gun_3
+  mint_frost_mine_2 --> fz_mint_frost_mine_blender_aura_3
+  blender_aura_2 --> fz_mint_frost_mine_blender_aura_3
+  popping_candy_2 --> fz_popping_candy_rolling_pin_3
+  rolling_pin_2 --> fz_popping_candy_rolling_pin_3
+  cumin_star_2 --> fz_cumin_star_mandoline_3
+  mandoline_2 --> fz_cumin_star_mandoline_3
+  lightning_whisk_3 --> thor_whisk_4
+  mixer_storm_3 --> thor_whisk_4
+  garlic_aura_3 --> vampire_garlic_4
+  curry_garlic_field_3 --> vampire_garlic_4
+  star_anise_shuriken_3 --> anise_storm_4
+  anise_frost_storm_3 --> anise_storm_4
+  broccoli_staff_3 --> storm_broccoli_4
+  thunder_orchard_3 --> storm_broccoli_4
+  mustard_flamer_3 --> mustard_dragon_4
+  dragon_breath_flame_3 --> mustard_dragon_4
+  pepper_mine_3 --> pepper_minefield_4
+  spore_minefield_3 --> pepper_minefield_4
+```
 
 <a id="evolution"></a>
 
-## Weapon Evolution (20 super weapons)
+## Super Weapons (20)
 
-A T4 weapon plus a specific classic item can evolve in the shop (tap the weapon): damage, cooldown and range improve and it gains a signature effect, keeping its affixes and forge level; the item is not consumed. Super weapons never appear in the shop; while you hold an evolvable weapon without its item, each shop roll has a 20% chance to offer that item.
+Super weapons can only be crafted: two specific T4 weapons + the original catalyst item + 1 specific T4 (Legendary) item, via the crafting table in the shop. They improve damage, cooldown and range, gain a signature effect, and never appear in the shop.
 
-| Base | Item | Super weapon | T4 dmg / cd / range | Description |
+| Base | Catalyst | Super weapon | T4 dmg / cd / range | Description |
 | --- | --- | --- | --- | --- |
 | <img src="../images/weapon/fork.png" width="32" height="32" alt=""> [Tomato Fork](#weapon-fork) | <img src="../images/item/hot_sauce.png" width="32" height="32" alt=""> Hot Sauce Packet | <img src="../images/weapon/hell_trident.png" width="32" height="32" alt=""> **Hell Trident** | 34→**58** / 0.7s→**0.6s** / 150→**173** | A trident soaked in hot sauce — it sets whatever it pierces ablaze. |
 | <img src="../images/weapon/rolling_pin.png" width="32" height="32" alt=""> [Rolling Pin](#weapon-rolling_pin) | <img src="../images/item/iron_wok.png" width="32" height="32" alt=""> Iron Wok Shield | <img src="../images/weapon/titan_pin.png" width="32" height="32" alt=""> **Titan Pin** | 48→**82** / 1s→**0.85s** / 130→**176** | Weighted with an iron wok; it spins a full circle around you and stuns everything nearby. |

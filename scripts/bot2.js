@@ -1,7 +1,31 @@
 // 自动化平衡测试机器人 v2（开发用）
 // 用法：await import('/scripts/bot2.js'); runBatch(['tomato','carrot'], 2, 16)
 // 按角色流派：近战贴近敌人、远程保持距离；按流派评估道具/升级/武器价值
-const { CHARACTER_MAP, CHARACTERS, WEAPON_MAP, ITEM_MAP, LEVELUP_OPTIONS, TIER_PRICE_MULT, sellPrice, EVOLUTIONS } = window.__dev;
+const {
+  CHARACTER_MAP,
+  CHARACTERS,
+  WEAPON_MAP,
+  ITEM_MAP,
+  LEVELUP_OPTIONS,
+  TIER_PRICE_MULT,
+  sellPrice,
+  EVOLUTIONS,
+  priceInflation,
+  isFavoredWeapon,
+  RECIPES,
+  missingItems,
+  ACHIEVEMENTS,
+  achValue,
+  setInRun,
+} = window.__dev;
+
+/** 所有成就的当前进度值（对局类指标要在对局状态下读） */
+function achSnap() {
+  setInRun(true);
+  const o = Object.fromEntries(ACHIEVEMENTS.map((a) => [a.id, achValue(a)]));
+  setInRun(false);
+  return o;
+}
 
 function profile(charId) {
   const c = CHARACTER_MAP[charId];
@@ -66,24 +90,60 @@ function itemValue(it, P) {
 function weaponValue(o, P) {
   const d = WEAPON_MAP[o.id];
   let v = (d.cls === P.main ? 10 : 4) * [1, 2.1, 4, 8][o.tier]; // 高品质按实际战力估值，不因单价高而被忽略
-  if (run.weapons.some((w) => w.id === o.id && w.tier === o.tier)) v *= 1.4; // 可合成
-  if (run.char.favored.includes(o.id)) v *= 1.5; // 契合武器
+  if (run.allWeapons.some((w) => w.id === o.id && w.tier === o.tier)) v *= o.tier >= 2 ? 3 : 2; // 能凑成对（T3 配对后可按配方合成 T4）
+  if (isFav(o.id)) v *= 1.5; // 契合武器
   return v;
 }
 
+/** 契合武器：武器标签里有角色契合的标签 */
+const isFav = (id) => isFavoredWeapon(run.char.favored, WEAPON_MAP[id]);
+
+/** 配方价值：超武 > T4；契合武器翻倍 */
+function craftScore(r) {
+  const base = r.kind === 'super' ? 100 : 40;
+  return base * (isFav(r.to) ? 2 : 1);
+}
+
+/** 这件道具是不是某条「只差它」的配方材料（商店买道具时优先） */
+function recipeItemNeed(id) {
+  let best = 0;
+  for (const r of RECIPES) {
+    const miss = missingItems(r, run.items);
+    // 这件道具能填上某个还缺的槽
+    if (!miss.some((i) => r.items[i].includes(id))) continue;
+    const mats = run.craftMaterials(r);
+    const score = (mats ? 3 : 1) * (miss.length === 1 ? 2 : 1) * (isFav(r.to) ? 2 : 1) * (r.kind === 'super' ? 2 : 1);
+    best = Math.max(best, score);
+  }
+  return best;
+}
+
+/** 这把武器是不是某条配方的材料（优先买契合武器的配方材料） */
+function recipeWeaponNeed(id, tier) {
+  let best = 0;
+  for (const r of RECIPES) {
+    if (!r.from.some(([w, t]) => w === id && t === tier)) continue;
+    best = Math.max(best, (isFav(r.to) ? 3 : 1) * (r.kind === 'super' ? 2 : 1));
+  }
+  return best;
+}
+
 function levelValue(opt, P) {
+  // 局内天赋卡（talent:<id>）：没有属性权重，三张卡随机取一张
+  if (opt.key.startsWith('talent:')) return Math.random();
   const base = LEVELUP_OPTIONS.find((x) => x.key === opt.key).values[0];
   return (P.W[opt.key] ?? 0) * (opt.value / base);
 }
 
-export function startBot2(charId, ch, speed = 16) {
+export function startBot2(charId, ch, speed = 16, budget = 30) {
   clearInterval(window.__bot);
   window.__log = [];
   window.__dmg = [];
   const P = profile(charId);
-  // speed：每帧模拟步数；'max' = 每帧在 10ms 预算内尽可能多跑（极速）
+  // speed：每帧模拟步数；'max' = 每帧在 budget 毫秒预算内尽可能多跑（极速）。
+  // 测试模式不渲染，帧率低也无妨：预算越大，空等下一帧的时间占比越小
   GameScene.simSpeed = speed === 'max' ? Infinity : speed;
-  GameScene.simBudgetMs = speed === 'max' ? 10 : 0;
+  GameScene.simBudgetMs = speed === 'max' ? budget : 0;
   // 战斗走位按模拟时间决策：每 6 步（0.1 秒游戏时间）一次，与倍速、帧率无关
   let k = 0;
   GameScene.onStep = () => {
@@ -93,8 +153,9 @@ export function startBot2(charId, ch, speed = 16) {
   game.scene.getScenes(true).forEach((s) => s.scene.stop());
   game.scene.start('Game');
   window.__botState = { done: false, win: false, charId, ch, t0: performance.now() };
+  window.__achStart = achSnap();
   window.__log = [];
-  window.__econ = { spent: 0, reroll: 0, rerolls: 0, t4Seen: 0, t4Bought: 0, seen: new WeakSet() };
+  window.__econ = { spent: 0, reroll: 0, rerolls: 0, t4Seen: 0, t4Bought: 0, crafts: 0, seen: new WeakSet() };
   let lastFrame = -1;
   // scene.stop 要到下一帧才生效：先确认新的一局开始了，再认结算画面（否则会误读上一局的结算）
   let sawGame = false;
@@ -137,6 +198,8 @@ export function startBot2(charId, ch, speed = 16) {
         weapons: run.weapons.map((w) => w.id + w.tier).join(','),
         sec: Math.round((performance.now() - window.__botState.t0) / 1000),
         final: snapshot(),
+        // 本局各成就进度的增量（评估角色解锁条件一局能推进多少）
+        achDelta: ((s, e) => Object.fromEntries(Object.keys(e).map((k) => [k, e[k] - (s[k] ?? 0)])))(window.__achStart, achSnap()),
         waves: window.__log,
       };
     }
@@ -229,9 +292,19 @@ function shop(P) {
     pick.pick();
     return;
   }
-  const evo = run.weapons.find((w) => run.canEvolve(w));
-  if (evo) {
-    run.evolve(evo.uid);
+  // 合成：优先契合武器的超武 → 契合的 T4 → 其他能合成的（T4 与超武只能按配方合成）
+  const craftable = RECIPES.filter((r) => run.canCraft(r)).sort((a, b) => craftScore(b) - craftScore(a));
+  if (craftable.length) {
+    run.craft(craftable[0]);
+    window.__econ.crafts++;
+    s.draw();
+    return;
+  }
+  // 仓库只留契合武器：非契合的直接卖掉腾位置
+  const junk = run.storage.find((w) => !isFav(w.id));
+  if (junk) {
+    run.seeds += sellPrice(s.price(WEAPON_MAP[junk.id].price * TIER_PRICE_MULT[junk.tier]));
+    run.removeWeapon(junk.uid);
     s.draw();
     return;
   }
@@ -240,13 +313,17 @@ function shop(P) {
       window.__econ.seen.add(o);
       window.__econ.t4Seen++;
     }
+  // 性价比按第 1 波价格衡量（价格 ÷ 当前涨价倍率），阈值不随涨价曲线失效
+  const infl = priceInflation(run.wave + 1);
   const cand = run.shop
     .filter((o) => !o.sold && o.price <= run.seeds && (o.kind === 'item' || run.canAddWeapon(o.id, o.tier)))
     .map((o) => ({
       o,
       v:
-        (o.kind === 'item' ? itemValue(ITEM_MAP[o.id], P) : run.weapons.length < 4 ? weaponValue(o, P) * 2 : weaponValue(o, P)) /
-        Math.max(1, o.price),
+        (o.kind === 'item'
+          ? itemValue(ITEM_MAP[o.id], P) + recipeItemNeed(o.id) * 8
+          : (run.weapons.length < 4 ? weaponValue(o, P) * 2 : weaponValue(o, P)) + recipeWeaponNeed(o.id, o.tier) * 6) /
+        Math.max(1, o.price / infl),
     }))
     .filter((x) => x.v > 0.04)
     .sort((a, b) => b.v - a.v);
@@ -254,7 +331,7 @@ function shop(P) {
   const worth = (w) => weaponValue(w, P) + (run.weapons.some((b) => b.uid !== w.uid && b.id === w.id && b.tier === w.tier) ? 5 : 0);
   const weakest = (o) => run.weapons.filter((w) => w.tier < o.tier && worth(w) < weaponValue(o, P)).sort((a, b) => worth(a) - worth(b))[0];
   const sellOf = (w) => sellPrice(s.price(WEAPON_MAP[w.id].price * TIER_PRICE_MULT[w.tier]));
-  const want = (o) => !o.sold && o.kind === 'weapon' && o.tier >= 2 && (WEAPON_MAP[o.id].cls === P.main || run.char.favored.includes(o.id));
+  const want = (o) => !o.sold && o.kind === 'weapon' && o.tier >= 2 && (WEAPON_MAP[o.id].cls === P.main || isFav(o.id));
   const swap = run.shop.find((o) => want(o) && !run.canAddWeapon(o.id, o.tier) && weakest(o) && o.price <= run.seeds + sellOf(weakest(o)));
   if (swap) {
     const w = weakest(swap);
@@ -272,7 +349,7 @@ function shop(P) {
       o.tier >= 2 &&
       o.price > run.seeds &&
       o.price <= run.seeds + lastInc * 1.1 &&
-      (WEAPON_MAP[o.id].cls === P.main || run.char.favored.includes(o.id)) &&
+      (WEAPON_MAP[o.id].cls === P.main || isFav(o.id)) &&
       (run.canAddWeapon(o.id, o.tier) || weakest(o)),
   );
   if (goal) {
@@ -287,9 +364,9 @@ function shop(P) {
     s.buy(cand[0].o);
     return;
   }
-  const dup = run.weapons.find((a) => a.tier < 3 && run.weapons.some((b) => b.uid !== a.uid && b.id === a.id && b.tier === a.tier));
-  if (dup) {
-    run.combine(dup.uid);
+  // 同名同级合成（最高到 T3；T4 起只能按配方合成，见上面的 craftable）
+  const dup = run.allWeapons.find((a) => a.tier < 2 && run.allWeapons.some((b) => b.uid !== a.uid && b.id === a.id && b.tier === a.tier));
+  if (dup && run.combine(dup.uid)) {
     s.draw();
     return;
   }
@@ -331,7 +408,8 @@ function snapshot() {
   const st = run.stats;
   const earned = Object.values(run.income).reduce((a, w) => a + Object.values(w).reduce((x, y) => x + Math.max(0, y), 0), 0);
   const wt = [0, 0, 0, 0];
-  for (const w of run.weapons) wt[w.tier]++;
+  for (const w of run.allWeapons) wt[w.tier]++;
+  const supers = run.allWeapons.filter((w) => WEAPON_MAP[w.id].evolvedFrom).length;
   const ir = [0, 0, 0, 0];
   for (const [id, n] of Object.entries(run.items)) ir[ITEM_MAP[id]?.rarity ?? 0] += n;
   return {
@@ -342,6 +420,14 @@ function snapshot() {
     earned: Math.round(earned),
     inc: Object.fromEntries(Object.entries(run.income[run.wave] ?? {}).map(([k, v]) => [k, Math.round(v)])),
     spent: window.__econ.spent,
+    // 累计花费（含刷新）与累计收入，报告按波次画曲线
+    spentAll: window.__econ.spent + window.__econ.reroll,
+    crafts: window.__econ.crafts,
+    // 仓库与合成：T3 / T4 / 超武的持有数（武器栏 + 仓库）
+    stored: run.storage.length,
+    t3: wt[2],
+    t4: wt[3],
+    supers,
     reroll: window.__econ.reroll,
     rerolls: window.__econ.rerolls,
     t4Seen: window.__econ.t4Seen,
@@ -351,7 +437,7 @@ function snapshot() {
     weapons: run.weapons.length,
     wTier: wt,
     forge: Math.max(0, ...run.weapons.map((w) => w.forge ?? 0)),
-    evolved: run.weapons.filter((w) => WEAPON_MAP[w.id].evolvedFrom).length,
+    evolved: supers,
     stats: Object.fromEntries(STAT_KEYS.map((k) => [k, Math.round(st[k] ?? 0)])),
   };
 }
@@ -381,6 +467,9 @@ export async function runBatch(ids, ch, speed = 16) {
  * 每个方向按道路顺序加点，遵守前置与终极天赋的投入要求。
  */
 export function botTalents(charId, budget, exclude = []) {
+  // 百分比预算（如 '20%'）：按全部可获得天赋点折算
+  if (typeof budget === 'string' && budget.endsWith('%'))
+    budget = Math.round((window.__dev.talentPointsTotal() * parseFloat(budget)) / 100);
   const { TALENT_NODES, setTalents } = window.__dev;
   const P = profile(charId);
   const order =
@@ -401,6 +490,8 @@ export function botTalents(charId, budget, exclude = []) {
         if ((t[n.id] ?? 0) >= n.max || exclude.includes(n.id)) continue;
         if (n.parent && !t[n.parent]) continue;
         if (n.needPoints && spent() < n.needPoints) continue;
+        // 二选一的关键天赋：同组只点一个
+        if (n.exclusive && nodes.some((o) => o.id !== n.id && o.exclusive === n.exclusive && t[o.id])) continue;
         t[n.id] = (t[n.id] ?? 0) + 1;
         budget--;
         progress = true;

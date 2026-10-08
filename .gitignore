@@ -5,3 +5,11 @@ release-steam
 electron/icon.png
 *.log
 .DS_Store
+# 平衡测试报告与测试结果：只留本地，不进仓库
+reports/
+scripts/.batch-*.json
+# 宣传片工作目录（原始录屏、字幕叠加层、mp4 成片）整个不提交；发布用的 webm 在 public/promo/
+promo/
+
+# 运营资料（上架清单、发行计划等）：只留本地，不进仓库
+operations/

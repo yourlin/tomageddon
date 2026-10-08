@@ -3,7 +3,7 @@
 import { treeTotals } from './TalentTree';
 import { bump } from './Counters';
 import Phaser from 'phaser';
-import type { GameScene, HitInfo } from '../scenes/GameScene';
+import type { BulletShield, GameScene, HitInfo } from '../scenes/GameScene';
 import type { SkillDef } from '../data/characters';
 import type { Stats, StatMods } from '../data/stats';
 import type { StatusApply } from '../data/statuses';
@@ -28,6 +28,8 @@ interface Field {
   img: Phaser.GameObjects.Image;
   ring: Phaser.GameObjects.Image;
   info: HitInfo;
+  /** 芋头术士的芋泥结界：挡住飞进来的敌弹 */
+  shield?: BulletShield;
 }
 
 export class SkillSystem implements SkillHost {
@@ -298,7 +300,9 @@ export class SkillSystem implements SkillHost {
           .setAlpha(0.9)
           .setDepth(1.6)
           .setScale((r * 2) / 128);
-        this.fields.push({ x: p.x, y: p.y, r, t: this.dur(sk.duration ?? 5), tick: 0, img, ring, info: { ...info, knockback: 0 } });
+        const shield = run.charId === 'taro' ? { x: p.x, y: p.y, r, color: sk.color } : undefined;
+        if (shield) g.bulletShields.push(shield);
+        this.fields.push({ x: p.x, y: p.y, r, t: this.dur(sk.duration ?? 5), tick: 0, img, ring, info: { ...info, knockback: 0 }, shield });
         g.fx.nova(p.x, p.y, r, sk.color);
         break;
       }
@@ -476,6 +480,7 @@ export class SkillSystem implements SkillHost {
       if (f.t <= 0) {
         f.img.destroy();
         f.ring.destroy();
+        if (f.shield) g.bulletShields = g.bulletShields.filter((x) => x !== f.shield);
       }
     }
     this.fields = this.fields.filter((f) => f.t > 0);

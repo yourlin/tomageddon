@@ -15,6 +15,7 @@ import { KIND_NAME } from './info';
 import { run } from '../systems/RunState';
 import { save } from '../systems/Save';
 import { reelFingerprint, loadReel, saveReel } from './reelCache';
+import { VW, VH } from '../systems/HiDpi';
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -28,7 +29,7 @@ function fitArena(ctx: DevCtx): void {
   const cam = g.cameras.main;
   sb.camMode = 'free';
   cam.stopFollow();
-  sb.setZoom(Math.min(g.scale.width / (A.width + 80), g.scale.height / (A.height + 80)));
+  sb.setZoom(Math.min(VW(g) / (A.width + 80), VH(g) / (A.height + 80)));
   cam.centerOn(A.centerX, A.centerY);
 }
 
@@ -380,8 +381,8 @@ function makeSlot(ov: Overlay, index: number, label: string, info: string): Slot
 async function record(ctx: DevCtx, act: () => void, label: string): Promise<Reel> {
   const g = ctx.sb.g;
   const game = ctx.sb.game;
-  const W = g.scale.width,
-    H = g.scale.height;
+  const W = VW(g),
+    H = VH(g);
   const w = 560,
     hh = 400;
   act();

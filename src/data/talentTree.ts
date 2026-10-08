@@ -42,6 +42,23 @@ export interface TreeFx {
   critHeal?: number;
   /** 击杀时 % 概率额外掉落 1 番茄籽 */
   killSeeds?: number;
+  // ---- 伤害类型专精（只对对应类型的武器生效） ----
+  /** 近战武器每第 3 次命中，在目标处造成一次冲击波（每级 = 该次伤害的 %） */
+  meleeQuake?: number;
+  /** 近战武器命中时 % 概率破甲 */
+  meleeBreak?: number;
+  /** 远程武器命中离自己 260 以外的敌人时伤害 +% */
+  rangedFar?: number;
+  /** 远程武器子弹穿透 +N */
+  rangedPierce?: number;
+  /** 元素武器命中时 % 概率引发小型元素爆炸（50% 伤害） */
+  elemBurst?: number;
+  /** 元素武器命中身上带减益的敌人时伤害 +% */
+  elemDebuffDmg?: number;
+  /** 光环武器命中时 % 概率减速 */
+  auraSlow?: number;
+  /** 光环武器每 4 秒向外脉冲一次（范围 ×1.3，造成一次伤害并击退） */
+  auraPulse?: number;
 }
 
 export type NodeKind = 'core' | 'minor' | 'notable' | 'star' | 'keystone';
@@ -69,6 +86,10 @@ export interface TalentNode {
   road?: number;
   /** 离核心第几步（核心为 0） */
   step: number;
+  /** 同一道路上的并排车道（−1 ~ 1，0 为道路正中）：二选一的关键天赋、道路旁的支线用它错开位置 */
+  lane?: number;
+  /** 互斥组：同组天赋只能点其中一个（二选一的关键天赋） */
+  exclusive?: string;
 }
 
 export interface BranchDef {
@@ -199,10 +220,10 @@ const MIGHT = place('might', [
       kind: 'notable',
       icon: '🌀',
       name: ['战意', 'Battle Lust'],
-      desc: ['击杀时获得 1 层怒气（伤害 +4%，持续 2 秒，最多 3 层）', 'Kills grant a Rage stack (+4% damage, 2s, up to 3)'],
-      val: 1,
+      desc: ['对精英与 Boss 伤害 +{v}%', '+{v}% damage to elites and bosses'],
+      val: 6,
       max: 1,
-      fx: { killRage: 3 },
+      fx: { bossDmg: 6 },
     },
   ]),
   ...road('might', -95, [
@@ -306,21 +327,21 @@ const MIGHT = place('might', [
       id: 'might_dmg',
       kind: 'minor',
       icon: '🔪',
-      name: ['锋芒', 'Sharpness'],
-      desc: ['全伤害 +{v}%', 'All damage +{v}%'],
-      val: 1,
-      max: 2,
-      fx: { mods: { damage: 1 } },
-    },
-    {
-      id: 'might_crit2',
-      kind: 'minor',
-      icon: '🎲',
-      name: ['弱点', 'Weak Spot'],
+      name: ['乘胜追击', 'Press On'],
       desc: ['暴击率 +{v}%', 'Crit chance +{v}%'],
       val: 1,
       max: 2,
       fx: { mods: { crit: 1 } },
+    },
+    {
+      id: 'might_crit2',
+      kind: 'minor',
+      icon: '🎯',
+      name: ['弱点洞察', 'Weak Spot'],
+      desc: ['命中时 {v}% 概率标记敌人（下一击必定暴击）', '{v}% chance on hit to Mark the enemy (next hit always crits)'],
+      val: 3,
+      max: 2,
+      fx: { special: { onHit: [ST('mark', 4, 3)] } },
     },
     {
       id: 'might_key',
@@ -402,12 +423,12 @@ const GUARD = place('guard', [
     {
       id: 'guard_regen2',
       kind: 'minor',
-      icon: '🌱',
-      name: ['生机', 'Vitality'],
-      desc: ['生命再生 +{v}', 'HP regen +{v}'],
+      icon: '🌿',
+      name: ['回春', 'Rejuvenate'],
+      desc: ['受伤时获得 3 秒再生', 'Gain Regen for 3s when hurt'],
       val: 1,
       max: 1,
-      fx: { mods: { regen: 1 } },
+      fx: { special: { onHurtSelf: [ST('regen', 3)] } },
     },
   ]),
   ...road('guard', -20, [
@@ -497,10 +518,10 @@ const AGILITY = place('agility', [
   core('agility', {
     icon: '🍃',
     name: ['轻盈', 'Light Feet'],
-    desc: ['移速 +{v}%', 'Move speed +{v}%'],
-    val: 2,
+    desc: ['移动速度 +{v}', 'Move Speed +{v}'],
+    val: 1,
     max: 3,
-    fx: { mods: { speed: 2 } },
+    fx: { mods: { speed: 1 } },
   }),
   ...road('agility', -140, [
     {
@@ -550,15 +571,15 @@ const AGILITY = place('agility', [
       kind: 'notable',
       icon: '🌬️',
       name: ['疾风', 'Gale'],
-      desc: ['击杀时获得 1 秒急速', 'Gain Haste for 1s on kill'],
-      val: 1,
+      desc: ['攻速 +{v}%', 'Attack speed +{v}%'],
+      val: 2,
       max: 1,
-      fx: { special: { onKillSelf: [ST('haste', 1)] } },
+      fx: { mods: { attackSpeed: 2 } },
     },
     {
       id: 'agility_as2',
       kind: 'minor',
-      icon: '🏹',
+      icon: '⚡',
       name: ['连射', 'Volley'],
       desc: ['攻速 +{v}%', 'Attack speed +{v}%'],
       val: 2,
@@ -594,20 +615,20 @@ const AGILITY = place('agility', [
       kind: 'minor',
       icon: '👟',
       name: ['疾行', 'Sprint'],
-      desc: ['移速 +{v}%', 'Move speed +{v}%'],
-      val: 2,
+      desc: ['移动速度 +{v}', 'Move Speed +{v}'],
+      val: 1,
       max: 2,
-      fx: { mods: { speed: 2 } },
+      fx: { mods: { speed: 1 } },
     },
     {
       id: 'agility_dodge2',
       kind: 'minor',
-      icon: '🌪️',
-      name: ['风行', 'Windwalk'],
-      desc: ['闪避 +{v}%', 'Dodge +{v}%'],
-      val: 1,
-      max: 2,
-      fx: { mods: { dodge: 1 } },
+      icon: '💨',
+      name: ['抢跑', 'Head Start'],
+      desc: ['每波开始获得 4 秒急速', 'Gain Haste for 4s at the start of each wave'],
+      val: 4,
+      max: 1,
+      fx: { special: { waveStartSelf: [ST('haste', 4)] } },
     },
     {
       id: 'agility_focus',
@@ -757,12 +778,12 @@ const ARCANE = place('arcane', [
     {
       id: 'arcane_cd2',
       kind: 'minor',
-      icon: '🕰️',
+      icon: '⏳',
       name: ['时序', 'Timekeeper'],
-      desc: ['技能冷却 -{v}%', 'Skill cooldown -{v}%'],
-      val: 3,
-      max: 2,
-      fx: { mods: { skillCd: 3 } },
+      desc: ['每 12 秒获得 3 秒急速', 'Gain Haste for 3s every 12s'],
+      val: 1,
+      max: 1,
+      fx: { special: { periodicSelf: { every: 12, status: [ST('haste', 3)] } } },
     },
     {
       id: 'arcane_key',
@@ -795,9 +816,9 @@ const FORTUNE = place('fortune', [
       icon: '🍀',
       name: ['好运', 'Lucky'],
       desc: ['幸运 +{v}', 'Luck +{v}'],
-      val: 4,
+      val: 2,
       max: 3,
-      fx: { mods: { luck: 4 } },
+      fx: { mods: { luck: 2 } },
     },
     {
       id: 'fortune_double',
@@ -878,12 +899,12 @@ const FORTUNE = place('fortune', [
     {
       id: 'fortune_pickup',
       kind: 'minor',
-      icon: '🧲',
+      icon: '🌾',
       name: ['拾穗', 'Gleaning'],
-      desc: ['拾取距离 +{v}', 'Pickup range +{v}'],
-      val: 15,
-      max: 2,
-      fx: { mods: { pickup: 15 } },
+      desc: ['每击杀 40 个敌人回复 1 生命', 'Heal 1 HP every 40 kills'],
+      val: 1,
+      max: 1,
+      fx: { special: { killHeal: 40 } },
     },
     {
       id: 'fortune_killseed',
@@ -1033,12 +1054,12 @@ const ALCHEMY = place('alchemy', [
     {
       id: 'alchemy_dot',
       kind: 'minor',
-      icon: '🫗',
-      name: ['浓缩', 'Concentrate'],
-      desc: ['持续伤害 +{v}%', 'Damage over time +{v}%'],
-      val: 5,
-      max: 2,
-      fx: { special: { statusDmg: 5 } },
+      icon: '☁️',
+      name: ['瘴气', 'Miasma'],
+      desc: ['周围 120 范围的敌人每 2 秒中毒', 'Enemies within 120 are Poisoned every 2s'],
+      val: 1,
+      max: 1,
+      fx: { special: { aura: { radius: 120, every: 2, status: [ST('poison', 3)] } } },
     },
     {
       id: 'alchemy_key',
@@ -1054,7 +1075,228 @@ const ALCHEMY = place('alchemy', [
   ]),
 ]);
 
-export const TALENT_NODES: TalentNode[] = [...MIGHT, ...GUARD, ...AGILITY, ...ARCANE, ...FORTUNE, ...ALCHEMY];
+// ---------------- 伤害类型专精：近战 / 远程 / 元素 / 光环（接在力量分支各流派道路的末端） ----------------
+const SPEC = place('might', [
+  ...road(
+    'might',
+    -150,
+    [
+      {
+        id: 'might_sunder',
+        kind: 'minor',
+        icon: '🪓',
+        name: ['碎甲', 'Sunder'],
+        desc: ['近战武器命中时 {v}% 概率破甲', '{v}% chance for melee hits to Armor Break'],
+        val: 8,
+        max: 2,
+        fx: { meleeBreak: 8 },
+      },
+      {
+        id: 'might_quake',
+        kind: 'notable',
+        icon: '🌋',
+        name: ['震地', 'Quake'],
+        desc: [
+          '近战武器每第 3 次命中，在目标处震出冲击波（40% 伤害）',
+          'Every 3rd melee hit sends out a shockwave at the target (40% damage)',
+        ],
+        val: 40,
+        max: 1,
+        fx: { meleeQuake: 40 },
+      },
+    ],
+    'might_frenzy',
+    4,
+  ),
+  ...road(
+    'might',
+    -95,
+    [
+      {
+        id: 'might_far',
+        kind: 'minor',
+        icon: '🏹',
+        name: ['远射', 'Long Shot'],
+        desc: ['远程武器命中 260 以外的敌人时伤害 +{v}%', 'Ranged hits deal +{v}% damage to enemies beyond 260'],
+        val: 5,
+        max: 3,
+        fx: { rangedFar: 5 },
+      },
+      {
+        id: 'might_pierce',
+        kind: 'notable',
+        icon: '🪡',
+        name: ['贯穿', 'Pierce'],
+        desc: ['远程武器子弹穿透 +1', 'Ranged bullets pierce +1'],
+        val: 1,
+        max: 1,
+        fx: { rangedPierce: 1 },
+      },
+    ],
+    'might_as',
+    4,
+  ),
+  ...road(
+    'might',
+    -65,
+    [
+      {
+        id: 'might_elemburst',
+        kind: 'minor',
+        icon: '💥',
+        name: ['元素过载', 'Overload'],
+        desc: [
+          '元素武器命中时 {v}% 概率引发小型元素爆炸（50% 伤害）',
+          '{v}% chance for elemental hits to cause a small burst (50% damage)',
+        ],
+        val: 5,
+        max: 2,
+        fx: { elemBurst: 5 },
+      },
+      {
+        id: 'might_resonance',
+        kind: 'notable',
+        icon: '🔮',
+        name: ['元素共鸣', 'Resonance'],
+        desc: ['元素武器命中身上带减益的敌人时伤害 +15%', 'Elemental hits deal +15% damage to debuffed enemies'],
+        val: 15,
+        max: 1,
+        fx: { elemDebuffDmg: 15 },
+      },
+    ],
+    'might_elem',
+    2,
+  ),
+  ...road(
+    'might',
+    -35,
+    [
+      {
+        id: 'might_auraslow',
+        kind: 'minor',
+        icon: '🫧',
+        name: ['黏滞', 'Mire'],
+        desc: ['光环武器命中时 {v}% 概率减速', '{v}% chance for aura hits to Slow'],
+        val: 8,
+        max: 2,
+        fx: { auraSlow: 8 },
+      },
+      {
+        id: 'might_aurapulse',
+        kind: 'notable',
+        icon: '🌀',
+        name: ['脉动', 'Pulse'],
+        desc: [
+          '光环武器每 4 秒向外脉冲一次（范围 ×1.3，造成一次伤害并击退）',
+          'Auras pulse outward every 4s (×1.3 radius, one hit and knockback)',
+        ],
+        val: 1,
+        max: 1,
+        fx: { auraPulse: 1 },
+      },
+    ],
+    'might_aurasize',
+    4,
+  ),
+]);
+
+// ---------------- 二选一的关键天赋：与原关键天赋并排、同一互斥组，带代价 ----------------
+type KeyAlt = Omit<Def, 'at' | 'kind' | 'parent' | 'road'> & { branch: BranchId };
+const ALT_KEYS: KeyAlt[] = [
+  {
+    branch: 'might',
+    id: 'might_key2',
+    icon: '💣',
+    name: ['玻璃大炮', 'Glass Cannon'],
+    desc: ['全伤害 +15%，最大生命 −15', 'All damage +15%, Max HP −15'],
+    val: 15,
+    max: 1,
+    needPoints: 26,
+    fx: { mods: { damage: 15, maxHp: -15 } },
+  },
+  {
+    branch: 'guard',
+    id: 'guard_key2',
+    icon: '🏰',
+    name: ['铁壁', 'Bulwark'],
+    desc: ['护甲 +6，移动速度 −4', 'Armor +6, Move Speed −4'],
+    val: 6,
+    max: 1,
+    needPoints: 24,
+    fx: { mods: { armor: 6, speed: -4 } },
+  },
+  {
+    branch: 'agility',
+    id: 'agility_key2',
+    icon: '🌪️',
+    name: ['疾风步', 'Galestep'],
+    desc: ['移动速度 +6，攻速 +8%，最大生命 −10', 'Move Speed +6, Attack Speed +8%, Max HP −10'],
+    val: 12,
+    max: 1,
+    needPoints: 24,
+    fx: { mods: { speed: 6, attackSpeed: 8, maxHp: -10 } },
+  },
+  {
+    branch: 'arcane',
+    id: 'arcane_key2',
+    icon: '📜',
+    name: ['禁咒', 'Forbidden Spell'],
+    desc: ['技能伤害 +40%，技能冷却缩减 −20%', 'Skill damage +40%, Skill cooldown reduction −20%'],
+    val: 40,
+    max: 1,
+    needPoints: 24,
+    fx: { mods: { skillDmg: 40, skillCd: -20 } },
+  },
+  {
+    branch: 'fortune',
+    id: 'fortune_key2',
+    icon: '🎰',
+    name: ['赌徒', 'Gambler'],
+    desc: ['幸运 +16，收获 −15', 'Luck +16, Harvest −15'],
+    val: 16,
+    max: 1,
+    needPoints: 24,
+    fx: { mods: { luck: 16, harvest: -15 } },
+  },
+  {
+    branch: 'alchemy',
+    id: 'alchemy_key2',
+    icon: '🦠',
+    name: ['瘟疫之王', 'Plague Lord'],
+    desc: [
+      '持续伤害 +30%，命中时 15% 概率施加 2 层中毒；全伤害 −8%',
+      'DoT +30%, 15% chance on hit to apply 2 Poison stacks; all damage −8%',
+    ],
+    val: 30,
+    max: 1,
+    needPoints: 24,
+    fx: { mods: { damage: -8 }, special: { statusDmg: 30, onHit: [ST('poison', 3, 15, 2)] } },
+  },
+];
+const BASE_NODES: TalentNode[] = [...MIGHT, ...GUARD, ...AGILITY, ...ARCANE, ...FORTUNE, ...ALCHEMY];
+/** 原关键天赋放左车道，新关键天赋放右车道：同父节点、同一步、同一互斥组 */
+const ALT_NODES: TalentNode[] = ALT_KEYS.map(({ branch, ...k }) => {
+  const orig = BASE_NODES.find((n) => n.branch === branch && n.kind === 'keystone')!;
+  return {
+    ...k,
+    kind: 'keystone',
+    branch,
+    parent: orig.parent,
+    road: orig.road,
+    step: orig.step,
+    x: orig.x,
+    y: orig.y,
+    lane: 0.5,
+    exclusive: `${branch}_key`,
+  };
+});
+const KEY_GROUP = new Set(ALT_KEYS.map((k) => k.branch));
+
+export const TALENT_NODES: TalentNode[] = [
+  ...BASE_NODES.map((n) => (n.kind === 'keystone' && KEY_GROUP.has(n.branch) ? { ...n, lane: -0.5, exclusive: `${n.branch}_key` } : n)),
+  ...SPEC,
+  ...ALT_NODES,
+];
 export const TALENT_MAP: Record<string, TalentNode> = Object.fromEntries(TALENT_NODES.map((n) => [n.id, n]));
 export const BRANCH_MAP: Record<BranchId, BranchDef> = Object.fromEntries(BRANCHES.map((b) => [b.id, b])) as Record<BranchId, BranchDef>;
 /** 某方向全部点满所需的点数 */

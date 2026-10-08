@@ -53,7 +53,8 @@ describe('I1 大师层', () => {
     expect(buyMaster()).toBe(false);
   });
   it('点满后用金番茄购买，价格递增，属性按循环累加', () => {
-    save.talents = Object.fromEntries(TALENT_NODES.map((n) => [n.id, n.max]));
+    // 二选一的关键天赋每组只点一个（第二个选项不点）
+    save.talents = Object.fromEntries(TALENT_NODES.filter((n) => !n.id.endsWith('_key2')).map((n) => [n.id, n.max]));
     save.meta.gold = masterCost(0) + masterCost(1) + 5;
     expect(buyMaster()).toBe(true);
     expect(buyMaster()).toBe(true);

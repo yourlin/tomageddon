@@ -2,8 +2,8 @@
 //
 // 【难度倍率已参数化】hpMult / dmgMult / bossHpMult / speedMult 不再手填，
 // 而是在文件末尾由 balance.ts 的 chapterHpMult() 等几何级数函数按 chapter.id 统一派生，
-// 保证「单调递增、不断裂」。各章仅保留美术、刷怪池、lootMult / t4Mult 等本就应按章定制的字段。
-import { chapterHpMult, chapterDmgMult, chapterBossHpMult, chapterSpeedMult } from './balance';
+// 保证「单调递增、不断裂」。各章仅保留美术、刷怪池等本就应按章定制的字段。
+import { BALANCE, chapterHpMult, chapterDmgMult, chapterBossHpMult, chapterSpeedMult, chapterWaves } from './balance';
 import { EXTRA_CHAPTERS, EXTRA_MUSIC_FALLBACK, TERRAIN_INFO_EXTRA, HIDDEN_CHAPTER_IDS } from './chaptersExtra';
 
 export interface SpawnEntry {
@@ -25,10 +25,6 @@ export interface ChapterDef {
   hpMult: number;
   /** 精英 / Boss 血量倍率（它们没有波次成长，单独设定） */
   bossHpMult: number;
-  /** 番茄籽掉落倍率（后期章节补偿装备需求；前两章为 1） */
-  lootMult: number;
-  /** 商店 T4 武器出现概率系数（后期章节更高） */
-  t4Mult: number;
   dmgMult: number;
   speedMult: number;
   pool: SpawnEntry[];
@@ -46,8 +42,6 @@ export const CHAPTERS: ChapterDef[] = [
     lineColor: 0x5e3d27,
     hpMult: 1,
     bossHpMult: 1,
-    lootMult: 1,
-    t4Mult: 1,
     dmgMult: 1,
     speedMult: 1,
     pool: [
@@ -82,8 +76,6 @@ export const CHAPTERS: ChapterDef[] = [
     lineColor: 0x3d632c,
     hpMult: 2.9,
     bossHpMult: 1.75,
-    lootMult: 1,
-    t4Mult: 1.1,
     dmgMult: 1.4,
     speedMult: 1.05,
     pool: [
@@ -121,8 +113,6 @@ export const CHAPTERS: ChapterDef[] = [
     lineColor: 0x5d95ba,
     hpMult: 3.1,
     bossHpMult: 1.8,
-    lootMult: 1.25,
-    t4Mult: 1.25,
     dmgMult: 1.45,
     speedMult: 1.1,
     pool: [
@@ -160,8 +150,6 @@ export const CHAPTERS: ChapterDef[] = [
     lineColor: 0x565646,
     hpMult: 2.7,
     bossHpMult: 1.8,
-    lootMult: 1.4,
-    t4Mult: 1.4,
     dmgMult: 1.5,
     speedMult: 1.15,
     pool: [
@@ -200,14 +188,12 @@ export const CHAPTERS: ChapterDef[] = [
     lineColor: 0x6e2b2b,
     hpMult: 3.4,
     bossHpMult: 2.4,
-    lootMult: 1.5,
-    t4Mult: 1.55,
     dmgMult: 1.7,
     speedMult: 1.2,
     pool: [
       { enemy: 'mold', from: 1, to: 4, weight: 8 },
       { enemy: 'fly', from: 1, to: 6, weight: 4 },
-      { enemy: 'robot_can', from: 3, weight: 4 },
+      { enemy: 'robot_can', from: 4, weight: 4 },
       { enemy: 'rat', from: 5, weight: 5 },
       { enemy: 'beetle', from: 6, weight: 4 },
       { enemy: 'spider', from: 5, weight: 3 },
@@ -248,6 +234,11 @@ for (const ch of CHAPTERS) {
   ch.dmgMult = chapterDmgMult(ch.id);
   ch.bossHpMult = chapterBossHpMult(ch.id);
   ch.speedMult = chapterSpeedMult(ch.id);
+  // 长章节（第 5 章 20 波、第 6 章 25 波、第 7 章 30 波）的怪物登场节奏按章节长度拉长：
+  // pool 的 from / to 按 15 波章节的节奏书写，这里 × 章节波数 / 15（第 1–2 波的怪不动），避免新怪前几波就全部登场
+  const k = chapterWaves(ch.id) / BALANCE.waves.count;
+  const pace = (w: number): number => (w <= 2 ? w : Math.round(1 + (w - 1) * k));
+  if (k !== 1) ch.pool = ch.pool.map((e) => ({ ...e, from: pace(e.from), to: e.to === undefined ? undefined : pace(e.to) }));
 }
 
 /** 各章地形机关说明（战斗第 1 波提示，也用于文档生成） */

@@ -65,6 +65,16 @@ export interface StatusDef {
   reflect?: number; // 反弹伤害（固定值，按层）
 }
 
+/** 持续伤害跳字颜色：灼烧红、中毒绿、流血粉红、腐烂褐、腐蚀酸黄（比图标色更亮，深色地面上也看得清） */
+export const DOT_COLOR: Partial<Record<StatusId, string>> = {
+  burn: '#ff4b3e',
+  poison: '#7cff4f',
+  bleed: '#ff8fa3',
+  rot: '#c9a27e',
+  corrode: '#e9ff70',
+};
+export const dotColor = (id: StatusId): string => DOT_COLOR[id] ?? `#${STATUSES[id].color.toString(16).padStart(6, '0')}`;
+
 export const STATUSES: Record<StatusId, StatusDef> = {
   burn: { id: 'burn', name: '灼烧', kind: 'debuff', color: 0xff7b00, glyph: '火', desc: '每层每秒受到火焰伤害', maxStacks: 5, dps: 1 },
   poison: {
@@ -222,7 +232,7 @@ export const STATUSES: Record<StatusId, StatusDef> = {
     speed: 30,
     dmgDealt: 30,
   },
-  lucky: { id: 'lucky', name: '好运', kind: 'buff', color: 0xfdcb6e, glyph: '运', desc: '幸运提高', maxStacks: 5, luck: 10 },
+  lucky: { id: 'lucky', name: '好运', kind: 'buff', color: 0xfdcb6e, glyph: '运', desc: '幸运提高', maxStacks: 5, luck: 4 },
   vampiric: {
     id: 'vampiric',
     name: '嗜血',

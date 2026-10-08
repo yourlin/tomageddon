@@ -8,6 +8,7 @@ import { applySnapshot, type BuildSnapshot } from './BuildCode';
 import { CHAPTERS } from '../data/chapters';
 import { tx } from '../i18n';
 import { audio } from './Audio';
+import { VW } from './HiDpi';
 
 interface Dummy {
   e: Enemy;
@@ -73,7 +74,7 @@ function spawnDummies(g: GameScene): void {
     .setOrigin(0.5)
     .setScrollFactor(0)
     .setDepth(20000);
-  practice!.label.setPosition(g.scale.width / 2, 96);
+  practice!.label.setPosition(VW(g) / 2, 96);
   practice!.dmg0 = totalDmg();
 }
 

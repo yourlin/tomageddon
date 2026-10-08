@@ -92,6 +92,13 @@ export const HEAL_SCALE = 0.45;
 export const DRAIN_PER_HIT = 0.5;
 export const DRAIN_MAX_PCT = 0.06;
 
+/** 蓝莓双子的分身：拿本体武器攻击的伤害倍率；每个分身的耐久（占最大生命，挡下的敌弹扣除）；
+ *  分身倒下时尸体爆炸的半径与伤害（× 技能伤害） */
+export const CLONE_WEAPON_MULT = 0.5;
+export const CLONE_HP_PCT = 0.3;
+export const CLONE_BOOM_R = 140;
+export const CLONE_BOOM_MULT = 3;
+
 /** 技能实际回复的最大生命百分比（四舍五入到 0.1） */
 export const skillHealPct = (heal: number): number => Math.round(heal * HEAL_SCALE * 1000) / 10;
 

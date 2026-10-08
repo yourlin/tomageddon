@@ -6,6 +6,8 @@ import { CHARACTERS } from './characters';
 import { BOSSES, AFFIXES, type AffixId } from './bosses';
 import { ENEMIES } from './enemies';
 import { WEAPONS, WEAPON_SETS } from './weapons';
+import { FUSED_WEAPONS } from './recipes';
+import { MODIFIERS } from './challenges';
 import { GENERATED_ITEMS } from './itemGen';
 import { SKILL_TYPE_NAME } from './skills';
 import { DEBUFF_IDS } from './statuses';
@@ -42,6 +44,11 @@ export type AchMetric =
   | 'wins'
   | 'charsWon'
   | 'charsOwned'
+  | 'fusedKinds'
+  | 'talentSpent'
+  | 'talentBranchBest'
+  | 'talentBranches10'
+  | 'masterLayer'
   | 'runLevel'
   | 'runItems'
   | 'runWeapons'
@@ -302,7 +309,7 @@ const GLOBAL: AchievementDef[] = [
     'challenge',
     '👑',
     ['全副神兵', 'Fully Legendary'],
-    ['通关时持有 6 把 T4 武器', 'Clear holding six T4 weapons'],
+    ['通关时持有 6 把 T4 武器（无尽模式撑过第 15 波后也算）', 'Clear holding six T4 weapons (in Endless: hold them after wave 15)'],
     'winAllT4',
     [[1, 120]],
   ),
@@ -676,8 +683,9 @@ const PER_MONSTER: AchievementDef[] = [
   ),
 ];
 
-/** 每把武器：获得、合成 T4、打造等级 */
-const PER_WEAPON: AchievementDef[] = WEAPONS.flatMap((w) => [
+/** 每把基础武器：获得、合成 T4、打造等级（融合武器另见 PER_FUSION；显式排除，避免受模块加载顺序影响） */
+const FUSED_IDS = new Set(FUSED_WEAPONS.map((w) => w.id));
+const PER_WEAPON: AchievementDef[] = WEAPONS.filter((w) => !FUSED_IDS.has(w.id)).flatMap((w) => [
   S(
     K(
       `wpn_got_${w.id}`,
@@ -714,13 +722,116 @@ const PER_WEAPON: AchievementDef[] = WEAPONS.flatMap((w) => [
   ),
 ]);
 
+/** 融合武器（只能按配方合成的 T4）：合成种类 + 每把首次合成 */
+const PER_FUSION: AchievementDef[] = [
+  A(
+    'fused_kinds',
+    'arsenal',
+    '🧬',
+    ['融合大师', 'Fusion Master'],
+    ['合成过 {n} 种不同的融合武器', 'Craft {n} different fusion weapons'],
+    'fusedKinds',
+    [
+      [5, 10],
+      [20, 30],
+      ['all', 100],
+    ],
+  ),
+  ...FUSED_WEAPONS.map((w) =>
+    S(
+      K(
+        `fuse_${w.id}`,
+        'arsenal',
+        '🧪',
+        ['{x}铸成', '{x} Forged'],
+        ['首次合成「{x}」', 'Craft {x} for the first time'],
+        `weaponGot:${w.id}`,
+        [[1, 8]],
+      ),
+      'weapon',
+      w.id,
+    ),
+  ),
+];
+
+/** 合成表、挑战规则修饰、天赋树 */
+const PER_SYSTEM: AchievementDef[] = [
+  K('crafts', 'build', '📜', ['照方抓药', 'By the Recipe'], ['按配方合成 {n} 次', 'Craft from recipes {n} time(s)'], 'crafts', [
+    [1, 3],
+    [10, 10],
+    [50, 30],
+  ]),
+  // 每种规则修饰：在带它的每日挑战中通关，或在带它的每周挑战中坚持到第 20 波
+  ...MODIFIERS.map((m) =>
+    K(
+      `mod_${m.id}`,
+      'challenge',
+      m.icon,
+      [`${m.name[0]}·破关`, `${m.name[1]}: Cleared`],
+      [`在带「${m.name[0]}」的挑战中通关（每周挑战坚持到第 20 波）`, `Clear a challenge with "${m.name[1]}" (reach wave 20 in a weekly)`],
+      `modClear:${m.id}`,
+      [[1, 8]],
+    ),
+  ),
+  A('talent_spent', 'progress', '🌳', ['枝繁叶茂', 'Deep Roots'], ['在天赋树上投入 {n} 点', 'Spend {n} talent points'], 'talentSpent', [
+    [10, 3],
+    [40, 10],
+    [75, 30],
+  ]),
+  A(
+    'talent_branch',
+    'progress',
+    '🌿',
+    ['一门深入', 'Specialist'],
+    ['在单个天赋方向上投入 {n} 点', 'Spend {n} points in one talent branch'],
+    'talentBranchBest',
+    [
+      [10, 5],
+      [25, 15],
+    ],
+  ),
+  A(
+    'talent_wide',
+    'progress',
+    '🍀',
+    ['博采众长', 'Well-Rounded'],
+    ['在 {n} 个天赋方向上各投入至少 10 点', 'Spend at least 10 points in each of {n} talent branches'],
+    'talentBranches10',
+    [
+      [3, 10],
+      [6, 30],
+    ],
+  ),
+  A(
+    'talent_master',
+    'progress',
+    '👑',
+    ['宗师之路', 'Path of the Master'],
+    ['完成 {n} 层大师天赋', 'Complete {n} Master talent layer(s)'],
+    'masterLayer',
+    [
+      [1, 10],
+      [10, 30],
+      [30, 80],
+    ],
+  ),
+];
+
 /** 武器进化：累计次数 + 每把超武的首次进化 */
 const PER_EVOLUTION: AchievementDef[] = [
-  K('evolutions', 'arsenal', '✨', ['进化论', 'Evolution Theory'], ['累计进化武器 {n} 次', 'Evolve weapons {n} time(s)'], 'evolutions', [
-    [1, 5],
-    [10, 20],
-    [50, 60],
-  ]),
+  K(
+    'evolutions',
+    'arsenal',
+    '✨',
+    ['进化论', 'Evolution Theory'],
+    ['累计合成超武 {n} 次', 'Craft super weapons {n} time(s)'],
+    'evolutions',
+    [
+      [1, 5],
+      [10, 20],
+      [50, 60],
+    ],
+  ),
   ...EVOLUTIONS.map((e) =>
     S(
       K(
@@ -728,7 +839,7 @@ const PER_EVOLUTION: AchievementDef[] = [
         'arsenal',
         '🌟',
         ['{x}诞生', '{x} Is Born'],
-        ['首次进化出「{x}」', 'Evolve {x} for the first time'],
+        ['首次合成超武「{x}」', 'Craft the super weapon {x} for the first time'],
         `evolve:${e.to.id}`,
         [[1, 20]],
       ),
@@ -1005,6 +1116,8 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   ...PER_BOSS,
   ...PER_WEAPON,
   ...PER_EVOLUTION,
+  ...PER_FUSION,
+  ...PER_SYSTEM,
   ...PER_COLLECTION,
   ...PER_SKILL,
   ...ENDLESS,

@@ -1,23 +1,40 @@
 // 文档页：角色、技能与状态、武器
 import { tx } from '../../src/i18n';
 import { CHARACTERS } from '../../src/data/characters';
-import { WEAPONS, TIER_PRICE_MULT } from '../../src/data/weapons';
+import { WEAPONS, TIER_PRICE_MULT, isShopWeapon } from '../../src/data/weapons';
 import { STATUSES } from '../../src/data/statuses';
 import { STAT_INFO, type StatKey } from '../../src/data/stats';
 import { SKILL_TYPE_NAME, skillHealPct, DRAIN_PER_HIT, DRAIN_MAX_PCT } from '../../src/data/skills';
 import { tagName } from '../../src/i18n/apply';
 import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
+import { charTraitLines } from '../../src/data/describe';
+import { favoredWeapons, affinityText } from '../../src/data/affinity';
 import { WEAPON_AFFIXES, FORGE } from '../../src/data/weaponAffixes';
 import { pick } from '../../src/systems/Achievements';
 import { EVOLUTIONS } from '../../src/data/evolutions';
 import { ITEM_MAP } from '../../src/data/items';
+import { RECIPES } from '../../src/data/recipes';
+
+/** 契合标签（带契合武器数量） */
+const favTags = (c: (typeof CHARACTERS)[number]) =>
+  `${c.favored.map(tagName).join(tx('、', ', '))}${tx(`（${favoredWeapons(c).filter(isShopWeapon).length} 把）`, ` (${favoredWeapons(c).filter(isShopWeapon).length})`)}`;
+
+/** 角色详情的契合武器：标签 + 数量 + 契合特效 + 最多 6 把代表武器（初始武器在前） */
+function favLine(c: (typeof CHARACTERS)[number]): string {
+  const all = favoredWeapons(c).filter(isShopWeapon);
+  const ids = [...new Set([...c.startWeapons, ...all.map((w) => w.id)])].slice(0, 6);
+  return [
+    `${tx('契合标签', 'Tags')}：${favTags(c)}`,
+    `${tx('契合特效（伤害 +10%）', 'Synergy effect (+10% dmg)')}：${affinityText(c.id)}`,
+    `${tx('代表', 'e.g.')}：${ids.map((id) => `${img('weapon', id, 24)} ${lnk.weapon(id)}`).join(sep())}`,
+  ].join('<br>');
+}
 
 export function charactersDoc(): void {
-  const CLS = CLS_NAME();
   const d = new Doc('CHARACTERS.md', tx(`角色（${CHARACTERS.length} 名）`, `Characters (${CHARACTERS.length})`), [
     tx(
-      '每名角色 = 属性修正 + 初始武器 + 被动特性 + 主动技能 + 独特外观。默认解锁 4 名，其余每名都绑定一项[成就](ACHIEVEMENTS.md)，达成后自动解锁。',
-      'Each character = stat modifiers + starting weapons + passive traits + an active skill + a unique look. 4 are unlocked by default; the rest are bought with points earned from [achievements](ACHIEVEMENTS.md), and some require a specific achievement first.',
+      '每名角色 = 属性与特性 + 初始武器 + 专属天赋 + 主动技能 + 独特外观。默认解锁 4 名，其余每名都绑定一项[成就](ACHIEVEMENTS.md)，达成后自动解锁。',
+      'Each character = stats & traits + starting weapons + a unique talent + an active skill + a unique look. 4 are unlocked by default; each of the rest is tied to one [achievement](ACHIEVEMENTS.md) and unlocks automatically once it is reached.',
     ),
     '',
     tx('技能详情见 [技能](SKILLS.md)，武器详情见 [武器](WEAPONS.md)。', 'See [Skills](SKILLS.md) and [Weapons](WEAPONS.md) for details.'),
@@ -25,40 +42,29 @@ export function charactersDoc(): void {
   const unlock = (c: (typeof CHARACTERS)[number]) => unlockText(c);
   d.h2(tx('角色一览', 'Overview'), 'overview');
   d.table(
-    [tx('角色', 'Character'), tx('定位', 'Role'), tx('天赋', 'Talent'), tx('初始武器', 'Starting weapons'), tx('技能', 'Skill'), tx('解锁条件', 'Unlock')],
-    CHARACTERS.map((c) => [
-      `${img('char', c.id)} ${lnk.char(c, '')}`,
+    ['#', tx('角色', 'Character'), tx('定位', 'Role'), tx('天赋', 'Talent'), tx('契合武器', 'Synergy weapons'), tx('技能', 'Skill'), tx('解锁条件', 'Unlock')],
+    CHARACTERS.map((c, i) => [
+      i + 1,
+      `${img('char', c.id, 32, 'webp')} ${lnk.char(c, '')}`,
       c.title,
       c.talent.name,
-      c.startWeapons.map((w) => lnk.weapon(w)).join(sep()),
+      favTags(c),
       `${lnk.skill(c)} ${tx(`（${SKILL_TYPE_NAME[c.skill.type]}）`, `(${SKILL_TYPE_NAME[c.skill.type]})`)}`,
       unlock(c),
     ]),
   );
   d.h2(tx('角色详情', 'Details'), 'details');
   for (const c of CHARACTERS) {
-    d.h3(`${c.name} · ${c.title}`, `char-${c.id}`);
-    const extra = [
-      c.classMult
-        ? Object.entries(c.classMult)
-            .map(([k, v]) => tx(`${CLS[k as keyof typeof CLS]}伤害 ×${v}`, `${CLS[k as keyof typeof CLS]} damage ×${v}`))
-            .join(tx('，', ', '))
-        : '',
-      c.maxWeapons ? tx(`武器栏 ${c.maxWeapons}`, `${c.maxWeapons} weapon slots`) : '',
-      c.dodgeCap ? tx(`闪避上限 ${c.dodgeCap}%`, `Dodge cap ${c.dodgeCap}%`) : '',
-      c.shopDiscount ? tx(`商店折扣 ${c.shopDiscount}%`, `Shop discount ${c.shopDiscount}%`) : '',
-      c.levelUpChoices ? tx(`升级选项 ${c.levelUpChoices} 个`, `${c.levelUpChoices} level-up choices`) : '',
-    ]
-      .filter(Boolean)
-      .join(tx('，', ', '));
-    d.p(img('char', c.id, 96), '', `> ${c.desc}`);
-    d.table(
-      [tx('项目', 'Field'), tx('内容', 'Value')],
+    d.card(
+      `char-${c.id}`,
+      `${c.name} · ${c.title}`,
+      img('char', c.id, 128, 'webp'),
+      `${c.name} · ${c.title}`,
+      c.desc,
       [
         [tx('专属天赋', 'Talent'), `**${c.talent.name}**：${c.talent.desc}`],
-        [tx('被动特性', 'Traits'), c.traits.join(tx('；', '; '))],
-        [tx('属性修正', 'Stat modifiers'), [mods(c.mods), extra].filter(Boolean).join(tx('，', ', ')) || tx('无', 'None')],
-        [tx('初始武器', 'Starting weapons'), c.startWeapons.map((w) => lnk.weapon(w)).join(sep())],
+        [tx('属性与特性', 'Stats & traits'), charTraitLines(c).join(tx('；', '; ')) || tx('无', 'None')],
+        [tx('契合武器', 'Synergy weapons'), favLine(c)],
         [
           tx('主动技能', 'Active skill'),
           tx(
@@ -123,8 +129,7 @@ export function skillsDoc(): void {
   d.h2(tx('角色技能', 'Character Skills'), 'skills');
   for (const c of CHARACTERS) {
     const s = c.skill;
-    d.h3(tx(`${s.name}（${c.name}）`, `${s.name} (${c.name})`), `skill-${c.id}`);
-    d.p(img('char', c.id, 64), '', `> ${s.desc}`);
+    const title = tx(`${s.name}（${c.name}）`, `${s.name} (${c.name})`);
     const rows: [string, string | number][] = [
       [tx('角色', 'Character'), lnk.char(c)],
       [tx('形态', 'Form'), SKILL_TYPE_NAME[s.type]],
@@ -149,7 +154,7 @@ export function skillsDoc(): void {
         ),
       ]);
     if (s.xp) rows.push([tx('经验', 'XP'), `+${s.xp}`]);
-    d.table([tx('项目', 'Field'), tx('数值', 'Value')], rows);
+    d.card(`skill-${c.id}`, title, img('skill', c.id, 128, 'webp'), title, s.desc, rows);
   }
   d.h2(tx(`状态效果（${Object.keys(STATUSES).length} 种）`, `Status Effects (${Object.keys(STATUSES).length})`), 'statuses');
   d.p(
@@ -168,6 +173,49 @@ export function skillsDoc(): void {
     );
   }
   d.write();
+}
+
+/** 武器图标的绝对地址：GitHub 渲染 Mermaid 时在沙箱里，相对路径的图片加载不到 */
+const RAW = 'https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/';
+
+/** 合成关系图（Mermaid）：按成品类别分三张，T3 材料 → T4 → 超武，节点带武器图标 */
+function craftGraph(d: Doc): void {
+  const CLS = CLS_NAME();
+  const ALL = new Map([...WEAPONS, ...EVOLUTIONS.map((e) => e.to)].map((w) => [w.id, w]));
+  const node = (id: string, tier: number) => `${id.replace(/[^a-zA-Z0-9_]/g, '_')}_${tier}`;
+  const label = (id: string, tier: number) =>
+    `${node(id, tier)}["<img src='${RAW}weapon/${id}.png' width='28' height='28'/><br/>${ALL.get(id)?.name ?? id} ${tier === 4 ? tx('超武', 'Super') : `T${tier + 1}`}"]:::t${tier}`;
+  d.h2(tx('合成关系图', 'Crafting Graph'), 'craft-graph');
+  d.p(
+    tx(
+      '箭头从材料指向成品：两把 T3 武器 → T4，两把 T4 武器 → 超武（各配方还需要指定道具，见商店合成表）。T1~T3 同名两把可直接合成升一级，图中省略。',
+      'Arrows point from materials to results: two T3 weapons → T4, two T4 weapons → super weapon (each recipe also needs specific items; see the crafting table in the shop). Same-name pairs combine one tier up for T1–T3 and are omitted here.',
+    ),
+  );
+  for (const cls of ['melee', 'ranged', 'elemental'] as const) {
+    const rs = RECIPES.filter((r) => ALL.get(r.to)?.cls === cls);
+    const nodes = new Set<string>();
+    const edges: string[] = [];
+    for (const r of rs) {
+      const toTier = r.kind === 'super' ? 4 : 3;
+      nodes.add(label(r.to, toTier));
+      for (const [id, t] of r.from) {
+        nodes.add(label(id, t));
+        edges.push(`  ${node(id, t)} --> ${node(r.to, toTier)}`);
+      }
+    }
+    d.h3(tx(`${CLS[cls]}（${rs.length} 条配方）`, `${CLS[cls]} (${rs.length} recipes)`), `craft-graph-${cls}`);
+    d.p(
+      '```mermaid',
+      'flowchart LR',
+      '  classDef t2 fill:#f3e8ff,stroke:#8a4fd0',
+      '  classDef t3 fill:#fff3d6,stroke:#d09a1f',
+      '  classDef t4 fill:#ffe1e1,stroke:#d04a4a,stroke-width:2px',
+      ...[...nodes].map((n) => `  ${n}`),
+      ...[...new Set(edges)],
+      '```',
+    );
+  }
 }
 
 export function weaponsDoc(): void {
@@ -233,8 +281,6 @@ export function weaponsDoc(): void {
   for (const cls of ['melee', 'ranged', 'elemental'] as const) {
     d.h2(tx(`${CLS[cls]}武器`, `${CLS[cls]} Weapons`), `class-${cls}`);
     for (const w of WEAPONS.filter((x) => x.cls === cls)) {
-      d.h3(w.name, `weapon-${w.id}`);
-      d.p(img('weapon', w.id, 64), '', `> ${w.desc}`);
       const e = w.effect ?? {};
       const effects = [
         e.burn ? tx(`灼烧 ${e.burn.dps}/秒 ${e.burn.dur}s`, `Burn ${e.burn.dps}/s for ${e.burn.dur}s`) : '',
@@ -250,9 +296,7 @@ export function weaponsDoc(): void {
         w.critBonus ? tx(`额外暴击 ${w.critBonus}%`, `+${w.critBonus}% Crit Chance`) : '',
       ].filter(Boolean);
       const users = CHARACTERS.filter((c) => c.startWeapons.includes(w.id));
-      d.table(
-        [tx('项目', 'Field'), tx('数值', 'Value')],
-        [
+      d.card(`weapon-${w.id}`, w.name, img('weapon', w.id, 128, 'webp'), w.name, w.desc, [
           [tx('类别 / 方式', 'Class / attack'), `${CLS[w.cls]} / ${KIND[w.kind] ?? w.kind}`],
           [tx('标签', 'Tags'), w.tags.map(tagName).join(sep())],
           [tx('伤害 T1~T4', 'Damage T1–T4'), w.damage.join(' / ')],
@@ -268,19 +312,19 @@ export function weaponsDoc(): void {
           [tx('特效', 'Effects'), effects.join(tx('，', ', ')) || '-'],
           [tx('T1 价格', 'T1 price'), w.price],
           [tx('初始携带', 'Starting weapon of'), users.map((c) => lnk.char(c)).join(sep()) || '-'],
-        ],
-      );
+      ]);
     }
   }
-  d.h2(tx(`武器进化（${EVOLUTIONS.length} 把超武）`, `Weapon Evolution (${EVOLUTIONS.length} super weapons)`), 'evolution');
+  craftGraph(d);
+  d.h2(tx(`超武（${EVOLUTIONS.length} 把）`, `Super Weapons (${EVOLUTIONS.length})`), 'evolution');
   d.p(
     tx(
-      'T4 武器 + 持有指定的经典道具时，在商店点开武器即可进化为超武：伤害、冷却、射程整体强化并获得专属效果，原有词条与打造等级保留，道具不会被消耗。超武不进商店池；持有可进化武器但还没有对应道具时，商店每次上架有 20% 概率直接出现该道具。',
-      'A T4 weapon plus a specific classic item can evolve in the shop (tap the weapon): damage, cooldown and range improve and it gains a signature effect, keeping its affixes and forge level; the item is not consumed. Super weapons never appear in the shop; while you hold an evolvable weapon without its item, each shop roll has a 20% chance to offer that item.',
+      '超武只能合成：两把指定的 T4 武器 + 原催化道具 + 1 件指定的 T4（传说）道具，在商店的合成表里合成。超武伤害、冷却、射程整体强化并获得专属效果，不进商店池。',
+      'Super weapons can only be crafted: two specific T4 weapons + the original catalyst item + 1 specific T4 (Legendary) item, via the crafting table in the shop. They improve damage, cooldown and range, gain a signature effect, and never appear in the shop.',
     ),
   );
   d.table(
-    [tx('原武器', 'Base'), tx('进化道具', 'Item'), tx('超武', 'Super weapon'), tx('T4 伤害 / 冷却 / 射程', 'T4 dmg / cd / range'), tx('说明', 'Description')],
+    [tx('原武器', 'Base'), tx('催化道具', 'Catalyst'), tx('超武', 'Super weapon'), tx('T4 伤害 / 冷却 / 射程', 'T4 dmg / cd / range'), tx('说明', 'Description')],
     EVOLUTIONS.map((e) => {
       const b = WEAPONS.find((w) => w.id === e.from)!;
       const t = e.to;

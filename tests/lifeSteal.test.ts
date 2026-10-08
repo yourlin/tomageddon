@@ -3,16 +3,17 @@ import { BALANCE, lifeStealHeal, lifeStealMaxPerSecond } from '../src/data/balan
 import { CHARACTER_MAP } from '../src/data/characters';
 
 describe('吸血', () => {
-  it('每次回复 max(1, 2% 最大生命)，向下取整', () => {
+  it('每次回复 max(1, 2% 最大生命)，向下取整，且不超过每秒上限对应的单次量', () => {
     expect(lifeStealHeal(35)).toBe(1);
     expect(lifeStealHeal(99)).toBe(1);
     expect(lifeStealHeal(100)).toBe(2);
-    expect(lifeStealHeal(150)).toBe(3);
+    expect(lifeStealHeal(150)).toBe(2);
   });
 
-  it('每秒上限 = 触发次数上限 × 每次回复量', () => {
+  it('每秒上限 = 触发次数上限 × 每次回复量，最多 maxPerSec', () => {
     expect(lifeStealMaxPerSecond(50)).toBe(5);
-    expect(lifeStealMaxPerSecond(150)).toBe(15);
+    expect(lifeStealMaxPerSecond(150)).toBe(BALANCE.lifeSteal.maxPerSec);
+    expect(lifeStealMaxPerSecond(1000)).toBe(BALANCE.lifeSteal.maxPerSec);
   });
 
   it('大蒜伯爵契合武器只是削弱冷却，不是取消', () => {

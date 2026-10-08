@@ -1006,6 +1006,16 @@ function buildTextures(scene: Phaser.Scene, paint: PaintFn, proj: PaintFn): void
     roundRectPath(ctx, 35, 19, 8, 26, 3);
     ctx.fill();
   });
+  // 武器伤害类型图标（近战 / 远程 / 元素 / 光环）：与对应属性同图形、同颜色，不带角标
+  for (const [type, k] of [
+    ['melee', 'melee'],
+    ['ranged', 'ranged'],
+    ['elemental', 'elemental'],
+    ['aura', 'auraPct'],
+  ] as const) {
+    const c = Phaser.Display.Color.HexStringToColor(STAT_INFO[k].color).color;
+    paint(s, `dmgtype_${type}`, 96, 96, (ctx) => statGlyph(ctx, k, c));
+  }
   for (const k of STAT_ORDER) {
     const c = Phaser.Display.Color.HexStringToColor(STAT_INFO[k].color).color;
     paint(s, `stat_${k}`, 96, 96, (ctx) => {

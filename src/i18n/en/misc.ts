@@ -2,6 +2,9 @@
 import type { ChaptersEn, StatsEn, StatusesEn, WeaponsEn, WeaponTagsEn } from '../types';
 import { EXTRA_WEAPONS_EN } from '../../data/gearExtra';
 import { AFFINITY_WEAPONS_EN } from '../../data/weaponsAffinity';
+import { GEN_WEAPONS_EN } from '../../data/weaponsGen';
+import { TAGS } from '../../data/weaponTags';
+import { FUSED_WEAPONS_EN, autoFuseEn } from '../../data/recipes';
 import { EXTRA_CHAPTER_EN } from '../../data/chaptersExtra';
 
 export const EN_WEAPONS: WeaponsEn = {
@@ -85,15 +88,8 @@ export const EN_WEAPONS: WeaponsEn = {
   lemon_battery: { name: 'Lemon Battery', desc: 'Powerful shock with fewer jumps, but it stuns.' },
 };
 
-export const EN_WEAPON_TAGS: WeaponTagsEn = {
-  厨具: 'Kitchenware',
-  锋利: 'Sharp',
-  蔬果: 'Produce',
-  枪械: 'Firearm',
-  酱料: 'Sauce',
-  元素: 'Elemental',
-  爆破: 'Demolition',
-};
+/** 武器标签的英文名：由标签表（data/weaponTags.ts）统一提供 */
+export const EN_WEAPON_TAGS: WeaponTagsEn = Object.fromEntries(TAGS.map((t) => [t.id, t.en]));
 
 export const EN_STATUSES: StatusesEn = {
   burn: { name: 'Burn', desc: 'Takes fire damage per stack every second', glyph: 'BU' },
@@ -229,3 +225,10 @@ Object.assign(EN_CHAPTERS, EXTRA_CHAPTER_EN);
 // 1.4.0 G5 / G7：新武器、超武与道具
 Object.assign(EN_WEAPONS, EXTRA_WEAPONS_EN);
 Object.assign(EN_WEAPONS, AFFINITY_WEAPONS_EN);
+Object.assign(EN_WEAPONS, GEN_WEAPONS_EN);
+Object.assign(EN_WEAPONS, FUSED_WEAPONS_EN);
+// 自动生成的融合武器：英文名由基础武器的英文名拼出
+Object.assign(
+  EN_WEAPONS,
+  autoFuseEn((id) => EN_WEAPONS[id]?.name ?? id),
+);

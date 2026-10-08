@@ -7,7 +7,7 @@ import { save } from './Save';
 import { run, runHooks } from './RunState';
 import { bump, bumpMax, counter } from './Counters';
 import { tx } from '../i18n';
-import { SKIN_OF } from '../data/skins';
+import { SKIN_OF, SKIN_MAP, type SkinDef } from '../data/skins';
 
 // ---------------- 任务与觉醒 ----------------
 export const questDone = (q: QuestDef): boolean => !!save.meta.quests[q.id];
@@ -111,23 +111,31 @@ export function applyStartRewards(): void {
 runHooks.onStart = applyStartRewards;
 
 // ---------------- 皮肤（F6） ----------------
-/** 是否拥有该角色的皮肤：金番茄购买，或熟练度满级免费 */
-export const skinOwned = (charId: string): boolean =>
-  !!SKIN_OF[charId] && (save.meta.skins.includes(SKIN_OF[charId].id) || masteryLevel(charId) >= MASTERY_MAX);
-export const skinActive = (charId: string): boolean => skinOwned(charId) && save.meta.skinOf[charId] === SKIN_OF[charId].id;
-/** 购买皮肤（金番茄不够返回 false） */
-export function buySkin(charId: string): boolean {
-  const s = SKIN_OF[charId];
-  if (!s || skinOwned(charId) || save.meta.gold < s.price) return false;
+/** 是否拥有这套皮肤：金番茄购买；每名角色的第 1 套在熟练度满级时免费 */
+export function skinOwned(skinId: string): boolean {
+  const s = SKIN_MAP[skinId];
+  if (!s) return false;
+  return save.meta.skins.includes(s.id) || (SKIN_OF[s.charId]?.id === s.id && masteryLevel(s.charId) >= MASTERY_MAX);
+}
+/** 角色当前穿着的皮肤（原皮返回 undefined） */
+export function activeSkin(charId: string): SkinDef | undefined {
+  const s = SKIN_MAP[save.meta.skinOf[charId] ?? ''];
+  return s && s.charId === charId && skinOwned(s.id) ? s : undefined;
+}
+/** 购买皮肤并立即换上（金番茄不够返回 false） */
+export function buySkin(skinId: string): boolean {
+  const s = SKIN_MAP[skinId];
+  if (!s || skinOwned(s.id) || save.meta.gold < s.price) return false;
   save.meta.gold -= s.price;
   save.meta.skins.push(s.id);
-  save.meta.skinOf[charId] = s.id;
+  save.meta.skinOf[s.charId] = s.id;
   bump('skinsBought');
   return true;
 }
-export function toggleSkin(charId: string): void {
-  if (!skinOwned(charId)) return;
-  save.meta.skinOf[charId] = skinActive(charId) ? '' : SKIN_OF[charId].id;
+/** 换上皮肤（传空串换回原皮）；没拥有的不换 */
+export function equipSkin(charId: string, skinId: string): void {
+  if (skinId && (!skinOwned(skinId) || SKIN_MAP[skinId].charId !== charId)) return;
+  save.meta.skinOf[charId] = skinId;
 }
 
 export const awakeningOf = (charId: string) => AWAKENINGS[charId];

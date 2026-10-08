@@ -58,6 +58,8 @@ export class StatusSet {
   ccResist = 0;
   private dirty = false;
   private tickAcc = 0;
+  /** 最近一次跳伤害的明细（update 返回大于 0 时有效） */
+  dotParts: { id: StatusId; dmg: number }[] = [];
   version = 0;
   /** 成功施加状态时回调（敌人用于成就计数） */
   onApplied?: (id: StatusId) => void;
@@ -146,6 +148,16 @@ export class StatusSet {
     this.tickAcc += dt;
     if (this.tickAcc >= 0.5 && this.totals.dps > 0) {
       this.tickAcc = 0;
+      // 按状态拆开（灼烧、中毒……各跳各的颜色）；返回值仍是合计
+      this.dotParts = [];
+      for (const s of this.list) {
+        const d = STATUSES[s.id];
+        if (!d.dps) continue;
+        const v = (s.value > 0 ? s.value : d.dps) * s.stacks * 0.5;
+        const p = this.dotParts.find((x) => x.id === s.id);
+        if (p) p.dmg += v;
+        else this.dotParts.push({ id: s.id, dmg: v });
+      }
       return this.totals.dps * 0.5;
     }
     if (this.tickAcc >= 0.5) this.tickAcc = 0;

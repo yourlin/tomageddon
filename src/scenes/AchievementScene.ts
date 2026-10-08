@@ -16,6 +16,7 @@ import {
 } from '../systems/Achievements';
 import { tx } from '../i18n';
 import { CHARACTERS } from '../data/characters';
+import { VW, VH } from '../systems/HiDpi';
 
 type Filter = AchCategory | 'all';
 const PER_PAGE = 12;
@@ -35,7 +36,7 @@ export class AchievementScene extends Phaser.Scene {
   create(): void {
     autoRelayout(this);
     checkAchievements();
-    const W = this.scale.width;
+    const W = VW(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     text(this, 24, 18, tx('成就', 'Achievements'), 36);
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
@@ -76,8 +77,8 @@ export class AchievementScene extends Phaser.Scene {
 
   private draw(): void {
     this.layer.removeAll(true);
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     const tabKeys: Filter[] = ['all', ...(Object.keys(ACH_CATEGORY_NAME) as AchCategory[])];
     this.tabBtns.forEach((b, i) => b.setAlpha(tabKeys[i] === this.filter ? 1 : 0.6));
     const inCat = ACHIEVEMENTS.filter((a) => this.filter === 'all' || a.category === this.filter);

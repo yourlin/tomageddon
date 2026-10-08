@@ -2,7 +2,7 @@
 // 自动化测试（?headless 或 navigator.webdriver）不显示；?tutorial 强制显示（截图用）。
 import type Phaser from 'phaser';
 import { save, persist } from './Save';
-import { overlayRoot } from './ForceLandscape';
+import { overlayRoot } from './OverlayRoot';
 import { tx } from '../i18n';
 
 const params = typeof location !== 'undefined' ? new URLSearchParams(location.search) : new URLSearchParams();

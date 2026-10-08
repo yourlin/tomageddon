@@ -38,9 +38,24 @@ async function openPage(saveData = {}) {
   await p.evaluateOnNewDocument((d) => localStorage.setItem('tomato_sister_save_v1', JSON.stringify(d)), saveData);
   await p.goto(`http://localhost:${PORT}/?lang=${LANG}`);
   await p.waitForFunction(() => window.game?.scene.isActive('Menu'), { timeout: 120000 });
+  // 贴图在后台分帧生成，主菜单出现时还没画完：等队列清空，否则图标会是缺失贴图（绿框斜线）
+  await p.evaluate(async () => {
+    const Q = await import('/src/systems/TexQueue.ts');
+    Q.flushTex();
+  });
+  await p.waitForFunction(() => import('/src/systems/TexQueue.ts').then((Q) => Q.texReady()), { timeout: 120000 });
   await p.addScriptTag({ type: 'module', content: bot });
   await p.waitForFunction(() => typeof window.botAutopilot === 'function');
   await p.evaluate(() => {
+    // 录制时隐藏成就 / 新角色解锁的 DOM 弹窗（干净存档会连续弹很多条，遮挡画面）
+    const root = document.getElementById('game') ?? document.body;
+    // 弹窗是先插入空元素再填文字，所以连文字变化一起监听，每次变化都把整棵子树扫一遍
+    const hide = () => {
+      for (const n of root.querySelectorAll('div'))
+        if (/成就|角色解锁|achievement|character unlocked/i.test(n.textContent ?? '') && !n.querySelector('canvas')) n.style.display = 'none';
+    };
+    new MutationObserver(hide).observe(root, { childList: true, subtree: true, characterData: true });
+    hide();
     // 动画手指光标（DOM 覆盖层）
     const el = document.createElement('div');
     el.style.cssText =
@@ -113,10 +128,22 @@ async function tapButton(p, sceneKey, re, { inPopup = false } = {}) {
   await sleep(350);
 }
 
+/** 片段内关键时刻（秒，相对片段开头），写到 marks.json 给剪辑脚本对齐截取起点 */
+const MARKS_FILE = new URL('marks.json', OUT);
+const marks = (() => {
+  try {
+    return JSON.parse(readFileSync(MARKS_FILE, 'utf8'));
+  } catch {
+    return {};
+  }
+})();
+let clipStart = 0;
+
 async function record(p, name, fn) {
   if (only.length && !only.includes(name)) return;
   console.log('录制', name);
   const rec = await p.screencast({ path: new URL(`${name}.webm`, OUT).pathname, fps: 30, quality: 12 });
+  clipStart = Date.now();
   await fn();
   await rec.stop();
 }
@@ -248,7 +275,7 @@ const castSkill = (p) =>
   await p.close();
 }
 {
-  // D. 商店购物 + E. 洗词条与打造
+  // D. 商店购物 + E. 仓库与配方合成
   const p = await openPage();
   await setupRun(p, {
     char: 'tomato',
@@ -291,31 +318,99 @@ const castSkill = (p) =>
     }
     await sleep(600);
   });
-  await record(p, 'forge', async () => {
-    // 打开 T4 菜刀的弹窗
-    const pos = await p.evaluate(() => {
+  await p.evaluate(() => {
+    const r = window.__dev.RECIPES.find((x) => x.to === 'paoding_blade');
+    for (const [id, tier] of r.from) if (!run.allWeapons.some((w) => w.id === id && w.tier === tier)) run.addWeapon(id, tier);
+    for (const slot of r.items) run.items[slot[0]] = (run.items[slot[0]] ?? 0) + 1;
+    run.dirty();
+    game.scene.getScene('Shop').draw();
+  });
+  await record(p, 'craft', async () => {
+    // 打开 T4 菜刀的弹窗：洗词条 → 存入仓库，展示仓库与词条
+    await p.evaluate(() => {
       const s = game.scene.getScene('Shop');
-      const w = run.weapons.find((x) => x.id === 'knife' && x.tier === 3);
-      s.weaponPopup(w, 360, 560);
-      return window.__screenOf(s.popup.list[0]);
+      s.weaponPopup(
+        run.weapons.find((x) => x.id === 'knife' && x.tier === 3),
+        360,
+        560,
+      );
     });
-    void pos;
     await sleep(700);
     await tapButton(p, 'Shop', /洗全部|Reroll all/, { inPopup: true });
+    await sleep(650);
+    await tapButton(p, 'Shop', /打造|Forge/, { inPopup: true });
     await sleep(700);
-    await tapButton(p, 'Shop', /洗全部|Reroll all/, { inPopup: true });
-    await sleep(700);
-    for (let i = 0; i < 3; i++) {
-      await tapButton(p, 'Shop', /打造|Forge/, { inPopup: true });
-      await sleep(800);
-    }
-    await sleep(600);
+    await tapButton(p, 'Shop', /存入仓库|Store/, { inPopup: true });
+    await sleep(800);
+    // 合成表：挑一条能合成的配方合出来（超武优先）
+    await tapButton(p, 'Shop', /^🔨/); // 商店的合成表按钮（文字随可合成数量变化）
+    await sleep(1500);
+    await p.evaluate(() => {
+      const c = game.scene.getScene('Craft');
+      const R = window.__dev.RECIPES;
+      c.selected = R.filter((r) => run.canCraft(r)).sort((a, b) => (a.kind === 'super' ? -1 : 1) - (b.kind === 'super' ? -1 : 1))[0] ?? null;
+      c.draw();
+    });
+    await sleep(1200);
+    await tapButton(p, 'Craft', /^合成「|^Craft /); // 不能只写 /合成/：会先匹配到「能合成」筛选按钮
+    await sleep(1400);
   });
   await p.close();
 }
 {
-  // F. 选角：用成就点购买角色（先弹出几条成就）
+  // E2. 天赋树：伤害类型专精与二选一关键节点
+  const p = await openPage({ talentPoints: 24, totalKills: 4000, clearedChapters: 3, wins: 3 });
+  await record(p, 'talent', async () => {
+    await p.evaluate(() => {
+      game.scene.getScenes(true).forEach((s) => s.scene.stop());
+      game.scene.start('TalentTree');
+    });
+    await sleep(1800);
+    await p.evaluate(() => window.__cursor.show(640, 400));
+    // 6 个方向轮流点亮：每次换一个方向，优先该方向还没点过、离中心最近的节点。
+    // 整段在页面内跑完（每次点击都往返 puppeteer 太慢，约 1.2 秒一个），≈0.45 秒一个节点，成片 3.4 秒覆盖 6 个方向
+    const firstTap = await p.evaluate(async () => {
+      let first = 0;
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      const s = game.scene.getScene('TalentTree');
+      const T = await import('/src/systems/TalentTree.ts');
+      const D = await import('/src/data/talentTree.ts');
+      const M = await import('/src/scenes/TalentTreeScene.ts');
+      const dist = (n) => Math.hypot(...M.nodePos(n));
+      const order = ['might', 'alchemy', 'guard', 'arcane', 'agility', 'fortune'];
+      for (let i = 0; i < 12; i++) {
+        const branch = order[i % order.length];
+        const n = D.TALENT_NODES.filter((x) => x.branch === branch && !T.raiseBlock(x)).sort(
+          (a, b) => (T.rankOf(a.id) > 0 ? 1 : 0) - (T.rankOf(b.id) > 0 ? 1 : 0) || dist(a) - dist(b),
+        )[0];
+        if (!n) continue;
+        // 节点在世界容器里，由 mapCam 渲染：世界坐标 → 相机视口 → 画布 → 页面
+        const [wx0, wy0] = M.nodePos(n);
+        const cam = s.mapCam;
+        const k = game.canvas.clientWidth / game.scale.width;
+        const x = (cam.x + (wx0 + s.world.x - cam.worldView.x) * cam.zoom) * k;
+        const y = (cam.y + (wy0 + s.world.y - cam.worldView.y) * cam.zoom) * k;
+        window.__cursor.move(x, y);
+        await wait(320);
+        window.__cursor.tap(x, y);
+        if (!first) first = Date.now();
+        s.selected = n;
+        s.tryRaise(n);
+        await wait(70);
+      }
+      return first;
+    });
+    // 记下第一次加点的时刻：录制节奏每次都有几百毫秒的出入，剪辑按它截取「6 个方向依次点亮」那一轮
+    marks.talentFirstTap = Math.round(((firstTap - clipStart) / 1000) * 100) / 100;
+    writeFileSync(MARKS_FILE, JSON.stringify(marks, null, 2));
+    await sleep(700);
+  });
+  await p.close();
+}
+{
+  // F. 选角：浏览已解锁角色，最后看一名未解锁角色的解锁条件
   const p = await openPage({
+    ownedChars: ['tomato', 'lemon', 'dragonfruit', 'blueberry', 'carrot', 'eggplant', 'mushroom', 'grape', 'watermelon', 'corn'],
     totalKills: 1500,
     clearedChapters: 1,
     wins: 1,
@@ -330,28 +425,36 @@ const castSkill = (p) =>
     });
     await sleep(1600);
     await p.evaluate(() => window.__cursor.show(900, 600));
-    // 选中一名可购买的角色
-    const pos = await p.evaluate(() => {
-      const s = game.scene.getScene('CharSelect');
-      const card = s.cards.find((k) => k.c.id === 'mushroom');
-      const kk = game.canvas.clientWidth / game.scale.width;
-      return { x: (card.x + card.s / 2) * kk, y: (card.y + card.s / 2) * kk };
-    });
-    await p.evaluate((x, y) => window.__cursor.move(x, y), pos.x, pos.y);
-    await sleep(600);
-    await p.evaluate(
-      (x, y) => {
-        window.__cursor.tap(x, y);
+    // 依次点几名已解锁角色看详情，最后点一名未解锁角色：灰色轮廓 + 解锁条件与进度
+    for (const [id, wait] of [
+      ['lemon', 750],
+      ['dragonfruit', 750],
+      ['blueberry', 750],
+      ['durian', 1700],
+    ]) {
+      const pos = await p.evaluate((cid) => {
         const s = game.scene.getScene('CharSelect');
-        s.selected = window.__dev.CHARACTER_MAP.mushroom;
-        s.refresh();
-      },
-      pos.x,
-      pos.y,
-    );
-    await sleep(900);
-    await tapButton(p, 'CharSelect', /购买|Buy/);
-    await sleep(2200);
+        const card = s.cards.find((k) => k.c.id === cid);
+        if (!card) return null;
+        const kk = game.canvas.clientWidth / game.scale.width;
+        return { x: (card.x + card.s / 2) * kk, y: (card.y + card.s / 2) * kk };
+      }, id);
+      if (!pos) continue;
+      await p.evaluate((x, y) => window.__cursor.move(x, y), pos.x, pos.y);
+      await sleep(480);
+      await p.evaluate(
+        (x, y, cid) => {
+          window.__cursor.tap(x, y);
+          const s = game.scene.getScene('CharSelect');
+          s.selected = window.__dev.CHARACTER_MAP[cid];
+          s.refresh();
+        },
+        pos.x,
+        pos.y,
+        id,
+      );
+      await sleep(wait);
+    }
   });
   // G. 片尾背景：主菜单
   await record(p, 'menu', async () => {
@@ -365,7 +468,7 @@ const castSkill = (p) =>
   await p.close();
 }
 if (LANG === 'zh' && (!only.length || only.includes('music'))) {
-  // 配乐：实时录制 Boss 战程序化电子乐 32 秒
+  // 配乐：实时录制 Boss 战程序化电子乐 36 秒（成片 33.4 秒，留一点余量）
   console.log('录制 music');
   const p = await browser.newPage();
   // 同源但不启动游戏的页面（游戏自己的菜单音乐会占用音乐引擎单例）
@@ -383,7 +486,7 @@ if (LANG === 'zh' && (!only.length || only.includes('music'))) {
     rec.ondataavailable = (e) => chunks.push(e.data);
     rec.start();
     M.playProceduralMusic(ctx, 'bgm_boss', 0.9);
-    await new Promise((r) => setTimeout(r, 32000));
+    await new Promise((r) => setTimeout(r, 36000));
     rec.stop();
     await new Promise((r) => (rec.onstop = r));
     const buf = await new Blob(chunks).arrayBuffer();

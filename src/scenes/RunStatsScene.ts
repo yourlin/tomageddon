@@ -9,6 +9,7 @@ import type { RunRecord } from '../systems/Save';
 import { decodeBuild } from '../systems/BuildCode';
 import { startPractice } from '../systems/Practice';
 import { tx } from '../i18n';
+import { VW, VH } from '../systems/HiDpi';
 
 /** 伤害来源的显示名与图标 */
 export function sourceLabel(src: string): { name: string; icon?: string } {
@@ -33,8 +34,8 @@ export class RunStatsScene extends Phaser.Scene {
 
   create(data: { record: RunRecord }): void {
     const r = data.record;
-    const W = this.scale.width,
-      H = this.scale.height;
+    const W = VW(this),
+      H = VH(this);
     this.add.rectangle(0, 0, W, H, 0x000000, 0.65).setOrigin(0).setInteractive();
     const px = 60,
       py = 40,

@@ -2,6 +2,7 @@
 // 用同一个 key 替换掉占位场景并带着原参数启动。之后再进入就直接是真场景。
 import Phaser from 'phaser';
 import { tx } from '../i18n';
+import { VW, VH } from '../systems/HiDpi';
 
 type SceneClass = new () => Phaser.Scene;
 
@@ -11,8 +12,8 @@ export function lazyScene(key: string, load: () => Promise<SceneClass>): SceneCl
       super(key);
     }
     create(data?: object): void {
-      const W = this.scale.width;
-      const H = this.scale.height;
+      const W = VW(this);
+      const H = VH(this);
       this.cameras.main.setBackgroundColor('#1a0a0c');
       const t = this.add
         .text(W / 2, H / 2, tx('加载中…', 'Loading…'), { fontFamily: 'system-ui', fontSize: '28px', color: '#f3e6e0' })
