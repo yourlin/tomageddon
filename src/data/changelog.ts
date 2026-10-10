@@ -12,7 +12,26 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
-    version: '1.5.2',
+    version: '0.6.3',
+    date: '2026-10-10',
+    highlight: [
+      '版本号调整：此前的 1.x 测试版本统一改为 0.x，正式版 1.0 将登陆 Steam',
+      'Version renumbering: the earlier 1.x betas are now 0.x — the full 1.0 release is coming to Steam',
+    ],
+    items: [
+      [
+        '原 1.0.0–1.5.2 依次改为 0.1.0–0.6.2，内容不变；存档不受影响',
+        'Former 1.0.0–1.5.2 are now 0.1.0–0.6.2 with the same content; saves are unaffected',
+      ],
+      ['主菜单版本号旁标注「测试版」', 'The main menu marks the version as Beta'],
+      [
+        '修复英文版选角界面章节名过长时压到「无尽」按钮',
+        'Fixed long chapter names overlapping the Endless button on character select in English',
+      ],
+    ],
+  },
+  {
+    version: '0.6.2',
     date: '2026-10-08',
     highlight: [
       '玩法循序渐进：解锁前不再露出，主菜单提示下一个解锁，开放时弹卡片；选关改为 7 个章节缩略图',
@@ -38,7 +57,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.5.1',
+    version: '0.6.1',
     date: '2026-10-08',
     highlight: [
       '商店卡片按钮与边框重叠修复，超武相关文字更新',
@@ -56,7 +75,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.5.0',
+    version: '0.6.0',
     date: '2026-10-08',
     highlight: [
       '「合成之路」：武器按标签契合角色，新增 60 把融合武器、合成表与仓库，T3 → T4 → 超武一路合成；画面高清化，每名角色 4 套皮肤',
@@ -146,7 +165,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.4.0',
+    version: '0.5.0',
     date: '2026-10-05',
     highlight: [
       '「通关之后」：番茄危机 20 级难度阶梯、遗物、角色任务与觉醒、第 6/7 章与真结局，通关后还有很长的路可以走',
@@ -289,7 +308,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.3.2',
+    version: '0.4.2',
     date: '2026-10-03',
     highlight: [
       '修正吸血与回复相关描述，使其与实际机制一致',
@@ -308,7 +327,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.3.1',
+    version: '0.4.1',
     date: '2026-10-03',
     highlight: [
       '全面调整成长与道具平衡，修复继续游戏后的商店问题，并为远程武器加入专属弹丸',
@@ -338,7 +357,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.3.0',
+    version: '0.4.0',
     date: '2026-10-01',
     highlight: [
       '武器进化、每日 / 每周挑战、局后数据与战绩，新手也有引导了',
@@ -378,7 +397,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.2.0',
+    version: '0.3.0',
     date: '2026-10-01',
     highlight: ['全新天赋树与无尽模式上线，成就扩充到 847 项', 'New talent tree and Endless mode, plus 847 achievements'],
     items: [
@@ -405,7 +424,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.1.0',
+    version: '0.2.0',
     date: '2026-09-30',
     highlight: [
       '大招有了完整的技能动画，新增 50 种怪物与 32 把武器，经济与高阶武器掉率整体重做',
@@ -448,7 +467,7 @@ export const CHANGELOG: ChangeEntry[] = [
     ],
   },
   {
-    version: '1.0.0',
+    version: '0.1.0',
     date: '2026-09-29',
     highlight: [
       '首个正式版本：5 章 × 15 波、33 名角色、成就解锁与武器词条打造',

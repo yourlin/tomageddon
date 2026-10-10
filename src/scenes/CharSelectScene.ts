@@ -477,6 +477,10 @@ export class CharSelectScene extends Phaser.Scene {
         .lineStyle(t.n === this.chapter ? 3 : 1.5, t.n === this.chapter ? 0xffd166 : 0x000000, t.n === this.chapter ? 1 : 0.6)
         .strokeRoundedRect(-t.w / 2 - 2, -t.h / 2 - 2, t.w + 4, t.h + 4, 5);
     this.chapterText.setText(`${ch.name}${chUnlocked ? '' : ' 🔒'}`);
+    // 英文章节名较长：超出到无尽 / 危机按钮前的宽度就缩小字号（最小 15）
+    const room = VW(this) * 0.62 + 36 - this.chapterText.x;
+    this.chapterText.setFontSize(22);
+    for (let fs = 21; this.chapterText.width > room && fs >= 15; fs--) this.chapterText.setFontSize(fs);
     const mult = tx(`怪物生命 x${ch.hpMult} 伤害 x${ch.dmgMult} · `, `HP x${ch.hpMult} · DMG x${ch.dmgMult} · `);
     const endlessBest = counter(`endlessBest:ch:${ch.id}`);
     this.chapterDesc.setText(

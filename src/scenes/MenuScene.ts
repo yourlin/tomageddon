@@ -101,8 +101,8 @@ export class MenuScene extends Phaser.Scene {
       vx,
       vy,
       tx(
-        `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''} · 更新日志`,
-        `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''} · What's New`,
+        `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''}${__APP_VERSION__.startsWith('0.') ? ' 测试版' : ''} · 更新日志`,
+        `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''}${__APP_VERSION__.startsWith('0.') ? ' Beta' : ''} · What's New`,
       ),
       fits ? 16 : 18,
       COLORS.textDim,
