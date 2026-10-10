@@ -1,0 +1,39 @@
+tests/storage.test.ts
+  s_41d26d128cf97a::t_d0d77778ce11c7 20-29
+tests/startWeapon.test.ts
+  s_41d26d128cf97a::t_d0d77778ce11c7 47-56
+docs/en/CHANGELOG.md
+  s_41d26d128cf97a::t_e91a837b37828e 13,26-34
+  s_41d26d128cf97a::t_a11b35cc43ee08 35
+docs/CHANGELOG.md
+  s_41d26d128cf97a::t_e91a837b37828e 13,26-34
+  s_41d26d128cf97a::t_148a9fc904daa7 35
+src/data/changelog.ts
+  s_41d26d128cf97a::t_6c37007ed8fd7a 17
+  s_41d26d128cf97a::t_e91a837b37828e 15-16,18-28
+  s_41d26d128cf97a::t_eca0053ca795aa 14
+package.json
+  s_41d26d128cf97a::t_e91a837b37828e 3
+src/systems/RunState.ts
+  s_41d26d128cf97a::t_c9d5dc214c8aa5 642-644,650-652,656,664,672
+src/scenes/ShopScene.ts
+  s_41d26d128cf97a::t_c9d5dc214c8aa5 383,387-388
+package-lock.json
+  s_41d26d128cf97a::t_ba898248a689e5 3,9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "59256e46100573b091cb32a5e5d5834e2a024de1",
+  "prompts": {},
+  "sessions": {
+    "s_41d26d128cf97a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5026a85e-4249-4a0c-871a-276ded0e89e2",
+        "model": "unknown"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
