@@ -86,8 +86,8 @@ export function achievementsDoc(): void {
 export function changelogDoc(): void {
   const d = new Doc('CHANGELOG.md', tx('更新日志', 'Changelog'), [
     tx(
-      '面向玩家的版本变化，与游戏内主菜单「更新日志」同一份数据（`src/data/changelog.ts`）。逐条代码改动见 [提交历史](../../commits/main)。',
-      'Player-facing release notes, from the same data as the in-game "What\'s New" screen (`src/data/changelog.ts`). For change-by-change detail see the [commit history](../../commits/main).',
+      '面向玩家的版本变化，与游戏内主菜单「更新日志」同一份数据（`src/data/changelog.ts`）。0.x 为测试版本，正式版 1.0 将登陆 Steam。逐条代码改动见 [提交历史](../../commits/main)。',
+      'Player-facing release notes, from the same data as the in-game "What\'s New" screen (`src/data/changelog.ts`). 0.x versions are betas; the full 1.0 release is coming to Steam. For change-by-change detail see the [commit history](../../commits/main).',
     ),
   ]);
   for (const e of CHANGELOG) {

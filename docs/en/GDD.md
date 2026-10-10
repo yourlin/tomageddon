@@ -257,9 +257,9 @@ Wave 1 of each chapter announces the chapter's hazards at the top of the screen;
 - `systems/Tutorial.ts`: 14 tips, each shown once on first encounter, pausing combat while open; hidden in automated tests (headless / webdriver) and re-enabled from Settings
 - Run stats break damage down by source (weapon / skill / DoT / explosion / knives) and show seeds per wave; History keeps the last 30 runs (`save.history`)
 
-### 10.10 1.4.0 "After the Credits"
+### 10.10 0.5.0 "After the Credits"
 
-1.4.0 gives players who have cleared the game something to chase long-term. Full data: [Relics](RELICS.md) · [Tomato Danger](DANGER.md) · [Character Quests](QUESTS.md).
+0.5.0 gives players who have cleared the game something to chase long-term. Full data: [Relics](RELICS.md) · [Tomato Danger](DANGER.md) · [Character Quests](QUESTS.md).
 
 - **Tomato Danger (`data/danger.ts`, `systems/Danger.ts`)**: a 0–20 difficulty ladder; clearing level N of a chapter unlocks N+1 for that chapter, and each level stacks one more rule (enemy HP / damage, champion rate, boss moves, shop prices, weaker healing…). Bosses gain moves at Danger 10 / 15 / 20. Rules share `RuleDelta` with challenge modifiers and are merged by `RunState`. Reward multiplier `1 + 0.12L + 0.0035L²` (about ×4.8 at 20). Chapter 6 opens after any chapter is cleared at Danger ≥5; hidden Chapter 7 needs chapters 1–5 all cleared at Danger ≥10, and its boss leads into the true final boss
 - **Relics (`data/relics.ts`, `systems/Relics.ts`)**: 45 relics in three kinds (boon / trade / curse) and 8 sets (3-piece bonus). Sources: pick-of-3 after each chapter elite, every 10 Endless waves, and the Mysterious Merchant. Chapter 1 offers only boons; trade relics join from chapter 2 and curses from chapter 3. Descriptions are generated entirely from data

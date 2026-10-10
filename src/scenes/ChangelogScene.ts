@@ -25,6 +25,14 @@ export class ChangelogScene extends Phaser.Scene {
     const W = VW(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     text(this, 24, 18, tx('更新日志', "What's New"), 36);
+    text(
+      this,
+      190,
+      32,
+      tx('0.x 为测试版本 · 正式版 1.0 将登陆 Steam', '0.x versions are betas · the full 1.0 release is coming to Steam'),
+      16,
+      COLORS.textDim,
+    );
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
     button(
       this,

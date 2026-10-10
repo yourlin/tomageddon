@@ -1,4 +1,4 @@
-// 1.4.0 新系统文档（M1）：RELICS 遗物 · DANGER 番茄危机 · QUESTS 角色任务、觉醒与熟练度
+// 0.5.0 新系统文档（M1）：RELICS 遗物 · DANGER 番茄危机 · QUESTS 角色任务、觉醒与熟练度
 import { tx, lang } from '../../src/i18n';
 import { Doc } from './common';
 import { RELICS, RELIC_SETS, RELIC_KIND_INFO, RELIC_SET_SIZE, describeRelic, type RelicKind } from '../../src/data/relics';
@@ -17,8 +17,8 @@ const join = (l: string[]) => l.join(tx('；', '; ')) || '—';
 export function relicsDoc(): void {
   const d = new Doc('RELICS.md', tx('遗物', 'Relics'), [
     tx(
-      `遗物是 1.4.0 新增的局内收藏：每件都会改变规则，而不只是加属性。共 ${RELICS.length} 件、${RELIC_SETS.length} 个套装。获取途径：第 5、10 波精英被击败后三选一，无尽模式每 10 波一次，神秘商人偶尔出售。集齐同套装 ${RELIC_SET_SIZE} 件触发额外效果。所有效果文字都由数据生成。`,
-      `Relics are new in 1.4.0: each one bends the rules instead of just adding stats. ${RELICS.length} relics and ${RELIC_SETS.length} sets. Sources: a pick-of-3 after the wave 5 and wave 10 elites, one every 10 waves in Endless, and occasionally from the Mysterious Merchant. Collecting ${RELIC_SET_SIZE} relics of the same set triggers a bonus. All effect text is generated from data.`,
+      `遗物是 0.5.0 新增的局内收藏：每件都会改变规则，而不只是加属性。共 ${RELICS.length} 件、${RELIC_SETS.length} 个套装。获取途径：第 5、10 波精英被击败后三选一，无尽模式每 10 波一次，神秘商人偶尔出售。集齐同套装 ${RELIC_SET_SIZE} 件触发额外效果。所有效果文字都由数据生成。`,
+      `Relics are new in 0.5.0: each one bends the rules instead of just adding stats. ${RELICS.length} relics and ${RELIC_SETS.length} sets. Sources: a pick-of-3 after the wave 5 and wave 10 elites, one every 10 waves in Endless, and occasionally from the Mysterious Merchant. Collecting ${RELIC_SET_SIZE} relics of the same set triggers a bonus. All effect text is generated from data.`,
     ),
   ]);
   for (const k of ['boon', 'trade', 'curse'] as RelicKind[]) {
