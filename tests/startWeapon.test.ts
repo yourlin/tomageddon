@@ -44,6 +44,16 @@ describe('芋头术士：同类吞噬升级', () => {
     expect(run.weapons).toHaveLength(1);
     expect(run.storage.map((w) => w.id)).toEqual(['garlic_aura']);
   });
+  it('手上是 T3 时买入 T3 及以下：吞噬不能升级，武器进仓库而不是消失', () => {
+    run.start('taro', 1, false, 0, 'curry_aura');
+    run.weapons[0].tier = 2;
+    expect(run.absorbTarget('garlic_aura', 2)).toBeUndefined();
+    run.addWeapon('garlic_aura', 2);
+    expect(run.weapons[0].tier).toBe(2);
+    expect(run.storage.map((w) => [w.id, w.tier])).toEqual([['garlic_aura', 2]]);
+    // 买入 T4 仍可吞噬，直接升到 T4
+    expect(run.absorbTarget('salt_aura', 3)).toBe(run.weapons[0]);
+  });
   it('非契合武器不能吞噬；其他角色不吞噬', () => {
     run.start('taro', 1, false, 0, 'curry_aura');
     expect(run.absorbTarget('knife')).toBeUndefined();

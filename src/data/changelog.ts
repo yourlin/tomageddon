@@ -12,6 +12,21 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.6.4',
+    date: '2026-10-10',
+    highlight: ['修复武器栏满时买入武器可能凭空消失', 'Fixed weapons sometimes vanishing when bought with full weapon slots'],
+    items: [
+      [
+        '武器栏满时买入与手上同名的 T3 武器，不再被「自动合成」吞掉（同名合成最高到 T3），改为放进仓库',
+        'Buying a T3 weapon you already hold with full slots no longer gets eaten by auto-combine (same-name combining caps at T3) — it goes to storage instead',
+      ],
+      [
+        '芋头术士：手上契合武器已是 T3 时，买入 T3 及以下的契合武器不再被吞噬，改为放进仓库；吞噬提示的品质也已修正',
+        'Taro Warlock: with a T3 synergy weapon in hand, buying a T3-or-lower synergy weapon no longer gets absorbed for nothing — it goes to storage; the absorb preview tier is fixed too',
+      ],
+    ],
+  },
+  {
     version: '0.6.3',
     date: '2026-10-10',
     highlight: [

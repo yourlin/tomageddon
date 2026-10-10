@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.6.4 · 2026-10-10](#v0-6-4)
 - [v0.6.3 · 2026-10-10](#v0-6-3)
 - [v0.6.2 · 2026-10-08](#v0-6-2)
 - [v0.6.1 · 2026-10-08](#v0-6-1)
@@ -21,6 +22,16 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-6-4"></a>
+
+## v0.6.4 · 2026-10-10
+
+**Fixed weapons sometimes vanishing when bought with full weapon slots**
+
+
+- Buying a T3 weapon you already hold with full slots no longer gets eaten by auto-combine (same-name combining caps at T3) — it goes to storage instead
+- Taro Warlock: with a T3 synergy weapon in hand, buying a T3-or-lower synergy weapon no longer gets absorbed for nothing — it goes to storage; the absorb preview tier is fixed too
 
 <a id="v0-6-3"></a>
 
