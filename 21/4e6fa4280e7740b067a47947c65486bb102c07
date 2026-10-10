@@ -1,0 +1,19 @@
+eslint.config.js
+  s_41d26d128cf97a::t_6502112625d39e 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "214e6fa4280e7740b067a47947c65486bb102c07",
+  "prompts": {},
+  "sessions": {
+    "s_41d26d128cf97a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5026a85e-4249-4a0c-871a-276ded0e89e2",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
