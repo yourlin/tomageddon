@@ -5,7 +5,7 @@ import globals from 'globals';
 import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  { ignores: ['dist/', 'dist-steam/', 'release-steam/', '.kiro/', 'node_modules/', 'docs/', 'public/'] },
+  { ignores: ['dist/', 'dist-steam/', 'release-steam/', '.kiro/', 'node_modules/', 'docs/', 'public/', 'operations/'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
