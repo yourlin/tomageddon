@@ -17,6 +17,16 @@ describe('仓库', () => {
     expect(run.storage).toHaveLength(BALANCE.storageSlots);
   });
 
+  it('武器栏满时买入与手上同名的 T3：不能自动合成（封顶 T3），进仓库而不是消失', () => {
+    run.start('tomato', 1);
+    run.addWeapon('pan', 2);
+    while (run.weapons.length < run.maxWeapons) run.addWeapon('knife', 0);
+    expect(run.canAddWeapon('pan', 2)).toBe(true);
+    run.addWeapon('pan', 2);
+    expect(run.weapons.filter((w) => w.id === 'pan').map((w) => w.tier)).toEqual([2]);
+    expect(run.storage.map((w) => [w.id, w.tier])).toEqual([['pan', 2]]);
+  });
+
   it('存入 / 取回：武器栏至少留一把，栏位满时与指定武器对调', () => {
     run.start('tomato', 1);
     run.addWeapon('pan', 0);

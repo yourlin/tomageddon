@@ -639,19 +639,21 @@ export class RunState {
   /** 尝试加入武器：栏位满时若能合成则自动合成 */
   canAddWeapon(id: string, tier: number): boolean {
     if (this.weapons.length < this.maxWeapons) return true;
-    if (this.absorbTarget(id)) return true;
-    if (tier < 3 && this.weapons.some((w) => w.id === id && w.tier === tier)) return true;
+    if (this.absorbTarget(id, tier)) return true;
+    // 同名自动合成最高只到 T3（mergeTier 封顶），T3 + T3 不能合，否则买入的武器会白白消失
+    if (tier < 2 && this.weapons.some((w) => w.id === id && w.tier === tier)) return true;
     // 武器栏满时自动进仓库
     return this.storage.length < this.storageMax;
   }
 
   /** 芋头术士「同类吞噬」：栏位满时买入任意契合武器，不占格子，而是让手上的契合武器升级。
-   *  返回被升级的武器（品质最低、未满 T4 的契合武器）；不满足条件时为 undefined */
-  absorbTarget(id: string): OwnedWeapon | undefined {
+   *  返回被升级的武器（品质最低、吞噬后确实能升级的契合武器：同名合成封顶 T3，T3 只能被更高品质吞噬升级）；
+   *  不满足条件时为 undefined */
+  absorbTarget(id: string, tier = 0): OwnedWeapon | undefined {
     if (this.charId !== 'taro' || !isFavoredWeapon(this.char.favored, WEAPON_MAP[id]) || this.weapons.length < this.maxWeapons)
       return undefined;
     return this.weapons
-      .filter((w) => w.tier < 3 && isFavoredWeapon(this.char.favored, WEAPON_MAP[w.id]))
+      .filter((w) => (w.tier < 2 || tier > w.tier) && isFavoredWeapon(this.char.favored, WEAPON_MAP[w.id]))
       .sort((a, b) => a.tier - b.tier)[0];
   }
 
@@ -659,7 +661,7 @@ export class RunState {
     markSeen('weapons', id);
     if (this.weapons.length >= this.maxWeapons) {
       // 芋头术士：吞噬同类，升 1 级；买入的品质更高时直接升到该品质
-      const host = this.absorbTarget(id);
+      const host = this.absorbTarget(id, tier);
       if (host) {
         host.tier = Math.max(mergeTier(host.tier), Math.min(3, tier));
         if (host.tier === 3) bump(`t4:${host.id}`);
@@ -667,7 +669,7 @@ export class RunState {
         this.dirty();
         return;
       }
-      const same = this.weapons.find((w) => w.id === id && w.tier === tier && tier < 3);
+      const same = this.weapons.find((w) => w.id === id && w.tier === tier && tier < 2);
       if (same) {
         same.tier = mergeTier(same.tier);
         if (same.tier === 3) bump(`t4:${id}`);

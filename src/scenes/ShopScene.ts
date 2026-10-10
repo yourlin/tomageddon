@@ -380,12 +380,12 @@ export class ShopScene extends Phaser.Scene {
         if (ev) lines.push(tx(`✨ 可合成超武「${ev.to.name}」`, `✨ Crafts into ${ev.to.name}`));
         if (affixSlots(o.tier))
           lines.push(tx(`★ 购买后随机 ${affixSlots(o.tier)} 条词条`, `★ Rolls ${affixSlots(o.tier)} random affix(es)`));
-        const host = run.absorbTarget(o.id);
+        const host = run.absorbTarget(o.id, o.tier);
         if (host)
           lines.unshift(
             tx(
-              `🌀 吞噬：${WEAPON_MAP[host.id].name} 升到 ${TIER_NAMES[Math.min(3, Math.max(host.tier + 1, o.tier))]}`,
-              `🌀 Absorb: ${WEAPON_MAP[host.id].name} → ${TIER_NAMES[Math.min(3, Math.max(host.tier + 1, o.tier))]}`,
+              `🌀 吞噬：${WEAPON_MAP[host.id].name} 升到 ${TIER_NAMES[Math.max(Math.min(2, host.tier + 1), o.tier)]}`,
+              `🌀 Absorb: ${WEAPON_MAP[host.id].name} → ${TIER_NAMES[Math.max(Math.min(2, host.tier + 1), o.tier)]}`,
             ),
           );
       } else {
