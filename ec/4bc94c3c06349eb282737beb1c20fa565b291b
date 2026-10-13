@@ -1,0 +1,31 @@
+src/data/statuses.ts
+  s_41d26d128cf97a::t_1031cb1dd45bba 94-103
+src/i18n/en/characters.ts
+  s_41d26d128cf97a::t_1031cb1dd45bba 9-12,337-341
+src/systems/WeaponSystem.ts
+  s_41d26d128cf97a::t_1031cb1dd45bba 427-429,472-473
+src/data/describe.ts
+  s_41d26d128cf97a::t_1031cb1dd45bba 96-99,101-104
+src/data/changelog.ts
+  s_41d26d128cf97a::t_1031cb1dd45bba 42
+scripts/bot2.js
+  s_41d26d128cf97a::t_1031cb1dd45bba 228-234
+src/scenes/GameScene.ts
+  s_41d26d128cf97a::t_1031cb1dd45bba 1688-1692,1840-1841
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ec4bc94c3c06349eb282737beb1c20fa565b291b",
+  "prompts": {},
+  "sessions": {
+    "s_41d26d128cf97a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5026a85e-4249-4a0c-871a-276ded0e89e2",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
