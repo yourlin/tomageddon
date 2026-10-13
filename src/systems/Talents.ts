@@ -116,6 +116,8 @@ export class TalentSystem {
   private fedT = 0; // 红薯厨神：吃饱窗口
   private vetT = 0; // 卷心菜老兵：净化后攻速窗口
   private punch = new Map<string, number>(); // 椰子拳师：各武器出拳计数
+  private combo = { uid: -1, n: 0 }; // 椰子拳师：连续命中同一个敌人的拳数
+  private dragonHits = 0; // 火龙果龙骑：契合命中计数（满 15 次火龙俯冲）
   private stench = new WeakMap<Enemy, number>(); // 榴莲霸王：臭气层数
   private fruitDrops = 0; // 红薯厨神：本波契合掉落的果实
   private lastWave = -1;
@@ -160,7 +162,7 @@ export class TalentSystem {
     const lv = run.level;
     switch (this.id) {
       case 'tomato':
-        m.combo = 0.2 + Math.min(0.2, 0.02 * Math.max(0, run.wave - 1));
+        m.combo = 0.3 + Math.min(0.2, 0.02 * Math.max(0, run.wave - 1));
         break;
       case 'carrot':
         m.status.push(S('armorBreak', 4));
@@ -385,6 +387,16 @@ export class TalentSystem {
     return [crit, bonus];
   }
 
+  /** 契合武器对这个目标的伤害倍率（暴击之后乘上）。椰子拳师：连续打同一个敌人每拳 +6%（最多 +30%），打眩晕中的敌人 +35% */
+  hitDmgMult(e: Enemy, info: HitInfo): number {
+    if (info.echo || !this.isFavoredId(info.weaponId)) return 1;
+    if (this.id === 'coconut') {
+      this.combo = this.combo.uid === e.uid ? { uid: e.uid, n: Math.min(5, this.combo.n + 1) } : { uid: e.uid, n: 0 };
+      return (1 + this.combo.n * 0.06) * (e.status.has('stun') ? 1.35 : 1);
+    }
+    return 1;
+  }
+
   /** 命中前采集目标状态 */
   ctx(e: Enemy, info: HitInfo): HitCtx {
     if (info.echo || !this.isFavoredId(info.weaponId)) return NO_CTX;
@@ -407,12 +419,9 @@ export class TalentSystem {
         break;
       case 'lemon':
         if (crit) {
-          if (e.alive) e.status.apply({ id: 'bleed', dur: 3 });
+          if (e.alive) this.g.applyDot(e, { id: 'bleed', dur: 3 });
           if (src) this.resetReq.add(src);
         }
-        break;
-      case 'coconut':
-        if (c.stunned && this.ready('quake', 0.35)) this.boom(e.x, e.y, 75, dmg * 0.5, 0xbc6c25, src);
         break;
       case 'grape': {
         const sure = g.pstatus.has('invuln');
@@ -427,22 +436,30 @@ export class TalentSystem {
         const shield = g.pstatus.has('shield');
         if (this.healCd <= 0 && (shield || Math.random() < 0.03)) {
           this.healCd = shield ? 0.34 : 0.5;
-          g.heal(1, false);
+          g.heal(1, false, 'talent');
         }
         break;
       }
       case 'dragonfruit':
-        if (c.burning && this.ready('breath', 0.6)) {
-          const p = g.player,
-            a = Math.atan2(e.y - p.y, e.x - p.x);
-          for (const d of [-0.22, 0, 0.22]) {
-            const b = this.shot(p.x, p.y, a + d, 420, 0.4, dmg * 0.4, 'proj_flame', 0xff5400, src);
-            if (b) {
-              b.kind = 'flame';
-              b.pierce = 999;
-              b.setScale(0.6);
-            }
-          }
+        // 龙魂俯冲：每 15 次契合命中，火龙从玩家身边朝最近的敌人直线俯冲（6 发穿透火焰弹各自结算，每发 40% 伤害，
+        // 直线上的敌人最多挨 6 下、合计约 240%；附带 2 层灼烧）；
+        // 最快每 3 秒一次（喷火类武器每秒命中很多次，不限频会连续俯冲）
+        if (++this.dragonHits >= 15 && this.ready('dive', 3)) {
+          this.dragonHits = 0;
+          const p = g.player;
+          const t = g.grid.nearest(p.x, p.y, 600, new Set<Enemy>()) ?? e;
+          const a = Math.atan2(t.y - p.y, t.x - p.x);
+          g.fx.label(p.x, p.y - 40, tx('龙魂俯冲！', 'Dragon Dive!'), '#ff7b00');
+          for (let i = 0; i < 6; i++)
+            g.time.delayedCall(i * 45, () => {
+              const b = this.shot(p.x, p.y, a, 760, 0.7, dmg * 0.4, 'proj_flame', i === 0 ? 0xffd166 : 0xff5400, src);
+              if (b) {
+                b.kind = 'flame';
+                b.pierce = 999;
+                b.setScale(i === 0 ? 1.4 : 1.1 - i * 0.08);
+                b.status = [S('burn', 3, 2)];
+              }
+            });
         }
         break;
       case 'sweetpotato':
@@ -480,7 +497,7 @@ export class TalentSystem {
         break;
       case 'blackberry':
         if (c.cursed) {
-          if (e.alive) e.status.apply({ id: 'rot', dur: 4 });
+          if (e.alive) this.g.applyDot(e, { id: 'rot', dur: 4 });
           if (this.ready('hex', 0.3)) {
             const t = g.grid.nearest(e.x, e.y, 160, new Set<Enemy>([e]));
             if (t && !t.status.has('curse')) {
@@ -517,6 +534,18 @@ export class TalentSystem {
           ey = y + Math.sin(a) * r * 0.8;
         g.time.delayedCall(140, () => this.boom(ex, ey, r * 0.6, dmg * 0.5, 0xa7c957, src));
       }
+    } else if (this.id === 'wasabi') {
+      // 呛鼻冲击：把范围内的敌人向外呛开（击退 + 减速 45% 2 秒）；范围内敌人越多，余波伤害越高（每只 +6%，最多 60%）
+      const hit = g.grid.query(x, y, r, []).filter((o) => o.alive);
+      for (const o of hit) {
+        const a = Math.atan2(o.y - y, o.x - x);
+        const k = 260 * (1 - o.knockResist);
+        o.kvx += Math.cos(a) * k;
+        o.kvy += Math.sin(a) * k;
+        o.status.apply({ id: 'slow', dur: 2, stacks: 3 });
+      }
+      const pct = Math.min(0.6, 0.06 * hit.length);
+      if (hit.length >= 2 && this.ready('choke', 0.25)) g.time.delayedCall(120, () => this.boom(x, y, r * 0.9, dmg * pct, 0x9ef01a, src));
     } else if (this.id === 'soybean' && WEAPON_MAP[src ?? '']?.kind === 'mine') {
       for (let i = 0; i < 2; i++) {
         const a = Math.random() * Math.PI * 2;
@@ -530,34 +559,18 @@ export class TalentSystem {
   onKill(e: Enemy, byExplosion: boolean, src: string): void {
     const g = this.g;
     if (this.id === 'mushroom' && e.status.has('poison')) {
-      for (const o of g.grid.query(e.x, e.y, 150, [])) if (o.alive && o !== e) o.status.apply({ id: 'poison', dur: 4, stacks: 3 });
+      for (const o of g.grid.query(e.x, e.y, 150, [])) if (o.alive && o !== e) g.applyDot(o, { id: 'poison', dur: 4, stacks: 3 });
       const s = g.stats,
         dmg = (6 + s.elemental * 1.5) * (1 + s.damage / 100);
-      for (let i = 0; i < 3; i++) {
-        const b = this.shot(e.x, e.y, (i / 3) * Math.PI * 2 + Math.random(), 380, 1.4, dmg, 'proj_pea', 0x9d4edd, 'talent');
+      for (let i = 0; i < 2; i++) {
+        const b = this.shot(e.x, e.y, (i / 2) * Math.PI * 2 + Math.random(), 380, 1.4, dmg, 'proj_pea', 0x9d4edd, 'talent');
         if (b) {
           b.homing = 6;
           b.status = [S('poison', 4, 2)];
         }
       }
     }
-    if (this.id === 'wasabi' && byExplosion && Math.random() < 0.4) {
-      const s = g.stats,
-        dmg = 18 * (1 + s.damage / 100) + s.elemental;
-      const x = e.x,
-        y = e.y;
-      g.time.delayedCall(80, () => {
-        g.explode(x, y, 70, dmg, { dmg, crit: false, explosion: true }, 0xff9f1c);
-        for (let i = 0; i < 2; i++) {
-          const b = this.shot(x, y, Math.random() * Math.PI * 2, 380, 0.45, dmg * 0.5, 'proj_flame', 0xff7b00, 'talent');
-          if (b) {
-            b.kind = 'flame';
-            b.pierce = 999;
-            b.setScale(0.6);
-          }
-        }
-      });
-    }
+
     // 籽弹倾泻：契合武器击杀爆出 3 颗籽弹；籽弹击杀时再爆一轮（籽弹连锁，最多 1 次）
     if (this.id === 'pomegranate' && (this.isFavoredId(src) || src === 'pom_seed'))
       this.radial(
@@ -734,7 +747,7 @@ export class TalentSystem {
         if (!this.still) this.regenT = 0;
         else if ((this.regenT += dt) >= 1) {
           this.regenT = 0;
-          g.heal(Math.max(1, Math.round(g.stats.maxHp * 0.02)), false);
+          g.heal(Math.max(1, Math.round(g.stats.maxHp * 0.02)), false, 'talent');
         }
         break;
     }

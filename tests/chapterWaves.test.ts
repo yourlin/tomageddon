@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { chapterWaves, isBossWaveFor, isEliteWaveFor, endlessHp, isBossWaveNo, isEliteWaveNo } from '../src/data/balance';
 
 describe('章节波数', () => {
-  it('第 1–4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50', () => {
-    expect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(chapterWaves)).toEqual([15, 15, 15, 15, 20, 25, 30, 35, 40, 45, 50]);
+  it('第 1–4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50；第 7 章覆盖为 25 波', () => {
+    expect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(chapterWaves)).toEqual([15, 15, 15, 15, 20, 25, 25, 35, 40, 45, 50]);
     expect(chapterWaves(20)).toBe(50);
   });
 

@@ -169,7 +169,8 @@ export class Fx {
   }
 
   /** 预警圈：windup 秒后回调 */
-  telegraphCircle(x: number, y: number, radius: number, windup: number, color = 0xff3b30, cb?: () => void): void {
+  /** 圆形预警：内圈从 0 涨满后回调 cb。返回取消函数（撤掉预警且不回调，例如自爆怪在引信期间被打死） */
+  telegraphCircle(x: number, y: number, radius: number, windup: number, color = 0xff3b30, cb?: () => void): () => void {
     const outer = this.scene.add
       .image(x, y, 'fx_ring')
       .setTint(color)
@@ -177,7 +178,7 @@ export class Fx {
       .setDepth(3)
       .setScale((radius * 2) / 128);
     const inner = this.scene.add.image(x, y, 'fx_circle').setTint(color).setAlpha(0.25).setDepth(3).setScale(0);
-    this.scene.tweens.add({
+    const tw = this.scene.tweens.add({
       targets: inner,
       scale: (radius * 2) / 128,
       duration: windup * 1000,
@@ -187,6 +188,12 @@ export class Fx {
         cb?.();
       },
     });
+    return () => {
+      if (!outer.active) return;
+      tw.remove();
+      outer.destroy();
+      inner.destroy();
+    };
   }
 
   telegraphLine(x: number, y: number, dx: number, dy: number, len: number, width: number, dur: number): void {

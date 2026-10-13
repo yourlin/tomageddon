@@ -153,6 +153,7 @@ export const EN_AFFIXES: AffixesEn = {
   unstoppable: { name: 'Unstoppable', desc: 'Immune to slow, stun and knockback' },
   rich: { name: 'Wealthy', desc: 'Drops 3× Seeds' },
   splitting: { name: 'Splitting', desc: 'Splits into 2 minions of the same kind on death' },
+  shortFuse: { name: 'Short Fuse', desc: 'Self-destruct / death explosion fuse is halved' },
 };
 
 // 1.4.0：第 6 / 7 章与真结局 Boss

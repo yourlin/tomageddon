@@ -9,7 +9,8 @@ import { MODIFIERS } from '../src/data/challenges';
 
 describe('技能描述', () => {
   it.each(CHARACTERS.filter((c) => c.skill.heal).map((c) => [c.name, c] as const))('%s 的回复量与代码一致', (_n, c) => {
-    const pct = skillHealPct(c.skill.heal!);
+    // 红薯厨神：烤红薯要走过去捡，总回复量额外 ×1.2（见 SkillStyles2 的 yamFeast）
+    const pct = c.id === 'sweetpotato' ? +(skillHealPct(c.skill.heal!) * 1.2).toFixed(1) : skillHealPct(c.skill.heal!);
     expect(c.skill.desc).toContain(`${pct}%`);
   });
   it('没有技能描述还写着按伤害百分比吸血', () => {

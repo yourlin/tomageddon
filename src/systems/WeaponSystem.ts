@@ -3,7 +3,7 @@ import { AuraFx, AURA_LOOK } from './AuraFx';
 import Phaser from 'phaser';
 import type { GameScene, HitInfo } from '../scenes/GameScene';
 import type { Enemy } from '../objects/Enemy';
-import { WEAPON_MAP, type WeaponDef } from '../data/weapons';
+import { WEAPON_MAP, basePierce, type WeaponDef } from '../data/weapons';
 import type { OwnedWeapon } from './RunState';
 import type { StatusApply } from '../data/statuses';
 import { run } from './RunState';
@@ -43,6 +43,8 @@ export function weaponDamage(def: WeaponDef, tier: number, s: Stats, ow?: OwnedW
   d *= (1 + (s.damage + pct) / 100) * classMult;
   d *= 1 + affixTotals(ow).dmg / 100;
   if (isFavoredWeapon(run.char.favored, def)) d *= FAVORED_DMG; // 契合武器（超武按原武器判定）
+  // 近战直刺只打一条线，实战效率最低（约为纸面的 94%，横扫 156%），整体加伤
+  if (def.kind === 'thrust') d *= BALANCE.thrustDmgMult;
   return Math.max(1, d);
 }
 
@@ -144,6 +146,13 @@ interface PendingSweep {
 
 /** 武器精灵最长边（像素）：近战 / 远程武器，与光环 / 地雷 */
 const WEAPON_SIZE = 58;
+/** 武器环绕角色的椭圆半径：远程武器在外圈（拉远到 1.5 倍），近战与火焰这类短射程武器留在内圈，
+ *  否则挂在身体另一侧时够不到对面贴身的敌人（射程从武器位置算） */
+const WEAPON_ORBIT = { rx: 57, ry: 42 };
+const WEAPON_ORBIT_NEAR = { rx: 38, ry: 28 };
+const SHORT_RANGE = 220;
+const orbitOf = (def: WeaponDef) =>
+  def.cls === 'melee' || def.kind === 'flame' || (def.kind !== 'aura' && def.range < SHORT_RANGE) ? WEAPON_ORBIT_NEAR : WEAPON_ORBIT;
 const WEAPON_SIZE_SMALL = 36;
 /** 普通横扫：从挥出到收回的缓动；ext 在开头 15% 伸出、最后 15% 收回 */
 const easeInOut = (k: number): number => 0.5 - 0.5 * Math.cos(Math.PI * k);
@@ -218,10 +227,11 @@ export class WeaponSystem {
         w.resetCd = 1;
         w.cd = Math.min(w.cd, 0.05);
       }
-      // 武器环绕排布（武器变大后离身体稍远一点）
+      // 武器环绕排布（离身体远一些，避免和角色重叠）；索敌、射程、子弹出膛、近战判定都以武器所在位置 (hx, hy) 为起点，光环除外（围绕角色）
       const slotA = (i / Math.max(1, n)) * Math.PI * 2 - Math.PI / 2;
-      const hx = p.x + Math.cos(slotA) * 38;
-      const hy = p.y + 6 + Math.sin(slotA) * 28;
+      const orb = orbitOf(def);
+      const hx = p.x + Math.cos(slotA) * orb.rx;
+      const hy = p.y + 6 + Math.sin(slotA) * orb.ry;
 
       w.retarget -= dt;
       const melee = def.kind === 'sweep' || def.kind === 'thrust';
@@ -288,9 +298,9 @@ export class WeaponSystem {
       // 地雷
       if (w.mines.length) this.updateMines(w, dt);
 
-      // 光环脉冲：芋头术士的契合光环每 3 秒（范围 ×1.5，并抵消敌弹）；天赋「脉动」让所有光环每 4 秒（范围 ×1.3）
+      // 光环脉冲：芋头术士的契合光环每 4 秒（范围 ×1.5，并抵消敌弹）；天赋「脉动」让所有光环每 4 秒（范围 ×1.3）
       const taroPulse = talent.auraPulse(def);
-      const pulseEvery = taroPulse ? 3 : treeTotals().auraPulse ? 4 : 0;
+      const pulseEvery = taroPulse ? 4 : treeTotals().auraPulse ? 4 : 0;
       if (def.kind === 'aura' && pulseEvery && (w.pulseT += dt) >= pulseEvery) {
         w.pulseT = 0;
         this.auraPulse(w, range * (taroPulse ? 1.5 : 1.3), taroPulse);
@@ -347,6 +357,18 @@ export class WeaponSystem {
     w.dmgMul = 1;
     const cv = convert(w.def, w.mods, w.shot);
     w.shot = null;
+    // 双发（樱桃双枪）：远程武器按概率在 0.09 秒后对同一目标（已死则就近）再射一次；追加射击不再触发双发与连击
+    if (!combo && w.def.cls === 'ranged' && run.specials.doubleShot > 0 && Math.random() * 100 < run.specials.doubleShot) {
+      g.time.delayedCall(90, () => {
+        if (!this.list.includes(w)) return;
+        const tt = t.alive ? t : g.grid.nearest(hx, hy, range + 20);
+        if (!tt) return;
+        w.animAngle = Math.atan2(tt.y - hy, tt.x - hx);
+        w.shot = g.talent.onFire(w.def);
+        this.fire(w, hx, hy, tt, range);
+        w.shot = null;
+      });
+    }
     if (combo || cv.combo <= 0 || Math.random() >= cv.combo) return;
     g.time.delayedCall(110, () => {
       if (!this.list.includes(w)) return;
@@ -402,7 +424,7 @@ export class WeaponSystem {
     const ax = affixTotals(w.owned);
     const same = run.specials.sameWeaponBonus;
     if (same) dmg *= 1 + (same * run.weapons.filter((x) => x.id === def.id).length) / 100;
-    const crit = !!sm?.forceCrit || Math.random() * 100 < s.crit + (def.critBonus ?? 0) + ax.crit + (m?.crit ?? 0);
+    const crit = !!sm?.forceCrit || Math.random() * 100 < s.crit + (def.critBonus ?? 0) + (def.kind === 'thrust' ? BALANCE.thrustCrit : 0) + ax.crit + (m?.crit ?? 0);
     // 这里只乘武器自身的暴击倍率；词条暴击伤害随 HitInfo.critBonus 传给 weaponHit，
     // 与道具 / 角色 / 天赋的暴击伤害合并成一个加法池（上限 BALANCE.critDmgCap）
     if (crit) dmg *= def.critMult * this.g.superBuffs.onCrit(def);
@@ -439,9 +461,14 @@ export class WeaponSystem {
       case 'thrust': {
         const ex = hx + Math.cos(a) * range,
           ey = hy + Math.sin(a) * range;
-        const hits = g.grid.query((hx + ex) / 2, (hy + ey) / 2, range / 2 + MELEE_THRUST_PAD + 6, g.tmp);
+        // 判定：刺击线（含两侧 PAD）＋ 半角 thrustHalfDeg 的窄扇形，靠近刀尖的两侧也能扎到
+        const half = Phaser.Math.DegToRad(BALANCE.thrustHalfDeg);
+        const hits = g.grid.query(hx, hy, range + MELEE_THRUST_PAD + 6, g.tmp);
         for (const e of [...hits]) {
-          if (distToSegment(e.x, e.y, hx, hy, ex, ey) < e.radius + MELEE_THRUST_PAD) this.hit(e, w, s, hx, hy);
+          const onLine = distToSegment(e.x, e.y, hx, hy, ex, ey) < e.radius + MELEE_THRUST_PAD;
+          const d = Math.hypot(e.x - hx, e.y - hy);
+          const inFan = d - e.radius <= range + MELEE_THRUST_PAD && Math.abs(Phaser.Math.Angle.Wrap(Math.atan2(e.y - hy, e.x - hx) - a)) <= half;
+          if (onLine || inFan) this.hit(e, w, s, hx, hy);
         }
         g.fxThrust(hx, hy, a, range);
         break;
@@ -505,7 +532,7 @@ export class WeaponSystem {
           b.lifeSteal = i.lifeSteal ?? 0;
           b.status = i.status;
           b.src = def.id;
-          b.pierce = (def.pierce?.[tier] ?? 0) + cv.pierce + (def.cls === 'ranged' ? treeTotals().rangedPierce : 0);
+          b.pierce = basePierce(def, tier) + cv.pierce + (def.cls === 'ranged' ? treeTotals().rangedPierce + run.specials.rangedPierce : 0);
           b.bounce = (def.bounce?.[tier] ?? 0) + cv.bounce;
           b.areaMul = areaMul;
           b.homing = def.homing ?? 0;
@@ -547,7 +574,7 @@ export class WeaponSystem {
           pts.push({ x: cur.x, y: cur.y });
           g.weaponHit(cur, { ...i, dmg }, hx, hy);
           if (j > 0) g.talent.onChainJump(def, cur);
-          dmg *= 0.85;
+          dmg *= BALANCE.chainDecay;
           cur = g.grid.nearest(cur.x, cur.y, 200, hitSet);
         }
         g.fxLightning(pts, chainColor(def.id));

@@ -8,7 +8,7 @@ import Phaser from 'phaser';
 import { describeItem } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { run, saveRun } from '../systems/RunState';
-import { LEVELUP_OPTIONS, ALL_ITEMS, type ItemDef } from '../data/items';
+import { ALL_ITEMS, type ItemDef } from '../data/items';
 import { WEAPON_MAP } from '../data/weapons';
 import { formatMod, type StatKey } from '../data/stats';
 import { BALANCE, RARITY, pickRarity, pickUpgradeRarity, rerollPrice, shopPrice, sellPrice } from '../data/balance';
@@ -134,13 +134,8 @@ export class LevelUpScene extends Phaser.Scene {
       ).setOrigin(0.5),
     );
     const n = (run.char.levelUpChoices ?? BALANCE.levelUpChoices) + treeTotals().levelChoices + run.relicFx.flags.levelChoices;
-    // 只提供当前武器涉及的流派伤害选项（否则 4 种流派会把有用选项稀释掉）
-    const cls = new Set(run.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => (d.kind === 'aura' ? 'aura' : d.cls)));
-    const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };
-    const own = new Set<string>([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
-    // 流派伤害只在持有对应流派武器时提供；爆炸范围不在升级选项里（只能靠道具获得）
-    const gated = Object.values(CLASS_KEY) as string[];
-    const pool = LEVELUP_OPTIONS.filter((o) => !gated.includes(o.key) || own.has(o.key));
+    // 流派伤害只在持有对应流派武器时提供，芋头术士只出光环相关（见 RunState.levelUpPool）；爆炸范围不在升级选项里
+    const pool = run.levelUpPool();
     const R = run.rand(`lvl:${run.level}:${run.pendingLevelUps}:${this.rerolls}`);
     const opts = shuffleWith([...pool], R).slice(0, n);
     const cw = Math.min(230, (W - 60) / n - 16),

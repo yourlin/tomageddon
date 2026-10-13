@@ -175,11 +175,14 @@ describe('章节倍率延续现有曲线', () => {
       m7 = EXTRA_CHAPTER_MULT[7][k];
     expect(m6).toBeGreaterThan(m5);
     expect(m7).toBeGreaterThan(m6);
-    // 现有曲线以 5 章归一化时，相邻两章的比值恒定（允许两位小数取整误差）
+    // 现有曲线以 5 章归一化时，相邻两章的比值恒定（允许两位小数取整误差）。
+    // 生命另有按章微调 hpAdjust（补偿各章刷怪池强弱），比较前先除掉它，只检查底层曲线
     if (BALANCE.chapterCount === 5) {
-      const ratio = m5 / fn(last - 1);
-      expect(m6 / m5).toBeCloseTo(ratio, 1);
-      expect(m7 / m6).toBeCloseTo(ratio, 1);
+      const adj = (ch: number) => (k === 'hp' ? (BALANCE.chapterCurve.hpAdjust[ch - 1] ?? 1) : 1);
+      const raw = (ch: number, v: number) => v / adj(ch);
+      const ratio = raw(last, m5) / raw(last - 1, fn(last - 1));
+      expect(raw(6, m6) / raw(last, m5)).toBeCloseTo(ratio, 1);
+      expect(raw(7, m7) / raw(6, m6)).toBeCloseTo(ratio, 1);
     }
   });
   it('速度：保持等差', () => {

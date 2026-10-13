@@ -38,6 +38,8 @@ export class SkillSystem implements SkillHost {
   buffT = 0;
   buffMods: StatMods | null = null;
   ghostT = 0;
+  /** 打怪经验加成（技能 xpBoost）的剩余秒数 */
+  xpBoostT = 0;
   dash: DashSpec | null = null;
   /** 角色专属演出的持续效果（云雾、火焰带、金钟…） */
   effects: Lingering[] = [];
@@ -49,6 +51,11 @@ export class SkillSystem implements SkillHost {
   constructor(readonly g: GameScene) {
     this.skill = run.char.skill;
     this.cd = 0; // 每波开局技能冷却重置
+  }
+
+  /** 当前打怪经验倍率（技能 xpBoost 生效期间 > 1） */
+  get xpMult(): number {
+    return this.xpBoostT > 0 ? 1 + (this.skill.xpBoost ?? 0) / 100 : 1;
   }
 
   get maxCd(): number {
@@ -146,7 +153,7 @@ export class SkillSystem implements SkillHost {
     g.waveQuests.onSkill();
     // 天赋：施法回复、施法增益、回响（立刻冷却完毕）
     const tt = treeTotals();
-    if (tt.castHeal) g.heal(Math.max(1, Math.round((g.stats.maxHp * tt.castHeal) / 100)));
+    if (tt.castHeal) g.heal(Math.max(1, Math.round((g.stats.maxHp * tt.castHeal) / 100)), true, 'talent');
     if (tt.castSelf.length) g.applyPlayerStatus(tt.castSelf);
     if (tt.skillEcho && Math.random() * 100 < tt.skillEcho) {
       this.cd = Math.min(this.cd, 0.4);
@@ -168,6 +175,7 @@ export class SkillSystem implements SkillHost {
     const info: HitInfo = { dmg: this.damage(s), crit: false, knockback: 30, lifeSteal: 0, status, weaponId: 'skill' };
     if (sk.selfStatus) g.applyPlayerStatus(this.statuses(sk.selfStatus));
     if (sk.xp) run.addXp(sk.xp);
+    if (sk.xpBoost) this.xpBoostT = this.dur(sk.duration ?? 5);
     // 1.4.0：角色专属演出与机制（替换该技能类型的通用实现）
     if (style) {
       if (sk.type === 'ghost' || sk.type === 'buff') {
@@ -176,7 +184,7 @@ export class SkillSystem implements SkillHost {
         this.buffMods = sk.mods ?? null;
         g.recalcStats();
       }
-      if (sk.type === 'dash' && sk.heal) g.heal(Math.round(s.maxHp * sk.heal * HEAL_SCALE));
+      if (sk.type === 'dash' && sk.heal) g.heal(Math.round(s.maxHp * sk.heal * HEAL_SCALE), true, 'skill');
       let dx = g.moveX,
         dy = g.moveY;
       if (!dx && !dy) {
@@ -317,7 +325,7 @@ export class SkillSystem implements SkillHost {
         const dur = 0.22;
         const speed = this.radius(sk.distance ?? 300) / dur;
         this.dash = { t: dur, vx: (dx / len) * speed, vy: (dy / len) * speed, hit: new Set(), info };
-        if (sk.heal) g.heal(Math.round(s.maxHp * sk.heal * HEAL_SCALE));
+        if (sk.heal) g.heal(Math.round(s.maxHp * sk.heal * HEAL_SCALE), true, 'skill');
         break;
       }
       case 'buff': {
@@ -370,10 +378,11 @@ export class SkillSystem implements SkillHost {
             0xff4d6d,
           );
         }
-        // 吸取：每命中 1 个敌人回 DRAIN_PER_HIT 点，最多 DRAIN_MAX_PCT 最大生命；再加技能自带的回复量（整体 ×HEAL_SCALE）
+        // 吸取：每命中 1 个敌人回 DRAIN_PER_HIT 最大生命，最多 DRAIN_MAX_PCT；再加技能自带的回复量（整体 ×HEAL_SCALE）
         g.heal(
-          Math.min(Math.round(s.maxHp * DRAIN_MAX_PCT), Math.round(hits.length * DRAIN_PER_HIT)) +
-            Math.round(s.maxHp * (sk.heal ?? 0) * HEAL_SCALE),
+          Math.round(s.maxHp * Math.min(DRAIN_MAX_PCT, hits.length * DRAIN_PER_HIT)) + Math.round(s.maxHp * (sk.heal ?? 0) * HEAL_SCALE),
+          true,
+          'skill',
         );
         break;
       }
@@ -414,6 +423,7 @@ export class SkillSystem implements SkillHost {
   update(dt: number): void {
     const g = this.g;
     if (this.cd > 0) this.cd -= dt;
+    if (this.xpBoostT > 0) this.xpBoostT -= dt;
     if (this.buffT > 0) {
       this.buffT -= dt;
       if (this.buffT <= 0) {

@@ -8,9 +8,10 @@ import { drawAffixDeco } from './AffixDeco';
 import type { StatusApply } from '../data/statuses';
 import type { GameScene } from '../scenes/GameScene';
 import { StatusSet } from '../systems/Status';
+import { run } from '../systems/RunState';
 import type { Rig } from './Rig';
 import { tx } from '../i18n';
-import { BALANCE, seedValue } from '../data/balance';
+import { BALANCE, seedValue, volleySpeedMult, bombFuse } from '../data/balance';
 
 let enemySeq = 1;
 
@@ -73,6 +74,10 @@ export class Enemy {
   chargeDebuff: StatusApply[] | undefined;
   spiral: { left: number; t: number; angle: number; p: Pattern } | null = null;
   private tintVer = -1;
+  /** 自爆引信：总时长（闪烁频率按剩余比例加快）、闪烁相位、地上爆炸范围圈的取消函数（引信中被打死时撤掉） */
+  private fuseMax = 0;
+  private fusePhase = 0;
+  private fuseCancel: (() => void) | null = null;
 
   get isBoss(): boolean {
     return this.boss !== null;
@@ -105,6 +110,8 @@ export class Enemy {
     this.kvx = this.kvy = 0;
     this.state = 'move';
     this.stateT = 0;
+    this.fuseMax = 0;
+    this.fuseCancel = null;
     this.contactCd = 0;
     this.affixT = 0;
     this.status.clear();
@@ -187,8 +194,17 @@ export class Enemy {
     this.deco = this.affixes.length ? g.add.graphics() : null;
   }
 
+  /** 熄灭自爆引信（撤掉地上的范围圈，回到移动状态） */
+  cancelFuse(): void {
+    this.fuseCancel?.();
+    this.fuseCancel = null;
+    if (this.state === 'fuse') this.state = 'move';
+  }
+
   kill(g: GameScene, animate = true): void {
     this.alive = false;
+    this.fuseCancel?.();
+    this.fuseCancel = null;
     this.ring?.destroy();
     this.ring = null;
     this.deco?.destroy();
@@ -233,7 +249,9 @@ export class Enemy {
     if (dot > 0) {
       // 每种持续伤害各跳一个数字，颜色区分（灼烧红、中毒绿……）
       for (const p of st.dotParts) {
-        g.damageEnemy(this, p.dmg * (1 + g.statusDmgBonus / 100), { color: dotColor(p.id), dot: true });
+        // 角色专属（黑莓女巫）：持续伤害按暴击率暴击（×2）
+        const crit = run.specials.dotPerk === 'dotCrit' && Math.random() * 100 < g.stats.crit;
+        g.damageEnemy(this, p.dmg * (1 + g.statusDmgBonus / 100) * (crit ? 2 : 1), { color: dotColor(p.id), dot: true, crit, src: p.src });
         if (!this.alive) return;
       }
     }
@@ -306,6 +324,13 @@ export class Enemy {
                         ? 0xff9a9a
                         : -1,
       );
+    }
+    // 自爆引信：红色与原色交替闪烁，越接近爆炸闪得越快（每秒 3 → 12 次）
+    if (this.state === 'fuse' && this.fuseMax > 0) {
+      const left = Math.max(0, this.stateT) / this.fuseMax;
+      this.fusePhase += dt * (3 + (1 - left) * 9);
+      rig.setStatusTint(this.fusePhase % 1 < 0.5 ? 0xff2a2a : -1);
+      this.tintVer = -1; // 引信被打断（被冰冻、开发者改状态等）后按状态重新上色
     }
   }
 
@@ -421,14 +446,21 @@ export class Enemy {
         return [nx * s * m, ny * s * m];
       }
       case 'bomber': {
+        const r = d.blastRadius ?? 80;
         if (this.state === 'fuse') {
           this.stateT -= dt;
-          if (this.stateT <= 0) g.enemyExplode(this, d.blastRadius ?? 80);
-          return [nx * s * 0.3, ny * s * 0.3];
+          if (this.stateT <= 0) {
+            this.fuseCancel = null; // 预警圈此时正好涨满、自己消失
+            g.enemyExplode(this, r);
+          }
+          return [0, 0]; // 点燃后原地不动，地上的范围圈才准
         }
         if (dist < 70) {
+          // 引信按威力算（最短 1.5 秒，见 bombFuse）；「急燃」词缀减半
           this.state = 'fuse';
-          this.stateT = d.fuse ?? 0.8;
+          this.stateT = this.fuseMax = bombFuse(this.dmg * this.dealtMult, r, this.affixes.includes('shortFuse'));
+          this.fusePhase = 0;
+          this.fuseCancel = g.fx.telegraphCircle(this.x, this.y, r, this.stateT, 0xff5400);
           rig.play('windup');
         }
         return [nx * s, ny * s];
@@ -471,7 +503,9 @@ export class Enemy {
         const sp = this.spiral;
         sp.t = 0.14;
         sp.angle += 0.28;
-        g.bossRing(this, sp.p.count ?? 6, sp.p.speed ?? 220, sp.p.dmg ?? 1, sp.angle, sp.p.slow ?? 0, sp.p.debuff);
+        // 螺旋每 0.14 秒一环、连续很多环：按约 3 环的总发数算齐射减速
+        const c = sp.p.count ?? 6;
+        g.bossRing(this, c, sp.p.speed ?? 220, sp.p.dmg ?? 1, sp.angle, sp.p.slow ?? 0, sp.p.debuff, c * 3);
         if (--sp.left <= 0) this.spiral = null;
       }
     }
@@ -493,7 +527,12 @@ export class Enemy {
       return [this.dirX * this.stateSpeed, this.dirY * this.stateSpeed];
     }
     if (this.state === 'blink') {
+      // 瞬移中原地不动；结束后回到移动状态（否则 Boss 第一次瞬移后就再也不走、不放招）
       this.stateT -= dt;
+      if (this.stateT <= 0) {
+        this.state = 'move';
+        rig.play('move', true);
+      }
       return [0, 0];
     }
     const noAttack = this.status.totals.noAttack;
@@ -525,12 +564,13 @@ export class Enemy {
           );
           break;
         case 'scatter':
+          // 逐发调用（每发随机方向）：按总发数算齐射减速
           for (let k = 0; k < (p.count ?? 8); k++)
             g.enemyShoot(
               this,
               1,
               0,
-              (p.speed ?? 260) * Phaser.Math.FloatBetween(0.7, 1.2),
+              (p.speed ?? 260) * volleySpeedMult(p.count ?? 8) * Phaser.Math.FloatBetween(0.7, 1.2),
               dmg * (p.dmg ?? 1),
               p.slow ?? 0,
               p.slow ? 'proj_ice' : 'proj_enemy',

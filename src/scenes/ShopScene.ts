@@ -5,7 +5,7 @@ import { EVOLUTION_OF, EVOLUTIONS } from '../data/evolutions';
 import { treeTotals } from '../systems/TalentTree';
 import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
-import { charTraitLines, describeItem, describeWeaponSets, weaponDmgType, armorText, speedText } from '../data/describe';
+import { charTraitLines, describeItem, describeWeaponSets, weaponDmgType, armorText, speedText, archetypeText } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { run, saveRun, type ShopOffer, type OwnedWeapon } from '../systems/RunState';
 import { WEAPONS, WEAPON_MAP, TIER_PRICE_MULT, TIER_NAMES, WEAPON_SETS, isShopWeapon, SHOP_MAX_TIER } from '../data/weapons';
@@ -380,6 +380,7 @@ export class ShopScene extends Phaser.Scene {
         if (ev) lines.push(tx(`✨ 可合成超武「${ev.to.name}」`, `✨ Crafts into ${ev.to.name}`));
         if (affixSlots(o.tier))
           lines.push(tx(`★ 购买后随机 ${affixSlots(o.tier)} 条词条`, `★ Rolls ${affixSlots(o.tier)} random affix(es)`));
+        if (!run.canEquip(o.id)) lines.unshift(tx('📦 只能放进仓库（可作合成材料）', '📦 Goes to storage (crafting material)'));
         const host = run.absorbTarget(o.id, o.tier);
         if (host)
           lines.unshift(
@@ -840,6 +841,7 @@ export class ShopScene extends Phaser.Scene {
       0,
       [
         d.desc,
+        ...((t) => (t ? [t] : []))(archetypeText(d, w.tier)),
         ...(d.superBuff ? [`⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`] : []),
         ...describeWeaponSets(d, run.setCounts(), false, tagName),
       ].join('\n'),
@@ -1050,7 +1052,8 @@ export class ShopScene extends Phaser.Scene {
         40,
         tx(`卖 ${sp}`, `Sell ${sp}`),
         () => {
-          if (run.weapons.length <= 1) {
+          // 只限制武器栏里的最后一把；仓库里的武器随时可以卖
+          if (!run.inStorage(w.uid) && run.weapons.length <= 1) {
             toast(this, tx('至少保留一把武器', 'Keep at least one weapon'));
             return;
           }
@@ -1084,6 +1087,8 @@ export class ShopScene extends Phaser.Scene {
     );
     // 仓库：存入 / 取回（武器栏满时与最弱的一把对调）
     const inSt = run.inStorage(w.uid);
+    // 只能装备契合武器的角色（芋头术士）：仓库里的非契合武器不能取回，按钮置灰并写明原因
+    const lockedOut = inSt && !run.canEquip(w.id);
     c.add(
       button(
         this,
@@ -1091,15 +1096,24 @@ export class ShopScene extends Phaser.Scene {
         storeY + 20,
         PW - 24,
         40,
-        inSt
-          ? tx(`⬆ 取回武器栏（仓库 ${run.storage.length}/${run.storageMax}）`, `⬆ Equip (storage ${run.storage.length}/${run.storageMax})`)
-          : tx(`⬇ 存入仓库（${run.storage.length}/${run.storageMax}）`, `⬇ Store (${run.storage.length}/${run.storageMax})`),
+        lockedOut
+          ? tx(`🚫 ${run.char.name}只能装备契合武器`, `🚫 ${run.char.name} only equips synergy weapons`)
+          : inSt
+            ? tx(
+                `⬆ 取回武器栏（仓库 ${run.storage.length}/${run.storageMax}）`,
+                `⬆ Equip (storage ${run.storage.length}/${run.storageMax})`,
+              )
+            : tx(`⬇ 存入仓库（${run.storage.length}/${run.storageMax}）`, `⬇ Store (${run.storage.length}/${run.storageMax})`),
         () => {
           const ok = inSt ? run.fromStorage(w.uid, [...run.weapons].sort((a, b) => a.tier - b.tier)[0]?.uid) : run.toStorage(w.uid);
           if (!ok) {
             toast(
               this,
-              inSt ? tx('武器栏已满', 'Weapon slots full') : tx('仓库已满或武器栏只剩一把', 'Storage full or last weapon'),
+              inSt && !run.canEquip(w.id)
+                ? tx(`${run.char.name}只能装备契合武器`, `${run.char.name} can only equip synergy weapons`)
+                : inSt
+                  ? tx('武器栏已满', 'Weapon slots full')
+                  : tx('仓库已满或武器栏只剩一把', 'Storage full or last weapon'),
               '#ff6b6b',
             );
             return;
@@ -1111,7 +1125,7 @@ export class ShopScene extends Phaser.Scene {
         },
         0x4a5a6a,
         16,
-      ),
+      ).setEnabled(!lockedOut),
     );
     // T3 → T4：按配方（同名 T3 × 2 + 道具），直接跳合成表看缺什么
     if (refineR && !superR) {

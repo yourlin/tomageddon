@@ -91,6 +91,7 @@ function step(g: GameScene): void {
     e.kvx = e.kvy = 0;
     e.hp = e.maxHp;
     e.contactCd = Math.max(e.contactCd, 1);
+    e.cancelFuse();
     if (e.state !== 'move') e.state = 'move';
   }
   // 玩家不会死

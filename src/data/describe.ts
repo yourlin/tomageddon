@@ -1,7 +1,7 @@
 // 道具 / 特效的文字描述（自动生成）
 import type { ItemDef, ItemSpecial } from './items';
 import { describeMods, STAT_INFO, type StatKey } from './stats';
-import { WEAPON_SETS, type WeaponDef } from './weapons';
+import { WEAPON_SETS, bulletArchetype, basePierce, type WeaponDef } from './weapons';
 import { weaponTags } from './weaponTags';
 import { STATUSES, type StatusApply } from './statuses';
 import { tx } from '../i18n';
@@ -85,6 +85,25 @@ export function describeItem(it: ItemDef): string[] {
 }
 
 /** 武器的伤害类型（决定吃哪个「分类伤害 %」）：光环武器算光环，其余按武器类别；icon 为类型图标纹理（见 Textures） */
+/** 子弹类型特性的说明（狙击 / 霰弹 / 慢速单发 / 手枪机枪），其他武器返回 null */
+export function archetypeText(def: WeaponDef, tier = 0): string | null {
+  const a = bulletArchetype(def);
+  if (!a) return null;
+  const A = BALANCE.archetype;
+  const p = basePierce(def, tier);
+  const pierce = p > 0 ? tx(`穿透 ${p}；`, `Pierce ${p}; `) : '';
+  if (a === 'sniper')
+    return tx(`🎯 狙击：${pierce}打生命 ≥ ${A.sniper.hpPct * 100}% 的敌人伤害 +${A.sniper.dmg}%`, `🎯 Sniper: ${pierce}+${A.sniper.dmg}% damage to enemies at ≥ ${A.sniper.hpPct * 100}% HP`);
+  if (a === 'shotgun')
+    return tx(`💥 霰弹：${pierce}打半个射程以内的敌人伤害 +${A.shotgun.dmg}%`, `💥 Shotgun: ${pierce}+${A.shotgun.dmg}% damage within half range`);
+  if (a === 'heavy')
+    return tx(
+      `🔨 重弹：${pierce}击退更强，${A.heavy.stun}% 概率硬直 ${A.heavy.stunDur} 秒`,
+      `🔨 Heavy shot: ${pierce}stronger knockback, ${A.heavy.stun}% chance to stagger for ${A.heavy.stunDur}s`,
+    );
+  return tx('🔫 速射：命中叠加压制（每层移速 -5%，最多 3 层）', '🔫 Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)');
+}
+
 export function weaponDmgType(def: WeaponDef): { key: StatKey; name: string; color: string; icon: string } {
   const key: StatKey =
     def.kind === 'aura' ? 'auraPct' : def.cls === 'melee' ? 'meleePct' : def.cls === 'ranged' ? 'rangedPct' : 'elementalPct';
