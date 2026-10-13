@@ -93,9 +93,15 @@ export function archetypeText(def: WeaponDef, tier = 0): string | null {
   const p = basePierce(def, tier);
   const pierce = p > 0 ? tx(`穿透 ${p}；`, `Pierce ${p}; `) : '';
   if (a === 'sniper')
-    return tx(`🎯 狙击：${pierce}打生命 ≥ ${A.sniper.hpPct * 100}% 的敌人伤害 +${A.sniper.dmg}%`, `🎯 Sniper: ${pierce}+${A.sniper.dmg}% damage to enemies at ≥ ${A.sniper.hpPct * 100}% HP`);
+    return tx(
+      `🎯 狙击：${pierce}打生命 ≥ ${A.sniper.hpPct * 100}% 的敌人伤害 +${A.sniper.dmg}%`,
+      `🎯 Sniper: ${pierce}+${A.sniper.dmg}% damage to enemies at ≥ ${A.sniper.hpPct * 100}% HP`,
+    );
   if (a === 'shotgun')
-    return tx(`💥 霰弹：${pierce}打半个射程以内的敌人伤害 +${A.shotgun.dmg}%`, `💥 Shotgun: ${pierce}+${A.shotgun.dmg}% damage within half range`);
+    return tx(
+      `💥 霰弹：${pierce}打半个射程以内的敌人伤害 +${A.shotgun.dmg}%`,
+      `💥 Shotgun: ${pierce}+${A.shotgun.dmg}% damage within half range`,
+    );
   if (a === 'heavy')
     return tx(
       `🔨 重弹：${pierce}击退更强，${A.heavy.stun}% 概率硬直 ${A.heavy.stunDur} 秒`,

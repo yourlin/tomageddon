@@ -1685,7 +1685,11 @@ export class GameScene extends Phaser.Scene {
     const arch = wdef ? bulletArchetype(wdef) : null;
     const AR = BALANCE.archetype;
     if (arch === 'sniper' && e.hp >= e.maxHp * AR.sniper.hpPct) dmg *= 1 + AR.sniper.dmg / 100;
-    else if (arch === 'shotgun' && wdef && Math.hypot(e.x - this.player.x, e.y - this.player.y) <= wdef.range * this.rangeMult * AR.shotgun.range)
+    else if (
+      arch === 'shotgun' &&
+      wdef &&
+      Math.hypot(e.x - this.player.x, e.y - this.player.y) <= wdef.range * this.rangeMult * AR.shotgun.range
+    )
       dmg *= 1 + AR.shotgun.dmg / 100;
     if (arch === 'heavy') info = { ...info, knockback: (info.knockback ?? 0) + AR.heavy.knock };
     if (info.knockback && e.knockResist < 1) {
@@ -1833,7 +1837,8 @@ export class GameScene extends Phaser.Scene {
   private killEnemy(e: Enemy): void {
     // 角色专属（山葵爆破手）：灼烧中的敌人死亡时引燃周围敌人
     if (run.specials.dotPerk === 'burnSpread' && e.status.has('burn'))
-      for (const o of this.grid.query(e.x, e.y, 110, this.tmp2)) if (o !== e && o.alive) this.applyDot(o, { id: 'burn', dur: 3, stacks: 2 });
+      for (const o of this.grid.query(e.x, e.y, 110, this.tmp2))
+        if (o !== e && o.alive) this.applyDot(o, { id: 'burn', dur: 3, stacks: 2 });
     const color = e.def?.color ?? e.boss?.color ?? 0xffffff;
     // 成就计数：每种怪物、章节、角色击杀；词缀精英按词缀
     if (e.def) bump(`kill:${e.def.id}`);

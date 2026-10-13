@@ -39,10 +39,7 @@ export const CHANGELOG: ChangeEntry[] = [
         '角色调整：番茄妹、豌豆士兵、玉米枪手、荔枝公主、樱桃双枪、蜜桃天使、芦笋弓手、草莓偶像、豆芽学徒等加强（新特性或属性），蘑菇巫医、芋头术士小幅削弱',
         'Character changes: Tomato, Pea Soldier, Corn Gunner, Lychee, Cherry, Peach, Asparagus, Strawberry, Sprout and others buffed (new traits or stats); Mushroom and Taro slightly nerfed',
       ],
-      [
-        '豆芽学徒技能「拔苗助长」改为 5 秒内打怪经验 +30%',
-        'Sprout’s Growth Spurt now grants +30% XP from kills for 5s',
-      ],
+      ['豆芽学徒技能「拔苗助长」改为 5 秒内打怪经验 +30%', 'Sprout’s Growth Spurt now grants +30% XP from kills for 5s'],
       [
         '怪物齐射：子弹越多飞得越慢（最低 ×0.6）；2 / 3 发齐射张开角度，站在半个射程外不会被侧弹打中',
         'Enemy volleys: the more bullets, the slower they fly (down to ×0.6); 2- and 3-shot volleys spread wider so side shots miss you beyond half range',

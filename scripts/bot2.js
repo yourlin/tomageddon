@@ -225,7 +225,13 @@ function move(P) {
   let distW = P.melee ? 0.6 : 0.2;
   // 风筝走位（--bot-style kite）：远程角色停在主武器射程的 85% 处，近身警戒半径加大
   if (window.__botStyle === 'kite' && !P.melee) {
-    const reach = Math.max(0, ...run.weapons.map((w) => WEAPON_MAP[w.id]).filter((d) => d.cls !== 'melee').map((d) => d.range));
+    const reach = Math.max(
+      0,
+      ...run.weapons
+        .map((w) => WEAPON_MAP[w.id])
+        .filter((d) => d.cls !== 'melee')
+        .map((d) => d.range),
+    );
     wantD = Math.max(230, (reach + (g.stats.range ?? 0)) * 0.85);
     dangerR = 190;
     distW = 0.5;

@@ -6,7 +6,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Tomato Sister',
     title: 'All-Rounder',
     desc: 'Guardian of Ketchup Town. Well-balanced in every way — perfect for beginners.',
-    talent: { name: 'Heart of Tomato', desc: 'Favored weapons start with 30% combo chance; after each wave, permanently gain +1 Max HP and +2% favored-weapon combo chance (max +20%)' },
+    talent: {
+      name: 'Heart of Tomato',
+      desc: 'Favored weapons start with 30% combo chance; after each wave, permanently gain +1 Max HP and +2% favored-weapon combo chance (max +20%)',
+    },
     traits: [],
     skill: { name: 'Ketchup Burst', desc: 'Burst into ketchup for 220% damage and Slow; puddles linger 4s, Slowing enemies who step in.' },
   },
@@ -331,7 +334,11 @@ export const EN_CHARACTERS: CharactersEn = {
       name: 'Stench Aura',
       desc: 'Every 1.5s, throw a stink spike at the nearest enemy (damage = 4 + Elemental Damage + 50% Armor; inflicts 2 Poison stacks and Weaken). Favored hits add 1 Stench stack to the enemy; at 3 stacks it bursts into 8 spikes (50% damage)',
     },
-    traits: ['Reflect 10 damage', 'Enemies within 160 are constantly Weakened and gain 2 Poison stacks every second', 'Poisoned enemies are also Slowed'],
+    traits: [
+      'Reflect 10 damage',
+      'Enemies within 160 are constantly Weakened and gain 2 Poison stacks every second',
+      'Poisoned enemies are also Slowed',
+    ],
     skill: {
       name: 'Stink Bomb',
       desc: 'A stench follows you for 5s; nearby enemies are hit with Poison, Weaken and Confuse every second. Deals light damage on cast.',

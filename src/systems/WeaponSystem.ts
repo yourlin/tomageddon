@@ -424,7 +424,9 @@ export class WeaponSystem {
     const ax = affixTotals(w.owned);
     const same = run.specials.sameWeaponBonus;
     if (same) dmg *= 1 + (same * run.weapons.filter((x) => x.id === def.id).length) / 100;
-    const crit = !!sm?.forceCrit || Math.random() * 100 < s.crit + (def.critBonus ?? 0) + (def.kind === 'thrust' ? BALANCE.thrustCrit : 0) + ax.crit + (m?.crit ?? 0);
+    const crit =
+      !!sm?.forceCrit ||
+      Math.random() * 100 < s.crit + (def.critBonus ?? 0) + (def.kind === 'thrust' ? BALANCE.thrustCrit : 0) + ax.crit + (m?.crit ?? 0);
     // 这里只乘武器自身的暴击倍率；词条暴击伤害随 HitInfo.critBonus 传给 weaponHit，
     // 与道具 / 角色 / 天赋的暴击伤害合并成一个加法池（上限 BALANCE.critDmgCap）
     if (crit) dmg *= def.critMult * this.g.superBuffs.onCrit(def);
@@ -467,7 +469,8 @@ export class WeaponSystem {
         for (const e of [...hits]) {
           const onLine = distToSegment(e.x, e.y, hx, hy, ex, ey) < e.radius + MELEE_THRUST_PAD;
           const d = Math.hypot(e.x - hx, e.y - hy);
-          const inFan = d - e.radius <= range + MELEE_THRUST_PAD && Math.abs(Phaser.Math.Angle.Wrap(Math.atan2(e.y - hy, e.x - hx) - a)) <= half;
+          const inFan =
+            d - e.radius <= range + MELEE_THRUST_PAD && Math.abs(Phaser.Math.Angle.Wrap(Math.atan2(e.y - hy, e.x - hx) - a)) <= half;
           if (onLine || inFan) this.hit(e, w, s, hx, hy);
         }
         g.fxThrust(hx, hy, a, range);
