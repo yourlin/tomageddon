@@ -7,6 +7,8 @@ export interface StatusEntry {
   t: number;
   dur: number;
   value: number;
+  /** 最近一次施加者（武器 id），持续伤害记到它名下 */
+  src?: string;
 }
 
 export interface StatusTotals {
@@ -59,7 +61,7 @@ export class StatusSet {
   private dirty = false;
   private tickAcc = 0;
   /** 最近一次跳伤害的明细（update 返回大于 0 时有效） */
-  dotParts: { id: StatusId; dmg: number }[] = [];
+  dotParts: { id: StatusId; dmg: number; src?: string }[] = [];
   version = 0;
   /** 成功施加状态时回调（敌人用于成就计数） */
   onApplied?: (id: StatusId) => void;
@@ -94,17 +96,21 @@ export class StatusSet {
     const cur = this.get(a.id);
     const add = a.stacks ?? 1;
     if (cur) {
-      cur.stacks = Math.min(def.maxStacks, cur.stacks + add);
+      cur.stacks = Math.min(a.cap ?? def.maxStacks, cur.stacks + add);
       cur.t = Math.max(cur.t, dur);
       cur.dur = Math.max(cur.dur, dur);
+      if (a.src) cur.src = a.src;
       if (a.value !== undefined) cur.value = a.id === 'shield' ? cur.value + a.value : Math.max(cur.value, a.value * dpsScale);
+      else if (def.dps && dpsScale !== 1) cur.value = Math.max(cur.value, def.dps * dpsScale);
     } else {
       this.list.push({
         id: a.id,
-        stacks: Math.min(def.maxStacks, add),
+        stacks: Math.min(a.cap ?? def.maxStacks, add),
         t: dur,
         dur,
-        value: (a.value ?? 0) * (a.id === 'shield' ? 1 : dpsScale),
+        src: a.src,
+        // 持续伤害没给 value 时按基础每层伤害 × dpsScale（玩家施加的灼烧 / 中毒随元素伤害成长）
+        value: a.value !== undefined ? a.value * (a.id === 'shield' ? 1 : dpsScale) : def.dps && dpsScale !== 1 ? def.dps * dpsScale : 0,
       });
     }
     this.dirty = true;
@@ -154,9 +160,9 @@ export class StatusSet {
         const d = STATUSES[s.id];
         if (!d.dps) continue;
         const v = (s.value > 0 ? s.value : d.dps) * s.stacks * 0.5;
-        const p = this.dotParts.find((x) => x.id === s.id);
+        const p = this.dotParts.find((x) => x.id === s.id && x.src === s.src);
         if (p) p.dmg += v;
-        else this.dotParts.push({ id: s.id, dmg: v });
+        else this.dotParts.push({ id: s.id, dmg: v, src: s.src });
       }
       return this.totals.dps * 0.5;
     }

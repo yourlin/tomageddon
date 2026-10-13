@@ -7,6 +7,7 @@ import { BOSS_MAP, AFFIXES, AFFIX_IDS, elitePool, bossPool, type BossDef, type A
 import { minionStats, bossStats } from '../../systems/EnemyScaling';
 import { minionTraits, patternText, afterArmor, bossSummary, BEHAVIOR_NAME, PATTERN_NAME } from '../info';
 import type { AttackMode, Tracked } from '../sandbox';
+import { monsterBar } from '../quick';
 import { allFilters, allMonsters, liveEditor, affixPresets, poolChart, heatToggle, heatColor, heatMode, buildDps } from './monsterTools';
 
 const MATRIX_WAVES = [1, 3, 5, 7, 10, 12, 15, 20, 25];
@@ -59,6 +60,8 @@ export function renderMonsters(ctx: DevCtx): HTMLElement {
       searchBox(ctx),
     ),
     ui.mCat === 'all' ? allFilters(ctx) : '',
+    // 快速预览：缩略图点一下就清场生成（原来固定在面板顶部的怪物快捷栏）
+    monsterBar(ctx),
     h(
       'div',
       { class: 'box' },

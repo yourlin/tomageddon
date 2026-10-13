@@ -6,14 +6,12 @@ import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import { ENEMIES, ENEMY_MAP } from '../data/enemies';
 import { elitePool, bossPool } from '../data/bosses';
-import type { AttackMode } from './sandbox';
 import { thumb } from './thumbs';
 import { prefs, keyText } from './prefs';
 import { openModal } from './palette';
 import { allMonsters } from './tabs/monsterTools';
 
 /** 浏览怪物时生成的目标怎么行动：正常攻击（看招式）/ 木桩 / 只手动触发 */
-let viewMode: AttackMode = 'ai';
 
 /** 切换角色：武器仍是旧角色的初始武器时，一并换成新角色的初始武器 */
 export function switchChar(ctx: DevCtx, id: string): void {
@@ -77,8 +75,9 @@ export function showMonster(ctx: DevCtx, m: Monster): void {
     chapterId: ui.mChapter,
     wave: ui.mWave,
     count: 1,
-    attack: viewMode,
-    lock: true,
+    // 攻击方式、是否锁位沿用怪物页的生成选项
+    attack: ui.spawn.attack,
+    lock: ui.spawn.lock,
     immortal: true,
     test: false,
     // 近一点生成，方便看清外形与近身招式
@@ -88,40 +87,14 @@ export function showMonster(ctx: DevCtx, m: Monster): void {
   ctx.rerender();
 }
 
-export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
-  const ui = ctx.ui;
-  const list = monsterList(ctx);
-  const cur = list.find((m) => m.sel === ui.mSel);
-  const pos = cur ? `${list.indexOf(cur) + 1}/${list.length}` : `—/${list.length}`;
-  const seg = (v: typeof ui.mCat, label: string) =>
-    btn(
-      label,
-      () => {
-        ui.mCat = v;
-        ui.mSel = '';
-        ctx.rerender();
-      },
-      ui.mCat === v ? 'on' : '',
-    );
+/** 角色快捷栏（一行）：工作室布局在底栏最左边，停靠布局在面板顶部 */
+export function renderCharBar(ctx: DevCtx, el: HTMLElement): void {
   const k = (a: Parameters<typeof keyText>[0]) => keyText(a);
-  // 怪物缩略图条：当前筛选下的全部怪物，点哪个生成哪个
-  const strip = h(
-    'div',
-    { class: 'strip' },
-    ...list.map((m) =>
-      h(
-        'a',
-        { class: m.sel === ui.mSel ? 'on' : '', title: m.name, onclick: () => showMonster(ctx, m) },
-        thumb(m.boss ? 'boss' : 'enemy', m.id, 30),
-      ),
-    ),
-  );
   el.replaceChildren(
     h(
       'div',
       { class: 'row' },
-      h('b', { class: 'nw' }, '角色'),
-      thumb('char', ctx.build.charId, 26),
+      thumb('char', ctx.build.charId, 24),
       btn('◀', () => stepChar(ctx, -1), '', `上一个角色（${k(prefs.keys.charPrev)}）`),
       select(
         CHARACTERS.map((c) => [c.id, `${c.name}（${c.title}）`]),
@@ -129,38 +102,32 @@ export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
         (v) => switchChar(ctx, v),
       ),
       btn('▶', () => stepChar(ctx, 1), '', `下一个角色（${k(prefs.keys.charNext)}）`),
-      btn('▦ 网格选择', () => openCharGrid(ctx, el.ownerDocument)),
-      h('span', { class: 'muted small' }, `${k(prefs.keys.charPrev)} ${k(prefs.keys.charNext)} 切换`),
+      btn('▦', () => openCharGrid(ctx, el.ownerDocument), '', '网格选择角色'),
     ),
+  );
+}
+
+/** 怪物快速预览（放在怪物页顶部）：当前筛选下的怪物缩略图，点哪个清场并在玩家附近生成哪个；上一个 / 下一个 */
+export function monsterBar(ctx: DevCtx): HTMLElement {
+  const ui = ctx.ui;
+  const list = monsterList(ctx);
+  const cur = list.find((m) => m.sel === ui.mSel);
+  const pos = cur ? `${list.indexOf(cur) + 1}/${list.length}` : `—/${list.length}`;
+  const k = (a: Parameters<typeof keyText>[0]) => keyText(a);
+  return h(
+    'div',
+    { class: 'box' },
     h(
       'div',
-      { class: 'row' },
-      h('b', { class: 'nw' }, '怪物'),
-      select(
-        CHAPTERS.map((c) => [c.id, `第${c.id}章`]),
-        ui.mChapter,
-        (v) => ((ui.mChapter = Number(v)), (ui.mSel = ''), ctx.rerender()),
-      ),
-      h(
-        'span',
-        { class: 'seg' },
-        seg('pool', '刷怪池'),
-        seg('minion', '全部小怪'),
-        seg('elite', '精英'),
-        seg('boss', 'Boss'),
-        seg('all', '全类别'),
-      ),
-      select(
-        [
-          ['ai', '正常攻击'],
-          ['none', '木桩'],
-          ['manual', '手动招式'],
-        ],
-        viewMode,
-        (v) => (viewMode = v as AttackMode),
+      { class: 'strip' },
+      ...list.map((m) =>
+        h(
+          'a',
+          { class: m.sel === ui.mSel ? 'on' : '', title: m.name, onclick: () => showMonster(ctx, m) },
+          thumb(m.boss ? 'boss' : 'enemy', m.id, 30),
+        ),
       ),
     ),
-    strip,
     h(
       'div',
       { class: 'row' },
@@ -169,7 +136,11 @@ export function renderQuick(ctx: DevCtx, el: HTMLElement): void {
       h('span', { class: 'muted' }, pos),
       btn('▶', () => stepMonster(ctx, 1), '', `清场并生成下一个（${k(prefs.keys.monNext)}）`),
       cur ? btn('重新生成', () => showMonster(ctx, cur)) : '',
-      h('span', { class: 'muted small' }, `${k(prefs.keys.monPrev)} ${k(prefs.keys.monNext)} 切换 · 生成在玩家附近、锁血锁位`),
+      h(
+        'span',
+        { class: 'muted small' },
+        `${k(prefs.keys.monPrev)} ${k(prefs.keys.monNext)} 切换 · 清场后在玩家附近生成 1 个、锁血；攻击方式与锁定位置用下方生成选项`,
+      ),
     ),
   );
 }

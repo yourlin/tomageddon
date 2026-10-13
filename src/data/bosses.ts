@@ -43,7 +43,9 @@ export type AffixId =
   | 'weakening'
   | 'unstoppable'
   | 'rich'
-  | 'splitting';
+  | 'splitting'
+  // 依附型词缀：只跟着「爆裂」或自爆小怪出现，不进随机词缀池（见 AFFIX_IDS）
+  | 'shortFuse';
 
 export interface AffixDef {
   id: AffixId;
@@ -74,8 +76,12 @@ export const AFFIXES: Record<AffixId, AffixDef> = {
   unstoppable: { id: 'unstoppable', name: '不屈', color: 0xf4a261, desc: '免疫减速、眩晕与击退' },
   rich: { id: 'rich', name: '富有', color: 0xffe066, desc: '掉落番茄籽 ×3' },
   splitting: { id: 'splitting', name: '分裂', color: 0x80ed99, desc: '死亡时分裂出 2 只同类小怪' },
+  shortFuse: { id: 'shortFuse', name: '急燃', color: 0xff3d00, desc: '自爆 / 死亡爆炸的引信时间减半' },
 };
-export const AFFIX_IDS = Object.keys(AFFIXES) as AffixId[];
+/** 随机词缀池（不含依附型词缀「急燃」） */
+export const AFFIX_IDS: AffixId[] = (Object.keys(AFFIXES) as AffixId[]).filter((a) => a !== 'shortFuse');
+/** 带「爆裂」的精英 / 词缀小怪、或带词缀的自爆小怪，有此概率额外获得「急燃」 */
+export const SHORT_FUSE_CHANCE = 0.35;
 
 export interface BossDef {
   id: string;

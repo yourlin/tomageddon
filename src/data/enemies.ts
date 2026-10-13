@@ -34,7 +34,6 @@ export interface EnemyDef {
   spread?: number;
   projSlow?: number;
   projKey?: string;
-  fuse?: number;
   blastRadius?: number;
   splitInto?: string;
   splitCount?: number;
@@ -231,11 +230,10 @@ export const ENEMIES: EnemyDef[] = [
     hp: 6,
     hpGrowth: 0.55,
     dmg: 4,
-    dmgGrowth: 0.9,
+    dmgGrowth: 0.7,
     speed: 135,
     seeds: 1,
     behavior: 'bomber',
-    fuse: 0.8,
     blastRadius: 85,
     look: {
       shape: 'round',
@@ -513,7 +511,7 @@ export const ENEMIES: EnemyDef[] = [
     speed: 90,
     seeds: 3,
     behavior: 'shooter',
-    shootCd: 2.8,
+    shootCd: 4,
     projSpeed: 380,
     projMult: 0.4,
     keepDist: 320,
@@ -744,7 +742,7 @@ export const ENEMIES: EnemyDef[] = [
     speed: 95,
     seeds: 2,
     behavior: 'shooter',
-    shootCd: 2.8,
+    shootCd: 3.3,
     projSpeed: 420,
     projMult: 0.5,
     keepDist: 280,
@@ -977,11 +975,10 @@ export const ENEMIES: EnemyDef[] = [
     hp: 5,
     hpGrowth: 0.5,
     dmg: 3,
-    dmgGrowth: 0.8,
+    dmgGrowth: 0.6,
     speed: 130,
     seeds: 1,
     behavior: 'bomber',
-    fuse: 0.9,
     blastRadius: 80,
     onHit: [S('poison', 3, 2)],
     look: {
@@ -1248,11 +1245,10 @@ export const ENEMIES: EnemyDef[] = [
     hp: 6,
     hpGrowth: 0.55,
     dmg: 4,
-    dmgGrowth: 0.85,
+    dmgGrowth: 0.65,
     speed: 125,
     seeds: 1,
     behavior: 'bomber',
-    fuse: 0.8,
     blastRadius: 85,
     look: {
       shape: 'round',
@@ -1679,11 +1675,10 @@ export const ENEMIES: EnemyDef[] = [
     hp: 7,
     hpGrowth: 0.55,
     dmg: 4,
-    dmgGrowth: 0.85,
+    dmgGrowth: 0.65,
     speed: 120,
     seeds: 1,
     behavior: 'bomber',
-    fuse: 0.9,
     blastRadius: 90,
     onHit: [S('freeze', 0.6, 1, 30)],
     look: {
@@ -1795,11 +1790,10 @@ export const ENEMIES: EnemyDef[] = [
     hp: 8,
     hpGrowth: 0.55,
     dmg: 4,
-    dmgGrowth: 0.85,
+    dmgGrowth: 0.65,
     speed: 125,
     seeds: 1,
     behavior: 'bomber',
-    fuse: 0.8,
     blastRadius: 90,
     onHit: [S('stun', 0.5, 1, 35)],
     look: {
@@ -2130,11 +2124,10 @@ export const ENEMIES: EnemyDef[] = [
     hp: 10,
     hpGrowth: 0.6,
     dmg: 4,
-    dmgGrowth: 0.9,
+    dmgGrowth: 0.7,
     speed: 135,
     seeds: 2,
     behavior: 'bomber',
-    fuse: 0.8,
     blastRadius: 95,
     onHit: [S('burn', 3, 2)],
     look: {

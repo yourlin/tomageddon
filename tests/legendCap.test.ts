@@ -28,7 +28,7 @@ describe('传说道具持有上限', () => {
       expect(baseItemCap(it)).toBe(RARITY_ITEM_CAP[r]);
       expect(itemCapFor(it, 5)).toBe(RARITY_ITEM_CAP[r]);
     }
-    expect(RARITY_ITEM_CAP).toEqual([3, 2, 1, 1]);
+    expect(RARITY_ITEM_CAP).toEqual([2, 1, 1, 1]);
   });
 
   it('所有道具都有上限，且不超过稀有度默认值', () => {

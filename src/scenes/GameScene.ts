@@ -20,13 +20,15 @@ import {
   explodeSizeMultiplier,
   thornyReflect,
   lifeStealHeal,
+  volleySpeedMult,
+  bombFuse,
 } from '../data/balance';
 import { addMods, type Stats } from '../data/stats';
 import { ENEMY_MAP } from '../data/enemies';
-import { BOSS_MAP, AFFIX_IDS, TRUE_FINAL_BOSS_ID, type AffixId, type Pattern } from '../data/bosses';
-import { WEAPON_MAP, type WeaponEffect, type WeaponClass } from '../data/weapons';
+import { BOSS_MAP, AFFIX_IDS, SHORT_FUSE_CHANCE, TRUE_FINAL_BOSS_ID, type AffixId, type Pattern } from '../data/bosses';
+import { WEAPON_MAP, bulletArchetype, type WeaponEffect, type WeaponClass } from '../data/weapons';
 import { STATUSES, dotColor, type StatusApply, type StatusId } from '../data/statuses';
-import { Enemy } from '../objects/Enemy';
+import { Enemy, shooterRange } from '../objects/Enemy';
 import { Bullet } from '../objects/Bullet';
 import { Rig } from '../objects/Rig';
 import { SpatialGrid } from '../systems/Grid';
@@ -57,7 +59,7 @@ import { WaveQuestTracker } from '../systems/WaveQuests';
 import { weatherForWave, WEATHER_MAP, WEATHER_RULE_KEY } from '../systems/Weather';
 import { mechanicOpen } from '../systems/Mechanics';
 import { AURA_WEAPON_IDS } from '../data/evolutions';
-import { boomOffset, BOOM_PASSES } from '../systems/BoomPaths';
+import { boomHome, boomOffset, boomPass } from '../systems/BoomPaths';
 import { VW, VH } from '../systems/HiDpi';
 
 /** 开发者沙盒（?dev）：不刷怪、不计时、不掉落、不结算；玩家阵亡时原地复活。其余行为由开发者界面通过 onStep 驱动 */
@@ -177,6 +179,27 @@ export class GameScene extends Phaser.Scene {
   stats!: Stats;
   rangeMult = 1;
   statusDmgBonus = 0;
+  /** 玩家施加的持续伤害随元素伤害成长（BALANCE.dotElemScale，每点元素伤害 +15%） */
+  get dotScale(): number {
+    return 1 + Math.max(0, this.stats.elemental) * BALANCE.dotElemScale;
+  }
+
+  /** 玩家对敌人施加状态的统一入口：持续伤害按元素伤害成长，并套用角色专属持续伤害特性（ItemSpecial.dotPerk） */
+  applyDot(e: Enemy, st: StatusApply, scale = this.dotScale, src?: string): boolean {
+    const perk = run.specials.dotPerk;
+    let a = st;
+    if (perk || src) {
+      a = { ...st, src: src ?? st.src };
+      if (st.id === 'burn') {
+        if (perk === 'burnStack') a.stacks = (st.stacks ?? 1) + 1;
+        else if (perk === 'burnLong') a.dur = st.dur * 2;
+        else if (perk === 'burnPower') scale *= 1.25;
+      } else if (st.id === 'poison' && perk === 'poisonCap') a.cap = STATUSES.poison.maxStacks + 4;
+    }
+    const ok = e.status.apply(a, scale);
+    if (ok && perk === 'poisonSlow' && st.id === 'poison') e.status.apply({ id: 'slow', dur: st.dur, stacks: 2 });
+    return ok;
+  }
   moveX = 0;
   /** 当前这次命中的伤害来源（weaponHit 设置，damageEnemy 读取） */
   dmgSrc = '';
@@ -385,6 +408,7 @@ export class GameScene extends Phaser.Scene {
     this.keys = this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,ESC,P') as Record<string, Phaser.Input.Keyboard.Key>;
 
     this.timeLeft = sandbox ? 999 : waveDuration(run.wave, run.isBossWave());
+    run.wlog.limit = sandbox ? 0 : this.timeLeft;
     this.spawnT = 0.5;
     if (!sandbox && run.isBossWave()) {
       const bossId = run.bossForWave();
@@ -588,7 +612,7 @@ export class GameScene extends Phaser.Scene {
         st.has('freeze') ? 0x9bd8ff : st.has('poison') ? 0xb8f28a : st.has('burn') ? 0xffb38a : st.has('curse') ? 0xc8a2ff : -1,
       );
     }
-    if (st.totals.regen > 0) this.heal(st.totals.regen * dt, false);
+    if (st.totals.regen > 0) this.heal(st.totals.regen * dt, false, 'regen');
     const sp = run.specials;
     sp.periodicSelf.forEach((p, i) => {
       this.periodicT[i] -= dt;
@@ -601,7 +625,7 @@ export class GameScene extends Phaser.Scene {
       this.auraT[i] -= dt;
       if (this.auraT[i] > 0) return;
       this.auraT[i] = a.every;
-      for (const e of this.grid.query(this.player.x, this.player.y, a.radius, this.tmp2)) for (const s of a.status) e.status.apply(s);
+      for (const e of this.grid.query(this.player.x, this.player.y, a.radius, this.tmp2)) for (const s of a.status) this.applyDot(e, s);
     });
     if (sp.cleanseEvery) {
       this.cleanseT += dt;
@@ -693,7 +717,7 @@ export class GameScene extends Phaser.Scene {
       if (this.regenAcc >= 1) {
         const h = Math.floor(this.regenAcc);
         this.regenAcc -= h;
-        this.heal(h, false);
+        this.heal(h, false, 'regen');
       }
     }
     const sp = run.specials;
@@ -713,11 +737,18 @@ export class GameScene extends Phaser.Scene {
     if (this.lsCd > 0) this.lsCd -= dt;
   }
 
-  heal(n: number, show = true): void {
+  /** 回复生命。src 记入每波统计（run.waveLog）：lifesteal / regen / fruit / kill / skill / talent / other */
+  heal(n: number, show = true, src = 'other'): void {
     if (n <= 0 || this.pstatus.totals.noHeal || this.dead) return;
     n *= run.rules.heal;
     const before = run.hp;
     run.hp = Math.min(this.stats.maxHp, run.hp + n);
+    // 生命偶尔高于上限（上限被临时压低）时这次回复会把生命压回上限：实际回复按 0 计
+    const got = Math.max(0, run.hp - before);
+    const log = run.wlog;
+    log.heal[src] = (log.heal[src] ?? 0) + got;
+    log.healOver += n - got;
+    log.overBy[src] = (log.overBy[src] ?? 0) + (n - got);
     if (show && run.hp - before >= 1) this.fx.playerNumber(this.player.x, this.player.y - 20, run.hp - before, 'heal');
   }
 
@@ -726,6 +757,7 @@ export class GameScene extends Phaser.Scene {
     if (this.dead || this.skill.invulnerable || this.pstatus.totals.immune) return;
     const dmg = this.pstatus.absorb(amount);
     if (dmg <= 0) return;
+    run.wlog.taken += Math.min(dmg, Math.max(0, run.hp));
     run.hp -= dmg;
     this.tookDamage = true;
     DEBUG_DMG?.push([run.wave, Math.round(this.timeLeft), 'dot:' + color, Math.round(dmg * 10) / 10]);
@@ -760,6 +792,7 @@ export class GameScene extends Phaser.Scene {
       return;
     }
     dmg = Math.max(1, Math.round(dmg));
+    run.wlog.taken += Math.min(dmg, Math.max(0, run.hp));
     run.hp -= dmg;
     this.tookDamage = true;
     DEBUG_DMG?.push([
@@ -791,6 +824,7 @@ export class GameScene extends Phaser.Scene {
   private enragePressure(amount: number): void {
     if (this.waveOver || this.dead) return;
     const dmg = Math.max(1, Math.round(amount));
+    run.wlog.taken += Math.min(dmg, Math.max(0, run.hp));
     run.hp -= dmg;
     this.tookDamage = true;
     DEBUG_DMG?.push([run.wave, 0, 'enrage-pressure', dmg]);
@@ -1009,6 +1043,7 @@ export class GameScene extends Phaser.Scene {
   private updateTimer(dt: number): void {
     this.timeLeft -= dt;
     run.waveSec[run.wave] = (run.waveSec[run.wave] ?? 0) + dt;
+    run.wlog.sec = run.waveSec[run.wave];
     if (run.isBossWave()) {
       if (this.timeLeft <= 0 && this.boss?.alive && !this.boss.enraged) {
         this.boss.enraged = true;
@@ -1051,10 +1086,13 @@ export class GameScene extends Phaser.Scene {
   }
 
   /** 随机词缀 */
-  rollAffixes(n: number): AffixId[] {
+  /** 随机词缀。bomber = 自爆小怪：带「爆裂」或本身会自爆时，有 SHORT_FUSE_CHANCE 概率额外附带「急燃」（引信减半，不占词缀名额） */
+  rollAffixes(n: number, bomber = false): AffixId[] {
     const pool = [...AFFIX_IDS];
     Phaser.Utils.Array.Shuffle(pool);
-    return pool.slice(0, n);
+    const out = pool.slice(0, n);
+    if ((bomber || out.includes('explosive')) && Math.random() < SHORT_FUSE_CHANCE) out.push('shortFuse');
+    return out;
   }
 
   private updateSpawning(dt: number): void {
@@ -1087,7 +1125,7 @@ export class GameScene extends Phaser.Scene {
       const affixed =
         w >= 7 && affixedAlive < (2 + run.chapterId / 2) * champ && Math.random() < 0.015 * (w - 5) * (0.8 + run.chapterId * 0.2) * champ;
       if (affixed) {
-        this.queueSpawn(def.id, false, cx, cy, this.rollAffixes(w >= 12 ? 2 : 1));
+        this.queueSpawn(def.id, false, cx, cy, this.rollAffixes(w >= 12 ? 2 : 1, def.behavior === 'bomber'));
         batch -= 3;
         continue;
       }
@@ -1148,6 +1186,7 @@ export class GameScene extends Phaser.Scene {
     if (!e) return null;
     const def = ENEMY_MAP[id];
     markSeen('enemies', id);
+    run.wlog.spawned++;
     const ms = minionStats(def, run.wave, run.chapter);
     const R = run.rules;
     e.spawnMinion(
@@ -1160,6 +1199,7 @@ export class GameScene extends Phaser.Scene {
       ms.speedMult * (run.mod('swift_foes') ? 1.25 : 1) * (run.mod('giants') ? 0.85 : 1) * R.enemySpeed,
       affixes,
     );
+    run.wlog.seedPot += e.seeds * e.lootMult * lootHarvestMult(this.stats.harvest);
     return e;
   }
 
@@ -1169,6 +1209,7 @@ export class GameScene extends Phaser.Scene {
     if (!e) return null;
     const def = BOSS_MAP[id];
     markSeen('bosses', id);
+    run.wlog.spawned++;
     // 精英 / Boss 的随波次缩放系数统一由 balance.ts 提供（不再在此散落 magic number）
     const R = run.rules;
     const base = bossStats(def, run.wave, run.chapter, run.mod('tough_bosses') ? 1.5 : 1);
@@ -1181,6 +1222,8 @@ export class GameScene extends Phaser.Scene {
     if (!GameScene.sandbox) for (const m of mutations(run.wave)) if (!affixes.includes(m)) affixes.push(m);
     affixes = affixes.filter((a) => !(def.affixes ?? []).includes(a));
     e.spawnBoss(this, def, x, y, hp, dmg, affixes);
+    run.wlog.bosses.push({ uid: e.uid, id, elite: !!def.elite, t0: run.waveSec[run.wave] ?? 0, ttk: null });
+    run.wlog.seedPot += e.seeds * e.lootMult * lootHarvestMult(this.stats.harvest);
     // A6：危机 10 / 15 / 20 时 Boss 学会新招式
     if (!def.elite && R.bossSkill > 0) addDangerPatterns(e, R.bossSkill);
     if (!def.elite) {
@@ -1376,13 +1419,14 @@ export class GameScene extends Phaser.Scene {
         // 沿曲线飞行：局部原点从出手点过渡到玩家当前位置，t = 1 时正好回到手里
         b.pathT += dt;
         const t = Math.min(1, b.pathT / b.pathDur);
-        const pass = Math.min(BOOM_PASSES[b.path] - 1, Math.floor(t * BOOM_PASSES[b.path]));
+        const pass = boomPass(b.path, t);
         if (pass !== b.pathPass) {
           b.pathPass = pass;
           b.hitSet.clear();
         }
-        const ox = b.sx + (p.x - b.sx) * t,
-          oy = b.sy + (p.y - b.sy) * t;
+        const home = boomHome(b.path, t);
+        const ox = b.sx + (p.x - b.sx) * home,
+          oy = b.sy + (p.y - b.sy) * home;
         const { u, v } = boomOffset(b.path, t, b.pathReach, b.pathSide);
         const c = Math.cos(b.pathAng),
           sn = Math.sin(b.pathAng);
@@ -1632,6 +1676,22 @@ export class GameScene extends Phaser.Scene {
       const cd = Math.min(BALANCE.critDmgCap, sp.critDmg + (info.critBonus ?? 0) + tCritDmg);
       if (cd > 0) dmg *= 1 + cd / 100;
     }
+    // 天赋：契合武器对特定目标的伤害倍率（椰子拳师连击 / 打眩晕）
+    dmg *= this.talent.hitDmgMult(e, info);
+    // 有护盾时增伤（蜜桃天使）
+    if (sp.shieldDmg && this.pstatus.has('shield')) dmg *= 1 + sp.shieldDmg / 100;
+    // 子弹类型特性：狙击打高血量目标、霰弹近身加伤；慢速单发的击退 / 硬直与手枪的压制在下面施加状态时处理
+    const wdef = !info.explosion && info.weaponId ? WEAPON_MAP[info.weaponId] : undefined;
+    const arch = wdef ? bulletArchetype(wdef) : null;
+    const AR = BALANCE.archetype;
+    if (arch === 'sniper' && e.hp >= e.maxHp * AR.sniper.hpPct) dmg *= 1 + AR.sniper.dmg / 100;
+    else if (
+      arch === 'shotgun' &&
+      wdef &&
+      Math.hypot(e.x - this.player.x, e.y - this.player.y) <= wdef.range * this.rangeMult * AR.shotgun.range
+    )
+      dmg *= 1 + AR.shotgun.dmg / 100;
+    if (arch === 'heavy') info = { ...info, knockback: (info.knockback ?? 0) + AR.heavy.knock };
     if (info.knockback && e.knockResist < 1) {
       const ang = Math.atan2(e.y - fromY, e.x - fromX);
       const k = info.knockback * 12 * (1 - e.knockResist);
@@ -1641,17 +1701,17 @@ export class GameScene extends Phaser.Scene {
     // 元素共鸣（天赋）看的是这一击之前身上的减益
     const wasDebuffed = e.status.list.some((x) => isDebuff(x.id));
     // 武器自带效果 → 状态
-    const statusScale = 1 + s.elemental * 0.08;
     if (eff?.slow) e.status.apply({ id: 'slow', dur: eff.slow.dur, stacks: Math.max(1, Math.round(eff.slow.pct / 15)) });
     if (eff?.stun) e.status.apply({ id: 'stun', dur: eff.stun });
-    if (eff?.burn) e.status.apply({ id: 'burn', dur: eff.burn.dur, value: eff.burn.dps * 0.5 + s.elemental * 0.3 }, statusScale);
-    else if (sp.burnChance && Math.random() * 100 < sp.burnChance)
-      e.status.apply({ id: 'burn', dur: 2.5, value: 1 + s.elemental * 0.3 }, statusScale);
-    if (eff?.poison) e.status.apply({ id: 'poison', dur: eff.poison.dur, stacks: eff.poison.stacks }, statusScale);
-    for (const st of info.status ?? []) e.status.apply(st, statusScale);
-    for (const st of sp.onHit) e.status.apply(st, statusScale);
-    if (sp.onAuraHit.length && WEAPON_MAP[info.weaponId ?? '']?.kind === 'aura')
-      for (const st of sp.onAuraHit) e.status.apply(st, statusScale);
+    if (arch === 'heavy' && Math.random() * 100 < AR.heavy.stun) e.status.apply({ id: 'stun', dur: AR.heavy.stunDur });
+    else if (arch === 'pistol') e.status.apply({ id: 'suppress', dur: AR.pistol.dur });
+    const wsrc = info.weaponId;
+    if (eff?.burn) this.applyDot(e, { id: 'burn', dur: eff.burn.dur, value: eff.burn.dps * 0.5 + s.elemental * 0.3 }, undefined, wsrc);
+    else if (sp.burnChance && Math.random() * 100 < sp.burnChance) this.applyDot(e, { id: 'burn', dur: 2.5, value: 1 + s.elemental * 0.3 });
+    if (eff?.poison) this.applyDot(e, { id: 'poison', dur: eff.poison.dur, stacks: eff.poison.stacks }, undefined, wsrc);
+    for (const st of info.status ?? []) this.applyDot(e, st, undefined, wsrc);
+    for (const st of sp.onHit) this.applyDot(e, st);
+    if (sp.onAuraHit.length && WEAPON_MAP[info.weaponId ?? '']?.kind === 'aura') for (const st of sp.onAuraHit) this.applyDot(e, st);
     this.applyPlayerStatus(sp.onHitSelf);
     // 荆棘词缀反伤
     // 按实际伤害、经护甲、单次与每秒封顶；受击无敌期间不反伤（见 balance.thornyReflect）
@@ -1676,7 +1736,7 @@ export class GameScene extends Phaser.Scene {
       if ((this.lsCd <= 0 || sameBatch) && Math.random() * 100 < ls) {
         this.lsBatch = sameBatch ? this.lsBatch + 1 : 1;
         this.lsCd = this.lsCdSet = sameBatch ? this.lsCd : BALANCE.player.lifeStealTickCd * rule.cdMult;
-        this.heal(lifeStealHeal(s.maxHp), false);
+        this.heal(lifeStealHeal(s.maxHp), false, 'lifesteal');
       }
     }
     const lh = sp.lightningOnHit;
@@ -1738,14 +1798,16 @@ export class GameScene extends Phaser.Scene {
   }
 
   /** 返回敌人是否仍然存活 */
-  damageEnemy(e: Enemy, dmg: number, opts: { crit?: boolean; color?: string; dot?: boolean } = {}): boolean {
+  damageEnemy(e: Enemy, dmg: number, opts: { crit?: boolean; color?: string; dot?: boolean; src?: string } = {}): boolean {
     if (!e.alive) return false;
     dmg *= e.takenMult;
     // 天赋：对精英/Boss 增伤、低血增伤、暴击回血
     const tt = treeTotals();
     if (tt.bossDmg && e.boss) dmg *= 1 + tt.bossDmg / 100;
     if (tt.lowHpDmg && run.hp < this.stats.maxHp * 0.4) dmg *= 1 + tt.lowHpDmg / 100;
-    if (tt.critHeal && opts.crit && Math.random() * 100 < tt.critHeal) this.heal(1, false);
+    if (tt.critHeal && opts.crit && Math.random() * 100 < tt.critHeal) this.heal(1, false, 'talent');
+    // 角色专属（大蒜伯爵）：流血中的敌人受到的所有伤害 +15%
+    if (run.specials.dotPerk === 'bleedVuln' && e.status.has('bleed')) dmg *= 1.15;
     e.hp -= dmg;
     // 天赋：斩杀生命过低的小怪
     if (tt.execute && !e.boss && e.hp > 0 && e.hp < e.maxHp * (tt.execute / 100)) {
@@ -1754,7 +1816,8 @@ export class GameScene extends Phaser.Scene {
     }
     bumpMax('maxHit', Math.round(dmg));
     // 局后统计：按来源累计实际造成的伤害（不计溢出）
-    const src = opts.dot ? 'dot' : this.dmgSrc || 'other';
+    // 持续伤害记到施加它的武器名下（武器自带的灼烧 / 中毒等）；角色特性、天赋施加的记为 dot
+    const src = opts.dot ? (opts.src ?? 'dot') : this.dmgSrc || 'other';
     const dealt = Math.min(dmg, Math.max(0, e.hp + dmg));
     run.dmgBy[src] = (run.dmgBy[src] ?? 0) + dealt;
     run.waveDmg[run.wave] = (run.waveDmg[run.wave] ?? 0) + dealt;
@@ -1772,6 +1835,10 @@ export class GameScene extends Phaser.Scene {
   }
 
   private killEnemy(e: Enemy): void {
+    // 角色专属（山葵爆破手）：灼烧中的敌人死亡时引燃周围敌人
+    if (run.specials.dotPerk === 'burnSpread' && e.status.has('burn'))
+      for (const o of this.grid.query(e.x, e.y, 110, this.tmp2))
+        if (o !== e && o.alive) this.applyDot(o, { id: 'burn', dur: 3, stacks: 2 });
     const color = e.def?.color ?? e.boss?.color ?? 0xffffff;
     // 成就计数：每种怪物、章节、角色击杀；词缀精英按词缀
     if (e.def) bump(`kill:${e.def.id}`);
@@ -1786,6 +1853,7 @@ export class GameScene extends Phaser.Scene {
     if (Math.random() * 100 < treeTotals().killSeeds) this.dropPickup('seed', e.x, e.y, 1, 0);
     e.kill(this);
     run.kills++;
+    run.wlog.killed++;
     this.killCounter++;
     const s = this.stats;
     const sp = run.specials;
@@ -1819,6 +1887,7 @@ export class GameScene extends Phaser.Scene {
       seeds *= 2;
       xp *= 2;
     }
+    run.wlog.seedDrop += seeds;
     const n = Math.min(Math.max(seeds, xp), e.isBoss ? 25 : 5);
     for (let i = 0; i < n; i++) {
       const v = Math.floor(seeds / n) + (i < seeds % n ? 1 : 0);
@@ -1827,6 +1896,8 @@ export class GameScene extends Phaser.Scene {
         this.dropPickup('seed', e.x + Phaser.Math.Between(-e.radius, e.radius), e.y + Phaser.Math.Between(-e.radius, e.radius), v, x);
     }
     if (e.isBoss) {
+      const rec = run.wlog.bosses.find((b) => b.uid === e.uid && b.ttk === null);
+      if (rec) rec.ttk = (run.waveSec[run.wave] ?? 0) - rec.t0;
       this.dropPickup('crate', e.x, e.y, 1);
       if (e.boss && !e.boss.elite) {
         this.shake(0.02, 600);
@@ -1866,12 +1937,21 @@ export class GameScene extends Phaser.Scene {
       }
     }
     if (e.affixes.includes('explosive')) {
+      // 爆裂：死亡处留下一颗闪烁的炸弹，引信按威力算（最短 1.5 秒，「急燃」减半），走完才爆
       const x = e.x,
         y = e.y,
-        dmg = e.dmg * 1.5;
-      this.fx.telegraphCircle(x, y, 90, 0.6, 0xff7b00, () => {
-        this.fx.ring(x, y, 90, 0xff7b00, 300, true);
-        if (Phaser.Math.Distance.Between(x, y, this.player.x, this.player.y) < 90 + BALANCE.player.radius) this.damagePlayer(dmg);
+        dmg = e.dmg * 1.5,
+        r = 90;
+      const fuse = bombFuse(dmg, r, e.affixes.includes('shortFuse'));
+      const bomb = this.add.image(x, y, 'fx_glow').setDepth(y).setTint(0xff3d00).setScale(0.35).setAlpha(0.9);
+      this.tweens.add({ targets: bomb, alpha: 0.25, scale: 0.45, duration: 140, yoyo: true, repeat: -1 });
+      this.fx.telegraphCircle(x, y, r, fuse, 0xff7b00, () => {
+        bomb.destroy();
+        this.fx.explosion(x, y, r, 0xff7b00);
+        this.fx.burst(x, y, 0xff9f1c, 12);
+        this.shake(0.006, 160);
+        audio.play(this, 'explode', 0.08);
+        if (Phaser.Math.Distance.Between(x, y, this.player.x, this.player.y) < r + BALANCE.player.radius) this.damagePlayer(dmg);
       });
     }
     const d = e.def;
@@ -1898,7 +1978,7 @@ export class GameScene extends Phaser.Scene {
         break;
       }
     }
-    if (sp.killHeal && run.kills % sp.killHeal === 0) this.heal(1);
+    if (sp.killHeal && run.kills % sp.killHeal === 0) this.heal(1, true, 'kill');
     this.talent.onKill(e, this.lastHit.explosion, this.dmgSrc);
   }
 
@@ -1957,16 +2037,28 @@ export class GameScene extends Phaser.Scene {
     maxDist?: number,
   ): void {
     const base = fixedAngle ?? Math.atan2(this.player.y - e.y, this.player.x - e.x);
+    // 齐射越密飞得越慢（逐发调用的散射在调用方按总发数算好速度，这里 n = 1 不再减速）
+    speed *= volleySpeedMult(n);
     // 多发子弹相邻夹角至少 minGapDeg，保证弹与弹之间能钻过去
-    const spread = Phaser.Math.DegToRad(spreadDeg >= 360 ? 360 : Math.max(spreadDeg, (n - 1) * BALANCE.enemyRanged.minGapDeg));
+    let spread = Phaser.Math.DegToRad(spreadDeg >= 360 ? 360 : Math.max(spreadDeg, (n - 1) * BALANCE.enemyRanged.minGapDeg));
+    // 2 / 3 发齐射：左右两发张开到「攻击距离 × sideSafe 以外打不中玩家」——侧弹离瞄准线的距离要大于子弹 + 玩家的命中半径
+    if ((n === 2 || n === 3) && spreadDeg < 360) {
+      const ER = BALANCE.enemyRanged;
+      const reach = (maxDist ? maxDist / ER.bulletReach : e.def ? shooterRange(e.def) : 280) * ER.sideSafe;
+      // 按玩家看得见的身体（Rig 半径 = 命中半径 × 1.25）+ 子弹半径 + 10 余量算，肉眼看也明显擦身而过
+      const hitR = 9 * scale + BALANCE.player.radius * 1.25 + 10;
+      spread = Math.max(spread, 2 * Math.asin(Math.min(1, hitR / Math.max(hitR, reach))));
+    }
     for (let i = 0; i < n; i++) {
       const ang = n === 1 ? base : spreadDeg >= 360 ? (i / n) * Math.PI * 2 : base - spread / 2 + (spread * i) / (n - 1);
       this.enemyBullet(key, e.x, e.y, ang, speed, Math.max(1, Math.round(dmg)), slow, scale, debuffs, e, maxDist);
     }
   }
 
-  bossRing(e: Enemy, n: number, speed: number, dmgMult: number, angle: number, slow: number, debuff?: StatusApply[]): void {
+  /** 环形弹幕。volleyN = 按多少发算齐射减速（默认本环发数；螺旋连续多环，由调用方传更大的数） */
+  bossRing(e: Enemy, n: number, speed: number, dmgMult: number, angle: number, slow: number, debuff?: StatusApply[], volleyN = n): void {
     const deb = e.attackDebuffs(debuff);
+    speed *= volleySpeedMult(volleyN);
     for (let i = 0; i < n; i++) {
       this.enemyBullet(
         slow ? 'proj_ice' : 'proj_enemy',
@@ -2033,6 +2125,8 @@ export class GameScene extends Phaser.Scene {
   enemyExplode(e: Enemy, r: number): void {
     e.kill(this, false);
     this.fx.explosion(e.x, e.y, r, 0xff5400);
+    this.fx.burst(e.x, e.y, 0xff9f1c, 12);
+    this.shake(0.006, 160);
     audio.play(this, 'explode', 0.08);
     if (Phaser.Math.Distance.Between(e.x, e.y, this.player.x, this.player.y) < r + BALANCE.player.radius)
       this.damagePlayer(e.dmg * e.dealtMult, undefined, e.attackDebuffs([{ id: 'burn', dur: 2, stacks: 1 }]));
@@ -2251,7 +2345,7 @@ export class GameScene extends Phaser.Scene {
       run.bonusSeeds -= bonus;
       run.bonusXp -= bonusXp;
       run.earn(p.value + bonus, 'pickup');
-      run.addXp(p.xp + bonusXp);
+      run.addXp((p.xp + bonusXp) * this.skill.xpMult);
       if (bonus) this.fx.label(p.img.x, p.img.y - 10, '×2', '#52ff8a');
       if (!seenTip('seeds')) tip('seeds', this, true);
       audio.play(this, 'pickup', 0.03);
@@ -2260,7 +2354,7 @@ export class GameScene extends Phaser.Scene {
       const bonus = this.talent.fruitSeeds();
       if (bonus) run.earn(bonus, 'talent');
       this.talent.onFruit();
-      this.heal(Math.max(3, Math.round(this.stats.maxHp * 0.08 * (1 + run.specials.fruitHeal / 100))));
+      this.heal(Math.max(3, Math.round(this.stats.maxHp * 0.08 * (1 + run.specials.fruitHeal / 100))), true, 'fruit');
       this.fx.ring(this.player.x, this.player.y, 50, 0x52ff8a, 300);
       audio.play(this, 'pickup');
     } else {

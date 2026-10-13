@@ -193,7 +193,7 @@ export const CHAPTERS: ChapterDef[] = [
     pool: [
       { enemy: 'mold', from: 1, to: 4, weight: 8 },
       { enemy: 'fly', from: 1, to: 6, weight: 4 },
-      { enemy: 'robot_can', from: 4, weight: 4 },
+      { enemy: 'robot_can', from: 7, weight: 4 },
       { enemy: 'rat', from: 5, weight: 5 },
       { enemy: 'beetle', from: 6, weight: 4 },
       { enemy: 'spider', from: 5, weight: 3 },
@@ -202,7 +202,7 @@ export const CHAPTERS: ChapterDef[] = [
       { enemy: 'mushroom', from: 5, weight: 2 },
       { enemy: 'brood', from: 6, weight: 2 },
       { enemy: 'splitter', from: 7, weight: 3 },
-      { enemy: 'gear_bug', from: 4, weight: 3 },
+      { enemy: 'gear_bug', from: 6, weight: 3 },
       { enemy: 'curse_doll', from: 5, weight: 3 },
       { enemy: 'sauce_drip', from: 2, weight: 4 },
       { enemy: 'conveyor_gremlin', from: 2, weight: 3 },

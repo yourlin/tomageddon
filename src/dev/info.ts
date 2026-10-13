@@ -1,13 +1,12 @@
 // 开发者界面的数据说明：武器 / 技能 / 怪物的中文名词表与理论数值计算（全部基于当前 run 的属性）
-import type { WeaponDef, WeaponKind } from '../data/weapons';
+import type { WeaponKind } from '../data/weapons';
 import type { EnemyBehavior, EnemyDef } from '../data/enemies';
 import type { PatternType, Pattern, BossDef } from '../data/bosses';
 import { STATUSES, type StatusApply } from '../data/statuses';
-import { BALANCE, explodeSizeMultiplier, armorMultiplier } from '../data/balance';
+import { BALANCE, armorMultiplier } from '../data/balance';
 import { run } from '../systems/RunState';
-import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
+import { weaponDamage } from '../systems/WeaponSystem';
 import { WEAPON_MAP } from '../data/weapons';
-import { isFavoredWeapon } from '../data/affinity';
 import type { SkillDef } from '../data/characters';
 import { skillHealPct } from '../data/skills';
 import { fmt } from './dom';
@@ -72,71 +71,7 @@ export function statusText(list: StatusApply[] | undefined): string {
     .join('、');
 }
 
-// ---------------- 武器 ----------------
-export interface WeaponCalc {
-  dmg: number;
-  cd: number;
-  range: number;
-  count: number;
-  critChance: number;
-  critMult: number;
-  /** 期望单次命中伤害（计入暴击） */
-  hit: number;
-  /** 单体期望 DPS（多弹丸按全部命中、连锁按首个目标） */
-  dps: number;
-  /** 爆炸半径（已乘爆炸范围属性），无爆炸为 0 */
-  explode: number;
-  /** 多目标总伤系数说明 */
-  multi: string;
-  effects: string[];
-}
-
-export function weaponCalc(def: WeaponDef, tier: number): WeaponCalc {
-  const s = run.stats;
-  const sp = run.specials;
-  const dmg = weaponDamage(def, tier, s);
-  const cd = weaponCooldown(def, tier, s);
-  const range = weaponRange(def, s);
-  const count = def.kind === 'chain' ? 1 : (def.count?.[tier] ?? 1);
-  const critChance = Math.min(1, Math.max(0, (s.crit + (def.critBonus ?? 0)) / 100));
-  // 暴击：武器倍率 × (1 + 道具/角色/天赋暴击伤害%)，后者有上限
-  const critMult = def.critMult * (1 + Math.min(BALANCE.critDmgCap, sp.critDmg) / 100);
-  const hit = dmg * (1 + critChance * (critMult - 1));
-  const exMul = explodeSizeMultiplier(s.explodeSize);
-  const baseExplode = def.effect?.explode ?? (def.kind === 'rocket' ? 60 : def.kind === 'mine' ? 80 : 0);
-  const explode = baseExplode * exMul;
-  let perAttack = hit * count;
-  const effects: string[] = [];
-  let multi = '';
-  if (def.kind === 'sweep' && def.effect?.explode) {
-    perAttack += hit * 0.6; // 横扫末端追加 60% 伤害的爆炸
-    multi = `扇形 + 末端爆炸（60%）`;
-  } else if (def.kind === 'chain') {
-    const jumps = def.effect?.chain?.[tier] ?? 2;
-    let k = 0;
-    for (let j = 0; j <= jumps; j++) k += 0.85 ** j;
-    multi = `连锁 ${jumps} 次，总伤 ×${k.toFixed(2)}`;
-  } else if (def.kind === 'aura') multi = '范围内所有敌人';
-  else if (def.kind === 'flame' || def.kind === 'boomerang') multi = '无限穿透';
-  else if (def.kind === 'sweep') multi = '扇形 ±72°';
-  else if (def.kind === 'thrust') multi = '直线穿刺';
-  const pierce = def.pierce?.[tier] ?? 0;
-  const bounce = def.bounce?.[tier] ?? 0;
-  if (pierce && def.kind !== 'flame' && def.kind !== 'boomerang') effects.push(`穿透 ${pierce}（每次 ×0.8）`);
-  if (bounce) effects.push(`弹射 ${bounce}（每次 ×0.8）`);
-  if (count > 1) effects.push(`${count} 发${def.spread ? ` / 散射 ${def.spread}°` : ''}`);
-  const e = def.effect;
-  if (e?.burn) effects.push(`灼烧 ${e.burn.dps}/s ${e.burn.dur}s`);
-  if (e?.slow) effects.push(`减速 ${e.slow.pct}% ${e.slow.dur}s`);
-  if (e?.stun) effects.push(`眩晕 ${e.stun}s`);
-  if (e?.lifeSteal) effects.push(`吸血概率 +${e.lifeSteal}%`);
-  if (def.knockback) effects.push(`击退 ${def.knockback}`);
-  if (def.critBonus) effects.push(`暴击率 +${def.critBonus}%`);
-  if (isFavoredWeapon(run.char.favored, def)) effects.push('★契合 +10%');
-  return { dmg, cd, range, count, critChance, critMult, hit, dps: perAttack / cd, explode, multi, effects };
-}
-
-/** 当前持有武器的平均单次伤害（技能伤害基准，同 SkillSystem.power） */
+export { weaponCalc, type WeaponCalc } from '../systems/WeaponCalc';
 export function weaponPower(): number {
   const ws = run.weapons;
   if (!ws.length) return 8;
@@ -162,6 +97,7 @@ export function skillCalc(sk: SkillDef): { cd: number; dmg: number; radius: numb
   if (sk.duration) lines.push(`持续 ${sk.duration}s`);
   if (sk.heal) lines.push(`回复 ${skillHealPct(sk.heal)}% 最大生命`);
   if (sk.xp) lines.push(`经验 +${sk.xp}`);
+  if (sk.xpBoost) lines.push(`打怪经验 +${sk.xpBoost}%`);
   if (sk.mods)
     lines.push(
       '增益 ' +
@@ -182,7 +118,7 @@ export function minionTraits(d: EnemyDef): string[] {
       `射击 ${d.shots ?? 1} 发${d.spread ? `/${d.spread}°` : ''} 每 ${d.shootCd ?? 2.5}s${d.projMult !== undefined ? ` 弹伤 ×${d.projMult}` : ''}`,
     );
   if (d.behavior === 'charger') t.push(`蓄力 ${d.windup ?? 0.5}s 冲速 ${d.chargeSpeed ?? 500} 每 ${d.chargeCd ?? 3}s`);
-  if (d.behavior === 'bomber') t.push(`引信 ${d.fuse ?? 0.8}s 半径 ${d.blastRadius ?? 80}`);
+  if (d.behavior === 'bomber') t.push(`引信 ${BALANCE.bomb.min}~${BALANCE.bomb.max}s（按威力） 半径 ${d.blastRadius ?? 80}`);
   if (d.behavior === 'healer') t.push(`治疗 ${(d.healAmount ?? 0.2) * 100}% 半径 ${d.healRadius ?? 180} 每 ${d.healCd ?? 3}s`);
   if (d.behavior === 'summoner') t.push(`召唤 ${d.summon ?? 'fly'}×${d.summonCount ?? 2} 每 ${d.summonCd ?? 5}s`);
   if (d.splitInto) t.push(`死亡分裂 ${d.splitInto}×${d.splitCount ?? 2}`);

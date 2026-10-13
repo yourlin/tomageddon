@@ -72,7 +72,7 @@ export function skillPower(sk: SkillDef): { dmg: number; ctrl: number; buff: num
   const T = skillTargets(sk);
   const dmg = (sk.mult ?? 0) * T * (sk.type === 'field' ? (sk.duration ?? 5) * 0.4 : 1);
   const ctrl = statusScore(sk.status) * Math.min(T, 8) * 0.16 * (sk.type === 'field' ? (sk.duration ?? 5) * 0.5 : 1);
-  let buff = statusScore(sk.selfStatus) + (sk.heal ?? 0) * 75 + (sk.xp ?? 0) * 0.3;
+  let buff = statusScore(sk.selfStatus) + (sk.heal ?? 0) * 75 + (sk.xp ?? 0) * 0.3 + (sk.xpBoost ?? 0) * (sk.duration ?? 0) * 0.024;
   const d = sk.duration ?? 0;
   if (sk.type === 'ghost') buff += d * 3;
   if (sk.type === 'buff' || sk.type === 'ghost')
@@ -88,9 +88,9 @@ export function skillCooldown(sk: SkillDef): number {
 
 /** 技能自带回复量的整体系数（数据里 heal: 0.2 → 实际回复 9% 最大生命）；描述与文档必须使用乘后数值 */
 export const HEAL_SCALE = 0.45;
-/** 吸取回复形态：每命中 1 个敌人回复的生命，以及该部分的上限（占最大生命比例） */
-export const DRAIN_PER_HIT = 0.5;
-export const DRAIN_MAX_PCT = 0.06;
+/** 吸取回复形态（大蒜伯爵）：每命中 1 个敌人回复的最大生命比例，以及该部分的上限 */
+export const DRAIN_PER_HIT = 0.015;
+export const DRAIN_MAX_PCT = 0.1;
 
 /** 蓝莓双子的分身：拿本体武器攻击的伤害倍率；每个分身的耐久（占最大生命，挡下的敌弹扣除）；
  *  分身倒下时尸体爆炸的半径与伤害（× 技能伤害） */

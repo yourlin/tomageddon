@@ -17,6 +17,7 @@ const {
   ACHIEVEMENTS,
   achValue,
   setInRun,
+  weaponCalc,
 } = window.__dev;
 
 /** 所有成就的当前进度值（对局类指标要在对局状态下读） */
@@ -182,9 +183,10 @@ export function startBot2(charId, ch, speed = 16, budget = 30) {
         if (b) b.emit('pointerup');
       }
     } else if (act.includes('Shop')) shop(P);
-    else if (sawGame && act.includes('Result')) {
-      const r = game.scene.getScene('Result');
-      const win = r.children.list.some((o) => o.type === 'Text' && o.text.includes('通关'));
+    else if (sawGame && (act.includes('Result') || act.includes('Ending'))) {
+      // 胜负直接读结算场景的启动参数 { win }。不要从界面文字里找「通关」：结算页的解锁提示（「再通关第 N 章……」）也含这两个字，
+      // 会把阵亡局记成通关。第 7 章打赢真结局 Boss 后进的是结局动画（Ending）而不是结算页，同样算通关
+      const win = act.includes('Ending') || !!game.scene.getScene('Result').sys.settings.data?.win;
       clearInterval(window.__bot);
       GameScene.onStep = null;
       window.__botState = {
@@ -218,8 +220,22 @@ function move(P) {
       if (d < 260) near++;
       if (d < nearest) nearest = d;
     }
-  const dangerR = P.melee ? 70 : 150;
-  const wantD = P.melee ? 95 : 230;
+  let dangerR = P.melee ? 70 : 150;
+  let wantD = P.melee ? 95 : 230;
+  let distW = P.melee ? 0.6 : 0.2;
+  // 风筝走位（--bot-style kite）：远程角色停在主武器射程的 85% 处，近身警戒半径加大
+  if (window.__botStyle === 'kite' && !P.melee) {
+    const reach = Math.max(
+      0,
+      ...run.weapons
+        .map((w) => WEAPON_MAP[w.id])
+        .filter((d) => d.cls !== 'melee')
+        .map((d) => d.range),
+    );
+    wantD = Math.max(230, (reach + (g.stats.range ?? 0)) * 0.85);
+    dangerR = 190;
+    distW = 0.5;
+  }
   let best = [0, 0],
     bestScore = -1e9;
   for (let i = 0; i <= 16; i++) {
@@ -252,7 +268,7 @@ function move(P) {
       const d = Math.hypot(x - h.x, y - h.y) - h.r;
       if (d < 25) score -= (25 - d) * 6;
     }
-    if (nd < 1e8) score -= Math.abs(nd - wantD) * (P.melee ? 0.6 : 0.2);
+    if (nd < 1e8) score -= Math.abs(nd - wantD) * distW;
     score -= Math.hypot(x - 960, y - 600) * 0.12;
     if (x < 80 || x > 1840 || y < 80 || y > 1120) score -= 400;
     // 捡番茄籽
@@ -316,7 +332,14 @@ function shop(P) {
   // 性价比按第 1 波价格衡量（价格 ÷ 当前涨价倍率），阈值不随涨价曲线失效
   const infl = priceInflation(run.wave + 1);
   const cand = run.shop
-    .filter((o) => !o.sold && o.price <= run.seeds && (o.kind === 'item' || run.canAddWeapon(o.id, o.tier)))
+    .filter(
+      (o) =>
+        !o.sold &&
+        o.price <= run.seeds &&
+        (o.kind === 'item' ||
+          // 只能装备契合武器的角色（芋头术士）：装不上的武器只在配方需要时才买（当仓库里的合成材料）
+          (run.canAddWeapon(o.id, o.tier) && (run.canEquip(o.id) || recipeWeaponNeed(o.id, o.tier) > 0))),
+    )
     .map((o) => ({
       o,
       v:
@@ -340,10 +363,13 @@ function shop(P) {
     s.draw();
     return;
   }
-  // 攒钱：主流派 / 契合的 T3+ 武器暂时买不起、但下一波收入后买得起 → 锁定并留钱
+  // 攒钱：主流派 / 契合的 T3+ 武器暂时买不起、但下一波收入后买得起 → 锁定并留钱。
+  // 武器少于 3 把时不攒（先把武器栏凑起来，否则只拿一把武器硬撑会早死），也不连续两波攒钱（防止一直攒、一直不买）
   const lastInc = Object.values(run.income[run.wave] ?? {}).reduce((a, b) => a + b, 0);
+  const canSave = run.weapons.length >= 3 && window.__econ.savedWave !== run.wave - 1;
   const goal = run.shop.find(
     (o) =>
+      canSave &&
       !o.sold &&
       o.kind === 'weapon' &&
       o.tier >= 2 &&
@@ -354,6 +380,7 @@ function shop(P) {
   );
   if (goal) {
     goal.locked = true;
+    window.__econ.savedWave = run.wave;
     window.__log.push(snapshot());
     s.nextWave();
     return;
@@ -419,6 +446,37 @@ function snapshot() {
     seeds: run.seeds,
     earned: Math.round(earned),
     inc: Object.fromEntries(Object.entries(run.income[run.wave] ?? {}).map(([k, v]) => [k, Math.round(v)])),
+    // 本波统计：出怪 / 击杀 / 承伤 / 各来源实际回血 / 满血溢出（RunState.waveLog）
+    wl: (() => {
+      const l = run.waveLog?.[run.wave];
+      if (!l) return null;
+      const r = (v) => Math.round(v);
+      return {
+        spawned: l.spawned,
+        killed: l.killed,
+        taken: r(l.taken),
+        over: r(l.healOver),
+        heal: Object.fromEntries(Object.entries(l.heal).map(([k, v]) => [k, r(v)])),
+        overBy: Object.fromEntries(Object.entries(l.overBy ?? {}).map(([k, v]) => [k, r(v)])),
+        sec: Math.round(l.sec * 10) / 10,
+        limit: l.limit,
+        bosses: l.bosses.map((b) => ({
+          id: b.id,
+          elite: b.elite,
+          t0: Math.round(b.t0 * 10) / 10,
+          ttk: b.ttk === null ? null : Math.round(b.ttk * 10) / 10,
+        })),
+        seedPot: r(l.seedPot),
+        seedDrop: r(l.seedDrop),
+      };
+    })(),
+    // 武器实战效率：累计实际伤害（按来源，不计溢出；持续伤害统一记在 dot）与下一波所用武器的纸面单体 DPS。
+    // 快照在商店买完、开始下一波前记录，所以第 w 波的 paper 对应第 w+1 波的 dmgBy 增量
+    dmgBy: Object.fromEntries(Object.entries(run.dmgBy).map(([k, v]) => [k, Math.round(v)])),
+    paper: run.weapons.reduce((o, w) => {
+      o[w.id] = Math.round(((o[w.id] ?? 0) + weaponCalc(WEAPON_MAP[w.id], w.tier).dps) * 10) / 10;
+      return o;
+    }, {}),
     spent: window.__econ.spent,
     // 累计花费（含刷新）与累计收入，报告按波次画曲线
     spentAll: window.__econ.spent + window.__econ.reroll,

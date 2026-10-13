@@ -209,7 +209,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 | Weapon | Class | Attack | Tags | Damage T1–T4 | Cooldown T1–T4 | Range | Price |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| <img src="../images/weapon/fork.png" width="32" height="32" alt=""> [Tomato Fork](#weapon-fork) | Melee | Thrust | Kitchenware | 8 / 14 / 22 / 34 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 15 |
+| <img src="../images/weapon/fork.png" width="32" height="32" alt=""> [Tomato Fork](#weapon-fork) | Melee | Thrust | Kitchenware | 10 / 18 / 29 / 44 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 15 |
 | <img src="../images/weapon/rolling_pin.png" width="32" height="32" alt=""> [Rolling Pin](#weapon-rolling_pin) | Melee | Sweep | Kitchenware | 12 / 20 / 32 / 48 | 1.25 / 1.18 / 1.1 / 1 | 130 | 18 |
 | <img src="../images/weapon/knife.png" width="32" height="32" alt=""> [Chef's Knife](#weapon-knife) | Melee | Thrust | Kitchenware/Sharp | 6 / 10 / 16 / 25 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | 20 |
 | <img src="../images/weapon/pan.png" width="32" height="32" alt=""> [Frying Pan](#weapon-pan) | Melee | Sweep | Kitchenware | 18 / 30 / 46 / 70 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | 25 |
@@ -287,17 +287,17 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/shaved_ice_gun.png" width="32" height="32" alt=""> [Shaved Ice Gun](#weapon-shaved_ice_gun) | Ranged | Bullet | Firearm | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | 27 |
 | <img src="../images/weapon/slush_spray.png" width="32" height="32" alt=""> [Slush Spray](#weapon-slush_spray) | Elemental | Flame | Dessert | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | 29 |
 | <img src="../images/weapon/frost_aura.png" width="32" height="32" alt=""> [Frost Aura](#weapon-frost_aura) | Elemental | Aura |  | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 134 | 31 |
-| <img src="../images/weapon/glacier_mortar.png" width="32" height="32" alt=""> [Glacier Mortar](#weapon-glacier_mortar) | Ranged | Rocket | Firearm | 15 / 26 / 40 / 61 | 2 / 1.9 / 1.78 / 1.6 | 460 | 33 |
+| <img src="../images/weapon/glacier_mortar.png" width="32" height="32" alt=""> [Glacier Mortar](#weapon-glacier_mortar) | Ranged | Rocket | Firearm | 12 / 19 / 30 / 46 | 2 / 1.9 / 1.78 / 1.6 | 460 | 33 |
 | <img src="../images/weapon/icicle_volley.png" width="32" height="32" alt=""> [Icicle Volley](#weapon-icicle_volley) | Elemental | Bullet |  | 5 / 7 / 11 / 16 | 1 / 0.95 / 0.88 / 0.8 | 340 | 27 |
 | <img src="../images/weapon/shock_wok.png" width="32" height="32" alt=""> [Shock Wok](#weapon-shock_wok) | Melee | Sweep | Kitchenware/Blunt | 16 / 27 / 41 / 63 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | 26 |
-| <img src="../images/weapon/volt_fork.png" width="32" height="32" alt=""> [Volt Fork](#weapon-volt_fork) | Melee | Thrust | Kitchenware | 7 / 13 / 20 / 31 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 16 |
+| <img src="../images/weapon/volt_fork.png" width="32" height="32" alt=""> [Volt Fork](#weapon-volt_fork) | Melee | Thrust | Kitchenware | 9 / 16 / 26 / 40 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 16 |
 | <img src="../images/weapon/microwave_cannon.png" width="32" height="32" alt=""> [Microwave Cannon](#weapon-microwave_cannon) | Ranged | Rocket | Kitchenware/Firearm | 20 / 32 / 50 / 76 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 35 |
 | <img src="../images/weapon/rice_cooker_aura.png" width="32" height="32" alt=""> [Rice Cooker Aura](#weapon-rice_cooker_aura) | Elemental | Aura | Kitchenware | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 143 | 31 |
 | <img src="../images/weapon/grill_arc.png" width="32" height="32" alt=""> [Arc Grill](#weapon-grill_arc) | Elemental | Chain Lightning | Kitchenware | 9 / 14 / 22 / 34 | 1.1 / 1 / 0.92 / 0.84 | 420 | 31 |
-| <img src="../images/weapon/mixer_storm.png" width="32" height="32" alt=""> [Storm Mixer](#weapon-mixer_storm) | Elemental | Chain Lightning | Kitchenware | 6 / 10 / 15 / 23 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | 31 |
+| <img src="../images/weapon/mixer_storm.png" width="32" height="32" alt=""> [Storm Mixer](#weapon-mixer_storm) | Elemental | Chain Lightning | Kitchenware | 4 / 8 / 12 / 17 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | 30 |
 | <img src="../images/weapon/toaster_zap.png" width="32" height="32" alt=""> [Toaster Zap](#weapon-toaster_zap) | Elemental | Chain Lightning | Kitchenware/Dessert | 11 / 19 / 29 / 45 | 1.3 / 1.2 / 1.1 / 1 | 360 | 31 |
 | <img src="../images/weapon/toxic_spike.png" width="32" height="32" alt=""> [Toadstool Spike](#weapon-toxic_spike) | Melee | Thrust | Produce/Sharp | 11 / 20 / 31 / 48 | 1.05 / 1 / 0.92 / 0.84 | 185 | 25 |
-| <img src="../images/weapon/spore_cannon.png" width="32" height="32" alt=""> [Spore Cannon](#weapon-spore_cannon) | Ranged | Bullet | Produce/Firearm | 5 / 9 / 13 / 20 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 23 |
+| <img src="../images/weapon/spore_cannon.png" width="32" height="32" alt=""> [Spore Cannon](#weapon-spore_cannon) | Ranged | Bullet | Produce/Firearm | 4 / 6 / 10 / 15 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 22 |
 | <img src="../images/weapon/miasma_sprayer.png" width="32" height="32" alt=""> [Miasma Sprayer](#weapon-miasma_sprayer) | Elemental | Flame | Produce | 2 / 4 / 6 / 9 | 0.18 / 0.16 / 0.14 / 0.12 | 150 | 27 |
 | <img src="../images/weapon/rot_aura.png" width="32" height="32" alt=""> [Rot Aura](#weapon-rot_aura) | Elemental | Aura | Produce | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 149 | 31 |
 | <img src="../images/weapon/toadstool_mine.png" width="32" height="32" alt=""> [Toadstool Mine](#weapon-toadstool_mine) | Elemental | Mine | Produce | 18 / 31 / 47 / 72 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 26 |
@@ -307,7 +307,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/coal_tongs.png" width="32" height="32" alt=""> [Coal Tongs](#weapon-coal_tongs) | Melee | Sweep | Kitchenware/Blunt | 12 / 20 / 32 / 49 | 1.1 / 1.05 / 1 / 0.9 | 125 | 27 |
 | <img src="../images/weapon/bbq_sauce_cannon.png" width="32" height="32" alt=""> [BBQ Sauce Cannon](#weapon-bbq_sauce_cannon) | Ranged | Rocket | Sauce/Firearm | 13 / 22 / 34 / 52 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | 31 |
 | <img src="../images/weapon/charcoal_aura.png" width="32" height="32" alt=""> [Charcoal Aura](#weapon-charcoal_aura) | Elemental | Aura | Sauce | 3 / 5 / 7 / 10 | 0.5 / 0.5 / 0.5 / 0.5 | 133 | 33 |
-| <img src="../images/weapon/ember_mine.png" width="32" height="32" alt=""> [Ember Mine](#weapon-ember_mine) | Elemental | Mine | Sauce | 18 / 31 / 47 / 72 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 26 |
+| <img src="../images/weapon/ember_mine.png" width="32" height="32" alt=""> [Ember Mine](#weapon-ember_mine) | Elemental | Mine | Sauce | 14 / 23 / 35 / 54 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 25 |
 | <img src="../images/weapon/cumin_star.png" width="32" height="32" alt=""> [Cumin Star](#weapon-cumin_star) | Elemental | Boomerang | Sauce/Sharp | 7 / 12 / 18 / 28 | 1.3 / 1.2 / 1.1 / 1 | 320 | 29 |
 | <img src="../images/weapon/hot_sauce_gun.png" width="32" height="32" alt=""> [Hot Sauce Pistol](#weapon-hot_sauce_gun) | Ranged | Bullet | Sauce/Firearm | 6 / 11 / 16 / 24 | 0.55 / 0.5 / 0.46 / 0.42 | 380 | 21 |
 | <img src="../images/weapon/sushi_blade.png" width="32" height="32" alt=""> [Sushi Blade](#weapon-sushi_blade) | Melee | Thrust | Sharp/Kitchenware | 5 / 9 / 14 / 23 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | 21 |
@@ -345,10 +345,10 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/coconut_quake_mace.png" width="32" height="32" alt=""> [Coconut Quake Mace](#weapon-coconut_quake_mace) | Melee | Sweep | Produce/Demolition/Firearm | 24 / 40 / 62 / 92 | 1.8 / 1.7 / 1.6 / 1.45 | 504 | 47 |
 | <img src="../images/weapon/anise_frost_storm.png" width="32" height="32" alt=""> [Frost Anise Storm](#weapon-anise_frost_storm) | Elemental | Boomerang | Sharp/Elemental | 10 / 17 / 25 / 39 | 1 / 0.95 / 0.88 / 0.8 | 357 | 36 |
 | <img src="../images/weapon/holy_salt_barrier.png" width="32" height="32" alt=""> [Holy Salt Barrier](#weapon-holy_salt_barrier) | Elemental | Aura | Sharp/Elemental/Produce | 3 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 160 | 40 |
-| <img src="../images/weapon/fz_knife_ember_mine.png" width="32" height="32" alt=""> [Blazing Chef's Knife](#weapon-fz_knife_ember_mine) | Melee | Thrust | Kitchenware/Sharp/Sauce | 20 / 34 / 52 / 79 | 0.6 / 0.55 / 0.5 / 0.44 | 210 | 34 |
+| <img src="../images/weapon/fz_knife_ember_mine.png" width="32" height="32" alt=""> [Blazing Chef's Knife](#weapon-fz_knife_ember_mine) | Melee | Thrust | Kitchenware/Sharp/Sauce | 15 / 25 / 39 / 59 | 0.6 / 0.55 / 0.5 / 0.44 | 210 | 33 |
 | <img src="../images/weapon/fz_thunder_durian_volt_fork.png" width="32" height="32" alt=""> [Piercing Thunder Durian](#weapon-fz_thunder_durian_volt_fork) | Elemental | Rocket | Produce/Elemental/Demolition | 18 / 30 / 46 / 70 | 0.9 / 0.85 / 0.78 / 0.7 | 420 | 42 |
 | <img src="../images/weapon/fz_plate_frisbee_onion_boomerang.png" width="32" height="32" alt=""> [Fresh Plate Frisbee](#weapon-fz_plate_frisbee_onion_boomerang) | Ranged | Boomerang | Kitchenware/Produce | 13 / 22 / 34 / 52 | 1.4 / 1.3 / 1.2 / 1.1 | 378 | 31 |
-| <img src="../images/weapon/fz_candy_cane_glacier_mortar.png" width="32" height="32" alt=""> [Frost Candy Cane Club](#weapon-fz_candy_cane_glacier_mortar) | Melee | Sweep | Dessert/Blunt/Firearm | 17 / 29 / 44 / 67 | 1.25 / 1.18 / 1.1 / 1 | 483 | 43 |
+| <img src="../images/weapon/fz_candy_cane_glacier_mortar.png" width="32" height="32" alt=""> [Frost Candy Cane Club](#weapon-fz_candy_cane_glacier_mortar) | Melee | Sweep | Dessert/Blunt/Firearm | 13 / 21 / 33 / 51 | 1.25 / 1.18 / 1.1 / 1 | 483 | 43 |
 | <img src="../images/weapon/fz_corn_scatter_grater_sweep.png" width="32" height="32" alt=""> [Lethal Corn Scattergun](#weapon-fz_corn_scatter_grater_sweep) | Ranged | Bullet | Produce/Firearm/Sharp | 10 / 17 / 26 / 40 | 1 / 0.95 / 0.88 / 0.8 | 252 | 35 |
 | <img src="../images/weapon/fz_sea_urchin_mine_dragonfruit_orb.png" width="32" height="32" alt=""> [Blazing Sea Urchin Mine](#weapon-fz_sea_urchin_mine_dragonfruit_orb) | Ranged | Mine | Sharp/Demolition/Produce | 14 / 24 / 37 / 57 | 1 / 0.95 / 0.88 / 0.8 | 420 | 36 |
 | <img src="../images/weapon/fz_twin_cleavers_ketchup.png" width="32" height="32" alt=""> [Scatter Twin Cleavers](#weapon-fz_twin_cleavers_ketchup) | Melee | Sweep | Sharp/Kitchenware/Sauce | 9 / 14 / 23 / 34 | 0.75 / 0.7 / 0.65 / 0.6 | 294 | 30 |
@@ -363,7 +363,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/fz_popcorn_machine_rot_aura.png" width="32" height="32" alt=""> [Toxic Popcorn Popper](#weapon-fz_popcorn_machine_rot_aura) | Ranged | Mine | Firearm/Demolition/Produce | 15 / 26 / 41 / 62 | 0.5 / 0.5 / 0.5 / 0.5 | 231 | 40 |
 | <img src="../images/weapon/fz_donut_ring_dynamite_drumstick.png" width="32" height="32" alt=""> [Explosive Donut Ring](#weapon-fz_donut_ring_dynamite_drumstick) | Ranged | Boomerang | Dessert/Demolition | 19 / 32 / 50 / 75 | 1.5 / 1.4 / 1.3 / 1.2 | 347 | 39 |
 | <img src="../images/weapon/fz_spatula_slingshot.png" width="32" height="32" alt=""> [Chain Spatula](#weapon-fz_spatula_slingshot) | Melee | Sweep | Kitchenware/Produce | 10 / 18 / 28 / 42 | 0.95 / 0.9 / 0.83 / 0.75 | 399 | 21 |
-| <img src="../images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [Chef's Cola Zapper](#weapon-fz_cola_zapper_mixer_storm) | Elemental | Chain Lightning | Firearm/Elemental/Kitchenware | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 40 |
+| <img src="../images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [Chef's Cola Zapper](#weapon-fz_cola_zapper_mixer_storm) | Elemental | Chain Lightning | Firearm/Elemental/Kitchenware | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 39 |
 | <img src="../images/weapon/fz_bean_bazooka_soy_bomb.png" width="32" height="32" alt=""> [Saucy Bean Bazooka](#weapon-fz_bean_bazooka_soy_bomb) | Ranged | Rocket | Firearm/Demolition/Sauce | 24 / 40 / 62 / 92 | 2.2 / 2.05 / 1.9 / 1.7 | 504 | 44 |
 | <img src="../images/weapon/fz_steam_kettle_asparagus_bow.png" width="32" height="32" alt=""> [Piercing Steam Kettle](#weapon-fz_steam_kettle_asparagus_bow) | Elemental | Flame | Kitchenware/Elemental/Produce | 15 / 26 / 41 / 62 | 0.26 / 0.24 / 0.21 / 0.18 | 546 | 36 |
 | <img src="../images/weapon/fz_lightning_whisk_pepper_grinder.png" width="32" height="32" alt=""> [Piercing Zap Whisk](#weapon-fz_lightning_whisk_pepper_grinder) | Elemental | Chain Lightning | Kitchenware/Elemental/Firearm | 8 / 13 / 20 / 30 | 0.5 / 0.46 / 0.42 / 0.38 | 420 | 39 |
@@ -385,7 +385,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/fz_chopsticks_pepper_spray.png" width="32" height="32" alt=""> [Blazing Chopsticks](#weapon-fz_chopsticks_pepper_spray) | Melee | Thrust | Kitchenware/Elemental | 6 / 10 / 15 / 23 | 0.18 / 0.16 / 0.14 / 0.12 | 163 | 34 |
 | <img src="../images/weapon/fz_pizza_cutter_potato_mine.png" width="32" height="32" alt=""> [Explosive Pizza Cutter](#weapon-fz_pizza_cutter_potato_mine) | Melee | Boomerang | Kitchenware/Sharp/Produce | 17 / 28 / 43 / 65 | 1.3 / 1.2 / 1.1 / 1 | 242 | 34 |
 | <img src="../images/weapon/fz_popping_candy_rolling_pin.png" width="32" height="32" alt=""> [Heavy Popping Zap](#weapon-fz_popping_candy_rolling_pin) | Elemental | Chain Lightning | Dessert/Kitchenware | 13 / 22 / 35 / 53 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 38 |
-| <img src="../images/weapon/fz_baguette_sword_spore_cannon.png" width="32" height="32" alt=""> [Toxic Baguette Blade](#weapon-fz_baguette_sword_spore_cannon) | Melee | Sweep | Produce/Firearm | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | 30 |
+| <img src="../images/weapon/fz_baguette_sword_spore_cannon.png" width="32" height="32" alt=""> [Toxic Baguette Blade](#weapon-fz_baguette_sword_spore_cannon) | Melee | Sweep | Produce/Firearm | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | 29 |
 | <img src="../images/weapon/fz_mycelium_boomerang_rice_cooker_aura.png" width="32" height="32" alt=""> [Frost Mycelium Boomerang](#weapon-fz_mycelium_boomerang_rice_cooker_aura) | Ranged | Boomerang | Produce/Kitchenware | 10 / 17 / 25 / 40 | 0.5 / 0.5 / 0.5 / 0.5 | 378 | 40 |
 | <img src="../images/weapon/fz_cumin_star_mandoline.png" width="32" height="32" alt=""> [Piercing Cumin Star](#weapon-fz_cumin_star_mandoline) | Elemental | Boomerang | Sauce/Sharp/Kitchenware | 8 / 13 / 20 / 31 | 0.5 / 0.46 / 0.42 / 0.38 | 336 | 38 |
 | <img src="../images/weapon/fz_meat_tenderizer_seed_spitter.png" width="32" height="32" alt=""> [Fresh Meat Tenderizer](#weapon-fz_meat_tenderizer_seed_spitter) | Melee | Sweep | Kitchenware/Firearm/Produce | 24 / 40 / 62 / 92 | 0.22 / 0.2 / 0.18 / 0.16 | 378 | 39 |
@@ -425,7 +425,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>A humble three-pronged fork. Thrusts forward.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
 <tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>8 / 14 / 22 / 34</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 18 / 29 / 44</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
 <tr><td nowrap>Range</td><td>150</td></tr>
 <tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
@@ -867,7 +867,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>A charged fork that pierces and stuns.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
 <tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>7 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 16 / 26 / 40</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
 <tr><td nowrap>Range</td><td>150</td></tr>
 <tr><td nowrap>Scaling</td><td>Melee Damage ×1</td></tr>
@@ -1122,13 +1122,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>Ember Mine forged into Chef's Knife: keeps its attack style and carries both weapons' effects.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
 <tr><td nowrap>Tags</td><td>Kitchenware, Sharp, Sauce</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>20 / 34 / 52 / 79</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>15 / 25 / 39 / 59</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.6s / 0.55s / 0.5s / 0.44s</td></tr>
 <tr><td nowrap>Range</td><td>210</td></tr>
 <tr><td nowrap>Scaling</td><td>Melee Damage ×0.48, Elemental Damage ×0.6</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
 <tr><td nowrap>Effects</td><td>Burn 4/s for 2s, Explosion radius 150, +15% Crit Chance</td></tr>
-<tr><td nowrap>T1 price</td><td>34</td></tr>
+<tr><td nowrap>T1 price</td><td>33</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
 
@@ -1139,7 +1139,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>Glacier Mortar forged into Candy Cane Club: keeps its attack style and carries both weapons' effects.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
 <tr><td nowrap>Tags</td><td>Dessert, Blunt, Firearm</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>17 / 29 / 44 / 67</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>13 / 21 / 33 / 51</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>1.25s / 1.18s / 1.1s / 1s</td></tr>
 <tr><td nowrap>Range</td><td>483</td></tr>
 <tr><td nowrap>Scaling</td><td>Melee Damage ×0.6, Ranged Damage ×0.66</td></tr>
@@ -1366,7 +1366,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Scaling</td><td>Melee Damage ×0.6, Max HP ×0.09, Ranged Damage ×0.48</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
 <tr><td nowrap>Effects</td><td>Knockback 25</td></tr>
-<tr><td nowrap>T1 price</td><td>30</td></tr>
+<tr><td nowrap>T1 price</td><td>29</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
 
@@ -1403,7 +1403,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>380</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Bounce 1/1/2/3</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, Bounce 1/1/2/3</td></tr>
 <tr><td nowrap>T1 price</td><td>15</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pineapple">Captain Pineapple</a>, <a href="CHARACTERS.md#char-lychee">Lychee Princess</a>, <a href="CHARACTERS.md#char-sprout">Sprout Apprentice</a></td></tr>
 </table>
@@ -1420,7 +1420,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>Effects</td><td>Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>22</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-blueberry">Blueberry Twins</a>, <a href="CHARACTERS.md#char-cherry">Cherry Gunslinger</a></td></tr>
 </table>
@@ -1454,7 +1454,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>520</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1.2</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, Knockback 15</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, Knockback 15</td></tr>
 <tr><td nowrap>T1 price</td><td>28</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-corn">Corn Gunner</a>, <a href="CHARACTERS.md#char-asparagus">Asparagus Archer</a></td></tr>
 </table>
@@ -1471,7 +1471,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>280</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>+5% Life Steal Chance, Projectiles 3/3/4/5</td></tr>
+<tr><td nowrap>Effects</td><td>+5% Life Steal Chance, Pierce 2/2/3/3, Shotgun: +25% damage within half range, Projectiles 3/3/4/5</td></tr>
 <tr><td nowrap>T1 price</td><td>20</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-grape">Grape Magician</a></td></tr>
 </table>
@@ -1480,7 +1480,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 
 <table>
 <tr><td rowspan="12" align="center" valign="middle"><img src="../images/weapon/onion_boomerang.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Onion Boomerang</th></tr>
-<tr><td colspan="2"><i>Curves out in an arc and loops back, piercing everything in its path.</i></td></tr>
+<tr><td colspan="2"><i>Flies straight ahead fast, then swings back around the side, piercing everything in its path.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
 <tr><td nowrap>Tags</td><td>Produce</td></tr>
 <tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 26 / 40</td></tr>
@@ -1505,7 +1505,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>420</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.4</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>+1% Life Steal Chance</td></tr>
+<tr><td nowrap>Effects</td><td>+1% Life Steal Chance, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>40</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-bellpepper">Pepper Mech</a></td></tr>
 </table>
@@ -1522,7 +1522,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.8</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Bounce 2/2/3/4</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, Bounce 2/2/3/4</td></tr>
 <tr><td nowrap>T1 price</td><td>22</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1556,7 +1556,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>240</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.5</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Projectiles 5/5/6/7, Knockback 12</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/2/3/3, Shotgun: +25% damage within half range, Projectiles 5/5/6/7, Knockback 12</td></tr>
 <tr><td nowrap>T1 price</td><td>26</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pomegranate">Pomegranate Gunner</a></td></tr>
 </table>
@@ -1607,7 +1607,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>650</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1.5</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, +10% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 5/5/5/6, Sniper: +30% damage to enemies at ≥ 50% HP, +10% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>32</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1641,7 +1641,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>360</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.45</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>Effects</td><td>Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>26</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1658,7 +1658,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>460</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s</td></tr>
 <tr><td nowrap>T1 price</td><td>25</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1675,7 +1675,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>360</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Slow 35% for 1.5s</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 35% for 1.5s, Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s</td></tr>
 <tr><td nowrap>T1 price</td><td>22</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-strawberry">Strawberry Idol</a>, <a href="CHARACTERS.md#char-peach">Peach Angel</a></td></tr>
 </table>
@@ -1692,7 +1692,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>380</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>+2% Life Steal Chance</td></tr>
+<tr><td nowrap>Effects</td><td>+2% Life Steal Chance, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>20</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1709,7 +1709,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 1/1/1/2, +8% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/1/2, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3), +8% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>26</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1794,7 +1794,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>520</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1.1</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4, +5% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, +5% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>26</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1811,7 +1811,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Projectiles 2/2/3/3</td></tr>
+<tr><td nowrap>Effects</td><td>Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3), Projectiles 2/2/3/3</td></tr>
 <tr><td nowrap>T1 price</td><td>22</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1862,7 +1862,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>360</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.45</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Slow 20% for 0.8s</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 0.8s, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>27</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1874,7 +1874,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>Lobs ice blocks that explode and chill.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Rocket</td></tr>
 <tr><td nowrap>Tags</td><td>Firearm</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>15 / 26 / 40 / 61</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 19 / 30 / 46</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.78s / 1.6s</td></tr>
 <tr><td nowrap>Range</td><td>460</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1.1</td></tr>
@@ -1908,13 +1908,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>Fires spores that poison and split on hit.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
 <tr><td nowrap>Tags</td><td>Produce, Firearm</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>5 / 9 / 13 / 20</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 6 / 10 / 15</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.8</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Bounce 2/2/3/4</td></tr>
-<tr><td nowrap>T1 price</td><td>23</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, Bounce 2/2/3/4</td></tr>
+<tr><td nowrap>T1 price</td><td>22</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
 
@@ -1947,7 +1947,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>460</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s</td></tr>
 <tr><td nowrap>T1 price</td><td>26</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1981,7 +1981,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>380</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Burn 2/s for 2s</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 2s, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>21</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -1998,7 +1998,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.7</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Projectiles 2/2/3/3, +8% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3), Projectiles 2/2/3/3, +8% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>27</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2083,7 +2083,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>240</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.5</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Projectiles 5/5/6/7, Knockback 12</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/2/3/3, Shotgun: +25% damage within half range, Projectiles 5/5/6/7, Knockback 12</td></tr>
 <tr><td nowrap>T1 price</td><td>27</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2100,7 +2100,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>650</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1.5</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, +10% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 5/5/5/6, Sniper: +30% damage to enemies at ≥ 50% HP, +10% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>33</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pea">Pea Soldier</a></td></tr>
 </table>
@@ -2134,7 +2134,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>441</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.24, Elemental Damage ×0.15</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>Effects</td><td>Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>52</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2168,7 +2168,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>683</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×1.8</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.5</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 5/6/7/8, +10% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 5/6/7/8, Sniper: +30% damage to enemies at ≥ 50% HP, +10% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>43</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2185,7 +2185,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>420</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.66</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Projectiles 6/6/7/8, Knockback 12</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/2/3/3, Shotgun: +25% damage within half range, Projectiles 6/6/7/8, Knockback 12</td></tr>
 <tr><td nowrap>T1 price</td><td>34</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2219,7 +2219,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>252</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.3, Melee Damage ×0.48</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
-<tr><td nowrap>Effects</td><td>Projectiles 5/5/6/7, Knockback 12, +12% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/2/3/3, Shotgun: +25% damage within half range, Projectiles 5/5/6/7, Knockback 12, +12% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>35</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2253,7 +2253,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>546</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.72, Melee Damage ×0.3</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, Knockback 15, +10% Crit Chance</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 3/4/5/6, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3), Knockback 15, +10% Crit Chance</td></tr>
 <tr><td nowrap>T1 price</td><td>38</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2372,7 +2372,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>483</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6, Melee Damage ×0.6</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 2/3/3/4, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s</td></tr>
 <tr><td nowrap>T1 price</td><td>33</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2423,7 +2423,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>483</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6, Elemental Damage ×0.15</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2</td></tr>
-<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Slow 20% for 0.8s, Pierce 1/1/2/2</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Slow 20% for 0.8s, Pierce 1/1/2/2, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>38</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2478,7 +2478,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.9</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Slow 40% for 1.5s, Pierce 1/1/2/2</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 40% for 1.5s, Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s</td></tr>
 <tr><td nowrap>T1 price</td><td>22</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-bittermelon">Bitter Melon Mage</a></td></tr>
 </table>
@@ -2546,7 +2546,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>340</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.6</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Slow 50% for 1.2s, Projectiles 3/3/4/4</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 1.2s, Pierce 2/2/3/3, Shotgun: +25% damage within half range, Projectiles 3/3/4/4</td></tr>
 <tr><td nowrap>T1 price</td><td>26</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2665,7 +2665,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Bounce 1/2/2/3</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 3/s for 2s, Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, Bounce 1/2/2/3</td></tr>
 <tr><td nowrap>T1 price</td><td>28</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-blackberry">Blackberry Witch</a></td></tr>
 </table>
@@ -2767,7 +2767,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>420</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.85</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.8</td></tr>
-<tr><td nowrap>Effects</td><td>Pierce 1/1/2/3</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/3, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s</td></tr>
 <tr><td nowrap>T1 price</td><td>24</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-pumpkin">Pumpkin Ghost</a></td></tr>
 </table>
@@ -2784,7 +2784,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>330</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.7</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>-</td></tr>
+<tr><td nowrap>Effects</td><td>Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s</td></tr>
 <tr><td nowrap>T1 price</td><td>22</td></tr>
 <tr><td nowrap>Starting weapon of</td><td><a href="CHARACTERS.md#char-mushroom">Mushroom Shaman</a></td></tr>
 </table>
@@ -2886,7 +2886,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>340</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.6</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Slow 50% for 1.2s, Pierce 1/2/2/3, Projectiles 3/3/4/4</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 50% for 1.2s, Pierce 2/2/3/3, Shotgun: +25% damage within half range, Projectiles 3/3/4/4</td></tr>
 <tr><td nowrap>T1 price</td><td>27</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -2932,13 +2932,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>A high-speed mixer whose lightning jumps further.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Elemental / Chain Lightning</td></tr>
 <tr><td nowrap>Tags</td><td>Kitchenware</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 23</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>4 / 8 / 12 / 17</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.9s / 0.82s / 0.74s</td></tr>
 <tr><td nowrap>Range</td><td>380</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
 <tr><td nowrap>Effects</td><td>Chains 4/5/6/8 times</td></tr>
-<tr><td nowrap>T1 price</td><td>31</td></tr>
+<tr><td nowrap>T1 price</td><td>30</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
 
@@ -3034,13 +3034,13 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td colspan="2"><i>Explodes into embers that burn.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Elemental / Mine</td></tr>
 <tr><td nowrap>Tags</td><td>Sauce</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>18 / 31 / 47 / 72</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>14 / 23 / 35 / 54</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>2.5s / 2.3s / 2.1s / 1.8s</td></tr>
 <tr><td nowrap>Range</td><td>200</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×1</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
 <tr><td nowrap>Effects</td><td>Burn 4/s for 2s, Explosion radius 150</td></tr>
-<tr><td nowrap>T1 price</td><td>26</td></tr>
+<tr><td nowrap>T1 price</td><td>25</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
 
@@ -3124,7 +3124,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>400</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.8</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Slow 20% for 1s, Bounce 1/2/2/3</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 1s, Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, Bounce 1/2/2/3</td></tr>
 <tr><td nowrap>T1 price</td><td>29</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -3294,7 +3294,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>420</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.48, Melee Damage ×0.48</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.1</td></tr>
-<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Slow 20% for 1s, Bounce 1/2/2/3</td></tr>
+<tr><td nowrap>Effects</td><td>Burn 2/s for 1.5s, Slow 20% for 1s, Pierce 1/1/2/2, Heavy shot: stronger knockback, 15% chance to stagger for 0.3s, Bounce 1/2/2/3</td></tr>
 <tr><td nowrap>T1 price</td><td>38</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -3363,7 +3363,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.9, Ranged Damage ×0.18</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
 <tr><td nowrap>Effects</td><td>Slow 20% for 1s, Chains 4/5/6/8 times</td></tr>
-<tr><td nowrap>T1 price</td><td>40</td></tr>
+<tr><td nowrap>T1 price</td><td>39</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
 
@@ -3413,7 +3413,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 <tr><td nowrap>Range</td><td>378</td></tr>
 <tr><td nowrap>Scaling</td><td>Elemental Damage ×0.42, Ranged Damage ×0.27</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×1.5</td></tr>
-<tr><td nowrap>Effects</td><td>Slow 20% for 0.8s</td></tr>
+<tr><td nowrap>Effects</td><td>Slow 20% for 0.8s, Rapid fire: hits stack Suppression (-5% Move Speed each, up to 3)</td></tr>
 <tr><td nowrap>T1 price</td><td>35</td></tr>
 <tr><td nowrap>Starting weapon of</td><td>-</td></tr>
 </table>
@@ -4167,7 +4167,7 @@ Super weapons can only be crafted: two specific T4 weapons + the original cataly
 
 | Base | Catalyst | Super weapon | T4 dmg / cd / range | Description |
 | --- | --- | --- | --- | --- |
-| <img src="../images/weapon/fork.png" width="32" height="32" alt=""> [Tomato Fork](#weapon-fork) | <img src="../images/item/hot_sauce.png" width="32" height="32" alt=""> Hot Sauce Packet | <img src="../images/weapon/hell_trident.png" width="32" height="32" alt=""> **Hell Trident** | 34→**58** / 0.7s→**0.6s** / 150→**173** | A trident soaked in hot sauce — it sets whatever it pierces ablaze. |
+| <img src="../images/weapon/fork.png" width="32" height="32" alt=""> [Tomato Fork](#weapon-fork) | <img src="../images/item/hot_sauce.png" width="32" height="32" alt=""> Hot Sauce Packet | <img src="../images/weapon/hell_trident.png" width="32" height="32" alt=""> **Hell Trident** | 44→**75** / 0.7s→**0.6s** / 150→**173** | A trident soaked in hot sauce — it sets whatever it pierces ablaze. |
 | <img src="../images/weapon/rolling_pin.png" width="32" height="32" alt=""> [Rolling Pin](#weapon-rolling_pin) | <img src="../images/item/iron_wok.png" width="32" height="32" alt=""> Iron Wok Shield | <img src="../images/weapon/titan_pin.png" width="32" height="32" alt=""> **Titan Pin** | 48→**82** / 1s→**0.85s** / 130→**176** | Weighted with an iron wok; it spins a full circle around you and stuns everything nearby. |
 | <img src="../images/weapon/knife.png" width="32" height="32" alt=""> [Chef's Knife](#weapon-knife) | <img src="../images/item/sharpener.png" width="32" height="32" alt=""> Whetstone | <img src="../images/weapon/paoding_blade.png" width="32" height="32" alt=""> **Master Chef Blade** | 25→**40** / 0.44s→**0.33s** / 130→**150** | Cuts through effortlessly — every slice is lethal. |
 | <img src="../images/weapon/cleaver.png" width="32" height="32" alt=""> [Meat Cleaver](#weapon-cleaver) | <img src="../images/item/chef_knife_set.png" width="32" height="32" alt=""> Master Knife Set | <img src="../images/weapon/dragon_cleaver.png" width="32" height="32" alt=""> **Dragon Cleaver** | 54→**103** / 0.9s→**0.77s** / 125→**163** | Forged from a whole knife set: an X-shaped double slash, then a dragon-slaying blade wave that pierces a whole line. |

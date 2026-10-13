@@ -1,13 +1,13 @@
 // 文档页：角色、技能与状态、武器
 import { tx } from '../../src/i18n';
 import { CHARACTERS } from '../../src/data/characters';
-import { WEAPONS, TIER_PRICE_MULT, isShopWeapon } from '../../src/data/weapons';
+import { WEAPONS, TIER_PRICE_MULT, isShopWeapon, basePierce } from '../../src/data/weapons';
 import { STATUSES } from '../../src/data/statuses';
 import { STAT_INFO, type StatKey } from '../../src/data/stats';
 import { SKILL_TYPE_NAME, skillHealPct, DRAIN_PER_HIT, DRAIN_MAX_PCT } from '../../src/data/skills';
 import { tagName } from '../../src/i18n/apply';
 import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
-import { charTraitLines } from '../../src/data/describe';
+import { charTraitLines, archetypeText } from '../../src/data/describe';
 import { favoredWeapons, affinityText } from '../../src/data/affinity';
 import { WEAPON_AFFIXES, FORGE } from '../../src/data/weaponAffixes';
 import { pick } from '../../src/systems/Achievements';
@@ -154,6 +154,7 @@ export function skillsDoc(): void {
         ),
       ]);
     if (s.xp) rows.push([tx('经验', 'XP'), `+${s.xp}`]);
+    if (s.xpBoost) rows.push([tx('打怪经验', 'Kill XP'), `+${s.xpBoost}%`]);
     d.card(`skill-${c.id}`, title, img('skill', c.id, 128, 'webp'), title, s.desc, rows);
   }
   d.h2(tx(`状态效果（${Object.keys(STATUSES).length} 种）`, `Status Effects (${Object.keys(STATUSES).length})`), 'statuses');
@@ -289,7 +290,8 @@ export function weaponsDoc(): void {
         e.explode ? tx(`爆炸半径 ${e.explode}`, `Explosion radius ${e.explode}`) : '',
         e.chain ? tx(`连锁 ${e.chain.join('/')} 次`, `Chains ${e.chain.join('/')} times`) : '',
         e.lifeSteal ? tx(`额外吸血概率 ${e.lifeSteal}%`, `+${e.lifeSteal}% Life Steal Chance`) : '',
-        w.pierce ? tx(`穿透 ${w.pierce.join('/')}`, `Pierce ${w.pierce.join('/')}`) : '',
+        ((p) => (p.some((v) => v > 0) ? tx(`穿透 ${p.join('/')}`, `Pierce ${p.join('/')}`) : ''))([0, 1, 2, 3].map((t) => basePierce(w, t))),
+        (archetypeText(w) ?? '').replace(/^\S+ /, '').replace(/穿透 \d+；|Pierce \d+; /, ''),
         w.bounce ? tx(`弹射 ${w.bounce.join('/')}`, `Bounce ${w.bounce.join('/')}`) : '',
         w.count ? tx(`弹丸 ${w.count.join('/')}`, `Projectiles ${w.count.join('/')}`) : '',
         w.knockback ? tx(`击退 ${w.knockback}`, `Knockback ${w.knockback}`) : '',

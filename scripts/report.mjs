@@ -1,11 +1,13 @@
 // 平衡测试报告生成（HTML + Markdown）
 // 单独使用：node scripts/report.mjs [结果文件] [--checks 检测项.json] [--advice 结论.html]   默认读取 scripts/.batch-progress.json 或 scripts/.batch-results.json
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
+import { chart, chapterFilter, CHART_CSS, CHART_JS } from './report-charts.mjs';
 import { fileURLToPath } from 'node:url';
 
 const OUT = new URL('../reports/', import.meta.url);
 /** 每章波数：第 1-4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50（与 src/data/balance.ts 的 chapterWaves 保持一致） */
-const chapterWaves = (ch) => (ch <= 4 ? 15 : Math.min(50, 20 + (ch - 5) * 5));
+// 与 src/data/balance.ts 的 chapterWaves 一致（第 7 章覆盖为 25 波）
+const chapterWaves = (ch) => (ch <= 4 ? 15 : ch === 7 ? 25 : Math.min(50, 20 + (ch - 5) * 5));
 const TALENT_NAME = { none: '不点', mid: '中期 40 点', full: '全部 79 点', '20%': '20%（约 16 点，基准）' };
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
@@ -367,34 +369,268 @@ function craftProgressHtml(results, names) {
     .join('')}</tbody></table></div>`;
 }
 
-/** 每波的累计收入与累计花费（全部对局的中位数） */
-function economyHtml(results) {
+/** 按波次收集每局的本波统计（RunState.waveLog）：{ ...wl, inc }，inc = 本波各来源番茄籽收入。
+ *  最后一波（阵亡或通关）没有离店快照，用结算时的快照补上；旧结果没有 wl */
+function waveLogs(results) {
   const byWave = {};
-  for (const r of results) for (const w of r.waves ?? []) (byWave[w.wave] ??= []).push(w);
+  const add = (w) => w.wl && (byWave[w.wave] ??= []).push({ ...w.wl, inc: w.inc ?? {} });
+  for (const r of results) {
+    const ws = r.waves ?? [];
+    ws.forEach(add);
+    if (r.final && !ws.some((w) => w.wave === r.final.wave)) add(r.final);
+  }
+  return byWave;
+}
+
+/** 每波统计行（出怪 / 击杀、承伤与各来源实际回血；全部对局的中位数）；少于 5 局的波次不出 */
+function sustainRows(results) {
+  const byWave = waveLogs(results);
   const waves = Object.keys(byWave)
     .map(Number)
     .sort((a, b) => a - b)
     .filter((w) => byWave[w].length >= 5);
-  if (!waves.length) return '<p class="muted">数据不足</p>';
-  const rows = waves.map((w) => {
+  const h = (l, ...ks) => median(l.map((x) => ks.reduce((a, k) => a + (x.heal[k] ?? 0), 0)));
+  return waves.map((w) => {
+    const l = byWave[w];
+    const heal = median(l.map((x) => Object.values(x.heal).reduce((a, b) => a + b, 0)));
+    const taken = median(l.map((x) => x.taken));
+    return {
+      w,
+      n: l.length,
+      spawned: median(l.map((x) => x.spawned)),
+      killed: median(l.map((x) => x.killed)),
+      killPct: median(l.map((x) => (x.spawned ? (x.killed / x.spawned) * 100 : 0))),
+      taken,
+      ls: h(l, 'lifesteal'),
+      regen: h(l, 'regen'),
+      item: h(l, 'fruit', 'kill'),
+      other: h(l, 'skill', 'talent', 'other'),
+      over: median(l.map((x) => x.over)),
+      lsOver: median(l.map((x) => x.overBy?.lifesteal ?? 0)),
+      // 吸血溢出率：吸血里有多少是满血时浪费的（各局分别算，没吸血的局不计）
+      lsOverPct: (() => {
+        const ls = (x) => [x.heal.lifesteal ?? 0, x.overBy?.lifesteal ?? 0];
+        const v = l.filter((x) => ls(x)[0] + ls(x)[1] > 0).map((x) => (ls(x)[1] / (ls(x)[0] + ls(x)[1])) * 100);
+        return v.length ? median(v) : NaN;
+      })(),
+      cover: median(l.map((x) => (x.taken ? (Object.values(x.heal).reduce((a, b) => a + b, 0) / x.taken) * 100 : 0))),
+      heal,
+    };
+  });
+}
+
+/** 精英 / Boss 击杀耗时行：按波次 + 类型汇总 */
+function ttkRows(results) {
+  const byWave = waveLogs(results);
+  const rows = [];
+  for (const w of Object.keys(byWave)
+    .map(Number)
+    .sort((a, b) => a - b)) {
+    const logs = byWave[w];
+    for (const elite of [true, false]) {
+      const list = logs.flatMap((l) => (l.bosses ?? []).filter((b) => b.elite === elite));
+      if (list.length < 5) continue;
+      const ttk = list.filter((b) => b.ttk !== null).map((b) => b.ttk);
+      const names = [...new Set(list.map((b) => b.id))];
+      rows.push({
+        w,
+        elite,
+        type: elite ? '精英' : 'Boss',
+        names: names.length > 3 ? `${names.slice(0, 3).join('、')} 等 ${names.length} 种` : names.join('、'),
+        n: list.length,
+        limit: median(logs.map((l) => l.limit)),
+        sec: median(logs.map((l) => l.sec)),
+        t0: median(list.map((b) => b.t0)),
+        p10: ttk.length ? quant(ttk, 0.1) : NaN,
+        p50: ttk.length ? median(ttk) : NaN,
+        p90: ttk.length ? quant(ttk, 0.9) : NaN,
+        killPct: pct(ttk.length, list.length),
+        // Boss 波：打到超过时限（进入狂暴加时）的局占比
+        over: elite ? null : pct(logs.filter((l) => l.limit && l.sec > l.limit).length, logs.length),
+      });
+    }
+  }
+  return rows;
+}
+
+/** 每波番茄籽行：理论值、实际掉落、实际捡到与其他收入 */
+function seedRows(results) {
+  const byWave = waveLogs(results);
+  const waves = Object.keys(byWave)
+    .map(Number)
+    .sort((a, b) => a - b)
+    .filter((w) => byWave[w].length >= 5);
+  const other = (x) => Object.entries(x.inc).reduce((a, [k, v]) => a + (k === 'pickup' ? 0 : Math.max(0, v)), 0);
+  return waves.map((w) => {
     const l = byWave[w];
     return {
       w,
       n: l.length,
-      earned: median(l.map((x) => x.earned)),
-      spent: median(l.map((x) => x.spentAll ?? x.spent + (x.reroll ?? 0))),
-      seeds: median(l.map((x) => x.seeds)),
+      pot: median(l.map((x) => x.seedPot)),
+      drop: median(l.map((x) => x.seedDrop)),
+      pick: median(l.map((x) => x.inc.pickup ?? 0)),
+      other: median(l.map(other)),
+      total: median(l.map((x) => (x.inc.pickup ?? 0) + other(x))),
+      dropPct: median(l.map((x) => (x.seedPot ? (x.seedDrop / x.seedPot) * 100 : 0))),
+      pickPct: median(l.map((x) => (x.seedDrop ? ((x.inc.pickup ?? 0) / x.seedDrop) * 100 : 0))),
     };
   });
-  const max = Math.max(...rows.map((r) => r.earned));
-  return `<p class="lede">每波离店时的累计收入、累计花费与持有番茄籽（中位数）。条形按累计收入的比例绘制。</p>
-  <div class="scroll"><table class="list"><thead><tr><th class="num">波次</th><th class="w">累计收入</th><th class="num">累计花费</th><th class="num">持有</th><th class="num">花费占比</th><th class="num">局数</th></tr></thead>
+}
+
+/** 每波累计收入与累计花费（离店快照的中位数） */
+function econRows(results) {
+  const byWave = {};
+  for (const r of results) for (const w of r.waves ?? []) (byWave[w.wave] ??= []).push(w);
+  return Object.keys(byWave)
+    .map(Number)
+    .sort((a, b) => a - b)
+    .filter((w) => byWave[w].length >= 5)
+    .map((w) => {
+      const l = byWave[w];
+      return {
+        w,
+        n: l.length,
+        earned: median(l.map((x) => x.earned)),
+        spent: median(l.map((x) => x.spentAll ?? x.spent + (x.reroll ?? 0))),
+        seeds: median(l.map((x) => x.seeds)),
+      };
+    });
+}
+
+/** 按章节筛选生成图表数据：{ all: build(全部), '1': build(第 1 章), ... } */
+function byChapter(results, build) {
+  const out = { all: build(results) };
+  for (const c of [...new Set(results.map((r) => r.ch))].sort((a, b) => a - b)) out[c] = build(results.filter((r) => r.ch === c));
+  return out;
+}
+/** 行 → 折线数据：picks = [[系列名, 取值函数], ...]（按顺序占分类色 1、2、3） */
+const lineData = (rows, picks) => ({
+  x: rows.map((r) => r.w),
+  series: picks.map(([name, f], i) => ({
+    name,
+    slot: i + 1,
+    values: rows.map((r) => {
+      const v = f(r);
+      return Number.isFinite(v) ? Math.round(v * 10) / 10 : null;
+    }),
+  })),
+});
+const NO_DATA = '<p class="muted">数据不足（需要用新版机器人重新跑批量测试）</p>';
+
+/** 生存曲线：承伤与回血、吸血溢出率（图）+ 完整数据表 */
+function sustainHtml(results) {
+  const rows = sustainRows(results);
+  if (!rows.length) return NO_DATA;
+  const table = `<table class="list"><thead><tr><th class="num">波次</th><th class="num">承伤</th><th class="num">吸血</th><th class="num">再生</th><th class="num">道具</th><th class="num">其他</th><th class="num">溢出</th><th class="num">吸血溢出</th><th class="num">吸血溢出率</th><th class="num">回血 / 承伤</th><th class="num">局数</th></tr></thead>
   <tbody>${rows
     .map(
       (r) =>
-        `<tr><th scope="row" class="num">${r.w}</th><td><div class="bar"><i style="width:${((r.earned / max) * 100).toFixed(1)}%"></i><span>${fmt(r.earned)}</span></div></td><td class="num">${fmt(r.spent)}</td><td class="num">${fmt(r.seeds)}</td><td class="num">${pct(r.spent, r.earned)}%</td><td class="num muted">${r.n}</td></tr>`,
+        `<tr><th scope="row" class="num">${r.w}</th><td class="num">${fmt(r.taken)}</td><td class="num">${fmt(r.ls)}</td><td class="num">${fmt(r.regen)}</td><td class="num">${fmt(r.item)}</td><td class="num">${fmt(r.other)}</td><td class="num muted">${fmt(r.over)}</td><td class="num">${fmt(r.lsOver)}</td><td class="num">${Number.isNaN(r.lsOverPct) ? '–' : Math.round(r.lsOverPct) + '%'}</td><td class="num">${pct(r.cover, 100)}%</td><td class="num muted">${r.n}</td></tr>`,
     )
-    .join('')}</tbody></table></div>`;
+    .join('')}</tbody></table>`;
+  return `<p class="lede">承伤 = 实际扣掉的生命；回血 = 各来源实际回复的生命（满血时浪费的不算）。两条线贴在一起或回血在上，说明怪物伤害跟不上玩家回复。吸血溢出率 = 吸血里满血时浪费的比例，接近 100% 说明玩家几乎一直满血。均为中位数。</p>
+  ${chart({
+    title: '每波承伤与回血',
+    sub: '中位数，单位：生命',
+    datasets: byChapter(results, (rs) =>
+      lineData(sustainRows(rs), [
+        ['承伤', (r) => r.taken],
+        ['回血', (r) => r.heal],
+      ]),
+    ),
+  })}
+  ${chart({ title: '吸血溢出率', sub: '吸血里满血时浪费的比例（没吸血的局不计）', fmt: 'pct', datasets: byChapter(results, (rs) => lineData(sustainRows(rs), [['吸血溢出率', (r) => r.lsOverPct]])), table })}`;
+}
+
+/** 精英 / Boss 击杀耗时：每波 P10–P90 区间 + P50（图）+ 完整数据表 */
+function bossTtkHtml(results) {
+  const rows = ttkRows(results);
+  if (!rows.length) return NO_DATA;
+  const rangeData = (rs) => {
+    const rr = ttkRows(rs);
+    const x = [...new Set(rr.map((r) => r.w))].sort((a, b) => a - b);
+    const ser = (elite, name, slot) => {
+      const at = (w) => rr.find((r) => r.w === w && r.elite === elite);
+      const g = (w, k) => {
+        const r = at(w);
+        return r && Number.isFinite(r[k]) ? Math.round(r[k] * 10) / 10 : null;
+      };
+      return { name, slot, p10: x.map((w) => g(w, 'p10')), p50: x.map((w) => g(w, 'p50')), p90: x.map((w) => g(w, 'p90')) };
+    };
+    return { x, series: [ser(true, '精英', 1), ser(false, 'Boss', 2)].filter((s) => s.p50.some((v) => v !== null)) };
+  };
+  const table = `<table class="list"><thead><tr><th class="num">波次</th><th>类型</th><th>出场的怪</th><th class="num">只数</th><th class="num">波次时限</th><th class="num">波次实际</th><th class="num">出场时刻</th><th class="num">耗时 P10</th><th class="num">P50</th><th class="num">P90</th><th class="num">击杀率</th><th class="num">超时局</th></tr></thead>
+  <tbody>${rows
+    .map(
+      (r) =>
+        `<tr><th scope="row" class="num">${r.w}</th><td>${r.type}</td><td>${esc(r.names)}</td><td class="num muted">${r.n}</td><td class="num">${fmt(r.limit)}s</td><td class="num">${fmt(r.sec)}s</td><td class="num">${fmt(r.t0)}s</td><td class="num">${fmt(r.p10)}s</td><td class="num"><b>${fmt(r.p50)}s</b></td><td class="num">${fmt(r.p90)}s</td><td class="num">${r.killPct}%</td><td class="num">${r.over === null ? '–' : r.over + '%'}</td></tr>`,
+    )
+    .join('')}</tbody></table>`;
+  return `<p class="lede">每只精英 / Boss 从出场到被击杀的秒数（只算被打死的）：圆点是中位数，竖线是 P10–P90 区间。精英在普通计时波里出场，波次到时还活着就算没打死；Boss 波时限 90 秒，打死才结束。耗时很短 = 可能太弱；没打死或超时多 = 可能太强（击杀率、超时局见数据表）。</p>
+  ${chart({ type: 'range', title: '精英与 Boss 击杀耗时', sub: '秒，P50 与 P10–P90', fmt: 'sec', datasets: byChapter(results, rangeData), table })}`;
+}
+
+/** 每波番茄籽：理论值 / 掉落 / 捡到（图）+ 完整数据表 */
+function seedsHtml(results) {
+  const rows = seedRows(results);
+  if (!rows.length) return NO_DATA;
+  const table = `<table class="list"><thead><tr><th class="num">波次</th><th class="num">理论值</th><th class="num">掉落</th><th class="num">掉落 / 理论</th><th class="num">捡到</th><th class="num">拾取率</th><th class="num">其他收入</th><th class="num">本波总收入</th><th class="num">局数</th></tr></thead>
+  <tbody>${rows
+    .map(
+      (r) =>
+        `<tr><th scope="row" class="num">${r.w}</th><td class="num">${fmt(r.pot)}</td><td class="num">${fmt(r.drop)}</td><td class="num">${Math.round(r.dropPct)}%</td><td class="num">${fmt(r.pick)}</td><td class="num">${Math.round(r.pickPct)}%</td><td class="num">${fmt(r.other)}</td><td class="num"><b>${fmt(r.total)}</b></td><td class="num muted">${r.n}</td></tr>`,
+    )
+    .join('')}</tbody></table>`;
+  return `<p class="lede">理论值 = 本波出场的怪全部打死能掉的番茄籽（按出场时的收获加成）；掉落 = 实际击杀掉的；捡到 = 实际拾取的（留在地上的下一波捡起时翻倍，算进下一波）。三条线的差距 = 没打死的怪与没捡的籽。均为中位数。</p>
+  ${chart({
+    title: '每波番茄籽',
+    sub: '中位数',
+    datasets: byChapter(results, (rs) =>
+      lineData(seedRows(rs), [
+        ['理论值', (r) => r.pot],
+        ['掉落', (r) => r.drop],
+        ['捡到', (r) => r.pick],
+      ]),
+    ),
+    table,
+  })}`;
+}
+
+/** 经济曲线：累计收入与花费、每波出怪与击杀、击杀率（三张图，单位不同不共轴）+ 数据表 */
+function economyHtml(results) {
+  const rows = econRows(results);
+  if (!rows.length) return '<p class="muted">数据不足</p>';
+  const kills = sustainRows(results);
+  const kAt = (w) => kills.find((k) => k.w === w);
+  const table = `<table class="list"><thead><tr><th class="num">波次</th><th class="num">累计收入</th><th class="num">累计花费</th><th class="num">持有</th><th class="num">花费占比</th><th class="num">出怪</th><th class="num">击杀</th><th class="num">击杀率</th><th class="num">局数</th></tr></thead>
+  <tbody>${rows
+    .map((r) => {
+      const k = kAt(r.w);
+      return `<tr><th scope="row" class="num">${r.w}</th><td class="num">${fmt(r.earned)}</td><td class="num">${fmt(r.spent)}</td><td class="num">${fmt(r.seeds)}</td><td class="num">${pct(r.spent, r.earned)}%</td><td class="num">${k ? fmt(k.spawned) : '–'}</td><td class="num">${k ? fmt(k.killed) : '–'}</td><td class="num">${k ? Math.round(k.killPct) + '%' : '–'}</td><td class="num muted">${r.n}</td></tr>`;
+    })
+    .join('')}</tbody></table>`;
+  return `<p class="lede">每波离店时的累计收入与累计花费（番茄籽），每波刷出与击败的怪物数，以及击杀率（击败 ÷ 刷出；波次结束时还活着的怪会被清场，不算击杀）。均为中位数。</p>
+  ${chart({
+    title: '累计收入与花费',
+    sub: '番茄籽，离店时',
+    datasets: byChapter(results, (rs) =>
+      lineData(econRows(rs), [
+        ['累计收入', (r) => r.earned],
+        ['累计花费', (r) => r.spent],
+      ]),
+    ),
+  })}
+  ${chart({
+    title: '每波刷出与击败的怪物',
+    sub: '只',
+    datasets: byChapter(results, (rs) =>
+      lineData(sustainRows(rs), [
+        ['刷出', (r) => r.spawned],
+        ['击败', (r) => r.killed],
+      ]),
+    ),
+  })}
+  ${chart({ title: '击杀率', sub: '击败 ÷ 刷出', fmt: 'pct', datasets: byChapter(results, (rs) => lineData(sustainRows(rs), [['击杀率', (r) => r.killPct]])), table })}`;
 }
 
 const LV_CLS = { ok: 'good', warn: 'warn', bad: 'bad' };
@@ -724,6 +960,7 @@ summary small{margin-left:12px}
 .runs summary{font-size:16px}
 .runs td,.runs th{font-size:12px;padding:4px 8px}
 
+${CHART_CSS}
 @media (max-width:720px){
   main{padding:24px 16px 48px}
   header{grid-template-columns:1fr}
@@ -762,8 +999,29 @@ summary small{margin-left:12px}
   </section>
 
   <section>
-    <h2>经济曲线：每波累计收入与花费</h2>
+    <h2>按波次的曲线</h2>
+    <p class="lede">下面的经济、生存、击杀耗时与番茄籽图表横轴都是波次，可以按章节筛选（每章波数不同，「全部章节」把各章同一波次合在一起）。鼠标移到图上看每一波的读数，也可以点一下图后用方向键逐波查看。</p>
+    ${chapterFilter([...new Set(results.map((r) => r.ch))].sort((a, b) => a - b))}
+  </section>
+
+  <section>
+    <h2>经济曲线：收入、花费与击杀</h2>
     ${economyHtml(results)}
+  </section>
+
+  <section>
+    <h2>生存曲线：每波出怪、击杀、承伤与回血</h2>
+    ${sustainHtml(results)}
+  </section>
+
+  <section>
+    <h2>精英与 Boss 击杀耗时</h2>
+    ${bossTtkHtml(results)}
+  </section>
+
+  <section>
+    <h2>每波番茄籽：理论值与实际</h2>
+    ${seedsHtml(results)}
   </section>
 
   <section>
@@ -791,6 +1049,8 @@ summary small{margin-left:12px}
     <tbody>${detail}</tbody></table></div>
   </details>
 </main>
+<script src="echarts.min.js"></script>
+<script>${CHART_JS}</script>
 <script>
   // 存活带的格子按顺序长出来（唯一的入场动画）
   document.querySelectorAll('.cells').forEach((row, ri) =>
@@ -852,6 +1112,10 @@ export function writeReports(meta, results) {
   const html = renderHtml(meta, results);
   const file = new URL(`balance-${fileStamp(new Date(meta.startedAt))}${meta.complete ? '' : '-partial'}.html`, reports);
   writeFileSync(file, html);
+  // 图表库：复制到报告目录，报告用相对路径加载（离线可打开；只在缺失或版本变化时复制）
+  const lib = new URL('../node_modules/echarts/dist/echarts.min.js', import.meta.url);
+  const dst = new URL('echarts.min.js', reports);
+  if (existsSync(lib) && (!existsSync(dst) || readFileSync(dst).length !== readFileSync(lib).length)) copyFileSync(lib, dst);
   writeFileSync(new URL('BALANCE_REPORT.html', OUT), html);
   writeFileSync(new URL('BALANCE_REPORT.md', OUT), renderMarkdown(meta, results));
   return fileURLToPath(file);

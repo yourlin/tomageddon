@@ -134,18 +134,22 @@ export const CSS = `
 #dev-panel .hdr{display:flex;align-items:center;gap:2px;height:38px;padding:0 6px 0 12px;border-bottom:1px solid var(--ln);flex:none}
 #dev-panel .hdr .brand{margin-right:auto;font-weight:700;font-size:13.5px;letter-spacing:.02em;white-space:nowrap}
 #dev-panel .hdr .brand i{font-style:normal;color:var(--tomato)}
-#dev-panel .hdr button{background:transparent;border-color:transparent;color:var(--mut);min-width:28px}
-#dev-panel .hdr button:hover{background:var(--sf2);color:var(--tx)}
+#dev-panel .hdr>button{background:transparent;border-color:transparent;color:var(--mut);min-width:28px}
+#dev-panel:not(.studio) .hdr>button:not(.exit){min-width:24px;padding:0 4px}
+#dev-panel .hdr>button:hover{background:var(--sf2);color:var(--tx)}
 #dev-panel .hdr .exit{color:var(--tx);border-color:var(--ln2);margin-left:4px}
 #dev-panel .toast{transition:opacity .3s;opacity:0;margin:0 8px;cursor:pointer;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   padding:1px 8px;border-radius:10px;background:var(--sf2);font-size:11.5px}
 
 /* —— 主体：左侧页签栏 + 右侧内容 —— */
 #dev-panel .main{flex:1;display:flex;min-height:0}
-#dev-panel nav.rail{width:62px;flex:none;overflow-y:auto;padding:4px 0 10px;border-right:1px solid var(--ln);scrollbar-width:none}
-#dev-panel nav.rail .grp{font-size:10.5px;color:var(--dim);text-align:center;padding:10px 0 3px}
+#dev-panel nav.rail{width:86px;flex:none;overflow-y:auto;padding:4px 0 10px;border-right:1px solid var(--ln);scrollbar-width:none}
+#dev-panel nav.rail .grp{font-size:10.5px;color:var(--dim);padding:8px 0 2px 12px}
 #dev-panel nav.rail .grp:first-child{padding-top:4px}
-#dev-panel nav.rail button{display:block;width:54px;margin:1px 4px;padding:6px 0;border:none;border-radius:6px;background:transparent;color:var(--mut);text-align:center}
+/* 图标在左、文字在右，一行一个页签 */
+#dev-panel nav.rail button{display:flex;align-items:center;gap:6px;width:78px;height:28px;margin:1px 4px;padding:0 8px;border:none;border-radius:6px;background:transparent;color:var(--mut);text-align:left}
+#dev-panel nav.rail button .ico{flex:none;width:18px;text-align:center;font-style:normal;font-size:14px;line-height:1;filter:saturate(.75);opacity:.85}
+#dev-panel nav.rail button:is(:hover,.on,.cur) .ico{filter:none;opacity:1}
 #dev-panel nav.rail button:hover{background:var(--sf2);color:var(--tx)}
 #dev-panel nav.rail button.on{background:var(--tomato-t);color:var(--tx);box-shadow:inset 3px 0 0 var(--tomato);font-weight:700}
 #dev-panel .col{flex:1;min-width:0;display:flex;flex-direction:column;container-type:inline-size}
@@ -153,14 +157,17 @@ export const CSS = `
 
 /* —— 控制台：播放控制 + 开关 —— */
 #dev-panel .ctl{flex:none;padding:7px 10px 6px;border-bottom:1px solid var(--ln);background:var(--sf)}
-#dev-panel .ctl .line{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
-#dev-panel .ctl .line+.line{margin-top:5px}
-#dev-panel .ctl .gap{width:8px}
-#dev-panel .ctl .sp{flex:1}
-#dev-panel .ctl .lbl{color:var(--dim);font-size:11px;margin:0 2px 0 6px}
-#dev-panel .ctl .lbl:first-child{margin-left:0}
-#dev-panel .ctl .play{min-width:62px;font-weight:700}
-#dev-panel .ctl .speed{font-family:var(--num);padding:0 2px}
+#dev-panel .ctlx .line,#dev-panel .line.ctlx{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+#dev-panel .ctl .ctlx .line+.line,#dev-panel .ctl .ctlx+.ctlx{margin-top:5px}
+#dev-panel .ctlx .gap{width:8px}
+#dev-panel .ctlx .sp{flex:1}
+#dev-panel .ctlx .lbl{color:var(--dim);font-size:11px;margin:0 2px 0 6px}
+#dev-panel .ctlx .lbl:first-child{margin-left:0}
+#dev-panel .ctlx .play{min-width:62px;font-weight:700}
+#dev-panel .ctlx .qs{display:inline-flex;white-space:nowrap;align-items:center;gap:3px;padding:0 4px 0 2px;border:1px solid var(--ln2);border-radius:6px;height:28px}
+#dev-panel .ctlx .qs .lbl{margin:0 1px}
+#dev-panel .ctlx .qs .chip{margin:0 2px}
+#dev-panel .ctlx .speed{font-family:var(--num);padding:0 2px}
 
 /* —— 折叠区（实时数据 / 角色与怪物） —— */
 #dev-panel .sec{flex:none;border-bottom:1px solid var(--ln)}
@@ -189,10 +196,12 @@ export const CSS = `
 #dev-panel .live .idle{color:var(--mut);padding:6px 0}
 #dev-panel .live .stale{margin-bottom:6px;padding:4px 8px;border-left:3px solid var(--mustard);background:rgba(232,181,63,.12);border-radius:0 5px 5px 0;font-size:11.5px}
 
-/* 角色 / 怪物快捷栏 */
-#dev-panel .quick .row{margin:3px 0}
-#dev-panel .quick .row>b.nw{color:var(--mut);font-weight:400;font-size:11px;width:26px}
-#dev-panel .quick .cur{min-width:120px;color:var(--mustard);font-size:13px}
+/* 角色快捷栏（停靠布局在面板顶部，工作室布局在底栏左边）；怪物快速预览里的当前怪物名 */
+#dev-panel .charbar{flex:none;padding:4px 10px;border-bottom:1px solid var(--ln)}
+#dev-panel .charbar .row{margin:0;flex-wrap:nowrap;gap:4px}
+#dev-panel .charbar select{max-width:200px}
+#dev-panel.studio .bot .charbar{padding:0 14px 0 0;margin-right:14px;border-bottom:none;border-right:1px solid var(--ln2)}
+#dev-panel .cur{min-width:120px;color:var(--mustard);font-size:13px}
 
 /* —— 页签内容 —— */
 #dev-panel .body{flex:1;overflow:auto;padding:12px 14px 24px;scrollbar-color:var(--ln2) transparent}
@@ -271,21 +280,49 @@ export const CSS = `
 #dev-toggle:hover{border-color:var(--tomato)}
 #dev-toggle.left{right:auto;left:calc(var(--dev-w) + 8px)}
 
+/* —— 工作室布局：游戏画面居中占满；顶栏 = 品牌 + 播放控制 + 工具按钮，左 = 页签栏 + 抽屉，底栏 = 开关，画面右上 = 实时数据浮窗 ——
+ * 整块面板铺满窗口但不吃鼠标（pointer-events:none），只有四周的工具栏和浮窗可点，中间的点击直接落到游戏画布上 */
+#dev-panel.studio{left:0;width:auto;border:none;background:transparent;display:grid;pointer-events:none;
+  grid-template-columns:auto var(--drawer-w,0px) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;
+  grid-template-areas:"top top top" "rail drawer view" "bot bot bot"}
+#dev-panel.studio>.hdr{grid-area:top;pointer-events:auto;background:var(--bg);height:auto;min-height:44px;padding-block:5px;gap:6px;padding-left:14px}
+#dev-panel.studio>.hdr .brand{margin-right:10px}
+/* 窗口窄时播放控制与快速开局自动折行（顶栏变高，舞台跟着下移），不再被裁掉 */
+#dev-panel.studio>.hdr .ctlx{flex:1;flex-wrap:wrap;row-gap:4px;min-width:0}
+@media (max-width:1180px){#dev-panel.studio>.hdr{flex-wrap:wrap}#dev-panel.studio>.hdr .brand{margin-right:auto}#dev-panel.studio>.hdr .ctlx{order:9;flex-basis:100%}}
+#dev-panel.studio>.hdr .ctlx .sp{flex:none;width:6px}
+#dev-panel.studio .main{display:contents}
+#dev-panel.studio nav.rail{grid-area:rail;pointer-events:auto;background:var(--bg)}
+#dev-panel.studio nav.rail button.cur{color:var(--tx);box-shadow:inset 3px 0 0 var(--ln2)}
+#dev-panel.studio .col{grid-area:drawer;pointer-events:auto;background:var(--bg);border-right:1px solid var(--ln2);position:relative;min-height:0}
+#dev-panel.studio.shut .col{display:none}
+#dev-panel.studio .grip{left:auto;right:-4px}
+#dev-panel.studio .view{grid-area:view;position:relative;min-width:0;min-height:0}
+#dev-panel.studio .hud{position:absolute;top:8px;right:8px;width:min(420px,calc(100% - 16px));max-height:calc(100% - 16px);overflow:auto;pointer-events:auto;
+  background:rgba(21,16,14,.88);border:1px solid var(--ln2);border-radius:8px;backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,.4)}
+#dev-panel.studio .hud .sec{border-bottom:none}
+#dev-panel.studio .hud .meter{background:rgba(21,16,14,.6)}
+#dev-panel.studio .bot{grid-area:bot;pointer-events:auto;background:var(--sf);border-top:1px solid var(--ln2);padding:6px 12px;display:flex;align-items:center}
+#dev-panel.studio .bot .ctlx.flags{display:flex;flex-wrap:wrap;gap:4px 18px}
+#dev-panel:not(.studio) :is(.view,.bot){display:none}
+
 /* —— 紧凑模式 —— */
 #dev-panel.compact{font-size:11.5px;line-height:1.3}
 #dev-panel.compact button,#dev-panel.compact input,#dev-panel.compact select{height:21px}
 #dev-panel.compact button{padding:0 6px}
 #dev-panel.compact .row{margin:2px 0;gap:3px 6px}
 #dev-panel.compact .body{padding:6px 8px 16px}
-#dev-panel.compact nav.rail{width:50px}
-#dev-panel.compact nav.rail button{width:44px;padding:4px 0}
+#dev-panel.compact nav.rail{width:76px}
+#dev-panel.compact nav.rail button{width:68px;height:24px;padding:0 6px;gap:4px}
 #dev-panel.compact .meter .v{font-size:17px}
 #dev-panel.compact .meter.hero .v{font-size:20px}
 #dev-panel.compact h3{margin:10px 0 4px}
 
 /* —— 浮层（命令面板、日志、快捷键） —— */
-.dev-modal-mask{position:fixed;inset:0;background:rgba(10,7,6,.62);z-index:80;display:flex;align-items:flex-start;justify-content:center;padding-top:9vh}
-.dev-modal{width:min(640px,92%);max-height:80vh;overflow:auto;background:var(--bg);color:var(--tx);border:1px solid var(--ln2);border-radius:8px;padding:14px;font:12.5px/1.5 var(--ui)}
+.dev-modal-mask{position:fixed;inset:0;pointer-events:auto;background:rgba(10,7,6,.62);z-index:80;display:flex;align-items:flex-start;justify-content:center;padding-top:9vh}
+.dev-modal{position:relative;width:min(640px,92%);max-height:80vh;overflow:auto;background:var(--bg);color:var(--tx);border:1px solid var(--ln2);border-radius:8px;padding:14px;font:12.5px/1.5 var(--ui)}
+.dev-modal .dev-modal-x{position:absolute;top:8px;right:8px;width:26px;height:26px;padding:0;border-radius:6px;background:transparent;border:1px solid transparent;color:var(--mut);cursor:pointer;font:14px var(--ui)}
+.dev-modal .dev-modal-x:hover{background:var(--sf2);color:var(--tx);border-color:var(--ln2)}
 .dev-modal input{width:100%;height:32px;font-size:14px}
 .dev-cmds{margin-top:8px;max-height:60vh;overflow:auto}
 .dev-cmds div{padding:5px 8px;border-radius:5px;cursor:pointer}

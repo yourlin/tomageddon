@@ -4,6 +4,12 @@ import type { StatusApply } from './statuses';
 import { GENERATED_ITEMS } from './itemGen';
 import { EXTRA_ITEMS } from './gearExtra';
 
+/** 角色专属持续伤害特性：
+ *  burnStack 灼烧每次多叠 1 层 · poisonCap 中毒层数上限 +4 · burnPower 灼烧伤害 ×1.25 · burnLong 灼烧持续时间 ×2 ·
+ *  bleedVuln 流血中的敌人受到的所有伤害 +15% · poisonSlow 中毒附带 2 层减速 · dotCrit 持续伤害可暴击（按暴击率，×2）·
+ *  burnSpread 灼烧中的敌人死亡时引燃周围 110 范围的敌人 */
+export type DotPerk = 'burnStack' | 'poisonCap' | 'burnPower' | 'burnLong' | 'bleedVuln' | 'poisonSlow' | 'dotCrit' | 'burnSpread';
+
 export interface ItemSpecial {
   explodeOnKill?: { chance: number; dmg: number }; // 击杀爆炸
   thorns?: number; // 受伤时反弹伤害
@@ -30,6 +36,10 @@ export interface ItemSpecial {
   periodicSelf?: { every: number; status: StatusApply[] };
   aura?: { radius: number; every: number; status: StatusApply[] }; // 周期性对周围敌人施加
   sameWeaponBonus?: number; // 每把同名武器 +% 伤害
+  doubleShot?: number; // 远程武器开火时追加一次射击的概率 %
+  rangedPierce?: number; // 远程武器子弹穿透 +N
+  shieldDmg?: number; // 有护盾时造成的伤害 +%
+  dotPerk?: DotPerk; // 角色专属持续伤害特性（每个角色一种，互不重样，见 GameScene.applyDot）
   fruitHeal?: number; // 果实回血 +%
   crateMult?: number; // 宝箱掉率倍数
   critDmg?: number; // 暴击伤害 +%
@@ -45,7 +55,7 @@ export interface ItemDef {
   price: number;
   mods: StatMods;
   special?: ItemSpecial;
-  /** 最多持有数量。不填时按稀有度默认（RARITY_ITEM_CAP：普通 3、稀有 2、史诗 1、传说 1）；填了就以它为准 */
+  /** 最多持有数量。不填时按稀有度默认（RARITY_ITEM_CAP：普通 2、稀有 1、史诗 1、传说 1）；填了就以它为准 */
   max?: number;
   icon?: { shape: string; color: number; color2: number; glyph?: string };
   series?: string;
@@ -287,8 +297,8 @@ export const ITEM_MAP: Record<string, ItemDef> = Object.fromEntries(ALL_ITEMS.ma
 export const LEGEND_RARITY = 3;
 /** 每种传说道具默认最多持有 1 件 */
 export const LEGEND_ITEM_CAP = 1;
-/** 各稀有度默认持有上限：普通 3 件、稀有 2 件、史诗 1 件、传说 1 件 */
-export const RARITY_ITEM_CAP = [3, 2, 1, LEGEND_ITEM_CAP];
+/** 各稀有度默认持有上限：普通 2 件、稀有 1 件、史诗 1 件、传说 1 件 */
+export const RARITY_ITEM_CAP = [2, 1, 1, LEGEND_ITEM_CAP];
 
 /** 道具的基础持有上限（不含加成）：填了 max 以 max 为准，否则按稀有度 */
 export function baseItemCap(it: ItemDef): number {

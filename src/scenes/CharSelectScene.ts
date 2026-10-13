@@ -18,7 +18,7 @@ import { charTraitLines, weaponDmgType } from '../data/describe';
 import { favoredWeapons } from '../data/affinity';
 import { TAG_MAP } from '../data/weaponTags';
 import { tagName } from '../i18n/apply';
-import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, statLines } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, statLines, tu } from '../ui/UI';
 import { tx, lang } from '../i18n';
 import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
 import { dangerReward, chapterWaves } from '../data/balance';
@@ -68,6 +68,15 @@ export class CharSelectScene extends Phaser.Scene {
   private detailX = 0;
   /** 详情页：0 基本信息，1 成长（熟练度/任务/觉醒/皮肤） */
   private page: 0 | 1 = 0;
+  /** 详情正文超出面板时在面板内滚动（不缩小字号：手机上字本来就小）。key = 当前角色与页，换了就回到顶部 */
+  private scroll = { key: '', y: 0, max: 0, top: 0, bottom: 0 };
+  private scrollBody: Phaser.GameObjects.Container | null = null;
+  private scrollMaskG: Phaser.GameObjects.Graphics | null = null;
+  private scrollBar: Phaser.GameObjects.Graphics | null = null;
+  private scrollHint: Phaser.GameObjects.Text | null = null;
+  private drag: { y: number; s: number } | null = null;
+  /** 本次按下后拖动过（超过 8 像素）：抬起时不触发正文里的点击（皮肤、觉醒开关） */
+  private dragMoved = false;
 
   constructor() {
     super('CharSelect');
@@ -144,6 +153,25 @@ export class CharSelectScene extends Phaser.Scene {
     this.showcase = null;
     panel(this, px, 90, pw, H - 250);
     this.detail = this.add.container(px, 90);
+    // 详情正文滚动：滚轮 / 按住拖动（拖动超过 8 像素后抬起不触发正文里的点击）
+    this.input.on('wheel', (p: Phaser.Input.Pointer, _o: unknown, _dx: number, dy: number) => {
+      if (!this.inBody(p)) return;
+      this.scroll.y += dy * 0.5;
+      this.applyScroll();
+    });
+    this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
+      this.dragMoved = false;
+      this.drag = this.inBody(p) ? { y: p.worldY, s: this.scroll.y } : null;
+    });
+    this.input.on('pointermove', (p: Phaser.Input.Pointer) => {
+      if (!this.drag || !p.isDown) return;
+      const dy = p.worldY - this.drag.y;
+      if (Math.abs(dy) > 8) this.dragMoved = true;
+      if (!this.dragMoved) return;
+      this.scroll.y = this.drag.s - dy;
+      this.applyScroll();
+    });
+    this.input.on('pointerup', () => (this.drag = null));
 
     // 章节选择
     const cy = H - 130;
@@ -213,6 +241,39 @@ export class CharSelectScene extends Phaser.Scene {
     this.refresh();
   }
 
+  /** 详情正文滚动到 this.scroll.y：移动正文、更新滚动条与提示；滚出可视区的可点击文字关掉点击（遮罩挡不住点击判定） */
+  private applyScroll(): void {
+    const body = this.scrollBody;
+    if (!body) return;
+    const sc = this.scroll;
+    sc.y = Phaser.Math.Clamp(sc.y, 0, sc.max);
+    body.y = -sc.y;
+    for (const o of body.list as Phaser.GameObjects.Text[]) {
+      if (!o.input) continue;
+      const y0 = o.y - sc.y;
+      o.input.enabled = y0 >= sc.top - 2 && y0 + o.height <= sc.bottom + 2;
+    }
+    const pw = VW(this) * 0.5 - 40;
+    const h = sc.bottom - sc.top;
+    const barH = Math.max(30, (h * h) / (h + sc.max));
+    const barY = sc.top + ((h - barH) * sc.y) / sc.max;
+    this.scrollBar
+      ?.clear()
+      .fillStyle(0xffffff, 0.12)
+      .fillRoundedRect(pw - 10, sc.top, 5, h, 2.5)
+      .fillStyle(0x9bf6ff, 0.75)
+      .fillRoundedRect(pw - 10, barY, 5, barH, 2.5);
+    this.scrollHint?.setVisible(sc.y < sc.max - 4);
+  }
+
+  /** 指针是否在详情正文区域里（逻辑坐标） */
+  private inBody(p: Phaser.Input.Pointer): boolean {
+    const pw = VW(this) * 0.5 - 40;
+    const x = p.worldX - this.detailX,
+      y = p.worldY - this.detail.y;
+    return !!this.scrollBody && x >= 0 && x <= pw && y >= this.scroll.top && y <= this.scroll.bottom;
+  }
+
   private refresh(): void {
     for (const k of this.cards) {
       k.g.clear();
@@ -226,6 +287,9 @@ export class CharSelectScene extends Phaser.Scene {
     const unlocked = isUnlocked(c);
     const d = this.detail;
     d.removeAll(true);
+    this.scrollBody = this.scrollBar = this.scrollHint = null;
+    this.scrollMaskG?.destroy();
+    this.scrollMaskG = null;
     const pw = VW(this) * 0.5 - 40;
     this.showcase?.destroy();
     this.showcase = null;
@@ -257,6 +321,14 @@ export class CharSelectScene extends Phaser.Scene {
     } else {
       this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62, activeSkin(c.id));
       this.showcase.setDepth(10);
+      // 体型大 / 配件多的角色：按实际外框等比缩小，再居中到左上角的头像区（宽 160 × 高 160，
+      // 面板内 x 10~170、y 6~166），不压到右侧名字与下方天赋
+      const sc = this.showcase;
+      const b0 = sc.getBounds();
+      const k = Math.min(1, 160 / Math.max(1, b0.width), 160 / Math.max(1, b0.height));
+      if (k < 1) sc.setScale(sc.scaleX * k);
+      const b = sc.getBounds();
+      sc.setPosition(sc.x + (this.detailX + 90 - b.centerX), sc.y + (90 + 86 - b.centerY));
       d.add(text(this, 180, 24, c.name, 34, '#ffffff'));
       d.add(text(this, 180, 70, c.title, 20, '#ffd166'));
     }
@@ -289,6 +361,7 @@ export class CharSelectScene extends Phaser.Scene {
       });
       d.add(pageBtn);
       let y = 172;
+      const bodyFrom = d.length; // 从这里开始是正文（两页的内容），超出面板时整体缩小
       if (this.page === 0) {
         y += add(20, y, tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 21, '#ffd166') + 4;
         y += add(30, y, c.talent.desc, 16, '#fff4ea', pw - 60) + 10;
@@ -299,7 +372,7 @@ export class CharSelectScene extends Phaser.Scene {
         const hL = addLines(
           30,
           y,
-          traits.slice(0, half).map((t) => '• ' + t),
+          traits.slice(0, half).map((t) => '•\u00a0' + t), // 不换行空格：圆点和正文连在一起，不会单独占一行
           16,
           '#fff4ea',
           colW - 10,
@@ -309,7 +382,7 @@ export class CharSelectScene extends Phaser.Scene {
             ? addLines(
                 30 + colW,
                 y,
-                traits.slice(half).map((t) => '• ' + t),
+                traits.slice(half).map((t) => '•\u00a0' + t),
                 16,
                 '#fff4ea',
                 colW - 10,
@@ -400,6 +473,7 @@ export class CharSelectScene extends Phaser.Scene {
           );
           if (unlockedAw)
             t.setInteractive({ useHandCursor: true }).on('pointerup', () => {
+              if (this.dragMoved) return;
               save.meta.awaken[c.id] = !on;
               persist();
               this.refresh();
@@ -434,6 +508,7 @@ export class CharSelectScene extends Phaser.Scene {
               wordWrap: { width: pw - 50, useAdvancedWrap: true },
             }).setInteractive({ useHandCursor: true });
             st.on('pointerup', () => {
+              if (this.dragMoved) return;
               if (!r.id || skinOwned(r.id)) equipSkin(c.id, r.id);
               else if (!buySkin(r.id)) return toast(this, tx('金番茄不够', 'Not enough Golden Tomatoes'), '#ff6b6b');
               persist();
@@ -443,6 +518,34 @@ export class CharSelectScene extends Phaser.Scene {
             y += st.height + 2;
           }
         }
+      }
+      // 正文超出面板（高 VH − 250）时改为在面板内滚动：拖动 / 滚轮，右侧滚动条，底部「▼」提示还有内容
+      const key = `${c.id}:${this.page}`;
+      if (this.scroll.key !== key) this.scroll = { ...this.scroll, key, y: 0 };
+      const top = 168,
+        bottom = VH(this) - 250 - 10;
+      this.scroll.max = Math.max(0, y - bottom);
+      if (this.scroll.max > 0) {
+        Object.assign(this.scroll, { top, bottom });
+        const body = this.add.container(0, 0);
+        for (const o of d.list.slice(bodyFrom)) {
+          d.remove(o);
+          body.add(o);
+        }
+        d.add(body);
+        this.scrollMaskG = this.make
+          .graphics({}, false)
+          .fillStyle(0xffffff)
+          .fillRect(this.detailX, d.y + top, pw, bottom - top);
+        body.setMask(this.scrollMaskG.createGeometryMask());
+        this.scrollBar = this.add.graphics();
+        this.scrollHint = text(this, pw - 18, bottom - 2, tx('▼ 拖动查看更多', '▼ Drag for more'), tu(14), '#9bf6ff', {
+          backgroundColor: '#2b1418',
+          padding: { x: 6, y: 2 },
+        }).setOrigin(1, 1);
+        d.add([this.scrollBar, this.scrollHint]);
+        this.scrollBody = body;
+        this.applyScroll();
       }
     }
     const ch = CHAPTERS[this.chapter - 1];

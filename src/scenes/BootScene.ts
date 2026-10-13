@@ -9,15 +9,17 @@ import { CHARACTERS } from '../data/characters';
 import { initLoader, setLoader, showLoader, hideLoader, removeLoaderNow } from '../ui/BootLoader';
 import { tx } from '../i18n';
 import { DEV_MODE, devHooks } from '../dev/flag';
+import { LOW_MEM } from '../systems/Device';
 
 /** 资源下载占进度条的前 20%，首屏贴图占后 80% */
 const ASSET_SHARE = 0.2;
 /** 每帧生成贴图的时间预算（毫秒）：首屏阶段只有加载页，可以多做；后台阶段不能拖慢主菜单 */
-const BUDGET_BOOT = 28;
-const BUDGET_IDLE = 5;
+// 手机低内存模式（iOS / 微信）减半：每帧少生成、少上传，避免显存与内存峰值
+const BUDGET_BOOT = LOW_MEM ? 14 : 28;
+const BUDGET_IDLE = LOW_MEM ? 3 : 5;
 const BUDGET_URGENT = 30;
 /** 后台阶段每帧最多生成的贴图量（约 20 万像素），避免显卡上传积压造成主菜单卡顿 */
-const WEIGHT_IDLE = 12;
+const WEIGHT_IDLE = LOW_MEM ? 6 : 12;
 /** 主菜单飘落的角色头像数量（只预先生成这些，其余后台生成） */
 export const MENU_PORTRAITS = 10;
 /** 主菜单直接用到的启动贴图（角色 Rig 的脚下阴影），必须在主菜单出现前生成 */

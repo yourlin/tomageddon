@@ -159,7 +159,7 @@ function twinClones(c: StyleCtx): void {
 /** 葡萄魔术师：原地留下戴礼帽的幻象吸引敌人，结束时幻象炸成一地葡萄 */
 function grapeDecoy(c: StyleCtx): void {
   const { g, host, sk, info } = c;
-  const dur = Math.min(host.dur(sk.duration ?? 8), 6);
+  const dur = host.dur(sk.duration ?? 6);
   const rig = makeRig(g, 1, 0xd0a2f7);
   const x = g.player.x,
     y = g.player.y;
@@ -306,7 +306,7 @@ function beanSoldiers(c: StyleCtx): void {
 // 环形弹幕 / 连射
 // ================================================================
 
-/** 玉米枪手：玉米粒抛向四周，落地后“砰”地炸成爆米花（二段伤害） */
+/** 玉米枪手：玉米粒抛向四周，落地后“砰”地炸成爆米花，对落点周围造成伤害（只有落地这一段伤害） */
 function popcorn(c: StyleCtx): void {
   const { g, host, sk, info } = c;
   const p = g.player;
@@ -352,14 +352,15 @@ function popcorn(c: StyleCtx): void {
 /** 石榴炮手：籽弹螺旋喷射 1 秒（不是一次性一圈） */
 function seedSpiral(c: StyleCtx): void {
   const { g, host, sk, info, status } = c;
-  const n = sk.count ?? 30;
-  for (let i = 0; i < n; i++) {
-    g.time.delayedCall(i * 33, () => {
+  // 共 count 颗籽弹：双股螺旋，每股 count / 2 波，约 1 秒喷完；每颗造成技能伤害（mult）
+  const waves = Math.ceil((sk.count ?? 30) / 2);
+  for (let i = 0; i < waves; i++) {
+    g.time.delayedCall(i * 66, () => {
       const p = g.player;
       for (const arm of [0, Math.PI]) {
-        const a = i * 0.42 + arm;
+        const a = i * 0.84 + arm;
         const b = g.spawnPlayerBullet('proj_player', p.x, p.y, a, 560, 0.95 * Math.max(0.5, 1 + g.stats.skillRange / 100), 10);
-        b.dmg = info.dmg * 0.5;
+        b.dmg = info.dmg;
         b.pierce = 1;
         b.status = status;
         b.setTint(Phaser.Math.RND.pick([0xc1121f, 0xff4d6d, 0xffccd5]));
@@ -631,7 +632,7 @@ function angelLight(c: StyleCtx): void {
       if (acc >= 0.45 && pulses < 3) {
         acc = 0;
         pulses++;
-        g.heal(Math.round(total / 3));
+        g.heal(Math.round(total / 3), true, 'skill');
         g.fx.ring(p.x, p.y, 80, 0xffd166, 300);
       }
     },
@@ -672,7 +673,7 @@ function yamFeast(c: StyleCtx): void {
         }
         if (Phaser.Math.Distance.Between(g.player.x, g.player.y, yv.x, yv.y) < 50) {
           yv.taken = true;
-          g.heal(each);
+          g.heal(each, true, 'skill');
           g.fx.ring(yv.x, yv.y, 60, 0xffb703, 260);
           yv.gr.destroy();
         }
@@ -853,10 +854,15 @@ function idolStage(c: StyleCtx): void {
 }
 
 /** 甜菜狂战士：血红色火焰光环，身体随心跳膨胀 */
+/** 甜菜狂战士技能前的原始体型（按玩家对象记一次） */
+const BEET_BASE_SCALE = new WeakMap<object, number>();
+
 function berserkFlames(c: StyleCtx): void {
   const g = c.g;
   const p = g.player;
-  const base = p.scale;
+  // 原始体型只记一次：效果持续中再次施放（回响）时 p.scale 已被心跳放大，不能当成原始值
+  const base = BEET_BASE_SCALE.get(p) ?? p.scale;
+  BEET_BASE_SCALE.set(p, base);
   auraLoop(
     c,
     0xd00000,

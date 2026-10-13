@@ -11,6 +11,8 @@ import {
   incomeCalib,
   incomeTarget,
   rarityWeights,
+  volleySpeedMult,
+  bombFuse,
   upgradeRarityWeights,
   weaponTierWeights,
   dangerReward,
@@ -173,5 +175,44 @@ describe('番茄危机（A8）', () => {
     expect(goldReward(15, 0, false, true)).toBe(0);
     expect(goldReward(15, 10, false, true)).toBeGreaterThan(goldReward(15, 1, false, true));
     expect(goldReward(40, 0, true, false)).toBeGreaterThan(0);
+  });
+});
+
+describe('怪物齐射减速', () => {
+  it('3 发以内不减速；发数越多越慢（单调不增），最低不低于 minMult', () => {
+    for (const n of [1, 2, 3]) expect(volleySpeedMult(n)).toBe(1);
+    let prev = 1;
+    for (let n = 4; n <= 80; n++) {
+      const m = volleySpeedMult(n);
+      expect(m).toBeLessThanOrEqual(prev + 1e-9);
+      expect(m).toBeGreaterThanOrEqual(BALANCE.volley.minMult);
+      prev = m;
+    }
+    expect(volleySpeedMult(16)).toBeCloseTo(0.6, 2);
+    expect(volleySpeedMult(12)).toBeGreaterThan(0.6);
+  });
+});
+
+describe('自爆引信', () => {
+  it('最短 1.5 秒、威力越大越长、最长 2.5 秒；急燃减半', () => {
+    expect(bombFuse(0, 80)).toBe(BALANCE.bomb.min);
+    expect(bombFuse(5, 80)).toBeGreaterThanOrEqual(1.5);
+    let prev = 0;
+    for (let d = 0; d <= 200; d += 5) {
+      const t = bombFuse(d, 85);
+      expect(t).toBeGreaterThanOrEqual(prev);
+      expect(t).toBeLessThanOrEqual(BALANCE.bomb.max);
+      prev = t;
+    }
+    expect(bombFuse(25, 100)).toBeGreaterThan(bombFuse(25, 80));
+    expect(bombFuse(25, 85, true)).toBeCloseTo(bombFuse(25, 85) / 2, 6);
+  });
+});
+
+describe('急燃词缀', () => {
+  it('不在随机词缀池里，只依附「爆裂」或自爆小怪出现', async () => {
+    const { AFFIX_IDS, AFFIXES } = await import('../src/data/bosses');
+    expect(AFFIX_IDS).not.toContain('shortFuse');
+    expect(AFFIXES.shortFuse.name).toBe('急燃');
   });
 });

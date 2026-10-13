@@ -69,7 +69,7 @@ function hitAround(g: GameScene, x: number, y: number, r: number, info: HitInfo,
 /** 只施加状态（不造成伤害），用于持续性的云雾 */
 function applyAround(g: GameScene, x: number, y: number, r: number, status: StatusApply[] | undefined): Enemy[] {
   const list = [...g.grid.query(x, y, r, g.tmp)];
-  if (status) for (const e of list) for (const s of status) e.status.apply(s);
+  if (status) for (const e of list) for (const s of status) g.applyDot(e, s);
   return list;
 }
 
@@ -553,7 +553,8 @@ function fogZone(c: StyleCtx, radius: number, o: FogOpts): void {
   );
   const edge = g.add.graphics().setDepth(1.6);
   for (const im of clouds) g.tweens.add({ targets: im, alpha: 0.42, duration: 500 });
-  let acc = 1;
+  // 施放时已经用 hitAround 结算过一次（伤害 + 状态），云雾从 1 秒后才开始每秒结算，避免开场叠两次
+  let acc = 0;
   const life = host.dur(o.dur);
   host.linger({
     t: life,
@@ -627,7 +628,7 @@ function stinkAura(c: StyleCtx): void {
     follow: true,
     onTick: (inside) => {
       for (const e of inside) {
-        for (const s of status ?? []) e.status.apply(s);
+        for (const s of status ?? []) g.applyDot(e, s);
         if (!marked.has(e)) {
           marked.add(e);
           stickyGlyph(g, e, '〰', '#d4d700', 2.5);
@@ -715,7 +716,7 @@ function witherHex(c: StyleCtx): void {
     size: r * 0.4,
     onTick: (inside) => {
       for (const e of inside) {
-        for (const s of status ?? []) e.status.apply(s);
+        for (const s of status ?? []) g.applyDot(e, s);
         if (!marked.has(e)) {
           marked.add(e);
           stickyGlyph(g, e, '☠', '#e0aaff', 3);
@@ -773,7 +774,8 @@ function lemonVanish(c: StyleCtx): void {
       const t = g.grid.nearest(p.x, p.y, 260);
       if (t) {
         g.fx.slash(t.x, t.y, Math.atan2(t.y - p.y, t.x - p.x), 70, 0xfff3b0, 2);
-        g.weaponHit(t, { ...info, dmg: info.dmg * 3, crit: true, knockback: 60 }, p.x, p.y);
+        // 强制暴击时 weaponHit 不再乘暴击倍率（约定由调用方乘好），这里补上默认的 ×1.5
+        g.weaponHit(t, { ...info, dmg: info.dmg * 3 * 1.5, crit: true, knockback: 60 }, p.x, p.y);
         g.fx.label(t.x, t.y - 40, '✦', '#fff3b0');
       }
     },
@@ -786,7 +788,14 @@ function pumpkinPhase(c: StyleCtx): void {
   const p = g.player;
   const dur = host.dur(sk.duration ?? 2.5);
   stealthLook(c, dur, 0xc77dff);
-  lostTarget(g, 240, Math.min(1.5, dur));
+  // 敌人短暂失去目标：头顶冒「?」，同时真的转去追灵体化开始的位置（诱饵点），持续同样的时间
+  const lost = Math.min(1.5, dur);
+  lostTarget(g, 240, lost);
+  const decoy = { x: p.x, y: p.y };
+  g.decoy = decoy;
+  g.time.delayedCall(lost * 1000, () => {
+    if (g.decoy === decoy) g.decoy = null;
+  });
   const touched = new Map<Enemy, number>();
   const phaseHit = { ...info, dmg: info.dmg * 0.5, knockback: 30 };
   host.linger({
@@ -840,8 +849,9 @@ function goldenBell(c: StyleCtx): void {
       for (const e of g.grid.query(p.x, p.y, R + 20, g.tmp)) {
         if (e.isBoss) continue;
         const a = Math.atan2(e.y - p.y, e.x - p.x);
-        e.kvx += Math.cos(a) * 240;
-        e.kvy += Math.sin(a) * 240;
+        // 推力按帧时间折算（原来每帧固定 +240，帧率越高推得越远），60 帧时手感不变
+        e.kvx += Math.cos(a) * 240 * dt * 60;
+        e.kvy += Math.sin(a) * 240 * dt * 60;
         if (ringT <= 0) {
           ringT = 0.3;
           g.fx.ring(p.x, p.y - 10, R + 26, 0xffd166, 260);

@@ -20,6 +20,7 @@ export type StatusId =
   | 'rot'
   | 'soaked'
   | 'corrode'
+  | 'suppress'
   // 增益
   | 'haste'
   | 'rage'
@@ -89,6 +90,17 @@ export const STATUSES: Record<StatusId, StatusDef> = {
   },
   bleed: { id: 'bleed', name: '流血', kind: 'debuff', color: 0xd00000, glyph: '血', desc: '每层每秒流失生命', maxStacks: 5, dps: 1.2 },
   slow: { id: 'slow', name: '减速', kind: 'debuff', color: 0x48cae4, glyph: '缓', desc: '移动速度降低', maxStacks: 3, speed: -15 },
+  // 手枪 / 机枪类子弹命中叠加（见 GameScene.weaponHit 的子弹类型特性）
+  suppress: {
+    id: 'suppress',
+    name: '压制',
+    kind: 'debuff',
+    color: 0x9aa5b1,
+    glyph: '压',
+    desc: '被火力压制，每层移速 -5%',
+    maxStacks: 3,
+    speed: -5,
+  },
   freeze: {
     id: 'freeze',
     name: '冰冻',
@@ -277,4 +289,6 @@ export interface StatusApply {
   stacks?: number;
   chance?: number; // 0~100，默认 100
   value?: number; // 护盾值等
+  cap?: number; // 本次施加的层数上限（覆盖状态默认的 maxStacks，角色专属持续伤害特性用）
+  src?: string; // 伤害来源（武器 id）：持续伤害按它记入局后统计，不填记为 dot
 }

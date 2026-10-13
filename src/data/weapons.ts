@@ -73,7 +73,7 @@ export const WEAPONS: WeaponDef[] = [
     cls: 'melee',
     kind: 'thrust',
     tags: ['厨具'],
-    damage: [8, 14, 22, 34],
+    damage: [10, 18, 29, 44], // 番茄妹初始武器：实战效率最低的单体直刺，+30%（2026-10 平衡）
     cooldown: [0.9, 0.85, 0.78, 0.7],
     range: 150,
     scaling: { melee: 1 },
@@ -292,7 +292,7 @@ export const WEAPONS: WeaponDef[] = [
   {
     id: 'onion_boomerang',
     name: '洋葱回旋镖',
-    desc: '划出一道弧线飞出又绕回，沿途无限穿透。',
+    desc: '向正前方疾速飞出，再从侧面绕回，沿途无限穿透。',
     cls: 'ranged',
     kind: 'boomerang',
     tags: ['蔬果'],
@@ -882,6 +882,31 @@ export const WEAPON_MAP: Record<string, WeaponDef> = Object.fromEntries(WEAPONS.
 
 /** 商店能卖的武器：超武（evolvedFrom）与合成专属 T4（minTier）只能按配方合成，不进商店 */
 export const isShopWeapon = (w: WeaponDef): boolean => !w.evolvedFrom && !w.minTier;
+
+/** 远程子弹的穿透类型（只看非近战的普通子弹；火箭 / 命中爆炸的子弹不加穿透，火焰与回旋镖本来就无限穿透）：
+ *  狙击（射程 ≥ 600）穿透 5、霰弹（≥ 3 发且散射 ≥ 24°）穿透 2–3、慢速单发（单发且冷却 ≥ 0.7 秒）穿透 1–2；
+ *  手枪 / 机枪 / 连发等其余子弹不加。武器数据里自带更高穿透的，以数据为准 */
+export type BulletArchetype = 'sniper' | 'shotgun' | 'heavy' | 'pistol' | null;
+const ARCHETYPE_PIERCE: Record<'sniper' | 'shotgun' | 'heavy', number[]> = {
+  sniper: [5, 5, 5, 6],
+  shotgun: [2, 2, 3, 3],
+  heavy: [1, 1, 2, 2],
+};
+export function bulletArchetype(def: WeaponDef): BulletArchetype {
+  if (def.kind !== 'bullet' || def.cls === 'melee') return null;
+  if (def.effect?.explode) return null;
+  const n = def.count?.[0] ?? 1;
+  if (def.range >= 600) return 'sniper';
+  if (n >= 3 && (def.spread ?? 0) >= 24) return 'shotgun';
+  if (n === 1 && def.cooldown[0] >= 0.7) return 'heavy';
+  return 'pistol';
+}
+/** 武器在该品质下的基础穿透（数据值与穿透类型取大） */
+export function basePierce(def: WeaponDef, tier: number): number {
+  const own = def.pierce?.[tier] ?? 0;
+  const a = bulletArchetype(def);
+  return a && a !== 'pistol' ? Math.max(own, ARCHETYPE_PIERCE[a][tier] ?? own) : own;
+}
 /** 商店出售的最高品质：T4 只能合成（0 = T1，2 = T3） */
 export const SHOP_MAX_TIER = 2;
 

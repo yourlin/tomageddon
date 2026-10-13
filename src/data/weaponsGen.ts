@@ -181,7 +181,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '砸下冰块，爆炸并冻僵敌人。',
     enDesc: 'Lobs ice blocks that explode and chill.',
     tags: ['枪械'],
-    dmg: 0.95,
+    dmg: 0.72, // 实战效率 >300%（2026-10 平衡测试），伤害 −25%
     tint: 0x0096c7,
     over: { effect: { explode: 100, slow: SL(50, 2) } },
   },
@@ -266,7 +266,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '高速旋转的打蛋机，闪电跳得更多。',
     enDesc: 'A high-speed mixer whose lightning jumps further.',
     tags: ['厨具'],
-    dmg: 0.85,
+    dmg: 0.64, // 实战效率 >300%（2026-10 平衡测试），伤害 −25%
     tint: 0xfde047,
     over: { effect: { chain: [4, 5, 6, 8] } },
   },
@@ -303,7 +303,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '射出毒孢子，命中中毒并分裂。',
     enDesc: 'Fires spores that poison and split on hit.',
     tags: ['蔬果', '枪械'],
-    dmg: 0.85,
+    dmg: 0.64, // 实战效率 >300%（2026-10 平衡测试），伤害 −25%
     tint: 0x7b2cbf,
     over: { splitShots: 1, effect: { poison: PO(1, 4) } },
   },
@@ -424,7 +424,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '炸开一地火炭，灼烧敌人。',
     enDesc: 'Explodes into embers that burn.',
     tags: ['酱料'],
-    dmg: 0.9,
+    dmg: 0.68, // 实战效率 >300%（2026-10 平衡测试），伤害 −25%
     tint: 0xe85d04,
     over: { effect: { explode: 150, burn: B(4, 2) } },
   },

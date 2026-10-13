@@ -37,6 +37,8 @@ const TALENTS = arg('talents', '20%');
 const ENDLESS = process.argv.includes('--endless');
 // 测试用：从天赋预设里去掉指定天赋（逗号分隔），用来找出过强的天赋
 const NO_TALENTS = arg('no-talents', '');
+// --bot-style kite：远程角色按武器射程放风筝（保持在射程边缘、更早避开近身怪），用来区分「角色弱」还是「bot 不会玩远程」
+const BOT_STYLE = arg('bot-style', '');
 const TALENT_BUDGET = { none: 0, mid: 40, full: 79 }[TALENTS] ?? (TALENTS.endsWith('%') ? TALENTS : Number(TALENTS));
 const PORT = 4174;
 const CHROME =
@@ -48,7 +50,8 @@ const PROGRESS = new URL('./.batch-progress.json', import.meta.url);
 const RESULTS = new URL('./.batch-results.json', import.meta.url);
 const JOB_TIMEOUT = Number(arg('timeout', '240')) * 1000; // 单局超时（秒）
 /** 章节波数（与 balance.chapterWaves 一致）：第 1–4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50 */
-const chapterWaves = (ch) => (ch <= 4 ? 15 : Math.min(50, 20 + (ch - 5) * 5));
+// 与 src/data/balance.ts 的 chapterWaves 一致（第 7 章覆盖为 25 波）
+const chapterWaves = (ch) => (ch <= 4 ? 15 : ch === 7 ? 25 : Math.min(50, 20 + (ch - 5) * 5));
 const MAX_RETRY = 2;
 
 const server = spawn('npx', ['vite', 'preview', '--host', '127.0.0.1', '--port', String(PORT), '--strictPort'], {
@@ -179,8 +182,9 @@ const t0 = Date.now();
 const retries = {};
 async function playJob(page, job) {
   return page.evaluate(
-    async ({ id, ch, speed, budget, limit, talents, endless, noTalents }) => {
+    async ({ id, ch, speed, budget, limit, talents, endless, noTalents, botStyle }) => {
       window.__dmg = [];
+      window.__botStyle = botStyle;
       window.botTalents(id, talents, noTalents ? noTalents.split(',') : []);
       window.startBot2(id, ch, speed, budget);
       if (endless) window.run.endless = true;
@@ -221,6 +225,7 @@ async function playJob(page, job) {
       talents: TALENT_BUDGET,
       endless: ENDLESS,
       noTalents: NO_TALENTS,
+      botStyle: BOT_STYLE,
     },
   );
 }

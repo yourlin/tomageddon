@@ -12,6 +12,7 @@ export const STATUS_EMOJI: Record<StatusId, string> = {
   poison: '☠️',
   bleed: '🩸',
   slow: '🐌',
+  suppress: '🎯',
   freeze: '🧊',
   stun: '💫',
   weaken: '🥀',

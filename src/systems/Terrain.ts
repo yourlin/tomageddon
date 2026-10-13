@@ -37,7 +37,7 @@ export const TERRAIN_TUNING = {
   lamp: { radius: 110, move: 25, status: { id: 'hardened', dur: 1.5, stacks: 1 } },
   /** 第 7 章荆棘藤：玩家脚下周期性钻出荆棘 */
   bramble: {
-    every: 10,
+    every: 14,
     minWave: 2,
     radius: 50,
     baseDmg: 3,
@@ -253,7 +253,7 @@ export class Terrain {
           g.envVY += vy;
           g.applyPlayerStatus([{ id: 'sticky', dur: 0.3 }]);
           if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r * 0.3 && this.tick(`qs_dmg_${z.x}`, dt, 0.6))
-            g.damagePlayer(this.dmg(2), undefined, this.ch === 7 ? [{ id: 'rot', dur: 2 }] : undefined);
+            g.damagePlayer(this.dmg(this.ch === 7 ? 1.2 : 2), undefined, this.ch === 7 ? [{ id: 'rot', dur: 2 }] : undefined);
         }
         for (const e of g.grid.query(z.x, z.y, z.r, g.tmp2)) {
           if (e.isBoss) continue;
@@ -403,7 +403,7 @@ export class Terrain {
         break;
       case 4:
       case 7:
-        if (this.tick('debris', dt, 9, 2)) {
+        if (this.tick('debris', dt, this.ch === 7 ? 12 : 9, 2)) {
           for (let i = 0; i < 3 + Math.floor(run.wave / 5); i++) {
             const x = p.x + Phaser.Math.Between(-260, 260),
               y = p.y + Phaser.Math.Between(-200, 200);

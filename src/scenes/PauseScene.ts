@@ -1,7 +1,7 @@
 // 暂停菜单（覆盖在战斗之上）
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout, fitImage, statLines, tu, NEG_COLOR } from '../ui/UI';
-import { charTraitLines, describeWeaponSets, weaponDmgType, armorText, speedText } from '../data/describe';
+import { charTraitLines, describeWeaponSets, weaponDmgType, armorText, speedText, archetypeText } from '../data/describe';
 import { run, clearRun, restoreFreeSnapshot, type OwnedWeapon } from '../systems/RunState';
 import { inPractice, exitPractice } from '../systems/Practice';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
@@ -226,6 +226,8 @@ export class PauseScene extends Phaser.Scene {
       ...(w.affixes ?? []).map((a): [string, number, string] => [`◆ ${affixText(a)}`, 14, AFFIX_TIER_COLOR[a.tier - 1]]),
       [d.desc, 13, COLORS.textDim],
     ];
+    const at = archetypeText(d, w.tier);
+    if (at) lines.push([at, 12, '#8ecae6']);
     if (d.superBuff) lines.push([`⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`, 12, '#ffd166']);
     for (const sl of describeWeaponSets(d, run.setCounts(), false, tagName)) lines.push([sl, 12, '#9be564']);
     const c = this.add.container(0, 0).setDepth(50);

@@ -32,6 +32,8 @@ export const BALANCE = {
     bossWave: 15,
     eliteEvery: 5,
     grow: { fromChapter: 5, base: 20, step: 5, max: 50 },
+    /** 按章覆盖波数：第 7 章 30 波太长（平衡测试 0% 通关、多数死在前 10 波），缩到与第 6 章同为 25 波 */
+    override: { 7: 25 } as Record<number, number>,
   },
   /** 无尽模式：第 15 波之后每波生命 ×hp、伤害 ×dmg（复利），保证终会结束。
    *  B3：分段式——从第 from 波之后起改用该段的每波倍率，避免高波数时数值爆炸（曲线连续） */
@@ -46,7 +48,34 @@ export const BALANCE = {
   pickup: { baseRadius: 110, magnetSpeed: 700 },
   /** 远程小怪：射程 = 保持距离 keepDist × rangeMult，只在射程内开火，平时在 hover × 射程（≈ 保持距离）附近横向游走；
    *  普通小怪的子弹飞出射程 × bulletReach 就消失（精英与 Boss 不限）；多发子弹相邻夹角至少 minGapDeg°，留出躲避空隙 */
-  enemyRanged: { rangeMult: 1.3, hover: 0.75, bulletReach: 1.2, minGapDeg: 15 },
+  /** sideSafe：2 / 3 发齐射时左右两发至少张开到「在攻击距离 × sideSafe 之外打不中站着不动的玩家」，
+   *  也就是贴近到这个距离以内侧弹才可能擦到（中间那发照常瞄准） */
+  /** 近战直刺武器的伤害倍率（见 weaponDamage） */
+  thrustDmgMult: 1.15,
+  /** 近战直刺武器额外暴击率 %（见 WeaponSystem.info） */
+  thrustCrit: 15,
+  /** 近战直刺的判定：刺击线两侧再加一个半角 thrustHalfDeg° 的窄扇形 */
+  thrustHalfDeg: 14,
+  /** 子弹类型特性（见 data/weapons.ts 的 bulletArchetype）：
+   *  狙击打生命 ≥ hpPct 的敌人伤害 +dmg%；慢速单发击退 +knock、stun% 概率硬直 stunDur 秒；
+   *  霰弹打武器射程 range 以内的敌人伤害 +dmg%；手枪 / 机枪命中叠 1 层压制（每层移速 -5%，最多 3 层） */
+  archetype: {
+    sniper: { hpPct: 0.5, dmg: 30 },
+    heavy: { knock: 40, stun: 15, stunDur: 0.3 },
+    shotgun: { range: 0.5, dmg: 25 },
+    pistol: { dur: 1.5 },
+  },
+  /** 玩家施加的持续伤害（灼烧 / 中毒 / 流血 / 腐烂…）每点元素伤害 +15%：20 点元素 = ×4 */
+  dotElemScale: 0.15,
+  /** 连锁闪电每跳伤害衰减（下一跳 = 上一跳 × chainDecay） */
+  chainDecay: 0.75,
+  enemyRanged: { rangeMult: 1.3, hover: 0.75, bulletReach: 1.2, minGapDeg: 15, sideSafe: 0.5 },
+  /** 怪物齐射减速：一次齐射的子弹越多飞得越慢，弹幕密了也留得出躲避时间（精英 / Boss 的环形、散射、螺旋最明显）。
+   *  free 发及以下不减速；更多时速度 × (free / 发数)^exp，最低 × minMult（见 volleySpeedMult） */
+  volley: { free: 3, exp: 0.305, minMult: 0.6 },
+  /** 自爆引信（自爆小怪、「爆裂」词缀的死亡爆炸）：威力越大引信越长，留出逃开的时间（见 bombFuse）。
+   *  引信 = min + 伤害 × perDmg + (爆炸半径 − 80) × perRadius，限制在 [min, max]；「急燃」词缀再减半 */
+  bomb: { min: 1.5, max: 2.5, perDmg: 0.02, perRadius: 0.01 },
   /** 商店补货时「刷到已持有武器」的概率（武器越多越需要，否则凑不出同名同级） */
   shopOwnedChance: 0.5,
   /** 仓库格数：仓库里的武器不参与战斗，可与武器栏互换、出售，也能当合成材料 */
@@ -69,7 +98,7 @@ export const BALANCE = {
   /** 收获每波成长：基础收获（不含已成长部分）的 5%，不复利 */
   harvestGrowth: 0.05,
   /** 合成暴击：合成（含买入自动合成、芋头吞噬）时有此概率额外再升 1 级，例如 T2 + T2 直接得到 T4 */
-  mergeBonus: 0.15,
+  mergeBonus: 0.06,
   /** 护甲减伤上限：受到的伤害最少保留 25%（护甲 45 起不再增加减伤），防止无尽模式站着不动也打不死 */
   armorMinTaken: 0.25,
   /** 收获对掉落的加成：1 + (h/100)/(1 + h/(100·(max−1)))，收益递减，最多 ×max */
@@ -99,7 +128,7 @@ export const BALANCE = {
     item: [
       { from: 5, start: 3, at100: 28, cap: 36 },
       { from: 15, start: 2, at100: 12, cap: 18 },
-      { from: 30, start: 1, at100: 3, cap: 6 },
+      { from: 20, start: 1, at100: 3, cap: 6 },
     ],
     upgrade: [
       { from: 5, start: 3, at100: 28, cap: 36 },
@@ -132,7 +161,7 @@ export const BALANCE = {
   cratesPerWave: 3, // 每波最多掉落宝箱（精英/Boss 不计）
   rerollBase: 2,
   shopSlots: 4,
-  levelUpChoices: 4,
+  levelUpChoices: 3,
   /** 局内天赋：每次升级有此概率改为「本局天赋 · 三选一」（只在本局生效，见 LevelUpScene.showTalentPick） */
   treeChance: 0.15,
   /** 章节数：用于把章节倍率参数化为几何级数 */
@@ -141,12 +170,15 @@ export const BALANCE = {
    *  由 chapterMult() 派生出每章单调递增的倍率，杜绝手填导致的曲线断裂。
    *  late：从 lateFrom 章之后改用更平缓的每章公比（掉落不随章节变化，后期章节不能涨得太快） */
   chapterCurve: {
-    hpEnd: 3.4,
-    dmgEnd: 1.7,
+    hpEnd: 4.55,
+    dmgEnd: 1.9,
     bossHpEnd: 2.4,
     speedStep: 0.05,
     lateFrom: 2,
-    late: { hp: 1.09, dmg: 1.04, bossHp: 1.1 },
+    late: { hp: 1.06, dmg: 1.05, bossHp: 1.1 },
+    /** 按章微调怪物生命（乘在曲线之后，必须保持逐章单调递增）：各章内容强弱不一（第 3、4 章的刷怪池偏弱），
+     *  统一的公比没法同时对齐各章目标通关率，按平衡测试结果逐章补一点 */
+    hpAdjust: [1, 1.07, 1.02, 1.02, 0.99, 1.09, 1.04],
   },
   /** 敌人血量成长指数：base·(1+growth·w^exp)。exp<1 为次线性，与玩家后期成长放缓相匹配。 */
   enemyGrowthExp: 0.9,
@@ -164,15 +196,17 @@ export const BALANCE = {
    *  第 1 章 8 下、第 2 章 7、第 3–4 章 6、第 5 章 5、第 6 章 4、第 7 章 3 下 */
   /** firstDmgMult：第 firstFrom 章起，每章第一只精英（首个精英波）的伤害倍率——缓和第 5 波的难度断崖 */
   elite: { base: 0.8, perWave: 0.12, dmgBase: 1.0, dmgGrow: 0.4, dmgMult: 1.2, firstDmgMult: 0.8, firstFrom: 4 },
-  boss: { hpMult: 3, dmgMult: 1.9, chapterDmg: [1, 0.65, 0.74, 0.85, 1, 1.78, 2.62] },
+  boss: { hpMult: 3, dmgMult: 1.9, chapterDmg: [1, 0.8, 0.74, 0.85, 1, 1.78, 2.62] },
 };
 
 /** 每 15 波一轮：第 5 / 10 波精英，第 15 波 Boss（无尽循环的节奏；与章节无关的旧接口） */
 export const isBossWaveNo = (wave: number): boolean => wave % BALANCE.waves.bossWave === 0;
 export const isEliteWaveNo = (wave: number): boolean => BALANCE.waves.eliteWaves.includes(((wave - 1) % BALANCE.waves.bossWave) + 1);
 
-/** 每章波数：第 1–4 章 15 波；第 5 章 20 波，之后每章 +5 波，最多 50 波 */
+/** 每章波数：第 1–4 章 15 波；第 5 章 20 波，之后每章 +5 波，最多 50 波；waves.override 里的章节以覆盖值为准（第 7 章 25 波） */
 export function chapterWaves(chapterId: number): number {
+  const o = BALANCE.waves.override[chapterId];
+  if (o) return o;
   const G = BALANCE.waves.grow;
   if (chapterId < G.fromChapter) return BALANCE.waves.count;
   return Math.min(G.max, G.base + (chapterId - G.fromChapter) * G.step);
@@ -347,7 +381,8 @@ export function chapterMult(chapterId: number, end: number, late?: number): numb
 
 /** 便捷取各类章节倍率（供 chapters.ts 派生，而非手填） */
 const CC = BALANCE.chapterCurve;
-export const chapterHpMult = (ch: number): number => chapterMult(ch, CC.hpEnd, CC.late.hp);
+export const chapterHpMult = (ch: number): number =>
+  Math.round(chapterMult(ch, CC.hpEnd, CC.late.hp) * (CC.hpAdjust[ch - 1] ?? 1) * 100) / 100;
 export const chapterDmgMult = (ch: number): number => chapterMult(ch, CC.dmgEnd, CC.late.dmg);
 export const chapterBossHpMult = (ch: number): number => chapterMult(ch, CC.bossHpEnd, CC.late.bossHp);
 /** 速度倍率：等差递增（每章 +speedStep），本就单调合理，保留等差形态 */
@@ -417,6 +452,20 @@ export function spawnBatch(wave: number): number {
 }
 
 /** 每波期望刷怪数（按刷怪节奏估算，用于把番茄籽收入归一到目标曲线） */
+/** 自爆引信秒数：伤害 5 → 1.6 秒、25 → 2.0 秒、50 起 2.5 秒（爆炸半径每大 10 再 +0.1 秒）；short = 「急燃」词缀，减半 */
+export function bombFuse(dmg: number, radius: number, short = false): number {
+  const b = BALANCE.bomb;
+  const t = Math.min(b.max, Math.max(b.min, b.min + dmg * b.perDmg + (radius - 80) * b.perRadius));
+  return short ? t / 2 : t;
+}
+
+/** 怪物齐射的子弹速度系数：3 发 ×1、6 发 ×0.81、8 发 ×0.74、12 发 ×0.66、16 发起 ×0.6 */
+export function volleySpeedMult(n: number): number {
+  const v = BALANCE.volley;
+  if (n <= v.free) return 1;
+  return Math.max(v.minMult, (v.free / n) ** v.exp);
+}
+
 export function expectedSpawns(wave: number): number {
   return (waveDuration(wave) / spawnInterval(wave)) * spawnBatch(wave);
 }

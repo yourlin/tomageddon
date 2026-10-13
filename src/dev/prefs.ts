@@ -46,6 +46,11 @@ export interface DevPrefs {
   scroll?: number;
   /** 顶部可折叠区块的折叠状态（live = 实时数据，quick = 角色与怪物） */
   fold?: Record<string, boolean>;
+  /** 布局：studio = 工作室（游戏画面居中占满，四周是工具栏，页签内容是左侧可收起的抽屉）；dock = 整块面板停靠在一侧 */
+  layout?: 'studio' | 'dock';
+  /** 工作室布局：左侧抽屉是否展开、抽屉宽度 */
+  drawer?: boolean;
+  dw?: number;
 }
 
 const KEY = 'tomageddon_dev_prefs';

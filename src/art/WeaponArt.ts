@@ -1,35 +1,11 @@
 // 武器手持图（128×64，手柄在左、朝右）
 import { type Ctx, rgb, darken, lighten, toon, ellipsePath, roundRectPath, starPath, glow, OUTLINE } from './Painter';
+import { handle, metal } from './weaponKit';
+import { UNIQUE_WEAPON_ART } from './weapons';
 import { EXTRA_WEAPON_ART, EXTRA_EVOLVED_ART } from '../data/gearExtra';
 import { AFFINITY_WEAPON_ART } from '../data/weaponsAffinity';
 import { GEN_WEAPON_ART } from '../data/weaponsGen';
 import { FUSED_WEAPON_ART } from '../data/recipes';
-
-const handle = (ctx: Ctx, x0: number, x1: number, y: number, h: number, c = 0x8d5b3a) => {
-  roundRectPath(ctx, x0, y - h / 2, x1 - x0, h, h / 2);
-  toon(ctx, c, x0, y - h / 2, x1 - x0, h, { noShine: true, lineW: 3 });
-  ctx.strokeStyle = rgb(darken(c, 0.3), 0.6);
-  ctx.lineWidth = 1.5;
-  for (let x = x0 + 6; x < x1 - 4; x += 7) {
-    ctx.beginPath();
-    ctx.moveTo(x, y - h / 2 + 2);
-    ctx.lineTo(x - 3, y + h / 2 - 2);
-    ctx.stroke();
-  }
-};
-
-const metal = (ctx: Ctx, x: number, y: number, w: number, h: number, c = 0xc9d1d9) => {
-  const g = ctx.createLinearGradient(0, y, 0, y + h);
-  g.addColorStop(0, rgb(lighten(c, 0.5)));
-  g.addColorStop(0.45, rgb(c));
-  g.addColorStop(0.55, rgb(darken(c, 0.15)));
-  g.addColorStop(1, rgb(darken(c, 0.35)));
-  ctx.fillStyle = g;
-  ctx.fill();
-  ctx.strokeStyle = OUTLINE;
-  ctx.lineWidth = 3;
-  ctx.stroke();
-};
 
 /** 进化超武：基于原武器绘制，叠加专属色调、金色光晕与闪光 */
 const EVOLVED_ART: Record<string, [string, number]> = {
@@ -93,6 +69,9 @@ function drawEvolved(ctx: Ctx, base: string, tint: number): void {
 }
 
 export function drawWeapon(ctx: Ctx, id: string): void {
+  // 专属造型（src/art/weapons/*）优先：每把武器一个独立造型，不再借别的武器换色
+  const own = UNIQUE_WEAPON_ART[id];
+  if (own) return own(ctx);
   const evo = EVOLVED_ART[id] ?? EXTRA_EVOLVED_ART[id];
   if (evo) return drawEvolved(ctx, evo[0], evo[1]);
   const ex = EXTRA_WEAPON_ART[id] ?? AFFINITY_WEAPON_ART[id] ?? GEN_WEAPON_ART[id] ?? FUSED_WEAPON_ART[id];

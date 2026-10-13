@@ -12,6 +12,53 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.6.5',
+    date: '2026-10-13',
+    highlight: [
+      '大规模平衡调整：武器按类型各有特长，持续伤害随元素伤害成长，弱势角色加强，iPhone 低内存模式',
+      'Big balance pass: weapon types get their own strengths, damage over time scales with Elemental damage, weak characters buffed, iPhone low-memory mode',
+    ],
+    items: [
+      [
+        '子弹按类型获得特性：狙击穿透 5 并对生命 ≥ 50% 的敌人 +30% 伤害；霰弹穿透 2–3 并对近身敌人 +25% 伤害；慢速单发穿透 1–2、击退更强并可能硬直；手枪 / 机枪命中叠加「压制」减速',
+        'Bullets gain type traits: snipers pierce 5 and deal +30% to enemies at ≥ 50% HP; shotguns pierce 2–3 and deal +25% up close; heavy single shots pierce 1–2 with stronger knockback and a chance to stagger; pistols / machine guns stack Suppression (slow)',
+      ],
+      [
+        '近战直刺：伤害 +15%、暴击率 +15%，判定从一条线加宽为窄扇形',
+        'Melee thrusts: +15% damage, +15% crit chance, and the hitbox widens from a line to a narrow cone',
+      ],
+      [
+        '灼烧、中毒、流血等持续伤害随元素伤害成长（每点 +15%）；8 位持续伤害角色各获得一项专属特性（叠层、层数上限、伤害、持续时间、易伤、减速、暴击、传染）',
+        'Burn, Poison, Bleed and other damage over time scale with Elemental damage (+15% per point); 8 DoT characters each gain a unique perk (stacking, stack cap, damage, duration, vulnerability, slow, crits, spreading)',
+      ],
+      [
+        '连锁闪电每跳衰减加大（0.85 → 0.75）；余烬地雷、搅拌风暴、孢子炮、冰川迫击炮伤害 −25%',
+        'Chain lightning falls off faster per jump (0.85 → 0.75); Ember Mine, Mixer Storm, Spore Cannon and Glacier Mortar deal −25% damage',
+      ],
+      [
+        '角色调整：番茄妹、豌豆士兵、玉米枪手、荔枝公主、樱桃双枪、蜜桃天使、芦笋弓手、草莓偶像、豆芽学徒等加强（新特性或属性），蘑菇巫医、芋头术士小幅削弱',
+        'Character changes: Tomato, Pea Soldier, Corn Gunner, Lychee, Cherry, Peach, Asparagus, Strawberry, Sprout and others buffed (new traits or stats); Mushroom and Taro slightly nerfed',
+      ],
+      ['豆芽学徒技能「拔苗助长」改为 5 秒内打怪经验 +30%', 'Sprout’s Growth Spurt now grants +30% XP from kills for 5s'],
+      [
+        '怪物齐射：子弹越多飞得越慢（最低 ×0.6）；2 / 3 发齐射张开角度，站在半个射程外不会被侧弹打中',
+        'Enemy volleys: the more bullets, the slower they fly (down to ×0.6); 2- and 3-shot volleys spread wider so side shots miss you beyond half range',
+      ],
+      [
+        '第 7 章缩短为 25 波并重新调整出怪与地形；远程武器离身体更远，近战与火焰保持在身边',
+        'Chapter 7 shortened to 25 waves with reworked spawns and terrain; ranged weapons orbit farther out while melee and flame weapons stay close',
+      ],
+      [
+        '新词缀「急燃」（自爆引信减半，只随爆裂 / 自爆怪出现）；武器重绘独立造型；选角详情可滚动',
+        'New affix Short Fuse (halved self-destruct fuse, only on bursting / exploding foes); weapons redrawn with unique designs; character details scroll',
+      ],
+      [
+        'iPhone（Safari / 微信）启用低内存模式，降低加载时卡死或微信重启的风险',
+        'iPhone (Safari / WeChat) uses a low-memory mode to reduce freezes or WeChat restarts while loading',
+      ],
+    ],
+  },
+  {
     version: '0.6.4',
     date: '2026-10-10',
     highlight: ['修复武器栏满时买入武器可能凭空消失', 'Fixed weapons sometimes vanishing when bought with full weapon slots'],

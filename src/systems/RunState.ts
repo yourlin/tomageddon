@@ -10,7 +10,7 @@ import { WEAPON_MAP, WEAPON_SETS, TIER_PRICE_MULT, type WeaponDef } from '../dat
 import { isFavoredWeapon, favoredWeapons } from '../data/affinity';
 import { missingItems, itemPicks, RECIPE_BY_TO, type Recipe } from '../data/recipes';
 import { weaponTags } from '../data/weaponTags';
-import { ITEM_MAP, itemCapFor, type ItemSpecial } from '../data/items';
+import { ITEM_MAP, itemCapFor, LEVELUP_OPTIONS, type ItemSpecial, type DotPerk } from '../data/items';
 import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
 import { elitePool, bossPool } from '../data/bosses';
@@ -27,6 +27,27 @@ import { encodeBuild, snapshotRun } from './BuildCode';
 import { WEATHER_MAP, type WeatherId } from './Weather';
 
 /** 汇总后的规则：倍率（1 = 不变）与计数 */
+/** 每波统计：heal 按来源记实际加上的生命（lifesteal 吸血 / regen 生命再生 / fruit 水果 / kill 击杀回血 /
+ *  skill 技能 / talent 天赋 / other），满血时溢出的部分记在 healOver；taken = 实际扣掉的生命（护盾吸收、闪避不算）。
+ *  sec = 本波实际战斗秒数，limit = 本波时限（Boss 波超时后继续打，sec 会超过 limit）；
+ *  bosses = 本波出场的精英 / Boss：t0 = 出场时刻（本波第几秒），ttk = 出场到被击杀的秒数（波次结束时还活着为 null）；
+ *  seedPot = 本波出场的怪全部打死能掉的番茄籽（理论值，按出场时的收获加成），seedDrop = 实际击杀掉落的番茄籽
+ *  （实际捡到的见 income[wave].pickup，留在地上的下一波捡起时翻倍，会算进下一波） */
+export interface WaveLog {
+  spawned: number;
+  killed: number;
+  taken: number;
+  healOver: number;
+  heal: Record<string, number>;
+  /** 各来源满血时溢出（浪费）的回复，key 同 heal */
+  overBy: Record<string, number>;
+  sec: number;
+  limit: number;
+  bosses: { uid: number; id: string; elite: boolean; t0: number; ttk: number | null }[];
+  seedPot: number;
+  seedDrop: number;
+}
+
 export interface RunExt {
   danger: number;
   relics: string[];
@@ -117,6 +138,10 @@ export interface Specials {
   periodicSelf: { every: number; status: StatusApply[] }[];
   aura: { radius: number; every: number; status: StatusApply[] }[];
   sameWeaponBonus: number;
+  doubleShot: number;
+  rangedPierce: number;
+  dotPerk: DotPerk | null;
+  shieldDmg: number;
   fruitHeal: number;
   crateMult: number;
   critDmg: number;
@@ -335,6 +360,24 @@ export class RunState {
   }
   /** 调试：每波各来源番茄籽收入 */
   income: Record<number, Record<string, number>> = {};
+  /** 调试 / 平衡测试：每波出怪、击杀、承伤与各来源实际回血（只在内存里，不进存档） */
+  waveLog: Record<number, WaveLog> = {};
+  /** 当前波次的统计（没有就新建） */
+  get wlog(): WaveLog {
+    return (this.waveLog[this.wave] ??= {
+      spawned: 0,
+      killed: 0,
+      taken: 0,
+      healOver: 0,
+      heal: {},
+      overBy: {},
+      sec: 0,
+      limit: 0,
+      bosses: [],
+      seedPot: 0,
+      seedDrop: 0,
+    });
+  }
   /** 局后统计：各来源造成的伤害（武器 id / skill / dot / explosion / knives / other） */
   dmgBy: Record<string, number> = {};
   /** 本局开始时间（用于战绩里的用时） */
@@ -391,6 +434,7 @@ export class RunState {
     this.seeds = 0;
     this.kills = 0;
     this.income = {};
+    this.waveLog = {};
     this.dmgBy = {};
     this.waveDmg = {};
     this.waveSec = {};
@@ -501,6 +545,10 @@ export class RunState {
       periodicSelf: [],
       aura: [],
       sameWeaponBonus: 0,
+      doubleShot: 0,
+      rangedPierce: 0,
+      dotPerk: null,
+      shieldDmg: 0,
       fruitHeal: 0,
       crateMult: 1,
       critDmg: 0,
@@ -536,6 +584,10 @@ export class RunState {
         if (x.aura) sp.aura.push(x.aura);
       }
       sp.sameWeaponBonus += (x.sameWeaponBonus ?? 0) * n;
+      sp.doubleShot += (x.doubleShot ?? 0) * n;
+      sp.rangedPierce += (x.rangedPierce ?? 0) * n;
+      if (x.dotPerk) sp.dotPerk = x.dotPerk;
+      sp.shieldDmg += (x.shieldDmg ?? 0) * n;
       sp.fruitHeal += (x.fruitHeal ?? 0) * n;
       if (x.crateMult) sp.crateMult *= Math.pow(x.crateMult, n);
       sp.critDmg += (x.critDmg ?? 0) * n;
@@ -553,6 +605,7 @@ export class RunState {
     sp.critDmg = Math.min(BALANCE.critDmgCap, sp.critDmg);
     sp.lightningOnHit = Math.min(BALANCE.lightningCap, sp.lightningOnHit);
     sp.split = Math.min(BALANCE.split.cap, sp.split);
+    sp.doubleShot = Math.min(60, sp.doubleShot);
     this.specialCache = sp;
     return sp;
   }
@@ -636,8 +689,24 @@ export class RunState {
     if (diff > 0) this.hp += diff;
   }
 
+  /** 本次升级可出现的属性选项：流派伤害%只在持有对应流派武器时出现（否则 4 种流派会把有用选项稀释掉）；
+   *  「只能装备契合武器」的角色（芋头术士只用光环）不出近战 / 远程 / 元素伤害（固定值与百分比都不出） */
+  levelUpPool(): typeof LEVELUP_OPTIONS {
+    const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' } as const;
+    const own = new Set<string>(this.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => CLASS_KEY[d.kind === 'aura' ? 'aura' : d.cls]));
+    const gated: string[] = Object.values(CLASS_KEY);
+    const banned = this.char.favoredOnly ? ['melee', 'ranged', 'elemental', 'meleePct', 'rangedPct', 'elementalPct'] : [];
+    return LEVELUP_OPTIONS.filter((o) => (!gated.includes(o.key) || own.has(o.key)) && !banned.includes(o.key));
+  }
+
+  /** 这把武器能不能放进武器栏（「只能装备契合武器」的角色如芋头术士，其他武器只能进仓库） */
+  canEquip(id: string): boolean {
+    return !this.char.favoredOnly || isFavoredWeapon(this.char.favored, WEAPON_MAP[id]);
+  }
+
   /** 尝试加入武器：栏位满时若能合成则自动合成 */
   canAddWeapon(id: string, tier: number): boolean {
+    if (!this.canEquip(id)) return this.storage.length < this.storageMax;
     if (this.weapons.length < this.maxWeapons) return true;
     if (this.absorbTarget(id, tier)) return true;
     // 同名自动合成最高只到 T3（mergeTier 封顶），T3 + T3 不能合，否则买入的武器会白白消失
@@ -659,6 +728,7 @@ export class RunState {
 
   addWeapon(id: string, tier: number): void {
     markSeen('weapons', id);
+    if (!this.canEquip(id)) return this.stashWeapon(id, tier);
     if (this.weapons.length >= this.maxWeapons) {
       // 芋头术士：吞噬同类，升 1 级；买入的品质更高时直接升到该品质
       const host = this.absorbTarget(id, tier);
@@ -678,18 +748,22 @@ export class RunState {
         return;
       }
       // 都不行：进仓库（不参与战斗，可在商店取回或当合成材料）
-      if (this.storage.length >= this.storageMax) return;
-      const sw: OwnedWeapon = { uid: uidSeq++, id, tier };
-      ensureAffixes(sw, this.stats.luck);
-      this.storage.push(sw);
-      bump(`weaponGot:${id}`);
-      if (tier === 3) bump(`t4:${id}`);
-      this.dirty();
-      return;
+      return this.stashWeapon(id, tier);
     }
     const w: OwnedWeapon = { uid: uidSeq++, id, tier };
     ensureAffixes(w, this.stats.luck);
     this.weapons.push(w);
+    bump(`weaponGot:${id}`);
+    if (tier === 3) bump(`t4:${id}`);
+    this.dirty();
+  }
+
+  /** 直接放进仓库（仓库满时不放；canAddWeapon 已拦住购买） */
+  private stashWeapon(id: string, tier: number): void {
+    if (this.storage.length >= this.storageMax) return;
+    const sw: OwnedWeapon = { uid: uidSeq++, id, tier };
+    ensureAffixes(sw, this.stats.luck);
+    this.storage.push(sw);
     bump(`weaponGot:${id}`);
     if (tier === 3) bump(`t4:${id}`);
     this.dirty();
@@ -745,7 +819,9 @@ export class RunState {
     }
     const w: OwnedWeapon = { uid: uidSeq++, id: r.to, tier: 3 };
     ensureAffixes(w, this.stats.luck);
-    if (toStorage && this.storage.length < this.storageMax) this.storage.push(w);
+    // 不能装备的产出（芋头术士合成出非光环武器）只进仓库：材料刚移走，正常总有空位
+    if (!this.canEquip(r.to)) this.storage.push(w);
+    else if (toStorage && this.storage.length < this.storageMax) this.storage.push(w);
     else if (this.weapons.length < this.maxWeapons) this.weapons.push(w);
     else if (this.storage.length < this.storageMax) this.storage.push(w);
     else this.weapons.push(w); // 极端情况：两把材料刚腾出位置，直接放武器栏
@@ -818,7 +894,7 @@ export class RunState {
   /** 从仓库取回武器栏（栏位满时与 swapUid 对调）；成功返回 true */
   fromStorage(uid: number, swapUid?: number): boolean {
     const w = this.storage.find((x) => x.uid === uid);
-    if (!w) return false;
+    if (!w || !this.canEquip(w.id)) return false;
     if (this.weapons.length >= this.maxWeapons) {
       const out = this.weapons.find((x) => x.uid === swapUid);
       if (!out) return false;

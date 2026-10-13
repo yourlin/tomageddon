@@ -218,6 +218,17 @@ const DRAW: Record<AffixId, Draw> = {
       .strokeCircle(x - r - o, y + 4, r * 0.35)
       .strokeCircle(x + r + o, y + 4, r * 0.35);
   },
+  // 急燃：头顶一根弯引线，末端火星闪烁
+  shortFuse: (gr, x, y, r, t, c) => {
+    const tx = x + r * 0.35,
+      ty = y - r - 14;
+    gr.lineStyle(3, 0x5c4033, 1)
+      .lineBetween(x, y - r + 2, x + r * 0.15, y - r - 6)
+      .lineBetween(x + r * 0.15, y - r - 6, tx, ty);
+    const k = 0.6 + Math.abs(Math.sin(t * 14)) * 0.6;
+    gr.fillStyle(0xffd166, 0.9).fillCircle(tx, ty, 4 * k);
+    gr.fillStyle(c, 0.9).fillCircle(tx, ty, 2.5 * k);
+  },
 };
 
 /** 绘制一个敌人的全部词缀装饰（graphics 需每帧 clear 后调用） */
