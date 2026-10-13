@@ -1,9 +1,10 @@
 // 开发者界面入口（地址加 ?dev 打开）：HTML 面板 + 沙盒战斗画面。
-// 面板可拖宽、左右停靠、弹出为独立窗口；页签与筛选状态、宽度、快捷键都记在 localStorage（prefs.ts）
+// 两种布局：工作室（默认，游戏画面居中占满，顶栏播放控制、左侧页签与可收起的抽屉、底栏开关、画面上浮着实时数据）
+// 与停靠（整块面板停靠在一侧，可拖宽、左右切换、弹出为独立窗口）；页签与筛选状态、宽度、快捷键都记在 localStorage（prefs.ts）
 import type Phaser from 'phaser';
-import { CSS, h, btn, chip, select, esc, fmt } from './dom';
+import { CSS, h, btn, chip, select, num, esc, fmt } from './dom';
 import { devHooks } from './flag';
-import { loadCurrent, saveCurrent, applyBuild, type DevBuild } from './build';
+import { loadCurrent, saveCurrent, applyBuild, newBuild, autoLevelPicks, expectedBudget, type DevBuild } from './build';
 import { createSandbox } from './sandbox';
 import type { DevCtx, TabId, UiState } from './ctx';
 import { renderBuild } from './tabs/buildTab';
@@ -12,7 +13,7 @@ import { renderTests, srcName } from './tabs/testsTab';
 import { renderSandbox, takeSnapshot, restoreSnapshot } from './tabs/sandboxTab';
 import { renderData } from './tabs/dataTab';
 import { renderDebug, installEventHooks } from './tabs/debugTab';
-import { renderQuick, isTyping, stepChar, stepMonster, switchChar, showMonster, monsterList } from './quick';
+import { renderCharBar, isTyping, stepChar, stepMonster, switchChar, showMonster, monsterList } from './quick';
 import { prefs, savePrefs, rememberUi, keyOf, keyText, type KeyAction } from './prefs';
 import { openPalette, openKeyHelp, openModal, type Cmd } from './palette';
 import { logs, logOp, installErrorCapture, clock } from './log';
@@ -22,6 +23,7 @@ import { CHARACTERS } from '../data/characters';
 import { WEAPONS } from '../data/weapons';
 import { ALL_ITEMS } from '../data/items';
 import { CHAPTERS } from '../data/chapters';
+import { chapterWaves } from '../data/balance';
 import { run } from '../systems/RunState';
 import { save } from '../systems/Save';
 import { audio } from '../systems/Audio';
@@ -51,11 +53,31 @@ const TABS: [TabId, string, Render | (() => Promise<Render>)][] = [
   ['assets', '内容', () => import('./tabs/assetsTab').then((m) => m.renderAssets)],
   ['v14', '新系统', () => import('./tabs/v14Tab').then((m) => m.renderV14)],
 ];
+/** 页签栏图标（名字上方） */
+const ICON: Record<TabId, string> = {
+  build: '🎒',
+  weapons: '⚔️',
+  items: '🧪',
+  skills: '✨',
+  status: '🌀',
+  monsters: '👾',
+  sandbox: '🎮',
+  tests: '⏱️',
+  analysis: '📈',
+  batch: '🤖',
+  data: '🔢',
+  debug: '🐞',
+  assets: '🎨',
+  v14: '🆕',
+};
 const LAZY = new Set<TabId>(['weapons', 'analysis', 'skills', 'items', 'status', 'batch', 'assets', 'v14']);
 const loaded = new Map<TabId, Render>();
 const loading = new Map<TabId, Promise<Render>>();
 const MIN_W = 380;
 const MAX_W = 1100;
+/** 工作室布局的抽屉宽度范围 */
+const MIN_DW = 320;
+const MAX_DW = 900;
 
 export function installDevPanel(game: Phaser.Game): void {
   const start = () => mount(game);
@@ -115,20 +137,63 @@ function mount(game: Phaser.Game): void {
     (game.scale as unknown as { getParentBounds(): boolean }).getParentBounds();
     game.scale.refresh();
   };
+  const isStudio = () => prefs.layout !== 'dock' && !popup;
+  const drawerOpen = () => prefs.drawer !== false;
+  // 工作室布局：舞台对齐到中间那块空出来的区域（view 占位格）
+  const syncStage = () => {
+    if (!isStudio()) return;
+    const r = view.getBoundingClientRect();
+    stage.style.left = `${r.left}px`;
+    stage.style.top = `${r.top}px`;
+    stage.style.right = `${Math.max(0, window.innerWidth - r.right)}px`;
+    stage.style.bottom = `${Math.max(0, window.innerHeight - r.bottom)}px`;
+  };
   const layout = () => {
-    const docked = !collapsed && !popup;
-    const w = docked ? `${prefs.w}px` : '0px';
-    root.style.setProperty('--dev-w', w);
-    const left = prefs.side === 'left';
-    stage.style.left = left ? w : '0';
-    stage.style.right = left ? '0' : w;
-    panel.classList.toggle('left', left);
+    const studio = isStudio();
+    panel.classList.toggle('studio', studio);
+    panel.classList.toggle('shut', studio && !drawerOpen());
     panel.classList.toggle('compact', prefs.compact);
-    toggle.classList.toggle('left', left);
-    panel.style.display = collapsed && !popup ? 'none' : 'flex';
-    toggle.style.display = popup ? 'none' : '';
-    toggle.textContent = collapsed ? (left ? '开发者面板 ▶' : '◀ 开发者面板') : left ? '◀' : '▶';
+    // 播放控制、开关、实时数据在两种布局里放的位置不同：节点直接搬（事件监听跟着走）
+    if (studio) {
+      hdr.insertBefore(ctlPlay, toastEl);
+      bot.append(ctlFlags);
+      hud.append(liveSec.sec);
+      bot.prepend(charBar);
+      col.append(grip);
+    } else {
+      ctl.append(ctlPlay, ctlFlags);
+      col.insertBefore(liveSec.sec, body);
+      col.insertBefore(charBar, body);
+      panel.prepend(grip);
+    }
+    if (studio) {
+      root.style.setProperty('--dev-w', '0px');
+      root.style.setProperty('--drawer-w', drawerOpen() ? `${prefs.dw ?? 460}px` : '0px');
+      panel.style.display = 'grid';
+      toggle.style.display = 'none';
+      syncStage();
+    } else {
+      const docked = !collapsed && !popup;
+      const w = docked ? `${prefs.w}px` : '0px';
+      root.style.setProperty('--dev-w', w);
+      const left = prefs.side === 'left';
+      stage.style.top = stage.style.bottom = '';
+      stage.style.left = left ? w : '0';
+      stage.style.right = left ? '0' : w;
+      panel.classList.toggle('left', left);
+      toggle.classList.toggle('left', left);
+      panel.style.display = collapsed && !popup ? 'none' : 'flex';
+      toggle.style.display = popup ? 'none' : '';
+      toggle.textContent = collapsed ? (left ? '开发者面板 ▶' : '◀ 开发者面板') : left ? '◀' : '▶';
+    }
+    renderHdr();
     fit();
+  };
+  const setDrawer = (open: boolean) => {
+    prefs.drawer = open;
+    savePrefs();
+    layout();
+    renderTabs();
   };
 
   let build: DevBuild = loadCurrent();
@@ -212,14 +277,14 @@ function mount(game: Phaser.Game): void {
       ctx.changed();
     },
     rerender: () => {
-      renderQuick(ctx, quick);
+      renderCharBar(ctx, charBar);
       renderTabs();
       renderTab();
     },
     toast(msg, bad = false) {
       logOp(msg, bad);
       toastEl.textContent = msg;
-      toastEl.className = bad ? 'bad' : 'good';
+      toastEl.className = `toast ${bad ? 'bad' : 'good'}`;
       toastEl.style.opacity = '1';
       window.clearTimeout(toastT);
       toastT = window.setTimeout(() => (toastEl.style.opacity = '0'), 2600);
@@ -266,7 +331,15 @@ function mount(game: Phaser.Game): void {
   });
   const toastEl = h('span', { class: 'toast', title: '点击查看操作日志', onclick: () => openLog() });
   const ctl = h('div', { class: 'ctl' });
-  const quick = h('div', { class: 'quick' });
+  // 播放控制一行 + 开关两行：停靠布局里都在 ctl 里；工作室布局里播放控制进顶栏、开关进底栏
+  const ctlPlay = h('div', { class: 'line ctlx' });
+  const ctlFlags = h('div', { class: 'ctlx flags' });
+  // 工作室布局专用：中间留给游戏画面的占位格（舞台对齐到它）、画面上的实时数据浮窗、底栏
+  const hud = h('div', { class: 'hud' });
+  const view = h('div', { class: 'view' }, hud);
+  const bot = h('div', { class: 'bot' });
+  // 角色快捷栏：工作室布局在底栏最左边，停靠布局在面板顶部
+  const charBar = h('div', { class: 'charbar' });
   const live = h('div', { class: 'live' });
   const tabs = h('nav', { class: 'rail', 'aria-label': '页签' });
   const body = h('div', { class: 'body' });
@@ -295,16 +368,17 @@ function mount(game: Phaser.Game): void {
     return { sec, peek };
   };
   const liveSec = fold('live', '实时数据', live);
-  const quickSec = fold('quick', '角色与怪物', quick);
-  // A1：拖动边缘调整宽度
-  const grip = h('div', { class: 'grip', title: '拖动调整面板宽度' });
+  // A1：拖动边缘调整宽度（工作室布局里调的是左侧抽屉的宽度）
+  const grip = h('div', { class: 'grip', title: '拖动调整宽度' });
   grip.addEventListener('pointerdown', (e) => {
     e.preventDefault();
     const x0 = e.clientX;
-    const w0 = prefs.w;
+    const studio = isStudio();
+    const w0 = studio ? (prefs.dw ?? 460) : prefs.w;
     const move = (ev: PointerEvent) => {
       const dx = ev.clientX - x0;
-      prefs.w = Math.round(Math.min(MAX_W, Math.max(MIN_W, prefs.side === 'left' ? w0 + dx : w0 - dx)));
+      if (studio) prefs.dw = Math.round(Math.min(MAX_DW, Math.max(MIN_DW, w0 + dx)));
+      else prefs.w = Math.round(Math.min(MAX_W, Math.max(MIN_W, prefs.side === 'left' ? w0 + dx : w0 - dx)));
       layout();
     };
     const up = () => {
@@ -324,47 +398,61 @@ function mount(game: Phaser.Game): void {
     layout();
     renderHdr();
   });
+  const layoutBtn = btn('', () => {
+    prefs.layout = isStudio() ? 'dock' : 'studio';
+    savePrefs();
+    layout();
+    renderTabs();
+  });
+  const drawerBtn = btn('', () => setDrawer(!drawerOpen()));
   const densBtn = btn('', () => {
     prefs.compact = !prefs.compact;
     savePrefs();
     layout();
     renderHdr();
   });
-  const panel = h(
+  const hdr = h(
     'div',
-    { id: 'dev-panel' },
-    grip,
-    h(
-      'div',
-      { class: 'hdr' },
-      h('span', { class: 'brand' }, h('i', null, '● '), '开发者界面'),
-      toastEl,
-      undoBtn,
-      redoBtn,
-      btn('⌕', () => palette(), '', `命令面板（${keyText(prefs.keys.palette)}）`),
-      btn('⌨', () => openKeyHelp(panel.ownerDocument), '', `快捷键（${keyText(prefs.keys.help)}）`),
-      btn('☰', () => openLog(), '', '操作日志'),
-      dockBtn,
-      densBtn,
-      btn('⧉', () => popOut(), '', '把面板放进独立窗口（双屏时游戏全屏）'),
-      btn('退出到游戏', () => (location.href = location.pathname), 'exit'),
-    ),
-    h('div', { class: 'main' }, tabs, h('div', { class: 'col' }, ctl, liveSec.sec, quickSec.sec, body)),
+    { class: 'hdr' },
+    h('span', { class: 'brand' }, h('i', null, '● '), '开发者界面'),
+    toastEl,
+    undoBtn,
+    redoBtn,
+    btn('⌕', () => palette(), '', `命令面板（${keyText(prefs.keys.palette)}）`),
+    btn('⌨', () => openKeyHelp(panel.ownerDocument), '', `快捷键（${keyText(prefs.keys.help)}）`),
+    btn('☰', () => openLog(), '', '操作日志'),
+    drawerBtn,
+    dockBtn,
+    densBtn,
+    layoutBtn,
+    btn('⧉', () => popOut(), '', '把面板放进独立窗口（双屏时游戏全屏）'),
+    btn('退出到游戏', () => (location.href = location.pathname), 'exit'),
   );
-  // 停靠 / 密度按钮的图标和提示随状态变化
+  const col = h('div', { class: 'col' }, ctl, liveSec.sec, charBar, body);
+  const panel = h('div', { id: 'dev-panel' }, grip, hdr, h('div', { class: 'main' }, tabs, col), view, bot);
+  // 布局 / 抽屉 / 停靠 / 密度按钮的图标和提示随状态变化
   function renderHdr(): void {
+    const studio = isStudio();
+    layoutBtn.textContent = studio ? '◫' : '▣';
+    layoutBtn.title = studio ? '切换到停靠布局（整块面板停在一侧）' : '切换到工作室布局（游戏画面居中占满）';
+    drawerBtn.style.display = studio ? '' : 'none';
+    drawerBtn.textContent = drawerOpen() ? '⇤' : '⇥';
+    drawerBtn.title = drawerOpen() ? '收起左侧抽屉（游戏画面更大）' : '展开左侧抽屉';
+    dockBtn.style.display = studio ? 'none' : '';
     const left = prefs.side === 'left';
     dockBtn.textContent = left ? '⇥' : '⇤';
     dockBtn.title = left ? '停靠到右侧' : '停靠到左侧';
     densBtn.textContent = prefs.compact ? '⊞' : '⊟';
     densBtn.title = prefs.compact ? '切换到宽松排版' : '切换到紧凑排版';
   }
-  renderHdr();
   document.body.append(panel, toggle);
 
   // A7：弹出为独立窗口。节点直接搬过去（事件监听跟着走），关窗时搬回来
   function popOut(): void {
     if (popup) return;
+    // 独立窗口只放停靠布局的整块面板；舞台先还原到全屏
+    prefs.layout = 'dock';
+    savePrefs();
     const w = window.open('', 'tomageddon-dev', `width=${prefs.w + 40},height=900`);
     if (!w) return ctx.toast('浏览器拦截了弹出窗口', true);
     popup = w;
@@ -491,6 +579,7 @@ function mount(game: Phaser.Game): void {
         },
       })),
       { group: '操作', name: '重启沙盒', run: doRestart },
+      { group: '操作', name: '快速开局（顶栏选的章节与波次）', run: quickStart },
       { group: '操作', name: '清场', run: () => sb.clear() },
       { group: '操作', name: '释放技能', run: () => sb.castSkill() },
       { group: '操作', name: '保存快照', run: () => takeSnapshot(ctx) },
@@ -499,6 +588,8 @@ function mount(game: Phaser.Game): void {
       { group: '操作', name: '重做构筑改动', run: () => ctx.redo() },
       { group: '操作', name: '暂停 / 继续', run: actions.pause },
       { group: '操作', name: '弹出为独立窗口', run: popOut },
+      { group: '操作', name: '切换工作室 / 停靠布局', run: () => layoutBtn.click() },
+      { group: '操作', name: '展开 / 收起左侧抽屉', run: () => setDrawer(!drawerOpen()) },
       { group: '操作', name: '操作日志', run: () => openLog() },
       { group: '操作', name: '快捷键列表', run: actions.help },
     ];
@@ -525,49 +616,147 @@ function mount(game: Phaser.Game): void {
     );
   }
 
+  // ---------------- 快速开局：一键进入第 X 章第 Y 波 ----------------
+  // 设好章节与波次 → 只带开局武器，按每波约 1.3 级随机加点 → 资金按期望收入估算 → 按真实对局打开商店
+  // （货架品质看幸运）自己采购；点「下一波」开打，之后计时、掉落、结算、升级、下一波商店都和正式对局一样。
+  // 每进入一波把武器 / 道具 / 波次 / 剩余资金抄回构筑；「重启沙盒」回到普通沙盒。第 1 波没有商店，直接开打
+  const qs = { chapter: build.chapterId, wave: build.wave };
+  let shopSnap = ''; // 进第一个商店前的武器 / 道具（撤销这笔采购用）
+  let firstWave = true; // 快速开局后的第一波：把第一个商店的花费记成一笔账
+  const quickStart = () => {
+    const nb = newBuild(build.charId);
+    nb.chapterId = qs.chapter;
+    nb.wave = qs.wave;
+    nb.talents = build.talents;
+    nb.talentMap = build.talentMap;
+    nb.danger = build.danger;
+    nb.level = Math.round((qs.wave - 1) * 1.3);
+    autoLevelPicks(nb);
+    nb.budget = expectedBudget(nb);
+    ui.mChapter = qs.chapter;
+    ui.mWave = qs.wave;
+    build = nb;
+    ui.shelf = null;
+    pushHistory();
+    saveCurrent(build);
+    applyBuild(build);
+    shopSnap = JSON.stringify({ weapons: build.weapons, items: build.items });
+    firstWave = true;
+    window.clearTimeout(restartTimer);
+    dirty = false;
+    if (qs.wave <= 1) sb.openReal('Game');
+    else {
+      run.wave = qs.wave - 1; // 商店 = 打完上一波后的商店；「下一波」会 +1
+      sb.openReal('Shop');
+    }
+    renderCtl();
+    renderTab();
+    ctx.toast(
+      qs.wave <= 1
+        ? `快速开局：第${qs.chapter}章 第1波（真实对局，「重启沙盒」回到沙盒）`
+        : `快速开局：第${qs.chapter}章 第${qs.wave}波前的商店 · 资金 ${nb.budget} · Lv${nb.level}，买完点「下一波」开打`,
+    );
+  };
+  // 真实对局每进入一波：把 run 的武器 / 道具 / 波次 / 剩余资金抄回构筑（不重新应用构筑，免得把正在打的这一局重置掉）。
+  // 等级与升级加点不抄（构筑记的是加点明细，真实对局里的升级选择不在其中）
+  sb.onRealWave = () => {
+    build.weapons = run.weapons.map((w) => ({ id: w.id, tier: w.tier, affixes: w.affixes?.map((a) => ({ ...a })), forge: w.forge }));
+    build.items = { ...run.items };
+    build.wave = run.wave;
+    if (firstWave) {
+      firstWave = false;
+      const spentInShop = build.budget - run.seeds;
+      build.ledger = spentInShop ? [{ label: '快速开局 · 商店采购', cost: spentInShop, snap: shopSnap }] : [];
+      if (run.storage.length) ctx.toast(`仓库里的 ${run.storage.length} 把武器没有带进构筑（构筑不含仓库）`, true);
+    } else build.budget = run.seeds + build.ledger.reduce((a, l) => a + l.cost, 0); // 让「剩余」= 当前持有的番茄籽
+    pushHistory();
+    saveCurrent(build);
+    renderCtl();
+    renderTab();
+  };
+
   // ---------------- 控制条 ----------------
   function renderCtl(): void {
-    renderQuick(ctx, quick);
+    renderCharBar(ctx, charBar);
     const cur = sb.slow < 1 ? sb.slow : sb.speed;
     const lbl = (t: string) => h('span', { class: 'lbl' }, t);
     undoBtn.title = `撤销构筑改动 ${keyText(prefs.keys.undo)}（剩 ${undoStack.length} 步）`;
     redoBtn.title = `重做构筑改动 ${keyText(prefs.keys.redo)}（剩 ${redoStack.length} 步）`;
     undoBtn.disabled = !undoStack.length;
     redoBtn.disabled = !redoStack.length;
-    ctl.replaceChildren(
-      // 第一行：播放控制 → 沙盒操作 → 构筑历史 → 重启（最右，唯一的实心主按钮）
-      h(
-        'div',
-        { class: 'line' },
-        btn(sb.paused ? '▶ 继续' : '⏸ 暂停', actions.pause, 'play', `快捷键 ${keyText(prefs.keys.pause)}`),
-        btn('单步', () => sb.frame(1), '', `暂停并前进 1 帧（${keyText(prefs.keys.frame)}）`),
-        select(
-          [0.25, 0.5, 1, 2, 4, 8].map((n) => [n, `×${n}`]),
-          cur,
-          (v) => {
-            const n = Number(v);
-            if (n < 1) {
-              sb.setSpeed(1);
-              sb.setSlow(n);
-            } else {
-              sb.setSlow(1);
-              sb.setSpeed(n);
-            }
-          },
-          'speed',
-        ),
-        btn('释放技能', () => sb.castSkill()),
-        btn('清场', () => sb.clear()),
-        btn('重置统计', () => sb.resetMeter()),
-        h('span', { class: 'sp' }),
-        btn(dirty ? '应用构筑并重启' : '重启沙盒', doRestart, dirty ? 'hot' : 'pri'),
+    // 第一行：播放控制 → 沙盒操作 → 重启（最右，唯一的实心主按钮）
+    ctlPlay.replaceChildren(
+      btn(sb.paused ? '▶ 继续' : '⏸ 暂停', actions.pause, 'play', `快捷键 ${keyText(prefs.keys.pause)}`),
+      btn('单步', () => sb.frame(1), '', `暂停并前进 1 帧（${keyText(prefs.keys.frame)}）`),
+      select(
+        [0.25, 0.5, 1, 2, 4, 8].map((n) => [n, `×${n}`]),
+        cur,
+        (v) => {
+          const n = Number(v);
+          if (n < 1) {
+            sb.setSpeed(1);
+            sb.setSlow(n);
+          } else {
+            sb.setSlow(1);
+            sb.setSpeed(n);
+          }
+        },
+        'speed',
       ),
-      // 第二行：开关。亮绿点 = 开着
+      btn('释放技能', () => sb.castSkill()),
+      btn('清场', () => sb.clear()),
+      btn('重置统计', () => sb.resetMeter()),
+      h('span', { class: 'sp' }),
+      btn(dirty ? '应用构筑并重启' : '重启沙盒', doRestart, dirty ? 'hot' : 'pri'),
+      h('span', { class: 'gap' }),
+      h(
+        'span',
+        {
+          class: 'qs',
+          title:
+            '一键进入：按每波约 1.3 级随机加点、资金按期望收入估算，按真实对局打开商店自己采购（沿用当前角色与天赋）；之后计时、掉落、结算、下一波商店都和正式对局一样，「重启沙盒」回到沙盒',
+        },
+        lbl('快速开局'),
+        select(
+          CHAPTERS.map((c) => [c.id, `第${c.id}章`]),
+          qs.chapter,
+          (v) => {
+            qs.chapter = Number(v);
+            qs.wave = Math.min(qs.wave, chapterWaves(qs.chapter));
+            renderCtl();
+          },
+        ),
+        lbl('第'),
+        num(qs.wave, (v) => (qs.wave = v), { min: 1, max: chapterWaves(qs.chapter), width: 46 }),
+        lbl('波'),
+        // 与底栏「无敌」是同一个开关：关掉后能真实掉血，阵亡会原地复活并计数
+        chip(
+          '无敌',
+          sb.god,
+          (v) => {
+            sb.god = v;
+            renderCtl();
+          },
+          '关掉后能真实掉血，看这套构筑扛不扛得住这一波；阵亡会原地复活并计数（实时数据「阵亡」）',
+        ),
+        btn('▶', quickStart, 'pri', '快速开局'),
+      ),
+    );
+    // 第二、三行：开关。亮绿点 = 开着
+    ctlFlags.replaceChildren(
       h(
         'div',
         { class: 'line' },
         lbl('作弊'),
-        chip('无敌', sb.god, (v) => (sb.god = v), '每个模拟步回满生命；关闭后阵亡会原地复活并计数'),
+        chip(
+          '无敌',
+          sb.god,
+          (v) => {
+            sb.god = v;
+            renderCtl(); // 顶栏快速开局里也有一个，保持同步
+          },
+          '每个模拟步回满生命；关闭后阵亡会原地复活并计数',
+        ),
         chip('技能无CD', sb.noSkillCd, (v) => (sb.noSkillCd = v)),
         chip('自动放技能', save.settings.autoSkill, (v) => (save.settings.autoSkill = v)),
         chip('地形机制', sb.opts.terrain, (v) => {
@@ -597,14 +786,14 @@ function mount(game: Phaser.Game): void {
         chip('碰撞框', sb.overlay.hitbox, (v) => (sb.overlay.hitbox = v)),
       ),
     );
-    const c = CHARACTERS.find((x) => x.id === build.charId);
-    quickSec.peek.textContent = `${c ? c.name : build.charId} · 第${ui.mChapter}章`;
   }
 
   // ---------------- 实时数据 ----------------
   const meter = (k: string, v: string, unit = '', cls = '') =>
     `<div class="meter ${cls}"><div class="k">${k}</div><div class="v">${v}${unit ? `<small>${unit}</small>` : ''}</div></div>`;
   function renderLive(): void {
+    // 快速开局的商店打开期间藏起画面上的实时数据浮窗（会挡住商店顶部的资金）
+    hud.style.display = sb.g.game.scene.isActive('Shop') ? 'none' : '';
     if (!sb.running) {
       live.innerHTML = '<div class="idle">沙盒未运行。点「重启沙盒」开始。</div>';
       liveSec.peek.textContent = '未运行';
@@ -671,15 +860,19 @@ function mount(game: Phaser.Game): void {
           h(
             'button',
             {
-              class: ui.tab === id ? 'on' : '',
+              class: ui.tab === id ? (isStudio() && !drawerOpen() ? 'cur' : 'on') : '',
               'aria-current': ui.tab === id ? 'page' : false,
               onclick: () => {
+                // 工作室布局：点当前页签收起抽屉，点任意页签展开
+                if (isStudio() && ui.tab === id) return setDrawer(!drawerOpen());
                 ui.tab = id;
                 body.scrollTop = 0;
-                renderTabs();
+                if (isStudio() && !drawerOpen()) setDrawer(true);
+                else renderTabs();
                 renderTab();
               },
             },
+            h('i', { class: 'ico', 'aria-hidden': 'true' }, ICON[id]),
             name.get(id) ?? id,
           ),
         ),
@@ -730,5 +923,8 @@ function mount(game: Phaser.Game): void {
   window.setInterval(renderLive, 250);
   // 浏览器缩放、窗口大小变化、面板展开收起都会改变舞台尺寸：统一监听舞台本身
   new ResizeObserver(fit).observe(stage);
+  // 推迟到下一帧再对齐：在回调里直接改舞台尺寸会连带触发舞台自己的 ResizeObserver，浏览器报「ResizeObserver loop」
+  new ResizeObserver(() => requestAnimationFrame(syncStage)).observe(view);
+  window.addEventListener('resize', syncStage);
   Object.assign(window, { __devPanel: ctx });
 }

@@ -150,18 +150,34 @@ export class Sandbox {
   // ---------------- 启动 ----------------
   restart(): void {
     applyBuild(this.getBuild(), this.trial);
-    GameScene.sandbox = this.opts;
+    this.real = false;
+    this.startScene('Game');
+  }
+  /** 快速开局：用当前 run（已应用构筑）按真实对局打开商店或直接开打（GameScene.sandbox = null：
+   *  计时、掉落、波次结算、升级、下一波商店都照常）。每进入一波战斗回调 onRealWave（把 run 抄回构筑）；
+   *  restart() 回到普通沙盒 */
+  openReal(key: 'Game' | 'Shop'): void {
+    this.real = true;
+    this.startScene(key);
+  }
+  /** 真实对局模式下每进入一波战斗时回调 */
+  onRealWave: (() => void) | null = null;
+  /** 当前是快速开局的真实对局（不是沙盒） */
+  real = false;
+  private startScene(key: 'Game' | 'Shop'): void {
+    GameScene.sandbox = this.real ? null : this.opts;
     GameScene.simSpeed = this.speed;
     GameScene.simScale = this.slow;
-    for (const k of ['Hud', 'Pause', 'LevelUp', 'Shop', 'Result', 'Menu', 'CharSelect'])
-      if (this.game.scene.isActive(k) || this.game.scene.isPaused(k)) this.game.scene.stop(k);
+    for (const k of ['Game', 'Hud', 'Pause', 'LevelUp', 'Shop', 'Craft', 'Result', 'Menu', 'CharSelect'])
+      if (k !== key && (this.game.scene.isActive(k) || this.game.scene.isPaused(k))) this.game.scene.stop(k);
     this.tracked = [];
     this.paused = false;
-    this.game.scene.start('Game');
+    this.game.scene.start(key);
   }
 
   private onCreate(): void {
     const g = this.g;
+    if (this.real) this.onRealWave?.();
     this.sceneChar = run.charId;
     this.gfx = g.add.graphics().setDepth(20000);
     this.explosions = [];
@@ -249,9 +265,10 @@ export class Sandbox {
       if (o.attack === 'none' || o.attack === 'manual') {
         e.contactCd = Math.max(e.contactCd, o.attack === 'none' ? 1 : 0);
         if (o.attack === 'none') {
+          e.cancelFuse();
           if (e.state !== 'move') e.state = 'move';
           e.spiral = null;
-        } else if (e.state === 'fuse') e.state = 'move';
+        } else if (e.state === 'fuse') e.cancelFuse();
         if (t.boss) {
           for (let i = 0; i < e.patternT.length; i++) {
             if (t.pending === i) {

@@ -343,11 +343,7 @@ export function rerollShelf(b: DevBuild, shelf: Shelf): { shelf: Shelf; err?: st
 // ---------------- 升级加点 ----------------
 /** 与 LevelUpScene 相同的选项池：只提供当前武器涉及的流派伤害（爆炸范围不在升级选项里） */
 export function levelPool(): typeof LEVELUP_OPTIONS {
-  const cls = new Set(run.weapons.map((w) => WEAPON_MAP[w.id]).map((d) => (d.kind === 'aura' ? 'aura' : d.cls)));
-  const CLASS_KEY = { melee: 'meleePct', ranged: 'rangedPct', elemental: 'elementalPct', aura: 'auraPct' };
-  const own = new Set<string>([...cls].map((c) => CLASS_KEY[c as keyof typeof CLASS_KEY]));
-  const gated: string[] = Object.values(CLASS_KEY);
-  return LEVELUP_OPTIONS.filter((o) => !gated.includes(o.key) || own.has(o.key));
+  return run.levelUpPool();
 }
 
 /** 随机补齐剩余升级（模拟每次从 N 个选项里随手挑一个；稀有度按升级曲线随机） */

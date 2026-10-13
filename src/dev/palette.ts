@@ -12,18 +12,24 @@ export interface Cmd {
 
 /** 在面板所在的文档里打开一个居中的浮层，返回关闭函数 */
 function modal(doc: Document, content: HTMLElement, onClose?: () => void): () => void {
-  const mask = h('div', { class: 'dev-modal-mask' }, h('div', { class: 'dev-modal' }, content));
+  const x = h('button', { class: 'dev-modal-x', title: '关闭（Esc）', onclick: () => close() }, '✕');
+  const mask = h('div', { class: 'dev-modal-mask' }, h('div', { class: 'dev-modal' }, x, content));
+  // Esc 在整个文档上监听：快捷键列表、日志这类浮层里没有输入框，焦点不在浮层上，挂在遮罩上收不到按键。
+  // 只让最上面的一层响应（改绑快捷键等候按键时，那边的捕获监听会先拦下 Esc）
+  const onEsc = (e: KeyboardEvent) => {
+    if (e.key !== 'Escape' || [...doc.querySelectorAll('.dev-modal-mask')].at(-1) !== mask) return;
+    e.preventDefault();
+    e.stopPropagation();
+    close();
+  };
   const close = () => {
+    if (!mask.isConnected) return;
     mask.remove();
+    doc.removeEventListener('keydown', onEsc, true);
     onClose?.();
   };
   mask.addEventListener('mousedown', (e) => e.target === mask && close());
-  mask.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      e.stopPropagation();
-      close();
-    }
-  });
+  doc.addEventListener('keydown', onEsc, true);
   (doc.getElementById('dev-panel') ?? doc.body).append(mask);
   return close;
 }
@@ -114,7 +120,8 @@ export function openKeyHelp(doc: Document): void {
   const onKey = (e: KeyboardEvent) => {
     if (!waiting || ['Control', 'Shift', 'Alt', 'Meta'].includes(e.key)) return;
     e.preventDefault();
-    e.stopPropagation();
+    // 同一节点上还有浮层的 Esc 监听：改绑时按 Esc 只取消改绑，不关浮层
+    e.stopImmediatePropagation();
     if (e.key !== 'Escape') {
       prefs.keys[waiting] = keyOf(e);
       savePrefs();

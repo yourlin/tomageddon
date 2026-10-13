@@ -5,7 +5,7 @@ import globals from 'globals';
 import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  { ignores: ['dist/', 'dist-steam/', 'release-steam/', '.kiro/', 'node_modules/', 'docs/', 'public/', 'operations/'] },
+  { ignores: ['dist/', 'dist-steam/', 'release-steam/', '.kiro/', 'node_modules/', 'docs/', 'public/', 'operations/', 'reports/'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -44,6 +44,7 @@ export default tseslint.config(
       'scripts/export-anim.mjs',
       'scripts/export-combat-anim.mjs',
       'scripts/promo/record.mjs',
+      'scripts/weapon-sheet.mjs',
     ],
     languageOptions: { globals: { ...globals.node, ...globals.browser, game: 'readonly', run: 'readonly' } },
   },

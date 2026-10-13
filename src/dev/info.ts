@@ -98,7 +98,7 @@ export function weaponCalc(def: WeaponDef, tier: number): WeaponCalc {
   const cd = weaponCooldown(def, tier, s);
   const range = weaponRange(def, s);
   const count = def.kind === 'chain' ? 1 : (def.count?.[tier] ?? 1);
-  const critChance = Math.min(1, Math.max(0, (s.crit + (def.critBonus ?? 0)) / 100));
+  const critChance = Math.min(1, Math.max(0, (s.crit + (def.critBonus ?? 0) + (def.kind === 'thrust' ? BALANCE.thrustCrit : 0)) / 100));
   // 暴击：武器倍率 × (1 + 道具/角色/天赋暴击伤害%)，后者有上限
   const critMult = def.critMult * (1 + Math.min(BALANCE.critDmgCap, sp.critDmg) / 100);
   const hit = dmg * (1 + critChance * (critMult - 1));
@@ -162,6 +162,7 @@ export function skillCalc(sk: SkillDef): { cd: number; dmg: number; radius: numb
   if (sk.duration) lines.push(`持续 ${sk.duration}s`);
   if (sk.heal) lines.push(`回复 ${skillHealPct(sk.heal)}% 最大生命`);
   if (sk.xp) lines.push(`经验 +${sk.xp}`);
+  if (sk.xpBoost) lines.push(`打怪经验 +${sk.xpBoost}%`);
   if (sk.mods)
     lines.push(
       '增益 ' +
@@ -182,7 +183,7 @@ export function minionTraits(d: EnemyDef): string[] {
       `射击 ${d.shots ?? 1} 发${d.spread ? `/${d.spread}°` : ''} 每 ${d.shootCd ?? 2.5}s${d.projMult !== undefined ? ` 弹伤 ×${d.projMult}` : ''}`,
     );
   if (d.behavior === 'charger') t.push(`蓄力 ${d.windup ?? 0.5}s 冲速 ${d.chargeSpeed ?? 500} 每 ${d.chargeCd ?? 3}s`);
-  if (d.behavior === 'bomber') t.push(`引信 ${d.fuse ?? 0.8}s 半径 ${d.blastRadius ?? 80}`);
+  if (d.behavior === 'bomber') t.push(`引信 ${BALANCE.bomb.min}~${BALANCE.bomb.max}s（按威力） 半径 ${d.blastRadius ?? 80}`);
   if (d.behavior === 'healer') t.push(`治疗 ${(d.healAmount ?? 0.2) * 100}% 半径 ${d.healRadius ?? 180} 每 ${d.healCd ?? 3}s`);
   if (d.behavior === 'summoner') t.push(`召唤 ${d.summon ?? 'fly'}×${d.summonCount ?? 2} 每 ${d.summonCd ?? 5}s`);
   if (d.splitInto) t.push(`死亡分裂 ${d.splitInto}×${d.splitCount ?? 2}`);
