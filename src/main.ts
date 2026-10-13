@@ -27,7 +27,7 @@ import { BALANCE, rerollPrice, sellPrice, priceInflation } from './data/balance'
 import { isFavoredWeapon } from './data/affinity';
 import { RECIPES, missingItems } from './data/recipes';
 import { LOW_MEM, LOW_MEM_MAX_RES } from './systems/Device';
-import { weaponCalc } from './dev/info';
+import { weaponCalc } from './systems/WeaponCalc';
 import { save, disablePersist } from './systems/Save';
 import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
