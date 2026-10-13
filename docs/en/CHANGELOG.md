@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.6.5 · 2026-10-13](#v0-6-5)
 - [v0.6.4 · 2026-10-10](#v0-6-4)
 - [v0.6.3 · 2026-10-10](#v0-6-3)
 - [v0.6.2 · 2026-10-08](#v0-6-2)
@@ -22,6 +23,24 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-6-5"></a>
+
+## v0.6.5 · 2026-10-13
+
+**Big balance pass: weapon types get their own strengths, damage over time scales with Elemental damage, weak characters buffed, iPhone low-memory mode**
+
+
+- Bullets gain type traits: snipers pierce 5 and deal +30% to enemies at ≥ 50% HP; shotguns pierce 2–3 and deal +25% up close; heavy single shots pierce 1–2 with stronger knockback and a chance to stagger; pistols / machine guns stack Suppression (slow)
+- Melee thrusts: +15% damage, +15% crit chance, and the hitbox widens from a line to a narrow cone
+- Burn, Poison, Bleed and other damage over time scale with Elemental damage (+15% per point); 8 DoT characters each gain a unique perk (stacking, stack cap, damage, duration, vulnerability, slow, crits, spreading)
+- Chain lightning falls off faster per jump (0.85 → 0.75); Ember Mine, Mixer Storm, Spore Cannon and Glacier Mortar deal −25% damage
+- Character changes: Tomato, Pea Soldier, Corn Gunner, Lychee, Cherry, Peach, Asparagus, Strawberry, Sprout and others buffed (new traits or stats); Mushroom and Taro slightly nerfed
+- Sprout’s Growth Spurt now grants +30% XP from kills for 5s
+- Enemy volleys: the more bullets, the slower they fly (down to ×0.6); 2- and 3-shot volleys spread wider so side shots miss you beyond half range
+- Chapter 7 shortened to 25 waves with reworked spawns and terrain; ranged weapons orbit farther out while melee and flame weapons stay close
+- New affix Short Fuse (halved self-destruct fuse, only on bursting / exploding foes); weapons redrawn with unique designs; character details scroll
+- iPhone (Safari / WeChat) uses a low-memory mode to reduce freezes or WeChat restarts while loading
 
 <a id="v0-6-4"></a>
 

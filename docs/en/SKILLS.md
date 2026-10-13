@@ -54,7 +54,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
   - [Taro Paste Field (Taro Mystic)](#skill-taro)
   - [Steadfast Body (Cabbage Veteran)](#skill-cabbage)
   - [Withering Hex (Blackberry Witch)](#skill-blackberry)
-- [Status Effects (32)](#statuses)
+- [Status Effects (33)](#statuses)
   - [Debuffs](#statuses-debuff)
   - [Buffs](#statuses-buff)
 
@@ -98,7 +98,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/tomato.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ketchup Burst (Tomato Sister)</th></tr>
-<tr><td colspan="2"><i>Splatter ketchup everywhere, damaging and slowing enemies.</i></td></tr>
+<tr><td colspan="2"><i>Burst into ketchup for 220% damage and Slow; puddles linger 4s, Slowing enemies who step in.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-tomato">Tomato Sister</a></td></tr>
 <tr><td nowrap>Form</td><td>Nova Burst</td></tr>
 <tr><td nowrap>Cooldown</td><td>17s</td></tr>
@@ -111,7 +111,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/carrot.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Knight Charge (Carrot Knight)</th></tr>
-<tr><td colspan="2"><i>An invulnerable charge that stuns every enemy in its path.</i></td></tr>
+<tr><td colspan="2"><i>Wind up, then charge while Invulnerable, knocking back and Stunning enemies in the path; a shockwave at the end hits again.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-carrot">Carrot Knight</a></td></tr>
 <tr><td nowrap>Form</td><td>Dash</td></tr>
 <tr><td nowrap>Cooldown</td><td>11s</td></tr>
@@ -124,7 +124,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/chili.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Flame Nova (Chili Sis)</th></tr>
-<tr><td colspan="2"><i>A fiery shockwave that applies 3 stacks of Burn.</i></td></tr>
+<tr><td colspan="2"><i>A ring of fire expands outward; enemies swept by the flame line take damage and gain 3 stacks of Burn.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-chili">Chili Sis</a></td></tr>
 <tr><td nowrap>Form</td><td>Nova Burst</td></tr>
 <tr><td nowrap>Cooldown</td><td>20s</td></tr>
@@ -137,7 +137,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/corn.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Popcorn Barrage (Corn Gunner)</th></tr>
-<tr><td colspan="2"><i>Fire 18 popcorn shots in all directions.</i></td></tr>
+<tr><td colspan="2"><i>Toss 18 corn kernels all around; each pops into popcorn on landing, dealing 70% damage to nearby enemies.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-corn">Corn Gunner</a></td></tr>
 <tr><td nowrap>Form</td><td>Ring Barrage</td></tr>
 <tr><td nowrap>Cooldown</td><td>8s</td></tr>
@@ -149,7 +149,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/watermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Melon Roll (Chubby Melon)</th></tr>
-<tr><td colspan="2"><i>Roll into enemies and restore 4.5% Max HP.</i></td></tr>
+<tr><td colspan="2"><i>Roll as a giant melon for 0.9s, bouncing off walls and repeatedly crushing enemies. Restores 4.5% Max HP.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-watermelon">Chubby Melon</a></td></tr>
 <tr><td nowrap>Form</td><td>Dash</td></tr>
 <tr><td nowrap>Cooldown</td><td>13s</td></tr>
@@ -162,7 +162,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/lemon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Sour Mist (Lemon Assassin)</th></tr>
-<tr><td colspan="2"><i>Turn invisible for 3s (Invulnerable) and gain +50% Crit Chance.</i></td></tr>
+<tr><td colspan="2"><i>Vanish for 2.5s (Invulnerable) with +50% Crit Chance, leaving a sour mist that lures enemies; reappear with a strike on the nearest enemy.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-lemon">Lemon Assassin</a></td></tr>
 <tr><td nowrap>Form</td><td>Stealth</td></tr>
 <tr><td nowrap>Cooldown</td><td>11s</td></tr>
@@ -174,7 +174,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/eggplant.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Purple Thunder (Eggplant Mage)</th></tr>
-<tr><td colspan="2"><i>Lightning blankets the screen, striking every enemy and briefly Stunning them.</i></td></tr>
+<tr><td colspan="2"><i>Lightning strikes every enemy on screen for 90% damage and Stuns them for 0.4s.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-eggplant">Eggplant Mage</a></td></tr>
 <tr><td nowrap>Form</td><td>Screen Clear</td></tr>
 <tr><td nowrap>Cooldown</td><td>14s</td></tr>
@@ -186,21 +186,21 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/garlic.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blood Domain (Count Garlic)</th></tr>
-<tr><td colspan="2"><i>Drain life from nearby enemies and inflict Bleed.</i></td></tr>
+<tr><td colspan="2"><i>Drain nearby enemies for 100% damage and inflict 3 stacks of Bleed, healing 1.5% Max HP per enemy hit (up to 10%).</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-garlic">Count Garlic</a></td></tr>
 <tr><td nowrap>Form</td><td>Drain Heal</td></tr>
 <tr><td nowrap>Cooldown</td><td>14s</td></tr>
 <tr><td nowrap>Damage multiplier</td><td>×1</td></tr>
 <tr><td nowrap>Radius</td><td>200</td></tr>
 <tr><td nowrap>Inflicts</td><td>3× <a href="#status-bleed">Bleed</a> 4s</td></tr>
-<tr><td nowrap>Drain</td><td>+0.5 HP per enemy hit (max 6% Max HP)</td></tr>
+<tr><td nowrap>Drain</td><td>+0.015 HP per enemy hit (max 10% Max HP)</td></tr>
 </table>
 
 <a id="skill-blueberry"></a>
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/blueberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Twin Clone (Blueberry Twins)</th></tr>
-<tr><td colspan="2"><i>Summon 2 clones for 8s that attack with all your weapons (50% damage) and block bullets; clones explode when destroyed or expired.</i></td></tr>
+<tr><td colspan="2"><i>Summon 2 orbiting clones for 8s that attack with all your weapons (50% damage) and block bullets; they explode when destroyed or expired.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-blueberry">Blueberry Twins</a></td></tr>
 <tr><td nowrap>Form</td><td>Summon Clone</td></tr>
 <tr><td nowrap>Cooldown</td><td>10s</td></tr>
@@ -212,7 +212,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pineapple.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Golden Cannon (Captain Pineapple)</th></tr>
-<tr><td colspan="2"><i>Fire a golden cannonball at the densest enemy cluster for a huge explosion. Kills always drop Seeds.</i></td></tr>
+<tr><td colspan="2"><i>Fire 3 golden cannonballs in a volley at 3 random nearby enemies, each exploding on impact. Kills always drop Seeds.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pineapple">Captain Pineapple</a></td></tr>
 <tr><td nowrap>Form</td><td>AOE Missile</td></tr>
 <tr><td nowrap>Cooldown</td><td>16s</td></tr>
@@ -224,7 +224,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pumpkin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spirit Form (Pumpkin Ghost)</th></tr>
-<tr><td colspan="2"><i>Become Invulnerable for 2.5s and gain a big speed boost.</i></td></tr>
+<tr><td colspan="2"><i>Become a spirit for 2.5s (Invulnerable) with +30% Move Speed; nearby enemies briefly lose track of you, and enemies you pass through take damage.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pumpkin">Pumpkin Ghost</a></td></tr>
 <tr><td nowrap>Form</td><td>Stealth</td></tr>
 <tr><td nowrap>Cooldown</td><td>11s</td></tr>
@@ -236,7 +236,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/strawberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Fan Cheer (Strawberry Idol)</th></tr>
-<tr><td colspan="2"><i>Gain 3 stacks of Haste + 5 stacks of Rage for 6s.</i></td></tr>
+<tr><td colspan="2"><i>Gain 3 stacks of Haste (+30% Move & Attack Speed) and 5 stacks of Rage (+20% damage) for 6s.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-strawberry">Strawberry Idol</a></td></tr>
 <tr><td nowrap>Form</td><td>Self Buff</td></tr>
 <tr><td nowrap>Cooldown</td><td>13s</td></tr>
@@ -248,7 +248,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/ginger.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Shadow Slash (Ginger Ninja)</th></tr>
-<tr><td colspan="2"><i>Dash forward with a slash that inflicts Bleed.</i></td></tr>
+<tr><td colspan="2"><i>Blink forward leaving an ink slash; 0.35s later it erupts, hitting enemies along the path and applying 2 stacks of Bleed.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-ginger">Ginger Ninja</a></td></tr>
 <tr><td nowrap>Form</td><td>Dash</td></tr>
 <tr><td nowrap>Cooldown</td><td>11s</td></tr>
@@ -261,7 +261,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/avocado.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Core Overload (Dr. Avocado)</th></tr>
-<tr><td colspan="2"><i>Trigger 5 chain explosions.</i></td></tr>
+<tr><td colspan="2"><i>Detonate 5 explosions in quick succession on random nearby enemies, each dealing 160% area damage.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-avocado">Dr. Avocado</a></td></tr>
 <tr><td nowrap>Form</td><td>Multi-Strike</td></tr>
 <tr><td nowrap>Cooldown</td><td>11s</td></tr>
@@ -274,7 +274,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/onion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Tear Gas Zone (Uncle Onion)</th></tr>
-<tr><td colspan="2"><i>Release a tear gas zone for 5s that heavily Slows and Blinds enemies inside.</i></td></tr>
+<tr><td colspan="2"><i>Release tear gas on the spot for 5s, dealing 40% damage every 0.5s to enemies inside and heavily Slowing and Blinding them (can't shoot).</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-onion">Uncle Onion</a></td></tr>
 <tr><td nowrap>Form</td><td>Binding Field</td></tr>
 <tr><td nowrap>Cooldown</td><td>12s</td></tr>
@@ -288,7 +288,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/mushroom.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Spore Cloud (Mushroom Shaman)</th></tr>
-<tr><td colspan="2"><i>Apply 5 stacks of Poison and 2 stacks of Weaken to enemies in a wide area.</i></td></tr>
+<tr><td colspan="2"><i>Release a wide spore cloud for 6s that deals light damage; enemies inside stack Poison and Weaken every second.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-mushroom">Mushroom Shaman</a></td></tr>
 <tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
 <tr><td nowrap>Cooldown</td><td>19s</td></tr>
@@ -301,7 +301,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/coconut.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Ground Pound (Coconut Boxer)</th></tr>
-<tr><td colspan="2"><i>Slam the ground to Stun enemies and inflict Armor Break.</i></td></tr>
+<tr><td colspan="2"><i>Leap up and slam the ground (Invulnerable), dealing 220% damage, knocking enemies back, Stunning them and applying 3 stacks of Armor Break.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-coconut">Coconut Boxer</a></td></tr>
 <tr><td nowrap>Form</td><td>Nova Burst</td></tr>
 <tr><td nowrap>Cooldown</td><td>21s</td></tr>
@@ -314,19 +314,19 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/grape.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Grape Clone (Grape Magician)</th></tr>
-<tr><td colspan="2"><i>Summon a clone that auto-fires for 8s.</i></td></tr>
+<tr><td colspan="2"><i>Leave a top-hatted illusion on the spot for 6s that lures enemies to it, then bursts and damages enemies around it.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-grape">Grape Magician</a></td></tr>
 <tr><td nowrap>Form</td><td>Summon Clone</td></tr>
-<tr><td nowrap>Cooldown</td><td>10s</td></tr>
+<tr><td nowrap>Cooldown</td><td>9s</td></tr>
 <tr><td nowrap>Damage multiplier</td><td>×0.45</td></tr>
-<tr><td nowrap>Duration</td><td>8s</td></tr>
+<tr><td nowrap>Duration</td><td>6s</td></tr>
 </table>
 
 <a id="skill-cherry"></a>
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/cherry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Dual Barrage (Cherry Gunslinger)</th></tr>
-<tr><td colspan="2"><i>Fire 12 bullets in a row at the nearest enemy.</i></td></tr>
+<tr><td colspan="2"><i>Alternate hands to fire 12 shots, locking onto the two nearest enemies, each dealing 90% damage.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-cherry">Cherry Gunslinger</a></td></tr>
 <tr><td nowrap>Form</td><td>Focused Barrage</td></tr>
 <tr><td nowrap>Cooldown</td><td>11s</td></tr>
@@ -338,7 +338,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pea.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Pea Turret (Pea Soldier)</th></tr>
-<tr><td colspan="2"><i>Rapid-fire 16 peas at the nearest enemy.</i></td></tr>
+<tr><td colspan="2"><i>Plant a pea turret at your feet that auto-fires 20 peas at the nearest enemy over 5s.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pea">Pea Soldier</a></td></tr>
 <tr><td nowrap>Form</td><td>Focused Barrage</td></tr>
 <tr><td nowrap>Cooldown</td><td>10s</td></tr>
@@ -350,7 +350,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="10" align="center" valign="middle"><img src="../images/skill/peach.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Angel’s Blessing (Peach Angel)</th></tr>
-<tr><td colspan="2"><i>Drain life from nearby enemies, restore 9% Max HP and become Invulnerable for 1.5s.</i></td></tr>
+<tr><td colspan="2"><i>Call down holy light to deal 100% damage to nearby enemies, become Invulnerable for 1.5s, and restore 9% Max HP over 3 pulses.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-peach">Peach Angel</a></td></tr>
 <tr><td nowrap>Form</td><td>Drain Heal</td></tr>
 <tr><td nowrap>Cooldown</td><td>21s</td></tr>
@@ -358,14 +358,14 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 <tr><td nowrap>Radius</td><td>150</td></tr>
 <tr><td nowrap>Self gains</td><td><a href="#status-invuln">Invulnerable</a> 1.5s</td></tr>
 <tr><td nowrap>Heal</td><td>9% Max HP</td></tr>
-<tr><td nowrap>Drain</td><td>+0.5 HP per enemy hit (max 6% Max HP)</td></tr>
+<tr><td nowrap>Drain</td><td>+0.015 HP per enemy hit (max 10% Max HP)</td></tr>
 </table>
 
 <a id="skill-dragonfruit"></a>
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/dragonfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Dragonflame Charge (Dragonfruit Rider)</th></tr>
-<tr><td colspan="2"><i>Charge forward, applying 4 stacks of Burn for 5s along the path.</i></td></tr>
+<tr><td colspan="2"><i>Charge forward, applying 4 stacks of Burn along the path and leaving a ~3s fire trail that keeps burning enemies.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-dragonfruit">Dragonfruit Rider</a></td></tr>
 <tr><td nowrap>Form</td><td>Dash</td></tr>
 <tr><td nowrap>Cooldown</td><td>12s</td></tr>
@@ -378,7 +378,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/beet.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frenzy (Beet Berserker)</th></tr>
-<tr><td colspan="2"><i>Gain Enrage (+30% Move Speed and Damage) and Bloodlust for 6s.</i></td></tr>
+<tr><td colspan="2"><i>Gain Enrage (+30% Move Speed and damage) and 3 stacks of Bloodlust (+12% Life Steal Chance) for 6s.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-beet">Beet Berserker</a></td></tr>
 <tr><td nowrap>Form</td><td>Self Buff</td></tr>
 <tr><td nowrap>Cooldown</td><td>13s</td></tr>
@@ -390,7 +390,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/asparagus.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Heartpiercer (Asparagus Archer)</th></tr>
-<tr><td colspan="2"><i>Fire 8 piercing arrows at the enemy with the highest HP and Mark the target.</i></td></tr>
+<tr><td colspan="2"><i>Charge for 0.4s, then fire a giant arrow at the highest-HP enemy that pierces the whole line, dealing heavy damage and Marking every enemy hit.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-asparagus">Asparagus Archer</a></td></tr>
 <tr><td nowrap>Form</td><td>Focused Barrage</td></tr>
 <tr><td nowrap>Cooldown</td><td>12s</td></tr>
@@ -403,7 +403,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="10" align="center" valign="middle"><img src="../images/skill/sweetpotato.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Roast Yam Feast (Chef Yam)</th></tr>
-<tr><td colspan="2"><i>Drain life from nearby enemies, restore 9% Max HP and gain 5 stacks of Regen.</i></td></tr>
+<tr><td colspan="2"><i>Blast nearby enemies and toss out 3 roast yams; pick them up within 8s to restore 10.8% Max HP in total. Gain 5 stacks of Regen.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-sweetpotato">Chef Yam</a></td></tr>
 <tr><td nowrap>Form</td><td>Drain Heal</td></tr>
 <tr><td nowrap>Cooldown</td><td>24s</td></tr>
@@ -411,14 +411,14 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 <tr><td nowrap>Radius</td><td>160</td></tr>
 <tr><td nowrap>Self gains</td><td>5× <a href="#status-regen">Regen</a> 6s</td></tr>
 <tr><td nowrap>Heal</td><td>9% Max HP</td></tr>
-<tr><td nowrap>Drain</td><td>+0.5 HP per enemy hit (max 6% Max HP)</td></tr>
+<tr><td nowrap>Drain</td><td>+0.015 HP per enemy hit (max 10% Max HP)</td></tr>
 </table>
 
 <a id="skill-kiwi"></a>
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/kiwi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">One Truth (Kiwi Detective)</th></tr>
-<tr><td colspan="2"><i>See through every enemy on screen: apply Mark and 2 stacks of Vulnerable.</i></td></tr>
+<tr><td colspan="2"><i>A magnifying glass sweeps the screen, lightly damaging every enemy on screen and applying Mark and 2 stacks of Vulnerable for 6s.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-kiwi">Kiwi Detective</a></td></tr>
 <tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
 <tr><td nowrap>Cooldown</td><td>15s</td></tr>
@@ -431,7 +431,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/lychee.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Princess’s Luck (Lychee Princess)</th></tr>
-<tr><td colspan="2"><i>Gain 5 stacks of Lucky + 3 stacks of Focus for 6s.</i></td></tr>
+<tr><td colspan="2"><i>Four-leaf clovers orbit you for 6s, granting 5 stacks of Lucky and 3 stacks of Focus.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-lychee">Lychee Princess</a></td></tr>
 <tr><td nowrap>Form</td><td>Self Buff</td></tr>
 <tr><td nowrap>Cooldown</td><td>10s</td></tr>
@@ -443,7 +443,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/durian.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Stink Bomb (Durian Overlord)</th></tr>
-<tr><td colspan="2"><i>Inflict Poison, 3 stacks of Weaken, and Confuse on nearby enemies.</i></td></tr>
+<tr><td colspan="2"><i>A stench follows you for 5s; nearby enemies are hit with Poison, Weaken and Confuse every second. Deals light damage on cast.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-durian">Durian Overlord</a></td></tr>
 <tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
 <tr><td nowrap>Cooldown</td><td>21s</td></tr>
@@ -456,7 +456,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/bellpepper.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Drone Support (Pepper Mech)</th></tr>
-<tr><td colspan="2"><i>Deploy a drone for 8s.</i></td></tr>
+<tr><td colspan="2"><i>Deploy a drone that follows you for 8s, zapping the nearest enemy with a laser every 0.35s for 45% damage.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-bellpepper">Pepper Mech</a></td></tr>
 <tr><td nowrap>Form</td><td>Summon Clone</td></tr>
 <tr><td nowrap>Cooldown</td><td>10s</td></tr>
@@ -468,7 +468,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/wintermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Golden Bell (Monk Gourd)</th></tr>
-<tr><td colspan="2"><i>Meditate for 2s while Invulnerable, gaining 5 stacks of Fortify.</i></td></tr>
+<tr><td colspan="2"><i>Summon a golden bell: Invulnerable for 2s, repelling nearby non-boss enemies, and gain 5 stacks of Fortify.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-wintermelon">Monk Gourd</a></td></tr>
 <tr><td nowrap>Form</td><td>Stealth</td></tr>
 <tr><td nowrap>Cooldown</td><td>16s</td></tr>
@@ -480,7 +480,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/bittermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Frozen Domain (Bitter Melon Mage)</th></tr>
-<tr><td colspan="2"><i>Unleash a 5s frost field around you that Slows and Freezes enemies who enter.</i></td></tr>
+<tr><td colspan="2"><i>Freeze the ground around you for 5s, dealing 50% damage every 0.5s to enemies inside and Slowing them, with a 25% chance to Freeze.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-bittermelon">Bitter Melon Mage</a></td></tr>
 <tr><td nowrap>Form</td><td>Binding Field</td></tr>
 <tr><td nowrap>Cooldown</td><td>16s</td></tr>
@@ -494,20 +494,20 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/sprout.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Growth Spurt (Sprout Apprentice)</th></tr>
-<tr><td colspan="2"><i>Gain 12 XP and 5s of Haste.</i></td></tr>
+<tr><td colspan="2"><i>Shoot up in a growth spurt, gaining +30% XP from kills for 5s and 2 stacks of Haste for 5s.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-sprout">Sprout Apprentice</a></td></tr>
 <tr><td nowrap>Form</td><td>Self Buff</td></tr>
 <tr><td nowrap>Cooldown</td><td>10s</td></tr>
 <tr><td nowrap>Duration</td><td>5s</td></tr>
 <tr><td nowrap>Self gains</td><td>2× <a href="#status-haste">Haste</a> 5s</td></tr>
-<tr><td nowrap>XP</td><td>+12</td></tr>
+<tr><td nowrap>Kill XP</td><td>+30%</td></tr>
 </table>
 
 <a id="skill-wasabi"></a>
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/wasabi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Wasabi Nuke (Wasabi Bomber)</th></tr>
-<tr><td colspan="2"><i>Launch a wasabi nuke at the enemy horde for a massive, burning explosion.</i></td></tr>
+<tr><td colspan="2"><i>Drop a wasabi nuke on the densest enemy cluster. After a quick countdown it detonates massively, leaving toxic ground for 3s that keeps damaging and Burning.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-wasabi">Wasabi Bomber</a></td></tr>
 <tr><td nowrap>Form</td><td>AOE Missile</td></tr>
 <tr><td nowrap>Cooldown</td><td>23s</td></tr>
@@ -520,7 +520,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/soybean.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Bean Troops (Strategist Soy)</th></tr>
-<tr><td colspan="2"><i>Summon a bean clone that auto-fires for 10s.</i></td></tr>
+<tr><td colspan="2"><i>Summon 4 bean soldiers for 10s that charge nearby enemies and fight in melee, each hit dealing 54% damage.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-soybean">Strategist Soy</a></td></tr>
 <tr><td nowrap>Form</td><td>Summon Clone</td></tr>
 <tr><td nowrap>Cooldown</td><td>14s</td></tr>
@@ -532,7 +532,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/jackfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Thousand Spikes (Jackfruit Guard)</th></tr>
-<tr><td colspan="2"><i>Gain 5 stacks of Thorns and 3 stacks of Fortify for 6s.</i></td></tr>
+<tr><td colspan="2"><i>A ring of spikes spins around you for 6s, repeatedly stabbing enemies up close. Gain 5 stacks of Thorns and 3 stacks of Fortify.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-jackfruit">Jackfruit Guard</a></td></tr>
 <tr><td nowrap>Form</td><td>Self Buff</td></tr>
 <tr><td nowrap>Cooldown</td><td>12s</td></tr>
@@ -544,7 +544,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/pomegranate.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Seed Burst (Pomegranate Gunner)</th></tr>
-<tr><td colspan="2"><i>Spray 30 pomegranate seeds in all directions.</i></td></tr>
+<tr><td colspan="2"><i>Spray pomegranate seeds in a double spiral for about 1s, firing 30 piercing seeds that each deal 50% damage.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-pomegranate">Pomegranate Gunner</a></td></tr>
 <tr><td nowrap>Form</td><td>Ring Barrage</td></tr>
 <tr><td nowrap>Cooldown</td><td>8s</td></tr>
@@ -556,11 +556,11 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/skill/taro.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Taro Paste Field (Taro Mystic)</th></tr>
-<tr><td colspan="2"><i>Create a 6s taro field that Burns and Slows enemies inside and blocks enemy bullets entering it.</i></td></tr>
+<tr><td colspan="2"><i>Spread a taro barrier for 6s that deals 100% damage every 0.5s to enemies inside, Burning and Slowing them, and blocks incoming enemy shots.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-taro">Taro Mystic</a></td></tr>
 <tr><td nowrap>Form</td><td>Binding Field</td></tr>
-<tr><td nowrap>Cooldown</td><td>30s</td></tr>
-<tr><td nowrap>Damage multiplier</td><td>×1.6</td></tr>
+<tr><td nowrap>Cooldown</td><td>27s</td></tr>
+<tr><td nowrap>Damage multiplier</td><td>×1</td></tr>
 <tr><td nowrap>Radius</td><td>230</td></tr>
 <tr><td nowrap>Duration</td><td>6s</td></tr>
 <tr><td nowrap>Inflicts</td><td>2× <a href="#status-burn">Burn</a> 2s, 2× <a href="#status-slow">Slow</a> 1s</td></tr>
@@ -570,7 +570,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/cabbage.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Steadfast Body (Cabbage Veteran)</th></tr>
-<tr><td colspan="2"><i>5s Barrier (-40% damage taken), 5 stacks of Fortify and 3 stacks of Regen.</i></td></tr>
+<tr><td colspan="2"><i>Wrap yourself in layers of cabbage leaves for 5s, gaining Barrier (40% less damage taken), 5 stacks of Fortify and 3 stacks of Regen.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-cabbage">Cabbage Veteran</a></td></tr>
 <tr><td nowrap>Form</td><td>Self Buff</td></tr>
 <tr><td nowrap>Cooldown</td><td>15s</td></tr>
@@ -582,7 +582,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/blackberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Withering Hex (Blackberry Witch)</th></tr>
-<tr><td colspan="2"><i>Curse nearby enemies, apply 3 stacks of Rot and Silence them for 3s.</i></td></tr>
+<tr><td colspan="2"><i>Spread a 6s miasma circle around you; enemies inside are Cursed, given 3 stacks of Rot and Silenced every second.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-blackberry">Blackberry Witch</a></td></tr>
 <tr><td nowrap>Form</td><td>Mass Debuff</td></tr>
 <tr><td nowrap>Cooldown</td><td>16s</td></tr>
@@ -593,7 +593,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <a id="statuses"></a>
 
-## Status Effects (32)
+## Status Effects (33)
 
 Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elites 50%); Stun/Freeze on the player lasts at most 0.8s, followed by 1.5s of immunity.
 
@@ -607,6 +607,7 @@ Shared by players and enemies. Bosses resist crowd-control debuffs by 75% (elite
 | <a id="status-poison"></a>Poison | 8 | Takes toxin damage per stack every second. Stacks up to 8 |
 | <a id="status-bleed"></a>Bleed | 5 | Loses HP per stack every second |
 | <a id="status-slow"></a>Slow | 3 | Move Speed reduced |
+| <a id="status-suppress"></a>Suppressed | 3 | Pinned down by gunfire: -5% Move Speed per stack |
 | <a id="status-freeze"></a>Freeze | 1 | Cannot act. Damage taken +20% |
 | <a id="status-stun"></a>Stun | 1 | Cannot act |
 | <a id="status-weaken"></a>Weaken | 3 | Damage dealt reduced |

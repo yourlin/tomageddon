@@ -209,7 +209,7 @@
 
 | 武器 | 类别 | 攻击方式 | 标签 | 伤害 T1~T4 | 冷却 T1~T4 | 射程 | 价格 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| <img src="images/weapon/fork.png" width="32" height="32" alt=""> [番茄叉](#weapon-fork) | 近战 | 直刺 | 厨具 | 8 / 14 / 22 / 34 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 15 |
+| <img src="images/weapon/fork.png" width="32" height="32" alt=""> [番茄叉](#weapon-fork) | 近战 | 直刺 | 厨具 | 10 / 18 / 29 / 44 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 15 |
 | <img src="images/weapon/rolling_pin.png" width="32" height="32" alt=""> [擀面杖](#weapon-rolling_pin) | 近战 | 横扫 | 厨具 | 12 / 20 / 32 / 48 | 1.25 / 1.18 / 1.1 / 1 | 130 | 18 |
 | <img src="images/weapon/knife.png" width="32" height="32" alt=""> [菜刀](#weapon-knife) | 近战 | 直刺 | 厨具/锋利 | 6 / 10 / 16 / 25 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | 20 |
 | <img src="images/weapon/pan.png" width="32" height="32" alt=""> [平底锅](#weapon-pan) | 近战 | 横扫 | 厨具 | 18 / 30 / 46 / 70 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | 25 |
@@ -287,17 +287,17 @@
 | <img src="images/weapon/shaved_ice_gun.png" width="32" height="32" alt=""> [刨冰机枪](#weapon-shaved_ice_gun) | 远程 | 子弹 | 枪械 | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | 27 |
 | <img src="images/weapon/slush_spray.png" width="32" height="32" alt=""> [冰沙喷雾](#weapon-slush_spray) | 元素 | 喷火 | 甜点 | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | 29 |
 | <img src="images/weapon/frost_aura.png" width="32" height="32" alt=""> [寒霜光环](#weapon-frost_aura) | 元素 | 光环 |  | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 134 | 31 |
-| <img src="images/weapon/glacier_mortar.png" width="32" height="32" alt=""> [冰川迫击炮](#weapon-glacier_mortar) | 远程 | 爆炸弹 | 枪械 | 15 / 26 / 40 / 61 | 2 / 1.9 / 1.78 / 1.6 | 460 | 33 |
+| <img src="images/weapon/glacier_mortar.png" width="32" height="32" alt=""> [冰川迫击炮](#weapon-glacier_mortar) | 远程 | 爆炸弹 | 枪械 | 12 / 19 / 30 / 46 | 2 / 1.9 / 1.78 / 1.6 | 460 | 33 |
 | <img src="images/weapon/icicle_volley.png" width="32" height="32" alt=""> [冰锥连射](#weapon-icicle_volley) | 元素 | 子弹 |  | 5 / 7 / 11 / 16 | 1 / 0.95 / 0.88 / 0.8 | 340 | 27 |
 | <img src="images/weapon/shock_wok.png" width="32" height="32" alt=""> [电磁炒锅](#weapon-shock_wok) | 近战 | 横扫 | 厨具/钝器 | 16 / 27 / 41 / 63 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | 26 |
-| <img src="images/weapon/volt_fork.png" width="32" height="32" alt=""> [高压电叉](#weapon-volt_fork) | 近战 | 直刺 | 厨具 | 7 / 13 / 20 / 31 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 16 |
+| <img src="images/weapon/volt_fork.png" width="32" height="32" alt=""> [高压电叉](#weapon-volt_fork) | 近战 | 直刺 | 厨具 | 9 / 16 / 26 / 40 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | 16 |
 | <img src="images/weapon/microwave_cannon.png" width="32" height="32" alt=""> [微波炉炮](#weapon-microwave_cannon) | 远程 | 爆炸弹 | 厨具/枪械 | 20 / 32 / 50 / 76 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | 35 |
 | <img src="images/weapon/rice_cooker_aura.png" width="32" height="32" alt=""> [电饭煲光环](#weapon-rice_cooker_aura) | 元素 | 光环 | 厨具 | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 143 | 31 |
 | <img src="images/weapon/grill_arc.png" width="32" height="32" alt=""> [电烤架](#weapon-grill_arc) | 元素 | 连锁闪电 | 厨具 | 9 / 14 / 22 / 34 | 1.1 / 1 / 0.92 / 0.84 | 420 | 31 |
-| <img src="images/weapon/mixer_storm.png" width="32" height="32" alt=""> [电动打蛋机](#weapon-mixer_storm) | 元素 | 连锁闪电 | 厨具 | 6 / 10 / 15 / 23 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | 31 |
+| <img src="images/weapon/mixer_storm.png" width="32" height="32" alt=""> [电动打蛋机](#weapon-mixer_storm) | 元素 | 连锁闪电 | 厨具 | 4 / 8 / 12 / 17 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | 30 |
 | <img src="images/weapon/toaster_zap.png" width="32" height="32" alt=""> [吐司闪电](#weapon-toaster_zap) | 元素 | 连锁闪电 | 厨具/甜点 | 11 / 19 / 29 / 45 | 1.3 / 1.2 / 1.1 / 1 | 360 | 31 |
 | <img src="images/weapon/toxic_spike.png" width="32" height="32" alt=""> [毒菇刺](#weapon-toxic_spike) | 近战 | 直刺 | 蔬果/锋利 | 11 / 20 / 31 / 48 | 1.05 / 1 / 0.92 / 0.84 | 185 | 25 |
-| <img src="images/weapon/spore_cannon.png" width="32" height="32" alt=""> [孢子炮](#weapon-spore_cannon) | 远程 | 子弹 | 蔬果/枪械 | 5 / 9 / 13 / 20 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 23 |
+| <img src="images/weapon/spore_cannon.png" width="32" height="32" alt=""> [孢子炮](#weapon-spore_cannon) | 远程 | 子弹 | 蔬果/枪械 | 4 / 6 / 10 / 15 | 0.8 / 0.75 / 0.7 / 0.62 | 400 | 22 |
 | <img src="images/weapon/miasma_sprayer.png" width="32" height="32" alt=""> [毒雾喷壶](#weapon-miasma_sprayer) | 元素 | 喷火 | 蔬果 | 2 / 4 / 6 / 9 | 0.18 / 0.16 / 0.14 / 0.12 | 150 | 27 |
 | <img src="images/weapon/rot_aura.png" width="32" height="32" alt=""> [腐菌光环](#weapon-rot_aura) | 元素 | 光环 | 蔬果 | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 149 | 31 |
 | <img src="images/weapon/toadstool_mine.png" width="32" height="32" alt=""> [毒蘑菇雷](#weapon-toadstool_mine) | 元素 | 地雷 | 蔬果 | 18 / 31 / 47 / 72 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 26 |
@@ -307,7 +307,7 @@
 | <img src="images/weapon/coal_tongs.png" width="32" height="32" alt=""> [炭火钳](#weapon-coal_tongs) | 近战 | 横扫 | 厨具/钝器 | 12 / 20 / 32 / 49 | 1.1 / 1.05 / 1 / 0.9 | 125 | 27 |
 | <img src="images/weapon/bbq_sauce_cannon.png" width="32" height="32" alt=""> [烧烤酱炮](#weapon-bbq_sauce_cannon) | 远程 | 爆炸弹 | 酱料/枪械 | 13 / 22 / 34 / 52 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | 31 |
 | <img src="images/weapon/charcoal_aura.png" width="32" height="32" alt=""> [炭烤光环](#weapon-charcoal_aura) | 元素 | 光环 | 酱料 | 3 / 5 / 7 / 10 | 0.5 / 0.5 / 0.5 / 0.5 | 133 | 33 |
-| <img src="images/weapon/ember_mine.png" width="32" height="32" alt=""> [火炭雷](#weapon-ember_mine) | 元素 | 地雷 | 酱料 | 18 / 31 / 47 / 72 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 26 |
+| <img src="images/weapon/ember_mine.png" width="32" height="32" alt=""> [火炭雷](#weapon-ember_mine) | 元素 | 地雷 | 酱料 | 14 / 23 / 35 / 54 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | 25 |
 | <img src="images/weapon/cumin_star.png" width="32" height="32" alt=""> [孜然飞镖](#weapon-cumin_star) | 元素 | 回旋镖 | 酱料/锋利 | 7 / 12 / 18 / 28 | 1.3 / 1.2 / 1.1 / 1 | 320 | 29 |
 | <img src="images/weapon/hot_sauce_gun.png" width="32" height="32" alt=""> [辣酱手枪](#weapon-hot_sauce_gun) | 远程 | 子弹 | 酱料/枪械 | 6 / 11 / 16 / 24 | 0.55 / 0.5 / 0.46 / 0.42 | 380 | 21 |
 | <img src="images/weapon/sushi_blade.png" width="32" height="32" alt=""> [寿司刀](#weapon-sushi_blade) | 近战 | 直刺 | 锋利/厨具 | 5 / 9 / 14 / 23 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | 21 |
@@ -345,10 +345,10 @@
 | <img src="images/weapon/coconut_quake_mace.png" width="32" height="32" alt=""> [椰雷流星锤](#weapon-coconut_quake_mace) | 近战 | 横扫 | 蔬果/爆破/枪械 | 24 / 40 / 62 / 92 | 1.8 / 1.7 / 1.6 / 1.45 | 504 | 47 |
 | <img src="images/weapon/anise_frost_storm.png" width="32" height="32" alt=""> [霜星八角](#weapon-anise_frost_storm) | 元素 | 回旋镖 | 锋利/元素 | 10 / 17 / 25 / 39 | 1 / 0.95 / 0.88 / 0.8 | 357 | 36 |
 | <img src="images/weapon/holy_salt_barrier.png" width="32" height="32" alt=""> [圣盐结界](#weapon-holy_salt_barrier) | 元素 | 光环 | 锋利/元素/蔬果 | 3 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 160 | 40 |
-| <img src="images/weapon/fz_knife_ember_mine.png" width="32" height="32" alt=""> [烈焰菜刀](#weapon-fz_knife_ember_mine) | 近战 | 直刺 | 厨具/锋利/酱料 | 20 / 34 / 52 / 79 | 0.6 / 0.55 / 0.5 / 0.44 | 210 | 34 |
+| <img src="images/weapon/fz_knife_ember_mine.png" width="32" height="32" alt=""> [烈焰菜刀](#weapon-fz_knife_ember_mine) | 近战 | 直刺 | 厨具/锋利/酱料 | 15 / 25 / 39 / 59 | 0.6 / 0.55 / 0.5 / 0.44 | 210 | 33 |
 | <img src="images/weapon/fz_thunder_durian_volt_fork.png" width="32" height="32" alt=""> [贯穿雷霆榴莲](#weapon-fz_thunder_durian_volt_fork) | 元素 | 爆炸弹 | 蔬果/元素/爆破 | 18 / 30 / 46 / 70 | 0.9 / 0.85 / 0.78 / 0.7 | 420 | 42 |
 | <img src="images/weapon/fz_plate_frisbee_onion_boomerang.png" width="32" height="32" alt=""> [鲜果餐盘飞碟](#weapon-fz_plate_frisbee_onion_boomerang) | 远程 | 回旋镖 | 厨具/蔬果 | 13 / 22 / 34 / 52 | 1.4 / 1.3 / 1.2 / 1.1 | 378 | 31 |
-| <img src="images/weapon/fz_candy_cane_glacier_mortar.png" width="32" height="32" alt=""> [霜寒拐杖糖锤](#weapon-fz_candy_cane_glacier_mortar) | 近战 | 横扫 | 甜点/钝器/枪械 | 17 / 29 / 44 / 67 | 1.25 / 1.18 / 1.1 / 1 | 483 | 43 |
+| <img src="images/weapon/fz_candy_cane_glacier_mortar.png" width="32" height="32" alt=""> [霜寒拐杖糖锤](#weapon-fz_candy_cane_glacier_mortar) | 近战 | 横扫 | 甜点/钝器/枪械 | 13 / 21 / 33 / 51 | 1.25 / 1.18 / 1.1 / 1 | 483 | 43 |
 | <img src="images/weapon/fz_corn_scatter_grater_sweep.png" width="32" height="32" alt=""> [致命玉米散弹](#weapon-fz_corn_scatter_grater_sweep) | 远程 | 子弹 | 蔬果/枪械/锋利 | 10 / 17 / 26 / 40 | 1 / 0.95 / 0.88 / 0.8 | 252 | 35 |
 | <img src="images/weapon/fz_sea_urchin_mine_dragonfruit_orb.png" width="32" height="32" alt=""> [烈焰海胆雷](#weapon-fz_sea_urchin_mine_dragonfruit_orb) | 远程 | 地雷 | 锋利/爆破/蔬果 | 14 / 24 / 37 / 57 | 1 / 0.95 / 0.88 / 0.8 | 420 | 36 |
 | <img src="images/weapon/fz_twin_cleavers_ketchup.png" width="32" height="32" alt=""> [散射双持菜刀](#weapon-fz_twin_cleavers_ketchup) | 近战 | 横扫 | 锋利/厨具/酱料 | 9 / 14 / 23 / 34 | 0.75 / 0.7 / 0.65 / 0.6 | 294 | 30 |
@@ -363,7 +363,7 @@
 | <img src="images/weapon/fz_popcorn_machine_rot_aura.png" width="32" height="32" alt=""> [剧毒爆米花机](#weapon-fz_popcorn_machine_rot_aura) | 远程 | 地雷 | 枪械/爆破/蔬果 | 15 / 26 / 41 / 62 | 0.5 / 0.5 / 0.5 / 0.5 | 231 | 40 |
 | <img src="images/weapon/fz_donut_ring_dynamite_drumstick.png" width="32" height="32" alt=""> [爆裂甜甜圈飞环](#weapon-fz_donut_ring_dynamite_drumstick) | 远程 | 回旋镖 | 甜点/爆破 | 19 / 32 / 50 / 75 | 1.5 / 1.4 / 1.3 / 1.2 | 347 | 39 |
 | <img src="images/weapon/fz_spatula_slingshot.png" width="32" height="32" alt=""> [连环锅铲](#weapon-fz_spatula_slingshot) | 近战 | 横扫 | 厨具/蔬果 | 10 / 18 / 28 / 42 | 0.95 / 0.9 / 0.83 / 0.75 | 399 | 21 |
-| <img src="images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [主厨可乐电击枪](#weapon-fz_cola_zapper_mixer_storm) | 元素 | 连锁闪电 | 枪械/元素/厨具 | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 40 |
+| <img src="images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [主厨可乐电击枪](#weapon-fz_cola_zapper_mixer_storm) | 元素 | 连锁闪电 | 枪械/元素/厨具 | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 39 |
 | <img src="images/weapon/fz_bean_bazooka_soy_bomb.png" width="32" height="32" alt=""> [酱爆豆子火箭筒](#weapon-fz_bean_bazooka_soy_bomb) | 远程 | 爆炸弹 | 枪械/爆破/酱料 | 24 / 40 / 62 / 92 | 2.2 / 2.05 / 1.9 / 1.7 | 504 | 44 |
 | <img src="images/weapon/fz_steam_kettle_asparagus_bow.png" width="32" height="32" alt=""> [贯穿蒸汽水壶](#weapon-fz_steam_kettle_asparagus_bow) | 元素 | 喷火 | 厨具/元素/蔬果 | 15 / 26 / 41 / 62 | 0.26 / 0.24 / 0.21 / 0.18 | 546 | 36 |
 | <img src="images/weapon/fz_lightning_whisk_pepper_grinder.png" width="32" height="32" alt=""> [贯穿闪电打蛋器](#weapon-fz_lightning_whisk_pepper_grinder) | 元素 | 连锁闪电 | 厨具/元素/枪械 | 8 / 13 / 20 / 30 | 0.5 / 0.46 / 0.42 / 0.38 | 420 | 39 |
@@ -385,7 +385,7 @@
 | <img src="images/weapon/fz_chopsticks_pepper_spray.png" width="32" height="32" alt=""> [烈焰竹筷](#weapon-fz_chopsticks_pepper_spray) | 近战 | 直刺 | 厨具/元素 | 6 / 10 / 15 / 23 | 0.18 / 0.16 / 0.14 / 0.12 | 163 | 34 |
 | <img src="images/weapon/fz_pizza_cutter_potato_mine.png" width="32" height="32" alt=""> [爆裂披萨滚刀](#weapon-fz_pizza_cutter_potato_mine) | 近战 | 回旋镖 | 厨具/锋利/蔬果 | 17 / 28 / 43 / 65 | 1.3 / 1.2 / 1.1 / 1 | 242 | 34 |
 | <img src="images/weapon/fz_popping_candy_rolling_pin.png" width="32" height="32" alt=""> [重击跳跳糖电击](#weapon-fz_popping_candy_rolling_pin) | 元素 | 连锁闪电 | 甜点/厨具 | 13 / 22 / 35 / 53 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 38 |
-| <img src="images/weapon/fz_baguette_sword_spore_cannon.png" width="32" height="32" alt=""> [剧毒法棍剑](#weapon-fz_baguette_sword_spore_cannon) | 近战 | 横扫 | 蔬果/枪械 | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | 30 |
+| <img src="images/weapon/fz_baguette_sword_spore_cannon.png" width="32" height="32" alt=""> [剧毒法棍剑](#weapon-fz_baguette_sword_spore_cannon) | 近战 | 横扫 | 蔬果/枪械 | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | 29 |
 | <img src="images/weapon/fz_mycelium_boomerang_rice_cooker_aura.png" width="32" height="32" alt=""> [霜寒菌丝回旋镖](#weapon-fz_mycelium_boomerang_rice_cooker_aura) | 远程 | 回旋镖 | 蔬果/厨具 | 10 / 17 / 25 / 40 | 0.5 / 0.5 / 0.5 / 0.5 | 378 | 40 |
 | <img src="images/weapon/fz_cumin_star_mandoline.png" width="32" height="32" alt=""> [贯穿孜然飞镖](#weapon-fz_cumin_star_mandoline) | 元素 | 回旋镖 | 酱料/锋利/厨具 | 8 / 13 / 20 / 31 | 0.5 / 0.46 / 0.42 / 0.38 | 336 | 38 |
 | <img src="images/weapon/fz_meat_tenderizer_seed_spitter.png" width="32" height="32" alt=""> [鲜果松肉锤](#weapon-fz_meat_tenderizer_seed_spitter) | 近战 | 横扫 | 厨具/枪械/蔬果 | 24 / 40 / 62 / 92 | 0.22 / 0.2 / 0.18 / 0.16 | 378 | 39 |
@@ -425,7 +425,7 @@
 <tr><td colspan="2"><i>朴实的三齿叉，向前直刺。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
 <tr><td nowrap>标签</td><td>厨具</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>8 / 14 / 22 / 34</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>10 / 18 / 29 / 44</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
 <tr><td nowrap>射程</td><td>150</td></tr>
 <tr><td nowrap>属性加成</td><td>近战伤害 ×1</td></tr>
@@ -867,7 +867,7 @@
 <tr><td colspan="2"><i>带电的叉子，刺穿敌人并眩晕。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
 <tr><td nowrap>标签</td><td>厨具</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>7 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>9 / 16 / 26 / 40</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
 <tr><td nowrap>射程</td><td>150</td></tr>
 <tr><td nowrap>属性加成</td><td>近战伤害 ×1</td></tr>
@@ -1122,13 +1122,13 @@
 <tr><td colspan="2"><i>把火炭雷熔进菜刀：保留菜刀的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
 <tr><td nowrap>标签</td><td>厨具、锋利、酱料</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>20 / 34 / 52 / 79</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>15 / 25 / 39 / 59</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.6s / 0.55s / 0.5s / 0.44s</td></tr>
 <tr><td nowrap>射程</td><td>210</td></tr>
 <tr><td nowrap>属性加成</td><td>近战伤害 ×0.48，元素伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.5</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 4/秒 2s，爆炸半径 150，额外暴击 15%</td></tr>
-<tr><td nowrap>T1 价格</td><td>34</td></tr>
+<tr><td nowrap>T1 价格</td><td>33</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -1139,7 +1139,7 @@
 <tr><td colspan="2"><i>把冰川迫击炮熔进拐杖糖锤：保留拐杖糖锤的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
 <tr><td nowrap>标签</td><td>甜点、钝器、枪械</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>17 / 29 / 44 / 67</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>13 / 21 / 33 / 51</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>1.25s / 1.18s / 1.1s / 1s</td></tr>
 <tr><td nowrap>射程</td><td>483</td></tr>
 <tr><td nowrap>属性加成</td><td>近战伤害 ×0.6，远程伤害 ×0.66</td></tr>
@@ -1366,7 +1366,7 @@
 <tr><td nowrap>属性加成</td><td>近战伤害 ×0.6，最大生命 ×0.09，远程伤害 ×0.48</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>击退 25</td></tr>
-<tr><td nowrap>T1 价格</td><td>30</td></tr>
+<tr><td nowrap>T1 价格</td><td>29</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -1403,7 +1403,7 @@
 <tr><td nowrap>射程</td><td>380</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.9</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>弹射 1/1/2/3</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 1/1/2/3</td></tr>
 <tr><td nowrap>T1 价格</td><td>15</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pineapple">菠萝船长</a>、<a href="CHARACTERS.md#char-lychee">荔枝公主</a>、<a href="CHARACTERS.md#char-sprout">豆芽学徒</a></td></tr>
 </table>
@@ -1420,7 +1420,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>-</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-blueberry">蓝莓双子</a>、<a href="CHARACTERS.md#char-cherry">樱桃双枪</a></td></tr>
 </table>
@@ -1454,7 +1454,7 @@
 <tr><td nowrap>射程</td><td>520</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1.2</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 3/4/5/6，击退 15</td></tr>
+<tr><td nowrap>特效</td><td>穿透 3/4/5/6，重弹：击退更强，15% 概率硬直 0.3 秒，击退 15</td></tr>
 <tr><td nowrap>T1 价格</td><td>28</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-corn">玉米枪手</a>、<a href="CHARACTERS.md#char-asparagus">芦笋弓手</a></td></tr>
 </table>
@@ -1471,7 +1471,7 @@
 <tr><td nowrap>射程</td><td>280</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>额外吸血概率 5%，弹丸 3/3/4/5</td></tr>
+<tr><td nowrap>特效</td><td>额外吸血概率 5%，穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 3/3/4/5</td></tr>
 <tr><td nowrap>T1 价格</td><td>20</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-grape">葡萄魔术师</a></td></tr>
 </table>
@@ -1480,7 +1480,7 @@
 
 <table>
 <tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/onion_boomerang.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">洋葱回旋镖</th></tr>
-<tr><td colspan="2"><i>划出一道弧线飞出又绕回，沿途无限穿透。</i></td></tr>
+<tr><td colspan="2"><i>向正前方疾速飞出，再从侧面绕回，沿途无限穿透。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
 <tr><td nowrap>标签</td><td>蔬果</td></tr>
 <tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 26 / 40</td></tr>
@@ -1505,7 +1505,7 @@
 <tr><td nowrap>射程</td><td>420</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.4</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>额外吸血概率 1%</td></tr>
+<tr><td nowrap>特效</td><td>额外吸血概率 1%，速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>40</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-bellpepper">青椒机甲</a></td></tr>
 </table>
@@ -1522,7 +1522,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.8</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>弹射 2/2/3/4</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 2/2/3/4</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1556,7 +1556,7 @@
 <tr><td nowrap>射程</td><td>240</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.5</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>弹丸 5/5/6/7，击退 12</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 5/5/6/7，击退 12</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pomegranate">石榴炮手</a></td></tr>
 </table>
@@ -1607,7 +1607,7 @@
 <tr><td nowrap>射程</td><td>650</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1.5</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.5</td></tr>
-<tr><td nowrap>特效</td><td>穿透 1/1/2/2，额外暴击 10%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 5/5/5/6，狙击：打生命 ≥ 50% 的敌人伤害 +30%，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>32</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1641,7 +1641,7 @@
 <tr><td nowrap>射程</td><td>360</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.45</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>-</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1658,7 +1658,7 @@
 <tr><td nowrap>射程</td><td>460</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 2/3/3/4</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/3/3/4，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>25</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1675,7 +1675,7 @@
 <tr><td nowrap>射程</td><td>360</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.7</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 35% 1.5s</td></tr>
+<tr><td nowrap>特效</td><td>减速 35% 1.5s，穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-strawberry">草莓偶像</a>、<a href="CHARACTERS.md#char-peach">蜜桃天使</a></td></tr>
 </table>
@@ -1692,7 +1692,7 @@
 <tr><td nowrap>射程</td><td>380</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.7</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>额外吸血概率 2%</td></tr>
+<tr><td nowrap>特效</td><td>额外吸血概率 2%，速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>20</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1709,7 +1709,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.7</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 1/1/1/2，额外暴击 8%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/1/2，速射：命中叠加压制（每层移速 -5%，最多 3 层），额外暴击 8%</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1794,7 +1794,7 @@
 <tr><td nowrap>射程</td><td>520</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1.1</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 2/3/3/4，额外暴击 5%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/3/3/4，重弹：击退更强，15% 概率硬直 0.3 秒，额外暴击 5%</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1811,7 +1811,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>弹丸 2/2/3/3</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层），弹丸 2/2/3/3</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1862,7 +1862,7 @@
 <tr><td nowrap>射程</td><td>360</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.45</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 20% 0.8s</td></tr>
+<tr><td nowrap>特效</td><td>减速 20% 0.8s，速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>27</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1874,7 +1874,7 @@
 <tr><td colspan="2"><i>砸下冰块，爆炸并冻僵敌人。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 爆炸弹</td></tr>
 <tr><td nowrap>标签</td><td>枪械</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>15 / 26 / 40 / 61</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>12 / 19 / 30 / 46</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>2s / 1.9s / 1.78s / 1.6s</td></tr>
 <tr><td nowrap>射程</td><td>460</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1.1</td></tr>
@@ -1908,13 +1908,13 @@
 <tr><td colspan="2"><i>射出毒孢子，命中中毒并分裂。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
 <tr><td nowrap>标签</td><td>蔬果、枪械</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>5 / 9 / 13 / 20</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>4 / 6 / 10 / 15</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.8</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>弹射 2/2/3/4</td></tr>
-<tr><td nowrap>T1 价格</td><td>23</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 2/2/3/4</td></tr>
+<tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -1947,7 +1947,7 @@
 <tr><td nowrap>射程</td><td>460</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 1/1/2/2</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1981,7 +1981,7 @@
 <tr><td nowrap>射程</td><td>380</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.7</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 2/秒 2s</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 2/秒 2s，速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>21</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1998,7 +1998,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.7</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 1/1/2/2，弹丸 2/2/3/3，额外暴击 8%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，速射：命中叠加压制（每层移速 -5%，最多 3 层），弹丸 2/2/3/3，额外暴击 8%</td></tr>
 <tr><td nowrap>T1 价格</td><td>27</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2083,7 +2083,7 @@
 <tr><td nowrap>射程</td><td>240</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.5</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>弹丸 5/5/6/7，击退 12</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 5/5/6/7，击退 12</td></tr>
 <tr><td nowrap>T1 价格</td><td>27</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2100,7 +2100,7 @@
 <tr><td nowrap>射程</td><td>650</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1.5</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.5</td></tr>
-<tr><td nowrap>特效</td><td>穿透 3/4/5/6，额外暴击 10%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 5/5/5/6，狙击：打生命 ≥ 50% 的敌人伤害 +30%，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>33</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pea">豌豆士兵</a></td></tr>
 </table>
@@ -2134,7 +2134,7 @@
 <tr><td nowrap>射程</td><td>441</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.24，元素伤害 ×0.15</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>-</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>52</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2168,7 +2168,7 @@
 <tr><td nowrap>射程</td><td>683</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×1.8</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.5</td></tr>
-<tr><td nowrap>特效</td><td>穿透 5/6/7/8，额外暴击 10%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 5/6/7/8，狙击：打生命 ≥ 50% 的敌人伤害 +30%，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>43</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2185,7 +2185,7 @@
 <tr><td nowrap>射程</td><td>420</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.66</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>弹丸 6/6/7/8，击退 12</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 6/6/7/8，击退 12</td></tr>
 <tr><td nowrap>T1 价格</td><td>34</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2219,7 +2219,7 @@
 <tr><td nowrap>射程</td><td>252</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.3，近战伤害 ×0.48</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>弹丸 5/5/6/7，击退 12，额外暴击 12%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 5/5/6/7，击退 12，额外暴击 12%</td></tr>
 <tr><td nowrap>T1 价格</td><td>35</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2253,7 +2253,7 @@
 <tr><td nowrap>射程</td><td>546</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.72，近战伤害 ×0.3</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 3/4/5/6，击退 15，额外暴击 10%</td></tr>
+<tr><td nowrap>特效</td><td>穿透 3/4/5/6，速射：命中叠加压制（每层移速 -5%，最多 3 层），击退 15，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>38</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2372,7 +2372,7 @@
 <tr><td nowrap>射程</td><td>483</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.6，近战伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 2/3/3/4</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/3/3/4，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>33</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2423,7 +2423,7 @@
 <tr><td nowrap>射程</td><td>483</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.6，元素伤害 ×0.15</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 2/秒 1.5s，减速 20% 0.8s，穿透 1/1/2/2</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 2/秒 1.5s，减速 20% 0.8s，穿透 1/1/2/2，速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>38</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2478,7 +2478,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.9</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 40% 1.5s，穿透 1/1/2/2</td></tr>
+<tr><td nowrap>特效</td><td>减速 40% 1.5s，穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-bittermelon">苦瓜冰法</a></td></tr>
 </table>
@@ -2546,7 +2546,7 @@
 <tr><td nowrap>射程</td><td>340</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 50% 1.2s，弹丸 3/3/4/4</td></tr>
+<tr><td nowrap>特效</td><td>减速 50% 1.2s，穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 3/3/4/4</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2665,7 +2665,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.8</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 3/秒 2s，弹射 1/2/2/3</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 3/秒 2s，穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 1/2/2/3</td></tr>
 <tr><td nowrap>T1 价格</td><td>28</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-blackberry">黑莓女巫</a></td></tr>
 </table>
@@ -2767,7 +2767,7 @@
 <tr><td nowrap>射程</td><td>420</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.85</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.8</td></tr>
-<tr><td nowrap>特效</td><td>穿透 1/1/2/3</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/3，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>24</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pumpkin">南瓜幽灵</a></td></tr>
 </table>
@@ -2784,7 +2784,7 @@
 <tr><td nowrap>射程</td><td>330</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.7</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>-</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-mushroom">蘑菇巫医</a></td></tr>
 </table>
@@ -2886,7 +2886,7 @@
 <tr><td nowrap>射程</td><td>340</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 50% 1.2s，穿透 1/2/2/3，弹丸 3/3/4/4</td></tr>
+<tr><td nowrap>特效</td><td>减速 50% 1.2s，穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 3/3/4/4</td></tr>
 <tr><td nowrap>T1 价格</td><td>27</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2932,13 +2932,13 @@
 <tr><td colspan="2"><i>高速旋转的打蛋机，闪电跳得更多。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>元素 / 连锁闪电</td></tr>
 <tr><td nowrap>标签</td><td>厨具</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>6 / 10 / 15 / 23</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>4 / 8 / 12 / 17</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.95s / 0.9s / 0.82s / 0.74s</td></tr>
 <tr><td nowrap>射程</td><td>380</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.8</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>连锁 4/5/6/8 次</td></tr>
-<tr><td nowrap>T1 价格</td><td>31</td></tr>
+<tr><td nowrap>T1 价格</td><td>30</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -3034,13 +3034,13 @@
 <tr><td colspan="2"><i>炸开一地火炭，灼烧敌人。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>元素 / 地雷</td></tr>
 <tr><td nowrap>标签</td><td>酱料</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>18 / 31 / 47 / 72</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>14 / 23 / 35 / 54</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>2.5s / 2.3s / 2.1s / 1.8s</td></tr>
 <tr><td nowrap>射程</td><td>200</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×1</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 4/秒 2s，爆炸半径 150</td></tr>
-<tr><td nowrap>T1 价格</td><td>26</td></tr>
+<tr><td nowrap>T1 价格</td><td>25</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -3124,7 +3124,7 @@
 <tr><td nowrap>射程</td><td>400</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.8</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 20% 1s，弹射 1/2/2/3</td></tr>
+<tr><td nowrap>特效</td><td>减速 20% 1s，穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 1/2/2/3</td></tr>
 <tr><td nowrap>T1 价格</td><td>29</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -3294,7 +3294,7 @@
 <tr><td nowrap>射程</td><td>420</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.48，近战伤害 ×0.48</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.1</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 2/秒 1.5s，减速 20% 1s，弹射 1/2/2/3</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 2/秒 1.5s，减速 20% 1s，穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 1/2/2/3</td></tr>
 <tr><td nowrap>T1 价格</td><td>38</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -3363,7 +3363,7 @@
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.9，远程伤害 ×0.18</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>减速 20% 1s，连锁 4/5/6/8 次</td></tr>
-<tr><td nowrap>T1 价格</td><td>40</td></tr>
+<tr><td nowrap>T1 价格</td><td>39</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -3413,7 +3413,7 @@
 <tr><td nowrap>射程</td><td>378</td></tr>
 <tr><td nowrap>属性加成</td><td>元素伤害 ×0.42，远程伤害 ×0.27</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 20% 0.8s</td></tr>
+<tr><td nowrap>特效</td><td>减速 20% 0.8s，速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>35</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -4167,7 +4167,7 @@ flowchart LR
 
 | 原武器 | 催化道具 | 超武 | T4 伤害 / 冷却 / 射程 | 说明 |
 | --- | --- | --- | --- | --- |
-| <img src="images/weapon/fork.png" width="32" height="32" alt=""> [番茄叉](#weapon-fork) | <img src="images/item/hot_sauce.png" width="32" height="32" alt=""> 辣酱包 | <img src="images/weapon/hell_trident.png" width="32" height="32" alt=""> **地狱三叉戟** | 34→**58** / 0.7s→**0.6s** / 150→**173** | 浸过辣酱的三叉戟，刺中即燃。 |
+| <img src="images/weapon/fork.png" width="32" height="32" alt=""> [番茄叉](#weapon-fork) | <img src="images/item/hot_sauce.png" width="32" height="32" alt=""> 辣酱包 | <img src="images/weapon/hell_trident.png" width="32" height="32" alt=""> **地狱三叉戟** | 44→**75** / 0.7s→**0.6s** / 150→**173** | 浸过辣酱的三叉戟，刺中即燃。 |
 | <img src="images/weapon/rolling_pin.png" width="32" height="32" alt=""> [擀面杖](#weapon-rolling_pin) | <img src="images/item/iron_wok.png" width="32" height="32" alt=""> 铁锅盾 | <img src="images/weapon/titan_pin.png" width="32" height="32" alt=""> **擎天擀面柱** | 48→**82** / 1s→**0.85s** / 130→**176** | 铁锅做的配重，绕身横扫一整圈，震晕四周一片。 |
 | <img src="images/weapon/knife.png" width="32" height="32" alt=""> [菜刀](#weapon-knife) | <img src="images/item/sharpener.png" width="32" height="32" alt=""> 磨刀石 | <img src="images/weapon/paoding_blade.png" width="32" height="32" alt=""> **庖丁神刀** | 25→**40** / 0.44s→**0.33s** / 130→**150** | 游刃有余，刀刀致命。 |
 | <img src="images/weapon/cleaver.png" width="32" height="32" alt=""> [剁骨刀](#weapon-cleaver) | <img src="images/item/chef_knife_set.png" width="32" height="32" alt=""> 大厨刀具套装 | <img src="images/weapon/dragon_cleaver.png" width="32" height="32" alt=""> **屠龙菜刀** | 54→**103** / 0.9s→**0.77s** / 125→**163** | 整套刀具熔铸而成，交叉双斩后劈出贯穿一线的屠龙刀气。 |

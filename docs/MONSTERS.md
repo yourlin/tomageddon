@@ -6,7 +6,7 @@
 
 > 由 `npm run docs` 从 `src/data/*.ts` 自动生成，请勿手改。
 
-小怪 87 种 · 地形生物 2 种 · 精英 34 名 · Boss 18 名 · 精英词缀 20 种。
+小怪 87 种 · 地形生物 2 种 · 精英 34 名 · Boss 18 名 · 精英词缀 21 种。
 
 每 5 波出现一只精英（第 1–4 章为第 5、10 波），每章最后一波为 Boss（第 1–4 章为第 15 波，第 5 章起章节更长），均从该章的池子中随机抽取。各章出现哪些怪物见[关卡](CHAPTERS.md)。
 
@@ -31,7 +31,7 @@
 | <img src="images/enemy/rotten_apple.png" width="32" height="32" alt=""> [烂苹果](#enemy-rotten_apple) | 远程射击 | 6（每波 +55%） | 1（每波 +0.5） | 80 | 2 | - |
 | <img src="images/enemy/cockroach.png" width="32" height="32" alt=""> [蟑螂](#enemy-cockroach) | 追击 | 22（每波 +70%） | 2（每波 +0.8） | 85 | 2 | - |
 | <img src="images/enemy/ant.png" width="32" height="32" alt=""> [行军蚁](#enemy-ant) | 追击 | 2（每波 +45%） | 1（每波 +0.4） | 150 | 1 | - |
-| <img src="images/enemy/beetle.png" width="32" height="32" alt=""> [炸弹甲虫](#enemy-beetle) | 自爆 | 6（每波 +55%） | 4（每波 +0.9） | 135 | 1 | - |
+| <img src="images/enemy/beetle.png" width="32" height="32" alt=""> [炸弹甲虫](#enemy-beetle) | 自爆 | 6（每波 +55%） | 4（每波 +0.7） | 135 | 1 | - |
 | <img src="images/enemy/snail.png" width="32" height="32" alt=""> [鼻涕蜗牛](#enemy-snail) | 留下黏液 | 16（每波 +70%） | 2（每波 +0.6） | 50 | 2 | [黏液](SKILLS.md#status-sticky) 2s |
 | <img src="images/enemy/spider.png" width="32" height="32" alt=""> [毒蜘蛛](#enemy-spider) | 远程射击 | 10（每波 +60%） | 2（每波 +0.6） | 100 | 2 | [中毒](SKILLS.md#status-poison) 3s |
 | <img src="images/enemy/splitter.png" width="32" height="32" alt=""> [分裂霉菌](#enemy-splitter) | 死亡分裂 | 18（每波 +70%） | 2（每波 +0.7） | 75 | 2 | - |
@@ -56,7 +56,7 @@
 | <img src="images/enemy/sour_milk.png" width="32" height="32" alt=""> [酸奶盒](#enemy-sour_milk) | 远程射击 | 6（每波 +55%） | 1（每波 +0.5） | 75 | 2 | - |
 | <img src="images/enemy/crumb_mite.png" width="32" height="32" alt=""> [面包屑螨](#enemy-crumb_mite) | 追击 | 2（每波 +40%） | 1（每波 +0.4） | 140 | 1 | - |
 | <img src="images/enemy/moldy_bread.png" width="32" height="32" alt=""> [发霉面包](#enemy-moldy_bread) | 死亡分裂 | 14（每波 +65%） | 2（每波 +0.6） | 70 | 2 | - |
-| <img src="images/enemy/stink_egg.png" width="32" height="32" alt=""> [臭鸡蛋](#enemy-stink_egg) | 自爆 | 5（每波 +50%） | 3（每波 +0.8） | 130 | 1 | 2层[中毒](SKILLS.md#status-poison) 3s |
+| <img src="images/enemy/stink_egg.png" width="32" height="32" alt=""> [臭鸡蛋](#enemy-stink_egg) | 自爆 | 5（每波 +50%） | 3（每波 +0.6） | 130 | 1 | 2层[中毒](SKILLS.md#status-poison) 3s |
 | <img src="images/enemy/sponge_slug.png" width="32" height="32" alt=""> [洗碗海绵](#enemy-sponge_slug) | 留下黏液 | 12（每波 +60%） | 1（每波 +0.5） | 60 | 2 | [黏液](SKILLS.md#status-sticky) 2s |
 | <img src="images/enemy/teabag_ghost.png" width="32" height="32" alt=""> [茶包幽灵](#enemy-teabag_ghost) | 治疗同伴 | 10（每波 +60%） | 1（每波 +0.4） | 65 | 3 | - |
 | <img src="images/enemy/pan_beetle.png" width="32" height="32" alt=""> [锅底甲虫](#enemy-pan_beetle) | 蓄力冲撞 | 10（每波 +60%） | 2（每波 +0.7） | 80 | 1 | - |
@@ -65,7 +65,7 @@
 | <img src="images/enemy/weevil.png" width="32" height="32" alt=""> [象鼻虫](#enemy-weevil) | 蓄力冲撞 | 11（每波 +60%） | 2（每波 +0.7） | 85 | 2 | - |
 | <img src="images/enemy/thorn_weed.png" width="32" height="32" alt=""> [荆棘杂草](#enemy-thorn_weed) | 远程射击 | 8（每波 +55%） | 1（每波 +0.5） | 60 | 2 | [流血](SKILLS.md#status-bleed) 3s（35%） |
 | <img src="images/enemy/caterpillar.png" width="32" height="32" alt=""> [菜青虫](#enemy-caterpillar) | 追击 | 9（每波 +60%） | 1（每波 +0.6） | 90 | 1 | - |
-| <img src="images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [爆爆瓢虫](#enemy-ladybug_bomb) | 自爆 | 6（每波 +55%） | 4（每波 +0.85） | 125 | 1 | - |
+| <img src="images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [爆爆瓢虫](#enemy-ladybug_bomb) | 自爆 | 6（每波 +55%） | 4（每波 +0.65） | 125 | 1 | - |
 | <img src="images/enemy/rotten_potato.png" width="32" height="32" alt=""> [烂土豆](#enemy-rotten_potato) | 死亡分裂 | 20（每波 +70%） | 2（每波 +0.6） | 60 | 3 | - |
 | <img src="images/enemy/locust.png" width="32" height="32" alt=""> [飞蝗](#enemy-locust) | 游荡 | 4（每波 +50%） | 1（每波 +0.5） | 165 | 1 | - |
 | <img src="images/enemy/mantis.png" width="32" height="32" alt=""> [刀螳螂](#enemy-mantis) | 蓄力冲撞 | 12（每波 +65%） | 2（每波 +0.7） | 95 | 2 | [流血](SKILLS.md#status-bleed) 3s（40%） |
@@ -79,11 +79,11 @@
 | <img src="images/enemy/leftover_box.png" width="32" height="32" alt=""> [剩饭盒](#enemy-leftover_box) | 召唤 | 26（每波 +75%） | 2（每波 +0.6） | 45 | 4 | - |
 | <img src="images/enemy/jelly_cube.png" width="32" height="32" alt=""> [果冻方块](#enemy-jelly_cube) | 蓄力冲撞 | 14（每波 +65%） | 2（每波 +0.65） | 80 | 2 | - |
 | <img src="images/enemy/icicle_imp.png" width="32" height="32" alt=""> [冰锥小鬼](#enemy-icicle_imp) | 远程射击 | 9（每波 +60%） | 2（每波 +0.55） | 90 | 2 | [减速](SKILLS.md#status-slow) 2s |
-| <img src="images/enemy/frozen_soda.png" width="32" height="32" alt=""> [冻爆汽水](#enemy-frozen_soda) | 自爆 | 7（每波 +55%） | 4（每波 +0.85） | 120 | 1 | [冰冻](SKILLS.md#status-freeze) 0.6s（30%） |
+| <img src="images/enemy/frozen_soda.png" width="32" height="32" alt=""> [冻爆汽水](#enemy-frozen_soda) | 自爆 | 7（每波 +55%） | 4（每波 +0.65） | 120 | 1 | [冰冻](SKILLS.md#status-freeze) 0.6s（30%） |
 | <img src="images/enemy/rust_crab.png" width="32" height="32" alt=""> [锈铁蟹](#enemy-rust_crab) | 蓄力冲撞 | 22（每波 +70%） | 3（每波 +0.7） | 75 | 2 | - |
 | <img src="images/enemy/oil_slick.png" width="32" height="32" alt=""> [油膜怪](#enemy-oil_slick) | 留下黏液 | 16（每波 +65%） | 2（每波 +0.6） | 75 | 2 | [黏液](SKILLS.md#status-sticky) 2s |
 | <img src="images/enemy/bag_ghost.png" width="32" height="32" alt=""> [塑料袋幽灵](#enemy-bag_ghost) | 游荡 | 10（每波 +60%） | 2（每波 +0.55） | 115 | 2 | [致盲](SKILLS.md#status-blind) 2s |
-| <img src="images/enemy/battery_mite.png" width="32" height="32" alt=""> [漏电电池](#enemy-battery_mite) | 自爆 | 8（每波 +55%） | 4（每波 +0.85） | 125 | 1 | [眩晕](SKILLS.md#status-stun) 0.5s（35%） |
+| <img src="images/enemy/battery_mite.png" width="32" height="32" alt=""> [漏电电池](#enemy-battery_mite) | 自爆 | 8（每波 +55%） | 4（每波 +0.65） | 125 | 1 | [眩晕](SKILLS.md#status-stun) 0.5s（35%） |
 | <img src="images/enemy/tire_roller.png" width="32" height="32" alt=""> [滚轮胎](#enemy-tire_roller) | 蓄力冲撞 | 24（每波 +75%） | 3（每波 +0.75） | 70 | 2 | - |
 | <img src="images/enemy/scrap_drone.png" width="32" height="32" alt=""> [废铁无人机](#enemy-scrap_drone) | 远程射击 | 10（每波 +60%） | 2（每波 +0.6） | 110 | 2 | - |
 | <img src="images/enemy/glass_shard.png" width="32" height="32" alt=""> [碎玻璃怪](#enemy-glass_shard) | 追击 | 12（每波 +60%） | 2（每波 +0.7） | 100 | 2 | [流血](SKILLS.md#status-bleed) 3s（40%） |
@@ -94,7 +94,7 @@
 | <img src="images/enemy/sauce_drip.png" width="32" height="32" alt=""> [酱汁滴](#enemy-sauce_drip) | 追击 | 5（每波 +50%） | 1（每波 +0.5） | 130 | 1 | - |
 | <img src="images/enemy/cap_drone.png" width="32" height="32" alt=""> [瓶盖无人机](#enemy-cap_drone) | 远程射击 | 12（每波 +65%） | 2（每波 +0.65） | 115 | 2 | - |
 | <img src="images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [番茄酱史莱姆](#enemy-ketchup_slime) | 死亡分裂 | 28（每波 +75%） | 3（每波 +0.7） | 70 | 3 | - |
-| <img src="images/enemy/steam_imp.png" width="32" height="32" alt=""> [蒸汽小鬼](#enemy-steam_imp) | 自爆 | 10（每波 +60%） | 4（每波 +0.9） | 135 | 2 | 2层[灼烧](SKILLS.md#status-burn) 3s |
+| <img src="images/enemy/steam_imp.png" width="32" height="32" alt=""> [蒸汽小鬼](#enemy-steam_imp) | 自爆 | 10（每波 +60%） | 4（每波 +0.7） | 135 | 2 | 2层[灼烧](SKILLS.md#status-burn) 3s |
 | <img src="images/enemy/rivet_bot.png" width="32" height="32" alt=""> [铆钉机器人](#enemy-rivet_bot) | 追击 | 32（每波 +80%） | 3（每波 +0.75） | 75 | 3 | [破甲](SKILLS.md#status-armorBreak) 4s |
 | <img src="images/enemy/label_ghost.png" width="32" height="32" alt=""> [标签幽灵](#enemy-label_ghost) | 游荡 | 14（每波 +65%） | 2（每波 +0.6） | 110 | 2 | [诅咒](SKILLS.md#status-curse) 3s |
 | <img src="images/enemy/bottling_bot.png" width="32" height="32" alt=""> [灌装机器人](#enemy-bottling_bot) | 召唤 | 34（每波 +80%） | 3（每波 +0.65） | 45 | 4 | - |
@@ -104,14 +104,14 @@
 | <img src="images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [菌蚊](#enemy-fungus_gnat) | 游荡 | 9（每波 +55%） | 2（每波 +0.45） | 145 | 1 | [致盲](SKILLS.md#status-blind) 1.2s（25%） |
 | <img src="images/enemy/rot_chili.png" width="32" height="32" alt=""> [腐辣椒](#enemy-rot_chili) | 远程射击 | 13（每波 +65%） | 2（每波 +0.6） | 105 | 2 | [灼烧](SKILLS.md#status-burn) 2s |
 | <img src="images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [流汗黄瓜](#enemy-slime_cucumber) | 留下黏液 | 18（每波 +70%） | 2（每波 +0.6） | 80 | 2 | [黏液](SKILLS.md#status-sticky) 1.5s |
-| <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](#enemy-spore_puff) | 自爆 | 10（每波 +60%） | 4（每波 +0.85） | 125 | 2 | 3层[中毒](SKILLS.md#status-poison) 3s |
+| <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](#enemy-spore_puff) | 自爆 | 10（每波 +60%） | 4（每波 +0.65） | 125 | 2 | 3层[中毒](SKILLS.md#status-poison) 3s |
 | <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](#enemy-vine_lasher) | 蓄力冲撞 | 24（每波 +75%） | 3（每波 +0.8） | 75 | 3 | 2层[流血](SKILLS.md#status-bleed) 3s |
 | <img src="images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [霉变南瓜](#enemy-moldy_pumpkin) | 死亡分裂 | 30（每波 +75%） | 3（每波 +0.7） | 65 | 3 | - |
 | <img src="images/enemy/compost_heap.png" width="32" height="32" alt=""> [堆肥桶](#enemy-compost_heap) | 召唤 | 34（每波 +80%） | 3（每波 +0.65） | 45 | 4 | - |
-| <img src="images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [烂心卷心菜](#enemy-rot_cabbage) | 追击 | 32（每波 +80%） | 3（每波 +0.75） | 75 | 3 | [腐烂](SKILLS.md#status-rot) 3s |
-| <img src="images/enemy/zombie_carrot.png" width="32" height="32" alt=""> [僵尸胡萝卜](#enemy-zombie_carrot) | 蓄力冲撞 | 24（每波 +75%） | 3（每波 +0.65） | 80 | 3 | [腐烂](SKILLS.md#status-rot) 3s |
+| <img src="images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [烂心卷心菜](#enemy-rot_cabbage) | 追击 | 26（每波 +65%） | 2.5（每波 +0.6） | 75 | 3 | [腐烂](SKILLS.md#status-rot) 3s（35%） |
+| <img src="images/enemy/zombie_carrot.png" width="32" height="32" alt=""> [僵尸胡萝卜](#enemy-zombie_carrot) | 蓄力冲撞 | 22（每波 +65%） | 2.5（每波 +0.55） | 80 | 3 | [腐烂](SKILLS.md#status-rot) 3s（35%） |
 | <img src="images/enemy/rot_sprinkler.png" width="32" height="32" alt=""> [腐水洒水器](#enemy-rot_sprinkler) | 治疗同伴 | 22（每波 +70%） | 2（每波 +0.5） | 70 | 3 | - |
-| <img src="images/enemy/blight_onion.png" width="32" height="32" alt=""> [枯萎洋葱](#enemy-blight_onion) | 远程射击 | 15（每波 +65%） | 2（每波 +0.6） | 95 | 2 | [致盲](SKILLS.md#status-blind) 1.5s（35%） |
+| <img src="images/enemy/blight_onion.png" width="32" height="32" alt=""> [枯萎洋葱](#enemy-blight_onion) | 远程射击 | 15（每波 +65%） | 2（每波 +0.5） | 95 | 2 | [致盲](SKILLS.md#status-blind) 1.5s（35%） |
 
 <a id="enemy-mold"></a>
 
@@ -200,7 +200,7 @@
 <tr><td colspan="2"><i>靠近后自爆，注意躲开！</i></td></tr>
 <tr><td nowrap>行为</td><td>自爆</td></tr>
 <tr><td nowrap>生命</td><td>6（每波 +55%）</td></tr>
-<tr><td nowrap>伤害</td><td>4（每波 +0.9）</td></tr>
+<tr><td nowrap>伤害</td><td>4（每波 +0.7）</td></tr>
 <tr><td nowrap>速度</td><td>135</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>特殊</td><td>自爆半径 85</td></tr>
@@ -261,7 +261,7 @@
 <tr><td nowrap>速度</td><td>60</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>特殊</td><td>治疗半径 180 内同伴 0.2</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 5+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 7+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 11+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 5+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 7+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 9+ 波</td></tr>
 </table>
 
 <a id="enemy-brood"></a>
@@ -332,8 +332,8 @@
 <tr><td nowrap>伤害</td><td>2（每波 +0.7）</td></tr>
 <tr><td nowrap>速度</td><td>90</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
-<tr><td nowrap>特殊</td><td>每 2.8s 射击 3 发</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 5+ 波</td></tr>
+<tr><td nowrap>特殊</td><td>每 4s 射击 3 发</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 9+ 波</td></tr>
 </table>
 
 <a id="enemy-bee"></a>
@@ -446,8 +446,8 @@
 <tr><td nowrap>速度</td><td>95</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-armorBreak">破甲</a> 4s</td></tr>
-<tr><td nowrap>特殊</td><td>每 2.8s 射击 2 发</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 5+ 波</td></tr>
+<tr><td nowrap>特殊</td><td>每 3.3s 射击 2 发</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 8+ 波</td></tr>
 </table>
 
 <a id="enemy-curse_doll"></a>
@@ -553,7 +553,7 @@
 <tr><td colspan="2"><i>滚到脚边就炸开，臭气带毒。</i></td></tr>
 <tr><td nowrap>行为</td><td>自爆</td></tr>
 <tr><td nowrap>生命</td><td>5（每波 +50%）</td></tr>
-<tr><td nowrap>伤害</td><td>3（每波 +0.8）</td></tr>
+<tr><td nowrap>伤害</td><td>3（每波 +0.6）</td></tr>
 <tr><td nowrap>速度</td><td>130</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>攻击附带</td><td>2层<a href="SKILLS.md#status-poison">中毒</a> 3s</td></tr>
@@ -669,7 +669,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.6）</td></tr>
 <tr><td nowrap>速度</td><td>90</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 2+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 1~15 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 2+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 1~13 波</td></tr>
 </table>
 
 <a id="enemy-ladybug_bomb"></a>
@@ -679,7 +679,7 @@
 <tr><td colspan="2"><i>背上的斑点其实是引信。</i></td></tr>
 <tr><td nowrap>行为</td><td>自爆</td></tr>
 <tr><td nowrap>生命</td><td>6（每波 +55%）</td></tr>
-<tr><td nowrap>伤害</td><td>4（每波 +0.85）</td></tr>
+<tr><td nowrap>伤害</td><td>4（每波 +0.65）</td></tr>
 <tr><td nowrap>速度</td><td>125</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>特殊</td><td>自爆半径 85</td></tr>
@@ -725,7 +725,7 @@
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-bleed">流血</a> 3s（40%）</td></tr>
 <tr><td nowrap>特殊</td><td>每 3.2s 冲撞</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 13+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 9+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 13+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 13+ 波</td></tr>
 </table>
 
 <a id="enemy-pollen_bloom"></a>
@@ -874,7 +874,7 @@
 <tr><td colspan="2"><i>冻胀的汽水罐，靠近就爆出冰渣。</i></td></tr>
 <tr><td nowrap>行为</td><td>自爆</td></tr>
 <tr><td nowrap>生命</td><td>7（每波 +55%）</td></tr>
-<tr><td nowrap>伤害</td><td>4（每波 +0.85）</td></tr>
+<tr><td nowrap>伤害</td><td>4（每波 +0.65）</td></tr>
 <tr><td nowrap>速度</td><td>120</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-freeze">冰冻</a> 0.6s（30%）</td></tr>
@@ -931,7 +931,7 @@
 <tr><td colspan="2"><i>鼓包的电池，爆炸时电得人发麻。</i></td></tr>
 <tr><td nowrap>行为</td><td>自爆</td></tr>
 <tr><td nowrap>生命</td><td>8（每波 +55%）</td></tr>
-<tr><td nowrap>伤害</td><td>4（每波 +0.85）</td></tr>
+<tr><td nowrap>伤害</td><td>4（每波 +0.65）</td></tr>
 <tr><td nowrap>速度</td><td>125</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-stun">眩晕</a> 0.5s（35%）</td></tr>
@@ -1073,7 +1073,7 @@
 <tr><td nowrap>速度</td><td>70</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>特殊</td><td>死亡分裂为 3 只<a href="#enemy-sauce_drip">酱汁滴</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 10+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 16+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 17+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 10+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 16+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 16+ 波</td></tr>
 </table>
 
 <a id="enemy-steam_imp"></a>
@@ -1083,7 +1083,7 @@
 <tr><td colspan="2"><i>冲到身边喷发滚烫蒸汽。</i></td></tr>
 <tr><td nowrap>行为</td><td>自爆</td></tr>
 <tr><td nowrap>生命</td><td>10（每波 +60%）</td></tr>
-<tr><td nowrap>伤害</td><td>4（每波 +0.9）</td></tr>
+<tr><td nowrap>伤害</td><td>4（每波 +0.7）</td></tr>
 <tr><td nowrap>速度</td><td>135</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td>2层<a href="SKILLS.md#status-burn">灼烧</a> 3s</td></tr>
@@ -1102,7 +1102,7 @@
 <tr><td nowrap>速度</td><td>75</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-armorBreak">破甲</a> 4s</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 13+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 17+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 13+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 16+ 波</td></tr>
 </table>
 
 <a id="enemy-label_ghost"></a>
@@ -1159,7 +1159,7 @@
 <tr><td nowrap>速度</td><td>70</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>特殊</td><td>每 3.4s 冲撞</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 12+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 18+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 19+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 12+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 18+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 18+ 波</td></tr>
 </table>
 
 <a id="enemy-blight_sprout"></a>
@@ -1172,7 +1172,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.5）</td></tr>
 <tr><td nowrap>速度</td><td>130</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 1~8 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 1~9 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 1~8 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 1~8 波</td></tr>
 </table>
 
 <a id="enemy-fungus_gnat"></a>
@@ -1186,7 +1186,7 @@
 <tr><td nowrap>速度</td><td>145</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-blind">致盲</a> 1.2s（25%）</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 2+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 1+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 2+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 2+ 波</td></tr>
 </table>
 
 <a id="enemy-rot_chili"></a>
@@ -1200,8 +1200,8 @@
 <tr><td nowrap>速度</td><td>105</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-burn">灼烧</a> 2s</td></tr>
-<tr><td nowrap>特殊</td><td>每 3.5s 射击 3 发</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 4+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 7+ 波</td></tr>
+<tr><td nowrap>特殊</td><td>每 4.8s 射击 3 发</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 4+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 6+ 波</td></tr>
 </table>
 
 <a id="enemy-slime_cucumber"></a>
@@ -1215,7 +1215,7 @@
 <tr><td nowrap>速度</td><td>80</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-sticky">黏液</a> 1.5s</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 4+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 5+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 4+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 4+ 波</td></tr>
 </table>
 
 <a id="enemy-spore_puff"></a>
@@ -1225,12 +1225,12 @@
 <tr><td colspan="2"><i>圆滚滚的毒蘑菇球，凑近就炸出毒孢子。</i></td></tr>
 <tr><td nowrap>行为</td><td>自爆</td></tr>
 <tr><td nowrap>生命</td><td>10（每波 +60%）</td></tr>
-<tr><td nowrap>伤害</td><td>4（每波 +0.85）</td></tr>
+<tr><td nowrap>伤害</td><td>4（每波 +0.65）</td></tr>
 <tr><td nowrap>速度</td><td>125</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td>3层<a href="SKILLS.md#status-poison">中毒</a> 3s</td></tr>
 <tr><td nowrap>特殊</td><td>自爆半径 100</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 5+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 8+ 波</td></tr>
 </table>
 
 <a id="enemy-vine_lasher"></a>
@@ -1245,7 +1245,7 @@
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>攻击附带</td><td>2层<a href="SKILLS.md#status-bleed">流血</a> 3s</td></tr>
 <tr><td nowrap>特殊</td><td>每 3.2s 冲撞</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 7+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 9+ 波</td></tr>
 </table>
 
 <a id="enemy-moldy_pumpkin"></a>
@@ -1273,7 +1273,7 @@
 <tr><td nowrap>速度</td><td>45</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>4</td></tr>
 <tr><td nowrap>特殊</td><td>召唤 3 只<a href="#enemy-fungus_gnat">菌蚊</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 14+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 15+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 14+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 14+ 波</td></tr>
 </table>
 
 <a id="enemy-rot_cabbage"></a>
@@ -1282,12 +1282,12 @@
 <tr><td rowspan="9" align="center" valign="middle"><img src="images/enemy/rot_cabbage.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">烂心卷心菜</th></tr>
 <tr><td colspan="2"><i>一层层烂叶裹着的重型菜头，碰到会染上腐烂。</i></td></tr>
 <tr><td nowrap>行为</td><td>追击</td></tr>
-<tr><td nowrap>生命</td><td>32（每波 +80%）</td></tr>
-<tr><td nowrap>伤害</td><td>3（每波 +0.75）</td></tr>
+<tr><td nowrap>生命</td><td>26（每波 +65%）</td></tr>
+<tr><td nowrap>伤害</td><td>2.5（每波 +0.6）</td></tr>
 <tr><td nowrap>速度</td><td>75</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
-<tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-rot">腐烂</a> 3s</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 2+ 波</td></tr>
+<tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-rot">腐烂</a> 3s（35%）</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 4+ 波</td></tr>
 </table>
 
 <a id="enemy-zombie_carrot"></a>
@@ -1296,13 +1296,13 @@
 <tr><td rowspan="10" align="center" valign="middle"><img src="images/enemy/zombie_carrot.webp" width="112" height="112" alt=""></td><th colspan="2" align="left">僵尸胡萝卜</th></tr>
 <tr><td colspan="2"><i>从烂泥里拔出来的胡萝卜，蓄力后一头扎来。</i></td></tr>
 <tr><td nowrap>行为</td><td>蓄力冲撞</td></tr>
-<tr><td nowrap>生命</td><td>24（每波 +75%）</td></tr>
-<tr><td nowrap>伤害</td><td>3（每波 +0.65）</td></tr>
+<tr><td nowrap>生命</td><td>22（每波 +65%）</td></tr>
+<tr><td nowrap>伤害</td><td>2.5（每波 +0.55）</td></tr>
 <tr><td nowrap>速度</td><td>80</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
-<tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-rot">腐烂</a> 3s</td></tr>
-<tr><td nowrap>特殊</td><td>每 3s 冲撞</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 5+ 波</td></tr>
+<tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-rot">腐烂</a> 3s（35%）</td></tr>
+<tr><td nowrap>特殊</td><td>每 4s 冲撞</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 6+ 波</td></tr>
 </table>
 
 <a id="enemy-rot_sprinkler"></a>
@@ -1326,12 +1326,12 @@
 <tr><td colspan="2"><i>一剥就流泪的烂洋葱，远程喷出呛眼的辛辣汁。</i></td></tr>
 <tr><td nowrap>行为</td><td>远程射击</td></tr>
 <tr><td nowrap>生命</td><td>15（每波 +65%）</td></tr>
-<tr><td nowrap>伤害</td><td>2（每波 +0.6）</td></tr>
+<tr><td nowrap>伤害</td><td>2（每波 +0.5）</td></tr>
 <tr><td nowrap>速度</td><td>95</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-blind">致盲</a> 1.5s（35%）</td></tr>
-<tr><td nowrap>特殊</td><td>每 2.5s 射击 2 发</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 7+ 波</td></tr>
+<tr><td nowrap>特殊</td><td>每 4.6s 射击 2 发</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 8+ 波</td></tr>
 </table>
 
 <a id="enemy-rabbit"></a>
@@ -1827,7 +1827,7 @@
 <tr><td nowrap>伤害</td><td>6</td></tr>
 <tr><td nowrap>速度</td><td>70</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>46</td></tr>
-<tr><td nowrap>招式</td><td>环形弹 ×16 命中附带 <a href="SKILLS.md#status-blind">致盲</a> 1.5s（40%）（每 4s）<br>扇形瞄准 ×3 命中附带 <a href="SKILLS.md#status-curse">诅咒</a> 3s（每 2.4s）<br>强化 自身/同伴获得 <a href="SKILLS.md#status-haste">急速</a> 4s、<a href="SKILLS.md#status-regen">再生</a> 4s（每 10s）</td></tr>
+<tr><td nowrap>招式</td><td>环形弹 ×16 命中附带 <a href="SKILLS.md#status-blind">致盲</a> 1.5s（40%）（每 5s）<br>扇形瞄准 ×3 命中附带 <a href="SKILLS.md#status-curse">诅咒</a> 3s（每 3s）<br>强化 自身/同伴获得 <a href="SKILLS.md#status-haste">急速</a> 4s、<a href="SKILLS.md#status-regen">再生</a> 4s（每 10s）</td></tr>
 </table>
 
 <a id="bosses"></a>
@@ -2126,6 +2126,7 @@
 | 不屈 | 免疫减速、眩晕与击退 |
 | 富有 | 掉落番茄籽 ×3 |
 | 分裂 | 死亡时分裂出 2 只同类小怪 |
+| 急燃 | 自爆 / 死亡爆炸的引信时间减半 |
 
 ---
 
