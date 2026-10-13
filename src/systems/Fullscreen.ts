@@ -4,10 +4,9 @@ import { tx } from '../i18n';
 import { overlayRoot } from './OverlayRoot';
 import { nativeToggleFullscreen } from '../platform';
 
-const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
-export const IS_WECHAT = /MicroMessenger/i.test(ua);
-export const IS_IOS =
-  /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && typeof navigator !== 'undefined' && navigator.maxTouchPoints > 1);
+import { IS_WECHAT, IS_IOS } from './Device';
+
+export { IS_WECHAT, IS_IOS };
 export const IS_TOUCH = typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches;
 /** 从主屏幕图标启动（PWA 独立窗口），本身就是全屏 */
 const IS_STANDALONE =

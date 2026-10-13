@@ -26,6 +26,8 @@ import { ITEM_MAP, LEVELUP_OPTIONS } from './data/items';
 import { BALANCE, rerollPrice, sellPrice, priceInflation } from './data/balance';
 import { isFavoredWeapon } from './data/affinity';
 import { RECIPES, missingItems } from './data/recipes';
+import { LOW_MEM, LOW_MEM_MAX_RES } from './systems/Device';
+import { weaponCalc } from './dev/info';
 import { save, disablePersist } from './systems/Save';
 import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
@@ -50,7 +52,8 @@ document.title = tx('番茄酱 Tomageddon｜肉鸽割草，一局就上头', 'To
 export const HEADLESS = !DEV_DISABLED && new URLSearchParams(location.search).has('headless');
 
 // 高清渲染：画布按屏幕物理像素分配（逻辑仍是 720p），设置里可关闭；必须在创建 Game 之前确定
-initRes(!HEADLESS && save.settings.hiDpi !== false);
+// 手机低内存模式（iOS / 微信）：限制高清倍率，见 systems/Device.ts
+initRes(!HEADLESS && save.settings.hiDpi !== false, 720, LOW_MEM ? LOW_MEM_MAX_RES : undefined);
 installHiDpi();
 
 const game = new Phaser.Game({
@@ -66,7 +69,8 @@ const game = new Phaser.Game({
     // 全屏外层容器，内部 #game 可在竖屏时旋转为横屏
     fullscreenTarget: 'stage',
   },
-  render: { antialias: true, powerPreference: 'high-performance', roundPixels: false },
+  // antialias 是贴图的线性过滤（关掉会变成像素风），antialiasGL 是画布的多重采样抗锯齿：低内存模式下关掉后者，省下一大块显存
+  render: { antialias: true, antialiasGL: !LOW_MEM, powerPreference: LOW_MEM ? 'default' : 'high-performance', roundPixels: false },
   input: { activePointers: 3 },
   // 测试模式：用 setTimeout 驱动循环，不受显示器刷新率限制
   fps: HEADLESS
@@ -190,6 +194,7 @@ if (!DEV_DISABLED) {
       ACHIEVEMENTS,
       achValue,
       setInRun,
+      weaponCalc,
     },
   });
 }

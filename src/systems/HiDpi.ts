@@ -26,12 +26,12 @@ const MAX_RES = 2.5;
  * 按「屏幕物理高度 / 720」算渲染倍率（向下取 0.25 的整数倍，避免奇怪的小数缩放和超采样）。
  * 必须在创建 Phaser.Game 之前调用。enabled = false 时 RES = 1（等同原来的渲染）。
  */
-export function initRes(enabled: boolean, logicalH = 720): number {
+export function initRes(enabled: boolean, logicalH = 720, maxRes = MAX_RES): number {
   if (!enabled || typeof window === 'undefined') return (RES = 1);
   // 游戏按高度铺满（EXPAND 固定 720 高），所以看屏幕短边的物理像素；竖屏手机会被强制横屏，短边正好是横屏后的高度。
   // 向下取到 0.25 的整数倍：宁可略低于屏幕像素，也不要超采样白白多算
   const physicalH = Math.min(window.innerHeight, window.innerWidth) * (window.devicePixelRatio || 1);
-  RES = Math.min(MAX_RES, Math.max(1, Math.floor((physicalH / logicalH) * 4) / 4));
+  RES = Math.min(maxRes, MAX_RES, Math.max(1, Math.floor((physicalH / logicalH) * 4) / 4));
   return RES;
 }
 
