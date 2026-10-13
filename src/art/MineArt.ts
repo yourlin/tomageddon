@@ -1,5 +1,7 @@
 // 地雷造型：每种地雷长得和名字一样（胡椒雷是辣椒、海胆雷是刺球……），超武在原造型上加强
 import { toon, ellipsePath, roundRectPath, starPath, glow, OUTLINE, type Ctx } from './Painter';
+import { drawWeapon } from './WeaponArt';
+import { UNIQUE_WEAPON_ART } from './weapons';
 
 /** 地雷贴图尺寸（正方形） */
 export const MINE_SIZE = 48;
@@ -173,11 +175,41 @@ export function drawMine(ctx: Ctx, id: string): void {
       return soy(ctx, true);
     case 'sea_urchin_mine':
       return urchin(ctx);
-    default:
-      // 没有专属造型：通用黑色圆雷 + 红灯
+    default: {
+      // 没有专属地面造型：用这把雷的手持图（地雷类的手持图画的就是雷本体）缩放进 48×48，
+      // 布在地上和商店里看到的一样；手持图也没有时才用通用黑色圆雷 + 红灯
+      if (UNIQUE_WEAPON_ART[id]) {
+        const c = document.createElement('canvas');
+        c.width = 128;
+        c.height = 64;
+        const o = c.getContext('2d')!;
+        drawWeapon(o, id);
+        // 裁出非透明内容的外框，按比例放进 44×44、居中（雷本体在横图里通常只占中间一块）
+        const px = o.getImageData(0, 0, 128, 64).data;
+        let x0 = 128,
+          y0 = 64,
+          x1 = -1,
+          y1 = -1;
+        for (let y = 0; y < 64; y++)
+          for (let x = 0; x < 128; x++)
+            if (px[(y * 128 + x) * 4 + 3] > 16) {
+              x0 = Math.min(x0, x);
+              x1 = Math.max(x1, x);
+              y0 = Math.min(y0, y);
+              y1 = Math.max(y1, y);
+            }
+        if (x1 >= x0) {
+          const w = x1 - x0 + 1,
+            h = y1 - y0 + 1,
+            k = Math.min(44 / w, 44 / h);
+          ctx.drawImage(c, x0, y0, w, h, MINE_SIZE / 2 - (w * k) / 2, MINE_SIZE / 2 - (h * k) / 2, w * k, h * k);
+          return;
+        }
+      }
       ctx.beginPath();
       ctx.arc(24, 26, 15, 0, Math.PI * 2);
       toon(ctx, 0x2d3142, 9, 11, 30, 30);
       glow(ctx, 24, 26, 10, 0xff3b30, 1);
+    }
   }
 }
