@@ -175,7 +175,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×1.67 · damage ×1.29 · speed ×1.15 |
+| Difficulty | HP ×1.59 · damage ×1.29 · speed ×1.15 |
 | Terrain | Quicksand Pit: Pulls players and monsters toward the center and deals damage<br>Falling Trash: Watch for warning circles on the ground<br>Acid Leak: Acid pools bubble up near you, dealing damage and inflicting Corrode |
 | Elite pool | <img src="../images/boss/tire_beast.png" width="24" height="24" alt=""> [Tire Beast](MONSTERS.md#boss-tire_beast), <img src="../images/boss/can_king.png" width="24" height="24" alt=""> [Can King](MONSTERS.md#boss-can_king), <img src="../images/boss/rag_wraith.png" width="24" height="24" alt=""> [Rag Wraith](MONSTERS.md#boss-rag_wraith), <img src="../images/boss/battery_bug.png" width="24" height="24" alt=""> [Leaky Battery Bug](MONSTERS.md#boss-battery_bug), <img src="../images/boss/garbage_rat.png" width="24" height="24" alt=""> [Garbage Rat King](MONSTERS.md#boss-garbage_rat), <img src="../images/boss/oil_titan.png" width="24" height="24" alt=""> [Oil Titan](MONSTERS.md#boss-oil_titan) |
 | Boss pool | <img src="../images/boss/trash_golem.png" width="24" height="24" alt=""> [Trash Colossus](MONSTERS.md#boss-trash_golem), <img src="../images/boss/toxic_barrel.png" width="24" height="24" alt=""> [Toxic Barrel Fiend](MONSTERS.md#boss-toxic_barrel), <img src="../images/boss/scrap_dragon.png" width="24" height="24" alt=""> [Scrap Dragon](MONSTERS.md#boss-scrap_dragon) |
@@ -215,7 +215,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×1.72 · damage ×1.36 · speed ×1.2 |
+| Difficulty | HP ×1.9 · damage ×1.36 · speed ×1.2 |
 | Terrain | Conveyor Belts: Push all units standing on them<br>Steam Valves: Periodically blast scalding steam<br>Air Vents: Stand on a vent to gain Tailwind (more Move Speed and Dodge); monsters get blown away |
 | Elite pool | <img src="../images/boss/conveyor_worm.png" width="24" height="24" alt=""> [Conveyor Worm](MONSTERS.md#boss-conveyor_worm), <img src="../images/boss/ketchup_golem.png" width="24" height="24" alt=""> [Ketchup Golem](MONSTERS.md#boss-ketchup_golem), <img src="../images/boss/security_bot.png" width="24" height="24" alt=""> [Security Bot](MONSTERS.md#boss-security_bot), <img src="../images/boss/press_machine.png" width="24" height="24" alt=""> [Stamping Press](MONSTERS.md#boss-press_machine), <img src="../images/boss/chef_minion.png" width="24" height="24" alt=""> [Rotten Sous Chef](MONSTERS.md#boss-chef_minion), <img src="../images/boss/furnace_imp.png" width="24" height="24" alt=""> [Furnace Imp](MONSTERS.md#boss-furnace_imp) |
 | Boss pool | <img src="../images/boss/rotten_chef.png" width="24" height="24" alt=""> [Rotten Chef](MONSTERS.md#boss-rotten_chef), <img src="../images/boss/factory_core.png" width="24" height="24" alt=""> [Factory Core](MONSTERS.md#boss-factory_core), <img src="../images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [Ketchup Leviathan](MONSTERS.md#boss-ketchup_leviathan) |

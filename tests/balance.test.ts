@@ -179,17 +179,19 @@ describe('番茄危机（A8）', () => {
 });
 
 describe('怪物齐射减速', () => {
-  it('3 发以内不减速；发数越多越慢（单调不增），最低不低于 minMult', () => {
-    for (const n of [1, 2, 3]) expect(volleySpeedMult(n)).toBe(1);
+  it('单发不减速；发数越多越慢（单调不增），最低不低于 minMult', () => {
+    expect(volleySpeedMult(1)).toBe(1);
+    expect(volleySpeedMult(2)).toBeLessThan(0.9);
+    expect(volleySpeedMult(3)).toBeLessThan(0.8);
     let prev = 1;
-    for (let n = 4; n <= 80; n++) {
+    for (let n = 2; n <= 80; n++) {
       const m = volleySpeedMult(n);
       expect(m).toBeLessThanOrEqual(prev + 1e-9);
       expect(m).toBeGreaterThanOrEqual(BALANCE.volley.minMult);
       prev = m;
     }
     expect(volleySpeedMult(16)).toBeCloseTo(0.6, 2);
-    expect(volleySpeedMult(12)).toBeGreaterThan(0.6);
+    expect(volleySpeedMult(6)).toBeGreaterThan(0.6);
   });
 });
 

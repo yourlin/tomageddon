@@ -413,13 +413,14 @@ export class Enemy {
           my = nx * side + ny * radial;
         }
         if (this.actT <= 0 && !noAttack && dist <= range) {
-          this.actT = d.shootCd ?? 2.5;
+          // 远程小怪多时每只开火变慢（精英不受影响）
+          this.actT = (d.shootCd ?? 2.5) * (this.isElite ? 1 : g.shooterCrowdMult());
           rig.play('attack');
           g.enemyShoot(
             this,
             d.shots ?? 1,
             d.spread ?? 0,
-            d.projSpeed ?? 250,
+            (d.projSpeed ?? 250) * ER.projSpeed,
             this.dmg * (d.projMult ?? 1) * this.dealtMult,
             d.projSlow ?? 0,
             d.projKey ?? 'proj_enemy',

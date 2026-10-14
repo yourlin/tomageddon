@@ -12,6 +12,22 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.6.6',
+    date: '2026-10-14',
+    highlight: ['怪物远程子弹更慢、远程怪扎堆时开火变慢', 'Slower enemy bullets, and crowds of ranged enemies fire less often'],
+    items: [
+      [
+        '怪物齐射从 2 发起就减速（2 发 ×0.85、3 发 ×0.77，9 发起 ×0.6）；普通远程小怪的子弹再整体 ×0.9',
+        'Enemy volleys slow down from 2 shots on (2 shots ×0.85, 3 shots ×0.77, 9+ shots ×0.6); regular ranged minions’ bullets are a further ×0.9',
+      ],
+      [
+        '场上普通远程小怪超过 4 只时，每只的射击间隔随数量变长（最多 ×2.5），精英与 Boss 不受影响',
+        'With more than 4 regular ranged minions on the field, each fires less often as their numbers grow (up to ×2.5 interval); elites and bosses are unaffected',
+      ],
+      ['第 5 章怪物生命 +10%，第 4 章 −5%，各章难度过渡更平缓', 'Chapter 5 enemy HP +10%, Chapter 4 −5% for a smoother difficulty curve'],
+    ],
+  },
+  {
     version: '0.6.5',
     date: '2026-10-13',
     highlight: [

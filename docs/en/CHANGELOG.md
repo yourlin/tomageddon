@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.6.6 · 2026-10-14](#v0-6-6)
 - [v0.6.5 · 2026-10-13](#v0-6-5)
 - [v0.6.4 · 2026-10-10](#v0-6-4)
 - [v0.6.3 · 2026-10-10](#v0-6-3)
@@ -23,6 +24,17 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-6-6"></a>
+
+## v0.6.6 · 2026-10-14
+
+**Slower enemy bullets, and crowds of ranged enemies fire less often**
+
+
+- Enemy volleys slow down from 2 shots on (2 shots ×0.85, 3 shots ×0.77, 9+ shots ×0.6); regular ranged minions’ bullets are a further ×0.9
+- With more than 4 regular ranged minions on the field, each fires less often as their numbers grow (up to ×2.5 interval); elites and bosses are unaffected
+- Chapter 5 enemy HP +10%, Chapter 4 −5% for a smoother difficulty curve
 
 <a id="v0-6-5"></a>
 

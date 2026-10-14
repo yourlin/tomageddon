@@ -179,6 +179,19 @@ export class GameScene extends Phaser.Scene {
   stats!: Stats;
   rangeMult = 1;
   statusDmgBonus = 0;
+  private shooterCrowdCache = { frame: -1, mult: 1 };
+  /** 远程小怪拥挤系数：场上普通（非精英 / Boss）远程小怪越多，每只的射击间隔越长（BALANCE.shooterCrowd），每帧算一次 */
+  shooterCrowdMult(): number {
+    const c = this.shooterCrowdCache;
+    if (c.frame === this.game.loop.frame) return c.mult;
+    let n = 0;
+    for (const e of this.enemies) if (e.alive && !e.isBoss && !e.isElite && e.def?.behavior === 'shooter') n++;
+    const S = BALANCE.shooterCrowd;
+    c.frame = this.game.loop.frame;
+    c.mult = n <= S.free ? 1 : Math.min(S.max, (n / S.free) ** S.exp);
+    return c.mult;
+  }
+
   /** 玩家施加的持续伤害随元素伤害成长（BALANCE.dotElemScale，每点元素伤害 +15%） */
   get dotScale(): number {
     return 1 + Math.max(0, this.stats.elemental) * BALANCE.dotElemScale;
