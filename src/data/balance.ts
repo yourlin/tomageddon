@@ -69,10 +69,14 @@ export const BALANCE = {
   dotElemScale: 0.15,
   /** 连锁闪电每跳伤害衰减（下一跳 = 上一跳 × chainDecay） */
   chainDecay: 0.75,
-  enemyRanged: { rangeMult: 1.3, hover: 0.75, bulletReach: 1.2, minGapDeg: 15, sideSafe: 0.5 },
+  enemyRanged: { rangeMult: 1.3, hover: 0.75, bulletReach: 1.2, minGapDeg: 15, sideSafe: 0.5, projSpeed: 0.9 },
+  /** 远程小怪越多，每只开火越慢（精英 / Boss 不受影响）：场上普通远程小怪超过 free 只时，射击间隔 × (数量 / free)^exp，最多 × max。
+   *  总弹幕量随数量按平方根增长，而不是线性叠加 */
+  shooterCrowd: { free: 4, exp: 0.5, max: 2.5 },
   /** 怪物齐射减速：一次齐射的子弹越多飞得越慢，弹幕密了也留得出躲避时间（精英 / Boss 的环形、散射、螺旋最明显）。
-   *  free 发及以下不减速；更多时速度 × (free / 发数)^exp，最低 × minMult（见 volleySpeedMult） */
-  volley: { free: 3, exp: 0.305, minMult: 0.6 },
+   *  free 发及以下不减速；更多时速度 × (free / 发数)^exp，最低 × minMult（见 volleySpeedMult）。
+   *  enemyRanged.projSpeed：普通远程小怪的子弹速度再整体 × 它 */
+  volley: { free: 1, exp: 0.235, minMult: 0.6 },
   /** 自爆引信（自爆小怪、「爆裂」词缀的死亡爆炸）：威力越大引信越长，留出逃开的时间（见 bombFuse）。
    *  引信 = min + 伤害 × perDmg + (爆炸半径 − 80) × perRadius，限制在 [min, max]；「急燃」词缀再减半 */
   bomb: { min: 1.5, max: 2.5, perDmg: 0.02, perRadius: 0.01 },
@@ -178,7 +182,7 @@ export const BALANCE = {
     late: { hp: 1.06, dmg: 1.05, bossHp: 1.1 },
     /** 按章微调怪物生命（乘在曲线之后，必须保持逐章单调递增）：各章内容强弱不一（第 3、4 章的刷怪池偏弱），
      *  统一的公比没法同时对齐各章目标通关率，按平衡测试结果逐章补一点 */
-    hpAdjust: [1, 1.07, 1.02, 1.02, 0.99, 1.09, 1.04],
+    hpAdjust: [1, 1.07, 1.02, 0.97, 1.09, 1.09, 1.04],
   },
   /** 敌人血量成长指数：base·(1+growth·w^exp)。exp<1 为次线性，与玩家后期成长放缓相匹配。 */
   enemyGrowthExp: 0.9,
@@ -459,7 +463,7 @@ export function bombFuse(dmg: number, radius: number, short = false): number {
   return short ? t / 2 : t;
 }
 
-/** 怪物齐射的子弹速度系数：3 发 ×1、6 发 ×0.81、8 发 ×0.74、12 发 ×0.66、16 发起 ×0.6 */
+/** 怪物齐射的子弹速度系数：单发 ×1、2 发 ×0.85、3 发 ×0.77、6 发 ×0.66、9 发起 ×0.6 */
 export function volleySpeedMult(n: number): number {
   const v = BALANCE.volley;
   if (n <= v.free) return 1;
