@@ -54,6 +54,9 @@ export class Bullet extends Phaser.GameObjects.Image {
   refundFull = false;
   /** 爆炸范围倍率（契合特效） */
   areaMul = 1;
+  /** 双契合契合技：命中后 / 火箭爆炸后的回调 */
+  onHit: ((e: Enemy, b: Bullet) => void) | undefined;
+  onBoom: ((x: number, y: number) => void) | undefined;
 
   constructor(scene: Phaser.Scene) {
     super(scene, 0, 0, 'proj_player');
@@ -95,6 +98,8 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.distUsed = 0;
     this.refundFull = false;
     this.areaMul = 1;
+    this.onHit = undefined;
+    this.onBoom = undefined;
     return this;
   }
 

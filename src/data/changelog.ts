@@ -12,6 +12,75 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.7.0',
+    date: '2026-10-16',
+    highlight: [
+      'Boss 分阶段、每章专属场地、双契合武器、武器套装改版、19 把新武器与 22 把新超武',
+      'Multi-phase bosses, themed arenas per chapter, double-synergy weapons, reworked weapon sets, 19 new weapons and 22 new super weapons',
+    ],
+    items: [
+      [
+        '每个 Boss 都有 2–4 个阶段：血量到门槛时进入转阶段动画（定格、蓄势、爆发、运镜），换招式、换外观，场地也会变化；每个阶段至少要打 6 秒，Boss 至少坚持 20 秒',
+        'Every boss has 2–4 phases: at each HP threshold it plays a transition (freeze, charge, burst, camera move), gains new attacks and a new look, and the arena changes; each phase lasts at least 6s, so every boss survives at least 20s',
+      ],
+      ['腐烂之王第 3 阶段召唤前代 Boss 的残影一起作战', "The Rot King's 3rd phase summons shadows of earlier bosses to fight alongside it"],
+      ['蟑螂皇帝冲锋时刀枪不入', 'The Cockroach Emperor is invulnerable while charging'],
+      [
+        '每章有了专属形状和大小的场地：平底锅、菜园、冰箱、十字垃圾场、工厂、八角花园、腐土巢穴；障碍物只挡移动，不挡子弹',
+        'Each chapter has its own arena shape and size: frying pan, garden, fridge, cross-shaped junkyard, factory, octagonal garden, rot nest; obstacles block movement only, not bullets',
+      ],
+      [
+        '契合改为每个角色 2 个标签：带任意一个是契合武器（伤害 +10%、契合特效），两个都带是双契合武器——额外获得一个契合技和两条标签特性强化',
+        'Every character now has 2 synergy tags: a weapon with either tag is a synergy weapon (+10% damage, synergy effect); with both it is a double-synergy weapon and also gains a synergy skill plus two tag boosts',
+      ],
+      [
+        '新增 7 个武器标签（长柄、格斗、种子、机械、魔法、弓弩、投掷），39 个角色的标签组合互不相同，开局默认武器都是自己的双契合武器',
+        '7 new weapon tags (Polearm, Martial, Seed, Mech, Arcane, Bow, Thrown); all 39 characters have a unique tag pair and start with one of their double-synergy weapons by default',
+      ],
+      ['新增 19 把角色专属武器、22 把角色专属超武', '19 new character-themed weapons and 22 new character-themed super weapons'],
+      [
+        '合成的武器继承材料的标签：同名合成不变，两把不同武器合成取两者标签的并集',
+        'Crafted weapons inherit their materials’ tags: same-name merges keep them, two different weapons combine both sets of tags',
+      ],
+      [
+        '武器套装改为 23 个由特定武器组成的套装（按不同成员计数，超武不属于任何套装）；武器详情里已生效的档位显示绿色、未生效显示灰色',
+        'Weapon sets reworked into 23 sets of specific weapons (counting distinct members; super weapons belong to no set); active tiers show in green and inactive ones in gray in weapon details',
+      ],
+      [
+        '合成提示更清楚：每条可合成的配方都有自己的「合成为 X」按钮，另有「查看合成配方」；商店里正好是缺的合成材料会有 🔨 角标',
+        'Clearer crafting: every ready recipe gets its own "Craft into X" button, plus "View recipes"; shop items that are exactly a missing recipe material get a 🔨 badge',
+      ],
+      [
+        '角色平衡：辣椒、番茄、豌豆、黄豆、蜜桃等加强，芋头、蘑菇、西瓜、榴莲、生姜等削弱；黄豆军师的豆兵增加到 8 名，在身边 8 个方向出阵',
+        'Character balance: Chili, Tomato, Pea, Soybean, Peach and others buffed; Taro, Mushroom, Watermelon, Durian, Ginger and others nerfed; Soybean now summons 8 bean soldiers, one in each direction',
+      ],
+      ['第 2–7 章怪物生命提高，第 3 章弱小怪变少', 'Enemy HP raised in Chapters 2–7; fewer weak minions in Chapter 3'],
+    ],
+    news: [
+      {
+        icon: '👑',
+        title: ['Boss 分阶段', 'Boss phases'],
+        desc: ['每个 Boss 都会转阶段：换招、换外观、改变场地', 'Every boss changes phase: new attacks, new look, a changing arena'],
+      },
+      {
+        icon: '🗺️',
+        title: ['专属场地', 'Themed arenas'],
+        desc: [
+          '每章都有不同形状、大小的场地，第一章是平底锅',
+          'Every chapter has its own arena shape and size — Chapter 1 is a frying pan',
+        ],
+      },
+      {
+        icon: '★',
+        title: ['双契合武器', 'Double synergy'],
+        desc: [
+          '两个契合标签都对上的武器，会获得契合技和标签强化',
+          'Weapons matching both of your tags gain a synergy skill and tag boosts',
+        ],
+      },
+    ],
+  },
+  {
     version: '0.6.6',
     date: '2026-10-14',
     highlight: ['怪物远程子弹更慢、远程怪扎堆时开火变慢', 'Slower enemy bullets, and crowds of ranged enemies fire less often'],

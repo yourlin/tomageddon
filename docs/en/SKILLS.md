@@ -520,7 +520,7 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/soybean.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Bean Troops (Strategist Soy)</th></tr>
-<tr><td colspan="2"><i>Summon 4 bean soldiers for 10s that charge nearby enemies and fight in melee, each hit dealing 54% damage.</i></td></tr>
+<tr><td colspan="2"><i>Summon 8 bean soldiers around you, one in each direction, for 10s that charge nearby enemies and fight in melee, each hit dealing 54% damage.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-soybean">Strategist Soy</a></td></tr>
 <tr><td nowrap>Form</td><td>Summon Clone</td></tr>
 <tr><td nowrap>Cooldown</td><td>14s</td></tr>

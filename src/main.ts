@@ -24,7 +24,7 @@ import { CHARACTERS, CHARACTER_MAP } from './data/characters';
 import { WEAPON_MAP, TIER_PRICE_MULT } from './data/weapons';
 import { ITEM_MAP, LEVELUP_OPTIONS } from './data/items';
 import { BALANCE, rerollPrice, sellPrice, priceInflation } from './data/balance';
-import { isFavoredWeapon } from './data/affinity';
+import { isFavoredWeapon, isDoubleFavored } from './data/affinity';
 import { RECIPES, missingItems } from './data/recipes';
 import { LOW_MEM, LOW_MEM_MAX_RES } from './systems/Device';
 import { weaponCalc } from './systems/WeaponCalc';
@@ -189,6 +189,7 @@ if (!DEV_DISABLED) {
       pointsEarned,
       talentPointsTotal,
       isFavoredWeapon,
+      isDoubleFavored,
       RECIPES,
       missingItems,
       ACHIEVEMENTS,

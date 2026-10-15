@@ -12,7 +12,7 @@ import type { StatMods } from '../data/stats';
 import type { StatusApply } from '../data/statuses';
 import { STATUSES } from '../data/statuses';
 import { WEAPON_MAP, type WeaponDef } from '../data/weapons';
-import { isFavoredWeapon } from '../data/affinity';
+import { isFavoredWeapon, isDoubleFavored } from '../data/affinity';
 import { BALANCE, speedBonusPct } from '../data/balance';
 import { tx } from '../i18n';
 import { run } from './RunState';
@@ -48,6 +48,9 @@ export interface AffMods {
   lifeSteal: number;
   knock: number;
   status: StatusApply[];
+  /** 子弹额外分裂层数、追踪转向速度（双契合标签强化） */
+  split: number;
+  homing: number;
 }
 
 /** 单次开火的一次性加成 */
@@ -94,7 +97,96 @@ function emptyMods(): AffMods {
     lifeSteal: 0,
     knock: 0,
     status: [],
+    split: 0,
+    homing: 0,
   };
+}
+
+/** 双契合标签特性强化：标签 t 给武器 def 的常驻加成 */
+function tagTraitMods(t: string, def: WeaponDef, m: AffMods): void {
+  switch (t) {
+    case '厨具':
+      m.atkSpd += 12;
+      break;
+    case '锋利':
+      m.critDmg += 30;
+      m.status.push(S('bleed', 3, 1, 20));
+      break;
+    case '钝器':
+      m.knock += 20;
+      m.status.push(S('stun', 0.4, 1, 10));
+      break;
+    case '枪械':
+      m.range += 20;
+      m.projSpd += 20;
+      break;
+    case '酱料':
+      m.status.push(S('slow', 2, 1, 50));
+      break;
+    case '长柄':
+    case '投掷':
+      m.range += 25;
+      break;
+    case '格斗':
+      m.combo = Math.max(m.combo, 0.2);
+      break;
+    case '种子':
+      m.split += 1;
+      break;
+    case '机械':
+      m.atkSpd += 11;
+      break;
+    case '魔法':
+      m.homing = Math.max(m.homing, 3);
+      m.atkSpd += 8;
+      break;
+    case '弓弩':
+      m.range += 15;
+      m.pierce += 1;
+      break;
+    case '火焰':
+      m.status.push(S('burn', 3));
+      break;
+    case '雷电':
+      m.chain += 1;
+      m.status.push(S('stun', 0.3, 1, 10));
+      break;
+    case '冰霜':
+      m.status.push(S('slow', 2), S('freeze', 1, 1, 8));
+      break;
+    case '毒气':
+      m.status.push(S('poison', 4));
+      break;
+    case '元素':
+      m.area += 15;
+      m.range += 10;
+      break;
+    case '持续伤害':
+      if (def.effect?.burn) m.status.push(S('burn', def.effect.burn.dur));
+      if (def.effect?.poison) m.status.push(S('poison', def.effect.poison.dur));
+      break;
+    case '爆破':
+      m.area += 20;
+      break;
+    case '穿透':
+      m.pierce += 1;
+      break;
+    case '连锁':
+      m.bounce += 1;
+      m.chain += 1;
+      break;
+    case '多重射击':
+      m.count += 1;
+      break;
+    case '暴击':
+      m.crit += 10;
+      break;
+    case '光环':
+      m.area += 15;
+      m.atkSpd += 5;
+      break;
+    // 蔬果、甜点按命中触发，见 systems/Synergy.ts 的 afterHit
+  }
 }
 
 /** 樱桃双枪「连珠炮」的过热循环：每发 +1 层热枪（攻速 +1%），叠到 max 层后过热 overheat 秒（攻速 −overheatSlow%）并清零 */
@@ -169,7 +261,7 @@ export class TalentSystem {
         m.area = Math.min(40, Math.max(0, s.armor) * 2);
         break;
       case 'chili':
-        m.range = 30;
+        m.range = 15;
         m.status.push(S('burn', 2.5));
         break;
       case 'corn':
@@ -177,7 +269,7 @@ export class TalentSystem {
         m.pierce = 1;
         break;
       case 'watermelon':
-        m.area = 25 + Math.min(50, Math.max(0, s.maxHp) / 4);
+        m.area = 25 + Math.min(50, Math.max(0, s.maxHp) / 5);
         m.knock = 20;
         break;
       case 'lemon':
@@ -265,10 +357,9 @@ export class TalentSystem {
         }
         break;
       case 'wintermelon':
-        if (this.still) {
-          m.range = 20;
-          m.combo = 0.5;
-        }
+        // 移动中也有 25% 连击，静止时升到 50% 并加射程
+        m.combo = this.still ? 0.5 : 0.25;
+        if (this.still) m.range = 20;
         break;
       case 'bittermelon':
         m.status.push(S('freeze', 1, 1, 8));
@@ -283,16 +374,18 @@ export class TalentSystem {
         m.status.push(S('burn', 2.5));
         break;
       case 'soybean':
-        if (g.skill?.clone) m.atkSpd = 50;
+        if (g.skill?.clone) m.atkSpd = 70;
         break;
       case 'taro':
-        m.area = 25;
+        m.area = 15;
         break;
       case 'cabbage':
         m.area = ps.stacks('fortify') * 4;
         if (this.vetT > 0) m.atkSpd = 30;
         break;
     }
+    // 双契合：角色的两个契合标签各给武器加一档对应特性（说明见 data/synergy.ts 的 TAG_TRAIT）
+    if (isDoubleFavored(this.fav, def)) for (const t of this.fav) tagTraitMods(t, def, m);
     return m;
   }
 
@@ -340,7 +433,7 @@ export class TalentSystem {
         };
         break;
       case 'pea': {
-        const ch = 0.08 * run.weapons.length;
+        const ch = 0.11 * run.weapons.length;
         sm.bullet = (b) => {
           if (b.kind === 'normal' && Math.random() < ch) b.split += 1;
         };
@@ -415,7 +508,7 @@ export class TalentSystem {
         if (e.alive && e.status.stacks('armorBreak') >= 3) e.status.apply({ id: 'stun', dur: 0.3 });
         break;
       case 'chili':
-        if (c.burning && this.ready('spark', 0.25)) this.boom(e.x, e.y, 55, dmg * 0.3, 0xff7b00, src);
+        if (c.burning && this.ready('spark', 0.25)) this.boom(e.x, e.y, 55, dmg * 0.45, 0xff7b00, src);
         break;
       case 'lemon':
         if (crit) {
@@ -559,7 +652,7 @@ export class TalentSystem {
   onKill(e: Enemy, byExplosion: boolean, src: string): void {
     const g = this.g;
     if (this.id === 'mushroom' && e.status.has('poison')) {
-      for (const o of g.grid.query(e.x, e.y, 150, [])) if (o.alive && o !== e) g.applyDot(o, { id: 'poison', dur: 4, stacks: 3 });
+      for (const o of g.grid.query(e.x, e.y, 150, [])) if (o.alive && o !== e) g.applyDot(o, { id: 'poison', dur: 4, stacks: 2 });
       const s = g.stats,
         dmg = (6 + s.elemental * 1.5) * (1 + s.damage / 100);
       for (let i = 0; i < 2; i++) {
@@ -630,7 +723,7 @@ export class TalentSystem {
   takenMult(): number {
     switch (this.id) {
       case 'watermelon':
-        return 0.9;
+        return 0.95;
       case 'bellpepper':
         return 0.85;
       case 'wintermelon':
@@ -707,7 +800,7 @@ export class TalentSystem {
               Math.atan2(t.y - p.y, t.x - p.x),
               520,
               0.85,
-              4 + s.elemental + s.armor * 0.5,
+              3 + s.elemental * 0.8 + s.armor * 0.4,
               'proj_player',
               0xc9a227,
               'talent',
@@ -717,8 +810,8 @@ export class TalentSystem {
         }
         break;
       case 'peach':
-        // 圣光弹：每 0.8 秒向最近的敌人发射追踪光弹（伤害随远程伤害、生命再生成长），有护盾时一次 2 枚
-        if ((this.autoT += dt) >= 0.8) {
+        // 圣光弹：每 0.6 秒向最近的敌人发射追踪光弹（伤害随远程伤害、生命再生成长），有护盾时一次 2 枚
+        if ((this.autoT += dt) >= 0.6) {
           const p = g.player,
             t = g.grid.nearest(p.x, p.y, 420);
           if (t) {
@@ -733,7 +826,7 @@ export class TalentSystem {
                 a + (k - (n - 1) / 2) * 0.3,
                 520,
                 0.9,
-                6 + s.ranged + s.regen * 0.5,
+                8 + s.ranged * 1.2 + s.regen * 0.5,
                 'proj_player',
                 0xffc8dd,
                 'talent',

@@ -252,14 +252,16 @@ function droneSupport(c: StyleCtx): void {
   });
 }
 
-/** 黄豆军师：召唤 4 名戴头盔的豆兵，冲向敌人近身肉搏 */
+/** 黄豆军师：在自身周围 8 个方向各召唤 1 名戴头盔的豆兵，冲向敌人近身肉搏 */
+const BEAN_SOLDIERS = 8;
 function beanSoldiers(c: StyleCtx): void {
   const { g, host, sk, info } = c;
   const dur = host.dur(sk.duration ?? 10);
   const p = g.player;
-  const troops = Array.from({ length: 4 }, (_, i) => ({
-    x: p.x + Math.cos((i / 4) * Math.PI * 2) * 50,
-    y: p.y + Math.sin((i / 4) * Math.PI * 2) * 40,
+  const troops = Array.from({ length: BEAN_SOLDIERS }, (_, i) => ({
+    a: (i / BEAN_SOLDIERS) * Math.PI * 2,
+    x: p.x + Math.cos((i / BEAN_SOLDIERS) * Math.PI * 2) * 60,
+    y: p.y + Math.sin((i / BEAN_SOLDIERS) * Math.PI * 2) * 60,
     cd: 0,
     gfx: g.add.graphics(),
   }));
@@ -269,8 +271,9 @@ function beanSoldiers(c: StyleCtx): void {
     tick: (dt) => {
       for (const s of troops) {
         const t = g.grid.nearest(s.x, s.y, 500);
-        const tx = t ? t.x : g.player.x + 60,
-          ty = t ? t.y : g.player.y;
+        // 附近没有敌人：回到自己那个方向的站位
+        const tx = t ? t.x : g.player.x + Math.cos(s.a) * 60,
+          ty = t ? t.y : g.player.y + Math.sin(s.a) * 60;
         const d = Math.hypot(tx - s.x, ty - s.y) || 1;
         if (d > 26) {
           s.x += ((tx - s.x) / d) * 260 * dt;
@@ -652,8 +655,7 @@ function yamFeast(c: StyleCtx): void {
   const each = Math.round((s.maxHp * (sk.heal ?? 0.2) * HEAL_SCALE * 1.2) / 3);
   const yams = Array.from({ length: 3 }, (_, i) => {
     const a = (i / 3) * Math.PI * 2 + Math.random();
-    const x = Phaser.Math.Clamp(p.x + Math.cos(a) * 130, g.arena.x + 40, g.arena.right - 40);
-    const y = Phaser.Math.Clamp(p.y + Math.sin(a) * 100, g.arena.y + 40, g.arena.bottom - 40);
+    const { x, y } = g.arena.clamp(p.x + Math.cos(a) * 130, p.y + Math.sin(a) * 100, 40);
     const gr = g.add.graphics().setDepth(y);
     gr.fillStyle(0x000000, 0.25).fillEllipse(0, 14, 50, 12);
     gr.fillStyle(0x9c4221, 1).fillEllipse(0, 0, 54, 28);

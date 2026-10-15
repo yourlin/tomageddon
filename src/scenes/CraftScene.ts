@@ -16,7 +16,7 @@ import { superBuffText } from '../systems/SuperBuffs';
 import { tx, lang } from '../i18n';
 import { tagName } from '../i18n/apply';
 import { audio } from '../systems/Audio';
-import { isFavoredWeapon } from '../data/affinity';
+import { isFavoredWeapon, isDoubleFavored } from '../data/affinity';
 import { VW, VH } from '../systems/HiDpi';
 
 const KIND_NAME: Record<RecipeKind, [string, string]> = {
@@ -297,7 +297,10 @@ export class CraftScene extends Phaser.Scene {
       L.add(text(this, x + s - 4, y + s - 3, TIER_NAMES[w.tier], 11, RARITY[w.tier].css).setOrigin(1, 1));
       if (run.inStorage(w.uid)) L.add(text(this, x + 4, y + 2, tx('仓', 'S'), 11, COLORS.textDim));
       if (n && !on) L.add(text(this, x + s - 3, y + 2, String(n), 11, '#ffd166').setOrigin(1, 0));
-      if (isFavoredWeapon(run.char.favored, WEAPON_MAP[w.id])) L.add(text(this, x + 3, y + s - 3, '★', 12, '#ffd166').setOrigin(0, 1));
+      if (isFavoredWeapon(run.char.favored, WEAPON_MAP[w.id]))
+        L.add(
+          text(this, x + 3, y + s - 3, isDoubleFavored(run.char.favored, WEAPON_MAP[w.id]) ? '★★' : '★', 12, '#ffd166').setOrigin(0, 1),
+        );
       L.add(
         hitArea(this, x, y, s, s, () => {
           this.focus(on ? null : w.id);

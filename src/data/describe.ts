@@ -1,8 +1,9 @@
 // 道具 / 特效的文字描述（自动生成）
 import type { ItemDef, ItemSpecial } from './items';
 import { describeMods, STAT_INFO, type StatKey } from './stats';
-import { WEAPON_SETS, bulletArchetype, basePierce, type WeaponDef } from './weapons';
-import { weaponTags } from './weaponTags';
+import { WEAPON_MAP, bulletArchetype, basePierce, type WeaponDef } from './weapons';
+import { setsOf, setTiers } from './weaponSets';
+
 import { STATUSES, type StatusApply } from './statuses';
 import { tx } from '../i18n';
 import { BALANCE, armorMultiplier, speedBonusPct } from './balance';
@@ -136,30 +137,59 @@ export function armorText(armor: number): string {
   return tx(`(减伤 ${r}%${capped ? '·上限' : ''})`, ` (−${r}% dmg${capped ? ', cap' : ''})`);
 }
 
-/** 单把武器上显示的武器套装说明：每个相关标签一行，含持有数、当前生效档与下一档。
- *  counts 为当前各标签件数（RunState.setCounts）；adding 表示这把还没持有（商店预览），按买下后的件数显示 */
-export function describeWeaponSets(
-  def: WeaponDef,
-  counts: Record<string, number>,
-  adding = false,
-  tagName: (t: string) => string = (t) => t,
-): string[] {
-  const out: string[] = [];
-  for (const t of weaponTags(def)) {
-    const set = WEAPON_SETS[t];
-    if (!set) continue;
-    const n = (counts[t] ?? 0) + (adding ? 1 : 0);
-    const ks = Object.keys(set.bonus)
-      .map(Number)
-      .sort((a, b) => a - b);
-    const cur = ks.filter((k) => n >= k).pop();
-    const next = ks.find((k) => n < k);
+/** 商店卡片上的一行套装简介：套装名、件数（买下后），以及买下后生效的档位或下一档 */
+export function setSummary(def: WeaponDef, counts: Record<string, number>, adding = false): string[] {
+  return setsOf(def.id).map((set) => {
+    const n = (counts[set.id] ?? 0) + (adding ? 1 : 0);
+    const name = tx(set.name[0], set.name[1]);
+    const tiers = setTiers(set);
+    const on = tiers.filter((k) => n >= k).pop();
+    const next = tiers.find((k) => n < k);
     const mods = (k: number) => describeMods(set.bonus[k] as Parameters<typeof describeMods>[0]).join(' ');
-    const parts: string[] = [];
-    if (cur !== undefined) parts.push(tx(`生效 ${mods(cur)}`, `active ${mods(cur)}`));
-    if (next !== undefined) parts.push(tx(`${next} 把 ${mods(next)}`, `${next}: ${mods(next)}`));
-    else parts.push(tx('已满', 'maxed'));
-    out.push(tx(`✦ ${tagName(t)}套装（${n} 把）：`, `✦ ${tagName(t)} set (${n}): `) + parts.join(tx('；', '; ')));
+    const tail =
+      on !== undefined
+        ? tx(`生效 ${mods(on)}`, `active ${mods(on)}`)
+        : next !== undefined
+          ? tx(`${next} 件 ${mods(next)}`, `${next}: ${mods(next)}`)
+          : '';
+    return `✦ ${name} ${n}/${set.members.length} · ${tail}`;
+  });
+}
+
+/** 套装说明的一行：kind = head（套装名与件数）/ members（成员）/ on（已生效的档位）/ off（未生效的档位） */
+export interface SetRow {
+  text: string;
+  kind: 'head' | 'members' | 'on' | 'off';
+}
+/** 套装行的颜色：生效绿色、未生效灰色 */
+export const SET_ROW_COLOR: Record<SetRow['kind'], string> = { head: '#ffd166', members: '#cfc6bd', on: '#52ff8a', off: '#7d746c' };
+
+/** 武器所属套装的说明（data/weaponSets.ts）：套装名与件数、成员（已持有打 ✓）、各档加成（生效绿 / 未生效灰）。
+ *  counts 为当前各套装件数（RunState.setCounts）；adding 表示这把还没持有（商店预览），按买下后的件数显示 */
+export function describeWeaponSets(def: WeaponDef, counts: Record<string, number>, adding = false, held: string[] = []): SetRow[] {
+  const out: SetRow[] = [];
+  for (const set of setsOf(def.id)) {
+    const n = (counts[set.id] ?? 0) + (adding ? 1 : 0);
+    const name = tx(set.name[0], set.name[1]);
+    out.push({ text: tx(`✦ ${name}（${n}/${set.members.length}）`, `✦ ${name} (${n}/${set.members.length})`), kind: 'head' });
+    const own = new Set(held);
+    if (adding) own.add(def.id);
+    out.push({
+      text:
+        '   ' +
+        set.members
+          .map((m) => {
+            const w = WEAPON_MAP[m];
+            return `${w?.name ?? m}${own.has(m) ? ' ✓' : ''}`;
+          })
+          .join(tx('、', ', ')),
+      kind: 'members',
+    });
+    for (const k of setTiers(set)) {
+      const mods = describeMods(set.bonus[k] as Parameters<typeof describeMods>[0]).join(tx('，', ', '));
+      const label = k === set.members.length ? tx(`全套 ${k} 件`, `Full ${k}`) : tx(`${k} 件`, `${k} pcs`);
+      out.push({ text: `   ${label}：${mods}`, kind: n >= k ? 'on' : 'off' });
+    }
   }
   return out;
 }

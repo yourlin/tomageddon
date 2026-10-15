@@ -11,6 +11,26 @@ import { RARITY_BUDGET } from '../../src/data/itemGen';
 import { MODIFIERS } from '../../src/data/challenges';
 import { pick } from '../../src/systems/Achievements';
 import { Doc, lnk, stApply, sep, img, ELITES, BOSS_ONLY, BEHAVIOR_NAME, describePattern, enemyAppear, waveRange } from './common';
+import { arenaDefFor } from '../../src/data/arenas';
+import { Arena, type ArenaShape } from '../../src/systems/Arena';
+import { lang } from '../../src/i18n';
+
+/** 场地形状的文字说明（形状 + 尺寸） */
+function shapeText(s: ArenaShape, a: Arena): string {
+  const wh = `${Math.round(a.width)} × ${Math.round(a.height)}`;
+  switch (s.kind) {
+    case 'rect':
+      return tx(`矩形 ${wh}`, `Rectangle ${wh}`);
+    case 'roundRect':
+      return tx(`圆角矩形 ${wh}`, `Rounded rectangle ${wh}`);
+    case 'ellipse':
+      return s.rx === s.ry ? tx(`圆形，直径 ${s.rx * 2}`, `Circle, ${s.rx * 2} across`) : tx(`椭圆 ${wh}`, `Ellipse ${wh}`);
+    case 'polygon':
+      return s.pts.length === 8 ? tx(`八边形，外接 ${wh}`, `Octagon, ${wh} bounds`) : tx(`不规则圆形，外接 ${wh}`, `Irregular round shape, ${wh} bounds`);
+    case 'union':
+      return tx(`十字形，外接 ${wh}`, `Cross shape, ${wh} bounds`);
+  }
+}
 
 export function itemsDoc(): void {
   const series = [...new Set(ALL_ITEMS.map((i) => i.series).filter(Boolean))] as string[];
@@ -214,9 +234,19 @@ export function chaptersDoc(): void {
   for (const c of CHAPTERS) {
     d.h3(tx(`${c.name}（${c.subtitle}）`, c.name), `chapter-${c.id}`);
     d.p(`> ${c.desc}`);
+    const ad = arenaDefFor(c.id);
+    const arena = new Arena(ad);
+    const mapName = ad.name ? (lang === 'en' ? ad.name[1] : ad.name[0]) : '';
+    d.p(`<img src="${lang === 'en' ? '../' : ''}images/map/ch${c.id}.webp" width="360" alt="${mapName}">`);
+    if (ad.desc) d.p(tx(`**地图 · ${mapName}**：`, `**Map · ${mapName}**: `) + (lang === 'en' ? ad.desc[1] : ad.desc[0]));
     d.table(
       [tx('项目', 'Field'), tx('内容', 'Value')],
       [
+        [
+          tx('场地', 'Arena'),
+          shapeText(ad.shape, arena) +
+            (ad.obstacles?.length ? tx(`；${ad.obstacles.length} 个障碍物（只挡移动，不挡子弹）`, `; ${ad.obstacles.length} obstacles (block movement, not bullets)`) : ''),
+        ],
         [tx('难度倍率', 'Difficulty'), tx(`生命 ×${c.hpMult} · 伤害 ×${c.dmgMult} · 速度 ×${c.speedMult}`, `HP ×${c.hpMult} · damage ×${c.dmgMult} · speed ×${c.speedMult}`)],
         [tx('地形机关', 'Terrain'), (TERRAIN_INFO[c.id] ?? []).join('<br>')],
         [tx('精英池', 'Elite pool'), ELITES.filter((b) => b.chapter === c.id).map((b) => `${img('boss', b.id, 24)} ${lnk.boss(b)}`).join(sep())],

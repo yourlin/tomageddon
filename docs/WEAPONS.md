@@ -1,4 +1,4 @@
-# 武器（180 把）
+# 武器（209 把）
 
 **中文** · [English](en/WEAPONS.md)
 
@@ -13,6 +13,7 @@
 ## 目录
 
 - [武器一览](#overview)
+- [武器套装（23 套）](#sets)
 - [随机词条与打造](#affixes)
 - [近战武器](#class-melee)
   - [番茄叉](#weapon-fork)
@@ -37,6 +38,12 @@
   - [破壁机](#weapon-blender_aura)
   - [炸药鸡腿](#weapon-dynamite_drumstick)
   - [椰壳拳套](#weapon-coconut_gloves)
+  - [胡萝卜骑枪](#weapon-carrot_lance)
+  - [火龙骑枪](#weapon-dragon_lance)
+  - [坚果指虎](#weapon-nut_knuckles)
+  - [冬瓜禅杖](#weapon-melon_staff)
+  - [甜菜狂战斧](#weapon-beet_axe)
+  - [柠檬匕首](#weapon-lemon_dagger)
   - [拐杖糖锤](#weapon-candy_cane)
   - [冰棍刺剑](#weapon-popsicle_blade)
   - [雪糕大锤](#weapon-icecream_hammer)
@@ -57,21 +64,25 @@
   - [雷霆铁壁锅](#weapon-storm_whisk_pan)
   - [椰雷流星锤](#weapon-coconut_quake_mace)
   - [烈焰菜刀](#weapon-fz_knife_ember_mine)
-  - [霜寒拐杖糖锤](#weapon-fz_candy_cane_glacier_mortar)
+  - [主厨高压电叉](#weapon-fz_volt_fork_plate_frisbee)
+  - [剧毒刨丝刀](#weapon-fz_grater_sweep_stink_aura)
   - [散射双持菜刀](#weapon-fz_twin_cleavers_ketchup)
   - [酱爆烤串签](#weapon-fz_skewer_soy_pistol)
   - [霜寒黄瓜武士刀](#weapon-fz_cucumber_katana_soda)
+  - [剧毒炸药鸡腿](#weapon-fz_dynamite_drumstick_blackberry_wand)
   - [连环锅铲](#weapon-fz_spatula_slingshot)
   - [剧毒厨房剪刀](#weapon-fz_kitchen_scissors_toxic_spike)
   - [连环冰棍刺剑](#weapon-fz_popsicle_blade_olive_launcher)
   - [霜寒烤肉长签](#weapon-fz_bbq_skewer_cream_torch)
   - [霜寒椰壳拳套](#weapon-fz_coconut_gloves_ice_cube_tray)
   - [霜寒炭火钳](#weapon-fz_coal_tongs_whisk_spin)
-  - [爆裂汤勺](#weapon-fz_ladle_watermelon_hammer)
+  - [糖霜汤勺](#weapon-fz_ladle_cherry_pistols)
+  - [霜寒西瓜锤](#weapon-fz_watermelon_hammer_mint_frost_mine)
   - [烈焰竹筷](#weapon-fz_chopsticks_pepper_spray)
-  - [爆裂披萨滚刀](#weapon-fz_pizza_cutter_potato_mine)
-  - [剧毒法棍剑](#weapon-fz_baguette_sword_spore_cannon)
-  - [鲜果松肉锤](#weapon-fz_meat_tenderizer_seed_spitter)
+  - [烈焰披萨滚刀](#weapon-fz_pizza_cutter_dragon_lance)
+  - [重击坚果指虎](#weapon-fz_nut_knuckles_rolling_pin)
+  - [连环法棍剑](#weapon-fz_baguette_sword_sprout_wand)
+  - [重击切片器](#weapon-fz_mandoline_meat_tenderizer)
 - [远程武器](#class-ranged)
   - [番茄弹弓](#weapon-slingshot)
   - [豌豆枪](#weapon-pea_shooter)
@@ -97,6 +108,14 @@
   - [果酱迫击炮](#weapon-jam_mortar)
   - [海胆雷](#weapon-sea_urchin_mine)
   - [芦笋长弓](#weapon-asparagus_bow)
+  - [撒豆雷](#weapon-bean_mine)
+  - [石榴集束弹](#weapon-pomegranate_cluster)
+  - [青椒浮游炮](#weapon-pepper_drone)
+  - [洋葱催泪镖](#weapon-onion_tear)
+  - [荔枝红包枪](#weapon-lychee_gun)
+  - [樱桃双枪](#weapon-cherry_pistols)
+  - [番茄酱双瓶](#weapon-ketchup_twin)
+  - [蜜桃糖浆枪](#weapon-peach_syrup)
   - [马卡龙连发](#weapon-macaron_gun)
   - [甜甜圈飞环](#weapon-donut_ring)
   - [巧克力地雷](#weapon-choco_mine)
@@ -120,21 +139,29 @@
   - [炎狱迫击炮](#weapon-inferno_mortar)
   - [电磁蓝莓狙](#weapon-railgun_sniper)
   - [糖果霰弹枪](#weapon-candy_shotgun)
-  - [鲜果餐盘飞碟](#weapon-fz_plate_frisbee_onion_boomerang)
-  - [致命玉米散弹](#weapon-fz_corn_scatter_grater_sweep)
+  - [糖霜洋葱回旋镖](#weapon-fz_onion_boomerang_candy_cane)
+  - [散射冰川迫击炮](#weapon-fz_glacier_mortar_corn_scatter)
   - [烈焰海胆雷](#weapon-fz_sea_urchin_mine_dragonfruit_orb)
   - [锐锋玉米加农](#weapon-fz_corn_cannon_blade_aura)
-  - [烈焰蜂蜜喷枪](#weapon-fz_honey_blaster_pumpkin_mortar)
-  - [剧毒爆米花机](#weapon-fz_popcorn_machine_rot_aura)
-  - [爆裂甜甜圈飞环](#weapon-fz_donut_ring_dynamite_drumstick)
+  - [重击青椒浮游炮](#weapon-fz_pepper_drone_melon_staff)
+  - [雷霆南瓜迫击炮](#weapon-fz_pumpkin_mortar_eggplant_staff)
+  - [贯穿爆米花机](#weapon-fz_popcorn_machine_carrot_lance)
+  - [剧毒甜甜圈飞环](#weapon-fz_donut_ring_rot_aura)
   - [酱爆豆子火箭筒](#weapon-fz_bean_bazooka_soy_bomb)
-  - [烈焰巧克力地雷](#weapon-fz_choco_mine_bbq_torch)
+  - [雷霆洋葱催泪镖](#weapon-fz_onion_tear_lightning_whisk)
+  - [霜寒胡椒研磨枪](#weapon-fz_pepper_grinder_choco_mine)
+  - [散射烧烤喷枪](#weapon-fz_bbq_torch_ketchup_twin)
   - [致命樱桃炸弹](#weapon-fz_cherry_bomb_bamboo_spear)
   - [主厨胡萝卜弩](#weapon-fz_carrot_crossbow_fork)
   - [爆裂飞刀匣](#weapon-fz_knife_case_microwave_cannon)
+  - [致命蜜桃糖浆枪](#weapon-fz_peach_syrup_blender_aura)
   - [贯穿西瓜榴弹](#weapon-fz_melon_grenade_pumpkin_lantern)
   - [烈焰毒刺吹管](#weapon-fz_blowpipe_syrup_sprayer)
-  - [霜寒菌丝回旋镖](#weapon-fz_mycelium_boomerang_rice_cooker_aura)
+  - [致命石榴集束弹](#weapon-fz_pomegranate_cluster_beet_axe)
+  - [雷霆土豆地雷](#weapon-fz_potato_mine_popping_candy)
+  - [剧毒撒豆雷](#weapon-fz_bean_mine_spore_cannon)
+  - [散射菌丝回旋镖](#weapon-fz_mycelium_boomerang_lychee_gun)
+  - [致命瓜子机枪](#weapon-fz_seed_spitter_fork)
 - [元素武器](#class-elemental)
   - [芥末喷枪](#weapon-mustard_flamer)
   - [冰镇汽水](#weapon-soda)
@@ -156,6 +183,11 @@
   - [火锅吐息](#weapon-hotpot_breath)
   - [南瓜鬼火灯](#weapon-pumpkin_lantern)
   - [孢子喷壶](#weapon-spore_sprayer)
+  - [黑莓魔杖](#weapon-blackberry_wand)
+  - [芋泥光环](#weapon-taro_aura)
+  - [榴莲臭气光环](#weapon-stink_aura)
+  - [紫茄雷杖](#weapon-eggplant_staff)
+  - [新芽魔杖](#weapon-sprout_wand)
   - [奶油喷枪](#weapon-cream_torch)
   - [焦糖光环](#weapon-caramel_aura)
   - [跳跳糖电击](#weapon-popping_candy)
@@ -184,24 +216,22 @@
   - [龙息喷流](#weapon-dragon_breath_flame)
   - [霜星八角](#weapon-anise_frost_storm)
   - [圣盐结界](#weapon-holy_salt_barrier)
-  - [贯穿雷霆榴莲](#weapon-fz_thunder_durian_volt_fork)
+  - [致命雷霆榴莲](#weapon-fz_thunder_durian_lemon_dagger)
   - [烈焰果冻弹](#weapon-fz_jelly_bounce_chili_shuriken)
   - [蚀骨冰沙喷雾](#weapon-fz_slush_spray_caramel_aura)
   - [酱爆电烤架](#weapon-fz_grill_arc_pepper_storm_aura)
-  - [烈焰茶壶雷暴](#weapon-fz_teapot_storm_charcoal_aura)
+  - [酱爆芋泥光环](#weapon-fz_taro_aura_charcoal_aura)
+  - [糖霜茶壶雷暴](#weapon-fz_teapot_storm_honey_blaster)
   - [主厨可乐电击枪](#weapon-fz_cola_zapper_mixer_storm)
   - [贯穿蒸汽水壶](#weapon-fz_steam_kettle_asparagus_bow)
-  - [贯穿闪电打蛋器](#weapon-fz_lightning_whisk_pepper_grinder)
   - [霜寒孢子喷壶](#weapon-fz_spore_sprayer_shaved_ice_gun)
   - [烈焰吐司闪电](#weapon-fz_toaster_zap_hot_sauce_gun)
-  - [致命薄荷冰雷](#weapon-fz_mint_frost_mine_blender_aura)
-  - [重击跳跳糖电击](#weapon-fz_popping_candy_rolling_pin)
-  - [贯穿孜然飞镖](#weapon-fz_cumin_star_mandoline)
+  - [霜寒孜然飞镖](#weapon-fz_cumin_star_rice_cooker_aura)
 - [合成关系图](#craft-graph)
-  - [近战（65 条配方）](#craft-graph-melee)
-  - [远程（67 条配方）](#craft-graph-ranged)
-  - [元素（67 条配方）](#craft-graph-elemental)
-- [超武（20 把）](#evolution)
+  - [近战（82 条配方）](#craft-graph-melee)
+  - [远程（94 条配方）](#craft-graph-ranged)
+  - [元素（77 条配方）](#craft-graph-elemental)
+- [超武（45 把）](#evolution)
 
 <a id="overview"></a>
 
@@ -275,6 +305,25 @@
 | <img src="images/weapon/spore_sprayer.png" width="32" height="32" alt=""> [孢子喷壶](#weapon-spore_sprayer) | 元素 | 子弹 | 蔬果/元素 | 5 / 8 / 13 / 20 | 0.7 / 0.65 / 0.6 / 0.54 | 330 | 22 |
 | <img src="images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [椰壳拳套](#weapon-coconut_gloves) | 近战 | 直刺 | 蔬果 | 5 / 9 / 14 / 22 | 0.42 / 0.4 / 0.37 / 0.34 | 95 | 20 |
 | <img src="images/weapon/asparagus_bow.png" width="32" height="32" alt=""> [芦笋长弓](#weapon-asparagus_bow) | 远程 | 子弹 | 蔬果 | 14 / 24 / 37 / 56 | 1.1 / 1.04 / 0.97 / 0.88 | 520 | 26 |
+| <img src="images/weapon/carrot_lance.png" width="32" height="32" alt=""> [胡萝卜骑枪](#weapon-carrot_lance) | 近战 | 直刺 | 长柄/蔬果 | 17 / 29 / 45 / 69 | 1.35 / 1.28 / 1.2 / 1.08 | 210 | 27 |
+| <img src="images/weapon/dragon_lance.png" width="32" height="32" alt=""> [火龙骑枪](#weapon-dragon_lance) | 近战 | 直刺 | 长柄/蔬果 | 14 / 24 / 37 / 57 | 1.15 / 1.08 / 1 / 0.92 | 195 | 27 |
+| <img src="images/weapon/nut_knuckles.png" width="32" height="32" alt=""> [坚果指虎](#weapon-nut_knuckles) | 近战 | 直刺 | 格斗/蔬果 | 4 / 7 / 11 / 17 | 0.36 / 0.34 / 0.31 / 0.28 | 90 | 21 |
+| <img src="images/weapon/melon_staff.png" width="32" height="32" alt=""> [冬瓜禅杖](#weapon-melon_staff) | 近战 | 横扫 | 格斗/钝器 | 24 / 40 / 62 / 94 | 2 / 1.9 / 1.8 / 1.65 | 150 | 31 |
+| <img src="images/weapon/beet_axe.png" width="32" height="32" alt=""> [甜菜狂战斧](#weapon-beet_axe) | 近战 | 横扫 | 钝器/锋利 | 26 / 43 / 67 / 100 | 2 / 1.9 / 1.8 / 1.65 | 125 | 32 |
+| <img src="images/weapon/bean_mine.png" width="32" height="32" alt=""> [撒豆雷](#weapon-bean_mine) | 远程 | 地雷 | 种子/蔬果 | 10 / 16 / 25 / 38 | 1.9 / 1.8 / 1.65 / 1.5 | 230 | 25 |
+| <img src="images/weapon/pomegranate_cluster.png" width="32" height="32" alt=""> [石榴集束弹](#weapon-pomegranate_cluster) | 远程 | 爆炸弹 | 蔬果 | 9 / 15 / 23 / 35 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 29 |
+| <img src="images/weapon/pepper_drone.png" width="32" height="32" alt=""> [青椒浮游炮](#weapon-pepper_drone) | 远程 | 爆炸弹 | 机械/蔬果 | 11 / 18 / 28 / 43 | 1.3 / 1.22 / 1.14 / 1.04 | 420 | 30 |
+| <img src="images/weapon/onion_tear.png" width="32" height="32" alt=""> [洋葱催泪镖](#weapon-onion_tear) | 远程 | 回旋镖 | 蔬果 | 9 / 15 / 23 / 36 | 1.35 / 1.27 / 1.18 / 1.08 | 360 | 25 |
+| <img src="images/weapon/blackberry_wand.png" width="32" height="32" alt=""> [黑莓魔杖](#weapon-blackberry_wand) | 元素 | 子弹 | 魔法/蔬果 | 9 / 15 / 24 / 36 | 0.95 / 0.9 / 0.84 / 0.76 | 420 | 26 |
+| <img src="images/weapon/lychee_gun.png" width="32" height="32" alt=""> [荔枝红包枪](#weapon-lychee_gun) | 远程 | 子弹 | 枪械/蔬果 | 5 / 8 / 12 / 18 | 0.6 / 0.56 / 0.52 / 0.46 | 380 | 24 |
+| <img src="images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [樱桃双枪](#weapon-cherry_pistols) | 远程 | 子弹 | 枪械/蔬果/甜点 | 5 / 8 / 12 / 18 | 0.26 / 0.24 / 0.22 / 0.19 | 380 | 24 |
+| <img src="images/weapon/lemon_dagger.png" width="32" height="32" alt=""> [柠檬匕首](#weapon-lemon_dagger) | 近战 | 直刺 | 锋利/酱料 | 5 / 9 / 14 / 22 | 0.55 / 0.52 / 0.48 / 0.42 | 125 | 22 |
+| <img src="images/weapon/taro_aura.png" width="32" height="32" alt=""> [芋泥光环](#weapon-taro_aura) | 元素 | 光环 |  | 3 / 5 / 8 / 12 | 0.5 / 0.5 / 0.5 / 0.5 | 140 | 32 |
+| <img src="images/weapon/stink_aura.png" width="32" height="32" alt=""> [榴莲臭气光环](#weapon-stink_aura) | 元素 | 光环 |  | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 149 | 31 |
+| <img src="images/weapon/ketchup_twin.png" width="32" height="32" alt=""> [番茄酱双瓶](#weapon-ketchup_twin) | 远程 | 子弹 | 酱料/蔬果 | 4 / 7 / 11 / 17 | 0.55 / 0.52 / 0.48 / 0.43 | 360 | 23 |
+| <img src="images/weapon/peach_syrup.png" width="32" height="32" alt=""> [蜜桃糖浆枪](#weapon-peach_syrup) | 远程 | 子弹 | 甜点/酱料 | 7 / 12 / 18 / 28 | 0.6 / 0.56 / 0.52 / 0.47 | 420 | 24 |
+| <img src="images/weapon/eggplant_staff.png" width="32" height="32" alt=""> [紫茄雷杖](#weapon-eggplant_staff) | 元素 | 连锁闪电 | 蔬果 | 8 / 13 / 20 / 31 | 1 / 0.95 / 0.88 / 0.8 | 380 | 27 |
+| <img src="images/weapon/sprout_wand.png" width="32" height="32" alt=""> [新芽魔杖](#weapon-sprout_wand) | 元素 | 子弹 | 魔法/蔬果 | 6 / 10 / 15 / 24 | 0.8 / 0.75 / 0.7 / 0.63 | 400 | 25 |
 | <img src="images/weapon/candy_cane.png" width="32" height="32" alt=""> [拐杖糖锤](#weapon-candy_cane) | 近战 | 横扫 | 甜点/钝器 | 11 / 18 / 29 / 43 | 1.25 / 1.18 / 1.1 / 1 | 130 | 19 |
 | <img src="images/weapon/macaron_gun.png" width="32" height="32" alt=""> [马卡龙连发](#weapon-macaron_gun) | 远程 | 子弹 | 甜点/枪械 | 3 / 4 / 6 / 8 | 0.32 / 0.29 / 0.26 / 0.22 | 400 | 22 |
 | <img src="images/weapon/cream_torch.png" width="32" height="32" alt=""> [奶油喷枪](#weapon-cream_torch) | 元素 | 喷火 | 甜点 | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 200 | 29 |
@@ -346,10 +395,11 @@
 | <img src="images/weapon/anise_frost_storm.png" width="32" height="32" alt=""> [霜星八角](#weapon-anise_frost_storm) | 元素 | 回旋镖 | 锋利/元素 | 10 / 17 / 25 / 39 | 1 / 0.95 / 0.88 / 0.8 | 357 | 36 |
 | <img src="images/weapon/holy_salt_barrier.png" width="32" height="32" alt=""> [圣盐结界](#weapon-holy_salt_barrier) | 元素 | 光环 | 锋利/元素/蔬果 | 3 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 160 | 40 |
 | <img src="images/weapon/fz_knife_ember_mine.png" width="32" height="32" alt=""> [烈焰菜刀](#weapon-fz_knife_ember_mine) | 近战 | 直刺 | 厨具/锋利/酱料 | 15 / 25 / 39 / 59 | 0.6 / 0.55 / 0.5 / 0.44 | 210 | 33 |
-| <img src="images/weapon/fz_thunder_durian_volt_fork.png" width="32" height="32" alt=""> [贯穿雷霆榴莲](#weapon-fz_thunder_durian_volt_fork) | 元素 | 爆炸弹 | 蔬果/元素/爆破 | 18 / 30 / 46 / 70 | 0.9 / 0.85 / 0.78 / 0.7 | 420 | 42 |
-| <img src="images/weapon/fz_plate_frisbee_onion_boomerang.png" width="32" height="32" alt=""> [鲜果餐盘飞碟](#weapon-fz_plate_frisbee_onion_boomerang) | 远程 | 回旋镖 | 厨具/蔬果 | 13 / 22 / 34 / 52 | 1.4 / 1.3 / 1.2 / 1.1 | 378 | 31 |
-| <img src="images/weapon/fz_candy_cane_glacier_mortar.png" width="32" height="32" alt=""> [霜寒拐杖糖锤](#weapon-fz_candy_cane_glacier_mortar) | 近战 | 横扫 | 甜点/钝器/枪械 | 13 / 21 / 33 / 51 | 1.25 / 1.18 / 1.1 / 1 | 483 | 43 |
-| <img src="images/weapon/fz_corn_scatter_grater_sweep.png" width="32" height="32" alt=""> [致命玉米散弹](#weapon-fz_corn_scatter_grater_sweep) | 远程 | 子弹 | 蔬果/枪械/锋利 | 10 / 17 / 26 / 40 | 1 / 0.95 / 0.88 / 0.8 | 252 | 35 |
+| <img src="images/weapon/fz_thunder_durian_lemon_dagger.png" width="32" height="32" alt=""> [致命雷霆榴莲](#weapon-fz_thunder_durian_lemon_dagger) | 元素 | 爆炸弹 | 蔬果/元素/爆破 | 18 / 30 / 46 / 70 | 0.55 / 0.52 / 0.48 / 0.42 | 420 | 42 |
+| <img src="images/weapon/fz_volt_fork_plate_frisbee.png" width="32" height="32" alt=""> [主厨高压电叉](#weapon-fz_volt_fork_plate_frisbee) | 近战 | 直刺 | 厨具 | 13 / 22 / 34 / 52 | 0.9 / 0.85 / 0.78 / 0.7 | 347 | 31 |
+| <img src="images/weapon/fz_onion_boomerang_candy_cane.png" width="32" height="32" alt=""> [糖霜洋葱回旋镖](#weapon-fz_onion_boomerang_candy_cane) | 远程 | 回旋镖 | 蔬果/甜点/钝器 | 12 / 20 / 32 / 47 | 1.25 / 1.18 / 1.1 / 1 | 378 | 31 |
+| <img src="images/weapon/fz_glacier_mortar_corn_scatter.png" width="32" height="32" alt=""> [散射冰川迫击炮](#weapon-fz_glacier_mortar_corn_scatter) | 远程 | 爆炸弹 | 枪械/蔬果 | 13 / 21 / 33 / 51 | 1 / 0.95 / 0.88 / 0.8 | 483 | 43 |
+| <img src="images/weapon/fz_grater_sweep_stink_aura.png" width="32" height="32" alt=""> [剧毒刨丝刀](#weapon-fz_grater_sweep_stink_aura) | 近战 | 横扫 | 锋利/厨具 | 10 / 17 / 26 / 40 | 0.5 / 0.5 / 0.5 / 0.5 | 156 | 40 |
 | <img src="images/weapon/fz_sea_urchin_mine_dragonfruit_orb.png" width="32" height="32" alt=""> [烈焰海胆雷](#weapon-fz_sea_urchin_mine_dragonfruit_orb) | 远程 | 地雷 | 锋利/爆破/蔬果 | 14 / 24 / 37 / 57 | 1 / 0.95 / 0.88 / 0.8 | 420 | 36 |
 | <img src="images/weapon/fz_twin_cleavers_ketchup.png" width="32" height="32" alt=""> [散射双持菜刀](#weapon-fz_twin_cleavers_ketchup) | 近战 | 横扫 | 锋利/厨具/酱料 | 9 / 14 / 23 / 34 | 0.75 / 0.7 / 0.65 / 0.6 | 294 | 30 |
 | <img src="images/weapon/fz_jelly_bounce_chili_shuriken.png" width="32" height="32" alt=""> [烈焰果冻弹](#weapon-fz_jelly_bounce_chili_shuriken) | 元素 | 子弹 | 甜点/锋利/酱料 | 9 / 14 / 22 / 34 | 1 / 0.95 / 0.88 / 0.8 | 420 | 38 |
@@ -357,17 +407,21 @@
 | <img src="images/weapon/fz_skewer_soy_pistol.png" width="32" height="32" alt=""> [酱爆烤串签](#weapon-fz_skewer_soy_pistol) | 近战 | 直刺 | 厨具/锋利/枪械 | 13 / 23 / 36 / 56 | 0.55 / 0.5 / 0.46 / 0.42 | 399 | 31 |
 | <img src="images/weapon/fz_cucumber_katana_soda.png" width="32" height="32" alt=""> [霜寒黄瓜武士刀](#weapon-fz_cucumber_katana_soda) | 近战 | 直刺 | 蔬果/锋利/元素 | 10 / 17 / 26 / 40 | 0.75 / 0.7 / 0.65 / 0.58 | 420 | 31 |
 | <img src="images/weapon/fz_corn_cannon_blade_aura.png" width="32" height="32" alt=""> [锐锋玉米加农](#weapon-fz_corn_cannon_blade_aura) | 远程 | 子弹 | 枪械/锋利 | 18 / 31 / 48 / 75 | 0.45 / 0.43 / 0.41 / 0.38 | 546 | 38 |
+| <img src="images/weapon/fz_pepper_drone_melon_staff.png" width="32" height="32" alt=""> [重击青椒浮游炮](#weapon-fz_pepper_drone_melon_staff) | 远程 | 爆炸弹 | 机械/蔬果/格斗 | 26 / 44 / 68 / 103 | 1.3 / 1.22 / 1.14 / 1.04 | 441 | 40 |
 | <img src="images/weapon/fz_grill_arc_pepper_storm_aura.png" width="32" height="32" alt=""> [酱爆电烤架](#weapon-fz_grill_arc_pepper_storm_aura) | 元素 | 连锁闪电 | 厨具/酱料 | 10 / 15 / 24 / 37 | 0.45 / 0.45 / 0.42 / 0.4 | 441 | 40 |
-| <img src="images/weapon/fz_teapot_storm_charcoal_aura.png" width="32" height="32" alt=""> [烈焰茶壶雷暴](#weapon-fz_teapot_storm_charcoal_aura) | 元素 | 连锁闪电 | 厨具/酱料 | 8 / 14 / 21 / 32 | 0.5 / 0.5 / 0.5 / 0.5 | 462 | 43 |
-| <img src="images/weapon/fz_honey_blaster_pumpkin_mortar.png" width="32" height="32" alt=""> [烈焰蜂蜜喷枪](#weapon-fz_honey_blaster_pumpkin_mortar) | 远程 | 子弹 | 酱料/蔬果/枪械 | 17 / 29 / 44 / 67 | 0.7 / 0.66 / 0.6 / 0.54 | 483 | 43 |
-| <img src="images/weapon/fz_popcorn_machine_rot_aura.png" width="32" height="32" alt=""> [剧毒爆米花机](#weapon-fz_popcorn_machine_rot_aura) | 远程 | 地雷 | 枪械/爆破/蔬果 | 15 / 26 / 41 / 62 | 0.5 / 0.5 / 0.5 / 0.5 | 231 | 40 |
-| <img src="images/weapon/fz_donut_ring_dynamite_drumstick.png" width="32" height="32" alt=""> [爆裂甜甜圈飞环](#weapon-fz_donut_ring_dynamite_drumstick) | 远程 | 回旋镖 | 甜点/爆破 | 19 / 32 / 50 / 75 | 1.5 / 1.4 / 1.3 / 1.2 | 347 | 39 |
+| <img src="images/weapon/fz_taro_aura_charcoal_aura.png" width="32" height="32" alt=""> [酱爆芋泥光环](#weapon-fz_taro_aura_charcoal_aura) | 元素 | 光环 | 酱料 | 3 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 147 | 43 |
+| <img src="images/weapon/fz_teapot_storm_honey_blaster.png" width="32" height="32" alt=""> [糖霜茶壶雷暴](#weapon-fz_teapot_storm_honey_blaster) | 元素 | 连锁闪电 | 厨具/酱料 | 8 / 14 / 21 / 32 | 0.7 / 0.66 / 0.6 / 0.54 | 462 | 38 |
+| <img src="images/weapon/fz_pumpkin_mortar_eggplant_staff.png" width="32" height="32" alt=""> [雷霆南瓜迫击炮](#weapon-fz_pumpkin_mortar_eggplant_staff) | 远程 | 爆炸弹 | 蔬果/枪械 | 17 / 29 / 44 / 67 | 1 / 0.95 / 0.88 / 0.8 | 483 | 43 |
+| <img src="images/weapon/fz_popcorn_machine_carrot_lance.png" width="32" height="32" alt=""> [贯穿爆米花机](#weapon-fz_popcorn_machine_carrot_lance) | 远程 | 地雷 | 枪械/爆破/长柄 | 19 / 32 / 50 / 76 | 1.35 / 1.28 / 1.2 / 1.08 | 231 | 35 |
+| <img src="images/weapon/fz_donut_ring_rot_aura.png" width="32" height="32" alt=""> [剧毒甜甜圈飞环](#weapon-fz_donut_ring_rot_aura) | 远程 | 回旋镖 | 甜点/蔬果 | 12 / 20 / 31 / 46 | 0.5 / 0.5 / 0.5 / 0.5 | 347 | 40 |
+| <img src="images/weapon/fz_dynamite_drumstick_blackberry_wand.png" width="32" height="32" alt=""> [剧毒炸药鸡腿](#weapon-fz_dynamite_drumstick_blackberry_wand) | 近战 | 横扫 | 爆破/魔法/蔬果 | 19 / 32 / 50 / 75 | 0.95 / 0.9 / 0.84 / 0.76 | 441 | 39 |
 | <img src="images/weapon/fz_spatula_slingshot.png" width="32" height="32" alt=""> [连环锅铲](#weapon-fz_spatula_slingshot) | 近战 | 横扫 | 厨具/蔬果 | 10 / 18 / 28 / 42 | 0.95 / 0.9 / 0.83 / 0.75 | 399 | 21 |
 | <img src="images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [主厨可乐电击枪](#weapon-fz_cola_zapper_mixer_storm) | 元素 | 连锁闪电 | 枪械/元素/厨具 | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 39 |
 | <img src="images/weapon/fz_bean_bazooka_soy_bomb.png" width="32" height="32" alt=""> [酱爆豆子火箭筒](#weapon-fz_bean_bazooka_soy_bomb) | 远程 | 爆炸弹 | 枪械/爆破/酱料 | 24 / 40 / 62 / 92 | 2.2 / 2.05 / 1.9 / 1.7 | 504 | 44 |
 | <img src="images/weapon/fz_steam_kettle_asparagus_bow.png" width="32" height="32" alt=""> [贯穿蒸汽水壶](#weapon-fz_steam_kettle_asparagus_bow) | 元素 | 喷火 | 厨具/元素/蔬果 | 15 / 26 / 41 / 62 | 0.26 / 0.24 / 0.21 / 0.18 | 546 | 36 |
-| <img src="images/weapon/fz_lightning_whisk_pepper_grinder.png" width="32" height="32" alt=""> [贯穿闪电打蛋器](#weapon-fz_lightning_whisk_pepper_grinder) | 元素 | 连锁闪电 | 厨具/元素/枪械 | 8 / 13 / 20 / 30 | 0.5 / 0.46 / 0.42 / 0.38 | 420 | 39 |
-| <img src="images/weapon/fz_choco_mine_bbq_torch.png" width="32" height="32" alt=""> [烈焰巧克力地雷](#weapon-fz_choco_mine_bbq_torch) | 远程 | 地雷 | 甜点/枪械/酱料 | 14 / 25 / 39 / 58 | 0.2 / 0.18 / 0.16 / 0.14 | 231 | 39 |
+| <img src="images/weapon/fz_onion_tear_lightning_whisk.png" width="32" height="32" alt=""> [雷霆洋葱催泪镖](#weapon-fz_onion_tear_lightning_whisk) | 远程 | 回旋镖 | 蔬果/厨具/元素 | 10 / 17 / 25 / 40 | 0.95 / 0.9 / 0.82 / 0.74 | 399 | 39 |
+| <img src="images/weapon/fz_pepper_grinder_choco_mine.png" width="32" height="32" alt=""> [霜寒胡椒研磨枪](#weapon-fz_pepper_grinder_choco_mine) | 远程 | 子弹 | 枪械/锋利/甜点 | 14 / 25 / 39 / 58 | 0.5 / 0.46 / 0.42 / 0.38 | 420 | 34 |
+| <img src="images/weapon/fz_bbq_torch_ketchup_twin.png" width="32" height="32" alt=""> [散射烧烤喷枪](#weapon-fz_bbq_torch_ketchup_twin) | 远程 | 喷火 | 枪械/酱料/蔬果 | 4 / 8 / 12 / 19 | 0.2 / 0.18 / 0.16 / 0.14 | 378 | 39 |
 | <img src="images/weapon/fz_cherry_bomb_bamboo_spear.png" width="32" height="32" alt=""> [致命樱桃炸弹](#weapon-fz_cherry_bomb_bamboo_spear) | 远程 | 爆炸弹 | 蔬果/爆破 | 21 / 35 / 55 / 85 | 1.5 / 1.42 / 1.32 / 1.2 | 378 | 36 |
 | <img src="images/weapon/fz_kitchen_scissors_toxic_spike.png" width="32" height="32" alt=""> [剧毒厨房剪刀](#weapon-fz_kitchen_scissors_toxic_spike) | 近战 | 横扫 | 厨具/锋利/蔬果 | 12 / 22 / 34 / 53 | 0.85 / 0.8 / 0.74 / 0.68 | 194 | 33 |
 | <img src="images/weapon/fz_carrot_crossbow_fork.png" width="32" height="32" alt=""> [主厨胡萝卜弩](#weapon-fz_carrot_crossbow_fork) | 远程 | 子弹 | 蔬果/厨具 | 13 / 22 / 34 / 52 | 0.9 / 0.85 / 0.78 / 0.7 | 483 | 33 |
@@ -378,17 +432,54 @@
 | <img src="images/weapon/fz_knife_case_microwave_cannon.png" width="32" height="32" alt=""> [爆裂飞刀匣](#weapon-fz_knife_case_microwave_cannon) | 远程 | 子弹 | 锋利/厨具/枪械 | 22 / 35 / 55 / 84 | 0.5 / 0.46 / 0.42 / 0.38 | 504 | 46 |
 | <img src="images/weapon/fz_coal_tongs_whisk_spin.png" width="32" height="32" alt=""> [霜寒炭火钳](#weapon-fz_coal_tongs_whisk_spin) | 近战 | 横扫 | 厨具/钝器 | 13 / 22 / 35 / 54 | 0.45 / 0.45 / 0.42 / 0.4 | 144 | 35 |
 | <img src="images/weapon/fz_toaster_zap_hot_sauce_gun.png" width="32" height="32" alt=""> [烈焰吐司闪电](#weapon-fz_toaster_zap_hot_sauce_gun) | 元素 | 连锁闪电 | 厨具/甜点/酱料 | 12 / 21 / 32 / 50 | 0.55 / 0.5 / 0.46 / 0.42 | 399 | 40 |
-| <img src="images/weapon/fz_ladle_watermelon_hammer.png" width="32" height="32" alt=""> [爆裂汤勺](#weapon-fz_ladle_watermelon_hammer) | 近战 | 横扫 | 厨具/酱料/蔬果 | 33 / 55 / 88 / 132 | 1.15 / 1.1 / 1.02 / 0.94 | 147 | 46 |
-| <img src="images/weapon/fz_mint_frost_mine_blender_aura.png" width="32" height="32" alt=""> [致命薄荷冰雷](#weapon-fz_mint_frost_mine_blender_aura) | 元素 | 地雷 | 蔬果/元素/爆破 | 18 / 30 / 46 / 70 | 0.45 / 0.43 / 0.41 / 0.38 | 231 | 36 |
+| <img src="images/weapon/fz_ladle_cherry_pistols.png" width="32" height="32" alt=""> [糖霜汤勺](#weapon-fz_ladle_cherry_pistols) | 近战 | 横扫 | 厨具/酱料/枪械 | 11 / 19 / 30 / 45 | 0.26 / 0.24 / 0.22 / 0.19 | 399 | 31 |
+| <img src="images/weapon/fz_watermelon_hammer_mint_frost_mine.png" width="32" height="32" alt=""> [霜寒西瓜锤](#weapon-fz_watermelon_hammer_mint_frost_mine) | 近战 | 横扫 | 蔬果/爆破/元素 | 33 / 55 / 88 / 132 | 2.2 / 2.1 / 2 / 1.8 | 231 | 46 |
+| <img src="images/weapon/fz_peach_syrup_blender_aura.png" width="32" height="32" alt=""> [致命蜜桃糖浆枪](#weapon-fz_peach_syrup_blender_aura) | 远程 | 子弹 | 甜点/酱料/厨具 | 8 / 13 / 20 / 31 | 0.45 / 0.43 / 0.41 / 0.38 | 441 | 36 |
 | <img src="images/weapon/fz_melon_grenade_pumpkin_lantern.png" width="32" height="32" alt=""> [贯穿西瓜榴弹](#weapon-fz_melon_grenade_pumpkin_lantern) | 远程 | 爆炸弹 | 蔬果/元素 | 10 / 17 / 26 / 41 | 0.8 / 0.75 / 0.7 / 0.62 | 441 | 38 |
 | <img src="images/weapon/fz_blowpipe_syrup_sprayer.png" width="32" height="32" alt=""> [烈焰毒刺吹管](#weapon-fz_blowpipe_syrup_sprayer) | 远程 | 子弹 | 蔬果/甜点 | 11 / 19 / 29 / 44 | 0.2 / 0.18 / 0.16 / 0.14 | 483 | 38 |
 | <img src="images/weapon/fz_chopsticks_pepper_spray.png" width="32" height="32" alt=""> [烈焰竹筷](#weapon-fz_chopsticks_pepper_spray) | 近战 | 直刺 | 厨具/元素 | 6 / 10 / 15 / 23 | 0.18 / 0.16 / 0.14 / 0.12 | 163 | 34 |
-| <img src="images/weapon/fz_pizza_cutter_potato_mine.png" width="32" height="32" alt=""> [爆裂披萨滚刀](#weapon-fz_pizza_cutter_potato_mine) | 近战 | 回旋镖 | 厨具/锋利/蔬果 | 17 / 28 / 43 / 65 | 1.3 / 1.2 / 1.1 / 1 | 242 | 34 |
-| <img src="images/weapon/fz_popping_candy_rolling_pin.png" width="32" height="32" alt=""> [重击跳跳糖电击](#weapon-fz_popping_candy_rolling_pin) | 元素 | 连锁闪电 | 甜点/厨具 | 13 / 22 / 35 / 53 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 38 |
-| <img src="images/weapon/fz_baguette_sword_spore_cannon.png" width="32" height="32" alt=""> [剧毒法棍剑](#weapon-fz_baguette_sword_spore_cannon) | 近战 | 横扫 | 蔬果/枪械 | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | 29 |
-| <img src="images/weapon/fz_mycelium_boomerang_rice_cooker_aura.png" width="32" height="32" alt=""> [霜寒菌丝回旋镖](#weapon-fz_mycelium_boomerang_rice_cooker_aura) | 远程 | 回旋镖 | 蔬果/厨具 | 10 / 17 / 25 / 40 | 0.5 / 0.5 / 0.5 / 0.5 | 378 | 40 |
-| <img src="images/weapon/fz_cumin_star_mandoline.png" width="32" height="32" alt=""> [贯穿孜然飞镖](#weapon-fz_cumin_star_mandoline) | 元素 | 回旋镖 | 酱料/锋利/厨具 | 8 / 13 / 20 / 31 | 0.5 / 0.46 / 0.42 / 0.38 | 336 | 38 |
-| <img src="images/weapon/fz_meat_tenderizer_seed_spitter.png" width="32" height="32" alt=""> [鲜果松肉锤](#weapon-fz_meat_tenderizer_seed_spitter) | 近战 | 横扫 | 厨具/枪械/蔬果 | 24 / 40 / 62 / 92 | 0.22 / 0.2 / 0.18 / 0.16 | 378 | 39 |
+| <img src="images/weapon/fz_pizza_cutter_dragon_lance.png" width="32" height="32" alt=""> [烈焰披萨滚刀](#weapon-fz_pizza_cutter_dragon_lance) | 近战 | 回旋镖 | 厨具/锋利/长柄 | 15 / 26 / 41 / 63 | 1.15 / 1.08 / 1 / 0.92 | 242 | 35 |
+| <img src="images/weapon/fz_pomegranate_cluster_beet_axe.png" width="32" height="32" alt=""> [致命石榴集束弹](#weapon-fz_pomegranate_cluster_beet_axe) | 远程 | 爆炸弹 | 蔬果/钝器/锋利 | 29 / 47 / 74 / 110 | 1.6 / 1.5 / 1.4 / 1.3 | 378 | 42 |
+| <img src="images/weapon/fz_potato_mine_popping_candy.png" width="32" height="32" alt=""> [雷霆土豆地雷](#weapon-fz_potato_mine_popping_candy) | 远程 | 地雷 | 蔬果/甜点 | 17 / 28 / 43 / 65 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 38 |
+| <img src="images/weapon/fz_nut_knuckles_rolling_pin.png" width="32" height="32" alt=""> [重击坚果指虎](#weapon-fz_nut_knuckles_rolling_pin) | 近战 | 直刺 | 格斗/蔬果/厨具 | 13 / 22 / 35 / 53 | 0.36 / 0.34 / 0.31 / 0.28 | 137 | 27 |
+| <img src="images/weapon/fz_baguette_sword_sprout_wand.png" width="32" height="32" alt=""> [连环法棍剑](#weapon-fz_baguette_sword_sprout_wand) | 近战 | 横扫 | 蔬果/魔法 | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.63 | 420 | 33 |
+| <img src="images/weapon/fz_bean_mine_spore_cannon.png" width="32" height="32" alt=""> [剧毒撒豆雷](#weapon-fz_bean_mine_spore_cannon) | 远程 | 地雷 | 种子/蔬果/枪械 | 11 / 18 / 28 / 42 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | 33 |
+| <img src="images/weapon/fz_mycelium_boomerang_lychee_gun.png" width="32" height="32" alt=""> [散射菌丝回旋镖](#weapon-fz_mycelium_boomerang_lychee_gun) | 远程 | 回旋镖 | 蔬果/枪械 | 10 / 17 / 25 / 40 | 0.6 / 0.56 / 0.52 / 0.46 | 399 | 33 |
+| <img src="images/weapon/fz_cumin_star_rice_cooker_aura.png" width="32" height="32" alt=""> [霜寒孜然飞镖](#weapon-fz_cumin_star_rice_cooker_aura) | 元素 | 回旋镖 | 酱料/锋利/厨具 | 8 / 13 / 20 / 31 | 0.5 / 0.5 / 0.5 / 0.5 | 336 | 40 |
+| <img src="images/weapon/fz_mandoline_meat_tenderizer.png" width="32" height="32" alt=""> [重击切片器](#weapon-fz_mandoline_meat_tenderizer) | 近战 | 直刺 | 锋利/厨具 | 24 / 40 / 62 / 92 | 0.5 / 0.46 / 0.42 / 0.38 | 163 | 39 |
+| <img src="images/weapon/fz_seed_spitter_fork.png" width="32" height="32" alt=""> [致命瓜子机枪](#weapon-fz_seed_spitter_fork) | 远程 | 子弹 | 枪械/蔬果/厨具 | 11 / 20 / 32 / 48 | 0.22 / 0.2 / 0.18 / 0.16 | 378 | 34 |
+
+<a id="sets"></a>
+
+## 武器套装（23 套）
+
+套装由指定的几把武器组成：武器栏里持有的不同成员越多，档位越高，达到的最高一档生效。同名重复只算 1 件，仓库里的不算，超武不属于任何套装。
+
+| 套装 | 成员 | 加成 |
+| --- | --- | --- |
+| **家常厨具** | <img src="images/weapon/knife.png" width="24" height="24" alt=""> [菜刀](WEAPONS.md#weapon-knife)、<img src="images/weapon/pan.png" width="24" height="24" alt=""> [平底锅](WEAPONS.md#weapon-pan)、<img src="images/weapon/ladle.png" width="24" height="24" alt=""> [汤勺](WEAPONS.md#weapon-ladle)、<img src="images/weapon/spatula.png" width="24" height="24" alt=""> [锅铲](WEAPONS.md#weapon-spatula) | 2 件：+2 近战伤害<br>3 件：+3 近战伤害，+1 护甲<br>全套 4 件：+5 近战伤害，+3 护甲 |
+| **烘焙师** | <img src="images/weapon/rolling_pin.png" width="24" height="24" alt=""> [擀面杖](WEAPONS.md#weapon-rolling_pin)、<img src="images/weapon/whisk_spin.png" width="24" height="24" alt=""> [旋风打蛋器](WEAPONS.md#weapon-whisk_spin)、<img src="images/weapon/baguette_sword.png" width="24" height="24" alt=""> [法棍剑](WEAPONS.md#weapon-baguette_sword) | 2 件：+5% 攻击速度<br>全套 3 件：+5 最大生命，+10% 攻击速度 |
+| **屠夫铺** | <img src="images/weapon/cleaver.png" width="24" height="24" alt=""> [剁骨刀](WEAPONS.md#weapon-cleaver)、<img src="images/weapon/meat_tenderizer.png" width="24" height="24" alt=""> [松肉锤](WEAPONS.md#weapon-meat_tenderizer)、<img src="images/weapon/twin_cleavers.png" width="24" height="24" alt=""> [双持菜刀](WEAPONS.md#weapon-twin_cleavers) | 2 件：+5% 暴击率<br>全套 3 件：+12% 暴击率，+2 护甲 |
+| **刀工大师** | <img src="images/weapon/sushi_blade.png" width="24" height="24" alt=""> [寿司刀](WEAPONS.md#weapon-sushi_blade)、<img src="images/weapon/mandoline.png" width="24" height="24" alt=""> [切片器](WEAPONS.md#weapon-mandoline)、<img src="images/weapon/grater_sweep.png" width="24" height="24" alt=""> [刨丝刀](WEAPONS.md#weapon-grater_sweep)、<img src="images/weapon/kitchen_scissors.png" width="24" height="24" alt=""> [厨房剪刀](WEAPONS.md#weapon-kitchen_scissors) | 2 件：+5% 暴击率<br>3 件：+10% 暴击率<br>全套 4 件：+5% 攻击速度，+15% 暴击率 |
+| **烧烤摊** | <img src="images/weapon/skewer.png" width="24" height="24" alt=""> [烤串签](WEAPONS.md#weapon-skewer)、<img src="images/weapon/bbq_skewer.png" width="24" height="24" alt=""> [烤肉长签](WEAPONS.md#weapon-bbq_skewer)、<img src="images/weapon/bbq_torch.png" width="24" height="24" alt=""> [烧烤喷枪](WEAPONS.md#weapon-bbq_torch)、<img src="images/weapon/bbq_sauce_cannon.png" width="24" height="24" alt=""> [烧烤酱炮](WEAPONS.md#weapon-bbq_sauce_cannon) | 2 件：+2% 吸血概率<br>3 件：+4% 吸血概率<br>全套 4 件：+6% 吸血概率，+3 近战伤害 |
+| **炭火炉** | <img src="images/weapon/charcoal_aura.png" width="24" height="24" alt=""> [炭烤光环](WEAPONS.md#weapon-charcoal_aura)、<img src="images/weapon/ember_mine.png" width="24" height="24" alt=""> [火炭雷](WEAPONS.md#weapon-ember_mine)、<img src="images/weapon/coal_tongs.png" width="24" height="24" alt=""> [炭火钳](WEAPONS.md#weapon-coal_tongs) | 2 件：+1 元素伤害<br>全套 3 件：+15% 爆炸范围，+3 元素伤害 |
+| **菜园卫士** | <img src="images/weapon/slingshot.png" width="24" height="24" alt=""> [番茄弹弓](WEAPONS.md#weapon-slingshot)、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> [豌豆枪](WEAPONS.md#weapon-pea_shooter)、<img src="images/weapon/carrot_crossbow.png" width="24" height="24" alt=""> [胡萝卜弩](WEAPONS.md#weapon-carrot_crossbow)、<img src="images/weapon/asparagus_bow.png" width="24" height="24" alt=""> [芦笋长弓](WEAPONS.md#weapon-asparagus_bow) | 2 件：+2 远程伤害<br>3 件：+3 远程伤害，+20 射程<br>全套 4 件：+5 远程伤害，+40 射程 |
+| **种子炮兵** | <img src="images/weapon/bean_bazooka.png" width="24" height="24" alt=""> [豆子火箭筒](WEAPONS.md#weapon-bean_bazooka)、<img src="images/weapon/pea_sniper.png" width="24" height="24" alt=""> [豆荚狙击](WEAPONS.md#weapon-pea_sniper)、<img src="images/weapon/seed_spitter.png" width="24" height="24" alt=""> [瓜子机枪](WEAPONS.md#weapon-seed_spitter) | 2 件：+30 射程<br>全套 3 件：+5% 攻击速度，+60 射程 |
+| **玉米大丰收** | <img src="images/weapon/corn_scatter.png" width="24" height="24" alt=""> [玉米散弹](WEAPONS.md#weapon-corn_scatter)、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> [玉米加农](WEAPONS.md#weapon-corn_cannon)、<img src="images/weapon/popcorn_machine.png" width="24" height="24" alt=""> [爆米花机](WEAPONS.md#weapon-popcorn_machine) | 2 件：+2 远程伤害<br>全套 3 件：+4 远程伤害，+5% 闪避 |
+| **爆破专家** | <img src="images/weapon/cherry_bomb.png" width="24" height="24" alt=""> [樱桃炸弹](WEAPONS.md#weapon-cherry_bomb)、<img src="images/weapon/melon_grenade.png" width="24" height="24" alt=""> [西瓜榴弹](WEAPONS.md#weapon-melon_grenade)、<img src="images/weapon/potato_mine.png" width="24" height="24" alt=""> [土豆地雷](WEAPONS.md#weapon-potato_mine)、<img src="images/weapon/coconut_cannon.png" width="24" height="24" alt=""> [椰子炮](WEAPONS.md#weapon-coconut_cannon) | 2 件：+8% 爆炸范围<br>3 件：+15% 爆炸范围<br>全套 4 件：+25% 爆炸范围，+2 远程伤害 |
+| **迫击炮阵地** | <img src="images/weapon/jam_mortar.png" width="24" height="24" alt=""> [果酱迫击炮](WEAPONS.md#weapon-jam_mortar)、<img src="images/weapon/pumpkin_mortar.png" width="24" height="24" alt=""> [南瓜迫击炮](WEAPONS.md#weapon-pumpkin_mortar)、<img src="images/weapon/glacier_mortar.png" width="24" height="24" alt=""> [冰川迫击炮](WEAPONS.md#weapon-glacier_mortar) | 2 件：+10% 爆炸范围<br>全套 3 件：+20% 爆炸范围，+40 射程 |
+| **冰品店** | <img src="images/weapon/popsicle_blade.png" width="24" height="24" alt=""> [冰棍刺剑](WEAPONS.md#weapon-popsicle_blade)、<img src="images/weapon/icecream_hammer.png" width="24" height="24" alt=""> [雪糕大锤](WEAPONS.md#weapon-icecream_hammer)、<img src="images/weapon/shaved_ice_gun.png" width="24" height="24" alt=""> [刨冰机枪](WEAPONS.md#weapon-shaved_ice_gun)、<img src="images/weapon/slush_spray.png" width="24" height="24" alt=""> [冰沙喷雾](WEAPONS.md#weapon-slush_spray) | 2 件：+3% 闪避<br>3 件：+6% 闪避<br>全套 4 件：+10% 闪避，+5 移动速度 |
+| **甜点师** | <img src="images/weapon/macaron_gun.png" width="24" height="24" alt=""> [马卡龙连发](WEAPONS.md#weapon-macaron_gun)、<img src="images/weapon/donut_ring.png" width="24" height="24" alt=""> [甜甜圈飞环](WEAPONS.md#weapon-donut_ring)、<img src="images/weapon/candy_cane.png" width="24" height="24" alt=""> [拐杖糖锤](WEAPONS.md#weapon-candy_cane)、<img src="images/weapon/choco_mine.png" width="24" height="24" alt=""> [巧克力地雷](WEAPONS.md#weapon-choco_mine) | 2 件：+5 幸运<br>3 件：+10 幸运<br>全套 4 件：+15 幸运，+10 收获 |
+| **电击零食铺** | <img src="images/weapon/popping_candy.png" width="24" height="24" alt=""> [跳跳糖电击](WEAPONS.md#weapon-popping_candy)、<img src="images/weapon/cola_zapper.png" width="24" height="24" alt=""> [可乐电击枪](WEAPONS.md#weapon-cola_zapper)、<img src="images/weapon/toaster_zap.png" width="24" height="24" alt=""> [吐司闪电](WEAPONS.md#weapon-toaster_zap) | 2 件：+1 元素伤害<br>全套 3 件：+3 元素伤害，+5% 攻击速度 |
+| **雷电厨房** | <img src="images/weapon/lightning_whisk.png" width="24" height="24" alt=""> [闪电打蛋器](WEAPONS.md#weapon-lightning_whisk)、<img src="images/weapon/shock_wok.png" width="24" height="24" alt=""> [电磁炒锅](WEAPONS.md#weapon-shock_wok)、<img src="images/weapon/grill_arc.png" width="24" height="24" alt=""> [电烤架](WEAPONS.md#weapon-grill_arc)、<img src="images/weapon/rice_cooker_aura.png" width="24" height="24" alt=""> [电饭煲光环](WEAPONS.md#weapon-rice_cooker_aura) | 2 件：+1 元素伤害<br>3 件：+2 元素伤害<br>全套 4 件：+4 元素伤害，+5% 攻击速度 |
+| **菌菇林** | <img src="images/weapon/spore_sprayer.png" width="24" height="24" alt=""> [孢子喷壶](WEAPONS.md#weapon-spore_sprayer)、<img src="images/weapon/toxic_spike.png" width="24" height="24" alt=""> [毒菇刺](WEAPONS.md#weapon-toxic_spike)、<img src="images/weapon/spore_cannon.png" width="24" height="24" alt=""> [孢子炮](WEAPONS.md#weapon-spore_cannon)、<img src="images/weapon/toadstool_mine.png" width="24" height="24" alt=""> [毒蘑菇雷](WEAPONS.md#weapon-toadstool_mine) | 2 件：+1 元素伤害<br>3 件：+1 生命再生，+2 元素伤害<br>全套 4 件：+2 生命再生，+4 元素伤害 |
+| **酱料王** | <img src="images/weapon/ketchup.png" width="24" height="24" alt=""> [番茄酱瓶](WEAPONS.md#weapon-ketchup)、<img src="images/weapon/soy_pistol.png" width="24" height="24" alt=""> [酱油手枪](WEAPONS.md#weapon-soy_pistol)、<img src="images/weapon/hot_sauce_gun.png" width="24" height="24" alt=""> [辣酱手枪](WEAPONS.md#weapon-hot_sauce_gun)、<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> [芥末喷枪](WEAPONS.md#weapon-mustard_flamer) | 2 件：+2% 吸血概率<br>3 件：+4% 吸血概率<br>全套 4 件：+8% 吸血概率，+2 远程伤害 |
+| **光环大师** | <img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> [大蒜光环](WEAPONS.md#weapon-garlic_aura)、<img src="images/weapon/curry_aura.png" width="24" height="24" alt=""> [咖喱光环](WEAPONS.md#weapon-curry_aura)、<img src="images/weapon/frost_aura.png" width="24" height="24" alt=""> [寒霜光环](WEAPONS.md#weapon-frost_aura)、<img src="images/weapon/salt_aura.png" width="24" height="24" alt=""> [海盐结界](WEAPONS.md#weapon-salt_aura) | 2 件：+10% 光环伤害<br>3 件：+20% 光环伤害<br>全套 4 件：+30% 光环伤害，+15% 光环范围 |
+| **飞镖忍者** | <img src="images/weapon/star_anise_shuriken.png" width="24" height="24" alt=""> [八角飞镖](WEAPONS.md#weapon-star_anise_shuriken)、<img src="images/weapon/cumin_star.png" width="24" height="24" alt=""> [孜然飞镖](WEAPONS.md#weapon-cumin_star)、<img src="images/weapon/chili_shuriken.png" width="24" height="24" alt=""> [剁椒飞轮](WEAPONS.md#weapon-chili_shuriken)、<img src="images/weapon/knife_case.png" width="24" height="24" alt=""> [飞刀匣](WEAPONS.md#weapon-knife_case) | 2 件：+5% 暴击率<br>3 件：+10% 暴击率<br>全套 4 件：+15% 暴击率，+5 移动速度 |
+| **回旋高手** | <img src="images/weapon/onion_boomerang.png" width="24" height="24" alt=""> [洋葱回旋镖](WEAPONS.md#weapon-onion_boomerang)、<img src="images/weapon/pizza_cutter.png" width="24" height="24" alt=""> [披萨滚刀](WEAPONS.md#weapon-pizza_cutter)、<img src="images/weapon/mycelium_boomerang.png" width="24" height="24" alt=""> [菌丝回旋镖](WEAPONS.md#weapon-mycelium_boomerang) | 2 件：+20 射程<br>全套 3 件：+5% 攻击速度，+50 射程 |
+| **水果重锤** | <img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> [西瓜锤](WEAPONS.md#weapon-watermelon_hammer)、<img src="images/weapon/pineapple_mace.png" width="24" height="24" alt=""> [菠萝流星锤](WEAPONS.md#weapon-pineapple_mace)、<img src="images/weapon/coconut_gloves.png" width="24" height="24" alt=""> [椰壳拳套](WEAPONS.md#weapon-coconut_gloves) | 2 件：+3 最大生命<br>全套 3 件：+8 最大生命，+2 护甲 |
+| **冰霜法师** | <img src="images/weapon/ice_cube_tray.png" width="24" height="24" alt=""> [冰块格](WEAPONS.md#weapon-ice_cube_tray)、<img src="images/weapon/icicle_volley.png" width="24" height="24" alt=""> [冰锥连射](WEAPONS.md#weapon-icicle_volley)、<img src="images/weapon/mint_frost_mine.png" width="24" height="24" alt=""> [薄荷冰雷](WEAPONS.md#weapon-mint_frost_mine) | 2 件：+1 元素伤害<br>全套 3 件：+3 元素伤害，+5% 闪避 |
+| **餐具三件套** | <img src="images/weapon/fork.png" width="24" height="24" alt=""> [番茄叉](WEAPONS.md#weapon-fork)、<img src="images/weapon/chopsticks.png" width="24" height="24" alt=""> [竹筷](WEAPONS.md#weapon-chopsticks)、<img src="images/weapon/plate_frisbee.png" width="24" height="24" alt=""> [餐盘飞碟](WEAPONS.md#weapon-plate_frisbee) | 2 件：+3% 攻击速度<br>全套 3 件：+2 近战伤害，+8% 攻击速度 |
 
 <a id="affixes"></a>
 
@@ -432,7 +523,7 @@
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
 <tr><td nowrap>特效</td><td>击退 10</td></tr>
 <tr><td nowrap>T1 价格</td><td>15</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-tomato">番茄妹</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-rolling_pin"></a>
@@ -449,7 +540,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>击退 30</td></tr>
 <tr><td nowrap>T1 价格</td><td>18</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-carrot">胡萝卜骑士</a>、<a href="CHARACTERS.md#char-sweetpotato">红薯厨神</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-knife"></a>
@@ -466,7 +557,7 @@
 <tr><td nowrap>暴击倍率</td><td>×2.5</td></tr>
 <tr><td nowrap>特效</td><td>额外暴击 15%</td></tr>
 <tr><td nowrap>T1 价格</td><td>20</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-lemon">柠檬刺客</a>、<a href="CHARACTERS.md#char-blueberry">蓝莓双子</a>、<a href="CHARACTERS.md#char-kiwi">猕猴桃侦探</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-pan"></a>
@@ -483,7 +574,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>眩晕 0.4s，击退 20</td></tr>
 <tr><td nowrap>T1 价格</td><td>25</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-onion">洋葱大叔</a>、<a href="CHARACTERS.md#char-coconut">椰子拳师</a></td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-cabbage">卷心菜老兵</a></td></tr>
 </table>
 
 <a id="weapon-watermelon_hammer"></a>
@@ -551,7 +642,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>减速 20% 0.6s</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-wintermelon">冬瓜和尚</a>、<a href="CHARACTERS.md#char-jackfruit">菠萝蜜卫士</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-meat_tenderizer"></a>
@@ -602,7 +693,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>额外吸血概率 3%，击退 20</td></tr>
 <tr><td nowrap>T1 价格</td><td>20</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-cabbage">卷心菜老兵</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-baguette_sword"></a>
@@ -704,7 +795,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>爆炸半径 75，击退 30</td></tr>
 <tr><td nowrap>T1 价格</td><td>32</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-beet">甜菜狂战士</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-wasabi_katana"></a>
@@ -789,7 +880,109 @@
 <tr><td nowrap>暴击倍率</td><td>×1.8</td></tr>
 <tr><td nowrap>特效</td><td>击退 14</td></tr>
 <tr><td nowrap>T1 价格</td><td>20</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-coconut">椰子拳师</a></td></tr>
+</table>
+
+<a id="weapon-carrot_lance"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/carrot_lance.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">胡萝卜骑枪</th></tr>
+<tr><td colspan="2"><i>骑士的胡萝卜长枪，远距离突刺，能连穿一排敌人并把它们顶开。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
+<tr><td nowrap>标签</td><td>长柄、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>17 / 29 / 45 / 69</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.35s / 1.28s / 1.2s / 1.08s</td></tr>
+<tr><td nowrap>射程</td><td>210</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×1.15，护甲 ×0.3</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.8</td></tr>
+<tr><td nowrap>特效</td><td>穿透 2/2/3/3，击退 30</td></tr>
+<tr><td nowrap>T1 价格</td><td>27</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-carrot">胡萝卜骑士</a></td></tr>
+</table>
+
+<a id="weapon-dragon_lance"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/dragon_lance.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">火龙骑枪</th></tr>
+<tr><td colspan="2"><i>枪尖缠着龙焰的骑枪，突刺点燃沿途的敌人。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
+<tr><td nowrap>标签</td><td>长柄、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>14 / 24 / 37 / 57</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.15s / 1.08s / 1s / 0.92s</td></tr>
+<tr><td nowrap>射程</td><td>195</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.9，元素伤害 ×0.3</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.8</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 3/秒 2s</td></tr>
+<tr><td nowrap>T1 价格</td><td>27</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-dragonfruit">火龙果龙骑</a></td></tr>
+</table>
+
+<a id="weapon-nut_knuckles"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/nut_knuckles.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">坚果指虎</th></tr>
+<tr><td colspan="2"><i>核桃壳磨成的指虎，出拳极快，打中要害伤害翻倍。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
+<tr><td nowrap>标签</td><td>格斗、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>4 / 7 / 11 / 17</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.36s / 0.34s / 0.31s / 0.28s</td></tr>
+<tr><td nowrap>射程</td><td>90</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.75</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
+<tr><td nowrap>特效</td><td>击退 8</td></tr>
+<tr><td nowrap>T1 价格</td><td>21</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-melon_staff"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/melon_staff.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">冬瓜禅杖</th></tr>
+<tr><td colspan="2"><i>沉甸甸的冬瓜禅杖，慢悠悠扫出一大圈，打中的敌人会愣住片刻。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
+<tr><td nowrap>标签</td><td>格斗、钝器</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>24 / 40 / 62 / 94</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>2s / 1.9s / 1.8s / 1.65s</td></tr>
+<tr><td nowrap>射程</td><td>150</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×1.3，最大生命 ×0.08</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>眩晕 0.3s，击退 30</td></tr>
+<tr><td nowrap>T1 价格</td><td>31</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-wintermelon">冬瓜和尚</a></td></tr>
+</table>
+
+<a id="weapon-beet_axe"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/beet_axe.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">甜菜狂战斧</th></tr>
+<tr><td colspan="2"><i>血红甜菜磨成的巨斧，重劈下去暴击很痛，还能吸回一点生命。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
+<tr><td nowrap>标签</td><td>钝器、锋利</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>26 / 43 / 67 / 100</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>2s / 1.9s / 1.8s / 1.65s</td></tr>
+<tr><td nowrap>射程</td><td>125</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×1.4</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
+<tr><td nowrap>特效</td><td>额外吸血概率 3%，击退 20</td></tr>
+<tr><td nowrap>T1 价格</td><td>32</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-beet">甜菜狂战士</a></td></tr>
+</table>
+
+<a id="weapon-lemon_dagger"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/lemon_dagger.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">柠檬匕首</th></tr>
+<tr><td colspan="2"><i>酸得发亮的柠檬匕首，出手极快，专挑要害下手。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
+<tr><td nowrap>标签</td><td>锋利、酱料</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>5 / 9 / 14 / 22</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.55s / 0.52s / 0.48s / 0.42s</td></tr>
+<tr><td nowrap>射程</td><td>125</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.8</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.6</td></tr>
+<tr><td nowrap>特效</td><td>额外暴击 10%</td></tr>
+<tr><td nowrap>T1 价格</td><td>22</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-lemon">柠檬刺客</a></td></tr>
 </table>
 
 <a id="weapon-candy_cane"></a>
@@ -925,7 +1118,7 @@
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 3/秒 2s，击退 15，额外暴击 5%</td></tr>
 <tr><td nowrap>T1 价格</td><td>27</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-sweetpotato">红薯厨神</a></td></tr>
 </table>
 
 <a id="weapon-sushi_blade"></a>
@@ -1132,20 +1325,37 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_candy_cane_glacier_mortar"></a>
+<a id="weapon-fz_volt_fork_plate_frisbee"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_candy_cane_glacier_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">霜寒拐杖糖锤</th></tr>
-<tr><td colspan="2"><i>把冰川迫击炮熔进拐杖糖锤：保留拐杖糖锤的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_volt_fork_plate_frisbee.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">主厨高压电叉</th></tr>
+<tr><td colspan="2"><i>把餐盘飞碟熔进高压电叉：保留高压电叉的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
+<tr><td nowrap>标签</td><td>厨具</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>13 / 22 / 34 / 52</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
+<tr><td nowrap>射程</td><td>347</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.6，远程伤害 ×0.6</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
+<tr><td nowrap>特效</td><td>眩晕 0.25s，穿透 1/1/2/2，击退 10</td></tr>
+<tr><td nowrap>T1 价格</td><td>31</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_grater_sweep_stink_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_grater_sweep_stink_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">剧毒刨丝刀</th></tr>
+<tr><td colspan="2"><i>把榴莲臭气光环熔进刨丝刀：保留刨丝刀的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
-<tr><td nowrap>标签</td><td>甜点、钝器、枪械</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>13 / 21 / 33 / 51</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>1.25s / 1.18s / 1.1s / 1s</td></tr>
-<tr><td nowrap>射程</td><td>483</td></tr>
-<tr><td nowrap>属性加成</td><td>近战伤害 ×0.6，远程伤害 ×0.66</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 50% 2s，眩晕 0.3s，爆炸半径 100，击退 30</td></tr>
-<tr><td nowrap>T1 价格</td><td>43</td></tr>
+<tr><td nowrap>标签</td><td>锋利、厨具</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>射程</td><td>156</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.48，元素伤害 ×0.27，护甲 ×0.18</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
+<tr><td nowrap>特效</td><td>击退 38，额外暴击 12%</td></tr>
+<tr><td nowrap>T1 价格</td><td>40</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -1197,6 +1407,23 @@
 <tr><td nowrap>暴击倍率</td><td>×2.5</td></tr>
 <tr><td nowrap>特效</td><td>减速 40% 1.5s，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>31</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_dynamite_drumstick_blackberry_wand"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_dynamite_drumstick_blackberry_wand.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">剧毒炸药鸡腿</th></tr>
+<tr><td colspan="2"><i>把黑莓魔杖熔进炸药鸡腿：保留炸药鸡腿的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
+<tr><td nowrap>标签</td><td>爆破、魔法、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>19 / 32 / 50 / 75</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.95s / 0.9s / 0.84s / 0.76s</td></tr>
+<tr><td nowrap>射程</td><td>441</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.66，最大生命 ×0.06，元素伤害 ×0.51</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>爆炸半径 85，击退 30</td></tr>
+<tr><td nowrap>T1 价格</td><td>39</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -1302,19 +1529,36 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_ladle_watermelon_hammer"></a>
+<a id="weapon-fz_ladle_cherry_pistols"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_ladle_watermelon_hammer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">爆裂汤勺</th></tr>
-<tr><td colspan="2"><i>把西瓜锤熔进汤勺：保留汤勺的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_ladle_cherry_pistols.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">糖霜汤勺</th></tr>
+<tr><td colspan="2"><i>把樱桃双枪熔进汤勺：保留汤勺的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
-<tr><td nowrap>标签</td><td>厨具、酱料、蔬果</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>33 / 55 / 88 / 132</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>1.15s / 1.1s / 1.02s / 0.94s</td></tr>
-<tr><td nowrap>射程</td><td>147</td></tr>
-<tr><td nowrap>属性加成</td><td>近战伤害 ×1.44，最大生命 ×0.09</td></tr>
+<tr><td nowrap>标签</td><td>厨具、酱料、枪械</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>11 / 19 / 30 / 45</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.26s / 0.24s / 0.22s / 0.19s</td></tr>
+<tr><td nowrap>射程</td><td>399</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.54，最大生命 ×0.03，远程伤害 ×0.36</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>爆炸半径 100，额外吸血概率 3%，击退 20</td></tr>
+<tr><td nowrap>特效</td><td>额外吸血概率 3%，击退 20</td></tr>
+<tr><td nowrap>T1 价格</td><td>31</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_watermelon_hammer_mint_frost_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_watermelon_hammer_mint_frost_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">霜寒西瓜锤</th></tr>
+<tr><td colspan="2"><i>把薄荷冰雷熔进西瓜锤：保留西瓜锤的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、爆破、元素</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>33 / 55 / 88 / 132</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>2.2s / 2.1s / 2s / 1.8s</td></tr>
+<tr><td nowrap>射程</td><td>231</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.9，最大生命 ×0.06，元素伤害 ×0.54</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>减速 50% 2s，爆炸半径 160，击退 40</td></tr>
 <tr><td nowrap>T1 价格</td><td>46</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1336,53 +1580,70 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_pizza_cutter_potato_mine"></a>
+<a id="weapon-fz_pizza_cutter_dragon_lance"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_pizza_cutter_potato_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">爆裂披萨滚刀</th></tr>
-<tr><td colspan="2"><i>把土豆地雷熔进披萨滚刀：保留披萨滚刀的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_pizza_cutter_dragon_lance.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">烈焰披萨滚刀</th></tr>
+<tr><td colspan="2"><i>把火龙骑枪熔进披萨滚刀：保留披萨滚刀的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 回旋镖</td></tr>
-<tr><td nowrap>标签</td><td>厨具、锋利、蔬果</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>17 / 28 / 43 / 65</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>1.3s / 1.2s / 1.1s / 1s</td></tr>
+<tr><td nowrap>标签</td><td>厨具、锋利、长柄</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>15 / 26 / 41 / 63</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.15s / 1.08s / 1s / 0.92s</td></tr>
 <tr><td nowrap>射程</td><td>242</td></tr>
-<tr><td nowrap>属性加成</td><td>近战伤害 ×0.48，远程伤害 ×0.54</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×1.02，元素伤害 ×0.18</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>爆炸半径 125</td></tr>
-<tr><td nowrap>T1 价格</td><td>34</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 3/秒 2s</td></tr>
+<tr><td nowrap>T1 价格</td><td>35</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_baguette_sword_spore_cannon"></a>
+<a id="weapon-fz_nut_knuckles_rolling_pin"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_baguette_sword_spore_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">剧毒法棍剑</th></tr>
-<tr><td colspan="2"><i>把孢子炮熔进法棍剑：保留法棍剑的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_nut_knuckles_rolling_pin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">重击坚果指虎</th></tr>
+<tr><td colspan="2"><i>把擀面杖熔进坚果指虎：保留坚果指虎的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
+<tr><td nowrap>标签</td><td>格斗、蔬果、厨具</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>13 / 22 / 35 / 53</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.36s / 0.34s / 0.31s / 0.28s</td></tr>
+<tr><td nowrap>射程</td><td>137</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×1.05</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
+<tr><td nowrap>特效</td><td>击退 8</td></tr>
+<tr><td nowrap>T1 价格</td><td>27</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_baguette_sword_sprout_wand"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_baguette_sword_sprout_wand.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">连环法棍剑</th></tr>
+<tr><td colspan="2"><i>把新芽魔杖熔进法棍剑：保留法棍剑的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
-<tr><td nowrap>标签</td><td>蔬果、枪械</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、魔法</td></tr>
 <tr><td nowrap>伤害 T1~T4</td><td>12 / 21 / 33 / 51</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.8s / 0.75s / 0.7s / 0.63s</td></tr>
 <tr><td nowrap>射程</td><td>420</td></tr>
-<tr><td nowrap>属性加成</td><td>近战伤害 ×0.6，最大生命 ×0.09，远程伤害 ×0.48</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×0.6，最大生命 ×0.09，元素伤害 ×0.48</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>击退 25</td></tr>
-<tr><td nowrap>T1 价格</td><td>29</td></tr>
+<tr><td nowrap>T1 价格</td><td>33</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_meat_tenderizer_seed_spitter"></a>
+<a id="weapon-fz_mandoline_meat_tenderizer"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_meat_tenderizer_seed_spitter.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">鲜果松肉锤</th></tr>
-<tr><td colspan="2"><i>把瓜子机枪熔进松肉锤：保留松肉锤的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
-<tr><td nowrap>标签</td><td>厨具、枪械、蔬果</td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_mandoline_meat_tenderizer.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">重击切片器</th></tr>
+<tr><td colspan="2"><i>把松肉锤熔进切片器：保留切片器的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
+<tr><td nowrap>标签</td><td>锋利、厨具</td></tr>
 <tr><td nowrap>伤害 T1~T4</td><td>24 / 40 / 62 / 92</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.22s / 0.2s / 0.18s / 0.16s</td></tr>
-<tr><td nowrap>射程</td><td>378</td></tr>
-<tr><td nowrap>属性加成</td><td>近战伤害 ×0.78，护甲 ×0.3，远程伤害 ×0.27</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>眩晕 0.6s，击退 25</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>射程</td><td>163</td></tr>
+<tr><td nowrap>属性加成</td><td>近战伤害 ×1.2，护甲 ×0.3</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
+<tr><td nowrap>特效</td><td>眩晕 0.6s，穿透 1/2/2/3，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>39</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -1405,7 +1666,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 1/1/2/3</td></tr>
 <tr><td nowrap>T1 价格</td><td>15</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pineapple">菠萝船长</a>、<a href="CHARACTERS.md#char-lychee">荔枝公主</a>、<a href="CHARACTERS.md#char-sprout">豆芽学徒</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-pea_shooter"></a>
@@ -1422,7 +1683,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-blueberry">蓝莓双子</a>、<a href="CHARACTERS.md#char-cherry">樱桃双枪</a></td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pea">豌豆士兵</a></td></tr>
 </table>
 
 <a id="weapon-chili_rocket"></a>
@@ -1456,7 +1717,7 @@
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
 <tr><td nowrap>特效</td><td>穿透 3/4/5/6，重弹：击退更强，15% 概率硬直 0.3 秒，击退 15</td></tr>
 <tr><td nowrap>T1 价格</td><td>28</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-corn">玉米枪手</a>、<a href="CHARACTERS.md#char-asparagus">芦笋弓手</a></td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-corn">玉米枪手</a></td></tr>
 </table>
 
 <a id="weapon-ketchup"></a>
@@ -1473,7 +1734,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>额外吸血概率 5%，穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 3/3/4/5</td></tr>
 <tr><td nowrap>T1 价格</td><td>20</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-grape">葡萄魔术师</a></td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-tomato">番茄妹</a></td></tr>
 </table>
 
 <a id="weapon-onion_boomerang"></a>
@@ -1507,7 +1768,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>额外吸血概率 1%，速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
 <tr><td nowrap>T1 价格</td><td>40</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-bellpepper">青椒机甲</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-olive_launcher"></a>
@@ -1541,7 +1802,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>爆炸半径 100</td></tr>
 <tr><td nowrap>T1 价格</td><td>24</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-soybean">黄豆军师</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-grape_shotgun"></a>
@@ -1558,7 +1819,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 5/5/6/7，击退 12</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pomegranate">石榴炮手</a></td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-grape">葡萄魔术师</a></td></tr>
 </table>
 
 <a id="weapon-bean_bazooka"></a>
@@ -1677,7 +1938,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>减速 35% 1.5s，穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-strawberry">草莓偶像</a>、<a href="CHARACTERS.md#char-peach">蜜桃天使</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-soy_pistol"></a>
@@ -1745,7 +2006,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 2/秒 2s，额外吸血概率 1%</td></tr>
 <tr><td nowrap>T1 价格</td><td>30</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-chili">辣椒姐</a></td></tr>
 </table>
 
 <a id="weapon-jam_mortar"></a>
@@ -1796,7 +2057,143 @@
 <tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
 <tr><td nowrap>特效</td><td>穿透 2/3/3/4，重弹：击退更强，15% 概率硬直 0.3 秒，额外暴击 5%</td></tr>
 <tr><td nowrap>T1 价格</td><td>26</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-asparagus">芦笋弓手</a></td></tr>
+</table>
+
+<a id="weapon-bean_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/bean_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">撒豆雷</th></tr>
+<tr><td colspan="2"><i>一把撒出好几颗小豆雷，敌人踩上就炸。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 地雷</td></tr>
+<tr><td nowrap>标签</td><td>种子、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>10 / 16 / 25 / 38</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.9s / 1.8s / 1.65s / 1.5s</td></tr>
+<tr><td nowrap>射程</td><td>230</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.7</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>爆炸半径 70，弹丸 2/2/3/3</td></tr>
+<tr><td nowrap>T1 价格</td><td>25</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-soybean">黄豆军师</a></td></tr>
+</table>
+
+<a id="weapon-pomegranate_cluster"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/pomegranate_cluster.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">石榴集束弹</th></tr>
+<tr><td colspan="2"><i>一次抛出好几颗石榴弹，落地炸开满地籽。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 爆炸弹</td></tr>
+<tr><td nowrap>标签</td><td>蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>9 / 15 / 23 / 35</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.6s / 1.5s / 1.4s / 1.3s</td></tr>
+<tr><td nowrap>射程</td><td>360</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.8</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>爆炸半径 75，弹丸 2/2/3/3</td></tr>
+<tr><td nowrap>T1 价格</td><td>29</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pomegranate">石榴炮手</a></td></tr>
+</table>
+
+<a id="weapon-pepper_drone"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/pepper_drone.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">青椒浮游炮</th></tr>
+<tr><td colspan="2"><i>青椒改装的浮游炮，射出会自己追敌人的小火箭。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 爆炸弹</td></tr>
+<tr><td nowrap>标签</td><td>机械、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>11 / 18 / 28 / 43</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.3s / 1.22s / 1.14s / 1.04s</td></tr>
+<tr><td nowrap>射程</td><td>420</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.9</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>爆炸半径 60</td></tr>
+<tr><td nowrap>T1 价格</td><td>30</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-bellpepper">青椒机甲</a></td></tr>
+</table>
+
+<a id="weapon-onion_tear"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/onion_tear.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">洋葱催泪镖</th></tr>
+<tr><td colspan="2"><i>辣眼睛的洋葱片回旋镖，划过的敌人都会中毒。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
+<tr><td nowrap>标签</td><td>蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>9 / 15 / 23 / 36</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.35s / 1.27s / 1.18s / 1.08s</td></tr>
+<tr><td nowrap>射程</td><td>360</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.9</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>-</td></tr>
+<tr><td nowrap>T1 价格</td><td>25</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-onion">洋葱大叔</a></td></tr>
+</table>
+
+<a id="weapon-lychee_gun"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/lychee_gun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">荔枝红包枪</th></tr>
+<tr><td colspan="2"><i>一次打出两发荔枝弹，运气好时一枪打中要害。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>枪械、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>5 / 8 / 12 / 18</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.6s / 0.56s / 0.52s / 0.46s</td></tr>
+<tr><td nowrap>射程</td><td>380</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.65</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层），弹丸 2/2/2/3</td></tr>
+<tr><td nowrap>T1 价格</td><td>24</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-lychee">荔枝公主</a></td></tr>
+</table>
+
+<a id="weapon-cherry_pistols"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/cherry_pistols.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">樱桃双枪</th></tr>
+<tr><td colspan="2"><i>左右手各一把樱桃枪，交替开火，射速飞快。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>枪械、蔬果、甜点</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>5 / 8 / 12 / 18</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.26s / 0.24s / 0.22s / 0.19s</td></tr>
+<tr><td nowrap>射程</td><td>380</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.6</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
+<tr><td nowrap>T1 价格</td><td>24</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-cherry">樱桃双枪</a></td></tr>
+</table>
+
+<a id="weapon-ketchup_twin"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/ketchup_twin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">番茄酱双瓶</th></tr>
+<tr><td colspan="2"><i>左右手各一瓶番茄酱，一次挤出好几道酱汁，打中的敌人黏糊糊地慢下来。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>酱料、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>4 / 7 / 11 / 17</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.55s / 0.52s / 0.48s / 0.43s</td></tr>
+<tr><td nowrap>射程</td><td>360</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.6</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层），弹丸 2/2/3/3</td></tr>
+<tr><td nowrap>T1 价格</td><td>23</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-peach_syrup"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/peach_syrup.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">蜜桃糖浆枪</th></tr>
+<tr><td colspan="2"><i>天使的蜜桃糖浆枪，糖浆弹会自己找敌人，命中时香甜四溢。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>甜点、酱料</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>7 / 12 / 18 / 28</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.6s / 0.56s / 0.52s / 0.47s</td></tr>
+<tr><td nowrap>射程</td><td>420</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.75，最大生命 ×0.05</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
+<tr><td nowrap>T1 价格</td><td>24</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-peach">蜜桃天使</a></td></tr>
 </table>
 
 <a id="weapon-macaron_gun"></a>
@@ -1813,7 +2210,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层），弹丸 2/2/3/3</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-strawberry">草莓偶像</a></td></tr>
 </table>
 
 <a id="weapon-donut_ring"></a>
@@ -1966,7 +2363,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 3/秒 2s，减速 20% 1s，爆炸半径 90</td></tr>
 <tr><td nowrap>T1 价格</td><td>31</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pineapple">菠萝船长</a></td></tr>
 </table>
 
 <a id="weapon-hot_sauce_gun"></a>
@@ -2000,7 +2397,7 @@
 <tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
 <tr><td nowrap>特效</td><td>穿透 1/1/2/2，速射：命中叠加压制（每层移速 -5%，最多 3 层），弹丸 2/2/3/3，额外暴击 8%</td></tr>
 <tr><td nowrap>T1 价格</td><td>27</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-jackfruit">菠萝蜜卫士</a></td></tr>
 </table>
 
 <a id="weapon-coconut_cannon"></a>
@@ -2102,7 +2499,7 @@
 <tr><td nowrap>暴击倍率</td><td>×2.5</td></tr>
 <tr><td nowrap>特效</td><td>穿透 5/5/5/6，狙击：打生命 ≥ 50% 的敌人伤害 +30%，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>33</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-pea">豌豆士兵</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-blast_pea_cannon"></a>
@@ -2190,37 +2587,37 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_plate_frisbee_onion_boomerang"></a>
+<a id="weapon-fz_onion_boomerang_candy_cane"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_plate_frisbee_onion_boomerang.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">鲜果餐盘飞碟</th></tr>
-<tr><td colspan="2"><i>把洋葱回旋镖熔进餐盘飞碟：保留餐盘飞碟的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_onion_boomerang_candy_cane.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">糖霜洋葱回旋镖</th></tr>
+<tr><td colspan="2"><i>把拐杖糖锤熔进洋葱回旋镖：保留洋葱回旋镖的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
-<tr><td nowrap>标签</td><td>厨具、蔬果</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>13 / 22 / 34 / 52</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>1.4s / 1.3s / 1.2s / 1.1s</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、甜点、钝器</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>12 / 20 / 32 / 47</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.25s / 1.18s / 1.1s / 1s</td></tr>
 <tr><td nowrap>射程</td><td>378</td></tr>
-<tr><td nowrap>属性加成</td><td>远程伤害 ×1.14</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，近战伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>击退 15</td></tr>
+<tr><td nowrap>特效</td><td>眩晕 0.3s</td></tr>
 <tr><td nowrap>T1 价格</td><td>31</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_corn_scatter_grater_sweep"></a>
+<a id="weapon-fz_glacier_mortar_corn_scatter"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_corn_scatter_grater_sweep.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">致命玉米散弹</th></tr>
-<tr><td colspan="2"><i>把刨丝刀熔进玉米散弹：保留玉米散弹的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
-<tr><td nowrap>标签</td><td>蔬果、枪械、锋利</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 26 / 40</td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_glacier_mortar_corn_scatter.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">散射冰川迫击炮</th></tr>
+<tr><td colspan="2"><i>把玉米散弹熔进冰川迫击炮：保留冰川迫击炮的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 爆炸弹</td></tr>
+<tr><td nowrap>标签</td><td>枪械、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>13 / 21 / 33 / 51</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
-<tr><td nowrap>射程</td><td>252</td></tr>
-<tr><td nowrap>属性加成</td><td>远程伤害 ×0.3，近战伤害 ×0.48</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 5/5/6/7，击退 12，额外暴击 12%</td></tr>
-<tr><td nowrap>T1 价格</td><td>35</td></tr>
+<tr><td nowrap>射程</td><td>483</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.96</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>减速 50% 2s，爆炸半径 100，击退 15</td></tr>
+<tr><td nowrap>T1 价格</td><td>43</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -2258,54 +2655,71 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_honey_blaster_pumpkin_mortar"></a>
+<a id="weapon-fz_pepper_drone_melon_staff"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_honey_blaster_pumpkin_mortar.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">烈焰蜂蜜喷枪</th></tr>
-<tr><td colspan="2"><i>把南瓜迫击炮熔进蜂蜜喷枪：保留蜂蜜喷枪的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
-<tr><td nowrap>标签</td><td>酱料、蔬果、枪械</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>17 / 29 / 44 / 67</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.7s / 0.66s / 0.6s / 0.54s</td></tr>
-<tr><td nowrap>射程</td><td>483</td></tr>
-<tr><td nowrap>属性加成</td><td>远程伤害 ×1.08</td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_pepper_drone_melon_staff.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">重击青椒浮游炮</th></tr>
+<tr><td colspan="2"><i>把冬瓜禅杖熔进青椒浮游炮：保留青椒浮游炮的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 爆炸弹</td></tr>
+<tr><td nowrap>标签</td><td>机械、蔬果、格斗</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>26 / 44 / 68 / 103</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.3s / 1.22s / 1.14s / 1.04s</td></tr>
+<tr><td nowrap>射程</td><td>441</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，近战伤害 ×0.78，最大生命 ×0.05</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 2/秒 2s，减速 35% 1.5s，爆炸半径 100</td></tr>
-<tr><td nowrap>T1 价格</td><td>43</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
-</table>
-
-<a id="weapon-fz_popcorn_machine_rot_aura"></a>
-
-<table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_popcorn_machine_rot_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">剧毒爆米花机</th></tr>
-<tr><td colspan="2"><i>把腐菌光环熔进爆米花机：保留爆米花机的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>远程 / 地雷</td></tr>
-<tr><td nowrap>标签</td><td>枪械、爆破、蔬果</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>15 / 26 / 41 / 62</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
-<tr><td nowrap>射程</td><td>231</td></tr>
-<tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，元素伤害 ×0.3</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>爆炸半径 100</td></tr>
+<tr><td nowrap>特效</td><td>眩晕 0.3s，爆炸半径 60</td></tr>
 <tr><td nowrap>T1 价格</td><td>40</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_donut_ring_dynamite_drumstick"></a>
+<a id="weapon-fz_pumpkin_mortar_eggplant_staff"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_donut_ring_dynamite_drumstick.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">爆裂甜甜圈飞环</th></tr>
-<tr><td colspan="2"><i>把炸药鸡腿熔进甜甜圈飞环：保留甜甜圈飞环的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
-<tr><td nowrap>标签</td><td>甜点、爆破</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>19 / 32 / 50 / 75</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>1.5s / 1.4s / 1.3s / 1.2s</td></tr>
-<tr><td nowrap>射程</td><td>347</td></tr>
-<tr><td nowrap>属性加成</td><td>远程伤害 ×0.6，近战伤害 ×0.66，最大生命 ×0.06</td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_pumpkin_mortar_eggplant_staff.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">雷霆南瓜迫击炮</th></tr>
+<tr><td colspan="2"><i>把紫茄雷杖熔进南瓜迫击炮：保留南瓜迫击炮的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 爆炸弹</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、枪械</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>17 / 29 / 44 / 67</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>射程</td><td>483</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.66，元素伤害 ×0.51</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>爆炸半径 85，弹丸 1/1/2/2，击退 15</td></tr>
-<tr><td nowrap>T1 价格</td><td>39</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 2/秒 2s，爆炸半径 100，连锁 3/3/4/5 次，击退 15</td></tr>
+<tr><td nowrap>T1 价格</td><td>43</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_popcorn_machine_carrot_lance"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_popcorn_machine_carrot_lance.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">贯穿爆米花机</th></tr>
+<tr><td colspan="2"><i>把胡萝卜骑枪熔进爆米花机：保留爆米花机的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 地雷</td></tr>
+<tr><td nowrap>标签</td><td>枪械、爆破、长柄</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>19 / 32 / 50 / 76</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.35s / 1.28s / 1.2s / 1.08s</td></tr>
+<tr><td nowrap>射程</td><td>231</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，近战伤害 ×0.69，护甲 ×0.18</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.8</td></tr>
+<tr><td nowrap>特效</td><td>爆炸半径 100</td></tr>
+<tr><td nowrap>T1 价格</td><td>35</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_donut_ring_rot_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_donut_ring_rot_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">剧毒甜甜圈飞环</th></tr>
+<tr><td colspan="2"><i>把腐菌光环熔进甜甜圈飞环：保留甜甜圈飞环的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
+<tr><td nowrap>标签</td><td>甜点、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>12 / 20 / 31 / 46</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>射程</td><td>347</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.6，元素伤害 ×0.3</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>弹丸 1/1/2/2，击退 15</td></tr>
+<tr><td nowrap>T1 价格</td><td>40</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -2326,19 +2740,53 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_choco_mine_bbq_torch"></a>
+<a id="weapon-fz_onion_tear_lightning_whisk"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_choco_mine_bbq_torch.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">烈焰巧克力地雷</th></tr>
-<tr><td colspan="2"><i>把烧烤喷枪熔进巧克力地雷：保留巧克力地雷的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>远程 / 地雷</td></tr>
-<tr><td nowrap>标签</td><td>甜点、枪械、酱料</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>14 / 25 / 39 / 58</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
-<tr><td nowrap>射程</td><td>231</td></tr>
-<tr><td nowrap>属性加成</td><td>远程伤害 ×0.69</td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_onion_tear_lightning_whisk.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">雷霆洋葱催泪镖</th></tr>
+<tr><td colspan="2"><i>把闪电打蛋器熔进洋葱催泪镖：保留洋葱催泪镖的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、厨具、元素</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 25 / 40</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.95s / 0.9s / 0.82s / 0.74s</td></tr>
+<tr><td nowrap>射程</td><td>399</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，元素伤害 ×0.48</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 2/秒 2s，减速 35% 1.5s，爆炸半径 100，额外吸血概率 1%</td></tr>
+<tr><td nowrap>特效</td><td>连锁 3/4/5/7 次</td></tr>
+<tr><td nowrap>T1 价格</td><td>39</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_pepper_grinder_choco_mine"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_pepper_grinder_choco_mine.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">霜寒胡椒研磨枪</th></tr>
+<tr><td colspan="2"><i>把巧克力地雷熔进胡椒研磨枪：保留胡椒研磨枪的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>枪械、锋利、甜点</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>14 / 25 / 39 / 58</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>射程</td><td>420</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.96</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
+<tr><td nowrap>特效</td><td>减速 35% 1.5s，爆炸半径 100，穿透 1/1/1/2，额外暴击 8%</td></tr>
+<tr><td nowrap>T1 价格</td><td>34</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_bbq_torch_ketchup_twin"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_bbq_torch_ketchup_twin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">散射烧烤喷枪</th></tr>
+<tr><td colspan="2"><i>把番茄酱双瓶熔进烧烤喷枪：保留烧烤喷枪的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 喷火</td></tr>
+<tr><td nowrap>标签</td><td>枪械、酱料、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>4 / 8 / 12 / 19</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.2s / 0.18s / 0.16s / 0.14s</td></tr>
+<tr><td nowrap>射程</td><td>378</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.51</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 2/秒 2s，额外吸血概率 1%</td></tr>
 <tr><td nowrap>T1 价格</td><td>39</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -2394,6 +2842,23 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
+<a id="weapon-fz_peach_syrup_blender_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_peach_syrup_blender_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">致命蜜桃糖浆枪</th></tr>
+<tr><td colspan="2"><i>把破壁机熔进蜜桃糖浆枪：保留蜜桃糖浆枪的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>甜点、酱料、厨具</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>8 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
+<tr><td nowrap>射程</td><td>441</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.45，最大生命 ×0.03，近战伤害 ×0.3</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层），额外暴击 5%</td></tr>
+<tr><td nowrap>T1 价格</td><td>36</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
 <a id="weapon-fz_melon_grenade_pumpkin_lantern"></a>
 
 <table>
@@ -2428,20 +2893,88 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_mycelium_boomerang_rice_cooker_aura"></a>
+<a id="weapon-fz_pomegranate_cluster_beet_axe"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_mycelium_boomerang_rice_cooker_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">霜寒菌丝回旋镖</th></tr>
-<tr><td colspan="2"><i>把电饭煲光环熔进菌丝回旋镖：保留菌丝回旋镖的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
-<tr><td nowrap>标签</td><td>蔬果、厨具</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 25 / 40</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_pomegranate_cluster_beet_axe.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">致命石榴集束弹</th></tr>
+<tr><td colspan="2"><i>把甜菜狂战斧熔进石榴集束弹：保留石榴集束弹的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 爆炸弹</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、钝器、锋利</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>29 / 47 / 74 / 110</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.6s / 1.5s / 1.4s / 1.3s</td></tr>
 <tr><td nowrap>射程</td><td>378</td></tr>
-<tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，元素伤害 ×0.3</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.48，近战伤害 ×0.84</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
+<tr><td nowrap>特效</td><td>爆炸半径 75，额外吸血概率 3%，弹丸 2/2/3/3</td></tr>
+<tr><td nowrap>T1 价格</td><td>42</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_potato_mine_popping_candy"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_potato_mine_popping_candy.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">雷霆土豆地雷</th></tr>
+<tr><td colspan="2"><i>把跳跳糖电击熔进土豆地雷：保留土豆地雷的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 地雷</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、甜点</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>17 / 28 / 43 / 65</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.95s / 0.88s / 0.8s / 0.72s</td></tr>
+<tr><td nowrap>射程</td><td>462</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.72，元素伤害 ×0.42</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>减速 15% 0.5s，眩晕 0.1s</td></tr>
-<tr><td nowrap>T1 价格</td><td>40</td></tr>
+<tr><td nowrap>特效</td><td>眩晕 0.15s，爆炸半径 125，连锁 2/3/4/5 次</td></tr>
+<tr><td nowrap>T1 价格</td><td>38</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_bean_mine_spore_cannon"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_bean_mine_spore_cannon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">剧毒撒豆雷</th></tr>
+<tr><td colspan="2"><i>把孢子炮熔进撒豆雷：保留撒豆雷的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 地雷</td></tr>
+<tr><td nowrap>标签</td><td>种子、蔬果、枪械</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>11 / 18 / 28 / 42</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.8s / 0.75s / 0.7s / 0.62s</td></tr>
+<tr><td nowrap>射程</td><td>420</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.9</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>爆炸半径 70，弹丸 2/2/3/3</td></tr>
+<tr><td nowrap>T1 价格</td><td>33</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_mycelium_boomerang_lychee_gun"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_mycelium_boomerang_lychee_gun.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">散射菌丝回旋镖</th></tr>
+<tr><td colspan="2"><i>把荔枝红包枪熔进菌丝回旋镖：保留菌丝回旋镖的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
+<tr><td nowrap>标签</td><td>蔬果、枪械</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 25 / 40</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.6s / 0.56s / 0.52s / 0.46s</td></tr>
+<tr><td nowrap>射程</td><td>399</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.93</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
+<tr><td nowrap>特效</td><td>-</td></tr>
+<tr><td nowrap>T1 价格</td><td>33</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_seed_spitter_fork"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_seed_spitter_fork.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">致命瓜子机枪</th></tr>
+<tr><td colspan="2"><i>把番茄叉熔进瓜子机枪：保留瓜子机枪的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>枪械、蔬果、厨具</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>11 / 20 / 32 / 48</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.22s / 0.2s / 0.18s / 0.16s</td></tr>
+<tr><td nowrap>射程</td><td>378</td></tr>
+<tr><td nowrap>属性加成</td><td>远程伤害 ×0.27，近战伤害 ×0.6</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
+<tr><td nowrap>特效</td><td>速射：命中叠加压制（每层移速 -5%，最多 3 层）</td></tr>
+<tr><td nowrap>T1 价格</td><td>34</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -2463,7 +2996,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 2/秒 2s</td></tr>
 <tr><td nowrap>T1 价格</td><td>28</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-chili">辣椒姐</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-soda"></a>
@@ -2480,7 +3013,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>减速 40% 1.5s，穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-bittermelon">苦瓜冰法</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-garlic_aura"></a>
@@ -2497,7 +3030,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>-</td></tr>
 <tr><td nowrap>T1 价格</td><td>30</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-garlic">大蒜伯爵</a>、<a href="CHARACTERS.md#char-durian">榴莲霸王</a></td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-garlic">大蒜伯爵</a></td></tr>
 </table>
 
 <a id="weapon-pepper_mine"></a>
@@ -2684,7 +3217,7 @@
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 2/秒 1.5s</td></tr>
 <tr><td nowrap>T1 价格</td><td>28</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-ginger">生姜忍者</a></td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-ginger">生姜忍者</a>、<a href="CHARACTERS.md#char-kiwi">猕猴桃侦探</a></td></tr>
 </table>
 
 <a id="weapon-lemon_battery"></a>
@@ -2752,7 +3285,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>灼烧 3/秒 2s，额外吸血概率 1%</td></tr>
 <tr><td nowrap>T1 价格</td><td>30</td></tr>
-<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-dragonfruit">火龙果龙骑</a></td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
 <a id="weapon-pumpkin_lantern"></a>
@@ -2787,6 +3320,91 @@
 <tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
 <tr><td nowrap>T1 价格</td><td>22</td></tr>
 <tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-mushroom">蘑菇巫医</a></td></tr>
+</table>
+
+<a id="weapon-blackberry_wand"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/blackberry_wand.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">黑莓魔杖</th></tr>
+<tr><td colspan="2"><i>黑莓女巫的魔杖，放出慢悠悠的诅咒法球，会追着敌人走。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>元素 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>魔法、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>9 / 15 / 24 / 36</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.95s / 0.9s / 0.84s / 0.76s</td></tr>
+<tr><td nowrap>射程</td><td>420</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.85</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒</td></tr>
+<tr><td nowrap>T1 价格</td><td>26</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-taro_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/taro_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">芋泥光环</th></tr>
+<tr><td colspan="2"><i>暖烘烘的芋泥光环，范围很大，靠近的敌人会被慢慢烤焦。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>元素 / 光环</td></tr>
+<tr><td nowrap>标签</td><td></td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>3 / 5 / 8 / 12</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>射程</td><td>140</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.45</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 2/秒 2s</td></tr>
+<tr><td nowrap>T1 价格</td><td>32</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-stink_aura"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/stink_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">榴莲臭气光环</th></tr>
+<tr><td colspan="2"><i>浓浓的榴莲臭气绕身不散，靠近的敌人都会中毒。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>元素 / 光环</td></tr>
+<tr><td nowrap>标签</td><td></td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>3 / 5 / 8 / 11</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>射程</td><td>149</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.45，护甲 ×0.3</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>-</td></tr>
+<tr><td nowrap>T1 价格</td><td>31</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-durian">榴莲霸王</a></td></tr>
+</table>
+
+<a id="weapon-eggplant_staff"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/eggplant_staff.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">紫茄雷杖</th></tr>
+<tr><td colspan="2"><i>茄子法师的紫色雷杖，召来的闪电在敌人之间来回跳。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>元素 / 连锁闪电</td></tr>
+<tr><td nowrap>标签</td><td>蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>8 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1s / 0.95s / 0.88s / 0.8s</td></tr>
+<tr><td nowrap>射程</td><td>380</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.85</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>连锁 3/3/4/5 次</td></tr>
+<tr><td nowrap>T1 价格</td><td>27</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-sprout_wand"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/sprout_wand.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">新芽魔杖</th></tr>
+<tr><td colspan="2"><i>刚抽芽的小魔杖，法球会在敌人之间弹来弹去，越用越顺手。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>元素 / 子弹</td></tr>
+<tr><td nowrap>标签</td><td>魔法、蔬果</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>6 / 10 / 15 / 24</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.8s / 0.75s / 0.7s / 0.63s</td></tr>
+<tr><td nowrap>射程</td><td>400</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.8</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>穿透 1/1/2/2，重弹：击退更强，15% 概率硬直 0.3 秒，弹射 1/1/2/2</td></tr>
+<tr><td nowrap>T1 价格</td><td>25</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-sprout">豆芽学徒</a></td></tr>
 </table>
 
 <a id="weapon-cream_torch"></a>
@@ -2888,7 +3506,7 @@
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
 <tr><td nowrap>特效</td><td>减速 50% 1.2s，穿透 2/2/3/3，霰弹：打半个射程以内的敌人伤害 +25%，弹丸 3/3/4/4</td></tr>
 <tr><td nowrap>T1 价格</td><td>27</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
+<tr><td nowrap>初始携带</td><td><a href="CHARACTERS.md#char-blueberry">蓝莓双子</a>、<a href="CHARACTERS.md#char-bittermelon">苦瓜冰法</a></td></tr>
 </table>
 
 <a id="weapon-rice_cooker_aura"></a>
@@ -3265,19 +3883,19 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_thunder_durian_volt_fork"></a>
+<a id="weapon-fz_thunder_durian_lemon_dagger"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_thunder_durian_volt_fork.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">贯穿雷霆榴莲</th></tr>
-<tr><td colspan="2"><i>把高压电叉熔进雷霆榴莲：保留雷霆榴莲的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_thunder_durian_lemon_dagger.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">致命雷霆榴莲</th></tr>
+<tr><td colspan="2"><i>把柠檬匕首熔进雷霆榴莲：保留雷霆榴莲的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>元素 / 爆炸弹</td></tr>
 <tr><td nowrap>标签</td><td>蔬果、元素、爆破</td></tr>
 <tr><td nowrap>伤害 T1~T4</td><td>18 / 30 / 46 / 70</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.9s / 0.85s / 0.78s / 0.7s</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.55s / 0.52s / 0.48s / 0.42s</td></tr>
 <tr><td nowrap>射程</td><td>420</td></tr>
-<tr><td nowrap>属性加成</td><td>元素伤害 ×0.6，近战伤害 ×0.6</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>眩晕 0.25s，爆炸半径 100</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.6，近战伤害 ×0.48</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×2.6</td></tr>
+<tr><td nowrap>特效</td><td>眩晕 0.35s，爆炸半径 100，额外暴击 10%</td></tr>
 <tr><td nowrap>T1 价格</td><td>42</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
@@ -3333,20 +3951,37 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_teapot_storm_charcoal_aura"></a>
+<a id="weapon-fz_taro_aura_charcoal_aura"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_teapot_storm_charcoal_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">烈焰茶壶雷暴</th></tr>
-<tr><td colspan="2"><i>把炭烤光环熔进茶壶雷暴：保留茶壶雷暴的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_taro_aura_charcoal_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">酱爆芋泥光环</th></tr>
+<tr><td colspan="2"><i>把炭烤光环熔进芋泥光环：保留芋泥光环的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td nowrap>类别 / 方式</td><td>元素 / 光环</td></tr>
+<tr><td nowrap>标签</td><td>酱料</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>3 / 6 / 9 / 13</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>射程</td><td>147</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.51</td></tr>
+<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 3/秒 2s</td></tr>
+<tr><td nowrap>T1 价格</td><td>43</td></tr>
+<tr><td nowrap>初始携带</td><td>-</td></tr>
+</table>
+
+<a id="weapon-fz_teapot_storm_honey_blaster"></a>
+
+<table>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_teapot_storm_honey_blaster.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">糖霜茶壶雷暴</th></tr>
+<tr><td colspan="2"><i>把蜂蜜喷枪熔进茶壶雷暴：保留茶壶雷暴的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>元素 / 连锁闪电</td></tr>
 <tr><td nowrap>标签</td><td>厨具、酱料</td></tr>
 <tr><td nowrap>伤害 T1~T4</td><td>8 / 14 / 21 / 32</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.7s / 0.66s / 0.6s / 0.54s</td></tr>
 <tr><td nowrap>射程</td><td>462</td></tr>
-<tr><td nowrap>属性加成</td><td>元素伤害 ×0.66，远程伤害 ×0.18</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.42，远程伤害 ×0.6</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 3/秒 2s，减速 25% 1s，连锁 2/3/4/6 次</td></tr>
-<tr><td nowrap>T1 价格</td><td>43</td></tr>
+<tr><td nowrap>特效</td><td>减速 35% 1.5s，连锁 2/3/4/6 次</td></tr>
+<tr><td nowrap>T1 价格</td><td>38</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -3384,23 +4019,6 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_lightning_whisk_pepper_grinder"></a>
-
-<table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_lightning_whisk_pepper_grinder.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">贯穿闪电打蛋器</th></tr>
-<tr><td colspan="2"><i>把胡椒研磨枪熔进闪电打蛋器：保留闪电打蛋器的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>元素 / 连锁闪电</td></tr>
-<tr><td nowrap>标签</td><td>厨具、元素、枪械</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>8 / 13 / 20 / 30</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
-<tr><td nowrap>射程</td><td>420</td></tr>
-<tr><td nowrap>属性加成</td><td>元素伤害 ×0.48，远程伤害 ×0.42</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
-<tr><td nowrap>特效</td><td>连锁 3/4/5/7 次，额外暴击 8%</td></tr>
-<tr><td nowrap>T1 价格</td><td>39</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
-</table>
-
 <a id="weapon-fz_spore_sprayer_shaved_ice_gun"></a>
 
 <table>
@@ -3435,54 +4053,20 @@
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
-<a id="weapon-fz_mint_frost_mine_blender_aura"></a>
+<a id="weapon-fz_cumin_star_rice_cooker_aura"></a>
 
 <table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_mint_frost_mine_blender_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">致命薄荷冰雷</th></tr>
-<tr><td colspan="2"><i>把破壁机熔进薄荷冰雷：保留薄荷冰雷的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>元素 / 地雷</td></tr>
-<tr><td nowrap>标签</td><td>蔬果、元素、爆破</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>18 / 30 / 46 / 70</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
-<tr><td nowrap>射程</td><td>231</td></tr>
-<tr><td nowrap>属性加成</td><td>元素伤害 ×0.54，近战伤害 ×0.3</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>减速 50% 2s，爆炸半径 160，额外暴击 5%</td></tr>
-<tr><td nowrap>T1 价格</td><td>36</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
-</table>
-
-<a id="weapon-fz_popping_candy_rolling_pin"></a>
-
-<table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_popping_candy_rolling_pin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">重击跳跳糖电击</th></tr>
-<tr><td colspan="2"><i>把擀面杖熔进跳跳糖电击：保留跳跳糖电击的攻击方式，同时带上两把武器的特效。</i></td></tr>
-<tr><td nowrap>类别 / 方式</td><td>元素 / 连锁闪电</td></tr>
-<tr><td nowrap>标签</td><td>甜点、厨具</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>13 / 22 / 35 / 53</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.95s / 0.88s / 0.8s / 0.72s</td></tr>
-<tr><td nowrap>射程</td><td>462</td></tr>
-<tr><td nowrap>属性加成</td><td>元素伤害 ×0.42，远程伤害 ×0.18，近战伤害 ×0.6</td></tr>
-<tr><td nowrap>暴击倍率</td><td>×1.5</td></tr>
-<tr><td nowrap>特效</td><td>眩晕 0.15s，连锁 2/3/4/5 次</td></tr>
-<tr><td nowrap>T1 价格</td><td>38</td></tr>
-<tr><td nowrap>初始携带</td><td>-</td></tr>
-</table>
-
-<a id="weapon-fz_cumin_star_mandoline"></a>
-
-<table>
-<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_cumin_star_mandoline.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">贯穿孜然飞镖</th></tr>
-<tr><td colspan="2"><i>把切片器熔进孜然飞镖：保留孜然飞镖的攻击方式，同时带上两把武器的特效。</i></td></tr>
+<tr><td rowspan="12" align="center" valign="middle"><img src="images/weapon/fz_cumin_star_rice_cooker_aura.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">霜寒孜然飞镖</th></tr>
+<tr><td colspan="2"><i>把电饭煲光环熔进孜然飞镖：保留孜然飞镖的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>元素 / 回旋镖</td></tr>
 <tr><td nowrap>标签</td><td>酱料、锋利、厨具</td></tr>
 <tr><td nowrap>伤害 T1~T4</td><td>8 / 13 / 20 / 31</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.46s / 0.42s / 0.38s</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>0.5s / 0.5s / 0.5s / 0.5s</td></tr>
 <tr><td nowrap>射程</td><td>336</td></tr>
-<tr><td nowrap>属性加成</td><td>元素伤害 ×0.48，近战伤害 ×0.42</td></tr>
+<tr><td nowrap>属性加成</td><td>元素伤害 ×0.78</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2</td></tr>
-<tr><td nowrap>特效</td><td>灼烧 3/秒 2s，弹丸 2/2/2/3，额外暴击 10%</td></tr>
-<tr><td nowrap>T1 价格</td><td>38</td></tr>
+<tr><td nowrap>特效</td><td>灼烧 3/秒 2s，减速 15% 0.5s，眩晕 0.1s，弹丸 2/2/2/3</td></tr>
+<tr><td nowrap>T1 价格</td><td>40</td></tr>
 <tr><td nowrap>初始携带</td><td>-</td></tr>
 </table>
 
@@ -3494,7 +4078,7 @@
 
 <a id="craft-graph-melee"></a>
 
-### 近战（65 条配方）
+### 近战（82 条配方）
 
 ```mermaid
 flowchart LR
@@ -3545,6 +4129,18 @@ flowchart LR
   dynamite_drumstick_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dynamite_drumstick.png' width='28' height='28'/><br/>炸药鸡腿 T3"]:::t2
   coconut_gloves_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_gloves.png' width='28' height='28'/><br/>椰壳拳套 T4"]:::t3
   coconut_gloves_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_gloves.png' width='28' height='28'/><br/>椰壳拳套 T3"]:::t2
+  carrot_lance_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/carrot_lance.png' width='28' height='28'/><br/>胡萝卜骑枪 T4"]:::t3
+  carrot_lance_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/carrot_lance.png' width='28' height='28'/><br/>胡萝卜骑枪 T3"]:::t2
+  dragon_lance_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragon_lance.png' width='28' height='28'/><br/>火龙骑枪 T4"]:::t3
+  dragon_lance_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragon_lance.png' width='28' height='28'/><br/>火龙骑枪 T3"]:::t2
+  nut_knuckles_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/nut_knuckles.png' width='28' height='28'/><br/>坚果指虎 T4"]:::t3
+  nut_knuckles_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/nut_knuckles.png' width='28' height='28'/><br/>坚果指虎 T3"]:::t2
+  melon_staff_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/melon_staff.png' width='28' height='28'/><br/>冬瓜禅杖 T4"]:::t3
+  melon_staff_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/melon_staff.png' width='28' height='28'/><br/>冬瓜禅杖 T3"]:::t2
+  beet_axe_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/beet_axe.png' width='28' height='28'/><br/>甜菜狂战斧 T4"]:::t3
+  beet_axe_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/beet_axe.png' width='28' height='28'/><br/>甜菜狂战斧 T3"]:::t2
+  lemon_dagger_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lemon_dagger.png' width='28' height='28'/><br/>柠檬匕首 T4"]:::t3
+  lemon_dagger_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lemon_dagger.png' width='28' height='28'/><br/>柠檬匕首 T3"]:::t2
   candy_cane_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/candy_cane.png' width='28' height='28'/><br/>拐杖糖锤 T4"]:::t3
   candy_cane_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/candy_cane.png' width='28' height='28'/><br/>拐杖糖锤 T3"]:::t2
   popsicle_blade_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popsicle_blade.png' width='28' height='28'/><br/>冰棍刺剑 T4"]:::t3
@@ -3582,14 +4178,18 @@ flowchart LR
   coconut_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_cannon.png' width='28' height='28'/><br/>椰子炮 T3"]:::t2
   fz_knife_ember_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_knife_ember_mine.png' width='28' height='28'/><br/>烈焰菜刀 T4"]:::t3
   ember_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ember_mine.png' width='28' height='28'/><br/>火炭雷 T3"]:::t2
-  fz_candy_cane_glacier_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_candy_cane_glacier_mortar.png' width='28' height='28'/><br/>霜寒拐杖糖锤 T4"]:::t3
-  glacier_mortar_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/glacier_mortar.png' width='28' height='28'/><br/>冰川迫击炮 T3"]:::t2
+  fz_volt_fork_plate_frisbee_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_volt_fork_plate_frisbee.png' width='28' height='28'/><br/>主厨高压电叉 T4"]:::t3
+  plate_frisbee_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/plate_frisbee.png' width='28' height='28'/><br/>餐盘飞碟 T3"]:::t2
+  fz_grater_sweep_stink_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_grater_sweep_stink_aura.png' width='28' height='28'/><br/>剧毒刨丝刀 T4"]:::t3
+  stink_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/stink_aura.png' width='28' height='28'/><br/>榴莲臭气光环 T3"]:::t2
   fz_twin_cleavers_ketchup_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_twin_cleavers_ketchup.png' width='28' height='28'/><br/>散射双持菜刀 T4"]:::t3
   ketchup_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup.png' width='28' height='28'/><br/>番茄酱瓶 T3"]:::t2
   fz_skewer_soy_pistol_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_skewer_soy_pistol.png' width='28' height='28'/><br/>酱爆烤串签 T4"]:::t3
   soy_pistol_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soy_pistol.png' width='28' height='28'/><br/>酱油手枪 T3"]:::t2
   fz_cucumber_katana_soda_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cucumber_katana_soda.png' width='28' height='28'/><br/>霜寒黄瓜武士刀 T4"]:::t3
   soda_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/soda.png' width='28' height='28'/><br/>冰镇汽水 T3"]:::t2
+  fz_dynamite_drumstick_blackberry_wand_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_dynamite_drumstick_blackberry_wand.png' width='28' height='28'/><br/>剧毒炸药鸡腿 T4"]:::t3
+  blackberry_wand_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blackberry_wand.png' width='28' height='28'/><br/>黑莓魔杖 T3"]:::t2
   fz_spatula_slingshot_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_spatula_slingshot.png' width='28' height='28'/><br/>连环锅铲 T4"]:::t3
   slingshot_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/slingshot.png' width='28' height='28'/><br/>番茄弹弓 T3"]:::t2
   fz_kitchen_scissors_toxic_spike_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_kitchen_scissors_toxic_spike.png' width='28' height='28'/><br/>剧毒厨房剪刀 T4"]:::t3
@@ -3600,15 +4200,17 @@ flowchart LR
   fz_coconut_gloves_ice_cube_tray_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_coconut_gloves_ice_cube_tray.png' width='28' height='28'/><br/>霜寒椰壳拳套 T4"]:::t3
   ice_cube_tray_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ice_cube_tray.png' width='28' height='28'/><br/>冰块格 T3"]:::t2
   fz_coal_tongs_whisk_spin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_coal_tongs_whisk_spin.png' width='28' height='28'/><br/>霜寒炭火钳 T4"]:::t3
-  fz_ladle_watermelon_hammer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_ladle_watermelon_hammer.png' width='28' height='28'/><br/>爆裂汤勺 T4"]:::t3
+  fz_ladle_cherry_pistols_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_ladle_cherry_pistols.png' width='28' height='28'/><br/>糖霜汤勺 T4"]:::t3
+  cherry_pistols_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cherry_pistols.png' width='28' height='28'/><br/>樱桃双枪 T3"]:::t2
+  fz_watermelon_hammer_mint_frost_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_watermelon_hammer_mint_frost_mine.png' width='28' height='28'/><br/>霜寒西瓜锤 T4"]:::t3
+  mint_frost_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mint_frost_mine.png' width='28' height='28'/><br/>薄荷冰雷 T3"]:::t2
   fz_chopsticks_pepper_spray_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_chopsticks_pepper_spray.png' width='28' height='28'/><br/>烈焰竹筷 T4"]:::t3
   pepper_spray_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_spray.png' width='28' height='28'/><br/>胡椒喷雾 T3"]:::t2
-  fz_pizza_cutter_potato_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_pizza_cutter_potato_mine.png' width='28' height='28'/><br/>爆裂披萨滚刀 T4"]:::t3
-  potato_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/potato_mine.png' width='28' height='28'/><br/>土豆地雷 T3"]:::t2
-  fz_baguette_sword_spore_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_baguette_sword_spore_cannon.png' width='28' height='28'/><br/>剧毒法棍剑 T4"]:::t3
-  spore_cannon_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_cannon.png' width='28' height='28'/><br/>孢子炮 T3"]:::t2
-  fz_meat_tenderizer_seed_spitter_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_meat_tenderizer_seed_spitter.png' width='28' height='28'/><br/>鲜果松肉锤 T4"]:::t3
-  seed_spitter_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/seed_spitter.png' width='28' height='28'/><br/>瓜子机枪 T3"]:::t2
+  fz_pizza_cutter_dragon_lance_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_pizza_cutter_dragon_lance.png' width='28' height='28'/><br/>烈焰披萨滚刀 T4"]:::t3
+  fz_nut_knuckles_rolling_pin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_nut_knuckles_rolling_pin.png' width='28' height='28'/><br/>重击坚果指虎 T4"]:::t3
+  fz_baguette_sword_sprout_wand_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_baguette_sword_sprout_wand.png' width='28' height='28'/><br/>连环法棍剑 T4"]:::t3
+  sprout_wand_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sprout_wand.png' width='28' height='28'/><br/>新芽魔杖 T3"]:::t2
+  fz_mandoline_meat_tenderizer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_mandoline_meat_tenderizer.png' width='28' height='28'/><br/>重击切片器 T4"]:::t3
   hell_trident_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hell_trident.png' width='28' height='28'/><br/>地狱三叉戟 超武"]:::t4
   titan_pin_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/titan_pin.png' width='28' height='28'/><br/>擎天擀面柱 超武"]:::t4
   paoding_blade_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/paoding_blade.png' width='28' height='28'/><br/>庖丁神刀 超武"]:::t4
@@ -3618,6 +4220,15 @@ flowchart LR
   coconut_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coconut_cannon.png' width='28' height='28'/><br/>椰子炮 T4"]:::t3
   tsunami_katana_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/tsunami_katana.png' width='28' height='28'/><br/>怒涛芥末刀 超武"]:::t4
   tornado_blender_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/tornado_blender.png' width='28' height='28'/><br/>龙卷破壁机 超武"]:::t4
+  carrot_holy_lance_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/carrot_holy_lance.png' width='28' height='28'/><br/>胡萝卜圣枪 超武"]:::t4
+  inferno_lance_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/inferno_lance.png' width='28' height='28'/><br/>炎龙骑枪 超武"]:::t4
+  dragonfruit_orb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragonfruit_orb.png' width='28' height='28'/><br/>火龙果法球 T4"]:::t3
+  coco_fist_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/coco_fist.png' width='28' height='28'/><br/>椰子霸王拳 超武"]:::t4
+  vajra_staff_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/vajra_staff.png' width='28' height='28'/><br/>金刚禅杖 超武"]:::t4
+  blood_axe_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blood_axe.png' width='28' height='28'/><br/>血怒战斧 超武"]:::t4
+  acid_daggers_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/acid_daggers.png' width='28' height='28'/><br/>酸蚀双匕 超武"]:::t4
+  yam_oven_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/yam_oven.png' width='28' height='28'/><br/>红薯烤炉 超武"]:::t4
+  steam_kettle_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/steam_kettle.png' width='28' height='28'/><br/>蒸汽水壶 T4"]:::t3
   fork_2 --> fork_3
   rolling_pin_2 --> rolling_pin_3
   knife_2 --> knife_3
@@ -3640,6 +4251,12 @@ flowchart LR
   blender_aura_2 --> blender_aura_3
   dynamite_drumstick_2 --> dynamite_drumstick_3
   coconut_gloves_2 --> coconut_gloves_3
+  carrot_lance_2 --> carrot_lance_3
+  dragon_lance_2 --> dragon_lance_3
+  nut_knuckles_2 --> nut_knuckles_3
+  melon_staff_2 --> melon_staff_3
+  beet_axe_2 --> beet_axe_3
+  lemon_dagger_2 --> lemon_dagger_3
   candy_cane_2 --> candy_cane_3
   popsicle_blade_2 --> popsicle_blade_3
   icecream_hammer_2 --> icecream_hammer_3
@@ -3665,14 +4282,18 @@ flowchart LR
   coconut_cannon_2 --> coconut_quake_mace_3
   knife_2 --> fz_knife_ember_mine_3
   ember_mine_2 --> fz_knife_ember_mine_3
-  candy_cane_2 --> fz_candy_cane_glacier_mortar_3
-  glacier_mortar_2 --> fz_candy_cane_glacier_mortar_3
+  volt_fork_2 --> fz_volt_fork_plate_frisbee_3
+  plate_frisbee_2 --> fz_volt_fork_plate_frisbee_3
+  grater_sweep_2 --> fz_grater_sweep_stink_aura_3
+  stink_aura_2 --> fz_grater_sweep_stink_aura_3
   twin_cleavers_2 --> fz_twin_cleavers_ketchup_3
   ketchup_2 --> fz_twin_cleavers_ketchup_3
   skewer_2 --> fz_skewer_soy_pistol_3
   soy_pistol_2 --> fz_skewer_soy_pistol_3
   cucumber_katana_2 --> fz_cucumber_katana_soda_3
   soda_2 --> fz_cucumber_katana_soda_3
+  dynamite_drumstick_2 --> fz_dynamite_drumstick_blackberry_wand_3
+  blackberry_wand_2 --> fz_dynamite_drumstick_blackberry_wand_3
   spatula_2 --> fz_spatula_slingshot_3
   slingshot_2 --> fz_spatula_slingshot_3
   kitchen_scissors_2 --> fz_kitchen_scissors_toxic_spike_3
@@ -3685,16 +4306,20 @@ flowchart LR
   ice_cube_tray_2 --> fz_coconut_gloves_ice_cube_tray_3
   coal_tongs_2 --> fz_coal_tongs_whisk_spin_3
   whisk_spin_2 --> fz_coal_tongs_whisk_spin_3
-  ladle_2 --> fz_ladle_watermelon_hammer_3
-  watermelon_hammer_2 --> fz_ladle_watermelon_hammer_3
+  ladle_2 --> fz_ladle_cherry_pistols_3
+  cherry_pistols_2 --> fz_ladle_cherry_pistols_3
+  watermelon_hammer_2 --> fz_watermelon_hammer_mint_frost_mine_3
+  mint_frost_mine_2 --> fz_watermelon_hammer_mint_frost_mine_3
   chopsticks_2 --> fz_chopsticks_pepper_spray_3
   pepper_spray_2 --> fz_chopsticks_pepper_spray_3
-  pizza_cutter_2 --> fz_pizza_cutter_potato_mine_3
-  potato_mine_2 --> fz_pizza_cutter_potato_mine_3
-  baguette_sword_2 --> fz_baguette_sword_spore_cannon_3
-  spore_cannon_2 --> fz_baguette_sword_spore_cannon_3
-  meat_tenderizer_2 --> fz_meat_tenderizer_seed_spitter_3
-  seed_spitter_2 --> fz_meat_tenderizer_seed_spitter_3
+  pizza_cutter_2 --> fz_pizza_cutter_dragon_lance_3
+  dragon_lance_2 --> fz_pizza_cutter_dragon_lance_3
+  nut_knuckles_2 --> fz_nut_knuckles_rolling_pin_3
+  rolling_pin_2 --> fz_nut_knuckles_rolling_pin_3
+  baguette_sword_2 --> fz_baguette_sword_sprout_wand_3
+  sprout_wand_2 --> fz_baguette_sword_sprout_wand_3
+  mandoline_2 --> fz_mandoline_meat_tenderizer_3
+  meat_tenderizer_2 --> fz_mandoline_meat_tenderizer_3
   fork_3 --> hell_trident_4
   volt_fork_3 --> hell_trident_4
   rolling_pin_3 --> titan_pin_4
@@ -3710,11 +4335,25 @@ flowchart LR
   sushi_twin_blade_3 --> tsunami_katana_4
   blender_aura_3 --> tornado_blender_4
   blade_aura_3 --> tornado_blender_4
+  carrot_lance_3 --> carrot_holy_lance_4
+  bamboo_spear_3 --> carrot_holy_lance_4
+  dragon_lance_3 --> inferno_lance_4
+  dragonfruit_orb_3 --> inferno_lance_4
+  coconut_gloves_3 --> coco_fist_4
+  nut_knuckles_3 --> coco_fist_4
+  melon_staff_3 --> vajra_staff_4
+  coconut_gloves_3 --> vajra_staff_4
+  beet_axe_3 --> blood_axe_4
+  coal_tongs_3 --> blood_axe_4
+  lemon_dagger_3 --> acid_daggers_4
+  wasabi_katana_3 --> acid_daggers_4
+  coal_tongs_3 --> yam_oven_4
+  steam_kettle_3 --> yam_oven_4
 ```
 
 <a id="craft-graph-ranged"></a>
 
-### 远程（67 条配方）
+### 远程（94 条配方）
 
 ```mermaid
 flowchart LR
@@ -3767,6 +4406,22 @@ flowchart LR
   sea_urchin_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sea_urchin_mine.png' width='28' height='28'/><br/>海胆雷 T3"]:::t2
   asparagus_bow_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/asparagus_bow.png' width='28' height='28'/><br/>芦笋长弓 T4"]:::t3
   asparagus_bow_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/asparagus_bow.png' width='28' height='28'/><br/>芦笋长弓 T3"]:::t2
+  bean_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bean_mine.png' width='28' height='28'/><br/>撒豆雷 T4"]:::t3
+  bean_mine_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bean_mine.png' width='28' height='28'/><br/>撒豆雷 T3"]:::t2
+  pomegranate_cluster_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pomegranate_cluster.png' width='28' height='28'/><br/>石榴集束弹 T4"]:::t3
+  pomegranate_cluster_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pomegranate_cluster.png' width='28' height='28'/><br/>石榴集束弹 T3"]:::t2
+  pepper_drone_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_drone.png' width='28' height='28'/><br/>青椒浮游炮 T4"]:::t3
+  pepper_drone_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_drone.png' width='28' height='28'/><br/>青椒浮游炮 T3"]:::t2
+  onion_tear_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/onion_tear.png' width='28' height='28'/><br/>洋葱催泪镖 T4"]:::t3
+  onion_tear_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/onion_tear.png' width='28' height='28'/><br/>洋葱催泪镖 T3"]:::t2
+  lychee_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lychee_gun.png' width='28' height='28'/><br/>荔枝红包枪 T4"]:::t3
+  lychee_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lychee_gun.png' width='28' height='28'/><br/>荔枝红包枪 T3"]:::t2
+  cherry_pistols_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cherry_pistols.png' width='28' height='28'/><br/>樱桃双枪 T4"]:::t3
+  cherry_pistols_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cherry_pistols.png' width='28' height='28'/><br/>樱桃双枪 T3"]:::t2
+  ketchup_twin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup_twin.png' width='28' height='28'/><br/>番茄酱双瓶 T4"]:::t3
+  ketchup_twin_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup_twin.png' width='28' height='28'/><br/>番茄酱双瓶 T3"]:::t2
+  peach_syrup_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/peach_syrup.png' width='28' height='28'/><br/>蜜桃糖浆枪 T4"]:::t3
+  peach_syrup_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/peach_syrup.png' width='28' height='28'/><br/>蜜桃糖浆枪 T3"]:::t2
   macaron_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/macaron_gun.png' width='28' height='28'/><br/>马卡龙连发 T4"]:::t3
   macaron_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/macaron_gun.png' width='28' height='28'/><br/>马卡龙连发 T3"]:::t2
   donut_ring_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/donut_ring.png' width='28' height='28'/><br/>甜甜圈飞环 T4"]:::t3
@@ -3810,31 +4465,44 @@ flowchart LR
   inferno_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/inferno_mortar.png' width='28' height='28'/><br/>炎狱迫击炮 T4"]:::t3
   railgun_sniper_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/railgun_sniper.png' width='28' height='28'/><br/>电磁蓝莓狙 T4"]:::t3
   candy_shotgun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/candy_shotgun.png' width='28' height='28'/><br/>糖果霰弹枪 T4"]:::t3
-  fz_plate_frisbee_onion_boomerang_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_plate_frisbee_onion_boomerang.png' width='28' height='28'/><br/>鲜果餐盘飞碟 T4"]:::t3
-  fz_corn_scatter_grater_sweep_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_corn_scatter_grater_sweep.png' width='28' height='28'/><br/>致命玉米散弹 T4"]:::t3
-  grater_sweep_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grater_sweep.png' width='28' height='28'/><br/>刨丝刀 T3"]:::t2
+  fz_onion_boomerang_candy_cane_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_onion_boomerang_candy_cane.png' width='28' height='28'/><br/>糖霜洋葱回旋镖 T4"]:::t3
+  candy_cane_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/candy_cane.png' width='28' height='28'/><br/>拐杖糖锤 T3"]:::t2
+  fz_glacier_mortar_corn_scatter_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_glacier_mortar_corn_scatter.png' width='28' height='28'/><br/>散射冰川迫击炮 T4"]:::t3
   fz_sea_urchin_mine_dragonfruit_orb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_sea_urchin_mine_dragonfruit_orb.png' width='28' height='28'/><br/>烈焰海胆雷 T4"]:::t3
   dragonfruit_orb_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragonfruit_orb.png' width='28' height='28'/><br/>火龙果法球 T3"]:::t2
   fz_corn_cannon_blade_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_corn_cannon_blade_aura.png' width='28' height='28'/><br/>锐锋玉米加农 T4"]:::t3
   blade_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blade_aura.png' width='28' height='28'/><br/>刃风光环 T3"]:::t2
-  fz_honey_blaster_pumpkin_mortar_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_honey_blaster_pumpkin_mortar.png' width='28' height='28'/><br/>烈焰蜂蜜喷枪 T4"]:::t3
-  fz_popcorn_machine_rot_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_popcorn_machine_rot_aura.png' width='28' height='28'/><br/>剧毒爆米花机 T4"]:::t3
+  fz_pepper_drone_melon_staff_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_pepper_drone_melon_staff.png' width='28' height='28'/><br/>重击青椒浮游炮 T4"]:::t3
+  melon_staff_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/melon_staff.png' width='28' height='28'/><br/>冬瓜禅杖 T3"]:::t2
+  fz_pumpkin_mortar_eggplant_staff_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_pumpkin_mortar_eggplant_staff.png' width='28' height='28'/><br/>雷霆南瓜迫击炮 T4"]:::t3
+  eggplant_staff_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/eggplant_staff.png' width='28' height='28'/><br/>紫茄雷杖 T3"]:::t2
+  fz_popcorn_machine_carrot_lance_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_popcorn_machine_carrot_lance.png' width='28' height='28'/><br/>贯穿爆米花机 T4"]:::t3
+  carrot_lance_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/carrot_lance.png' width='28' height='28'/><br/>胡萝卜骑枪 T3"]:::t2
+  fz_donut_ring_rot_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_donut_ring_rot_aura.png' width='28' height='28'/><br/>剧毒甜甜圈飞环 T4"]:::t3
   rot_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rot_aura.png' width='28' height='28'/><br/>腐菌光环 T3"]:::t2
-  fz_donut_ring_dynamite_drumstick_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_donut_ring_dynamite_drumstick.png' width='28' height='28'/><br/>爆裂甜甜圈飞环 T4"]:::t3
-  dynamite_drumstick_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dynamite_drumstick.png' width='28' height='28'/><br/>炸药鸡腿 T3"]:::t2
   fz_bean_bazooka_soy_bomb_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_bean_bazooka_soy_bomb.png' width='28' height='28'/><br/>酱爆豆子火箭筒 T4"]:::t3
-  fz_choco_mine_bbq_torch_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_choco_mine_bbq_torch.png' width='28' height='28'/><br/>烈焰巧克力地雷 T4"]:::t3
+  fz_onion_tear_lightning_whisk_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_onion_tear_lightning_whisk.png' width='28' height='28'/><br/>雷霆洋葱催泪镖 T4"]:::t3
+  lightning_whisk_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lightning_whisk.png' width='28' height='28'/><br/>闪电打蛋器 T3"]:::t2
+  fz_pepper_grinder_choco_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_pepper_grinder_choco_mine.png' width='28' height='28'/><br/>霜寒胡椒研磨枪 T4"]:::t3
+  fz_bbq_torch_ketchup_twin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_bbq_torch_ketchup_twin.png' width='28' height='28'/><br/>散射烧烤喷枪 T4"]:::t3
   fz_cherry_bomb_bamboo_spear_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cherry_bomb_bamboo_spear.png' width='28' height='28'/><br/>致命樱桃炸弹 T4"]:::t3
   bamboo_spear_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bamboo_spear.png' width='28' height='28'/><br/>竹笋长矛 T3"]:::t2
   fz_carrot_crossbow_fork_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_carrot_crossbow_fork.png' width='28' height='28'/><br/>主厨胡萝卜弩 T4"]:::t3
   fork_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fork.png' width='28' height='28'/><br/>番茄叉 T3"]:::t2
   fz_knife_case_microwave_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_knife_case_microwave_cannon.png' width='28' height='28'/><br/>爆裂飞刀匣 T4"]:::t3
+  fz_peach_syrup_blender_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_peach_syrup_blender_aura.png' width='28' height='28'/><br/>致命蜜桃糖浆枪 T4"]:::t3
+  blender_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blender_aura.png' width='28' height='28'/><br/>破壁机 T3"]:::t2
   fz_melon_grenade_pumpkin_lantern_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_melon_grenade_pumpkin_lantern.png' width='28' height='28'/><br/>贯穿西瓜榴弹 T4"]:::t3
   pumpkin_lantern_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pumpkin_lantern.png' width='28' height='28'/><br/>南瓜鬼火灯 T3"]:::t2
   fz_blowpipe_syrup_sprayer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_blowpipe_syrup_sprayer.png' width='28' height='28'/><br/>烈焰毒刺吹管 T4"]:::t3
   syrup_sprayer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/syrup_sprayer.png' width='28' height='28'/><br/>糖浆喷枪 T3"]:::t2
-  fz_mycelium_boomerang_rice_cooker_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_mycelium_boomerang_rice_cooker_aura.png' width='28' height='28'/><br/>霜寒菌丝回旋镖 T4"]:::t3
-  rice_cooker_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rice_cooker_aura.png' width='28' height='28'/><br/>电饭煲光环 T3"]:::t2
+  fz_pomegranate_cluster_beet_axe_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_pomegranate_cluster_beet_axe.png' width='28' height='28'/><br/>致命石榴集束弹 T4"]:::t3
+  beet_axe_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/beet_axe.png' width='28' height='28'/><br/>甜菜狂战斧 T3"]:::t2
+  fz_potato_mine_popping_candy_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_potato_mine_popping_candy.png' width='28' height='28'/><br/>雷霆土豆地雷 T4"]:::t3
+  popping_candy_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/popping_candy.png' width='28' height='28'/><br/>跳跳糖电击 T3"]:::t2
+  fz_bean_mine_spore_cannon_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_bean_mine_spore_cannon.png' width='28' height='28'/><br/>剧毒撒豆雷 T4"]:::t3
+  fz_mycelium_boomerang_lychee_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_mycelium_boomerang_lychee_gun.png' width='28' height='28'/><br/>散射菌丝回旋镖 T4"]:::t3
+  fz_seed_spitter_fork_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_seed_spitter_fork.png' width='28' height='28'/><br/>致命瓜子机枪 T4"]:::t3
   pea_gatling_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pea_gatling.png' width='28' height='28'/><br/>豌豆加特林 超武"]:::t4
   ketchup_flood_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ketchup_flood.png' width='28' height='28'/><br/>番茄酱洪流 超武"]:::t4
   devil_missile_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/devil_missile.png' width='28' height='28'/><br/>魔鬼椒导弹 超武"]:::t4
@@ -3842,6 +4510,18 @@ flowchart LR
   golden_corn_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/golden_corn.png' width='28' height='28'/><br/>黄金爆米花炮 超武"]:::t4
   umami_bomb_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/umami_bomb.png' width='28' height='28'/><br/>鲜味核弹 超武"]:::t4
   ember_mine_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ember_mine.png' width='28' height='28'/><br/>火炭雷 T4"]:::t3
+  macaron_tempest_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/macaron_tempest.png' width='28' height='28'/><br/>马卡龙风暴 超武"]:::t4
+  honey_flood_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/honey_flood.png' width='28' height='28'/><br/>蜂蜜洪流 超武"]:::t4
+  jelly_bounce_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/jelly_bounce.png' width='28' height='28'/><br/>果冻弹 T4"]:::t3
+  onion_layers_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/onion_layers.png' width='28' height='28'/><br/>千层洋葱镖 超武"]:::t4
+  grape_magic_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/grape_magic.png' width='28' height='28'/><br/>葡萄魔术礼炮 超武"]:::t4
+  cherry_barrage_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cherry_barrage.png' width='28' height='28'/><br/>樱桃连珠炮 超武"]:::t4
+  asparagus_volley_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/asparagus_volley.png' width='28' height='28'/><br/>万箭芦笋 超武"]:::t4
+  lucky_cannon_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lucky_cannon.png' width='28' height='28'/><br/>鸿运红包炮 超武"]:::t4
+  mecha_cannon_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mecha_cannon.png' width='28' height='28'/><br/>青椒机甲炮 超武"]:::t4
+  bean_airdrop_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/bean_airdrop.png' width='28' height='28'/><br/>豆兵空投 超武"]:::t4
+  thorn_rain_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/thorn_rain.png' width='28' height='28'/><br/>千刺暴雨 超武"]:::t4
+  pome_salute_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pome_salute.png' width='28' height='28'/><br/>石榴礼炮 超武"]:::t4
   slingshot_2 --> slingshot_3
   pea_shooter_2 --> pea_shooter_3
   chili_rocket_2 --> chili_rocket_3
@@ -3865,6 +4545,14 @@ flowchart LR
   jam_mortar_2 --> jam_mortar_3
   sea_urchin_mine_2 --> sea_urchin_mine_3
   asparagus_bow_2 --> asparagus_bow_3
+  bean_mine_2 --> bean_mine_3
+  pomegranate_cluster_2 --> pomegranate_cluster_3
+  pepper_drone_2 --> pepper_drone_3
+  onion_tear_2 --> onion_tear_3
+  lychee_gun_2 --> lychee_gun_3
+  cherry_pistols_2 --> cherry_pistols_3
+  ketchup_twin_2 --> ketchup_twin_3
+  peach_syrup_2 --> peach_syrup_3
   macaron_gun_2 --> macaron_gun_3
   donut_ring_2 --> donut_ring_3
   choco_mine_2 --> choco_mine_3
@@ -3893,36 +4581,52 @@ flowchart LR
   pea_sniper_2 --> railgun_sniper_3
   grape_shotgun_2 --> candy_shotgun_3
   macaron_gun_2 --> candy_shotgun_3
-  plate_frisbee_2 --> fz_plate_frisbee_onion_boomerang_3
-  onion_boomerang_2 --> fz_plate_frisbee_onion_boomerang_3
-  corn_scatter_2 --> fz_corn_scatter_grater_sweep_3
-  grater_sweep_2 --> fz_corn_scatter_grater_sweep_3
+  onion_boomerang_2 --> fz_onion_boomerang_candy_cane_3
+  candy_cane_2 --> fz_onion_boomerang_candy_cane_3
+  glacier_mortar_2 --> fz_glacier_mortar_corn_scatter_3
+  corn_scatter_2 --> fz_glacier_mortar_corn_scatter_3
   sea_urchin_mine_2 --> fz_sea_urchin_mine_dragonfruit_orb_3
   dragonfruit_orb_2 --> fz_sea_urchin_mine_dragonfruit_orb_3
   corn_cannon_2 --> fz_corn_cannon_blade_aura_3
   blade_aura_2 --> fz_corn_cannon_blade_aura_3
-  honey_blaster_2 --> fz_honey_blaster_pumpkin_mortar_3
-  pumpkin_mortar_2 --> fz_honey_blaster_pumpkin_mortar_3
-  popcorn_machine_2 --> fz_popcorn_machine_rot_aura_3
-  rot_aura_2 --> fz_popcorn_machine_rot_aura_3
-  donut_ring_2 --> fz_donut_ring_dynamite_drumstick_3
-  dynamite_drumstick_2 --> fz_donut_ring_dynamite_drumstick_3
+  pepper_drone_2 --> fz_pepper_drone_melon_staff_3
+  melon_staff_2 --> fz_pepper_drone_melon_staff_3
+  pumpkin_mortar_2 --> fz_pumpkin_mortar_eggplant_staff_3
+  eggplant_staff_2 --> fz_pumpkin_mortar_eggplant_staff_3
+  popcorn_machine_2 --> fz_popcorn_machine_carrot_lance_3
+  carrot_lance_2 --> fz_popcorn_machine_carrot_lance_3
+  donut_ring_2 --> fz_donut_ring_rot_aura_3
+  rot_aura_2 --> fz_donut_ring_rot_aura_3
   bean_bazooka_2 --> fz_bean_bazooka_soy_bomb_3
   soy_bomb_2 --> fz_bean_bazooka_soy_bomb_3
-  choco_mine_2 --> fz_choco_mine_bbq_torch_3
-  bbq_torch_2 --> fz_choco_mine_bbq_torch_3
+  onion_tear_2 --> fz_onion_tear_lightning_whisk_3
+  lightning_whisk_2 --> fz_onion_tear_lightning_whisk_3
+  pepper_grinder_2 --> fz_pepper_grinder_choco_mine_3
+  choco_mine_2 --> fz_pepper_grinder_choco_mine_3
+  bbq_torch_2 --> fz_bbq_torch_ketchup_twin_3
+  ketchup_twin_2 --> fz_bbq_torch_ketchup_twin_3
   cherry_bomb_2 --> fz_cherry_bomb_bamboo_spear_3
   bamboo_spear_2 --> fz_cherry_bomb_bamboo_spear_3
   carrot_crossbow_2 --> fz_carrot_crossbow_fork_3
   fork_2 --> fz_carrot_crossbow_fork_3
   knife_case_2 --> fz_knife_case_microwave_cannon_3
   microwave_cannon_2 --> fz_knife_case_microwave_cannon_3
+  peach_syrup_2 --> fz_peach_syrup_blender_aura_3
+  blender_aura_2 --> fz_peach_syrup_blender_aura_3
   melon_grenade_2 --> fz_melon_grenade_pumpkin_lantern_3
   pumpkin_lantern_2 --> fz_melon_grenade_pumpkin_lantern_3
   blowpipe_2 --> fz_blowpipe_syrup_sprayer_3
   syrup_sprayer_2 --> fz_blowpipe_syrup_sprayer_3
-  mycelium_boomerang_2 --> fz_mycelium_boomerang_rice_cooker_aura_3
-  rice_cooker_aura_2 --> fz_mycelium_boomerang_rice_cooker_aura_3
+  pomegranate_cluster_2 --> fz_pomegranate_cluster_beet_axe_3
+  beet_axe_2 --> fz_pomegranate_cluster_beet_axe_3
+  potato_mine_2 --> fz_potato_mine_popping_candy_3
+  popping_candy_2 --> fz_potato_mine_popping_candy_3
+  bean_mine_2 --> fz_bean_mine_spore_cannon_3
+  spore_cannon_2 --> fz_bean_mine_spore_cannon_3
+  mycelium_boomerang_2 --> fz_mycelium_boomerang_lychee_gun_3
+  lychee_gun_2 --> fz_mycelium_boomerang_lychee_gun_3
+  seed_spitter_2 --> fz_seed_spitter_fork_3
+  fork_2 --> fz_seed_spitter_fork_3
   pea_shooter_3 --> pea_gatling_4
   blast_pea_cannon_3 --> pea_gatling_4
   ketchup_3 --> ketchup_flood_4
@@ -3935,11 +4639,33 @@ flowchart LR
   corn_scatter_3 --> golden_corn_4
   soy_bomb_3 --> umami_bomb_4
   ember_mine_3 --> umami_bomb_4
+  macaron_gun_3 --> macaron_tempest_4
+  choco_mine_3 --> macaron_tempest_4
+  honey_blaster_3 --> honey_flood_4
+  jelly_bounce_3 --> honey_flood_4
+  onion_boomerang_3 --> onion_layers_4
+  onion_tear_3 --> onion_layers_4
+  grape_shotgun_3 --> grape_magic_4
+  corn_scatter_3 --> grape_magic_4
+  cherry_pistols_3 --> cherry_barrage_4
+  macaron_gun_3 --> cherry_barrage_4
+  asparagus_bow_3 --> asparagus_volley_4
+  carrot_crossbow_3 --> asparagus_volley_4
+  lychee_gun_3 --> lucky_cannon_4
+  knife_case_3 --> lucky_cannon_4
+  pepper_drone_3 --> mecha_cannon_4
+  microwave_cannon_3 --> mecha_cannon_4
+  bean_mine_3 --> bean_airdrop_4
+  bean_bazooka_3 --> bean_airdrop_4
+  knife_case_3 --> thorn_rain_4
+  pepper_grinder_3 --> thorn_rain_4
+  pomegranate_cluster_3 --> pome_salute_4
+  melon_grenade_3 --> pome_salute_4
 ```
 
 <a id="craft-graph-elemental"></a>
 
-### 元素（67 条配方）
+### 元素（77 条配方）
 
 ```mermaid
 flowchart LR
@@ -3986,6 +4712,16 @@ flowchart LR
   pumpkin_lantern_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pumpkin_lantern.png' width='28' height='28'/><br/>南瓜鬼火灯 T3"]:::t2
   spore_sprayer_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_sprayer.png' width='28' height='28'/><br/>孢子喷壶 T4"]:::t3
   spore_sprayer_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/spore_sprayer.png' width='28' height='28'/><br/>孢子喷壶 T3"]:::t2
+  blackberry_wand_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blackberry_wand.png' width='28' height='28'/><br/>黑莓魔杖 T4"]:::t3
+  blackberry_wand_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blackberry_wand.png' width='28' height='28'/><br/>黑莓魔杖 T3"]:::t2
+  taro_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/taro_aura.png' width='28' height='28'/><br/>芋泥光环 T4"]:::t3
+  taro_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/taro_aura.png' width='28' height='28'/><br/>芋泥光环 T3"]:::t2
+  stink_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/stink_aura.png' width='28' height='28'/><br/>榴莲臭气光环 T4"]:::t3
+  stink_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/stink_aura.png' width='28' height='28'/><br/>榴莲臭气光环 T3"]:::t2
+  eggplant_staff_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/eggplant_staff.png' width='28' height='28'/><br/>紫茄雷杖 T4"]:::t3
+  eggplant_staff_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/eggplant_staff.png' width='28' height='28'/><br/>紫茄雷杖 T3"]:::t2
+  sprout_wand_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sprout_wand.png' width='28' height='28'/><br/>新芽魔杖 T4"]:::t3
+  sprout_wand_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/sprout_wand.png' width='28' height='28'/><br/>新芽魔杖 T3"]:::t2
   cream_torch_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cream_torch.png' width='28' height='28'/><br/>奶油喷枪 T4"]:::t3
   cream_torch_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/cream_torch.png' width='28' height='28'/><br/>奶油喷枪 T3"]:::t2
   caramel_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/caramel_aura.png' width='28' height='28'/><br/>焦糖光环 T4"]:::t3
@@ -4035,35 +4771,37 @@ flowchart LR
   dragon_breath_flame_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/dragon_breath_flame.png' width='28' height='28'/><br/>龙息喷流 T4"]:::t3
   anise_frost_storm_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/anise_frost_storm.png' width='28' height='28'/><br/>霜星八角 T4"]:::t3
   holy_salt_barrier_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/holy_salt_barrier.png' width='28' height='28'/><br/>圣盐结界 T4"]:::t3
-  fz_thunder_durian_volt_fork_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_thunder_durian_volt_fork.png' width='28' height='28'/><br/>贯穿雷霆榴莲 T4"]:::t3
-  volt_fork_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/volt_fork.png' width='28' height='28'/><br/>高压电叉 T3"]:::t2
+  fz_thunder_durian_lemon_dagger_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_thunder_durian_lemon_dagger.png' width='28' height='28'/><br/>致命雷霆榴莲 T4"]:::t3
+  lemon_dagger_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/lemon_dagger.png' width='28' height='28'/><br/>柠檬匕首 T3"]:::t2
   fz_jelly_bounce_chili_shuriken_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_jelly_bounce_chili_shuriken.png' width='28' height='28'/><br/>烈焰果冻弹 T4"]:::t3
   chili_shuriken_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/chili_shuriken.png' width='28' height='28'/><br/>剁椒飞轮 T3"]:::t2
   fz_slush_spray_caramel_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_slush_spray_caramel_aura.png' width='28' height='28'/><br/>蚀骨冰沙喷雾 T4"]:::t3
   fz_grill_arc_pepper_storm_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_grill_arc_pepper_storm_aura.png' width='28' height='28'/><br/>酱爆电烤架 T4"]:::t3
   pepper_storm_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_storm_aura.png' width='28' height='28'/><br/>胡椒风暴 T3"]:::t2
-  fz_teapot_storm_charcoal_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_teapot_storm_charcoal_aura.png' width='28' height='28'/><br/>烈焰茶壶雷暴 T4"]:::t3
+  fz_taro_aura_charcoal_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_taro_aura_charcoal_aura.png' width='28' height='28'/><br/>酱爆芋泥光环 T4"]:::t3
+  fz_teapot_storm_honey_blaster_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_teapot_storm_honey_blaster.png' width='28' height='28'/><br/>糖霜茶壶雷暴 T4"]:::t3
+  honey_blaster_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/honey_blaster.png' width='28' height='28'/><br/>蜂蜜喷枪 T3"]:::t2
   fz_cola_zapper_mixer_storm_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cola_zapper_mixer_storm.png' width='28' height='28'/><br/>主厨可乐电击枪 T4"]:::t3
   fz_steam_kettle_asparagus_bow_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_steam_kettle_asparagus_bow.png' width='28' height='28'/><br/>贯穿蒸汽水壶 T4"]:::t3
   asparagus_bow_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/asparagus_bow.png' width='28' height='28'/><br/>芦笋长弓 T3"]:::t2
-  fz_lightning_whisk_pepper_grinder_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_lightning_whisk_pepper_grinder.png' width='28' height='28'/><br/>贯穿闪电打蛋器 T4"]:::t3
-  pepper_grinder_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_grinder.png' width='28' height='28'/><br/>胡椒研磨枪 T3"]:::t2
   fz_spore_sprayer_shaved_ice_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_spore_sprayer_shaved_ice_gun.png' width='28' height='28'/><br/>霜寒孢子喷壶 T4"]:::t3
   shaved_ice_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/shaved_ice_gun.png' width='28' height='28'/><br/>刨冰机枪 T3"]:::t2
   fz_toaster_zap_hot_sauce_gun_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_toaster_zap_hot_sauce_gun.png' width='28' height='28'/><br/>烈焰吐司闪电 T4"]:::t3
   hot_sauce_gun_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/hot_sauce_gun.png' width='28' height='28'/><br/>辣酱手枪 T3"]:::t2
-  fz_mint_frost_mine_blender_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_mint_frost_mine_blender_aura.png' width='28' height='28'/><br/>致命薄荷冰雷 T4"]:::t3
-  blender_aura_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/blender_aura.png' width='28' height='28'/><br/>破壁机 T3"]:::t2
-  fz_popping_candy_rolling_pin_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_popping_candy_rolling_pin.png' width='28' height='28'/><br/>重击跳跳糖电击 T4"]:::t3
-  rolling_pin_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/rolling_pin.png' width='28' height='28'/><br/>擀面杖 T3"]:::t2
-  fz_cumin_star_mandoline_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cumin_star_mandoline.png' width='28' height='28'/><br/>贯穿孜然飞镖 T4"]:::t3
-  mandoline_2["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mandoline.png' width='28' height='28'/><br/>切片器 T3"]:::t2
+  fz_cumin_star_rice_cooker_aura_3["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/fz_cumin_star_rice_cooker_aura.png' width='28' height='28'/><br/>霜寒孜然飞镖 T4"]:::t3
   thor_whisk_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/thor_whisk.png' width='28' height='28'/><br/>雷神打蛋器 超武"]:::t4
   vampire_garlic_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/vampire_garlic.png' width='28' height='28'/><br/>吸血鬼大蒜 超武"]:::t4
   anise_storm_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/anise_storm.png' width='28' height='28'/><br/>八角风暴 超武"]:::t4
   storm_broccoli_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/storm_broccoli.png' width='28' height='28'/><br/>风暴西兰花 超武"]:::t4
   mustard_dragon_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/mustard_dragon.png' width='28' height='28'/><br/>芥末龙息 超武"]:::t4
   pepper_minefield_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/pepper_minefield.png' width='28' height='28'/><br/>胡椒雷区 超武"]:::t4
+  plague_sprayer_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/plague_sprayer.png' width='28' height='28'/><br/>瘟疫孢子喷壶 超武"]:::t4
+  ghost_lanterns_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/ghost_lanterns.png' width='28' height='28'/><br/>百鬼灯笼 超武"]:::t4
+  truth_field_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/truth_field.png' width='28' height='28'/><br/>真相结界 超武"]:::t4
+  stink_king_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/stink_king.png' width='28' height='28'/><br/>霸王臭气 超武"]:::t4
+  taro_field_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/taro_field.png' width='28' height='28'/><br/>芋香结界 超武"]:::t4
+  glacier_shards_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/glacier_shards.png' width='28' height='28'/><br/>极寒冰棱 超武"]:::t4
+  wither_wand_4["<img src='https://raw.githubusercontent.com/yourlin/tomageddon/main/docs/images/weapon/wither_wand.png' width='28' height='28'/><br/>枯萎魔杖 超武"]:::t4
   mustard_flamer_2 --> mustard_flamer_3
   soda_2 --> soda_3
   garlic_aura_2 --> garlic_aura_3
@@ -4084,6 +4822,11 @@ flowchart LR
   hotpot_breath_2 --> hotpot_breath_3
   pumpkin_lantern_2 --> pumpkin_lantern_3
   spore_sprayer_2 --> spore_sprayer_3
+  blackberry_wand_2 --> blackberry_wand_3
+  taro_aura_2 --> taro_aura_3
+  stink_aura_2 --> stink_aura_3
+  eggplant_staff_2 --> eggplant_staff_3
+  sprout_wand_2 --> sprout_wand_3
   cream_torch_2 --> cream_torch_3
   caramel_aura_2 --> caramel_aura_3
   popping_candy_2 --> popping_candy_3
@@ -4119,32 +4862,28 @@ flowchart LR
   icicle_volley_2 --> anise_frost_storm_3
   salt_aura_2 --> holy_salt_barrier_3
   mint_aura_2 --> holy_salt_barrier_3
-  thunder_durian_2 --> fz_thunder_durian_volt_fork_3
-  volt_fork_2 --> fz_thunder_durian_volt_fork_3
+  thunder_durian_2 --> fz_thunder_durian_lemon_dagger_3
+  lemon_dagger_2 --> fz_thunder_durian_lemon_dagger_3
   jelly_bounce_2 --> fz_jelly_bounce_chili_shuriken_3
   chili_shuriken_2 --> fz_jelly_bounce_chili_shuriken_3
   slush_spray_2 --> fz_slush_spray_caramel_aura_3
   caramel_aura_2 --> fz_slush_spray_caramel_aura_3
   grill_arc_2 --> fz_grill_arc_pepper_storm_aura_3
   pepper_storm_aura_2 --> fz_grill_arc_pepper_storm_aura_3
-  teapot_storm_2 --> fz_teapot_storm_charcoal_aura_3
-  charcoal_aura_2 --> fz_teapot_storm_charcoal_aura_3
+  taro_aura_2 --> fz_taro_aura_charcoal_aura_3
+  charcoal_aura_2 --> fz_taro_aura_charcoal_aura_3
+  teapot_storm_2 --> fz_teapot_storm_honey_blaster_3
+  honey_blaster_2 --> fz_teapot_storm_honey_blaster_3
   cola_zapper_2 --> fz_cola_zapper_mixer_storm_3
   mixer_storm_2 --> fz_cola_zapper_mixer_storm_3
   steam_kettle_2 --> fz_steam_kettle_asparagus_bow_3
   asparagus_bow_2 --> fz_steam_kettle_asparagus_bow_3
-  lightning_whisk_2 --> fz_lightning_whisk_pepper_grinder_3
-  pepper_grinder_2 --> fz_lightning_whisk_pepper_grinder_3
   spore_sprayer_2 --> fz_spore_sprayer_shaved_ice_gun_3
   shaved_ice_gun_2 --> fz_spore_sprayer_shaved_ice_gun_3
   toaster_zap_2 --> fz_toaster_zap_hot_sauce_gun_3
   hot_sauce_gun_2 --> fz_toaster_zap_hot_sauce_gun_3
-  mint_frost_mine_2 --> fz_mint_frost_mine_blender_aura_3
-  blender_aura_2 --> fz_mint_frost_mine_blender_aura_3
-  popping_candy_2 --> fz_popping_candy_rolling_pin_3
-  rolling_pin_2 --> fz_popping_candy_rolling_pin_3
-  cumin_star_2 --> fz_cumin_star_mandoline_3
-  mandoline_2 --> fz_cumin_star_mandoline_3
+  cumin_star_2 --> fz_cumin_star_rice_cooker_aura_3
+  rice_cooker_aura_2 --> fz_cumin_star_rice_cooker_aura_3
   lightning_whisk_3 --> thor_whisk_4
   mixer_storm_3 --> thor_whisk_4
   garlic_aura_3 --> vampire_garlic_4
@@ -4157,11 +4896,25 @@ flowchart LR
   dragon_breath_flame_3 --> mustard_dragon_4
   pepper_mine_3 --> pepper_minefield_4
   spore_minefield_3 --> pepper_minefield_4
+  spore_sprayer_3 --> plague_sprayer_4
+  toadstool_mine_3 --> plague_sprayer_4
+  pumpkin_lantern_3 --> ghost_lanterns_4
+  icicle_volley_3 --> ghost_lanterns_4
+  salt_aura_3 --> truth_field_4
+  star_anise_shuriken_3 --> truth_field_4
+  stink_aura_3 --> stink_king_4
+  rot_aura_3 --> stink_king_4
+  taro_aura_3 --> taro_field_4
+  curry_aura_3 --> taro_field_4
+  icicle_volley_3 --> glacier_shards_4
+  ice_cube_tray_3 --> glacier_shards_4
+  blackberry_wand_3 --> wither_wand_4
+  dragonfruit_orb_3 --> wither_wand_4
 ```
 
 <a id="evolution"></a>
 
-## 超武（20 把）
+## 超武（45 把）
 
 超武只能合成：两把指定的 T4 武器 + 原催化道具 + 1 件指定的 T4（传说）道具，在商店的合成表里合成。超武伤害、冷却、射程整体强化并获得专属效果，不进商店池。
 
@@ -4187,6 +4940,31 @@ flowchart LR
 | <img src="images/weapon/wasabi_katana.png" width="32" height="32" alt=""> [芥末太刀](#weapon-wasabi_katana) | <img src="images/item/sushi_mat.png" width="32" height="32" alt=""> 寿司竹帘 | <img src="images/weapon/tsunami_katana.png" width="32" height="32" alt=""> **怒涛芥末刀** | 41→**74** / 0.67s→**0.54s** / 150→**195** | 寿司大师的终极一刀，暴击伤害与灼烧大幅提升。 |
 | <img src="images/weapon/blender_aura.png" width="32" height="32" alt=""> [破壁机](#weapon-blender_aura) | <img src="images/item/turbo_motor.png" width="32" height="32" alt=""> 涡轮马达 | <img src="images/weapon/tornado_blender.png" width="32" height="32" alt=""> **龙卷破壁机** | 14→**25** / 0.38s→**0.32s** / 121→**163** | 涡轮全开，刀片卷起龙卷风，切割并减速周围敌人。 |
 | <img src="images/weapon/soy_bomb.png" width="32" height="32" alt=""> [酱油炸弹](#weapon-soy_bomb) | <img src="images/item/fermented_jar.png" width="32" height="32" alt=""> 发酵酱坛 | <img src="images/weapon/umami_bomb.png" width="32" height="32" alt=""> **鲜味核弹** | 60→**114** / 1.7s→**1.44s** / 210→**241** | 发酵百年的酱油炸弹，爆炸巨大并大幅提高吸血概率。 |
+| <img src="images/weapon/macaron_gun.png" width="32" height="32" alt=""> [马卡龙连发](#weapon-macaron_gun) | <img src="images/item/bubble.png" width="32" height="32" alt=""> 泡泡糖 | <img src="images/weapon/macaron_tempest.png" width="32" height="32" alt=""> **马卡龙风暴** | 8→**13** / 0.22s→**0.15s** / 400→**460** | 一口气喷出整盒马卡龙，五颜六色铺满前方。 |
+| <img src="images/weapon/honey_blaster.png" width="32" height="32" alt=""> [蜂蜜喷枪](#weapon-honey_blaster) | <img src="images/item/lemonade.png" width="32" height="32" alt=""> 柠檬水 | <img src="images/weapon/honey_flood.png" width="32" height="32" alt=""> **蜂蜜洪流** | 22→**35** / 0.54s→**0.41s** / 360→**414** | 黏稠的冰镇蜂蜜喷涌而出，粘住一大片敌人，越粘越慢。 |
+| <img src="images/weapon/spore_sprayer.png" width="32" height="32" alt=""> [孢子喷壶](#weapon-spore_sprayer) | <img src="images/item/mosquito.png" width="32" height="32" alt=""> 蚊子标本 | <img src="images/weapon/plague_sprayer.png" width="32" height="32" alt=""> **瘟疫孢子喷壶** | 20→**32** / 0.54s→**0.46s** / 330→**379** | 灌满瘟疫孢子的喷壶，命中叠起厚厚的毒，还能穿透一整排敌人。 |
+| <img src="images/weapon/carrot_lance.png" width="32" height="32" alt=""> [胡萝卜骑枪](#weapon-carrot_lance) | <img src="images/item/sharpening_rod.png" width="32" height="32" alt=""> 磨刀棒 | <img src="images/weapon/carrot_holy_lance.png" width="32" height="32" alt=""> **胡萝卜圣枪** | 69→**117** / 1.08s→**0.92s** / 210→**252** | 骑士的圣枪，突刺穿透整排敌人并把它们远远顶开。 |
+| <img src="images/weapon/dragon_lance.png" width="32" height="32" alt=""> [火龙骑枪](#weapon-dragon_lance) | <img src="images/item/lighter.png" width="32" height="32" alt=""> 打火机 | <img src="images/weapon/inferno_lance.png" width="32" height="32" alt=""> **炎龙骑枪** | 57→**97** / 0.92s→**0.78s** / 195→**224** | 龙焰熊熊的骑枪，刺中的敌人被烈焰吞没。 |
+| <img src="images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [椰壳拳套](#weapon-coconut_gloves) | <img src="images/item/protein.png" width="32" height="32" alt=""> 蛋白粉 | <img src="images/weapon/coco_fist.png" width="32" height="32" alt=""> **椰子霸王拳** | 22→**37** / 0.34s→**0.27s** / 95→**109** | 坚硬的椰壳重拳，拳拳到肉，打得敌人连连后退。 |
+| <img src="images/weapon/melon_staff.png" width="32" height="32" alt=""> [冬瓜禅杖](#weapon-melon_staff) | <img src="images/item/salt_lamp.png" width="32" height="32" alt=""> 盐灯 | <img src="images/weapon/vajra_staff.png" width="32" height="32" alt=""> **金刚禅杖** | 94→**160** / 1.65s→**1.4s** / 150→**188** | 金光护体的禅杖，横扫一整圈，震住四周的敌人。 |
+| <img src="images/weapon/beet_axe.png" width="32" height="32" alt=""> [甜菜狂战斧](#weapon-beet_axe) | <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | <img src="images/weapon/blood_axe.png" width="32" height="32" alt=""> **血怒战斧** | 100→**170** / 1.65s→**1.4s** / 125→**144** | 浸透甜菜汁的战斧，每一劈都吸回生命。 |
+| <img src="images/weapon/lemon_dagger.png" width="32" height="32" alt=""> [柠檬匕首](#weapon-lemon_dagger) | <img src="images/item/samurai_tsuba.png" width="32" height="32" alt=""> 武士刀镡 | <img src="images/weapon/acid_daggers.png" width="32" height="32" alt=""> **酸蚀双匕** | 22→**37** / 0.42s→**0.32s** / 125→**144** | 一对淬了柠檬汁的匕首，快得看不清，暴击奇痛。 |
+| <img src="images/weapon/onion_boomerang.png" width="32" height="32" alt=""> [洋葱回旋镖](#weapon-onion_boomerang) | <img src="images/item/onion_layers.png" width="32" height="32" alt=""> 千层洋葱 | <img src="images/weapon/onion_layers.png" width="32" height="32" alt=""> **千层洋葱镖** | 40→**68** / 1.1s→**0.94s** / 360→**414** | 一层裹一层的洋葱回旋镖，划过的敌人中毒流泪。 |
+| <img src="images/weapon/pumpkin_lantern.png" width="32" height="32" alt=""> [南瓜鬼火灯](#weapon-pumpkin_lantern) | <img src="images/item/firework_fuse.png" width="32" height="32" alt=""> 烟花引信 | <img src="images/weapon/ghost_lanterns.png" width="32" height="32" alt=""> **百鬼灯笼** | 37→**63** / 0.62s→**0.53s** / 420→**483** | 一串南瓜灯笼放出成群的鬼火，追着敌人穿来穿去。 |
+| <img src="images/weapon/grape_shotgun.png" width="32" height="32" alt=""> [葡萄霰弹枪](#weapon-grape_shotgun) | <img src="images/item/clover.png" width="32" height="32" alt=""> 四叶草 | <img src="images/weapon/grape_magic.png" width="32" height="32" alt=""> **葡萄魔术礼炮** | 15→**26** / 0.8s→**0.68s** / 240→**276** | 魔术师的礼炮，一炮喷出满天葡萄。 |
+| <img src="images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [樱桃双枪](#weapon-cherry_pistols) | <img src="images/item/energy_drink.png" width="32" height="32" alt=""> 能量饮料 | <img src="images/weapon/cherry_barrage.png" width="32" height="32" alt=""> **樱桃连珠炮** | 18→**31** / 0.19s→**0.14s** / 380→**437** | 双枪齐射，樱桃弹连成一条线。 |
+| <img src="images/weapon/asparagus_bow.png" width="32" height="32" alt=""> [芦笋长弓](#weapon-asparagus_bow) | <img src="images/item/scope.png" width="32" height="32" alt=""> 瞄准镜 | <img src="images/weapon/asparagus_volley.png" width="32" height="32" alt=""> **万箭芦笋** | 56→**95** / 0.88s→**0.75s** / 520→**598** | 一弓射出一排芦笋箭，箭雨穿透整片敌人。 |
+| <img src="images/weapon/coal_tongs.png" width="32" height="32" alt=""> [炭火钳](#weapon-coal_tongs) | <img src="images/item/oven_mitt.png" width="32" height="32" alt=""> 烤箱手套 | <img src="images/weapon/yam_oven.png" width="32" height="32" alt=""> **红薯烤炉** | 49→**83** / 0.9s→**0.77s** / 125→**150** | 烧得通红的烤炉钳，夹到的敌人都烤得滋滋响。 |
+| <img src="images/weapon/salt_aura.png" width="32" height="32" alt=""> [海盐结界](#weapon-salt_aura) | <img src="images/item/glasses.png" width="32" height="32" alt=""> 老花镜 | <img src="images/weapon/truth_field.png" width="32" height="32" alt=""> **真相结界** | 12→**20** / 0.5s→**0.43s** / 152→**182** | 侦探的盐晶结界，结界里的敌人弱点一览无遗。 |
+| <img src="images/weapon/lychee_gun.png" width="32" height="32" alt=""> [荔枝红包枪](#weapon-lychee_gun) | <img src="images/item/lucky_cat.png" width="32" height="32" alt=""> 招财猫 | <img src="images/weapon/lucky_cannon.png" width="32" height="32" alt=""> **鸿运红包炮** | 18→**31** / 0.46s→**0.39s** / 380→**437** | 红包一样喜庆的炮弹，运气越好打得越痛。 |
+| <img src="images/weapon/stink_aura.png" width="32" height="32" alt=""> [榴莲臭气光环](#weapon-stink_aura) | <img src="images/item/cactus.png" width="32" height="32" alt=""> 仙人掌 | <img src="images/weapon/stink_king.png" width="32" height="32" alt=""> **霸王臭气** | 11→**19** / 0.5s→**0.43s** / 149→**179** | 榴莲霸王的臭气，熏得敌人中毒又虚弱。 |
+| <img src="images/weapon/taro_aura.png" width="32" height="32" alt=""> [芋泥光环](#weapon-taro_aura) | <img src="images/item/soup_thermos.png" width="32" height="32" alt=""> 保温汤壶 | <img src="images/weapon/taro_field.png" width="32" height="32" alt=""> **芋香结界** | 12→**20** / 0.5s→**0.43s** / 140→**175** | 浓郁芋香的大结界，烤焦一切靠近的敌人。 |
+| <img src="images/weapon/pepper_drone.png" width="32" height="32" alt=""> [青椒浮游炮](#weapon-pepper_drone) | <img src="images/item/spring_coil.png" width="32" height="32" alt=""> 弹簧圈 | <img src="images/weapon/mecha_cannon.png" width="32" height="32" alt=""> **青椒机甲炮** | 43→**73** / 1.04s→**0.88s** / 420→**483** | 机甲的主炮，一次齐射好几枚追踪火箭。 |
+| <img src="images/weapon/icicle_volley.png" width="32" height="32" alt=""> [冰锥连射](#weapon-icicle_volley) | <img src="images/item/tin_foil.png" width="32" height="32" alt=""> 锡纸 | <img src="images/weapon/glacier_shards.png" width="32" height="32" alt=""> **极寒冰棱** | 16→**27** / 0.8s→**0.68s** / 340→**391** | 一口气射出一扇冰棱，冻得敌人寸步难行。 |
+| <img src="images/weapon/bean_mine.png" width="32" height="32" alt=""> [撒豆雷](#weapon-bean_mine) | <img src="images/item/bomb_seed.png" width="32" height="32" alt=""> 爆裂种子 | <img src="images/weapon/bean_airdrop.png" width="32" height="32" alt=""> **豆兵空投** | 38→**65** / 1.5s→**1.27s** / 230→**265** | 从天而降的豆雷，一撒就是一大片。 |
+| <img src="images/weapon/knife_case.png" width="32" height="32" alt=""> [飞刀匣](#weapon-knife_case) | <img src="images/item/toothpick.png" width="32" height="32" alt=""> 牙签 | <img src="images/weapon/thorn_rain.png" width="32" height="32" alt=""> **千刺暴雨** | 15→**26** / 0.38s→**0.29s** / 400→**460** | 刺针像暴雨一样射出，穿透一整排敌人。 |
+| <img src="images/weapon/pomegranate_cluster.png" width="32" height="32" alt=""> [石榴集束弹](#weapon-pomegranate_cluster) | <img src="images/item/pomegranate.png" width="32" height="32" alt=""> 爆籽石榴 | <img src="images/weapon/pome_salute.png" width="32" height="32" alt=""> **石榴礼炮** | 35→**60** / 1.3s→**1.11s** / 360→**414** | 礼炮一样炸开的石榴弹，籽弹满天飞。 |
+| <img src="images/weapon/blackberry_wand.png" width="32" height="32" alt=""> [黑莓魔杖](#weapon-blackberry_wand) | <img src="images/item/notebook.png" width="32" height="32" alt=""> 食谱笔记 | <img src="images/weapon/wither_wand.png" width="32" height="32" alt=""> **枯萎魔杖** | 36→**61** / 0.76s→**0.65s** / 420→**483** | 女巫的枯萎魔杖，法球所到之处一片枯黄。 |
 
 ---
 

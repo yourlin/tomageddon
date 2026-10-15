@@ -1,4 +1,5 @@
 // 成就系统：读取存档与当前对局的指标，逐级解锁并发放成就点；部分成就达成后自动解锁对应角色
+import { SET_MAP } from '../data/weaponSets';
 import { ACHIEVEMENTS, ACH_MAP, TIER_MEDALS, TIER_NAME, type AchievementDef, type AchMetric } from '../data/achievements';
 import { unlockPlatformAchievement } from '../platform';
 import { CHARACTERS, CHARACTER_MAP, type CharacterDef } from '../data/characters';
@@ -15,7 +16,7 @@ import { CHAPTERS } from '../data/chapters';
 import { SKILL_TYPE_NAME } from '../data/skills';
 import { RARITY } from '../data/balance';
 import type { SkillType } from '../data/characters';
-import { tagName } from '../i18n/apply';
+
 import { counter } from './Counters';
 import { save, persist, isUnlocked, isSeen } from './Save';
 import { run, freeChallengeActive } from './RunState';
@@ -87,8 +88,10 @@ function subjectName(a: AchievementDef): string {
       return WEAPON_MAP[s.id]?.name ?? s.id;
     case 'series':
       return ITEM_MAP[`${s.id}_0`]?.series ?? s.id;
-    case 'set':
-      return tagName(s.id);
+    case 'set': {
+      const ws = SET_MAP[s.id];
+      return ws ? (lang === 'en' ? ws.name[1] : ws.name[0]) : s.id;
+    }
     case 'skill':
       return SKILL_TYPE_NAME[s.id as SkillType] ?? s.id;
     case 'status':

@@ -279,8 +279,7 @@ function gingerBlink(c: StyleCtx): void {
   const dist = host.radius(sk.distance ?? 360) * 1.1;
   const sx = p.x,
     sy = p.y;
-  const ex = Phaser.Math.Clamp(sx + dir.x * dist, g.arena.x + 20, g.arena.right - 20);
-  const ey = Phaser.Math.Clamp(sy + dir.y * dist, g.arena.y + 20, g.arena.bottom - 20);
+  const { x: ex, y: ey } = g.arena.clamp(sx + dir.x * dist, sy + dir.y * dist, 20);
   // 路径上的残影
   for (let i = 0; i <= 4; i++) {
     const k = i / 4;

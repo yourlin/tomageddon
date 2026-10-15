@@ -123,7 +123,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.6）</td></tr>
 <tr><td nowrap>速度</td><td>95</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 1+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 1~8 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 1~6 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 1~5 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 1~5 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 1+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 1~8 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 1~6 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 1~5 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 1~5 波</td></tr>
 </table>
 
 <a id="enemy-fly"></a>
@@ -136,7 +136,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.5）</td></tr>
 <tr><td nowrap>速度</td><td>150</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 2+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 1+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 1+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 1~8 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 1~9 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 2+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 1+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 1+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 1~8 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 1~9 波</td></tr>
 </table>
 
 <a id="enemy-maggot"></a>
@@ -150,7 +150,7 @@
 <tr><td nowrap>速度</td><td>70</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>特殊</td><td>每 3s 冲撞</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 4+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 3+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 4+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 3+ 波</td></tr>
 </table>
 
 <a id="enemy-rotten_apple"></a>
@@ -164,7 +164,7 @@
 <tr><td nowrap>速度</td><td>80</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>特殊</td><td>每 2.6s 射击</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 3+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 2+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 3+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 2+ 波</td></tr>
 </table>
 
 <a id="enemy-cockroach"></a>
@@ -177,7 +177,7 @@
 <tr><td nowrap>伤害</td><td>2（每波 +0.8）</td></tr>
 <tr><td nowrap>速度</td><td>85</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 7+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 5+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 3+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 7+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 5+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 3+ 波</td></tr>
 </table>
 
 <a id="enemy-ant"></a>
@@ -190,7 +190,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.4）</td></tr>
 <tr><td nowrap>速度</td><td>150</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 3+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 3+ 波</td></tr>
 </table>
 
 <a id="enemy-beetle"></a>
@@ -204,7 +204,7 @@
 <tr><td nowrap>速度</td><td>135</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>特殊</td><td>自爆半径 85</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 10+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 9+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 10+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 9+ 波</td></tr>
 </table>
 
 <a id="enemy-snail"></a>
@@ -247,7 +247,7 @@
 <tr><td nowrap>速度</td><td>75</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>特殊</td><td>死亡分裂为 3 只<a href="#enemy-mold">霉菌团</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 11+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 11+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 11+ 波；<a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-3">第三章 · 冰封冰箱</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 9+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 11+ 波</td></tr>
 </table>
 
 <a id="enemy-mushroom"></a>
@@ -476,7 +476,7 @@
 <tr><td nowrap>速度</td><td>90</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-burn">灼烧</a> 2s（40%）</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 3+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 3+ 波</td></tr>
 </table>
 
 <a id="enemy-grease_drop"></a>
@@ -489,7 +489,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.5）</td></tr>
 <tr><td nowrap>速度</td><td>155</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 2+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 2+ 波</td></tr>
 </table>
 
 <a id="enemy-dust_bunny"></a>
@@ -502,7 +502,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.5）</td></tr>
 <tr><td nowrap>速度</td><td>120</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 3+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 3+ 波</td></tr>
 </table>
 
 <a id="enemy-sour_milk"></a>
@@ -516,7 +516,7 @@
 <tr><td nowrap>速度</td><td>75</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>特殊</td><td>每 2.8s 射击</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 4+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 4+ 波</td></tr>
 </table>
 
 <a id="enemy-crumb_mite"></a>
@@ -529,7 +529,7 @@
 <tr><td nowrap>伤害</td><td>1（每波 +0.4）</td></tr>
 <tr><td nowrap>速度</td><td>140</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 2+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 2+ 波</td></tr>
 </table>
 
 <a id="enemy-moldy_bread"></a>
@@ -543,7 +543,7 @@
 <tr><td nowrap>速度</td><td>70</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>特殊</td><td>死亡分裂为 3 只<a href="#enemy-crumb_mite">面包屑螨</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 9+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 9+ 波</td></tr>
 </table>
 
 <a id="enemy-stink_egg"></a>
@@ -558,7 +558,7 @@
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>攻击附带</td><td>2层<a href="SKILLS.md#status-poison">中毒</a> 3s</td></tr>
 <tr><td nowrap>特殊</td><td>自爆半径 80</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 8+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 8+ 波</td></tr>
 </table>
 
 <a id="enemy-sponge_slug"></a>
@@ -572,7 +572,7 @@
 <tr><td nowrap>速度</td><td>60</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-sticky">黏液</a> 2s</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 6+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 6+ 波</td></tr>
 </table>
 
 <a id="enemy-teabag_ghost"></a>
@@ -586,7 +586,7 @@
 <tr><td nowrap>速度</td><td>65</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>特殊</td><td>治疗半径 170 内同伴 0.15</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 10+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 10+ 波</td></tr>
 </table>
 
 <a id="enemy-pan_beetle"></a>
@@ -600,7 +600,7 @@
 <tr><td nowrap>速度</td><td>80</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>特殊</td><td>每 3s 冲撞</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a> 第 5+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a> 第 5+ 波</td></tr>
 </table>
 
 <a id="enemy-aphid"></a>
@@ -1370,7 +1370,7 @@
 
 | 章节 | 精英 |
 | --- | --- |
-| [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | <img src="images/boss/roach_general.png" width="32" height="32" alt=""> [蟑螂将军](#boss-roach_general)、<img src="images/boss/mold_elder.png" width="32" height="32" alt=""> [霉菌长老](#boss-mold_elder)、<img src="images/boss/greasy_pan.png" width="32" height="32" alt=""> [油腻平底锅](#boss-greasy_pan)、<img src="images/boss/fork_knight.png" width="32" height="32" alt=""> [叉子骑士](#boss-fork_knight)、<img src="images/boss/fly_swarm_king.png" width="32" height="32" alt=""> [蝇群之主](#boss-fly_swarm_king)、<img src="images/boss/rotten_onion.png" width="32" height="32" alt=""> [腐烂洋葱](#boss-rotten_onion) |
+| [第一章 · 平底锅](CHAPTERS.md#chapter-1) | <img src="images/boss/roach_general.png" width="32" height="32" alt=""> [蟑螂将军](#boss-roach_general)、<img src="images/boss/mold_elder.png" width="32" height="32" alt=""> [霉菌长老](#boss-mold_elder)、<img src="images/boss/greasy_pan.png" width="32" height="32" alt=""> [油腻平底锅](#boss-greasy_pan)、<img src="images/boss/fork_knight.png" width="32" height="32" alt=""> [叉子骑士](#boss-fork_knight)、<img src="images/boss/fly_swarm_king.png" width="32" height="32" alt=""> [蝇群之主](#boss-fly_swarm_king)、<img src="images/boss/rotten_onion.png" width="32" height="32" alt=""> [腐烂洋葱](#boss-rotten_onion) |
 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | <img src="images/boss/rat_captain.png" width="32" height="32" alt=""> [鼠队长](#boss-rat_captain)、<img src="images/boss/snail_tank.png" width="32" height="32" alt=""> [装甲蜗牛](#boss-snail_tank)、<img src="images/boss/queen_bee.png" width="32" height="32" alt=""> [蜂后](#boss-queen_bee)、<img src="images/boss/scarecrow.png" width="32" height="32" alt=""> [邪恶稻草人](#boss-scarecrow)、<img src="images/boss/spider_matron.png" width="32" height="32" alt=""> [蛛后](#boss-spider_matron)、<img src="images/boss/mushroom_king.png" width="32" height="32" alt=""> [毒菇王](#boss-mushroom_king) |
 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | <img src="images/boss/ice_golem.png" width="32" height="32" alt=""> [冰晶傀儡](#boss-ice_golem)、<img src="images/boss/popsicle_twins.png" width="32" height="32" alt=""> [冰棍双子](#boss-popsicle_twins)、<img src="images/boss/frozen_fish.png" width="32" height="32" alt=""> [冻鱼武士](#boss-frozen_fish)、<img src="images/boss/snow_rat.png" width="32" height="32" alt=""> [雪鼠刺客](#boss-snow_rat)、<img src="images/boss/milk_slime.png" width="32" height="32" alt=""> [变质牛奶怪](#boss-milk_slime)、<img src="images/boss/frost_penguin.png" width="32" height="32" alt=""> [冰霜企鹅](#boss-frost_penguin) |
 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | <img src="images/boss/tire_beast.png" width="32" height="32" alt=""> [轮胎兽](#boss-tire_beast)、<img src="images/boss/can_king.png" width="32" height="32" alt=""> [易拉罐之王](#boss-can_king)、<img src="images/boss/rag_wraith.png" width="32" height="32" alt=""> [抹布怨灵](#boss-rag_wraith)、<img src="images/boss/battery_bug.png" width="32" height="32" alt=""> [漏电电池虫](#boss-battery_bug)、<img src="images/boss/garbage_rat.png" width="32" height="32" alt=""> [垃圾鼠王](#boss-garbage_rat)、<img src="images/boss/oil_titan.png" width="32" height="32" alt=""> [石油泰坦](#boss-oil_titan) |
@@ -1383,7 +1383,7 @@
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="images/boss/roach_general.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">蟑螂将军</th></tr>
 <tr><td colspan="2"><i>披着瓶盖铠甲的蟑螂军团首领。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>320</td></tr>
 <tr><td nowrap>伤害</td><td>4</td></tr>
 <tr><td nowrap>速度</td><td>90</td></tr>
@@ -1396,7 +1396,7 @@
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="images/boss/mold_elder.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">霉菌长老</th></tr>
 <tr><td colspan="2"><i>古老的霉菌聚合体，会召唤子嗣。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>300</td></tr>
 <tr><td nowrap>伤害</td><td>3</td></tr>
 <tr><td nowrap>速度</td><td>60</td></tr>
@@ -1409,7 +1409,7 @@
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="images/boss/greasy_pan.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">油腻平底锅</th></tr>
 <tr><td colspan="2"><i>沾满陈年油垢的平底锅成了精。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>360</td></tr>
 <tr><td nowrap>伤害</td><td>4</td></tr>
 <tr><td nowrap>速度</td><td>70</td></tr>
@@ -1422,7 +1422,7 @@
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="images/boss/fork_knight.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">叉子骑士</th></tr>
 <tr><td colspan="2"><i>被腐化的餐叉，冲刺穿刺。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>300</td></tr>
 <tr><td nowrap>伤害</td><td>5</td></tr>
 <tr><td nowrap>速度</td><td>100</td></tr>
@@ -1435,7 +1435,7 @@
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="images/boss/fly_swarm_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">蝇群之主</th></tr>
 <tr><td colspan="2"><i>嗡嗡作响的巨型苍蝇。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>280</td></tr>
 <tr><td nowrap>伤害</td><td>3</td></tr>
 <tr><td nowrap>速度</td><td>120</td></tr>
@@ -1448,7 +1448,7 @@
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="images/boss/rotten_onion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">腐烂洋葱</th></tr>
 <tr><td colspan="2"><i>散发催泪毒气的烂洋葱。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>340</td></tr>
 <tr><td nowrap>伤害</td><td>3</td></tr>
 <tr><td nowrap>速度</td><td>70</td></tr>
@@ -1838,7 +1838,7 @@
 
 | 章节 | Boss |
 | --- | --- |
-| [第一章 · 深夜厨房](CHAPTERS.md#chapter-1) | <img src="images/boss/mold_king.png" width="32" height="32" alt=""> [霉菌大王](#boss-mold_king)、<img src="images/boss/grease_chef.png" width="32" height="32" alt=""> [油烟怪厨](#boss-grease_chef)、<img src="images/boss/cockroach_emperor.png" width="32" height="32" alt=""> [蟑螂皇帝](#boss-cockroach_emperor) |
+| [第一章 · 平底锅](CHAPTERS.md#chapter-1) | <img src="images/boss/mold_king.png" width="32" height="32" alt=""> [霉菌大王](#boss-mold_king)、<img src="images/boss/grease_chef.png" width="32" height="32" alt=""> [油烟怪厨](#boss-grease_chef)、<img src="images/boss/cockroach_emperor.png" width="32" height="32" alt=""> [蟑螂皇帝](#boss-cockroach_emperor) |
 | [第二章 · 荒芜菜园](CHAPTERS.md#chapter-2) | <img src="images/boss/locust_queen.png" width="32" height="32" alt=""> [蝗虫女皇](#boss-locust_queen)、<img src="images/boss/rotten_pumpkin.png" width="32" height="32" alt=""> [腐烂南瓜王](#boss-rotten_pumpkin)、<img src="images/boss/mole_general.png" width="32" height="32" alt=""> [鼹鼠大将](#boss-mole_general) |
 | [第三章 · 冰封冰箱](CHAPTERS.md#chapter-3) | <img src="images/boss/frost_rat_king.png" width="32" height="32" alt=""> [冰霜鼠王](#boss-frost_rat_king)、<img src="images/boss/ice_cream_tyrant.png" width="32" height="32" alt=""> [冰淇淋暴君](#boss-ice_cream_tyrant)、<img src="images/boss/freezer_heart.png" width="32" height="32" alt=""> [冰柜之心](#boss-freezer_heart) |
 | [第四章 · 城市垃圾场](CHAPTERS.md#chapter-4) | <img src="images/boss/trash_golem.png" width="32" height="32" alt=""> [垃圾巨像](#boss-trash_golem)、<img src="images/boss/toxic_barrel.png" width="32" height="32" alt=""> [毒液桶魔](#boss-toxic_barrel)、<img src="images/boss/scrap_dragon.png" width="32" height="32" alt=""> [废铁巨龙](#boss-scrap_dragon) |
@@ -1851,7 +1851,7 @@
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="images/boss/mold_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">霉菌大王 · 第一章 Boss</th></tr>
 <tr><td colspan="2"><i>盘踞在厨房水槽里的霉菌之王。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>1800</td></tr>
 <tr><td nowrap>伤害</td><td>5</td></tr>
 <tr><td nowrap>速度</td><td>55</td></tr>
@@ -1865,7 +1865,7 @@
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="images/boss/grease_chef.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">油烟怪厨 · 第一章 Boss</th></tr>
 <tr><td colspan="2"><i>抽油烟机里积攒百年的油烟成了精。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>1900</td></tr>
 <tr><td nowrap>伤害</td><td>5</td></tr>
 <tr><td nowrap>速度</td><td>60</td></tr>
@@ -1878,8 +1878,8 @@
 
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="images/boss/cockroach_emperor.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">蟑螂皇帝 · 第一章 Boss</th></tr>
-<tr><td colspan="2"><i>打不死的蟑螂皇帝，拥有惊人的再生力。</i></td></tr>
-<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 深夜厨房</a></td></tr>
+<tr><td colspan="2"><i>打不死的蟑螂皇帝，拥有惊人的再生力，冲锋时刀枪不入。</i></td></tr>
+<tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-1">第一章 · 平底锅</a></td></tr>
 <tr><td nowrap>基础生命</td><td>2000</td></tr>
 <tr><td nowrap>伤害</td><td>6</td></tr>
 <tr><td nowrap>速度</td><td>75</td></tr>

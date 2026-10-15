@@ -3,7 +3,7 @@ import { bump } from '../systems/Counters';
 import { dotColor, type StatusId } from '../data/statuses';
 import Phaser from 'phaser';
 import type { EnemyDef } from '../data/enemies';
-import { AFFIXES, type AffixId, type BossDef, type Pattern } from '../data/bosses';
+import { AFFIXES, type AffixId, type BossDef, type BossPhase, type Pattern } from '../data/bosses';
 import { drawAffixDeco } from './AffixDeco';
 import type { StatusApply } from '../data/statuses';
 import type { GameScene } from '../scenes/GameScene';
@@ -68,6 +68,17 @@ export class Enemy {
   patternT: number[] = [];
   patterns: Pattern[] = [];
   phase2 = false;
+  /** 多阶段 Boss：当前阶段、本阶段已过时间、转阶段剩余时间（> 0 时无敌、不行动）、阶段色调 */
+  phaseIdx = 0;
+  phaseT = 0;
+  phaseTrans = 0;
+  phaseTint = -1;
+  /** 前代 Boss 的残影（腐烂之王召唤）：不分阶段、不掉落、不计成就，本体死亡时一起消失 */
+  shadow = false;
+  /** 危机等级追加的招式（多阶段 Boss 换阶段时保留） */
+  extraPatterns: Pattern[] = [];
+  /** Rig 的基础缩放（转阶段脉动、阶段体型变化以它为基准） */
+  baseScale = 1;
   enraged = false;
   contactCd = 0;
   lifeT = 0; // 地形生物剩余存在时间
@@ -164,8 +175,18 @@ export class Enemy {
     this.lootMult = seedValue();
     this.knockResist = 0.95;
     this.status.ccResist = def.elite ? 0.5 : 0.75;
-    this.patterns = [...def.patterns];
-    this.patternT = this.patterns.map((p, i) => p.cd * 0.5 + i * 0.7);
+    this.shadow = false;
+    this.extraPatterns = [];
+    this.phaseIdx = 0;
+    this.phaseT = 0;
+    this.phaseTrans = 0;
+    this.phaseTint = -1;
+    this.baseScale = this.rig?.scaleX ?? 1;
+    if (def.phases?.length) this.setPhasePatterns(def.phases[0], true);
+    else {
+      this.patterns = [...def.patterns];
+      this.patternT = this.patterns.map((p, i) => p.cd * 0.5 + i * 0.7);
+    }
     this.phase2 = false;
     this.enraged = false;
     this.spiral = null;
@@ -290,9 +311,8 @@ export class Enemy {
     const decay = Math.pow(0.0005, dt);
     this.kvx *= decay;
     this.kvy *= decay;
-    const a = g.arena;
-    this.x = Phaser.Math.Clamp(this.x, a.x + this.radius, a.right - this.radius);
-    this.y = Phaser.Math.Clamp(this.y, a.y + this.radius, a.bottom - this.radius);
+    // 留在场地内并推出障碍物（沿障碍物边缘滑开）
+    ({ x: this.x, y: this.y } = g.arena.clamp(this.x, this.y, this.radius));
 
     // 渲染同步
     const moveAmt = Math.min(1, Math.hypot(vx, vy) / Math.max(1, this.speed));
@@ -322,7 +342,9 @@ export class Enemy {
                       ? 0xa0c4ff
                       : this.enraged
                         ? 0xff9a9a
-                        : -1,
+                        : this.boss?.chargeImmune && this.state === 'charge'
+                          ? 0xffe082
+                          : this.phaseTint,
       );
     }
     // 自爆引信：红色与原色交替闪烁，越接近爆炸闪得越快（每秒 3 → 12 次）
@@ -488,7 +510,11 @@ export class Enemy {
   private bossAI(dt: number, g: GameScene, nx: number, ny: number, dist: number): [number, number] {
     const b = this.boss!;
     const rig = this.rig!;
-    if (!this.phase2 && b.phase2 && this.hp / this.maxHp <= b.phase2.at) {
+    if (b.phases?.length && !this.shadow) {
+      this.phaseT += dt;
+      // 转阶段：原地不动、不放招（动画与运镜由 BossPhaseDirector 驱动）
+      if (this.phaseTrans > 0) return [0, 0];
+    } else if (!this.phase2 && b.phase2 && this.hp / this.maxHp <= b.phase2.at) {
       this.phase2 = true;
       this.speed *= b.phase2.speedMult;
       this.patterns.push(...b.phase2.add);
@@ -516,6 +542,7 @@ export class Enemy {
         this.state = 'charge';
         this.stateT = 0.7;
         rig.play('charge');
+        if (b.chargeImmune) this.refreshTint();
       }
       return [0, 0];
     }
@@ -524,6 +551,7 @@ export class Enemy {
       if (this.stateT <= 0) {
         this.state = 'move';
         rig.play('move', true);
+        if (b.chargeImmune) this.refreshTint();
       }
       return [this.dirX * this.stateSpeed, this.dirY * this.stateSpeed];
     }
@@ -542,78 +570,98 @@ export class Enemy {
       if (this.patternT[i] > 0) continue;
       const p = this.patterns[i];
       this.patternT[i] = p.cd * cdMult;
-      const dmg = this.dmg * this.dealtMult;
-      if (p.type !== 'charge') rig.play(p.type === 'summon' || p.type === 'buff' ? 'cast' : 'attack');
-      switch (p.type) {
-        case 'ring':
-          g.bossRing(this, p.count ?? 12, p.speed ?? 220, p.dmg ?? 1, Math.random() * Math.PI, p.slow ?? 0, p.debuff);
-          break;
-        case 'spiral':
-          this.spiral = { left: p.waves ?? 12, t: 0, angle: Math.random() * 6, p };
-          break;
-        case 'aimed':
-          g.enemyShoot(
-            this,
-            p.count ?? 3,
-            p.spread ?? 30,
-            p.speed ?? 300,
-            dmg * (p.dmg ?? 1),
-            p.slow ?? 0,
-            'proj_enemy',
-            1.4,
-            this.attackDebuffs(p.debuff),
-          );
-          break;
-        case 'scatter':
-          // 逐发调用（每发随机方向）：按总发数算齐射减速
-          for (let k = 0; k < (p.count ?? 8); k++)
-            g.enemyShoot(
-              this,
-              1,
-              0,
-              (p.speed ?? 260) * volleySpeedMult(p.count ?? 8) * Phaser.Math.FloatBetween(0.7, 1.2),
-              dmg * (p.dmg ?? 1),
-              p.slow ?? 0,
-              p.slow ? 'proj_ice' : 'proj_enemy',
-              1.2,
-              this.attackDebuffs(p.debuff),
-              Math.random() * Math.PI * 2,
-            );
-          break;
-        case 'summon':
-          g.summonAround(this, p.enemy ?? 'mold', p.count ?? 4);
-          break;
-        case 'slam':
-          g.bossSlam(this, p);
-          break;
-        case 'hazard':
-          g.bossHazard(this, p);
-          break;
-        case 'laser':
-          g.bossLaser(this, p);
-          break;
-        case 'buff':
-          g.buffAllies(this, p.radius ?? 260, p.buff ?? [], true);
-          break;
-        case 'teleport':
-          this.state = 'blink';
-          this.stateT = 0.6;
-          g.bossTeleport(this);
-          break;
-        case 'charge':
-          this.state = 'windup';
-          this.stateT = p.windup ?? 0.8;
-          this.stateSpeed = p.speed ?? 600;
-          this.chargeDebuff = p.debuff;
-          this.dirX = nx;
-          this.dirY = ny;
-          rig.play('windup');
-          g.telegraphLine(this.x, this.y, nx, ny, this.stateSpeed * 0.7, this.radius, this.stateT);
-          return [0, 0];
-      }
+      if (this.firePattern(g, p, nx, ny)) return [0, 0];
       break;
     }
     const s = this.speed * (this.enraged ? 1.5 : 1);
     return dist > this.radius + 40 ? [nx * s, ny * s] : [0, 0];
+  }
+
+  /** 放出一个招式（Boss / 精英 AI 与转阶段的转场招式共用）；冲锋开始时返回 true（本帧不再移动） */
+  firePattern(g: GameScene, p: Pattern, nx: number, ny: number): boolean {
+    const rig = this.rig!;
+    const dmg = this.dmg * this.dealtMult;
+    if (p.type !== 'charge') rig.play(p.type === 'summon' || p.type === 'buff' ? 'cast' : 'attack');
+    switch (p.type) {
+      case 'ring':
+        g.bossRing(this, p.count ?? 12, p.speed ?? 220, p.dmg ?? 1, Math.random() * Math.PI, p.slow ?? 0, p.debuff);
+        break;
+      case 'spiral':
+        this.spiral = { left: p.waves ?? 12, t: 0, angle: Math.random() * 6, p };
+        break;
+      case 'aimed':
+        g.enemyShoot(
+          this,
+          p.count ?? 3,
+          p.spread ?? 30,
+          p.speed ?? 300,
+          dmg * (p.dmg ?? 1),
+          p.slow ?? 0,
+          'proj_enemy',
+          1.4,
+          this.attackDebuffs(p.debuff),
+        );
+        break;
+      case 'scatter':
+        // 逐发调用（每发随机方向）：按总发数算齐射减速
+        for (let k = 0; k < (p.count ?? 8); k++)
+          g.enemyShoot(
+            this,
+            1,
+            0,
+            (p.speed ?? 260) * volleySpeedMult(p.count ?? 8) * Phaser.Math.FloatBetween(0.7, 1.2),
+            dmg * (p.dmg ?? 1),
+            p.slow ?? 0,
+            p.slow ? 'proj_ice' : 'proj_enemy',
+            1.2,
+            this.attackDebuffs(p.debuff),
+            Math.random() * Math.PI * 2,
+          );
+        break;
+      case 'summon':
+        g.summonAround(this, p.enemy ?? 'mold', p.count ?? 4);
+        break;
+      case 'slam':
+        g.bossSlam(this, p);
+        break;
+      case 'hazard':
+        g.bossHazard(this, p);
+        break;
+      case 'laser':
+        g.bossLaser(this, p);
+        break;
+      case 'buff':
+        g.buffAllies(this, p.radius ?? 260, p.buff ?? [], true);
+        break;
+      case 'teleport':
+        this.state = 'blink';
+        this.stateT = 0.6;
+        g.bossTeleport(this);
+        break;
+      case 'charge':
+        this.state = 'windup';
+        this.stateT = p.windup ?? 0.8;
+        this.stateSpeed = p.speed ?? 600;
+        this.chargeDebuff = p.debuff;
+        this.dirX = nx;
+        this.dirY = ny;
+        rig.play('windup');
+        g.telegraphLine(this.x, this.y, nx, ny, this.stateSpeed * 0.7, this.radius, this.stateT);
+        return true;
+    }
+    return false;
+  }
+
+  /** 切换到某个阶段的招式表（first：开场第一阶段，冷却按原来的错开方式；之后每个招式 1.5 秒后才第一次放） */
+  setPhasePatterns(ph: BossPhase, first = false): void {
+    const b = this.boss!;
+    this.patterns = [...ph.patterns, ...this.extraPatterns];
+    this.patternT = this.patterns.map((p, i) => (first ? p.cd * 0.5 + i * 0.7 : 1.5 + i * 0.6));
+    this.speed = b.speed * (ph.speedMult ?? 1);
+  }
+
+  /** 按当前状态重新上色（阶段色调变化后调用） */
+  refreshTint(): void {
+    this.tintVer = -1;
   }
 }

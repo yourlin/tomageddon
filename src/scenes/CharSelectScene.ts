@@ -15,7 +15,7 @@ import { ACH_MAP } from '../data/achievements';
 import { run, clearRun, defaultStartWeapon } from '../systems/RunState';
 import { hasCustomTalents } from '../systems/TalentTree';
 import { charTraitLines, weaponDmgType } from '../data/describe';
-import { favoredWeapons } from '../data/affinity';
+import { favoredWeapons, doubleFavoredWeapons } from '../data/affinity';
 import { TAG_MAP } from '../data/weaponTags';
 import { tagName } from '../i18n/apply';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, statLines, tu } from '../ui/UI';
@@ -418,7 +418,10 @@ export class CharSelectScene extends Phaser.Scene {
             y,
             tx('契合标签（伤害 +10%）：', 'Synergy tags (+10% dmg): ') +
               c.favored.map((t) => `${TAG_MAP[t]?.icon ?? ''}${tagName(t)}`).join(tx('、', ', ')) +
-              tx(`（共 ${favoredWeapons(c).length} 把武器）`, ` (${favoredWeapons(c).length} weapons)`),
+              tx(
+                `（契合 ${favoredWeapons(c).length} 把 · 双契合 ${doubleFavoredWeapons(c).length} 把）`,
+                ` (${favoredWeapons(c).length} weapons · ${doubleFavoredWeapons(c).length} double)`,
+              ),
             16,
             '#ffd166',
             pw - 40,

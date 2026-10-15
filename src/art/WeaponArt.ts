@@ -4,12 +4,19 @@ import { handle, metal } from './weaponKit';
 import { UNIQUE_WEAPON_ART } from './weapons';
 import { EXTRA_WEAPON_ART, EXTRA_EVOLVED_ART } from '../data/gearExtra';
 import { AFFINITY_WEAPON_ART } from '../data/weaponsAffinity';
+import { CHAR_WEAPON_ART, CHAR_EVOLUTIONS } from '../data/weaponsChar';
 import { GEN_WEAPON_ART } from '../data/weaponsGen';
 import { FUSED_WEAPON_ART } from '../data/recipes';
+
+/** 角色专属超武：基于进化前武器绘制 */
+const CHAR_EVOLVED_ART: Record<string, [string, number]> = Object.fromEntries(CHAR_EVOLUTIONS.map((x) => [x.boost.id, [x.from, x.tint]]));
 
 /** 进化超武：基于原武器绘制，叠加专属色调、金色光晕与闪光 */
 const EVOLVED_ART: Record<string, [string, number]> = {
   hell_trident: ['fork', 0xff4b3e],
+  macaron_tempest: ['macaron_gun', 0xff8fab],
+  honey_flood: ['honey_blaster', 0xffc93c],
+  plague_sprayer: ['spore_sprayer', 0x7cb342],
   titan_pin: ['rolling_pin', 0x8d99ae],
   paoding_blade: ['knife', 0x4cc9f0],
   dragon_cleaver: ['cleaver', 0x9d0208],
@@ -72,9 +79,9 @@ export function drawWeapon(ctx: Ctx, id: string): void {
   // 专属造型（src/art/weapons/*）优先：每把武器一个独立造型，不再借别的武器换色
   const own = UNIQUE_WEAPON_ART[id];
   if (own) return own(ctx);
-  const evo = EVOLVED_ART[id] ?? EXTRA_EVOLVED_ART[id];
+  const evo = EVOLVED_ART[id] ?? EXTRA_EVOLVED_ART[id] ?? CHAR_EVOLVED_ART[id];
   if (evo) return drawEvolved(ctx, evo[0], evo[1]);
-  const ex = EXTRA_WEAPON_ART[id] ?? AFFINITY_WEAPON_ART[id] ?? GEN_WEAPON_ART[id] ?? FUSED_WEAPON_ART[id];
+  const ex = EXTRA_WEAPON_ART[id] ?? AFFINITY_WEAPON_ART[id] ?? CHAR_WEAPON_ART[id] ?? GEN_WEAPON_ART[id] ?? FUSED_WEAPON_ART[id];
   if (ex) return drawTinted(ctx, ex[0], ex[1]);
   const cy = 32;
   switch (id) {

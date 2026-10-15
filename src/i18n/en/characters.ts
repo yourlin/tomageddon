@@ -31,7 +31,7 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Chili Sis',
     title: 'Fire Expert',
     desc: 'Hot-tempered and fiery — flames follow wherever she goes.',
-    talent: { name: 'Fuel the Fire', desc: 'Favored weapon hits on Burning enemies throw sparks that deal 30% damage around them' },
+    talent: { name: 'Fuel the Fire', desc: 'Favored weapon hits on Burning enemies throw sparks that deal 45% damage around them' },
     traits: ['All hits have a 25% chance to Burn', 'Burns apply 1 extra stack'],
     skill: {
       name: 'Flame Nova',
@@ -53,7 +53,7 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Chubby Melon',
     title: 'Heavy Tank',
     desc: 'A big, round bruiser with a seriously thick rind.',
-    talent: { name: 'Thick Rind', desc: 'Take 10% less damage; every 20 Max HP gives favored weapons +5% area (max +50%)' },
+    talent: { name: 'Thick Rind', desc: 'Take 5% less damage; every 20 Max HP gives favored weapons +4% area (max +50%)' },
     traits: [],
     skill: {
       name: 'Melon Roll',
@@ -64,7 +64,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Lemon Assassin',
     title: 'Crit Assassin',
     desc: 'A sour little assassin who kills in a single strike.',
-    talent: { name: 'Sour Strike', desc: "A favored weapon crit instantly resets that weapon's cooldown (once per second per weapon)" },
+    talent: {
+      name: 'Sour Strike',
+      desc: "A favored weapon crit instantly resets that weapon's cooldown (at most once every 2s per weapon)",
+    },
     traits: ['+40% Crit Damage'],
     skill: {
       name: 'Sour Mist',
@@ -185,7 +188,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A witch doctor from deep in the forest who fells foes with toxic spores.',
     talent: {
       name: 'Spore Burst',
-      desc: 'Poisoned enemies burst into 2 homing spores on death and apply 3 stacks of Poison to nearby enemies',
+      desc: 'Poisoned enemies burst into 2 homing spores on death and apply 2 stacks of Poison to nearby enemies',
     },
     traits: ['All hits have a 20% chance to Poison', 'Poison stack cap +4'],
     skill: {
@@ -239,7 +242,7 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Pea Soldier',
     title: 'Legionnaire',
     desc: 'Little soldiers fresh out of the pod — strength in numbers.',
-    talent: { name: 'Pea Legion', desc: 'Each weapon you hold gives favored bullets +8% chance to split in two' },
+    talent: { name: 'Pea Legion', desc: 'Each weapon you hold gives favored bullets +11% chance to split in two' },
     traits: ['Start with 2 Pea Shooters', '+6% Damage per duplicate weapon'],
     skill: { name: 'Pea Turret', desc: 'Plant a pea turret at your feet that auto-fires 20 peas at the nearest enemy over 5s.' },
   },
@@ -249,7 +252,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A gentle angel who watches over every friend.',
     talent: {
       name: "Angel's Grace",
-      desc: 'Every 0.8s, auto-fire a homing holy bolt at the nearest enemy (damage = 6 + Ranged Damage + 50% HP Regen; 2 bolts while shielded). The first lethal hit each wave leaves you at 1 HP with 2s of invulnerability; while shielded, favored weapons gain +1 pierce and heal on every hit (max 3 per second)',
+      desc: 'Every 0.6s, auto-fire a homing holy bolt at the nearest enemy (damage = 8 + 120% Ranged Damage + 50% HP Regen; 2 bolts while shielded). The first lethal hit each wave leaves you at 1 HP with 2s of invulnerability; while shielded, favored weapons gain +1 pierce and heal on every hit (max 3 per second)',
     },
     traits: ['Gain 25 Shield at the start of each wave', '+20% damage while Shielded'],
     skill: {
@@ -332,7 +335,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Covered in spikes and infamous for the stench. Who dares come close?',
     talent: {
       name: 'Stench Aura',
-      desc: 'Every 1.5s, throw a stink spike at the nearest enemy (damage = 4 + Elemental Damage + 50% Armor; inflicts 2 Poison stacks and Weaken). Favored hits add 1 Stench stack to the enemy; at 3 stacks it bursts into 8 spikes (50% damage)',
+      desc: 'Every 1.5s, throw a stink spike at the nearest enemy (damage = 3 + 80% Elemental Damage + 40% Armor; inflicts 2 Poison stacks and Weaken). Favored hits add 1 Stench stack to the enemy; at 3 stacks it bursts into 8 spikes (50% damage)',
     },
     traits: [
       'Reflect 10 damage',
@@ -364,7 +367,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A monk with a mind like still water, mastering stillness over motion.',
     talent: {
       name: 'Zen Stillness',
-      desc: 'While standing still: take 25% less damage, regenerate 2% Max HP per second, and favored weapons have a 50% combo chance (60% damage)',
+      desc: 'Favored weapons have a 25% combo chance (60% damage); while standing still it rises to 50%, and you take 25% less damage and regenerate 2% Max HP per second',
     },
     traits: ['Gain Focus on successful dodge'],
     skill: {

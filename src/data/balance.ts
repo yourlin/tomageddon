@@ -182,7 +182,7 @@ export const BALANCE = {
     late: { hp: 1.06, dmg: 1.05, bossHp: 1.1 },
     /** 按章微调怪物生命（乘在曲线之后，必须保持逐章单调递增）：各章内容强弱不一（第 3、4 章的刷怪池偏弱），
      *  统一的公比没法同时对齐各章目标通关率，按平衡测试结果逐章补一点 */
-    hpAdjust: [1, 1.07, 1.02, 0.97, 1.09, 1.09, 1.04],
+    hpAdjust: [1, 1.12, 1.12, 1.07, 1.16, 1.2, 1.14],
   },
   /** 敌人血量成长指数：base·(1+growth·w^exp)。exp<1 为次线性，与玩家后期成长放缓相匹配。 */
   enemyGrowthExp: 0.9,
@@ -200,6 +200,8 @@ export const BALANCE = {
    *  第 1 章 8 下、第 2 章 7、第 3–4 章 6、第 5 章 5、第 6 章 4、第 7 章 3 下 */
   /** firstDmgMult：第 firstFrom 章起，每章第一只精英（首个精英波）的伤害倍率——缓和第 5 波的难度断崖 */
   elite: { base: 0.8, perWave: 0.12, dmgBase: 1.0, dmgGrow: 0.4, dmgMult: 1.2, firstDmgMult: 0.8, firstFrom: 4 },
+  /** Boss 阶段：每阶段最短时长、转阶段时长（秒），见 systems/BossPhases.ts */
+  bossPhase: { minTime: 6, transTime: 3 },
   boss: { hpMult: 3, dmgMult: 1.9, chapterDmg: [1, 0.8, 0.74, 0.85, 1, 1.78, 2.62] },
 };
 

@@ -1,17 +1,21 @@
-// 契合改为标签：每名角色契合 1–2 个标签、有足够的契合武器与契合特效说明
+// 契合改为标签：每名角色契合 2 个标签，带任意一个为契合，两个都带为双契合、有足够的契合武器与契合特效说明
 import { describe, expect, it } from 'vitest';
 import { CHARACTERS } from '../src/data/characters';
-import { WEAPON_MAP } from '../src/data/weapons';
+import { WEAPON_MAP, isShopWeapon } from '../src/data/weapons';
 import { EVOLVED_WEAPONS } from '../src/data/evolutions';
-import { AFFINITY_TEXT, isFavoredWeapon, favoredWeapons } from '../src/data/affinity';
-import { TAG_MAP } from '../src/data/weaponTags';
+import { AFFINITY_TEXT, isFavoredWeapon, isDoubleFavored, favoredWeapons, doubleFavoredWeapons } from '../src/data/affinity';
+import { TAG_MAP, weaponTags } from '../src/data/weaponTags';
+import { RECIPES } from '../src/data/recipes';
 import { AFFINITY_WEAPONS, AFFINITY_WEAPONS_EN, AFFINITY_WEAPON_ART } from '../src/data/weaponsAffinity';
 
 describe('契合武器与契合特效', () => {
-  it('每名角色契合 1–2 个存在的标签、至少 5 把契合武器，并有中英文契合特效', () => {
+  it('每名角色契合 2 个存在的标签，双契合商店武器 2–5 把、至少 1 把双契合超武，并有中英文契合特效', () => {
     for (const c of CHARACTERS) {
-      expect(c.favored.length, c.id).toBeGreaterThanOrEqual(1);
-      expect(c.favored.length, c.id).toBeLessThanOrEqual(2);
+      expect(c.favored.length, c.id).toBe(2);
+      const dbl = doubleFavoredWeapons(c).filter(isShopWeapon).length;
+      expect(dbl, c.id).toBeGreaterThanOrEqual(2);
+      expect(dbl, c.id).toBeLessThanOrEqual(5);
+      expect(EVOLVED_WEAPONS.filter((w) => isDoubleFavored(c.favored, w)).length, c.id).toBeGreaterThanOrEqual(1);
       for (const t of c.favored) expect(TAG_MAP[t], `${c.id}:${t}`).toBeDefined();
       expect(favoredWeapons(c).length, c.id).toBeGreaterThanOrEqual(5);
       const t = AFFINITY_TEXT[c.id];
@@ -22,6 +26,19 @@ describe('契合武器与契合特效', () => {
     expect(Object.keys(AFFINITY_TEXT).sort()).toEqual(CHARACTERS.map((c) => c.id).sort());
   });
 
+  it('每名角色的契合标签组合互不相同', () => {
+    const keys = CHARACTERS.map((c) => [...c.favored].sort().join('+'));
+    expect(new Set(keys).size).toBe(CHARACTERS.length);
+  });
+
+  it('合成武器的标签 = 两把材料标签的并集（同名合成不变）', () => {
+    for (const r of RECIPES) {
+      if (r.from[0][0] === r.to) continue;
+      const want = new Set(r.from.flatMap(([id]) => weaponTags(WEAPON_MAP[id])));
+      expect(new Set(weaponTags(WEAPON_MAP[r.to])), r.to).toEqual(want);
+    }
+  });
+
   it('按标签判定：带任意一个契合标签即为契合武器，超武按自己的标签判定', () => {
     expect(isFavoredWeapon(['锋利'], WEAPON_MAP.knife)).toBe(true);
     expect(isFavoredWeapon(['枪械'], WEAPON_MAP.knife)).toBe(false);
@@ -29,6 +46,8 @@ describe('契合武器与契合特效', () => {
     const evo = EVOLVED_WEAPONS.find((w) => w.evolvedFrom === 'knife')!;
     expect(isFavoredWeapon(['锋利'], evo)).toBe(true);
     expect(isFavoredWeapon(['锋利'], undefined)).toBe(false);
+    expect(isDoubleFavored(['枪械', '锋利'], WEAPON_MAP.knife)).toBe(false);
+    expect(isDoubleFavored(['锋利', '厨具'], WEAPON_MAP.knife)).toBe(true);
   });
 
   it('新增的 4 把武器都已并入武器表，并带英文与手持图', () => {

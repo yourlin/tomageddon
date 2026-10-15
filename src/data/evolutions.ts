@@ -2,6 +2,7 @@
 // 进化保留原武器的词条与打造等级；超武不进商店池，只能通过进化获得。
 import { WEAPONS, WEAPON_MAP, type WeaponDef } from './weapons';
 import { EXTRA_EVOLUTIONS_SPEC } from './gearExtra';
+import { CHAR_EVOLUTIONS } from './weaponsChar';
 
 export interface EvolutionDef {
   /** 进化前的武器 */
@@ -137,6 +138,34 @@ export const EVOLUTIONS: EvolutionDef[] = [
 
 // 1.4.0 G6：新进化 8 组
 EVOLUTIONS.push(...EXTRA_EVOLUTIONS_SPEC.map((x) => evolve(x.from, x.item, x.boost)));
+// 甜点、毒气两类原来没有超武：补上，保证每个角色至少有 1 把契合超武
+EVOLUTIONS.push(
+  evolve('macaron_gun', 'bubble', {
+    id: 'macaron_tempest',
+    name: '马卡龙风暴',
+    desc: '一口气喷出整盒马卡龙，五颜六色铺满前方。',
+    dmg: 1.6,
+    cd: 0.7,
+    extra: { count: up4(BASE.macaron_gun.count ?? [1, 1, 1, 1], 2), spread: 26 },
+  }),
+  evolve('honey_blaster', 'lemonade', {
+    id: 'honey_flood',
+    name: '蜂蜜洪流',
+    desc: '黏稠的冰镇蜂蜜喷涌而出，粘住一大片敌人，越粘越慢。',
+    dmg: 1.6,
+    cd: 0.75,
+    extra: { effect: { slow: { pct: 45, dur: 2 } }, pierce: up4(BASE.honey_blaster.pierce, 2) },
+  }),
+  evolve('spore_sprayer', 'mosquito', {
+    id: 'plague_sprayer',
+    name: '瘟疫孢子喷壶',
+    desc: '灌满瘟疫孢子的喷壶，命中叠起厚厚的毒，还能穿透一整排敌人。',
+    dmg: 1.6,
+    extra: { effect: { poison: { stacks: 3, dur: 5 } }, pierce: up4(BASE.spore_sprayer.pierce, 2) },
+  }),
+);
+// 角色专属超武：22 把（见 weaponsChar.ts）
+EVOLUTIONS.push(...CHAR_EVOLUTIONS.map((x) => evolve(x.from, x.item, x.boost)));
 /** 超武自带的叠层增益（只有 8 把有，每种 2 把；其余 12 把是各自独有的招式，见 SkillStyles / WeaponSystem） */
 const SUPER_BUFFS: Record<string, NonNullable<WeaponDef['superBuff']>> = {
   dragon_cleaver: 'rage',

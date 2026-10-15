@@ -1,7 +1,7 @@
 // 暂停菜单（覆盖在战斗之上）
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout, fitImage, statLines, tu, NEG_COLOR } from '../ui/UI';
-import { charTraitLines, describeWeaponSets, weaponDmgType, armorText, speedText, archetypeText } from '../data/describe';
+import { charTraitLines, describeWeaponSets, weaponDmgType, armorText, speedText, archetypeText, SET_ROW_COLOR } from '../data/describe';
 import { run, clearRun, restoreFreeSnapshot, type OwnedWeapon } from '../systems/RunState';
 import { inPractice, exitPractice } from '../systems/Practice';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
@@ -16,6 +16,8 @@ import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSyst
 import { affixText, AFFIX_TIER_COLOR } from '../systems/WeaponMods';
 import { weaponTags } from '../data/weaponTags';
 import { tagName } from '../i18n/apply';
+import { isDoubleFavored } from '../data/affinity';
+import { synergyLines } from '../data/synergy';
 import { superBuffText } from '../systems/SuperBuffs';
 import { VW, VH } from '../systems/HiDpi';
 
@@ -229,7 +231,14 @@ export class PauseScene extends Phaser.Scene {
     const at = archetypeText(d, w.tier);
     if (at) lines.push([at, 12, '#8ecae6']);
     if (d.superBuff) lines.push([`⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`, 12, '#ffd166']);
-    for (const sl of describeWeaponSets(d, run.setCounts(), false, tagName)) lines.push([sl, 12, '#9be564']);
+    if (isDoubleFavored(run.char.favored, d)) for (const l of synergyLines(d, run.char.favored, tagName)) lines.push([l, 12, '#ffd166']);
+    for (const r of describeWeaponSets(
+      d,
+      run.setCounts(),
+      false,
+      run.weapons.map((x) => x.id),
+    ))
+      lines.push([r.text, 12, SET_ROW_COLOR[r.kind]]);
     const c = this.add.container(0, 0).setDepth(50);
     const g = this.add.graphics();
     c.add(g);
