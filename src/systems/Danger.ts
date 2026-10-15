@@ -55,6 +55,8 @@ export function addDangerPatterns(e: Enemy, n: number): void {
   for (const p of BOSS_DANGER_PATTERNS.slice(0, n)) {
     e.patterns.push({ ...p });
     e.patternT.push(p.cd * 0.6 + e.patterns.length * 0.5);
+    // 多阶段 Boss 换阶段时招式表会整体替换：危机追加的招式要跟着保留
+    e.extraPatterns.push({ ...p });
   }
 }
 

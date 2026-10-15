@@ -123,7 +123,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Damage</td><td>1 (+0.6/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>95</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 1+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 1~8; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 1~6; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 1~5; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 1~5</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 1+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 1~8; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 1~6; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 1~5; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 1~5</td></tr>
 </table>
 
 <a id="enemy-fly"></a>
@@ -136,7 +136,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>150</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 2+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 1+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 1+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 1~8; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 1~9</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 2+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 1+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 1+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 1~8; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 1~9</td></tr>
 </table>
 
 <a id="enemy-maggot"></a>
@@ -150,7 +150,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>70</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
 <tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 4+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 3+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 4+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 3+</td></tr>
 </table>
 
 <a id="enemy-rotten_apple"></a>
@@ -164,7 +164,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>80</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
 <tr><td nowrap>Special</td><td>Shoots every 2.6s</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 3+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 2+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 3+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 2+</td></tr>
 </table>
 
 <a id="enemy-cockroach"></a>
@@ -177,7 +177,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Damage</td><td>2 (+0.8/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>85</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 7+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 5+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 3+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 7+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 5+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 3+</td></tr>
 </table>
 
 <a id="enemy-ant"></a>
@@ -190,7 +190,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>150</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 6+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 3+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 6+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 3+</td></tr>
 </table>
 
 <a id="enemy-beetle"></a>
@@ -204,7 +204,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>135</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
 <tr><td nowrap>Special</td><td>Blast radius 85</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 9+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 10+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 8+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 9+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 9+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 10+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 8+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 9+</td></tr>
 </table>
 
 <a id="enemy-snail"></a>
@@ -247,7 +247,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>75</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
 <tr><td nowrap>Special</td><td>Splits into 3× <a href="#enemy-mold">Mold Blob</a> on death</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 11+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 6+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 9+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 9+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 11+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 11+; <a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 6+; <a href="CHAPTERS.md#chapter-3">Chapter 3 · Frozen Fridge</a> waves 9+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 9+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 11+</td></tr>
 </table>
 
 <a id="enemy-mushroom"></a>
@@ -476,7 +476,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>90</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
 <tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-burn">Burn</a> 2s (40%)</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 3+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 3+</td></tr>
 </table>
 
 <a id="enemy-grease_drop"></a>
@@ -489,7 +489,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>155</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 2+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 2+</td></tr>
 </table>
 
 <a id="enemy-dust_bunny"></a>
@@ -502,7 +502,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Damage</td><td>1 (+0.5/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>120</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 3+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 3+</td></tr>
 </table>
 
 <a id="enemy-sour_milk"></a>
@@ -516,7 +516,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>75</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
 <tr><td nowrap>Special</td><td>Shoots every 2.8s</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 4+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 4+</td></tr>
 </table>
 
 <a id="enemy-crumb_mite"></a>
@@ -529,7 +529,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Damage</td><td>1 (+0.4/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>140</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 2+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 2+</td></tr>
 </table>
 
 <a id="enemy-moldy_bread"></a>
@@ -543,7 +543,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>70</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
 <tr><td nowrap>Special</td><td>Splits into 3× <a href="#enemy-crumb_mite">Crumb Mite</a> on death</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 9+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 9+</td></tr>
 </table>
 
 <a id="enemy-stink_egg"></a>
@@ -558,7 +558,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
 <tr><td nowrap>Inflicts</td><td>2× <a href="SKILLS.md#status-poison">Poison</a> 3s</td></tr>
 <tr><td nowrap>Special</td><td>Blast radius 80</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 8+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 8+</td></tr>
 </table>
 
 <a id="enemy-sponge_slug"></a>
@@ -572,7 +572,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>60</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
 <tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-sticky">Sticky</a> 2s</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 6+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 6+</td></tr>
 </table>
 
 <a id="enemy-teabag_ghost"></a>
@@ -586,7 +586,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>65</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>3</td></tr>
 <tr><td nowrap>Special</td><td>Heals allies within 170 for 0.15</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 10+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 10+</td></tr>
 </table>
 
 <a id="enemy-pan_beetle"></a>
@@ -600,7 +600,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>80</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
 <tr><td nowrap>Special</td><td>Charges every 3s</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a> waves 5+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a> waves 5+</td></tr>
 </table>
 
 <a id="enemy-aphid"></a>
@@ -1370,7 +1370,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 
 | Chapter | Elites |
 | --- | --- |
-| [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) | <img src="../images/boss/roach_general.png" width="32" height="32" alt=""> [General Roach](#boss-roach_general), <img src="../images/boss/mold_elder.png" width="32" height="32" alt=""> [Mold Elder](#boss-mold_elder), <img src="../images/boss/greasy_pan.png" width="32" height="32" alt=""> [Greasy Pan](#boss-greasy_pan), <img src="../images/boss/fork_knight.png" width="32" height="32" alt=""> [Fork Knight](#boss-fork_knight), <img src="../images/boss/fly_swarm_king.png" width="32" height="32" alt=""> [Lord of the Flies](#boss-fly_swarm_king), <img src="../images/boss/rotten_onion.png" width="32" height="32" alt=""> [Rotten Onion](#boss-rotten_onion) |
+| [Chapter 1 · The Frying Pan](CHAPTERS.md#chapter-1) | <img src="../images/boss/roach_general.png" width="32" height="32" alt=""> [General Roach](#boss-roach_general), <img src="../images/boss/mold_elder.png" width="32" height="32" alt=""> [Mold Elder](#boss-mold_elder), <img src="../images/boss/greasy_pan.png" width="32" height="32" alt=""> [Greasy Pan](#boss-greasy_pan), <img src="../images/boss/fork_knight.png" width="32" height="32" alt=""> [Fork Knight](#boss-fork_knight), <img src="../images/boss/fly_swarm_king.png" width="32" height="32" alt=""> [Lord of the Flies](#boss-fly_swarm_king), <img src="../images/boss/rotten_onion.png" width="32" height="32" alt=""> [Rotten Onion](#boss-rotten_onion) |
 | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) | <img src="../images/boss/rat_captain.png" width="32" height="32" alt=""> [Captain Rat](#boss-rat_captain), <img src="../images/boss/snail_tank.png" width="32" height="32" alt=""> [Tank Snail](#boss-snail_tank), <img src="../images/boss/queen_bee.png" width="32" height="32" alt=""> [Queen Bee](#boss-queen_bee), <img src="../images/boss/scarecrow.png" width="32" height="32" alt=""> [Evil Scarecrow](#boss-scarecrow), <img src="../images/boss/spider_matron.png" width="32" height="32" alt=""> [Spider Matron](#boss-spider_matron), <img src="../images/boss/mushroom_king.png" width="32" height="32" alt=""> [Shroom King](#boss-mushroom_king) |
 | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) | <img src="../images/boss/ice_golem.png" width="32" height="32" alt=""> [Ice Golem](#boss-ice_golem), <img src="../images/boss/popsicle_twins.png" width="32" height="32" alt=""> [Popsicle Twins](#boss-popsicle_twins), <img src="../images/boss/frozen_fish.png" width="32" height="32" alt=""> [Frozen Fish Samurai](#boss-frozen_fish), <img src="../images/boss/snow_rat.png" width="32" height="32" alt=""> [Snow Rat Assassin](#boss-snow_rat), <img src="../images/boss/milk_slime.png" width="32" height="32" alt=""> [Spoiled Milk Slime](#boss-milk_slime), <img src="../images/boss/frost_penguin.png" width="32" height="32" alt=""> [Frost Penguin](#boss-frost_penguin) |
 | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) | <img src="../images/boss/tire_beast.png" width="32" height="32" alt=""> [Tire Beast](#boss-tire_beast), <img src="../images/boss/can_king.png" width="32" height="32" alt=""> [Can King](#boss-can_king), <img src="../images/boss/rag_wraith.png" width="32" height="32" alt=""> [Rag Wraith](#boss-rag_wraith), <img src="../images/boss/battery_bug.png" width="32" height="32" alt=""> [Leaky Battery Bug](#boss-battery_bug), <img src="../images/boss/garbage_rat.png" width="32" height="32" alt=""> [Garbage Rat King](#boss-garbage_rat), <img src="../images/boss/oil_titan.png" width="32" height="32" alt=""> [Oil Titan](#boss-oil_titan) |
@@ -1383,7 +1383,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/roach_general.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">General Roach</th></tr>
 <tr><td colspan="2"><i>Leader of the roach legion, clad in bottle-cap armor.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>320</td></tr>
 <tr><td nowrap>Damage</td><td>4</td></tr>
 <tr><td nowrap>Speed</td><td>90</td></tr>
@@ -1396,7 +1396,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/mold_elder.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mold Elder</th></tr>
 <tr><td colspan="2"><i>An ancient mold colony that summons its offspring.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>300</td></tr>
 <tr><td nowrap>Damage</td><td>3</td></tr>
 <tr><td nowrap>Speed</td><td>60</td></tr>
@@ -1409,7 +1409,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/greasy_pan.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Greasy Pan</th></tr>
 <tr><td colspan="2"><i>A frying pan so caked in old grease it came to life.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>360</td></tr>
 <tr><td nowrap>Damage</td><td>4</td></tr>
 <tr><td nowrap>Speed</td><td>70</td></tr>
@@ -1422,7 +1422,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/fork_knight.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Fork Knight</th></tr>
 <tr><td colspan="2"><i>A corrupted fork that dashes in to skewer you.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>300</td></tr>
 <tr><td nowrap>Damage</td><td>5</td></tr>
 <tr><td nowrap>Speed</td><td>100</td></tr>
@@ -1435,7 +1435,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/fly_swarm_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Lord of the Flies</th></tr>
 <tr><td colspan="2"><i>A giant, endlessly buzzing fly.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>280</td></tr>
 <tr><td nowrap>Damage</td><td>3</td></tr>
 <tr><td nowrap>Speed</td><td>120</td></tr>
@@ -1448,7 +1448,7 @@ Appear on waves 5 and 10. +1 random [affix](#affixes) from wave 10, +1 from chap
 <table>
 <tr><td rowspan="8" align="center" valign="middle"><img src="../images/boss/rotten_onion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Rotten Onion</th></tr>
 <tr><td colspan="2"><i>A rotten onion that leaks tear-jerking toxic gas.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>340</td></tr>
 <tr><td nowrap>Damage</td><td>3</td></tr>
 <tr><td nowrap>Speed</td><td>70</td></tr>
@@ -1838,7 +1838,7 @@ Appear on the last wave of a chapter and enter phase two at half HP. The wave la
 
 | Chapter | Boss |
 | --- | --- |
-| [Chapter 1 · Midnight Kitchen](CHAPTERS.md#chapter-1) | <img src="../images/boss/mold_king.png" width="32" height="32" alt=""> [Mold King](#boss-mold_king), <img src="../images/boss/grease_chef.png" width="32" height="32" alt=""> [Grease Chef](#boss-grease_chef), <img src="../images/boss/cockroach_emperor.png" width="32" height="32" alt=""> [Roach Emperor](#boss-cockroach_emperor) |
+| [Chapter 1 · The Frying Pan](CHAPTERS.md#chapter-1) | <img src="../images/boss/mold_king.png" width="32" height="32" alt=""> [Mold King](#boss-mold_king), <img src="../images/boss/grease_chef.png" width="32" height="32" alt=""> [Grease Chef](#boss-grease_chef), <img src="../images/boss/cockroach_emperor.png" width="32" height="32" alt=""> [Roach Emperor](#boss-cockroach_emperor) |
 | [Chapter 2 · Wild Garden](CHAPTERS.md#chapter-2) | <img src="../images/boss/locust_queen.png" width="32" height="32" alt=""> [Locust Queen](#boss-locust_queen), <img src="../images/boss/rotten_pumpkin.png" width="32" height="32" alt=""> [Rotten Pumpkin King](#boss-rotten_pumpkin), <img src="../images/boss/mole_general.png" width="32" height="32" alt=""> [General Mole](#boss-mole_general) |
 | [Chapter 3 · Frozen Fridge](CHAPTERS.md#chapter-3) | <img src="../images/boss/frost_rat_king.png" width="32" height="32" alt=""> [Frost Rat King](#boss-frost_rat_king), <img src="../images/boss/ice_cream_tyrant.png" width="32" height="32" alt=""> [Ice Cream Tyrant](#boss-ice_cream_tyrant), <img src="../images/boss/freezer_heart.png" width="32" height="32" alt=""> [Freezer Heart](#boss-freezer_heart) |
 | [Chapter 4 · City Junkyard](CHAPTERS.md#chapter-4) | <img src="../images/boss/trash_golem.png" width="32" height="32" alt=""> [Trash Colossus](#boss-trash_golem), <img src="../images/boss/toxic_barrel.png" width="32" height="32" alt=""> [Toxic Barrel Fiend](#boss-toxic_barrel), <img src="../images/boss/scrap_dragon.png" width="32" height="32" alt=""> [Scrap Dragon](#boss-scrap_dragon) |
@@ -1851,7 +1851,7 @@ Appear on the last wave of a chapter and enter phase two at half HP. The wave la
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/mold_king.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Mold King · Chapter 1 Boss</th></tr>
 <tr><td colspan="2"><i>The king of mold, lurking in the kitchen sink.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>1800</td></tr>
 <tr><td nowrap>Damage</td><td>5</td></tr>
 <tr><td nowrap>Speed</td><td>55</td></tr>
@@ -1865,7 +1865,7 @@ Appear on the last wave of a chapter and enter phase two at half HP. The wave la
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/grease_chef.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Grease Chef · Chapter 1 Boss</th></tr>
 <tr><td colspan="2"><i>A century of range-hood grease that came to life.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>1900</td></tr>
 <tr><td nowrap>Damage</td><td>5</td></tr>
 <tr><td nowrap>Speed</td><td>60</td></tr>
@@ -1878,8 +1878,8 @@ Appear on the last wave of a chapter and enter phase two at half HP. The wave la
 
 <table>
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/cockroach_emperor.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Roach Emperor · Chapter 1 Boss</th></tr>
-<tr><td colspan="2"><i>The unkillable roach emperor with shocking regeneration.</i></td></tr>
-<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · Midnight Kitchen</a></td></tr>
+<tr><td colspan="2"><i>The unkillable roach emperor with shocking regeneration — untouchable while charging.</i></td></tr>
+<tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-1">Chapter 1 · The Frying Pan</a></td></tr>
 <tr><td nowrap>Base HP</td><td>2000</td></tr>
 <tr><td nowrap>Damage</td><td>6</td></tr>
 <tr><td nowrap>Speed</td><td>75</td></tr>

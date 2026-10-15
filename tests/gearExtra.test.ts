@@ -1,6 +1,7 @@
 // G5/G6/G7：1.4.0 新武器 / 新进化 / 新道具数据校验（数据尚未接线，这里只校验 gearExtra.ts 自身与现有数据的一致性）
 import { describe, it, expect } from 'vitest';
-import { WEAPONS, WEAPON_SETS } from '../src/data/weapons';
+import { WEAPONS } from '../src/data/weapons';
+import { TAG_MAP } from '../src/data/weaponTags';
 import { EVOLUTIONS, EVOLVED_WEAPONS } from '../src/data/evolutions';
 import { ITEMS, ALL_ITEMS } from '../src/data/items';
 import { STAT_INFO, BASE_STATS, type StatKey } from '../src/data/stats';
@@ -92,7 +93,7 @@ describe('新武器', () => {
   it.each(EXTRA_WEAPONS.map((w) => [w.id, w] as const))('%s 字段合法', (_id, w) => {
     expect(kinds.has(w.kind)).toBe(true);
     for (const k of Object.keys(w.effect ?? {})) expect(effectKeys.has(k), k).toBe(true);
-    for (const t of w.tags) expect(WEAPON_SETS[t], t).toBeDefined();
+    for (const t of w.tags) expect(TAG_MAP[t], t).toBeDefined();
     expect(w.damage).toHaveLength(4);
     expect(w.cooldown).toHaveLength(4);
     for (const a of [w.pierce, w.bounce, w.count, w.effect?.chain]) if (a) expect(a).toHaveLength(4);

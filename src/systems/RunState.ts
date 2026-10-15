@@ -6,10 +6,11 @@ import { treeTotals, setRunTalents, setTalentProfile } from './TalentTree';
 import { bump, bumpMax, counter } from './Counters';
 import { BASE_STATS, addMods, type Stats, type StatMods } from '../data/stats';
 import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
-import { WEAPON_MAP, WEAPON_SETS, TIER_PRICE_MULT, type WeaponDef } from '../data/weapons';
+import { WEAPON_MAP, TIER_PRICE_MULT, type WeaponDef } from '../data/weapons';
+import { SET_MAP, activeTier, countSets } from '../data/weaponSets';
 import { isFavoredWeapon, favoredWeapons } from '../data/affinity';
 import { missingItems, itemPicks, RECIPE_BY_TO, type Recipe } from '../data/recipes';
-import { weaponTags } from '../data/weaponTags';
+
 import { ITEM_MAP, itemCapFor, LEVELUP_OPTIONS, type ItemSpecial, type DotPerk } from '../data/items';
 import type { StatusApply } from '../data/statuses';
 import { CHAPTERS, type ChapterDef } from '../data/chapters';
@@ -484,12 +485,11 @@ export class RunState {
     addMods(s, this.levelMods);
     s.harvest += this.harvestBonus;
     for (const [id, n] of Object.entries(this.items)) addMods(s, ITEM_MAP[id].mods, n);
-    for (const [tag, cnt] of Object.entries(this.setCounts())) {
-      const set = WEAPON_SETS[tag];
-      if (!set) continue;
-      let best: number | null = null;
-      for (const k of Object.keys(set.bonus).map(Number)) if (cnt >= k && (best === null || k > best)) best = k;
-      if (best !== null) addMods(s, set.bonus[best] as StatMods);
+    // 武器套装：每个套装达到的最高一档生效（data/weaponSets.ts）
+    for (const [id, cnt] of Object.entries(this.setCounts())) {
+      const set = SET_MAP[id];
+      const k = set && activeTier(set, cnt);
+      if (k) addMods(s, set.bonus[k]);
     }
     // 挑战修饰
     if (this.challenge) {
@@ -630,15 +630,9 @@ export class RunState {
     return Infinity;
   }
 
+  /** 各武器套装的当前件数（武器栏里不同的成员武器数；仓库不算） */
   setCounts(): Record<string, number> {
-    const counts: Record<string, number> = {};
-    const seen = new Set<string>();
-    for (const w of this.weapons) {
-      if (seen.has(w.id)) continue; // 同名武器只计一次
-      seen.add(w.id);
-      for (const t of weaponTags(WEAPON_MAP[w.id])) counts[t] = (counts[t] ?? 0) + 1;
-    }
-    return counts;
+    return countSets(this.weapons.map((w) => w.id));
   }
 
   weaponDef(w: OwnedWeapon): WeaponDef {
@@ -699,9 +693,9 @@ export class RunState {
     return LEVELUP_OPTIONS.filter((o) => (!gated.includes(o.key) || own.has(o.key)) && !banned.includes(o.key));
   }
 
-  /** 这把武器能不能放进武器栏（「只能装备契合武器」的角色如芋头术士，其他武器只能进仓库） */
+  /** 这把武器能不能放进武器栏（「只能装备契合武器」的角色如芋头术士只认第一个契合标签，其他武器只能进仓库） */
   canEquip(id: string): boolean {
-    return !this.char.favoredOnly || isFavoredWeapon(this.char.favored, WEAPON_MAP[id]);
+    return !this.char.favoredOnly || isFavoredWeapon(this.char.favored.slice(0, 1), WEAPON_MAP[id]);
   }
 
   /** 尝试加入武器：栏位满时若能合成则自动合成 */
@@ -719,11 +713,8 @@ export class RunState {
    *  返回被升级的武器（品质最低、吞噬后确实能升级的契合武器：同名合成封顶 T3，T3 只能被更高品质吞噬升级）；
    *  不满足条件时为 undefined */
   absorbTarget(id: string, tier = 0): OwnedWeapon | undefined {
-    if (this.charId !== 'taro' || !isFavoredWeapon(this.char.favored, WEAPON_MAP[id]) || this.weapons.length < this.maxWeapons)
-      return undefined;
-    return this.weapons
-      .filter((w) => (w.tier < 2 || tier > w.tier) && isFavoredWeapon(this.char.favored, WEAPON_MAP[w.id]))
-      .sort((a, b) => a.tier - b.tier)[0];
+    if (this.charId !== 'taro' || !this.canEquip(id) || this.weapons.length < this.maxWeapons) return undefined;
+    return this.weapons.filter((w) => (w.tier < 2 || tier > w.tier) && this.canEquip(w.id)).sort((a, b) => a.tier - b.tier)[0];
   }
 
   addWeapon(id: string, tier: number): void {

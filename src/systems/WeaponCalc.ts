@@ -3,7 +3,7 @@ import type { WeaponDef } from '../data/weapons';
 import { BALANCE, explodeSizeMultiplier } from '../data/balance';
 import { run } from './RunState';
 import { weaponDamage, weaponCooldown, weaponRange } from './WeaponSystem';
-import { isFavoredWeapon } from '../data/affinity';
+import { isFavoredWeapon, isDoubleFavored } from '../data/affinity';
 
 // ---------------- 武器 ----------------
 export interface WeaponCalc {
@@ -65,7 +65,8 @@ export function weaponCalc(def: WeaponDef, tier: number): WeaponCalc {
   if (e?.lifeSteal) effects.push(`吸血概率 +${e.lifeSteal}%`);
   if (def.knockback) effects.push(`击退 ${def.knockback}`);
   if (def.critBonus) effects.push(`暴击率 +${def.critBonus}%`);
-  if (isFavoredWeapon(run.char.favored, def)) effects.push('★契合 +10%');
+  if (isDoubleFavored(run.char.favored, def)) effects.push('★★双契合 +10%');
+  else if (isFavoredWeapon(run.char.favored, def)) effects.push('★契合 +10%');
   return { dmg, cd, range, count, critChance, critMult, hit, dps: perAttack / cd, explode, multi, effects };
 }
 

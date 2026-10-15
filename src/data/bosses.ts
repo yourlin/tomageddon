@@ -1,8 +1,10 @@
 // 精英（第 5、10 波）与 Boss（第 15 波）。每章精英池 6 个、Boss 池 3 个，每局随机抽取。
 // 攻击由若干“招式”组成；招式可附带 Debuff（打在玩家身上）或 Buff（强化自己/同伴）。
+import type { ArenaChange } from '../systems/Arena';
 import type { RigSpec } from '../art/RigSpec';
 import type { StatusApply } from './statuses';
 import { EXTRA_BOSSES, TRUE_FINAL_BOSS_ID } from './chaptersExtra';
+import { BOSS_PHASES } from './bossPhases';
 
 export type PatternType = 'ring' | 'spiral' | 'aimed' | 'charge' | 'summon' | 'slam' | 'hazard' | 'laser' | 'teleport' | 'buff' | 'scatter';
 
@@ -96,11 +98,57 @@ export interface BossDef {
   dmg: number;
   speed: number;
   elite?: boolean;
+  /** 冲锋（charge）期间免疫一切伤害（蟑螂皇帝「刀枪不入」） */
+  chargeImmune?: boolean;
   seeds: number;
   contact?: StatusApply[]; // 接触伤害附带
   affixes?: AffixId[]; // 固定词缀
   patterns: Pattern[];
   phase2?: { at: number; speedMult: number; cdMult: number; add: Pattern[]; buff?: StatusApply[] };
+  /** 多阶段（章节 Boss）：有它时不再使用 phase2。第 1 个阶段 at = 1，之后按生命比例递减，见 data/bossPhases.ts */
+  phases?: BossPhase[];
+}
+
+/** 转阶段运镜的一步（见 systems/BossPhases.ts）：push 推近 / pull 拉远 / track 跟随 Boss / pan 偏移 / shake 震屏 */
+export interface CameraStep {
+  kind: 'push' | 'pull' | 'track' | 'pan' | 'shake';
+  /** 相对当前缩放的倍率（push 默认 1.08，pull 默认 0.85） */
+  zoom?: number;
+  /** 动作时长（秒） */
+  dur?: number;
+  /** 这一步占用的时间（秒），之后才开始下一步；默认等于 dur */
+  hold?: number;
+  /** pan 的目标：Boss、场地中心或坐标 */
+  to?: 'boss' | 'center' | [number, number];
+  /** push 时镜头是否移向 Boss（默认是） */
+  focus?: boolean;
+  intensity?: number;
+}
+
+/** Boss 的一个阶段（设计见 docs/design/BOSS_PHASES.md） */
+export interface BossPhase {
+  /** 进入本阶段的生命比例（第 1 阶段为 1） */
+  at: number;
+  /** 阶段名 [中, 英]，转阶段横幅显示 */
+  name: [string, string];
+  /** 本阶段最短时长（秒），没到时生命不会低于下一道门槛；默认 BALANCE.bossPhase.minTime */
+  minTime?: number;
+  /** 移速倍率（相对基础移速） */
+  speedMult?: number;
+  /** 本阶段的完整招式表 */
+  patterns: Pattern[];
+  /** 转阶段爆发时放出的转场招式 */
+  transition?: Pattern[];
+  /** 进入本阶段时获得的状态 */
+  buff?: StatusApply[];
+  /** 本阶段外观：色调、体型倍率、特效主色 */
+  tint?: number;
+  scale?: number;
+  color?: number;
+  /** 转阶段运镜（不填默认推近 8%） */
+  camera?: CameraStep[];
+  /** 转阶段时对场地的改变 */
+  arena?: ArenaChange[];
 }
 
 const S = (id: StatusApply['id'], dur: number, stacks = 1, chance?: number): StatusApply => ({ id, dur, stacks, chance });
@@ -1082,7 +1130,7 @@ const BOSS_LIST: BossDef[] = [
     'cockroach_emperor',
     '蟑螂皇帝',
     1,
-    '打不死的蟑螂皇帝，拥有惊人的再生力。',
+    '打不死的蟑螂皇帝，拥有惊人的再生力，冲锋时刀枪不入。',
     {
       shape: 'oval',
       w: 1.15,
@@ -1531,6 +1579,10 @@ ELITES.push(...EXTRA_BOSSES.filter((b) => b.elite));
 BOSS_LIST.push(...EXTRA_BOSSES.filter((b) => !b.elite));
 export const BOSSES: BossDef[] = [...ELITES, ...BOSS_LIST];
 export const BOSS_MAP: Record<string, BossDef> = Object.fromEntries(BOSSES.map((b) => [b.id, b]));
+// 蟑螂皇帝：冲锋时刀枪不入（冲锋前的蓄力仍可被打）
+BOSS_MAP.cockroach_emperor.chargeImmune = true;
+// 章节 Boss 的多阶段设计（data/bossPhases.ts）
+for (const b of BOSSES) if (!b.elite && BOSS_PHASES[b.id]) b.phases = BOSS_PHASES[b.id];
 export const elitePool = (chapter: number) => ELITES.filter((e) => e.chapter === chapter);
 export const bossPool = (chapter: number) => BOSS_LIST.filter((e) => e.chapter === chapter && e.id !== TRUE_FINAL_BOSS_ID);
 export { TRUE_FINAL_BOSS_ID };

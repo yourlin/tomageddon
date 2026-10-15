@@ -12,7 +12,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 - [Wave Rules](#waves)
 - [Chapters](#chapters)
-  - [Chapter 1 · Midnight Kitchen](#chapter-1)
+  - [Chapter 1 · The Frying Pan](#chapter-1)
   - [Chapter 2 · Wild Garden](#chapter-2)
   - [Chapter 3 · Frozen Fridge](#chapter-3)
   - [Chapter 4 · City Junkyard](#chapter-4)
@@ -55,14 +55,19 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 <a id="chapter-1"></a>
 
-### Chapter 1 · Midnight Kitchen
+### Chapter 1 · The Frying Pan
 
-> The kitchen is overgrown with mold. Tomato Sister's adventure begins here.
+> On the stove at midnight, a hot frying pan has grown thick with mold. Tomato Sister's adventure begins here.
+
+<img src="../images/map/ch1.webp" width="360" alt="The Frying Pan">
+
+**Map · The Frying Pan**: A hot nonstick pan on the stove at midnight. Fine swirls run across the black coating, the center glows red with heat and oil droplets glint everywhere; a silver rim rings the pan and the handle juts out to the right. The round arena has no corners, and monsters crawl in over the rim from four sides.
 
 | Field | Value |
 | --- | --- |
+| Arena | Circle, 1300 across |
 | Difficulty | HP ×1 · damage ×1 · speed ×1 |
-| Terrain | Hot Oil Splash: The floor spatters burning oil pools<br>Drain Grate: Small monsters crawl out periodically<br>Fresh tomatoes occasionally fall from the sky |
+| Terrain | Hot Oil Splash: The pan spatters burning oil pools<br>Pan Rim: Small monsters crawl in over the rim<br>Fresh tomatoes occasionally drop into the pan |
 | Elite pool | <img src="../images/boss/roach_general.png" width="24" height="24" alt=""> [General Roach](MONSTERS.md#boss-roach_general), <img src="../images/boss/mold_elder.png" width="24" height="24" alt=""> [Mold Elder](MONSTERS.md#boss-mold_elder), <img src="../images/boss/greasy_pan.png" width="24" height="24" alt=""> [Greasy Pan](MONSTERS.md#boss-greasy_pan), <img src="../images/boss/fork_knight.png" width="24" height="24" alt=""> [Fork Knight](MONSTERS.md#boss-fork_knight), <img src="../images/boss/fly_swarm_king.png" width="24" height="24" alt=""> [Lord of the Flies](MONSTERS.md#boss-fly_swarm_king), <img src="../images/boss/rotten_onion.png" width="24" height="24" alt=""> [Rotten Onion](MONSTERS.md#boss-rotten_onion) |
 | Boss pool | <img src="../images/boss/mold_king.png" width="24" height="24" alt=""> [Mold King](MONSTERS.md#boss-mold_king), <img src="../images/boss/grease_chef.png" width="24" height="24" alt=""> [Grease Chef](MONSTERS.md#boss-grease_chef), <img src="../images/boss/cockroach_emperor.png" width="24" height="24" alt=""> [Roach Emperor](MONSTERS.md#boss-cockroach_emperor) |
 
@@ -95,9 +100,14 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 > Bugs have overrun the garden. Watch out for the healing toadstools.
 
+<img src="../images/map/ch2.webp" width="360" alt="The Garden Bed">
+
+**Map · The Garden Bed**: An abandoned garden bed: rows of furrowed soil strewn with pebbles and dead leaves, fenced in with wood. Two scarecrows and a dirt mound split the field into lanes.
+
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×1.56 · damage ×1.17 · speed ×1.05 |
+| Arena | Rounded rectangle 1760 × 1100; 3 obstacles (block movement, not bullets) |
+| Difficulty | HP ×1.64 · damage ×1.17 · speed ×1.05 |
 | Terrain | Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit<br>Gophers: Pop out of burrows to throw rocks<br>Sprinklers: Periodically spray water, Soaking players and monsters in range (Move and Attack Speed reduced) |
 | Elite pool | <img src="../images/boss/rat_captain.png" width="24" height="24" alt=""> [Captain Rat](MONSTERS.md#boss-rat_captain), <img src="../images/boss/snail_tank.png" width="24" height="24" alt=""> [Tank Snail](MONSTERS.md#boss-snail_tank), <img src="../images/boss/queen_bee.png" width="24" height="24" alt=""> [Queen Bee](MONSTERS.md#boss-queen_bee), <img src="../images/boss/scarecrow.png" width="24" height="24" alt=""> [Evil Scarecrow](MONSTERS.md#boss-scarecrow), <img src="../images/boss/spider_matron.png" width="24" height="24" alt=""> [Spider Matron](MONSTERS.md#boss-spider_matron), <img src="../images/boss/mushroom_king.png" width="24" height="24" alt=""> [Shroom King](MONSTERS.md#boss-mushroom_king) |
 | Boss pool | <img src="../images/boss/locust_queen.png" width="24" height="24" alt=""> [Locust Queen](MONSTERS.md#boss-locust_queen), <img src="../images/boss/rotten_pumpkin.png" width="24" height="24" alt=""> [Rotten Pumpkin King](MONSTERS.md#boss-rotten_pumpkin), <img src="../images/boss/mole_general.png" width="24" height="24" alt=""> [General Mole](MONSTERS.md#boss-mole_general) |
@@ -134,9 +144,14 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 > Inside the chilly fridge, ice crystals will slow you down.
 
+<img src="../images/map/ch3.webp" width="360" alt="The Fridge">
+
+**Map · The Fridge**: Inside the fridge: frosted white walls covered in ice crystals. Two glass shelves split the arena into three tiers — the upper shelf has a gap in the middle, the lower one gaps at both ends.
+
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×1.58 · damage ×1.23 · speed ×1.1 |
+| Arena | Rectangle 1500 × 1500; 4 obstacles (block movement, not bullets) |
+| Difficulty | HP ×1.74 · damage ×1.23 · speed ×1.1 |
 | Terrain | Ice Floor: Slippery on ice, but you move faster<br>Cold Wind: Periodic gusts push all units and slow them |
 | Elite pool | <img src="../images/boss/ice_golem.png" width="24" height="24" alt=""> [Ice Golem](MONSTERS.md#boss-ice_golem), <img src="../images/boss/popsicle_twins.png" width="24" height="24" alt=""> [Popsicle Twins](MONSTERS.md#boss-popsicle_twins), <img src="../images/boss/frozen_fish.png" width="24" height="24" alt=""> [Frozen Fish Samurai](MONSTERS.md#boss-frozen_fish), <img src="../images/boss/snow_rat.png" width="24" height="24" alt=""> [Snow Rat Assassin](MONSTERS.md#boss-snow_rat), <img src="../images/boss/milk_slime.png" width="24" height="24" alt=""> [Spoiled Milk Slime](MONSTERS.md#boss-milk_slime), <img src="../images/boss/frost_penguin.png" width="24" height="24" alt=""> [Frost Penguin](MONSTERS.md#boss-frost_penguin) |
 | Boss pool | <img src="../images/boss/frost_rat_king.png" width="24" height="24" alt=""> [Frost Rat King](MONSTERS.md#boss-frost_rat_king), <img src="../images/boss/ice_cream_tyrant.png" width="24" height="24" alt=""> [Ice Cream Tyrant](MONSTERS.md#boss-ice_cream_tyrant), <img src="../images/boss/freezer_heart.png" width="24" height="24" alt=""> [Freezer Heart](MONSTERS.md#boss-freezer_heart) |
@@ -145,25 +160,25 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 | Monster | Waves | Weight |
 | --- | --- | --- |
-| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~6 | 8 (12%) |
-| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1+ | 4 (6%) |
-| <img src="../images/enemy/ice_cube.png" width="32" height="32" alt=""> [Ice Cube](MONSTERS.md#enemy-ice_cube) | 3+ | 3 (4%) |
-| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 7+ | 3 (4%) |
+| <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~6 | 4 (6%) |
+| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1+ | 2 (3%) |
+| <img src="../images/enemy/ice_cube.png" width="32" height="32" alt=""> [Ice Cube](MONSTERS.md#enemy-ice_cube) | 3+ | 3 (5%) |
+| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 7+ | 3 (5%) |
 | <img src="../images/enemy/maggot.png" width="32" height="32" alt=""> [Maggot](MONSTERS.md#enemy-maggot) | 3+ | 4 (6%) |
-| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 6+ | 3 (4%) |
-| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 5+ | 3 (4%) |
+| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 6+ | 3 (5%) |
+| <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 5+ | 3 (5%) |
 | <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 7+ | 2 (3%) |
-| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 9+ | 3 (4%) |
-| <img src="../images/enemy/frost_mosquito.png" width="32" height="32" alt=""> [Frost Mosquito](MONSTERS.md#enemy-frost_mosquito) | 4+ | 3 (4%) |
-| <img src="../images/enemy/frozen_shrimp.png" width="32" height="32" alt=""> [Frozen Shrimp](MONSTERS.md#enemy-frozen_shrimp) | 6+ | 3 (4%) |
+| <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 9+ | 3 (5%) |
+| <img src="../images/enemy/frost_mosquito.png" width="32" height="32" alt=""> [Frost Mosquito](MONSTERS.md#enemy-frost_mosquito) | 4+ | 3 (5%) |
+| <img src="../images/enemy/frozen_shrimp.png" width="32" height="32" alt=""> [Frozen Shrimp](MONSTERS.md#enemy-frozen_shrimp) | 6+ | 3 (5%) |
 | <img src="../images/enemy/frost_mite.png" width="32" height="32" alt=""> [Frost Mite](MONSTERS.md#enemy-frost_mite) | 2+ | 4 (6%) |
-| <img src="../images/enemy/popsicle_bat.png" width="32" height="32" alt=""> [Popsicle Bat](MONSTERS.md#enemy-popsicle_bat) | 2+ | 3 (4%) |
-| <img src="../images/enemy/frozen_pea.png" width="32" height="32" alt=""> [Frozen Pea](MONSTERS.md#enemy-frozen_pea) | 3+ | 3 (4%) |
-| <img src="../images/enemy/jelly_cube.png" width="32" height="32" alt=""> [Jelly Cube](MONSTERS.md#enemy-jelly_cube) | 4+ | 3 (4%) |
-| <img src="../images/enemy/moldy_cheese.png" width="32" height="32" alt=""> [Moldy Cheese](MONSTERS.md#enemy-moldy_cheese) | 5+ | 3 (4%) |
-| <img src="../images/enemy/icicle_imp.png" width="32" height="32" alt=""> [Icicle Imp](MONSTERS.md#enemy-icicle_imp) | 6+ | 3 (4%) |
-| <img src="../images/enemy/ice_slime.png" width="32" height="32" alt=""> [Ice Slime](MONSTERS.md#enemy-ice_slime) | 7+ | 3 (4%) |
-| <img src="../images/enemy/frozen_soda.png" width="32" height="32" alt=""> [Frozen Soda](MONSTERS.md#enemy-frozen_soda) | 8+ | 3 (4%) |
+| <img src="../images/enemy/popsicle_bat.png" width="32" height="32" alt=""> [Popsicle Bat](MONSTERS.md#enemy-popsicle_bat) | 2+ | 3 (5%) |
+| <img src="../images/enemy/frozen_pea.png" width="32" height="32" alt=""> [Frozen Pea](MONSTERS.md#enemy-frozen_pea) | 3+ | 3 (5%) |
+| <img src="../images/enemy/jelly_cube.png" width="32" height="32" alt=""> [Jelly Cube](MONSTERS.md#enemy-jelly_cube) | 4+ | 3 (5%) |
+| <img src="../images/enemy/moldy_cheese.png" width="32" height="32" alt=""> [Moldy Cheese](MONSTERS.md#enemy-moldy_cheese) | 5+ | 3 (5%) |
+| <img src="../images/enemy/icicle_imp.png" width="32" height="32" alt=""> [Icicle Imp](MONSTERS.md#enemy-icicle_imp) | 6+ | 3 (5%) |
+| <img src="../images/enemy/ice_slime.png" width="32" height="32" alt=""> [Ice Slime](MONSTERS.md#enemy-ice_slime) | 7+ | 3 (5%) |
+| <img src="../images/enemy/frozen_soda.png" width="32" height="32" alt=""> [Frozen Soda](MONSTERS.md#enemy-frozen_soda) | 8+ | 3 (5%) |
 | <img src="../images/enemy/freezer_burn.png" width="32" height="32" alt=""> [Freezer Burn](MONSTERS.md#enemy-freezer_burn) | 9+ | 2 (3%) |
 | <img src="../images/enemy/leftover_box.png" width="32" height="32" alt=""> [Leftover Box](MONSTERS.md#enemy-leftover_box) | 10+ | 2 (3%) |
 
@@ -173,9 +188,14 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 > Among mountains of garbage, the most disgusting monsters are born.
 
+<img src="../images/map/ch4.webp" width="360" alt="The Junkyard">
+
+**Map · The Junkyard**: A cross-shaped clearing in the city junkyard: cracked, oil-stained asphalt with mountains of trash bags piled in the four corners. Four lanes meet in a central plaza.
+
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×1.59 · damage ×1.29 · speed ×1.15 |
+| Arena | Cross shape, 2200 × 1500 bounds |
+| Difficulty | HP ×1.75 · damage ×1.29 · speed ×1.15 |
 | Terrain | Quicksand Pit: Pulls players and monsters toward the center and deals damage<br>Falling Trash: Watch for warning circles on the ground<br>Acid Leak: Acid pools bubble up near you, dealing damage and inflicting Corrode |
 | Elite pool | <img src="../images/boss/tire_beast.png" width="24" height="24" alt=""> [Tire Beast](MONSTERS.md#boss-tire_beast), <img src="../images/boss/can_king.png" width="24" height="24" alt=""> [Can King](MONSTERS.md#boss-can_king), <img src="../images/boss/rag_wraith.png" width="24" height="24" alt=""> [Rag Wraith](MONSTERS.md#boss-rag_wraith), <img src="../images/boss/battery_bug.png" width="24" height="24" alt=""> [Leaky Battery Bug](MONSTERS.md#boss-battery_bug), <img src="../images/boss/garbage_rat.png" width="24" height="24" alt=""> [Garbage Rat King](MONSTERS.md#boss-garbage_rat), <img src="../images/boss/oil_titan.png" width="24" height="24" alt=""> [Oil Titan](MONSTERS.md#boss-oil_titan) |
 | Boss pool | <img src="../images/boss/trash_golem.png" width="24" height="24" alt=""> [Trash Colossus](MONSTERS.md#boss-trash_golem), <img src="../images/boss/toxic_barrel.png" width="24" height="24" alt=""> [Toxic Barrel Fiend](MONSTERS.md#boss-toxic_barrel), <img src="../images/boss/scrap_dragon.png" width="24" height="24" alt=""> [Scrap Dragon](MONSTERS.md#boss-scrap_dragon) |
@@ -213,9 +233,14 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 > The source of all rot. Defeat the Rotten Chef and save Ketchup Town!
 
+<img src="../images/map/ch5.webp" width="360" alt="The Ketchup Line">
+
+**Map · The Ketchup Line**: A long ketchup production line: diamond-plate floors splattered with ketchup, edged with yellow-and-black hazard stripes. Two conveyor belts run the length of the hall, with four filling machines along the top and bottom.
+
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×1.9 · damage ×1.36 · speed ×1.2 |
+| Arena | Rectangle 2400 × 1300; 4 obstacles (block movement, not bullets) |
+| Difficulty | HP ×2.02 · damage ×1.36 · speed ×1.2 |
 | Terrain | Conveyor Belts: Push all units standing on them<br>Steam Valves: Periodically blast scalding steam<br>Air Vents: Stand on a vent to gain Tailwind (more Move Speed and Dodge); monsters get blown away |
 | Elite pool | <img src="../images/boss/conveyor_worm.png" width="24" height="24" alt=""> [Conveyor Worm](MONSTERS.md#boss-conveyor_worm), <img src="../images/boss/ketchup_golem.png" width="24" height="24" alt=""> [Ketchup Golem](MONSTERS.md#boss-ketchup_golem), <img src="../images/boss/security_bot.png" width="24" height="24" alt=""> [Security Bot](MONSTERS.md#boss-security_bot), <img src="../images/boss/press_machine.png" width="24" height="24" alt=""> [Stamping Press](MONSTERS.md#boss-press_machine), <img src="../images/boss/chef_minion.png" width="24" height="24" alt=""> [Rotten Sous Chef](MONSTERS.md#boss-chef_minion), <img src="../images/boss/furnace_imp.png" width="24" height="24" alt=""> [Furnace Imp](MONSTERS.md#boss-furnace_imp) |
 | Boss pool | <img src="../images/boss/rotten_chef.png" width="24" height="24" alt=""> [Rotten Chef](MONSTERS.md#boss-rotten_chef), <img src="../images/boss/factory_core.png" width="24" height="24" alt=""> [Factory Core](MONSTERS.md#boss-factory_core), <img src="../images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [Ketchup Leviathan](MONSTERS.md#boss-ketchup_leviathan) |
@@ -254,9 +279,14 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 > In the steamy glass greenhouse, the veggies are rotting one by one. Only Danger 5 veterans may enter.
 
+<img src="../images/map/ch6.webp" width="360" alt="The Greenhouse">
+
+**Map · The Greenhouse**: An octagonal glass greenhouse: mossy hexagonal tiles under eight fogged glass walls. A round planter of withered flowers stands in the middle — perfect for kiting enemies around.
+
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×2.01 · damage ×1.43 · speed ×1.25 |
+| Arena | Octagon, 1900 × 1900 bounds; 1 obstacles (block movement, not bullets) |
+| Difficulty | HP ×2.21 · damage ×1.43 · speed ×1.25 |
 | Terrain | Spore Vents: The ground periodically puffs Poison spore clouds<br>Compost Pits: Blight Sprouts crawl out periodically<br>Grow Lamps: Players and monsters in the light become Hardened (more Armor, less damage taken); lamps move periodically |
 | Elite pool | <img src="../images/boss/pumpkin_brute.png" width="24" height="24" alt=""> [Pumpkin Brute](MONSTERS.md#boss-pumpkin_brute), <img src="../images/boss/spore_matron.png" width="24" height="24" alt=""> [Spore Matron](MONSTERS.md#boss-spore_matron) |
 | Boss pool | <img src="../images/boss/blight_gardener.png" width="24" height="24" alt=""> [Blight Gardener](MONSTERS.md#boss-blight_gardener) |
@@ -294,9 +324,14 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 > [Hidden Chapter] Where all rot truly began. Break through to face the Rot King.
 
+<img src="../images/map/ch7.webp" width="360" alt="The Rotten Tomato">
+
+**Map · The Rotten Tomato**: The cross-section of a giant rotten tomato — the true source of the rot. The outer flesh is still bright red, turning brown and black toward the core; wrinkled, moldy skin forms the edge, and four seed cavities are pits of rot you can't stand in.
+
 | Field | Value |
 | --- | --- |
-| Difficulty | HP ×2.03 · damage ×1.5 · speed ×1.3 |
+| Arena | Irregular round shape, 2016 × 1800 bounds; 4 obstacles (block movement, not bullets) |
+| Difficulty | HP ×2.22 · damage ×1.5 · speed ×1.3 |
 | Terrain | Rot Mire: Pulls players and monsters toward the center and spreads Rot<br>Falling Rotten Fruit: Watch for warning circles on the ground<br>Brambles: Thorns burst from under your feet, dealing damage and inflicting Bleed and Corrode |
 | Elite pool | <img src="../images/boss/carrot_knight.png" width="24" height="24" alt=""> [Carrot Revenant](MONSTERS.md#boss-carrot_knight), <img src="../images/boss/onion_witch.png" width="24" height="24" alt=""> [Onion Witch](MONSTERS.md#boss-onion_witch) |
 | Boss pool | <img src="../images/boss/rot_mother.png" width="24" height="24" alt=""> [Mother of Rot](MONSTERS.md#boss-rot_mother), <img src="../images/boss/rot_king.png" width="24" height="24" alt=""> [Rot King](MONSTERS.md#boss-rot_king) |

@@ -442,12 +442,13 @@ export class SkillSystem implements SkillHost {
       const A = g.arena;
       let nx = p.x + d.vx * dt,
         ny = p.y + d.vy * dt;
-      if (d.bounce) {
-        if (nx < A.x + 20 || nx > A.right - 20) d.vx = -d.vx;
-        if (ny < A.y + 20 || ny > A.bottom - 20) d.vy = -d.vy;
+      if (d.bounce && !A.contains(nx, ny, 20)) {
+        // 撞到边界：按推回方向反弹（矩形时等同于分别翻转 x / y 速度）
+        const c = A.clamp(nx, ny, 20);
+        if (Math.abs(c.x - nx) > 0.01) d.vx = -d.vx;
+        if (Math.abs(c.y - ny) > 0.01) d.vy = -d.vy;
       }
-      nx = Phaser.Math.Clamp(nx, A.x + 20, A.right - 20);
-      ny = Phaser.Math.Clamp(ny, A.y + 20, A.bottom - 20);
+      ({ x: nx, y: ny } = A.clamp(nx, ny, 20));
       p.x = nx;
       p.y = ny;
       if (!d.noAfterimage) g.fx.afterimage(p, this.skill.color);

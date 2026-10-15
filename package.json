@@ -1,6 +1,6 @@
 {
   "name": "tomageddon",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "description": "番茄酱 Tomageddon：蔬果大战腐烂的浏览器割草生存 Roguelite",
   "homepage": "https://yourlin.github.io/tomageddon/",
   "repository": {
@@ -34,7 +34,8 @@
     "promo:edit": "bash scripts/promo/edit.sh zh && bash scripts/promo/edit.sh en",
     "promo:publish": "bash scripts/promo/publish.sh",
     "promo:overlays": "node -e \"import('qrcode').then((Q) => Q.default.toFile('promo/overlay/qr.png', require('./package.json').homepage, { width: 420, margin: 1 }))\" && python3 scripts/promo/overlays.py zh && python3 scripts/promo/overlays.py en",
-    "steam:pack:mac": "npm run build:steam && electron-builder --mac --dir"
+    "steam:pack:mac": "npm run build:steam && electron-builder --mac --dir",
+    "docs:maps": "node scripts/export-maps.mjs"
   },
   "keywords": [],
   "author": "",

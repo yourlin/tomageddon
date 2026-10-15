@@ -105,8 +105,7 @@ export class Terrain {
     const A = g.arena;
     const r = rng(this.ch * 131 + run.wave * 7);
     const rand = (a: number, b: number) => a + r() * (b - a);
-    const cx = A.width / 2,
-      cy = A.height / 2;
+    const { x: cx, y: cy } = A.spawn;
     const far = (x: number, y: number) => Math.hypot(x - cx, y - cy) > 260; // 不放在出生点
     const place = (n: number, pad: number, fn: (x: number, y: number) => void) => {
       let k = 0,
@@ -114,20 +113,20 @@ export class Terrain {
       while (k < n && guard++ < 200) {
         const x = rand(A.x + pad, A.right - pad),
           y = rand(A.y + pad, A.bottom - pad);
-        if (!far(x, y)) continue;
+        if (!A.contains(x, y, pad) || !far(x, y)) continue;
         fn(x, y);
         k++;
       }
     };
     switch (this.ch) {
-      case 1: // 下水道口
-        for (const [x, y] of [
-          [160, 160],
-          [A.width - 160, 160],
-          [160, A.height - 160],
-          [A.width - 160, A.height - 160],
-        ]) {
-          this.holes.push({ x, y, t: 0, img: g.add.image(x, y, 'terrain_sewer').setDepth(0.6).setScale(0.9) });
+      case 1: // 平底锅：小怪从锅沿四个方向爬进来（原下水道口）
+        for (const [x, y] of [-0.75, -0.25, 0.25, 0.75].map((k) => {
+          const a = k * Math.PI;
+          const p = A.clamp(A.centerX + Math.cos(a) * 9999, A.centerY + Math.sin(a) * 9999, 120);
+          return [p.x, p.y];
+        })) {
+          // 平底锅没有下水道口：洞口贴图不显示，小怪直接从锅沿位置爬进来
+          this.holes.push({ x, y, t: 0, img: g.add.image(x, y, 'terrain_sewer').setDepth(0.6).setScale(0.9).setVisible(false) });
         }
         this.timers = { oil: 8, sewer: 10, tomato: 18 };
         break;
@@ -195,13 +194,7 @@ export class Terrain {
   private addQuicksand(): void {
     const A = this.g.arena,
       p = this.g.player;
-    let x = 0,
-      y = 0;
-    for (let i = 0; i < 20; i++) {
-      x = Phaser.Math.Between(A.x + 200, A.right - 200);
-      y = Phaser.Math.Between(A.y + 200, A.bottom - 200);
-      if (Phaser.Math.Distance.Between(x, y, p.x, p.y) > 260) break;
-    }
+    const { x, y } = A.randomPoint(200, (px, py) => Phaser.Math.Distance.Between(px, py, p.x, p.y) > 260, 20);
     const img = this.g.add.image(x, y, 'terrain_quicksand').setDepth(0.55).setAlpha(0);
     const r = Phaser.Math.Between(95, 130);
     img.setScale((r * 2.2) / 256);
@@ -309,8 +302,7 @@ export class Terrain {
         }
         if (this.tick('tomato', dt, 35, 2)) {
           const A = g.arena;
-          const x = Phaser.Math.Between(A.x + 120, A.right - 120),
-            y = Phaser.Math.Between(A.y + 120, A.bottom - 120);
+          const { x, y } = A.randomPoint(120);
           g.fx.telegraphCircle(x, y, 30, 0.8, 0x52ff8a, () => g.dropFruit(x, y));
         }
         break;
@@ -484,13 +476,7 @@ export class Terrain {
     this.g.tweens.add({ targets: old.img, alpha: 0, duration: 800, onComplete: () => old.img.destroy() });
     const A = this.g.arena,
       p = this.g.player;
-    let x = 0,
-      y = 0;
-    for (let k = 0; k < 20; k++) {
-      x = Phaser.Math.Between(A.x + 240, A.right - 240);
-      y = Phaser.Math.Between(A.y + 240, A.bottom - 240);
-      if (Phaser.Math.Distance.Between(x, y, p.x, p.y) > 260) break;
-    }
+    const { x, y } = A.randomPoint(240, (px, py) => Phaser.Math.Distance.Between(px, py, p.x, p.y) > 260, 20);
     this.addRoundZone('lamp', x, y, TERRAIN_TUNING.lamp.radius, 0xffe066);
     this.g.terrainNotice(tx('补光灯换位了！', 'The grow lamp moved!'));
   }

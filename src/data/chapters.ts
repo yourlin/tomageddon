@@ -34,9 +34,9 @@ export interface ChapterDef {
 export const CHAPTERS: ChapterDef[] = [
   {
     id: 1,
-    name: '第一章 · 深夜厨房',
-    subtitle: 'Midnight Kitchen',
-    desc: '厨房里长满了霉菌，番茄妹的冒险从这里开始。',
+    name: '第一章 · 平底锅',
+    subtitle: 'The Frying Pan',
+    desc: '深夜的灶台上，一口烧热的平底锅里长满了霉菌，番茄妹的冒险从这里开始。',
     bgColor: 0x3b2418,
     floorColor: 0x7a5236,
     lineColor: 0x5e3d27,
@@ -116,8 +116,9 @@ export const CHAPTERS: ChapterDef[] = [
     dmgMult: 1.45,
     speedMult: 1.1,
     pool: [
-      { enemy: 'mold', from: 1, to: 6, weight: 8 },
-      { enemy: 'fly', from: 1, weight: 4 },
+      // 最弱的两种小怪权重减半（v0.7.0 平衡测试：第 3 章通关率偏高，又不能单独加血，否则章节生命倍率会高过第 4 章）
+      { enemy: 'mold', from: 1, to: 6, weight: 4 },
+      { enemy: 'fly', from: 1, weight: 2 },
       { enemy: 'ice_cube', from: 3, weight: 3 },
       { enemy: 'rat', from: 7, weight: 3 },
       { enemy: 'maggot', from: 3, weight: 4 },
@@ -243,7 +244,7 @@ for (const ch of CHAPTERS) {
 
 /** 各章地形机关说明（战斗第 1 波提示，也用于文档生成） */
 export const TERRAIN_INFO: Record<number, string[]> = {
-  1: ['热油飞溅：地面会溅起灼烧油池', '下水道口：定期钻出小怪', '偶尔会有新鲜番茄从天而降'],
+  1: ['热油飞溅：锅里会溅起灼烧油池', '锅沿：小怪会从锅沿爬进来', '偶尔会有新鲜番茄掉进锅里'],
   2: [
     '兔子洞：兔子四处逃窜，击败掉落番茄籽与果实',
     '土拨鼠：从地洞探头扔石头',

@@ -41,6 +41,7 @@ export default tseslint.config(
     files: [
       'scripts/batch.mjs',
       'scripts/export-images.mjs',
+      'scripts/export-maps.mjs',
       'scripts/export-anim.mjs',
       'scripts/export-combat-anim.mjs',
       'scripts/promo/record.mjs',

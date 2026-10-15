@@ -1,4 +1,5 @@
 // 文档页：角色、技能与状态、武器
+import { WEAPON_SETS, setTiers } from '../../src/data/weaponSets';
 import { tx } from '../../src/i18n';
 import { CHARACTERS } from '../../src/data/characters';
 import { WEAPONS, TIER_PRICE_MULT, isShopWeapon, basePierce } from '../../src/data/weapons';
@@ -8,7 +9,7 @@ import { SKILL_TYPE_NAME, skillHealPct, DRAIN_PER_HIT, DRAIN_MAX_PCT } from '../
 import { tagName } from '../../src/i18n/apply';
 import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
 import { charTraitLines, archetypeText } from '../../src/data/describe';
-import { favoredWeapons, affinityText } from '../../src/data/affinity';
+import { favoredWeapons, doubleFavoredWeapons, affinityText } from '../../src/data/affinity';
 import { WEAPON_AFFIXES, FORGE } from '../../src/data/weaponAffixes';
 import { pick } from '../../src/systems/Achievements';
 import { EVOLUTIONS } from '../../src/data/evolutions';
@@ -17,7 +18,7 @@ import { RECIPES } from '../../src/data/recipes';
 
 /** 契合标签（带契合武器数量） */
 const favTags = (c: (typeof CHARACTERS)[number]) =>
-  `${c.favored.map(tagName).join(tx('、', ', '))}${tx(`（${favoredWeapons(c).filter(isShopWeapon).length} 把）`, ` (${favoredWeapons(c).filter(isShopWeapon).length})`)}`;
+  `${c.favored.map(tagName).join(tx('、', ', '))}${tx(`（${favoredWeapons(c).filter(isShopWeapon).length} 把，双契合 ${doubleFavoredWeapons(c).filter(isShopWeapon).length} 把）`, ` (${favoredWeapons(c).filter(isShopWeapon).length}, ${doubleFavoredWeapons(c).filter(isShopWeapon).length} double)`)}`;
 
 /** 角色详情的契合武器：标签 + 数量 + 契合特效 + 最多 6 把代表武器（初始武器在前） */
 function favLine(c: (typeof CHARACTERS)[number]): string {
@@ -26,6 +27,10 @@ function favLine(c: (typeof CHARACTERS)[number]): string {
   return [
     `${tx('契合标签', 'Tags')}：${favTags(c)}`,
     `${tx('契合特效（伤害 +10%）', 'Synergy effect (+10% dmg)')}：${affinityText(c.id)}`,
+    `${tx('双契合', 'Double synergy')}：${doubleFavoredWeapons(c)
+      .filter(isShopWeapon)
+      .map((w) => lnk.weapon(w.id))
+      .join(sep())}${tx('（获得契合技与两条标签强化，见武器页）', ' (synergy skill plus two tag boosts; see Weapons)')}`,
     `${tx('代表', 'e.g.')}：${ids.map((id) => `${img('weapon', id, 24)} ${lnk.weapon(id)}`).join(sep())}`,
   ].join('<br>');
 }
@@ -254,6 +259,23 @@ export function weaponsDoc(): void {
       w.cooldown.join(' / '),
       w.range,
       w.price,
+    ]),
+  );
+  d.h2(tx(`武器套装（${WEAPON_SETS.length} 套）`, `Weapon Sets (${WEAPON_SETS.length})`), 'sets');
+  d.p(
+    tx(
+      '套装由指定的几把武器组成：武器栏里持有的不同成员越多，档位越高，达到的最高一档生效。同名重复只算 1 件，仓库里的不算，超武不属于任何套装。',
+      'A set is a group of specific weapons: the more different members you hold in your weapon slots, the higher the tier, and the highest reached tier applies. Duplicates count once, storage does not count, and super weapons belong to no set.',
+    ),
+  );
+  d.table(
+    [tx('套装', 'Set'), tx('成员', 'Members'), tx('加成', 'Bonus')],
+    WEAPON_SETS.map((st) => [
+      `**${pick(st.name)}**`,
+      st.members.map((m) => `${img('weapon', m, 24)} ${lnk.weapon(m)}`).join(sep()),
+      setTiers(st)
+        .map((k) => `${k === st.members.length ? tx(`全套 ${k} 件`, `Full ${k}`) : tx(`${k} 件`, `${k} pcs`)}：${mods(st.bonus[k] as Parameters<typeof mods>[0])}`)
+        .join('<br>'),
     ]),
   );
   d.h2(tx('随机词条与打造', 'Affixes & Forging'), 'affixes');

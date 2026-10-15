@@ -1,6 +1,7 @@
 // 武器数据。每把武器 4 个品质（T1~T4），两把同名同品质可在商店合成升一级。
 import { EXTRA_WEAPONS } from './gearExtra';
 import { AFFINITY_WEAPONS } from './weaponsAffinity';
+import { CHAR_WEAPONS } from './weaponsChar';
 import { buildGenWeapons } from './weaponsGen';
 import { auraBaseRadius } from './balance';
 export type WeaponClass = 'melee' | 'ranged' | 'elemental';
@@ -874,6 +875,8 @@ export const WEAPONS: WeaponDef[] = [
 WEAPONS.push(...EXTRA_WEAPONS);
 // 契合武器改版：4 把角色主题武器
 WEAPONS.push(...AFFINITY_WEAPONS);
+// 角色专属武器：19 把（见 weaponsChar.ts）
+WEAPONS.push(...CHAR_WEAPONS);
 // 武器扩充：8 个主题系列 54 把（以现有武器为模板生成，见 weaponsGen.ts）
 WEAPONS.push(...buildGenWeapons(Object.fromEntries(WEAPONS.map((w) => [w.id, w]))));
 // 光环默认半径由 T1 威力反推（伤害越高半径越小，至少 1.5 个身位）；进化超武在此基础上再乘进化射程倍率
@@ -919,20 +922,4 @@ export function registerWeapons(list: WeaponDef[]): void {
   }
 }
 
-/** 武器套装：持有 N 把带某标签的武器时获得加成 */
-export const WEAPON_SETS: Record<string, { name: string; bonus: Record<number, Partial<Record<string, number>>> }> = {
-  厨具: { name: '厨具', bonus: { 2: { melee: 1 }, 3: { melee: 2, armor: 1 }, 4: { melee: 3, armor: 2 }, 6: { melee: 5, armor: 3 } } },
-  锋利: { name: '锋利', bonus: { 2: { crit: 5 }, 3: { crit: 10 }, 4: { crit: 15 } } },
-  蔬果: {
-    name: '蔬果',
-    bonus: { 2: { regen: 1 }, 3: { regen: 2, harvest: 5 }, 4: { regen: 3, harvest: 10 }, 6: { regen: 5, harvest: 20 } },
-  },
-  枪械: {
-    name: '枪械',
-    bonus: { 2: { range: 20 }, 3: { range: 40 }, 4: { range: 60, attackSpeed: 5 }, 6: { range: 80, attackSpeed: 10 } },
-  },
-  酱料: { name: '酱料', bonus: { 2: { lifeSteal: 2 }, 3: { lifeSteal: 4 }, 4: { lifeSteal: 6 }, 6: { lifeSteal: 10 } } },
-  元素: { name: '元素', bonus: { 2: { elemental: 1 }, 3: { elemental: 2 }, 4: { elemental: 3, luck: 5 }, 6: { elemental: 5, luck: 10 } } },
-  /** 爆破（参考土豆兄弟 Explosive 职业）：持有越多爆炸类武器，爆炸范围越大 */
-  爆破: { name: '爆破', bonus: { 2: { explodeSize: 8 }, 3: { explodeSize: 15 }, 4: { explodeSize: 22 }, 6: { explodeSize: 35 } } },
-};
+// 武器套装改为「指定武器组成的套装」，见 data/weaponSets.ts

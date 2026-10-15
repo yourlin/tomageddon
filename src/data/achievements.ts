@@ -5,7 +5,8 @@
 import { CHARACTERS } from './characters';
 import { BOSSES, AFFIXES, type AffixId } from './bosses';
 import { ENEMIES } from './enemies';
-import { WEAPONS, WEAPON_SETS } from './weapons';
+import { WEAPONS } from './weapons';
+import { WEAPON_SETS } from './weaponSets';
 import { FUSED_WEAPONS } from './recipes';
 import { MODIFIERS } from './challenges';
 import { GENERATED_ITEMS } from './itemGen';
@@ -874,30 +875,28 @@ const PER_COLLECTION: AchievementDef[] = [
       sid,
     ),
   ),
-  ...Object.entries(WEAPON_SETS).map(([tag, set]) => {
-    const lv = Object.keys(set.bonus).map(Number);
-    const goals = lv.length >= 4 ? [2, 4, 6] : [2, 3, 4];
-    return S(
+  // 武器套装：单局凑出 2 件 / 凑齐全套
+  ...WEAPON_SETS.map((set) =>
+    S(
       {
         ...A(
-          `set_${tag}`,
+          `wset_${set.id}`,
           'collection',
           '🧩',
-          ['{x}套装', '{x} Set'],
-          ['单局持有 {n} 把【{x}】武器', 'Hold {n} [{x}] weapons in one run'],
+          ['{x}', '{x}'],
+          ['单局凑出 {n} 件【{x}】套装武器', 'Hold {n} [{x}] set weapons in one run'],
           'runSet',
           [
-            [goals[0], 1],
-            [goals[1], 4],
-            [goals[2], 15],
+            [2, 2],
+            [set.members.length, 10],
           ],
         ),
-        key: tag,
+        key: set.id,
       },
       'set',
-      tag,
-    );
-  }),
+      set.id,
+    ),
+  ),
   ...(
     [
       [20, 200, 1000, 1, 4, 12],

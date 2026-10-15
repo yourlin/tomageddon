@@ -2,6 +2,7 @@
 import type { ChaptersEn, StatsEn, StatusesEn, WeaponsEn, WeaponTagsEn } from '../types';
 import { EXTRA_WEAPONS_EN } from '../../data/gearExtra';
 import { AFFINITY_WEAPONS_EN } from '../../data/weaponsAffinity';
+import { CHAR_WEAPONS_EN, CHAR_EVOLUTIONS } from '../../data/weaponsChar';
 import { GEN_WEAPONS_EN } from '../../data/weaponsGen';
 import { TAGS } from '../../data/weaponTags';
 import { FUSED_WEAPONS_EN, autoFuseEn } from '../../data/recipes';
@@ -10,6 +11,12 @@ import { EXTRA_CHAPTER_EN } from '../../data/chaptersExtra';
 export const EN_WEAPONS: WeaponsEn = {
   // ---- 进化超武 ----
   hell_trident: { name: 'Hell Trident', desc: 'A trident soaked in hot sauce — it sets whatever it pierces ablaze.' },
+  honey_flood: { name: 'Honey Flood', desc: 'A gush of sticky iced honey that glues down a whole crowd — the stickier, the slower.' },
+  macaron_tempest: { name: 'Macaron Tempest', desc: 'Fires a whole box of macarons at once, painting the field in pastel.' },
+  plague_sprayer: {
+    name: 'Plague Sprayer',
+    desc: 'A sprayer brimming with plague spores: stacks thick poison and pierces a whole line of foes.',
+  },
   titan_pin: { name: 'Titan Pin', desc: 'Weighted with an iron wok; it spins a full circle around you and stuns everything nearby.' },
   paoding_blade: { name: 'Master Chef Blade', desc: 'Cuts through effortlessly — every slice is lethal.' },
   dragon_cleaver: {
@@ -133,12 +140,12 @@ export const EN_STATUSES: StatusesEn = {
 
 export const EN_CHAPTERS: ChaptersEn = {
   1: {
-    name: 'Chapter 1 · Midnight Kitchen',
-    desc: "The kitchen is overgrown with mold. Tomato Sister's adventure begins here.",
+    name: 'Chapter 1 · The Frying Pan',
+    desc: "On the stove at midnight, a hot frying pan has grown thick with mold. Tomato Sister's adventure begins here.",
     terrain: [
-      'Hot Oil Splash: The floor spatters burning oil pools',
-      'Drain Grate: Small monsters crawl out periodically',
-      'Fresh tomatoes occasionally fall from the sky',
+      'Hot Oil Splash: The pan spatters burning oil pools',
+      'Pan Rim: Small monsters crawl in over the rim',
+      'Fresh tomatoes occasionally drop into the pan',
     ],
   },
   2: {
@@ -229,6 +236,8 @@ Object.assign(EN_CHAPTERS, EXTRA_CHAPTER_EN);
 // 1.4.0 G5 / G7：新武器、超武与道具
 Object.assign(EN_WEAPONS, EXTRA_WEAPONS_EN);
 Object.assign(EN_WEAPONS, AFFINITY_WEAPONS_EN);
+Object.assign(EN_WEAPONS, CHAR_WEAPONS_EN);
+Object.assign(EN_WEAPONS, Object.fromEntries(CHAR_EVOLUTIONS.map((x) => [x.boost.id, x.en])));
 Object.assign(EN_WEAPONS, GEN_WEAPONS_EN);
 Object.assign(EN_WEAPONS, FUSED_WEAPONS_EN);
 // 自动生成的融合武器：英文名由基础武器的英文名拼出

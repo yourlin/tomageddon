@@ -10,7 +10,8 @@ import type { Enemy } from '../objects/Enemy';
 import { STATUSES, type StatusId } from '../data/statuses';
 import type { StatusEntry } from '../systems/Status';
 import { statusIconKey, STATUS_ICON_SIZE, STATUS_EMOJI } from '../art/StatusArt';
-import { AFFIXES } from '../data/bosses';
+import { AFFIXES, type BossPhase } from '../data/bosses';
+import { ROMAN } from '../systems/BossPhases';
 import { FONT } from '../systems/Textures';
 import { tx, lang } from '../i18n';
 import { save, persist } from '../systems/Save';
@@ -32,6 +33,10 @@ export class HudScene extends Phaser.Scene {
   private waveText!: Phaser.GameObjects.Text;
   private timeText!: Phaser.GameObjects.Text;
   private bossName!: Phaser.GameObjects.Text;
+  /** 多阶段 Boss：血条左侧的阶段号 */
+  private bossPhaseText!: Phaser.GameObjects.Text;
+  /** 血条门槛刻度碎裂的闪光（剩余秒数） */
+  private barCrackT = 0;
   private skillBtn!: Phaser.GameObjects.Container;
   private skillGfx!: Phaser.GameObjects.Graphics;
   private skillIcon!: Phaser.GameObjects.Image | Phaser.GameObjects.Text;
@@ -180,6 +185,7 @@ export class HudScene extends Phaser.Scene {
     this.bossName = text(this, W / 2, H - 70, '', 20, '#ffb4a2')
       .setOrigin(0.5)
       .setVisible(false);
+    this.bossPhaseText = text(this, 0, 0, '', 22, '#ffd166').setOrigin(1, 0.5).setVisible(false);
     // 玩家状态图标（悬停 / 点按显示效果说明）
     this.statusIcons = [];
     for (let i = 0; i < 10; i++) {
@@ -362,6 +368,25 @@ export class HudScene extends Phaser.Scene {
     };
     this.g.events.on('terrain', onTerrain);
     this.events.once('shutdown', () => this.g.events.off('terrain', onTerrain));
+    // Boss 转阶段：屏幕中上方横幅「Boss 名 · 阶段名」，蓄势段滑入、收势段淡出
+    const banner = text(this, W / 2, 170, '', 34, '#ffffff')
+      .setOrigin(0.5)
+      .setAlpha(0)
+      .setStroke('#1b0a0a', 8);
+    const onPhase = (e: Enemy, next: number, ph: BossPhase) => {
+      this.barCrackT = 0.6;
+      this.tweens.killTweensOf(banner);
+      banner
+        .setText(`${e.name} · ${lang === 'en' ? ph.name[1] : ph.name[0]}`)
+        .setColor(`#${(ph.color ?? 0xffd166).toString(16).padStart(6, '0')}`)
+        .setAlpha(0)
+        .setY(140);
+      this.tweens.add({ targets: banner, alpha: 1, y: 170, delay: 400, duration: 350, ease: 'Back.easeOut' });
+      this.tweens.add({ targets: banner, alpha: 0, delay: 2500, duration: 450 });
+      void next;
+    };
+    this.g.events.on('bossPhase', onPhase);
+    this.events.once('shutdown', () => this.g.events.off('bossPhase', onPhase));
     this.g.events.on('bossSpawn', onBoss);
     this.g.events.on('waveEnd', onEnd);
     this.events.once('shutdown', () => {
@@ -614,14 +639,34 @@ export class HudScene extends Phaser.Scene {
       const e = this.bosses[0];
       const bw = Math.min(700, W * 0.6);
       b.fillStyle(0x000000, 0.6).fillRoundedRect(W / 2 - bw / 2 - 3, H - 50, bw + 6, 24, 8);
-      b.fillStyle(e.phase2 ? 0xff006e : 0xb5179e, 1).fillRoundedRect(W / 2 - bw / 2, H - 47, bw * Math.max(0, e.hp / e.maxHp), 18, 6);
+      const phases = e.boss?.phases;
+      const barCol = phases ? [0xb5179e, 0xff006e, 0xff3b30, 0xffd166][Math.min(3, e.phaseIdx)] : e.phase2 ? 0xff006e : 0xb5179e;
+      b.fillStyle(barCol, 1).fillRoundedRect(W / 2 - bw / 2, H - 47, bw * Math.max(0, e.hp / e.maxHp), 18, 6);
+      if (phases && phases.length > 1) {
+        // 门槛刻度：已经打破的变暗；刚打破的那一刻闪白
+        this.barCrackT = Math.max(0, this.barCrackT - this.game.loop.delta / 1000);
+        phases.forEach((ph, i) => {
+          if (i === 0) return;
+          const x = W / 2 - bw / 2 + bw * ph.at;
+          const broken = i <= e.phaseIdx || (i === e.phaseIdx + 1 && e.phaseTrans > 0);
+          b.fillStyle(broken ? 0x444444 : 0xffffff, broken ? 0.7 : 0.95).fillRect(x - 2, H - 52, 4, 28);
+        });
+        if (this.barCrackT > 0) b.fillStyle(0xffffff, this.barCrackT).fillRoundedRect(W / 2 - bw / 2, H - 47, bw, 18, 6);
+        this.bossPhaseText
+          .setVisible(true)
+          .setPosition(W / 2 - bw / 2 - 12, H - 38)
+          .setText(ROMAN[e.phaseIdx] ?? String(e.phaseIdx + 1));
+      } else this.bossPhaseText.setVisible(false);
       this.bossName
         .setVisible(true)
         .setPosition(W / 2, H - 64)
         .setText(
           `${e.name}${e.boss?.elite || !e.boss ? tx('（精英）', ' (Elite)') : ''}${e.affixes.length ? '  ' + e.affixes.map((a) => tx('【' + AFFIXES[a].name + '】', '[' + AFFIXES[a].name + ']')).join('') : ''}`,
         );
-    } else this.bossName.setVisible(false);
+    } else {
+      this.bossName.setVisible(false);
+      this.bossPhaseText.setVisible(false);
+    }
 
     // 技能按钮
     const sk = g.skill;

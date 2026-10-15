@@ -2,6 +2,9 @@
 import Phaser from 'phaser';
 import { paint, rgb, darken, lighten, rng, roundRectPath, type Ctx } from './Painter';
 import { ARENA_PALETTE_EXTRA } from '../data/chaptersExtra';
+import { Arena } from '../systems/Arena';
+import { arenaDefFor } from '../data/arenas';
+import { paintArenaMap } from './ArenaMaps';
 
 const W = 1300,
   H = 850; // 显示时拉伸到 2080×1360（竞技场 + 每边 80px 边缘）
@@ -354,14 +357,21 @@ export function paintArena(scene: Phaser.Scene, ch: number): string {
 export function arenaThumb(scene: Phaser.Scene, ch: number, w: number, h: number, gray = false): string {
   const key = `arena_thumb_${ch}_${w}x${h}${gray ? '_g' : ''}`;
   if (scene.textures.exists(key)) return key;
-  const bigKey = `arena_gen_${ch}`;
+  // 用章节地图（平底锅、菜畦……）做缩略图：以场地为中心、按缩略图比例裁一块（cover）
+  const arena = new Arena(arenaDefFor(ch));
+  const bigKey = `arena_map_${ch}`;
   const had = scene.textures.exists(bigKey);
-  const src = scene.textures.get(paintArena(scene, ch)).getSourceImage() as CanvasImageSource;
+  const src = scene.textures.get(paintArenaMap(scene, ch, arena, bigKey)).getSourceImage() as HTMLCanvasElement;
   const tex = scene.textures.createCanvas(key, w, h);
   if (!tex) return key;
   const ctx = tex.getContext();
   ctx.imageSmoothingQuality = 'high';
-  ctx.drawImage(src, 0, 0, W, H, 0, 0, w, h);
+  const sw = src.width,
+    sh = src.height;
+  const k = Math.max(w / sw, h / sh) * 1.12; // 稍微放大，裁掉一些场外区域
+  const cw = w / k,
+    chh = h / k;
+  ctx.drawImage(src, (sw - cw) / 2, (sh - chh) / 2, cw, chh, 0, 0, w, h);
   if (gray) {
     const img = ctx.getImageData(0, 0, w, h);
     const d = img.data;

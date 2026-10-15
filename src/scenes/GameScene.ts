@@ -4,6 +4,10 @@ import { treeTotals } from '../systems/TalentTree';
 import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
 import { run } from '../systems/RunState';
+import { Arena } from '../systems/Arena';
+import { ArenaFx } from '../systems/ArenaFx';
+import { BossPhaseDirector } from '../systems/BossPhases';
+import { arenaDefFor } from '../data/arenas';
 import {
   BALANCE,
   waveDuration,
@@ -33,6 +37,7 @@ import { Bullet } from '../objects/Bullet';
 import { Rig } from '../objects/Rig';
 import { SpatialGrid } from '../systems/Grid';
 import { WeaponSystem } from '../systems/WeaponSystem';
+import { Synergy } from '../systems/Synergy';
 import { SkillSystem } from '../systems/SkillSystem';
 import { SuperBuffs, SUPER_BUFF_NAME, type SuperBuffKind } from '../systems/SuperBuffs';
 import { StatusSet } from '../systems/Status';
@@ -42,7 +47,7 @@ import { controls, readPad } from '../systems/Controls';
 import { addDangerPatterns } from '../systems/Danger';
 import { audio } from '../systems/Audio';
 import { save, persist, markSeen } from '../systems/Save';
-import { paintArena } from '../art/ArenaArt';
+import { paintArenaMap, mapPlacement } from '../art/ArenaMaps';
 import { Terrain, TERRAIN_INFO } from '../systems/Terrain';
 import { tx, lang } from '../i18n';
 import { checkAchievements, setInRun } from '../systems/Achievements';
@@ -154,7 +159,17 @@ export class GameScene extends Phaser.Scene {
   /** 开发者沙盒配置；null = 正常游戏 */
   static sandbox: SandboxOpts | null = null;
 
-  arena!: Phaser.Geom.Rectangle;
+  arena!: Arena;
+  /** 场地运行中变化（缩场 / 淹没 / 临时障碍）的画面与结算 */
+  arenaFx!: ArenaFx;
+  /** Boss 阶段（门槛锁血、转阶段动画与运镜） */
+  bossPhases!: BossPhaseDirector;
+  /** 定格慢动作：剩余真实时间（秒）与时间倍率 */
+  private slowMoT = 0;
+  private slowMo = 1;
+  /** 玩家被推开的冲量（逐帧衰减，叠加到移动速度上） */
+  private pushVX = 0;
+  private pushVY = 0;
   player!: Rig;
   pstatus = new StatusSet();
   enemies: Enemy[] = [];
@@ -173,6 +188,8 @@ export class GameScene extends Phaser.Scene {
   fx!: Fx;
   rigs!: RigPool;
   weapons!: WeaponSystem;
+  /** 双契合武器的契合技 */
+  synergy!: Synergy;
   skill!: SkillSystem;
   /** 超武增益（击败精英触发，只强化带该增益的那把超武） */
   superBuffs!: SuperBuffs;
@@ -287,8 +304,8 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    const A = BALANCE.arena;
-    this.arena = new Phaser.Geom.Rectangle(0, 0, A.width, A.height);
+    this.arena = new Arena(arenaDefFor(run.chapterId));
+    const A = this.arena;
     this.dying = [];
     this.enemies = [];
     this.bullets = [];
@@ -362,10 +379,11 @@ export class GameScene extends Phaser.Scene {
 
     const ch = run.chapter;
     this.cameras.main.setBackgroundColor(ch.bgColor);
-    const bgKey = this.textures.exists(`arena_ch${ch.id}`) ? `arena_ch${ch.id}` : paintArena(this, ch.id);
+    // 地图：每章是一件放大的物件（平底锅、菜畦……），形状与场地一致；没有专属地图的场地（沙盒等）画简单地板
+    const mp = mapPlacement(A);
     this.add
-      .image(A.width / 2, A.height / 2, bgKey)
-      .setDisplaySize(A.width + 160, A.height + 160)
+      .image(mp.x, mp.y, paintArenaMap(this, ch.id, A))
+      .setDisplaySize(mp.w, mp.h)
       .setDepth(-10);
 
     this.rigs = new RigPool(this);
@@ -376,13 +394,20 @@ export class GameScene extends Phaser.Scene {
     const skin = activeSkin(c.id);
     this.player = new Rig(this, applySkin(c.look, skin), `char_${c.id}${skin ? `_${skin.id}` : ''}`, BALANCE.player.radius * 1.25);
     this.add.existing(this.player);
-    this.player.setPosition(A.width / 2, A.height / 2);
+    this.player.setPosition(A.spawn.x, A.spawn.y);
     this.player.play('spawn', true);
     this.shieldImg = this.add.image(0, 0, 'fx_bubble').setAlpha(0.8).setVisible(false);
 
     this.velX = this.velY = 0;
     this.terrain = new Terrain(this);
+    this.arenaFx = new ArenaFx(this);
+    this.bossPhases = new BossPhaseDirector(this);
+    this.slowMoT = 0;
+    this.slowMo = 1;
+    this.pushVX = this.pushVY = 0;
     this.recalcStats();
+    this.synergy?.destroy();
+    this.synergy = new Synergy(this);
     this.weapons = new WeaponSystem(this);
     this.skill = new SkillSystem(this);
     this.talent = new TalentSystem(this);
@@ -415,7 +440,7 @@ export class GameScene extends Phaser.Scene {
 
     const cam = this.cameras.main;
     if (HEADLESS_MODE) cam.setVisible(false); // 测试模式不绘制战斗画面
-    cam.setBounds(-60, -60, A.width + 120, A.height + 120);
+    cam.setBounds(A.left - 60, A.top - 60, A.width + 120, A.height + 120);
     cam.startFollow(this.player, true, 0.12, 0.12);
 
     this.keys = this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,ESC,P') as Record<string, Phaser.Input.Keyboard.Key>;
@@ -518,10 +543,16 @@ export class GameScene extends Phaser.Scene {
       this.tweens.timeScale = Math.max(1, (steps * 1000) / 60 / Math.max(1, dms));
       return;
     }
-    this.time.timeScale = GameScene.simScale;
-    this.tweens.timeScale = GameScene.simScale;
+    // 定格慢动作（Boss 转阶段）：按真实时间计时
+    if (this.slowMoT > 0) {
+      this.slowMoT -= dms / 1000;
+      if (this.slowMoT <= 0) this.slowMo = 1;
+    }
+    const sc = GameScene.simScale * this.slowMo;
+    this.time.timeScale = sc;
+    this.tweens.timeScale = sc;
     if (!this.dead) GameScene.onStep?.(this);
-    this.step(Math.min(dms / 1000, 1 / 20) * GameScene.simScale);
+    this.step(Math.min(dms / 1000, 1 / 20) * sc);
   }
 
   /** 开发者沙盒：场景暂停时手动推进一个 1/60 秒的模拟步（单步调试） */
@@ -561,6 +592,8 @@ export class GameScene extends Phaser.Scene {
     for (const e of this.enemies) if (e.alive) this.grid.insert(e);
     this.updatePlayerStatus(dt);
     if (!sandbox || sandbox.terrain) this.terrain.update(dt);
+    this.arenaFx.update(dt);
+    this.bossPhases.update(dt);
     this.updatePlayer(dt);
     // 沙盒可选「真实刷怪」：按本章本波的刷怪逻辑出怪，但不计时、不结算
     if (!this.waveOver && (!sandbox || sandbox.waves)) {
@@ -706,8 +739,12 @@ export class GameScene extends Phaser.Scene {
         this.velX = mx * sp;
         this.velY = my * sp;
       }
-      p.x = Phaser.Math.Clamp(p.x + (this.velX + this.envVX) * dt, this.arena.x + 20, this.arena.right - 20);
-      p.y = Phaser.Math.Clamp(p.y + (this.velY + this.envVY) * dt, this.arena.y + 20, this.arena.bottom - 20);
+      const np = this.arena.clamp(p.x + (this.velX + this.envVX + this.pushVX) * dt, p.y + (this.velY + this.envVY + this.pushVY) * dt, 20);
+      const decay = Math.pow(0.02, dt);
+      this.pushVX *= decay;
+      this.pushVY *= decay;
+      p.x = np.x;
+      p.y = np.y;
     }
     if (mx < -0.1) this.facing = -1;
     else if (mx > 0.1) this.facing = 1;
@@ -1006,8 +1043,7 @@ export class GameScene extends Phaser.Scene {
           if (this.waveOver || this.dead) return;
           const a = Math.random() * Math.PI * 2,
             d = 80 + Math.random() * 260;
-          const x = Phaser.Math.Clamp(this.player.x + Math.cos(a) * d, this.arena.x + 30, this.arena.right - 30);
-          const y = Phaser.Math.Clamp(this.player.y + Math.sin(a) * d, this.arena.y + 30, this.arena.bottom - 30);
+          const { x, y } = this.arena.clamp(this.player.x + Math.cos(a) * d, this.player.y + Math.sin(a) * d, 30);
           this.dropPickup('seed', x, y, 1 + Math.floor(run.wave / 4), 1);
         },
       });
@@ -1148,20 +1184,14 @@ export class GameScene extends Phaser.Scene {
   }
 
   private randomSpawnPos(): [number, number] {
-    const a = this.arena,
-      p = this.player;
-    for (let i = 0; i < 10; i++) {
-      const x = Phaser.Math.Between(a.x + 60, a.right - 60),
-        y = Phaser.Math.Between(a.y + 60, a.bottom - 60);
-      if (Phaser.Math.Distance.Between(x, y, p.x, p.y) > 280) return [x, y];
-    }
-    return [a.x + 60, a.y + 60];
+    const p = this.player;
+    const pt = this.arena.randomPoint(60, (x, y) => Phaser.Math.Distance.Between(x, y, p.x, p.y) > 280, 10);
+    return [pt.x, pt.y];
   }
 
   queueSpawn(id: string, boss: boolean, x?: number, y?: number, affixes: AffixId[] = []): void {
     if (x === undefined || y === undefined) [x, y] = this.randomSpawnPos();
-    x = Phaser.Math.Clamp(x, this.arena.x + 30, this.arena.right - 30);
-    y = Phaser.Math.Clamp(y, this.arena.y + 30, this.arena.bottom - 30);
+    ({ x, y } = this.arena.clamp(x, y, 30));
     const img = this.add
       .image(x, y, 'fx_warn')
       .setDepth(2)
@@ -1217,7 +1247,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   /** 立即生成精英 / Boss。affixes 传入时替代随机词缀（开发者界面用） */
-  spawnBossNow(id: string, x: number, y: number, affixes?: AffixId[]): Enemy | null {
+  spawnBossNow(id: string, x: number, y: number, affixes?: AffixId[], shadow = false): Enemy | null {
     const e = this.freeEnemy();
     if (!e) return null;
     const def = BOSS_MAP[id];
@@ -1239,7 +1269,7 @@ export class GameScene extends Phaser.Scene {
     run.wlog.seedPot += e.seeds * e.lootMult * lootHarvestMult(this.stats.harvest);
     // A6：危机 10 / 15 / 20 时 Boss 学会新招式
     if (!def.elite && R.bossSkill > 0) addDangerPatterns(e, R.bossSkill);
-    if (!def.elite) {
+    if (!def.elite && !shadow) {
       this.boss = e;
       audio.playMusic(this, bossMusic(id === TRUE_FINAL_BOSS_ID));
     }
@@ -1519,6 +1549,7 @@ export class GameScene extends Phaser.Scene {
       const fullHp = b.refundFull && target.hp >= target.maxHp;
       this.fx.hit(b.x, b.y, b.rotation, b.crit);
       this.weaponHit(target, info, b.x - b.vx * 0.05, b.y - b.vy * 0.05);
+      b.onHit?.(target, b);
       // 芦笋弓手：打满血敌人这一下不消耗穿透
       if (fullHp) continue;
       // 玉米枪手：每飞行 100 距离多一次穿透
@@ -1585,6 +1616,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private rocketBoom(b: Bullet): void {
+    b.onBoom?.(b.x, b.y);
     this.explode(
       b.x,
       b.y,
@@ -1758,6 +1790,7 @@ export class GameScene extends Phaser.Scene {
     if (info.rageBurst) this.weapons.rageBurst(e.x, e.y, dmg, info);
     this.lastHit = { crit: false, explosion: false };
     this.talent.afterHit(e, info, crit, hctx, dmg);
+    this.synergy.afterHit(e, info, hctx.frozen);
     if (lh && Math.random() * 100 < lh) {
       const t = alive ? e : this.grid.nearest(e.x, e.y, 200);
       if (t?.alive) this.skyBolt(t);
@@ -1821,6 +1854,11 @@ export class GameScene extends Phaser.Scene {
     if (tt.critHeal && opts.crit && Math.random() * 100 < tt.critHeal) this.heal(1, false, 'talent');
     // 角色专属（大蒜伯爵）：流血中的敌人受到的所有伤害 +15%
     if (run.specials.dotPerk === 'bleedVuln' && e.status.has('bleed')) dmg *= 1.15;
+    // 多阶段 Boss：门槛锁血、转阶段无敌（见 systems/BossPhases.ts）
+    if (e.boss) {
+      dmg = this.bossPhases.gate(e, dmg);
+      if (dmg <= 0) return true;
+    }
     e.hp -= dmg;
     // 天赋：斩杀生命过低的小怪
     if (tt.execute && !e.boss && e.hp > 0 && e.hp < e.maxHp * (tt.execute / 100)) {
@@ -1848,6 +1886,13 @@ export class GameScene extends Phaser.Scene {
   }
 
   private killEnemy(e: Enemy): void {
+    // 前代 Boss 残影：只散成一团紫烟，不掉落、不计击杀
+    if (e.shadow) {
+      this.fx.burst(e.x, e.y, 0x7e57c2, 18);
+      this.fx.ring(e.x, e.y, e.radius * 2, 0x7e57c2, 400, true);
+      e.kill(this);
+      return;
+    }
     // 角色专属（山葵爆破手）：灼烧中的敌人死亡时引燃周围敌人
     if (run.specials.dotPerk === 'burnSpread' && e.status.has('burn'))
       for (const o of this.grid.query(e.x, e.y, 110, this.tmp2))
@@ -1914,6 +1959,8 @@ export class GameScene extends Phaser.Scene {
       this.dropPickup('crate', e.x, e.y, 1);
       if (e.boss && !e.boss.elite) {
         this.shake(0.02, 600);
+        // 本体倒下：残影一起消散
+        for (const o of this.enemies) if (o.alive && o.shadow) this.killEnemy(o);
         // G4：第 7 章的 Boss 倒下后，真结局 Boss「腐烂之王」登场（只出现一次）
         if (run.chapterId === 7 && !run.endless && e.boss.id !== TRUE_FINAL_BOSS_ID && !this.finalSpawned && !GameScene.sandbox) {
           this.finalSpawned = true;
@@ -2121,6 +2168,11 @@ export class GameScene extends Phaser.Scene {
     this.hazards.push({ img, x, y, r, t, slow: 0, dps, tick: 0, debuff });
   }
 
+  /** 掉 1 颗番茄籽（不带经验） */
+  dropSeed(x: number, y: number): void {
+    if (!this.waveOver) this.dropPickup('seed', x, y, 1, 0);
+  }
+
   dropFruit(x: number, y: number): void {
     if (!this.waveOver) this.dropPickup('fruit', x, y, 1);
   }
@@ -2242,8 +2294,7 @@ export class GameScene extends Phaser.Scene {
   /** 瞬移：消失后出现在玩家附近 */
   bossTeleport(e: Enemy): void {
     const a = Math.random() * Math.PI * 2;
-    const tx = Phaser.Math.Clamp(this.player.x + Math.cos(a) * 260, this.arena.x + 80, this.arena.right - 80);
-    const ty = Phaser.Math.Clamp(this.player.y + Math.sin(a) * 200, this.arena.y + 80, this.arena.bottom - 80);
+    const { x: tx, y: ty } = this.arena.clamp(this.player.x + Math.cos(a) * 260, this.player.y + Math.sin(a) * 200, 80);
     this.fx.ring(e.x, e.y, e.radius * 1.5, 0xc77dff, 300, true);
     this.fx.telegraphCircle(tx, ty, e.radius, 0.5, 0xc77dff);
     e.rig?.setAlpha(0.3);
@@ -2258,6 +2309,46 @@ export class GameScene extends Phaser.Scene {
 
   telegraphLine(x: number, y: number, dx: number, dy: number, len: number, width: number, dur: number): void {
     this.fx.telegraphLine(x, y, dx, dy, len, width, dur);
+  }
+
+  /** 腐烂之王「群王之影」：在本体两侧召唤前代 Boss 的残影（生命 × hpMult，不分阶段、不掉落） */
+  spawnShadows(owner: Enemy, ids: string[], hpMult: number): void {
+    ids.forEach((id, i) => {
+      const a = (i / ids.length) * Math.PI * 2 + Math.PI / 2;
+      const { x, y } = this.arena.clamp(owner.x + Math.cos(a) * 260, owner.y + Math.sin(a) * 200, 80);
+      const s = this.spawnBossNow(id, x, y, [], true);
+      if (!s) return;
+      s.shadow = true;
+      s.hp = s.maxHp = Math.max(1, Math.round(s.maxHp * hpMult));
+      s.phaseTint = 0x9575cd;
+      s.refreshTint();
+      s.rig?.setAlpha(0.78);
+      this.fx.ring(x, y, s.radius * 2.5, 0x7e57c2, 500, true);
+      // 残影不计入本波 Boss 战统计
+      run.wlog.bosses = run.wlog.bosses.filter((b) => b.uid !== s.uid);
+    });
+  }
+
+  /** 定格慢动作：接下来 dur 秒（真实时间）游戏速度 × scale；测试模式（加速模拟）不生效 */
+  hitStop(dur: number, scale: number): void {
+    if (GameScene.simSpeed > 1) return;
+    this.slowMoT = dur;
+    this.slowMo = scale;
+  }
+
+  /** 清掉场上所有敌方子弹（sparks：每颗碎成一点火花） */
+  clearEnemyBullets(sparks = false): void {
+    for (const b of this.enemyBullets) {
+      if (!b.alive) continue;
+      if (sparks) this.fx.burst(b.x, b.y, 0xffd166, 2);
+      b.kill();
+    }
+  }
+
+  /** 把玩家推开（速度冲量，逐帧衰减） */
+  pushPlayer(vx: number, vy: number): void {
+    this.pushVX += vx;
+    this.pushVY += vy;
   }
 
   onBossPhase2(e: Enemy): void {

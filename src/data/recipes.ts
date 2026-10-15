@@ -6,7 +6,8 @@
 import { WEAPONS, WEAPON_MAP, registerWeapons, type WeaponDef } from './weapons';
 import { EVOLUTIONS } from './evolutions';
 import { ALL_ITEMS, ITEM_MAP } from './items';
-import { weaponTags, TAG_MAP } from './weaponTags';
+import { weaponTags, TAG_MAP, registerTagSources } from './weaponTags';
+import { CHAR_EVOLUTIONS } from './weaponsChar';
 import { tx } from '../i18n';
 
 /** 配方类型：T4（两把 T3 合成，原「精炼」「融合」）与超武（两把 T4 合成） */
@@ -43,6 +44,13 @@ const TAG_SERIES: Record<string, string[]> = {
   多重射击: ['弹药', '玩具枪'],
   暴击: ['刀具', '星辰'],
   光环: ['护身符', '宝石'],
+  长柄: ['刀具', '盾牌'],
+  格斗: ['盾牌', '药水'],
+  种子: ['种子', '农具'],
+  机械: ['机械零件', '能源'],
+  魔法: ['卷轴', '宝石'],
+  弓弩: ['弹药', '骨头'],
+  投掷: ['忍具', '刀具'],
 };
 
 const bySeries = (() => {
@@ -467,6 +475,10 @@ const SUPER_SECOND: Record<string, string> = {
   tsunami_katana: 'sushi_twin_blade',
   tornado_blender: 'blade_aura',
   umami_bomb: 'ember_mine',
+  macaron_tempest: 'choco_mine',
+  honey_flood: 'jelly_bounce',
+  plague_sprayer: 'toadstool_mine',
+  ...Object.fromEntries(CHAR_EVOLUTIONS.map((x) => [x.boost.id, x.second])),
 };
 
 function buildRecipes(): Recipe[] {
@@ -523,6 +535,13 @@ function buildRecipes(): Recipe[] {
 registerWeapons(FUSED_WEAPONS);
 
 export const RECIPES: Recipe[] = buildRecipes();
+// 合成武器的标签继承材料（T4 融合、超武；同名精炼 T4 就是原武器本身，不用注册）
+for (const r of RECIPES)
+  if (r.from[0][0] !== r.to)
+    registerTagSources(
+      r.to,
+      r.from.map(([id]) => WEAPON_MAP[id]),
+    );
 export const RECIPE_BY_TO: Record<string, Recipe> = Object.fromEntries(RECIPES.map((r) => [r.to, r]));
 /** 这把武器（在该品质下）参与的配方 */
 export function recipesUsing(id: string, tier: number): Recipe[] {

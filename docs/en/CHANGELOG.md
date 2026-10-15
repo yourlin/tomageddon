@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.7.0 · 2026-10-16](#v0-7-0)
 - [v0.6.6 · 2026-10-14](#v0-6-6)
 - [v0.6.5 · 2026-10-13](#v0-6-5)
 - [v0.6.4 · 2026-10-10](#v0-6-4)
@@ -24,6 +25,26 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-7-0"></a>
+
+## v0.7.0 · 2026-10-16
+
+**Multi-phase bosses, themed arenas per chapter, double-synergy weapons, reworked weapon sets, 19 new weapons and 22 new super weapons**
+
+
+- Every boss has 2–4 phases: at each HP threshold it plays a transition (freeze, charge, burst, camera move), gains new attacks and a new look, and the arena changes; each phase lasts at least 6s, so every boss survives at least 20s
+- The Rot King's 3rd phase summons shadows of earlier bosses to fight alongside it
+- The Cockroach Emperor is invulnerable while charging
+- Each chapter has its own arena shape and size: frying pan, garden, fridge, cross-shaped junkyard, factory, octagonal garden, rot nest; obstacles block movement only, not bullets
+- Every character now has 2 synergy tags: a weapon with either tag is a synergy weapon (+10% damage, synergy effect); with both it is a double-synergy weapon and also gains a synergy skill plus two tag boosts
+- 7 new weapon tags (Polearm, Martial, Seed, Mech, Arcane, Bow, Thrown); all 39 characters have a unique tag pair and start with one of their double-synergy weapons by default
+- 19 new character-themed weapons and 22 new character-themed super weapons
+- Crafted weapons inherit their materials’ tags: same-name merges keep them, two different weapons combine both sets of tags
+- Weapon sets reworked into 23 sets of specific weapons (counting distinct members; super weapons belong to no set); active tiers show in green and inactive ones in gray in weapon details
+- Clearer crafting: every ready recipe gets its own "Craft into X" button, plus "View recipes"; shop items that are exactly a missing recipe material get a 🔨 badge
+- Character balance: Chili, Tomato, Pea, Soybean, Peach and others buffed; Taro, Mushroom, Watermelon, Durian, Ginger and others nerfed; Soybean now summons 8 bean soldiers, one in each direction
+- Enemy HP raised in Chapters 2–7; fewer weak minions in Chapter 3
 
 <a id="v0-6-6"></a>
 

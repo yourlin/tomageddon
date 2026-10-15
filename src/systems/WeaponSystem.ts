@@ -16,6 +16,7 @@ import { boomPathOf, BOOM_TIME } from './BoomPaths';
 import { CHAIN_STYLE, chainColor, chainFollowUp } from './ChainFx';
 import { MINE_BOOM_COLOR } from '../art/MineArt';
 import { isFavoredWeapon, FAVORED_DMG } from '../data/affinity';
+import type { SynRun } from './Synergy';
 import type { AffMods, ShotMods } from './Talents';
 import { CLONE_WEAPON_MULT } from '../data/skills';
 import { treeTotals } from './TalentTree';
@@ -42,7 +43,7 @@ export function weaponDamage(def: WeaponDef, tier: number, s: Stats, ow?: OwnedW
   const pct = def.kind === 'aura' ? s.auraPct : def.cls === 'melee' ? s.meleePct : def.cls === 'ranged' ? s.rangedPct : s.elementalPct;
   d *= (1 + (s.damage + pct) / 100) * classMult;
   d *= 1 + affixTotals(ow).dmg / 100;
-  if (isFavoredWeapon(run.char.favored, def)) d *= FAVORED_DMG; // 契合武器（超武按原武器判定）
+  if (isFavoredWeapon(run.char.favored, def)) d *= FAVORED_DMG; // 契合武器（带任意一个契合标签）
   // 近战直刺只打一条线，实战效率最低（约为纸面的 94%，横扫 156%），整体加伤
   if (def.kind === 'thrust') d *= BALANCE.thrustDmgMult;
   return Math.max(1, d);
@@ -129,6 +130,8 @@ interface WRun {
   ghostT: number;
   /** 普通横扫进行中：伤害跟着刀走，刀扫过哪里才结算哪里 */
   sweep?: PendingSweep;
+  /** 双契合契合技状态（systems/Synergy.ts） */
+  syn: SynRun;
 }
 
 interface PendingSweep {
@@ -188,6 +191,7 @@ export class WeaponSystem {
         resetCd: 0,
         pulseT: 0,
         ghostT: 0,
+        syn: g.synergy.init(def),
       };
       if (def.kind === 'aura') {
         const tplLook = def.template ? AURA_LOOK[def.template] : undefined;
@@ -212,6 +216,7 @@ export class WeaponSystem {
       const def = w.def;
       const tier = w.owned.tier;
       const m = (w.mods = talent.affMods(def));
+      if (m) m.area += g.synergy.extraArea(w.syn);
       const cv = convert(def, m, null);
       // 契合加成：射程 %；光环改加光环范围（与属性一起封顶）；近战直刺 / 横扫吃一半范围加成
       let range = weaponRange(def, s, w.owned, def.kind === 'aura' ? cv.area : 0) * g.rangeMult;
@@ -220,11 +225,11 @@ export class WeaponSystem {
         if (def.kind === 'thrust' || def.kind === 'sweep') range *= 1 + cv.area / 200;
       }
       if (range > maxRange) maxRange = range;
-      const spd = (m?.atkSpd ?? 0) + g.superBuffs.attackSpeed(def);
-      // 柠檬刺客：暴击后重置这把武器的冷却（每把每秒最多一次）
+      const spd = (m?.atkSpd ?? 0) + g.superBuffs.attackSpeed(def) + g.synergy.extraSpeed(w.syn);
+      // 柠檬刺客：暴击后重置这把武器的冷却（每把每 2 秒最多一次）
       if (w.resetCd > 0) w.resetCd -= dt;
       if (talent.resetReq.has(def.id) && w.resetCd <= 0) {
-        w.resetCd = 1;
+        w.resetCd = 2;
         w.cd = Math.min(w.cd, 0.05);
       }
       // 武器环绕排布（离身体远一些，避免和角色重叠）；索敌、射程、子弹出膛、近战判定都以武器所在位置 (hx, hy) 为起点，光环除外（围绕角色）
@@ -298,13 +303,15 @@ export class WeaponSystem {
       // 地雷
       if (w.mines.length) this.updateMines(w, dt);
 
-      // 光环脉冲：芋头术士的契合光环每 4 秒（范围 ×1.5，并抵消敌弹）；天赋「脉动」让所有光环每 4 秒（范围 ×1.3）
+      // 光环脉冲：芋头术士的契合光环每 5 秒（范围 ×1.3，伤害 ×0.7，并抵消敌弹）；天赋「脉动」让所有光环每 4 秒（范围 ×1.3）
       const taroPulse = talent.auraPulse(def);
-      const pulseEvery = taroPulse ? 4 : treeTotals().auraPulse ? 4 : 0;
+      const pulseEvery = taroPulse ? 5 : treeTotals().auraPulse ? 4 : 0;
       if (def.kind === 'aura' && pulseEvery && (w.pulseT += dt) >= pulseEvery) {
         w.pulseT = 0;
-        this.auraPulse(w, range * (taroPulse ? 1.5 : 1.3), taroPulse);
+        this.auraPulse(w, range * 1.3, taroPulse);
       }
+      // 双契合光环的默认契合技「脉冲」（芋头术士天赋已有脉冲，不再叠加）、芋泥 / 锅盾挡弹
+      if (g.synergy.update(w.syn, def, dt, range) && !taroPulse) this.auraPulse(w, range * 1.5, false);
 
       w.cd -= dt;
       if (w.cd > 0) return;
@@ -317,7 +324,7 @@ export class WeaponSystem {
         if (g.enemies.some((e) => e.alive)) {
           w.cd = weaponCooldown(def, tier, s, w.owned, spd);
           w.shot = talent.onFire(def);
-          const k = 1 + convert(def, m, w.shot).count;
+          const k = (def.count?.[tier] ?? 1) + convert(def, m, w.shot).count;
           for (let j = 0; j < k; j++) this.placeMine(w, range, k - 1);
           w.shot = null;
         }
@@ -331,6 +338,7 @@ export class WeaponSystem {
     });
     this.maxRange = maxRange;
     talent.resetReq.clear();
+    g.synergy.tick(dt);
   }
 
   /** 横扫残影：武器精灵的淡出拷贝，让挥过的轨迹看得清（代替弧形刀光） */
@@ -351,9 +359,11 @@ export class WeaponSystem {
   private attack(w: WRun, hx: number, hy: number, t: Enemy, range: number, combo: boolean): void {
     const g = this.g;
     w.shot = g.talent.onFire(w.def);
+    g.synergy.preAttack(w.syn, w.shot);
     if (combo) w.dmgMul = w.mods?.comboMult ?? 0.6;
     this.fire(w, hx, hy, t, range);
     this.echo(w, range);
+    if (w.syn.key) g.synergy.postAttack(w.syn, w.def, hx, hy, w.animAngle, t, range, this.info(w, g.stats));
     w.dmgMul = 1;
     const cv = convert(w.def, w.mods, w.shot);
     w.shot = null;
@@ -540,8 +550,9 @@ export class WeaponSystem {
           b.areaMul = areaMul;
           b.homing = def.homing ?? 0;
           if (def.projTint !== undefined) b.setTint(def.projTint);
+          if (w.mods?.homing) b.homing = Math.max(b.homing, w.mods.homing);
           // 分裂只给普通子弹（火焰 / 回旋镖 / 火箭各有自己的命中逻辑）
-          b.split = def.kind === 'bullet' ? run.specials.split + (def.splitShots ?? 0) : 0;
+          b.split = def.kind === 'bullet' ? run.specials.split + (def.splitShots ?? 0) + (w.mods?.split ?? 0) : 0;
           if (def.kind === 'rocket') b.kind = 'rocket';
           if (def.kind === 'flame') {
             b.kind = 'flame';
@@ -561,6 +572,7 @@ export class WeaponSystem {
             b.spin = 14;
           }
           w.shot?.bullet?.(b);
+          if (w.syn.key) g.synergy.onBullet(w.syn, def, b, i);
         }
         audio.play(g, 'shoot', 0.06);
         break;
@@ -583,6 +595,7 @@ export class WeaponSystem {
         g.fxLightning(pts, chainColor(def.id));
         const cst = CHAIN_STYLE[def.id];
         if (cst) chainFollowUp(g, cst, [...hitSet], i, def.critMult);
+        if (w.syn.key) g.synergy.chainEnd(w.syn, [...hitSet], i, chainColor(def.id));
         audio.play(g, 'shoot', 0.06);
         break;
       }
@@ -657,6 +670,7 @@ export class WeaponSystem {
     const hits = [...g.grid.query(g.player.x, g.player.y, range, g.tmp)];
     for (const e of hits) this.hit(e, w, s, g.player.x, g.player.y);
     if (w.aura && hits.length) w.aura.pulse(hits);
+    if (w.syn.key && hits.length) g.synergy.auraTick(w.syn, hits, this.info(w, s));
     // 蓝莓双子的分身也带着光环
     if (!g.weaponClones.length) return;
     w.dmgMul = CLONE_WEAPON_MULT;
@@ -676,7 +690,7 @@ export class WeaponSystem {
     if (clearBullets) for (const b of g.enemyBullets) if (b.alive && Math.hypot(b.x - p.x, b.y - p.y) < range) b.kill();
     for (const e of [...g.grid.query(p.x, p.y, range, g.tmp)]) {
       const i = this.info(w, s);
-      g.weaponHit(e, { ...i, knockback: (i.knockback ?? 0) + 40 }, p.x, p.y);
+      g.weaponHit(e, { ...i, dmg: i.dmg * (clearBullets ? 0.7 : 1), knockback: (i.knockback ?? 0) + 40 }, p.x, p.y);
     }
   }
 
@@ -686,8 +700,7 @@ export class WeaponSystem {
     const p = g.player;
     const ang = Math.random() * Math.PI * 2;
     const r = Phaser.Math.FloatBetween(40, range);
-    const x = Phaser.Math.Clamp(p.x + Math.cos(ang) * r, g.arena.x + 20, g.arena.right - 20);
-    const y = Phaser.Math.Clamp(p.y + Math.sin(ang) * r, g.arena.y + 20, g.arena.bottom - 20);
+    const { x, y } = g.arena.clamp(p.x + Math.cos(ang) * r, p.y + Math.sin(ang) * r, 20);
     const def = w.def;
     const key =
       [`mine_${def.id}`, `mine_${def.evolvedFrom ?? ''}`, `mine_${def.template ?? ''}`].find((k) => g.textures.exists(k)) ?? 'mine';
@@ -716,14 +729,9 @@ export class WeaponSystem {
       if (g.grid.query(m.img.x, m.img.y, triggerR, g.tmp).length) {
         m.alive = false;
         const i = this.info(w, g.stats);
-        g.explode(
-          m.img.x,
-          m.img.y,
-          boomR,
-          i.dmg,
-          i,
-          MINE_BOOM_COLOR[w.def.id] ?? MINE_BOOM_COLOR[w.def.evolvedFrom ?? ''] ?? w.def.projTint ?? 0xff5400,
-        );
+        const color = MINE_BOOM_COLOR[w.def.id] ?? MINE_BOOM_COLOR[w.def.evolvedFrom ?? ''] ?? w.def.projTint ?? 0xff5400;
+        g.explode(m.img.x, m.img.y, boomR, i.dmg, i, color);
+        if (w.syn.key) g.synergy.mineBoom(w.syn, m.img.x, m.img.y, boomR, i, color);
         m.img.destroy();
       }
     }

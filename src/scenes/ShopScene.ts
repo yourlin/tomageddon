@@ -5,11 +5,23 @@ import { EVOLUTION_OF, EVOLUTIONS } from '../data/evolutions';
 import { treeTotals } from '../systems/TalentTree';
 import { bump, bumpMax } from '../systems/Counters';
 import Phaser from 'phaser';
-import { charTraitLines, describeItem, describeWeaponSets, weaponDmgType, armorText, speedText, archetypeText } from '../data/describe';
+import {
+  charTraitLines,
+  describeItem,
+  describeWeaponSets,
+  setSummary,
+  weaponDmgType,
+  armorText,
+  speedText,
+  archetypeText,
+  SET_ROW_COLOR,
+} from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
 import { run, saveRun, type ShopOffer, type OwnedWeapon } from '../systems/RunState';
-import { WEAPONS, WEAPON_MAP, TIER_PRICE_MULT, TIER_NAMES, WEAPON_SETS, isShopWeapon, SHOP_MAX_TIER } from '../data/weapons';
-import { isFavoredWeapon, affinityText, favoredWeapons } from '../data/affinity';
+import { WEAPONS, WEAPON_MAP, TIER_PRICE_MULT, TIER_NAMES, isShopWeapon, SHOP_MAX_TIER } from '../data/weapons';
+import { SET_MAP, activeTier } from '../data/weaponSets';
+import { synergyLines } from '../data/synergy';
+import { isFavoredWeapon, isDoubleFavored, affinityText, favoredWeapons, doubleFavoredWeapons } from '../data/affinity';
 import { ALL_ITEMS, ITEM_MAP } from '../data/items';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
 import {
@@ -53,7 +65,7 @@ import { ITEM_COMBOS, describeCombo } from '../data/gearExtra';
 import { tagName } from '../i18n/apply';
 import { weaponTags, TAG_MAP } from '../data/weaponTags';
 import { superBuffText } from '../systems/SuperBuffs';
-import { RECIPES, RECIPE_BY_TO, wantedRecipeItems } from '../data/recipes';
+import { RECIPES, RECIPE_BY_TO, wantedRecipeItems, missingItems, type Recipe } from '../data/recipes';
 import { FORGE } from '../data/weaponAffixes';
 
 import { checkAchievements, setInRun } from '../systems/Achievements';
@@ -371,11 +383,15 @@ export class ShopScene extends Phaser.Scene {
           lines.push(sb);
           optional.unshift(sb);
         }
-        const sets = describeWeaponSets(d, run.setCounts(), !run.weapons.some((w) => w.id === d.id), tagName);
+        const sets = setSummary(d, run.setCounts(), !run.weapons.some((w) => w.id === d.id));
         lines.push(...sets);
         optional.splice(optional.length - 1, 0, ...sets);
         // 契合：卡片上只写一句，具体特效看右侧「角色」页签
-        if (isFavoredWeapon(run.char.favored, d)) lines.unshift(tx('★ 契合武器 · 伤害 +10%', '★ Synergy weapon · +10% damage'));
+        if (isDoubleFavored(run.char.favored, d)) {
+          const syn = synergyLines(d, run.char.favored, tagName);
+          lines.unshift(tx(`★★ 双契合 · 伤害 +10%`, `★★ Double synergy · +10% dmg`), ...syn);
+          optional.unshift(...syn.slice(1).reverse());
+        } else if (isFavoredWeapon(run.char.favored, d)) lines.unshift(tx('★ 契合武器 · 伤害 +10%', '★ Synergy weapon · +10% damage'));
         const ev = EVOLUTION_OF[d.id];
         if (ev) lines.push(tx(`✨ 可合成超武「${ev.to.name}」`, `✨ Crafts into ${ev.to.name}`));
         if (affixSlots(o.tier))
@@ -411,6 +427,23 @@ export class ShopScene extends Phaser.Scene {
           );
       }
       L.add(fitImage(this.add.image(x + cw / 2, cy + 55, icon), 76));
+      // 正好缺的合成材料：材料武器都已到位、只差道具的配方里，这件道具能补上一个空槽 → 右上角角标 + 一行说明
+      const fills = o.kind === 'item' ? recipesFilledBy(o.id) : [];
+      if (fills.length) {
+        lines.unshift(
+          tx(
+            `🔨 正好缺：${fills.map((r) => `「${WEAPON_MAP[r.to].name}${r.kind === 'super' ? '' : ' ' + TIER_NAMES[3]}」`).join('')}的合成材料`,
+            `🔨 Missing material for ${fills.map((r) => WEAPON_MAP[r.to].name).join(', ')}`,
+          ),
+        );
+        const bx = x + cw - 22,
+          byy = cy + 22;
+        const bg = this.add.graphics();
+        bg.fillStyle(0xff9f1c, 1).fillCircle(bx, byy, 17).lineStyle(3, 0x1b0a0a, 1).strokeCircle(bx, byy, 17);
+        L.add(bg);
+        L.add(text(this, bx, byy, '🔨', 16).setOrigin(0.5));
+        this.tweens.add({ targets: bg, alpha: 0.55, duration: 600, yoyo: true, repeat: -1 });
+      }
       L.add(text(this, x + cw / 2, cy + 106, name, 20, rc.css).setOrigin(0.5));
       // 武器卡左上角：伤害类型图标（近战 / 远程 / 元素 / 光环）
       if (o.kind === 'weapon') L.add(fitImage(this.add.image(x + 26, cy + 26, weaponDmgType(WEAPON_MAP[o.id]).icon), 38));
@@ -555,9 +588,19 @@ export class ShopScene extends Phaser.Scene {
     }
 
     // 套装
-    const sets = Object.entries(run.setCounts()).filter(([t, n]) => n >= 2 && WEAPON_SETS[t]);
+    const sets = Object.entries(run.setCounts()).filter(([id, n]) => SET_MAP[id] && activeTier(SET_MAP[id], n));
     if (sets.length)
-      L.add(text(this, 20, stY + 32 + ws, tx('套装：', 'Sets: ') + sets.map(([t, n]) => `${tagName(t)}×${n}`).join('  '), 15, '#9be564'));
+      L.add(
+        text(
+          this,
+          20,
+          stY + 32 + ws,
+          tx('套装：', 'Sets: ') +
+            sets.map(([id, n]) => `${tx(SET_MAP[id].name[0], SET_MAP[id].name[1])} ${n}/${SET_MAP[id].members.length}`).join('  '),
+          15,
+          '#9be564',
+        ),
+      );
 
     // 道具
     const iy = stY + 50 + ws;
@@ -630,12 +673,9 @@ export class ShopScene extends Phaser.Scene {
     L.add(text(this, sx + 16 + ps + 12, y + 14, c.name, 22, '#ffd166'));
     L.add(text(this, sx + 16 + ps + 12, y + 46, c.title, 15, COLORS.textDim));
     y += ps + 10;
-    add(tx('★ 契合标签（带这些标签的武器伤害 +10%）', '★ Synergy tags (+10% dmg on weapons with them)'), 16, '#ffb347', 6);
-    for (const t of c.favored) {
-      const td = TAG_MAP[t];
-      const total = favoredWeapons({ favored: [t] }).length;
-      const owned = run.weapons.filter((w) => weaponTags(WEAPON_MAP[w.id]).includes(t)).length;
-      L.add(text(this, sx + 16, y, `${td?.icon ?? '◆'} ${tagName(t)}`, 16, td?.color ?? '#fff4ea'));
+    add(tx('★ 契合标签（带任意一个：伤害 +10% 并触发契合特效）', '★ Synergy tags (any one: +10% dmg & synergy effect)'), 16, '#ffb347', 6);
+    const favRow = (label: string, total: number, owned: number, color: string) => {
+      L.add(text(this, sx + 16, y, label, 16, color));
       L.add(
         text(
           this,
@@ -647,7 +687,24 @@ export class ShopScene extends Phaser.Scene {
         ).setOrigin(1, 0),
       );
       y += 24;
+    };
+    for (const t of c.favored) {
+      const td = TAG_MAP[t];
+      const owned = run.weapons.filter((w) => weaponTags(WEAPON_MAP[w.id]).includes(t)).length;
+      favRow(`${td?.icon ?? '◆'} ${tagName(t)}`, favoredWeapons({ favored: [t] }).length, owned, td?.color ?? '#fff4ea');
     }
+    favRow(
+      tx(`★★ 双契合（${c.favored.map(tagName).join('＋')}）`, `★★ Double (${c.favored.map(tagName).join('+')})`),
+      doubleFavoredWeapons(c).length,
+      run.weapons.filter((w) => isDoubleFavored(c.favored, WEAPON_MAP[w.id])).length,
+      '#ffd166',
+    );
+    add(
+      tx('双契合：武器获得契合技，并按两个标签各强化一项特性', 'Double: the weapon gains a synergy skill plus one boost per tag'),
+      13,
+      COLORS.textDim,
+      6,
+    );
 
     y += 4;
     add(tx('契合特效（伤害 +10%）', 'Synergy effect (+10% dmg)'), 15, '#ffb347', 2);
@@ -830,6 +887,8 @@ export class ShopScene extends Phaser.Scene {
     const refineR = w.tier === 2 ? RECIPE_BY_TO[w.id] : undefined;
     // 其余情况（T1/T2、合成专属 T4 等）：只要有相关配方，就给一个「查看合成路线」入口，打开合成表并聚焦这把武器
     const routeN = RECIPES.filter((r) => r.to === w.id || r.from.some(([id]) => id === w.id)).length;
+    // 这把武器（按当前品质）能作材料、且现在材料与道具都齐了的配方：每条都单独给一个「合成为 X」按钮
+    const readyR = RECIPES.filter((r) => r.from.some(([id, t]) => id === w.id && t === w.tier) && run.canCraft(r));
     const openCraft = () => {
       saveRun();
       this.scene.start('Craft', { focus: w.id });
@@ -843,7 +902,7 @@ export class ShopScene extends Phaser.Scene {
         d.desc,
         ...((t) => (t ? [t] : []))(archetypeText(d, w.tier)),
         ...(d.superBuff ? [`⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`] : []),
-        ...describeWeaponSets(d, run.setCounts(), false, tagName),
+        ...(isDoubleFavored(run.char.favored, d) ? synergyLines(d, run.char.favored, tagName) : []),
       ].join('\n'),
       13,
       COLORS.textDim,
@@ -853,7 +912,15 @@ export class ShopScene extends Phaser.Scene {
     );
     // 自上而下累加各区块高度，算出面板高度（不显示的区块不占位）
     const PW = 340;
-    let ty = 62 + desc.height + 8;
+    // 套装：逐行显示，已生效的档位绿字、未生效的灰字
+    const setRows = describeWeaponSets(
+      d,
+      run.setCounts(),
+      false,
+      run.weapons.map((x) => x.id),
+    ).map((r) => text(this, 14, 0, r.text, 13, SET_ROW_COLOR[r.kind], { wordWrap: { width: 312, useAdvancedWrap: true } }));
+    const setH = setRows.reduce((a, t) => a + t.height + 1, setRows.length ? 4 : 0);
+    let ty = 62 + desc.height + setH + 8;
     const affixY = ty;
     ty += affixes.length * 34;
     const forgeTipY = ty;
@@ -865,7 +932,9 @@ export class ShopScene extends Phaser.Scene {
     const storeY = ty;
     ty += 52;
     const evoY = ty;
-    if (superR || refineR || routeN) ty += 54;
+    // 有可合成的配方：每条一个按钮，再加一个「查看合成配方」（玩家可能想走另一条）
+    if (readyR.length) ty += 54 * (readyR.length + 1);
+    else if (superR || refineR || routeN) ty += 54;
     const PH = ty + 8;
     // 优先放在点击点上方；放不下时下移，并夹在屏幕内（弹窗随品质变高，低品质很矮、T4 很高）
     const c = this.add.container(
@@ -910,6 +979,12 @@ export class ShopScene extends Phaser.Scene {
       ),
     );
     desc.setY(62);
+    let sy = 62 + desc.height + 4;
+    for (const t of setRows) {
+      t.setY(sy);
+      c.add(t);
+      sy += t.height + 1;
+    }
     c.add(desc);
     // 词条（T3 / T4 才有）：逐条显示，可单独洗练
     const one = rerollOneCost(run.wave);
@@ -1127,72 +1202,123 @@ export class ShopScene extends Phaser.Scene {
         16,
       ).setEnabled(!lockedOut),
     );
-    // T3 → T4：按配方（同名 T3 × 2 + 道具），直接跳合成表看缺什么
-    if (refineR && !superR) {
-      const ok = run.canCraft(refineR);
+    // 有配方已经凑齐：逐条列出「合成为 X」，产出写清楚；最后一个按钮打开合成表看全部配方
+    if (readyR.length) {
+      readyR.forEach((r, i) => {
+        const to = WEAPON_MAP[r.to];
+        const isSuper = r.kind === 'super';
+        c.add(
+          button(
+            this,
+            PW / 2,
+            evoY + 21 + i * 54,
+            PW - 24,
+            42,
+            isSuper
+              ? tx(`✨ 合成超武「${to.name}」`, `✨ Craft ${to.name}`)
+              : tx(`⬆ 合成为「${to.name} ${TIER_NAMES[3]}」`, `⬆ Craft ${to.name} ${TIER_NAMES[3]}`),
+            () => {
+              if (!run.craft(r)) return;
+              audio.play(this, 'levelup');
+              if (isSuper) this.cameras.main.flash(250, 255, 209, 102);
+              toast(
+                this,
+                tx(
+                  `合成成功：${to.name}${isSuper ? '！' : ` ${TIER_NAMES[3]}`}`,
+                  `Crafted: ${to.name}${isSuper ? '!' : ` ${TIER_NAMES[3]}`}`,
+                ),
+                isSuper ? '#ffd166' : '#52ff8a',
+              );
+              c.destroy();
+              this.popup = null;
+              this.draw();
+            },
+            isSuper ? 0xc77d00 : COLORS.green,
+            readyR.length > 1 ? 15 : 17,
+          ),
+        );
+      });
       c.add(
         button(
           this,
           PW / 2,
-          evoY + 21,
+          evoY + 21 + readyR.length * 54,
           PW - 24,
           42,
-          ok
-            ? tx(`⬆ 合成为 ${TIER_NAMES[3]}`, `⬆ Craft to ${TIER_NAMES[3]}`)
-            : tx('⬆ 升 T4 需按配方合成（看合成表）', '⬆ T4 needs a recipe (see Crafting)'),
-          () => {
-            if (!ok) return openCraft();
-            if (!run.craft(refineR)) return;
-            audio.play(this, 'levelup');
-            toast(this, tx(`合成成功：${d.name} ${TIER_NAMES[3]}`, `Crafted: ${d.name} ${TIER_NAMES[3]}`), '#52ff8a');
-            redraw();
-          },
-          ok ? COLORS.green : 0x4a5a6a,
-          ok ? 17 : 14,
-        ),
-      );
-    }
-    // 超武：只有这把已经是配方里的 T4 材料时才显示（T1~T3 不显示不可用的进化预告）
-    if (superR) {
-      const ok = run.canCraft(superR);
-      const to = WEAPON_MAP[superR.to];
-      c.add(
-        button(
-          this,
-          PW / 2,
-          evoY + 21,
-          PW - 24,
-          42,
-          ok
-            ? tx(`✨ 合成超武「${to.name}」`, `✨ Craft ${to.name}`)
-            : tx(`✨ 可合成超武「${to.name}」（看合成表）`, `✨ Can craft ${to.name} (see Crafting)`),
-          () => {
-            if (!ok) return openCraft();
-            if (!run.evolve(w.uid)) return;
-            audio.play(this, 'levelup');
-            this.cameras.main.flash(250, 255, 209, 102);
-            toast(this, tx(`合成成功：${to.name}！`, `Crafted: ${to.name}!`), '#ffd166');
-            redraw();
-          },
-          0xc77d00,
-          ok ? 17 : 14,
-        ),
-      );
-    }
-    if (!superR && !refineR && routeN)
-      c.add(
-        button(
-          this,
-          PW / 2,
-          evoY + 21,
-          PW - 24,
-          42,
-          tx(`🔨 查看合成路线（${routeN} 条配方）`, `🔨 Crafting routes (${routeN})`),
+          tx(`🔨 查看合成配方（${routeN} 条）`, `🔨 View recipes (${routeN})`),
           openCraft,
           0x4a5a6a,
           15,
         ),
       );
+    } else {
+      // T3 → T4：按配方（同名 T3 × 2 + 道具），直接跳合成表看缺什么
+      if (refineR && !superR) {
+        const ok = run.canCraft(refineR);
+        c.add(
+          button(
+            this,
+            PW / 2,
+            evoY + 21,
+            PW - 24,
+            42,
+            ok
+              ? tx(`⬆ 合成为 ${TIER_NAMES[3]}`, `⬆ Craft to ${TIER_NAMES[3]}`)
+              : tx('⬆ 升 T4 需按配方合成（看合成表）', '⬆ T4 needs a recipe (see Crafting)'),
+            () => {
+              if (!ok) return openCraft();
+              if (!run.craft(refineR)) return;
+              audio.play(this, 'levelup');
+              toast(this, tx(`合成成功：${d.name} ${TIER_NAMES[3]}`, `Crafted: ${d.name} ${TIER_NAMES[3]}`), '#52ff8a');
+              redraw();
+            },
+            ok ? COLORS.green : 0x4a5a6a,
+            ok ? 17 : 14,
+          ),
+        );
+      }
+      // 超武：只有这把已经是配方里的 T4 材料时才显示（T1~T3 不显示不可用的进化预告）
+      if (superR) {
+        const ok = run.canCraft(superR);
+        const to = WEAPON_MAP[superR.to];
+        c.add(
+          button(
+            this,
+            PW / 2,
+            evoY + 21,
+            PW - 24,
+            42,
+            ok
+              ? tx(`✨ 合成超武「${to.name}」`, `✨ Craft ${to.name}`)
+              : tx(`✨ 可合成超武「${to.name}」（看合成表）`, `✨ Can craft ${to.name} (see Crafting)`),
+            () => {
+              if (!ok) return openCraft();
+              if (!run.evolve(w.uid)) return;
+              audio.play(this, 'levelup');
+              this.cameras.main.flash(250, 255, 209, 102);
+              toast(this, tx(`合成成功：${to.name}！`, `Crafted: ${to.name}!`), '#ffd166');
+              redraw();
+            },
+            0xc77d00,
+            ok ? 17 : 14,
+          ),
+        );
+      }
+      if (!superR && !refineR && routeN)
+        c.add(
+          button(
+            this,
+            PW / 2,
+            evoY + 21,
+            PW - 24,
+            42,
+            tx(`🔨 查看合成路线（${routeN} 条配方）`, `🔨 Crafting routes (${routeN})`),
+            openCraft,
+            0x4a5a6a,
+            15,
+          ),
+        );
+    }
     // 触屏：弹窗整体放大，并重新夹回屏幕内
     if (TOUCH_UI > 1) {
       c.setScale(TOUCH_UI);
@@ -1233,4 +1359,9 @@ export class ShopScene extends Phaser.Scene {
     });
     this.scene.start('Game');
   }
+}
+
+/** 这件道具正好能补上哪些配方的空槽：配方的材料武器都已持有（品质也够），只差道具，且这件在缺的槽里 */
+function recipesFilledBy(itemId: string): Recipe[] {
+  return RECIPES.filter((r) => run.craftMaterials(r) && missingItems(r, run.items).some((i) => r.items[i].includes(itemId)));
 }

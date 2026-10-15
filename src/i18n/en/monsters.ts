@@ -117,7 +117,11 @@ export const EN_BOSSES: BossesEn = {
   // Boss
   mold_king: { name: 'Mold King', title: 'Chapter 1 Boss', desc: 'The king of mold, lurking in the kitchen sink.' },
   grease_chef: { name: 'Grease Chef', title: 'Chapter 1 Boss', desc: 'A century of range-hood grease that came to life.' },
-  cockroach_emperor: { name: 'Roach Emperor', title: 'Chapter 1 Boss', desc: 'The unkillable roach emperor with shocking regeneration.' },
+  cockroach_emperor: {
+    name: 'Roach Emperor',
+    title: 'Chapter 1 Boss',
+    desc: 'The unkillable roach emperor with shocking regeneration — untouchable while charging.',
+  },
   locust_queen: { name: 'Locust Queen', title: 'Chapter 2 Boss', desc: 'The swarm queen who devours entire gardens.' },
   rotten_pumpkin: { name: 'Rotten Pumpkin King', title: 'Chapter 2 Boss', desc: 'A giant pumpkin abandoned after Halloween.' },
   mole_general: { name: 'General Mole', title: 'Chapter 2 Boss', desc: 'A mole general who dug countless tunnels under the garden.' },

@@ -12,6 +12,7 @@ const {
   EVOLUTIONS,
   priceInflation,
   isFavoredWeapon,
+  isDoubleFavored,
   RECIPES,
   missingItems,
   ACHIEVEMENTS,
@@ -92,7 +93,9 @@ function weaponValue(o, P) {
   const d = WEAPON_MAP[o.id];
   let v = (d.cls === P.main ? 10 : 4) * [1, 2.1, 4, 8][o.tier]; // 高品质按实际战力估值，不因单价高而被忽略
   if (run.allWeapons.some((w) => w.id === o.id && w.tier === o.tier)) v *= o.tier >= 2 ? 3 : 2; // 能凑成对（T3 配对后可按配方合成 T4）
-  if (isFav(o.id)) v *= 1.5; // 契合武器
+  if (isDoubleFavored(run.char.favored, WEAPON_MAP[o.id]))
+    v *= 2; // 双契合武器
+  else if (isFav(o.id)) v *= 1.5; // 契合武器
   return v;
 }
 
@@ -150,7 +153,20 @@ export function startBot2(charId, ch, speed = 16, budget = 30) {
   GameScene.onStep = () => {
     if (k++ % 6 === 0) move(P);
   };
-  run.start(charId, ch);
+  // 开局武器：同选角界面，从契合武器里三选一（第一个是默认开局武器）；优先挑双契合的。
+  // 一定要显式传入：否则 run.start 会沿用上一局（上一个角色）留下的开局武器
+  const c0 = CHARACTER_MAP[charId];
+  const pool = Object.values(WEAPON_MAP).filter((w) => !w.evolvedFrom && !w.minTier && isFavoredWeapon(c0.favored, w));
+  const first = c0.startWeapons.find((id) => isFavoredWeapon(c0.favored, WEAPON_MAP[id])) ?? pool[0].id;
+  const picks = [
+    first,
+    ...pool
+      .map((w) => w.id)
+      .filter((id) => id !== first)
+      .sort(() => Math.random() - 0.5),
+  ].slice(0, 3);
+  const sw = picks.find((id) => isDoubleFavored(c0.favored, WEAPON_MAP[id])) ?? picks[0];
+  run.start(charId, ch, !!run.endless, run.danger, sw);
   game.scene.getScenes(true).forEach((s) => s.scene.stop());
   game.scene.start('Game');
   window.__botState = { done: false, win: false, charId, ch, t0: performance.now() };
@@ -269,8 +285,9 @@ function move(P) {
       if (d < 25) score -= (25 - d) * 6;
     }
     if (nd < 1e8) score -= Math.abs(nd - wantD) * distW;
-    score -= Math.hypot(x - 960, y - 600) * 0.12;
-    if (x < 80 || x > 1840 || y < 80 || y > 1120) score -= 400;
+    // 场地可能不是 1920 × 1200 的矩形（各章形状不同）：靠近场地中心、远离边缘与障碍物
+    score -= Math.hypot(x - g.arena.centerX, y - g.arena.centerY) * 0.12;
+    if (!g.arena.contains(x, y, 80)) score -= 400;
     // 捡番茄籽
     for (const pk of g.pickups)
       if (pk.alive && pk.kind !== 'crate') {
