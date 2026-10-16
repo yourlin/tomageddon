@@ -107,7 +107,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Rounded rectangle 1760 × 1100; 3 obstacles (block movement, not bullets) |
-| Difficulty | HP ×1.64 · damage ×1.17 · speed ×1.05 |
+| Difficulty | HP ×1.78 · damage ×1.17 · speed ×1.05 |
 | Terrain | Rabbit Holes: Rabbits scurry around; defeat them for Seeds and fruit<br>Gophers: Pop out of burrows to throw rocks<br>Sprinklers: Periodically spray water, Soaking players and monsters in range (Move and Attack Speed reduced) |
 | Elite pool | <img src="../images/boss/rat_captain.png" width="24" height="24" alt=""> [Captain Rat](MONSTERS.md#boss-rat_captain), <img src="../images/boss/snail_tank.png" width="24" height="24" alt=""> [Tank Snail](MONSTERS.md#boss-snail_tank), <img src="../images/boss/queen_bee.png" width="24" height="24" alt=""> [Queen Bee](MONSTERS.md#boss-queen_bee), <img src="../images/boss/scarecrow.png" width="24" height="24" alt=""> [Evil Scarecrow](MONSTERS.md#boss-scarecrow), <img src="../images/boss/spider_matron.png" width="24" height="24" alt=""> [Spider Matron](MONSTERS.md#boss-spider_matron), <img src="../images/boss/mushroom_king.png" width="24" height="24" alt=""> [Shroom King](MONSTERS.md#boss-mushroom_king) |
 | Boss pool | <img src="../images/boss/locust_queen.png" width="24" height="24" alt=""> [Locust Queen](MONSTERS.md#boss-locust_queen), <img src="../images/boss/rotten_pumpkin.png" width="24" height="24" alt=""> [Rotten Pumpkin King](MONSTERS.md#boss-rotten_pumpkin), <img src="../images/boss/mole_general.png" width="24" height="24" alt=""> [General Mole](MONSTERS.md#boss-mole_general) |
@@ -151,7 +151,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Rectangle 1500 × 1500; 4 obstacles (block movement, not bullets) |
-| Difficulty | HP ×1.74 · damage ×1.23 · speed ×1.1 |
+| Difficulty | HP ×1.97 · damage ×1.23 · speed ×1.1 |
 | Terrain | Ice Floor: Slippery on ice, but you move faster<br>Cold Wind: Periodic gusts push all units and slow them |
 | Elite pool | <img src="../images/boss/ice_golem.png" width="24" height="24" alt=""> [Ice Golem](MONSTERS.md#boss-ice_golem), <img src="../images/boss/popsicle_twins.png" width="24" height="24" alt=""> [Popsicle Twins](MONSTERS.md#boss-popsicle_twins), <img src="../images/boss/frozen_fish.png" width="24" height="24" alt=""> [Frozen Fish Samurai](MONSTERS.md#boss-frozen_fish), <img src="../images/boss/snow_rat.png" width="24" height="24" alt=""> [Snow Rat Assassin](MONSTERS.md#boss-snow_rat), <img src="../images/boss/milk_slime.png" width="24" height="24" alt=""> [Spoiled Milk Slime](MONSTERS.md#boss-milk_slime), <img src="../images/boss/frost_penguin.png" width="24" height="24" alt=""> [Frost Penguin](MONSTERS.md#boss-frost_penguin) |
 | Boss pool | <img src="../images/boss/frost_rat_king.png" width="24" height="24" alt=""> [Frost Rat King](MONSTERS.md#boss-frost_rat_king), <img src="../images/boss/ice_cream_tyrant.png" width="24" height="24" alt=""> [Ice Cream Tyrant](MONSTERS.md#boss-ice_cream_tyrant), <img src="../images/boss/freezer_heart.png" width="24" height="24" alt=""> [Freezer Heart](MONSTERS.md#boss-freezer_heart) |
@@ -195,7 +195,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Cross shape, 2200 × 1500 bounds |
-| Difficulty | HP ×1.75 · damage ×1.29 · speed ×1.15 |
+| Difficulty | HP ×1.98 · damage ×1.29 · speed ×1.15 |
 | Terrain | Quicksand Pit: Pulls players and monsters toward the center and deals damage<br>Falling Trash: Watch for warning circles on the ground<br>Acid Leak: Acid pools bubble up near you, dealing damage and inflicting Corrode |
 | Elite pool | <img src="../images/boss/tire_beast.png" width="24" height="24" alt=""> [Tire Beast](MONSTERS.md#boss-tire_beast), <img src="../images/boss/can_king.png" width="24" height="24" alt=""> [Can King](MONSTERS.md#boss-can_king), <img src="../images/boss/rag_wraith.png" width="24" height="24" alt=""> [Rag Wraith](MONSTERS.md#boss-rag_wraith), <img src="../images/boss/battery_bug.png" width="24" height="24" alt=""> [Leaky Battery Bug](MONSTERS.md#boss-battery_bug), <img src="../images/boss/garbage_rat.png" width="24" height="24" alt=""> [Garbage Rat King](MONSTERS.md#boss-garbage_rat), <img src="../images/boss/oil_titan.png" width="24" height="24" alt=""> [Oil Titan](MONSTERS.md#boss-oil_titan) |
 | Boss pool | <img src="../images/boss/trash_golem.png" width="24" height="24" alt=""> [Trash Colossus](MONSTERS.md#boss-trash_golem), <img src="../images/boss/toxic_barrel.png" width="24" height="24" alt=""> [Toxic Barrel Fiend](MONSTERS.md#boss-toxic_barrel), <img src="../images/boss/scrap_dragon.png" width="24" height="24" alt=""> [Scrap Dragon](MONSTERS.md#boss-scrap_dragon) |
@@ -207,20 +207,20 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | <img src="../images/enemy/mold.png" width="32" height="32" alt=""> [Mold Blob](MONSTERS.md#enemy-mold) | 1~5 | 8 (11%) |
 | <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 5+ | 5 (7%) |
 | <img src="../images/enemy/cockroach.png" width="32" height="32" alt=""> [Cockroach](MONSTERS.md#enemy-cockroach) | 3+ | 4 (5%) |
-| <img src="../images/enemy/trash_bag.png" width="32" height="32" alt=""> [Trash Bag](MONSTERS.md#enemy-trash_bag) | 5+ | 4 (5%) |
+| <img src="../images/enemy/trash_bag.png" width="32" height="32" alt=""> [Trash Bag](MONSTERS.md#enemy-trash_bag) | 6+ | 4 (5%) |
 | <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 6+ | 4 (5%) |
-| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 5+ | 2 (3%) |
+| <img src="../images/enemy/brood.png" width="32" height="32" alt=""> [Brood Mother](MONSTERS.md#enemy-brood) | 7+ | 2 (3%) |
 | <img src="../images/enemy/rotten_apple.png" width="32" height="32" alt=""> [Rotten Apple](MONSTERS.md#enemy-rotten_apple) | 2+ | 3 (4%) |
 | <img src="../images/enemy/snail.png" width="32" height="32" alt=""> [Snot Snail](MONSTERS.md#enemy-snail) | 6+ | 3 (4%) |
 | <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 8+ | 2 (3%) |
 | <img src="../images/enemy/can_crab.png" width="32" height="32" alt=""> [Can Crab](MONSTERS.md#enemy-can_crab) | 7+ | 3 (4%) |
-| <img src="../images/enemy/rag_ghost.png" width="32" height="32" alt=""> [Rag Ghost](MONSTERS.md#enemy-rag_ghost) | 5+ | 3 (4%) |
+| <img src="../images/enemy/rag_ghost.png" width="32" height="32" alt=""> [Rag Ghost](MONSTERS.md#enemy-rag_ghost) | 6+ | 3 (4%) |
 | <img src="../images/enemy/oil_blob.png" width="32" height="32" alt=""> [Grease Blob](MONSTERS.md#enemy-oil_blob) | 6+ | 3 (4%) |
 | <img src="../images/enemy/rusty_nail.png" width="32" height="32" alt=""> [Rusty Nail](MONSTERS.md#enemy-rusty_nail) | 2+ | 4 (5%) |
 | <img src="../images/enemy/bag_ghost.png" width="32" height="32" alt=""> [Bag Ghost](MONSTERS.md#enemy-bag_ghost) | 3+ | 3 (4%) |
 | <img src="../images/enemy/glass_shard.png" width="32" height="32" alt=""> [Glass Shard](MONSTERS.md#enemy-glass_shard) | 3+ | 3 (4%) |
 | <img src="../images/enemy/scrap_drone.png" width="32" height="32" alt=""> [Scrap Drone](MONSTERS.md#enemy-scrap_drone) | 4+ | 3 (4%) |
-| <img src="../images/enemy/oil_slick.png" width="32" height="32" alt=""> [Oil Slick](MONSTERS.md#enemy-oil_slick) | 5+ | 3 (4%) |
+| <img src="../images/enemy/oil_slick.png" width="32" height="32" alt=""> [Oil Slick](MONSTERS.md#enemy-oil_slick) | 7+ | 3 (4%) |
 | <img src="../images/enemy/battery_mite.png" width="32" height="32" alt=""> [Leaky Battery](MONSTERS.md#enemy-battery_mite) | 6+ | 3 (4%) |
 | <img src="../images/enemy/rust_crab.png" width="32" height="32" alt=""> [Rust Crab](MONSTERS.md#enemy-rust_crab) | 7+ | 3 (4%) |
 | <img src="../images/enemy/tire_roller.png" width="32" height="32" alt=""> [Tire Roller](MONSTERS.md#enemy-tire_roller) | 8+ | 3 (4%) |
@@ -240,7 +240,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Rectangle 2400 × 1300; 4 obstacles (block movement, not bullets) |
-| Difficulty | HP ×2.02 · damage ×1.36 · speed ×1.2 |
+| Difficulty | HP ×2.42 · damage ×1.36 · speed ×1.2 |
 | Terrain | Conveyor Belts: Push all units standing on them<br>Steam Valves: Periodically blast scalding steam<br>Air Vents: Stand on a vent to gain Tailwind (more Move Speed and Dodge); monsters get blown away |
 | Elite pool | <img src="../images/boss/conveyor_worm.png" width="24" height="24" alt=""> [Conveyor Worm](MONSTERS.md#boss-conveyor_worm), <img src="../images/boss/ketchup_golem.png" width="24" height="24" alt=""> [Ketchup Golem](MONSTERS.md#boss-ketchup_golem), <img src="../images/boss/security_bot.png" width="24" height="24" alt=""> [Security Bot](MONSTERS.md#boss-security_bot), <img src="../images/boss/press_machine.png" width="24" height="24" alt=""> [Stamping Press](MONSTERS.md#boss-press_machine), <img src="../images/boss/chef_minion.png" width="24" height="24" alt=""> [Rotten Sous Chef](MONSTERS.md#boss-chef_minion), <img src="../images/boss/furnace_imp.png" width="24" height="24" alt=""> [Furnace Imp](MONSTERS.md#boss-furnace_imp) |
 | Boss pool | <img src="../images/boss/rotten_chef.png" width="24" height="24" alt=""> [Rotten Chef](MONSTERS.md#boss-rotten_chef), <img src="../images/boss/factory_core.png" width="24" height="24" alt=""> [Factory Core](MONSTERS.md#boss-factory_core), <img src="../images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [Ketchup Leviathan](MONSTERS.md#boss-ketchup_leviathan) |
@@ -286,7 +286,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Octagon, 1900 × 1900 bounds; 1 obstacles (block movement, not bullets) |
-| Difficulty | HP ×2.21 · damage ×1.43 · speed ×1.25 |
+| Difficulty | HP ×2.56 · damage ×1.43 · speed ×1.25 |
 | Terrain | Spore Vents: The ground periodically puffs Poison spore clouds<br>Compost Pits: Blight Sprouts crawl out periodically<br>Grow Lamps: Players and monsters in the light become Hardened (more Armor, less damage taken); lamps move periodically |
 | Elite pool | <img src="../images/boss/pumpkin_brute.png" width="24" height="24" alt=""> [Pumpkin Brute](MONSTERS.md#boss-pumpkin_brute), <img src="../images/boss/spore_matron.png" width="24" height="24" alt=""> [Spore Matron](MONSTERS.md#boss-spore_matron) |
 | Boss pool | <img src="../images/boss/blight_gardener.png" width="24" height="24" alt=""> [Blight Gardener](MONSTERS.md#boss-blight_gardener) |
@@ -331,7 +331,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Irregular round shape, 2016 × 1800 bounds; 4 obstacles (block movement, not bullets) |
-| Difficulty | HP ×2.22 · damage ×1.5 · speed ×1.3 |
+| Difficulty | HP ×2.67 · damage ×1.5 · speed ×1.3 |
 | Terrain | Rot Mire: Pulls players and monsters toward the center and spreads Rot<br>Falling Rotten Fruit: Watch for warning circles on the ground<br>Brambles: Thorns burst from under your feet, dealing damage and inflicting Bleed and Corrode |
 | Elite pool | <img src="../images/boss/carrot_knight.png" width="24" height="24" alt=""> [Carrot Revenant](MONSTERS.md#boss-carrot_knight), <img src="../images/boss/onion_witch.png" width="24" height="24" alt=""> [Onion Witch](MONSTERS.md#boss-onion_witch) |
 | Boss pool | <img src="../images/boss/rot_mother.png" width="24" height="24" alt=""> [Mother of Rot](MONSTERS.md#boss-rot_mother), <img src="../images/boss/rot_king.png" width="24" height="24" alt=""> [Rot King](MONSTERS.md#boss-rot_king) |

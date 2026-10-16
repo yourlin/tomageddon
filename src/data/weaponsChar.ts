@@ -237,7 +237,7 @@ export const CHAR_WEAPONS: WeaponDef[] = [
     cls: 'elemental',
     kind: 'aura',
     tags: [],
-    damage: [3, 5, 8, 12],
+    damage: [5, 8, 12, 18], // 光环统一加强 ×1.5（原 3/5/8/12）
     cooldown: [0.5, 0.5, 0.5, 0.5],
     range: 165,
     scaling: { elemental: 0.45 },
@@ -546,6 +546,7 @@ export const CHAR_EVOLUTIONS: CharEvoSpec[] = [
     second: 'star_anise_shuriken',
     boost: {
       id: 'truth_field',
+      dmg: 1.13, // 默认 1.7；基础 salt_aura 已 ×1.5，抵消掉保持超武原强度
       name: '真相结界',
       desc: '侦探的盐晶结界，结界里的敌人弱点一览无遗。',
       range: 1.2,
@@ -587,6 +588,7 @@ export const CHAR_EVOLUTIONS: CharEvoSpec[] = [
     second: 'curry_aura',
     boost: {
       id: 'taro_field',
+      dmg: 1.13, // 默认 1.7；基础 taro_aura 已 ×1.5，抵消掉（芋头结界本身已偏强，不跟着加）
       name: '芋香结界',
       desc: '浓郁芋香的大结界，烤焦一切靠近的敌人。',
       range: 1.25,

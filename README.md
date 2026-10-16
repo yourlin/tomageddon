@@ -167,6 +167,22 @@ npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [-
 - 手动重新生成报告：`node scripts/report.mjs [结果文件] [--checks 检测项.json] [--advice 结论.html]`（`--advice` 在报告开头插入人工写的结论与建议）
 - 迭代调参建议只跑 `--chapters 1,2 --runs 1`，定稿前再跑全部章节
 
+#### 武器实战转换率与专项补测
+
+```bash
+npm run balance -- --focus auto|all|<武器id[@T1-4],...> [--focus-runs 4] [--focus-min 20] [--chapters 1,2,3,4,5,6,7]
+node scripts/weapon-eff.mjs [--half-life 14] [--max-age 60] [--archive <结果文件> [--adopt]]
+```
+
+- 每次平衡测试跑完都会把「每把武器×品质的实测 DPS ÷ 纸面 DPS」存档到 `reports/eff-<时间>-natural.json`，再把所有存档合并成 `reports/weapon-eff.json`，开发者界面「分析」页 E1 / E2 读取
+- 合并只用**数值指纹**与当前代码一致的样本（`src/systems/weaponFingerprint.ts`）：`BALANCE`、怪物、Boss、章节改过 → 旧存档全部作废；某把武器的定义改过 → 只作废这把武器的样本；改名、改描述、改外观不影响。越旧的存档权重越低（半衰期 `--half-life` 天，超过 `--max-age` 天不用）。改了战斗代码（如伤害公式）时把 `FP_SALT` 加 1，让旧数据全部失效
+- **专项补测** `--focus`：开局强制给一把指定武器和品质，整局不卖、不合成，专门给 bot 平时不选的武器、T4 合成和超武补样本；`auto` 只补合并数据里样本不足 `--focus-min` 波的，`all` 补全部。一半局用契合这把武器的角色、一半用不契合的，章节在 `--chapters` 里轮换。结果存到 `scripts/.batch-focus-*.json` 和 `reports/eff-<时间>-focus.json`，不出 HTML 报告，也不参与使用率 / 通关率统计
+- 统计维度：
+  - **标准化转换率**：转换率强烈依赖怪物密度（怪多时群伤、穿透、爆炸收益翻倍），所以按那一波每秒出怪数分「稀 / 中 / 密」三档分别统计，再按固定参考比例加权，横向比较武器用它；「密度×」= 密档 ÷ 稀档，越大越依赖群伤
+  - **契合 / 不契合**：纸面只算契合的 +10% 伤害，额外弹丸、穿透、连锁、连击、范围都体现在两者的差距上
+  - **辅助**：易伤类减益（受到伤害提高）放大出来的伤害按施加者记到 `run.assistBy`，体现带易伤的光环等武器的贡献；持续伤害本来就记在施加者名下。减速、眩晕等控制的防御价值不在 DPS 里，需要另做对照测试
+- 推荐流程：改完数值先跑一次普通平衡测试，再跑 `--focus auto` 把缺样本的武器补齐
+
 ### 宣传片
 
 ```bash

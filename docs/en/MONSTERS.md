@@ -275,7 +275,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>45</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>4</td></tr>
 <tr><td nowrap>Special</td><td>Summons 3× <a href="#enemy-fly">Fruit Fly</a></td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 8+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 8+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 8+; <a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 7+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 8+</td></tr>
 </table>
 
 <a id="enemy-rat"></a>
@@ -319,7 +319,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>65</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>3</td></tr>
 <tr><td nowrap>Special</td><td>Splits into 4× <a href="#enemy-fly">Fruit Fly</a> on death</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+; <a href="CHAPTERS.md#chapter-5">Chapter 5 · Ketchup Factory</a> waves 6+</td></tr>
 </table>
 
 <a id="enemy-robot_can"></a>
@@ -418,7 +418,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>105</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
 <tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-blind">Blind</a> 3s</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 6+</td></tr>
 </table>
 
 <a id="enemy-oil_blob"></a>
@@ -907,7 +907,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>75</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>2</td></tr>
 <tr><td nowrap>Inflicts</td><td><a href="SKILLS.md#status-sticky">Sticky</a> 2s</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 5+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 7+</td></tr>
 </table>
 
 <a id="enemy-bag_ghost"></a>

@@ -34,8 +34,13 @@ let fieldSearch = '';
 /** 小型折线图（SVG），series 每条为 [名称, 颜色, 点列] */
 export function lineChart(
   series: [string, string, number[]][],
-  opts: { w?: number; h?: number; xLabel?: (i: number) => string } = {},
+  opts: { w?: number; h?: number; xLabel?: (i: number) => string; dots?: boolean } = {},
 ): SVGSVGElement {
+  const titleOf = (text: string) => {
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    t.textContent = text;
+    return t;
+  };
   const W = opts.w ?? 500;
   const H = opts.h ?? 160;
   const pad = 28;
@@ -47,8 +52,9 @@ export function lineChart(
   const y = (v: number) => H - 16 - ((v - min) / (max - min || 1)) * (H - 26);
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('width', String(W));
-  svg.setAttribute('height', String(H));
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('style', `max-width:${W}px;height:auto;display:block`);
   svg.setAttribute('class', 'chart');
   const el = (tag: string, attrs: Record<string, string | number>, text?: string) => {
     const e = document.createElementNS(NS, tag);
@@ -72,6 +78,10 @@ export function lineChart(
       stroke: color,
       'stroke-width': 1.6,
     });
+    if (opts.dots)
+      pts.forEach((v, i) => {
+        if (Number.isFinite(v)) el('circle', { cx: x(i), cy: y(v), r: 2.5, fill: color }).append(titleOf(`${name} ${fmt(v, 1)}`));
+      });
     el('text', { x: pad + 4 + si * 90, y: 10, fill: color, 'font-size': 10 }, name);
   });
   return svg;

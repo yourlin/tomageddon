@@ -84,7 +84,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '滚烫的焦糖香气，灼烧并减速周围敌人。',
     enDesc: 'Scalding caramel that burns and slows nearby foes.',
     tags: ['甜点'],
-    dmg: 0.9,
+    dmg: 1.35, // 光环统一加强 ×1.5（实测转换率偏低）
     tint: 0xbc6c25,
     over: { effect: { burn: B(2, 2), slow: SL(15, 0.6) } },
   },
@@ -169,7 +169,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '周身寒气，减速周围敌人。',
     enDesc: 'A chilling aura that slows nearby enemies.',
     tags: [],
-    dmg: 0.9,
+    dmg: 0.9, // 基础 salt_aura 已 ×1.5，这里不再叠加
     tint: 0x90e0ef,
     over: { cls: 'elemental', effect: { slow: SL(30, 0.8) } },
   },
@@ -242,7 +242,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '持续放电的电饭煲，电晕周围敌人。',
     enDesc: 'A sparking rice cooker that shocks nearby foes.',
     tags: ['厨具'],
-    dmg: 0.85,
+    dmg: 1.3, // 光环统一加强 ×1.5
     tint: 0xfff3b0,
     over: { effect: { slow: SL(15, 0.5), stun: 0.1 } },
   },
@@ -412,7 +412,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '周身炭火，灼烧周围敌人。',
     enDesc: 'Smoldering coals that burn nearby enemies.',
     tags: ['酱料'],
-    dmg: 0.95,
+    dmg: 1.4, // 光环统一加强 ×1.5
     tint: 0x370617,
     over: { effect: { burn: B(3, 2) } },
   },
@@ -497,7 +497,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '周身飞舞的刀刃，容易暴击。',
     enDesc: 'Whirling blades that crit often.',
     tags: ['锋利'],
-    dmg: 0.9,
+    dmg: 0.9, // 基础 blender_aura 已 ×1.5，这里不再叠加
     tint: 0xdee2e6,
     over: { critMult: 2, critBonus: 10 },
   },
@@ -619,7 +619,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '清凉的薄荷气息，减速周围敌人。',
     enDesc: 'Cool mint that slows nearby enemies.',
     tags: ['蔬果'],
-    dmg: 0.9,
+    dmg: 0.6, // 原 0.9；基础 salt_aura 已 ×1.5，薄荷光环本身不弱，抵消掉保持原强度
     tint: 0x95d5b2,
     over: { effect: { slow: SL(25, 0.8) } },
   },
@@ -643,7 +643,7 @@ export const GEN_SPECS: GenSpec[] = [
     desc: '黏稠的蜂蜜气息，减速并吸血。',
     enDesc: 'Sticky honey that slows and drains life.',
     tags: ['甜点'],
-    dmg: 0.85,
+    dmg: 1.3, // 光环统一加强 ×1.5
     tint: 0xffb703,
     over: { effect: { slow: SL(30, 0.8), lifeSteal: 2 } },
   },

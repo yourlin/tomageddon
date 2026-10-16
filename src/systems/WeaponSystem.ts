@@ -661,7 +661,8 @@ export class WeaponSystem {
   /** 超武增益·怒气满层爆发的冲击波（命中结算后调用） */
   rageBurst(x: number, y: number, dmg: number, info: HitInfo): void {
     const R = BALANCE.superBuff.rage;
-    this.g.explode(x, y, R.boomR, dmg * R.boomDmg, { ...info, echo: true, explosion: true }, 0xff4b3e);
+    // 冲击波自身不能再带 rageBurst：否则它命中的每个敌人又各炸一圈，层层递归直到栈溢出
+    this.g.explode(x, y, R.boomR, dmg * R.boomDmg, { ...info, echo: true, explosion: true, rageBurst: undefined }, 0xff4b3e);
   }
 
   private fireAura(w: WRun, range: number): void {

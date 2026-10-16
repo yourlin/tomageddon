@@ -7,7 +7,17 @@ import { WEAPON_MAP, WEAPONS, TIER_PRICE_MULT, isShopWeapon, SHOP_MAX_TIER } fro
 import { ALL_ITEMS, ITEM_MAP, LEVELUP_OPTIONS, type ItemDef } from '../data/items';
 import { TALENT_NODES } from '../data/talentTree';
 import type { StatKey, StatMods } from '../data/stats';
-import { BALANCE, expectedSpawns, seedValue, pickRarity, pickUpgradeRarity, pickWeaponTier, rerollPrice, sellPrice } from '../data/balance';
+import {
+  BALANCE,
+  expectedSpawns,
+  seedValue,
+  pickRarity,
+  pickUpgradeRarity,
+  pickWeaponTier,
+  rarityWeights,
+  rerollPrice,
+  sellPrice,
+} from '../data/balance';
 import { save } from '../systems/Save';
 import { setTalents, treeTotals } from '../systems/TalentTree';
 import { levelGrowthMods, waveGrowthMods, freeFirstReroll } from '../systems/Talents';
@@ -293,11 +303,16 @@ export function rollShelf(b: DevBuild, prev?: Shelf): Shelf {
   const R = Math.random;
   const offers: ShelfOffer[] = [];
   const luck = run.stats.luck; // 武器品质 / 道具稀有度只看幸运，与波次无关
-  // 与 ShopScene 一致：配方材料武器快凑齐时，25% 概率上架一件配方还缺的道具（契合配方优先）
-  const need = wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.char.favored, WEAPON_MAP[to])).filter((id) =>
-    run.canTakeItem(id),
-  );
-  if (need.length && R() < 0.25) {
+  // 与 ShopScene 一致：配方材料武器快凑齐时，10% 概率上架一件配方还缺的道具（契合配方优先）；
+  // 只补当前幸运已经能自然刷出该稀有度的道具；只帮凑第一把 T4，已持有 T4 后不再补货
+  const rw = rarityWeights(luck);
+  const hasT4 = run.allWeapons.some((w) => w.tier === 3);
+  const need = hasT4
+    ? []
+    : wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.char.favored, WEAPON_MAP[to])).filter(
+        (id) => run.canTakeItem(id) && rw[ITEM_MAP[id].rarity] > 0,
+      );
+  if (need.length && R() < 0.1) {
     const it = ITEM_MAP[need[Math.floor(Math.pow(R(), 2) * need.length)]];
     offers.push({ kind: 'item', id: it.id, tier: it.rarity, price: itemPrice(b, it), sold: false });
   }

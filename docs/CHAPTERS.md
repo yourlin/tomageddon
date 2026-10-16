@@ -107,7 +107,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 圆角矩形 1760 × 1100；3 个障碍物（只挡移动，不挡子弹） |
-| 难度倍率 | 生命 ×1.64 · 伤害 ×1.17 · 速度 ×1.05 |
+| 难度倍率 | 生命 ×1.78 · 伤害 ×1.17 · 速度 ×1.05 |
 | 地形机关 | 兔子洞：兔子四处逃窜，击败掉落番茄籽与果实<br>土拨鼠：从地洞探头扔石头<br>自动洒水器：周期性喷洒，范围内的玩家与怪物都会浸湿（移速、攻速降低） |
 | 精英池 | <img src="images/boss/rat_captain.png" width="24" height="24" alt=""> [鼠队长](MONSTERS.md#boss-rat_captain)、<img src="images/boss/snail_tank.png" width="24" height="24" alt=""> [装甲蜗牛](MONSTERS.md#boss-snail_tank)、<img src="images/boss/queen_bee.png" width="24" height="24" alt=""> [蜂后](MONSTERS.md#boss-queen_bee)、<img src="images/boss/scarecrow.png" width="24" height="24" alt=""> [邪恶稻草人](MONSTERS.md#boss-scarecrow)、<img src="images/boss/spider_matron.png" width="24" height="24" alt=""> [蛛后](MONSTERS.md#boss-spider_matron)、<img src="images/boss/mushroom_king.png" width="24" height="24" alt=""> [毒菇王](MONSTERS.md#boss-mushroom_king) |
 | Boss 池 | <img src="images/boss/locust_queen.png" width="24" height="24" alt=""> [蝗虫女皇](MONSTERS.md#boss-locust_queen)、<img src="images/boss/rotten_pumpkin.png" width="24" height="24" alt=""> [腐烂南瓜王](MONSTERS.md#boss-rotten_pumpkin)、<img src="images/boss/mole_general.png" width="24" height="24" alt=""> [鼹鼠大将](MONSTERS.md#boss-mole_general) |
@@ -151,7 +151,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 矩形 1500 × 1500；4 个障碍物（只挡移动，不挡子弹） |
-| 难度倍率 | 生命 ×1.74 · 伤害 ×1.23 · 速度 ×1.1 |
+| 难度倍率 | 生命 ×1.97 · 伤害 ×1.23 · 速度 ×1.1 |
 | 地形机关 | 冰面：在冰上会打滑，但速度更快<br>冷风：周期性狂风吹动所有单位并减速 |
 | 精英池 | <img src="images/boss/ice_golem.png" width="24" height="24" alt=""> [冰晶傀儡](MONSTERS.md#boss-ice_golem)、<img src="images/boss/popsicle_twins.png" width="24" height="24" alt=""> [冰棍双子](MONSTERS.md#boss-popsicle_twins)、<img src="images/boss/frozen_fish.png" width="24" height="24" alt=""> [冻鱼武士](MONSTERS.md#boss-frozen_fish)、<img src="images/boss/snow_rat.png" width="24" height="24" alt=""> [雪鼠刺客](MONSTERS.md#boss-snow_rat)、<img src="images/boss/milk_slime.png" width="24" height="24" alt=""> [变质牛奶怪](MONSTERS.md#boss-milk_slime)、<img src="images/boss/frost_penguin.png" width="24" height="24" alt=""> [冰霜企鹅](MONSTERS.md#boss-frost_penguin) |
 | Boss 池 | <img src="images/boss/frost_rat_king.png" width="24" height="24" alt=""> [冰霜鼠王](MONSTERS.md#boss-frost_rat_king)、<img src="images/boss/ice_cream_tyrant.png" width="24" height="24" alt=""> [冰淇淋暴君](MONSTERS.md#boss-ice_cream_tyrant)、<img src="images/boss/freezer_heart.png" width="24" height="24" alt=""> [冰柜之心](MONSTERS.md#boss-freezer_heart) |
@@ -195,7 +195,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 十字形，外接 2200 × 1500 |
-| 难度倍率 | 生命 ×1.75 · 伤害 ×1.29 · 速度 ×1.15 |
+| 难度倍率 | 生命 ×1.98 · 伤害 ×1.29 · 速度 ×1.15 |
 | 地形机关 | 流沙坑：会把人和怪物吸入中心，并造成伤害<br>垃圾坠落：注意地面的预警圈<br>酸液泄漏：脚边会冒出酸液池，造成伤害并附加腐蚀 |
 | 精英池 | <img src="images/boss/tire_beast.png" width="24" height="24" alt=""> [轮胎兽](MONSTERS.md#boss-tire_beast)、<img src="images/boss/can_king.png" width="24" height="24" alt=""> [易拉罐之王](MONSTERS.md#boss-can_king)、<img src="images/boss/rag_wraith.png" width="24" height="24" alt=""> [抹布怨灵](MONSTERS.md#boss-rag_wraith)、<img src="images/boss/battery_bug.png" width="24" height="24" alt=""> [漏电电池虫](MONSTERS.md#boss-battery_bug)、<img src="images/boss/garbage_rat.png" width="24" height="24" alt=""> [垃圾鼠王](MONSTERS.md#boss-garbage_rat)、<img src="images/boss/oil_titan.png" width="24" height="24" alt=""> [石油泰坦](MONSTERS.md#boss-oil_titan) |
 | Boss 池 | <img src="images/boss/trash_golem.png" width="24" height="24" alt=""> [垃圾巨像](MONSTERS.md#boss-trash_golem)、<img src="images/boss/toxic_barrel.png" width="24" height="24" alt=""> [毒液桶魔](MONSTERS.md#boss-toxic_barrel)、<img src="images/boss/scrap_dragon.png" width="24" height="24" alt=""> [废铁巨龙](MONSTERS.md#boss-scrap_dragon) |
@@ -207,20 +207,20 @@
 | <img src="images/enemy/mold.png" width="32" height="32" alt=""> [霉菌团](MONSTERS.md#enemy-mold) | 1~5 | 8 (11%) |
 | <img src="images/enemy/rat.png" width="32" height="32" alt=""> [下水道老鼠](MONSTERS.md#enemy-rat) | 5+ | 5 (7%) |
 | <img src="images/enemy/cockroach.png" width="32" height="32" alt=""> [蟑螂](MONSTERS.md#enemy-cockroach) | 3+ | 4 (5%) |
-| <img src="images/enemy/trash_bag.png" width="32" height="32" alt=""> [垃圾袋怪](MONSTERS.md#enemy-trash_bag) | 5+ | 4 (5%) |
+| <img src="images/enemy/trash_bag.png" width="32" height="32" alt=""> [垃圾袋怪](MONSTERS.md#enemy-trash_bag) | 6+ | 4 (5%) |
 | <img src="images/enemy/beetle.png" width="32" height="32" alt=""> [炸弹甲虫](MONSTERS.md#enemy-beetle) | 6+ | 4 (5%) |
-| <img src="images/enemy/brood.png" width="32" height="32" alt=""> [虫母](MONSTERS.md#enemy-brood) | 5+ | 2 (3%) |
+| <img src="images/enemy/brood.png" width="32" height="32" alt=""> [虫母](MONSTERS.md#enemy-brood) | 7+ | 2 (3%) |
 | <img src="images/enemy/rotten_apple.png" width="32" height="32" alt=""> [烂苹果](MONSTERS.md#enemy-rotten_apple) | 2+ | 3 (4%) |
 | <img src="images/enemy/snail.png" width="32" height="32" alt=""> [鼻涕蜗牛](MONSTERS.md#enemy-snail) | 6+ | 3 (4%) |
 | <img src="images/enemy/mushroom.png" width="32" height="32" alt=""> [毒蘑菇](MONSTERS.md#enemy-mushroom) | 8+ | 2 (3%) |
 | <img src="images/enemy/can_crab.png" width="32" height="32" alt=""> [易拉罐蟹](MONSTERS.md#enemy-can_crab) | 7+ | 3 (4%) |
-| <img src="images/enemy/rag_ghost.png" width="32" height="32" alt=""> [抹布幽灵](MONSTERS.md#enemy-rag_ghost) | 5+ | 3 (4%) |
+| <img src="images/enemy/rag_ghost.png" width="32" height="32" alt=""> [抹布幽灵](MONSTERS.md#enemy-rag_ghost) | 6+ | 3 (4%) |
 | <img src="images/enemy/oil_blob.png" width="32" height="32" alt=""> [油污怪](MONSTERS.md#enemy-oil_blob) | 6+ | 3 (4%) |
 | <img src="images/enemy/rusty_nail.png" width="32" height="32" alt=""> [锈钉虫](MONSTERS.md#enemy-rusty_nail) | 2+ | 4 (5%) |
 | <img src="images/enemy/bag_ghost.png" width="32" height="32" alt=""> [塑料袋幽灵](MONSTERS.md#enemy-bag_ghost) | 3+ | 3 (4%) |
 | <img src="images/enemy/glass_shard.png" width="32" height="32" alt=""> [碎玻璃怪](MONSTERS.md#enemy-glass_shard) | 3+ | 3 (4%) |
 | <img src="images/enemy/scrap_drone.png" width="32" height="32" alt=""> [废铁无人机](MONSTERS.md#enemy-scrap_drone) | 4+ | 3 (4%) |
-| <img src="images/enemy/oil_slick.png" width="32" height="32" alt=""> [油膜怪](MONSTERS.md#enemy-oil_slick) | 5+ | 3 (4%) |
+| <img src="images/enemy/oil_slick.png" width="32" height="32" alt=""> [油膜怪](MONSTERS.md#enemy-oil_slick) | 7+ | 3 (4%) |
 | <img src="images/enemy/battery_mite.png" width="32" height="32" alt=""> [漏电电池](MONSTERS.md#enemy-battery_mite) | 6+ | 3 (4%) |
 | <img src="images/enemy/rust_crab.png" width="32" height="32" alt=""> [锈铁蟹](MONSTERS.md#enemy-rust_crab) | 7+ | 3 (4%) |
 | <img src="images/enemy/tire_roller.png" width="32" height="32" alt=""> [滚轮胎](MONSTERS.md#enemy-tire_roller) | 8+ | 3 (4%) |
@@ -240,7 +240,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 矩形 2400 × 1300；4 个障碍物（只挡移动，不挡子弹） |
-| 难度倍率 | 生命 ×2.02 · 伤害 ×1.36 · 速度 ×1.2 |
+| 难度倍率 | 生命 ×2.42 · 伤害 ×1.36 · 速度 ×1.2 |
 | 地形机关 | 传送带：推动站在上面的所有单位<br>蒸汽阀门：周期性喷出灼热蒸汽<br>鼓风口：站在风口上获得顺风（移速、闪避提高），怪物会被吹开 |
 | 精英池 | <img src="images/boss/conveyor_worm.png" width="24" height="24" alt=""> [传送带蠕虫](MONSTERS.md#boss-conveyor_worm)、<img src="images/boss/ketchup_golem.png" width="24" height="24" alt=""> [番茄酱傀儡](MONSTERS.md#boss-ketchup_golem)、<img src="images/boss/security_bot.png" width="24" height="24" alt=""> [保安机器人](MONSTERS.md#boss-security_bot)、<img src="images/boss/press_machine.png" width="24" height="24" alt=""> [冲压机](MONSTERS.md#boss-press_machine)、<img src="images/boss/chef_minion.png" width="24" height="24" alt=""> [腐烂副厨](MONSTERS.md#boss-chef_minion)、<img src="images/boss/furnace_imp.png" width="24" height="24" alt=""> [熔炉小鬼](MONSTERS.md#boss-furnace_imp) |
 | Boss 池 | <img src="images/boss/rotten_chef.png" width="24" height="24" alt=""> [腐烂大厨](MONSTERS.md#boss-rotten_chef)、<img src="images/boss/factory_core.png" width="24" height="24" alt=""> [工厂主脑](MONSTERS.md#boss-factory_core)、<img src="images/boss/ketchup_leviathan.png" width="24" height="24" alt=""> [番茄酱海怪](MONSTERS.md#boss-ketchup_leviathan) |
@@ -286,7 +286,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 八边形，外接 1900 × 1900；1 个障碍物（只挡移动，不挡子弹） |
-| 难度倍率 | 生命 ×2.21 · 伤害 ×1.43 · 速度 ×1.25 |
+| 难度倍率 | 生命 ×2.56 · 伤害 ×1.43 · 速度 ×1.25 |
 | 地形机关 | 孢子喷口：地面周期性喷出中毒孢子云<br>堆肥坑：定期钻出枯萎嫩芽<br>补光灯：光区内的玩家与怪物都会硬化（护甲提高、受到伤害降低），灯会定期换位 |
 | 精英池 | <img src="images/boss/pumpkin_brute.png" width="24" height="24" alt=""> [南瓜蛮汉](MONSTERS.md#boss-pumpkin_brute)、<img src="images/boss/spore_matron.png" width="24" height="24" alt=""> [孢子女王](MONSTERS.md#boss-spore_matron) |
 | Boss 池 | <img src="images/boss/blight_gardener.png" width="24" height="24" alt=""> [枯萎园丁](MONSTERS.md#boss-blight_gardener) |
@@ -331,7 +331,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 不规则圆形，外接 2016 × 1800；4 个障碍物（只挡移动，不挡子弹） |
-| 难度倍率 | 生命 ×2.22 · 伤害 ×1.5 · 速度 ×1.3 |
+| 难度倍率 | 生命 ×2.67 · 伤害 ×1.5 · 速度 ×1.3 |
 | 地形机关 | 腐泥沼：会把人和怪物吸入中心，并染上腐烂<br>烂果坠落：注意地面的预警圈<br>荆棘藤：脚下会钻出荆棘，造成伤害并附加流血与腐蚀 |
 | 精英池 | <img src="images/boss/carrot_knight.png" width="24" height="24" alt=""> [胡萝卜亡骑](MONSTERS.md#boss-carrot_knight)、<img src="images/boss/onion_witch.png" width="24" height="24" alt=""> [洋葱巫婆](MONSTERS.md#boss-onion_witch) |
 | Boss 池 | <img src="images/boss/rot_mother.png" width="24" height="24" alt=""> [腐土之母](MONSTERS.md#boss-rot_mother)、<img src="images/boss/rot_king.png" width="24" height="24" alt=""> [腐烂之王](MONSTERS.md#boss-rot_king) |

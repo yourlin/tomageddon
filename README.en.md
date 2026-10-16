@@ -167,6 +167,22 @@ npm run balance -- --chapters 1,2,3 --runs 2 [--workers 10] [--min-workers 4] [-
 - Regenerate a report manually: `node scripts/report.mjs [results file] [--checks checks.json] [--advice notes.html]` (`--advice` inserts hand-written conclusions at the top)
 - While iterating, run only `--chapters 1,2 --runs 1`; run every chapter before finalizing
 
+#### Weapon conversion rate and focus runs
+
+```bash
+npm run balance -- --focus auto|all|<weaponId[@T1-4],...> [--focus-runs 4] [--focus-min 20] [--chapters 1,2,3,4,5,6,7]
+node scripts/weapon-eff.mjs [--half-life 14] [--max-age 60] [--archive <results file> [--adopt]]
+```
+
+- Every balance run archives "measured DPS ÷ paper DPS" per weapon × tier to `reports/eff-<time>-natural.json`, then merges all archives into `reports/weapon-eff.json`, which the developer panel's Analysis tab (E1 / E2) reads
+- Merging only uses samples whose **stat fingerprint** matches the current code (`src/systems/weaponFingerprint.ts`): a change to `BALANCE`, enemies, bosses or chapters invalidates every older archive; a change to one weapon's definition invalidates only that weapon's samples; renames, descriptions and visuals do not count. Older archives weigh less (half-life `--half-life` days, dropped after `--max-age` days). After changing combat code (e.g. a damage formula), bump `FP_SALT` to invalidate all old data
+- **Focus runs** `--focus`: start each game with a forced weapon at a given tier, never sold or crafted away, to sample weapons the bot rarely picks, T4 fusions and evolved weapons. `auto` only fills weapon × tier combos with fewer than `--focus-min` waves of merged data; `all` covers everything. Half of the games use characters that favor the weapon and half use characters that don't, and chapters rotate through `--chapters`. Results go to `scripts/.batch-focus-*.json` and `reports/eff-<time>-focus.json`; no HTML report, and they are excluded from pick / win-rate stats
+- Metrics:
+  - **Standardized conversion rate**: the rate depends heavily on enemy density (AoE, pierce and explosions pay off far more in crowds), so samples are split into sparse / medium / dense by enemies spawned per second that wave, and the three rates are weighted by a fixed reference mix. Compare weapons with this one; "density×" = dense ÷ sparse, higher means more AoE-dependent
+  - **Favored / not favored**: paper DPS only includes the favored +10% damage; extra projectiles, pierce, chain, combo and area show up as the gap between the two
+  - **Assist**: damage amplified by vulnerability-type debuffs ("takes more damage") is credited to the weapon that applied them in `run.assistBy`, so debuffing auras get credit; damage over time is already credited to its source. The defensive value of slows, stuns and other control is not in DPS and needs a separate A/B test
+- Suggested flow: after changing numbers, run a normal balance test first, then `--focus auto` to fill the gaps
+
 ### Trailer
 
 ```bash

@@ -12,6 +12,37 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.7.1',
+    date: '2026-10-16',
+    highlight: [
+      '光环加强、配方道具补货改版、第 4 章难度断崖修复、怒气超武卡死修复',
+      'Aura buffs, recipe-item restock rework, Chapter 4 difficulty spike fixed, rage super weapon freeze fixed',
+    ],
+    items: [
+      [
+        '修复龙骨斩刀、地狱三叉戟怒气爆发的冲击波反复连锁、导致游戏卡顿报错的问题',
+        'Fixed Dragon Cleaver and Hell Trident rage bursts chaining into each other endlessly, which caused stutters and errors',
+      ],
+      [
+        '焦糖光环、蜂蜜光环、电饭煲光环、炭烤光环、破壁机、海盐结界、芋泥光环伤害提高 50%；由它们合成的武器保持原强度',
+        'Caramel Aura, Honey Aura, Rice Cooker Aura, Charcoal Aura, Blender, Sea Salt Ward and Taro Aura deal 50% more damage; weapons crafted from them keep their previous strength',
+      ],
+      [
+        '商店补上配方缺的道具：概率从 25% 降到 10%，只在当前幸运已能刷出这件道具的稀有度时补货（史诗需幸运 15、传说需幸运 20），并且只帮你凑出第一把 T4',
+        'Shop restock of missing recipe items: chance lowered from 25% to 10%, only offered once your Luck can already roll that rarity (Epic needs 15, Legendary 20), and only until you own your first T4 weapon',
+      ],
+      [
+        '猕猴桃侦探开局武器改为芥末喷火器，属性加成从近战 +1 改为元素 +2；八角飞镖仍可在开局三选一中选到',
+        'Kiwi Detective now starts with the Mustard Flamer and gets +2 Elemental instead of +1 Melee; the Star Anise Shuriken can still be picked at the start',
+      ],
+      [
+        '第 4 章第 5 波首只精英登场时不再同时出现 5 种新怪，部分新怪推迟到第 6、7 波',
+        'Chapter 4 wave 5 no longer introduces five new enemy types alongside its first elite; some now appear in waves 6 and 7',
+      ],
+      ['第 2–7 章怪物生命提高', 'Enemy HP raised in Chapters 2–7'],
+    ],
+  },
+  {
     version: '0.7.0',
     date: '2026-10-16',
     highlight: [

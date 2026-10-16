@@ -60,6 +60,8 @@ export class StatusSet {
   ccResist = 0;
   private dirty = false;
   private tickAcc = 0;
+  /** 带施加者的易伤（dmgTaken > 0）按来源汇总：[武器 id, 百分比]。伤害结算时把被放大的部分记为施加者的辅助伤害 */
+  amp: [string, number][] = [];
   /** 最近一次跳伤害的明细（update 返回大于 0 时有效） */
   dotParts: { id: StatusId; dmg: number; src?: string }[] = [];
   version = 0;
@@ -69,6 +71,7 @@ export class StatusSet {
   clear(): void {
     this.list.length = 0;
     this.totals = { ...EMPTY };
+    this.amp = [];
     this.version++;
   }
 
@@ -172,9 +175,15 @@ export class StatusSet {
 
   private recalc(): void {
     const t: StatusTotals = { ...EMPTY };
+    const amp: [string, number][] = [];
     for (const s of this.list) {
       const d = STATUSES[s.id];
       const n = s.stacks;
+      if ((d.dmgTaken ?? 0) > 0 && s.src) {
+        const p = amp.find((x) => x[0] === s.src);
+        if (p) p[1] += d.dmgTaken! * n;
+        else amp.push([s.src, d.dmgTaken! * n]);
+      }
       t.speed += (d.speed ?? 0) * n;
       t.attackSpeed += (d.attackSpeed ?? 0) * n;
       t.dmgDealt += (d.dmgDealt ?? 0) * n;
@@ -197,6 +206,7 @@ export class StatusSet {
     }
     t.speed = Math.max(-80, t.speed);
     this.totals = t;
+    this.amp = amp;
     this.dirty = false;
     this.version++;
   }
