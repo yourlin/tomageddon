@@ -66,3 +66,29 @@ function pump(): void {
     done('');
   }
 }
+
+// ---------------- 静态贴图（武器 / 道具图标） ----------------
+// 这些贴图是普通纹理，getBase64 同步读回即可；结果按 key 缓存。
+const texCache = new Map<string, string>();
+
+/** 把 Phaser 贴图转成 DOM <img>（失败时返回同尺寸空占位） */
+export function texImg(game: Phaser.Game, key: string, size = 40): HTMLElement {
+  let url = texCache.get(key);
+  if (url === undefined) {
+    try {
+      url = game.textures.exists(key) ? game.textures.getBase64(key) : '';
+    } catch {
+      url = '';
+    }
+    texCache.set(key, url);
+  }
+  return url
+    ? h('img', { src: url, width: size, height: size, alt: '', style: 'object-fit:contain;flex:none' })
+    : h('span', { style: `display:inline-block;width:${size}px;height:${size}px;flex:none` });
+}
+
+/** 武器图标贴图：外部美术 icon_weapon_xxx 优先，否则用程序生成的 weapon_xxx（与游戏内各场景一致） */
+export const weaponIconKey = (game: Phaser.Game, id: string): string =>
+  game.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`;
+
+export const weaponIcon = (game: Phaser.Game, id: string, size = 40): HTMLElement => texImg(game, weaponIconKey(game, id), size);

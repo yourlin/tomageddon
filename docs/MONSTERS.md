@@ -275,7 +275,7 @@
 <tr><td nowrap>速度</td><td>45</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>4</td></tr>
 <tr><td nowrap>特殊</td><td>召唤 3 只<a href="#enemy-fly">果蝇</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 5+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 8+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 7+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 8+ 波</td></tr>
 </table>
 
 <a id="enemy-rat"></a>
@@ -319,7 +319,7 @@
 <tr><td nowrap>速度</td><td>65</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>特殊</td><td>死亡分裂为 4 只<a href="#enemy-fly">果蝇</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 5+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 6+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 6+ 波；<a href="CHAPTERS.md#chapter-5">第五章 · 番茄酱工厂</a> 第 6+ 波</td></tr>
 </table>
 
 <a id="enemy-robot_can"></a>
@@ -418,7 +418,7 @@
 <tr><td nowrap>速度</td><td>105</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-blind">致盲</a> 3s</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 5+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 6+ 波</td></tr>
 </table>
 
 <a id="enemy-oil_blob"></a>
@@ -907,7 +907,7 @@
 <tr><td nowrap>速度</td><td>75</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>2</td></tr>
 <tr><td nowrap>攻击附带</td><td><a href="SKILLS.md#status-sticky">黏液</a> 2s</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 5+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 7+ 波</td></tr>
 </table>
 
 <a id="enemy-bag_ghost"></a>

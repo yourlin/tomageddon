@@ -381,6 +381,11 @@ export class RunState {
   }
   /** 局后统计：各来源造成的伤害（武器 id / skill / dot / explosion / knives / other） */
   dmgBy: Record<string, number> = {};
+  /**
+   * 辅助伤害：易伤类减益（受到伤害提高）放大出来的那部分，按施加减益的武器累计。
+   * 这部分已经算在出手武器的 dmgBy 里，这里另记一份，用来评估光环等「带易伤」武器的真实贡献（平衡测试 / 开发者界面用，不存档）
+   */
+  assistBy: Record<string, number> = {};
   /** 本局开始时间（用于战绩里的用时） */
   startedAt = 0;
   earn(v: number, src: string): void {
@@ -437,6 +442,7 @@ export class RunState {
     this.income = {};
     this.waveLog = {};
     this.dmgBy = {};
+    this.assistBy = {};
     this.waveDmg = {};
     this.waveSec = {};
     this.startedAt = Date.now();

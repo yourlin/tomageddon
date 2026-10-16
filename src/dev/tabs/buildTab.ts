@@ -2,6 +2,7 @@
 import { h, btn, check, select, num, table, fmt } from '../dom';
 import type { DevCtx } from '../ctx';
 import { switchChar } from '../quick';
+import { texImg, weaponIconKey } from '../thumbs';
 import { CHARACTERS, CHARACTER_MAP } from '../../data/characters';
 import { CHAPTERS } from '../../data/chapters';
 import { WEAPONS, WEAPON_MAP, TIER_NAMES } from '../../data/weapons';
@@ -450,26 +451,6 @@ function ensureShopCss(): void {
   document.head.append(st);
 }
 
-const texCache = new Map<string, string>();
-/** 把 Phaser 贴图转成 DOM <img>（失败时返回空占位） */
-function texImg(ctx: DevCtx, key: string, size = 40): HTMLElement {
-  let url = texCache.get(key);
-  if (url === undefined) {
-    try {
-      url = ctx.sb.game.textures.exists(key) ? ctx.sb.game.textures.getBase64(key) : '';
-    } catch {
-      url = '';
-    }
-    texCache.set(key, url);
-  }
-  return url
-    ? h('img', { src: url, width: size, height: size, alt: '', style: 'object-fit:contain;flex:none' })
-    : h('span', { style: `display:inline-block;width:${size}px;flex:none` });
-}
-
-const weaponTexKey = (ctx: DevCtx, id: string): string =>
-  ctx.sb.game.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`;
-
 /** 武器属性：按当前构筑属性算出的伤害 / 冷却 / 射程 / DPS，以及基础值和属性加成系数 */
 function weaponStatBox(id: string, tier: number): HTMLElement {
   const d = WEAPON_MAP[id];
@@ -602,7 +583,7 @@ function shelf(ctx: DevCtx): HTMLElement {
       h(
         'div',
         { class: 'shop-head' },
-        texImg(ctx, isW ? weaponTexKey(ctx, o.id) : itemIconKey(ctx.sb.g, it!)),
+        texImg(ctx.sb.game, isW ? weaponIconKey(ctx.sb.game, o.id) : itemIconKey(ctx.sb.g, it!)),
         h(
           'div',
           null,

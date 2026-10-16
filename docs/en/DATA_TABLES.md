@@ -55,7 +55,7 @@ Content: 39 characters · 209 weapons · 603 items · 89 monsters · 34 elites �
 | Beet Berserker | Berserker | +3% Life Steal Chance, +15% All Damage, -1 Armor | Gain Rage when damaged | Frenzy [Self Buff] Gain Enrage (+30% Move Speed and damage) and 3 stacks of Bloodlust (+12% Life Steal Chance) for 6s. | 13s | Achievement [Boss Terminator (Silver)](ACHIEVEMENTS.md#ach-bosses): Defeat 5 bosses |
 | Asparagus Archer | Marksman | +4 Max HP, +1 Ranged Damage, +10% Crit Chance, +80 Range, +1 Armor | Hits have a 25% chance to Mark enemies (next hit always crits) | Heartpiercer [Focused Barrage] Charge for 0.4s, then fire a giant arrow at the highest-HP enemy that pierces the whole line, dealing heavy damage and Marking every enemy hit. | 12s | Achievement [One Punch (Silver)](ACHIEVEMENTS.md#ach-max_hit): Deal 5,000 damage in a single hit |
 | Chef Yam | Gourmet | +5 Max HP, -5% All Damage, +20 Harvest | Fruit healing doubled | Roast Yam Feast [Drain Heal] Blast nearby enemies and toss out 3 roast yams; pick them up within 8s to restore 10.8% Max HP in total. Gain 5 stacks of Regen. | 24s | Achievement [Home Kitchen (Bronze)](ACHIEVEMENTS.md#ach-wset_home_kitchen): Hold 2 [Home Kitchen] set weapons in one run |
-| Kiwi Detective | Weakness Seeker | +3 Max HP, +1 Melee Damage, +8% Crit Chance, +4 Luck | Hits have a 20% chance to apply Vulnerable; Crit Damage +30% | One Truth [Mass Debuff] A magnifying glass sweeps the screen, lightly damaging every enemy on screen and applying Mark and 2 stacks of Vulnerable for 6s. | 15s | Achievement [Arsenal (Silver)](ACHIEVEMENTS.md#ach-codex_weapons): Discover 25 weapons in the codex |
+| Kiwi Detective | Weakness Seeker | +3 Max HP, +2 Elemental Damage, +8% Crit Chance, +4 Luck | Hits have a 20% chance to apply Vulnerable; Crit Damage +30% | One Truth [Mass Debuff] A magnifying glass sweeps the screen, lightly damaging every enemy on screen and applying Mark and 2 stacks of Vulnerable for 6s. | 15s | Achievement [Arsenal (Silver)](ACHIEVEMENTS.md#ach-codex_weapons): Discover 25 weapons in the codex |
 | Lychee Princess | Lucky Princess | +6 Max HP, +16% All Damage, +1 Armor, +16 Luck | Crate drop rate doubled | Princess’s Luck [Self Buff] Four-leaf clovers orbit you for 6s, granting 5 stacks of Lucky and 3 stacks of Focus. | 10s | Achievement [Tomato Tycoon (Diamond)](ACHIEVEMENTS.md#ach-earned): Earn 500,000 Seeds in total |
 | Durian Overlord | Spiked Tyrant | +10 Max HP, +10% All Damage, +2 Elemental Damage, +3 Armor, -2 Move Speed | Reflect 10 damage; Enemies within 160 are constantly Weakened and gain 2 Poison stacks every second; Poisoned enemies are also Slowed | Stink Bomb [Mass Debuff] A stench follows you for 5s; nearby enemies are hit with Poison, Weaken and Confuse every second. Deals light damage on cast. | 21s | Achievement [Boss Terminator (Gold)](ACHIEVEMENTS.md#ach-bosses): Defeat 15 bosses |
 | Pepper Mech | Mech Pilot | +10 Max HP, +5 Armor, -10% Dodge, -5 Move Speed | Gain 20 Shield every 12s | Drone Support [Summon Clone] Deploy a drone that follows you for 8s, zapping the nearest enemy with a laser every 0.35s for 45% damage. | 10s | Achievement [Junkyard King](ACHIEVEMENTS.md#ach-clear_4): Clear Chapter 4 |
@@ -198,14 +198,14 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Lemon Battery | Elemental/Chain Lightning | 12 / 20 / 31 / 47 | 1.3 / 1.2 / 1.1 / 1 | 360 | x1.5 | 30 |
 | Wasabi Katana | Melee/Thrust | 10 / 17 / 27 / 41 | 0.85 / 0.8 / 0.74 / 0.67 | 150 | x2.2 | 26 |
 | Kitchen Shears | Melee/Sweep | 8 / 14 / 22 / 33 | 0.85 / 0.8 / 0.74 / 0.68 | 105 | x2.2 | 22 |
-| Blender | Melee/Aura | 4 / 6 / 9 / 14 | 0.45 / 0.43 / 0.41 / 0.38 | 121 | x2 | 28 |
+| Blender | Melee/Aura | 6 / 9 / 14 / 21 | 0.45 / 0.43 / 0.41 / 0.38 | 97 | x2 | 28 |
 | Dynamite Drumstick | Melee/Sweep | 17 / 29 / 45 / 68 | 1.7 / 1.6 / 1.5 / 1.36 | 120 | x1.5 | 30 |
 | Pepper Grinder Gun | Ranged/Bullet | 6 / 10 / 15 / 22 | 0.5 / 0.46 / 0.42 / 0.38 | 400 | x2.2 | 26 |
 | Soy Bomb | Ranged/Mine | 15 / 25 / 39 / 60 | 2.2 / 2.05 / 1.9 / 1.7 | 210 | x1.5 | 26 |
 | BBQ Torch | Ranged/Flame | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 190 | x1.5 | 30 |
 | Jam Mortar | Ranged/Rocket | 16 / 27 / 42 / 64 | 2 / 1.9 / 1.78 / 1.6 | 460 | x1.5 | 32 |
 | Sea Urchin Mine | Ranged/Mine | 13 / 22 / 34 / 52 | 1.9 / 1.8 / 1.65 / 1.5 | 230 | x2.5 | 26 |
-| Sea Salt Ward | Elemental/Aura | 3 / 5 / 8 / 12 | 0.5 / 0.5 / 0.5 / 0.5 | 152 | x2 | 30 |
+| Sea Salt Ward | Elemental/Aura | 5 / 8 / 12 / 18 | 0.5 / 0.5 / 0.5 / 0.5 | 109 | x2 | 30 |
 | Cola Zapper | Elemental/Chain Lightning | 8 / 14 / 21 / 32 | 0.95 / 0.88 / 0.8 / 0.72 | 440 | x1.5 | 28 |
 | Hotpot Breath | Elemental/Flame | 3 / 4 / 6 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 165 | x1.5 | 30 |
 | Pumpkin Lantern | Elemental/Bullet | 9 / 15 / 24 / 37 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | x1.8 | 24 |
@@ -225,7 +225,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Lucky Lychee Gun | Ranged/Bullet | 5 / 8 / 12 / 18 | 0.6 / 0.56 / 0.52 / 0.46 | 380 | x2.2 | 24 |
 | Cherry Pistols | Ranged/Bullet | 5 / 8 / 12 / 18 | 0.26 / 0.24 / 0.22 / 0.19 | 380 | x1.5 | 24 |
 | Lemon Dagger | Melee/Thrust | 5 / 9 / 14 / 22 | 0.55 / 0.52 / 0.48 / 0.42 | 125 | x2.6 | 22 |
-| Taro Aura | Elemental/Aura | 3 / 5 / 8 / 12 | 0.5 / 0.5 / 0.5 / 0.5 | 140 | x1.5 | 32 |
+| Taro Aura | Elemental/Aura | 5 / 8 / 12 / 18 | 0.5 / 0.5 / 0.5 / 0.5 | 106 | x1.5 | 32 |
 | Durian Stink Aura | Elemental/Aura | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 149 | x1.5 | 31 |
 | Twin Ketchup Bottles | Ranged/Bullet | 4 / 7 / 11 / 17 | 0.55 / 0.52 / 0.48 / 0.43 | 360 | x1.5 | 23 |
 | Peach Syrup Gun | Ranged/Bullet | 7 / 12 / 18 / 28 | 0.6 / 0.56 / 0.52 / 0.47 | 420 | x1.5 | 24 |
@@ -235,20 +235,20 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Macaron Repeater | Ranged/Bullet | 3 / 4 / 6 / 8 | 0.32 / 0.29 / 0.26 / 0.22 | 400 | x1.5 | 22 |
 | Cream Torch | Elemental/Flame | 2 / 3 / 5 / 8 | 0.2 / 0.18 / 0.16 / 0.14 | 200 | x1.5 | 29 |
 | Donut Ring | Ranged/Boomerang | 11 / 18 / 28 / 42 | 1.5 / 1.4 / 1.3 / 1.2 | 330 | x1.5 | 25 |
-| Caramel Aura | Elemental/Aura | 3 / 5 / 6 / 10 | 0.5 / 0.5 / 0.5 / 0.5 | 131 | x1.5 | 33 |
+| Caramel Aura | Elemental/Aura | 4 / 7 / 9 / 15 | 0.5 / 0.5 / 0.5 / 0.5 | 112 | x1.5 | 35 |
 | Chocolate Mine | Ranged/Mine | 13 / 23 / 35 / 53 | 2 / 1.9 / 1.75 / 1.6 | 220 | x1.5 | 25 |
 | Popping Zap | Elemental/Chain Lightning | 8 / 13 / 20 / 30 | 0.95 / 0.88 / 0.8 / 0.72 | 440 | x1.5 | 29 |
 | Popsicle Rapier | Melee/Thrust | 9 / 14 / 23 / 34 | 0.8 / 0.75 / 0.69 / 0.62 | 140 | x2.5 | 25 |
 | Ice Cream Maul | Melee/Sweep | 21 / 34 / 53 / 80 | 1.9 / 1.8 / 1.7 / 1.55 | 110 | x1.5 | 31 |
 | Shaved Ice Gun | Ranged/Bullet | 3 / 5 / 7 / 10 | 0.22 / 0.2 / 0.18 / 0.16 | 360 | x1.5 | 27 |
 | Slush Spray | Elemental/Flame | 3 / 5 / 7 / 11 | 0.26 / 0.24 / 0.21 / 0.18 | 170 | x1.5 | 29 |
-| Frost Aura | Elemental/Aura | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 134 | x2 | 31 |
+| Frost Aura | Elemental/Aura | 5 / 7 / 11 / 16 | 0.5 / 0.5 / 0.5 / 0.5 | 97 | x2 | 31 |
 | Glacier Mortar | Ranged/Rocket | 12 / 19 / 30 / 46 | 2 / 1.9 / 1.78 / 1.6 | 460 | x1.5 | 33 |
 | Icicle Volley | Elemental/Bullet | 5 / 7 / 11 / 16 | 1 / 0.95 / 0.88 / 0.8 | 340 | x1.5 | 27 |
 | Shock Wok | Melee/Sweep | 16 / 27 / 41 / 63 | 1.6 / 1.5 / 1.4 / 1.3 | 120 | x1.5 | 26 |
 | Volt Fork | Melee/Thrust | 9 / 16 / 26 / 40 | 0.9 / 0.85 / 0.78 / 0.7 | 150 | x2 | 16 |
 | Microwave Cannon | Ranged/Rocket | 20 / 32 / 50 / 76 | 2.4 / 2.25 / 2.1 / 1.9 | 480 | x1.5 | 35 |
-| Rice Cooker Aura | Elemental/Aura | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 143 | x1.5 | 31 |
+| Rice Cooker Aura | Elemental/Aura | 5 / 8 / 12 / 17 | 0.5 / 0.5 / 0.5 / 0.5 | 103 | x1.5 | 32 |
 | Arc Grill | Elemental/Chain Lightning | 9 / 14 / 22 / 34 | 1.1 / 1 / 0.92 / 0.84 | 420 | x1.5 | 31 |
 | Storm Mixer | Elemental/Chain Lightning | 4 / 8 / 12 / 17 | 0.95 / 0.9 / 0.82 / 0.74 | 380 | x1.5 | 30 |
 | Toaster Zap | Elemental/Chain Lightning | 11 / 19 / 29 / 45 | 1.3 / 1.2 / 1.1 / 1 | 360 | x1.5 | 31 |
@@ -262,14 +262,14 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | BBQ Skewer | Melee/Thrust | 17 / 29 / 45 / 69 | 1.5 / 1.42 / 1.32 / 1.2 | 200 | x2 | 29 |
 | Coal Tongs | Melee/Sweep | 12 / 20 / 32 / 49 | 1.1 / 1.05 / 1 / 0.9 | 125 | x2 | 27 |
 | BBQ Sauce Cannon | Ranged/Rocket | 13 / 22 / 34 / 52 | 1.8 / 1.7 / 1.6 / 1.4 | 450 | x1.5 | 31 |
-| Charcoal Aura | Elemental/Aura | 3 / 5 / 7 / 10 | 0.5 / 0.5 / 0.5 / 0.5 | 133 | x1.5 | 33 |
+| Charcoal Aura | Elemental/Aura | 4 / 7 / 10 / 15 | 0.5 / 0.5 / 0.5 / 0.5 | 115 | x1.5 | 35 |
 | Ember Mine | Elemental/Mine | 14 / 23 / 35 / 54 | 2.5 / 2.3 / 2.1 / 1.8 | 200 | x1.5 | 25 |
 | Cumin Star | Elemental/Boomerang | 7 / 12 / 18 / 28 | 1.3 / 1.2 / 1.1 / 1 | 320 | x2 | 29 |
 | Hot Sauce Pistol | Ranged/Bullet | 6 / 11 / 16 / 24 | 0.55 / 0.5 / 0.46 / 0.42 | 380 | x1.5 | 21 |
 | Sushi Blade | Melee/Thrust | 5 / 9 / 14 / 23 | 0.6 / 0.55 / 0.5 / 0.44 | 130 | x2.6 | 21 |
 | Twin Cleavers | Melee/Sweep | 8 / 13 / 21 / 31 | 0.85 / 0.8 / 0.74 / 0.68 | 105 | x2.2 | 23 |
 | Knife Case | Ranged/Bullet | 4 / 7 / 11 / 15 | 0.5 / 0.46 / 0.42 / 0.38 | 400 | x2.2 | 27 |
-| Blade Wind Aura | Melee/Aura | 4 / 5 / 8 / 13 | 0.45 / 0.43 / 0.41 / 0.38 | 118 | x2 | 29 |
+| Blade Wind Aura | Melee/Aura | 5 / 8 / 13 / 19 | 0.45 / 0.43 / 0.41 / 0.38 | 102 | x2 | 29 |
 | Grater Blade | Melee/Sweep | 9 / 15 / 24 / 36 | 1.05 / 1 / 0.92 / 0.84 | 115 | x2 | 17 |
 | Chili Saw | Melee/Boomerang | 8 / 13 / 20 / 31 | 1.3 / 1.2 / 1.1 / 1 | 230 | x2.1 | 27 |
 | Mandoline | Melee/Thrust | 5 / 8 / 13 / 19 | 0.5 / 0.46 / 0.42 / 0.38 | 155 | x2 | 19 |
@@ -279,9 +279,9 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Potato Mine | Ranged/Mine | 15 / 25 / 39 / 59 | 2 / 1.9 / 1.75 / 1.6 | 220 | x1.5 | 25 |
 | Corn Scattergun | Ranged/Bullet | 4 / 6 / 9 / 14 | 1 / 0.95 / 0.88 / 0.8 | 240 | x1.5 | 27 |
 | Pod Sniper | Ranged/Bullet | 22 / 37 / 58 / 85 | 1.9 / 1.8 / 1.65 / 1.5 | 650 | x2.5 | 33 |
-| Mint Aura | Elemental/Aura | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 136 | x2 | 31 |
+| Mint Aura | Elemental/Aura | 3 / 5 / 7 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 136 | x2 | 30 |
 | Pepper Storm | Melee/Aura | 3 / 5 / 7 / 11 | 0.45 / 0.45 / 0.42 / 0.4 | 133 | x1.5 | 23 |
-| Honey Aura | Elemental/Aura | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 141 | x1.5 | 31 |
+| Honey Aura | Elemental/Aura | 5 / 8 / 12 / 17 | 0.5 / 0.5 / 0.5 / 0.5 | 102 | x1.5 | 32 |
 | Teapot Storm | Elemental/Chain Lightning | 7 / 13 / 19 / 29 | 0.95 / 0.88 / 0.8 / 0.72 | 440 | x1.5 | 29 |
 | Jelly Bounce | Elemental/Bullet | 7 / 11 / 17 / 26 | 1 / 0.95 / 0.88 / 0.8 | 400 | x1.5 | 29 |
 | Syrup Sprayer | Elemental/Flame | 2 / 3 / 5 / 7 | 0.2 / 0.18 / 0.16 / 0.14 | 200 | x1.5 | 29 |
@@ -294,13 +294,13 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Inferno Mortar | Ranged/Rocket | 18 / 30 / 46 / 70 | 1.8 / 1.7 / 1.6 / 1.4 | 483 | x1.5 | 42 |
 | Storm Bastion Pan | Melee/Sweep | 20 / 33 / 51 / 77 | 1.6 / 1.5 / 1.4 / 1.3 | 126 | x1.5 | 34 |
 | Railgun Sniper | Ranged/Bullet | 29 / 48 / 75 / 110 | 1.9 / 1.8 / 1.65 / 1.5 | 683 | x2.5 | 43 |
-| Honeyfrost Field | Elemental/Aura | 3 / 6 / 9 / 12 | 0.5 / 0.5 / 0.5 / 0.5 | 148 | x2 | 40 |
+| Honeyfrost Field | Elemental/Aura | 6 / 9 / 13 / 19 | 0.5 / 0.5 / 0.5 / 0.5 | 107 | x2 | 42 |
 | Spore Minefield | Elemental/Mine | 22 / 37 / 57 / 88 | 2.5 / 2.3 / 2.1 / 1.8 | 210 | x1.5 | 34 |
 | Candy Scattergun | Ranged/Bullet | 4 / 8 / 11 / 17 | 0.32 / 0.29 / 0.26 / 0.22 | 420 | x1.5 | 34 |
 | Dragon Breath | Elemental/Flame | 3 / 4 / 7 / 11 | 0.2 / 0.18 / 0.16 / 0.14 | 210 | x1.5 | 39 |
 | Coconut Quake Mace | Melee/Sweep | 24 / 40 / 62 / 92 | 1.8 / 1.7 / 1.6 / 1.45 | 504 | x1.5 | 47 |
 | Frost Anise Storm | Elemental/Boomerang | 10 / 17 / 25 / 39 | 1 / 0.95 / 0.88 / 0.8 | 357 | x2 | 36 |
-| Holy Salt Barrier | Elemental/Aura | 3 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 160 | x2 | 40 |
+| Holy Salt Barrier | Elemental/Aura | 6 / 9 / 13 / 20 | 0.5 / 0.5 / 0.5 / 0.5 | 143 | x2 | 39 |
 | Blazing Chef's Knife | Melee/Thrust | 15 / 25 / 39 / 59 | 0.6 / 0.55 / 0.5 / 0.44 | 210 | x2.5 | 33 |
 | Lethal Thunder Durian | Elemental/Rocket | 18 / 30 / 46 / 70 | 0.55 / 0.52 / 0.48 / 0.42 | 420 | x2.6 | 42 |
 | Chef's Volt Fork | Melee/Thrust | 13 / 22 / 34 / 52 | 0.9 / 0.85 / 0.78 / 0.7 | 347 | x2 | 31 |
@@ -310,13 +310,13 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Blazing Sea Urchin Mine | Ranged/Mine | 14 / 24 / 37 / 57 | 1 / 0.95 / 0.88 / 0.8 | 420 | x2.5 | 36 |
 | Scatter Twin Cleavers | Melee/Sweep | 9 / 14 / 23 / 34 | 0.75 / 0.7 / 0.65 / 0.6 | 294 | x2.2 | 30 |
 | Blazing Jelly Bounce | Elemental/Bullet | 9 / 14 / 22 / 34 | 1 / 0.95 / 0.88 / 0.8 | 420 | x2.1 | 38 |
-| Searing Slush Spray | Elemental/Flame | 3 / 6 / 8 / 12 | 0.26 / 0.24 / 0.21 / 0.18 | 179 | x1.5 | 43 |
+| Searing Slush Spray | Elemental/Flame | 4 / 8 / 10 / 17 | 0.26 / 0.24 / 0.21 / 0.18 | 179 | x1.5 | 46 |
 | Saucy BBQ Skewer | Melee/Thrust | 13 / 23 / 36 / 56 | 0.55 / 0.5 / 0.46 / 0.42 | 399 | x2 | 31 |
 | Frost Cucumber Katana | Melee/Thrust | 10 / 17 / 26 / 40 | 0.75 / 0.7 / 0.65 / 0.58 | 420 | x2.5 | 31 |
 | Keen Corn Cannon | Ranged/Bullet | 18 / 31 / 48 / 75 | 0.45 / 0.43 / 0.41 / 0.38 | 546 | x2 | 38 |
 | Heavy Pepper Drone | Ranged/Rocket | 26 / 44 / 68 / 103 | 1.3 / 1.22 / 1.14 / 1.04 | 441 | x1.5 | 40 |
 | Saucy Arc Grill | Elemental/Chain Lightning | 10 / 15 / 24 / 37 | 0.45 / 0.45 / 0.42 / 0.4 | 441 | x1.5 | 40 |
-| Saucy Taro Aura | Elemental/Aura | 3 / 6 / 9 / 13 | 0.5 / 0.5 / 0.5 / 0.5 | 147 | x1.5 | 43 |
+| Saucy Taro Aura | Elemental/Aura | 6 / 9 / 13 / 20 | 0.5 / 0.5 / 0.5 / 0.5 | 121 | x1.5 | 46 |
 | Candied Teapot Storm | Elemental/Chain Lightning | 8 / 14 / 21 / 32 | 0.7 / 0.66 / 0.6 / 0.54 | 462 | x1.5 | 38 |
 | Thunder Pumpkin Mortar | Ranged/Rocket | 17 / 29 / 44 / 67 | 1 / 0.95 / 0.88 / 0.8 | 483 | x1.5 | 43 |
 | Piercing Popcorn Popper | Ranged/Mine | 19 / 32 / 50 / 76 | 1.35 / 1.28 / 1.2 / 1.08 | 231 | x1.8 | 35 |
@@ -352,7 +352,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Chain Baguette Blade | Melee/Sweep | 12 / 21 / 33 / 51 | 0.8 / 0.75 / 0.7 / 0.63 | 420 | x1.5 | 33 |
 | Toxic Bean Mines | Ranged/Mine | 11 / 18 / 28 / 42 | 0.8 / 0.75 / 0.7 / 0.62 | 420 | x1.5 | 33 |
 | Scatter Mycelium Boomerang | Ranged/Boomerang | 10 / 17 / 25 / 40 | 0.6 / 0.56 / 0.52 / 0.46 | 399 | x2.2 | 33 |
-| Frost Cumin Star | Elemental/Boomerang | 8 / 13 / 20 / 31 | 0.5 / 0.5 / 0.5 / 0.5 | 336 | x2 | 40 |
+| Frost Cumin Star | Elemental/Boomerang | 8 / 13 / 20 / 31 | 0.5 / 0.5 / 0.5 / 0.5 | 336 | x2 | 42 |
 | Heavy Mandoline | Melee/Thrust | 24 / 40 / 62 / 92 | 0.5 / 0.46 / 0.42 / 0.38 | 163 | x2 | 39 |
 | Lethal Seed Spitter | Ranged/Bullet | 11 / 20 / 32 / 48 | 0.22 / 0.2 / 0.18 / 0.16 | 378 | x2 | 34 |
 
@@ -518,12 +518,12 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Chapter | HP mult | Damage mult | Speed mult | Monster pool (waves) |
 | --- | --- | --- | --- | --- |
 | Chapter 1 · The Frying Pan | 1 | 1 | 1 | Mold Blob(1+) Fruit Fly(2+) Rotten Apple(3+) Maggot(4+) Army Ant(6+) Cockroach(7+) Bomb Beetle(9+) Split Mold(11+) Crumb Mite(2+) Grease Drop(2+) Burnt Toast(3+) Dust Bunny(3+) Sour Milk Carton(4+) Pan Beetle(5+) Dish Sponge(6+) Stink Egg(8+) Moldy Bread(9+) Teabag Ghost(10+) |
-| Chapter 2 · Wild Garden | 1.64 | 1.17 | 1.05 | Mold Blob(1~8) Army Ant(3+) Fruit Fly(1+) Snot Snail(2+) Venom Spider(5+) Toxic Shroom(5+) Split Mold(6+) Brood Mother(8+) Bomb Beetle(10+) Venom Bee(4+) Mud Worm(4+) Aphid(2+) Cabbage Worm(2+) Locust(3+) Garden Slug(4+) Weevil(5+) Thorn Weed(6+) Toxic Bloom(7+) Boom Ladybug(8+) Blade Mantis(9+) Rotten Potato(10+) |
-| Chapter 3 · Frozen Fridge | 1.74 | 1.23 | 1.1 | Mold Blob(1~6) Fruit Fly(1+) Ice Cube(3+) Sewer Rat(7+) Maggot(3+) Venom Spider(6+) Cockroach(5+) Toxic Shroom(7+) Split Mold(9+) Frost Mosquito(4+) Frozen Shrimp(6+) Frost Mite(2+) Popsicle Bat(2+) Frozen Pea(3+) Jelly Cube(4+) Moldy Cheese(5+) Icicle Imp(6+) Ice Slime(7+) Frozen Soda(8+) Freezer Burn(9+) Leftover Box(10+) |
-| Chapter 4 · City Junkyard | 1.75 | 1.29 | 1.15 | Mold Blob(1~5) Sewer Rat(5+) Cockroach(3+) Trash Bag(5+) Bomb Beetle(6+) Brood Mother(5+) Rotten Apple(2+) Snot Snail(6+) Toxic Shroom(8+) Can Crab(7+) Rag Ghost(5+) Grease Blob(6+) Rusty Nail(2+) Bag Ghost(3+) Glass Shard(3+) Scrap Drone(4+) Oil Slick(5+) Leaky Battery(6+) Rust Crab(7+) Tire Roller(8+) Busted Radio(9+) Junk Heap(11+) |
-| Chapter 5 · Ketchup Factory | 2.02 | 1.36 | 1.2 | Mold Blob(1~5) Fruit Fly(1~8) Can Bot(9+) Sewer Rat(6+) Bomb Beetle(8+) Venom Spider(6+) Trash Bag(6+) Ice Cube(5+) Toxic Shroom(6+) Brood Mother(8+) Split Mold(9+) Gear Bug(8+) Curse Doll(6+) Sauce Drip(2+) Belt Gremlin(2+) Cap Drone(4+) Steam Imp(5+) Label Ghost(6+) Welder Bug(8+) Rivet Bot(9+) Ketchup Slime(10+) Press Piston(12+) Bottling Bot(14+) |
-| Chapter 6 · Rotting Greenhouse | 2.21 | 1.43 | 1.25 | Blight Sprout(1~8) Fruit Fly(1~9) Aphid(1~11) Fungus Gnat(2+) Sweaty Cucumber(4+) Rotten Chili(4+) Garden Slug(4+) Spore Puffball(6+) Thorn Weed(6+) Rot Vine(8+) Venom Spider(8+) Toxic Shroom(8+) Bomb Beetle(9+) Toxic Bloom(9+) Sewer Rat(9+) Moldy Pumpkin(11+) Split Mold(11+) Blade Mantis(13+) Rivet Bot(13+) Compost Bin(14+) Ketchup Slime(16+) Press Piston(18+) |
-| Chapter 7 · Rot Garden | 2.22 | 1.5 | 1.3 | Blight Sprout(1~8) Fungus Gnat(2+) Cabbage Worm(1~13) Rotheart Cabbage(4+) Zombie Carrot(6+) Spore Puffball(8+) Sweaty Cucumber(4+) Blight Onion(8+) Rotten Chili(6+) Rot Vine(9+) Weevil(9+) Blade Mantis(13+) Rot Sprinkler(11+) Moldy Pumpkin(11+) Boom Ladybug(11+) Toxic Shroom(9+) Rotten Potato(13+) Compost Bin(14+) Ketchup Slime(16+) Rivet Bot(16+) Press Piston(18+) |
+| Chapter 2 · Wild Garden | 1.78 | 1.17 | 1.05 | Mold Blob(1~8) Army Ant(3+) Fruit Fly(1+) Snot Snail(2+) Venom Spider(5+) Toxic Shroom(5+) Split Mold(6+) Brood Mother(8+) Bomb Beetle(10+) Venom Bee(4+) Mud Worm(4+) Aphid(2+) Cabbage Worm(2+) Locust(3+) Garden Slug(4+) Weevil(5+) Thorn Weed(6+) Toxic Bloom(7+) Boom Ladybug(8+) Blade Mantis(9+) Rotten Potato(10+) |
+| Chapter 3 · Frozen Fridge | 1.97 | 1.23 | 1.1 | Mold Blob(1~6) Fruit Fly(1+) Ice Cube(3+) Sewer Rat(7+) Maggot(3+) Venom Spider(6+) Cockroach(5+) Toxic Shroom(7+) Split Mold(9+) Frost Mosquito(4+) Frozen Shrimp(6+) Frost Mite(2+) Popsicle Bat(2+) Frozen Pea(3+) Jelly Cube(4+) Moldy Cheese(5+) Icicle Imp(6+) Ice Slime(7+) Frozen Soda(8+) Freezer Burn(9+) Leftover Box(10+) |
+| Chapter 4 · City Junkyard | 1.98 | 1.29 | 1.15 | Mold Blob(1~5) Sewer Rat(5+) Cockroach(3+) Trash Bag(6+) Bomb Beetle(6+) Brood Mother(7+) Rotten Apple(2+) Snot Snail(6+) Toxic Shroom(8+) Can Crab(7+) Rag Ghost(6+) Grease Blob(6+) Rusty Nail(2+) Bag Ghost(3+) Glass Shard(3+) Scrap Drone(4+) Oil Slick(7+) Leaky Battery(6+) Rust Crab(7+) Tire Roller(8+) Busted Radio(9+) Junk Heap(11+) |
+| Chapter 5 · Ketchup Factory | 2.42 | 1.36 | 1.2 | Mold Blob(1~5) Fruit Fly(1~8) Can Bot(9+) Sewer Rat(6+) Bomb Beetle(8+) Venom Spider(6+) Trash Bag(6+) Ice Cube(5+) Toxic Shroom(6+) Brood Mother(8+) Split Mold(9+) Gear Bug(8+) Curse Doll(6+) Sauce Drip(2+) Belt Gremlin(2+) Cap Drone(4+) Steam Imp(5+) Label Ghost(6+) Welder Bug(8+) Rivet Bot(9+) Ketchup Slime(10+) Press Piston(12+) Bottling Bot(14+) |
+| Chapter 6 · Rotting Greenhouse | 2.56 | 1.43 | 1.25 | Blight Sprout(1~8) Fruit Fly(1~9) Aphid(1~11) Fungus Gnat(2+) Sweaty Cucumber(4+) Rotten Chili(4+) Garden Slug(4+) Spore Puffball(6+) Thorn Weed(6+) Rot Vine(8+) Venom Spider(8+) Toxic Shroom(8+) Bomb Beetle(9+) Toxic Bloom(9+) Sewer Rat(9+) Moldy Pumpkin(11+) Split Mold(11+) Blade Mantis(13+) Rivet Bot(13+) Compost Bin(14+) Ketchup Slime(16+) Press Piston(18+) |
+| Chapter 7 · Rot Garden | 2.67 | 1.5 | 1.3 | Blight Sprout(1~8) Fungus Gnat(2+) Cabbage Worm(1~13) Rotheart Cabbage(4+) Zombie Carrot(6+) Spore Puffball(8+) Sweaty Cucumber(4+) Blight Onion(8+) Rotten Chili(6+) Rot Vine(9+) Weevil(9+) Blade Mantis(13+) Rot Sprinkler(11+) Moldy Pumpkin(11+) Boom Ladybug(11+) Toxic Shroom(9+) Rotten Potato(13+) Compost Bin(14+) Ketchup Slime(16+) Rivet Bot(16+) Press Piston(18+) |
 
 <a id="waves"></a>
 

@@ -8,19 +8,20 @@ import { WEAPON_AFFIXES, WEAPON_AFFIX_MAP, FORGE } from '../../data/weaponAffixe
 import { run, type OwnedWeapon } from '../../systems/RunState';
 import { weaponDamage } from '../../systems/WeaponSystem';
 import { rerollAll, forge, forgeCost, affixTotals } from '../../systems/WeaponMods';
-import { weaponCalc, CLS_NAME } from '../info';
+import { weaponCalc } from '../info';
 import { lineChart } from './dataTab';
+import { weaponPicker, pickerState } from '../weaponPicker';
+import { renderWeaponEff, effOf, effTotal } from './weaponEff';
+import { renderWeaponRank } from './weaponRank';
 
 let wid = WEAPONS[0].id;
-let rankCls = '';
-let rankTier = 3;
+/** E1 选择器的展开状态与筛选条件（切页签后保留） */
+const e1Pick = pickerState();
 let rollN = 1000;
 let rollTierIdx = 3;
 let rollRes: { dist: [string, number[]][]; avgDmg: number; best: number } | null = null;
 let forgeRes: { level: number; avgCost: number; p50: number; p90: number; avgTries: number }[] | null = null;
 let forgeRuns = 2000;
-
-const COLORS = ['#a0a0a0', '#4aa3ff', '#b46bff', '#ff9f1c'];
 
 /** 带打造等级的单体 DPS：在 weaponCalc 的基础上按伤害比例缩放 */
 function dpsAt(id: string, tier: number, forgeLv: number): number {
@@ -42,17 +43,19 @@ export function renderAnalysis(ctx: DevCtx): HTMLElement {
   const tiers = [0, 1, 2, 3].filter((t) => t >= minT);
   root.append(
     h('h3', null, 'E1 武器 DPS 曲线（当前构筑属性）'),
+    weaponPicker(ctx, e1Pick, wid, (v) => ((wid = v), ctx.rerender())),
     h(
       'div',
-      { class: 'row' },
-      select(
-        Object.values(WEAPON_MAP).map((w) => [w.id, `${w.evolvedFrom ? '✨' : ''}${w.name}`]),
-        wid,
-        (v) => ((wid = v), ctx.rerender()),
-      ),
+      { class: 'muted small' },
+      '品质 T1–T4（x = 品质）；实际 = 纸面 ×（平衡测试实测的标准化转换率 + 易伤辅助），没有实测样本的品质不画点',
     ),
-    h('div', { class: 'muted small' }, '品质 T1–T4（x = 品质）'),
-    lineChart([['DPS', '#ff6b5e', tiers.map((t) => dpsAt(wid, t, 0))]], { h: 120, xLabel: (i) => `T${tiers[i] + 1}` }),
+    lineChart(
+      [
+        ['纸面 DPS', '#ff6b5e', tiers.map((t) => dpsAt(wid, t, 0))],
+        ['实际 DPS', '#3ddc97', tiers.map((t) => (effOf(wid, t) ? dpsAt(wid, t, 0) * effTotal(effOf(wid, t)!) : NaN))],
+      ],
+      { h: 140, xLabel: (i) => `T${tiers[i] + 1}`, dots: true },
+    ),
     h('div', { class: 'muted small' }, `T4 打造 +0 ~ +${FORGE.maxLevel}（每级伤害 +${Math.round(FORGE.dmgPerLevel * 100)}%）`),
     lineChart([['DPS', '#ff9f1c', Array.from({ length: FORGE.maxLevel + 1 }, (_, f) => dpsAt(wid, 3, f))]], {
       h: 120,
@@ -66,51 +69,11 @@ export function renderAnalysis(ctx: DevCtx): HTMLElement {
       }),
       { numeric: [1, 2, 3] },
     ),
+    renderWeaponEff(ctx, wid),
   );
 
   // ---------------- E2 ----------------
-  const ranked = Object.values(WEAPON_MAP)
-    .filter((d) => !d.evolvedFrom && (!rankCls || (rankCls === 'aura' ? d.kind === 'aura' : d.cls === rankCls)))
-    .map((d) => ({ d, dps: weaponCalc(d, Math.max(rankTier, d.minTier ?? 0)).dps }))
-    .sort((a, b) => b.dps - a.dps);
-  const max = Math.max(1, ...ranked.map((r) => r.dps));
-  root.append(
-    h('h3', null, 'E2 武器排行（单体期望 DPS）'),
-    h(
-      'div',
-      { class: 'row' },
-      select(
-        [0, 1, 2, 3].map((t) => [t, `T${t + 1}`]),
-        rankTier,
-        (v) => ((rankTier = Number(v)), ctx.rerender()),
-      ),
-      select(
-        [
-          ['', '全部流派'],
-          ['melee', CLS_NAME.melee],
-          ['ranged', CLS_NAME.ranged],
-          ['elemental', CLS_NAME.elemental],
-          ['aura', '光环'],
-        ],
-        rankCls,
-        (v) => ((rankCls = v), ctx.rerender()),
-      ),
-      h('span', { class: 'muted' }, `${ranked.length} 把；单体 DPS 不反映群伤，光环 / 穿透类会被低估`),
-    ),
-    h(
-      'div',
-      null,
-      ...ranked.map((r, i) =>
-        h(
-          'div',
-          { class: 'bar', title: r.d.desc },
-          h('span', { class: 'bl' }, `${i + 1}. ${r.d.name}`),
-          h('span', { class: 'bb', style: `width:${(r.dps / max) * 100}%;background:${COLORS[rankTier]}` }),
-          h('span', { class: 'bv' }, String(Math.round(r.dps))),
-        ),
-      ),
-    ),
-  );
+  root.append(renderWeaponRank(ctx));
 
   // ---------------- E3 ----------------
   root.append(

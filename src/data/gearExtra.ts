@@ -53,7 +53,7 @@ export const EXTRA_WEAPONS: WeaponDef[] = [
     cls: 'melee',
     kind: 'aura',
     tags: ['厨具', '锋利'],
-    damage: [4, 6, 9, 14],
+    damage: [6, 9, 14, 21], // 光环统一加强 ×1.5（原 4/6/9/14）
     cooldown: [0.45, 0.43, 0.41, 0.38],
     range: 95,
     scaling: { melee: 0.5 },
@@ -169,7 +169,7 @@ export const EXTRA_WEAPONS: WeaponDef[] = [
     cls: 'elemental',
     kind: 'aura',
     tags: ['锋利', '元素'],
-    damage: [3, 5, 8, 12],
+    damage: [5, 8, 12, 18], // 光环统一加强 ×1.5（原 3/5/8/12）
     cooldown: [0.5, 0.5, 0.5, 0.5],
     range: 115,
     scaling: { elemental: 0.45 },
@@ -311,7 +311,7 @@ export const EXTRA_EVOLUTIONS_SPEC: ExtraEvolutionSpec[] = [
       id: 'tornado_blender',
       name: '龙卷破壁机',
       desc: '涡轮全开，刀片卷起龙卷风，切割并减速周围敌人。',
-      dmg: 1.8,
+      dmg: 1.2, // 原 1.8；基础 blender_aura 已 ×1.5，抵消掉保持超武原强度
       range: 1.35,
       extra: { effect: { slow: { pct: 30, dur: 0.8 } }, critBonus: 12 },
     },

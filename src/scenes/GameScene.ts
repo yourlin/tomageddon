@@ -1871,6 +1871,12 @@ export class GameScene extends Phaser.Scene {
     const src = opts.dot ? (opts.src ?? 'dot') : this.dmgSrc || 'other';
     const dealt = Math.min(dmg, Math.max(0, e.hp + dmg));
     run.dmgBy[src] = (run.dmgBy[src] ?? 0) + dealt;
+    // 辅助伤害：这一下里因易伤减益多打出的部分，按施加者的易伤占比拆给施加者（施加者打自己的那份已在 dmgBy 里，不重复算）
+    const amp = e.status.amp;
+    if (amp.length && dealt > 0) {
+      const m = 1 + e.status.totals.dmgTaken / 100;
+      if (m > 1) for (const [s, v] of amp) if (s !== src) run.assistBy[s] = (run.assistBy[s] ?? 0) + (dealt * v) / 100 / m;
+    }
     run.waveDmg[run.wave] = (run.waveDmg[run.wave] ?? 0) + dealt;
     if (opts.crit) bump('crits');
     this.fx.number(e.x, e.y - e.radius, dmg, opts.color ?? '#ffffff', opts.crit);

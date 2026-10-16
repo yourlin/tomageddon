@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.7.1 · 2026-10-16](#v0-7-1)
 - [v0.7.0 · 2026-10-16](#v0-7-0)
 - [v0.6.6 · 2026-10-14](#v0-6-6)
 - [v0.6.5 · 2026-10-13](#v0-6-5)
@@ -25,6 +26,20 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-7-1"></a>
+
+## v0.7.1 · 2026-10-16
+
+**Aura buffs, recipe-item restock rework, Chapter 4 difficulty spike fixed, rage super weapon freeze fixed**
+
+
+- Fixed Dragon Cleaver and Hell Trident rage bursts chaining into each other endlessly, which caused stutters and errors
+- Caramel Aura, Honey Aura, Rice Cooker Aura, Charcoal Aura, Blender, Sea Salt Ward and Taro Aura deal 50% more damage; weapons crafted from them keep their previous strength
+- Shop restock of missing recipe items: chance lowered from 25% to 10%, only offered once your Luck can already roll that rarity (Epic needs 15, Legendary 20), and only until you own your first T4 weapon
+- Kiwi Detective now starts with the Mustard Flamer and gets +2 Elemental instead of +1 Melee; the Star Anise Shuriken can still be picked at the start
+- Chapter 4 wave 5 no longer introduces five new enemy types alongside its first elite; some now appear in waves 6 and 7
+- Enemy HP raised in Chapters 2–7
 
 <a id="v0-7-0"></a>
 

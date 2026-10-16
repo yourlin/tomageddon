@@ -13,6 +13,7 @@ export type TabId =
   | 'sandbox'
   | 'tests'
   | 'batch'
+  | 'reports'
   | 'data'
   | 'debug'
   | 'assets'

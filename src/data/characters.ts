@@ -1075,8 +1075,10 @@ export const CHARACTERS: CharacterDef[] = [
         { id: 'monocle', color: 0xffd166 },
       ],
     },
-    mods: { crit: 8, luck: 4, maxHp: 3, melee: 1 },
-    startWeapons: ['star_anise_shuriken'],
+    // 起手原为八角飞镖（回旋镖，怪少的前几波击杀率只有 50–70%）：第 3–5 章 18 局 0 通关、16 局死在前 5 波。
+    // 换成同样契合的芥末喷火器后 6/18 通关、早亡 3 局；八角飞镖仍在开局三选一的候选里
+    mods: { crit: 8, luck: 4, maxHp: 3, elemental: 2 },
+    startWeapons: ['mustard_flamer'],
     favored: ['锋利', '元素'],
     talent: { name: '弱点洞察', desc: '目标身上每有一种减益，契合武器对它的暴击率 +5%' },
     traits: ['命中 20% 概率易伤', '暴击伤害 +30%'],

@@ -33,7 +33,7 @@ type Render = (ctx: DevCtx) => HTMLElement;
 const GROUPS: [string, TabId[]][] = [
   ['配装', ['build', 'weapons', 'items', 'skills', 'status']],
   ['实战', ['monsters', 'sandbox', 'tests']],
-  ['数据', ['analysis', 'batch', 'data']],
+  ['数据', ['analysis', 'batch', 'reports', 'data']],
   ['工具', ['debug', 'assets', 'v14']],
 ];
 /** L4：常用页签随面板加载；其余页签第一次打开时才下载（Promise 形式的为按需加载） */
@@ -48,6 +48,7 @@ const TABS: [TabId, string, Render | (() => Promise<Render>)][] = [
   ['sandbox', '沙盒', renderSandbox],
   ['tests', '测试', renderTests],
   ['batch', '批量', () => import('./tabs/batchTab').then((m) => m.renderBatch)],
+  ['reports', '报告', () => import('./tabs/reportsTab').then((m) => m.renderReports)],
   ['data', '数值', renderData],
   ['debug', '调试', renderDebug],
   ['assets', '内容', () => import('./tabs/assetsTab').then((m) => m.renderAssets)],
@@ -65,12 +66,13 @@ const ICON: Record<TabId, string> = {
   tests: '⏱️',
   analysis: '📈',
   batch: '🤖',
+  reports: '📊',
   data: '🔢',
   debug: '🐞',
   assets: '🎨',
   v14: '🆕',
 };
-const LAZY = new Set<TabId>(['weapons', 'analysis', 'skills', 'items', 'status', 'batch', 'assets', 'v14']);
+const LAZY = new Set<TabId>(['weapons', 'analysis', 'skills', 'items', 'status', 'batch', 'reports', 'assets', 'v14']);
 const loaded = new Map<TabId, Render>();
 const loading = new Map<TabId, Promise<Render>>();
 const MIN_W = 380;

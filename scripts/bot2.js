@@ -68,7 +68,17 @@ function profile(charId) {
   for (const k of Object.keys(cls)) if (k !== main) W[statOf[k]] = 1.5;
   // 角色类别惩罚
   for (const [k, m] of Object.entries(c.classMult ?? {})) if (m < 1) W[statOf[k]] *= m;
-  return { main, W, melee: main === 'melee' };
+  // 契合流派：角色天赋契合的武器里哪一类最多（光环要贴身，不计入）
+  const favCls = {};
+  for (const d of Object.values(WEAPON_MAP))
+    if (d.kind !== 'aura' && isFavoredWeapon(c.favored, d)) favCls[d.cls] = (favCls[d.cls] ?? 0) + 1;
+  const favMain = Object.entries(favCls).sort((a, b) => b[1] - a[1])[0]?.[0] ?? main;
+  // 契合远程 / 元素武器的角色默认风筝（--bot-style classic 关闭）；起手是近战或光环的要贴身，不风筝
+  const kiteStyle =
+    window.__botStyle === 'kite'
+      ? main !== 'melee'
+      : window.__botStyle !== 'classic' && favMain !== 'melee' && main !== 'melee' && !hasAura;
+  return { main, favMain, W, melee: main === 'melee', kite: kiteStyle };
 }
 
 function modsValue(mods, W) {
@@ -91,11 +101,13 @@ function itemValue(it, P) {
 
 function weaponValue(o, P) {
   const d = WEAPON_MAP[o.id];
-  let v = (d.cls === P.main ? 10 : 4) * [1, 2.1, 4, 8][o.tier]; // 高品质按实际战力估值，不因单价高而被忽略
+  const fav = isFav(o.id);
+  // 契合武器即使不是主流派也按主流派计价：优先选天赋契合的武器
+  let v = (d.cls === P.main || fav ? 10 : 4) * [1, 2.1, 4, 8][o.tier]; // 高品质按实际战力估值，不因单价高而被忽略
   if (run.allWeapons.some((w) => w.id === o.id && w.tier === o.tier)) v *= o.tier >= 2 ? 3 : 2; // 能凑成对（T3 配对后可按配方合成 T4）
   if (isDoubleFavored(run.char.favored, WEAPON_MAP[o.id]))
-    v *= 2; // 双契合武器
-  else if (isFav(o.id)) v *= 1.5; // 契合武器
+    v *= 3; // 双契合武器
+  else if (fav) v *= 2; // 契合武器
   return v;
 }
 
@@ -139,6 +151,11 @@ function levelValue(opt, P) {
   return (P.W[opt.key] ?? 0) * (opt.value / base);
 }
 
+/** 专项补测的目标武器 { id, tier }（普通测试为 null） */
+let FOCUS = null;
+/** 目标武器（任意品质的同名武器）：不卖、不拿去合成、不再买 */
+const isFocusId = (id) => !!FOCUS && id === FOCUS.id;
+
 export function startBot2(charId, ch, speed = 16, budget = 30) {
   clearInterval(window.__bot);
   window.__log = [];
@@ -167,9 +184,13 @@ export function startBot2(charId, ch, speed = 16, budget = 30) {
   ].slice(0, 3);
   const sw = picks.find((id) => isDoubleFavored(c0.favored, WEAPON_MAP[id])) ?? picks[0];
   run.start(charId, ch, !!run.endless, run.danger, sw);
+  // 专项补测（batch.mjs --focus）：开局直接给一把指定武器与品质，整局不卖、不合成、不再买同名武器，
+  // 好让冷门武器、T4 和超武也有实测转换率样本（scripts/weapon-eff.mjs）
+  FOCUS = window.__focus ?? null;
+  if (FOCUS) run.addWeapon(FOCUS.id, FOCUS.tier);
   game.scene.getScenes(true).forEach((s) => s.scene.stop());
   game.scene.start('Game');
-  window.__botState = { done: false, win: false, charId, ch, t0: performance.now() };
+  window.__botState = { done: false, win: false, charId, ch, t0: performance.now(), ...(FOCUS ? { focus: FOCUS } : {}) };
   window.__achStart = achSnap();
   window.__log = [];
   window.__econ = { spent: 0, reroll: 0, rerolls: 0, t4Seen: 0, t4Bought: 0, crafts: 0, seen: new WeakSet() };
@@ -239,21 +260,37 @@ function move(P) {
   let dangerR = P.melee ? 70 : 150;
   let wantD = P.melee ? 95 : 230;
   let distW = P.melee ? 0.6 : 0.2;
-  // 风筝走位（--bot-style kite）：远程角色停在主武器射程的 85% 处，近身警戒半径加大
-  if (window.__botStyle === 'kite' && !P.melee) {
-    const reach = Math.max(
-      0,
-      ...run.weapons
-        .map((w) => WEAPON_MAP[w.id])
-        .filter((d) => d.cls !== 'melee')
-        .map((d) => d.range),
-    );
-    wantD = Math.max(230, (reach + (g.stats.range ?? 0)) * 0.85);
-    dangerR = 190;
-    distW = 0.5;
+  // 风筝走位：契合远程 / 元素武器的角色默认风筝（见 profile；--bot-style kite 让所有非近战角色风筝，classic 关闭），
+  // 停在远程武器射程的 85% 处，近身警戒半径加大
+  if (P.kite) {
+    // 光环要贴身，不算射程；手上只剩近战 / 光环时（reach = 0）照常贴身打
+    const defs = run.weapons.map((w) => WEAPON_MAP[w.id]);
+    const reach = Math.max(0, ...defs.filter((d) => d.cls !== 'melee' && d.kind !== 'aura').map((d) => d.range));
+    // 远程和近战（含光环）武器混搭时用经典走位：站远了近战那几把打不到
+    const mixed = defs.some((d) => d.cls === 'melee' || d.kind === 'aura');
+    if (reach > 0 && !mixed) {
+      // 站太远（射程 85%、警戒 190）实测更差：清怪慢、掉落的番茄籽捡不到，第 3–5 章风筝角色通关率 55% -> 40%
+      wantD = Math.max(200, (reach + (g.stats.range ?? 0)) * 0.65);
+      dangerR = 165;
+      distW = 0.35;
+    }
   }
   let best = [0, 0],
     bestScore = -1e9;
+  // 手上有光环：站进光环范围（远程角色原本停在 230 外，光环几乎打不到，光环的实测数据因此严重偏低）
+  // 光环半径只吃光环范围属性（与 WeaponSystem.weaponRange 一致，这里不计封顶，只用来定站位）
+  const auraR = Math.max(
+    0,
+    ...run.weapons
+      .map((w) => WEAPON_MAP[w.id])
+      .filter((d) => d.kind === 'aura')
+      .map((d) => d.range * (1 + (g.stats.auraSize ?? 0) / 100)),
+  );
+  if (auraR > 0) {
+    wantD = Math.min(wantD, auraR * 0.7);
+    dangerR = Math.min(dangerR, 90);
+    distW = Math.max(distW, 0.5);
+  }
   for (let i = 0; i <= 16; i++) {
     const a = (i / 16) * Math.PI * 2,
       still = i === 16;
@@ -288,11 +325,12 @@ function move(P) {
     // 场地可能不是 1920 × 1200 的矩形（各章形状不同）：靠近场地中心、远离边缘与障碍物
     score -= Math.hypot(x - g.arena.centerX, y - g.arena.centerY) * 0.12;
     if (!g.arena.contains(x, y, 80)) score -= 400;
-    // 捡番茄籽
+    // 捡番茄籽（风筝时站得远，捡拾范围放大，免得收入掉队）
+    const pr = P.kite ? 200 : 120;
     for (const pk of g.pickups)
       if (pk.alive && pk.kind !== 'crate') {
         const d = Math.hypot(x - pk.img.x, y - pk.img.y);
-        if (d < 120) score += (120 - d) * 0.05;
+        if (d < pr) score += (pr - d) * 0.05;
       }
     if (score > bestScore) {
       bestScore = score;
@@ -326,7 +364,9 @@ function shop(P) {
     return;
   }
   // 合成：优先契合武器的超武 → 契合的 T4 → 其他能合成的（T4 与超武只能按配方合成）
-  const craftable = RECIPES.filter((r) => run.canCraft(r)).sort((a, b) => craftScore(b) - craftScore(a));
+  const craftable = RECIPES.filter((r) => run.canCraft(r) && !r.from.some(([id]) => isFocusId(id))).sort(
+    (a, b) => craftScore(b) - craftScore(a),
+  );
   if (craftable.length) {
     run.craft(craftable[0]);
     window.__econ.crafts++;
@@ -353,6 +393,7 @@ function shop(P) {
       (o) =>
         !o.sold &&
         o.price <= run.seeds &&
+        !(o.kind === 'weapon' && isFocusId(o.id)) &&
         (o.kind === 'item' ||
           // 只能装备契合武器的角色（芋头术士）：装不上的武器只在配方需要时才买（当仓库里的合成材料）
           (run.canAddWeapon(o.id, o.tier) && (run.canEquip(o.id) || recipeWeaponNeed(o.id, o.tier) > 0))),
@@ -367,9 +408,19 @@ function shop(P) {
     }))
     .filter((x) => x.v > 0.04)
     .sort((a, b) => b.v - a.v);
+  // 幸运道具：看到就买（幸运决定商店稀有度和 T4 配方补货门槛，真人玩家会优先抢）
+  const luckBuy = run.shop.find(
+    (o) => !o.sold && o.kind === 'item' && o.price <= run.seeds && run.canTakeItem(o.id) && (ITEM_MAP[o.id]?.mods?.luck ?? 0) > 0,
+  );
+  if (luckBuy) {
+    window.__econ.spent += luckBuy.price;
+    s.buy(luckBuy);
+    return;
+  }
   // 满栏时：卖掉最弱的低品质武器，给买得起的 T3+ 主流派 / 契合武器腾位置（真人玩家的常见操作）
   const worth = (w) => weaponValue(w, P) + (run.weapons.some((b) => b.uid !== w.uid && b.id === w.id && b.tier === w.tier) ? 5 : 0);
-  const weakest = (o) => run.weapons.filter((w) => w.tier < o.tier && worth(w) < weaponValue(o, P)).sort((a, b) => worth(a) - worth(b))[0];
+  const weakest = (o) =>
+    run.weapons.filter((w) => !isFocusId(w.id) && w.tier < o.tier && worth(w) < weaponValue(o, P)).sort((a, b) => worth(a) - worth(b))[0];
   const sellOf = (w) => sellPrice(s.price(WEAPON_MAP[w.id].price * TIER_PRICE_MULT[w.tier]));
   const want = (o) => !o.sold && o.kind === 'weapon' && o.tier >= 2 && (WEAPON_MAP[o.id].cls === P.main || isFav(o.id));
   const swap = run.shop.find((o) => want(o) && !run.canAddWeapon(o.id, o.tier) && weakest(o) && o.price <= run.seeds + sellOf(weakest(o)));
@@ -409,7 +460,9 @@ function shop(P) {
     return;
   }
   // 同名同级合成（最高到 T3；T4 起只能按配方合成，见上面的 craftable）
-  const dup = run.allWeapons.find((a) => a.tier < 2 && run.allWeapons.some((b) => b.uid !== a.uid && b.id === a.id && b.tier === a.tier));
+  const dup = run.allWeapons.find(
+    (a) => !isFocusId(a.id) && a.tier < 2 && run.allWeapons.some((b) => b.uid !== a.uid && b.id === a.id && b.tier === a.tier),
+  );
   if (dup && run.combine(dup.uid)) {
     s.draw();
     return;
@@ -490,8 +543,16 @@ function snapshot() {
     // 武器实战效率：累计实际伤害（按来源，不计溢出；持续伤害统一记在 dot）与下一波所用武器的纸面单体 DPS。
     // 快照在商店买完、开始下一波前记录，所以第 w 波的 paper 对应第 w+1 波的 dmgBy 增量
     dmgBy: Object.fromEntries(Object.entries(run.dmgBy).map(([k, v]) => [k, Math.round(v)])),
+    // 辅助伤害（累计）：易伤减益放大出来、记在施加者名下的那部分（RunState.assistBy）
+    assistBy: Object.fromEntries(Object.entries(run.assistBy ?? {}).map(([k, v]) => [k, Math.round(v)])),
     paper: run.weapons.reduce((o, w) => {
       o[w.id] = Math.round(((o[w.id] ?? 0) + weaponCalc(WEAPON_MAP[w.id], w.tier).dps) * 10) / 10;
+      return o;
+    }, {}),
+    // 同上，但按每把武器拆开记录 [品质, 纸面 DPS, 是否契合 1/0]：开发者界面 E1 按 T1–T4 对比理论与实测（scripts/weapon-eff.mjs）。
+    // 契合除了纸面里的 +10% 伤害，实战还有额外弹丸 / 穿透 / 连锁等加成（纸面不算），所以分开统计
+    paperT: run.weapons.reduce((o, w) => {
+      (o[w.id] ??= []).push([w.tier, Math.round(weaponCalc(WEAPON_MAP[w.id], w.tier).dps * 10) / 10, isFav(w.id) ? 1 : 0]);
       return o;
     }, {}),
     spent: window.__econ.spent,

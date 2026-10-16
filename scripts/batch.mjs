@@ -8,11 +8,21 @@
 // 需要本机安装 Google Chrome。
 // 报告：reports/balance-<时间>.html（每次一份）、reports/BALANCE_REPORT.html/.md（最新）；reports/ 不进仓库
 // 进度：scripts/.batch-progress.json（每局完成即写入，全部完成后转存为 .batch-results.json）
+// 武器实战转换率：每次结束都存档 reports/eff-<时间>-<natural|focus>.json，并按数值指纹合并成 reports/weapon-eff.json（见 weapon-eff.mjs）
+//
+// 专项补测：node scripts/batch.mjs --focus auto|all|<武器id[@T1-4],...> [--focus-runs 3] [--focus-min 20] [--chapters 1,2,3,4,5,6,7]
+//   开局强制给一把指定武器和品质（整局不卖、不合成），专门给 bot 平时不选的武器、T4 和超武补转换率样本。
+//   auto = 只补合并数据里样本不足 --focus-min 波的武器×品质；all = 全部武器×品质。
+//   每个武器×品质跑 --focus-runs 局（默认 4），一半用契合这把武器的角色、一半用不契合的，章节在 --chapters 里轮换。
+//   结果另存 .batch-focus-*.json，不出 HTML 报告（强制给武器的对局不能代表平衡）。
+// --no-archive：诊断 / 复现用，不出报告、不存档转换率、不改 weapon-eff.json，进度文件另存 .batch(-focus)-diag-*.json
+// --bot-style：默认契合远程 / 元素武器的角色风筝走位；kite = 所有非近战起手角色都风筝；classic = 都不风筝（旧行为）
 import puppeteer from 'puppeteer-core';
 import { spawn } from 'node:child_process';
 import { availableParallelism, cpus, setPriority } from 'node:os';
 import { readFileSync, writeFileSync, existsSync, renameSync, unlinkSync } from 'node:fs';
 import { writeReports } from './report.mjs';
+import { archiveAndMerge, describeMerged, mergeArchives } from './weapon-eff.mjs';
 
 const arg = (k, d) => {
   const i = process.argv.indexOf(`--${k}`);
@@ -46,8 +56,15 @@ const CHROME =
   (process.platform === 'win32'
     ? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
     : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
-const PROGRESS = new URL('./.batch-progress.json', import.meta.url);
-const RESULTS = new URL('./.batch-results.json', import.meta.url);
+const FOCUS_SPEC = arg('focus', '');
+const FOCUS_RUNS = Number(arg('focus-runs', '4'));
+const FOCUS_MIN = Number(arg('focus-min', '20'));
+// --no-archive：诊断 / 复现用，跑完不存档转换率、不改 weapon-eff.json，进度文件也与正式测试分开
+const NO_ARCHIVE = process.argv.includes('--no-archive');
+const FILE_TAG = (FOCUS_SPEC ? 'batch-focus' : 'batch') + (NO_ARCHIVE ? '-diag' : '');
+const PROGRESS = new URL(`./.${FILE_TAG}-progress.json`, import.meta.url);
+const PROGRESS_TMP = new URL(`./.${FILE_TAG}-progress.json.tmp`, import.meta.url);
+const RESULTS = new URL(`./.${FILE_TAG}-results.json`, import.meta.url);
 const JOB_TIMEOUT = Number(arg('timeout', '240')) * 1000; // 单局超时（秒）
 /** 章节波数（与 balance.chapterWaves 一致）：第 1–4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50 */
 // 与 src/data/balance.ts 的 chapterWaves 一致（第 7 章覆盖为 25 波）
@@ -98,10 +115,18 @@ try {
   /* 无权限时忽略 */
 }
 
+/** 每个页面当前在跑的对局，页面报错时用来标出是哪一局 */
+const pageJob = new WeakMap();
 async function newWorker() {
   const ctx = await browser.createBrowserContext();
   const page = await ctx.newPage();
-  page.on('pageerror', (e) => console.error('\n[页面错误]', e.message));
+  // 报错时带上当前对局（角色 / 章节 / 专项武器）和调用栈顶部几帧，便于定位是哪把武器触发的
+  page.on('pageerror', (e) => {
+    const job = pageJob.get(page);
+    const where = job ? ` [${job.key}${job.focus ? ` 专项 ${job.focus.id}@T${job.focus.tier + 1}` : ''}]` : '';
+    const stack = (e.stack ?? '').split('\n').slice(1, 9).join('\n');
+    console.error(`\n[页面错误]${where} ${e.message}${stack ? `\n${stack}` : ''}`);
+  });
   await page.goto(PAGE_URL);
   await page.waitForFunction(() => window.__ready === true, { timeout: 30000 });
   await page.addScriptTag({ type: 'module', content: botSrc });
@@ -112,15 +137,85 @@ async function newWorker() {
 const firstPage = await newWorker();
 const chars = ONLY ? ONLY.split(',') : await firstPage.evaluate(() => window.ALL_CHARS);
 const names = await firstPage.evaluate(() => Object.fromEntries(window.__dev.CHARACTERS.map((c) => [c.id, c.name])));
+// 当前代码的武器数值指纹：存档时记下，合并时只用指纹一致的历史样本
+const FP = await firstPage.evaluate(() => window.__dev.weaponFingerprints());
 const jobs = [];
-for (const ch of CHAPTERS) for (const id of chars) for (let r = 0; r < RUNS; r++) jobs.push({ id, ch, run: r, key: `${ch}:${id}:${r}` });
+if (!FOCUS_SPEC) {
+  for (const ch of CHAPTERS) for (const id of chars) for (let r = 0; r < RUNS; r++) jobs.push({ id, ch, run: r, key: `${ch}:${id}:${r}` });
+} else {
+  // 每个武器×品质的候选角色：契合这把武器的优先；只能装备契合武器的角色（favoredOnly）不用
+  const info = await firstPage.evaluate((chars) => {
+    const { WEAPON_MAP, CHARACTER_MAP, isFavoredWeapon } = window.__dev;
+    const ok = chars.filter((c) => !CHARACTER_MAP[c].favoredOnly);
+    return {
+      weapons: Object.values(WEAPON_MAP).map((w) => ({
+        id: w.id,
+        tiers: w.evolvedFrom || (w.minTier ?? 0) >= 3 ? [3] : [0, 1, 2, 3].filter((t) => t >= (w.minTier ?? 0)),
+        fav: ok.filter((c) => isFavoredWeapon(CHARACTER_MAP[c].favored, w)),
+      })),
+      ok,
+    };
+  }, chars);
+  let combos = info.weapons.flatMap((w) => w.tiers.map((t) => ({ w, t })));
+  if (FOCUS_SPEC === 'auto') {
+    // 只补样本不足的：按「当前代码」的指纹现场重新合并所有存档（只在内存里算，不写文件）。
+    // 不能直接读 weapon-eff.json：它是上次测试结束时按当时的指纹合并的，之后改过数值或 WEAPON_SALT，
+    // 里面仍算着已作废的样本，会把该补测的武器当成「样本够了」。
+    let have = {};
+    try {
+      have = mergeArchives({ fp: FP }).weapons;
+    } catch (e) {
+      console.warn(`读取历史存档失败，按全部需要补测处理：${e.message}`);
+    }
+    combos = combos.filter(({ w, t }) => (have[w.id]?.[t]?.n ?? 0) < FOCUS_MIN);
+  } else if (FOCUS_SPEC !== 'all') {
+    const want = FOCUS_SPEC.split(',').map((x) => {
+      const [id, tt] = x.split('@');
+      return { id, t: tt ? Number(tt.replace(/^T/i, '')) - 1 : null };
+    });
+    for (const x of want) if (!info.weapons.some((w) => w.id === x.id)) console.warn(`--focus：找不到武器 ${x.id}`);
+    combos = combos.filter(({ w, t }) => want.some((x) => x.id === w.id && (x.t === null || x.t === t)));
+  }
+  // 简单字符串哈希：同一参数每次生成同样的任务列表，中断后能续跑
+  const hs = (str) => [...str].reduce((a, c) => (Math.imul(a, 31) + c.charCodeAt(0)) >>> 0, 7);
+  for (const { w, t } of combos)
+    for (let r = 0; r < FOCUS_RUNS; r++) {
+      // 偶数局用契合这把武器的角色，奇数局用不契合的：两边都有样本，才能算出契合收益
+      const nofav = info.ok.filter((c) => !w.fav.includes(c));
+      const side = r % 2 === 0 ? w.fav : nofav;
+      const pool = side.length ? side : info.ok;
+      const h0 = hs(`${w.id}@${t}`);
+      const id = pool[(h0 + r) % pool.length];
+      const ch = CHAPTERS[(h0 + r) % CHAPTERS.length];
+      jobs.push({ id, ch, run: r, focus: { id: w.id, tier: t }, key: `F:${w.id}@${t}:${r}` });
+    }
+  console.log(`专项补测：${combos.length} 个武器×品质 × ${FOCUS_RUNS} 局${FOCUS_SPEC === 'auto' ? `（样本 < ${FOCUS_MIN} 波的）` : ''}`);
+  if (!jobs.length) {
+    console.log('没有需要补测的武器');
+    await browser.close();
+    killServer();
+    process.exit(0);
+  }
+}
 
 // ---------- 进度：相同参数自动续跑 ----------
 // 检测项配置（报告逐项判定，见 scripts/balance-checks.json）
 const CHECKS = arg('checks', '');
 const config = { chapters: CHAPTERS, runs: RUNS, speed: SPEED, chars, talents: TALENTS, endless: ENDLESS, noTalents: NO_TALENTS };
+if (FOCUS_SPEC) Object.assign(config, { focus: FOCUS_SPEC, focusRuns: FOCUS_RUNS, focusMin: FOCUS_MIN });
 let state = {
-  meta: { ...config, version: VERSION, workers: WORKERS, names, total: jobs.length, startedAt: Date.now(), elapsedMs: 0, resumed: 0 },
+  meta: {
+    ...config,
+    mode: FOCUS_SPEC ? 'focus' : 'natural',
+    fp: FP,
+    version: VERSION,
+    workers: WORKERS,
+    names,
+    total: jobs.length,
+    startedAt: Date.now(),
+    elapsedMs: 0,
+    resumed: 0,
+  },
   results: [],
 };
 if (existsSync(PROGRESS) && !FRESH) {
@@ -132,10 +227,21 @@ if (existsSync(PROGRESS) && !FRESH) {
       speed: prev.meta.speed,
       chars: prev.meta.chars,
       talents: prev.meta.talents ?? 'none',
-    }) === JSON.stringify(config);
+      ...(FOCUS_SPEC ? { focus: prev.meta.focus, focusRuns: prev.meta.focusRuns, focusMin: prev.meta.focusMin } : {}),
+    }) ===
+      JSON.stringify({
+        chapters: config.chapters,
+        runs: config.runs,
+        speed: config.speed,
+        chars: config.chars,
+        talents: config.talents,
+        ...(FOCUS_SPEC ? { focus: config.focus, focusRuns: config.focusRuns, focusMin: config.focusMin } : {}),
+      }) &&
+    // 数值改过（指纹不同）就不续跑：前后两半数据不可比
+    prev.meta.fp?.global === FP.global;
   if (same) {
     state = prev;
-    state.meta = { ...prev.meta, version: VERSION, workers: WORKERS, names, resumed: (prev.meta.resumed ?? 0) + 1 };
+    state.meta = { ...prev.meta, fp: FP, version: VERSION, workers: WORKERS, names, resumed: (prev.meta.resumed ?? 0) + 1 };
     console.log(`检测到未完成的进度，续跑：已完成 ${state.results.length}/${jobs.length}`);
   } else {
     console.log('已有进度文件与本次参数不同，已忽略并从头开始（旧进度将被覆盖）');
@@ -148,14 +254,26 @@ const baseElapsed = state.meta.elapsedMs;
 
 function saveProgress() {
   state.meta.elapsedMs = baseElapsed + (Date.now() - sessionStart);
-  writeFileSync(new URL('./.batch-progress.json.tmp', import.meta.url), JSON.stringify(state));
-  renameSync(new URL('./.batch-progress.json.tmp', import.meta.url), PROGRESS);
+  writeFileSync(PROGRESS_TMP, JSON.stringify(state));
+  renameSync(PROGRESS_TMP, PROGRESS);
 }
 saveProgress();
 
 function report(complete) {
-  const file = writeReports({ ...state.meta, complete, finishedAt: Date.now(), ...(CHECKS ? { checksFile: CHECKS } : {}) }, state.results);
-  console.log(`报告：${file}`);
+  // 专项补测强制给武器，不代表正常平衡，不出 HTML 报告
+  if (!FOCUS_SPEC && !NO_ARCHIVE) {
+    const file = writeReports(
+      { ...state.meta, complete, finishedAt: Date.now(), ...(CHECKS ? { checksFile: CHECKS } : {}) },
+      state.results,
+    );
+    console.log(`报告：${file}`);
+  }
+  // 只有完整跑完才存档转换率（中断的半份数据等续跑完再存，避免同一批样本存两次）
+  if (complete && NO_ARCHIVE) console.log('--no-archive：不存档转换率');
+  else if (complete) {
+    const { file, merged } = archiveAndMerge({ ...state.meta, complete, finishedAt: Date.now() }, state.results);
+    console.log(`转换率存档：${file}\n${describeMerged(merged)}`);
+  }
 }
 
 // 中断（Ctrl+C / kill）时保存进度并输出部分报告
@@ -182,9 +300,10 @@ const t0 = Date.now();
 const retries = {};
 async function playJob(page, job) {
   return page.evaluate(
-    async ({ id, ch, speed, budget, limit, talents, endless, noTalents, botStyle }) => {
+    async ({ id, ch, speed, budget, limit, talents, endless, noTalents, botStyle, focus }) => {
       window.__dmg = [];
       window.__botStyle = botStyle;
+      window.__focus = focus ?? null;
       window.botTalents(id, talents, noTalents ? noTalents.split(',') : []);
       window.startBot2(id, ch, speed, budget);
       if (endless) window.run.endless = true;
@@ -287,6 +406,7 @@ async function worker(slot, page) {
     const job = queue.shift();
     if (!job) break;
     try {
+      pageJob.set(page, job);
       const r = await playJob(page, job);
       if (stopping) return;
       state.results.push({ ...r, ch: job.ch, run: job.run, key: job.key });

@@ -28,6 +28,7 @@ import {
   BALANCE,
   RARITY,
   pickRarity,
+  rarityWeights,
   rerollPrice,
   pickWeaponTier,
   shopPrice,
@@ -241,12 +242,18 @@ export class ShopScene extends Phaser.Scene {
     const weaponPool = WEAPONS.filter((w) => isShopWeapon(w) && (!onlyCls || w.cls === onlyCls));
     const offers: ShopOffer[] = [...kept];
     const luck = run.stats.luck; // 武器品质 / 道具稀有度只看幸运，与波次无关
-    // 配方道具：某条配方的材料武器都快凑齐时，25% 概率直接上架一件这条配方还缺的道具
-    // （配方要求指定道具，全靠随机刷几乎凑不齐）；契合武器的配方优先
-    const need = wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.char.favored, WEAPON_MAP[to])).filter(
-      (id) => run.canTakeItem(id) && !offers.some((o) => o.id === id),
-    );
-    if (need.length && offers.length < BALANCE.shopSlots && R() < 0.25) {
+    // 配方道具：某条配方的材料武器都快凑齐时，10% 概率直接上架一件这条配方还缺的道具
+    // （配方要求指定道具，全靠随机刷几乎凑不齐）；契合武器的配方优先。
+    // 只补当前幸运已经能自然刷出该稀有度的道具（史诗需幸运 15、传说需幸运 20，见 BALANCE.luckTiers.item）；
+    // 只帮玩家凑出第一把 T4：武器栏或仓库里已有 T4（含超武）后不再补货
+    const rw = rarityWeights(luck);
+    const hasT4 = run.allWeapons.some((w) => w.tier === 3);
+    const need = hasT4
+      ? []
+      : wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.char.favored, WEAPON_MAP[to])).filter(
+          (id) => run.canTakeItem(id) && !offers.some((o) => o.id === id) && rw[ITEM_MAP[id].rarity] > 0,
+        );
+    if (need.length && offers.length < BALANCE.shopSlots && R() < 0.1) {
       // 前几件（契合配方的）更容易被选中
       const it = ITEM_MAP[need[Math.floor(Math.pow(R(), 2) * need.length)]];
       offers.push({
