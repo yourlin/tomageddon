@@ -105,7 +105,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 | <img src="../images/enemy/rot_chili.png" width="32" height="32" alt=""> [Rotten Chili](#enemy-rot_chili) | Shooter | 13 (+65%/wave) | 2 (+0.6/wave) | 105 | 2 | [Burn](SKILLS.md#status-burn) 2s |
 | <img src="../images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [Sweaty Cucumber](#enemy-slime_cucumber) | Slime trail | 18 (+70%/wave) | 2 (+0.6/wave) | 80 | 2 | [Sticky](SKILLS.md#status-sticky) 1.5s |
 | <img src="../images/enemy/spore_puff.png" width="32" height="32" alt=""> [Spore Puffball](#enemy-spore_puff) | Bomber | 10 (+60%/wave) | 4 (+0.65/wave) | 125 | 2 | 3× [Poison](SKILLS.md#status-poison) 3s |
-| <img src="../images/enemy/vine_lasher.png" width="32" height="32" alt=""> [Rot Vine](#enemy-vine_lasher) | Charger | 24 (+75%/wave) | 3 (+0.8/wave) | 75 | 3 | 2× [Bleed](SKILLS.md#status-bleed) 3s |
+| <img src="../images/enemy/vine_lasher.png" width="32" height="32" alt=""> [Rot Vine](#enemy-vine_lasher) | Charger | 24 (+75%/wave) | 2.4 (+0.7/wave) | 75 | 3 | 2× [Bleed](SKILLS.md#status-bleed) 2s |
 | <img src="../images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [Moldy Pumpkin](#enemy-moldy_pumpkin) | Splits on death | 30 (+75%/wave) | 3 (+0.7/wave) | 65 | 3 | - |
 | <img src="../images/enemy/compost_heap.png" width="32" height="32" alt=""> [Compost Bin](#enemy-compost_heap) | Summoner | 34 (+80%/wave) | 3 (+0.65/wave) | 45 | 4 | - |
 | <img src="../images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [Rotheart Cabbage](#enemy-rot_cabbage) | Chase | 26 (+65%/wave) | 2.5 (+0.6/wave) | 75 | 3 | [Rot](SKILLS.md#status-rot) 3s (35%) |
@@ -683,7 +683,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>125</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>1</td></tr>
 <tr><td nowrap>Special</td><td>Blast radius 85</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 8+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 8+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 19+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
 </table>
 
 <a id="enemy-rotten_potato"></a>
@@ -697,7 +697,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>60</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>3</td></tr>
 <tr><td nowrap>Special</td><td>Splits into 4× <a href="#enemy-aphid">Aphid</a> on death</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 10+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 13+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-2">Chapter 2 · Wild Garden</a> waves 10+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 19+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 13+</td></tr>
 </table>
 
 <a id="enemy-locust"></a>
@@ -1005,7 +1005,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>40</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>4</td></tr>
 <tr><td nowrap>Special</td><td>Summons 3× <a href="#enemy-rusty_nail">Rusty Nail</a></td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 11+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-4">Chapter 4 · City Junkyard</a> waves 11+; <a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 23+</td></tr>
 </table>
 
 <a id="enemy-junk_radio"></a>
@@ -1240,11 +1240,11 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td colspan="2"><i>A barbed rotten vine that winds up and lashes in to cause Bleed.</i></td></tr>
 <tr><td nowrap>Behavior</td><td>Charger</td></tr>
 <tr><td nowrap>HP</td><td>24 (+75%/wave)</td></tr>
-<tr><td nowrap>Damage</td><td>3 (+0.8/wave)</td></tr>
+<tr><td nowrap>Damage</td><td>2.4 (+0.7/wave)</td></tr>
 <tr><td nowrap>Speed</td><td>75</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>3</td></tr>
-<tr><td nowrap>Inflicts</td><td>2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s</td></tr>
-<tr><td nowrap>Special</td><td>Charges every 3.2s</td></tr>
+<tr><td nowrap>Inflicts</td><td>2× <a href="SKILLS.md#status-bleed">Bleed</a> 2s</td></tr>
+<tr><td nowrap>Special</td><td>Charges every 3.8s</td></tr>
 <tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 8+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 9+</td></tr>
 </table>
 
@@ -1316,7 +1316,7 @@ Enemy HP and damage grow per wave and are multiplied by the chapter multiplier; 
 <tr><td nowrap>Speed</td><td>70</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>3</td></tr>
 <tr><td nowrap>Special</td><td>Heals allies within 200 for 0.2</td></tr>
-<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
+<tr><td nowrap>Appears in</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a> waves 21+; <a href="CHAPTERS.md#chapter-7">Chapter 7 · Rot Garden</a> waves 11+</td></tr>
 </table>
 
 <a id="enemy-blight_onion"></a>
@@ -2062,8 +2062,8 @@ Appear on the last wave of a chapter and enter phase two at half HP. The wave la
 <tr><td rowspan="9" align="center" valign="middle"><img src="../images/boss/blight_gardener.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Blight Gardener · Chapter 6 Boss</th></tr>
 <tr><td colspan="2"><i>A mad gardener who turned the greenhouse into a rot nursery, swinging rusty shears.</i></td></tr>
 <tr><td nowrap>Chapter</td><td><a href="CHAPTERS.md#chapter-6">Chapter 6 · Rotting Greenhouse</a></td></tr>
-<tr><td nowrap>Base HP</td><td>4200</td></tr>
-<tr><td nowrap>Damage</td><td>9</td></tr>
+<tr><td nowrap>Base HP</td><td>7000</td></tr>
+<tr><td nowrap>Damage</td><td>10</td></tr>
 <tr><td nowrap>Speed</td><td>80</td></tr>
 <tr><td nowrap>Seeds dropped</td><td>132</td></tr>
 <tr><td nowrap>Attacks</td><td>Aimed fan ×5 inflicts 2× <a href="SKILLS.md#status-bleed">Bleed</a> 3s (every 2.2s)<br>Hazard zone ×5 inflicts 2× <a href="SKILLS.md#status-poison">Poison</a> 3s, <a href="SKILLS.md#status-sticky">Sticky</a> 1.5s (every 5s)<br>Summon 5× <a href="MONSTERS.md#enemy-blight_sprout">Blight Sprout</a> (every 8s)<br>Telegraphed charge (every 5s)</td></tr>

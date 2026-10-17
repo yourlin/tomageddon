@@ -12,6 +12,26 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.7.2',
+    date: '2026-10-17',
+    highlight: [
+      '第 6 章加难：Boss 枯萎园丁更强、后期新怪登场，腐藤鞭削弱',
+      'Chapter 6 gets harder: a tougher Blight Gardener and new late-chapter enemies, while Rot Vine is toned down',
+    ],
+    items: [
+      [
+        '第 6 章 Boss 枯萎园丁生命提高约 67%、伤害提高 11%，「疯长」阶段提前到 45% 血进入',
+        'Chapter 6 boss Blight Gardener has about 67% more HP and 11% more damage, and enters its Overgrowth phase at 45% HP instead of 35%',
+      ],
+      [
+        '第 6 章后半段新增 4 种怪物登场：烂土豆、瓢虫炸弹、腐烂洒水器、垃圾堆',
+        'Four more enemy types now appear in the second half of Chapter 6',
+      ],
+      ['腐藤鞭伤害降低，冲锋间隔变长，流血减弱', 'Rot Vine deals less damage, charges less often and inflicts weaker Bleed'],
+      ['第 6、7 章怪物生命提高', 'Enemy HP raised in Chapters 6 and 7'],
+    ],
+  },
+  {
     version: '0.7.1',
     date: '2026-10-16',
     highlight: [

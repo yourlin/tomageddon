@@ -228,16 +228,17 @@ const CH6_ENEMIES: EnemyDef[] = [
     radius: 21,
     hp: 24,
     hpGrowth: 0.75,
-    dmg: 3,
-    dmgGrowth: 0.8,
+    // 2026-10-17 round9：第 6 章阵亡局里它一个打了 66% 的伤害（上限 40%），伤害、流血、冲锋频率一起削
+    dmg: 2.4,
+    dmgGrowth: 0.7,
     speed: 75,
     seeds: 3,
     behavior: 'charger',
     chargeSpeed: 600,
-    chargeCd: 3.2,
+    chargeCd: 3.8,
     windup: 0.7,
     knockResist: 0.5,
-    onHit: [S('bleed', 3, 2)],
+    onHit: [S('bleed', 2, 2)],
     look: {
       shape: 'segment',
       w: 1.1,
@@ -634,8 +635,10 @@ const CH6_BOSSES: ExtraBossDef[] = [
       ],
     },
     72,
-    4200,
-    9,
+    // 2026-10-17 round11：第 6 章 Boss 波阵亡只占 1%，打到第 25 波的构筑几乎稳过。血量 4200→5600→7000（round12 后再加），伤害 9→10，
+    // 最后一阶段「疯长」提前到 45% 血（见 bossPhases.ts）
+    7000,
+    10,
     80,
     [
       { type: 'aimed', cd: 2.2, count: 5, spread: 45, speed: 340, dmg: 0.8, debuff: [S('bleed', 3, 2)] },
@@ -873,6 +876,12 @@ export const EXTRA_CHAPTERS: ChapterDef[] = [
       { enemy: 'compost_heap', from: 9, weight: 2 },
       { enemy: 'ketchup_slime', from: 10, weight: 2 },
       { enemy: 'press_piston', from: 11, weight: 2 },
+      // 2026-10-17 round10：原池子第 18 波之后不再有新怪，强构筑后半章几乎没有压力（通关率 40%，目标 12–22%）。
+      // 补 4 种后期威胁（from 按 15 波节奏写，实际约第 19–23 波登场）
+      { enemy: 'rotten_potato', from: 12, weight: 3 },
+      { enemy: 'ladybug_bomb', from: 12, weight: 3 },
+      { enemy: 'rot_sprinkler', from: 13, weight: 3 },
+      { enemy: 'junk_heap', from: 14, weight: 2 },
     ],
     music: 'bgm_greenhouse',
   },

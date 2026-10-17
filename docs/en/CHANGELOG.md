@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.7.2 · 2026-10-17](#v0-7-2)
 - [v0.7.1 · 2026-10-16](#v0-7-1)
 - [v0.7.0 · 2026-10-16](#v0-7-0)
 - [v0.6.6 · 2026-10-14](#v0-6-6)
@@ -26,6 +27,18 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-7-2"></a>
+
+## v0.7.2 · 2026-10-17
+
+**Chapter 6 gets harder: a tougher Blight Gardener and new late-chapter enemies, while Rot Vine is toned down**
+
+
+- Chapter 6 boss Blight Gardener has about 67% more HP and 11% more damage, and enters its Overgrowth phase at 45% HP instead of 35%
+- Four more enemy types now appear in the second half of Chapter 6
+- Rot Vine deals less damage, charges less often and inflicts weaker Bleed
+- Enemy HP raised in Chapters 6 and 7
 
 <a id="v0-7-1"></a>
 

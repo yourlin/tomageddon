@@ -105,7 +105,7 @@
 | <img src="images/enemy/rot_chili.png" width="32" height="32" alt=""> [腐辣椒](#enemy-rot_chili) | 远程射击 | 13（每波 +65%） | 2（每波 +0.6） | 105 | 2 | [灼烧](SKILLS.md#status-burn) 2s |
 | <img src="images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [流汗黄瓜](#enemy-slime_cucumber) | 留下黏液 | 18（每波 +70%） | 2（每波 +0.6） | 80 | 2 | [黏液](SKILLS.md#status-sticky) 1.5s |
 | <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](#enemy-spore_puff) | 自爆 | 10（每波 +60%） | 4（每波 +0.65） | 125 | 2 | 3层[中毒](SKILLS.md#status-poison) 3s |
-| <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](#enemy-vine_lasher) | 蓄力冲撞 | 24（每波 +75%） | 3（每波 +0.8） | 75 | 3 | 2层[流血](SKILLS.md#status-bleed) 3s |
+| <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](#enemy-vine_lasher) | 蓄力冲撞 | 24（每波 +75%） | 2.4（每波 +0.7） | 75 | 3 | 2层[流血](SKILLS.md#status-bleed) 2s |
 | <img src="images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [霉变南瓜](#enemy-moldy_pumpkin) | 死亡分裂 | 30（每波 +75%） | 3（每波 +0.7） | 65 | 3 | - |
 | <img src="images/enemy/compost_heap.png" width="32" height="32" alt=""> [堆肥桶](#enemy-compost_heap) | 召唤 | 34（每波 +80%） | 3（每波 +0.65） | 45 | 4 | - |
 | <img src="images/enemy/rot_cabbage.png" width="32" height="32" alt=""> [烂心卷心菜](#enemy-rot_cabbage) | 追击 | 26（每波 +65%） | 2.5（每波 +0.6） | 75 | 3 | [腐烂](SKILLS.md#status-rot) 3s（35%） |
@@ -683,7 +683,7 @@
 <tr><td nowrap>速度</td><td>125</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>1</td></tr>
 <tr><td nowrap>特殊</td><td>自爆半径 85</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 11+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 19+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 11+ 波</td></tr>
 </table>
 
 <a id="enemy-rotten_potato"></a>
@@ -697,7 +697,7 @@
 <tr><td nowrap>速度</td><td>60</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>特殊</td><td>死亡分裂为 4 只<a href="#enemy-aphid">蚜虫</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 10+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 13+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-2">第二章 · 荒芜菜园</a> 第 10+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 19+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 13+ 波</td></tr>
 </table>
 
 <a id="enemy-locust"></a>
@@ -1005,7 +1005,7 @@
 <tr><td nowrap>速度</td><td>40</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>4</td></tr>
 <tr><td nowrap>特殊</td><td>召唤 3 只<a href="#enemy-rusty_nail">锈钉虫</a></td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 11+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-4">第四章 · 城市垃圾场</a> 第 11+ 波；<a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 23+ 波</td></tr>
 </table>
 
 <a id="enemy-junk_radio"></a>
@@ -1240,11 +1240,11 @@
 <tr><td colspan="2"><i>缠满倒刺的烂藤，蓄力后猛抽过来。</i></td></tr>
 <tr><td nowrap>行为</td><td>蓄力冲撞</td></tr>
 <tr><td nowrap>生命</td><td>24（每波 +75%）</td></tr>
-<tr><td nowrap>伤害</td><td>3（每波 +0.8）</td></tr>
+<tr><td nowrap>伤害</td><td>2.4（每波 +0.7）</td></tr>
 <tr><td nowrap>速度</td><td>75</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
-<tr><td nowrap>攻击附带</td><td>2层<a href="SKILLS.md#status-bleed">流血</a> 3s</td></tr>
-<tr><td nowrap>特殊</td><td>每 3.2s 冲撞</td></tr>
+<tr><td nowrap>攻击附带</td><td>2层<a href="SKILLS.md#status-bleed">流血</a> 2s</td></tr>
+<tr><td nowrap>特殊</td><td>每 3.8s 冲撞</td></tr>
 <tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 8+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 9+ 波</td></tr>
 </table>
 
@@ -1316,7 +1316,7 @@
 <tr><td nowrap>速度</td><td>70</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>3</td></tr>
 <tr><td nowrap>特殊</td><td>治疗半径 200 内同伴 0.2</td></tr>
-<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 11+ 波</td></tr>
+<tr><td nowrap>出现</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a> 第 21+ 波；<a href="CHAPTERS.md#chapter-7">第七章 · 腐烂菜园</a> 第 11+ 波</td></tr>
 </table>
 
 <a id="enemy-blight_onion"></a>
@@ -2062,8 +2062,8 @@
 <tr><td rowspan="9" align="center" valign="middle"><img src="images/boss/blight_gardener.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">枯萎园丁 · 第六章 Boss</th></tr>
 <tr><td colspan="2"><i>把温室变成腐烂苗圃的疯园丁，挥着生锈的修枝剪。</i></td></tr>
 <tr><td nowrap>章节</td><td><a href="CHAPTERS.md#chapter-6">第六章 · 腐烂温室</a></td></tr>
-<tr><td nowrap>基础生命</td><td>4200</td></tr>
-<tr><td nowrap>伤害</td><td>9</td></tr>
+<tr><td nowrap>基础生命</td><td>7000</td></tr>
+<tr><td nowrap>伤害</td><td>10</td></tr>
 <tr><td nowrap>速度</td><td>80</td></tr>
 <tr><td nowrap>掉落番茄籽</td><td>132</td></tr>
 <tr><td nowrap>招式</td><td>扇形瞄准 ×5 命中附带 2层<a href="SKILLS.md#status-bleed">流血</a> 3s（每 2.2s）<br>危险区 ×5 命中附带 2层<a href="SKILLS.md#status-poison">中毒</a> 3s、<a href="SKILLS.md#status-sticky">黏液</a> 1.5s（每 5s）<br>召唤 5 只<a href="MONSTERS.md#enemy-blight_sprout">枯萎嫩芽</a>（每 8s）<br>预警冲锋（每 5s）</td></tr>

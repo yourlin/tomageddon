@@ -286,7 +286,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Octagon, 1900 × 1900 bounds; 1 obstacles (block movement, not bullets) |
-| Difficulty | HP ×2.56 · damage ×1.43 · speed ×1.25 |
+| Difficulty | HP ×2.7 · damage ×1.43 · speed ×1.25 |
 | Terrain | Spore Vents: The ground periodically puffs Poison spore clouds<br>Compost Pits: Blight Sprouts crawl out periodically<br>Grow Lamps: Players and monsters in the light become Hardened (more Armor, less damage taken); lamps move periodically |
 | Elite pool | <img src="../images/boss/pumpkin_brute.png" width="24" height="24" alt=""> [Pumpkin Brute](MONSTERS.md#boss-pumpkin_brute), <img src="../images/boss/spore_matron.png" width="24" height="24" alt=""> [Spore Matron](MONSTERS.md#boss-spore_matron) |
 | Boss pool | <img src="../images/boss/blight_gardener.png" width="24" height="24" alt=""> [Blight Gardener](MONSTERS.md#boss-blight_gardener) |
@@ -295,28 +295,32 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 
 | Monster | Waves | Weight |
 | --- | --- | --- |
-| <img src="../images/enemy/blight_sprout.png" width="32" height="32" alt=""> [Blight Sprout](MONSTERS.md#enemy-blight_sprout) | 1~8 | 8 (12%) |
-| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1~9 | 4 (6%) |
-| <img src="../images/enemy/aphid.png" width="32" height="32" alt=""> [Aphid](MONSTERS.md#enemy-aphid) | 1~11 | 3 (5%) |
-| <img src="../images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [Fungus Gnat](MONSTERS.md#enemy-fungus_gnat) | 2+ | 4 (6%) |
-| <img src="../images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [Sweaty Cucumber](MONSTERS.md#enemy-slime_cucumber) | 4+ | 3 (5%) |
-| <img src="../images/enemy/rot_chili.png" width="32" height="32" alt=""> [Rotten Chili](MONSTERS.md#enemy-rot_chili) | 4+ | 3 (5%) |
-| <img src="../images/enemy/garden_slug.png" width="32" height="32" alt=""> [Garden Slug](MONSTERS.md#enemy-garden_slug) | 4+ | 3 (5%) |
-| <img src="../images/enemy/spore_puff.png" width="32" height="32" alt=""> [Spore Puffball](MONSTERS.md#enemy-spore_puff) | 6+ | 3 (5%) |
-| <img src="../images/enemy/thorn_weed.png" width="32" height="32" alt=""> [Thorn Weed](MONSTERS.md#enemy-thorn_weed) | 6+ | 3 (5%) |
-| <img src="../images/enemy/vine_lasher.png" width="32" height="32" alt=""> [Rot Vine](MONSTERS.md#enemy-vine_lasher) | 8+ | 3 (5%) |
-| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 8+ | 3 (5%) |
+| <img src="../images/enemy/blight_sprout.png" width="32" height="32" alt=""> [Blight Sprout](MONSTERS.md#enemy-blight_sprout) | 1~8 | 8 (10%) |
+| <img src="../images/enemy/fly.png" width="32" height="32" alt=""> [Fruit Fly](MONSTERS.md#enemy-fly) | 1~9 | 4 (5%) |
+| <img src="../images/enemy/aphid.png" width="32" height="32" alt=""> [Aphid](MONSTERS.md#enemy-aphid) | 1~11 | 3 (4%) |
+| <img src="../images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [Fungus Gnat](MONSTERS.md#enemy-fungus_gnat) | 2+ | 4 (5%) |
+| <img src="../images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [Sweaty Cucumber](MONSTERS.md#enemy-slime_cucumber) | 4+ | 3 (4%) |
+| <img src="../images/enemy/rot_chili.png" width="32" height="32" alt=""> [Rotten Chili](MONSTERS.md#enemy-rot_chili) | 4+ | 3 (4%) |
+| <img src="../images/enemy/garden_slug.png" width="32" height="32" alt=""> [Garden Slug](MONSTERS.md#enemy-garden_slug) | 4+ | 3 (4%) |
+| <img src="../images/enemy/spore_puff.png" width="32" height="32" alt=""> [Spore Puffball](MONSTERS.md#enemy-spore_puff) | 6+ | 3 (4%) |
+| <img src="../images/enemy/thorn_weed.png" width="32" height="32" alt=""> [Thorn Weed](MONSTERS.md#enemy-thorn_weed) | 6+ | 3 (4%) |
+| <img src="../images/enemy/vine_lasher.png" width="32" height="32" alt=""> [Rot Vine](MONSTERS.md#enemy-vine_lasher) | 8+ | 3 (4%) |
+| <img src="../images/enemy/spider.png" width="32" height="32" alt=""> [Venom Spider](MONSTERS.md#enemy-spider) | 8+ | 3 (4%) |
 | <img src="../images/enemy/mushroom.png" width="32" height="32" alt=""> [Toxic Shroom](MONSTERS.md#enemy-mushroom) | 8+ | 2 (3%) |
-| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 9+ | 3 (5%) |
+| <img src="../images/enemy/beetle.png" width="32" height="32" alt=""> [Bomb Beetle](MONSTERS.md#enemy-beetle) | 9+ | 3 (4%) |
 | <img src="../images/enemy/pollen_bloom.png" width="32" height="32" alt=""> [Toxic Bloom](MONSTERS.md#enemy-pollen_bloom) | 9+ | 2 (3%) |
-| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 9+ | 3 (5%) |
-| <img src="../images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [Moldy Pumpkin](MONSTERS.md#enemy-moldy_pumpkin) | 11+ | 3 (5%) |
+| <img src="../images/enemy/rat.png" width="32" height="32" alt=""> [Sewer Rat](MONSTERS.md#enemy-rat) | 9+ | 3 (4%) |
+| <img src="../images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [Moldy Pumpkin](MONSTERS.md#enemy-moldy_pumpkin) | 11+ | 3 (4%) |
 | <img src="../images/enemy/splitter.png" width="32" height="32" alt=""> [Split Mold](MONSTERS.md#enemy-splitter) | 11+ | 2 (3%) |
-| <img src="../images/enemy/mantis.png" width="32" height="32" alt=""> [Blade Mantis](MONSTERS.md#enemy-mantis) | 13+ | 3 (5%) |
+| <img src="../images/enemy/mantis.png" width="32" height="32" alt=""> [Blade Mantis](MONSTERS.md#enemy-mantis) | 13+ | 3 (4%) |
 | <img src="../images/enemy/rivet_bot.png" width="32" height="32" alt=""> [Rivet Bot](MONSTERS.md#enemy-rivet_bot) | 13+ | 2 (3%) |
 | <img src="../images/enemy/compost_heap.png" width="32" height="32" alt=""> [Compost Bin](MONSTERS.md#enemy-compost_heap) | 14+ | 2 (3%) |
 | <img src="../images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [Ketchup Slime](MONSTERS.md#enemy-ketchup_slime) | 16+ | 2 (3%) |
 | <img src="../images/enemy/press_piston.png" width="32" height="32" alt=""> [Press Piston](MONSTERS.md#enemy-press_piston) | 18+ | 2 (3%) |
+| <img src="../images/enemy/rotten_potato.png" width="32" height="32" alt=""> [Rotten Potato](MONSTERS.md#enemy-rotten_potato) | 19+ | 3 (4%) |
+| <img src="../images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [Boom Ladybug](MONSTERS.md#enemy-ladybug_bomb) | 19+ | 3 (4%) |
+| <img src="../images/enemy/rot_sprinkler.png" width="32" height="32" alt=""> [Rot Sprinkler](MONSTERS.md#enemy-rot_sprinkler) | 21+ | 3 (4%) |
+| <img src="../images/enemy/junk_heap.png" width="32" height="32" alt=""> [Junk Heap](MONSTERS.md#enemy-junk_heap) | 23+ | 2 (3%) |
 
 <a id="chapter-7"></a>
 
@@ -331,7 +335,7 @@ Chapters 1–4 have 15 waves each; from chapter 5 on a chapter has 20 waves, +5 
 | Field | Value |
 | --- | --- |
 | Arena | Irregular round shape, 2016 × 1800 bounds; 4 obstacles (block movement, not bullets) |
-| Difficulty | HP ×2.67 · damage ×1.5 · speed ×1.3 |
+| Difficulty | HP ×2.77 · damage ×1.5 · speed ×1.3 |
 | Terrain | Rot Mire: Pulls players and monsters toward the center and spreads Rot<br>Falling Rotten Fruit: Watch for warning circles on the ground<br>Brambles: Thorns burst from under your feet, dealing damage and inflicting Bleed and Corrode |
 | Elite pool | <img src="../images/boss/carrot_knight.png" width="24" height="24" alt=""> [Carrot Revenant](MONSTERS.md#boss-carrot_knight), <img src="../images/boss/onion_witch.png" width="24" height="24" alt=""> [Onion Witch](MONSTERS.md#boss-onion_witch) |
 | Boss pool | <img src="../images/boss/rot_mother.png" width="24" height="24" alt=""> [Mother of Rot](MONSTERS.md#boss-rot_mother), <img src="../images/boss/rot_king.png" width="24" height="24" alt=""> [Rot King](MONSTERS.md#boss-rot_king) |
