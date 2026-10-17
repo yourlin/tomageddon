@@ -644,7 +644,8 @@ export const BOSS_PHASES: Record<string, BossPhase[]> = {
       ],
     },
     {
-      at: 0.35,
+      // 2026-10-17：0.35 → 0.45，疯长阶段更早到来（第 6 章 Boss 偏弱）
+      at: 0.45,
       name: ['疯长', 'Overgrowth'],
       color: 0x33691e,
       tint: 0xaed581,

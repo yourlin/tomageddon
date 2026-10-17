@@ -286,7 +286,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 八边形，外接 1900 × 1900；1 个障碍物（只挡移动，不挡子弹） |
-| 难度倍率 | 生命 ×2.56 · 伤害 ×1.43 · 速度 ×1.25 |
+| 难度倍率 | 生命 ×2.7 · 伤害 ×1.43 · 速度 ×1.25 |
 | 地形机关 | 孢子喷口：地面周期性喷出中毒孢子云<br>堆肥坑：定期钻出枯萎嫩芽<br>补光灯：光区内的玩家与怪物都会硬化（护甲提高、受到伤害降低），灯会定期换位 |
 | 精英池 | <img src="images/boss/pumpkin_brute.png" width="24" height="24" alt=""> [南瓜蛮汉](MONSTERS.md#boss-pumpkin_brute)、<img src="images/boss/spore_matron.png" width="24" height="24" alt=""> [孢子女王](MONSTERS.md#boss-spore_matron) |
 | Boss 池 | <img src="images/boss/blight_gardener.png" width="24" height="24" alt=""> [枯萎园丁](MONSTERS.md#boss-blight_gardener) |
@@ -295,28 +295,32 @@
 
 | 小怪 | 出现波次 | 权重 |
 | --- | --- | --- |
-| <img src="images/enemy/blight_sprout.png" width="32" height="32" alt=""> [枯萎嫩芽](MONSTERS.md#enemy-blight_sprout) | 1~8 | 8 (12%) |
-| <img src="images/enemy/fly.png" width="32" height="32" alt=""> [果蝇](MONSTERS.md#enemy-fly) | 1~9 | 4 (6%) |
-| <img src="images/enemy/aphid.png" width="32" height="32" alt=""> [蚜虫](MONSTERS.md#enemy-aphid) | 1~11 | 3 (5%) |
-| <img src="images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [菌蚊](MONSTERS.md#enemy-fungus_gnat) | 2+ | 4 (6%) |
-| <img src="images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [流汗黄瓜](MONSTERS.md#enemy-slime_cucumber) | 4+ | 3 (5%) |
-| <img src="images/enemy/rot_chili.png" width="32" height="32" alt=""> [腐辣椒](MONSTERS.md#enemy-rot_chili) | 4+ | 3 (5%) |
-| <img src="images/enemy/garden_slug.png" width="32" height="32" alt=""> [菜园蛞蝓](MONSTERS.md#enemy-garden_slug) | 4+ | 3 (5%) |
-| <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](MONSTERS.md#enemy-spore_puff) | 6+ | 3 (5%) |
-| <img src="images/enemy/thorn_weed.png" width="32" height="32" alt=""> [荆棘杂草](MONSTERS.md#enemy-thorn_weed) | 6+ | 3 (5%) |
-| <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](MONSTERS.md#enemy-vine_lasher) | 8+ | 3 (5%) |
-| <img src="images/enemy/spider.png" width="32" height="32" alt=""> [毒蜘蛛](MONSTERS.md#enemy-spider) | 8+ | 3 (5%) |
+| <img src="images/enemy/blight_sprout.png" width="32" height="32" alt=""> [枯萎嫩芽](MONSTERS.md#enemy-blight_sprout) | 1~8 | 8 (10%) |
+| <img src="images/enemy/fly.png" width="32" height="32" alt=""> [果蝇](MONSTERS.md#enemy-fly) | 1~9 | 4 (5%) |
+| <img src="images/enemy/aphid.png" width="32" height="32" alt=""> [蚜虫](MONSTERS.md#enemy-aphid) | 1~11 | 3 (4%) |
+| <img src="images/enemy/fungus_gnat.png" width="32" height="32" alt=""> [菌蚊](MONSTERS.md#enemy-fungus_gnat) | 2+ | 4 (5%) |
+| <img src="images/enemy/slime_cucumber.png" width="32" height="32" alt=""> [流汗黄瓜](MONSTERS.md#enemy-slime_cucumber) | 4+ | 3 (4%) |
+| <img src="images/enemy/rot_chili.png" width="32" height="32" alt=""> [腐辣椒](MONSTERS.md#enemy-rot_chili) | 4+ | 3 (4%) |
+| <img src="images/enemy/garden_slug.png" width="32" height="32" alt=""> [菜园蛞蝓](MONSTERS.md#enemy-garden_slug) | 4+ | 3 (4%) |
+| <img src="images/enemy/spore_puff.png" width="32" height="32" alt=""> [孢子马勃](MONSTERS.md#enemy-spore_puff) | 6+ | 3 (4%) |
+| <img src="images/enemy/thorn_weed.png" width="32" height="32" alt=""> [荆棘杂草](MONSTERS.md#enemy-thorn_weed) | 6+ | 3 (4%) |
+| <img src="images/enemy/vine_lasher.png" width="32" height="32" alt=""> [腐藤鞭](MONSTERS.md#enemy-vine_lasher) | 8+ | 3 (4%) |
+| <img src="images/enemy/spider.png" width="32" height="32" alt=""> [毒蜘蛛](MONSTERS.md#enemy-spider) | 8+ | 3 (4%) |
 | <img src="images/enemy/mushroom.png" width="32" height="32" alt=""> [毒蘑菇](MONSTERS.md#enemy-mushroom) | 8+ | 2 (3%) |
-| <img src="images/enemy/beetle.png" width="32" height="32" alt=""> [炸弹甲虫](MONSTERS.md#enemy-beetle) | 9+ | 3 (5%) |
+| <img src="images/enemy/beetle.png" width="32" height="32" alt=""> [炸弹甲虫](MONSTERS.md#enemy-beetle) | 9+ | 3 (4%) |
 | <img src="images/enemy/pollen_bloom.png" width="32" height="32" alt=""> [毒花苞](MONSTERS.md#enemy-pollen_bloom) | 9+ | 2 (3%) |
-| <img src="images/enemy/rat.png" width="32" height="32" alt=""> [下水道老鼠](MONSTERS.md#enemy-rat) | 9+ | 3 (5%) |
-| <img src="images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [霉变南瓜](MONSTERS.md#enemy-moldy_pumpkin) | 11+ | 3 (5%) |
+| <img src="images/enemy/rat.png" width="32" height="32" alt=""> [下水道老鼠](MONSTERS.md#enemy-rat) | 9+ | 3 (4%) |
+| <img src="images/enemy/moldy_pumpkin.png" width="32" height="32" alt=""> [霉变南瓜](MONSTERS.md#enemy-moldy_pumpkin) | 11+ | 3 (4%) |
 | <img src="images/enemy/splitter.png" width="32" height="32" alt=""> [分裂霉菌](MONSTERS.md#enemy-splitter) | 11+ | 2 (3%) |
-| <img src="images/enemy/mantis.png" width="32" height="32" alt=""> [刀螳螂](MONSTERS.md#enemy-mantis) | 13+ | 3 (5%) |
+| <img src="images/enemy/mantis.png" width="32" height="32" alt=""> [刀螳螂](MONSTERS.md#enemy-mantis) | 13+ | 3 (4%) |
 | <img src="images/enemy/rivet_bot.png" width="32" height="32" alt=""> [铆钉机器人](MONSTERS.md#enemy-rivet_bot) | 13+ | 2 (3%) |
 | <img src="images/enemy/compost_heap.png" width="32" height="32" alt=""> [堆肥桶](MONSTERS.md#enemy-compost_heap) | 14+ | 2 (3%) |
 | <img src="images/enemy/ketchup_slime.png" width="32" height="32" alt=""> [番茄酱史莱姆](MONSTERS.md#enemy-ketchup_slime) | 16+ | 2 (3%) |
 | <img src="images/enemy/press_piston.png" width="32" height="32" alt=""> [冲压活塞](MONSTERS.md#enemy-press_piston) | 18+ | 2 (3%) |
+| <img src="images/enemy/rotten_potato.png" width="32" height="32" alt=""> [烂土豆](MONSTERS.md#enemy-rotten_potato) | 19+ | 3 (4%) |
+| <img src="images/enemy/ladybug_bomb.png" width="32" height="32" alt=""> [爆爆瓢虫](MONSTERS.md#enemy-ladybug_bomb) | 19+ | 3 (4%) |
+| <img src="images/enemy/rot_sprinkler.png" width="32" height="32" alt=""> [腐水洒水器](MONSTERS.md#enemy-rot_sprinkler) | 21+ | 3 (4%) |
+| <img src="images/enemy/junk_heap.png" width="32" height="32" alt=""> [垃圾堆](MONSTERS.md#enemy-junk_heap) | 23+ | 2 (3%) |
 
 <a id="chapter-7"></a>
 
@@ -331,7 +335,7 @@
 | 项目 | 内容 |
 | --- | --- |
 | 场地 | 不规则圆形，外接 2016 × 1800；4 个障碍物（只挡移动，不挡子弹） |
-| 难度倍率 | 生命 ×2.67 · 伤害 ×1.5 · 速度 ×1.3 |
+| 难度倍率 | 生命 ×2.77 · 伤害 ×1.5 · 速度 ×1.3 |
 | 地形机关 | 腐泥沼：会把人和怪物吸入中心，并染上腐烂<br>烂果坠落：注意地面的预警圈<br>荆棘藤：脚下会钻出荆棘，造成伤害并附加流血与腐蚀 |
 | 精英池 | <img src="images/boss/carrot_knight.png" width="24" height="24" alt=""> [胡萝卜亡骑](MONSTERS.md#boss-carrot_knight)、<img src="images/boss/onion_witch.png" width="24" height="24" alt=""> [洋葱巫婆](MONSTERS.md#boss-onion_witch) |
 | Boss 池 | <img src="images/boss/rot_mother.png" width="24" height="24" alt=""> [腐土之母](MONSTERS.md#boss-rot_mother)、<img src="images/boss/rot_king.png" width="24" height="24" alt=""> [腐烂之王](MONSTERS.md#boss-rot_king) |

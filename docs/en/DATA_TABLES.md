@@ -444,7 +444,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Rotten Chili | 13 | +65% | 2 | +0.6 | 105 | 2 | Shooter | Burn |
 | Sweaty Cucumber | 18 | +70% | 2 | +0.6 | 80 | 2 | Slime trail | Sticky |
 | Spore Puffball | 10 | +60% | 4 | +0.65 | 125 | 2 | Bomber | Poison |
-| Rot Vine | 24 | +75% | 3 | +0.8 | 75 | 3 | Charger | Bleed |
+| Rot Vine | 24 | +75% | 2.4 | +0.7 | 75 | 3 | Charger | Bleed |
 | Moldy Pumpkin | 30 | +75% | 3 | +0.7 | 65 | 3 | Splits on death | - |
 | Compost Bin | 34 | +80% | 3 | +0.65 | 45 | 4 | Summoner | - |
 | Rotheart Cabbage | 26 | +65% | 2.5 | +0.6 | 75 | 3 | Chase | Rot |
@@ -507,7 +507,7 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Rotten Chef | Boss | 5 | 4000 | 9 | 85 | - | 50% HP |
 | Factory Core | Boss | 5 | 3800 | 9 | 50 | - | 50% HP |
 | Ketchup Leviathan | Boss | 5 | 4200 | 9 | 55 | - | 50% HP |
-| Blight Gardener | Boss | 6 | 4200 | 9 | 80 | - | 50% HP |
+| Blight Gardener | Boss | 6 | 7000 | 10 | 80 | - | 50% HP |
 | Mother of Rot | Boss | 7 | 4600 | 10 | 55 | - | 50% HP |
 | Rot King | Boss | 7 | 6000 | 11 | 70 | - | 50% HP |
 
@@ -522,8 +522,8 @@ Price: T1 base × [1, 2.1, 4, 7.5], rising with waves.
 | Chapter 3 · Frozen Fridge | 1.97 | 1.23 | 1.1 | Mold Blob(1~6) Fruit Fly(1+) Ice Cube(3+) Sewer Rat(7+) Maggot(3+) Venom Spider(6+) Cockroach(5+) Toxic Shroom(7+) Split Mold(9+) Frost Mosquito(4+) Frozen Shrimp(6+) Frost Mite(2+) Popsicle Bat(2+) Frozen Pea(3+) Jelly Cube(4+) Moldy Cheese(5+) Icicle Imp(6+) Ice Slime(7+) Frozen Soda(8+) Freezer Burn(9+) Leftover Box(10+) |
 | Chapter 4 · City Junkyard | 1.98 | 1.29 | 1.15 | Mold Blob(1~5) Sewer Rat(5+) Cockroach(3+) Trash Bag(6+) Bomb Beetle(6+) Brood Mother(7+) Rotten Apple(2+) Snot Snail(6+) Toxic Shroom(8+) Can Crab(7+) Rag Ghost(6+) Grease Blob(6+) Rusty Nail(2+) Bag Ghost(3+) Glass Shard(3+) Scrap Drone(4+) Oil Slick(7+) Leaky Battery(6+) Rust Crab(7+) Tire Roller(8+) Busted Radio(9+) Junk Heap(11+) |
 | Chapter 5 · Ketchup Factory | 2.42 | 1.36 | 1.2 | Mold Blob(1~5) Fruit Fly(1~8) Can Bot(9+) Sewer Rat(6+) Bomb Beetle(8+) Venom Spider(6+) Trash Bag(6+) Ice Cube(5+) Toxic Shroom(6+) Brood Mother(8+) Split Mold(9+) Gear Bug(8+) Curse Doll(6+) Sauce Drip(2+) Belt Gremlin(2+) Cap Drone(4+) Steam Imp(5+) Label Ghost(6+) Welder Bug(8+) Rivet Bot(9+) Ketchup Slime(10+) Press Piston(12+) Bottling Bot(14+) |
-| Chapter 6 · Rotting Greenhouse | 2.56 | 1.43 | 1.25 | Blight Sprout(1~8) Fruit Fly(1~9) Aphid(1~11) Fungus Gnat(2+) Sweaty Cucumber(4+) Rotten Chili(4+) Garden Slug(4+) Spore Puffball(6+) Thorn Weed(6+) Rot Vine(8+) Venom Spider(8+) Toxic Shroom(8+) Bomb Beetle(9+) Toxic Bloom(9+) Sewer Rat(9+) Moldy Pumpkin(11+) Split Mold(11+) Blade Mantis(13+) Rivet Bot(13+) Compost Bin(14+) Ketchup Slime(16+) Press Piston(18+) |
-| Chapter 7 · Rot Garden | 2.67 | 1.5 | 1.3 | Blight Sprout(1~8) Fungus Gnat(2+) Cabbage Worm(1~13) Rotheart Cabbage(4+) Zombie Carrot(6+) Spore Puffball(8+) Sweaty Cucumber(4+) Blight Onion(8+) Rotten Chili(6+) Rot Vine(9+) Weevil(9+) Blade Mantis(13+) Rot Sprinkler(11+) Moldy Pumpkin(11+) Boom Ladybug(11+) Toxic Shroom(9+) Rotten Potato(13+) Compost Bin(14+) Ketchup Slime(16+) Rivet Bot(16+) Press Piston(18+) |
+| Chapter 6 · Rotting Greenhouse | 2.7 | 1.43 | 1.25 | Blight Sprout(1~8) Fruit Fly(1~9) Aphid(1~11) Fungus Gnat(2+) Sweaty Cucumber(4+) Rotten Chili(4+) Garden Slug(4+) Spore Puffball(6+) Thorn Weed(6+) Rot Vine(8+) Venom Spider(8+) Toxic Shroom(8+) Bomb Beetle(9+) Toxic Bloom(9+) Sewer Rat(9+) Moldy Pumpkin(11+) Split Mold(11+) Blade Mantis(13+) Rivet Bot(13+) Compost Bin(14+) Ketchup Slime(16+) Press Piston(18+) Rotten Potato(19+) Boom Ladybug(19+) Rot Sprinkler(21+) Junk Heap(23+) |
+| Chapter 7 · Rot Garden | 2.77 | 1.5 | 1.3 | Blight Sprout(1~8) Fungus Gnat(2+) Cabbage Worm(1~13) Rotheart Cabbage(4+) Zombie Carrot(6+) Spore Puffball(8+) Sweaty Cucumber(4+) Blight Onion(8+) Rotten Chili(6+) Rot Vine(9+) Weevil(9+) Blade Mantis(13+) Rot Sprinkler(11+) Moldy Pumpkin(11+) Boom Ladybug(11+) Toxic Shroom(9+) Rotten Potato(13+) Compost Bin(14+) Ketchup Slime(16+) Rivet Bot(16+) Press Piston(18+) |
 
 <a id="waves"></a>
 
