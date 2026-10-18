@@ -74,7 +74,7 @@ export const CHAR_WEAPONS: WeaponDef[] = [
     kind: 'sweep',
     tags: ['钝器', '锋利'],
     damage: [26, 43, 67, 100],
-    cooldown: [2.0, 1.9, 1.8, 1.65],
+    cooldown: [1.8, 1.7, 1.6, 1.5],
     range: 125,
     scaling: { melee: 1.4 },
     critMult: 2.2,
@@ -146,7 +146,7 @@ export const CHAR_WEAPONS: WeaponDef[] = [
     cls: 'ranged',
     kind: 'boomerang',
     tags: ['蔬果'],
-    damage: [9, 15, 23, 36],
+    damage: [11, 19, 29, 45], // round21 洋葱大叔 33%：约 +25%
     cooldown: [1.35, 1.27, 1.18, 1.08],
     range: 360,
     scaling: { ranged: 0.9 },
@@ -202,7 +202,7 @@ export const CHAR_WEAPONS: WeaponDef[] = [
     cls: 'ranged',
     kind: 'bullet',
     tags: ['枪械', '蔬果', '甜点'],
-    damage: [5, 8, 12, 18],
+    damage: [6, 10, 15, 23], // round21 樱桃双枪 33%：约 +25%
     cooldown: [0.26, 0.24, 0.22, 0.19],
     range: 380,
     scaling: { ranged: 0.6 },
@@ -290,7 +290,8 @@ export const CHAR_WEAPONS: WeaponDef[] = [
     cls: 'ranged',
     kind: 'bullet',
     tags: ['甜点', '酱料'],
-    damage: [7, 12, 18, 28],
+    // round20 蜜桃天使总通关率 29%（倒数第一），第 3 章起多死在第 8–14 波、击杀和收入只有中游角色的一半：主武器伤害约 +25%
+    damage: [9, 15, 23, 35],
     cooldown: [0.6, 0.56, 0.52, 0.47],
     range: 420,
     scaling: { ranged: 0.75, maxHp: 0.05 },

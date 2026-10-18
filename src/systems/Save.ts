@@ -103,6 +103,8 @@ export interface MetaSave {
   endlessRevives: number;
   /** G4：看过真结局的次数 */
   trueEnding?: number;
+  /** 已经看过开场漫画的章节（第一次进入该章时自动播放） */
+  comicsSeen?: number[];
   /** 个人最佳：危机等级最快通关（`${chapterId}_${level}` → 秒） */
   fastest: Record<string, number>;
 }

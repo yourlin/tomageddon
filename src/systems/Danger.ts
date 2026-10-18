@@ -7,7 +7,8 @@ import { run } from './RunState';
 import { bump, bumpMax } from './Counters';
 import { CHARACTERS } from '../data/characters';
 import { BASE_CHAPTERS, HIDDEN_CHAPTER_IDS } from '../data/chapters';
-import { isCh6Unlocked, isCh7Unlocked } from '../data/chaptersExtra';
+import { isCh6Unlocked, isCh7Unlocked, BASE_CHAPTER_IDS, CH6_DANGER_REQ, CH7_DANGER_ALL } from '../data/chaptersExtra';
+import { tx } from '../i18n';
 
 /** 每章（任意角色）通关过的最高危机等级；未通关为 -1 */
 export function chapterBestDanger(): Record<number, number> {
@@ -34,6 +35,30 @@ export function chapterAvailable(ch: number): boolean {
 }
 /** 隐藏章节在解锁前完全不显示 */
 export const chapterVisible = (ch: number): boolean => !HIDDEN_CHAPTER_IDS.includes(ch) || chapterAvailable(ch);
+
+/** 章节解锁条件 + 当前进度（已解锁返回 null），选关界面和结算界面共用 */
+export function chapterUnlockHint(ch: number): string | null {
+  if (chapterAvailable(ch)) return null;
+  if (ch <= BASE_CHAPTERS) return tx(`通关第 ${ch - 1} 章解锁`, `Clear Chapter ${ch - 1} to unlock`);
+  const best = chapterBestDanger();
+  if (ch === 6) {
+    const top = Math.max(-1, ...BASE_CHAPTER_IDS.map((id) => best[id] ?? -1));
+    const now =
+      top < 0 ? tx('还没有通关过任何章节', 'no chapter cleared yet') : tx(`目前最高：危机 ${top} 通关`, `best so far: Danger ${top}`);
+    return tx(
+      `解锁条件：任意一章在番茄危机 ${CH6_DANGER_REQ} 级或以上通关（${now}）`,
+      `Unlock: clear any chapter on Danger ${CH6_DANGER_REQ} or higher (${now})`,
+    );
+  }
+  if (ch === 7) {
+    const done = BASE_CHAPTER_IDS.filter((id) => (best[id] ?? -1) >= CH7_DANGER_ALL).length;
+    return tx(
+      `解锁条件：第 1–5 章都在番茄危机 ${CH7_DANGER_ALL} 级或以上通关（已完成 ${done}/5）`,
+      `Unlock: clear Chapters 1–5 on Danger ${CH7_DANGER_ALL} or higher (${done}/5 done)`,
+    );
+  }
+  return null;
+}
 
 /** 某章当前可选的最高危机等级（通关第 L 级后解锁 L+1；通关该章本身后才开放 1 级） */
 export function dangerUnlocked(chapterId: number): number {

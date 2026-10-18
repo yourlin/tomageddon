@@ -350,6 +350,60 @@ export class Arena {
     return false;
   }
 
+  /** 点是否在场地形状内（离边界至少 pad），不看障碍物 */
+  private insideShape(x: number, y: number, pad = 0): boolean {
+    const q = this.toShape(x, y);
+    return inset(this.shape, q.x, q.y) * this.scale >= pad;
+  }
+
+  /** 半径 r 的单位贴着障碍物、速度 (vx, vy) 又顶向障碍物时，把速度改成沿障碍物边缘绕行（速率不变）。
+   *  clamp 只沿法线把单位推出去：正面顶上圆形障碍物（或矩形的一个面）时，切向分量为 0，
+   *  追击方向和推出方向每帧互相抵消，怪物会原地卡住。正面顶上时按 nav.side 的正负选绕行方向；
+   *  nav 由每只怪自己保存，这一侧被场地边界堵死时翻转并记住，避免左右来回抖 */
+  steer(x: number, y: number, r: number, vx: number, vy: number, nav: { side: number }): [number, number] {
+    const sp = Math.hypot(vx, vy);
+    if (sp < 1e-6) return [vx, vy];
+    for (const o of this.obstacles) {
+      let dx: number, dy: number, gap: number;
+      if (o.kind === 'circle') {
+        dx = x - o.x;
+        dy = y - o.y;
+        gap = Math.hypot(dx, dy) - o.r - r;
+      } else {
+        dx = x - clampN(x, o.x, o.x + o.w);
+        dy = y - clampN(y, o.y, o.y + o.h);
+        gap = Math.hypot(dx, dy) - r;
+      }
+      const d = Math.hypot(dx, dy);
+      if (gap > 8 || d < 1e-6) continue;
+      const nx = dx / d,
+        ny = dy / d;
+      const vn = vx * nx + vy * ny;
+      if (vn >= 0) continue;
+      let tx = vx - vn * nx,
+        ty = vy - vn * ny;
+      const tl = Math.hypot(tx, ty);
+      if (tl < sp * 0.7) {
+        // 比较正面地顶上：按 side 固定往一侧绕。不能按切向分量的正负选——绕到一半时切向分量会翻向另一侧，
+        // 怪物就会在两个方向之间来回抖、卡在原地
+        tx = nav.side >= 0 ? -ny : ny;
+        ty = nav.side >= 0 ? nx : -nx;
+        // 这一侧被场地边界堵死（比如冰箱隔板贴着墙的那一头）就换另一侧，并记住
+        const ahead = r + 24;
+        if (!this.insideShape(x + tx * ahead, y + ty * ahead, r)) {
+          tx = -tx;
+          ty = -ty;
+          nav.side = -nav.side;
+        }
+      } else {
+        tx /= tl;
+        ty /= tl;
+      }
+      return [tx * sp, ty * sp];
+    }
+    return [vx, vy];
+  }
+
   /** 把坐标推回场地内（离边界至少 pad），并推出障碍物 */
   clamp(x: number, y: number, pad = 0): Pt {
     const q = this.toShape(x, y);

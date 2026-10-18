@@ -13,7 +13,7 @@
 // 专项补测：node scripts/batch.mjs --focus auto|all|<武器id[@T1-4],...> [--focus-runs 3] [--focus-min 20] [--chapters 1,2,3,4,5,6,7]
 //   开局强制给一把指定武器和品质（整局不卖、不合成），专门给 bot 平时不选的武器、T4 和超武补转换率样本。
 //   auto = 只补合并数据里样本不足 --focus-min 波的武器×品质；all = 全部武器×品质。
-//   每个武器×品质跑 --focus-runs 局（默认 4），一半用契合这把武器的角色、一半用不契合的，章节在 --chapters 里轮换。
+//   每个武器×品质跑 --focus-runs 局（默认 4），一半用契合这把武器的角色、一半用不契合的，章节在 --chapters 里轮换（补测默认第 1–7 章）。
 //   结果另存 .batch-focus-*.json，不出 HTML 报告（强制给武器的对局不能代表平衡）。
 // --no-archive：诊断 / 复现用，不出报告、不存档转换率、不改 weapon-eff.json，进度文件另存 .batch(-focus)-diag-*.json
 // --bot-style：默认契合远程 / 元素武器的角色风筝走位；kite = 所有非近战起手角色都风筝；classic = 都不风筝（旧行为）
@@ -28,7 +28,11 @@ const arg = (k, d) => {
   const i = process.argv.indexOf(`--${k}`);
   return i >= 0 ? process.argv[i + 1] : d;
 };
-const CHAPTERS = arg('chapters', '1,2,3').split(',').map(Number);
+// 专项补测默认在第 1–7 章轮换：只跑第 1–3 章时开局给的武器全在怪少血薄的前期章节，实测转换率被系统性压低
+// （2026-10-17 实测：同为 T4 近战，补测 74%、普通测试 387%），和普通测试的样本没法放在一起比
+const CHAPTERS = arg('chapters', arg('focus', '') ? '1,2,3,4,5,6,7' : '1,2,3')
+  .split(',')
+  .map(Number);
 const RUNS = Number(arg('runs', '1'));
 // 并发数按系统 CPU 负载动态调整：--workers 为上限（默认 CPU 核数 − 1），--cpu 为目标整机 CPU 占用率（默认 80%）
 const WORKERS = Number(arg('workers', String(Math.max(1, availableParallelism() - 1))));
@@ -298,7 +302,26 @@ console.log(
 
 const t0 = Date.now();
 const retries = {};
+// 长章节（20 / 25 / 30 波）按波数放大单局超时，避免第 7 章这种 30 波章节没打完就被判超时
+const jobLimit = (job) => (ENDLESS ? JOB_TIMEOUT * 4 : JOB_TIMEOUT * Math.max(1, chapterWaves(job.ch) / 15));
+/** 页面内的超时靠页面自己的定时器；页面主线程卡死或渲染进程悄悄崩掉时它永远不会触发，
+ *  evaluate 也不返回，整轮测试会卡在最后一局。这里在 Node 侧再加一道看门狗：超过单局上限 60 秒仍无结果，
+ *  就按出错处理（重建页面、把这局放回队列重试） */
 async function playJob(page, job) {
+  let timer;
+  const guard = new Promise((_, reject) => {
+    timer = setTimeout(
+      () => reject(new Error(`页面无响应：超过单局上限 ${Math.round(jobLimit(job) / 1000) + 60} 秒仍未返回`)),
+      jobLimit(job) + 60000,
+    );
+  });
+  try {
+    return await Promise.race([playJobInPage(page, job), guard]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+async function playJobInPage(page, job) {
   return page.evaluate(
     async ({ id, ch, speed, budget, limit, talents, endless, noTalents, botStyle, focus }) => {
       window.__dmg = [];
@@ -339,8 +362,7 @@ async function playJob(page, job) {
       ...job,
       speed: SPEED,
       budget: BUDGET,
-      // 长章节（20 / 25 / 30 波）按波数放大单局超时，避免第 7 章这种 30 波章节没打完就被判超时
-      limit: ENDLESS ? JOB_TIMEOUT * 4 : JOB_TIMEOUT * Math.max(1, chapterWaves(job.ch) / 15),
+      limit: jobLimit(job),
       talents: TALENT_BUDGET,
       endless: ENDLESS,
       noTalents: NO_TALENTS,

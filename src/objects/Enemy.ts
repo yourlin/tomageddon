@@ -65,6 +65,8 @@ export class Enemy {
   dirX = 0;
   dirY = 0;
   wander = Math.random() * 10;
+  /** 绕障碍物的方向（Arena.steer 读写；每只怪随机一侧，被墙堵死时翻转） */
+  nav = { side: Math.random() < 0.5 ? -1 : 1 };
   patternT: number[] = [];
   patterns: Pattern[] = [];
   phase2 = false;
@@ -304,6 +306,8 @@ export class Enemy {
       const v = this.boss ? this.bossAI(dt, g, nx, ny, dist) : this.minionAI(dt, g, nx, ny, dist);
       vx = v[0];
       vy = v[1];
+      // 贴着障碍物时沿边缘绕行（冲锋保持直线）：否则正面顶上圆形障碍物会原地卡住
+      if (this.state !== 'charge') [vx, vy] = g.arena.steer(this.x, this.y, this.radius, vx, vy, this.nav);
     }
     const sp = this.state === 'charge' ? 1 : slow;
     this.x += (vx * sp + this.kvx) * dt;

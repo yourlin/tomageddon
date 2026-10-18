@@ -22,7 +22,7 @@ import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, st
 import { tx, lang } from '../i18n';
 import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
 import { dangerReward, chapterWaves } from '../data/balance';
-import { chapterAvailable, chapterCleared, chapterVisible } from '../systems/Danger';
+import { chapterAvailable, chapterCleared, chapterVisible, chapterUnlockHint } from '../systems/Danger';
 import {
   questDone,
   questProgress,
@@ -38,7 +38,6 @@ import {
 import { SKINS_OF, skinName } from '../data/skins';
 import { reveal } from '../systems/Reveal';
 import { questsOf } from '../data/quests';
-import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { dangerUnlocked, dangerBest, hasGoldFrame } from '../systems/Danger';
 import { VW, VH } from '../systems/HiDpi';
 import { titleBadge } from '../ui/TitleBadge';
@@ -55,6 +54,7 @@ export class CharSelectScene extends Phaser.Scene {
   private chThumbs: { n: number; frame: Phaser.GameObjects.Graphics; w: number; h: number; name: string }[] = [];
   private chapterDesc!: Phaser.GameObjects.Text;
   private startBtn!: ReturnType<typeof button>;
+  private storyBtn!: ReturnType<typeof button>;
   private endlessBtn!: ReturnType<typeof button>;
   private dangerBtn!: ReturnType<typeof button>;
   /** 番茄危机等级（A4）：跨场景记住上次的选择 */
@@ -82,13 +82,14 @@ export class CharSelectScene extends Phaser.Scene {
     super('CharSelect');
   }
 
-  create(): void {
+  create(data?: { chapter?: number }): void {
     autoRelayout(this);
     const W = VW(this),
       H = VH(this);
     this.cameras.main.setBackgroundColor(COLORS.bg);
     this.weaponPanel = null;
-    this.chapter = Math.min(save.clearedChapters + 1, CHAPTERS.length);
+    // 从「本章故事」回看返回时停在原来那一章
+    this.chapter = data?.chapter ?? Math.min(save.clearedChapters + 1, CHAPTERS.length);
     this.cards = [];
     if (!isUnlocked(this.selected)) this.selected = CHARACTERS[0];
 
@@ -197,9 +198,11 @@ export class CharSelectScene extends Phaser.Scene {
       g.setSize(TW + 6, TH + 6).setInteractive({ useHandCursor: true });
       g.on('pointerup', () => {
         if (hidden) {
-          toast(this, tx('隐藏章节：满足特殊条件后揭晓', 'Hidden chapter: revealed once you meet a special condition'), '#ffd166');
+          // 隐藏章节不剧透名字和内容，但把解锁条件和进度告诉玩家
+          toast(this, `${tx('隐藏章节', 'Hidden chapter')} · ${chapterUnlockHint(n) ?? ''}`, '#ffd166');
           return;
         }
+        if (!chapterAvailable(n)) toast(this, chapterUnlockHint(n) ?? '', '#ffd166');
         this.chapter = n;
         this.refresh();
       });
@@ -238,6 +241,24 @@ export class CharSelectScene extends Phaser.Scene {
     this.endlessBtn.setVisible(reveal.endless());
     for (const b of [dPrev, this.dangerBtn, dNext]) b.setVisible(reveal.danger());
     this.startBtn = button(this, W - 150, cy + 35, 220, 76, tx('出发！', 'Go!'), () => this.start(), COLORS.primary, 32);
+    // 回看本章开场漫画（未解锁的章节不给看，免得剧透）
+    this.storyBtn = button(
+      this,
+      W - 150,
+      cy + 96,
+      170,
+      32,
+      tx('📖 本章故事', '📖 Chapter Story'),
+      () => {
+        if (!chapterAvailable(this.chapter)) {
+          toast(this, chapterUnlockHint(this.chapter) ?? '', '#ffd166');
+          return;
+        }
+        this.scene.start('Comic', { ch: this.chapter, next: 'CharSelect' });
+      },
+      0x6b4f3a,
+      15,
+    );
     this.refresh();
   }
 
@@ -591,9 +612,7 @@ export class CharSelectScene extends Phaser.Scene {
     const endlessBest = counter(`endlessBest:ch:${ch.id}`);
     this.chapterDesc.setText(
       !chUnlocked
-        ? this.chapter === 6
-          ? tx(`任意一章在番茄危机 ${CH6_DANGER_REQ} 级以上通关后解锁`, `Clear any chapter on Danger ${CH6_DANGER_REQ}+ to unlock`)
-          : tx(`通关第 ${this.chapter - 1} 章解锁`, `Clear Chapter ${this.chapter - 1} to unlock`)
+        ? (chapterUnlockHint(this.chapter) ?? '')
         : this.endless
           ? tx(
               `无尽模式：打完本章 ${chapterWaves(this.chapter)} 波后不限波数，每 15 波一轮（第 5 / 10 波精英、第 15 波 Boss），越往后怪物越强，直到倒下为止。本章最佳：第 ${endlessBest} 波`,
@@ -608,6 +627,7 @@ export class CharSelectScene extends Phaser.Scene {
       this.startBtn.setLabel(tx('🔒 未解锁', '🔒 Locked'));
       this.startBtn.setEnabled(false);
     }
+    this.storyBtn?.setAlpha(chUnlocked ? 1 : 0.5);
   }
 
   private setDanger(v: number): void {
@@ -777,6 +797,8 @@ export class CharSelectScene extends Phaser.Scene {
     checkAchievements();
     run.start(this.selected.id, this.chapter, this.endless, this.danger, startWeapon);
     if (this.endless) bump('endlessRuns');
-    this.scene.start('Game');
+    // 第一次进入某章先播开场四格漫画（之后可在选关界面「📖 本章故事」回看）
+    if (!(save.meta.comicsSeen ?? []).includes(this.chapter)) this.scene.start('Comic', { ch: this.chapter, next: 'Game' });
+    else this.scene.start('Game');
   }
 }

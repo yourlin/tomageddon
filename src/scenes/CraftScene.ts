@@ -195,7 +195,8 @@ export class CraftScene extends Phaser.Scene {
         COLORS.textDim,
       ),
     );
-    L.add(button(this, W - 80, 34, 130, 44, tx('返回', 'Back'), () => this.scene.start('Shop'), 0x555555, 18));
+    // 返回时沿用本波货架、刷新次数和商人结果（不带 keep 会被当成新一波：重新进货、刷新价格清零）
+    L.add(button(this, W - 80, 34, 130, 44, tx('返回', 'Back'), () => this.scene.start('Shop', { keep: true }), 0x555555, 18));
 
     // 没选中配方时默认选列表第一条（推荐视图下就是最值得合成的契合武器），右侧树不空着
     if (!this.selected) this.selected = this.list()[0] ?? null;

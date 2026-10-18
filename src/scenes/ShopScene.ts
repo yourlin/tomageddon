@@ -128,9 +128,12 @@ export class ShopScene extends Phaser.Scene {
       this.rollShop(true);
     } else if (!this.shelfValid()) {
       // 读档「继续游戏」或场景重建时沿用存档里的货架；若货架是上一波的（已被标记售罄）
-      // 或本局还没生成过货架（第 1 波存档时为空），必须重新进货，否则会出现空商店
-      run.rerolls = 0;
-      this.rollShop(true);
+      // 或本局还没生成过货架（第 1 波存档时为空），必须重新进货，否则会出现空商店。
+      // 本波已经进过货、只是买光了（刷新次数也用完）时保持售罄，不能借重进商店白拿一次进货和刷新次数
+      if (run.shopWave !== run.wave || run.shop.length === 0) {
+        run.rerolls = 0;
+        this.rollShop(true);
+      }
     }
     saveRun();
     this.layer = this.add.container(0, 0);
@@ -149,12 +152,14 @@ export class ShopScene extends Phaser.Scene {
   private maybeMerchant(): void {
     if (GameScene.sandbox) return;
     if (!run.merchant || run.merchant.wave !== run.wave) {
-      run.merchant = null;
       const R = run.rand(`merchant:${run.wave}`);
+      let offer: typeof run.merchant = null;
       if (mechanicOpen('merchant') && run.wave >= MERCHANT_MIN_WAVE && R() < MERCHANT_CHANCE) {
         const r = rollRelics(1, R, merchantKinds())[0];
-        if (r) run.merchant = { wave: run.wave, relic: r.id, price: Math.round(offerPrice(28 + run.wave * 6)), done: false };
+        if (r) offer = { wave: run.wave, relic: r.id, price: Math.round(offerPrice(28 + run.wave * 6)), done: false };
       }
+      // 本波没出现商人也要记下「已经掷过」：否则每次重进商店（如从合成表返回）都会重新掷一次 18%
+      run.merchant = offer ?? { wave: run.wave, relic: '', price: 0, done: true };
     }
     const m = run.merchant;
     if (!m || m.done) return;
@@ -379,8 +384,8 @@ export class ShopScene extends Phaser.Scene {
           ),
           // 标签最多显示 3 个（完整标签在弹窗里）
           tx(
-            `射程 ${Math.round(weaponRange(d, s))}  [${weaponTags(d).slice(0, 3).join('/')}${weaponTags(d).length > 3 ? '…' : ''}]`,
-            `Range ${Math.round(weaponRange(d, s))}  [${weaponTags(d).slice(0, 3).map(tagName).join('/')}${weaponTags(d).length > 3 ? '…' : ''}]`,
+            `射程 ${Math.round(weaponRange(d, s, undefined, 0, o.tier))}  [${weaponTags(d).slice(0, 3).join('/')}${weaponTags(d).length > 3 ? '…' : ''}]`,
+            `Range ${Math.round(weaponRange(d, s, undefined, 0, o.tier))}  [${weaponTags(d).slice(0, 3).map(tagName).join('/')}${weaponTags(d).length > 3 ? '…' : ''}]`,
           ),
           d.desc,
         ];

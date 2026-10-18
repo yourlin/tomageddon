@@ -19,7 +19,20 @@ import { run } from './RunState';
 
 /** 每完成一波的永久成长 */
 export function waveGrowthMods(charId: string): StatMods | null {
-  return charId === 'tomato' ? { maxHp: 1 } : null;
+  if (charId === 'tomato') return { maxHp: 1 };
+  // 甜菜「越战越勇」：中后期（第 5、7 章）通关率远低于均值，按波次补生命和伤害，前期影响很小
+  if (charId === 'beet') return { maxHp: 2, damage: 2 };
+  // 蜜桃天使、黄豆军师：round20 起第 4 章以后几乎打不过，按波次补生存与输出
+  if (charId === 'peach') return { maxHp: 2, regen: 1 };
+  if (charId === 'soybean') return { maxHp: 2, skillDmg: 3 };
+  // round21 通关率 33% 的四个角色：前期加强后第 4 章以后仍几乎打不过，同样按波次补成长
+  if (charId === 'corn' || charId === 'coconut') return { maxHp: 2, damage: 2 };
+  if (charId === 'onion') return { maxHp: 3, damage: 1 };
+  if (charId === 'cherry') return { maxHp: 2, attackSpeed: 2 };
+  // round22 通关率 33% 的三个角色
+  if (charId === 'chili') return { maxHp: 2, damage: 2 };
+  if (charId === 'pea' || charId === 'asparagus') return { maxHp: 3, damage: 3 };
+  return null;
 }
 /** 每次升级的额外永久成长 */
 export function levelGrowthMods(charId: string): StatMods | null {

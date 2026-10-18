@@ -84,6 +84,8 @@ export interface HitInfo {
   effect?: WeaponEffect;
   lifeSteal?: number;
   weaponId?: string;
+  /** 打出这一击的武器品质（0 起），光环灼烧按它成长 */
+  tier?: number;
   cls?: WeaponClass;
   status?: StatusApply[];
   /** 爆炸造成的伤害（部分天赋按此判断） */
@@ -116,6 +118,8 @@ interface Hazard {
   dps: number;
   tick: number;
   debuff?: StatusApply[];
+  /** 地形危险区的动画（addHazard 才有，黏液拖尾没有）：基础缩放、转速、冒泡计时与颜色 */
+  anim?: { scale: number; spin: number; bubbleT: number; color: number };
 }
 interface SpawnMark {
   img: Phaser.GameObjects.Image;
@@ -1290,7 +1294,10 @@ export class GameScene extends Phaser.Scene {
     for (const b of this.enemyBullets) if (b.alive) b.kill();
     for (const m of this.marks) m.img.destroy();
     this.marks = [];
-    for (const h of this.hazards) h.img.destroy();
+    for (const h of this.hazards) {
+      this.tweens.killTweensOf(h.img);
+      h.img.destroy();
+    }
     this.hazards = [];
     // 番茄籽不自动吸取：留在地上的计入加成池（下一波拾取时双倍）；宝箱与果实照常吸取
     for (const p of this.pickups) if (p.alive && p.kind !== 'seed') p.magnet = true;
@@ -1751,9 +1758,20 @@ export class GameScene extends Phaser.Scene {
     if (arch === 'heavy' && Math.random() * 100 < AR.heavy.stun) e.status.apply({ id: 'stun', dur: AR.heavy.stunDur });
     else if (arch === 'pistol') e.status.apply({ id: 'suppress', dur: AR.pistol.dur });
     const wsrc = info.weaponId;
-    if (eff?.burn) this.applyDot(e, { id: 'burn', dur: eff.burn.dur, value: eff.burn.dps * 0.5 + s.elemental * 0.3 }, undefined, wsrc);
-    else if (sp.burnChance && Math.random() * 100 < sp.burnChance) this.applyDot(e, { id: 'burn', dur: 2.5, value: 1 + s.elemental * 0.3 });
-    if (eff?.poison) this.applyDot(e, { id: 'poison', dur: eff.poison.dur, stacks: eff.poison.stacks }, undefined, wsrc);
+    // 光环自带的灼烧 / 中毒随品质成长（BALANCE.auraBurnPerTier / auraPoisonPerTier）：光环半径内敌人有限，只涨直接伤害大多会溢出
+    const auraTier = WEAPON_MAP[wsrc ?? '']?.kind === 'aura' ? (info.tier ?? 0) : 0;
+    if (eff?.burn) {
+      const tierK = 1 + BALANCE.auraBurnPerTier * auraTier;
+      this.applyDot(e, { id: 'burn', dur: eff.burn.dur, value: (eff.burn.dps * 0.5 + s.elemental * 0.3) * tierK }, undefined, wsrc);
+    } else if (sp.burnChance && Math.random() * 100 < sp.burnChance)
+      this.applyDot(e, { id: 'burn', dur: 2.5, value: 1 + s.elemental * 0.3 });
+    if (eff?.poison)
+      this.applyDot(
+        e,
+        { id: 'poison', dur: eff.poison.dur, stacks: eff.poison.stacks },
+        this.dotScale * (1 + BALANCE.auraPoisonPerTier * auraTier),
+        wsrc,
+      );
     for (const st of info.status ?? []) this.applyDot(e, st, undefined, wsrc);
     for (const st of sp.onHit) this.applyDot(e, st);
     if (sp.onAuraHit.length && WEAPON_MAP[info.weaponId ?? '']?.kind === 'aura') for (const st of sp.onAuraHit) this.applyDot(e, st);
@@ -2162,16 +2180,42 @@ export class GameScene extends Phaser.Scene {
     }
   }
 
-  /** 地形危险区（油池、蒸汽等） */
+  /** 地形危险区（油池、孢子、酸液等）：涌出放大，持续缓慢旋转、起伏并冒泡，结束前淡出（见 updateHazards） */
   addHazard(x: number, y: number, r: number, t: number, dps: number, debuff: StatusApply[] | undefined, color: number): void {
     if (this.waveOver) return;
+    const scale = (r * 2) / 256;
     const img = this.add
       .image(x, y, 'fx_pool')
       .setTint(color)
       .setAlpha(0.6)
       .setDepth(1)
-      .setScale((r * 2) / 256);
-    this.hazards.push({ img, x, y, r, t, slow: 0, dps, tick: 0, debuff });
+      .setRotation(Math.random() * Math.PI * 2)
+      .setScale(scale * 0.35);
+    // 涌出：从小摊开到全尺寸
+    this.tweens.add({ targets: img, scale, duration: 260, ease: 'Back.easeOut' });
+    const anim = { scale, spin: (Math.random() < 0.5 ? -1 : 1) * 0.35, bubbleT: Math.random() * 0.3, color };
+    this.hazards.push({ img, x, y, r, t, slow: 0, dps, tick: 0, debuff, anim });
+  }
+
+  /** 危险区冒泡：池面随机一点鼓起一个小泡，上浮破掉 */
+  private hazardBubble(h: Hazard): void {
+    const a = Math.random() * Math.PI * 2,
+      d = Math.sqrt(Math.random()) * h.r * 0.75;
+    const b = this.add
+      .image(h.x + Math.cos(a) * d, h.y + Math.sin(a) * d, 'fx_glow')
+      .setTint(h.anim!.color)
+      .setDepth(1.1)
+      .setAlpha(0.85)
+      .setScale(0.05);
+    this.tweens.add({
+      targets: b,
+      y: b.y - 10,
+      scale: 0.12 + Math.random() * 0.06,
+      alpha: 0,
+      duration: 520,
+      ease: 'Quad.easeOut',
+      onComplete: () => b.destroy(),
+    });
   }
 
   /** 掉 1 颗番茄籽（不带经验） */
@@ -2377,13 +2421,27 @@ export class GameScene extends Phaser.Scene {
     const procs = new Map<string, StatusApply>(); // 概率类（随节拍判定）
     for (const h of this.hazards) {
       h.t -= dt;
+      const an = h.anim;
+      if (an && h.t > 0) {
+        // 缓慢旋转 + 透明度起伏；按池子大小冒泡（越大冒得越勤）
+        h.img.rotation += an.spin * dt;
+        if (h.t >= 0.5) h.img.setAlpha(0.55 + 0.1 * Math.sin(h.t * 4 + h.x));
+        an.bubbleT -= dt;
+        if (an.bubbleT <= 0) {
+          an.bubbleT = (0.35 + Math.random() * 0.3) * (60 / Math.max(40, h.r));
+          this.hazardBubble(h);
+        }
+      }
       if (h.t < 0.5) h.img.setAlpha(Math.max(0, h.t) * 1.3);
       if (h.t > 0 && Phaser.Math.Distance.Between(h.x, h.y, p.x, p.y) < h.r + 10) {
         slow = Math.max(slow, h.slow);
         if (h.dps > (worst?.dps ?? 0)) worst = h;
         for (const d of h.debuff ?? []) (d.id === 'sticky' ? sustained : procs).set(d.id, d);
       }
-      if (h.t <= 0) h.img.destroy();
+      if (h.t <= 0) {
+        this.tweens.killTweensOf(h.img);
+        h.img.destroy();
+      }
     }
     this.hazards = this.hazards.filter((h) => h.t > 0);
     this.hazardTickT -= dt;

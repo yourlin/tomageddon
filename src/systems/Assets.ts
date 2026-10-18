@@ -2,7 +2,8 @@
 // 缺失的图片由 Textures.ts 程序化生成占位图，因此美术资源可以逐步替换。
 import Phaser from 'phaser';
 
-const images = import.meta.glob('../assets/**/*.{png,jpg,jpeg,webp}', {
+// 开场四格漫画的插画（assets/comics）只在漫画场景里按需加载，不进启动包
+const images = import.meta.glob(['../assets/**/*.{png,jpg,jpeg,webp}', '!../assets/comics/**'], {
   eager: true,
   query: '?url',
   import: 'default',

@@ -23,7 +23,13 @@ interface Zone {
   dir: number;
   img: Phaser.GameObjects.Image | Phaser.GameObjects.TileSprite;
   t: number;
+  /** 第 3 章冰面：存在多久（秒）与基础缩放；到期淡出后换个地方重新结冰 */
+  life?: number;
+  s?: number;
 }
+
+/** 第 3 章冰面：场上同时保持 count 块，每块存在 life 秒（淡入 fadeIn、淡出 fadeOut），消失后在离其他冰面最远的地方重新结冰 */
+export const ICE_TUNING = { count: 6, life: [14, 22], fadeIn: 1.5, fadeOut: 3, radius: 110, scale: [0.85, 1.3] } as const;
 
 /** 1.4.0 新地形机关的数值（测试与文档共用） */
 export const TERRAIN_TUNING = {
@@ -138,11 +144,8 @@ export class Terrain {
         this.timers = { rabbit: 6, gopher: 9, sprinkler: 8 };
         break;
       case 3:
-        place(4, 220, (x, y) => {
-          const s = rand(0.9, 1.4);
-          const img = g.add.image(x, y, 'terrain_ice').setDepth(0.55).setScale(s).setRotation(rand(0, 3));
-          this.zones.push({ kind: 'ice', x, y, w: 0, h: 0, r: 110 * s, dir: 0, img, t: 0 });
-        });
+        // 冰面错开寿命：开局就有的几块已经「结了一阵」，不会同时消失
+        for (let i = 0; i < ICE_TUNING.count; i++) this.addIce(rand(0, 0.7), true);
         this.timers = { gust: 12 };
         break;
       case 4:
@@ -202,6 +205,43 @@ export class Terrain {
     this.zones.push({ kind: 'quicksand', x, y, w: 0, h: 0, r, dir: 0, img, t: 0 });
   }
 
+  /** 第 3 章冰面：取 24 个候选点，选离现有冰面（和出生点）最远的一个，冰面就会铺开、不扎堆。
+   *  ageFrac：开局放置时让冰面已经存在一段时间（占寿命的比例），错开各块的消失时间 */
+  private addIce(ageFrac = 0, initial = false): void {
+    const A = this.g.arena,
+      T = ICE_TUNING;
+    const s = Phaser.Math.FloatBetween(T.scale[0], T.scale[1]);
+    const r = T.radius * s;
+    const others = this.zones.filter((z) => z.kind === 'ice');
+    const sp = A.spawn;
+    let best = A.randomPoint(r + 40),
+      bestScore = -1;
+    for (let i = 0; i < 24; i++) {
+      const c = A.randomPoint(r + 40);
+      // 开局时也避开出生点，免得玩家一落地就打滑
+      let score = initial ? Phaser.Math.Distance.Between(c.x, c.y, sp.x, sp.y) - r - 120 : 9999;
+      for (const z of others) score = Math.min(score, Phaser.Math.Distance.Between(c.x, c.y, z.x, z.y) - z.r - r);
+      if (score > bestScore) {
+        bestScore = score;
+        best = c;
+      }
+    }
+    const life = Phaser.Math.FloatBetween(T.life[0], T.life[1]);
+    const img = this.g.add
+      .image(best.x, best.y, 'terrain_ice')
+      .setDepth(0.55)
+      .setScale(s * 0.6)
+      .setRotation(Phaser.Math.FloatBetween(0, 3))
+      .setAlpha(0);
+    this.zones.push({ kind: 'ice', x: best.x, y: best.y, w: 0, h: 0, r, dir: 0, img, t: life * ageFrac, life, s });
+  }
+
+  /** 冰面当前的「结冰程度」0–1：淡入、持续、淡出（决定透明度、大小和是否打滑） */
+  private iceK(z: Zone): number {
+    const T = ICE_TUNING;
+    return Phaser.Math.Clamp(Math.min(z.t / T.fadeIn, ((z.life ?? 0) - z.t) / T.fadeOut), 0, 1);
+  }
+
   private dmg(base: number): number {
     // 地形伤害随波次明显成长（二次项），后期热油、坠物等也有威胁
     const w = run.wave - 1;
@@ -229,7 +269,11 @@ export class Terrain {
       if (Terrain.off.has(z.kind)) continue;
       z.t += dt;
       if (z.kind === 'ice') {
-        if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r) g.slippery = true;
+        // 冰面慢慢结起、慢慢化开：大小和透明度跟着结冰程度变，结得够厚才打滑
+        const k = this.iceK(z);
+        const rk = 0.6 + 0.4 * k;
+        z.img.setAlpha(k * 0.95).setScale((z.s ?? 1) * rk);
+        if (k > 0.4 && Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r * rk) g.slippery = true;
       } else if (z.kind === 'quicksand') {
         z.img.rotation += dt * 0.8;
         const pull = (tx: number, ty: number, strength: number): [number, number] => {
@@ -278,6 +322,15 @@ export class Terrain {
         const st = TERRAIN_TUNING.lamp.status;
         if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r) g.applyPlayerStatus([{ ...st }]);
         for (const e of g.grid.query(z.x, z.y, z.r, g.tmp2)) if (!e.isBoss) e.status.apply({ ...st });
+      }
+    }
+    // 化完的冰面移除，换个离其他冰面最远的地方重新结冰（场上冰面数保持不变）
+    const melted = this.zones.filter((z) => z.kind === 'ice' && z.t >= (z.life ?? Infinity));
+    if (melted.length) {
+      this.zones = this.zones.filter((z) => !melted.includes(z));
+      for (const z of melted) {
+        z.img.destroy();
+        this.addIce();
       }
     }
 

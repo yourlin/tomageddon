@@ -457,7 +457,7 @@ function weaponStatBox(id: string, tier: number): HTMLElement {
   const s = run.stats;
   const dmg = weaponDamage(d, tier, s);
   const cd = weaponCooldown(d, tier, s);
-  const rng = weaponRange(d, s);
+  const rng = weaponRange(d, s, undefined, 0, tier);
   const scal = Object.entries(d.scaling)
     .filter(([, v]) => v)
     .map(([k, v]) => `${STAT_INFO[k as StatKey]?.name ?? k} ×${fmt(v as number)}`)
@@ -491,7 +491,7 @@ function catalog(ctx: DevCtx): HTMLElement {
           d.tags.join('/'),
           String(Math.round(dmg)),
           cd.toFixed(2),
-          String(Math.round(weaponRange(d, run.stats))),
+          String(Math.round(weaponRange(d, run.stats, undefined, 0, tier))),
           (dmg / cd).toFixed(1),
           String(p),
           mkBtn('买', !can, () => {
