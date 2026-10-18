@@ -1,0 +1,19 @@
+docs/design/ART_REPLACEMENT_ROADMAP.md
+  s_611bfc067cea41::t_f82bf30ca49307 1-182
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4fcb347c8fb4ad176edf8216697c7d57a5d599ed",
+  "prompts": {},
+  "sessions": {
+    "s_611bfc067cea41": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14d8f-e4d4-7f52-925c-b8e6345af2bf",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
