@@ -12,7 +12,7 @@ import { BOSSES } from '../data/bosses';
 import { CHAPTERS } from '../data/chapters';
 
 /** 改了影响武器实战表现的战斗代码时把它加 1：所有历史转换率数据随之失效 */
-export const FP_SALT = 1;
+export const FP_SALT = 2;
 
 /**
  * 只影响个别武器的战斗代码修复：给这几把武器各自加盐，只作废它们的旧样本，其他武器的数据照常可用。

@@ -1,0 +1,539 @@
+{
+  "date": "2026-10-18",
+  "tool": "built-in image_gen",
+  "status": "chapter-one static pilot with engine-driven lightweight motion",
+  "styleReference": "src/assets/comics/ch1.png",
+  "entityStylePrompt": "Use case: stylized-concept. Asset type: production 2D game battle sprite for Tomageddon. Attached image is STYLE reference only: cute chibi manga, clean dark outlines, big readable expressive eyes, polished warm cel shading, vivid colors. Create exactly ONE isolated character, full body centered, square canvas, true transparent background. Slightly elevated three-quarter FRONT view facing slightly RIGHT, suitable for top-down arena game. Entire silhouette including feet antennae wings weapons within center 80% of canvas, ground contact at about y=87%, centered x=50%. No floor, no pedestal, no cast ground shadow, no environment, no glow background, no text, no labels, no border, no reference panels. Thick readable silhouette, restrained surface detail suitable for display at 35-110px. Light source upper left. Cute comical mischievous food/insect monster, never realistic disgusting or gory. Not a sheet, not multiple poses. ",
+  "heroSubject": "Round bright red tomato girl, green leaf calyx, golden bow, huge maroon eyes, blush cheeks, tiny dark red limbs, no held weapon, true transparent background.",
+  "subjects": {
+    "mold": "MOLD BLOB: one squat moss-green fluffy round slime, scalloped fuzzy lobes, yellow-cream eyes and cheeky little fanged grin, no legs. Small hostile minion.",
+    "fly": "FRUIT FLY: one cute small charcoal gray round fly, two big ruby-red compound eyes, two pale translucent wings, tiny six legs, stubby antennae. Single creature, wings spread.",
+    "rotten_apple": "ROTTEN APPLE: one round reddish-brown anthropomorphic apple with small dark rot spots, curled brown stem and wilted leaf, sleepy mischievous eyes, tiny brown hands and feet. No gore.",
+    "maggot": "MAGGOT: one chubby cream-colored segmented larva, curved horizontal caterpillar-like body, two tiny dark eyes, cute little fang smile, caramel segment shadows. Not a snake, not worm pile.",
+    "ant": "MARCHING ANT: one tiny cute dark chocolate ant, clear three bulbous body segments, six little legs, two curved antennae, bead eyes and tiny mandibles. Low compact silhouette.",
+    "cockroach": "COCKROACH: one cute squat brown oval cockroach, broad glossy segmented shell, six short legs, two long curved antennae, big amber eyes and grumpy cute expression. Simplified chibi insect.",
+    "beetle": "BOMB BEETLE: one cute round navy-blue beetle with two orange-red warning bands across shell, six short dark legs, tiny orange antennae, fierce yellow eyes. No explosion or external effects.",
+    "splitter": "SPLITTING MOLD: one teal-green cloud-shaped mold colony with two fused rounded lobes, deep harmless cracks glowing pale mint, fuzzy edges, fierce yellow eyes and tiny grin. Clear different silhouette from single green mold.",
+    "crumb_mite": "BREADCRUMB MITE: one tiny tan-gold spherical mite with crumb-like dotted texture, eight short brown legs, two bead eyes and tiny playful mandibles. Simplified adorable bug.",
+    "grease_drop": "GREASE DROP: one glossy amber-gold teardrop slime, curved pointed top, broad round base, buttery highlights and swirl, two black eyes and mischievous grin. No splash puddle or ground.",
+    "burnt_toast": "BURNT TOAST: one anthropomorphic slice of toast with round double-arched top, warm brown crust, dark toasted center with sparse cracks, angry cute eyebrows, tiny dark brown arms and feet. Not a loaf.",
+    "dust_bunny": "DUST BUNNY: one soft gray-lavender fluffy dust-ball creature with small wispy tufts, sleepy large eyes peeking out. Rounded cloud silhouette, no literal rabbit ears, no floor.",
+    "sour_milk": "SOUR MILK CARTON: one anthropomorphic small white paper milk carton with blue panel, folded triangular top, a few pale green sour drips, sleepy scheming eyes and tiny blue feet. No written brand, no letters, simple drop pictogram permitted.",
+    "pan_beetle": "PAN BOTTOM BEETLE: one squat metallic dark slate beetle, shell decorated with subtle concentric rings like frying pan, six short black legs, glowing orange eyes and cute grumpy face. Distinct flat circular armored silhouette.",
+    "sponge_slug": "DISH SPONGE SLUG: one anthropomorphic rounded rectangular yellow kitchen sponge with tiny pores, thick teal scouring pad underside, sleepy cute eyes and smile, soft slug-like posture. One creature no puddle.",
+    "stink_egg": "STINK EGG: one cream-white upright cracked egg with subtle green tinted fissures and two glowing lime eyes peeking from crack, comically suspicious face. No gas clouds, no broken separate fragments.",
+    "moldy_bread": "MOLDY BREAD: one plump golden bread roll with small green mold patches, harmless central crack, sleepy amber eyes and tiny cheeky fang smile. Not toast, no loose crumbs.",
+    "teabag_ghost": "TEABAG GHOST: one cute floating beige used tea sachet, rounded rectangular fibrous paper body stained warm brown at base, droopy eyes and grin, short curled cotton string attached on top ending in blank white tag. No writing, no extra ghost sheets.",
+    "rabbit": "GARDEN RABBIT: one cute plump cream-white bunny with tall soft ears, peach-pink ear interiors, huge brown eyes, blush cheeks and small rounded feet, friendly timid face. Full body compact.",
+    "gopher": "GOPHER: one cute plump tan-brown ground squirrel/gopher with small rounded ears, cream belly, buck teeth and stubby paws holding one tiny pebble. Full body visible, not emerging from dirt hole.",
+    "blight_sprout": "WITHERED SPROUT: one small anthropomorphic olive-brown bean-shaped seedling, short wilted green two-leaf sprout, sparse rotten spots, bead eyes and tiny mischievous smile. No pot or soil.",
+    "roach_general": "COCKROACH GENERAL elite: one stout armored brown cockroach, six short legs, two curved antennae, large silver bottle-cap helmet and bottle-cap breastplate with red stripe, fierce amber eyes. Chibi leader, no crown or royal cape.",
+    "mold_elder": "MOLD ELDER elite: one old dark moss-green fuzzy multi-lobed mold cloud with long pale cream bushy moustache, sleepy knowing eyes, tiny curled sprout spore knobs. One creature, no props, no crown.",
+    "greasy_pan": "GREASY FRYING PAN elite: one animated small charcoal frying pan creature, round pan face with oily caramel swirl, short handle angled upward to right, glowing orange eyes and grumpy mouth, two stubby brown feet. Whole object isolated, not a battlefield or background.",
+    "fork_knight": "FORK KNIGHT elite: one anthropomorphic silver dinner fork warrior, four rounded tines form head crown, narrow metal handle torso, dark steel visor with orange eye slit, tiny armored arms and feet. No human skin or face, toy-like cute haunted utensil.",
+    "fly_swarm_king": "LORD OF FLIES elite: exactly one large squat dark blue-gray chibi fly with oversized ruby compound eyes, four pale blue translucent wings, fuzzy collar and six short legs. Broader more imposing silhouette than small fruit fly. No swarm, no crown.",
+    "rotten_onion": "ROTTEN ONION elite: one large anthropomorphic layered purple onion, cracked violet papery layers and dark rot spots, wilted green leaf sprout atop, watery sleepy eyes and sly grin, small deep-purple feet. No external gas or puddle.",
+    "mold_king": "MOLD KING boss: one large emerald moss-green mold monarch, broad chunky cloud-shaped fuzzy body with many rounded lobes, small golden crown centered atop, huge yellow eyes, comically furious eyebrows and tiny fang grin. No throne, no other minions, no ground.",
+    "grease_chef": "GREASE CHEF boss: one chunky dark charcoal haunted kitchen extractor/grease-smoke chef creature, rounded box-like metal body with subtle rivets and smoky lower edge, huge dark gray chef hat, glowing orange eyes and mischievous mouth, two stubby mitten-like arms. No external smoke cloud, no human head, no kitchen backdrop.",
+    "cockroach_emperor": "COCKROACH EMPEROR boss: one broad chestnut chibi cockroach monarch with six dark legs and two curved antennae, red eyes, golden crown and rich burgundy cape with gold trim. Cute furious royal expression, glossy brown segmented shell. Distinct grander design than bottle-cap armored general. Entire cape and antennae inside frame."
+  },
+  "mapPrompt": "Use case: stylized-concept. Asset type: final playable top-down arena map background for cute vegetable survival game Tomageddon. Attached image is only color and painting STYLE reference, NOT layout or camera reference. Generate square 1536x1536 image. Camera MUST be perfectly orthographic straight overhead, no perspective and no horizon. Entire canvas corresponds to world square 1740x1740. Place a perfectly circular black nonstick frying pan playable INTERIOR with center exactly (50%,50%) and interior radius exactly 37.36% of canvas width (world650/1740). Inner playable boundary therefore x/y12.64% to87.36%; thin silver rim immediately OUTSIDE that circle. Pan handle extends horizontally right from rim into outer border, cut by right edge. Pan interior dark desaturated charcoal with faint concentric brushed rings, tiny sparse oil speckles, very subtle warm central heat blush; MOSTLY FLAT CLEAN DARK EMPTY PLAY SPACE for tiny colorful sprites and bright projectiles. No food, monsters, characters, obstacles or utensils INSIDE pan. Outside circle: illustrated midnight kitchen stovetop, subdued warm gray tiles and stove details, small hints of green mold restricted to outermost rim. Cute hand-painted chibi manga background, crisp ink lines and luminous soft cel shading, reference's warm amber and muted lavender colors confined to outer environment. Important: physically correct circular rim from exact overhead view, not ellipse, no view of front outer side of pan. No intense center glow, flames, castlery, perspective, words, UI, borders, labels or watermarks. Gameplay readability over decorative detail.",
+  "mapCalibration": {
+    "sourceSize": [
+      1254,
+      1254
+    ],
+    "circleCenter": [
+      617,
+      603
+    ],
+    "circleRadius": 484,
+    "worldCircleCenter": [
+      650,
+      650
+    ],
+    "worldCircleRadius": 650
+  },
+  "scope": "Tomato base appearance, chapter-one monster pool, elites and all three bosses; additional critters from chapterArtDeps; skins keep procedural appearance. No dedicated frame animations yet.",
+  "assets": [
+    {
+      "kind": "char",
+      "id": "tomato",
+      "name": "番茄妹",
+      "file": "src/assets/entities/char/tomato/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5383,
+        "y": 0.8955
+      },
+      "refRadius": 419
+    },
+    {
+      "kind": "enemy",
+      "id": "mold",
+      "name": "霉菌团",
+      "file": "src/assets/entities/enemy/mold/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5064,
+        "y": 0.8533
+      },
+      "refRadius": 479
+    },
+    {
+      "kind": "enemy",
+      "id": "fly",
+      "name": "果蝇",
+      "file": "src/assets/entities/enemy/fly/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.498,
+        "y": 0.8748
+      },
+      "refRadius": 498
+    },
+    {
+      "kind": "enemy",
+      "id": "rotten_apple",
+      "name": "烂苹果",
+      "file": "src/assets/entities/enemy/rotten_apple/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5391,
+        "y": 0.9027
+      },
+      "refRadius": 451
+    },
+    {
+      "kind": "enemy",
+      "id": "maggot",
+      "name": "蛆虫",
+      "file": "src/assets/entities/enemy/maggot/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.4992,
+        "y": 0.8278
+      },
+      "refRadius": 467
+    },
+    {
+      "kind": "enemy",
+      "id": "ant",
+      "name": "行军蚁",
+      "file": "src/assets/entities/enemy/ant/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5159,
+        "y": 0.8573
+      },
+      "refRadius": 486
+    },
+    {
+      "kind": "enemy",
+      "id": "cockroach",
+      "name": "蟑螂",
+      "file": "src/assets/entities/enemy/cockroach/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5391,
+        "y": 0.933
+      },
+      "refRadius": 470
+    },
+    {
+      "kind": "enemy",
+      "id": "beetle",
+      "name": "炸弹甲虫",
+      "file": "src/assets/entities/enemy/beetle/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5179,
+        "y": 0.8764
+      },
+      "refRadius": 463
+    },
+    {
+      "kind": "enemy",
+      "id": "splitter",
+      "name": "分裂霉菌",
+      "file": "src/assets/entities/enemy/splitter/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5092,
+        "y": 0.9035
+      },
+      "refRadius": 494
+    },
+    {
+      "kind": "enemy",
+      "id": "crumb_mite",
+      "name": "面包屑螨",
+      "file": "src/assets/entities/enemy/crumb_mite/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.4992,
+        "y": 0.8525
+      },
+      "refRadius": 443
+    },
+    {
+      "kind": "enemy",
+      "id": "grease_drop",
+      "name": "油滴精",
+      "file": "src/assets/entities/enemy/grease_drop/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5355,
+        "y": 0.9522
+      },
+      "refRadius": 480
+    },
+    {
+      "kind": "enemy",
+      "id": "burnt_toast",
+      "name": "焦吐司",
+      "file": "src/assets/entities/enemy/burnt_toast/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5159,
+        "y": 0.9059
+      },
+      "refRadius": 444
+    },
+    {
+      "kind": "enemy",
+      "id": "dust_bunny",
+      "name": "灰尘团",
+      "file": "src/assets/entities/enemy/dust_bunny/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9179
+      },
+      "refRadius": 468
+    },
+    {
+      "kind": "enemy",
+      "id": "sour_milk",
+      "name": "酸奶盒",
+      "file": "src/assets/entities/enemy/sour_milk/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5439,
+        "y": 0.8939
+      },
+      "refRadius": 419
+    },
+    {
+      "kind": "enemy",
+      "id": "pan_beetle",
+      "name": "锅底甲虫",
+      "file": "src/assets/entities/enemy/pan_beetle/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5116,
+        "y": 0.8892
+      },
+      "refRadius": 487
+    },
+    {
+      "kind": "enemy",
+      "id": "sponge_slug",
+      "name": "洗碗海绵",
+      "file": "src/assets/entities/enemy/sponge_slug/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9322
+      },
+      "refRadius": 456
+    },
+    {
+      "kind": "enemy",
+      "id": "stink_egg",
+      "name": "臭鸡蛋",
+      "file": "src/assets/entities/enemy/stink_egg/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5526,
+        "y": 0.9322
+      },
+      "refRadius": 441
+    },
+    {
+      "kind": "enemy",
+      "id": "moldy_bread",
+      "name": "发霉面包",
+      "file": "src/assets/entities/enemy/moldy_bread/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5255,
+        "y": 0.9171
+      },
+      "refRadius": 459
+    },
+    {
+      "kind": "enemy",
+      "id": "teabag_ghost",
+      "name": "茶包幽灵",
+      "file": "src/assets/entities/enemy/teabag_ghost/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5586,
+        "y": 0.9402
+      },
+      "refRadius": 474
+    },
+    {
+      "kind": "enemy",
+      "id": "rabbit",
+      "name": "菜园兔子",
+      "file": "src/assets/entities/enemy/rabbit/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.4825,
+        "y": 0.9872
+      },
+      "refRadius": 512
+    },
+    {
+      "kind": "enemy",
+      "id": "gopher",
+      "name": "土拨鼠",
+      "file": "src/assets/entities/enemy/gopher/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.4777,
+        "y": 0.9211
+      },
+      "refRadius": 439
+    },
+    {
+      "kind": "enemy",
+      "id": "blight_sprout",
+      "name": "枯萎嫩芽",
+      "file": "src/assets/entities/enemy/blight_sprout/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.51,
+        "y": 0.8987
+      },
+      "refRadius": 414
+    },
+    {
+      "kind": "boss",
+      "id": "roach_general",
+      "name": "蟑螂将军",
+      "file": "src/assets/entities/boss/roach_general/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5271,
+        "y": 0.949
+      },
+      "refRadius": 491
+    },
+    {
+      "kind": "boss",
+      "id": "mold_elder",
+      "name": "霉菌长老",
+      "file": "src/assets/entities/boss/mold_elder/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5044,
+        "y": 0.933
+      },
+      "refRadius": 476
+    },
+    {
+      "kind": "boss",
+      "id": "greasy_pan",
+      "name": "油腻平底锅",
+      "file": "src/assets/entities/boss/greasy_pan/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5443,
+        "y": 0.933
+      },
+      "refRadius": 458
+    },
+    {
+      "kind": "boss",
+      "id": "fork_knight",
+      "name": "叉子骑士",
+      "file": "src/assets/entities/boss/fork_knight/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.4825,
+        "y": 0.9514
+      },
+      "refRadius": 488
+    },
+    {
+      "kind": "boss",
+      "id": "fly_swarm_king",
+      "name": "蝇群之主",
+      "file": "src/assets/entities/boss/fly_swarm_king/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5048,
+        "y": 0.9577
+      },
+      "refRadius": 499
+    },
+    {
+      "kind": "boss",
+      "id": "rotten_onion",
+      "name": "腐烂洋葱",
+      "file": "src/assets/entities/boss/rotten_onion/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.4996,
+        "y": 0.9466
+      },
+      "refRadius": 484
+    },
+    {
+      "kind": "boss",
+      "id": "mold_king",
+      "name": "霉菌大王",
+      "file": "src/assets/entities/boss/mold_king/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.5036,
+        "y": 0.9466
+      },
+      "refRadius": 516
+    },
+    {
+      "kind": "boss",
+      "id": "grease_chef",
+      "name": "油烟怪厨",
+      "file": "src/assets/entities/boss/grease_chef/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.506,
+        "y": 0.9211
+      },
+      "refRadius": 517
+    },
+    {
+      "kind": "boss",
+      "id": "cockroach_emperor",
+      "name": "蟑螂皇帝",
+      "file": "src/assets/entities/boss/cockroach_emperor/body.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "anchor": {
+        "x": 0.4992,
+        "y": 0.9426
+      },
+      "refRadius": 489
+    }
+  ],
+  "validation": {
+    "entityEntries": 31,
+    "mapEntries": 1,
+    "files": 32,
+    "chapterOne": {
+      "exact": 30,
+      "reusedChampionVariants": 21,
+      "proceduralFallbacks": 0
+    },
+    "unitTests": 388,
+    "browser": "Desktop Chrome",
+    "dedicatedFrameAnimations": false,
+    "mobileDeviceTested": false
+  }
+}

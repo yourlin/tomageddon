@@ -1,0 +1,70 @@
+{
+  "kind": "enemy",
+  "id": "curse_doll",
+  "displayName": "\u8bc5\u5492\u5a03\u5a03",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "shooter;one curse projectile every3s;actual attack state only",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/curse_doll/base/idle-sheet-pilot-2.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/curse_doll/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/curse_doll/base/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/curse_doll/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/curse_doll/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle1": "REJECT no clear horizontal gutter",
+    "idle2": "both opaque cloth lids close within sockets;no violet/white visible;partition checked;passed",
+    "move1": "opposite arm/feet shifts retain bandage side;partition passed",
+    "hurt1": "REJECT no clear vertical gutter",
+    "die1": "four cloth slumping poses inspected;partition passed",
+    "attack1": "arms draw in/spread/recoil/settle;orb separate;partition checked;passed",
+    "hurt2": "four folding/lean recoil poses retain seams/bandage side;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-curse_doll-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-curse_doll-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

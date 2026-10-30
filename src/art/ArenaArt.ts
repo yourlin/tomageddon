@@ -5,6 +5,7 @@ import { ARENA_PALETTE_EXTRA } from '../data/chaptersExtra';
 import { Arena } from '../systems/Arena';
 import { arenaDefFor } from '../data/arenas';
 import { paintArenaMap } from './ArenaMaps';
+import { readyMap } from '../systems/ArtRegistry';
 
 const W = 1300,
   H = 850; // 显示时拉伸到 2080×1360（竞技场 + 每边 80px 边缘）
@@ -355,20 +356,22 @@ export function paintArena(scene: Phaser.Scene, ch: number): string {
  * 只为缩略图临时画的大场地贴图画完就删掉（7 张 1300×850 常驻太占显存）
  */
 export function arenaThumb(scene: Phaser.Scene, ch: number, w: number, h: number, gray = false): string {
-  const key = `arena_thumb_${ch}_${w}x${h}${gray ? '_g' : ''}`;
+  // 外部地图美术：优先专门的缩略图，其次已加载的地面层；缓存键带上来源，素材加载后不会命中旧的程序缩略图
+  const art = readyMap(scene, ch, 'thumb') ?? readyMap(scene, ch, 'ground');
+  const key = `arena_thumb_${ch}_${w}x${h}${gray ? '_g' : ''}${art ? `@${art}` : ''}`;
   if (scene.textures.exists(key)) return key;
   // 用章节地图（平底锅、菜畦……）做缩略图：以场地为中心、按缩略图比例裁一块（cover）
   const arena = new Arena(arenaDefFor(ch));
   const bigKey = `arena_map_${ch}`;
-  const had = scene.textures.exists(bigKey);
-  const src = scene.textures.get(paintArenaMap(scene, ch, arena, bigKey)).getSourceImage() as HTMLCanvasElement;
+  const had = !!art || scene.textures.exists(bigKey);
+  const src = scene.textures.get(art ?? paintArenaMap(scene, ch, arena, bigKey)).getSourceImage() as HTMLCanvasElement;
   const tex = scene.textures.createCanvas(key, w, h);
   if (!tex) return key;
   const ctx = tex.getContext();
   ctx.imageSmoothingQuality = 'high';
   const sw = src.width,
     sh = src.height;
-  const k = Math.max(w / sw, h / sh) * 1.12; // 稍微放大，裁掉一些场外区域
+  const k = Math.max(w / sw, h / sh) * (art && art === readyMap(scene, ch, 'thumb') ? 1 : 1.12); // 稍微放大，裁掉一些场外区域（专门的缩略图原样 cover）
   const cw = w / k,
     chh = h / k;
   ctx.drawImage(src, (sw - cw) / 2, (sh - chh) / 2, cw, chh, 0, 0, w, h);

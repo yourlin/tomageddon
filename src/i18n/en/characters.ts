@@ -31,7 +31,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Chili Sis',
     title: 'Fire Expert',
     desc: 'Hot-tempered and fiery — flames follow wherever she goes.',
-    talent: { name: 'Fuel the Fire', desc: 'Favored weapon hits on Burning enemies throw sparks that deal 45% damage around them' },
+    talent: {
+      name: 'Fuel the Fire',
+      desc: 'Favored weapon hits on Burning enemies throw sparks that deal 45% damage around them; each wave cleared permanently grants +2 Max HP and +2% damage',
+    },
     traits: ['All hits have a 25% chance to Burn', 'Burns apply 1 extra stack'],
     skill: {
       name: 'Flame Nova',
@@ -42,7 +45,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Corn Gunner',
     title: 'Sharpshooter',
     desc: 'A Wild West gunslinger who blasts through anything with kernels.',
-    talent: { name: 'Suppressing Fire', desc: 'Favored bullets gain +1 pierce for every 100 distance travelled (max +3)' },
+    talent: {
+      name: 'Suppressing Fire',
+      desc: 'Favored bullets gain +1 pierce for every 100 distance travelled (max +3); each wave cleared permanently grants +2 Max HP and +2% damage',
+    },
     traits: ['Melee Damage -50%', 'Ranged weapons +1 Pierce'],
     skill: {
       name: 'Popcorn Barrage',
@@ -174,7 +180,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A tough guy with many layers who brings enemies to tears.',
     talent: {
       name: 'Tear Gas',
-      desc: 'When hit, Blind nearby enemies for 2s (at most once every 3s); favored weapons get +30% crit chance against Blinded enemies',
+      desc: 'When hit, Blind nearby enemies for 2s (at most once every 3s); favored weapons get +30% crit chance against Blinded enemies; each wave cleared permanently grants +3 Max HP and +1% damage',
     },
     traits: ['Reflect 15 damage when hit'],
     skill: {
@@ -202,7 +208,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Beneath the hard shell beats a fiery fighter’s heart.',
     talent: {
       name: 'Knockout Punch',
-      desc: 'Every 4th favored punch deals ×2.5 damage and always Stuns for 0.4s; consecutive hits on the same enemy deal +6% each (up to +30%), and hits on Stunned enemies deal +35%',
+      desc: 'Every 4th favored punch deals ×2.5 damage and always Stuns for 0.4s; consecutive hits on the same enemy deal +6% each (up to +30%), and hits on Stunned enemies deal +35%; each wave cleared permanently grants +2 Max HP and +2% damage',
     },
     traits: ['12% chance on hit to Stun for 0.6s'],
     skill: {
@@ -230,7 +236,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'Two cherries on one stem, with lightning-fast trigger fingers.',
     talent: {
       name: 'Rapid Volley',
-      desc: 'Each favored shot adds 1 Hot Barrel stack (+1% attack speed); at 20 stacks you Overheat for 2s (-30% attack speed) and the stacks reset; stacks also reset after 1s without firing',
+      desc: 'Each favored shot adds 1 Hot Barrel stack (+1% attack speed); at 20 stacks you Overheat for 2s (-30% attack speed) and the stacks reset; stacks also reset after 1s without firing; each wave cleared permanently grants +2 Max HP and +2% attack speed',
     },
     traits: ['Ranged weapons have a 25% chance to fire an extra shot'],
     skill: {
@@ -242,7 +248,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Pea Soldier',
     title: 'Legionnaire',
     desc: 'Little soldiers fresh out of the pod — strength in numbers.',
-    talent: { name: 'Pea Legion', desc: 'Each weapon you hold gives favored bullets +11% chance to split in two' },
+    talent: {
+      name: 'Pea Legion',
+      desc: 'Each weapon you hold gives favored bullets +11% chance to split in two; each wave cleared permanently grants +3 Max HP and +3% damage',
+    },
     traits: ['Start with 2 Pea Shooters', '+6% Damage per duplicate weapon'],
     skill: { name: 'Pea Turret', desc: 'Plant a pea turret at your feet that auto-fires 20 peas at the nearest enemy over 5s.' },
   },
@@ -252,7 +261,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A gentle angel who watches over every friend.',
     talent: {
       name: "Angel's Grace",
-      desc: 'Every 0.6s, auto-fire a homing holy bolt at the nearest enemy (damage = 8 + 120% Ranged Damage + 50% HP Regen; 2 bolts while shielded). The first lethal hit each wave leaves you at 1 HP with 2s of invulnerability; while shielded, favored weapons gain +1 pierce and heal on every hit (max 3 per second)',
+      desc: 'Every 0.6s, auto-fire a homing holy bolt at the nearest enemy (damage = 8 + 120% Ranged Damage + 50% HP Regen; 2 bolts while shielded). The first lethal hit each wave leaves you at 1 HP with 2s of invulnerability; while shielded, favored weapons gain +1 pierce and heal on every hit (max 3 per second); each wave cleared permanently grants +2 Max HP and +1 HP Regen',
     },
     traits: ['Gain 25 Shield at the start of each wave', '+20% damage while Shielded'],
     skill: {
@@ -278,7 +287,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Beet Berserker',
     title: 'Berserker',
     desc: 'A blood-red beet who gets stronger the longer the fight goes.',
-    talent: { name: 'Berserker Blood', desc: 'Every 10% HP lost gives favored weapons +6% attack speed and +3% area' },
+    talent: {
+      name: 'Berserker Blood',
+      desc: 'Every 10% HP lost gives favored weapons +6% attack speed and +3% area; each wave cleared permanently grants +2 Max HP and +2% damage',
+    },
     traits: ['Gain Rage when damaged'],
     skill: { name: 'Frenzy', desc: 'Gain Enrage (+30% Move Speed and damage) and 3 stacks of Bloodlust (+12% Life Steal Chance) for 6s.' },
   },
@@ -286,7 +298,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Asparagus Archer',
     title: 'Marksman',
     desc: 'A tall, slender asparagus who never misses.',
-    talent: { name: 'Heartpiercer', desc: 'Favored weapons always crit enemies at full HP, and that hit does not use up pierce' },
+    talent: {
+      name: 'Heartpiercer',
+      desc: 'Favored weapons always crit enemies at full HP, and that hit does not use up pierce; each wave cleared permanently grants +3 Max HP and +3% damage',
+    },
     traits: ['Hits have a 25% chance to Mark enemies (next hit always crits)'],
     skill: {
       name: 'Heartpiercer',

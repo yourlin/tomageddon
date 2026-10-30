@@ -1,0 +1,74 @@
+{
+  "kind": "char",
+  "id": "lemon",
+  "status": "pilot; cross-scene/mobile/visual acceptance pending",
+  "referenceHeight": 180,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/lemon/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/lemon/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/lemon/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/lemon/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/lemon/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/lemon/charge-sheet-pilot-1.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/lemon/stun-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/lemon/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/lemon/spawn-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/lemon/cast-sheet-pilot-1.png"
+    },
+    {
+      "name": "victory",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/lemon/victory-sheet-pilot-1.png"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "kind": "enemy",
+  "id": "frost_mosquito",
+  "displayName": "冰蚊",
+  "status": "16frames integrated;3tier native and actualAI playback passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "wander;contact freeze0.5/slow2;no ranged attack animation",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mosquito/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mosquito/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mosquito/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mosquito/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "four poses inspected;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "four poses inspected;partition passed",
+    "die": "four weakhover/collapse poses inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-frost_mosquito-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-frost_mosquito-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

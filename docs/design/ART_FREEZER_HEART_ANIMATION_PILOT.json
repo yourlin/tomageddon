@@ -1,0 +1,50 @@
+{
+  "kind": "boss",
+  "id": "freezer_heart",
+  "status": "generation in progress;notintegrated",
+  "referenceHeight": 170,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/freezer_heart/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/freezer_heart/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/boss/freezer_heart/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/freezer_heart/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 2,
+      "source": "drafts/boss/freezer_heart/base/spawn-sheet-pilot-1.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/freezer_heart/base/stun-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/freezer_heart/base/attack-sheet-pilot-1.png"
+    }
+  ]
+}

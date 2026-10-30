@@ -1,0 +1,10 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: upright stagger antennae droop eyes dim; knees fold; tips onto side eyes closed; lies on side six legs curled eyes closed. Full antennae/abdomen remain inside each cell, no debris."
+  },
+  "deathRepair": {
+    "prompt": "FOUR ant drawings ONLY, arranged TWO rows TWO columns on completely TRANSPARENT background. Death poses: upright weak; knees buckle; tips onto side eyes closed; lies motionless six legs curled eyes closed. Reference SAME glossy brown ant with three body sections/striped abdomen, elbow antennae, mandibles. Each figure SMALL centered in middle45% of each quadrant with HUGE empty transparent margins/gutters. Full antennae remain in cell. NO panels, dividing lines, motion marks, shadows, ground, haze, text. Exactly FOUR images, not six.",
+    "source": "drafts/enemy/ant/base/die-sheet-pilot-2.png"
+  }
+}

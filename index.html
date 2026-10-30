@@ -34,6 +34,13 @@
     <meta itemprop="image" content="%SITE_URL%icons/share-thumb.jpg" />
     <link rel="canonical" href="%SITE_URL%" />
     <style>
+      @font-face {
+        font-family: 'Journal Serif';
+        src: url('./assets/ui/fonts/journal-names.ttf') format('truetype');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
       html,
       body {
         margin: 0;
@@ -59,19 +66,25 @@
         width: 100%;
         height: 100%;
       }
-      /* ---------- 启动加载页：脚本下载期间就显示（纯 CSS 动画，主线程忙时也尽量流畅） ---------- */
+      /* 首屏 HTML 自带加载 UI；无需等待游戏脚本或 Phaser 的资源管线。 */
       #boot-loader {
         --p: 0;
         position: fixed;
         inset: 0;
         z-index: 50;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: radial-gradient(ellipse at 50% 40%, #3a1418 0%, #1a0a0c 70%);
-        color: #ffe8d6;
+        overflow: hidden;
+        background: #1a0a0c;
+        color: #fff0ce;
         font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
         transition: opacity 0.35s ease;
+      }
+      .bl-art {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
       }
       #boot-loader.bl-hide {
         opacity: 0;
@@ -80,196 +93,235 @@
       #boot-loader.bl-gone {
         display: none;
       }
-      #boot-loader.bl-dim {
-        background: rgba(26, 10, 12, 0.94);
-        backdrop-filter: blur(6px);
-      }
-      .bl-box {
-        width: min(440px, 78vw);
-        text-align: center;
-      }
       .bl-title {
-        font-size: 44px;
-        font-weight: bold;
-        color: #ff4b3e;
-        letter-spacing: 4px;
-        text-shadow: 0 4px 0 #5a1012;
-        margin-bottom: 64px;
+        position: absolute;
+        top: 13%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .bl-brand {
+        display: block;
+        font-size: clamp(44px, 7vw, 96px);
+        font-weight: 900;
+        letter-spacing: 5px;
+        line-height: 1.18;
+        color: #fff0ce;
+        -webkit-text-stroke: 10px #974b35;
+        paint-order: stroke fill;
+        text-shadow: 0 7px 0 #48212b;
       }
       .bl-title small {
         display: block;
-        font-size: 15px;
-        letter-spacing: 6px;
-        color: #ffd166;
-        text-shadow: none;
-        margin-top: 4px;
+        width: fit-content;
+        margin: 12px auto 0;
+        padding: 5px 38px;
+        border: 1px solid #c2965b;
+        border-radius: 99px;
+        background: #3b2226;
+        font-size: clamp(12px, 1.4vw, 18px);
+        font-weight: 600;
+        letter-spacing: 5px;
+        color: #eac789;
       }
-      #boot-loader.bl-dim .bl-title {
-        margin-bottom: 56px;
-        font-size: 30px;
+      .bl-en .bl-brand {
+        font-size: clamp(30px, 4.9vw, 70px);
+        letter-spacing: 2px;
+      }
+      .bl-en .bl-title small {
+        font-size: clamp(10px, 1vw, 14px);
+        letter-spacing: 3px;
+      }
+      .bl-box {
+        position: absolute;
+        bottom: 8%;
+        left: 53%;
+        transform: translateX(-50%);
+        width: min(740px, 70vw);
+      }
+      .bl-info {
+        margin: 0 0 13px 10px;
+      }
+      .bl-stage {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .bl-tomato {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+      .bl-label {
+        font-size: clamp(17px, 2.2vw, 27px);
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      .bl-progress {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 76px;
+        align-items: center;
+        gap: 20px;
       }
       .bl-track {
-        position: relative;
-        height: 18px;
-        border-radius: 9px;
-        background: #3d1d22;
+        height: 40px;
+        box-sizing: border-box;
+        padding: 4px;
+        border: 2px solid #dbb475;
+        border-radius: 99px;
+        background: #30201f;
         box-shadow:
-          inset 0 2px 4px rgba(0, 0, 0, 0.5),
-          0 0 0 3px #5a1012;
+          inset 0 2px 5px #170d11,
+          0 3px 0 #30171a;
+      }
+      .bl-rail {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: inherit;
       }
       .bl-fill {
         position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
+        inset: 0 auto 0 0;
         width: calc(var(--p) * 100%);
-        min-width: 18px;
-        border-radius: 9px;
-        background: repeating-linear-gradient(-45deg, #e63946 0 10px, #ff6b5e 10px 20px);
-        background-size: 28px 28px;
-        animation: bl-stripe 0.7s linear infinite;
+        border-radius: inherit;
+        background: linear-gradient(#ffb16c 0%, #f46a42 28%, #dc4734 65%, #b72e2c 100%);
+        box-shadow:
+          inset 0 2px 0 #ffdfab,
+          inset 0 -2px 0 #852126;
         transition: width 0.25s ease-out;
-        box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.25);
       }
-      .bl-runner {
-        position: absolute;
-        bottom: 12px;
-        left: calc(var(--p) * 100%);
-        width: 0;
-        transition: left 0.25s ease-out;
-      }
-      .bl-hop {
-        position: absolute;
-        left: -28px;
-        bottom: 0;
-        width: 56px;
-        height: 56px;
-        transform-origin: 50% 100%;
-        animation: bl-hop 0.62s cubic-bezier(0.33, 0, 0.67, 1) infinite;
-      }
-      .bl-hop svg {
-        width: 100%;
-        height: 100%;
-        animation: bl-wobble 1.24s ease-in-out infinite;
-      }
-      .bl-shadow {
-        position: absolute;
-        left: -16px;
-        bottom: -6px;
-        width: 32px;
-        height: 7px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.45);
-        animation: bl-shadow 0.62s cubic-bezier(0.33, 0, 0.67, 1) infinite;
-      }
-      .bl-eyes {
-        transform-box: fill-box;
-        transform-origin: center;
-        animation: bl-blink 3.4s infinite;
-      }
-      .bl-seed {
-        position: absolute;
-        bottom: 4px;
-        width: 6px;
-        height: 9px;
-        border-radius: 50%;
-        background: #ffd23f;
-        opacity: 0;
-        animation: bl-seed 1.24s ease-out infinite;
-      }
-      .bl-seed.s2 {
-        animation-delay: 0.62s;
-      }
-      .bl-info {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 14px;
-        font-size: 15px;
-        color: #ffd6c9;
+      #boot-loader.bl-complete .bl-fill {
+        transition: none;
       }
       .bl-pct {
-        font-weight: bold;
-        color: #ffd166;
+        font-size: clamp(23px, 2.7vw, 34px);
+        font-weight: 700;
         font-variant-numeric: tabular-nums;
       }
+      .bl-tip-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 26px;
+        min-height: 24px;
+      }
+      .bl-hint-icon {
+        width: 23px;
+        height: 23px;
+        flex: 0 0 auto;
+      }
       .bl-tip {
-        margin-top: 22px;
-        min-height: 20px;
-        font-size: 13px;
-        color: #b88a85;
-        transition: opacity 0.3s;
+        margin: 0;
+        text-align: center;
+        font-size: clamp(13px, 1.4vw, 18px);
+        line-height: 1.6;
+        color: #e5c28d;
+        text-wrap: balance;
       }
-      @keyframes bl-stripe {
-        to {
-          background-position: 28px 0;
+      /* 同一画面也用于局内资源等待，不会把未完成的对局暴露在背后。 */
+      #boot-loader.bl-dim .bl-art {
+        filter: brightness(0.8);
+      }
+      @media (max-height: 500px) and (orientation: landscape) {
+        .bl-art {
+          object-position: 50% 100%;
+        }
+        .bl-title {
+          top: 10%;
+        }
+        .bl-brand {
+          font-size: clamp(38px, 7vw, 64px);
+          -webkit-text-stroke-width: 4px;
+        }
+        .bl-title small {
+          margin-top: 6px;
+          padding: 3px 18px;
+          font-size: 11px;
+        }
+        .bl-en .bl-brand {
+          font-size: 38px;
+        }
+        .bl-box {
+          bottom: 6%;
+          width: 72vw;
+          left: 50%;
+        }
+        .bl-info {
+          margin-bottom: 8px;
+        }
+        .bl-tomato {
+          width: 22px;
+          height: 22px;
+        }
+        .bl-label {
+          font-size: 17px;
+        }
+        .bl-progress {
+          grid-template-columns: minmax(0, 1fr) 56px;
+          gap: 12px;
+        }
+        .bl-track {
+          height: 27px;
+          padding: 3px;
+        }
+        .bl-pct {
+          font-size: 24px;
+        }
+        .bl-tip {
+          font-size: 12px;
+          min-height: 20px;
         }
       }
-      @keyframes bl-hop {
-        0%,
-        100% {
-          transform: translateY(0) scale(1.16, 0.84);
+      @media (max-height: 500px) {
+        .bl-tip-row {
+          margin-top: 12px;
         }
-        14% {
-          transform: translateY(-6px) scale(0.92, 1.1);
-        }
-        50% {
-          transform: translateY(-30px) scale(1, 1);
-        }
-        86% {
-          transform: translateY(-6px) scale(0.94, 1.08);
+        .bl-hint-icon {
+          width: 18px;
+          height: 18px;
         }
       }
-      @keyframes bl-wobble {
-        0%,
-        100% {
-          transform: rotate(-8deg);
+      @media (orientation: portrait) {
+        .bl-art {
+          object-position: 22% 50%;
         }
-        50% {
-          transform: rotate(8deg);
+        .bl-title {
+          top: 13%;
         }
-      }
-      @keyframes bl-shadow {
-        0%,
-        100% {
-          transform: scale(1.15);
-          opacity: 0.55;
+        .bl-box {
+          width: 88vw;
+          bottom: 9%;
+          left: 50%;
         }
-        50% {
-          transform: scale(0.55);
-          opacity: 0.25;
+        .bl-progress {
+          grid-template-columns: minmax(0, 1fr) 58px;
+          gap: 12px;
         }
-      }
-      @keyframes bl-blink {
-        0%,
-        44%,
-        50%,
-        100% {
-          transform: scaleY(1);
+        .bl-track {
+          height: 30px;
         }
-        47% {
-          transform: scaleY(0.1);
+        .bl-brand {
+          font-size: 64px;
         }
-      }
-      @keyframes bl-seed {
-        0% {
-          opacity: 0;
-          transform: translate(-3px, 0);
+        .bl-en .bl-brand {
+          font-size: 32px;
         }
-        10% {
-          opacity: 1;
+        .bl-label {
+          font-size: 20px;
         }
-        100% {
-          opacity: 0;
-          transform: translate(-26px, -16px) rotate(-200deg);
+        .bl-tip {
+          font-size: 14px;
         }
       }
       @media (prefers-reduced-motion: reduce) {
-        .bl-hop,
-        .bl-hop svg,
-        .bl-shadow,
-        .bl-fill,
-        .bl-seed {
-          animation: none;
+        #boot-loader,
+        .bl-fill {
+          transition: none;
         }
       }
     </style>
@@ -279,46 +331,24 @@
     <img src="./icons/share-thumb.jpg" alt="番茄酱 Tomageddon" width="300" height="300" style="position: absolute; left: -9999px; top: 0" />
     <div id="stage"><div id="game"></div></div>
     <div id="boot-loader" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="加载进度 Loading">
+      <img class="bl-art" src="./assets/ui/loading-kitchen.webp" alt="" fetchpriority="high" decoding="async" />
+      <div class="bl-title"><span class="bl-brand">番茄酱</span><small>TOMAGEDDON</small></div>
       <div class="bl-box">
-        <div class="bl-title">番茄酱<small>TOMAGEDDON</small></div>
-        <div class="bl-track">
-          <div class="bl-fill"></div>
-          <div class="bl-runner">
-            <span class="bl-seed"></span><span class="bl-seed s2"></span>
-            <div class="bl-shadow"></div>
-            <div class="bl-hop">
-              <svg viewBox="0 0 64 64" aria-hidden="true">
-                <defs>
-                  <radialGradient id="bl-g" cx="38%" cy="35%" r="70%">
-                    <stop offset="0" stop-color="#ff8070" />
-                    <stop offset="0.6" stop-color="#e63946" />
-                    <stop offset="1" stop-color="#a4161a" />
-                  </radialGradient>
-                </defs>
-                <ellipse cx="32" cy="39" rx="25" ry="22" fill="url(#bl-g)" stroke="#5a1012" stroke-width="2.5" />
-                <ellipse cx="21" cy="29" rx="6" ry="3.4" fill="#fff" opacity="0.55" transform="rotate(-28 21 29)" />
-                <path
-                  d="M32 21 L25 13 L31 16 L32 8 L35 16 L41 12 L37 20 L45 21 L37 23 Z"
-                  fill="#52b788"
-                  stroke="#1b4332"
-                  stroke-width="1.6"
-                  stroke-linejoin="round"
-                />
-                <g class="bl-eyes">
-                  <ellipse cx="25" cy="38" rx="3.2" ry="4.2" fill="#2a1614" />
-                  <ellipse cx="39" cy="38" rx="3.2" ry="4.2" fill="#2a1614" />
-                  <circle cx="26.2" cy="36.4" r="1.2" fill="#fff" />
-                  <circle cx="40.2" cy="36.4" r="1.2" fill="#fff" />
-                </g>
-                <ellipse cx="18.5" cy="45" rx="4" ry="2.4" fill="#ff8fa3" opacity="0.85" />
-                <ellipse cx="45.5" cy="45" rx="4" ry="2.4" fill="#ff8fa3" opacity="0.85" />
-                <path d="M28 46 Q32 50.5 36 46" fill="none" stroke="#2a1614" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </div>
+        <div class="bl-info">
+          <div class="bl-stage">
+            <img class="bl-tomato" src="./assets/ui/loader-tomato.png" alt="" /><span class="bl-label">加载中 · Loading</span>
           </div>
         </div>
-        <div class="bl-info"><span class="bl-label">加载中 · Loading</span><span class="bl-pct">0%</span></div>
-        <div class="bl-tip"></div>
+        <div class="bl-progress">
+          <div class="bl-track">
+            <div class="bl-rail"><div class="bl-fill"></div></div>
+          </div>
+          <span class="bl-pct">0%</span>
+        </div>
+        <div class="bl-tip-row">
+          <img class="bl-hint-icon" src="./assets/ui/icons/lightbulb.svg" alt="" />
+          <div class="bl-tip">小提示：武器会自动攻击，专心走位就好。</div>
+        </div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

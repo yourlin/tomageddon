@@ -1,0 +1,59 @@
+{
+  "kind": "enemy",
+  "id": "moldy_bread",
+  "displayName": "\u53d1\u9709\u9762\u5305",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "splitter;death spawns3crumb_mite via runtime;four actual actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_bread/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_bread/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_bread/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_bread/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "draftReview": {
+    "idle1": "third retains both pupils/white crescents;fourth fullyclosed;partition passed",
+    "move1": "opposite lead feet and glove counter-swing,large left mold cluster/center seam retained;partition passed",
+    "hurt1": "four spread/tuck/rebound/recovery poses;closed eyes in2/3,smug rebound expression retained;partition passed",
+    "die1": "four seam widening/slumping poses;last3closed;no children drawn;partition passed"
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-moldy_bread-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-moldy_bread-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

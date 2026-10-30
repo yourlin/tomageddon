@@ -83,7 +83,7 @@ Players and enemies share one set of [buffs and debuffs](docs/en/SKILLS.md#statu
 
 | Category        | Count        | Notes                                                                                                                                                                          | Docs                                                                        |
 | --------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| Characters | 39 | All-rounders, melee tanks, marksmen, elemental/status, crit assassins, dodge/survival, economy/growth, explosives/berserkers; each has 3 quests, an Awakening, Mastery and 4 skins | [Characters](docs/en/CHARACTERS.md) |
+| Characters | 39 | All-rounders, melee tanks, marksmen, elemental/status, crit assassins, dodge/survival, economy/growth, explosives/berserkers; each has 3 quests, an Awakening and Mastery | [Characters](docs/en/CHARACTERS.md) |
 | Skills | 39 | 13 forms: nova, missile, screen clear, focused barrage, binding field, mass debuff, self buff, stealth, dash, strikes, ring, drain heal, clones; cooldowns computed from power | [Skills](docs/en/SKILLS.md) |
 | Statuses | 32 | 18 debuffs + 14 buffs, shared by players and enemies | [Status effects](docs/en/SKILLS.md#statuses) |
 | Weapons | 120 + 60 + 20 | 120 base weapons (melee 37 / ranged 42 / elemental 41), 9 attack types, 4 tiers; characters match weapons by tag (+10% damage); plus 60 fusion weapons (T4, crafted by recipe) and 20 super weapons (crafted from two T4s), 199 recipes in total | [Weapons](docs/en/WEAPONS.md) |
@@ -220,6 +220,10 @@ If Tomageddon made you smile, consider buying the author a coffee ☕
 Tomageddon is a free game made in spare time. Your support turns into more characters, more bosses and more new mechanics. Alipay and WeChat Pay both work.
 
 <img src="docs/images/donate/donate-en.jpg" alt="Buy me a coffee: Alipay / WeChat Pay QR codes" width="600" />
+
+## AI-Generated Content Disclosure
+
+The artwork in the "Cute" art style (characters, monsters, bosses, maps, weapon and projectile illustrations, the cover and the opening comics) is AI-generated, curated and post-processed by hand. The "Retro" art style is drawn entirely by code and uses none of these textures. No AI content is generated at runtime. See [AI disclosure](docs/AI_DISCLOSURE.md).
 
 ## License
 

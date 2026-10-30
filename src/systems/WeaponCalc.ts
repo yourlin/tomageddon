@@ -29,7 +29,7 @@ export function weaponCalc(def: WeaponDef, tier: number): WeaponCalc {
   const sp = run.specials;
   const dmg = weaponDamage(def, tier, s);
   const cd = weaponCooldown(def, tier, s);
-  const range = weaponRange(def, s);
+  const range = weaponRange(def, s, undefined, 0, tier);
   const count = def.kind === 'chain' ? 1 : (def.count?.[tier] ?? 1);
   const critChance = Math.min(1, Math.max(0, (s.crit + (def.critBonus ?? 0) + (def.kind === 'thrust' ? BALANCE.thrustCrit : 0)) / 100));
   // 暴击：武器倍率 × (1 + 道具/角色/天赋暴击伤害%)，后者有上限

@@ -1,0 +1,17 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: upright stagger eyes dim; knees buckle stem droops; seated slumped eyes closed; lies on side eyes closed hands relaxed. Entire stem leaf limbs stay in cell, no fragments.",
+    "attack": "undefinedSpitting: neutral; cheeks puff and hands brace; mouth forms round O head thrust forward as if spits a seed; recover. NO actual seed/projectile in sheet, effects separate."
+  },
+  "repairs": {
+    "die2": {
+      "prompt": "Sprite sheet EXACTLY FOUR separate full-body drawings in TWO rows TWO columns. Same rotten red apple from reference, brown rot spots on left, curled stem, holey yellow leaf right, brown hands/feet, two brown eyes in white sockets. Standing weakly; kneeling; seated eyes closed; lying on SIDE eyes closed. Each whole figure SMALL central45% of quadrant, huge empty transparent gutters and outer margins. Transparent background ONLY. No symbols, arrows, text, lines, shadows or effects. Four different actual articulated poses, same camera and scale.",
+      "source": "drafts/enemy/rotten_apple/base/die-sheet-pilot-2.png"
+    },
+    "attack2": {
+      "prompt": "Sprite sheet EXACTLY FOUR separate full-body drawings in TWO rows TWO columns. Same rotten red apple from reference, brown rot spots on left, curled stem, holey yellow leaf right, brown hands/feet, two brown eyes in white sockets. Normal face; cheeks puff with hands braced; cheeks deflate mouth O head forward; recover normal. NO arrows, no motion lines, no flying seeds. Each whole figure SMALL central45% of quadrant, huge empty transparent gutters and outer margins. Transparent background ONLY. No symbols, arrows, text, lines, shadows or effects. Four different actual articulated poses, same camera and scale.",
+      "source": "drafts/enemy/rotten_apple/base/attack-sheet-pilot-2.png"
+    }
+  }
+}

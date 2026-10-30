@@ -1,0 +1,10 @@
+{
+  "cast": {
+    "prompt": "Repair only layout/padding of this4-frame2x2sprite sheet. Preserve EXACT four mold elder poses/face/stalks/moustache and style. SHRINK each entire drawing to occupy at most65percent width and65percent height of its equal quadrant; place centered with15–20percent TRANSPARENT margins all around. Fully transparent continuous horizontal and vertical gutters at center: NO stalk, foot, moustache, stray pixel or effect crosses quadrant boundaries. All anatomy entirely inside separate cell. Preserve four ordered poses, no clipping, no background/floor/text. True transparent alpha. Do not enlarge characters to fill cells.",
+    "source": "drafts/boss/mold_elder/base/cast-sheet-pilot-2.png"
+  },
+  "attack": {
+    "prompt": "Repair only layout/padding of this4-frame2x2sprite sheet. Preserve EXACT four mold elder poses/face/stalks/moustache and style. SHRINK each entire drawing to occupy at most65percent width and65percent height of its equal quadrant; place centered with15–20percent TRANSPARENT margins all around. Fully transparent continuous horizontal and vertical gutters at center: NO stalk, foot, moustache, stray pixel or effect crosses quadrant boundaries. All anatomy entirely inside separate cell. Preserve four ordered poses, no clipping, no background/floor/text. True transparent alpha. Do not enlarge characters to fill cells.",
+    "source": "drafts/boss/mold_elder/base/attack-sheet-pilot-2.png"
+  }
+}

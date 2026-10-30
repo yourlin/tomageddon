@@ -1,0 +1,46 @@
+{
+  "kind": "char",
+  "id": "dragonfruit",
+  "skinId": "skin_dragonfruit",
+  "referenceHeight": 160,
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/dragonfruit/skins/skin_dragonfruit/idle-sheet-2.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/dragonfruit/skins/skin_dragonfruit/move-sheet-right-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/dragonfruit/skins/skin_dragonfruit/hurt-sheet-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/dragonfruit/skins/skin_dragonfruit/die-sheet-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/dragonfruit/skins/skin_dragonfruit/charge-sheet-right-1.png"
+    }
+  ],
+  "status": "gutters and shared action calibration checked; runtime verification pending"
+}

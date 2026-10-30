@@ -1,0 +1,28 @@
+{
+  "id": "press_machine",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "eyePolicy": "Opaque sunglasses; no visible blink claim.",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR full small industrial press machine characters in TWO ROWS TWO COLUMNS. Reference identity: orange riveted rectangular metal body, opaque dark purple sunglasses and thick metal brows, zigzag steel mouth, two large spiked black wheels green spikes, broad raised top plate with yellow-black hazard stripes supported by central hydraulic piston and two guide rods. Same cute painterly outlined game style. Keep exact machine construction camera direction and scale, no arms or legs. Each complete figure fits central 60% of own quadrant with large transparent padding and clear empty central cross; all plate edges wheel spikes rods visible. No labels text borders floor shadows backdrop or detached effects. Articulate mechanical parts, never scale whole image. Four idle poses: neutral; tiny piston settling and brow tilt; relaxed steel mouth and subtle plate motion; return neutral. Opaque sunglasses remain worn throughout and conceal eyes; do NOT draw eyes on or outside glasses or remove glasses. Consistent rigid body size."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR full small industrial press machine characters in TWO ROWS TWO COLUMNS. Reference identity: orange riveted rectangular metal body, opaque dark purple sunglasses and thick metal brows, zigzag steel mouth, two large spiked black wheels green spikes, broad raised top plate with yellow-black hazard stripes supported by central hydraulic piston and two guide rods. Same cute painterly outlined game style. Keep exact machine construction camera direction and scale, no arms or legs. Each complete figure fits central 60% of own quadrant with large transparent padding and clear empty central cross; all plate edges wheel spikes rods visible. No labels text borders floor shadows backdrop or detached effects. Articulate mechanical parts, never scale whole image. Four rolling poses: spiked wheel hubs/spikes rotate one-quarter phase each frame and suspension rocks subtly; chassis stable same direction all frames. Keep exactly two wheels with same spike count. Do not mirror camera or grow limbs. Show wheel orientation changes and piston settling."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR full small industrial press machine characters in TWO ROWS TWO COLUMNS. Reference identity: orange riveted rectangular metal body, opaque dark purple sunglasses and thick metal brows, zigzag steel mouth, two large spiked black wheels green spikes, broad raised top plate with yellow-black hazard stripes supported by central hydraulic piston and two guide rods. Same cute painterly outlined game style. Keep exact machine construction camera direction and scale, no arms or legs. Each complete figure fits central 60% of own quadrant with large transparent padding and clear empty central cross; all plate edges wheel spikes rods visible. No labels text borders floor shadows backdrop or detached effects. Articulate mechanical parts, never scale whole image. Four hit reaction poses: brace; chassis recoils backward suspension compresses plate tilts slightly rods stay connected; crouched suspension tense mouth; recover. Keep sunglasses and rigid metal shape, no new eyes or damage flash."
+    },
+    {
+      "action": "die",
+      "prompt": "undefinedFour DEATH poses: ready; chassis sags axle bends top plate lowers; body slumps sideways piston collapsed; inert machine resting low sideways wheels still attached plate lowered and steel mouth slack. Sunglasses stay worn, no exposed eyes. No explosion debris or new objects, full plate and wheel spikes inside each cell. Tiny characters huge empty margins."
+    },
+    {
+      "action": "attack",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR full small industrial press machine characters in TWO ROWS TWO COLUMNS. Reference identity: orange riveted rectangular metal body, opaque dark purple sunglasses and thick metal brows, zigzag steel mouth, two large spiked black wheels green spikes, broad raised top plate with yellow-black hazard stripes supported by central hydraulic piston and two guide rods. Same cute painterly outlined game style. Keep exact machine construction camera direction and scale, no arms or legs. Each complete figure fits central 60% of own quadrant with large transparent padding and clear empty central cross; all plate edges wheel spikes rods visible. No labels text borders floor shadows backdrop or detached effects. Articulate mechanical parts, never scale whole image. Four actual SLAM ATTACK poses: ready plate midway; central hydraulic piston extends lifting hazard-striped top plate HIGH while wheels brace; piston retracts top plate forcefully DOWN nearly against orange body with rods sliding inside guides; plate rises to recover. Keep exact plate width and body size, clear visible piston extension differences not whole-body scaling. No shockwave or ground effects drawn. Full machine centered each cell HUGE padding, no added limbs."
+    }
+  ]
+}

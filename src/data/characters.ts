@@ -154,10 +154,11 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0x9d0208,
       acc: [{ id: 'flower', color: 0xffba08 }],
     },
-    mods: { elemental: 3, maxHp: -2 },
+    // round22 通关率 33%：生命 -2 → +5（另见 waveGrowthMods 每波成长）
+    mods: { elemental: 3, maxHp: 5 },
     startWeapons: ['bbq_torch'],
     favored: ['火焰', '枪械'],
-    talent: { name: '火上浇油', desc: '契合武器打中灼烧中的敌人时溅出火花，对周围造成 45% 伤害' },
+    talent: { name: '火上浇油', desc: '契合武器打中灼烧中的敌人时溅出火花，对周围造成 45% 伤害；每完成一波，永久 +2 最大生命、+2% 伤害' },
     traits: ['所有命中 25% 概率灼烧', '灼烧每次多叠 1 层'],
     special: { burnChance: 25, dotPerk: 'burnStack' },
     skill: {
@@ -191,11 +192,12 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0x6b4226,
       acc: [{ id: 'cowboy', color: 0x9c6644, color2: 0x3d2c2e }],
     },
-    mods: { ranged: 3, range: 50, maxHp: 7, armor: 1, damage: 8 },
+    // round21 通关率 33%（第 3 章起多死在第 5–12 波，击杀和收入偏低）：伤害 +8% → +18%、生命 +7 → +12
+    mods: { ranged: 3, range: 50, maxHp: 12, armor: 1, damage: 18 },
     classMult: { melee: 0.5 },
     startWeapons: ['corn_cannon'],
     favored: ['枪械', '暴击'],
-    talent: { name: '远程压制', desc: '契合子弹每飞行 100 距离，额外穿透 +1（最多 +3）' },
+    talent: { name: '远程压制', desc: '契合子弹每飞行 100 距离，额外穿透 +1（最多 +3）；每完成一波，永久 +2 最大生命、+2% 伤害' },
     traits: ['近战伤害 -50%', '远程武器穿透 +1'],
     special: { rangedPierce: 1 },
     skill: {
@@ -630,10 +632,14 @@ export const CHARACTERS: CharacterDef[] = [
         { id: 'cap', color: 0xffd166, color2: 0xe09f3e },
       ],
     },
-    mods: { armor: 4, maxHp: 10, speed: -3, regen: 2 },
+    // round21 通关率 33%：补伤害 +8%（另见催泪弹伤害 +25%）
+    mods: { armor: 4, maxHp: 10, speed: -3, regen: 2, damage: 8 },
     startWeapons: ['onion_tear'],
     favored: ['投掷', '毒气'],
-    talent: { name: '催泪弹', desc: '受击时使周围敌人致盲 2 秒（每 3 秒最多一次）；契合武器打致盲的敌人暴击率 +30%' },
+    talent: {
+      name: '催泪弹',
+      desc: '受击时使周围敌人致盲 2 秒（每 3 秒最多一次）；契合武器打致盲的敌人暴击率 +30%；每完成一波，永久 +3 最大生命、+1% 伤害',
+    },
     traits: ['受击时反弹 15 点伤害'],
     special: { thorns: 15 },
     skill: {
@@ -707,13 +713,14 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0x4a2c1d,
       acc: [{ id: 'headband', color: 0xe63946 }],
     },
-    mods: { melee: 4, armor: 2, maxHp: 5 },
+    // round21 通关率 33%：近战 +4 → +6、伤害 +10%、生命 +5 → +10（椰子拳套是通用武器，不改它）
+    mods: { melee: 6, armor: 2, maxHp: 10, damage: 10 },
     classMult: { elemental: 0.5 },
     startWeapons: ['coconut_gloves'],
     favored: ['格斗', '蔬果'],
     talent: {
       name: '重拳出击',
-      desc: '契合武器每第 4 拳伤害 ×2.5 并必定眩晕 0.4 秒；连续打同一个敌人每拳伤害 +6%（最多 +30%），打眩晕中的敌人伤害 +35%',
+      desc: '契合武器每第 4 拳伤害 ×2.5 并必定眩晕 0.4 秒；连续打同一个敌人每拳伤害 +6%（最多 +30%），打眩晕中的敌人伤害 +35%；每完成一波，永久 +2 最大生命、+2% 伤害',
     },
     traits: ['命中 12% 概率眩晕 0.6 秒'],
     special: { onHit: [S('stun', 0.6, 1, 12)] },
@@ -793,12 +800,13 @@ export const CHARACTERS: CharacterDef[] = [
         { id: 'glasses', color: 0x222222 },
       ],
     },
-    mods: { attackSpeed: 20, ranged: 1, maxHp: 6, armor: 1 },
+    // round21 通关率 33%：生命 +6 → +10（另见樱桃双枪伤害 +25%）
+    mods: { attackSpeed: 20, ranged: 1, maxHp: 10, armor: 1 },
     startWeapons: ['cherry_pistols'],
     favored: ['枪械', '甜点'],
     talent: {
       name: '连珠炮',
-      desc: '契合武器持续开火时每发叠 1 层热枪（攻速 +1%），叠满 20 层后过热 2 秒（攻速 −30%）并清零重叠；停火 1 秒清零',
+      desc: '契合武器持续开火时每发叠 1 层热枪（攻速 +1%），叠满 20 层后过热 2 秒（攻速 −30%）并清零重叠；停火 1 秒清零；每完成一波，永久 +2 最大生命、+2% 攻速',
     },
     traits: ['远程武器开火时 25% 概率追加一次射击'],
     special: { doubleShot: 25 },
@@ -831,10 +839,11 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0x38b000,
       acc: [{ id: 'helmet', color: 0x606c38, color2: 0x283618 }],
     },
-    mods: { ranged: 2, maxHp: 7, armor: 1 },
+    // round22 通关率 33%：生命 +7 → +10（另见 waveGrowthMods 每波成长）
+    mods: { ranged: 2, maxHp: 10, armor: 1 },
     startWeapons: ['pea_shooter'],
     favored: ['种子', '枪械'],
-    talent: { name: '豌豆军团', desc: '每持有 1 把武器，契合子弹一分为二的概率 +11%' },
+    talent: { name: '豌豆军团', desc: '每持有 1 把武器，契合子弹一分为二的概率 +11%；每完成一波，永久 +3 最大生命、+3% 伤害' },
     traits: ['初始 2 把豌豆枪', '每把同名武器 +6% 伤害'],
     special: { sameWeaponBonus: 6 },
     skill: {
@@ -869,12 +878,13 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0xe5989b,
       acc: [{ id: 'halo', color: 0xffd166 }],
     },
-    mods: { regen: 5, maxHp: 5, ranged: 2, dodge: 5 },
+    // round20 总通关率 29%：补 10% 伤害（另见 weaponsChar.ts 蜜桃糖浆枪 +25%）
+    mods: { regen: 5, maxHp: 5, ranged: 2, dodge: 5, damage: 10 },
     startWeapons: ['peach_syrup'],
     favored: ['甜点', '酱料'],
     talent: {
       name: '天使庇护',
-      desc: '每 0.6 秒自动向最近的敌人发射追踪圣光弹（伤害 = 8 + 120% 远程伤害 + 50% 生命再生，有护盾时一次 2 枚）；每波首次受到致命伤害时保留 1 点生命，并获得 2 秒无敌；有护盾时契合武器穿透 +1，命中必定回血（每秒最多 3 次）',
+      desc: '每 0.6 秒自动向最近的敌人发射追踪圣光弹（伤害 = 8 + 120% 远程伤害 + 50% 生命再生，有护盾时一次 2 枚）；每波首次受到致命伤害时保留 1 点生命，并获得 2 秒无敌；有护盾时契合武器穿透 +1，命中必定回血（每秒最多 3 次）；每完成一波，永久 +2 最大生命、+1 生命再生',
     },
     traits: ['每波开始获得 25 点护盾', '有护盾时伤害 +20%'],
     special: { shieldDmg: 20, waveStartSelf: [{ id: 'shield', dur: 999, value: 25 }] },
@@ -955,10 +965,11 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0x370617,
       acc: [{ id: 'horns', color: 0xe0e0e0 }],
     },
-    mods: { damage: 15, armor: -1, lifeSteal: 3 },
+    // round19 第 1–3 章通关率比均值低 33 点（第 3 章起多死在第 9–10 波）：去掉护甲 -1、补 8 点生命扛住前期
+    mods: { damage: 15, maxHp: 8, lifeSteal: 3 },
     startWeapons: ['beet_axe'],
     favored: ['钝器', '暴击'],
-    talent: { name: '狂战之血', desc: '每损失 10% 生命，契合武器攻速 +6%、范围 +3%' },
+    talent: { name: '狂战之血', desc: '每损失 10% 生命，契合武器攻速 +6%、范围 +3%；每完成一波，永久 +2 最大生命、+2% 伤害' },
     traits: ['受伤时获得怒气'],
     special: { onHurtSelf: [S('rage', 5, 2)] },
     skill: {
@@ -993,11 +1004,12 @@ export const CHARACTERS: CharacterDef[] = [
       limbColor: 0x386641,
       acc: [{ id: 'leafHat', color: 0x2d6a4f }],
     },
-    mods: { range: 80, crit: 10, ranged: 1, maxHp: 4, armor: 1 },
+    // round22 通关率 33%：生命 +4 → +8（另见 waveGrowthMods 每波成长）
+    mods: { range: 80, crit: 10, ranged: 1, maxHp: 8, armor: 1 },
     classMult: { melee: 0.6 },
     startWeapons: ['asparagus_bow'],
     favored: ['弓弩', '穿透'],
-    talent: { name: '一箭穿心', desc: '契合武器打满血敌人必定暴击，且这次命中不消耗穿透' },
+    talent: { name: '一箭穿心', desc: '契合武器打满血敌人必定暴击，且这次命中不消耗穿透；每完成一波，永久 +3 最大生命、+3% 伤害' },
     traits: ['命中 25% 概率标记敌人（下次必暴击）'],
     special: { onHit: [S('mark', 4, 1, 25)] },
     skill: {

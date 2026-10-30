@@ -1,0 +1,10 @@
+{
+  "move": {
+    "prompt": "Repair four-frame2x2 WALK sheet. SAME rusty greasy pan monster, amber oilface, two short metalfeet. CRITICAL handle must remain on UPPER RIGHT in ALL FOUR drawings; bottom two frames must NOT be mirrored. Keep face fixed threequarter front orientation. Redraw alternating FOOT positions only: leftfront/rightback, passing, rightfront/leftback, passing. Oil sloshes subtly and bowl tips only slightly, NEVER rotate bowl so handle crosses to left. All full pan+handle well inside equalquadrants with20percent transparent margins/wide gutters, transparentbackground. Preserve art/design, no text/floor/shadow/effects.",
+    "source": "drafts/boss/greasy_pan/base/move-sheet-pilot-2.png"
+  },
+  "hurt": {
+    "prompt": "Repair ONLY third bottom-left pose so its frying-pan handle remains attached at UPPER RIGHT of bowl like other three frames. Do not mirror face/body. Preserve four recoil/startle/wince/recovery poses, rusty bowl glossygold oilface twofeet, same proportions/art. ALL4pan handles on right throughout. Fullbody each2x2equalquadrant with20percent transparent margin/wide gutters. No added limbs/text/floor/shadow/effects, true transparent background. Keep entire handle in frame.",
+    "source": "drafts/boss/greasy_pan/base/hurt-sheet-pilot-2.png"
+  }
+}

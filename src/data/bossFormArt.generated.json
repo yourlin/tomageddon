@@ -1,0 +1,312 @@
+[
+  {
+    "id": "locust_queen",
+    "phase": 2,
+    "file": "forms/locust_queen-2.png",
+    "anchor": {
+      "x": 0.5012,
+      "y": 0.99681
+    },
+    "refRadius": 622
+  },
+  {
+    "id": "locust_queen",
+    "phase": 1,
+    "file": "forms/locust_queen-1.png",
+    "anchor": {
+      "x": 0.4988,
+      "y": 0.97687
+    },
+    "refRadius": 616
+  },
+  {
+    "id": "rotten_pumpkin",
+    "phase": 2,
+    "file": "forms/rotten_pumpkin-2.png",
+    "anchor": {
+      "x": 0.50239,
+      "y": 0.92344
+    },
+    "refRadius": 568
+  },
+  {
+    "id": "mole_general",
+    "phase": 1,
+    "file": "forms/mole_general-1.png",
+    "anchor": {
+      "x": 0.50997,
+      "y": 0.94817
+    },
+    "refRadius": 612
+  },
+  {
+    "id": "rotten_pumpkin",
+    "phase": 1,
+    "file": "forms/rotten_pumpkin-1.png",
+    "anchor": {
+      "x": 0.5004,
+      "y": 0.98086
+    },
+    "refRadius": 610
+  },
+  {
+    "id": "frost_rat_king",
+    "phase": 1,
+    "file": "forms/frost_rat_king-1.png",
+    "anchor": {
+      "x": 0.50558,
+      "y": 0.91547
+    },
+    "refRadius": 617
+  },
+  {
+    "id": "frost_rat_king",
+    "phase": 2,
+    "file": "forms/frost_rat_king-2.png",
+    "anchor": {
+      "x": 0.50359,
+      "y": 0.95056
+    },
+    "refRadius": 618
+  },
+  {
+    "id": "mole_general",
+    "phase": 2,
+    "file": "forms/mole_general-2.png",
+    "anchor": {
+      "x": 0.50159,
+      "y": 0.98405
+    },
+    "refRadius": 619
+  },
+  {
+    "id": "ice_cream_tyrant",
+    "phase": 1,
+    "file": "forms/ice_cream_tyrant-1.png",
+    "anchor": {
+      "x": 0.52592,
+      "y": 0.91866
+    },
+    "refRadius": 548
+  },
+  {
+    "id": "ice_cream_tyrant",
+    "phase": 2,
+    "file": "forms/ice_cream_tyrant-2.png",
+    "anchor": {
+      "x": 0.51595,
+      "y": 0.92344
+    },
+    "refRadius": 562
+  },
+  {
+    "id": "trash_golem",
+    "phase": 1,
+    "file": "forms/trash_golem-1.png",
+    "anchor": {
+      "x": 0.50199,
+      "y": 0.92982
+    },
+    "refRadius": 600
+  },
+  {
+    "id": "trash_golem",
+    "phase": 2,
+    "file": "forms/trash_golem-2.png",
+    "anchor": {
+      "x": 0.50319,
+      "y": 0.937
+    },
+    "refRadius": 612
+  },
+  {
+    "id": "ketchup_leviathan",
+    "phase": 2,
+    "file": "forms/ketchup_leviathan-2.png",
+    "anchor": {
+      "x": 0.50159,
+      "y": 0.97448
+    },
+    "refRadius": 621
+  },
+  {
+    "id": "ketchup_leviathan",
+    "phase": 1,
+    "file": "forms/ketchup_leviathan-1.png",
+    "anchor": {
+      "x": 0.5008,
+      "y": 0.93461
+    },
+    "refRadius": 603
+  },
+  {
+    "id": "scrap_dragon",
+    "phase": 1,
+    "file": "forms/scrap_dragon-1.png",
+    "anchor": {
+      "x": 0.50718,
+      "y": 0.88995
+    },
+    "refRadius": 603
+  },
+  {
+    "id": "freezer_heart",
+    "phase": 1,
+    "file": "forms/freezer_heart-1.png",
+    "anchor": {
+      "x": 0.49841,
+      "y": 0.95774
+    },
+    "refRadius": 574
+  },
+  {
+    "id": "scrap_dragon",
+    "phase": 2,
+    "file": "forms/scrap_dragon-2.png",
+    "anchor": {
+      "x": 0.51236,
+      "y": 0.85805
+    },
+    "refRadius": 584
+  },
+  {
+    "id": "freezer_heart",
+    "phase": 2,
+    "file": "forms/freezer_heart-2.png",
+    "anchor": {
+      "x": 0.50758,
+      "y": 0.9673
+    },
+    "refRadius": 586
+  },
+  {
+    "id": "blight_gardener",
+    "phase": 1,
+    "file": "forms/blight_gardener-1.png",
+    "anchor": {
+      "x": 0.50718,
+      "y": 0.97847
+    },
+    "refRadius": 608
+  },
+  {
+    "id": "rot_mother",
+    "phase": 1,
+    "file": "forms/rot_mother-1.png",
+    "anchor": {
+      "x": 0.50678,
+      "y": 0.97448
+    },
+    "refRadius": 596
+  },
+  {
+    "id": "rot_mother",
+    "phase": 2,
+    "file": "forms/rot_mother-2.png",
+    "anchor": {
+      "x": 0.50399,
+      "y": 0.9673
+    },
+    "refRadius": 602
+  },
+  {
+    "id": "toxic_barrel",
+    "phase": 2,
+    "file": "forms/toxic_barrel-2.png",
+    "anchor": {
+      "x": 0.51794,
+      "y": 0.98006
+    },
+    "refRadius": 574
+  },
+  {
+    "id": "rotten_chef",
+    "phase": 1,
+    "file": "forms/rotten_chef-1.png",
+    "anchor": {
+      "x": 0.49402,
+      "y": 0.94338
+    },
+    "refRadius": 588
+  },
+  {
+    "id": "blight_gardener",
+    "phase": 2,
+    "file": "forms/blight_gardener-2.png",
+    "anchor": {
+      "x": 0.50558,
+      "y": 0.96571
+    },
+    "refRadius": 605
+  },
+  {
+    "id": "toxic_barrel",
+    "phase": 1,
+    "file": "forms/toxic_barrel-1.png",
+    "anchor": {
+      "x": 0.51874,
+      "y": 0.98006
+    },
+    "refRadius": 550
+  },
+  {
+    "id": "rot_king",
+    "phase": 1,
+    "file": "forms/rot_king-1.png",
+    "anchor": {
+      "x": 0.5012,
+      "y": 0.97209
+    },
+    "refRadius": 604
+  },
+  {
+    "id": "rot_king",
+    "phase": 2,
+    "file": "forms/rot_king-2.png",
+    "anchor": {
+      "x": 0.50319,
+      "y": 0.94896
+    },
+    "refRadius": 606
+  },
+  {
+    "id": "factory_core",
+    "phase": 2,
+    "file": "forms/factory_core-2.png",
+    "anchor": {
+      "x": 0.50399,
+      "y": 0.92823
+    },
+    "refRadius": 618
+  },
+  {
+    "id": "rot_king",
+    "phase": 3,
+    "file": "forms/rot_king-3.png",
+    "anchor": {
+      "x": 0.5,
+      "y": 0.98325
+    },
+    "refRadius": 617
+  },
+  {
+    "id": "rotten_chef",
+    "phase": 2,
+    "file": "forms/rotten_chef-2.png",
+    "anchor": {
+      "x": 0.50478,
+      "y": 0.95136
+    },
+    "refRadius": 597
+  },
+  {
+    "id": "factory_core",
+    "phase": 1,
+    "file": "forms/factory_core-1.png",
+    "anchor": {
+      "x": 0.50917,
+      "y": 0.91228
+    },
+    "refRadius": 586
+  }
+]

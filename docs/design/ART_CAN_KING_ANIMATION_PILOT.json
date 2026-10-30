@@ -1,0 +1,64 @@
+{
+  "kind": "boss",
+  "id": "can_king",
+  "status": "24 authored frames compiled/integrated;3-tier native playback/100ms blink/freeze/GPU release and scatter/summon callbacks passed;final continuous motion/visual/performance acceptance pending",
+  "referenceHeight": 123,
+  "gameplayPatterns": [
+    "scatter10ArmorBreak3s",
+    "summon3CanCrabs8s"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/can_king/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/can_king/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/can_king/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/can_king/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/can_king/base/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/can_king/base/cast-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 123,
+    "cast": 160
+  }
+}

@@ -2,7 +2,7 @@
 import { WEATHER_MAP } from '../systems/Weather';
 import Phaser from 'phaser';
 import { run } from '../systems/RunState';
-import { controls } from '../systems/Controls';
+import { controls, padConnected } from '../systems/Controls';
 import { text } from '../ui/UI';
 import { xpToNext } from '../data/balance';
 import type { GameScene } from './GameScene';
@@ -232,7 +232,7 @@ export class HudScene extends Phaser.Scene {
     const right = !!st.joyRight;
     const bx = right ? 110 * bs : W - 110 * bs,
       by = H - 110 * bs;
-    this.skillBtn = this.add.container(bx, by);
+    this.skillBtn = this.add.container(bx, by).setName('skill-action-button');
     this.skillBtn.setScale(bs);
     this.skillGfx = this.add.graphics();
     // 徽章图标本身就是按钮（不再外套圆圈）；技能名与按键提示放在图标下方
@@ -260,20 +260,37 @@ export class HudScene extends Phaser.Scene {
     this.tweens.add({ targets: autoRing, angle: 360, duration: 2400, repeat: -1 });
     this.skillBtn.add([autoRing, icon, this.skillGfx, skName, this.skillCdText, keyHint]);
 
-    // 技能自动 / 手动切换（暂停键左边，随时一键切换，立即保存）
-    const auto = this.add.container(W - 122, 46);
+    // 与技能徽章组成同一操作区；随左右手和按钮倍率一起移动。
+    const auto = this.add
+      .container(bx, by - 108 * bs)
+      .setName('skill-mode-toggle')
+      .setScale(bs);
     const ag = this.add.graphics();
-    const aLabel = text(this, 0, -6, '', 15).setOrigin(0.5);
-    const aSub = text(this, 0, 13, tx('技能', 'SKILL'), 11, '#ffffff').setOrigin(0.5);
-    auto.add([ag, aLabel, aSub]).setSize(64, 64).setInteractive({ useHandCursor: true });
+    const aLabel = text(this, -17, 0, '', 15, '#ffffff').setOrigin(0.5);
+    auto.add([ag, aLabel]).setSize(116, 44).setInteractive({ useHandCursor: true });
     const paintAuto = () => {
       const on = !!save.settings.autoSkill;
+      const accent = on ? 0x82e6a1 : 0xffd49b;
       ag.clear()
-        .fillStyle(0x000000, 0.4)
-        .fillCircle(0, 0, 30)
-        .lineStyle(3, on ? 0x52ff8a : 0xc9a9a6, 0.95)
-        .strokeCircle(0, 0, 28);
-      aLabel.setText(on ? tx('自动', 'AUTO') : tx('手动', 'MAN')).setColor(on ? '#52ff8a' : '#ffffff');
+        .fillStyle(0x100c0b, 0.35)
+        .fillRoundedRect(-59, -19, 118, 44, 19)
+        .fillStyle(0x3c2922, 1)
+        .fillRoundedRect(-58, -22, 116, 44, 18)
+        .lineStyle(2, 0xa47750, 1)
+        .strokeRoundedRect(-57, -21, 114, 42, 17)
+        .fillStyle(on ? 0x203f30 : 0x4b3528, 1)
+        .fillRoundedRect(-53, -17, 106, 34, 14)
+        .lineStyle(1, accent, 0.45)
+        .lineBetween(-39, -15, 37, -15)
+        .fillStyle(0x170f0b, 0.9)
+        .fillRoundedRect(18, -10, 32, 20, 10)
+        .lineStyle(1, accent, 0.65)
+        .strokeRoundedRect(18, -10, 32, 20, 10)
+        .fillStyle(accent, 1)
+        .fillCircle(on ? 40 : 28, 0, 7)
+        .fillStyle(0xffffff, 0.65)
+        .fillCircle(on ? 38 : 26, -2, 2);
+      aLabel.setText(on ? tx('自动', 'AUTO') : tx('手动', 'MANUAL')).setColor(on ? '#bcf5cb' : '#ffe2b9');
       autoRing.setVisible(on);
       keyHint.setText(on ? tx('自动', 'AUTO') : this.isTouch ? '' : tx('[空格]', '[Space]')).setColor(on ? '#52ff8a' : '#c9a9a6');
     };
@@ -282,7 +299,9 @@ export class HudScene extends Phaser.Scene {
       save.settings.autoSkill = !save.settings.autoSkill;
       persist();
       paintAuto();
-      this.tweens.add({ targets: auto, scale: { from: 1.18, to: 1 }, duration: 160 });
+      this.tweens.killTweensOf(auto);
+      auto.setScale(bs * 0.95);
+      this.tweens.add({ targets: auto, scale: bs, duration: 120, ease: 'Back.easeOut' });
     });
     this.skillBtn.setSize(130, 130).setInteractive();
     this.skillBtn.on('pointerdown', (p: Phaser.Input.Pointer) => {
@@ -335,7 +354,9 @@ export class HudScene extends Phaser.Scene {
         this,
         W / 2,
         H - 40,
-        tx('WASD / 方向键移动 · 空格释放技能 · ESC 暂停', 'WASD / Arrows to move · Space for skill · ESC to pause'),
+        padConnected()
+          ? tx('左摇杆移动 · A / X / RB 释放技能 · Start 暂停', 'Left stick to move · A / X / RB for skill · Start to pause')
+          : tx('WASD / 方向键移动 · 空格释放技能 · ESC 暂停', 'WASD / Arrows to move · Space for skill · ESC to pause'),
         18,
         '#ffffff',
       )

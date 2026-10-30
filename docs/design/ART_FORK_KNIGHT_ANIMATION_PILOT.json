@@ -1,0 +1,65 @@
+{
+  "kind": "boss",
+  "id": "fork_knight",
+  "status": "28frames7actions compiled/integrated;3tier playback/blink/freeze/GPUrelease passed; real skill report separate; final visual/performance pending",
+  "referenceHeight": 170,
+  "gameplayPatterns": [
+    "charge:3s cooldown,0.6s windup",
+    "aimed5bullets:3s cooldown"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fork_knight/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fork_knight/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fork_knight/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fork_knight/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fork_knight/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fork_knight/base/charge-sheet-pilot-2.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fork_knight/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "runtimeReport": "reports/art-pilot/elite-fork_knight-animation-native.json",
+  "combatReport": "reports/art-pilot/elite-fork_knight-combat-motion-native.json"
+}

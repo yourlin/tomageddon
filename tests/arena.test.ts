@@ -155,3 +155,49 @@ describe('场地几何', () => {
     expect(a.contains(100, 500, 0)).toBe(true);
   });
 });
+
+describe('障碍物绕行（steer）', () => {
+  /** 模拟一只怪从 from 直线追 to：每帧按 steer 修正速度，再 clamp 推出障碍物；返回最后离目标的距离 */
+  const chase = (a: Arena, from: [number, number], to: [number, number], side: number): number => {
+    let [x, y] = from;
+    const nav = { side };
+    const r = 16,
+      speed = 120,
+      dt = 1 / 60;
+    for (let i = 0; i < 60 * 30; i++) {
+      const dx = to[0] - x,
+        dy = to[1] - y,
+        d = Math.hypot(dx, dy);
+      if (d < 20) return d;
+      const [vx, vy] = a.steer(x, y, r, (dx / d) * speed, (dy / d) * speed, nav);
+      ({ x, y } = a.clamp(x + vx * dt, y + vy * dt, r));
+    }
+    return Math.hypot(to[0] - x, to[1] - y);
+  };
+  const def = { shape: { kind: 'rect', w: 2000, h: 1200 } as ArenaShape };
+
+  it('正面顶上圆形障碍物时能绕过去，左右两侧都行', () => {
+    const a = new Arena({ ...def, obstacles: [{ kind: 'circle', x: 1000, y: 600, r: 150 }] });
+    expect(chase(a, [600, 600], [1400, 600], 1)).toBeLessThan(20);
+    expect(chase(a, [600, 600], [1400, 600], -1)).toBeLessThan(20);
+  });
+
+  it('正面顶上矩形障碍物的一个面时能绕过去', () => {
+    const a = new Arena({ ...def, obstacles: [{ kind: 'rect', x: 950, y: 400, w: 100, h: 400 }] });
+    expect(chase(a, [600, 600], [1400, 600], 1)).toBeLessThan(20);
+    expect(chase(a, [600, 600], [1400, 600], -1)).toBeLessThan(20);
+  });
+
+  it('冰箱隔板贴墙的一头堵死时换另一侧绕', () => {
+    const a = new Arena(ARENAS[3]);
+    // 左上隔板（x 0–350，y 480–514）正下方追正上方的玩家，两种绕行方向都要能过去
+    expect(chase(a, [150, 750], [150, 250], 1)).toBeLessThan(20);
+    expect(chase(a, [150, 750], [150, 250], -1)).toBeLessThan(20);
+  });
+
+  it('不顶向障碍物时速度不变', () => {
+    const a = new Arena({ ...def, obstacles: [{ kind: 'circle', x: 1000, y: 600, r: 150 }] });
+    expect(a.steer(820, 600, 16, -100, 0, { side: 1 })).toEqual([-100, 0]);
+    expect(a.steer(500, 600, 16, 100, 0, { side: 1 })).toEqual([100, 0]);
+  });
+});

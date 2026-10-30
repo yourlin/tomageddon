@@ -1,0 +1,74 @@
+{
+  "kind": "char",
+  "id": "cherry",
+  "status": "pilot; playback and visual acceptance pending",
+  "referenceHeight": 170,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/cherry/idle-sheet-pilot-3.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/cherry/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/cherry/attack-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/cherry/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/cherry/windup-sheet-pilot-2.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/cherry/charge-sheet-pilot-2.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/cherry/stun-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/cherry/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/cherry/spawn-sheet-pilot-2.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/cherry/cast-sheet-pilot-2.png"
+    },
+    {
+      "name": "victory",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/cherry/victory-sheet-pilot-3.png"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import { chapterScale, chapterWaves } from '../data/balance';
 import { rng } from '../art/Painter';
 import { tx } from '../i18n';
 import type { StatusApply } from '../data/statuses';
+import { readyMapObject } from './ArtRegistry';
 
 interface Zone {
   kind: 'ice' | 'quicksand' | 'conveyor' | 'fan' | 'lamp';
@@ -23,7 +24,13 @@ interface Zone {
   dir: number;
   img: Phaser.GameObjects.Image | Phaser.GameObjects.TileSprite;
   t: number;
+  /** 第 3 章冰面：存在多久（秒）与基础缩放；到期淡出后换个地方重新结冰 */
+  life?: number;
+  s?: number;
 }
+
+/** 第 3 章冰面：场上同时保持 count 块，每块存在 life 秒（淡入 fadeIn、淡出 fadeOut），消失后在离其他冰面最远的地方重新结冰 */
+export const ICE_TUNING = { count: 6, life: [14, 22], fadeIn: 1.5, fadeOut: 3, radius: 110, scale: [0.85, 1.3] } as const;
 
 /** 1.4.0 新地形机关的数值（测试与文档共用） */
 export const TERRAIN_TUNING = {
@@ -131,18 +138,24 @@ export class Terrain {
         this.timers = { oil: 8, sewer: 10, tomato: 18 };
         break;
       case 2:
-        place(5, 150, (x, y) => this.holes.push({ x, y, t: 0, img: g.add.image(x, y, 'terrain_hole').setDepth(0.6) }));
-        place(2, 200, (x, y) =>
-          this.sprinklers.push({ x, y, t: 0, img: g.add.image(x, y, 'terrain_vent').setDepth(0.6).setScale(0.7).setTint(0x4cc9f0) }),
-        );
+        place(5, 150, (x, y) => {
+          const art = readyMapObject(g, this.ch, 'hole');
+          const img = g.add.image(x, y, art?.key ?? 'terrain_hole').setDepth(0.6);
+          if (art) img.setDisplaySize(art.width, art.height);
+          this.holes.push({ x, y, t: 0, img });
+        });
+        place(2, 200, (x, y) => {
+          const art = readyMapObject(g, this.ch, 'sprinkler');
+          const img = g.add.image(x, y, art?.key ?? 'terrain_vent').setDepth(0.6);
+          if (art) img.setDisplaySize(art.width, art.height);
+          else img.setScale(0.7).setTint(0x4cc9f0);
+          this.sprinklers.push({ x, y, t: 0, img });
+        });
         this.timers = { rabbit: 6, gopher: 9, sprinkler: 8 };
         break;
       case 3:
-        place(4, 220, (x, y) => {
-          const s = rand(0.9, 1.4);
-          const img = g.add.image(x, y, 'terrain_ice').setDepth(0.55).setScale(s).setRotation(rand(0, 3));
-          this.zones.push({ kind: 'ice', x, y, w: 0, h: 0, r: 110 * s, dir: 0, img, t: 0 });
-        });
+        // 冰面错开寿命：开局就有的几块已经「结了一阵」，不会同时消失
+        for (let i = 0; i < ICE_TUNING.count; i++) this.addIce(rand(0, 0.7), true);
         this.timers = { gust: 12 };
         break;
       case 4:
@@ -154,27 +167,45 @@ export class Terrain {
           [A.height * 0.3, 1],
           [A.height * 0.72, -1],
         ] as [number, number][]) {
+          const beltKey = readyMapObject(g, this.ch, 'conveyor')?.key ?? 'terrain_conveyor';
           const img = g.add
-            .tileSprite(cx, y, A.width - 200, 96, 'terrain_conveyor')
+            .tileSprite(cx, y, A.width - 200, 96, beltKey)
             .setDepth(0.55)
             .setFlipX(dir < 0);
+          const beltSource = g.textures.get(beltKey).getSourceImage();
+          img.setTileScale(128 / beltSource.width, 96 / beltSource.height);
           this.zones.push({ kind: 'conveyor', x: cx, y, w: A.width - 200, h: 96, r: 0, dir, img, t: 0 });
         }
-        place(4, 180, (x, y) => this.holes.push({ x, y, t: rand(2, 8), img: g.add.image(x, y, 'terrain_vent').setDepth(0.6) }));
+        place(4, 180, (x, y) => {
+          const art = readyMapObject(g, this.ch, 'vent');
+          const img = g.add
+            .image(x, y, art?.key ?? 'terrain_vent')
+            .setDepth(0.6)
+            .setDisplaySize(110, 110);
+          this.holes.push({ x, y, t: rand(2, 8), img });
+        });
         // 鼓风口：放在两条传送带之间的中线上，左右各一个
         for (const x of [A.width * 0.25, A.width * 0.75]) this.addRoundZone('fan', x, A.height * 0.51, TERRAIN_TUNING.fan.radius, 0xcaf0f8);
         break;
       }
       // 1.4.0 第 6 章「腐烂温室」：孢子喷口（复用第 1 章油池实现，改为中毒）+ 堆肥坑钻怪（复用下水道）+ 补光灯（硬化光区）
       case 6:
-        place(4, 180, (x, y) => this.holes.push({ x, y, t: 0, img: g.add.image(x, y, 'terrain_hole').setDepth(0.6).setTint(0x8a9a5b) }));
+        place(4, 180, (x, y) => {
+          const art = readyMapObject(g, this.ch, 'compost');
+          const img = g.add
+            .image(x, y, art?.key ?? 'terrain_hole')
+            .setDepth(0.6)
+            .setDisplaySize(120, 80);
+          if (!art) img.setTint(0x8a9a5b);
+          this.holes.push({ x, y, t: 0, img });
+        });
         place(2, 240, (x, y) => this.addRoundZone('lamp', x, y, TERRAIN_TUNING.lamp.radius, 0xffe066));
         this.timers = { spore: 8, compost: 11, lamp_move: TERRAIN_TUNING.lamp.move };
         break;
       // 隐藏第 7 章「腐烂菜园」：腐泥沼（复用流沙，附带腐烂）+ 烂果坠落（复用垃圾坠落）+ 荆棘藤
       case 7:
         for (let i = 0; i < 3; i++) this.addQuicksand();
-        for (const z of this.zones) z.img.setTint(0x7f5539);
+        if (!readyMapObject(g, this.ch, 'quicksand')) for (const z of this.zones) z.img.setTint(0x7f5539);
         this.timers = { debris: 8, bramble: 6 };
         break;
     }
@@ -182,12 +213,14 @@ export class Terrain {
 
   /** 圆形光区 / 风口（fx_glow 128px 贴图，按半径缩放） */
   private addRoundZone(kind: 'fan' | 'lamp', x: number, y: number, r: number, tint: number): void {
+    const art = readyMapObject(this.g, this.ch, kind);
     const img = this.g.add
-      .image(x, y, kind === 'fan' ? 'fx_ring' : 'fx_glow')
+      .image(x, y, art?.key ?? (kind === 'fan' ? 'fx_ring' : 'fx_glow'))
       .setDepth(0.55)
       .setTint(tint)
       .setAlpha(kind === 'fan' ? 0.7 : 0.45)
-      .setScale((r * 2) / 128);
+      .setDisplaySize(r * 2, r * 2);
+    if (art) img.clearTint();
     this.zones.push({ kind, x, y, w: 0, h: 0, r, dir: 0, img, t: 0 });
   }
 
@@ -195,11 +228,55 @@ export class Terrain {
     const A = this.g.arena,
       p = this.g.player;
     const { x, y } = A.randomPoint(200, (px, py) => Phaser.Math.Distance.Between(px, py, p.x, p.y) > 260, 20);
-    const img = this.g.add.image(x, y, 'terrain_quicksand').setDepth(0.55).setAlpha(0);
+    const art = readyMapObject(this.g, this.ch, 'quicksand');
+    const img = this.g.add
+      .image(x, y, art?.key ?? 'terrain_quicksand')
+      .setDepth(0.55)
+      .setAlpha(0);
     const r = Phaser.Math.Between(95, 130);
-    img.setScale((r * 2.2) / 256);
+    img.setDisplaySize(r * 2.2, r * 2.2);
     this.g.tweens.add({ targets: img, alpha: 1, duration: 800 });
     this.zones.push({ kind: 'quicksand', x, y, w: 0, h: 0, r, dir: 0, img, t: 0 });
+  }
+
+  /** 第 3 章冰面：取 24 个候选点，选离现有冰面（和出生点）最远的一个，冰面就会铺开、不扎堆。
+   *  ageFrac：开局放置时让冰面已经存在一段时间（占寿命的比例），错开各块的消失时间 */
+  private addIce(ageFrac = 0, initial = false): void {
+    const A = this.g.arena,
+      T = ICE_TUNING;
+    const s = Phaser.Math.FloatBetween(T.scale[0], T.scale[1]);
+    const r = T.radius * s;
+    const others = this.zones.filter((z) => z.kind === 'ice');
+    const sp = A.spawn;
+    let best = A.randomPoint(r + 40),
+      bestScore = -1;
+    for (let i = 0; i < 24; i++) {
+      const c = A.randomPoint(r + 40);
+      // 开局时也避开出生点，免得玩家一落地就打滑
+      let score = initial ? Phaser.Math.Distance.Between(c.x, c.y, sp.x, sp.y) - r - 120 : 9999;
+      for (const z of others) score = Math.min(score, Phaser.Math.Distance.Between(c.x, c.y, z.x, z.y) - z.r - r);
+      if (score > bestScore) {
+        bestScore = score;
+        best = c;
+      }
+    }
+    const life = Phaser.Math.FloatBetween(T.life[0], T.life[1]);
+    const art = readyMapObject(this.g, this.ch, 'ice');
+    const width = art?.width ?? 256,
+      height = art?.height ?? 180;
+    const img = this.g.add
+      .image(best.x, best.y, art?.key ?? 'terrain_ice')
+      .setDepth(0.55)
+      .setDisplaySize(width * s * 0.6, height * s * 0.6)
+      .setRotation(Phaser.Math.FloatBetween(0, 3))
+      .setAlpha(0);
+    this.zones.push({ kind: 'ice', x: best.x, y: best.y, w: width, h: height, r, dir: 0, img, t: life * ageFrac, life, s });
+  }
+
+  /** 冰面当前的「结冰程度」0–1：淡入、持续、淡出（决定透明度、大小和是否打滑） */
+  private iceK(z: Zone): number {
+    const T = ICE_TUNING;
+    return Phaser.Math.Clamp(Math.min(z.t / T.fadeIn, ((z.life ?? 0) - z.t) / T.fadeOut), 0, 1);
   }
 
   private dmg(base: number): number {
@@ -229,7 +306,11 @@ export class Terrain {
       if (Terrain.off.has(z.kind)) continue;
       z.t += dt;
       if (z.kind === 'ice') {
-        if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r) g.slippery = true;
+        // 冰面慢慢结起、慢慢化开：大小和透明度跟着结冰程度变，结得够厚才打滑
+        const k = this.iceK(z);
+        const rk = 0.6 + 0.4 * k;
+        z.img.setAlpha(k * 0.95).setDisplaySize(z.w * (z.s ?? 1) * rk, z.h * (z.s ?? 1) * rk);
+        if (k > 0.4 && Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r * rk) g.slippery = true;
       } else if (z.kind === 'quicksand') {
         z.img.rotation += dt * 0.8;
         const pull = (tx: number, ty: number, strength: number): [number, number] => {
@@ -278,6 +359,15 @@ export class Terrain {
         const st = TERRAIN_TUNING.lamp.status;
         if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r) g.applyPlayerStatus([{ ...st }]);
         for (const e of g.grid.query(z.x, z.y, z.r, g.tmp2)) if (!e.isBoss) e.status.apply({ ...st });
+      }
+    }
+    // 化完的冰面移除，换个离其他冰面最远的地方重新结冰（场上冰面数保持不变）
+    const melted = this.zones.filter((z) => z.kind === 'ice' && z.t >= (z.life ?? Infinity));
+    if (melted.length) {
+      this.zones = this.zones.filter((z) => !melted.includes(z));
+      for (const z of melted) {
+        z.img.destroy();
+        this.addIce();
       }
     }
 
@@ -381,7 +471,7 @@ export class Terrain {
             const x = p.x + Phaser.Math.Between(-220, 220),
               y = p.y + Phaser.Math.Between(-160, 160);
             g.fx.telegraphCircle(x, y, 65, 1.1, 0x70e000, () =>
-              g.addHazard(x, y, 65, 4, this.dmg(3), [{ id: 'poison', dur: 3, stacks: 2 }], 0x80b918),
+              g.addHazard(x, y, 65, 4, this.dmg(3), [{ id: 'poison', dur: 3, stacks: 2 }], 0x80b918, 'spore'),
             );
           }
           g.terrainNotice(tx('孢子喷发！', 'Spore burst!'));
@@ -420,7 +510,7 @@ export class Terrain {
               const x = p.x + Phaser.Math.Between(-200, 200),
                 y = p.y + Phaser.Math.Between(-150, 150);
               g.fx.telegraphCircle(x, y, T.radius, 1.1, 0xa7c957, () =>
-                g.addHazard(x, y, T.radius, T.life, this.dmg(T.baseDmg), [{ ...T.status }], 0x90a955),
+                g.addHazard(x, y, T.radius, T.life, this.dmg(T.baseDmg), [{ ...T.status }], 0x90a955, 'acid'),
               );
             }
             g.terrainNotice(tx('酸液泄漏！', 'Acid leak!'));
@@ -482,7 +572,7 @@ export class Terrain {
   }
 
   private pulse(h: Spot): void {
-    this.g.tweens.add({ targets: h.img, scale: h.img.scale * 1.15, yoyo: true, duration: 150 });
+    this.g.tweens.add({ targets: h.img, scaleX: h.img.scaleX * 1.15, scaleY: h.img.scaleY * 1.15, yoyo: true, duration: 150 });
     this.g.fx.burst(h.x, h.y, 0x8d6e63, 6);
   }
 

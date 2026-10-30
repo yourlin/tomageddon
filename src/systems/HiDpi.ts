@@ -19,11 +19,11 @@ export const VH = (s: Phaser.Scene | Phaser.Game): number => s.scale.height / RE
 /** 相机的逻辑缩放（去掉渲染倍率后的缩放，1 = 不缩放） */
 export const viewZoom = (cam: Phaser.Cameras.Scene2D.Camera): number => cam.zoom / RES;
 
-/** 最大渲染倍率：4K 屏全屏约 2.5，再高 GPU 负担太大，收益也看不出来 */
-const MAX_RES = 2.5;
+/** 最高QHD；EXPAND扩展长边时也要计入像素预算。 */
+const MAX_RES = 2;
 
 /**
- * 按「屏幕物理高度 / 720」算渲染倍率（向下取 0.25 的整数倍，避免奇怪的小数缩放和超采样）。
+ * 先按屏幕短边物理像素量化候选倍率，再按EXPAND的宽高限制到QHD预算。
  * 必须在创建 Phaser.Game 之前调用。enabled = false 时 RES = 1（等同原来的渲染）。
  */
 export function initRes(enabled: boolean, logicalH = 720, maxRes = MAX_RES): number {
@@ -31,7 +31,10 @@ export function initRes(enabled: boolean, logicalH = 720, maxRes = MAX_RES): num
   // 游戏按高度铺满（EXPAND 固定 720 高），所以看屏幕短边的物理像素；竖屏手机会被强制横屏，短边正好是横屏后的高度。
   // 向下取到 0.25 的整数倍：宁可略低于屏幕像素，也不要超采样白白多算
   const physicalH = Math.min(window.innerHeight, window.innerWidth) * (window.devicePixelRatio || 1);
-  RES = Math.min(maxRes, MAX_RES, Math.max(1, Math.floor((physicalH / logicalH) * 4) / 4));
+  const aspect = Math.max(window.innerHeight, window.innerWidth) / Math.max(1, Math.min(window.innerHeight, window.innerWidth));
+  const expandedW = Math.max((logicalH * 16) / 9, logicalH * aspect);
+  const expandedH = Math.max(logicalH, (logicalH * 16) / 9 / aspect);
+  RES = Math.min(maxRes, MAX_RES, 2560 / expandedW, 1440 / expandedH, Math.max(1, Math.floor((physicalH / logicalH) * 4) / 4));
   return RES;
 }
 

@@ -1,5 +1,6 @@
-// 敌人逻辑对象（小怪 / 精英 / Boss）。渲染交给 Rig，状态效果交给 StatusSet。
+// 敌人逻辑对象（小怪 / 精英 / Boss）。渲染交给 EntityVisual（Rig 或外部美术），状态效果交给 StatusSet。
 import { bump } from '../systems/Counters';
+import { motionFacing } from './MotionFacing';
 import { dotColor, type StatusId } from '../data/statuses';
 import Phaser from 'phaser';
 import type { EnemyDef } from '../data/enemies';
@@ -9,7 +10,7 @@ import type { StatusApply } from '../data/statuses';
 import type { GameScene } from '../scenes/GameScene';
 import { StatusSet } from '../systems/Status';
 import { run } from '../systems/RunState';
-import type { Rig } from './Rig';
+import type { EntityVisual, VisualIdent } from './EntityVisual';
 import { tx } from '../i18n';
 import { BALANCE, seedValue, volleySpeedMult, bombFuse } from '../data/balance';
 
@@ -20,18 +21,6 @@ export const shooterRange = (d: EnemyDef): number => (d.keepDist ?? 280) * BALAN
 
 /** 前两波掉落加成：保证第一波结束就能买得起道具 */
 
-/** 词缀精英配色：金色身体、红色花纹，保留原造型与五官 */
-function championLook(look: EnemyDef['look']): EnemyDef['look'] {
-  return {
-    ...look,
-    color: 0xffc300,
-    color2: 0xfff1b8,
-    patternColor: 0xc1121f,
-    ...(look.limbColor !== undefined ? { limbColor: 0xb5651d } : {}),
-    ...(look.topColor !== undefined ? { topColor: 0xe85d04 } : {}),
-  };
-}
-
 export class Enemy {
   uid = 0;
   x = 0;
@@ -40,8 +29,7 @@ export class Enemy {
   radius = 16;
   def: EnemyDef | null = null;
   boss: BossDef | null = null;
-  rig: Rig | null = null;
-  rigKey = '';
+  rig: EntityVisual | null = null;
   ring: Phaser.GameObjects.Image | null = null;
   /** 精英词缀装饰（每帧重画） */
   deco: Phaser.GameObjects.Graphics | null = null;
@@ -65,6 +53,8 @@ export class Enemy {
   dirX = 0;
   dirY = 0;
   wander = Math.random() * 10;
+  /** 绕障碍物的方向（Arena.steer 读写；每只怪随机一侧，被墙堵死时翻转） */
+  nav = { side: Math.random() < 0.5 ? -1 : 1 };
   patternT: number[] = [];
   patterns: Pattern[] = [];
   phase2 = false;
@@ -112,7 +102,7 @@ export class Enemy {
     return out;
   }
 
-  private reset(g: GameScene, x: number, y: number, key: string, spec: Parameters<GameScene['rigs']['acquire']>[1], radius: number): void {
+  private reset(g: GameScene, x: number, y: number, ident: VisualIdent, radius: number): void {
     this.uid = enemySeq++;
     this.x = x;
     this.y = y;
@@ -127,8 +117,7 @@ export class Enemy {
     this.affixT = 0;
     this.status.clear();
     this.status.ccResist = 0;
-    this.rigKey = key;
-    this.rig = g.rigs.acquire(key, spec, radius * 1.12);
+    this.rig = g.rigs.acquire(ident, radius * 1.12);
     this.rig.setPosition(x, y).setDepth(y);
     this.rig.play('spawn', true);
     this.tintVer = -1;
@@ -145,9 +134,8 @@ export class Enemy {
     affixes: AffixId[] = [],
   ): void {
     const r = def.radius * (affixes.length ? 1.25 : 1);
-    // 词缀精英：同一造型换成金色配色（独立缓存键），怪多时也一眼能认出
-    if (affixes.length) this.reset(g, x, y, `enemy_${def.id}_champ`, championLook(def.look), r);
-    else this.reset(g, x, y, `enemy_${def.id}`, def.look, r);
+    // 词缀精英：独立的 champ 变体（Rig 换金色配色 / 外部素材的精英图或金色光环），怪多时也一眼能认出
+    this.reset(g, x, y, affixes.length ? { kind: 'enemy', id: def.id, variant: 'champ' } : { kind: 'enemy', id: def.id }, r);
     this.def = def;
     this.boss = null;
     this.affixes = affixes;
@@ -164,7 +152,7 @@ export class Enemy {
   }
 
   spawnBoss(g: GameScene, def: BossDef, x: number, y: number, hp: number, dmg: number, affixes: AffixId[]): void {
-    this.reset(g, x, y, `boss_${def.id}`, def.look, def.radius);
+    this.reset(g, x, y, { kind: 'boss', id: def.id }, def.radius);
     this.def = null;
     this.boss = def;
     this.affixes = [...(def.affixes ?? []), ...affixes];
@@ -231,13 +219,12 @@ export class Enemy {
     this.deco?.destroy();
     this.deco = null;
     const rig = this.rig;
-    const key = this.rigKey;
     this.rig = null;
     if (!rig) return;
     if (animate) {
-      rig.die(() => g.rigs.release(key, rig));
+      rig.die(() => g.rigs.release(rig));
       g.dying.push(rig);
-    } else g.rigs.release(key, rig);
+    } else g.rigs.release(rig);
   }
 
   /** 伤害倍率（易伤、坚甲、屏障…） */
@@ -304,6 +291,8 @@ export class Enemy {
       const v = this.boss ? this.bossAI(dt, g, nx, ny, dist) : this.minionAI(dt, g, nx, ny, dist);
       vx = v[0];
       vy = v[1];
+      // 贴着障碍物时沿边缘绕行（冲锋保持直线）：否则正面顶上圆形障碍物会原地卡住
+      if (this.state !== 'charge') [vx, vy] = g.arena.steer(this.x, this.y, this.radius, vx, vy, this.nav);
     }
     const sp = this.state === 'charge' ? 1 : slow;
     this.x += (vx * sp + this.kvx) * dt;
@@ -317,7 +306,7 @@ export class Enemy {
     // 渲染同步
     const moveAmt = Math.min(1, Math.hypot(vx, vy) / Math.max(1, this.speed));
     rig.setPosition(this.x, this.y).setDepth(this.y);
-    rig.tick(dt, moveAmt, dx, nx, ny);
+    rig.tick(dt, moveAmt, motionFacing(vx, vy, dx), nx, ny);
     if (this.ring) this.ring.setPosition(this.x, this.y + this.radius * 0.85).setRotation(this.ring.rotation + dt * 1.5);
     if (this.deco) {
       this.deco.clear().setDepth(this.y + 0.5);
@@ -560,7 +549,9 @@ export class Enemy {
       this.stateT -= dt;
       if (this.stateT <= 0) {
         this.state = 'move';
-        rig.play('move', true);
+        // Reappearance starts after 0.5s, just before the blink ends at 0.6s.
+        // Let its timed spawn pose finish while movement/AI resumes normally.
+        if (rig.state !== 'spawn') rig.play('move', true);
       }
       return [0, 0];
     }
@@ -581,7 +572,13 @@ export class Enemy {
   firePattern(g: GameScene, p: Pattern, nx: number, ny: number): boolean {
     const rig = this.rig!;
     const dmg = this.dmg * this.dealtMult;
-    if (p.type !== 'charge') rig.play(p.type === 'summon' || p.type === 'buff' ? 'cast' : 'attack');
+    if (p.type !== 'charge') {
+      const action = p.type === 'summon' || p.type === 'buff' ? 'cast' : 'attack';
+      // Independent pattern cooldowns can fire on consecutive updates. Keep a
+      // special action visible; projectiles and effects still fire on time.
+      if (action === 'attack') rig.tryAttackAnimation(true);
+      else rig.play(action);
+    }
     switch (p.type) {
       case 'ring':
         g.bossRing(this, p.count ?? 12, p.speed ?? 220, p.dmg ?? 1, Math.random() * Math.PI, p.slow ?? 0, p.debuff);

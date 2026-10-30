@@ -50,8 +50,8 @@ export function installForceLandscape(game: Phaser.Game): void {
     const u = pageY,
       v = stage.clientWidth - pageX;
     // 高清渲染：sm.width/height 是物理像素，指针要给游戏代码逻辑坐标（与 HiDpi 的 transformPointer 补丁一致）
-    const x = (u * sm.width) / root.clientWidth / RES,
-      y = (v * sm.height) / root.clientHeight / RES;
+    const x = ((u - game.canvas.offsetLeft) * sm.width) / (game.canvas.clientWidth || root.clientWidth) / RES,
+      y = ((v - game.canvas.offsetTop) * sm.height) / (game.canvas.clientHeight || root.clientHeight) / RES;
     const p0 = pointer.position,
       p1 = pointer.prevPosition;
     p1.x = p0.x;

@@ -1028,6 +1028,14 @@ export function loadRun(): boolean {
   });
   setTalentProfile(run.charId);
   run.loadExt((d.ext as RunExt | undefined) ?? null);
+  // 读档后 uidSeq 从头计数，会和存档里的武器 uid 撞号：之后买的武器与旧武器同 uid，合成 / 出售按 uid 过滤时会连带删掉多把
+  for (const w of run.allWeapons) uidSeq = Math.max(uidSeq, w.uid + 1);
+  // 已经撞号的旧存档：给重复的重新编号
+  const seen = new Set<number>();
+  for (const w of run.allWeapons) {
+    if (seen.has(w.uid)) w.uid = uidSeq++;
+    seen.add(w.uid);
+  }
   run.dirty();
   run.hp = run.stats.maxHp;
   return true;

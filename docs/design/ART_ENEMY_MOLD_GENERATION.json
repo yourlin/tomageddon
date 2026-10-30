@@ -1,0 +1,10 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: upright stagger; lobes droop eyes dark; melt lower with eyes closed; flattened mossy slime puddle eyes closed. No detached particles."
+  },
+  "deathRepair": {
+    "prompt": "Create four death animation drawings of this SAME green fuzzy mold blob in 2 rows and2 columns. Sequence: upright drooping eyes dim; slumped lobes eyes dark; low melted mound eyes closed; flat mossy slime puddle eyes closed. Redraw moss/slime lobes. No arms or legs, same golden eyes cheeks tiny fangs. CRITICAL every whole figure only40% of its cell WIDTH, centered with enormous blank transparent gutters. Even flat final puddle must stay small in its quadrant. Transparent background no shadows haze glow text lines particles. Four separated figures only.",
+    "source": "drafts/enemy/mold/base/die-sheet-pilot-2.png"
+  }
+}

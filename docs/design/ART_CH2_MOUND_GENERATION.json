@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: stylized-concept. Single garden dirt mound obstacle sprite for a top-down 2D action game, matching the hand-painted warm storybook garden reference. Exactly straight overhead orthographic, no isometric or side view. Compact circular low heap of rich brown earth, clumpy soil, a few embedded little pebbles and two tiny dried leaf fragments; earthy amber highlight upper-left and dark brown lower-right shading, muted low saturation. Round unambiguous silhouette, highest point near center; no deep hole, no crater, no plants, no face or eyes, no text. One isolated object centered with generous transparent margins, no ground plane, no cast shadow outside silhouette, transparent background. Readable at small game size, crisp detailed painted texture.",
+  "source": "maps/ch2/mound-pilot-1.png",
+  "reference": "maps/ch2/ground-pilot-1.png",
+  "generated": true
+}

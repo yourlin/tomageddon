@@ -1,0 +1,31 @@
+{
+  "id": "rag_wraith",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case: stylized-concept. Genuine authored game animation sheet EXACT rag wraith reference. FOUR separate full figures TWO ROWS TWO COLUMNS equal grid TL TR BL BR. True transparent alpha NO text/numbers/arrows/gridlines/speedlines/effect symbols/shadows/particles. TINY figures30% quadrant width/height INCLUDING ENTIRE MOP, huge transparent blank gutters. Preserve green cream plaid dirty rag pointed floppy hood and layered torn rag robe, dark void face TWO amber glowing eyes zigzag mouth, two bundled cloth mitten arms, wooden mop staff in image-right hand topped dirty green/cream rags, floating rag tails NO legs or feet. Same cute polished painterly style camera/proportions; all cloth/staff in cells, no extra arms. Idle blink: open amber eyes, cloth hem and hood subtly settle open eyes, half-open eyes amber slivers visible, BOTH EYES FULLY CLOSED dark/cloth thin lids NO amber glow. Mouth unchanged."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case: stylized-concept. Genuine authored game animation sheet EXACT rag wraith reference. FOUR separate full figures TWO ROWS TWO COLUMNS equal grid TL TR BL BR. True transparent alpha NO text/numbers/arrows/gridlines/speedlines/effect symbols/shadows/particles. TINY figures30% quadrant width/height INCLUDING ENTIRE MOP, huge transparent blank gutters. Preserve green cream plaid dirty rag pointed floppy hood and layered torn rag robe, dark void face TWO amber glowing eyes zigzag mouth, two bundled cloth mitten arms, wooden mop staff in image-right hand topped dirty green/cream rags, floating rag tails NO legs or feet. Same cute polished painterly style camera/proportions; all cloth/staff in cells, no extra arms. Four genuine floating locomotion poses: robe tails curl backward then spread then opposite curl then settle, arms counter-swing staff gently tilts, hood tip sways. Actual cloth folds and joints change not scale/translation only, no feet added."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case: stylized-concept. Genuine authored game animation sheet EXACT rag wraith reference. FOUR separate full figures TWO ROWS TWO COLUMNS equal grid TL TR BL BR. True transparent alpha NO text/numbers/arrows/gridlines/speedlines/effect symbols/shadows/particles. TINY figures30% quadrant width/height INCLUDING ENTIRE MOP, huge transparent blank gutters. Preserve green cream plaid dirty rag pointed floppy hood and layered torn rag robe, dark void face TWO amber glowing eyes zigzag mouth, two bundled cloth mitten arms, wooden mop staff in image-right hand topped dirty green/cream rags, floating rag tails NO legs or feet. Same cute polished painterly style camera/proportions; all cloth/staff in cells, no extra arms. Four impact reactions: startled eyes wide, recoils body tilts back eyes wince, peak recoil cloth arms tuck staff still held, recovers. No impact marks/sweat/particles."
+    },
+    {
+      "action": "die",
+      "prompt": "Use case: stylized-concept. Genuine authored game animation sheet EXACT rag wraith reference. FOUR separate full figures TWO ROWS TWO COLUMNS equal grid TL TR BL BR. True transparent alpha NO text/numbers/arrows/gridlines/speedlines/effect symbols/shadows/particles. TINY figures30% quadrant width/height INCLUDING ENTIRE MOP, huge transparent blank gutters. Preserve green cream plaid dirty rag pointed floppy hood and layered torn rag robe, dark void face TWO amber glowing eyes zigzag mouth, two bundled cloth mitten arms, wooden mop staff in image-right hand topped dirty green/cream rags, floating rag tails NO legs or feet. Same cute polished painterly style camera/proportions; all cloth/staff in cells, no extra arms. Death sequence: loses balance startled, cloth body sags and staff tilts, collapses into rag heap eyes shut, rests defeated rag heap eyes dark. Full staff/hood retained no detached scraps, no fading or particles."
+    },
+    {
+      "action": "attack",
+      "prompt": "Use case: stylized-concept. Genuine authored game animation sheet EXACT rag wraith reference. FOUR separate full figures TWO ROWS TWO COLUMNS equal grid TL TR BL BR. True transparent alpha NO text/numbers/arrows/gridlines/speedlines/effect symbols/shadows/particles. TINY figures30% quadrant width/height INCLUDING ENTIRE MOP, huge transparent blank gutters. Preserve green cream plaid dirty rag pointed floppy hood and layered torn rag robe, dark void face TWO amber glowing eyes zigzag mouth, two bundled cloth mitten arms, wooden mop staff in image-right hand topped dirty green/cream rags, floating rag tails NO legs or feet. Same cute polished painterly style camera/proportions; all cloth/staff in cells, no extra arms. Ring spell sequence: free cloth arm draws inward, extends outward staff raises slightly, both cloth arms spread mouth open calling, recovers. Genuine cloth/arm movement, no ring projectiles or spell effects."
+    },
+    {
+      "action": "spawn",
+      "prompt": "Use case: stylized-concept. Genuine authored game animation sheet EXACT rag wraith reference. FOUR separate full figures TWO ROWS TWO COLUMNS equal grid TL TR BL BR. True transparent alpha NO text/numbers/arrows/gridlines/speedlines/effect symbols/shadows/particles. TINY figures30% quadrant width/height INCLUDING ENTIRE MOP, huge transparent blank gutters. Preserve green cream plaid dirty rag pointed floppy hood and layered torn rag robe, dark void face TWO amber glowing eyes zigzag mouth, two bundled cloth mitten arms, wooden mop staff in image-right hand topped dirty green/cream rags, floating rag tails NO legs or feet. Same cute polished painterly style camera/proportions; all cloth/staff in cells, no extra arms. Teleport appearance four opaque articulated poses: tucked cloth hood lowered arms close, unfolds robe and hood raises, spreads free arm into guard staff upright, settles. Do not fade/scale whole figure or draw smoke. Full staff and rag tails."
+    }
+  ]
+}

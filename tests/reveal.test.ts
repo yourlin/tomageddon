@@ -2,6 +2,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { save } from '../src/systems/Save';
 import { reveal, MILESTONES, nextMilestone, nextUnlockLine, resultHook, takeNewMilestones } from '../src/systems/Reveal';
+import { features } from '../src/systems/Features';
 
 describe('玩法露出', () => {
   beforeEach(() => {
@@ -30,12 +31,22 @@ describe('玩法露出', () => {
     expect(reveal.gold()).toBe(false);
   });
 
-  it('获得金番茄后出现金番茄与皮肤；买过大师层的老存档照常显示', () => {
+  it('获得金番茄后出现金番茄；买过大师层的老存档照常显示', () => {
     save.meta.goldEarned = 5;
     expect(reveal.gold()).toBe(true);
-    expect(reveal.skins()).toBe(true);
     save.meta.master = 1;
     expect(reveal.master()).toBe(true);
+  });
+
+  it('皮肤入口：玩法关闭时即使有金番茄也不显示，开启后才显示', () => {
+    save.meta.goldEarned = 5;
+    expect(reveal.skins()).toBe(false);
+    features.skins = true;
+    try {
+      expect(reveal.skins()).toBe(true);
+    } finally {
+      features.skins = false;
+    }
   });
 
   it('下一个解锁：新存档先提示天赋树，通关后提示金番茄', () => {

@@ -1,0 +1,27 @@
+{
+  "id": "oil_titan",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet, exactly FOUR separate complete small characters in TWO ROWS TWO COLUMNS. Reference identity: chunky glossy black petroleum golem with molten gold swirls, dripping golden crown, glowing orange yellow eyes and jagged yellow mouth, two heavy oil fists and two puddle feet. Match cute painterly outlined art. Each figure occupies central 60% of its quadrant, generous transparent margins and empty central cross, all crown drips fists feet included. Same camera/body scale; actual articulated/deforming poses, no global scaling. No text lines border ground or detached effect sprites. Reading order idle blink: top-left eyes OPEN; top-right eyes OPEN with subtle liquid fold breathing; bottom-left HALF open with visible amber eye areas; bottom-right FULLY SHUT eyes entirely DARK with NO amber eye lines. Only bottom right fully closed; jagged mouth can glow. Tiny authored oil fold/crown drip changes."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet, exactly FOUR separate complete small characters in TWO ROWS TWO COLUMNS. Reference identity: chunky glossy black petroleum golem with molten gold swirls, dripping golden crown, glowing orange yellow eyes and jagged yellow mouth, two heavy oil fists and two puddle feet. Match cute painterly outlined art. Each figure occupies central 60% of its quadrant, generous transparent margins and empty central cross, all crown drips fists feet included. Same camera/body scale; actual articulated/deforming poses, no global scaling. No text lines border ground or detached effect sprites. Four sequential lumbering gait poses: left puddle foot forward right back left shoulder lowers; weight transfer feet planted; right foot forward left back right shoulder lowers; recovering weight transfer. Change oil arm joint shapes and foot folds, not translation/scale copies."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet, exactly FOUR separate complete small characters in TWO ROWS TWO COLUMNS. Reference identity: chunky glossy black petroleum golem with molten gold swirls, dripping golden crown, glowing orange yellow eyes and jagged yellow mouth, two heavy oil fists and two puddle feet. Match cute painterly outlined art. Each figure occupies central 60% of its quadrant, generous transparent margins and empty central cross, all crown drips fists feet included. Same camera/body scale; actual articulated/deforming poses, no global scaling. No text lines border ground or detached effect sprites. Four hurt poses: normal brace; recoil torso bends backward fists open slightly; crouch wince crown tilts but stays attached; recover ready. Liquid silhouette deforms physically, no damage color overlay, no missing arms."
+    },
+    {
+      "action": "die",
+      "prompt": "undefinedFour sequential DEATH poses: normal ready; sagging torso knees buckle arms lower; melt into broad low oil mound crown tilted eyes dim; inert flat puddle with crown resting on top, completely dark eyes and mouth. Keep same character material and full silhouette. No gore no background no smoke. Four complete separate drawings in 2x2 square, generous empty gaps."
+    },
+    {
+      "action": "attack",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet, exactly FOUR separate complete small characters in TWO ROWS TWO COLUMNS. Reference identity: chunky glossy black petroleum golem with molten gold swirls, dripping golden crown, glowing orange yellow eyes and jagged yellow mouth, two heavy oil fists and two puddle feet. Match cute painterly outlined art. Each figure occupies central 60% of its quadrant, generous transparent margins and empty central cross, all crown drips fists feet included. Same camera/body scale; actual articulated/deforming poses, no global scaling. No text lines border ground or detached effect sprites. Four actual ATTACK poses reading order: brace fists close to chest; crouch draw arms back; release both heavy oil fists outward in commanding pulse mouth wide; recover. Hazard and ring are rendered separately by game, do not draw projectiles or ground hazards. Full limbs/crown and attached drips inside each cell, small figures with huge blank margins."
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { createSaucePool } from './JuiceArt';
 // 角色专属技能演出与机制（1.4.0）：同一类技能按角色给出不同的动画形式与玩法差异，
 // 让玩家不看说明也能看出技能的作用范围与效果。未在 STYLES 中的角色走 SkillSystem 的通用实现。
 import Phaser from 'phaser';
@@ -184,12 +185,15 @@ function lostTarget(g: GameScene, r: number, dur: number): void {
 function carrotCharge(c: StyleCtx): void {
   const { g, host, sk, info, dir } = c;
   const p = g.player;
+  const authoredCharge = p.hasAuthoredAnimation('charge');
+  if (p.hasAuthoredAnimation('windup')) p.play('windup', true);
   const dist = host.radius(sk.distance ?? 320) * 1.15;
   // 蓄力：路径预警 + 角色后仰
   g.fx.telegraphLine(p.x, p.y, dir.x, dir.y, dist, 46, 0.22);
   host.invulnT = Math.max(host.invulnT, 0.75);
   const dur = 0.38;
   g.time.delayedCall(220, () => {
+    if (authoredCharge) p.play('charge', true);
     const lance = g.add.graphics().setDepth(11600).setBlendMode(ADD);
     host.setDash({
       t: dur,
@@ -200,6 +204,7 @@ function carrotCharge(c: StyleCtx): void {
       hitR: 64,
       knock: 150,
       onStep: () => {
+        if (authoredCharge) p.play('charge');
         const a = Math.atan2(dir.y, dir.x);
         lance.clear();
         lance.fillStyle(sk.color, 0.55);
@@ -216,6 +221,7 @@ function carrotCharge(c: StyleCtx): void {
       },
       onEnd: () => {
         lance.destroy();
+        if (authoredCharge) p.play('idle');
         g.cameras.main.shake(220, 0.018);
         g.fx.ring(p.x, p.y, 150, sk.color, 420, true);
         g.fx.ring(p.x, p.y, 110, 0xffffff, 300);
@@ -233,8 +239,11 @@ function melonRoll(c: StyleCtx): void {
   const p = g.player;
   const dur = 0.9;
   const speed = (host.radius(sk.distance ?? 260) * 1.8) / dur;
-  const ball = g.add.graphics().setDepth(11700);
+  const authoredRoll = p.hasAuthoredAnimation('charge');
+  const ball = authoredRoll ? null : g.add.graphics().setDepth(11700);
+  if (authoredRoll) p.play('charge', true);
   const base = p.scale;
+  if (authoredRoll) p.setScale(base * 1.5);
   host.invulnT = Math.max(host.invulnT, dur + 0.1);
   let spin = 0;
   host.setDash({
@@ -250,21 +259,28 @@ function melonRoll(c: StyleCtx): void {
     noAfterimage: true,
     onStep: (dt) => {
       spin += dt * 18;
-      p.setAlpha(0);
-      ball.clear();
-      ball.fillStyle(0x2d6a4f, 1).fillCircle(p.x, p.y, 46);
-      ball.lineStyle(6, 0x95d5b2, 1);
-      for (let i = 0; i < 4; i++) {
-        const a = spin + (i * Math.PI) / 2;
-        ball.beginPath();
-        ball.arc(p.x, p.y, 46, a, a + 0.9);
-        ball.strokePath();
+      if (authoredRoll) {
+        p.setAlpha(1);
+        p.play('charge');
       }
-      ball.fillStyle(0xffffff, 0.35).fillEllipse(p.x - 14, p.y - 18, 22, 12);
+      if (ball) {
+        p.setAlpha(0);
+        ball.clear();
+        ball.fillStyle(0x2d6a4f, 1).fillCircle(p.x, p.y, 46);
+        ball.lineStyle(6, 0x95d5b2, 1);
+        for (let i = 0; i < 4; i++) {
+          const a = spin + (i * Math.PI) / 2;
+          ball.beginPath();
+          ball.arc(p.x, p.y, 46, a, a + 0.9);
+          ball.strokePath();
+        }
+        ball.fillStyle(0xffffff, 0.35).fillEllipse(p.x - 14, p.y - 18, 22, 12);
+      }
       if (Math.random() < 0.5) g.fx.splat(p.x, p.y + 30, 0xff4d6d, 10);
     },
     onEnd: () => {
-      ball.destroy();
+      ball?.destroy();
+      if (authoredRoll) p.play('idle');
       p.setAlpha(1).setScale(base * 1.25);
       g.tweens.add({ targets: p, scale: base, duration: 260, ease: 'Back.easeOut' });
       g.fx.ring(p.x, p.y, 90, 0x52b788, 300, true);
@@ -316,6 +332,8 @@ function gingerBlink(c: StyleCtx): void {
 function dragonCharge(c: StyleCtx): void {
   const { g, host, sk, info, dir } = c;
   const p = g.player;
+  const authoredCharge = p.hasAuthoredAnimation('charge');
+  if (authoredCharge) p.play('charge', true);
   const dist = host.radius(sk.distance ?? 330);
   const dur = 0.42;
   host.invulnT = Math.max(host.invulnT, dur + 0.1);
@@ -329,10 +347,14 @@ function dragonCharge(c: StyleCtx): void {
     info,
     hitR: 56,
     onStep: () => {
+      if (authoredCharge) p.play('charge');
       if (Phaser.Math.Distance.Between(p.x, p.y, trail.at(-1)?.x ?? -1e4, trail.at(-1)?.y ?? -1e4) < 34) return;
       trail.push({ x: p.x, y: p.y });
       decal(g, p.x, p.y + 10, 40, 0xff5400, 0.55, 3.2);
       puff(g, p.x, p.y, 0xff9e00, 30, 0.7, 0.6, 10600).setBlendMode(ADD);
+    },
+    onEnd: () => {
+      if (authoredCharge) p.play('idle');
     },
   });
   const burn = { ...info, dmg: info.dmg * 0.18, knockback: 0 };
@@ -396,8 +418,10 @@ function ketchupBurst(c: StyleCtx): void {
     });
     pools.push({ x, y, r: r * 0.22 });
   }
-  const imgs = pools.map((q) => decal(g, q.x, q.y, q.r, 0xc1121f, 0.55, 4));
-  void imgs;
+  for (const q of pools) {
+    const pool = createSaucePool(g, q.x, q.y, q.r, 0xc1121f);
+    g.tweens.add({ targets: pool, alpha: 0, delay: 3500, duration: 500, onComplete: () => pool.destroy() });
+  }
   let acc = 0;
   host.linger({
     t: 4,
@@ -458,58 +482,57 @@ function groundPound(c: StyleCtx): void {
   const { g, host, sk, info } = c;
   const p = g.player;
   const base = p.scale;
+  const authored = p.hasAuthoredAnimation('cast');
   const r = host.radius((sk.radius ?? 170) * 1.3);
   host.invulnT = Math.max(host.invulnT, 0.6);
   const shadow = g.add.ellipse(p.x, p.y + 22, 70, 24, 0x000000, 0.4).setDepth(2);
-  g.tweens.add({ targets: p, scale: base * 1.45, duration: 260, ease: 'Quad.easeOut' });
+  const rise = authored ? null : g.tweens.add({ targets: p, scale: base * 1.45, duration: 260, ease: 'Quad.easeOut' });
   g.tweens.add({ targets: shadow, scaleX: 0.6, scaleY: 0.6, duration: 260 });
   g.fx.telegraphCircle(p.x, p.y, r, 0.32, sk.color);
   g.time.delayedCall(260, () => {
-    g.tweens.add({
-      targets: p,
-      scale: base,
-      duration: 90,
-      ease: 'Quad.easeIn',
-      onComplete: () => {
-        shadow.destroy();
-        const x = p.x,
-          y = p.y;
-        g.cameras.main.shake(320, 0.028);
-        hitAround(g, x, y, r, info, 100);
-        g.fx.ring(x, y, r, sk.color, 500, true);
-        g.fx.ring(x, y, r * 0.6, 0xffffff, 350);
-        const cracks = g.add.graphics().setDepth(1.6);
-        for (let i = 0; i < 12; i++) {
-          let a = (i / 12) * Math.PI * 2,
-            cx = x,
-            cy = y;
-          cracks.lineStyle(5, 0x3a2412, 0.9);
-          cracks.beginPath();
-          cracks.moveTo(cx, cy);
-          for (let s = 0; s < 5; s++) {
-            a += Phaser.Math.FloatBetween(-0.4, 0.4);
-            cx += Math.cos(a) * (r / 5);
-            cy += Math.sin(a) * (r / 5) * 0.8;
-            cracks.lineTo(cx, cy);
-          }
-          cracks.strokePath();
+    rise?.stop();
+    const impact = () => {
+      if (!authored) p.setScale(base);
+      shadow.destroy();
+      const x = p.x,
+        y = p.y;
+      g.cameras.main.shake(320, 0.028);
+      hitAround(g, x, y, r, info, 100);
+      g.fx.ring(x, y, r, sk.color, 500, true);
+      g.fx.ring(x, y, r * 0.6, 0xffffff, 350);
+      const cracks = g.add.graphics().setDepth(1.6);
+      for (let i = 0; i < 12; i++) {
+        let a = (i / 12) * Math.PI * 2,
+          cx = x,
+          cy = y;
+        cracks.lineStyle(5, 0x3a2412, 0.9);
+        cracks.beginPath();
+        cracks.moveTo(cx, cy);
+        for (let s = 0; s < 5; s++) {
+          a += Phaser.Math.FloatBetween(-0.4, 0.4);
+          cx += Math.cos(a) * (r / 5);
+          cy += Math.sin(a) * (r / 5) * 0.8;
+          cracks.lineTo(cx, cy);
         }
-        g.tweens.add({ targets: cracks, alpha: 0, delay: 1100, duration: 500, onComplete: () => cracks.destroy() });
-        for (let i = 0; i < 14; i++) {
-          const a = (i / 14) * Math.PI * 2;
-          const rock = g.add.rectangle(x, y, 10, 8, 0x8d6e63).setDepth(11800);
-          g.tweens.add({
-            targets: rock,
-            x: x + Math.cos(a) * r * 0.8,
-            y: y + Math.sin(a) * r * 0.6,
-            angle: 360,
-            alpha: 0,
-            duration: 600,
-            onComplete: () => rock.destroy(),
-          });
-        }
-      },
-    });
+        cracks.strokePath();
+      }
+      g.tweens.add({ targets: cracks, alpha: 0, delay: 1100, duration: 500, onComplete: () => cracks.destroy() });
+      for (let i = 0; i < 14; i++) {
+        const a = (i / 14) * Math.PI * 2;
+        const rock = g.add.rectangle(x, y, 10, 8, 0x8d6e63).setDepth(11800);
+        g.tweens.add({
+          targets: rock,
+          x: x + Math.cos(a) * r * 0.8,
+          y: y + Math.sin(a) * r * 0.6,
+          angle: 360,
+          alpha: 0,
+          duration: 600,
+          onComplete: () => rock.destroy(),
+        });
+      }
+    };
+    if (authored) g.time.delayedCall(90, impact);
+    else g.tweens.add({ targets: p, scale: base, duration: 90, ease: 'Quad.easeIn', onComplete: impact });
   });
 }
 
@@ -772,6 +795,7 @@ function lemonVanish(c: StyleCtx): void {
       g.decoy = null;
       const t = g.grid.nearest(p.x, p.y, 260);
       if (t) {
+        p.tryAttackAnimation();
         g.fx.slash(t.x, t.y, Math.atan2(t.y - p.y, t.x - p.x), 70, 0xfff3b0, 2);
         // 强制暴击时 weaponHit 不再乘暴击倍率（约定由调用方乘好），这里补上默认的 ×1.5
         g.weaponHit(t, { ...info, dmg: info.dmg * 3 * 1.5, crit: true, knockback: 60 }, p.x, p.y);

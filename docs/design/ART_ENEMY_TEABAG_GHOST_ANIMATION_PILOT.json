@@ -1,0 +1,69 @@
+{
+  "kind": "enemy",
+  "id": "teabag_ghost",
+  "displayName": "\u8336\u5305\u5e7d\u7075",
+  "status": "integrated; native three-tier playback and actual gameplay AI basic checks passed; final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "healer;healCd3.2s/radius170/keepDist250;actualcast plus4basic actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/teabag_ghost/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/teabag_ghost/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/teabag_ghost/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/teabag_ghost/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/teabag_ghost/base/cast-sheet-pilot-2.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "four poses inspected;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "four recoil poses inspected;partition passed",
+    "cast1": "REJECT no clear horizontal gutter near512;neighboring row string/hem poses overlap projected cells"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "cast": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-teabag_ghost-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-teabag_ghost-gameplay-native.json",
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReviewIntegrity": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-24",
+  "purpose": "Settings and pause menus from selected Product Design direction 3",
+  "selected_reference": "/Users/linyesh/.codex/generated_images/01a16b85-a698-70e0-aa65-55faec62e035/exec-d90b3777-d385-4191-ba7f-2dac87488016.png",
+  "tool": "built-in image_gen__imagegen",
+  "assets": [
+    {
+      "output": "public/assets/ui/settings-kitchen.png",
+      "transparent_background": false,
+      "source": "/Users/linyesh/.codex/generated_images/01a16b89-2552-7871-9412-06cbc596bbcb/exec-26b48151-a0bb-40e5-bf37-fcdccf2c6449.png",
+      "references": [
+        "/Users/linyesh/.codex/generated_images/01a16b85-a698-70e0-aa65-55faec62e035/exec-d90b3777-d385-4191-ba7f-2dac87488016.png",
+        "docs/images/cover/menu-1280x720.png"
+      ],
+      "prompt": "Use case: illustration-story. Create ONE production game background raster, exactly 1600x900 pixels, 16:9 landscape. Input 1 is visual style/composition reference: match the upper settings kitchen scene, but remove ALL UI, ALL panels, all borders and text. Input 2 is heroine identity/art style reference. Warm richly painted cute fantasy kitchen at night, golden hanging lamp, wooden counters, tomatoes and garlic, vines, blue moonlit window. Place the same adorable red round tomato heroine with green leafy hair, yellow bow, red boots, big brown eyes and tomato fork entirely in LEFT 0-30% of image, full body with center around x200 y510, standing on countertop. Keep her modest scale, about 340px high. RIGHT 65% should be a dark softly lit quiet kitchen backdrop, very low detail and low contrast, deep plum brown so real UI will be overlaid later. No other characters. Full bleed artwork. No text, no letters, no numbers, no logos, NO UI, NO controls, NO frames, NO panel shapes. Match reference cute polished hand illustrated lighting and saturated tomato colors."
+    },
+    {
+      "output": "public/assets/ui/menu-corner.png",
+      "transparent_background": true,
+      "source": "/Users/linyesh/.codex/generated_images/01a16b89-2552-7871-9412-06cbc596bbcb/exec-448dadf1-7f30-43c7-9b41-1de5825c302e.png",
+      "references": [],
+      "prompt": "Use case: stylized-concept. Asset type: tiny game panel corner ornament. Create ONE isolated 128x128 pixel decorative corner flourish on genuinely transparent background, intended to render at 36x36 logical pixels. A tasteful polished antique brass and warm gold tomato-and-leaf engraving, tiny round tomato with two leaves, thin graceful curved golden stem sweeping along the top and left edges in an L-shaped TOP LEFT corner arrangement. Cute illustrated fantasy kitchen UI style, crisp simple silhouette and subtle brass highlights. Only the single corner ornament, no text, no typography, no letters, no numbers, no UI, no rectangular full frame, no shadow backdrop. All outside the gold flourish must be fully transparent."
+    }
+  ],
+  "icons": {
+    "source": "Bootstrap Icons 1.11.3",
+    "license": "public/assets/ui/icons/LICENSE",
+    "change": "CurrentColor replaced with cream to rasterize through Phaser SVG loader."
+  },
+  "reused": [
+    "src/ui/CoverUI.ts coverButton",
+    "current character/skin portraits",
+    "runtime weapon textures",
+    "current frozen gameplay scene"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "source": "drafts/boss/fly_swarm_king/base/move-sheet-pilot-2.png",
+  "prompt": "Repair layoutONLY of this4frame2x2 flying sprite sheet. Preserve four distinct wingbeat poses/body/legs EXACTLY, sameflyidentity. Place ENTIRE creature including allFOUR wings centered in each equalquadrant at maximum50percent quadrantwidth and60percentheight, huge25percent transparentmargins. Continuous wide horizontal/vertical transparentgutters, NO wing touches/crosses cellborder, restore any clippedwingtips. No neweffects/text/floor/background. True transparentalpha."
+}

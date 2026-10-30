@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "selected_option": 1,
+  "reference": "/Users/linyesh/.codex/generated_images/01a16b85-a698-70e0-aa65-55faec62e035/exec-9356f75a-c921-4672-8397-98a9fa5cdbc6.png",
+  "tool": "built-in image_gen__imagegen",
+  "mode": "edit",
+  "transparent_background": false,
+  "generated_source": "/Users/linyesh/.codex/generated_images/01a16b99-078a-7482-8ab6-fe9d06782324/exec-28c4e1b6-543b-4797-baf2-e8c282eb1a5d.png",
+  "archived_source": "/Users/linyesh/playground/tomato-sister-art-source/design/loading-kitchen.png",
+  "runtime_asset": "public/assets/ui/loading-kitchen.webp",
+  "runtime_format": "WebP quality 85, original 1672x941 dimensions, 182306 bytes",
+  "prompt": "Use case: precise-object-edit. Asset type: production 16:9 loading-screen background illustration, target 1600x900. Input image 1 is the EDIT TARGET. Preserve its composition EXACTLY and its polished warm illustrated game-art style. Change ONLY the UI overlay areas: remove the large Chinese 番茄酱 title at top center, the TOMAGEDDON plaque and all ornaments belonging to that title; fill that area naturally with the same subdued kitchen wall and shelving. Remove ALL lower loading UI: tomato icon, loading label, progress bar and its border, 68% percentage, tip icon, tip text, and decorative lines. Fill those areas with a continuous dark softly shaded wooden counter foreground; keep the lower 28% suitably dark and quiet for real UI to be rendered later. Keep the same tomato heroine at left with her fork, leaf hair, yellow bow and pose, lamp at upper left, kitchen objects, night window and moon at right, enemies and pot at right, foreground framing, lighting, color palette, camera, and exact positions and proportions unchanged. No text, letters, numerals, logo, progress bar, controls, icons, or UI anywhere. Do not redesign or recompose the scene.",
+  "other_assets": {
+    "public/assets/ui/loader-tomato.png": "Reused docs/images/char/tomato.png",
+    "public/assets/ui/icons/lightbulb.svg": "Bootstrap Icons 1.11.3, MIT license already retained in icons/LICENSE; fill recolored cream"
+  },
+  "implementation": "index.html provides the UI before game scripts finish. BootLoader.ts updates live title, label, progress and rotating tips. No rasterized progress numbers or labels."
+}

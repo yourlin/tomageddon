@@ -1,0 +1,1820 @@
+[
+  {
+    "id": "legacy_ice",
+    "key": "proj_ice",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_ice.png",
+    "bounds": [140, 315, 1129, 946]
+  },
+  {
+    "id": "player_pea_shooter",
+    "key": "proj_pea_shooter",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_pea_shooter.png",
+    "bounds": [232, 368, 1022, 887]
+  },
+  {
+    "id": "enemy_thorn_weed",
+    "key": "proj_enemy_thorn_weed",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 3696193,
+    "file": "enemy_thorn_weed.png",
+    "bounds": [130, 211, 1203, 1027]
+  },
+  {
+    "id": "legacy_web",
+    "key": "proj_web",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_web.png",
+    "bounds": [202, 172, 1080, 1082]
+  },
+  {
+    "id": "legacy_rock",
+    "key": "proj_rock",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_rock.png",
+    "bounds": [318, 397, 962, 882]
+  },
+  {
+    "id": "legacy_corn",
+    "key": "proj_corn",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_corn.png",
+    "bounds": [236, 330, 1024, 923]
+  },
+  {
+    "id": "legacy_onion",
+    "key": "proj_onion",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_onion.png",
+    "bounds": [282, 249, 1012, 1023]
+  },
+  {
+    "id": "legacy_tomato",
+    "key": "proj_tomato",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_tomato.png",
+    "bounds": [312, 290, 954, 956]
+  },
+  {
+    "id": "legacy_flame",
+    "key": "proj_flame",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_flame.png",
+    "bounds": [155, 261, 1082, 1004]
+  },
+  {
+    "id": "legacy_coin",
+    "key": "proj_coin",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_coin.png",
+    "bounds": [312, 243, 1001, 989]
+  },
+  {
+    "id": "legacy_rocket",
+    "key": "proj_rocket",
+    "size": [48, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_rocket.png",
+    "bounds": [157, 342, 1152, 941]
+  },
+  {
+    "id": "player_soda",
+    "key": "proj_soda",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_soda.png",
+    "bounds": [147, 288, 1188, 993]
+  },
+  {
+    "id": "legacy_pea",
+    "key": "proj_pea",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_pea.png",
+    "bounds": [360, 363, 895, 888]
+  },
+  {
+    "id": "legacy_enemy",
+    "key": "proj_enemy",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_enemy.png",
+    "bounds": [175, 297, 1146, 948]
+  },
+  {
+    "id": "legacy_player",
+    "key": "proj_player",
+    "size": [30, 30],
+    "spin": 0,
+    "color": 16765286,
+    "file": "legacy_player.png",
+    "bounds": [212, 322, 1055, 933]
+  },
+  {
+    "id": "enemy_rot_king",
+    "key": "proj_enemy_rot_king",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 3606039,
+    "file": "enemy_rot_king.png",
+    "bounds": [70, 192, 1213, 1107]
+  },
+  {
+    "id": "enemy_rot_mother",
+    "key": "proj_enemy_rot_mother",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 6048558,
+    "file": "enemy_rot_mother.png",
+    "bounds": [63, 263, 1208, 996]
+  },
+  {
+    "id": "enemy_blight_gardener",
+    "key": "proj_enemy_blight_gardener",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 6319160,
+    "file": "enemy_blight_gardener.png",
+    "bounds": [72, 285, 1220, 1023]
+  },
+  {
+    "id": "enemy_ketchup_leviathan",
+    "key": "proj_enemy_ketchup_leviathan",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 12653087,
+    "file": "enemy_ketchup_leviathan.png",
+    "bounds": [88, 180, 1180, 1079]
+  },
+  {
+    "id": "enemy_factory_core",
+    "key": "proj_enemy_factory_core",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 1914199,
+    "file": "enemy_factory_core.png",
+    "bounds": [63, 112, 1189, 1120]
+  },
+  {
+    "id": "enemy_rotten_chef",
+    "key": "proj_enemy_rotten_chef",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 6947855,
+    "file": "enemy_rotten_chef.png",
+    "bounds": [127, 302, 1166, 995]
+  },
+  {
+    "id": "enemy_scrap_dragon",
+    "key": "proj_enemy_scrap_dragon",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 7107965,
+    "file": "enemy_scrap_dragon.png",
+    "bounds": [43, 278, 1225, 970]
+  },
+  {
+    "id": "enemy_toxic_barrel",
+    "key": "proj_enemy_toxic_barrel",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 16766474,
+    "file": "enemy_toxic_barrel.png",
+    "bounds": [52, 222, 1237, 1039]
+  },
+  {
+    "id": "enemy_trash_golem",
+    "key": "proj_enemy_trash_golem",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 4804695,
+    "file": "enemy_trash_golem.png",
+    "bounds": [81, 205, 1200, 1043]
+  },
+  {
+    "id": "enemy_freezer_heart",
+    "key": "proj_enemy_freezer_heart",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 5032432,
+    "file": "enemy_freezer_heart.png",
+    "bounds": [129, 233, 1140, 1014]
+  },
+  {
+    "id": "enemy_ice_cream_tyrant",
+    "key": "proj_enemy_ice_cream_tyrant",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 16763101,
+    "file": "enemy_ice_cream_tyrant.png",
+    "bounds": [88, 132, 1212, 971]
+  },
+  {
+    "id": "enemy_frost_rat_king",
+    "key": "proj_enemy_frost_rat_king",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 4770532,
+    "file": "enemy_frost_rat_king.png",
+    "bounds": [34, 250, 1222, 1010]
+  },
+  {
+    "id": "enemy_mole_general",
+    "key": "proj_enemy_mole_general",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 6045747,
+    "file": "enemy_mole_general.png",
+    "bounds": [111, 223, 1181, 1033]
+  },
+  {
+    "id": "enemy_rotten_pumpkin",
+    "key": "proj_enemy_rotten_pumpkin",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 12339968,
+    "file": "enemy_rotten_pumpkin.png",
+    "bounds": [59, 248, 1211, 999]
+  },
+  {
+    "id": "enemy_locust_queen",
+    "key": "proj_enemy_locust_queen",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 10249796,
+    "file": "enemy_locust_queen.png",
+    "bounds": [108, 278, 1217, 919]
+  },
+  {
+    "id": "enemy_onion_witch",
+    "key": "proj_enemy_onion_witch",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 10182117,
+    "file": "enemy_onion_witch.png",
+    "bounds": [79, 235, 1171, 1004]
+  },
+  {
+    "id": "enemy_carrot_knight",
+    "key": "proj_enemy_carrot_knight",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 14254635,
+    "file": "enemy_carrot_knight.png",
+    "bounds": [62, 280, 1192, 901]
+  },
+  {
+    "id": "enemy_spore_matron",
+    "key": "proj_enemy_spore_matron",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 10128536,
+    "file": "enemy_spore_matron.png",
+    "bounds": [62, 223, 1225, 1029]
+  },
+  {
+    "id": "enemy_furnace_imp",
+    "key": "proj_enemy_furnace_imp",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 16733184,
+    "file": "enemy_furnace_imp.png",
+    "bounds": [208, 279, 1096, 919]
+  },
+  {
+    "id": "enemy_chef_minion",
+    "key": "proj_enemy_chef_minion",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 6986062,
+    "file": "enemy_chef_minion.png",
+    "bounds": [110, 264, 1192, 952]
+  },
+  {
+    "id": "enemy_security_bot",
+    "key": "proj_enemy_security_bot",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 1914199,
+    "file": "enemy_security_bot.png",
+    "bounds": [54, 317, 1167, 971]
+  },
+  {
+    "id": "enemy_ketchup_golem",
+    "key": "proj_enemy_ketchup_golem",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 11411474,
+    "file": "enemy_ketchup_golem.png",
+    "bounds": [98, 251, 1176, 993]
+  },
+  {
+    "id": "enemy_conveyor_worm",
+    "key": "proj_enemy_conveyor_worm",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 4804695,
+    "file": "enemy_conveyor_worm.png",
+    "bounds": [80, 298, 1190, 962]
+  },
+  {
+    "id": "enemy_oil_titan",
+    "key": "proj_enemy_oil_titan",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 2236987,
+    "file": "enemy_oil_titan.png",
+    "bounds": [74, 280, 1189, 988]
+  },
+  {
+    "id": "enemy_battery_bug",
+    "key": "proj_enemy_battery_bug",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 3715072,
+    "file": "enemy_battery_bug.png",
+    "bounds": [90, 241, 1152, 1029]
+  },
+  {
+    "id": "enemy_rag_wraith",
+    "key": "proj_enemy_rag_wraith",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 11384253,
+    "file": "enemy_rag_wraith.png",
+    "bounds": [54, 274, 1210, 1014]
+  },
+  {
+    "id": "enemy_can_king",
+    "key": "proj_enemy_can_king",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 12653087,
+    "file": "enemy_can_king.png",
+    "bounds": [62, 234, 1228, 955]
+  },
+  {
+    "id": "enemy_frost_penguin",
+    "key": "proj_enemy_frost_penguin",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 2236987,
+    "file": "enemy_frost_penguin.png",
+    "bounds": [49, 249, 1216, 992]
+  },
+  {
+    "id": "enemy_snow_rat",
+    "key": "proj_enemy_snow_rat",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 16316922,
+    "file": "enemy_snow_rat.png",
+    "bounds": [115, 303, 1174, 941]
+  },
+  {
+    "id": "enemy_popsicle_twins",
+    "key": "proj_enemy_popsicle_twins",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 16740518,
+    "file": "enemy_popsicle_twins.png",
+    "bounds": [95, 235, 1185, 980]
+  },
+  {
+    "id": "enemy_ice_golem",
+    "key": "proj_enemy_ice_golem",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 9494767,
+    "file": "enemy_ice_golem.png",
+    "bounds": [92, 218, 1195, 961]
+  },
+  {
+    "id": "enemy_spider_matron",
+    "key": "proj_enemy_spider_matron",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 3934572,
+    "file": "enemy_spider_matron.png",
+    "bounds": [102, 248, 1224, 1011]
+  },
+  {
+    "id": "enemy_scarecrow",
+    "key": "proj_enemy_scarecrow",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 15320170,
+    "file": "enemy_scarecrow.png",
+    "bounds": [82, 330, 1186, 917]
+  },
+  {
+    "id": "enemy_queen_bee",
+    "key": "proj_enemy_queen_bee",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 16761600,
+    "file": "enemy_queen_bee.png",
+    "bounds": [50, 227, 1205, 1014]
+  },
+  {
+    "id": "enemy_rat_captain",
+    "key": "proj_enemy_rat_captain",
+    "size": [64, 64],
+    "spin": 1,
+    "color": 7107965,
+    "file": "enemy_rat_captain.png",
+    "bounds": [64, 309, 1191, 912]
+  },
+  {
+    "id": "enemy_blight_onion",
+    "key": "proj_enemy_blight_onion",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 10182117,
+    "file": "enemy_blight_onion.png",
+    "bounds": [189, 338, 1122, 917]
+  },
+  {
+    "id": "enemy_rot_chili",
+    "key": "proj_enemy_rot_chili",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 10289672,
+    "file": "enemy_rot_chili.png",
+    "bounds": [108, 320, 1181, 938]
+  },
+  {
+    "id": "enemy_gopher",
+    "key": "proj_enemy_gopher",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 10776904,
+    "file": "enemy_gopher.png",
+    "bounds": [283, 358, 1023, 938]
+  },
+  {
+    "id": "enemy_welder_bug",
+    "key": "proj_enemy_welder_bug",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 4804695,
+    "file": "enemy_welder_bug.png",
+    "bounds": [137, 298, 1117, 922]
+  },
+  {
+    "id": "enemy_cap_drone",
+    "key": "proj_enemy_cap_drone",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 15087942,
+    "file": "enemy_cap_drone.png",
+    "bounds": [305, 271, 1029, 1001]
+  },
+  {
+    "id": "enemy_scrap_drone",
+    "key": "proj_enemy_scrap_drone",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 9279918,
+    "file": "enemy_scrap_drone.png",
+    "bounds": [194, 256, 1110, 1020]
+  },
+  {
+    "id": "enemy_icicle_imp",
+    "key": "proj_enemy_icicle_imp",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 4770532,
+    "file": "enemy_icicle_imp.png",
+    "bounds": [164, 384, 1114, 890]
+  },
+  {
+    "id": "enemy_frozen_pea",
+    "key": "proj_enemy_frozen_pea",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 9819570,
+    "file": "enemy_frozen_pea.png",
+    "bounds": [267, 284, 991, 982]
+  },
+  {
+    "id": "enemy_pollen_bloom",
+    "key": "proj_enemy_pollen_bloom",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 16745889,
+    "file": "enemy_pollen_bloom.png",
+    "bounds": [253, 272, 1072, 1023]
+  },
+  {
+    "id": "enemy_sour_milk",
+    "key": "proj_enemy_sour_milk",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 16316922,
+    "file": "enemy_sour_milk.png",
+    "bounds": [122, 334, 1201, 910]
+  },
+  {
+    "id": "enemy_curse_doll",
+    "key": "proj_enemy_curse_doll",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 10309341,
+    "file": "enemy_curse_doll.png",
+    "bounds": [179, 233, 1092, 1021]
+  },
+  {
+    "id": "enemy_gear_bug",
+    "key": "proj_enemy_gear_bug",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 7107965,
+    "file": "enemy_gear_bug.png",
+    "bounds": [135, 295, 1145, 901]
+  },
+  {
+    "id": "enemy_robot_can",
+    "key": "proj_enemy_robot_can",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 11384253,
+    "file": "enemy_robot_can.png",
+    "bounds": [246, 381, 1050, 873]
+  },
+  {
+    "id": "enemy_ice_cube",
+    "key": "proj_enemy_ice_cube",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 11132665,
+    "file": "enemy_ice_cube.png",
+    "bounds": [179, 310, 1079, 956]
+  },
+  {
+    "id": "enemy_spider",
+    "key": "proj_enemy_spider",
+    "size": [64, 64],
+    "spin": 1.5,
+    "color": 6182030,
+    "file": "enemy_spider.png",
+    "bounds": [136, 288, 1162, 972]
+  },
+  {
+    "id": "enemy_rotten_apple",
+    "key": "proj_enemy_rotten_apple",
+    "size": [64, 64],
+    "spin": 0,
+    "color": 9190203,
+    "file": "enemy_rotten_apple.png",
+    "bounds": [126, 297, 1144, 982]
+  },
+  {
+    "id": "player_wither_wand",
+    "key": "proj_wither_wand",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 4854924,
+    "file": "player_wither_wand.png",
+    "bounds": [102, 284, 1175, 967]
+  },
+  {
+    "id": "player_pome_salute",
+    "key": "proj_pome_salute",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 12653087,
+    "file": "player_pome_salute.png",
+    "bounds": [49, 229, 1218, 1018]
+  },
+  {
+    "id": "player_thorn_rain",
+    "key": "proj_thorn_rain",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 13554906,
+    "file": "player_thorn_rain.png",
+    "bounds": [20, 305, 1235, 958]
+  },
+  {
+    "id": "player_glacier_shards",
+    "key": "proj_glacier_shards",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 46296,
+    "file": "player_glacier_shards.png",
+    "bounds": [49, 269, 1211, 998]
+  },
+  {
+    "id": "player_mecha_cannon",
+    "key": "proj_mecha_cannon",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 5420936,
+    "file": "player_mecha_cannon.png",
+    "bounds": [32, 329, 1235, 989]
+  },
+  {
+    "id": "player_lucky_cannon",
+    "key": "proj_lucky_cannon",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16731501,
+    "file": "player_lucky_cannon.png",
+    "bounds": [64, 214, 1210, 1006]
+  },
+  {
+    "id": "player_asparagus_volley",
+    "key": "proj_asparagus_volley",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 8435992,
+    "file": "player_asparagus_volley.png",
+    "bounds": [67, 303, 1217, 914]
+  },
+  {
+    "id": "player_cherry_barrage",
+    "key": "proj_cherry_barrage",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 13631488,
+    "file": "player_cherry_barrage.png",
+    "bounds": [108, 345, 1183, 898]
+  },
+  {
+    "id": "player_grape_magic",
+    "key": "proj_grape_magic",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_grape_magic.png",
+    "bounds": [79, 322, 1209, 934]
+  },
+  {
+    "id": "player_ghost_lanterns",
+    "key": "proj_ghost_lanterns",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16752412,
+    "file": "player_ghost_lanterns.png",
+    "bounds": [60, 244, 1209, 980]
+  },
+  {
+    "id": "player_onion_layers",
+    "key": "proj_onion_layers",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_onion_layers.png",
+    "bounds": [142, 80, 1167, 1116]
+  },
+  {
+    "id": "player_plague_sprayer",
+    "key": "proj_plague_sprayer",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 10309341,
+    "file": "player_plague_sprayer.png",
+    "bounds": [72, 293, 1221, 962]
+  },
+  {
+    "id": "player_honey_flood",
+    "key": "proj_honey_flood",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_honey_flood.png",
+    "bounds": [32, 243, 1222, 997]
+  },
+  {
+    "id": "player_macaron_tempest",
+    "key": "proj_macaron_tempest",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16756684,
+    "file": "player_macaron_tempest.png",
+    "bounds": [76, 215, 1202, 984]
+  },
+  {
+    "id": "player_mustard_dragon",
+    "key": "proj_mustard_dragon",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_mustard_dragon.png",
+    "bounds": [42, 345, 1223, 908]
+  },
+  {
+    "id": "player_anise_storm",
+    "key": "proj_anise_storm",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_anise_storm.png",
+    "bounds": [135, 90, 1191, 1148]
+  },
+  {
+    "id": "player_golden_corn",
+    "key": "proj_golden_corn",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_golden_corn.png",
+    "bounds": [85, 256, 1176, 998]
+  },
+  {
+    "id": "player_blueberry_railgun",
+    "key": "proj_blueberry_railgun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_blueberry_railgun.png",
+    "bounds": [76, 270, 1211, 1002]
+  },
+  {
+    "id": "player_devil_missile",
+    "key": "proj_devil_missile",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_devil_missile.png",
+    "bounds": [51, 284, 1203, 971]
+  },
+  {
+    "id": "player_ketchup_flood",
+    "key": "proj_ketchup_flood",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_ketchup_flood.png",
+    "bounds": [97, 305, 1194, 921]
+  },
+  {
+    "id": "player_pea_gatling",
+    "key": "proj_pea_gatling",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_pea_gatling.png",
+    "bounds": [90, 290, 1163, 966]
+  },
+  {
+    "id": "player_fz_seed_spitter_fork",
+    "key": "proj_fz_seed_spitter_fork",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16742005,
+    "file": "player_fz_seed_spitter_fork.png",
+    "bounds": [127, 313, 1188, 950]
+  },
+  {
+    "id": "player_fz_cumin_star_rice_cooker_aura",
+    "key": "proj_fz_cumin_star_rice_cooker_aura",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 9494767,
+    "file": "player_fz_cumin_star_rice_cooker_aura.png",
+    "bounds": [138, 165, 1172, 1109]
+  },
+  {
+    "id": "player_fz_mycelium_boomerang_lychee_gun",
+    "key": "proj_fz_mycelium_boomerang_lychee_gun",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 5631940,
+    "file": "player_fz_mycelium_boomerang_lychee_gun.png",
+    "bounds": [241, 165, 1170, 1106]
+  },
+  {
+    "id": "player_fz_pomegranate_cluster_beet_axe",
+    "key": "proj_fz_pomegranate_cluster_beet_axe",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16742005,
+    "file": "player_fz_pomegranate_cluster_beet_axe.png",
+    "bounds": [34, 219, 1229, 999]
+  },
+  {
+    "id": "player_fz_pizza_cutter_dragon_lance",
+    "key": "proj_fz_pizza_cutter_dragon_lance",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16743168,
+    "file": "player_fz_pizza_cutter_dragon_lance.png",
+    "bounds": [131, 126, 1176, 1133]
+  },
+  {
+    "id": "mine_bean_airdrop",
+    "key": "mine_bean_airdrop",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 15320170,
+    "file": "mine_bean_airdrop.png",
+    "bounds": [129, 194, 1124, 1068]
+  },
+  {
+    "id": "mine_umami_bomb",
+    "key": "mine_umami_bomb",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16761963,
+    "file": "mine_umami_bomb.png",
+    "bounds": [80, 116, 1175, 1103]
+  },
+  {
+    "id": "mine_pepper_minefield",
+    "key": "mine_pepper_minefield",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16761963,
+    "file": "mine_pepper_minefield.png",
+    "bounds": [127, 110, 1132, 1150]
+  },
+  {
+    "id": "mine_fz_sea_urchin_mine_dragonfruit_orb",
+    "key": "mine_fz_sea_urchin_mine_dragonfruit_orb",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16743168,
+    "file": "mine_fz_sea_urchin_mine_dragonfruit_orb.png",
+    "bounds": [33, 85, 1222, 1138]
+  },
+  {
+    "id": "player_fz_blowpipe_syrup_sprayer",
+    "key": "proj_fz_blowpipe_syrup_sprayer",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16743168,
+    "file": "player_fz_blowpipe_syrup_sprayer.png",
+    "bounds": [95, 360, 1164, 868]
+  },
+  {
+    "id": "mine_fz_bean_mine_spore_cannon",
+    "key": "mine_fz_bean_mine_spore_cannon",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 10309341,
+    "file": "mine_fz_bean_mine_spore_cannon.png",
+    "bounds": [49, 117, 1208, 1133]
+  },
+  {
+    "id": "mine_fz_popcorn_machine_carrot_lance",
+    "key": "mine_fz_popcorn_machine_carrot_lance",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 7649791,
+    "file": "mine_fz_popcorn_machine_carrot_lance.png",
+    "bounds": [27, 65, 1234, 1194]
+  },
+  {
+    "id": "mine_spore_minefield",
+    "key": "mine_spore_minefield",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 8072383,
+    "file": "mine_spore_minefield.png",
+    "bounds": [106, 164, 1149, 1090]
+  },
+  {
+    "id": "mine_fz_potato_mine_popping_candy",
+    "key": "mine_fz_potato_mine_popping_candy",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16766474,
+    "file": "mine_fz_potato_mine_popping_candy.png",
+    "bounds": [55, 159, 1200, 1113]
+  },
+  {
+    "id": "mine_potato_mine",
+    "key": "mine_potato_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 11569512,
+    "file": "mine_potato_mine.png",
+    "bounds": [169, 162, 1093, 1067]
+  },
+  {
+    "id": "mine_bean_mine",
+    "key": "mine_bean_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 15320170,
+    "file": "mine_bean_mine.png",
+    "bounds": [160, 172, 1100, 1063]
+  },
+  {
+    "id": "mine_toadstool_mine",
+    "key": "mine_toadstool_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 10309341,
+    "file": "mine_toadstool_mine.png",
+    "bounds": [126, 182, 1129, 1075]
+  },
+  {
+    "id": "player_fz_melon_grenade_pumpkin_lantern",
+    "key": "proj_fz_melon_grenade_pumpkin_lantern",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 7649791,
+    "file": "player_fz_melon_grenade_pumpkin_lantern.png",
+    "bounds": [82, 248, 1178, 1000]
+  },
+  {
+    "id": "mine_sea_urchin_mine",
+    "key": "mine_sea_urchin_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16761963,
+    "file": "mine_sea_urchin_mine.png",
+    "bounds": [52, 109, 1201, 1146]
+  },
+  {
+    "id": "mine_soy_bomb",
+    "key": "mine_soy_bomb",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16761963,
+    "file": "mine_soy_bomb.png",
+    "bounds": [142, 139, 1112, 1106]
+  },
+  {
+    "id": "mine_choco_mine",
+    "key": "mine_choco_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 7292184,
+    "file": "mine_choco_mine.png",
+    "bounds": [117, 230, 1137, 1030]
+  },
+  {
+    "id": "mine_ember_mine",
+    "key": "mine_ember_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 15228164,
+    "file": "mine_ember_mine.png",
+    "bounds": [112, 203, 1158, 1036]
+  },
+  {
+    "id": "player_fz_peach_syrup_blender_aura",
+    "key": "proj_fz_peach_syrup_blender_aura",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16742005,
+    "file": "player_fz_peach_syrup_blender_aura.png",
+    "bounds": [64, 234, 1191, 1016]
+  },
+  {
+    "id": "mine_mint_frost_mine",
+    "key": "mine_mint_frost_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16761963,
+    "file": "mine_mint_frost_mine.png",
+    "bounds": [78, 170, 1176, 1092]
+  },
+  {
+    "id": "player_fz_knife_case_microwave_cannon",
+    "key": "proj_fz_knife_case_microwave_cannon",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16752412,
+    "file": "player_fz_knife_case_microwave_cannon.png",
+    "bounds": [36, 266, 1223, 967]
+  },
+  {
+    "id": "mine_popcorn_machine",
+    "key": "mine_popcorn_machine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16761963,
+    "file": "mine_popcorn_machine.png",
+    "bounds": [55, 142, 1197, 1116]
+  },
+  {
+    "id": "mine_pepper_mine",
+    "key": "mine_pepper_mine",
+    "size": [48, 48],
+    "spin": 0,
+    "color": 16761963,
+    "file": "mine_pepper_mine.png",
+    "bounds": [89, 145, 1166, 1110]
+  },
+  {
+    "id": "player_fz_spore_sprayer_shaved_ice_gun",
+    "key": "proj_fz_spore_sprayer_shaved_ice_gun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 9494767,
+    "file": "player_fz_spore_sprayer_shaved_ice_gun.png",
+    "bounds": [138, 294, 1134, 974]
+  },
+  {
+    "id": "player_fz_carrot_crossbow_fork",
+    "key": "proj_fz_carrot_crossbow_fork",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 11714243,
+    "file": "player_fz_carrot_crossbow_fork.png",
+    "bounds": [59, 433, 1218, 874]
+  },
+  {
+    "id": "player_fz_cherry_bomb_bamboo_spear",
+    "key": "proj_fz_cherry_bomb_bamboo_spear",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16742005,
+    "file": "player_fz_cherry_bomb_bamboo_spear.png",
+    "bounds": [77, 290, 1178, 922]
+  },
+  {
+    "id": "player_fz_bbq_torch_ketchup_twin",
+    "key": "proj_fz_bbq_torch_ketchup_twin",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 5631940,
+    "file": "player_fz_bbq_torch_ketchup_twin.png",
+    "bounds": [129, 352, 1154, 918]
+  },
+  {
+    "id": "player_fz_pepper_grinder_choco_mine",
+    "key": "proj_fz_pepper_grinder_choco_mine",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 9494767,
+    "file": "player_fz_pepper_grinder_choco_mine.png",
+    "bounds": [184, 313, 1151, 965]
+  },
+  {
+    "id": "player_fz_onion_tear_lightning_whisk",
+    "key": "proj_fz_onion_tear_lightning_whisk",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16766474,
+    "file": "player_fz_onion_tear_lightning_whisk.png",
+    "bounds": [176, 151, 1101, 1077]
+  },
+  {
+    "id": "player_fz_steam_kettle_asparagus_bow",
+    "key": "proj_fz_steam_kettle_asparagus_bow",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 7649791,
+    "file": "player_fz_steam_kettle_asparagus_bow.png",
+    "bounds": [23, 390, 1231, 868]
+  },
+  {
+    "id": "player_fz_bean_bazooka_soy_bomb",
+    "key": "proj_fz_bean_bazooka_soy_bomb",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 15087942,
+    "file": "player_fz_bean_bazooka_soy_bomb.png",
+    "bounds": [108, 299, 1150, 933]
+  },
+  {
+    "id": "player_fz_donut_ring_rot_aura",
+    "key": "proj_fz_donut_ring_rot_aura",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 10309341,
+    "file": "player_fz_donut_ring_rot_aura.png",
+    "bounds": [135, 202, 1156, 1033]
+  },
+  {
+    "id": "player_fz_pumpkin_mortar_eggplant_staff",
+    "key": "proj_fz_pumpkin_mortar_eggplant_staff",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16766474,
+    "file": "player_fz_pumpkin_mortar_eggplant_staff.png",
+    "bounds": [60, 289, 1213, 960]
+  },
+  {
+    "id": "player_fz_pepper_drone_melon_staff",
+    "key": "proj_fz_pepper_drone_melon_staff",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 10776904,
+    "file": "player_fz_pepper_drone_melon_staff.png",
+    "bounds": [84, 294, 1207, 958]
+  },
+  {
+    "id": "player_fz_corn_cannon_blade_aura",
+    "key": "proj_fz_corn_cannon_blade_aura",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 14673641,
+    "file": "player_fz_corn_cannon_blade_aura.png",
+    "bounds": [82, 235, 1185, 1035]
+  },
+  {
+    "id": "player_fz_slush_spray_caramel_aura",
+    "key": "proj_fz_slush_spray_caramel_aura",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16752543,
+    "file": "player_fz_slush_spray_caramel_aura.png",
+    "bounds": [44, 344, 1224, 920]
+  },
+  {
+    "id": "player_fz_jelly_bounce_chili_shuriken",
+    "key": "proj_fz_jelly_bounce_chili_shuriken",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16743168,
+    "file": "player_fz_jelly_bounce_chili_shuriken.png",
+    "bounds": [78, 178, 1186, 1033]
+  },
+  {
+    "id": "player_fz_glacier_mortar_corn_scatter",
+    "key": "proj_fz_glacier_mortar_corn_scatter",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 5631940,
+    "file": "player_fz_glacier_mortar_corn_scatter.png",
+    "bounds": [76, 287, 1191, 971]
+  },
+  {
+    "id": "player_fz_onion_boomerang_candy_cane",
+    "key": "proj_fz_onion_boomerang_candy_cane",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16756684,
+    "file": "player_fz_onion_boomerang_candy_cane.png",
+    "bounds": [143, 161, 1159, 1114]
+  },
+  {
+    "id": "player_fz_thunder_durian_lemon_dagger",
+    "key": "proj_fz_thunder_durian_lemon_dagger",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16742005,
+    "file": "player_fz_thunder_durian_lemon_dagger.png",
+    "bounds": [68, 276, 1204, 967]
+  },
+  {
+    "id": "player_anise_frost_storm",
+    "key": "proj_anise_frost_storm",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 4770532,
+    "file": "player_anise_frost_storm.png",
+    "bounds": [101, 137, 1198, 1120]
+  },
+  {
+    "id": "player_dragon_breath_flame",
+    "key": "proj_dragon_breath_flame",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16730112,
+    "file": "player_dragon_breath_flame.png",
+    "bounds": [41, 353, 1213, 935]
+  },
+  {
+    "id": "player_candy_shotgun",
+    "key": "proj_candy_shotgun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16756684,
+    "file": "player_candy_shotgun.png",
+    "bounds": [44, 247, 1213, 998]
+  },
+  {
+    "id": "player_railgun_sniper",
+    "key": "proj_railgun_sniper",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 3804323,
+    "file": "player_railgun_sniper.png",
+    "bounds": [39, 348, 1187, 905]
+  },
+  {
+    "id": "player_inferno_mortar",
+    "key": "proj_inferno_mortar",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 13631488,
+    "file": "player_inferno_mortar.png",
+    "bounds": [44, 283, 1210, 962]
+  },
+  {
+    "id": "player_toxic_gatling",
+    "key": "proj_toxic_gatling",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 10309341,
+    "file": "player_toxic_gatling.png",
+    "bounds": [79, 293, 1180, 963]
+  },
+  {
+    "id": "player_blast_pea_cannon",
+    "key": "proj_blast_pea_cannon",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16743168,
+    "file": "player_blast_pea_cannon.png",
+    "bounds": [34, 303, 1204, 938]
+  },
+  {
+    "id": "player_syrup_sprayer",
+    "key": "proj_syrup_sprayer",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 13935475,
+    "file": "player_syrup_sprayer.png",
+    "bounds": [102, 352, 1155, 909]
+  },
+  {
+    "id": "player_jelly_bounce",
+    "key": "proj_jelly_bounce",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16740518,
+    "file": "player_jelly_bounce.png",
+    "bounds": [121, 295, 1142, 919]
+  },
+  {
+    "id": "player_pea_sniper",
+    "key": "proj_pea_sniper",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 5420936,
+    "file": "player_pea_sniper.png",
+    "bounds": [111, 386, 1145, 892]
+  },
+  {
+    "id": "player_corn_scatter",
+    "key": "proj_corn_scatter",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_corn_scatter.png",
+    "bounds": [171, 368, 1073, 898]
+  },
+  {
+    "id": "player_melon_grenade",
+    "key": "proj_melon_grenade",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 2976335,
+    "file": "player_melon_grenade.png",
+    "bounds": [124, 330, 1148, 959]
+  },
+  {
+    "id": "player_pumpkin_mortar",
+    "key": "proj_pumpkin_mortar",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16219904,
+    "file": "player_pumpkin_mortar.png",
+    "bounds": [91, 279, 1195, 962]
+  },
+  {
+    "id": "player_coconut_cannon",
+    "key": "proj_coconut_cannon",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 8344889,
+    "file": "player_coconut_cannon.png",
+    "bounds": [34, 251, 1223, 1001]
+  },
+  {
+    "id": "player_chili_shuriken",
+    "key": "proj_chili_shuriken",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 13631488,
+    "file": "player_chili_shuriken.png",
+    "bounds": [97, 150, 1174, 1084]
+  },
+  {
+    "id": "player_knife_case",
+    "key": "proj_knife_case",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 13554906,
+    "file": "player_knife_case.png",
+    "bounds": [76, 453, 1177, 861]
+  },
+  {
+    "id": "player_hot_sauce_gun",
+    "key": "proj_hot_sauce_gun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 14429954,
+    "file": "player_hot_sauce_gun.png",
+    "bounds": [157, 322, 1141, 928]
+  },
+  {
+    "id": "player_cumin_star",
+    "key": "proj_cumin_star",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 12348453,
+    "file": "player_cumin_star.png",
+    "bounds": [58, 106, 1222, 1132]
+  },
+  {
+    "id": "player_bbq_sauce_cannon",
+    "key": "proj_bbq_sauce_cannon",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 10289672,
+    "file": "player_bbq_sauce_cannon.png",
+    "bounds": [105, 265, 1193, 1002]
+  },
+  {
+    "id": "player_blowpipe",
+    "key": "proj_blowpipe",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 8435992,
+    "file": "player_blowpipe.png",
+    "bounds": [103, 342, 1174, 900]
+  },
+  {
+    "id": "player_mycelium_boomerang",
+    "key": "proj_mycelium_boomerang",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 13073919,
+    "file": "player_mycelium_boomerang.png",
+    "bounds": [208, 108, 1171, 1160]
+  },
+  {
+    "id": "player_miasma_sprayer",
+    "key": "proj_miasma_sprayer",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 5904538,
+    "file": "player_miasma_sprayer.png",
+    "bounds": [63, 372, 1198, 908]
+  },
+  {
+    "id": "player_spore_cannon",
+    "key": "proj_spore_cannon",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 8072383,
+    "file": "player_spore_cannon.png",
+    "bounds": [135, 295, 1131, 967]
+  },
+  {
+    "id": "player_microwave_cannon",
+    "key": "proj_microwave_cannon",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 15066597,
+    "file": "player_microwave_cannon.png",
+    "bounds": [74, 265, 1172, 982]
+  },
+  {
+    "id": "player_icicle_volley",
+    "key": "proj_icicle_volley",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 46296,
+    "file": "player_icicle_volley.png",
+    "bounds": [91, 346, 1194, 935]
+  },
+  {
+    "id": "player_glacier_mortar",
+    "key": "proj_glacier_mortar",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 38599,
+    "file": "player_glacier_mortar.png",
+    "bounds": [70, 300, 1188, 950]
+  },
+  {
+    "id": "player_slush_spray",
+    "key": "proj_slush_spray",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 4770532,
+    "file": "player_slush_spray.png",
+    "bounds": [52, 335, 1209, 944]
+  },
+  {
+    "id": "player_shaved_ice_gun",
+    "key": "proj_shaved_ice_gun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 11397364,
+    "file": "player_shaved_ice_gun.png",
+    "bounds": [63, 325, 1194, 934]
+  },
+  {
+    "id": "player_donut_ring",
+    "key": "proj_donut_ring",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 15320170,
+    "file": "player_donut_ring.png",
+    "bounds": [134, 217, 1160, 1043]
+  },
+  {
+    "id": "player_cream_torch",
+    "key": "proj_cream_torch",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16773606,
+    "file": "player_cream_torch.png",
+    "bounds": [92, 377, 1190, 887]
+  },
+  {
+    "id": "player_macaron_gun",
+    "key": "proj_macaron_gun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16756684,
+    "file": "player_macaron_gun.png",
+    "bounds": [40, 254, 1219, 967]
+  },
+  {
+    "id": "player_sprout_wand",
+    "key": "proj_sprout_wand",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 9819570,
+    "file": "player_sprout_wand.png",
+    "bounds": [143, 251, 1187, 1042]
+  },
+  {
+    "id": "player_peach_syrup",
+    "key": "proj_peach_syrup",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16756684,
+    "file": "player_peach_syrup.png",
+    "bounds": [120, 289, 1167, 949]
+  },
+  {
+    "id": "player_ketchup_twin",
+    "key": "proj_ketchup_twin",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 13631488,
+    "file": "player_ketchup_twin.png",
+    "bounds": [86, 366, 1168, 891]
+  },
+  {
+    "id": "player_cherry_pistols",
+    "key": "proj_cherry_pistols",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 13631488,
+    "file": "player_cherry_pistols.png",
+    "bounds": [175, 358, 1131, 871]
+  },
+  {
+    "id": "player_lychee_gun",
+    "key": "proj_lychee_gun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16731501,
+    "file": "player_lychee_gun.png",
+    "bounds": [37, 269, 1217, 985]
+  },
+  {
+    "id": "player_blackberry_wand",
+    "key": "proj_blackberry_wand",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 4854924,
+    "file": "player_blackberry_wand.png",
+    "bounds": [100, 288, 1199, 1007]
+  },
+  {
+    "id": "player_onion_tear",
+    "key": "proj_onion_tear",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 14723839,
+    "file": "player_onion_tear.png",
+    "bounds": [91, 166, 1212, 1135]
+  },
+  {
+    "id": "player_pepper_drone",
+    "key": "proj_pepper_drone",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 5420936,
+    "file": "player_pepper_drone.png",
+    "bounds": [58, 325, 1201, 915]
+  },
+  {
+    "id": "player_pomegranate_cluster",
+    "key": "proj_pomegranate_cluster",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 12653087,
+    "file": "player_pomegranate_cluster.png",
+    "bounds": [64, 294, 1191, 972]
+  },
+  {
+    "id": "player_asparagus_bow",
+    "key": "proj_asparagus_bow",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 8435992,
+    "file": "player_asparagus_bow.png",
+    "bounds": [41, 422, 1231, 854]
+  },
+  {
+    "id": "player_spore_sprayer",
+    "key": "proj_spore_sprayer",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 10309341,
+    "file": "player_spore_sprayer.png",
+    "bounds": [80, 343, 1181, 910]
+  },
+  {
+    "id": "player_pumpkin_lantern",
+    "key": "proj_pumpkin_lantern",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16752412,
+    "file": "player_pumpkin_lantern.png",
+    "bounds": [71, 269, 1169, 972]
+  },
+  {
+    "id": "player_hotpot_breath",
+    "key": "proj_hotpot_breath",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_hotpot_breath.png",
+    "bounds": [47, 296, 1207, 978]
+  },
+  {
+    "id": "player_jam_mortar",
+    "key": "proj_jam_mortar",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_jam_mortar.png",
+    "bounds": [100, 274, 1189, 981]
+  },
+  {
+    "id": "player_bbq_torch",
+    "key": "proj_bbq_torch",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_bbq_torch.png",
+    "bounds": [62, 345, 1188, 937]
+  },
+  {
+    "id": "player_pepper_grinder",
+    "key": "proj_pepper_grinder",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_pepper_grinder.png",
+    "bounds": [127, 326, 1097, 909]
+  },
+  {
+    "id": "player_star_anise_shuriken",
+    "key": "proj_star_anise_shuriken",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_star_anise_shuriken.png",
+    "bounds": [143, 107, 1163, 1122]
+  },
+  {
+    "id": "player_dragonfruit_orb",
+    "key": "proj_dragonfruit_orb",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_dragonfruit_orb.png",
+    "bounds": [84, 248, 1191, 1017]
+  },
+  {
+    "id": "player_thunder_durian",
+    "key": "proj_thunder_durian",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_thunder_durian.png",
+    "bounds": [80, 261, 1187, 987]
+  },
+  {
+    "id": "player_pepper_spray",
+    "key": "proj_pepper_spray",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_pepper_spray.png",
+    "bounds": [65, 371, 1200, 928]
+  },
+  {
+    "id": "player_steam_kettle",
+    "key": "proj_steam_kettle",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_steam_kettle.png",
+    "bounds": [49, 337, 1219, 926]
+  },
+  {
+    "id": "player_ice_cube_tray",
+    "key": "proj_ice_cube_tray",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_ice_cube_tray.png",
+    "bounds": [99, 254, 1175, 985]
+  },
+  {
+    "id": "player_soy_pistol",
+    "key": "proj_soy_pistol",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_soy_pistol.png",
+    "bounds": [99, 358, 1155, 859]
+  },
+  {
+    "id": "player_honey_blaster",
+    "key": "proj_honey_blaster",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_honey_blaster.png",
+    "bounds": [136, 331, 1129, 887]
+  },
+  {
+    "id": "player_carrot_crossbow",
+    "key": "proj_carrot_crossbow",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_carrot_crossbow.png",
+    "bounds": [116, 428, 1168, 799]
+  },
+  {
+    "id": "player_seed_spitter",
+    "key": "proj_seed_spitter",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_seed_spitter.png",
+    "bounds": [227, 352, 1079, 905]
+  },
+  {
+    "id": "player_plate_frisbee",
+    "key": "proj_plate_frisbee",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_plate_frisbee.png",
+    "bounds": [65, 305, 1193, 964]
+  },
+  {
+    "id": "player_blueberry_sniper",
+    "key": "proj_blueberry_sniper",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_blueberry_sniper.png",
+    "bounds": [52, 348, 1184, 945]
+  },
+  {
+    "id": "player_cherry_bomb",
+    "key": "proj_cherry_bomb",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_cherry_bomb.png",
+    "bounds": [153, 267, 1132, 1005]
+  },
+  {
+    "id": "player_bean_bazooka",
+    "key": "proj_bean_bazooka",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_bean_bazooka.png",
+    "bounds": [102, 331, 1195, 957]
+  },
+  {
+    "id": "player_grape_shotgun",
+    "key": "proj_grape_shotgun",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_grape_shotgun.png",
+    "bounds": [113, 315, 1173, 969]
+  },
+  {
+    "id": "player_olive_launcher",
+    "key": "proj_olive_launcher",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_olive_launcher.png",
+    "bounds": [192, 378, 1066, 878]
+  },
+  {
+    "id": "player_pizza_cutter",
+    "key": "proj_pizza_cutter",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_pizza_cutter.png",
+    "bounds": [112, 322, 1168, 990]
+  },
+  {
+    "id": "player_sauce_gatling",
+    "key": "proj_sauce_gatling",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_sauce_gatling.png",
+    "bounds": [126, 355, 1160, 898]
+  },
+  {
+    "id": "player_mustard_flamer",
+    "key": "proj_mustard_flamer",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_mustard_flamer.png",
+    "bounds": [70, 350, 1199, 933]
+  },
+  {
+    "id": "player_ketchup",
+    "key": "proj_ketchup",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_ketchup.png",
+    "bounds": [78, 240, 1191, 1005]
+  },
+  {
+    "id": "player_corn_cannon",
+    "key": "proj_corn_cannon",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_corn_cannon.png",
+    "bounds": [218, 300, 1113, 982]
+  },
+  {
+    "id": "player_onion_boomerang",
+    "key": "proj_onion_boomerang",
+    "size": [40, 40],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_onion_boomerang.png",
+    "bounds": [79, 132, 1179, 1123]
+  },
+  {
+    "id": "player_slingshot",
+    "key": "proj_slingshot",
+    "size": [28, 24],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_slingshot.png",
+    "bounds": [158, 288, 1088, 976]
+  },
+  {
+    "id": "player_chili_rocket",
+    "key": "proj_chili_rocket",
+    "size": [48, 28],
+    "spin": 0,
+    "color": 16765286,
+    "file": "player_chili_rocket.png",
+    "bounds": [59, 348, 1201, 885]
+  }
+]

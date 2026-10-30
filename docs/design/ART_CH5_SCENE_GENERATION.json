@@ -1,0 +1,13 @@
+{
+  "chapter": 5,
+  "status": "ground generated; objects and integration pending",
+  "sourceRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "ground": {
+    "file": "maps/ch5/ground-pilot-1.png",
+    "prompt": "Create a production game background for cute tomato heroine survivor game chapter5 ketchup factory. Strict orthographic overhead top down, wide landscape image. Reference1 is exact geometry guide: preserve rectangular playable floor edges at normalized x .0775 to .9225, y .115 to .885, no perspective. Remove the four grey machine blocks entirely (machines added as separate sprites); fill their footprints with same walkable flooring. Reference2 only provides polished hand-painted cozy anime storybook rendering, rich restrained texture, warm amber against muted teal shadow, soft rounded forms. Large open quiet blue-grey diamond plate floor, sparse ketchup splashes, worn yellow-black perimeter safety stripe. Outside floor narrow margin contains painted pipes, tomato sauce jars, red industrial valves, cozy mini food factory detail; never intrude inside playable rectangle. NO conveyor belts, vents, fans, machines, characters, eyes, UI, labels, text or watermark. All interactive objects added separately by engine. Crisp native high detail, requested 2560x1568 landscape. Maintain exact straight rectangular border positions from guide; do not crop or tilt.",
+    "references": [
+      "maps/ch5/guides/geometry.png",
+      "maps/ch1/ground.png"
+    ]
+  }
+}

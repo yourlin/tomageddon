@@ -1,0 +1,46 @@
+{
+  "kind": "char",
+  "id": "sweetpotato",
+  "skinId": "skin_sweetpotato_4",
+  "referenceHeight": 160,
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_4/idle-sheet-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_4/move-sheet-right-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_4/hurt-sheet-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_4/die-sheet-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_4/cast-sheet-2.png"
+    }
+  ],
+  "status": "gutters and shared action calibration checked; runtime verification pending"
+}

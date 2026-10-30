@@ -1,0 +1,14 @@
+{
+  "machine": {
+    "prompt": "Strict overhead orthographic top-down cute ketchup factory filling machine game obstacle sprite, compact horizontal rectangular footprint ratio160:100, blue-grey rounded industrial housing, brass fittings, red sauce reservoir, small red valve, polished handpainted anime cozy game art warm amber highlights dark brown outline. ONE machine isolated centered fully visible, transparent background; no floor, shadow minimal tight contact only, no perspective tilt, no text or characters.",
+    "source": "maps/ch5/machine-pilot-1.png"
+  },
+  "vent": {
+    "prompt": "Single circular steam vent grate for cute ketchup factory game, strict orthographic overhead, warm steel dark teal circular grate with eight slots and small brass rim bolts, subtle red sauce stain. Polished hand-painted cozy anime art dark brown outline. Isolated centered whole object transparent background, no steam/smoke, no floor, no text, no eyes, no perspective.",
+    "source": "maps/ch5/vent-pilot-1.png"
+  },
+  "conveyor": {
+    "prompt": "Seamlessly horizontally repeating industrial conveyor game texture tile. Strict overhead view; horizontal belt moving left-right; muted dark teal ribbed rubber segments, narrow brass/steel rails along top/bottom edges. Cute polished hand-painted anime factory, readable at small size, soft rounded details. Image fullbleed square, no margin, no background, no ends/caps, left/right edges join perfectly. No arrows/text/characters. This is flat continuous belt material not isolated whole conveyor.",
+    "source": "maps/ch5/conveyor-pilot-1.png"
+  }
+}

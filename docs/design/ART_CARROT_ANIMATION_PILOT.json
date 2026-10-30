@@ -1,0 +1,74 @@
+{
+  "kind": "char",
+  "id": "carrot",
+  "status": "pilot; visual anchors and playback acceptance pending",
+  "actions": [
+    {
+      "name": "idle",
+      "source": "drafts/char/carrot/idle-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 0
+    },
+    {
+      "name": "move",
+      "source": "drafts/char/carrot/move-sheet-right-1.png",
+      "grid": 2,
+      "referenceFrame": 0
+    },
+    {
+      "name": "attack",
+      "source": "drafts/char/carrot/attack-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 3
+    },
+    {
+      "name": "hurt",
+      "source": "drafts/char/carrot/hurt-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 3
+    },
+    {
+      "name": "windup",
+      "source": "drafts/char/carrot/windup-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 0
+    },
+    {
+      "name": "charge",
+      "source": "drafts/char/carrot/charge-sheet-right-1.png",
+      "grid": 2,
+      "referenceFrame": 0
+    },
+    {
+      "name": "stun",
+      "source": "drafts/char/carrot/stun-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 3
+    },
+    {
+      "name": "die",
+      "source": "drafts/char/carrot/die-sheet-pilot-2.png",
+      "grid": 2,
+      "referenceFrame": 0
+    },
+    {
+      "name": "spawn",
+      "source": "drafts/char/carrot/spawn-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 3
+    },
+    {
+      "name": "cast",
+      "source": "drafts/char/carrot/cast-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 3
+    },
+    {
+      "name": "victory",
+      "source": "drafts/char/carrot/victory-sheet-pilot-1.png",
+      "grid": 2,
+      "referenceFrame": 3
+    }
+  ],
+  "referenceHeight": 180
+}

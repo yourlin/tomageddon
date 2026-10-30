@@ -1,82 +1,198 @@
-// 设置：两列选项 + 存档导入导出（K5）+ 错误日志（K10）
+import { settingSlider, type SettingRange } from '../ui/SettingSlider';
+// 分类设置：声音 / 画面 / 操作 / 存档。战斗中只开放即时生效的设置。
 import { resetTutorial } from '../systems/Tutorial';
 import Phaser from 'phaser';
-import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, autoRelayout, tu } from '../ui/UI';
+import { MENU, menuButton, menuPanel, menuHeading, menuRule, menuToggle, preloadGameMenu } from '../ui/GameMenuUI';
+import { toggleFullscreen } from '../systems/Fullscreen';
 import { save, persist, resetSave, exportSave, importSave } from '../systems/Save';
 import { audio } from '../systems/Audio';
-import { FPS_OPTIONS, applyFpsLimit, setFpsDisplay } from '../systems/Perf';
+import { rumble } from '../systems/Controls';
+import { applyFpsLimit, setFpsDisplay } from '../systems/Perf';
 import { errorLog, errorReport, clearErrorLog } from '../systems/ErrorLog';
 import { tx, lang } from '../i18n';
 import { VW, VH, RES } from '../systems/HiDpi';
+import type { GraphicsQuality } from '../systems/GraphicsQuality';
+import { currentArtStyle, type ArtStyle } from '../systems/ArtStyle';
+import { applyArtStyle } from '../systems/ArtStyleSwitch';
+import { loadArt, readyArt, releaseArt, unloadUnusedArt } from '../systems/ArtRegistry';
+import { createEntityVisual } from '../objects/visualFactory';
 
 const pct = (v: number) => `${Math.round(v * 100)}%`;
-/** 在 opts 里循环取下一个值 */
-const cycle = <T>(opts: T[], cur: T): T => opts[(opts.indexOf(cur) + 1) % opts.length];
+
+/** 画质 / 高清渲染 / 语言要重新加载才生效：选好后统一用「应用」按钮重载，而不是一点就重载（画风切换会重建本场景，所以状态放在模块里） */
+let reloadPending = false;
+type SettingsTab = 'sound' | 'graphics' | 'controls' | 'data';
+type Row = [string, () => string, (refresh: () => void) => void, (SettingRange & { id: string })?];
+const TOMATO = { kind: 'char', id: 'tomato' } as const;
 
 export class SettingsScene extends Phaser.Scene {
   private resetDialog?: Phaser.GameObjects.Container;
+  private choice?: Phaser.GameObjects.Container;
+  private applyBtn?: Phaser.GameObjects.Container;
+  private stylePreview?: Phaser.GameObjects.Container;
   constructor() {
     super('Settings');
   }
 
   private fromPause = false;
+  private tab: SettingsTab = 'graphics';
+  private body?: Phaser.GameObjects.Container;
+  private tabs?: Phaser.GameObjects.Container;
+  private rows: Row[] = [];
+  private frame = { x: 0, y: 0, w: 0, h: 0 };
 
-  create(data?: { from?: string }): void {
+  preload(): void {
+    preloadGameMenu(this);
+    if (!this.textures.exists('settings:kitchen'))
+      this.load.image('settings:kitchen', `${import.meta.env.BASE_URL}assets/ui/settings-kitchen.png`);
+  }
+
+  create(data?: { from?: string; tab?: SettingsTab }): void {
     this.fromPause = data?.from === 'pause';
-    autoRelayout(this, data);
+    this.tab = data?.tab ?? 'graphics';
+    if (this.fromPause && this.tab === 'data') this.tab = 'graphics';
+    // Preserve the selected category when rotating or resizing.
+    const layoutData = { ...data, tab: this.tab };
+    this.registry.set('settingsLayoutData', layoutData);
+    autoRelayout(this, layoutData);
     const W = VW(this),
       H = VH(this);
     this.resetDialog = undefined;
-    if (this.fromPause) this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.7).setInteractive();
-    else this.cameras.main.setBackgroundColor(COLORS.bg);
-    const PW = Math.min(W - 40, 1100);
-    panel(this, W / 2 - PW / 2, 30, PW, H - 60);
-    text(this, W / 2, 70, tx('设置', 'Settings'), 38).setOrigin(0.5);
+    this.choice = undefined;
+    this.applyBtn = undefined;
+    this.stylePreview = undefined;
+    this.body = undefined;
+    this.tabs = undefined;
+    this.cameras.main.setBackgroundColor(this.fromPause ? 'rgba(0,0,0,0)' : COLORS.bg);
+    if (this.fromPause) this.add.rectangle(W / 2, H / 2, W, H, 0x140d12, 0.84).setInteractive();
+    else if (currentArtStyle() === 'cute' && this.textures.exists('settings:kitchen')) {
+      const bg = this.add.image(W / 2, H / 2, 'settings:kitchen');
+      bg.setScale(Math.max(W / bg.width, H / bg.height));
+    }
+    const PW = Math.min(this.fromPause ? 920 : 880, W * (this.fromPause ? 0.86 : 0.65));
+    const px = this.fromPause ? (W - PW) / 2 : Math.min(W - PW - 50, W * 0.32);
+    this.frame = { x: px, y: 36, w: PW, h: H - 72 };
+    menuPanel(this, px, 36, PW, H - 72);
+    menuHeading(this, px + PW / 2, 86, tx('设置', 'Settings'), 42).setOrigin(0.5);
+    menuButton(this, W - 40, 40, 44, 42, '', () => toggleFullscreen(this), false, 18, 'fullscreen').setName('settings:fullscreen');
+    menuRule(this, px + 34, H - 136, PW - 68);
+    menuButton(this, px + 115, H - 84, 166, 48, tx('返回', 'Back'), () => this.back(), false, 21, 'arrow-left');
+    text(
+      this,
+      px + PW / 2,
+      H - 157,
+      this.fromPause
+        ? tx('战斗中仅显示即时生效的设置', 'Only live settings are available during a run')
+        : tx('设置自动保存 · 画质与语言更改后需重新加载', 'Auto-saved · Quality and language changes require a reload'),
+      14,
+      MENU.dim,
+    ).setOrigin(0.5);
     const st = save.settings;
     const onOff = (v: boolean) => (v ? tx('开', 'On') : tx('关', 'Off'));
-    const rows: [string, () => string, () => void][] = [
-      [
+    const numeric = (
+      id: string,
+      name: string,
+      min: number,
+      max: number,
+      step: number,
+      read: () => number,
+      write: (n: number) => void,
+      format = () => pct(read()),
+    ): Row => [
+      name,
+      format,
+      () => {},
+      {
+        id,
+        min,
+        max,
+        step,
+        read,
+        write,
+        commit: () => {
+          persist();
+          if (id === 'sfx') audio.play(this, 'click');
+          // 松手时试震一次（中等强度的受击震动），让玩家当场感受到这一档的力度：镜头抖动 + 手柄震动
+          if (id === 'shake' && st.shake) {
+            this.cameras.main.shake(300, 0.012 * (st.shakeScale ?? 1));
+            rumble(0.012 * (st.shakeScale ?? 1), 300);
+          }
+        },
+      },
+    ];
+    const rows: Row[] = [
+      numeric(
+        'sfx',
         tx('音效', 'Sound FX'),
-        () => pct(st.sfx),
-        () => {
-          st.sfx = st.sfx >= 1 ? 0 : Math.round((st.sfx + 0.25) * 100) / 100;
-          audio.play(this, 'click');
+        0,
+        1,
+        0.01,
+        () => st.sfx,
+        (n) => {
+          st.sfx = n;
         },
-      ],
-      [
+      ),
+      numeric(
+        'music',
         tx('音乐', 'Music'),
-        () => pct(st.music),
-        () => {
-          st.music = st.music >= 1 ? 0 : Math.round((st.music + 0.25) * 100) / 100;
-          audio.setMusicVolume(st.music);
+        0,
+        1,
+        0.01,
+        () => st.music,
+        (n) => {
+          st.music = n;
+          audio.setMusicVolume(n);
         },
-      ],
+      ),
       [
         tx('技能释放', 'Skill Cast'),
         () => (st.autoSkill ? tx('自动', 'Auto') : tx('手动', 'Manual')),
-        () => (st.autoSkill = !st.autoSkill),
-      ],
-      // L1：震动强度（关 / 弱 / 中 / 强）
-      [
-        tx('屏幕震动', 'Screen Shake'),
-        () => (!st.shake ? tx('关', 'Off') : pct(st.shakeScale ?? 1)),
         () => {
-          const levels = [0, 0.5, 1, 1.5];
-          const cur = st.shake ? (st.shakeScale ?? 1) : 0;
-          const next = cycle(levels, levels.includes(cur) ? cur : 1);
-          st.shake = next > 0;
-          st.shakeScale = next || 1;
+          st.autoSkill = !st.autoSkill;
         },
       ],
-      [tx('伤害数字', 'Damage Numbers'), () => onOff(st.showDmg), () => (st.showDmg = !st.showDmg)],
-      // L1：伤害数字密度（暴击总显示）
+      numeric(
+        'shake',
+        tx('屏幕震动', 'Screen Shake'),
+        0,
+        1.5,
+        0.05,
+        () => (st.shake ? (st.shakeScale ?? 1) : 0),
+        (n) => {
+          st.shake = n > 0;
+          st.shakeScale = n || 1;
+        },
+      ),
       [
-        tx('伤害数字密度', 'Number Density'),
-        () => pct(st.dmgDensity ?? 1),
-        () => (st.dmgDensity = cycle([1, 0.5, 0.25, 0.1], st.dmgDensity ?? 1)),
+        tx('伤害数字', 'Damage Numbers'),
+        () => onOff(st.showDmg),
+        () => {
+          st.showDmg = !st.showDmg;
+        },
       ],
-      // L1：粒子数量
-      [tx('粒子数量', 'Particles'), () => pct(st.particles ?? 1), () => (st.particles = cycle([1, 0.5, 0.25, 0], st.particles ?? 1))],
+      numeric(
+        'dmgDensity',
+        tx('伤害数字密度', 'Number Density'),
+        0.1,
+        1,
+        0.05,
+        () => st.dmgDensity ?? 1,
+        (n) => {
+          st.dmgDensity = n;
+        },
+      ),
+      numeric(
+        'particles',
+        tx('粒子数量', 'Particles'),
+        0,
+        1,
+        0.05,
+        () => st.particles ?? 1,
+        (n) => {
+          st.particles = n;
+        },
+      ),
       [
         tx('显示帧数', 'Show FPS'),
         () => onOff(st.showFps),
@@ -85,40 +201,105 @@ export class SettingsScene extends Phaser.Scene {
           setFpsDisplay(this.game, st.showFps);
         },
       ],
-      [
+      numeric(
+        'fpsLimit',
         tx('帧数上限', 'FPS Limit'),
+        30,
+        120,
+        30,
+        () => st.fpsLimit,
+        (n) => {
+          st.fpsLimit = n;
+          applyFpsLimit(this.game, n);
+        },
         () => `${st.fpsLimit} FPS`,
+      ),
+      numeric(
+        'joyScale',
+        tx('摇杆大小', 'Joystick Size'),
+        0.8,
+        1.5,
+        0.05,
+        () => st.joyScale ?? 1,
+        (n) => {
+          st.joyScale = n;
+        },
+      ),
+      [
+        tx('摇杆位置', 'Joystick Side'),
+        () => (st.joyRight ? tx('右手', 'Right') : tx('左手', 'Left')),
         () => {
-          st.fpsLimit = cycle(FPS_OPTIONS, st.fpsLimit);
-          applyFpsLimit(this.game, st.fpsLimit);
+          st.joyRight = !st.joyRight;
         },
       ],
-      // L2：移动端操作
-      [tx('摇杆大小', 'Joystick Size'), () => pct(st.joyScale ?? 1), () => (st.joyScale = cycle([1, 1.25, 1.5, 0.8], st.joyScale ?? 1))],
-      [tx('摇杆位置', 'Joystick Side'), () => (st.joyRight ? tx('右手', 'Right') : tx('左手', 'Left')), () => (st.joyRight = !st.joyRight)],
-      [tx('按钮大小', 'Button Size'), () => pct(st.btnScale ?? 1), () => (st.btnScale = cycle([1, 1.2, 1.4, 0.85], st.btnScale ?? 1))],
+      numeric(
+        'btnScale',
+        tx('按钮大小', 'Button Size'),
+        0.85,
+        1.4,
+        0.05,
+        () => st.btnScale ?? 1,
+        (n) => {
+          st.btnScale = n;
+        },
+      ),
     ];
-    // 切换语言需要重新加载（数据文本在启动时按语言写入）；战斗中暂停时不提供，避免丢失本波进度
+    // 以下选项在战斗中暂停时不提供，避免丢失本波进度
     if (!this.fromPause)
       rows.push(
+        // 语言：数据文本在启动时按语言写入，需要重新加载
         [
           tx('语言', 'Language'),
           () => (lang === 'en' ? 'English' : '中文'),
-          () => {
-            st.lang = lang === 'en' ? 'zh' : 'en';
-            persist();
-            location.reload();
-          },
+          (refresh) =>
+            this.openChoice(
+              [
+                { label: '中文', value: 'zh' },
+                { label: 'English', value: 'en' },
+              ],
+              st.lang ?? lang,
+              (v) => {
+                st.lang = v as 'zh' | 'en';
+                this.markReload();
+                refresh();
+              },
+            ),
         ],
-        // 高清渲染：按屏幕物理像素渲染（高分屏 / 全屏更清晰，GPU 负担更大）；渲染倍率在启动时确定，切换后重新加载
+        // 画质：下载的贴图档位在启动时确定，需要重新加载
+        [
+          tx('画质', 'Graphics quality'),
+          () => this.qualityName(st.graphicsQuality ?? 'auto'),
+          (refresh) =>
+            this.openChoice(
+              (['auto', 'low', 'standard', 'high'] as GraphicsQuality[]).map((v) => ({ label: this.qualityName(v), value: v })),
+              st.graphicsQuality ?? 'auto',
+              (v) => {
+                st.graphicsQuality = v as GraphicsQuality;
+                this.markReload();
+                refresh();
+              },
+            ),
+        ],
+        // 高清渲染：按屏幕物理像素渲染（高分屏 / 全屏更清晰，GPU 负担更大）；渲染倍率在启动时确定，需要重新加载
         [
           tx('高清渲染', 'High-res rendering'),
-          () => (st.hiDpi !== false ? tx(`开（${RES}×）`, `On (${RES}×)`) : tx('关（更省电）', 'Off (saves power)')),
-          () => {
-            st.hiDpi = st.hiDpi === false;
-            persist();
-            location.reload();
-          },
+          () =>
+            st.hiDpi !== false
+              ? tx(`开（${Math.round(RES * 100) / 100}×）`, `On (${Math.round(RES * 100) / 100}×)`)
+              : tx('关（更省电）', 'Off (saves power)'),
+          (refresh) =>
+            this.openChoice(
+              [
+                { label: tx('开', 'On'), value: 'on' },
+                { label: tx('关（更省电）', 'Off (saves power)'), value: 'off' },
+              ],
+              st.hiDpi !== false ? 'on' : 'off',
+              (v) => {
+                st.hiDpi = v === 'on';
+                this.markReload();
+                refresh();
+              },
+            ),
         ],
         [
           tx('新手引导', 'Tutorial tips'),
@@ -126,47 +307,307 @@ export class SettingsScene extends Phaser.Scene {
           () => resetTutorial(),
         ],
       );
-    const perCol = Math.ceil(rows.length / 2);
-    const top = 120;
-    const rowH = Math.min(48, (H - 300 - top) / perCol);
-    const colW = PW / 2;
-    rows.forEach(([name, val, act], i) => {
-      const col = Math.floor(i / perCol);
-      const x0 = W / 2 - PW / 2 + col * colW;
-      const y = top + (i % perCol) * rowH;
-      text(this, x0 + 40, y, name, 22).setOrigin(0, 0.5);
-      const b = button(
+    this.rows = rows;
+    this.drawCategory();
+    if (reloadPending && !this.fromPause) this.markReload();
+    // ESC：弹窗打开时只关闭弹窗，否则返回
+    const escape = () => (this.choice ? this.closeChoice() : this.resetDialog ? this.closeResetDialog() : this.back());
+    this.input.keyboard?.on('keydown-ESC', escape);
+    this.events.once('shutdown', () => {
+      this.input.keyboard?.off('keydown-ESC', escape);
+      releaseArt('style-thumb');
+      this.game.events.once('poststep', () => unloadUnusedArt(this.textures));
+    });
+  }
+
+  private drawCategory(): void {
+    this.closeChoice();
+    this.stylePreview?.destroy();
+    this.stylePreview = undefined;
+    this.body?.destroy();
+    this.tabs?.destroy();
+    const { x, w } = this.frame;
+    const H = VH(this);
+    const before = new Set(this.children.list);
+    const defs: [SettingsTab, string, string][] = [
+      ['sound', tx('声音', 'Sound'), 'volume-up-fill'],
+      ['graphics', tx('画面', 'Graphics'), 'display'],
+      ['controls', tx('操作', 'Controls'), 'controller'],
+      ['data', tx('存档', 'Save'), 'archive-fill'],
+    ];
+    const available = this.fromPause ? defs.slice(0, 3) : defs;
+    const tw = (w - 68) / available.length;
+    available.forEach(([id, title, icon], i) => {
+      menuButton(
         this,
-        x0 + colW - 130,
-        y,
-        190,
-        Math.min(42, rowH - 4),
-        val(),
+        x + 34 + tw * (i + 0.5),
+        148,
+        tw - 5,
+        44,
+        title,
         () => {
-          act();
-          persist();
-          b.setLabel(val());
+          this.tab = id;
+          const data = this.registry.get('settingsLayoutData') as { tab: SettingsTab };
+          data.tab = id;
+          this.drawCategory();
         },
-        0x4a6fa5,
-        20,
+        id === this.tab,
+        19,
+        icon,
+      ).setName(`settings-tab:${id}`);
+    });
+    this.tabs = this.add.container(
+      0,
+      0,
+      this.children.list.filter((o) => !before.has(o)),
+    );
+    const start = new Set(this.children.list);
+    const indices =
+      this.tab === 'sound'
+        ? [1, 0]
+        : this.tab === 'graphics'
+          ? this.fromPause
+            ? [6, 7, 8]
+            : [13, 14, 6, 7, 8]
+          : this.tab === 'controls'
+            ? [2, 3, 4, 5, 9, 10, 11]
+            : [12, 15];
+    const rowH = this.tab === 'sound' ? 100 : this.tab === 'controls' ? 46 : 48;
+    const top = this.tab === 'sound' ? 248 : 211;
+    indices.forEach((index, i) => {
+      const [name, value, act, range] = this.rows[index];
+      const y = top + i * rowH;
+      this.add
+        .graphics()
+        .fillStyle(MENU.row, 0.6)
+        .fillRoundedRect(x + 34, y - 20, w - 68, 40, 10);
+      text(this, x + 54, y, name, tu(19), MENU.cream).setOrigin(0, 0.5);
+      if (range) {
+        settingSlider(this, x + w - 197, y - 2, Math.min(270, w * 0.36), range.id, range, value);
+      } else if (index === 4 || index === 7 || index === 14) {
+        const read = () => (index === 4 ? save.settings.showDmg : index === 7 ? save.settings.showFps : save.settings.hiDpi !== false);
+        menuToggle(
+          this,
+          x + w - 132,
+          y,
+          read,
+          () => {
+            if (index === 14) {
+              save.settings.hiDpi = !read();
+              this.markReload();
+            } else {
+              act(() => {});
+              persist();
+            }
+          },
+          tx('开', 'On'),
+          tx('关', 'Off'),
+        );
+      } else {
+        const b = menuButton(
+          this,
+          x + w - 160,
+          y,
+          240,
+          34,
+          value(),
+          () => {
+            act(() => {
+              persist();
+              b.setLabel(value());
+            });
+            persist();
+            b.setLabel(value());
+          },
+          false,
+          tu(17),
+        );
+      }
+    });
+    if (this.tab === 'graphics' && !this.fromPause) this.drawStylePreviews();
+    if (this.tab === 'data') this.dataRow(x, w);
+    if (this.tab === 'sound') {
+      text(this, x + 54, 419, tx('调整音量，即时试听。', 'Adjust the volume and hear the change.'), 16, MENU.dim);
+    }
+    if (this.tab === 'controls') {
+      text(
+        this,
+        x + w / 2,
+        H - 192,
+        tx('WASD / 方向键移动 · 空格释放技能 · ESC 暂停', 'WASD / Arrows to move · Space for skill · ESC to pause'),
+        13,
+        MENU.dim,
+      ).setOrigin(0.5);
+    }
+    this.body = this.add.container(
+      0,
+      0,
+      this.children.list.filter((o) => !start.has(o)),
+    );
+  }
+
+  private qualityName(v: GraphicsQuality): string {
+    return { auto: tx('自动', 'Auto'), low: tx('低', 'Low'), standard: tx('标准', 'Standard'), high: tx('高', 'High') }[v];
+  }
+
+  private styleName(v: ArtStyle): string {
+    return v === 'retro' ? tx('复古风', 'Retro') : tx('可爱风', 'Cute');
+  }
+
+  /** 有需要重新加载才生效的改动：在「返回」旁边出现「应用并重新加载」 */
+  private markReload(): void {
+    persist();
+    reloadPending = true;
+    if (this.applyBtn) return;
+    if (this.fromPause) return;
+    const { x, w } = this.frame;
+    this.applyBtn = menuButton(
+      this,
+      x + w - 175,
+      VH(this) - 84,
+      282,
+      48,
+      tx('应用并重载', 'Apply & reload'),
+      () => location.reload(),
+      true,
+      20,
+    );
+    this.applyBtn.setDepth(5);
+  }
+
+  private closeChoice(): void {
+    this.choice?.destroy();
+    this.choice = undefined;
+  }
+
+  /** 下拉选项：在页面中央列出全部选项，点选后关闭 */
+  private openChoice(opts: { label: string; value: string }[], cur: string, pick: (v: string) => void): void {
+    this.closeChoice();
+    const W = VW(this),
+      H = VH(this);
+    const c = this.add.container(0, 0).setDepth(1500);
+    this.choice = c;
+    const mask = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.55).setInteractive();
+    mask.on('pointerup', () => this.closeChoice());
+    const bw = 280,
+      bh = 48,
+      gap = 10;
+    const PH = opts.length * (bh + gap) + gap + 16;
+    const px = W / 2 - bw / 2 - 20,
+      py = H / 2 - PH / 2;
+    const block = this.add.zone(W / 2, H / 2, bw + 40, PH).setInteractive();
+    c.add([mask, block, panel(this, px, py, bw + 40, PH, MENU.panel, MENU.gold)]);
+    opts.forEach((o, i) => {
+      const on = o.value === cur;
+      c.add(
+        menuButton(
+          this,
+          W / 2,
+          py + 8 + gap + bh / 2 + i * (bh + gap),
+          bw,
+          bh,
+          `${on ? '✓ ' : ''}${o.label}`,
+          () => {
+            this.closeChoice();
+            if (!on) pick(o.value);
+          },
+          on,
+          22,
+        ),
       );
     });
-    if (!this.fromPause) this.dataRow(W, H);
-    button(this, W / 2, H - 70, 260, 54, tx('返回', 'Back'), () => this.back(), 0x555555, 22);
-    // ESC：弹窗打开时只关闭弹窗，否则返回
-    this.input.keyboard?.on('keydown-ESC', () => (this.resetDialog ? this.closeResetDialog() : this.back()));
+  }
+
+  /** 两种画风用同一个番茄妹缩略图：可爱风 = 插画贴图，复古风 = 程序绘制（没有任何贴图） */
+  private styleThumb(style: ArtStyle): string | null {
+    const key = `style_thumb_${style}`;
+    if (this.textures.exists(key)) return key;
+    const illustrated = style === 'cute';
+    if (illustrated && !readyArt(this, TOMATO, true)) return null;
+    const vis = createEntityVisual(this, TOMATO, 44, illustrated ? { illustrated: true } : { procedural: true });
+    vis.tick(0.001, 0, 1);
+    const rt = this.make.renderTexture({ width: 128, height: 128 }, false);
+    rt.draw(vis, 64, 70);
+    rt.saveTexture(key);
+    vis.destroy();
+    rt.destroy();
+    return key;
+  }
+
+  /** 两种画风直接并排预览；不需要先打开下拉框或弹窗。 */
+  private drawStylePreviews(): void {
+    this.stylePreview?.destroy();
+    const { x, w } = this.frame;
+    const c = this.add.container(0, 0).setName('art-style-previews');
+    this.stylePreview = c;
+    const cardW = (w - 82) / 2,
+      cardH = 74,
+      gap = 14;
+    (['cute', 'retro'] as ArtStyle[]).forEach((style, i) => {
+      const cx = x + w / 2 + ((i ? 1 : -1) * (cardW + gap)) / 2;
+      const cy = 507;
+      const on = style === currentArtStyle();
+      const card = this.add.container(cx, cy).setName(`art-style-card:${style}`);
+      const bg = this.add.graphics();
+      bg.fillStyle(on ? 0x51332c : 0x35231f, 1).fillRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 12);
+      bg.lineStyle(on ? 3 : 2, on ? 0xefc679 : 0xa47750, 1).strokeRoundedRect(-cardW / 2, -cardH / 2, cardW, cardH, 12);
+      card.add(bg);
+      const tk = this.styleThumb(style);
+      if (tk)
+        card.add(
+          this.add
+            .image(-cardW / 2 + 40, 0, tk)
+            .setDisplaySize(66, 66)
+            .setName(`art-style-image:${style}`),
+        );
+      else card.add(text(this, -cardW / 2 + 40, 0, tx('加载中…', 'Loading…'), 13, COLORS.textDim).setOrigin(0.5));
+      card.add(
+        text(this, -cardW / 2 + 84, -14, `${on ? '✓ ' : ''}${this.styleName(style)}`, 20, on ? '#ffe1a5' : '#fff4ea').setOrigin(0, 0.5),
+      );
+      card.add(
+        text(
+          this,
+          -cardW / 2 + 84,
+          16,
+          style === 'cute' ? tx('插画（AI 生成）', 'Illustrated (AI-generated)') : tx('经典简洁', 'Classic'),
+          15,
+          '#d4b8a4',
+        ).setOrigin(0, 0.5),
+      );
+      card.setSize(cardW, cardH).setInteractive({ useHandCursor: true });
+      card.on('pointerup', () => {
+        if (style === currentArtStyle()) return;
+        audio.play(this, 'click');
+        if (style === 'cute' && !readyArt(this, TOMATO, true)) return;
+        this.switchStyle(style);
+      });
+      c.add(card);
+    });
+    if (!readyArt(this, TOMATO, true))
+      void loadArt(this, { bodies: [TOMATO], raw: true }, 'style-thumb').then(() => {
+        if (this.stylePreview === c && this.scene.isActive() && readyArt(this, TOMATO, true)) {
+          this.drawStylePreviews();
+          if (this.stylePreview) this.body?.add(this.stylePreview);
+        }
+      });
+  }
+
+  private switchStyle(style: ArtStyle): void {
+    applyArtStyle(this, style, () => {
+      if (this.scene.isActive()) this.scene.restart({ from: this.fromPause ? 'pause' : undefined, tab: this.tab });
+    });
   }
 
   /** 存档导出 / 导入、错误日志、重置存档 */
-  private dataRow(W: number, H: number): void {
-    const y = H - 140;
-    const msg = text(this, W / 2, y - 42, '', 16, COLORS.textDim).setOrigin(0.5);
+  private dataRow(x: number, w: number): void {
+    const y = 355;
+    const msg = text(this, x + w / 2, 495, '', 16, COLORS.textDim).setOrigin(0.5);
     const say = (s: string, ok = true) => msg.setText(s).setColor(ok ? '#52ff8a' : '#ff6b6b');
-    button(
+    menuButton(
       this,
-      W / 2 - 390,
+      x + w * 0.28,
       y,
-      180,
+      w * 0.36,
       50,
       tx('导出存档', 'Export Save'),
       () => {
@@ -180,14 +621,14 @@ export class SettingsScene extends Phaser.Scene {
         void navigator.clipboard?.writeText(t).catch(() => {});
         say(tx('已下载存档文件，并复制到剪贴板', 'Save downloaded and copied to clipboard'));
       },
-      0x2a6f97,
+      false,
       20,
     );
-    button(
+    menuButton(
       this,
-      W / 2 - 195,
+      x + w * 0.72,
       y,
-      180,
+      w * 0.36,
       50,
       tx('导入存档', 'Import Save'),
       () => {
@@ -206,15 +647,15 @@ export class SettingsScene extends Phaser.Scene {
         };
         input.click();
       },
-      0x2a6f97,
+      false,
       20,
     );
     const n = errorLog().length;
-    const eb = button(
+    const eb = menuButton(
       this,
-      W / 2,
-      y,
-      180,
+      x + w * 0.28,
+      y + 76,
+      w * 0.36,
       50,
       tx(`复制错误日志 (${n})`, `Copy Error Log (${n})`),
       () => {
@@ -224,7 +665,7 @@ export class SettingsScene extends Phaser.Scene {
           .then(() => say(tx('已复制，可以发给开发者', 'Copied — send it to the developer')))
           .catch(() => say(tx('剪贴板不可用', 'Clipboard unavailable'), false));
       },
-      0x6a4c93,
+      false,
       18,
     );
     if (n)
@@ -234,7 +675,18 @@ export class SettingsScene extends Phaser.Scene {
           eb.setLabel(tx('复制错误日志 (0)', 'Copy Error Log (0)'));
         }
       });
-    button(this, W / 2 + 290, y, 240, 50, tx('重置存档', 'Reset Save'), () => this.openResetDialog(1), 0x7a2e35, 20);
+    menuButton(
+      this,
+      x + w * 0.72,
+      y + 76,
+      w * 0.36,
+      50,
+      tx('重置存档', 'Reset Save'),
+      () => this.openResetDialog(1),
+      false,
+      20,
+      'trash3-fill',
+    );
   }
 
   /**

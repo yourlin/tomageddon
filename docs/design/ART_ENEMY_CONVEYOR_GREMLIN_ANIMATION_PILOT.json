@@ -1,0 +1,45 @@
+{
+  "kind": "enemy",
+  "id": "conveyor_gremlin",
+  "displayName": "传送带小妖",
+  "status": "16authoredframes integrated;3tiernative/actualwanderAI/typecheck/lint/source-review/runtimepassed;finalpending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "wander125/group2;contactonly",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/conveyor_gremlin/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/conveyor_gremlin/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/conveyor_gremlin/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/conveyor_gremlin/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "verification": {
+    "native": "reports/art-pilot/enemy-conveyor_gremlin-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-conveyor_gremlin-gameplay-native.json",
+    "scope": "native4framesperaction/100msclosedidle/shared200GPUrelease;actualwander/hurt/death;notfinalvisual/mobile"
+  }
+}

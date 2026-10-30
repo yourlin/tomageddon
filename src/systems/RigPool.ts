@@ -1,39 +1,44 @@
-// 骨骼对象池：同一外观的 Rig 复用，避免频繁创建销毁
+// 外观对象池：同一身份（且同一种实现：Rig / 外部素材）的外观复用，避免频繁创建销毁。
+// 回池时停掉 tween、清回调 / 染色 / 翻转 / 透明度，下一只怪不会继承上一只的死亡状态。
 import Phaser from 'phaser';
-import { Rig } from '../objects/Rig';
-import type { RigSpec } from '../art/RigSpec';
+import type { EntityVisual, VisualIdent } from '../objects/EntityVisual';
+import { createEntityVisual, visualPoolKey } from '../objects/visualFactory';
 
-export class RigPool {
-  private free = new Map<string, Rig[]>();
+export class VisualPool {
+  private free = new Map<string, EntityVisual[]>();
+  private keyOf = new WeakMap<EntityVisual, string>();
   constructor(private scene: Phaser.Scene) {}
 
-  acquire(key: string, spec: RigSpec, radius: number): Rig {
-    const list = this.free.get(key);
-    let rig = list?.pop();
-    if (!rig) {
-      rig = new Rig(this.scene, spec, key, radius);
-      this.scene.add.existing(rig);
+  acquire(v: VisualIdent, radius: number): EntityVisual {
+    const key = visualPoolKey(this.scene, v);
+    let vis = this.free.get(key)?.pop();
+    if (!vis) {
+      vis = createEntityVisual(this.scene, v, radius);
+      this.keyOf.set(vis, key);
+      this.scene.add.existing(vis);
     }
-    rig.resetVisual();
-    rig.setRadius(radius);
-    rig.setVisible(true).setActive(true);
-    return rig;
+    vis.resetVisual();
+    vis.setRadius(radius);
+    vis.setVisible(true).setActive(true);
+    return vis;
   }
 
-  release(key: string, rig: Rig): void {
-    rig.setVisible(false).setActive(false);
+  release(vis: EntityVisual): void {
+    const key = this.keyOf.get(vis);
+    this.scene.tweens.killTweensOf(vis);
+    vis.onDieDone = null;
+    vis.resetVisual();
+    vis.setVisible(false).setActive(false);
+    if (!key || !vis.scene) return;
     let list = this.free.get(key);
-    if (!list) {
-      list = [];
-      this.free.set(key, list);
-    }
-    list.push(rig);
+    if (!list) this.free.set(key, (list = []));
+    if (!list.includes(vis)) list.push(vis);
   }
 
   /** 预热：提前创建若干个，避免战斗中卡顿 */
-  warm(key: string, spec: RigSpec, radius: number, n: number): void {
-    const tmp: Rig[] = [];
-    for (let i = 0; i < n; i++) tmp.push(this.acquire(key, spec, radius));
-    for (const r of tmp) this.release(key, r);
+  warm(v: VisualIdent, radius: number, n: number): void {
+    const tmp: EntityVisual[] = [];
+    for (let i = 0; i < n; i++) tmp.push(this.acquire(v, radius));
+    for (const r of tmp) this.release(r);
   }
 }

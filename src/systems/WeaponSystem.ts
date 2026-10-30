@@ -1,3 +1,4 @@
+import { isIllustratedProjectile } from './ProjectileArtRegistry';
 // 玩家武器：自动索敌、自动攻击
 import { AuraFx, AURA_LOOK } from './AuraFx';
 import Phaser from 'phaser';
@@ -39,8 +40,9 @@ export function weaponDamage(def: WeaponDef, tier: number, s: Stats, ow?: OwnedW
   d += (sc.melee ?? 0) * s.melee + (sc.ranged ?? 0) * s.ranged + (sc.elemental ?? 0) * s.elemental;
   d += (sc.maxHp ?? 0) * s.maxHp + (sc.armor ?? 0) * s.armor + (sc.speed ?? 0) * s.speed;
   const classMult = run.char.classMult?.[def.cls] ?? 1;
-  // 分类伤害 %：光环武器只吃光环伤害 %，其余按武器类别
-  const pct = def.kind === 'aura' ? s.auraPct : def.cls === 'melee' ? s.meleePct : def.cls === 'ranged' ? s.rangedPct : s.elementalPct;
+  // 分类伤害 %：光环吃光环伤害 %，同时按自身类型再吃近战 / 元素伤害 %；其余按武器类别
+  const clsPct = def.cls === 'melee' ? s.meleePct : def.cls === 'ranged' ? s.rangedPct : s.elementalPct;
+  const pct = def.kind === 'aura' ? s.auraPct + clsPct : clsPct;
   d *= (1 + (s.damage + pct) / 100) * classMult;
   d *= 1 + affixTotals(ow).dmg / 100;
   if (isFavoredWeapon(run.char.favored, def)) d *= FAVORED_DMG; // 契合武器（带任意一个契合标签）
@@ -49,12 +51,14 @@ export function weaponDamage(def: WeaponDef, tier: number, s: Stats, ow?: OwnedW
   return Math.max(1, d);
 }
 
-/** extraAura：契合特效带来的光环范围 %，与光环范围属性相加后一起封顶 */
-export function weaponRange(def: WeaponDef, s: Stats, ow?: OwnedWeapon, extraAura = 0): number {
+/** extraAura：契合特效带来的光环范围 %，与光环范围属性相加后一起封顶。
+ *  tier：光环半径随品质成长（每级 +BALANCE.auraTierRadius）；不传时取 ow 的品质，再没有按 T1 */
+export function weaponRange(def: WeaponDef, s: Stats, ow?: OwnedWeapon, extraAura = 0, tier?: number): number {
   // 光环范围只受光环范围属性影响（不吃射程），总加成封顶 BALANCE.auraSizeCap
   if (def.kind === 'aura') {
     const size = Math.min(s.auraSize + extraAura, BALANCE.auraSizeCap);
-    return Math.max(60, def.range * (1 + size / 100) + affixTotals(ow).range);
+    const t = tier ?? ow?.tier ?? 0;
+    return Math.max(60, def.range * (1 + BALANCE.auraTierRadius * t) * (1 + size / 100) + affixTotals(ow).range);
   }
   const bonus = def.cls === 'melee' ? s.range * 0.5 : s.range;
   // 射程下限：负射程最多把近战武器削到基础射程的 rangeFloor.melee、远程削到 rangeFloor.ranged
@@ -323,6 +327,7 @@ export class WeaponSystem {
       if (def.kind === 'mine') {
         if (g.enemies.some((e) => e.alive)) {
           w.cd = weaponCooldown(def, tier, s, w.owned, spd);
+          g.player.tryAttackAnimation();
           w.shot = talent.onFire(def);
           const k = (def.count?.[tier] ?? 1) + convert(def, m, w.shot).count;
           for (let j = 0; j < k; j++) this.placeMine(w, range, k - 1);
@@ -358,6 +363,7 @@ export class WeaponSystem {
   /** 开火一次；契合武器按连击概率在 0.11 秒后追加一次（追加攻击不再连击） */
   private attack(w: WRun, hx: number, hy: number, t: Enemy, range: number, combo: boolean): void {
     const g = this.g;
+    g.player.tryAttackAnimation();
     w.shot = g.talent.onFire(w.def);
     g.synergy.preAttack(w.syn, w.shot);
     if (combo) w.dmgMul = w.mods?.comboMult ?? 0.6;
@@ -407,6 +413,7 @@ export class WeaponSystem {
     for (const c of g.weaponClones) {
       const t = melee ? this.nearestReachable(k, c.x, c.y, range) : g.grid.nearest(c.x, c.y, range + 20);
       if (!t) continue;
+      c.onAttack?.();
       const a = (w.animAngle = Math.atan2(t.y - c.y, t.x - c.x));
       if (k === 'sweep' && !SWEEP_STYLE[w.def.id]) {
         // 普通横扫没有刀光演出可复用：分身一次结算整个扇区
@@ -455,6 +462,7 @@ export class WeaponSystem {
       status: status.length ? status : undefined,
       dmg,
       weaponId: def.id,
+      tier: w.owned.tier,
       cls: def.cls,
       critBonus: ax.critDmg + (m?.critDmg ?? 0),
       rageBurst: rage.burst || undefined,
@@ -520,8 +528,11 @@ export class WeaponSystem {
         const pid = def.evolvedFrom ?? def.id;
         // 批量生成的武器没有自己的子弹贴图：依次找自己 → 进化前 → 外观模板
         const tpl = def.template ?? '';
-        const key =
-          def.projKey && g.textures.exists(def.projKey)
+        const ownKey = `proj_${def.id}`;
+        const illustrated = isIllustratedProjectile(ownKey, g.textures);
+        const key = illustrated
+          ? ownKey
+          : def.projKey && g.textures.exists(def.projKey)
             ? def.projKey
             : g.textures.exists(`proj_${pid}`)
               ? `proj_${pid}`
@@ -549,7 +560,7 @@ export class WeaponSystem {
           b.bounce = (def.bounce?.[tier] ?? 0) + cv.bounce;
           b.areaMul = areaMul;
           b.homing = def.homing ?? 0;
-          if (def.projTint !== undefined) b.setTint(def.projTint);
+          if (!illustrated && def.projTint !== undefined) b.setTint(def.projTint);
           if (w.mods?.homing) b.homing = Math.max(b.homing, w.mods.homing);
           // 分裂只给普通子弹（火焰 / 回旋镖 / 火箭各有自己的命中逻辑）
           b.split = def.kind === 'bullet' ? run.specials.split + (def.splitShots ?? 0) + (w.mods?.split ?? 0) : 0;

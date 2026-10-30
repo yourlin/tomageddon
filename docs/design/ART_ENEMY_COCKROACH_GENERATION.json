@@ -1,0 +1,6 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: stagger eyes dim; knees buckle antennae droop; tilt onto side eyes closed six legs curl; lie on side motionless legs curled eyes closed. Complete antennae in each cell, no fragments."
+  }
+}

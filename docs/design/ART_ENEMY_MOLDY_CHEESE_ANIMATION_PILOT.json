@@ -1,0 +1,50 @@
+{
+  "kind": "enemy",
+  "id": "moldy_cheese",
+  "displayName": "霉奶酪",
+  "status": "16frames integrated;3tier playback and actual trailAI passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "trail;speed60/trailCd0.5;fourbasic authored actions;groundslime separately runtime",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_cheese/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_cheese/base/move-sheet-pilot-3.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_cheese/base/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/moldy_cheese/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partialeyes3/fullyclosed4;partition partition passed",
+    "hurt": "recoil andclosed2/3;partition REJECT No clear y gutter near 512; inspect overlapping drawings",
+    "move1": "REJECT bottomrow mirrors wedge orientation/mold patches and facesleft instead ofright;not selected",
+    "hurt1": "REJECT no transparenthorizontalgutternear512;four recoilposesotherwise inspected;spacingrepairrequired",
+    "move2": "REJECT bottomrow remains mirrored;need freshgeneration anchored to originalidentity rather than badmove target",
+    "hurt2": "re-layout inspected;4recoilposes,closed2/3,partitionpassed",
+    "die1": "progressivelower/closedfrom2;partitionpassed",
+    "move3": "Selected: sameorientation all4;partition and compiled review passed"
+  }
+}

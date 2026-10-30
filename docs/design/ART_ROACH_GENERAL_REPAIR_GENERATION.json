@@ -1,0 +1,14 @@
+{
+  "move": {
+    "prompt": "Regenerate as correctly padded four-frame2x2 equal-grid WALK sprite sheet. Preserve character exactly: silver/red bottlecap armor/shield/spear, six orange-brown legs, two antennae, golden eyes, anime illustration. Four distinct alternate tripod scuttle gait poses, no moving body across cell. Fix cropped spear by drawing ALL parts including full spear tip and antennae INSIDE EACH cell with large15percent clear margins. Smaller full character within each cell, NOT cut off. Transparent background/gutters, no text/shadows/effects. No component may touch grid boundary.",
+    "selectedSource": "drafts/boss/roach_general/base/move-sheet-pilot-2.png"
+  },
+  "charge": {
+    "prompt": "Remove entire brown backdrop and glow, replace with true fully transparent alpha including gutters and all spaces between antennae, legs, spear. Preserve four character charging poses and identity/equipment, no cropping. Keep same2x2 equal grid layout and four complete drawings. No added floor/shadow or replacement color background. Transparent PNG sprite sheet, opaque characters only.",
+    "selectedSource": "drafts/boss/roach_general/base/charge-sheet-pilot-2.png"
+  },
+  "hurt": {
+    "prompt": "Repair this four-frame2x2 equal-grid hurt reaction sprite sheet. Preserve SAME cockroach general character appearance, silver/red bottlecap armor helmet and shield, spear ribbon, six legs and antennae, same four recoil/recovery poses. CRITICAL each entire character including antennae/spear must fit well INSIDE separate equal quadrant, at least15percent transparent padding on all sides and wide entirely transparent central vertical/horizontal gutters. Reduce artwork footprint per quadrant to fit, no overlap/touch across grid cells. Restore any clipped spear tips/antennae complete. True transparent background. No text, no floor or shadows, no impact/speed lines outside character. Polished handpainted anime game art.",
+    "selectedSource": "drafts/boss/roach_general/base/hurt-sheet-pilot-2.png"
+  }
+}

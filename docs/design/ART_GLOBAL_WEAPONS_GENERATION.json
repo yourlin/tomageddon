@@ -1,0 +1,17 @@
+{
+  "tool": "built-in image_gen",
+  "styleReference": "src/assets/comics/ch1.png",
+  "style": "Use case: stylized-concept. Asset type: polished 2D hand-held weapon illustration for cute chibi kitchen adventure Tomageddon. Reference image is palette and rendering STYLE only. Make exactly ONE isolated weapon, horizontal side view with handle or rear on LEFT and striking head, blade or muzzle on RIGHT. Entire weapon inside central 85 percent of landscape canvas, true transparent background. Premium warm cel-painted game art, clean thick dark brown silhouette outlines, glossy highlights, rich metal/wood/food material separation, charming chunky proportions. Recognizable at 58 pixels. No hands, no characters, no food creatures, no eyes or faces, no labels, no text, no badges, no ground, no cast shadow, no environment, no panel or sheet. Light upper left. Weapon alone facing right.",
+  "subjects": {
+    "fork": "TOMATO FORK: golden three-prong kitchen battle fork, forest-green wrapped short handle with brass pommel, red tomato jewel at the neck under three short sharp golden tines. Tool runs horizontally left handle to right prongs. Cute handcrafted hero starter weapon.",
+    "rolling_pin": "ROLLING PIN: a heavy honey-colored wooden kitchen rolling pin, polished thick cylindrical barrel with softly beveled edges and visible restrained wood grain, two short darker walnut handles, little brass end collars. Horizontal side view, no blade.",
+    "knife": "KITCHEN KNIFE: a shiny chef kitchen knife with broad silver triangular blade tapering to right tip, bright blue reflected cutting edge, chunky dark walnut handle with three tiny brass rivets on left and a small red tomato charm etched pictogram near bolster. No words.",
+    "pea_shooter": "PEA SHOOTER: a whimsical compact kitchen blaster made from a glossy vibrant green pea pod, short wooden pistol grip and brass trigger below left/rear, bulbous green body with three round pea reliefs, one open circular leaf-green barrel aimed RIGHT. Not a living creature, no eyes."
+  },
+  "outputs": {
+    "fork": "/Users/linyesh/.codex/generated_images/01a14d8f-e4d4-7f52-925c-b8e6345af2bf/exec-f4288f45-b683-4735-9d4e-60b684bb116b.png",
+    "rolling_pin": "/Users/linyesh/.codex/generated_images/01a14d8f-e4d4-7f52-925c-b8e6345af2bf/exec-57b30f58-1723-47eb-9d00-958f19004b75.png",
+    "knife": "/Users/linyesh/.codex/generated_images/01a14d8f-e4d4-7f52-925c-b8e6345af2bf/exec-5ee2060c-8c8f-441d-9a75-f03e3bf8b711.png",
+    "pea_shooter": "/Users/linyesh/.codex/generated_images/01a14d8f-e4d4-7f52-925c-b8e6345af2bf/exec-5347ca66-be77-49ec-97b9-372265a66b5b.png"
+  }
+}

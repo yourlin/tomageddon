@@ -1,0 +1,82 @@
+{
+  "kind": "enemy",
+  "id": "frozen_shrimp",
+  "displayName": "冻虾兵",
+  "status": "24frames integrated;3tier native and actualcharger passed;antenna fringe cleanup/final pending",
+  "referenceHeight": 116,
+  "gameplayBehavior": "charger;chargeSpeed560/chargeCd3/windup0.6/contact slow",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_shrimp/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_shrimp/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_shrimp/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_shrimp/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_shrimp/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_shrimp/base/charge-sheet-pilot-1.png",
+      "referenceHeight": 102
+    }
+  ],
+  "draftReview": {
+    "idle": "four poses inspected;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "four poses inspected;partition passed",
+    "die": "four collapse poses inspected;partition passed",
+    "windup": "four coiled anticipation poses inspected;partition passed",
+    "charge": "four tail-thrust phases inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "windup": 160,
+    "charge": 116
+  },
+  "calibrationNote": "Lower88%charge bounds compensates flattened antennae/long extended body while preserving head mass;one scale per action,fixed pivot;compiled keyframes inspected;continuous/final pending.",
+  "pendingVisualCleanup": [
+    "Inspect/repair light fringe pixels around icy antenna tips at final native scene review;not final accepted"
+  ],
+  "verification": {
+    "native": "reports/art-pilot/enemy-frozen_shrimp-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-frozen_shrimp-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

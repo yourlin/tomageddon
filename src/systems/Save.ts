@@ -28,7 +28,11 @@ export interface SaveData {
     fpsLimit: number;
     /** 高清渲染（按屏幕物理像素渲染，更清晰但更耗 GPU）；改动后重启生效 */
     hiDpi: boolean;
+    /** 画质分档，切换后重载；未设置的旧存档按设备自动选择。 */
+    graphicsQuality?: 'auto' | 'low' | 'standard' | 'high';
     lang?: 'zh' | 'en';
+    /** 画风：可爱风（插画）/ 复古风（程序绘制）；未设置视为可爱风 */
+    artStyle?: 'cute' | 'retro';
     autoSkill: boolean;
   };
   /** 图鉴发现记录 */
@@ -103,6 +107,8 @@ export interface MetaSave {
   endlessRevives: number;
   /** G4：看过真结局的次数 */
   trueEnding?: number;
+  /** 已经看过开场漫画的章节（第一次进入该章时自动播放） */
+  comicsSeen?: number[];
   /** 个人最佳：危机等级最快通关（`${chapterId}_${level}` → 秒） */
   fastest: Record<string, number>;
 }

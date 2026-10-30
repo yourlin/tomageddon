@@ -1,0 +1,65 @@
+{
+  "kind": "boss",
+  "id": "security_bot",
+  "status": "Integrated; three-tier native playback/100ms blink/freeze/GPU release and actual laser/aimed/buff callbacks passed. Final continuous visual/performance acceptance pending.",
+  "referenceHeight": 160,
+  "gameplayPatterns": [
+    "laser3.5Windup0.8",
+    "aimed3cd2Stun",
+    "buffBarrier3cd9"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/security_bot/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/security_bot/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/security_bot/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/security_bot/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/security_bot/base/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/security_bot/base/cast-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160,
+    "cast": 160
+  }
+}

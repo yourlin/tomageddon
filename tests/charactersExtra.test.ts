@@ -1,6 +1,6 @@
 // F5–F7：新角色、皮肤、台词数据约束
 import { TAG_MAP } from '../src/data/weaponTags';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { CHARACTERS } from '../src/data/characters';
 import { EXTRA_CHARACTERS, EXTRA_CHARACTERS_EN } from '../src/data/charactersExtra';
 import { WEAPON_MAP } from '../src/data/weapons';
@@ -8,6 +8,7 @@ import { STAT_INFO } from '../src/data/stats';
 import { SKINS, SKIN_OF, SKINS_PER_CHAR, applySkin } from '../src/data/skins';
 import { save } from '../src/systems/Save';
 import { skinOwned, activeSkin, buySkin, equipSkin } from '../src/systems/Progress';
+import { features } from '../src/systems/Features';
 import { BARKS, EASTER_EGGS } from '../src/data/barks';
 
 describe('新角色（F5）', () => {
@@ -27,6 +28,13 @@ describe('新角色（F5）', () => {
 });
 
 describe('皮肤（F6）', () => {
+  // 皮肤玩法这一版对玩家关闭（Features.skins），下面几条验证开关打开后的行为
+  beforeEach(() => {
+    features.skins = true;
+  });
+  afterEach(() => {
+    features.skins = false;
+  });
   it('每名角色 4 套、主题互不相同，id 唯一；第 1 套沿用旧 id', () => {
     expect(SKINS).toHaveLength(CHARACTERS.length * SKINS_PER_CHAR);
     for (const c of CHARACTERS) {
@@ -55,6 +63,20 @@ describe('皮肤（F6）', () => {
     save.meta.mastery[c.id] = 1e9;
     expect(skinOwned(s1.id)).toBe(true);
     expect(skinOwned(SKINS.filter((s) => s.charId === c.id)[2].id)).toBe(false);
+  });
+  it('开关关闭时：不能买、不能换、局内一律原皮，但存档里的记录保留', () => {
+    const c = CHARACTERS[0];
+    const [, s2] = SKINS.filter((s) => s.charId === c.id);
+    save.meta.skins = [s2.id];
+    save.meta.skinOf = { [c.id]: s2.id };
+    save.meta.gold = 9999;
+    features.skins = false;
+    expect(activeSkin(c.id)).toBeUndefined();
+    expect(buySkin(SKINS.filter((s) => s.charId === c.id)[2].id)).toBe(false);
+    expect(save.meta.gold).toBe(9999);
+    equipSkin(c.id, '');
+    expect(save.meta.skinOf[c.id]).toBe(s2.id);
+    expect(save.meta.skins).toEqual([s2.id]);
   });
   it('applySkin 返回新对象、不改原外观，配饰追加在后面', () => {
     const c = CHARACTERS[0];

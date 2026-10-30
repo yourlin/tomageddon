@@ -2,14 +2,14 @@
 // 用于输入挑战种子（D6）、构筑分享码（J2）等。返回 null 表示取消。
 import { tx } from '../i18n';
 
-export function promptText(title: string, placeholder = '', initial = ''): Promise<string | null> {
+export function promptText(title: string, placeholder = '', initial = '', allowEmpty = false): Promise<string | null> {
   return new Promise((resolve) => {
     const wrap = document.createElement('div');
     wrap.style.cssText =
       'position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);font-family:inherit';
     const box = document.createElement('div');
     box.style.cssText =
-      'background:#3d1d22;border:3px solid #ffd166;border-radius:14px;padding:20px;min-width:min(420px,90vw);color:#fff4ea;display:flex;flex-direction:column;gap:12px';
+      'background:#3d1d22;border:3px solid #ffd166;border-radius:14px;padding:20px;box-sizing:border-box;width:min(460px,calc(100vw - 32px));max-height:calc(100dvh - 24px);overflow:auto;color:#fff4ea;display:flex;flex-direction:column;gap:12px';
     const h = document.createElement('div');
     h.textContent = title;
     h.style.cssText = 'font-size:20px;color:#ffd166';
@@ -18,14 +18,15 @@ export function promptText(title: string, placeholder = '', initial = ''): Promi
     input.value = initial;
     input.placeholder = placeholder;
     input.setAttribute('aria-label', title);
-    input.style.cssText = 'font-size:18px;padding:8px 10px;border-radius:8px;border:2px solid #7a2e35;background:#1a0a0c;color:#fff4ea';
+    input.style.cssText =
+      'font-size:18px;line-height:24px;padding:12px 10px;box-sizing:border-box;width:100%;border-radius:8px;border:2px solid #7a2e35;background:#1a0a0c;color:#fff4ea';
     const row = document.createElement('div');
     row.style.cssText = 'display:flex;gap:10px;justify-content:flex-end';
     const mk = (label: string, bg: string) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.textContent = label;
-      b.style.cssText = `font-size:16px;padding:8px 18px;border-radius:8px;border:none;background:${bg};color:#fff;cursor:pointer`;
+      b.style.cssText = `font-size:18px;min-height:44px;padding:10px 18px;border-radius:8px;border:none;background:${bg};color:#fff;cursor:pointer`;
       return b;
     };
     const cancel = mk(tx('取消', 'Cancel'), '#555');
@@ -35,7 +36,7 @@ export function promptText(title: string, placeholder = '', initial = ''): Promi
       resolve(v);
     };
     cancel.onclick = () => done(null);
-    ok.onclick = () => done(input.value.trim() || null);
+    ok.onclick = () => done(allowEmpty ? input.value.trim() : input.value.trim() || null);
     input.onkeydown = (e) => {
       e.stopPropagation(); // 不让游戏键盘响应
       if (e.key === 'Enter') ok.click();

@@ -56,3 +56,30 @@ export function readPad(): PadState {
   }
   return out;
 }
+
+/** 手柄震动：和屏幕震动同步触发。intensity 沿用屏幕震动的强度（0.006~0.02），换算成马达强度；
+ *  上一次震动还没结束时，只有更强的才会打断，避免连续小震动把手柄一直占着。 */
+let rumbleUntil = 0;
+let rumbleMag = 0;
+export function rumble(intensity: number, durMs: number): void {
+  if (typeof navigator === 'undefined' || !navigator.getGamepads) return;
+  const now = performance.now();
+  const mag = Math.min(1, intensity * 40);
+  if (mag <= 0 || (now < rumbleUntil && mag <= rumbleMag)) return;
+  for (const p of navigator.getGamepads()) {
+    const act = (p as (Gamepad & { vibrationActuator?: { playEffect?: (t: string, o: object) => Promise<unknown> } }) | null)
+      ?.vibrationActuator;
+    if (!p?.connected || !act?.playEffect) continue;
+    rumbleUntil = now + durMs;
+    rumbleMag = mag;
+    void act
+      .playEffect('dual-rumble', { startDelay: 0, duration: Math.min(durMs, 1000), weakMagnitude: mag * 0.6, strongMagnitude: mag })
+      ?.catch?.(() => {});
+  }
+}
+
+/** 当前是否接着手柄（不读按键，不影响边沿检测） */
+export function padConnected(): boolean {
+  if (typeof navigator === 'undefined' || !navigator.getGamepads) return false;
+  return [...navigator.getGamepads()].some((p) => p?.connected);
+}

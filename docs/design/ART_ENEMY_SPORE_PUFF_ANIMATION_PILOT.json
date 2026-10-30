@@ -1,0 +1,47 @@
+{
+  "kind": "enemy",
+  "id": "spore_puff",
+  "displayName": "孢子马勃",
+  "status": "integrated;native3tier and actualAI basic validation passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "bomber125/blast100/poison3;actual fuse/explosion separate",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/spore_puff/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/spore_puff/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/spore_puff/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/spore_puff/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/spore_puff/base/windup-sheet-pilot-1.png"
+    }
+  ]
+}

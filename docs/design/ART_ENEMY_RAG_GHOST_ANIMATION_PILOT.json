@@ -1,0 +1,60 @@
+{
+  "kind": "enemy",
+  "id": "rag_ghost",
+  "displayName": "抹布幽灵",
+  "status": "16frames integrated;3tier native and actualAI passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "wander;contact blind3;no ranged attack animation",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rag_ghost/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rag_ghost/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rag_ghost/base/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rag_ghost/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "four poses inspected;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "REJECT No clear y gutter near 512; inspect overlapping drawings",
+    "hurt2": "four recoil poses inspected;partition passed",
+    "die": "four clothdeflation/collapse poses inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-rag_ghost-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-rag_ghost-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

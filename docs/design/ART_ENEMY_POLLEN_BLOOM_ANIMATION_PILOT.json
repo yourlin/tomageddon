@@ -1,0 +1,65 @@
+{
+  "kind": "enemy",
+  "id": "pollen_bloom",
+  "displayName": "\u6bd2\u82b1\u82de",
+  "status": "integrated;native3tiers and actual2projectilevolleyAI passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "shooter;speed55/cd3/shots2/spread20/keepDist280;fourbasic plusactualvolleyaction",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/pollen_bloom/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/pollen_bloom/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/pollen_bloom/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/pollen_bloom/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/pollen_bloom/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160
+  },
+  "draftReview": "Two leaf feet/noarms/flowerRIGHT andpetallayers retained;idle3partial/4closed;oppositefootcontacts;hurtclosed2/3;dieclosedfrom2;attack cheeks/mouthpuff/release/recover,no bakedpollen.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-pollen_bloom-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-pollen_bloom-gameplay-native.json",
+    "actualProjectilesPerVolley": 2,
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReview": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

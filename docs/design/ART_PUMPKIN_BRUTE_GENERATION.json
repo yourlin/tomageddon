@@ -1,0 +1,46 @@
+{
+  "id": "pumpkin_brute",
+  "displayName": "南瓜蛮汉",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR small complete pumpkin brutes in TWO ROWS TWO COLUMNS. Match reference squat giant cracked orange pumpkin body carved dark mouth four ivory fangs amber glowing eyes, thick hooked green woody stem and curling vines, four stout orange vine-wrapped clawed feet with brown claws, NO hands/weapons. Same cute painterly outlined style camera direction and body size. All stem tips vine loops claws inside central60% quadrant, huge empty transparent margins and cross gutters. No text grid lines floor shadows backdrop detached effects. Actual limb/stem articulation not global scaling. Idle blink: top-left eyes OPEN; top-right OPEN subtle body settling; bottom-left HALF OPEN amber areas visible; bottom-right FULLY SHUT dark eye sockets NO amber lines or glow. Only fourth closed. Preserve carved pumpkin shell cracks and fangs; subtle vine/stem sway."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR small complete pumpkin brutes in TWO ROWS TWO COLUMNS. Match reference squat giant cracked orange pumpkin body carved dark mouth four ivory fangs amber glowing eyes, thick hooked green woody stem and curling vines, four stout orange vine-wrapped clawed feet with brown claws, NO hands/weapons. Same cute painterly outlined style camera direction and body size. All stem tips vine loops claws inside central60% quadrant, huge empty transparent margins and cross gutters. No text grid lines floor shadows backdrop detached effects. Actual limb/stem articulation not global scaling. Four quadruped walking poses: image-left front paw lifts opposite rear paw shifts; weight transfer planted; image-right front paw lifts opposite rear paw shifts; recover. Exactly four feet every frame, body same size, vary joint angles and vine tension no duplicates/translation."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR small complete pumpkin brutes in TWO ROWS TWO COLUMNS. Match reference squat giant cracked orange pumpkin body carved dark mouth four ivory fangs amber glowing eyes, thick hooked green woody stem and curling vines, four stout orange vine-wrapped clawed feet with brown claws, NO hands/weapons. Same cute painterly outlined style camera direction and body size. All stem tips vine loops claws inside central60% quadrant, huge empty transparent margins and cross gutters. No text grid lines floor shadows backdrop detached effects. Actual limb/stem articulation not global scaling. Four hurt poses: brace; recoil body rocks back front paws splay; crouched wince stem bends; recover. Four feet retained all frames, no shell pieces flying no flash tint."
+    },
+    {
+      "action": "die",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR small complete pumpkin brutes in TWO ROWS TWO COLUMNS. Match reference squat giant cracked orange pumpkin body carved dark mouth four ivory fangs amber glowing eyes, thick hooked green woody stem and curling vines, four stout orange vine-wrapped clawed feet with brown claws, NO hands/weapons. Same cute painterly outlined style camera direction and body size. All stem tips vine loops claws inside central60% quadrant, huge empty transparent margins and cross gutters. No text grid lines floor shadows backdrop detached effects. Actual limb/stem articulation not global scaling. Four DEATH poses: ready; knees buckle shell sags stem droops; slumped low eyes dim; inert pumpkin lying slightly sideways eyes fully dark mouth no glow claws tucked. No flying fragments gore or new props. Full stem and feet all cells."
+    },
+    {
+      "action": "attack",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR small complete pumpkin brutes in TWO ROWS TWO COLUMNS. Match reference squat giant cracked orange pumpkin body carved dark mouth four ivory fangs amber glowing eyes, thick hooked green woody stem and curling vines, four stout orange vine-wrapped clawed feet with brown claws, NO hands/weapons. Same cute painterly outlined style camera direction and body size. All stem tips vine loops claws inside central60% quadrant, huge empty transparent margins and cross gutters. No text grid lines floor shadows backdrop detached effects. Actual limb/stem articulation not global scaling. Four SLAM poses: crouch front paws braced; rear paws push body upward front paws raised slightly; body lands low all four feet splayed and stem flexes; recover. Shockwaves rendered by game no effects drawn. Keep shell size fixed and four feet intact."
+    },
+    {
+      "action": "windup",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR small complete pumpkin brutes in TWO ROWS TWO COLUMNS. Match reference squat giant cracked orange pumpkin body carved dark mouth four ivory fangs amber glowing eyes, thick hooked green woody stem and curling vines, four stout orange vine-wrapped clawed feet with brown claws, NO hands/weapons. Same cute painterly outlined style camera direction and body size. All stem tips vine loops claws inside central60% quadrant, huge empty transparent margins and cross gutters. No text grid lines floor shadows backdrop detached effects. Actual limb/stem articulation not global scaling. Four CHARGE WINDUP poses: ready; lower face front knees bend; hind paws tuck loading; low braced ready to launch with stem bent back. No travel yet, four feet same body size, huge padding."
+    },
+    {
+      "action": "charge",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR small complete pumpkin brutes in TWO ROWS TWO COLUMNS. Match reference squat giant cracked orange pumpkin body carved dark mouth four ivory fangs amber glowing eyes, thick hooked green woody stem and curling vines, four stout orange vine-wrapped clawed feet with brown claws, NO hands/weapons. Same cute painterly outlined style camera direction and body size. All stem tips vine loops claws inside central60% quadrant, huge empty transparent margins and cross gutters. No text grid lines floor shadows backdrop detached effects. Actual limb/stem articulation not global scaling. Four CHARGE running poses: low head left front paw drives back opposite hind extends; gathered feet under body; opposite right front paw drives back opposite hind extends; extended stride recovery. Exactly FOUR feet every frame, same shell size and stem base, joint articulation not global scaling. No trails/shockwaves. Full tiny figures with huge empty gaps."
+    }
+  ],
+  "repairs": [
+    {
+      "action": "die2",
+      "prompt": "Transparent SQUARE 2x2 sprite sheet FOUR SMALL complete pumpkin brutes matching reference cracked orange shell amber eyes ivory fangs green hook stem/vines four clawed feet. Each character occupies only central HALF of own quadrant, HUGE blank transparent outer margins and central vertical/horizontal gaps. No feet or stem can cross cell edges or touch another drawing. Same camera/body size, no weapons/hands. No text lines floor shadow effects. Four DEATH poses: normal, knees buckle stem droops, slumped eyes dim, inert slightly sideways eyes entirely dark claws tucked. All four feet/stem remain attached no flying fragments."
+    },
+    {
+      "action": "attack2",
+      "prompt": "Transparent SQUARE 2x2 sprite sheet FOUR SMALL complete pumpkin brutes matching reference cracked orange shell amber eyes ivory fangs green hook stem/vines four clawed feet. Each character occupies only central HALF of own quadrant, HUGE blank transparent outer margins and central vertical/horizontal gaps. No feet or stem can cross cell edges or touch another drawing. Same camera/body size, no weapons/hands. No text lines floor shadow effects. Four SLAM poses: crouch braced, front feet lifted briefly body rises using hind feet, land low all four paws splay but stay close under body, recover. Same shell size no squash of entire drawing. No shockwave drawn."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "kind": "enemy",
+  "id": "frost_mite",
+  "displayName": "\u971c\u87a8",
+  "status": "integrated;native3tiers and actualchase/hurt/death passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase;speed135/group4;fourbasic authored actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mite/base/idle-sheet-pilot-2.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mite/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mite/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frost_mite/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle1": "REJECT no transparent horizontalgutternear512;rowposes too large",
+    "move": "actual8leg articulation,partitionpassed",
+    "hurt": "recoil/closed2and3,partitionpassed",
+    "idle2": "Smaller2x2poses/gutters passed;both brownpupils visible3,fullycovered4;8legs/2mandibles/crystals/snowflakemotif retained",
+    "die": "closedfrom2;alllegs fold progressively;partitionpassed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-frost_mite-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-frost_mite-gameplay-native.json",
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReview": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

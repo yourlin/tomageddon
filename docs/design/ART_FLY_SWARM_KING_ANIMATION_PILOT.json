@@ -1,0 +1,76 @@
+{
+  "kind": "boss",
+  "id": "fly_swarm_king",
+  "status": "28frames7actions compiled/integrated;3tier playback/blink/freeze/GPU release, isolated skills and natural AI passed; final visual/performance acceptance pending",
+  "referenceHeight": 121,
+  "gameplayPatterns": [
+    "summon5fly5s",
+    "teleport6s:500ms delay triggers spawn action",
+    "ring12bullets4s"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast",
+    "attack",
+    "spawn"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fly_swarm_king/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fly_swarm_king/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fly_swarm_king/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fly_swarm_king/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fly_swarm_king/base/cast-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fly_swarm_king/base/attack-sheet-pilot-2.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/fly_swarm_king/base/spawn-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "cast": 160,
+    "attack": 121,
+    "spawn": 160
+  },
+  "runtimeReport": "reports/art-pilot/elite-fly_swarm_king-animation-native.json",
+  "combatReport": "reports/art-pilot/elite-fly_swarm_king-combat-motion-native.json",
+  "naturalCombatReport": "reports/art-pilot/elite-fly_swarm_king-combat-motion-natural.json"
+}

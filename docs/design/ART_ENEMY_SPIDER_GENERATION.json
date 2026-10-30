@@ -1,0 +1,21 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: weak crouch eyes dim; legs buckle and abdomen lowers; tips sideways all THREE eyes closed; lies on side eight legs curled, eyes closed. No debris.",
+    "attack": "undefinedWeb spit: neutral; front legs brace head pulls back fangs part; head thrusts forward fangs open as if spitting; recover. NO web or projectile in sheet; game handles them separately."
+  },
+  "repairs": {
+    "idle2": {
+      "prompt": "FOUR drawings ONLY in TWO rows TWO columns. Same purple spider reference with EXACTLY THREE eyes (large center smaller left/right), eight legs, two ivory fangs and spotted abdomen. TL three eyes OPEN; TR three eyes OPEN; BL three eyes HALF closed; BR ALL THREE eyes fully closed dark eyelids no red visible. Entire each spider SMALL in middle40% of quadrant; HUGE blank transparent margins and central gutters. No line/panel/text/effect/shadow/haze. Same camera/design/scale. Distinct authored poses not copies.",
+      "source": "drafts/enemy/spider/base/idle-sheet-pilot-2.png"
+    },
+    "attack2": {
+      "prompt": "FOUR drawings ONLY in TWO rows TWO columns. Same purple spider reference with EXACTLY THREE eyes (large center smaller left/right), eight legs, two ivory fangs and spotted abdomen. TL neutral; TR front legs brace head back; BL head forward fangs part for web spit; BR recover. THREE EYES in ALL FOUR poses, never2. NO projectiles. Entire each spider SMALL in middle40% of quadrant; HUGE blank transparent margins and central gutters. No line/panel/text/effect/shadow/haze. Same camera/design/scale. Distinct authored poses not copies.",
+      "source": "drafts/enemy/spider/base/attack-sheet-pilot-2.png"
+    }
+  },
+  "idleCleanup": {
+    "prompt": "Edit this 2x2 spider idle animation sheet. Remove ALL detached specks including little white fleck above upper-left spider. Replace all surrounding colored haze with actual transparent empty background. Keep exactly FOUR spiders, same purple spotted body/eight legs/two fangs/THREE eyes. Keep same body size proportions and grounded feet in ALL four cells. TL eyes open neutral; TR eyes open same neutral posture (do not raise leg); BL all3 eyes halfclosed; BR all3 eyes fully closed dark lids. Only subtle breathing. Complete figures within central50% of quadrant with huge clear gutters. No text/shadows/lines/effects. Preserve style and anatomy.",
+    "source": "drafts/enemy/spider/base/idle-sheet-pilot-3.png"
+  }
+}

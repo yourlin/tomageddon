@@ -1,0 +1,45 @@
+{
+  "kind": "enemy",
+  "id": "sauce_drip",
+  "displayName": "酱汁滴",
+  "status": "16authoredframes integrated;3tiernative/actualchaseAI/typecheck/lint/source-review/runtimepassed;finalpending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase130/group3;contactonly",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sauce_drip/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sauce_drip/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sauce_drip/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sauce_drip/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "verification": {
+    "native": "reports/art-pilot/enemy-sauce_drip-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-sauce_drip-gameplay-native.json",
+    "scope": "native4framesperaction/100msclosedidle/shared200GPUrelease;actualchase/hurt/death;notfinalvisual/mobile"
+  }
+}

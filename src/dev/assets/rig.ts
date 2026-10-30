@@ -1,12 +1,14 @@
-// K1 Rig 动画预览：在沙盒场景里放一个展示 Rig，逐个播放 Rig 支持的全部动画状态
+// K1 外观动画预览：在沙盒场景里放一个展示外观（Rig 或外部美术），逐个播放全部动画状态；可切换词缀精英变体、强制程序化对比新旧形象
 import Phaser from 'phaser';
 import { h, btn, select, num, check } from '../dom';
 import type { DevCtx } from '../ctx';
-import { Rig, type RigState } from '../../objects/Rig';
+import type { EntityVisual, RigState } from '../../objects/EntityVisual';
+import { createEntityVisual } from '../../objects/visualFactory';
+import { loadArt } from '../../systems/ArtRegistry';
 import { CHARACTERS, CHARACTER_MAP } from '../../data/characters';
 import { ENEMIES, ENEMY_MAP } from '../../data/enemies';
 import { BOSSES, BOSS_MAP } from '../../data/bosses';
-import { lookOf, type PortraitKind } from '../../ui/Portrait';
+import type { PortraitKind } from '../../ui/Portrait';
 
 /** Rig 支持的全部状态（与 objects/Rig.ts 的 RigState 一致；Record 保证新增状态时这里会报类型错误） */
 const STATE_NAME: Record<RigState, string> = {
@@ -32,9 +34,11 @@ let id = '';
 let radius = 0; // 0 = 按数据默认
 let face = 1;
 let cycling = false;
+let champ = false;
+let procedural = false;
 
 interface Preview {
-  rig: Rig;
+  rig: EntityVisual;
   label: Phaser.GameObjects.Text;
   scene: Phaser.Scene;
   kind: PortraitKind;
@@ -98,7 +102,8 @@ function create(ctx: DevCtx): string | null {
   const A = g.arena;
   const x = Phaser.Math.Clamp(g.player.x + 140 + r, A.x + r + 20, A.right - r - 20);
   const y = Phaser.Math.Clamp(g.player.y, A.y + r + 40, A.bottom - r - 20);
-  const rig = new Rig(g, lookOf(kind, id), `${kind}_${id}`, r);
+  const ident = { kind, id, ...(champ && kind === 'enemy' ? { variant: 'champ' as const } : {}) };
+  const rig = createEntityVisual(g, ident, r, { procedural });
   g.add.existing(rig);
   rig.setPosition(x, y).setDepth(19000);
   const label = g.add
@@ -149,7 +154,7 @@ export function renderRig(ctx: DevCtx): HTMLElement {
   const refreshStatus = () => {
     const p = alive();
     status.textContent = p
-      ? `预览中：${nameOf(p.kind, p.id)} · 当前状态 ${STATE_NAME[p.rig.state]}（${p.rig.state}）· 半径 ${Math.round(p.rig.radius)}`
+      ? `预览中：${nameOf(p.kind, p.id)} · ${p.rig.mode} · 当前状态 ${STATE_NAME[p.rig.state]}（${p.rig.state}）· 半径 ${Math.round(p.rig.radius)}`
       : ctx.sb.running
         ? '当前没有预览（沙盒重启后预览会消失，需重新创建）'
         : '沙盒未运行';
@@ -185,9 +190,20 @@ export function renderRig(ctx: DevCtx): HTMLElement {
       btn(
         '创建预览',
         () => {
-          const e = create(ctx);
-          if (e) ctx.toast(e, true);
-          refreshStatus();
+          // 先按需加载外部美术（没有登记的直接用 Rig）
+          if (ctx.sb.running && ctx.sb.g && id)
+            void loadArt(ctx.sb.g, { bodies: [{ kind, id, ...(champ && kind === 'enemy' ? { variant: 'champ' as const } : {}) }] }).then(
+              () => {
+                const e = create(ctx);
+                if (e) ctx.toast(e, true);
+                refreshStatus();
+              },
+            );
+          else {
+            const e = create(ctx);
+            if (e) ctx.toast(e, true);
+            refreshStatus();
+          }
         },
         'pri',
       ),
@@ -196,6 +212,8 @@ export function renderRig(ctx: DevCtx): HTMLElement {
         refreshStatus();
       }),
       check('朝右', face > 0, (v) => (face = v ? 1 : -1)),
+      check('词缀精英', champ, (v) => (champ = v), '怪物的 champ 变体（金色 Rig / 精英图 / 金色光环）'),
+      check('强制程序化', procedural, (v) => (procedural = v), '忽略外部美术，用 Rig 对比新旧形象'),
       check('自动循环全部动画', cycling, (v) => {
         cycling = v;
         const p = alive();

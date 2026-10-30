@@ -17,7 +17,8 @@ import { tx } from '../i18n';
 import { checkAchievements, setInRun, unlockProgress, unlockRequirement } from '../systems/Achievements';
 import { resultHook } from '../systems/Reveal';
 import { showSharePoster } from '../systems/SharePoster';
-import { settleDanger, type DangerResult } from '../systems/Danger';
+import { settleDanger, chapterUnlockHint, type DangerResult } from '../systems/Danger';
+import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { settleProgress, type ProgressResult } from '../systems/Progress';
 import { VW, VH } from '../systems/HiDpi';
 import { titleBadge } from '../ui/TitleBadge';
@@ -162,6 +163,17 @@ export class ResultScene extends Phaser.Scene {
       ).setOrigin(0.5);
       y += 34;
     }
+    // 通关第 5 章后第 6 章不会直接解锁（要求危机 5）：把条件和当前进度写出来，免得玩家以为没解锁是 bug
+    if (data.win && !run.challenge && run.chapterId <= BASE_CHAPTERS) {
+      const hint = run.chapterId === BASE_CHAPTERS || run.danger >= CH6_DANGER_REQ ? chapterUnlockHint(6) : null;
+      if (hint) {
+        text(this, W / 2, y, `🔒 ${CHAPTERS[5].name} · ${hint}`, 18, '#ffd166', {
+          wordWrap: { width: 740, useAdvancedWrap: true },
+          align: 'center',
+        }).setOrigin(0.5);
+        y += 30;
+      }
+    }
     // 番茄危机：第几次通关、新解锁的等级、金番茄与天赋点（A7 / A10）
     if (dr) {
       const parts: string[] = [];
@@ -268,7 +280,7 @@ export class ResultScene extends Phaser.Scene {
         persist();
         if (run.challenge) run.startChallenge(run.challenge);
         else run.start(run.charId, run.chapterId, run.endless);
-        this.scene.start('Game');
+        this.scene.start('Comic', { ch: run.chapterId, next: 'Game' });
       },
       COLORS.primary,
       26,

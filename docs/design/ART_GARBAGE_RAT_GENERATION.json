@@ -1,0 +1,53 @@
+{
+  "id": "garbage_rat",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case: stylized-concept. Game animation sheet matching reference garbage rat king exactly: chunky brown rat dirty cream belly, gold jagged crown red gemstone, pink ears paws long pink tail, torn red scarf, scrap metal shoulder armor and chain with can tabs, held long-handled trash-can mace on image right. Cute painterly outlined style. Transparent SQUARE canvas, exactly four complete small figures in TWO ROWS TWO COLUMNS equal cells. Full mace crown feet and tail within each cell, maximum 65% of quadrant size, huge empty padding and empty central gutters. NO lines borders text ground shadows or extra characters. Consistent camera and body scale; authored limb and cloth articulation. Reading order: top-left eyes open ready; top-right eyes open small belly breath; bottom-left eyes half open pupils visible; bottom-right eyes fully shut with simple closed eyelids no visible pupils or whites. Only last cell fully closed. Keep mace steady, subtle ear and tail motion."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case: stylized-concept. Game animation sheet matching reference garbage rat king exactly: chunky brown rat dirty cream belly, gold jagged crown red gemstone, pink ears paws long pink tail, torn red scarf, scrap metal shoulder armor and chain with can tabs, held long-handled trash-can mace on image right. Cute painterly outlined style. Transparent SQUARE canvas, exactly four complete small figures in TWO ROWS TWO COLUMNS equal cells. Full mace crown feet and tail within each cell, maximum 65% of quadrant size, huge empty padding and empty central gutters. NO lines borders text ground shadows or extra characters. Consistent camera and body scale; authored limb and cloth articulation. Four sequential walking poses: left foot forward right back; transfer weight; right foot forward left back; recover. Distinct knee/hip and paw angles, tail counter-swings, mace held securely same size. Do not just translate or scale."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case: stylized-concept. Game animation sheet matching reference garbage rat king exactly: chunky brown rat dirty cream belly, gold jagged crown red gemstone, pink ears paws long pink tail, torn red scarf, scrap metal shoulder armor and chain with can tabs, held long-handled trash-can mace on image right. Cute painterly outlined style. Transparent SQUARE canvas, exactly four complete small figures in TWO ROWS TWO COLUMNS equal cells. Full mace crown feet and tail within each cell, maximum 65% of quadrant size, huge empty padding and empty central gutters. NO lines borders text ground shadows or extra characters. Consistent camera and body scale; authored limb and cloth articulation. Four sequential hurt poses: normal brace; recoil shoulders backward mace tilted and ears fold; crouch wince eyes squeezed; recover ready. Full tail and mace all frames. No damage overlay."
+    },
+    {
+      "action": "die",
+      "prompt": "undefinedFour death poses reading order: ready stance; stagger backward knees bend mace lowers; seated collapsing eyes squeezed ears droop; inert lying slumped on side eyes shut with crown still present mace resting close beside body and tail slack. No gore no extra debris, no detached crown. Keep original body size, full props visible."
+    },
+    {
+      "action": "windup",
+      "prompt": "Use case: stylized-concept. Game animation sheet matching reference garbage rat king exactly: chunky brown rat dirty cream belly, gold jagged crown red gemstone, pink ears paws long pink tail, torn red scarf, scrap metal shoulder armor and chain with can tabs, held long-handled trash-can mace on image right. Cute painterly outlined style. Transparent SQUARE canvas, exactly four complete small figures in TWO ROWS TWO COLUMNS equal cells. Full mace crown feet and tail within each cell, maximum 65% of quadrant size, huge empty padding and empty central gutters. NO lines borders text ground shadows or extra characters. Consistent camera and body scale; authored limb and cloth articulation. Four sequential charge windup poses: ready, knees bend body leans forward, deep crouch front shoulder forward tail curled tight, fully braced low launch-ready with hind legs loaded. Mace held close along shoulder, not swung. No forward travel yet. TINY centered figures 50% quadrant size leaving HUGE transparent margins including long tail and mace."
+    },
+    {
+      "action": "charge",
+      "prompt": "Use case: stylized-concept. Game animation sheet matching reference garbage rat king exactly: chunky brown rat dirty cream belly, gold jagged crown red gemstone, pink ears paws long pink tail, torn red scarf, scrap metal shoulder armor and chain with can tabs, held long-handled trash-can mace on image right. Cute painterly outlined style. Transparent SQUARE canvas, exactly four complete small figures in TWO ROWS TWO COLUMNS equal cells. Full mace crown feet and tail within each cell, maximum 65% of quadrant size, huge empty padding and empty central gutters. NO lines borders text ground shadows or extra characters. Consistent camera and body scale; authored limb and cloth articulation. Four sequential CHARGE running gait poses, leaning forward shoulder-first: left foot drives back right knee forward; airborne low stride legs exchange; right foot drives back left knee forward; recover stride. Mace held tight by shoulder, tail sweeps CLOSE behind body, scarf streams but fully contained. All full figures 50% quadrant size with huge transparent blank space, no speed lines or trails. True leg articulation not scale/translation."
+    },
+    {
+      "action": "cast",
+      "prompt": "Use case: stylized-concept. Game animation sheet matching reference garbage rat king exactly: chunky brown rat dirty cream belly, gold jagged crown red gemstone, pink ears paws long pink tail, torn red scarf, scrap metal shoulder armor and chain with can tabs, held long-handled trash-can mace on image right. Cute painterly outlined style. Transparent SQUARE canvas, exactly four complete small figures in TWO ROWS TWO COLUMNS equal cells. Full mace crown feet and tail within each cell, maximum 65% of quadrant size, huge empty padding and empty central gutters. NO lines borders text ground shadows or extra characters. Consistent camera and body scale; authored limb and cloth articulation. Four summon-command poses: ready; free paw lifted to chest ears perk mouth inhale; free paw extended palm commanding with mouth calling, mace stays upright CLOSE beside body; recover free paw. No summoned rats drawn in sheet. Make each figure only HALF quadrant width and height, giant transparent gaps. Tail curls tightly close to body; no edge contact."
+    }
+  ],
+  "repairs": [
+    {
+      "action": "idle2",
+      "prompt": "Use case: stylized-concept. Game animation sheet matching reference garbage rat king exactly: chunky brown rat dirty cream belly, gold jagged crown red gemstone, pink ears paws long pink tail, torn red scarf, scrap metal shoulder armor and chain with can tabs, held long-handled trash-can mace on image right. Cute painterly outlined style. Transparent SQUARE canvas, exactly four complete small figures in TWO ROWS TWO COLUMNS equal cells. Full mace crown feet and tail within each cell, maximum 65% of quadrant size, huge empty padding and empty central gutters. NO lines borders text ground shadows or extra characters. Consistent camera and body scale; authored limb and cloth articulation. Reading order: top-left eyes open ready; top-right eyes open small belly breath; bottom-left eyes half open pupils visible; bottom-right eyes fully shut with simple closed eyelids no visible pupils or whites. Only last cell fully closed. Keep mace steady, subtle ear and tail motion. Layout correction: FOUR complete small figures each centered in its quadrant with at least 70px empty space on EVERY side. Curl tail inward close to body so no tail reaches canvas edge. Keep mace close. Exactly open/open/half/closed in reading order; only bottom right shut eyes. No text no backdrop."
+    },
+    {
+      "action": "hurt2",
+      "prompt": "undefined Layout correction: make figures ONLY HALF the width and height of each quadrant, very small centered characters with HUGE transparent space around them. Entire long tail curled CLOSE to body, entire mace held CLOSE beside shoulder. Leave central vertical gap at least 120 pixels. All 4 separate complete drawings, none touch edges."
+    },
+    {
+      "action": "hurt3",
+      "prompt": "Create FOUR separate full-body garbage rat king drawings on TRANSPARENT background in a square 2 by 2 sprite sheet. This is a HURT ANIMATION, not single portrait. Reference defines brown fat rat, crown red gem, red scarf, metal armor, trash can mace and pink tail. Top-left standing ready; top-right recoiling backward; bottom-left crouching wincing; bottom-right recovering. Each complete figure 350px tall on 1254px square canvas, centered in its quadrant, all props fully visible. Blank transparent gap between figures, no glow no backdrop no floor no lines no text."
+    },
+    {
+      "action": "hurt4",
+      "prompt": "Transparent game sprite sheet, SQUARE image containing four SMALL rat king characters arranged 2 rows by 2 columns. Character reference only: brown fat rat with crown, red scarf, metal armor, pink tail and trash-can mace. Four HURT reaction poses: neutral, recoil, wince crouch, recover. Keep mace GRIPPED in hand, full tail curled near feet. Put each figure inside central 60% of its quadrant so there is ample EMPTY TRANSPARENT SPACE all around each one. No character can touch an image edge or another cell. No backdrop, glow, lines, labels, text, extra figures. Four separate full-body poses, not one portrait."
+    }
+  ]
+}

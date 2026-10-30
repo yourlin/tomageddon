@@ -309,19 +309,19 @@
 | <img src="images/weapon/dragon_lance.png" width="32" height="32" alt=""> [火龙骑枪](#weapon-dragon_lance) | 近战 | 直刺 | 长柄/蔬果 | 14 / 24 / 37 / 57 | 1.15 / 1.08 / 1 / 0.92 | 195 | 27 |
 | <img src="images/weapon/nut_knuckles.png" width="32" height="32" alt=""> [坚果指虎](#weapon-nut_knuckles) | 近战 | 直刺 | 格斗/蔬果 | 4 / 7 / 11 / 17 | 0.36 / 0.34 / 0.31 / 0.28 | 90 | 21 |
 | <img src="images/weapon/melon_staff.png" width="32" height="32" alt=""> [冬瓜禅杖](#weapon-melon_staff) | 近战 | 横扫 | 格斗/钝器 | 24 / 40 / 62 / 94 | 2 / 1.9 / 1.8 / 1.65 | 150 | 31 |
-| <img src="images/weapon/beet_axe.png" width="32" height="32" alt=""> [甜菜狂战斧](#weapon-beet_axe) | 近战 | 横扫 | 钝器/锋利 | 26 / 43 / 67 / 100 | 2 / 1.9 / 1.8 / 1.65 | 125 | 32 |
+| <img src="images/weapon/beet_axe.png" width="32" height="32" alt=""> [甜菜狂战斧](#weapon-beet_axe) | 近战 | 横扫 | 钝器/锋利 | 26 / 43 / 67 / 100 | 1.8 / 1.7 / 1.6 / 1.5 | 125 | 32 |
 | <img src="images/weapon/bean_mine.png" width="32" height="32" alt=""> [撒豆雷](#weapon-bean_mine) | 远程 | 地雷 | 种子/蔬果 | 10 / 16 / 25 / 38 | 1.9 / 1.8 / 1.65 / 1.5 | 230 | 25 |
 | <img src="images/weapon/pomegranate_cluster.png" width="32" height="32" alt=""> [石榴集束弹](#weapon-pomegranate_cluster) | 远程 | 爆炸弹 | 蔬果 | 9 / 15 / 23 / 35 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 29 |
 | <img src="images/weapon/pepper_drone.png" width="32" height="32" alt=""> [青椒浮游炮](#weapon-pepper_drone) | 远程 | 爆炸弹 | 机械/蔬果 | 11 / 18 / 28 / 43 | 1.3 / 1.22 / 1.14 / 1.04 | 420 | 30 |
-| <img src="images/weapon/onion_tear.png" width="32" height="32" alt=""> [洋葱催泪镖](#weapon-onion_tear) | 远程 | 回旋镖 | 蔬果 | 9 / 15 / 23 / 36 | 1.35 / 1.27 / 1.18 / 1.08 | 360 | 25 |
+| <img src="images/weapon/onion_tear.png" width="32" height="32" alt=""> [洋葱催泪镖](#weapon-onion_tear) | 远程 | 回旋镖 | 蔬果 | 11 / 19 / 29 / 45 | 1.35 / 1.27 / 1.18 / 1.08 | 360 | 25 |
 | <img src="images/weapon/blackberry_wand.png" width="32" height="32" alt=""> [黑莓魔杖](#weapon-blackberry_wand) | 元素 | 子弹 | 魔法/蔬果 | 9 / 15 / 24 / 36 | 0.95 / 0.9 / 0.84 / 0.76 | 420 | 26 |
 | <img src="images/weapon/lychee_gun.png" width="32" height="32" alt=""> [荔枝红包枪](#weapon-lychee_gun) | 远程 | 子弹 | 枪械/蔬果 | 5 / 8 / 12 / 18 | 0.6 / 0.56 / 0.52 / 0.46 | 380 | 24 |
-| <img src="images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [樱桃双枪](#weapon-cherry_pistols) | 远程 | 子弹 | 枪械/蔬果/甜点 | 5 / 8 / 12 / 18 | 0.26 / 0.24 / 0.22 / 0.19 | 380 | 24 |
+| <img src="images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [樱桃双枪](#weapon-cherry_pistols) | 远程 | 子弹 | 枪械/蔬果/甜点 | 6 / 10 / 15 / 23 | 0.26 / 0.24 / 0.22 / 0.19 | 380 | 24 |
 | <img src="images/weapon/lemon_dagger.png" width="32" height="32" alt=""> [柠檬匕首](#weapon-lemon_dagger) | 近战 | 直刺 | 锋利/酱料 | 5 / 9 / 14 / 22 | 0.55 / 0.52 / 0.48 / 0.42 | 125 | 22 |
 | <img src="images/weapon/taro_aura.png" width="32" height="32" alt=""> [芋泥光环](#weapon-taro_aura) | 元素 | 光环 |  | 5 / 8 / 12 / 18 | 0.5 / 0.5 / 0.5 / 0.5 | 106 | 32 |
 | <img src="images/weapon/stink_aura.png" width="32" height="32" alt=""> [榴莲臭气光环](#weapon-stink_aura) | 元素 | 光环 |  | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 149 | 31 |
 | <img src="images/weapon/ketchup_twin.png" width="32" height="32" alt=""> [番茄酱双瓶](#weapon-ketchup_twin) | 远程 | 子弹 | 酱料/蔬果 | 4 / 7 / 11 / 17 | 0.55 / 0.52 / 0.48 / 0.43 | 360 | 23 |
-| <img src="images/weapon/peach_syrup.png" width="32" height="32" alt=""> [蜜桃糖浆枪](#weapon-peach_syrup) | 远程 | 子弹 | 甜点/酱料 | 7 / 12 / 18 / 28 | 0.6 / 0.56 / 0.52 / 0.47 | 420 | 24 |
+| <img src="images/weapon/peach_syrup.png" width="32" height="32" alt=""> [蜜桃糖浆枪](#weapon-peach_syrup) | 远程 | 子弹 | 甜点/酱料 | 9 / 15 / 23 / 35 | 0.6 / 0.56 / 0.52 / 0.47 | 420 | 24 |
 | <img src="images/weapon/eggplant_staff.png" width="32" height="32" alt=""> [紫茄雷杖](#weapon-eggplant_staff) | 元素 | 连锁闪电 | 蔬果 | 8 / 13 / 20 / 31 | 1 / 0.95 / 0.88 / 0.8 | 380 | 27 |
 | <img src="images/weapon/sprout_wand.png" width="32" height="32" alt=""> [新芽魔杖](#weapon-sprout_wand) | 元素 | 子弹 | 魔法/蔬果 | 6 / 10 / 15 / 24 | 0.8 / 0.75 / 0.7 / 0.63 | 400 | 25 |
 | <img src="images/weapon/candy_cane.png" width="32" height="32" alt=""> [拐杖糖锤](#weapon-candy_cane) | 近战 | 横扫 | 甜点/钝器 | 11 / 18 / 29 / 43 | 1.25 / 1.18 / 1.1 / 1 | 130 | 19 |
@@ -419,7 +419,7 @@
 | <img src="images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [主厨可乐电击枪](#weapon-fz_cola_zapper_mixer_storm) | 元素 | 连锁闪电 | 枪械/元素/厨具 | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 39 |
 | <img src="images/weapon/fz_bean_bazooka_soy_bomb.png" width="32" height="32" alt=""> [酱爆豆子火箭筒](#weapon-fz_bean_bazooka_soy_bomb) | 远程 | 爆炸弹 | 枪械/爆破/酱料 | 24 / 40 / 62 / 92 | 2.2 / 2.05 / 1.9 / 1.7 | 504 | 44 |
 | <img src="images/weapon/fz_steam_kettle_asparagus_bow.png" width="32" height="32" alt=""> [贯穿蒸汽水壶](#weapon-fz_steam_kettle_asparagus_bow) | 元素 | 喷火 | 厨具/元素/蔬果 | 15 / 26 / 41 / 62 | 0.26 / 0.24 / 0.21 / 0.18 | 546 | 36 |
-| <img src="images/weapon/fz_onion_tear_lightning_whisk.png" width="32" height="32" alt=""> [雷霆洋葱催泪镖](#weapon-fz_onion_tear_lightning_whisk) | 远程 | 回旋镖 | 蔬果/厨具/元素 | 10 / 17 / 25 / 40 | 0.95 / 0.9 / 0.82 / 0.74 | 399 | 39 |
+| <img src="images/weapon/fz_onion_tear_lightning_whisk.png" width="32" height="32" alt=""> [雷霆洋葱催泪镖](#weapon-fz_onion_tear_lightning_whisk) | 远程 | 回旋镖 | 蔬果/厨具/元素 | 12 / 21 / 32 / 50 | 0.95 / 0.9 / 0.82 / 0.74 | 399 | 39 |
 | <img src="images/weapon/fz_pepper_grinder_choco_mine.png" width="32" height="32" alt=""> [霜寒胡椒研磨枪](#weapon-fz_pepper_grinder_choco_mine) | 远程 | 子弹 | 枪械/锋利/甜点 | 14 / 25 / 39 / 58 | 0.5 / 0.46 / 0.42 / 0.38 | 420 | 34 |
 | <img src="images/weapon/fz_bbq_torch_ketchup_twin.png" width="32" height="32" alt=""> [散射烧烤喷枪](#weapon-fz_bbq_torch_ketchup_twin) | 远程 | 喷火 | 枪械/酱料/蔬果 | 4 / 8 / 12 / 19 | 0.2 / 0.18 / 0.16 / 0.14 | 378 | 39 |
 | <img src="images/weapon/fz_cherry_bomb_bamboo_spear.png" width="32" height="32" alt=""> [致命樱桃炸弹](#weapon-fz_cherry_bomb_bamboo_spear) | 远程 | 爆炸弹 | 蔬果/爆破 | 21 / 35 / 55 / 85 | 1.5 / 1.42 / 1.32 / 1.2 | 378 | 36 |
@@ -434,7 +434,7 @@
 | <img src="images/weapon/fz_toaster_zap_hot_sauce_gun.png" width="32" height="32" alt=""> [烈焰吐司闪电](#weapon-fz_toaster_zap_hot_sauce_gun) | 元素 | 连锁闪电 | 厨具/甜点/酱料 | 12 / 21 / 32 / 50 | 0.55 / 0.5 / 0.46 / 0.42 | 399 | 40 |
 | <img src="images/weapon/fz_ladle_cherry_pistols.png" width="32" height="32" alt=""> [糖霜汤勺](#weapon-fz_ladle_cherry_pistols) | 近战 | 横扫 | 厨具/酱料/枪械 | 11 / 19 / 30 / 45 | 0.26 / 0.24 / 0.22 / 0.19 | 399 | 31 |
 | <img src="images/weapon/fz_watermelon_hammer_mint_frost_mine.png" width="32" height="32" alt=""> [霜寒西瓜锤](#weapon-fz_watermelon_hammer_mint_frost_mine) | 近战 | 横扫 | 蔬果/爆破/元素 | 33 / 55 / 88 / 132 | 2.2 / 2.1 / 2 / 1.8 | 231 | 46 |
-| <img src="images/weapon/fz_peach_syrup_blender_aura.png" width="32" height="32" alt=""> [致命蜜桃糖浆枪](#weapon-fz_peach_syrup_blender_aura) | 远程 | 子弹 | 甜点/酱料/厨具 | 8 / 13 / 20 / 31 | 0.45 / 0.43 / 0.41 / 0.38 | 441 | 36 |
+| <img src="images/weapon/fz_peach_syrup_blender_aura.png" width="32" height="32" alt=""> [致命蜜桃糖浆枪](#weapon-fz_peach_syrup_blender_aura) | 远程 | 子弹 | 甜点/酱料/厨具 | 10 / 17 / 25 / 39 | 0.45 / 0.43 / 0.41 / 0.38 | 441 | 36 |
 | <img src="images/weapon/fz_melon_grenade_pumpkin_lantern.png" width="32" height="32" alt=""> [贯穿西瓜榴弹](#weapon-fz_melon_grenade_pumpkin_lantern) | 远程 | 爆炸弹 | 蔬果/元素 | 10 / 17 / 26 / 41 | 0.8 / 0.75 / 0.7 / 0.62 | 441 | 38 |
 | <img src="images/weapon/fz_blowpipe_syrup_sprayer.png" width="32" height="32" alt=""> [烈焰毒刺吹管](#weapon-fz_blowpipe_syrup_sprayer) | 远程 | 子弹 | 蔬果/甜点 | 11 / 19 / 29 / 44 | 0.2 / 0.18 / 0.16 / 0.14 | 483 | 38 |
 | <img src="images/weapon/fz_chopsticks_pepper_spray.png" width="32" height="32" alt=""> [烈焰竹筷](#weapon-fz_chopsticks_pepper_spray) | 近战 | 直刺 | 厨具/元素 | 6 / 10 / 15 / 23 | 0.18 / 0.16 / 0.14 / 0.12 | 163 | 34 |
@@ -959,7 +959,7 @@
 <tr><td nowrap>类别 / 方式</td><td>近战 / 横扫</td></tr>
 <tr><td nowrap>标签</td><td>钝器、锋利</td></tr>
 <tr><td nowrap>伤害 T1~T4</td><td>26 / 43 / 67 / 100</td></tr>
-<tr><td nowrap>冷却 T1~T4</td><td>2s / 1.9s / 1.8s / 1.65s</td></tr>
+<tr><td nowrap>冷却 T1~T4</td><td>1.8s / 1.7s / 1.6s / 1.5s</td></tr>
 <tr><td nowrap>射程</td><td>125</td></tr>
 <tr><td nowrap>属性加成</td><td>近战伤害 ×1.4</td></tr>
 <tr><td nowrap>暴击倍率</td><td>×2.2</td></tr>
@@ -2118,7 +2118,7 @@
 <tr><td colspan="2"><i>辣眼睛的洋葱片回旋镖，划过的敌人都会中毒。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
 <tr><td nowrap>标签</td><td>蔬果</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>9 / 15 / 23 / 36</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>11 / 19 / 29 / 45</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>1.35s / 1.27s / 1.18s / 1.08s</td></tr>
 <tr><td nowrap>射程</td><td>360</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.9</td></tr>
@@ -2152,7 +2152,7 @@
 <tr><td colspan="2"><i>左右手各一把樱桃枪，交替开火，射速飞快。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
 <tr><td nowrap>标签</td><td>枪械、蔬果、甜点</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>5 / 8 / 12 / 18</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>6 / 10 / 15 / 23</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.26s / 0.24s / 0.22s / 0.19s</td></tr>
 <tr><td nowrap>射程</td><td>380</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.6</td></tr>
@@ -2186,7 +2186,7 @@
 <tr><td colspan="2"><i>天使的蜜桃糖浆枪，糖浆弹会自己找敌人，命中时香甜四溢。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
 <tr><td nowrap>标签</td><td>甜点、酱料</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>7 / 12 / 18 / 28</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>9 / 15 / 23 / 35</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.6s / 0.56s / 0.52s / 0.47s</td></tr>
 <tr><td nowrap>射程</td><td>420</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.75，最大生命 ×0.05</td></tr>
@@ -2747,7 +2747,7 @@
 <tr><td colspan="2"><i>把闪电打蛋器熔进洋葱催泪镖：保留洋葱催泪镖的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 回旋镖</td></tr>
 <tr><td nowrap>标签</td><td>蔬果、厨具、元素</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 25 / 40</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>12 / 21 / 32 / 50</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.95s / 0.9s / 0.82s / 0.74s</td></tr>
 <tr><td nowrap>射程</td><td>399</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，元素伤害 ×0.48</td></tr>
@@ -2849,7 +2849,7 @@
 <tr><td colspan="2"><i>把破壁机熔进蜜桃糖浆枪：保留蜜桃糖浆枪的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 子弹</td></tr>
 <tr><td nowrap>标签</td><td>甜点、酱料、厨具</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>8 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>10 / 17 / 25 / 39</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
 <tr><td nowrap>射程</td><td>441</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.45，最大生命 ×0.03，近战伤害 ×0.3</td></tr>
@@ -4947,12 +4947,12 @@ flowchart LR
 | <img src="images/weapon/dragon_lance.png" width="32" height="32" alt=""> [火龙骑枪](#weapon-dragon_lance) | <img src="images/item/lighter.png" width="32" height="32" alt=""> 打火机 | <img src="images/weapon/inferno_lance.png" width="32" height="32" alt=""> **炎龙骑枪** | 57→**97** / 0.92s→**0.78s** / 195→**224** | 龙焰熊熊的骑枪，刺中的敌人被烈焰吞没。 |
 | <img src="images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [椰壳拳套](#weapon-coconut_gloves) | <img src="images/item/protein.png" width="32" height="32" alt=""> 蛋白粉 | <img src="images/weapon/coco_fist.png" width="32" height="32" alt=""> **椰子霸王拳** | 22→**37** / 0.34s→**0.27s** / 95→**109** | 坚硬的椰壳重拳，拳拳到肉，打得敌人连连后退。 |
 | <img src="images/weapon/melon_staff.png" width="32" height="32" alt=""> [冬瓜禅杖](#weapon-melon_staff) | <img src="images/item/salt_lamp.png" width="32" height="32" alt=""> 盐灯 | <img src="images/weapon/vajra_staff.png" width="32" height="32" alt=""> **金刚禅杖** | 94→**160** / 1.65s→**1.4s** / 150→**188** | 金光护体的禅杖，横扫一整圈，震住四周的敌人。 |
-| <img src="images/weapon/beet_axe.png" width="32" height="32" alt=""> [甜菜狂战斧](#weapon-beet_axe) | <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | <img src="images/weapon/blood_axe.png" width="32" height="32" alt=""> **血怒战斧** | 100→**170** / 1.65s→**1.4s** / 125→**144** | 浸透甜菜汁的战斧，每一劈都吸回生命。 |
+| <img src="images/weapon/beet_axe.png" width="32" height="32" alt=""> [甜菜狂战斧](#weapon-beet_axe) | <img src="images/item/bandage_roll.png" width="32" height="32" alt=""> 绷带卷 | <img src="images/weapon/blood_axe.png" width="32" height="32" alt=""> **血怒战斧** | 100→**170** / 1.5s→**1.27s** / 125→**144** | 浸透甜菜汁的战斧，每一劈都吸回生命。 |
 | <img src="images/weapon/lemon_dagger.png" width="32" height="32" alt=""> [柠檬匕首](#weapon-lemon_dagger) | <img src="images/item/samurai_tsuba.png" width="32" height="32" alt=""> 武士刀镡 | <img src="images/weapon/acid_daggers.png" width="32" height="32" alt=""> **酸蚀双匕** | 22→**37** / 0.42s→**0.32s** / 125→**144** | 一对淬了柠檬汁的匕首，快得看不清，暴击奇痛。 |
 | <img src="images/weapon/onion_boomerang.png" width="32" height="32" alt=""> [洋葱回旋镖](#weapon-onion_boomerang) | <img src="images/item/onion_layers.png" width="32" height="32" alt=""> 千层洋葱 | <img src="images/weapon/onion_layers.png" width="32" height="32" alt=""> **千层洋葱镖** | 40→**68** / 1.1s→**0.94s** / 360→**414** | 一层裹一层的洋葱回旋镖，划过的敌人中毒流泪。 |
 | <img src="images/weapon/pumpkin_lantern.png" width="32" height="32" alt=""> [南瓜鬼火灯](#weapon-pumpkin_lantern) | <img src="images/item/firework_fuse.png" width="32" height="32" alt=""> 烟花引信 | <img src="images/weapon/ghost_lanterns.png" width="32" height="32" alt=""> **百鬼灯笼** | 37→**63** / 0.62s→**0.53s** / 420→**483** | 一串南瓜灯笼放出成群的鬼火，追着敌人穿来穿去。 |
 | <img src="images/weapon/grape_shotgun.png" width="32" height="32" alt=""> [葡萄霰弹枪](#weapon-grape_shotgun) | <img src="images/item/clover.png" width="32" height="32" alt=""> 四叶草 | <img src="images/weapon/grape_magic.png" width="32" height="32" alt=""> **葡萄魔术礼炮** | 15→**26** / 0.8s→**0.68s** / 240→**276** | 魔术师的礼炮，一炮喷出满天葡萄。 |
-| <img src="images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [樱桃双枪](#weapon-cherry_pistols) | <img src="images/item/energy_drink.png" width="32" height="32" alt=""> 能量饮料 | <img src="images/weapon/cherry_barrage.png" width="32" height="32" alt=""> **樱桃连珠炮** | 18→**31** / 0.19s→**0.14s** / 380→**437** | 双枪齐射，樱桃弹连成一条线。 |
+| <img src="images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [樱桃双枪](#weapon-cherry_pistols) | <img src="images/item/energy_drink.png" width="32" height="32" alt=""> 能量饮料 | <img src="images/weapon/cherry_barrage.png" width="32" height="32" alt=""> **樱桃连珠炮** | 23→**39** / 0.19s→**0.14s** / 380→**437** | 双枪齐射，樱桃弹连成一条线。 |
 | <img src="images/weapon/asparagus_bow.png" width="32" height="32" alt=""> [芦笋长弓](#weapon-asparagus_bow) | <img src="images/item/scope.png" width="32" height="32" alt=""> 瞄准镜 | <img src="images/weapon/asparagus_volley.png" width="32" height="32" alt=""> **万箭芦笋** | 56→**95** / 0.88s→**0.75s** / 520→**598** | 一弓射出一排芦笋箭，箭雨穿透整片敌人。 |
 | <img src="images/weapon/coal_tongs.png" width="32" height="32" alt=""> [炭火钳](#weapon-coal_tongs) | <img src="images/item/oven_mitt.png" width="32" height="32" alt=""> 烤箱手套 | <img src="images/weapon/yam_oven.png" width="32" height="32" alt=""> **红薯烤炉** | 49→**83** / 0.9s→**0.77s** / 125→**150** | 烧得通红的烤炉钳，夹到的敌人都烤得滋滋响。 |
 | <img src="images/weapon/salt_aura.png" width="32" height="32" alt=""> [海盐结界](#weapon-salt_aura) | <img src="images/item/glasses.png" width="32" height="32" alt=""> 老花镜 | <img src="images/weapon/truth_field.png" width="32" height="32" alt=""> **真相结界** | 18→**20** / 0.5s→**0.43s** / 109→**131** | 侦探的盐晶结界，结界里的敌人弱点一览无遗。 |

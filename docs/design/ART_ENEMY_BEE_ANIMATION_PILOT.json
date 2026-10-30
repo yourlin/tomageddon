@@ -1,0 +1,61 @@
+{
+  "kind": "enemy",
+  "id": "bee",
+  "displayName": "毒蜂",
+  "status": "16frames integrated;3tier native and actualAI playback passed;final pending",
+  "referenceHeight": 145,
+  "gameplayBehavior": "wander;contact poison/group3;no ranged attack animation",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bee/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bee/base/move-sheet-pilot-1.png",
+      "referenceHeight": 160
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bee/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bee/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "four poses inspected;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "four poses inspected;partition passed",
+    "die": "four weakhover/collapse poses inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "calibrationNote": "Neutral145/move160 with refRadius72.5:raised wings in flight reference must not shrink bee body;wide horizontal wing poses remain within256px. One scale per action,fixed pivot;no per-pose rescaling.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-bee-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-bee-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

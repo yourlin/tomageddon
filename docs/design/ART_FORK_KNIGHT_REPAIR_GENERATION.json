@@ -1,0 +1,5 @@
+{
+  "action": "charge",
+  "source": "drafts/boss/fork_knight/base/charge-sheet-pilot-2.png",
+  "prompt": "Repair layout ONLY of four fork knight charging drawings. Preserve four poses, FOUR helmetprongs, leftfork rightshield redcape, exact artwork/identity. Place each complete figure centered in its equal2x2 quadrant, REDUCE each footprint to at most60percent quadrant width and65percent height. Need large20percent TRANSPARENT margins and wide uninterrupted transparent vertical center gutter, no spear/cape/shield touches neighbor cell. Restore any clippedtips complete. No neweffects/background/shadow/text. True transparent sprite sheet. Keep distinct runningfeet and all equipment sides."
+}

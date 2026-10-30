@@ -11,6 +11,7 @@ import { SHADOWS } from '../data/bossPhases';
 import type { ArenaChange } from './Arena';
 import { BossAura } from './BossAura';
 import { PHASE_ANIMS, type AnimCtx, type PhaseAnim } from './BossPhaseAnims';
+import { bossForm } from './CombatArt';
 
 /** 阶段数据里的场地变化坐标是相对 Boss 的：换算成场地坐标 */
 function relative(c: ArenaChange, e: Enemy): ArenaChange {
@@ -146,7 +147,9 @@ export class BossPhaseDirector {
         tr.burst = true;
         if (e.boss!.id === SHADOWS.boss && tr.next === SHADOWS.phase) g.spawnShadows(e, SHADOWS.ids, SHADOWS.hpMult);
         e.rig?.setScale(e.baseScale * (ph.scale ?? 1));
-        e.phaseTint = ph.tint ?? -1;
+        const form = bossForm(g, e.boss!.id, tr.next);
+        const illustrated = form && e.rig?.setBossForm(form, 0.45);
+        e.phaseTint = illustrated ? -1 : (ph.tint ?? -1);
         e.refreshTint();
         g.fx.nova(e.x, e.y, e.radius * 4, ph.color ?? e.boss!.color);
         g.clearEnemyBullets(true);

@@ -1,0 +1,52 @@
+{
+  "kind": "enemy",
+  "id": "cap_drone",
+  "displayName": "瓶盖无人机",
+  "status": "20authoredframes integrated;3tiernative/actualshooterAI/typecheck/lint/source-review/runtimepassed;finalpending",
+  "referenceHeight": 153,
+  "gameplayBehavior": "shooter115/cd2.8/2proj_soda/spread14;actualcallback",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cap_drone/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cap_drone/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cap_drone/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cap_drone/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cap_drone/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "verification": {
+    "native": "reports/art-pilot/enemy-cap_drone-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-cap_drone-gameplay-native.json",
+    "scope": "native4framesperaction/100msclosedidle/shared200GPUrelease;actual2projectiles/4attackframes/move/hurt/death;notfinalvisual/mobile"
+  }
+}

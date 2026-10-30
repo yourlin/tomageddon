@@ -1,0 +1,72 @@
+{
+  "kind": "boss",
+  "id": "conveyor_worm",
+  "status": "Integrated and basic native verified after move/attack/charge repairs; 100ms blink,three-tier playback,freeze/GPU release and real scatter/charge callbacks passed. Final continuous visual/performance acceptance pending.",
+  "referenceHeight": 145,
+  "gameplayPatterns": [
+    "charge2.8Windup0.55",
+    "scatter10cd3ArmorBreak"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/conveyor_worm/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/conveyor_worm/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/conveyor_worm/base/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/conveyor_worm/base/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/conveyor_worm/base/attack-sheet-pilot-2.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/conveyor_worm/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/conveyor_worm/base/charge-sheet-pilot-2.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 150,
+    "die": 160,
+    "attack": 145,
+    "windup": 153,
+    "charge": 147
+  }
+}

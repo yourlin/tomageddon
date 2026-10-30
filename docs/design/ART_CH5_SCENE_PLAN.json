@@ -1,0 +1,60 @@
+{
+  "chapter": 5,
+  "ground": "maps/ch5/ground-pilot-1.png",
+  "playablePixelRect": [
+    117,
+    105,
+    1485,
+    851
+  ],
+  "arenaSize": [
+    2400,
+    1300
+  ],
+  "obstacles": [
+    {
+      "kind": "rect",
+      "x": 80,
+      "y": 80,
+      "w": 160,
+      "h": 100,
+      "source": "maps/ch5/machine-pilot-1.png"
+    },
+    {
+      "kind": "rect",
+      "x": 2160,
+      "y": 80,
+      "w": 160,
+      "h": 100,
+      "source": "maps/ch5/machine-pilot-1.png"
+    },
+    {
+      "kind": "rect",
+      "x": 80,
+      "y": 1120,
+      "w": 160,
+      "h": 100,
+      "source": "maps/ch5/machine-pilot-1.png"
+    },
+    {
+      "kind": "rect",
+      "x": 2160,
+      "y": 1120,
+      "w": 160,
+      "h": 100,
+      "source": "maps/ch5/machine-pilot-1.png"
+    }
+  ],
+  "objects": {
+    "vent": {
+      "source": "maps/ch5/vent-pilot-1.png"
+    },
+    "conveyor": {
+      "source": "maps/ch5/conveyor-pilot-1.png",
+      "tile": true
+    },
+    "fan": {
+      "source": "maps/ch5/fan-pilot-1.png"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // I3：收藏度总览——「储藏柜」。每一类收藏是货架上的一只罐子，收集多少罐子就装多满；
 // 左边的番茄酱大瓶是总完成度和收藏等级。点罐子拉开抽屉，看到已收集的实物和还没见过的剪影。
 import { storage } from '../platform';
@@ -16,6 +17,7 @@ import { BOSSES } from '../data/bosses';
 import { SKINS, SKIN_OF } from '../data/skins';
 import { QUESTS } from '../data/quests';
 import { skinOwned, questDone } from '../systems/Progress';
+import { skinsEnabled } from '../systems/Features';
 import { achTier, unlockHint } from '../systems/Achievements';
 import { unlockedTitles } from '../data/titles';
 import { itemIconKey } from '../art/ItemArt';
@@ -35,7 +37,7 @@ export interface CollectionRow {
 export function collectionRows(): CollectionRow[] {
   const seen = save.seen;
   const has = (list: string[], ids: { id: string }[]): number => ids.filter((x) => list.includes(x.id)).length;
-  return [
+  const rows: CollectionRow[] = [
     { id: 'char', name: ['角色', 'Characters'], have: unlockedCount(), total: CHARACTERS.length },
     { id: 'weapon', name: ['武器', 'Weapons'], have: has(seen.weapons, WEAPONS), total: WEAPONS.length },
     { id: 'evo', name: ['超武', 'Evolved'], have: has(seen.weapons, EVOLVED_WEAPONS), total: EVOLVED_WEAPONS.length },
@@ -51,8 +53,11 @@ export function collectionRows(): CollectionRow[] {
     },
     { id: 'title', name: ['称号', 'Titles'], have: unlockedTitles(save.achievements).length, total: ACHIEVEMENTS.length },
     { id: 'quest', name: ['角色任务', 'Quests'], have: QUESTS.filter((q) => questDone(q)).length, total: QUESTS.length },
-    { id: 'skin', name: ['皮肤', 'Skins'], have: SKINS.filter((s) => skinOwned(s.id)).length, total: SKINS.length },
   ];
+  // 皮肤玩法暂未开放：不计入收藏度，也不开抽屉（素材照常继续做）
+  if (skinsEnabled())
+    rows.push({ id: 'skin', name: ['皮肤', 'Skins'], have: SKINS.filter((s) => skinOwned(s.id)).length, total: SKINS.length });
+  return rows;
 }
 
 export function collectionPercent(rows = collectionRows()): number {
@@ -353,7 +358,10 @@ export class CollectionScene extends Phaser.Scene {
   private cells(id: string): Cell[] | null {
     const zh = lang === 'zh';
     const seen = save.seen;
-    const wIcon = (wid: string) => () => (this.textures.exists(`icon_weapon_${wid}`) ? `icon_weapon_${wid}` : `weapon_${wid}`);
+    const wIcon = (wid: string) => () => {
+      requestWeaponArt(this, new Set([wid]));
+      return this.textures.exists(`icon_weapon_${wid}`) ? `icon_weapon_${wid}` : `weapon_${wid}`;
+    };
     const findHint = tx('在一局里遇到后收入', 'Collected the first time you meet it in a run');
     switch (id) {
       case 'char':

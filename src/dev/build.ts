@@ -154,7 +154,7 @@ export function applyBuild(b: DevBuild, trial: DevWeapon[] | null = null): void 
     const o = LEVELUP_OPTIONS.find((x) => x.key === p.key);
     if (o) lm[p.key] = (lm[p.key] ?? 0) + o.values[p.rarity];
   }
-  // 每完成一波的角色成长（番茄妹）
+  // 每完成一波的角色成长（番茄妹及 round20–22 加强的 11 个角色，见 waveGrowthMods）
   const wg = waveGrowthMods(b.charId);
   if (wg) for (let i = 1; i < b.wave; i++) addModsTo(lm, wg);
   addModsTo(lm, b.extraMods);

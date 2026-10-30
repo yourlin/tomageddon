@@ -1,0 +1,14 @@
+{
+  "ground": {
+    "source": "maps/ch7/ground-pilot-1.png",
+    "prompt": "Production game map polished handpainted cozy anime fantasy, strict orthographic overhead giant rotten tomato cross-section. Reference1 exact irregular oval arena guide, preserve outline boundary and framing exactly. Red juicy flesh around edge, subtly brown dark decaying core, radial tomato veins and tiny seeds, wrinkled red skin rim with little green-white mold flecks. Large open readable combat surface, no excessive noise. REMOVE all four dark circular seed pits from guide and fill their area seamlessly with flesh: those are separate engine obstacles. Outside irregular oval dark warm soil with sparse leaf debris. No characters/faces/eyes/UI/text. Cute storybook rendering, warm amber edge light, muted purple brown decay shadows, no gore, no perspective. Native crisp high resolution landscape matching guide aspect."
+  },
+  "pit": {
+    "source": "maps/ch7/pit-pilot-1.png",
+    "prompt": "Single circular rotten tomato seed cavity pit sprite, strict orthographic overhead. Dark brown soil-like hollow with irregular red-brown fleshy rim, small cream tomato seeds inside, subtle moss/mold specks, cute polished handpainted anime storybook game texture, warm rim highlights dark central hole. Compact round footprint centered fully visible transparent background. No floor, no eyes/faces, no text, no cast shadow outside rim."
+  },
+  "mud": {
+    "source": "maps/ch7/mud-pilot-1.png",
+    "prompt": "Single circular swirling rotten tomato mud pool for cute survivor game, strict topdown. Muted cocoa brown sticky slime, reddish rim, a few tiny cream seeds, gentle spiral dark center and soft scalloped edge. Polished handpainted anime storybook art, cozy amber highlights, muted purple shadows. Isolated fully visible centered transparent background, no floor, no faces/eyes, no text, no cast shadow beyond slime."
+  }
+}

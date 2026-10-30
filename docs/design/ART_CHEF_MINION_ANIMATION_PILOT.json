@@ -1,0 +1,73 @@
+{
+  "kind": "boss",
+  "id": "chef_minion",
+  "status": "Integrated; three-tier native playback/100ms blink/freeze/GPU release and actual aimed/teleport/summon callbacks passed. Final continuous visual/performance acceptance pending.",
+  "referenceHeight": 122,
+  "gameplayPatterns": [
+    "aimed5cd2.2Poison",
+    "teleport5s",
+    "summon2robotCan8s"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack",
+    "cast",
+    "spawn"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/chef_minion/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/chef_minion/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/chef_minion/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/chef_minion/base/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/chef_minion/base/attack-sheet-pilot-2.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/chef_minion/base/cast-sheet-pilot-2.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/chef_minion/base/spawn-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160,
+    "cast": 160,
+    "spawn": 122
+  }
+}

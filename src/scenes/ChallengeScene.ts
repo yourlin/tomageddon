@@ -152,7 +152,7 @@ export class ChallengeScene extends Phaser.Scene {
     persist();
     checkAchievements();
     run.startChallenge(c);
-    this.scene.start('Game');
+    this.scene.start('Comic', { ch: run.chapterId, next: 'Game' });
   }
 
   private card(c: ChallengeDef, x: number, y: number, w: number, h: number): void {

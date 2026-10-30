@@ -1,0 +1,17 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath by weapon hit: upright weak; legs buckle; tip on side eyes closed antennae droop; lying motionless legs curled eyes closed. No explosion, particles or debris.",
+    "windup": "undefinedFuse warning anticipation: alert; legs plant wide head lowers; crouch legs bend and antennae fold inward; tightly braced tense pose eyes narrow. Authored body/limb changes, no explosion or glow, no whole-image scale."
+  },
+  "repairs": {
+    "die2": {
+      "prompt": "Produce a game sprite SHEET with FOUR beetles, not one. TWO ROWS TWO COLUMNS, exactly4 isolated poses. Same navy/orange striped beetle reference with six legs and two orange club antennae. TL weak standing; TR legs buckle; BL tips onto side eyes closed; BR lies on side six legs curled eyes closed. Each full figure SMALL occupying middle45% of its quadrant. Huge empty transparent cross/margins. Transparent background ONLY. No arrows, weapon, stick, impact/motion marks, ground, shadow, text or grid lines. Same camera/scale/design; articulate body and legs.",
+      "source": "drafts/enemy/beetle/base/die-sheet-pilot-2.png"
+    },
+    "windup2": {
+      "prompt": "Produce a game sprite SHEET with FOUR beetles, not one. TWO ROWS TWO COLUMNS, exactly4 isolated poses. Same navy/orange striped beetle reference with six legs and two orange club antennae. TL alert legs planted; TR knees bend antennae fold inward; BL head lowers legs brace; BR deeply crouched tense ready-to-explode posture. Eyes narrow but remain within sockets. Each full figure SMALL occupying middle45% of its quadrant. Huge empty transparent cross/margins. Transparent background ONLY. No arrows, weapon, stick, impact/motion marks, ground, shadow, text or grid lines. Same camera/scale/design; articulate body and legs.",
+      "source": "drafts/enemy/beetle/base/windup-sheet-pilot-2.png"
+    }
+  }
+}

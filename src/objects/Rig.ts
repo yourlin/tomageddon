@@ -1,6 +1,7 @@
-// 部件骨骼 + 状态机动画：所有角色 / 怪物 / Boss 都由它渲染
-// 状态：idle / move / attack / hurt / windup / charge / stun / die / spawn / cast / victory
+// 部件骨骼 + 状态机动画：角色 / 怪物 / Boss 的程序化外观（没有外部美术时的默认实现，见 EntityVisual）
+// 状态：idle / move / attack / hurt / windup / charge / stun / die / spawn / cast / victory / frozen
 import Phaser from 'phaser';
+import { EntityVisual, TIMED, type RigState } from './EntityVisual';
 import type { RigSpec } from '../art/RigSpec';
 import { P, drawBody, drawTop } from '../art/RigBody';
 import {
@@ -25,7 +26,7 @@ import {
 import { accessoryPart, type AccPart } from '../art/RigAcc';
 import { paint, darken, hashStr } from '../art/Painter';
 
-export type RigState = 'idle' | 'move' | 'attack' | 'hurt' | 'windup' | 'charge' | 'stun' | 'die' | 'spawn' | 'cast' | 'victory' | 'frozen';
+export type { RigState };
 
 type Img = Phaser.GameObjects.Image;
 
@@ -36,9 +37,8 @@ interface Swayer {
   phase: number;
 }
 
-const TIMED: Partial<Record<RigState, number>> = { attack: 0.22, hurt: 0.28, die: 0.3, spawn: 0.35, cast: 0.45 };
-
-export class Rig extends Phaser.GameObjects.Container {
+export class Rig extends EntityVisual {
+  readonly mode = 'procedural' as const;
   puppet: Phaser.GameObjects.Container;
   shadow: Img;
   bodyImg!: Img;
@@ -57,17 +57,14 @@ export class Rig extends Phaser.GameObjects.Container {
   private stars: Img[] = [];
   private spec: RigSpec;
   private specialEyes: boolean;
-  state: RigState = 'idle';
   private base: 'idle' | 'move' = 'idle';
   private stateT = 0;
   private t = Math.random() * 10;
   private blinkT = 1 + Math.random() * 3;
   private dir = 1;
-  radius: number;
   private hasFaceFx = false;
   private tintColor = -1;
   private flashT = 0;
-  onDieDone: (() => void) | null = null;
 
   constructor(scene: Phaser.Scene, spec: RigSpec, key: string, radius: number) {
     super(scene, 0, 0);

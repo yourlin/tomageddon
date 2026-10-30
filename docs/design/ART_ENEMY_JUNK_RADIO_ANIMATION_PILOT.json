@@ -1,0 +1,54 @@
+{
+  "kind": "enemy",
+  "id": "junk_radio",
+  "displayName": "破收音机",
+  "status": "20authoredframes integrated;3tiernative/actualhealerAI/typecheck/lint/source-review/runtimepassed;finalpending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "healer55/cd3/heal.2/radius180",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/junk_radio/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/junk_radio/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/junk_radio/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/junk_radio/base/die-sheet-pilot-1.png",
+      "referenceHeight": 128
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/junk_radio/base/cast-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationNotes": "Death has drooped antennae inreference0;uniformactionheight128 preserves core radio scale against idle160;never perframenormalize",
+  "verification": {
+    "native": "reports/art-pilot/enemy-junk_radio-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-junk_radio-gameplay-native.json",
+    "scope": "RealallyHPgain/cast4frames/move/hurt/death;fixturestart500pxawaytoseehealertravel;notfinalvisual/mobile"
+  }
+}

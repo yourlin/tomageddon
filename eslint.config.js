@@ -40,6 +40,7 @@ export default tseslint.config(
     // 这些脚本中 page.evaluate 的回调在浏览器里执行
     files: [
       'scripts/batch.mjs',
+      'scripts/art-perf.mjs',
       'scripts/export-images.mjs',
       'scripts/export-maps.mjs',
       'scripts/export-anim.mjs',

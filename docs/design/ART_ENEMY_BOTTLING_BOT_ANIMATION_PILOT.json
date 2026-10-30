@@ -1,0 +1,57 @@
+{
+  "kind": "enemy",
+  "id": "bottling_bot",
+  "displayName": "灌装机器人",
+  "status": "20authoredframes integrated;3tiernative/actualsummonAI/typecheck/lint/source-review/runtimepassed;finalpending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "summoner45/cd5/3sauce_drip;actualcallback",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bottling_bot/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bottling_bot/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bottling_bot/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/bottling_bot/base/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/enemy/bottling_bot/base/cast-sheet-pilot-2.png"
+    }
+  ],
+  "rejectedForIntegration": {
+    "die-sheet-pilot-1.png": "Referencehangingnozzlesaucereintroduced;modelcleanup275",
+    "cast-sheet-pilot-1.png": "Referencehangingnozzlesaucereintroduced;modelcleanup275"
+  },
+  "calibrationNotes": "Castreference1pumpcompressed,matchingidlebodyheight;extendedpumpframe0mustfitwithout perframescaling",
+  "verification": {
+    "native": "reports/art-pilot/enemy-bottling_bot-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-bottling_bot-gameplay-native.json",
+    "scope": "native4framesperaction/100msclosedidle/shared200GPUrelease;cast4frames/actual3saucedripchildren each4moveframes;notfinalvisual/mobile"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "kind": "enemy",
+  "id": "grease_drop",
+  "displayName": "\u6cb9\u6ef4\u7cbe",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "wander;group3;four basic actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/grease_drop/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/grease_drop/base/move-sheet-pilot-3.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/grease_drop/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/grease_drop/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle1": "opaque oil lids close both eyes;partition passed",
+    "move1": "REJECT third/fourth poses mirror curl and bubble/swirl sides;targeted move2 requested",
+    "hurt1": "recoil/spread/tuck/rebound/open-eye recovery inspected;partition checked;rebound expression remains light",
+    "move2": "Identity fixed but third pose still leads screen-right foot like frame1;targeted bottom-left gait edit required",
+    "move3": "Targeted third pose now leads screen-left foot with foreshortened sole;other faces/leftcurl and bubble sides retained;partition passed",
+    "die1": "four continuous oil collapse poses;eyes closed in last3;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-grease_drop-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-grease_drop-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

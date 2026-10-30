@@ -1,0 +1,54 @@
+{
+  "id": "furnace_imp",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet FOUR complete small furnace imps arranged TWO ROWS TWO COLUMNS. Identity reference: floating orange flame teardrop creature yellow inner flames and flame tail NO legs, two dark cracked magma horns, spiked dark metal furnace belt three glowing slots, cuffs, two flame hands; image-LEFT hand grips heavy spiked magma hammer and image-RIGHT hand free. Same cute painterly outlined style camera/body scale. Full hammer horns flame tips tail inside central60% quadrant, huge transparent gaps and outer padding. No lines text floor shadows backdrop effects extra creatures. True authored flame contours and joint motion not scale duplicates. Idle blink sequence: top-left eyes OPEN; top-right eyes OPEN different flame curls; bottom-left HALF open visible pupils; bottom-right FULLY CLOSED dark eyelids NO pupil whites or eye glow. Only last fully closed. Horns belt hammer rigid same size, flame tip contours flicker independently."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet FOUR complete small furnace imps arranged TWO ROWS TWO COLUMNS. Identity reference: floating orange flame teardrop creature yellow inner flames and flame tail NO legs, two dark cracked magma horns, spiked dark metal furnace belt three glowing slots, cuffs, two flame hands; image-LEFT hand grips heavy spiked magma hammer and image-RIGHT hand free. Same cute painterly outlined style camera/body scale. Full hammer horns flame tips tail inside central60% quadrant, huge transparent gaps and outer padding. No lines text floor shadows backdrop effects extra creatures. True authored flame contours and joint motion not scale duplicates. Four hovering movement poses: flame tail curls image-left, tail narrows center with inner flame curling, tail curls image-right, tail recovers center. Head flame crest counter-bends, free arm and hammer hand slightly articulate, camera same NO mirroring and hammer always image-left. No feet no global scaling."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet FOUR complete small furnace imps arranged TWO ROWS TWO COLUMNS. Identity reference: floating orange flame teardrop creature yellow inner flames and flame tail NO legs, two dark cracked magma horns, spiked dark metal furnace belt three glowing slots, cuffs, two flame hands; image-LEFT hand grips heavy spiked magma hammer and image-RIGHT hand free. Same cute painterly outlined style camera/body scale. Full hammer horns flame tips tail inside central60% quadrant, huge transparent gaps and outer padding. No lines text floor shadows backdrop effects extra creatures. True authored flame contours and joint motion not scale duplicates. Four hurt poses: brace; recoil body bends back flame crest folds and free hand opens; tuck wince hammer held close; recover. Keep both horns belt and hammer full, no damage tint or extra effects."
+    },
+    {
+      "action": "die",
+      "prompt": "undefinedFour DEATH poses: ready; flame crest droops body sags eyes wince hammer lowers; low collapsed flame body horns and belt attached eyes dim; extinguished low ember lump orange body now dark red eyes shut mouth dark, horns/belt/hammer resting close still complete. No ash particles/gore/explosion. Full props all cells tiny figures big gaps."
+    },
+    {
+      "action": "attack",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet FOUR complete small furnace imps arranged TWO ROWS TWO COLUMNS. Identity reference: floating orange flame teardrop creature yellow inner flames and flame tail NO legs, two dark cracked magma horns, spiked dark metal furnace belt three glowing slots, cuffs, two flame hands; image-LEFT hand grips heavy spiked magma hammer and image-RIGHT hand free. Same cute painterly outlined style camera/body scale. Full hammer horns flame tips tail inside central60% quadrant, huge transparent gaps and outer padding. No lines text floor shadows backdrop effects extra creatures. True authored flame contours and joint motion not scale duplicates. Four SPIRAL VOLLEY attack poses: brace free hand by belt; twist torso free palm draws back; free palm thrusts outward casting with open mouth while hammer held close image-left; recover. Bullets rendered separately do not draw any. Full horns/hammer/tail all cells, SMALL figures huge padding."
+    },
+    {
+      "action": "spawn",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet FOUR complete small furnace imps arranged TWO ROWS TWO COLUMNS. Identity reference: floating orange flame teardrop creature yellow inner flames and flame tail NO legs, two dark cracked magma horns, spiked dark metal furnace belt three glowing slots, cuffs, two flame hands; image-LEFT hand grips heavy spiked magma hammer and image-RIGHT hand free. Same cute painterly outlined style camera/body scale. Full hammer horns flame tips tail inside central60% quadrant, huge transparent gaps and outer padding. No lines text floor shadows backdrop effects extra creatures. True authored flame contours and joint motion not scale duplicates. Four TELEPORT APPEARANCE poses: curled flame tail tucked body crouched; unfolds torso crest rises; free arm opens tail uncurls; ready. Same body scale all frames no growing from tiny, no portal particles or opacity fade game handles that. Full horns hammer belt, small centered figures with huge gaps."
+    }
+  ],
+  "repairs": [
+    {
+      "action": "move2",
+      "prompt": "Transparent SQUARE sprite sheet EXACTLY FOUR SMALL furnace imps in TWO ROWS TWO COLUMNS, NOT horizontal strip. Reference floating orange flame body magma horns dark furnace belt/cuffs, left hand holds magma hammer, right hand free, NO legs. Each full figure occupies only middle HALF of its quadrant, enormous empty transparent margins/gutters. Full flame tips horns hammer tail inside cell, no overlap no edge contact. No text lines floor backdrop shadows or separate effects. Four HOVER movement poses: tail curls left, center, right, center; head flame tip counter-bends, arms articulate slightly, hammer remains image-left. Consistent size no mirroring no global scaling."
+    },
+    {
+      "action": "hurt2",
+      "prompt": "Transparent SQUARE game sprite sheet FOUR SMALL furnace imps in TWO ROWS TWO COLUMNS. Reference floating orange fire teardrop, two magma horns, metal furnace belt/cuffs, left hand holds magma hammer right hand free, NO legs. HURT poses reading order: neutral, recoil with flame crest folded backward, tucked wince, recover. All figures fit central HALF of quadrant with HUGE fully empty transparent gaps between rows and columns. Include full hammer horns crest tail without edge contact. No floor shadows text lines or effects."
+    },
+    {
+      "action": "die2",
+      "prompt": "Transparent SQUARE sprite sheet EXACTLY FOUR SMALL furnace imps in TWO ROWS TWO COLUMNS, NOT horizontal strip. Reference floating orange flame body magma horns dark furnace belt/cuffs, left hand holds magma hammer, right hand free, NO legs. Each full figure occupies only middle HALF of its quadrant, enormous empty transparent margins/gutters. Full flame tips horns hammer tail inside cell, no overlap no edge contact. No text lines floor backdrop shadows or separate effects. Four DEATH poses: ready; drooping crest shoulders sag hammer lowers; collapsed low eyes shut with horns belt hammer intact; extinguished dark red ember body low, eyes shut mouth dark and no bright crest, hammer beside body. No gore."
+    },
+    {
+      "action": "die3",
+      "prompt": "Transparent SQUARE sprite sheet EXACTLY FOUR SMALL furnace imps in TWO ROWS TWO COLUMNS, NOT horizontal strip. Reference floating orange flame body magma horns dark furnace belt/cuffs, left hand holds magma hammer, right hand free, NO legs. Each full figure occupies only middle HALF of its quadrant, enormous empty transparent margins/gutters. Full flame tips horns hammer tail inside cell, no overlap no edge contact. No text lines floor backdrop shadows or separate effects. Four DEATH poses: ready; drooping crest shoulders sag hammer lowers; collapsed low eyes shut with horns belt hammer intact; extinguished dark red ember body low, eyes shut mouth dark and no bright crest, hammer beside body. No gore."
+    },
+    {
+      "action": "spawn2",
+      "prompt": "Transparent SQUARE 2x2 sprite sheet FOUR SMALL full furnace imps matching reference orange floating flame body magma horns metal furnace belt cuffs, image-left hammer and image-right free hand, NO legs. TELEPORT APPEARANCE poses reading order: tucked flame tail with arms close; unfolding; free hand opens briefly; ready. Keep same body size not scale growth. Each figure centered inside middle HALF of quadrant with HUGE clear transparent gaps on all sides. Full flame crest tail horns hammer complete no edge touch. No portal smoke particles text lines floor or shadows."
+    }
+  ],
+  "failure": "die2 terminal connection failure; retried as die3. move2 from same cell completed and preserved."
+}

@@ -37,6 +37,11 @@ export class Bullet extends Phaser.GameObjects.Image {
   // 敌方子弹
   slow = 0;
   spin = 0;
+  enemyVisualSpin = 6;
+  enemyVisualPulse = 0;
+  enemyVisualScale = 1;
+  enemyVisualAge = 0;
+  impactColor = 0xff4d6d;
   /** 伤害来源（武器 id 等），用于局后统计 */
   src = '';
   debuffs: StatusApply[] | undefined;
@@ -64,7 +69,7 @@ export class Bullet extends Phaser.GameObjects.Image {
   }
 
   fire(key: string, x: number, y: number, angle: number, speed: number, life: number, radius: number): this {
-    this.setTexture(key).setPosition(x, y).setActive(true).setVisible(true).setAlpha(1).setScale(1).clearTint();
+    this.setTexture(key).setPosition(x, y).setActive(true).setVisible(true).setAlpha(1).setScale(1).setOrigin(0.5).clearTint();
     this.vx = Math.cos(angle) * speed;
     this.vy = Math.sin(angle) * speed;
     this.setRotation(angle);
@@ -86,6 +91,11 @@ export class Bullet extends Phaser.GameObjects.Image {
     this.sy = y;
     this.slow = 0;
     this.spin = 0;
+    this.enemyVisualSpin = 6;
+    this.enemyVisualPulse = 0;
+    this.enemyVisualScale = 1;
+    this.enemyVisualAge = 0;
+    this.impactColor = 0xff4d6d;
     this.src = '';
     this.debuffs = undefined;
     this.owner = null;
