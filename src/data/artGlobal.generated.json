@@ -1,0 +1,1002 @@
+[
+  {
+    "kind": "enemy",
+    "id": "spider",
+    "anchor": {
+      "x": 0.50518,
+      "y": 0.86364
+    },
+    "refRadius": 578
+  },
+  {
+    "kind": "enemy",
+    "id": "mushroom",
+    "anchor": {
+      "x": 0.50877,
+      "y": 0.94099
+    },
+    "refRadius": 563
+  },
+  {
+    "kind": "enemy",
+    "id": "snail",
+    "anchor": {
+      "x": 0.50279,
+      "y": 0.93222
+    },
+    "refRadius": 552
+  },
+  {
+    "kind": "enemy",
+    "id": "brood",
+    "anchor": {
+      "x": 0.50518,
+      "y": 0.92344
+    },
+    "refRadius": 564
+  },
+  {
+    "kind": "enemy",
+    "id": "bee",
+    "anchor": {
+      "x": 0.50638,
+      "y": 0.94418
+    },
+    "refRadius": 590
+  },
+  {
+    "kind": "enemy",
+    "id": "worm",
+    "anchor": {
+      "x": 0.51356,
+      "y": 0.85566
+    },
+    "refRadius": 517
+  },
+  {
+    "kind": "enemy",
+    "id": "aphid",
+    "anchor": {
+      "x": 0.52791,
+      "y": 0.90909
+    },
+    "refRadius": 534
+  },
+  {
+    "kind": "enemy",
+    "id": "garden_slug",
+    "anchor": {
+      "x": 0.5012,
+      "y": 0.87799
+    },
+    "refRadius": 564,
+    "version": 2
+  },
+  {
+    "kind": "enemy",
+    "id": "weevil",
+    "anchor": {
+      "x": 0.52033,
+      "y": 0.88836
+    },
+    "refRadius": 558
+  },
+  {
+    "kind": "enemy",
+    "id": "thorn_weed",
+    "anchor": {
+      "x": 0.50319,
+      "y": 0.93939
+    },
+    "refRadius": 589
+  },
+  {
+    "kind": "enemy",
+    "id": "caterpillar",
+    "anchor": {
+      "x": 0.5004,
+      "y": 0.8748
+    },
+    "refRadius": 584
+  },
+  {
+    "kind": "enemy",
+    "id": "ladybug_bomb",
+    "anchor": {
+      "x": 0.51874,
+      "y": 0.93301
+    },
+    "refRadius": 528
+  },
+  {
+    "kind": "enemy",
+    "id": "rotten_potato",
+    "anchor": {
+      "x": 0.53668,
+      "y": 0.92743
+    },
+    "refRadius": 475
+  },
+  {
+    "kind": "enemy",
+    "id": "locust",
+    "anchor": {
+      "x": 0.51435,
+      "y": 0.93541
+    },
+    "refRadius": 559
+  },
+  {
+    "kind": "enemy",
+    "id": "mantis",
+    "anchor": {
+      "x": 0.54545,
+      "y": 0.94896
+    },
+    "refRadius": 497
+  },
+  {
+    "kind": "enemy",
+    "id": "pollen_bloom",
+    "anchor": {
+      "x": 0.53349,
+      "y": 0.92663
+    },
+    "refRadius": 445
+  },
+  {
+    "kind": "enemy",
+    "id": "robot_can",
+    "anchor": {
+      "x": 0.53389,
+      "y": 0.92504
+    },
+    "refRadius": 514
+  },
+  {
+    "kind": "enemy",
+    "id": "ice_cube",
+    "anchor": {
+      "x": 0.51316,
+      "y": 0.86284
+    },
+    "refRadius": 586
+  },
+  {
+    "kind": "enemy",
+    "id": "frost_mosquito",
+    "anchor": {
+      "x": 0.50957,
+      "y": 0.91786
+    },
+    "refRadius": 533
+  },
+  {
+    "kind": "enemy",
+    "id": "frozen_shrimp",
+    "anchor": {
+      "x": 0.50837,
+      "y": 0.84211
+    },
+    "refRadius": 592
+  },
+  {
+    "kind": "enemy",
+    "id": "trash_bag",
+    "anchor": {
+      "x": 0.50837,
+      "y": 0.94817
+    },
+    "refRadius": 552
+  },
+  {
+    "kind": "enemy",
+    "id": "can_crab",
+    "anchor": {
+      "x": 0.50518,
+      "y": 0.88517
+    },
+    "refRadius": 586
+  },
+  {
+    "kind": "enemy",
+    "id": "rat",
+    "anchor": {
+      "x": 0.52791,
+      "y": 0.88836
+    },
+    "refRadius": 554
+  },
+  {
+    "kind": "enemy",
+    "id": "rag_ghost",
+    "anchor": {
+      "x": 0.52392,
+      "y": 0.94896
+    },
+    "refRadius": 522
+  },
+  {
+    "kind": "enemy",
+    "id": "oil_blob",
+    "anchor": {
+      "x": 0.5,
+      "y": 0.88517
+    },
+    "refRadius": 584
+  },
+  {
+    "kind": "enemy",
+    "id": "gear_bug",
+    "anchor": {
+      "x": 0.50399,
+      "y": 0.89314
+    },
+    "refRadius": 592
+  },
+  {
+    "kind": "enemy",
+    "id": "curse_doll",
+    "anchor": {
+      "x": 0.4992,
+      "y": 0.93939
+    },
+    "refRadius": 562
+  },
+  {
+    "kind": "enemy",
+    "id": "frost_mite",
+    "anchor": {
+      "x": 0.50598,
+      "y": 0.90989
+    },
+    "refRadius": 574
+  },
+  {
+    "kind": "enemy",
+    "id": "freezer_burn",
+    "anchor": {
+      "x": 0.5004,
+      "y": 0.86842
+    },
+    "refRadius": 602
+  },
+  {
+    "kind": "boss",
+    "id": "rat_captain",
+    "anchor": {
+      "x": 0.50718,
+      "y": 0.9051
+    },
+    "refRadius": 607
+  },
+  {
+    "kind": "enemy",
+    "id": "ice_slime",
+    "anchor": {
+      "x": 0.52512,
+      "y": 0.85726
+    },
+    "refRadius": 554
+  },
+  {
+    "kind": "enemy",
+    "id": "moldy_cheese",
+    "anchor": {
+      "x": 0.50837,
+      "y": 0.90431
+    },
+    "refRadius": 568
+  },
+  {
+    "kind": "boss",
+    "id": "scarecrow",
+    "anchor": {
+      "x": 0.51595,
+      "y": 0.9681
+    },
+    "refRadius": 585
+  },
+  {
+    "kind": "enemy",
+    "id": "popsicle_bat",
+    "anchor": {
+      "x": 0.50518,
+      "y": 0.86603
+    },
+    "refRadius": 610
+  },
+  {
+    "kind": "enemy",
+    "id": "frozen_pea",
+    "anchor": {
+      "x": 0.50558,
+      "y": 0.93381
+    },
+    "refRadius": 522
+  },
+  {
+    "kind": "boss",
+    "id": "queen_bee",
+    "anchor": {
+      "x": 0.5,
+      "y": 0.91547
+    },
+    "refRadius": 608
+  },
+  {
+    "kind": "enemy",
+    "id": "leftover_box",
+    "anchor": {
+      "x": 0.50239,
+      "y": 0.88357
+    },
+    "refRadius": 583
+  },
+  {
+    "kind": "enemy",
+    "id": "jelly_cube",
+    "anchor": {
+      "x": 0.51156,
+      "y": 0.89872
+    },
+    "refRadius": 560
+  },
+  {
+    "kind": "boss",
+    "id": "spider_matron",
+    "anchor": {
+      "x": 0.50718,
+      "y": 0.88596
+    },
+    "refRadius": 585
+  },
+  {
+    "kind": "enemy",
+    "id": "icicle_imp",
+    "anchor": {
+      "x": 0.49561,
+      "y": 0.88836
+    },
+    "refRadius": 554
+  },
+  {
+    "kind": "enemy",
+    "id": "frozen_soda",
+    "anchor": {
+      "x": 0.53788,
+      "y": 0.90909
+    },
+    "refRadius": 464
+  },
+  {
+    "kind": "enemy",
+    "id": "rust_crab",
+    "anchor": {
+      "x": 0.50758,
+      "y": 0.83892
+    },
+    "refRadius": 586
+  },
+  {
+    "kind": "boss",
+    "id": "snail_tank",
+    "anchor": {
+      "x": 0.50439,
+      "y": 0.87959
+    },
+    "refRadius": 584
+  },
+  {
+    "kind": "boss",
+    "id": "mushroom_king",
+    "anchor": {
+      "x": 0.51037,
+      "y": 0.9362
+    },
+    "refRadius": 585
+  },
+  {
+    "kind": "enemy",
+    "id": "oil_slick",
+    "anchor": {
+      "x": 0.51236,
+      "y": 0.83413
+    },
+    "refRadius": 572
+  },
+  {
+    "kind": "boss",
+    "id": "ice_golem",
+    "anchor": {
+      "x": 0.50279,
+      "y": 0.92663
+    },
+    "refRadius": 586
+  },
+  {
+    "kind": "enemy",
+    "id": "bag_ghost",
+    "anchor": {
+      "x": 0.49402,
+      "y": 0.92504
+    },
+    "refRadius": 556
+  },
+  {
+    "kind": "boss",
+    "id": "popsicle_twins",
+    "anchor": {
+      "x": 0.52313,
+      "y": 0.94976
+    },
+    "refRadius": 507
+  },
+  {
+    "kind": "enemy",
+    "id": "battery_mite",
+    "anchor": {
+      "x": 0.52273,
+      "y": 0.93142
+    },
+    "refRadius": 488
+  },
+  {
+    "kind": "boss",
+    "id": "frozen_fish",
+    "anchor": {
+      "x": 0.50359,
+      "y": 0.87002
+    },
+    "refRadius": 592
+  },
+  {
+    "kind": "boss",
+    "id": "snow_rat",
+    "anchor": {
+      "x": 0.50797,
+      "y": 0.85646
+    },
+    "refRadius": 597
+  },
+  {
+    "kind": "enemy",
+    "id": "tire_roller",
+    "anchor": {
+      "x": 0.50997,
+      "y": 0.94019
+    },
+    "refRadius": 536
+  },
+  {
+    "kind": "boss",
+    "id": "milk_slime",
+    "anchor": {
+      "x": 0.50797,
+      "y": 0.91467
+    },
+    "refRadius": 569
+  },
+  {
+    "kind": "boss",
+    "id": "frost_penguin",
+    "anchor": {
+      "x": 0.50678,
+      "y": 0.94577
+    },
+    "refRadius": 592
+  },
+  {
+    "kind": "enemy",
+    "id": "scrap_drone",
+    "anchor": {
+      "x": 0.50359,
+      "y": 0.80781
+    },
+    "refRadius": 612
+  },
+  {
+    "kind": "boss",
+    "id": "tire_beast",
+    "anchor": {
+      "x": 0.50678,
+      "y": 0.92026
+    },
+    "refRadius": 610
+  },
+  {
+    "kind": "enemy",
+    "id": "rusty_nail",
+    "anchor": {
+      "x": 0.50758,
+      "y": 0.80303
+    },
+    "refRadius": 542
+  },
+  {
+    "kind": "boss",
+    "id": "can_king",
+    "anchor": {
+      "x": 0.50439,
+      "y": 0.86762
+    },
+    "refRadius": 608
+  },
+  {
+    "kind": "enemy",
+    "id": "junk_heap",
+    "anchor": {
+      "x": 0.50239,
+      "y": 0.87879
+    },
+    "refRadius": 594
+  },
+  {
+    "kind": "boss",
+    "id": "rag_wraith",
+    "anchor": {
+      "x": 0.50199,
+      "y": 0.94498
+    },
+    "refRadius": 608
+  },
+  {
+    "kind": "enemy",
+    "id": "junk_radio",
+    "anchor": {
+      "x": 0.51435,
+      "y": 0.92504
+    },
+    "refRadius": 464
+  },
+  {
+    "kind": "boss",
+    "id": "battery_bug",
+    "anchor": {
+      "x": 0.50758,
+      "y": 0.94338
+    },
+    "refRadius": 566
+  },
+  {
+    "kind": "enemy",
+    "id": "conveyor_gremlin",
+    "anchor": {
+      "x": 0.51754,
+      "y": 0.96013
+    },
+    "refRadius": 502
+  },
+  {
+    "kind": "enemy",
+    "id": "sauce_drip",
+    "anchor": {
+      "x": 0.49801,
+      "y": 0.91148
+    },
+    "refRadius": 520
+  },
+  {
+    "kind": "enemy",
+    "id": "cap_drone",
+    "anchor": {
+      "x": 0.5012,
+      "y": 0.77831
+    },
+    "refRadius": 620
+  },
+  {
+    "kind": "boss",
+    "id": "garbage_rat",
+    "anchor": {
+      "x": 0.50159,
+      "y": 0.94737
+    },
+    "refRadius": 620
+  },
+  {
+    "kind": "boss",
+    "id": "oil_titan",
+    "anchor": {
+      "x": 0.51475,
+      "y": 0.93062
+    },
+    "refRadius": 588
+  },
+  {
+    "kind": "boss",
+    "id": "conveyor_worm",
+    "anchor": {
+      "x": 0.5012,
+      "y": 0.87081
+    },
+    "refRadius": 598
+  },
+  {
+    "kind": "enemy",
+    "id": "ketchup_slime",
+    "anchor": {
+      "x": 0.50439,
+      "y": 0.95534
+    },
+    "refRadius": 584
+  },
+  {
+    "kind": "boss",
+    "id": "ketchup_golem",
+    "anchor": {
+      "x": 0.51037,
+      "y": 0.93939
+    },
+    "refRadius": 583
+  },
+  {
+    "kind": "enemy",
+    "id": "steam_imp",
+    "anchor": {
+      "x": 0.51116,
+      "y": 0.89155
+    },
+    "refRadius": 534
+  },
+  {
+    "kind": "enemy",
+    "id": "glass_shard",
+    "anchor": {
+      "x": 0.5,
+      "y": 0.89075
+    },
+    "refRadius": 580
+  },
+  {
+    "kind": "enemy",
+    "id": "rivet_bot",
+    "anchor": {
+      "x": 0.51715,
+      "y": 0.89952
+    },
+    "refRadius": 582
+  },
+  {
+    "kind": "boss",
+    "id": "security_bot",
+    "anchor": {
+      "x": 0.54944,
+      "y": 0.94179
+    },
+    "refRadius": 535
+  },
+  {
+    "kind": "enemy",
+    "id": "label_ghost",
+    "anchor": {
+      "x": 0.51635,
+      "y": 0.95853
+    },
+    "refRadius": 492
+  },
+  {
+    "kind": "boss",
+    "id": "press_machine",
+    "anchor": {
+      "x": 0.50199,
+      "y": 0.95774
+    },
+    "refRadius": 622
+  },
+  {
+    "kind": "boss",
+    "id": "chef_minion",
+    "anchor": {
+      "x": 0.50837,
+      "y": 0.91547
+    },
+    "refRadius": 606
+  },
+  {
+    "kind": "enemy",
+    "id": "bottling_bot",
+    "anchor": {
+      "x": 0.55981,
+      "y": 0.91786
+    },
+    "refRadius": 474
+  },
+  {
+    "kind": "enemy",
+    "id": "welder_bug",
+    "anchor": {
+      "x": 0.53828,
+      "y": 0.88596
+    },
+    "refRadius": 543
+  },
+  {
+    "kind": "boss",
+    "id": "furnace_imp",
+    "anchor": {
+      "x": 0.50319,
+      "y": 0.91388
+    },
+    "refRadius": 593
+  },
+  {
+    "kind": "enemy",
+    "id": "press_piston",
+    "anchor": {
+      "x": 0.54785,
+      "y": 0.94817
+    },
+    "refRadius": 482
+  },
+  {
+    "kind": "boss",
+    "id": "pumpkin_brute",
+    "anchor": {
+      "x": 0.50359,
+      "y": 0.94737
+    },
+    "refRadius": 588
+  },
+  {
+    "kind": "boss",
+    "id": "spore_matron",
+    "anchor": {
+      "x": 0.50239,
+      "y": 0.93142
+    },
+    "refRadius": 578
+  },
+  {
+    "kind": "enemy",
+    "id": "fungus_gnat",
+    "anchor": {
+      "x": 0.50957,
+      "y": 0.87799
+    },
+    "refRadius": 566
+  },
+  {
+    "kind": "boss",
+    "id": "carrot_knight",
+    "anchor": {
+      "x": 0.5008,
+      "y": 0.92823
+    },
+    "refRadius": 582
+  },
+  {
+    "kind": "enemy",
+    "id": "rot_chili",
+    "anchor": {
+      "x": 0.51914,
+      "y": 0.94817
+    },
+    "refRadius": 488
+  },
+  {
+    "kind": "boss",
+    "id": "onion_witch",
+    "anchor": {
+      "x": 0.51794,
+      "y": 0.95853
+    },
+    "refRadius": 588
+  },
+  {
+    "kind": "enemy",
+    "id": "slime_cucumber",
+    "anchor": {
+      "x": 0.50837,
+      "y": 0.97448
+    },
+    "refRadius": 507
+  },
+  {
+    "kind": "boss",
+    "id": "locust_queen",
+    "anchor": {
+      "x": 0.50359,
+      "y": 0.97448
+    },
+    "refRadius": 598
+  },
+  {
+    "kind": "enemy",
+    "id": "spore_puff",
+    "anchor": {
+      "x": 0.50239,
+      "y": 0.90032
+    },
+    "refRadius": 527
+  },
+  {
+    "kind": "boss",
+    "id": "rotten_pumpkin",
+    "anchor": {
+      "x": 0.5,
+      "y": 0.9386
+    },
+    "refRadius": 616
+  },
+  {
+    "kind": "boss",
+    "id": "mole_general",
+    "anchor": {
+      "x": 0.49761,
+      "y": 0.94258
+    },
+    "refRadius": 596
+  },
+  {
+    "kind": "boss",
+    "id": "frost_rat_king",
+    "anchor": {
+      "x": 0.50877,
+      "y": 0.91547
+    },
+    "refRadius": 609
+  },
+  {
+    "kind": "enemy",
+    "id": "vine_lasher",
+    "anchor": {
+      "x": 0.4988,
+      "y": 0.85726
+    },
+    "refRadius": 538
+  },
+  {
+    "kind": "enemy",
+    "id": "moldy_pumpkin",
+    "anchor": {
+      "x": 0.52392,
+      "y": 0.88596
+    },
+    "refRadius": 561
+  },
+  {
+    "kind": "boss",
+    "id": "ice_cream_tyrant",
+    "anchor": {
+      "x": 0.52313,
+      "y": 0.937
+    },
+    "refRadius": 588
+  },
+  {
+    "kind": "enemy",
+    "id": "compost_heap",
+    "anchor": {
+      "x": 0.5327,
+      "y": 0.92982
+    },
+    "refRadius": 516
+  },
+  {
+    "kind": "boss",
+    "id": "freezer_heart",
+    "anchor": {
+      "x": 0.50279,
+      "y": 0.94099
+    },
+    "refRadius": 564
+  },
+  {
+    "kind": "enemy",
+    "id": "rot_cabbage",
+    "anchor": {
+      "x": 0.4996,
+      "y": 0.91069
+    },
+    "refRadius": 528
+  },
+  {
+    "kind": "boss",
+    "id": "trash_golem",
+    "anchor": {
+      "x": 0.50359,
+      "y": 0.92903
+    },
+    "refRadius": 602
+  },
+  {
+    "kind": "enemy",
+    "id": "zombie_carrot",
+    "anchor": {
+      "x": 0.50359,
+      "y": 0.94976
+    },
+    "refRadius": 483
+  },
+  {
+    "kind": "boss",
+    "id": "toxic_barrel",
+    "anchor": {
+      "x": 0.51475,
+      "y": 0.98086
+    },
+    "refRadius": 560
+  },
+  {
+    "kind": "enemy",
+    "id": "rot_sprinkler",
+    "anchor": {
+      "x": 0.51396,
+      "y": 0.91627
+    },
+    "refRadius": 592
+  },
+  {
+    "kind": "boss",
+    "id": "scrap_dragon",
+    "anchor": {
+      "x": 0.50399,
+      "y": 0.92982
+    },
+    "refRadius": 620
+  },
+  {
+    "kind": "enemy",
+    "id": "blight_onion",
+    "anchor": {
+      "x": 0.50758,
+      "y": 0.9697
+    },
+    "refRadius": 538
+  },
+  {
+    "kind": "boss",
+    "id": "rotten_chef",
+    "anchor": {
+      "x": 0.48046,
+      "y": 0.94179
+    },
+    "refRadius": 576
+  },
+  {
+    "kind": "boss",
+    "id": "factory_core",
+    "anchor": {
+      "x": 0.50837,
+      "y": 0.91148
+    },
+    "refRadius": 586
+  },
+  {
+    "kind": "boss",
+    "id": "ketchup_leviathan",
+    "anchor": {
+      "x": 0.5004,
+      "y": 0.94258
+    },
+    "refRadius": 620
+  },
+  {
+    "kind": "boss",
+    "id": "blight_gardener",
+    "anchor": {
+      "x": 0.51156,
+      "y": 0.9673
+    },
+    "refRadius": 604
+  },
+  {
+    "kind": "boss",
+    "id": "rot_mother",
+    "anchor": {
+      "x": 0.5,
+      "y": 0.94657
+    },
+    "refRadius": 597
+  },
+  {
+    "kind": "boss",
+    "id": "rot_king",
+    "anchor": {
+      "x": 0.50239,
+      "y": 0.95455
+    },
+    "refRadius": 587
+  }
+]

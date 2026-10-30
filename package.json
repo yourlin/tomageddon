@@ -1,6 +1,6 @@
 {
   "name": "tomageddon",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "番茄酱 Tomageddon：蔬果大战腐烂的浏览器割草生存 Roguelite",
   "homepage": "https://yourlin.github.io/tomageddon/",
   "repository": {
@@ -35,7 +35,14 @@
     "promo:publish": "bash scripts/promo/publish.sh",
     "promo:overlays": "node -e \"import('qrcode').then((Q) => Q.default.toFile('promo/overlay/qr.png', require('./package.json').homepage, { width: 420, margin: 1 }))\" && python3 scripts/promo/overlays.py zh && python3 scripts/promo/overlays.py en",
     "steam:pack:mac": "npm run build:steam && electron-builder --mac --dir",
-    "docs:maps": "node scripts/export-maps.mjs"
+    "docs:maps": "node scripts/export-maps.mjs",
+    "check:art": "tsx scripts/check-art.ts",
+    "check:combat-art": "tsx scripts/check-combat-art.ts",
+    "art:perf": "node scripts/art-perf.mjs",
+    "check:global-art": "tsx scripts/check-global-art.ts",
+    "art:bake": "python3 scripts/bake-runtime-art.py --all",
+    "check:art-runtime": "node scripts/check-runtime-art.mjs",
+    "prebuild": "npm run check:art-runtime"
   },
   "keywords": [],
   "author": "",

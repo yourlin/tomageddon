@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.8.0 · 2026-10-30](#v0-8-0)
 - [v0.7.2 · 2026-10-17](#v0-7-2)
 - [v0.7.1 · 2026-10-16](#v0-7-1)
 - [v0.7.0 · 2026-10-16](#v0-7-0)
@@ -27,6 +28,25 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-8-0"></a>
+
+## v0.8.0 · 2026-10-30
+
+**A new illustrated "Cute" art style: all 39 heroes and every boss get frame-by-frame animation; chapter-opening comics; every menu redesigned**
+
+
+- New "Cute" art style: all 39 heroes, 18 bosses and every boss phase now use frame-by-frame illustrated animation, with new maps, weapons, projectiles and title screen; the original procedural look stays as "Retro" and can be switched in Settings at any time, instantly
+- New Graphics quality setting (Auto / Low / Standard / High): Auto picks based on device memory and touch input, so phones and low-memory devices run cooler and smoother
+- New 7-chapter story: each chapter opens with a four-panel comic the first time you enter it; rewatch any time from "📖 Chapter story" on the chapter select screen
+- Character select is now a journal-style hero album showing 24 heroes per page; Settings, Pause, Shop, Crafting, Codex and Achievements screens are all redesigned
+- Every menu now supports controllers: D-pad / left stick to move focus, A to confirm, B to go back, right stick to scroll
+- Chili, Corn, Onion, Coconut, Cherry, Pea, Peach, Beet, Asparagus and Soybean buffed: higher base stats, plus permanent growth for every wave cleared
+- Aura weapons gain radius and stronger Burn / Poison with each tier, and now also benefit from Melee / Elemental damage bonuses
+- Enemies now path around obstacles instead of getting stuck; damaging terrain is animated, and the ice patches in the fridge chapter rotate at random
+- Fixed returning from Crafting restocking the shop, resetting rerolls and re-rolling the Mysterious Merchant; a sold-out shop with no rerolls left now stays sold out
+- Chapter 6 and 7 unlock requirements and your progress now show on chapter select, when tapping a locked chapter, and on the victory screen
+- Skins are temporarily offline while being redesigned; skins you already bought and your Golden Tomatoes are all kept
 
 <a id="v0-7-2"></a>
 

@@ -8,6 +8,7 @@ import { run, runHooks } from './RunState';
 import { bump, bumpMax, counter } from './Counters';
 import { tx } from '../i18n';
 import { SKIN_OF, SKIN_MAP, type SkinDef } from '../data/skins';
+import { skinsEnabled } from './Features';
 
 // ---------------- 任务与觉醒 ----------------
 export const questDone = (q: QuestDef): boolean => !!save.meta.quests[q.id];
@@ -87,7 +88,9 @@ export const MASTERY_REWARDS: { lv: number; desc: [string, string] }[] = [
   { lv: 8, desc: ['开局道具槽升级：改为随机稀有道具', 'Starting item slot upgrade: a random Rare item instead'] },
   {
     lv: 10,
-    desc: ['专属天赋：全伤害再 +3%，并解锁该角色的皮肤', 'Signature talent: another +3% damage, and unlock this character’s skin'],
+    desc: skinsEnabled()
+      ? ['专属天赋：全伤害再 +3%，并解锁该角色的皮肤', 'Signature talent: another +3% damage, and unlock this character’s skin']
+      : ['专属天赋：全伤害再 +3%', 'Signature talent: another +3% damage'],
   },
 ];
 
@@ -117,13 +120,15 @@ export function skinOwned(skinId: string): boolean {
   if (!s) return false;
   return save.meta.skins.includes(s.id) || (SKIN_OF[s.charId]?.id === s.id && masteryLevel(s.charId) >= MASTERY_MAX);
 }
-/** 角色当前穿着的皮肤（原皮返回 undefined） */
+/** 角色当前穿着的皮肤（原皮返回 undefined）；皮肤玩法关闭时一律原皮，存档里的选择照原样留着 */
 export function activeSkin(charId: string): SkinDef | undefined {
+  if (!skinsEnabled()) return undefined;
   const s = SKIN_MAP[save.meta.skinOf[charId] ?? ''];
   return s && s.charId === charId && skinOwned(s.id) ? s : undefined;
 }
 /** 购买皮肤并立即换上（金番茄不够返回 false） */
 export function buySkin(skinId: string): boolean {
+  if (!skinsEnabled()) return false;
   const s = SKIN_MAP[skinId];
   if (!s || skinOwned(s.id) || save.meta.gold < s.price) return false;
   save.meta.gold -= s.price;
@@ -134,6 +139,7 @@ export function buySkin(skinId: string): boolean {
 }
 /** 换上皮肤（传空串换回原皮）；没拥有的不换 */
 export function equipSkin(charId: string, skinId: string): void {
+  if (!skinsEnabled()) return;
   if (skinId && (!skinOwned(skinId) || SKIN_MAP[skinId].charId !== charId)) return;
   save.meta.skinOf[charId] = skinId;
 }

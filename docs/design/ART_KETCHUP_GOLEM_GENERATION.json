@@ -1,0 +1,28 @@
+{
+  "id": "ketchup_golem",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite animation sheet with exactly FOUR separate complete small figures arranged TWO ROWS TWO COLUMNS. Reference identity: chunky red ketchup tomato golem, green leafy stalk on head, glossy sauce dripping, gold spiked shoulder armor wrist cuffs belt with tomato medallion, two red fists and two boot feet. Match reference cute painterly outlined art. Same body scale and camera. Each entire figure within central 60% of quadrant with huge transparent margins and empty cross gutters; full stalk spikes fists feet visible. No text lines borders floor shadow background or detached effects. True articulated poses, no global scale duplicates. Idle blink reading order: top-left eyes fully OPEN; top-right fully OPEN small breathing pose; bottom-left half-open visible pupils; bottom-right fully CLOSED simple dark eyelids NO pupils whites or yellow glow. Only fourth frame fully shut. Subtle leaf and sauce fold movement."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite animation sheet with exactly FOUR separate complete small figures arranged TWO ROWS TWO COLUMNS. Reference identity: chunky red ketchup tomato golem, green leafy stalk on head, glossy sauce dripping, gold spiked shoulder armor wrist cuffs belt with tomato medallion, two red fists and two boot feet. Match reference cute painterly outlined art. Same body scale and camera. Each entire figure within central 60% of quadrant with huge transparent margins and empty cross gutters; full stalk spikes fists feet visible. No text lines borders floor shadow background or detached effects. True articulated poses, no global scale duplicates. Four walking poses alternating feet: left foot forward right back opposite arm; transfer weight feet planted; right foot forward left back; recover weight shift. Show knee hip elbow articulation and leaf sway; retain exact armor, no new limbs."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite animation sheet with exactly FOUR separate complete small figures arranged TWO ROWS TWO COLUMNS. Reference identity: chunky red ketchup tomato golem, green leafy stalk on head, glossy sauce dripping, gold spiked shoulder armor wrist cuffs belt with tomato medallion, two red fists and two boot feet. Match reference cute painterly outlined art. Same body scale and camera. Each entire figure within central 60% of quadrant with huge transparent margins and empty cross gutters; full stalk spikes fists feet visible. No text lines borders floor shadow background or detached effects. True articulated poses, no global scale duplicates. Four hurt poses: ready brace; recoil torso back fists rise; crouch wince eyes squeezed leaf droops; recover ready. Actual body joint changes, no red flash overlay or new effects."
+    },
+    {
+      "action": "die",
+      "prompt": "undefinedFour DEATH poses: normal ready; knees buckle shoulders sag; slumped seated sauce body melting slightly gold belt and cuffs retained; inert low sauce mound with head/leaf drooped eyes and mouth dark gold armor resting attached. No gore. Keep red sauce and original identity, no new objects. Four full separate poses with large blank gaps."
+    },
+    {
+      "action": "attack",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite animation sheet with exactly FOUR separate complete small figures arranged TWO ROWS TWO COLUMNS. Reference identity: chunky red ketchup tomato golem, green leafy stalk on head, glossy sauce dripping, gold spiked shoulder armor wrist cuffs belt with tomato medallion, two red fists and two boot feet. Match reference cute painterly outlined art. Same body scale and camera. Each entire figure within central 60% of quadrant with huge transparent margins and empty cross gutters; full stalk spikes fists feet visible. No text lines borders floor shadow background or detached effects. True articulated poses, no global scale duplicates. Four ACTUAL SKILL ATTACK poses: brace fists close to chest; draw arms back crouching; open arms outward strongly with shouting mouth to emit sauce pulse; recover ready. No projectiles or hazard puddles drawn because game renders them. Keep two hands two feet, same armor and leaf design, generous blank padding."
+    }
+  ],
+  "moveRepairPrompt": "Transparent SQUARE 2x2 sprite sheet FOUR full-body ketchup golem WALK poses matching reference red tomato sauce body green leaf gold spiked shoulder armor cuffs tomato belt red boots. Critical leg alternation in image coordinates: TOP LEFT image-left boot lifted forward sole visible image-right boot planted back; TOP RIGHT image-left boot planted transferring weight image-right heel lifts; BOTTOM LEFT image-RIGHT boot lifted forward sole visible image-LEFT boot planted back; BOTTOM RIGHT image-right boot planted image-left heel lifts. Two legs only, do NOT lift same boot in both left-column poses. Arms counter-swing, consistent body size camera armor. Full small figures centered in quadrants, big transparent gaps/padding. No floor text lines shadows effects."
+}

@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: stylized-concept. Production environment sprite for a top-down 2D game refrigerator arena, matching the provided hand-painted blue frozen-fridge reference. Single irregular flat ice patch viewed exactly straight overhead. Broad compact rounded polygon of thin frozen water, approximately1.4:1 horizontal silhouette, gently broken angular perimeter, pale icy cyan semi-transparent interior, several delicate trapped air bubbles and fine internal cracks, darker muted teal rim so it remains readable on pale icy floor, small white edge glints. Flat on ground, not tall ice crystal, not iceberg or rock. One isolated complete patch centered with generous clear transparent margins; no surrounding floor, no cast drop shadow, characters, food, text, icons or UI. Genuine transparent background and translucent ice interior. Crisp detailed storybook game painting; gameplay scales/fades the patch over time.",
+  "source": "maps/ch3/ice-pilot-1.png",
+  "reference": "maps/ch3/ground-pilot-1.png",
+  "generated": true
+}

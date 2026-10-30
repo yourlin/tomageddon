@@ -4,6 +4,7 @@ import { talentPointsFree } from '../systems/TalentTree';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { paintArena } from '../art/ArenaArt';
+import { isForceProcedural } from '../systems/ArtStyle';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
@@ -20,6 +21,7 @@ import { unlockedTitles } from '../data/titles';
 import { titleBadge } from '../ui/TitleBadge';
 import { shouldShowWhatsNew, showWhatsNew } from '../ui/WhatsNew';
 import { gateSceneStart, MENU_PORTRAITS } from './BootScene';
+import { coverTitle, coverButton } from '../ui/CoverUI';
 import { VW, VH } from '../systems/HiDpi';
 
 export class MenuScene extends Phaser.Scene {
@@ -36,7 +38,12 @@ export class MenuScene extends Phaser.Scene {
     const W = VW(this),
       H = VH(this);
     audio.playMusic(this, 'bgm_menu');
-    if (this.textures.exists('bg_menu')) {
+    const cover = !isForceProcedural() && this.textures.exists('cover_kitchen');
+    const menuX = cover ? W * 0.285 : W / 2;
+    if (cover) {
+      const bg = this.add.image(W / 2, H / 2, 'cover_kitchen');
+      bg.setScale(Math.max(W / bg.width, H / bg.height));
+    } else if (this.textures.exists('bg_menu')) {
       const bg = this.add.image(W / 2, H / 2, 'bg_menu');
       bg.setScale(Math.max(W / bg.width, H / bg.height));
     } else {
@@ -46,39 +53,59 @@ export class MenuScene extends Phaser.Scene {
         .setAlpha(0.5);
       this.add.rectangle(W / 2, H / 2, W, H, 0x1a0a0c, 0.5);
     }
-    // I6：菜园随进度变繁茂（通关章节、危机等级、真结局都会让花草变多）
-    this.drawGarden(W, H);
-    // 飘落的角色：优先用启动时已生成的头像，其余头像在后台生成，这里不再一次生成全部
-    let chars = CHARACTERS.map((c) => `portrait_char_${c.id}`).filter((k) => this.textures.exists(k));
-    if (chars.length < MENU_PORTRAITS)
-      chars = Phaser.Utils.Array.Shuffle(CHARACTERS.slice())
-        .slice(0, MENU_PORTRAITS)
-        .map((c) => portraitKey(this, 'char', c.id));
-    for (let i = 0; i < 10; i++) {
-      const img = this.add.image(Phaser.Math.Between(0, W), Phaser.Math.Between(-H, 0), Phaser.Utils.Array.GetRandom(chars)).setAlpha(0.35);
-      img.setScale(Phaser.Math.FloatBetween(0.4, 0.8));
-      this.tweens.add({
-        targets: img,
-        y: H + 100,
-        angle: 360,
-        duration: Phaser.Math.Between(7000, 14000),
-        repeat: -1,
-        delay: i * 700,
-        onRepeat: () => {
-          img.x = Phaser.Math.Between(0, W);
-          img.y = -80;
-        },
-      });
+    if (!cover) {
+      // I6：菜园随进度变繁茂（通关章节、危机等级、真结局都会让花草变多）
+      this.drawGarden(W, H);
+      // 飘落的角色：优先用启动时已生成的头像，其余头像在后台生成，这里不再一次生成全部
+      let chars = CHARACTERS.map((c) => `portrait_char_${c.id}`).filter((k) => this.textures.exists(k));
+      if (chars.length < MENU_PORTRAITS)
+        chars = Phaser.Utils.Array.Shuffle(CHARACTERS.slice())
+          .slice(0, MENU_PORTRAITS)
+          .map((c) => portraitKey(this, 'char', c.id));
+      for (let i = 0; i < 10; i++) {
+        const img = this.add
+          .image(Phaser.Math.Between(0, W), Phaser.Math.Between(-H, 0), Phaser.Utils.Array.GetRandom(chars))
+          .setAlpha(0.35);
+        img.setScale(Phaser.Math.FloatBetween(0.4, 0.8));
+        this.tweens.add({
+          targets: img,
+          y: H + 100,
+          angle: 360,
+          duration: Phaser.Math.Between(7000, 14000),
+          repeat: -1,
+          delay: i * 700,
+          onRepeat: () => {
+            img.x = Phaser.Math.Between(0, W);
+            img.y = -80;
+          },
+        });
+      }
     }
-
     // 有进行中的对局时「继续游戏」按钮在开始按钮上方 90px：标题与版本号必须让出这块位置，
     // 否则版本号 / 更新日志入口会被按钮盖住（1.3.x 的「版本号不显示」）
-    const by = H * 0.52;
+    const by = H * 0.53;
+    const menuButton = (
+      scene: Phaser.Scene,
+      x: number,
+      y: number,
+      w: number,
+      h: number,
+      label: string,
+      click: () => void,
+      color: number | boolean,
+      size: number,
+    ) =>
+      cover
+        ? coverButton(scene, x, y, w, h, label, click, color === true, size)
+        : button(scene, x, y, w, h, label, click, color as number, size);
     const saved = hasSavedRun();
     const buttonsTop = (saved ? by - 90 - 36 : by - 36) - 8;
     let titleBottom = H * 0.2 + 102;
-    if (this.textures.exists('ui_logo')) {
-      const logo = this.add.image(W / 2, H * 0.26, 'ui_logo');
+    if (cover) {
+      coverTitle(this, menuX, H * 0.225);
+      titleBottom = H * 0.34;
+    } else if (this.textures.exists('ui_logo')) {
+      const logo = this.add.image(menuX, H * 0.26, 'ui_logo');
       logo.setScale(Math.min((W * 0.5) / logo.width, (H * 0.32) / logo.height));
       // 标题底边至少给版本号留 30px
       const over = logo.getBounds().bottom - (buttonsTop - 30);
@@ -89,12 +116,12 @@ export class MenuScene extends Phaser.Scene {
       }
       titleBottom = logo.getBounds().bottom;
     } else {
-      text(this, W / 2, H * 0.2, '番茄酱', 110, '#ff4b3e', { strokeThickness: 14, fontStyle: 'bold' }).setOrigin(0.5);
-      text(this, W / 2, H * 0.2 + 80, 'TOMAGEDDON', 34, '#ffd166', { strokeThickness: 6 }).setOrigin(0.5);
+      text(this, menuX, H * 0.2, '番茄酱', 110, '#ff4b3e', { strokeThickness: 14, fontStyle: 'bold' }).setOrigin(0.5);
+      text(this, menuX, H * 0.2 + 80, 'TOMAGEDDON', 34, '#ffd166', { strokeThickness: 6 }).setOrigin(0.5);
     }
     // 版本号点击进入更新日志；未读过本版本时带红点。标题下放不下时放到左下角
     const fits = titleBottom + 14 + 12 <= buttonsTop;
-    const vx = fits ? W / 2 : 20;
+    const vx = fits ? menuX : 20;
     const vy = fits ? titleBottom + 14 : H - 30;
     const vLabel = text(
       this,
@@ -104,7 +131,7 @@ export class MenuScene extends Phaser.Scene {
         `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''}${__APP_VERSION__.startsWith('0.') ? ' 测试版' : ''} · 更新日志`,
         `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''}${__APP_VERSION__.startsWith('0.') ? ' Beta' : ''} · What's New`,
       ),
-      fits ? 16 : 18,
+      cover ? 12 : fits ? 16 : 18,
       COLORS.textDim,
     )
       .setOrigin(fits ? 0.5 : 0, 0.5)
@@ -116,7 +143,9 @@ export class MenuScene extends Phaser.Scene {
       const dot = this.add.circle(vLabel.getBounds().right + 10, vy, 5, 0xff4b3e).setDepth(10);
       this.tweens.add({ targets: dot, alpha: 0.25, duration: 700, yoyo: true, repeat: -1 });
     }
-    if (this.textures.exists('art_hero')) {
+    if (cover) {
+      // 主角已绘入横屏封面，保留完整的右侧叙事空间。
+    } else if (this.textures.exists('art_hero')) {
       const hero = this.add.image(W * 0.18, H * 0.62, 'art_hero');
       hero.setScale((H * 0.45) / hero.height);
     } else {
@@ -142,6 +171,7 @@ export class MenuScene extends Phaser.Scene {
       ctx.fillStyle = '#fff4ea';
       ctx.fill(new Path2D(GITHUB_MARK));
     });
+    if (cover) this.add.circle(W - 44, 44, 25, 0x302028, 0.9).setStrokeStyle(1.5, 0xc59b64);
     const gh = this.add
       .image(W - 44, 44, ghKey)
       .setDisplaySize(52, 52)
@@ -153,14 +183,24 @@ export class MenuScene extends Phaser.Scene {
     // 请作者喝杯咖啡：跳转到 README 的收款码章节（Steam 版不显示）
     const donateUrl = lang === 'en' ? `${__REPO_URL__}/blob/main/README.en.md#support-the-author` : `${__REPO_URL__}#支持作者`;
     if (SHOW_DONATE)
-      button(this, W - 175, 44, 190, 46, tx('☕ 请作者喝杯咖啡', '☕ Buy me a coffee'), () => openExternal(donateUrl), 0x8a5a2b, 17);
+      menuButton(
+        this,
+        W - 175,
+        44,
+        190,
+        40,
+        tx('☕ 请作者喝杯咖啡', '☕ Buy me a coffee'),
+        () => openExternal(donateUrl),
+        cover ? false : 0x8a5a2b,
+        15,
+      );
     if (IS_STEAM) button(this, W - 150, H - 60, 120, 44, tx('退出游戏', 'Quit'), () => quitApp(), 0x555555, 18);
 
     if (saved) {
       const c = CHARACTER_MAP[saved.charId];
-      button(
+      menuButton(
         this,
-        W / 2,
+        menuX,
         by - 90,
         320,
         72,
@@ -171,32 +211,32 @@ export class MenuScene extends Phaser.Scene {
           if (phase === 'wave') this.scene.start('Game');
           else this.scene.start(run.pendingLevelUps || run.pendingCrates ? 'LevelUp' : 'Shop', { keep: true });
         },
-        0xe09f3e,
+        cover ? false : 0xe09f3e,
         30,
       );
       text(
         this,
-        W / 2 + 175,
-        by - 90,
+        cover ? menuX : menuX + 175,
+        cover ? by - 46 : by - 90,
         tx(`${c.name} · 第${saved.chapterId}章 第${saved.wave}波`, `${c.name} · Chapter ${saved.chapterId} wave ${saved.wave}`),
         16,
         COLORS.textDim,
-      ).setOrigin(0, 0.5);
+      ).setOrigin(cover ? 0.5 : 0, 0.5);
     }
-    button(this, W / 2, by, 320, 72, tx('开始游戏', 'Start'), () => this.scene.start('CharSelect'), COLORS.primary, 32);
+    menuButton(this, menuX, by, 320, 64, tx('开始游戏', 'Start'), () => this.scene.start('CharSelect'), cover ? true : COLORS.primary, 27);
     // 每日 / 每周挑战：首次通关第 1 章前不显示，下面的托盘与称号整体上移
     const chal = reveal.challenges();
     const up = chal ? 0 : 70;
     if (chal)
-      button(
+      menuButton(
         this,
-        W / 2,
+        menuX,
         by + 80,
         320,
         58,
         tx('🗓️ 每日 / 每周挑战', '🗓️ Daily / Weekly'),
         () => this.scene.start('Challenge'),
-        0xc1121f,
+        cover ? false : 0xc1121f,
         24,
       );
     // D4：今日挑战状态与刷新倒计时
@@ -213,20 +253,24 @@ export class MenuScene extends Phaser.Scene {
           : tx('今日未挑战', 'Not played today');
       text(
         this,
-        W / 2 + 175,
-        by + 80,
-        `${st}\n${tx(`${h} 小时 ${m} 分后刷新`, `resets in ${h}h ${m}m`)}`,
-        14,
+        cover ? menuX : menuX + 175,
+        cover ? by + 119 : by + 80,
+        `${st}${cover ? ' · ' : '\n'}${tx(`${h} 小时 ${m} 分后刷新`, `resets in ${h}h ${m}m`)}`,
+        cover ? 11 : 14,
         rec?.won ? '#ffd166' : COLORS.textDim,
-      ).setOrigin(0, 0.5);
+      ).setOrigin(cover ? 0.5 : 0, 0.5);
     }
     // 次要入口收进一条托盘：天赋（成长）| 图鉴 · 收藏 · 成就 · 战绩（记录），统一配色，悬停才点亮
-    this.drawDock(W / 2, by + 162 - up);
+    this.drawDock(menuX, by + (cover && chal ? 180 : 162) - up);
     // I5：称号——点击在已解锁称号间切换（含「无称号」）
-    this.drawTitle(W, by + 244 - up);
+    this.drawTitle(menuX * 2, by + 244 - up);
     // 下一个解锁：只说条件和玩法名字，给玩家一个前进方向
     const nextLine = nextUnlockLine();
-    if (nextLine) text(this, W / 2, by + 282 - up, nextLine, 15, '#9bf6ff').setOrigin(0.5);
+    if (nextLine)
+      text(this, menuX, by + 282 - up, nextLine, cover ? 13 : 15, cover ? '#e8d4b0' : '#9bf6ff', {
+        wordWrap: { width: cover ? Math.min(400, W * 0.4) : W - 40, useAdvancedWrap: true },
+        align: 'center',
+      }).setOrigin(0.5, 0);
     // 设置 / 全屏：右上角圆形图标，与 GitHub 图标排成一列
     this.roundIcon(W - 44, 104, 'gear', tx('设置', 'Settings'), () => this.scene.start('Settings'));
     this.roundIcon(W - 44, 164, 'fullscreen', tx('全屏', 'Fullscreen'), () => toggleFullscreen(this));
@@ -426,8 +470,8 @@ export class MenuScene extends Phaser.Scene {
     const total = items.length * TW + (items.length - 1) * GAP + SEP;
     const left = cx - total / 2;
     const tray = this.add.graphics();
-    tray.fillStyle(0x12070a, 0.72).fillRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
-    tray.lineStyle(2, 0x7a2e35, 0.8).strokeRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
+    tray.fillStyle(0x271a20, 0.88).fillRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
+    tray.lineStyle(2, 0xb38454, 0.65).strokeRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
     const sepX = left + TW + GAP / 2 + SEP / 2;
     if (talents) tray.lineStyle(2, 0x7a2e35, 0.9).lineBetween(sepX, cy - TH / 2 + 8, sepX, cy + TH / 2 - 8);
     const hint = text(this, cx, cy + TH / 2 + 22, '', 15, COLORS.textDim)
@@ -438,7 +482,7 @@ export class MenuScene extends Phaser.Scene {
       const c = this.add.container(x, cy).setName(`dock:${scene}`);
       const bg = this.add.graphics();
       const ic = this.add.image(0, -10, this.icon(kind)).setDisplaySize(36, 36);
-      const lb = text(this, 0, 22, label, 16, COLORS.textDim).setOrigin(0.5);
+      const lb = text(this, 0, 22, label, 15, '#e2c5a0').setOrigin(0.5);
       c.add([bg, ic, lb]);
       c.setSize(TW, TH).setInteractive({ useHandCursor: true });
       const hl = (on: boolean) => {
@@ -467,7 +511,7 @@ export class MenuScene extends Phaser.Scene {
 
   /** 右上角圆形图标按钮，悬停在左侧显示文字 */
   private roundIcon(x: number, y: number, kind: string, label: string, onClick: () => void): void {
-    const bg = this.add.circle(x, y, 26, 0x000000, 0.35);
+    const bg = this.add.circle(x, y, 24, 0x302028, 0.9).setStrokeStyle(1.5, 0xc59b64);
     const ic = this.add.image(x, y, this.icon(kind)).setDisplaySize(30, 30).setAlpha(0.85);
     const tip = text(this, x - 38, y, label, 16, COLORS.text)
       .setOrigin(1, 0.5)

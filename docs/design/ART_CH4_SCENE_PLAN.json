@@ -1,0 +1,23 @@
+{
+  "chapter": 4,
+  "ground": "maps/ch4/ground-pilot-1.png",
+  "playablePixelRect": [
+    121.91666666666667,
+    121.90721649484536,
+    1341.0833333333333,
+    953.0927835051547
+  ],
+  "arenaSize": [
+    2200,
+    1500
+  ],
+  "obstacles": [],
+  "objects": {
+    "quicksand": {
+      "source": "maps/ch4/quicksand-pilot-1.png"
+    },
+    "acid": {
+      "source": "maps/ch4/acid-pilot-1.png"
+    }
+  }
+}

@@ -2,7 +2,8 @@
 import Phaser from 'phaser';
 import type { BulletShield, GameScene, HitInfo } from '../scenes/GameScene';
 import type { Enemy } from '../objects/Enemy';
-import { Rig } from '../objects/Rig';
+import type { EntityVisual } from '../objects/EntityVisual';
+import { createEntityVisual } from '../objects/visualFactory';
 import { run } from './RunState';
 import { audio } from './Audio';
 import { HEAL_SCALE, CLONE_HP_PCT, CLONE_BOOM_R, CLONE_BOOM_MULT } from '../data/skills';
@@ -51,9 +52,9 @@ function buffRing(c: StyleCtx, dur: number, color: number): void {
   });
 }
 
-function makeRig(g: GameScene, scale = 0.9, tint = -1): Rig {
+function makeRig(g: GameScene, scale = 0.9, tint = -1): EntityVisual {
   const p = g.player;
-  const rig = new Rig(g, run.char.look, `char_${run.charId}`, p.radius * scale);
+  const rig = createEntityVisual(g, p.ident ?? { kind: 'char', id: run.charId }, p.radius * scale);
   g.add.existing(rig);
   rig.setPosition(p.x, p.y);
   if (tint >= 0) rig.setStatusTint(tint);
@@ -77,10 +78,10 @@ function twinClones(c: StyleCtx): void {
   let a = 0;
   const hpMax = Math.max(10, g.stats.maxHp * CLONE_HP_PCT);
   interface Twin {
-    rig: Rig;
+    rig: EntityVisual;
     hp: number;
     alive: boolean;
-    pos: { x: number; y: number };
+    pos: { x: number; y: number; onAttack?: () => void };
     shield: BulletShield;
     /** 分身手里的本体武器（只是外观，攻击由 WeaponSystem.echo 结算） */
     guns: Phaser.GameObjects.Image[];
@@ -95,7 +96,7 @@ function twinClones(c: StyleCtx): void {
       rig,
       hp: hpMax,
       alive: true,
-      pos: { x: rig.x, y: rig.y },
+      pos: { x: rig.x, y: rig.y, onAttack: () => rig.tryAttackAnimation() },
       shield: { x: rig.x, y: rig.y, r: rig.radius * 0.9 + 6, color: 0x74c0fc },
     };
     tw.shield.block = (dmg) => {
@@ -116,6 +117,17 @@ function twinClones(c: StyleCtx): void {
     g.shake(0.006, 140);
     for (const gun of tw.guns) gun.destroy();
     tw.rig.die(() => tw.rig.destroy());
+    // The orbit effect stops ticking dead twins, including when it expires.
+    // Keep only the retiring visual alive until its death callback disposes it.
+    host.linger({
+      t: 0.35,
+      tick: (dt) => {
+        if (tw.rig.scene) tw.rig.tick(dt, 0, 1);
+      },
+      end: () => {
+        if (tw.rig.scene) tw.rig.destroy();
+      },
+    });
   };
   host.linger({
     t: dur,
@@ -164,13 +176,16 @@ function grapeDecoy(c: StyleCtx): void {
   const x = g.player.x,
     y = g.player.y;
   rig.setPosition(x, y).setAlpha(0.85);
+  const authored = rig.hasAuthoredAnimation('spawn');
+  if (authored) rig.play('spawn', true);
   g.decoy = { x, y };
   const hat = g.add.graphics().setDepth(12000);
-  hat
-    .fillStyle(0x1b1b1b, 1)
-    .fillRect(x - 18, y - 74, 36, 30)
-    .fillRect(x - 28, y - 46, 56, 6);
-  hat.fillStyle(0x9d4edd, 1).fillRect(x - 18, y - 52, 36, 6);
+  if (!authored)
+    hat
+      .fillStyle(0x1b1b1b, 1)
+      .fillRect(x - 18, y - 74, 36, 30)
+      .fillRect(x - 28, y - 46, 56, 6);
+  if (!authored) hat.fillStyle(0x9d4edd, 1).fillRect(x - 18, y - 52, 36, 6);
   const lure = g.add.graphics().setDepth(1.6);
   host.linger({
     t: dur,
@@ -187,7 +202,18 @@ function grapeDecoy(c: StyleCtx): void {
       g.decoy = null;
       lure.destroy();
       hat.destroy();
-      rig.destroy();
+      if (rig.hasAuthoredAnimation('die')) {
+        rig.die(() => rig.destroy());
+        host.linger({
+          t: 0.35,
+          tick: (dt) => {
+            if (rig.scene) rig.tick(dt, 0, 1);
+          },
+          end: () => {
+            if (rig.scene) rig.destroy();
+          },
+        });
+      } else rig.destroy();
       const r = host.radius(170);
       g.explode(x, y, r, info.dmg * 4, info, 0x9d4edd);
       for (let i = 0; i < 16; i++) {
@@ -385,6 +411,8 @@ function dualGuns(c: StyleCtx): void {
       const near = g.grid.query(p.x, p.y, 600, g.tmp).sort((a, b) => Math.hypot(a.x - p.x, a.y - p.y) - Math.hypot(b.x - p.x, b.y - p.y));
       const t = near[i % 2] ?? near[0];
       if (!t) return;
+      // Continue authored attack poses after the initial cast during sustained fire.
+      p.tryAttackAnimation();
       const mx = p.x + side * 26,
         my = p.y - 6;
       const a = Math.atan2(t.y - my, t.x - mx);
@@ -454,6 +482,7 @@ function peaTurret(c: StyleCtx): void {
 function piercingArrow(c: StyleCtx): void {
   const { g, sk, info, status } = c;
   const p = g.player;
+  if (p.hasAuthoredAnimation('windup')) p.play('windup', true);
   let best: Enemy | null = null;
   for (const e of g.grid.query(p.x, p.y, 700, g.tmp)) if (!best || e.hp > best.hp) best = e;
   const a = best ? Math.atan2(best.y - p.y, best.x - p.x) : g.facing > 0 ? 0 : Math.PI;
@@ -462,6 +491,7 @@ function piercingArrow(c: StyleCtx): void {
   const charge = g.add.circle(p.x, p.y, 40, 0x9be564, 0.4).setDepth(12000).setBlendMode(ADD);
   g.tweens.add({ targets: charge, scale: 0.2, duration: 400, onComplete: () => charge.destroy() });
   g.time.delayedCall(400, () => {
+    if (p.hasAuthoredAnimation('cast')) p.play('cast', true);
     const sx = g.player.x,
       sy = g.player.y;
     g.fx.beam(sx, sy, a, len, 34, 0x9be564);
@@ -604,10 +634,11 @@ function angelLight(c: StyleCtx): void {
   const { g, host, sk, info } = c;
   const p = g.player;
   const s = g.stats;
+  const authored = p.hasAuthoredAnimation('cast');
   const r = host.radius(sk.radius ?? 150);
   hitAround(g, p.x, p.y, r, info, 60);
   const beam = g.add.graphics().setDepth(11400).setBlendMode(ADD);
-  const wings = g.add.graphics().setDepth(10900);
+  const wings = authored ? null : g.add.graphics().setDepth(10900);
   const total = Math.round(s.maxHp * (sk.heal ?? 0.2) * HEAL_SCALE);
   let pulses = 0,
     acc = 0;
@@ -619,14 +650,17 @@ function angelLight(c: StyleCtx): void {
       beam.fillStyle(0xfff3b0, 0.25 * fade).fillRect(p.x - 46, p.y - 700, 92, 720);
       beam.fillStyle(0xffffff, 0.35 * fade).fillRect(p.x - 16, p.y - 700, 32, 720);
       beam.fillStyle(0xfff3b0, 0.3 * fade).fillEllipse(p.x, p.y + 18, 140, 40);
-      const flap = Math.sin(g.time.now / 90) * 0.25;
-      wings.clear();
-      wings.fillStyle(0xffffff, 0.85 * fade);
-      for (const side of [-1, 1]) {
-        wings.fillEllipse(p.x + side * 44, p.y - 22 - flap * 20, 60, 30 + flap * 18);
-        wings.fillEllipse(p.x + side * 60, p.y - 6, 44, 20);
+      // Authored peach frames already include wings and a halo.
+      if (wings) {
+        const flap = Math.sin(g.time.now / 90) * 0.25;
+        wings.clear();
+        wings.fillStyle(0xffffff, 0.85 * fade);
+        for (const side of [-1, 1]) {
+          wings.fillEllipse(p.x + side * 44, p.y - 22 - flap * 20, 60, 30 + flap * 18);
+          wings.fillEllipse(p.x + side * 60, p.y - 6, 44, 20);
+        }
+        wings.lineStyle(4, 0xffd166, fade).strokeEllipse(p.x, p.y - 62, 40, 12);
       }
-      wings.lineStyle(4, 0xffd166, fade).strokeEllipse(p.x, p.y - 62, 40, 12);
       if (Math.random() < 0.4) {
         const f = g.add.ellipse(p.x + Phaser.Math.Between(-80, 80), p.y - 120, 8, 16, 0xffffff).setDepth(11500);
         g.tweens.add({ targets: f, y: f.y + 140, angle: 200, alpha: 0, duration: 1100, onComplete: () => f.destroy() });
@@ -641,7 +675,7 @@ function angelLight(c: StyleCtx): void {
     },
     end: () => {
       beam.destroy();
-      wings.destroy();
+      wings?.destroy();
     },
   });
 }
@@ -862,6 +896,7 @@ const BEET_BASE_SCALE = new WeakMap<object, number>();
 function berserkFlames(c: StyleCtx): void {
   const g = c.g;
   const p = g.player;
+  const authored = p.hasAuthoredAnimation('cast');
   // 原始体型只记一次：效果持续中再次施放（回响）时 p.scale 已被心跳放大，不能当成原始值
   const base = BEET_BASE_SCALE.get(p) ?? p.scale;
   BEET_BASE_SCALE.set(p, base);
@@ -870,7 +905,7 @@ function berserkFlames(c: StyleCtx): void {
     0xd00000,
     (gr, t, f) => {
       const beat = 1 + Math.max(0, Math.sin(t * 9)) * 0.12;
-      p.setScale(base * (1 + (beat - 1) * f));
+      if (!authored) p.setScale(base * (1 + (beat - 1) * f));
       for (let i = 0; i < 10; i++) {
         const a = (i / 10) * Math.PI * 2 + t * 2;
         const h = 30 + Math.sin(t * 12 + i) * 12;
@@ -880,7 +915,12 @@ function berserkFlames(c: StyleCtx): void {
     },
     undefined,
   );
-  c.host.linger({ t: c.host.dur(c.sk.duration ?? 5), end: () => p.setScale(base) });
+  c.host.linger({
+    t: c.host.dur(c.sk.duration ?? 5),
+    end: () => {
+      if (!authored) p.setScale(base);
+    },
+  });
 }
 
 /** 荔枝公主：四叶草绕身旋转，金色闪光 */

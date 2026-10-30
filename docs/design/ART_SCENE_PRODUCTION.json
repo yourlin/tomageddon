@@ -1,0 +1,112 @@
+{
+  "priority": [
+    "scenes",
+    "elites",
+    "enemies"
+  ],
+  "chapters": {
+    "1": {
+      "status": "existing ground integrated; complete scene acceptance pending",
+      "thumbnail": "Dedicated256pixel thumbnail; startup no longer requests full ground"
+    },
+    "2": {
+      "status": "First scene and environment art integrated; live rabbit/gopher spawn and sprinkler telegraph/soaked effects passed with shortened test timers. Final boundary precision/native2K quality and full normal-timing chapter acceptance pending.",
+      "source": "maps/ch2/ground-pilot-1.png",
+      "runtimeIntegrated": true,
+      "nativeReport": "reports/art-pilot/scene-ch2-native.json",
+      "highSourcePixels": [
+        1499,
+        1049
+      ],
+      "qhdCanvas": [
+        2560,
+        1440
+      ],
+      "environmentObjects": [
+        "hole",
+        "sprinkler"
+      ],
+      "fallbackReport": "reports/art-pilot/scene-ch2-fallback-native.json",
+      "liveTerrainReport": "reports/art-pilot/ch2-terrain-gameplay-native.json"
+    },
+    "3": {
+      "status": "Floor, shelves and generated ice patch integrated;3tier normal/fallback, shared6ice instances, slippery/fade/melt and12replacement cycles verified using isolated lifecycle probes. Final normal-timing gameplay and source detail/visual acceptance pending.",
+      "runtimeIntegrated": true,
+      "nativeReport": "reports/art-pilot/scene-ch3-native.json",
+      "source": "maps/ch3/ground-pilot-1.png",
+      "highSourcePixels": [
+        1254,
+        1254
+      ],
+      "environmentObjects": [
+        "ice"
+      ],
+      "fallbackReport": "reports/art-pilot/scene-ch3-fallback-native.json"
+    },
+    "4": {
+      "status": "First ground/quicksand/acid integrated. Three-tier normal/fallback, cross geometry samples, shared textures, wave3 acid gating and GPU release passed. Probes shorten timers and position targets; normal-timing full chapter and final source-detail acceptance pending.",
+      "runtimeIntegrated": true,
+      "source": "maps/ch4/ground-pilot-1.png",
+      "highSourcePixels": [
+        1463,
+        1075
+      ],
+      "environmentObjects": [
+        "quicksand",
+        "acid"
+      ],
+      "nativeReport": "reports/art-pilot/scene-ch4-native.json",
+      "fallbackReport": "reports/art-pilot/scene-ch4-fallback-native.json",
+      "emptyForegroundOmitted": true
+    },
+    "5": {
+      "status": "First scene integrated; three-tier normal/fallback, belt force, fan tailwind, actual steam warning/damage/burn callback and GPU exit release passed. Terrain probes shorten timers and position targets. Full normal-timing run and final visual/source-detail acceptance pending.",
+      "runtimeIntegrated": true,
+      "source": "maps/ch5/ground-pilot-1.png",
+      "environmentObjects": [
+        "conveyor",
+        "vent",
+        "fan"
+      ],
+      "compileReport": "reports/art-pilot/scene-ch5-compile.json",
+      "nativeReport": "reports/art-pilot/scene-ch5-native.json",
+      "fallbackReport": "reports/art-pilot/scene-ch5-fallback-native.json",
+      "liveTerrainReport": "reports/art-pilot/ch5-steam-gameplay-native.json"
+    },
+    "6": {
+      "status": "Three-tier native and missing-object fallback passed: octagon samples, planter collision, shared textures, lamp hardened status/replacement destruction and GPU release. Live spore/compost probe tracked separately; full normal-timing and visual/source-detail acceptance pending.",
+      "source": "maps/ch6/ground-pilot-1.png",
+      "runtimeIntegrated": true,
+      "environmentObjects": [
+        "compost",
+        "lamp",
+        "spore"
+      ],
+      "compileReport": "reports/art-pilot/scene-ch6-compile.json",
+      "highSourcePixels": [
+        1254,
+        1254
+      ],
+      "nativeReport": "reports/art-pilot/scene-ch6-native.json",
+      "fallbackReport": "reports/art-pilot/scene-ch6-fallback-native.json",
+      "liveTerrainReport": "reports/art-pilot/ch6-terrain-gameplay-native.json",
+      "timingLimit": "Observed compost callbacks staggered; exact250ms interval acceptance pending due first interval183–200ms in probes. Poison warning and wave1 asset gating passed."
+    },
+    "7": {
+      "status": "Ground/four seed-pit obstacles/shared mud integrated. Three-tier normal/fallback, original collision/compiled center coordinates, mud inward force and GPU release passed. Full irregular boundary pixel precision, normal-timing debris/bramble and visual/source-detail acceptance pending.",
+      "source": "maps/ch7/ground-pilot-1.png",
+      "runtimeIntegrated": true,
+      "nativeReport": "reports/art-pilot/scene-ch7-native.json",
+      "fallbackReport": "reports/art-pilot/scene-ch7-fallback-native.json"
+    }
+  },
+  "sourceRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "requirements": [
+    "preserve gameplay boundaries and obstacle footprints",
+    "only current chapter ground/foreground loaded",
+    "dedicated small chapter thumbnails",
+    "phone low/standard and QHD high tiers",
+    "texture release on scene exit",
+    "no originals in Git or release"
+  ]
+}

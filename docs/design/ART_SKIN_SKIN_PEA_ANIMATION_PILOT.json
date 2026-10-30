@@ -1,0 +1,46 @@
+{
+  "kind": "char",
+  "id": "pea",
+  "skinId": "skin_pea",
+  "referenceHeight": 160,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pea/skins/skin_pea/idle-sheet-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pea/skins/skin_pea/move-sheet-right-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pea/skins/skin_pea/hurt-sheet-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pea/skins/skin_pea/die-sheet-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pea/skins/skin_pea/cast-sheet-1.png"
+    }
+  ],
+  "status": "gutters and shared action calibration checked; runtime verification pending",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ]
+}

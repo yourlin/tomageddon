@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen",
+  "target": "src/assets/entities/char/tomato/body.png",
+  "output": "src/assets/entities/char/tomato/blink.png",
+  "prompt": "Use case: precise-object-edit. Edit target: provided transparent tomato game sprite. Create the CLOSED EYES blink frame. Change ONLY the two eyes: eyelids gently closed with dark curved lashes, no visible pupils or whites. Preserve absolutely identical character silhouette, body, pose, mouth, leaves, bow, arms, feet, shading, canvas composition and positioning. Same square canvas and character size, transparent background. This must register seamlessly over the original as one animation frame; do not redraw or reposition anything outside eyes.",
+  "timing": {
+    "intervalSeconds": [
+      2,
+      5.5
+    ],
+    "closedSeconds": 0.12
+  },
+  "states": [
+    "idle",
+    "move"
+  ],
+  "notes": "Game time; frozen holds pose; reset opens eyes. Optional entry.blink uses the same canvas and anchor as the static source. Missing blink frame keeps the original body."
+}

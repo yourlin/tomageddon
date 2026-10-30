@@ -1,0 +1,376 @@
+{
+  "date": "2026-10-18",
+  "tool": "built-in image_gen",
+  "scope": "Chapter one: 11 enemy projectile images and 6 boss phase forms, animated in engine.",
+  "assets": [
+    {
+      "kind": "projectile",
+      "id": "spore",
+      "file": "src/assets/combat/ch1/projectiles/spore.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        136,
+        145,
+        1118,
+        1111
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.5008
+      },
+      "refRadius": 491,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE round lime-green spore bead, simple lobed outer shell, pale mint inner seed and two tiny glossy highlights, compact radial shape."
+    },
+    {
+      "kind": "projectile",
+      "id": "seed",
+      "file": "src/assets/combat/ch1/projectiles/seed.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        188,
+        313,
+        1067,
+        929
+      ],
+      "anchor": {
+        "x": 0.5004,
+        "y": 0.49522
+      },
+      "refRadius": 440,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact glossy reddish-brown apple seed, almond teardrop shape pointing RIGHT, pale yellow ridge and tiny amber specular highlight."
+    },
+    {
+      "kind": "projectile",
+      "id": "milk",
+      "file": "src/assets/combat/ch1/projectiles/milk.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        96,
+        272,
+        1161,
+        990
+      ],
+      "anchor": {
+        "x": 0.5012,
+        "y": 0.50319
+      },
+      "refRadius": 532,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact creamy-white sour milk droplet with pale blue marbling and lime-green sour dot, tip points RIGHT. No splashes or separate droplets."
+    },
+    {
+      "kind": "projectile",
+      "id": "pebble",
+      "file": "src/assets/combat/ch1/projectiles/pebble.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        245,
+        250,
+        1023,
+        985
+      ],
+      "anchor": {
+        "x": 0.50558,
+        "y": 0.49242
+      },
+      "refRadius": 389,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact round faceted tan-gray pebble, simple warm gray facets, light cream top plane."
+    },
+    {
+      "kind": "projectile",
+      "id": "oil",
+      "file": "src/assets/combat/ch1/projectiles/oil.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        174,
+        244,
+        1138,
+        1015
+      ],
+      "anchor": {
+        "x": 0.52313,
+        "y": 0.50199
+      },
+      "refRadius": 482,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact round amber-orange hot grease drop, luminous gold center, dark honey outer skin and one clean white specular highlight. Tiny tip pointing RIGHT."
+    },
+    {
+      "kind": "projectile",
+      "id": "ember",
+      "file": "src/assets/combat/ch1/projectiles/ember.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        147,
+        267,
+        1106,
+        988
+      ],
+      "anchor": {
+        "x": 0.4996,
+        "y": 0.5004
+      },
+      "refRadius": 480,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact hot orange ember/fireball: round brilliant yellow core inside a single orange flame tip pointing LEFT (travels RIGHT). Short tail less than 20% of diameter, no scattered sparks."
+    },
+    {
+      "kind": "projectile",
+      "id": "soot",
+      "file": "src/assets/combat/ch1/projectiles/soot.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        146,
+        140,
+        1110,
+        1101
+      ],
+      "anchor": {
+        "x": 0.5008,
+        "y": 0.49482
+      },
+      "refRadius": 482,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact dark charcoal cinder bead with molten orange fissure and bright yellow center, round solid silhouette, two simple black crust facets. No smoke trail or cloud."
+    },
+    {
+      "kind": "projectile",
+      "id": "chitin",
+      "file": "src/assets/combat/ch1/projectiles/chitin.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        193,
+        194,
+        1074,
+        1037
+      ],
+      "anchor": {
+        "x": 0.50518,
+        "y": 0.49083
+      },
+      "refRadius": 440,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact golden-brown beetle armor shard, triangular rounded wedge pointing RIGHT, amber center, chestnut bevels and bright cream edge. No insect attached."
+    },
+    {
+      "kind": "projectile",
+      "id": "metal",
+      "file": "src/assets/combat/ch1/projectiles/metal.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        160,
+        336,
+        1122,
+        908
+      ],
+      "anchor": {
+        "x": 0.51116,
+        "y": 0.49601
+      },
+      "refRadius": 481,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact silver fork-tip dart, a short single beveled silver triangular arrowhead pointing RIGHT, pale ice-blue glint, dark steel base. Not a whole fork, not a weapon illustration."
+    },
+    {
+      "kind": "projectile",
+      "id": "onion",
+      "file": "src/assets/combat/ch1/projectiles/onion.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        128,
+        212,
+        1127,
+        1048
+      ],
+      "anchor": {
+        "x": 0.5004,
+        "y": 0.50239
+      },
+      "refRadius": 500,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE compact violet onion-tear bead, concentric purple curved layers around bright pink-lavender center, round teardrop shape with tiny tip RIGHT."
+    },
+    {
+      "kind": "projectile",
+      "id": "egg",
+      "file": "src/assets/combat/ch1/projectiles/egg.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        256,
+        323,
+        1011,
+        914
+      ],
+      "anchor": {
+        "x": 0.50518,
+        "y": 0.49322
+      },
+      "refRadius": 378,
+      "prompt": "Use case: stylized-concept. Asset type: actual enemy projectile sprite for cute chibi vegetable arena game. Create ONE isolated simple projectile on truly transparent background, square canvas, center exactly. Strong compact shape inside central 70% of canvas. Thick dark burgundy external outline, narrow bright cream rim INSIDE contour, large simple saturated color regions, clean cel shading, ONE glossy highlight. Must read at just 18-24 screen pixels. No face, eyes, limbs, ground, shadow, explosion, motion streaks, long tail, second object, text, panels or backdrop. No soft outer glow: fully transparent outside silhouette. Directional projectiles point RIGHT. ONE small compact oval insect egg projectile, ivory-green shell with single deep lime nucleus, one simple short seam, rounded readable silhouette. No insect or legs."
+    },
+    {
+      "kind": "form",
+      "boss": "mold_king",
+      "phase": 1,
+      "file": "src/assets/combat/ch1/forms/mold_king-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        15,
+        32,
+        1243,
+        1219
+      ],
+      "anchor": {
+        "x": 0.50159,
+        "y": 0.97209
+      },
+      "refRadius": 516,
+      "prompt": "Use case: stylized-concept. Asset type: final 2D game boss transformation FORM, single transparent full-body sprite. Attached image is identity reference: keep same character, face, angle, pose, crown/hat/cape identity and cute polished chibi manga cel-shaded style. Create only evolved form described, NOT panels or sheet. Square canvas, centered full body, no crop, transparent background. No floor, cast shadow, backdrop, text, label, watermark, loose separate particles. Leave room around full silhouette. Match reference light upper-left and slightly elevated three-quarter front view facing slightly right. PHASE II SPORE BURST: preserve original cute mold king, golden crown, face and pose. Evolve silhouette with three large pale lime round spore sacs growing from upper shoulders, slightly puffier moss lobes and luminous mint pores. Confident grumpy adorable face, no external spores floating separately.",
+      "reference": "src/assets/entities/boss/mold_king/body.png"
+    },
+    {
+      "kind": "form",
+      "boss": "mold_king",
+      "phase": 2,
+      "file": "src/assets/combat/ch1/forms/mold_king-2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        10,
+        88,
+        1244,
+        1184
+      ],
+      "anchor": {
+        "x": 0.5,
+        "y": 0.94418
+      },
+      "refRadius": 518,
+      "prompt": "Use case: stylized-concept. Asset type: final 2D game boss transformation FORM, single transparent full-body sprite. Attached image is identity reference: keep same character, face, angle, pose, crown/hat/cape identity and cute polished chibi manga cel-shaded style. Create only evolved form described, NOT panels or sheet. Square canvas, centered full body, no crop, transparent background. No floor, cast shadow, backdrop, text, label, watermark, loose separate particles. Leave room around full silhouette. Match reference light upper-left and slightly elevated three-quarter front view facing slightly right. PHASE III COLONY DEVOUR: preserve original cute mold king's golden crown and recognizable face. Body becomes THREE fused chunky emerald mold lobes, two smaller side lobes supporting main central face. Bright chartreuse cracks where lobes rejoined and thick lime fuzzy ruff. Broad and regal dangerous cute silhouette, no separate minions.",
+      "reference": "src/assets/entities/boss/mold_king/body.png"
+    },
+    {
+      "kind": "form",
+      "boss": "grease_chef",
+      "phase": 1,
+      "file": "src/assets/combat/ch1/forms/grease_chef-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        21,
+        48,
+        1244,
+        1208
+      ],
+      "anchor": {
+        "x": 0.50439,
+        "y": 0.96332
+      },
+      "refRadius": 514,
+      "prompt": "Use case: stylized-concept. Asset type: final 2D game boss transformation FORM, single transparent full-body sprite. Attached image is identity reference: keep same character, face, angle, pose, crown/hat/cape identity and cute polished chibi manga cel-shaded style. Create only evolved form described, NOT panels or sheet. Square canvas, centered full body, no crop, transparent background. No floor, cast shadow, backdrop, text, label, watermark, loose separate particles. Leave room around full silhouette. Match reference light upper-left and slightly elevated three-quarter front view facing slightly right. PHASE II STIR-FRY: preserve original haunted extractor-stove chef identity, metal grinning face, chef hat and utensil mittens. Metal body overheats to warm copper-red with glowing orange vent slots. Chef hat pops up slightly, attached lid lifted on hinge and a SMALL contained white steam tuft emerges. Clearly stronger copper silhouette, full body and utensils.",
+      "reference": "src/assets/entities/boss/grease_chef/body.png"
+    },
+    {
+      "kind": "form",
+      "boss": "grease_chef",
+      "phase": 2,
+      "file": "src/assets/combat/ch1/forms/grease_chef-2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        17,
+        83,
+        1250,
+        1156
+      ],
+      "anchor": {
+        "x": 0.50518,
+        "y": 0.92185
+      },
+      "refRadius": 518,
+      "prompt": "Use case: stylized-concept. Asset type: final 2D game boss transformation FORM, single transparent full-body sprite. Attached image is identity reference: keep same character, face, angle, pose, crown/hat/cape identity and cute polished chibi manga cel-shaded style. Create only evolved form described, NOT panels or sheet. Square canvas, centered full body, no crop, transparent background. No floor, cast shadow, backdrop, text, label, watermark, loose separate particles. Leave room around full silhouette. Match reference light upper-left and slightly elevated three-quarter front view facing slightly right. PHASE III KITCHEN FOG: preserve original haunted extractor-stove chef face, chef hat, silhouette and utensils. Body is dark soot-black with brilliant orange furnace grating, molten orange fissures, hat soot-stained. Compact flames lick ONLY along shoulder contours with a tiny contained smoky cuff, not external cloud. Face stays visible and cute.",
+      "reference": "src/assets/entities/boss/grease_chef/body.png"
+    },
+    {
+      "kind": "form",
+      "boss": "cockroach_emperor",
+      "phase": 1,
+      "file": "src/assets/combat/ch1/forms/cockroach_emperor-1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        10,
+        71,
+        1239,
+        1184
+      ],
+      "anchor": {
+        "x": 0.49801,
+        "y": 0.94418
+      },
+      "refRadius": 516,
+      "prompt": "Use case: stylized-concept. Asset type: final 2D game boss transformation FORM, single transparent full-body sprite. Attached image is identity reference: keep same character, face, angle, pose, crown/hat/cape identity and cute polished chibi manga cel-shaded style. Create only evolved form described, NOT panels or sheet. Square canvas, centered full body, no crop, transparent background. No floor, cast shadow, backdrop, text, label, watermark, loose separate particles. Leave room around full silhouette. Match reference light upper-left and slightly elevated three-quarter front view facing slightly right. PHASE II ROACH TIDE: preserve original cockroach emperor identity, golden crown, burgundy royal cape and staff. Open brown wing cases to reveal TWO broad translucent amber wings spread behind shoulders, body in same standing pose, same face, antennae, six legs. Fully visible wings within canvas.",
+      "reference": "src/assets/entities/boss/cockroach_emperor/body.png"
+    },
+    {
+      "kind": "form",
+      "boss": "cockroach_emperor",
+      "phase": 2,
+      "file": "src/assets/combat/ch1/forms/cockroach_emperor-2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bounds": [
+        38,
+        64,
+        1228,
+        1198
+      ],
+      "anchor": {
+        "x": 0.50478,
+        "y": 0.95534
+      },
+      "refRadius": 500,
+      "prompt": "Use case: stylized-concept. Asset type: final 2D game boss transformation FORM, single transparent full-body sprite. Attached image is identity reference: keep same character, face, angle, pose, crown/hat/cape identity and cute polished chibi manga cel-shaded style. Create only evolved form described, NOT panels or sheet. Square canvas, centered full body, no crop, transparent background. No floor, cast shadow, backdrop, text, label, watermark, loose separate particles. Leave room around full silhouette. Match reference light upper-left and slightly elevated three-quarter front view facing slightly right. PHASE III UNDYING: preserve original cockroach emperor identity, crown, royal cape and staff. Newly molted shell becomes thick DARK GOLD articulated armor, bright amber seams and pronounced layered breastplate, crown larger and slightly brighter. Old shell fragments NOT included. Wings folded, six legs, antennae, determined cute royal face. Visibly different plated silhouette, no protective aura baked in.",
+      "reference": "src/assets/entities/boss/cockroach_emperor/body.png"
+    }
+  ]
+}

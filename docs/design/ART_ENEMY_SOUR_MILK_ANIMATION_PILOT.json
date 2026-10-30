@@ -1,0 +1,73 @@
+{
+  "kind": "enemy",
+  "id": "sour_milk",
+  "displayName": "\u9178\u5976\u76d2",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "shooter;one projectile every2.8s;five actual actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sour_milk/base/idle-sheet-pilot-3.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sour_milk/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sour_milk/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sour_milk/base/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sour_milk/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partition passed",
+    "move": "partition passed",
+    "hurt1": "four recoil poses inspected;partition passed",
+    "die1": "REVIEW NEEDED:third pose reopens eyes after closed second pose;consider closed-lid repair for consistent collapse",
+    "idle1": "REJECT candidate pose2 raises glove to roof while side silhouette suggests residual hand;regenerate exactly2waist gloves for clear anatomy",
+    "move1": "opposite leading boots and glove counter-swing;left carton side/right roofcap retained;partition passed",
+    "die2": "third eyes closed repair;last3 collapse poses all fullyclosed;partition passed",
+    "attack1": "four mouth preparation/puff/recoil/settle poses;no projectile drawn;partition passed",
+    "idle2": "REJECT detached blue vibration arcs around upper-right gloves;anatomy2gloves and blink are good;idle3 target removes arcs only",
+    "idle3": "Four poses inspected,exact2waist gloves;half-open third/fullclosed fourth. Alpha>=32 connected components now exactly4figures vs4figures+4detachedbluearcs inidle2. Former arc samplesalpha0..2 vs171..252,visually negligible/invisible. Alpha inspection avoids RGB-only preview ghost confusion."
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-sour_milk-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-sour_milk-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

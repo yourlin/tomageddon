@@ -1,0 +1,50 @@
+{
+  "kind": "enemy",
+  "id": "label_ghost",
+  "displayName": "标签幽灵",
+  "status": "16authoredframes integrated;3tiernative/actualwanderAI/typecheck/lint/source-review/runtimepassed;finalpending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "wander110/contactcurse3;noattackactionrequired",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/label_ghost/base/idle-sheet-pilot-2.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/label_ghost/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/label_ghost/base/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/label_ghost/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "rejectedForIntegration": {
+    "idle-sheet-pilot-1.png": "Detachedreferencepaperfragmentsremain;modelcleanup254",
+    "move-sheet-pilot-1.png": "Detachedreferencepaperfragmentsremain;modelcleanup254",
+    "hurt-sheet-pilot-1.png": "Detachedreferencepaperfragmentsremain;modelcleanup254"
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-label_ghost-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-label_ghost-gameplay-native.json",
+    "scope": "native4framesperaction/100msclosedidle/shared200GPUrelease;actualwander/hurt/death;notfinalvisual/mobile"
+  }
+}

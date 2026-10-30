@@ -1,0 +1,10 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: stagger wings slow; body tips with legs curled eyes dark; lands on side wings folded; lying motionless legs curled eyes closed. Entire figure inside quadrant, no fragments."
+  },
+  "deathRepair": {
+    "prompt": "FOUR isolated full-body death poses of this exact fly in TWO rows TWO columns on transparent background. Same fuzzy gray body, two RED eye shells, curled antennae, six brown legs, two veined wings. Poses: stagger eyes dim; tipping sideways legs curl; on side wings folded eyes closed; lying still eyes closed. Each complete small fly takes only45% of its cell width and height. Huge blank transparent margins and central cross. NO dividing lines, motion marks, impact symbols, shadows, ground, text or background. Preserve design. Distinct drawings, full wings contained.",
+    "source": "drafts/enemy/fly/base/die-sheet-pilot-2.png"
+  }
+}

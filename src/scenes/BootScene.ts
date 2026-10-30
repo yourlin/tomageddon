@@ -1,6 +1,7 @@
 // 启动：加载资源，再分帧生成程序化贴图（首屏需要的先做，其余在主菜单期间后台继续）
 import Phaser from 'phaser';
 import { queueAssets } from '../systems/Assets';
+import { queueBootArt } from '../systems/ArtRegistry';
 import { textureTasks } from '../systems/Textures';
 import { enqueueTex, flushTex, onTexReady, pumpTex, texProgress, texReady, texUrgent, TEX_SLOW, type TexTask } from '../systems/TexQueue';
 import { paintArena } from '../art/ArenaArt';
@@ -44,6 +45,7 @@ export class BootScene extends Phaser.Scene {
       /* 缺失的资源使用占位图 */
     });
     queueAssets(this);
+    queueBootArt(this);
   }
 
   create(): void {

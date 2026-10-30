@@ -1,0 +1,56 @@
+{
+  "kind": "boss",
+  "id": "ketchup_golem",
+  "status": "Integrated; three-tier native playback/100ms blink/freeze/GPU release and actual hazard/ring callbacks passed. Final continuous visual/performance acceptance pending.",
+  "referenceHeight": 160,
+  "gameplayPatterns": [
+    "hazard4cd4Windup0.9",
+    "ring16cd3.5"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/ketchup_golem/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/ketchup_golem/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/ketchup_golem/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/ketchup_golem/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/ketchup_golem/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160
+  }
+}

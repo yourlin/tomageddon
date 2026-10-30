@@ -1,0 +1,22 @@
+{
+  "ground": {
+    "source": "maps/ch6/ground-pilot-1.png",
+    "prompt": "Generate polished handpainted cozy anime top-down orthographic game map, chapter6 abandoned glass greenhouse. Reference exact geometry guide: preserve octagonal floor boundary at normalized vertices (.334,.094),(.666,.094),(.906,.334),(.906,.666),(.666,.906),(.334,.906),(.094,.666),(.094,.334). Remove center circular planter from guide, replace with uninterrupted floor because separate obstacle sprite added by engine. Large calm mossy grey-green hexagonal stone tiles for combat readability, restrained cracks and moisture, eight thin glass/verdigris metal edge walls, plants and terracotta pots ONLY outside octagon, warm amber lamplight and cool blue-green shadows, cute storybook illustration matching tomato game. Strict overhead, no perspective, no roof over floor, no characters/eyes/UI/text. Preserve exact octagon shape/vertex positions and square framing. Native crisp 2048x2048."
+  },
+  "planter": {
+    "source": "maps/ch6/planter-pilot-1.png",
+    "prompt": "Single round raised stone planter game obstacle sprite, strict orthographic overhead. Circular low weathered pale stone rim enclosing dark damp soil, a few cute wilted red tomato vines and drooping ochre flowers, tiny moss details. Entire design within circular footprint; compact not tall, clearly readable from above, cozy polished handpainted anime storybook art with warm amber light/cool green shadows/dark brown outline. One centered circle transparent background, no surrounding floor, no cast shadow outside footprint, no eyes, no characters, no text. For abandoned greenhouse game."
+  },
+  "compost": {
+    "source": "maps/ch6/compost-pilot-1.png",
+    "prompt": "Single circular compost burrow opening ground sprite for cute abandoned greenhouse game, strict orthographic top-down. Dark soil hole with rounded mossy olive earth rim, a few dead leaves, tiny roots and harmless little mushrooms on rim, readable black center. Polished handpainted anime storybook game art, warm soft highlights muted green brown palette. Entire centered circular object transparent background, no floor or distant background, no character, no eyes, no text, no shadow beyond rim."
+  },
+  "lamp": {
+    "source": "maps/ch6/lamp-pilot-1.png",
+    "prompt": "Top-down radial golden grow-light pool ground effect for cozy greenhouse game. One soft round warm yellow amber halo, subtle concentric light rings and tiny botanical dust specks, brightest near outer ring with softly transparent center for readable characters. Entire sprite transparent background, smooth alpha fade at edges, no physical lamp, no floor, no text, no eyes, no background."
+  },
+  "spore": {
+    "source": "maps/ch6/spore-pilot-1.png",
+    "prompt": "Top-down small circular poison spore puddle ground effect for cute abandoned greenhouse game, muted moss green translucent slime with tiny round spores and a few cream mushroom flecks, irregular soft rounded rim. Polished handpainted cozy anime game style, legible subdued center. One centered isolated transparent sprite with no floor or cast shadow, no face/eyes, no text."
+  }
+}

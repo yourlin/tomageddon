@@ -1,0 +1,56 @@
+{
+  "kind": "enemy",
+  "id": "locust",
+  "displayName": "\u98de\u8757",
+  "status": "integrated;native3tiers and actualwander/hurt/death passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "wander;speed165/group3;fourbasic authored actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/locust/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/locust/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/locust/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/locust/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "draftReview": "Two antennae/6jointedlegs/enlargedrearlegs/stripedwings retained;idle3partial/4fullyclosed;move actual legbound/wingarticulation;hurtclosed2/3;dieclosedfrom2,antennaedroop and legsfold.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-locust-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-locust-gameplay-native.json",
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReview": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

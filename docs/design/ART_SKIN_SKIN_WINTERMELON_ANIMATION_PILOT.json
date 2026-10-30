@@ -1,0 +1,46 @@
+{
+  "kind": "char",
+  "id": "wintermelon",
+  "skinId": "skin_wintermelon",
+  "referenceHeight": 160,
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/wintermelon/skins/skin_wintermelon/idle-sheet-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/wintermelon/skins/skin_wintermelon/move-sheet-right-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/wintermelon/skins/skin_wintermelon/hurt-sheet-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/wintermelon/skins/skin_wintermelon/die-sheet-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/wintermelon/skins/skin_wintermelon/cast-sheet-1.png"
+    }
+  ],
+  "status": "gutters and shared action calibration checked; runtime verification pending"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "enemy",
+  "id": "rusty_nail",
+  "displayName": "锈钉虫",
+  "status": "16authoredframes integrated;3tiernative/actualchaseAI/typecheck/lint/source-review/runtimepassed;tripodgaitrefinement/finalpending",
+  "referenceHeight": 143,
+  "gameplayBehavior": "chase140;group4;contact only",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rusty_nail/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rusty_nail/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rusty_nail/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rusty_nail/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "rejectedForIntegration": {
+    "move-sheet-pilot-1.png": "Opposite supportcontact notclear;targeted bottomleftpose repair requested"
+  },
+  "visualPending": "Move2 changes middleleg to forwardcontact,frontleg reversal incomplete;continuous tripod gait refinement remains finalvisual gate",
+  "verification": {
+    "native": "reports/art-pilot/enemy-rusty_nail-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-rusty_nail-gameplay-native.json",
+    "scope": "Basic playback/actualAI only;not finalvisual,gait,mobile"
+  }
+}

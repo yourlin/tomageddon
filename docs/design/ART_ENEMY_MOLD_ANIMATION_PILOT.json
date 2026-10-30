@@ -1,0 +1,57 @@
+{
+  "kind": "enemy",
+  "id": "mold",
+  "displayName": "霉菌团",
+  "status": "Integrated16frames; three-tier playback/100msblink/200sharedinstances/GPUrelease basic checks passed; actual gameplay and final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase; contact only",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mold/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mold/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mold/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mold/base/die-sheet-pilot-2.png"
+    }
+  ],
+  "draftReview": {
+    "partitionPassed": [
+      "idle",
+      "move",
+      "hurt"
+    ],
+    "rejected": {
+      "die1": "no clear x gutter; lobes overlap partition"
+    },
+    "pending": "actual gameplay/continuous visual/performance acceptance"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "enemy",
+  "id": "rabbit",
+  "displayName": "菜园兔子",
+  "status": "integrated; native3tier and actual flee AI basic validation passed; final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "flee170/critter/life9/no damage; no attack animation",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rabbit/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rabbit/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rabbit/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rabbit/base/die-sheet-pilot-1.png",
+      "referenceHeight": 145
+    }
+  ],
+  "calibrationNote": "Death reference uses145px because ears droop; uniform action scale retains authored collapse without enlarging head."
+}

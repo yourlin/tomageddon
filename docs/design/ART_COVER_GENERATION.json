@@ -1,0 +1,9 @@
+{
+  "tool": "built-in image_gen",
+  "output": "src/assets/cover/cover_kitchen.png",
+  "references": [
+    "src/assets/entities/char/tomato/body.png",
+    "src/assets/comics/ch1.png"
+  ],
+  "prompt": "Use case: illustration-story. Asset: landscape 16:9 game main-menu cover background, 1536x864 composition. References: image1 exact protagonist identity (cute round tomato girl, large glossy brown eyes, leafy crown, yellow bow, tiny red limbs); image2 painterly cozy kitchen world style. Create premium polished adorable chibi adventure key art for TOMAGEDDON. Moonlit miniature rustic kitchen, warm golden hanging lamp, strawberry ceramic tiles, herbs, distant blue window. On RIGHT half a large heroic tomato girl with yellow bow, smiling determined, holding tiny golden fork, standing on cutting board; a few very small fluffy green mold creatures and adorable pale worms peek from right-bottom pan, whimsical and friendly. Dramatic warm rim light, rich hand-painted anime storybook finish, clear silhouette, cute rather than scary. LEFT 48 percent is an uncluttered deep dark plum kitchen wall with only extremely subtle texture, mostly empty smooth dark space reserved for live UI title and menu, no characters or props there. Keep protagonist entirely in right half, head around x75% y35%, feet y87%. Composition wide cinematic, intentional negative space on left. No text, no lettering, no logos, no buttons, no UI, no watermark. Artwork fills landscape frame."
+}

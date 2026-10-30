@@ -4,6 +4,7 @@ import type Phaser from 'phaser';
 import { save, persist } from './Save';
 import { overlayRoot } from './OverlayRoot';
 import { tx } from '../i18n';
+import { skinsEnabled } from './Features';
 
 const params = typeof location !== 'undefined' ? new URLSearchParams(location.search) : new URLSearchParams();
 const DISABLED =
@@ -155,10 +156,15 @@ const TIPS: Record<TipKey, () => [string, string]> = {
   ],
   quests: () => [
     tx('角色任务与熟练度', 'Character quests & Mastery'),
-    tx(
-      '每名角色都有 3 个专属任务，全部完成后可开启「觉醒」被动。用某个角色游玩还会积累熟练度，升级后有开局奖励，满 10 级免费解锁皮肤。',
-      'Each character has 3 quests; finish them all to toggle their Awakening passive. Playing a character also builds Mastery, with starting bonuses and a free skin at level 10.',
-    ),
+    skinsEnabled()
+      ? tx(
+          '每名角色都有 3 个专属任务，全部完成后可开启「觉醒」被动。用某个角色游玩还会积累熟练度，升级后有开局奖励，满 10 级免费解锁皮肤。',
+          'Each character has 3 quests; finish them all to toggle their Awakening passive. Playing a character also builds Mastery, with starting bonuses and a free skin at level 10.',
+        )
+      : tx(
+          '每名角色都有 3 个专属任务，全部完成后可开启「觉醒」被动。用某个角色游玩还会积累熟练度，升级后有开局奖励，满 10 级再加一档专属天赋。',
+          'Each character has 3 quests; finish them all to toggle their Awakening passive. Playing a character also builds Mastery, with starting bonuses and another signature talent step at level 10.',
+        ),
   ],
   practice: () => [
     tx('练习与自定义挑战', 'Practice & Custom challenges'),

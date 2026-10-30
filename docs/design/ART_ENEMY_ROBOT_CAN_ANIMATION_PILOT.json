@@ -1,0 +1,71 @@
+{
+  "kind": "enemy",
+  "id": "robot_can",
+  "displayName": "罐头机器人",
+  "status": "20frames integrated;3tier native and actual3shot AI passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "shooter;3projectiles/spread12/shootCd4",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/robot_can/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/robot_can/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/robot_can/base/hurt-sheet-pilot-2.png",
+      "referenceHeight": 180
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/robot_can/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/robot_can/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partition passed;4poses inspected;single eye and3cannons retained",
+    "move": "partition passed;4poses inspected;single eye and3cannons retained",
+    "hurt": "REJECT No clear y gutter near 512; inspect overlapping drawings",
+    "hurt2": "partition passed;recoil/shutter/axle poses inspected",
+    "die": "four disabled collapse poses inspected;partition passed",
+    "attack": "3barrel extension/recoil/rebound poses inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160
+  },
+  "calibrationNote": "Hurt180 vs neutral160 compensates raised suspension in first recoil reference;uniform action scale and fixed pivot;compiled keyframes reviewed;continuous/final pending",
+  "verification": {
+    "native": "reports/art-pilot/enemy-robot_can-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-robot_can-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runnerCleanup": "Latest3tier assertions passed and report newer than revised atlas;Chrome had exited but Node lingered,own verifier process terminated after report check. No assertion failure."
+  }
+}

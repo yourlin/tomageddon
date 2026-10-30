@@ -1,0 +1,1526 @@
+[
+  {
+    "id": "fork",
+    "file": "fork.png",
+    "cls": "melee",
+    "bounds": [66, 234, 1712, 682]
+  },
+  {
+    "id": "knife",
+    "file": "knife.png",
+    "cls": "melee",
+    "bounds": [43, 309, 1731, 630]
+  },
+  {
+    "id": "rolling_pin",
+    "file": "rolling_pin.png",
+    "cls": "melee",
+    "bounds": [38, 273, 1736, 619]
+  },
+  {
+    "id": "pea_shooter",
+    "file": "pea_shooter.png",
+    "cls": "ranged",
+    "bounds": [50, 113, 1505, 909]
+  },
+  {
+    "id": "pan",
+    "file": "pan.png",
+    "cls": "melee",
+    "bounds": [21, 152, 1519, 823]
+  },
+  {
+    "id": "watermelon_hammer",
+    "file": "watermelon_hammer.png",
+    "cls": "melee",
+    "bounds": [31, 93, 1511, 938]
+  },
+  {
+    "id": "slingshot",
+    "file": "slingshot.png",
+    "cls": "ranged",
+    "bounds": [25, 74, 1511, 896]
+  },
+  {
+    "id": "chili_rocket",
+    "file": "chili_rocket.png",
+    "cls": "ranged",
+    "bounds": [18, 177, 1521, 845]
+  },
+  {
+    "id": "corn_cannon",
+    "file": "corn_cannon.png",
+    "cls": "ranged",
+    "bounds": [15, 122, 1519, 893]
+  },
+  {
+    "id": "ketchup",
+    "file": "ketchup.png",
+    "cls": "ranged",
+    "bounds": [42, 138, 1515, 881]
+  },
+  {
+    "id": "mustard_flamer",
+    "file": "mustard_flamer.png",
+    "cls": "elemental",
+    "bounds": [29, 142, 1514, 870]
+  },
+  {
+    "id": "soda",
+    "file": "soda.png",
+    "cls": "elemental",
+    "bounds": [44, 27, 1730, 857]
+  },
+  {
+    "id": "garlic_aura",
+    "file": "garlic_aura.png",
+    "cls": "elemental",
+    "bounds": [29, 88, 1512, 896]
+  },
+  {
+    "id": "pepper_mine",
+    "file": "pepper_mine.png",
+    "cls": "elemental",
+    "bounds": [34, 79, 1505, 890]
+  },
+  {
+    "id": "onion_boomerang",
+    "file": "onion_boomerang.png",
+    "cls": "ranged",
+    "bounds": [43, 17, 1495, 1007]
+  },
+  {
+    "id": "broccoli_staff",
+    "file": "broccoli_staff.png",
+    "cls": "elemental",
+    "bounds": [22, 142, 1520, 836]
+  },
+  {
+    "id": "sauce_gatling",
+    "file": "sauce_gatling.png",
+    "cls": "ranged",
+    "bounds": [24, 92, 1517, 860]
+  },
+  {
+    "id": "cleaver",
+    "file": "cleaver.png",
+    "cls": "melee",
+    "bounds": [10, 183, 1526, 768]
+  },
+  {
+    "id": "curry_garlic_field",
+    "file": "curry_garlic_field.png",
+    "cls": "elemental",
+    "bounds": [28, 135, 1511, 898]
+  },
+  {
+    "id": "spatula",
+    "file": "spatula.png",
+    "cls": "melee",
+    "bounds": [46, 135, 1759, 762]
+  },
+  {
+    "id": "blast_pea_cannon",
+    "file": "blast_pea_cannon.png",
+    "cls": "ranged",
+    "bounds": [20, 177, 1523, 836]
+  },
+  {
+    "id": "whisk_spin",
+    "file": "whisk_spin.png",
+    "cls": "melee",
+    "bounds": [20, 154, 1518, 862]
+  },
+  {
+    "id": "meat_tenderizer",
+    "file": "meat_tenderizer.png",
+    "cls": "melee",
+    "bounds": [11, 160, 1529, 864]
+  },
+  {
+    "id": "thunder_orchard",
+    "file": "thunder_orchard.png",
+    "cls": "elemental",
+    "bounds": [20, 184, 1652, 779]
+  },
+  {
+    "id": "skewer",
+    "file": "skewer.png",
+    "cls": "melee",
+    "bounds": [15, 261, 1739, 684]
+  },
+  {
+    "id": "ladle",
+    "file": "ladle.png",
+    "cls": "melee",
+    "bounds": [30, 197, 1513, 843]
+  },
+  {
+    "id": "sushi_twin_blade",
+    "file": "sushi_twin_blade.png",
+    "cls": "melee",
+    "bounds": [26, 166, 1764, 724]
+  },
+  {
+    "id": "frost_cleaver",
+    "file": "frost_cleaver.png",
+    "cls": "melee",
+    "bounds": [8, 191, 1528, 764]
+  },
+  {
+    "id": "toxic_gatling",
+    "file": "toxic_gatling.png",
+    "cls": "ranged",
+    "bounds": [19, 112, 1521, 842]
+  },
+  {
+    "id": "baguette_sword",
+    "file": "baguette_sword.png",
+    "cls": "melee",
+    "bounds": [23, 115, 1880, 719]
+  },
+  {
+    "id": "inferno_mortar",
+    "file": "inferno_mortar.png",
+    "cls": "ranged",
+    "bounds": [30, 170, 1525, 869]
+  },
+  {
+    "id": "cucumber_katana",
+    "file": "cucumber_katana.png",
+    "cls": "melee",
+    "bounds": [28, 128, 2138, 607]
+  },
+  {
+    "id": "storm_whisk_pan",
+    "file": "storm_whisk_pan.png",
+    "cls": "melee",
+    "bounds": [23, 151, 1516, 876]
+  },
+  {
+    "id": "railgun_sniper",
+    "file": "railgun_sniper.png",
+    "cls": "ranged",
+    "bounds": [12, 175, 1764, 708]
+  },
+  {
+    "id": "pizza_cutter",
+    "file": "pizza_cutter.png",
+    "cls": "melee",
+    "bounds": [8, 200, 1528, 811]
+  },
+  {
+    "id": "honey_frost_aura",
+    "file": "honey_frost_aura.png",
+    "cls": "elemental",
+    "bounds": [16, 107, 1520, 888]
+  },
+  {
+    "id": "chopsticks",
+    "file": "chopsticks.png",
+    "cls": "melee",
+    "bounds": [35, 270, 1743, 789]
+  },
+  {
+    "id": "spore_minefield",
+    "file": "spore_minefield.png",
+    "cls": "elemental",
+    "bounds": [25, 149, 1509, 845]
+  },
+  {
+    "id": "bamboo_spear",
+    "file": "bamboo_spear.png",
+    "cls": "melee",
+    "bounds": [13, 175, 2159, 570]
+  },
+  {
+    "id": "candy_shotgun",
+    "file": "candy_shotgun.png",
+    "cls": "ranged",
+    "bounds": [15, 103, 1797, 778]
+  },
+  {
+    "id": "dragon_breath_flame",
+    "file": "dragon_breath_flame.png",
+    "cls": "elemental",
+    "bounds": [52, 79, 1734, 828]
+  },
+  {
+    "id": "pineapple_mace",
+    "file": "pineapple_mace.png",
+    "cls": "melee",
+    "bounds": [21, 155, 1518, 852]
+  },
+  {
+    "id": "coconut_quake_mace",
+    "file": "coconut_quake_mace.png",
+    "cls": "melee",
+    "bounds": [50, 158, 1508, 867]
+  },
+  {
+    "id": "olive_launcher",
+    "file": "olive_launcher.png",
+    "cls": "ranged",
+    "bounds": [45, 121, 1503, 920]
+  },
+  {
+    "id": "anise_frost_storm",
+    "file": "anise_frost_storm.png",
+    "cls": "elemental",
+    "bounds": [22, 39, 1517, 912]
+  },
+  {
+    "id": "popcorn_machine",
+    "file": "popcorn_machine.png",
+    "cls": "ranged",
+    "bounds": [37, 96, 1501, 888]
+  },
+  {
+    "id": "holy_salt_barrier",
+    "file": "holy_salt_barrier.png",
+    "cls": "elemental",
+    "bounds": [15, 97, 1515, 888]
+  },
+  {
+    "id": "fz_knife_ember_mine",
+    "file": "fz_knife_ember_mine.png",
+    "cls": "melee",
+    "bounds": [42, 198, 1731, 710]
+  },
+  {
+    "id": "fz_thunder_durian_lemon_dagger",
+    "file": "fz_thunder_durian_lemon_dagger.png",
+    "cls": "elemental",
+    "bounds": [33, 196, 1513, 872]
+  },
+  {
+    "id": "fz_volt_fork_plate_frisbee",
+    "file": "fz_volt_fork_plate_frisbee.png",
+    "cls": "melee",
+    "bounds": [35, 96, 1743, 805]
+  },
+  {
+    "id": "grape_shotgun",
+    "file": "grape_shotgun.png",
+    "cls": "ranged",
+    "bounds": [24, 171, 1514, 777]
+  },
+  {
+    "id": "fz_onion_boomerang_candy_cane",
+    "file": "fz_onion_boomerang_candy_cane.png",
+    "cls": "ranged",
+    "bounds": [21, 14, 1516, 993]
+  },
+  {
+    "id": "fz_glacier_mortar_corn_scatter",
+    "file": "fz_glacier_mortar_corn_scatter.png",
+    "cls": "ranged",
+    "bounds": [27, 173, 1518, 863]
+  },
+  {
+    "id": "fz_grater_sweep_stink_aura",
+    "file": "fz_grater_sweep_stink_aura.png",
+    "cls": "melee",
+    "bounds": [17, 136, 1520, 902]
+  },
+  {
+    "id": "bean_bazooka",
+    "file": "bean_bazooka.png",
+    "cls": "ranged",
+    "bounds": [26, 41, 1856, 787]
+  },
+  {
+    "id": "cherry_bomb",
+    "file": "cherry_bomb.png",
+    "cls": "ranged",
+    "bounds": [30, 161, 1508, 868]
+  },
+  {
+    "id": "fz_sea_urchin_mine_dragonfruit_orb",
+    "file": "fz_sea_urchin_mine_dragonfruit_orb.png",
+    "cls": "ranged",
+    "bounds": [15, 48, 1521, 946]
+  },
+  {
+    "id": "blueberry_sniper",
+    "file": "blueberry_sniper.png",
+    "cls": "ranged",
+    "bounds": [30, 187, 1751, 733]
+  },
+  {
+    "id": "plate_frisbee",
+    "file": "plate_frisbee.png",
+    "cls": "ranged",
+    "bounds": [19, 104, 1759, 747]
+  },
+  {
+    "id": "fz_twin_cleavers_ketchup",
+    "file": "fz_twin_cleavers_ketchup.png",
+    "cls": "melee",
+    "bounds": [22, 70, 1520, 946]
+  },
+  {
+    "id": "fz_jelly_bounce_chili_shuriken",
+    "file": "fz_jelly_bounce_chili_shuriken.png",
+    "cls": "elemental",
+    "bounds": [35, 201, 1515, 837]
+  },
+  {
+    "id": "fz_slush_spray_caramel_aura",
+    "file": "fz_slush_spray_caramel_aura.png",
+    "cls": "elemental",
+    "bounds": [26, 144, 1520, 813]
+  },
+  {
+    "id": "seed_spitter",
+    "file": "seed_spitter.png",
+    "cls": "ranged",
+    "bounds": [25, 70, 1521, 868]
+  },
+  {
+    "id": "fz_skewer_soy_pistol",
+    "file": "fz_skewer_soy_pistol.png",
+    "cls": "melee",
+    "bounds": [66, 125, 1763, 787]
+  },
+  {
+    "id": "carrot_crossbow",
+    "file": "carrot_crossbow.png",
+    "cls": "ranged",
+    "bounds": [6, 110, 1524, 928]
+  },
+  {
+    "id": "fz_cucumber_katana_soda",
+    "file": "fz_cucumber_katana_soda.png",
+    "cls": "melee",
+    "bounds": [48, 195, 1947, 670]
+  },
+  {
+    "id": "honey_blaster",
+    "file": "honey_blaster.png",
+    "cls": "ranged",
+    "bounds": [54, 69, 1497, 958]
+  },
+  {
+    "id": "fz_corn_cannon_blade_aura",
+    "file": "fz_corn_cannon_blade_aura.png",
+    "cls": "ranged",
+    "bounds": [45, 140, 1493, 852]
+  },
+  {
+    "id": "soy_pistol",
+    "file": "soy_pistol.png",
+    "cls": "ranged",
+    "bounds": [47, 51, 1493, 974]
+  },
+  {
+    "id": "fz_pepper_drone_melon_staff",
+    "file": "fz_pepper_drone_melon_staff.png",
+    "cls": "ranged",
+    "bounds": [18, 188, 1519, 803]
+  },
+  {
+    "id": "fz_grill_arc_pepper_storm_aura",
+    "file": "fz_grill_arc_pepper_storm_aura.png",
+    "cls": "elemental",
+    "bounds": [19, 160, 1520, 864]
+  },
+  {
+    "id": "ice_cube_tray",
+    "file": "ice_cube_tray.png",
+    "cls": "elemental",
+    "bounds": [22, 66, 1649, 859]
+  },
+  {
+    "id": "fz_taro_aura_charcoal_aura",
+    "file": "fz_taro_aura_charcoal_aura.png",
+    "cls": "elemental",
+    "bounds": [22, 97, 1528, 909]
+  },
+  {
+    "id": "fz_teapot_storm_honey_blaster",
+    "file": "fz_teapot_storm_honey_blaster.png",
+    "cls": "elemental",
+    "bounds": [27, 106, 1516, 889]
+  },
+  {
+    "id": "fz_pumpkin_mortar_eggplant_staff",
+    "file": "fz_pumpkin_mortar_eggplant_staff.png",
+    "cls": "ranged",
+    "bounds": [22, 152, 1509, 855]
+  },
+  {
+    "id": "fz_popcorn_machine_carrot_lance",
+    "file": "fz_popcorn_machine_carrot_lance.png",
+    "cls": "ranged",
+    "bounds": [11, 103, 1761, 770]
+  },
+  {
+    "id": "lightning_whisk",
+    "file": "lightning_whisk.png",
+    "cls": "elemental",
+    "bounds": [37, 121, 1757, 774]
+  },
+  {
+    "id": "fz_donut_ring_rot_aura",
+    "file": "fz_donut_ring_rot_aura.png",
+    "cls": "ranged",
+    "bounds": [64, 57, 1489, 966]
+  },
+  {
+    "id": "steam_kettle",
+    "file": "steam_kettle.png",
+    "cls": "elemental",
+    "bounds": [20, 123, 1512, 819]
+  },
+  {
+    "id": "fz_dynamite_drumstick_blackberry_wand",
+    "file": "fz_dynamite_drumstick_blackberry_wand.png",
+    "cls": "melee",
+    "bounds": [24, 165, 1513, 798]
+  },
+  {
+    "id": "fz_spatula_slingshot",
+    "file": "fz_spatula_slingshot.png",
+    "cls": "melee",
+    "bounds": [11, 164, 1766, 768]
+  },
+  {
+    "id": "curry_aura",
+    "file": "curry_aura.png",
+    "cls": "elemental",
+    "bounds": [23, 88, 1512, 932]
+  },
+  {
+    "id": "pepper_spray",
+    "file": "pepper_spray.png",
+    "cls": "elemental",
+    "bounds": [26, 94, 1518, 923]
+  },
+  {
+    "id": "fz_cola_zapper_mixer_storm",
+    "file": "fz_cola_zapper_mixer_storm.png",
+    "cls": "elemental",
+    "bounds": [16, 127, 1520, 913]
+  },
+  {
+    "id": "fz_bean_bazooka_soy_bomb",
+    "file": "fz_bean_bazooka_soy_bomb.png",
+    "cls": "ranged",
+    "bounds": [45, 122, 1728, 772]
+  },
+  {
+    "id": "mint_frost_mine",
+    "file": "mint_frost_mine.png",
+    "cls": "elemental",
+    "bounds": [30, 88, 1501, 952]
+  },
+  {
+    "id": "fz_steam_kettle_asparagus_bow",
+    "file": "fz_steam_kettle_asparagus_bow.png",
+    "cls": "elemental",
+    "bounds": [23, 146, 1518, 914]
+  },
+  {
+    "id": "thunder_durian",
+    "file": "thunder_durian.png",
+    "cls": "elemental",
+    "bounds": [28, 134, 1513, 872]
+  },
+  {
+    "id": "dragonfruit_orb",
+    "file": "dragonfruit_orb.png",
+    "cls": "elemental",
+    "bounds": [17, 125, 1520, 896]
+  },
+  {
+    "id": "fz_onion_tear_lightning_whisk",
+    "file": "fz_onion_tear_lightning_whisk.png",
+    "cls": "ranged",
+    "bounds": [30, 86, 1522, 911]
+  },
+  {
+    "id": "star_anise_shuriken",
+    "file": "star_anise_shuriken.png",
+    "cls": "elemental",
+    "bounds": [46, 55, 1493, 909]
+  },
+  {
+    "id": "fz_pepper_grinder_choco_mine",
+    "file": "fz_pepper_grinder_choco_mine.png",
+    "cls": "ranged",
+    "bounds": [40, 87, 1496, 944]
+  },
+  {
+    "id": "lemon_battery",
+    "file": "lemon_battery.png",
+    "cls": "elemental",
+    "bounds": [29, 169, 1760, 760]
+  },
+  {
+    "id": "wasabi_katana",
+    "file": "wasabi_katana.png",
+    "cls": "melee",
+    "bounds": [24, 105, 1965, 725]
+  },
+  {
+    "id": "kitchen_scissors",
+    "file": "kitchen_scissors.png",
+    "cls": "melee",
+    "bounds": [43, 130, 1494, 857]
+  },
+  {
+    "id": "fz_bbq_torch_ketchup_twin",
+    "file": "fz_bbq_torch_ketchup_twin.png",
+    "cls": "ranged",
+    "bounds": [29, 220, 1513, 823]
+  },
+  {
+    "id": "blender_aura",
+    "file": "blender_aura.png",
+    "cls": "melee",
+    "bounds": [23, 109, 1514, 877]
+  },
+  {
+    "id": "fz_cherry_bomb_bamboo_spear",
+    "file": "fz_cherry_bomb_bamboo_spear.png",
+    "cls": "ranged",
+    "bounds": [43, 99, 1735, 808]
+  },
+  {
+    "id": "dynamite_drumstick",
+    "file": "dynamite_drumstick.png",
+    "cls": "melee",
+    "bounds": [30, 120, 1515, 874]
+  },
+  {
+    "id": "fz_kitchen_scissors_toxic_spike",
+    "file": "fz_kitchen_scissors_toxic_spike.png",
+    "cls": "melee",
+    "bounds": [40, 161, 1506, 877]
+  },
+  {
+    "id": "fz_carrot_crossbow_fork",
+    "file": "fz_carrot_crossbow_fork.png",
+    "cls": "ranged",
+    "bounds": [21, 135, 1516, 925]
+  },
+  {
+    "id": "pepper_grinder",
+    "file": "pepper_grinder.png",
+    "cls": "ranged",
+    "bounds": [47, 87, 1516, 949]
+  },
+  {
+    "id": "fz_popsicle_blade_olive_launcher",
+    "file": "fz_popsicle_blade_olive_launcher.png",
+    "cls": "melee",
+    "bounds": [37, 169, 1750, 742]
+  },
+  {
+    "id": "fz_spore_sprayer_shaved_ice_gun",
+    "file": "fz_spore_sprayer_shaved_ice_gun.png",
+    "cls": "elemental",
+    "bounds": [37, 140, 1525, 887]
+  },
+  {
+    "id": "fz_bbq_skewer_cream_torch",
+    "file": "fz_bbq_skewer_cream_torch.png",
+    "cls": "melee",
+    "bounds": [19, 224, 1755, 703]
+  },
+  {
+    "id": "soy_bomb",
+    "file": "soy_bomb.png",
+    "cls": "ranged",
+    "bounds": [63, 56, 1499, 907]
+  },
+  {
+    "id": "fz_coconut_gloves_ice_cube_tray",
+    "file": "fz_coconut_gloves_ice_cube_tray.png",
+    "cls": "melee",
+    "bounds": [12, 125, 1526, 820]
+  },
+  {
+    "id": "fz_knife_case_microwave_cannon",
+    "file": "fz_knife_case_microwave_cannon.png",
+    "cls": "ranged",
+    "bounds": [26, 227, 1518, 788]
+  },
+  {
+    "id": "bbq_torch",
+    "file": "bbq_torch.png",
+    "cls": "ranged",
+    "bounds": [14, 176, 1525, 881]
+  },
+  {
+    "id": "jam_mortar",
+    "file": "jam_mortar.png",
+    "cls": "ranged",
+    "bounds": [28, 131, 1521, 878]
+  },
+  {
+    "id": "fz_coal_tongs_whisk_spin",
+    "file": "fz_coal_tongs_whisk_spin.png",
+    "cls": "melee",
+    "bounds": [32, 124, 1750, 764]
+  },
+  {
+    "id": "fz_toaster_zap_hot_sauce_gun",
+    "file": "fz_toaster_zap_hot_sauce_gun.png",
+    "cls": "elemental",
+    "bounds": [39, 104, 1501, 945]
+  },
+  {
+    "id": "fz_ladle_cherry_pistols",
+    "file": "fz_ladle_cherry_pistols.png",
+    "cls": "melee",
+    "bounds": [51, 138, 1724, 768]
+  },
+  {
+    "id": "sea_urchin_mine",
+    "file": "sea_urchin_mine.png",
+    "cls": "ranged",
+    "bounds": [16, 66, 1520, 954]
+  },
+  {
+    "id": "fz_watermelon_hammer_mint_frost_mine",
+    "file": "fz_watermelon_hammer_mint_frost_mine.png",
+    "cls": "melee",
+    "bounds": [9, 82, 1527, 949]
+  },
+  {
+    "id": "fz_peach_syrup_blender_aura",
+    "file": "fz_peach_syrup_blender_aura.png",
+    "cls": "ranged",
+    "bounds": [32, 134, 1521, 916]
+  },
+  {
+    "id": "fz_melon_grenade_pumpkin_lantern",
+    "file": "fz_melon_grenade_pumpkin_lantern.png",
+    "cls": "ranged",
+    "bounds": [26, 182, 1528, 863]
+  },
+  {
+    "id": "salt_aura",
+    "file": "salt_aura.png",
+    "cls": "elemental",
+    "bounds": [39, 188, 1744, 741]
+  },
+  {
+    "id": "fz_blowpipe_syrup_sprayer",
+    "file": "fz_blowpipe_syrup_sprayer.png",
+    "cls": "ranged",
+    "bounds": [31, 116, 1743, 794]
+  },
+  {
+    "id": "cola_zapper",
+    "file": "cola_zapper.png",
+    "cls": "elemental",
+    "bounds": [61, 133, 1476, 904]
+  },
+  {
+    "id": "hotpot_breath",
+    "file": "hotpot_breath.png",
+    "cls": "elemental",
+    "bounds": [29, 123, 1501, 902]
+  },
+  {
+    "id": "pumpkin_lantern",
+    "file": "pumpkin_lantern.png",
+    "cls": "elemental",
+    "bounds": [20, 90, 1514, 903]
+  },
+  {
+    "id": "fz_chopsticks_pepper_spray",
+    "file": "fz_chopsticks_pepper_spray.png",
+    "cls": "melee",
+    "bounds": [11, 196, 1756, 708]
+  },
+  {
+    "id": "spore_sprayer",
+    "file": "spore_sprayer.png",
+    "cls": "elemental",
+    "bounds": [17, 82, 1521, 918]
+  },
+  {
+    "id": "fz_pizza_cutter_dragon_lance",
+    "file": "fz_pizza_cutter_dragon_lance.png",
+    "cls": "melee",
+    "bounds": [10, 170, 1528, 822]
+  },
+  {
+    "id": "fz_pomegranate_cluster_beet_axe",
+    "file": "fz_pomegranate_cluster_beet_axe.png",
+    "cls": "ranged",
+    "bounds": [11, 148, 1528, 866]
+  },
+  {
+    "id": "coconut_gloves",
+    "file": "coconut_gloves.png",
+    "cls": "melee",
+    "bounds": [60, 78, 1490, 956]
+  },
+  {
+    "id": "fz_potato_mine_popping_candy",
+    "file": "fz_potato_mine_popping_candy.png",
+    "cls": "ranged",
+    "bounds": [36, 172, 1508, 856]
+  },
+  {
+    "id": "asparagus_bow",
+    "file": "asparagus_bow.png",
+    "cls": "ranged",
+    "bounds": [21, 18, 1520, 997]
+  },
+  {
+    "id": "carrot_lance",
+    "file": "carrot_lance.png",
+    "cls": "melee",
+    "bounds": [36, 200, 1738, 716]
+  },
+  {
+    "id": "fz_nut_knuckles_rolling_pin",
+    "file": "fz_nut_knuckles_rolling_pin.png",
+    "cls": "melee",
+    "bounds": [46, 201, 1762, 678]
+  },
+  {
+    "id": "dragon_lance",
+    "file": "dragon_lance.png",
+    "cls": "melee",
+    "bounds": [34, 205, 1743, 665]
+  },
+  {
+    "id": "fz_baguette_sword_sprout_wand",
+    "file": "fz_baguette_sword_sprout_wand.png",
+    "cls": "melee",
+    "bounds": [8, 183, 1766, 705]
+  },
+  {
+    "id": "nut_knuckles",
+    "file": "nut_knuckles.png",
+    "cls": "melee",
+    "bounds": [18, 158, 1522, 872]
+  },
+  {
+    "id": "melon_staff",
+    "file": "melon_staff.png",
+    "cls": "melee",
+    "bounds": [31, 114, 1755, 790]
+  },
+  {
+    "id": "fz_bean_mine_spore_cannon",
+    "file": "fz_bean_mine_spore_cannon.png",
+    "cls": "ranged",
+    "bounds": [8, 117, 1669, 827]
+  },
+  {
+    "id": "fz_mycelium_boomerang_lychee_gun",
+    "file": "fz_mycelium_boomerang_lychee_gun.png",
+    "cls": "ranged",
+    "bounds": [10, 39, 1526, 972]
+  },
+  {
+    "id": "beet_axe",
+    "file": "beet_axe.png",
+    "cls": "melee",
+    "bounds": [28, 103, 1515, 907]
+  },
+  {
+    "id": "fz_cumin_star_rice_cooker_aura",
+    "file": "fz_cumin_star_rice_cooker_aura.png",
+    "cls": "elemental",
+    "bounds": [33, 10, 1523, 1011]
+  },
+  {
+    "id": "fz_mandoline_meat_tenderizer",
+    "file": "fz_mandoline_meat_tenderizer.png",
+    "cls": "melee",
+    "bounds": [13, 200, 1526, 825]
+  },
+  {
+    "id": "bean_mine",
+    "file": "bean_mine.png",
+    "cls": "ranged",
+    "bounds": [56, 139, 1482, 881]
+  },
+  {
+    "id": "fz_seed_spitter_fork",
+    "file": "fz_seed_spitter_fork.png",
+    "cls": "ranged",
+    "bounds": [40, 70, 1747, 784]
+  },
+  {
+    "id": "pomegranate_cluster",
+    "file": "pomegranate_cluster.png",
+    "cls": "ranged",
+    "bounds": [19, 204, 1517, 823]
+  },
+  {
+    "id": "pepper_drone",
+    "file": "pepper_drone.png",
+    "cls": "ranged",
+    "bounds": [42, 108, 1520, 968]
+  },
+  {
+    "id": "blackberry_wand",
+    "file": "blackberry_wand.png",
+    "cls": "elemental",
+    "bounds": [28, 136, 1757, 763]
+  },
+  {
+    "id": "onion_tear",
+    "file": "onion_tear.png",
+    "cls": "ranged",
+    "bounds": [32, 64, 1509, 951]
+  },
+  {
+    "id": "lychee_gun",
+    "file": "lychee_gun.png",
+    "cls": "ranged",
+    "bounds": [44, 123, 1496, 910]
+  },
+  {
+    "id": "cherry_pistols",
+    "file": "cherry_pistols.png",
+    "cls": "ranged",
+    "bounds": [35, 40, 1510, 984]
+  },
+  {
+    "id": "lemon_dagger",
+    "file": "lemon_dagger.png",
+    "cls": "melee",
+    "bounds": [24, 136, 1750, 766]
+  },
+  {
+    "id": "taro_aura",
+    "file": "taro_aura.png",
+    "cls": "elemental",
+    "bounds": [20, 120, 1516, 874]
+  },
+  {
+    "id": "stink_aura",
+    "file": "stink_aura.png",
+    "cls": "elemental",
+    "bounds": [52, 107, 1515, 924]
+  },
+  {
+    "id": "ketchup_twin",
+    "file": "ketchup_twin.png",
+    "cls": "ranged",
+    "bounds": [23, 166, 1516, 889]
+  },
+  {
+    "id": "peach_syrup",
+    "file": "peach_syrup.png",
+    "cls": "ranged",
+    "bounds": [13, 103, 1518, 919]
+  },
+  {
+    "id": "eggplant_staff",
+    "file": "eggplant_staff.png",
+    "cls": "elemental",
+    "bounds": [15, 101, 1660, 842]
+  },
+  {
+    "id": "sprout_wand",
+    "file": "sprout_wand.png",
+    "cls": "elemental",
+    "bounds": [12, 167, 1524, 761]
+  },
+  {
+    "id": "candy_cane",
+    "file": "candy_cane.png",
+    "cls": "melee",
+    "bounds": [25, 177, 1518, 847]
+  },
+  {
+    "id": "macaron_gun",
+    "file": "macaron_gun.png",
+    "cls": "ranged",
+    "bounds": [24, 83, 1513, 942]
+  },
+  {
+    "id": "cream_torch",
+    "file": "cream_torch.png",
+    "cls": "elemental",
+    "bounds": [18, 38, 1521, 975]
+  },
+  {
+    "id": "donut_ring",
+    "file": "donut_ring.png",
+    "cls": "ranged",
+    "bounds": [22, 130, 1514, 881]
+  },
+  {
+    "id": "caramel_aura",
+    "file": "caramel_aura.png",
+    "cls": "elemental",
+    "bounds": [30, 131, 1506, 849]
+  },
+  {
+    "id": "choco_mine",
+    "file": "choco_mine.png",
+    "cls": "ranged",
+    "bounds": [15, 174, 1534, 855]
+  },
+  {
+    "id": "popping_candy",
+    "file": "popping_candy.png",
+    "cls": "elemental",
+    "bounds": [26, 123, 1536, 881]
+  },
+  {
+    "id": "popsicle_blade",
+    "file": "popsicle_blade.png",
+    "cls": "melee",
+    "bounds": [51, 193, 1723, 694]
+  },
+  {
+    "id": "icecream_hammer",
+    "file": "icecream_hammer.png",
+    "cls": "melee",
+    "bounds": [47, 70, 1495, 955]
+  },
+  {
+    "id": "shaved_ice_gun",
+    "file": "shaved_ice_gun.png",
+    "cls": "ranged",
+    "bounds": [34, 38, 1501, 884]
+  },
+  {
+    "id": "slush_spray",
+    "file": "slush_spray.png",
+    "cls": "elemental",
+    "bounds": [37, 12, 1496, 991]
+  },
+  {
+    "id": "frost_aura",
+    "file": "frost_aura.png",
+    "cls": "elemental",
+    "bounds": [17, 173, 1517, 873]
+  },
+  {
+    "id": "glacier_mortar",
+    "file": "glacier_mortar.png",
+    "cls": "ranged",
+    "bounds": [20, 87, 1521, 896]
+  },
+  {
+    "id": "icicle_volley",
+    "file": "icicle_volley.png",
+    "cls": "elemental",
+    "bounds": [14, 82, 1523, 970]
+  },
+  {
+    "id": "shock_wok",
+    "file": "shock_wok.png",
+    "cls": "melee",
+    "bounds": [41, 170, 1502, 813]
+  },
+  {
+    "id": "volt_fork",
+    "file": "volt_fork.png",
+    "cls": "melee",
+    "bounds": [26, 212, 1507, 797]
+  },
+  {
+    "id": "microwave_cannon",
+    "file": "microwave_cannon.png",
+    "cls": "ranged",
+    "bounds": [40, 160, 1522, 882]
+  },
+  {
+    "id": "rice_cooker_aura",
+    "file": "rice_cooker_aura.png",
+    "cls": "elemental",
+    "bounds": [24, 175, 1512, 822]
+  },
+  {
+    "id": "grill_arc",
+    "file": "grill_arc.png",
+    "cls": "elemental",
+    "bounds": [9, 183, 1523, 832]
+  },
+  {
+    "id": "mixer_storm",
+    "file": "mixer_storm.png",
+    "cls": "elemental",
+    "bounds": [11, 207, 1525, 811]
+  },
+  {
+    "id": "toaster_zap",
+    "file": "toaster_zap.png",
+    "cls": "elemental",
+    "bounds": [17, 172, 1522, 815]
+  },
+  {
+    "id": "toxic_spike",
+    "file": "toxic_spike.png",
+    "cls": "melee",
+    "bounds": [29, 191, 1628, 746]
+  },
+  {
+    "id": "spore_cannon",
+    "file": "spore_cannon.png",
+    "cls": "ranged",
+    "bounds": [33, 150, 1506, 793]
+  },
+  {
+    "id": "miasma_sprayer",
+    "file": "miasma_sprayer.png",
+    "cls": "elemental",
+    "bounds": [40, 110, 1507, 867]
+  },
+  {
+    "id": "rot_aura",
+    "file": "rot_aura.png",
+    "cls": "elemental",
+    "bounds": [10, 89, 1526, 928]
+  },
+  {
+    "id": "toadstool_mine",
+    "file": "toadstool_mine.png",
+    "cls": "elemental",
+    "bounds": [37, 92, 1502, 889]
+  },
+  {
+    "id": "mycelium_boomerang",
+    "file": "mycelium_boomerang.png",
+    "cls": "ranged",
+    "bounds": [65, 32, 1493, 988]
+  },
+  {
+    "id": "blowpipe",
+    "file": "blowpipe.png",
+    "cls": "ranged",
+    "bounds": [46, 149, 1731, 751]
+  },
+  {
+    "id": "bbq_skewer",
+    "file": "bbq_skewer.png",
+    "cls": "melee",
+    "bounds": [49, 226, 1725, 685]
+  },
+  {
+    "id": "coal_tongs",
+    "file": "coal_tongs.png",
+    "cls": "melee",
+    "bounds": [43, 192, 1740, 752]
+  },
+  {
+    "id": "bbq_sauce_cannon",
+    "file": "bbq_sauce_cannon.png",
+    "cls": "ranged",
+    "bounds": [24, 123, 1520, 870]
+  },
+  {
+    "id": "charcoal_aura",
+    "file": "charcoal_aura.png",
+    "cls": "elemental",
+    "bounds": [49, 122, 1518, 878]
+  },
+  {
+    "id": "ember_mine",
+    "file": "ember_mine.png",
+    "cls": "elemental",
+    "bounds": [61, 141, 1489, 876]
+  },
+  {
+    "id": "cumin_star",
+    "file": "cumin_star.png",
+    "cls": "elemental",
+    "bounds": [21, 86, 1532, 911]
+  },
+  {
+    "id": "hot_sauce_gun",
+    "file": "hot_sauce_gun.png",
+    "cls": "ranged",
+    "bounds": [52, 97, 1519, 919]
+  },
+  {
+    "id": "sushi_blade",
+    "file": "sushi_blade.png",
+    "cls": "melee",
+    "bounds": [51, 192, 1931, 583]
+  },
+  {
+    "id": "twin_cleavers",
+    "file": "twin_cleavers.png",
+    "cls": "melee",
+    "bounds": [21, 10, 1525, 939]
+  },
+  {
+    "id": "knife_case",
+    "file": "knife_case.png",
+    "cls": "ranged",
+    "bounds": [81, 104, 1468, 938]
+  },
+  {
+    "id": "blade_aura",
+    "file": "blade_aura.png",
+    "cls": "melee",
+    "bounds": [4, 43, 1529, 941]
+  },
+  {
+    "id": "grater_sweep",
+    "file": "grater_sweep.png",
+    "cls": "melee",
+    "bounds": [23, 183, 1650, 787]
+  },
+  {
+    "id": "chili_shuriken",
+    "file": "chili_shuriken.png",
+    "cls": "melee",
+    "bounds": [26, 18, 1511, 958]
+  },
+  {
+    "id": "mandoline",
+    "file": "mandoline.png",
+    "cls": "melee",
+    "bounds": [12, 241, 1524, 867]
+  },
+  {
+    "id": "coconut_cannon",
+    "file": "coconut_cannon.png",
+    "cls": "ranged",
+    "bounds": [24, 128, 1517, 864]
+  },
+  {
+    "id": "pumpkin_mortar",
+    "file": "pumpkin_mortar.png",
+    "cls": "ranged",
+    "bounds": [21, 110, 1516, 884]
+  },
+  {
+    "id": "melon_grenade",
+    "file": "melon_grenade.png",
+    "cls": "ranged",
+    "bounds": [14, 114, 1524, 859]
+  },
+  {
+    "id": "potato_mine",
+    "file": "potato_mine.png",
+    "cls": "ranged",
+    "bounds": [39, 142, 1498, 885]
+  },
+  {
+    "id": "corn_scatter",
+    "file": "corn_scatter.png",
+    "cls": "ranged",
+    "bounds": [32, 100, 1513, 891]
+  },
+  {
+    "id": "pea_sniper",
+    "file": "pea_sniper.png",
+    "cls": "ranged",
+    "bounds": [30, 153, 1760, 729]
+  },
+  {
+    "id": "mint_aura",
+    "file": "mint_aura.png",
+    "cls": "elemental",
+    "bounds": [17, 114, 1520, 876]
+  },
+  {
+    "id": "pepper_storm_aura",
+    "file": "pepper_storm_aura.png",
+    "cls": "melee",
+    "bounds": [7, 150, 1529, 882]
+  },
+  {
+    "id": "honey_aura",
+    "file": "honey_aura.png",
+    "cls": "elemental",
+    "bounds": [17, 162, 1521, 858]
+  },
+  {
+    "id": "teapot_storm",
+    "file": "teapot_storm.png",
+    "cls": "elemental",
+    "bounds": [7, 147, 1521, 895]
+  },
+  {
+    "id": "jelly_bounce",
+    "file": "jelly_bounce.png",
+    "cls": "elemental",
+    "bounds": [61, 107, 1477, 917]
+  },
+  {
+    "id": "syrup_sprayer",
+    "file": "syrup_sprayer.png",
+    "cls": "elemental",
+    "bounds": [25, 35, 1518, 1000]
+  },
+  {
+    "id": "hell_trident",
+    "file": "hell_trident.png",
+    "cls": "melee",
+    "bounds": [29, 109, 1745, 776]
+  },
+  {
+    "id": "titan_pin",
+    "file": "titan_pin.png",
+    "cls": "melee",
+    "bounds": [28, 71, 1745, 816]
+  },
+  {
+    "id": "paoding_blade",
+    "file": "paoding_blade.png",
+    "cls": "melee",
+    "bounds": [29, 178, 1755, 815]
+  },
+  {
+    "id": "dragon_cleaver",
+    "file": "dragon_cleaver.png",
+    "cls": "melee",
+    "bounds": [34, 172, 1514, 811]
+  },
+  {
+    "id": "pea_gatling",
+    "file": "pea_gatling.png",
+    "cls": "ranged",
+    "bounds": [30, 87, 1522, 878]
+  },
+  {
+    "id": "ketchup_flood",
+    "file": "ketchup_flood.png",
+    "cls": "ranged",
+    "bounds": [30, 135, 1521, 864]
+  },
+  {
+    "id": "devil_missile",
+    "file": "devil_missile.png",
+    "cls": "ranged",
+    "bounds": [20, 149, 1514, 832]
+  },
+  {
+    "id": "thor_whisk",
+    "file": "thor_whisk.png",
+    "cls": "elemental",
+    "bounds": [38, 177, 1515, 838]
+  },
+  {
+    "id": "vampire_garlic",
+    "file": "vampire_garlic.png",
+    "cls": "elemental",
+    "bounds": [21, 114, 1515, 910]
+  },
+  {
+    "id": "blueberry_railgun",
+    "file": "blueberry_railgun.png",
+    "cls": "ranged",
+    "bounds": [6, 167, 1533, 797]
+  },
+  {
+    "id": "golden_corn",
+    "file": "golden_corn.png",
+    "cls": "ranged",
+    "bounds": [16, 132, 1527, 870]
+  },
+  {
+    "id": "anise_storm",
+    "file": "anise_storm.png",
+    "cls": "elemental",
+    "bounds": [21, 12, 1516, 952]
+  },
+  {
+    "id": "iron_bastion_pan",
+    "file": "iron_bastion_pan.png",
+    "cls": "melee",
+    "bounds": [35, 152, 1507, 823]
+  },
+  {
+    "id": "melon_quake",
+    "file": "melon_quake.png",
+    "cls": "melee",
+    "bounds": [23, 74, 1525, 933]
+  },
+  {
+    "id": "storm_broccoli",
+    "file": "storm_broccoli.png",
+    "cls": "elemental",
+    "bounds": [15, 107, 1521, 884]
+  },
+  {
+    "id": "mustard_dragon",
+    "file": "mustard_dragon.png",
+    "cls": "elemental",
+    "bounds": [13, 142, 1526, 848]
+  },
+  {
+    "id": "pepper_minefield",
+    "file": "pepper_minefield.png",
+    "cls": "elemental",
+    "bounds": [44, 124, 1507, 925]
+  },
+  {
+    "id": "tsunami_katana",
+    "file": "tsunami_katana.png",
+    "cls": "melee",
+    "bounds": [37, 160, 1950, 663]
+  },
+  {
+    "id": "tornado_blender",
+    "file": "tornado_blender.png",
+    "cls": "melee",
+    "bounds": [13, 172, 1524, 852]
+  },
+  {
+    "id": "umami_bomb",
+    "file": "umami_bomb.png",
+    "cls": "ranged",
+    "bounds": [13, 83, 1522, 931]
+  },
+  {
+    "id": "macaron_tempest",
+    "file": "macaron_tempest.png",
+    "cls": "ranged",
+    "bounds": [31, 64, 1521, 956]
+  },
+  {
+    "id": "honey_flood",
+    "file": "honey_flood.png",
+    "cls": "ranged",
+    "bounds": [37, 70, 1516, 925]
+  },
+  {
+    "id": "plague_sprayer",
+    "file": "plague_sprayer.png",
+    "cls": "elemental",
+    "bounds": [8, 119, 1528, 915]
+  },
+  {
+    "id": "carrot_holy_lance",
+    "file": "carrot_holy_lance.png",
+    "cls": "melee",
+    "bounds": [29, 184, 1740, 702]
+  },
+  {
+    "id": "inferno_lance",
+    "file": "inferno_lance.png",
+    "cls": "melee",
+    "bounds": [8, 221, 1765, 768]
+  },
+  {
+    "id": "coco_fist",
+    "file": "coco_fist.png",
+    "cls": "melee",
+    "bounds": [46, 115, 1490, 910]
+  },
+  {
+    "id": "vajra_staff",
+    "file": "vajra_staff.png",
+    "cls": "melee",
+    "bounds": [17, 114, 1759, 783]
+  },
+  {
+    "id": "blood_axe",
+    "file": "blood_axe.png",
+    "cls": "melee",
+    "bounds": [8, 73, 1534, 952]
+  },
+  {
+    "id": "acid_daggers",
+    "file": "acid_daggers.png",
+    "cls": "melee",
+    "bounds": [32, 87, 1493, 942]
+  },
+  {
+    "id": "onion_layers",
+    "file": "onion_layers.png",
+    "cls": "ranged",
+    "bounds": [24, 57, 1520, 985]
+  },
+  {
+    "id": "ghost_lanterns",
+    "file": "ghost_lanterns.png",
+    "cls": "elemental",
+    "bounds": [10, 102, 1527, 923]
+  },
+  {
+    "id": "grape_magic",
+    "file": "grape_magic.png",
+    "cls": "ranged",
+    "bounds": [28, 100, 1755, 771]
+  },
+  {
+    "id": "asparagus_volley",
+    "file": "asparagus_volley.png",
+    "cls": "ranged",
+    "bounds": [48, 53, 1498, 976]
+  },
+  {
+    "id": "cherry_barrage",
+    "file": "cherry_barrage.png",
+    "cls": "ranged",
+    "bounds": [10, 141, 1528, 867]
+  },
+  {
+    "id": "truth_field",
+    "file": "truth_field.png",
+    "cls": "elemental",
+    "bounds": [38, 58, 1509, 920]
+  },
+  {
+    "id": "yam_oven",
+    "file": "yam_oven.png",
+    "cls": "melee",
+    "bounds": [35, 159, 1506, 867]
+  },
+  {
+    "id": "lucky_cannon",
+    "file": "lucky_cannon.png",
+    "cls": "ranged",
+    "bounds": [12, 146, 1523, 872]
+  },
+  {
+    "id": "stink_king",
+    "file": "stink_king.png",
+    "cls": "elemental",
+    "bounds": [8, 115, 1529, 910]
+  },
+  {
+    "id": "taro_field",
+    "file": "taro_field.png",
+    "cls": "elemental",
+    "bounds": [26, 122, 1516, 922]
+  },
+  {
+    "id": "mecha_cannon",
+    "file": "mecha_cannon.png",
+    "cls": "ranged",
+    "bounds": [11, 93, 1533, 842]
+  },
+  {
+    "id": "bean_airdrop",
+    "file": "bean_airdrop.png",
+    "cls": "ranged",
+    "bounds": [27, 88, 1511, 876]
+  },
+  {
+    "id": "glacier_shards",
+    "file": "glacier_shards.png",
+    "cls": "elemental",
+    "bounds": [21, 98, 1514, 810]
+  },
+  {
+    "id": "thorn_rain",
+    "file": "thorn_rain.png",
+    "cls": "ranged",
+    "bounds": [48, 117, 1520, 839]
+  },
+  {
+    "id": "wither_wand",
+    "file": "wither_wand.png",
+    "cls": "elemental",
+    "bounds": [15, 161, 1523, 869]
+  },
+  {
+    "id": "pome_salute",
+    "file": "pome_salute.png",
+    "cls": "ranged",
+    "bounds": [22, 127, 1514, 929]
+  }
+]

@@ -1,0 +1,5138 @@
+{
+  "authorizedAt": "2026-10-24T01:33:15.762034+00:00",
+  "target": 156,
+  "order": [
+    "skin_tomato",
+    "skin_tomato_2",
+    "journal_character_selection",
+    "remaining154skins"
+  ],
+  "actionsPolicy": "idle with100ms fullyclosed blink,move,hurt,die,plusactualskillactions;ordinaryattackweaponowned;do not recolor originalframes and count asauthoredanimation",
+  "originals": "/Users/linyesh/playground/tomato-sister-art-source",
+  "sourceLayout": "entities/char/<charId>/skins/<skinId>/",
+  "runtimeLayout": "entities/char/<charId>/skins/<skinId>/standard/",
+  "uiRequirements": [
+    "selectedjournalreference",
+    "skinpreview/equip/lockedexplicit",
+    "LB/RBcharacters LT/RTskins Aselect Bback Startlaunch",
+    "normal/endless and perchapterDanger retained",
+    "comicbeforechapter",
+    "mobilelandscape"
+  ],
+  "items": [
+    {
+      "id": "skin_tomato",
+      "charId": "tomato",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "832800326693df26e45e5c5fbf23162c23237fc3112226babaff19cebeecdeea",
+      "report": "reports/art-pilot/skin-skin_tomato-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_tomato_2",
+      "charId": "tomato",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 160,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "dbedc17abcb0d92da3331b544e799ded9e20accf9e881e1d4ebb341e74bd5267",
+      "report": "reports/art-pilot/skin-skin_tomato_2-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_tomato_3",
+      "charId": "tomato",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "1efd0bd2d33baa6f2414175284f21ce9a43ff4d10b575e700d6af6498c10abe8",
+      "report": "reports/art-pilot/skin-skin_tomato_3-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_tomato_4",
+      "charId": "tomato",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "8e2edcab9f3651edc62042fe8063f412df52e0d1c82609de915603e098cd21d5",
+      "report": "reports/art-pilot/skin-skin_tomato_4-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_carrot",
+      "charId": "carrot",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 120,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 28,
+      "sourceAtlasSha256": "b0d3982d5538b9dabeed312615cc5ac7fc5f065f2785734ad7280e8789c86a92",
+      "report": "reports/art-pilot/skin-skin_carrot-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "windup",
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_carrot-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_carrot_2",
+      "charId": "carrot",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 160,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 28,
+      "sourceAtlasSha256": "3559e58ed9ab0981675e51af7de1c94f6e94fdceb139f8c94d402c074dbd49fc",
+      "report": "reports/art-pilot/skin-skin_carrot_2-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "windup",
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_carrot_2-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_carrot_3",
+      "charId": "carrot",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 200,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 28,
+      "sourceAtlasSha256": "3b129153771cf10142cbcf892056234720749c6d19a96cc0f4ae309551ec4710",
+      "report": "reports/art-pilot/skin-skin_carrot_3-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "windup",
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_carrot_3-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_carrot_4",
+      "charId": "carrot",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 250,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 28,
+      "sourceAtlasSha256": "174c49bf19c0066edf17d70cd24cfe69b4962229b33766e2117b58038d21b92c",
+      "report": "reports/art-pilot/skin-skin_carrot_4-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "windup",
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_carrot_4-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_chili",
+      "charId": "chili",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 120,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "41d990102206ab6810b2fc93bb5fac15f3e7909deb81497a42dcbad48245d06f",
+      "report": "reports/art-pilot/skin-skin_chili-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_chili_2",
+      "charId": "chili",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "6d9dc1989aeded6c6cc171b9a3f9eede1b5e7b1f023943f837bbfcb0628e2326",
+      "report": "reports/art-pilot/skin-skin_chili_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_chili_3",
+      "charId": "chili",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "f330fc71266ac36028cbfe9682c122ccfe5546d03e81d2e7d724d5ed042e2e22",
+      "report": "reports/art-pilot/skin-skin_chili_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_chili_4",
+      "charId": "chili",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "c98f1bce4755802cd0a8ffed6afc4ebc97e456093d7d64b1f1d087a3281cc341",
+      "report": "reports/art-pilot/skin-skin_chili_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_corn",
+      "charId": "corn",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 120,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "f3b32c87ee19f5f31c8dfd576df1cdc1ffd8c7bcb41cc0ab9fe065b41a8a02ee",
+      "report": "reports/art-pilot/skin-skin_corn-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_corn_2",
+      "charId": "corn",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 160,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "c7b33c573721ec057e02036f46fd314df4757cb64297e69f3115503a282c9e3c",
+      "report": "reports/art-pilot/skin-skin_corn_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_corn_3",
+      "charId": "corn",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "73c87be382e83400f97e9ea023cd59faa6710d68760363d3a762fd1010d10162",
+      "report": "reports/art-pilot/skin-skin_corn_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_corn_4",
+      "charId": "corn",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 250,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "470652fa82cbc9bf58df007c220927c9c25139b525a15cce8e5e59e5ba4010cf",
+      "report": "reports/art-pilot/skin-skin_corn_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_watermelon",
+      "charId": "watermelon",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 120,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 24,
+      "sourceAtlasSha256": "8f09117c3d88f15f02c6b66b68b9796d3b195b49d597bb07785315470226619e",
+      "report": "reports/art-pilot/skin-skin_watermelon-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_watermelon-roll-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "rollKeyframesReviewed": true,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_watermelon_2",
+      "charId": "watermelon",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 24,
+      "sourceAtlasSha256": "f93349954926d2a8c98a7f9f49b3b9c9bf254d5013962191fd652f164b9ebd44",
+      "report": "reports/art-pilot/skin-skin_watermelon_2-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_watermelon_2-roll-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "rollKeyframesReviewed": true,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_watermelon_3",
+      "charId": "watermelon",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 24,
+      "sourceAtlasSha256": "9b020961273d56f1878c3e9b2b2cb4d294277fe7906c6e83219818ca40842727",
+      "report": "reports/art-pilot/skin-skin_watermelon_3-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_watermelon_3-roll-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "rollKeyframesReviewed": true,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_watermelon_4",
+      "charId": "watermelon",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 24,
+      "sourceAtlasSha256": "9f4098910fdf2f7347ee5282d16b15b9c292d0fca2628736a4e9208841742510",
+      "report": "reports/art-pilot/skin-skin_watermelon_4-animation-native.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_watermelon_4-roll-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      },
+      "rollKeyframesReviewed": true,
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_lemon",
+      "charId": "lemon",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "ce9871b9c8709e48a177fba824ea28ac194cb3c1f1e86eb486f46a97b59cca5d",
+      "report": "reports/art-pilot/skin-skin_lemon-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_lemon_2",
+      "charId": "lemon",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 160,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "afdabdbf1d1fd429d14a1fd692ea9f07ea933a1292073e55ef7e931abd28a872",
+      "report": "reports/art-pilot/skin-skin_lemon_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_lemon_3",
+      "charId": "lemon",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "48312f71d4e62a593a432559fa89a8204384afd819962086f3f378beb81fdafa",
+      "report": "reports/art-pilot/skin-skin_lemon_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_lemon_4",
+      "charId": "lemon",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 250,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "9e9fedf658d35c807f87abb84fba9cf59e270f94e18997d9ca9d022ee9d95e67",
+      "report": "reports/art-pilot/skin-skin_lemon_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_eggplant",
+      "charId": "eggplant",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "02944d1169f41c9dcbda934fed7114555e6d775dba06a63f479dd805d2e84220",
+      "report": "reports/art-pilot/skin-skin_eggplant-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_eggplant_2",
+      "charId": "eggplant",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "b7d815863d027bca71490fabf11066e330e856173bf09d04ccb3c27eb800cca0",
+      "report": "reports/art-pilot/skin-skin_eggplant_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_eggplant_3",
+      "charId": "eggplant",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 200,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "32f52f222ffb3802eecee0f62d12101b70566a131a07655498241728d22d88b5",
+      "report": "reports/art-pilot/skin-skin_eggplant_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_eggplant_4",
+      "charId": "eggplant",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 250,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "4e7cb486e2f19973e7b3dee8a796e085202e0e1d42425092fdc52e4943ff4ebd",
+      "report": "reports/art-pilot/skin-skin_eggplant_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_garlic",
+      "charId": "garlic",
+      "name": [
+        "海军",
+        "Navy"
+      ],
+      "price": 120,
+      "look": {
+        "color": 1914199,
+        "color2": 4553629,
+        "limbColor": 725803,
+        "acc": [
+          {
+            "id": "tie",
+            "color": 15087942
+          }
+        ],
+        "pattern": "stripes"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "b4d5e22e43f394e389f33d53098813a950c8c158bd42b86ac04e3baf05e754a9",
+      "report": "reports/art-pilot/skin-skin_garlic-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_garlic_2",
+      "charId": "garlic",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 160,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "6b836db670653172df315f7340d907138d593501df5ff89dbd350777d878618c",
+      "report": "reports/art-pilot/skin-skin_garlic_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_garlic_3",
+      "charId": "garlic",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "ea94cbd09fc34f09916714472479b8aea9460b60f104f03e5660cef233c0447c",
+      "report": "reports/art-pilot/skin-skin_garlic_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_garlic_4",
+      "charId": "garlic",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "9231654ae0c27147883580598ae9c6e27b738de799764c6e37a4ee5e99a976e8",
+      "report": "reports/art-pilot/skin-skin_garlic_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blueberry",
+      "charId": "blueberry",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 120,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "710f8cf677f98e206fed11f2a9aba1b8060a244c7df89498b05321f426789284",
+      "report": "reports/art-pilot/skin-skin_blueberry-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blueberry_2",
+      "charId": "blueberry",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "997e23e46be60b01ec09d37be6ebb69fea43aed6cf3ed654a267c71472f6d038",
+      "report": "reports/art-pilot/skin-skin_blueberry_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blueberry_3",
+      "charId": "blueberry",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 200,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "43f77b1f2fc6822bf044ba78de46310c384903cdb50338c020b58a6e40d4439b",
+      "report": "reports/art-pilot/skin-skin_blueberry_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blueberry_4",
+      "charId": "blueberry",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "2d0dfb601ed9d815e348812bc8d3eeb5a58a91fca686d67e25f5f002aaddb449",
+      "report": "reports/art-pilot/skin-skin_blueberry_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pineapple",
+      "charId": "pineapple",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "98400fb4743599439f0691df4b48c271cc8c3ac23f52ca2474dbcc821bd52cf1",
+      "report": "reports/art-pilot/skin-skin_pineapple-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pineapple_2",
+      "charId": "pineapple",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 160,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "a2a7fd315188e6efed510f603b2bc02b206068be4577661f79ceb7567b08ba16",
+      "report": "reports/art-pilot/skin-skin_pineapple_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pineapple_3",
+      "charId": "pineapple",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 200,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "7e1b34af32dca1ef2d2f5c76505a0bb93c7278aad600002cfd0bbc333d505a1a",
+      "report": "reports/art-pilot/skin-skin_pineapple_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pineapple_4",
+      "charId": "pineapple",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 250,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "608531b9a3399b3d8828318a20b3925de3ac121dd8a3b61e200d3415dbe51f13",
+      "report": "reports/art-pilot/skin-skin_pineapple_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pumpkin",
+      "charId": "pumpkin",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 120,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "31b4c2f620b89a50ec7b18c21ec2e09a5bcc8d5602dcdecd8d239686dbd9941f",
+      "report": "reports/art-pilot/skin-skin_pumpkin-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pumpkin_2",
+      "charId": "pumpkin",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 160,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "9efab465758d53203cc5b55b353c677e13c43524674bc5d09b0be536e0712f2b",
+      "report": "reports/art-pilot/skin-skin_pumpkin_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pumpkin_3",
+      "charId": "pumpkin",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "f72dfd0fe237c5119e0a284419d51c7b4eca46299b85beecf1e969997c547eb5",
+      "report": "reports/art-pilot/skin-skin_pumpkin_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pumpkin_4",
+      "charId": "pumpkin",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "05acaeac4d5ca5211103f0d86ca00daf5c54777fea2642eb2045bd93a4c343d8",
+      "report": "reports/art-pilot/skin-skin_pumpkin_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_strawberry",
+      "charId": "strawberry",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 120,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "34ba52bae6cbde150797a52cc7bccdcbb6d19dd26a7c84d72b6ec0c83b8d5c03",
+      "report": "reports/art-pilot/skin-skin_strawberry-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_strawberry_2",
+      "charId": "strawberry",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "93e4d22ac8c878e55af780d9abe6d806f0341f86e1a1878415d24fe5a8686446",
+      "report": "reports/art-pilot/skin-skin_strawberry_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_strawberry_3",
+      "charId": "strawberry",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 200,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "7febc1e91a261d1ca083045091a00165e6c914305b4ac7e79a3a53bcc5be2481",
+      "report": "reports/art-pilot/skin-skin_strawberry_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_strawberry_4",
+      "charId": "strawberry",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "29c1414f46efd5b2010e041ce6c32de21330a570aee1b5c2c8e275c92f8ceb91",
+      "report": "reports/art-pilot/skin-skin_strawberry_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_ginger",
+      "charId": "ginger",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "03ded3137c2d6d087a69253bdfa773c920b8856c602de3322600371a7c6dc293",
+      "report": "reports/art-pilot/skin-skin_ginger-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_ginger_2",
+      "charId": "ginger",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 160,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "9ca7b86b1c4ad3ccdda92ccdfdef658fd6daf2e6b80ef84c88076995b2ad63c5",
+      "report": "reports/art-pilot/skin-skin_ginger_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_ginger_3",
+      "charId": "ginger",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 200,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "74090afd71bf137c5568ef0915db11f7b248a1c02c4a13502670181b8adf7bc3",
+      "report": "reports/art-pilot/skin-skin_ginger_3-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_ginger_4",
+      "charId": "ginger",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 250,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "5032dc7b9dc6bb3eb6aaf905b676f18c293da2a181859cbb96f1546eae0d3a4c",
+      "report": "reports/art-pilot/skin-skin_ginger_4-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_avocado",
+      "charId": "avocado",
+      "name": [
+        "星空",
+        "Starry"
+      ],
+      "price": 120,
+      "look": {
+        "color": 1319229,
+        "color2": 5904538,
+        "limbColor": 198430,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16766474
+          }
+        ],
+        "pattern": "spots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "60df5df5c2aa6e19698c6c840007cfdee211142535480a5ad97199ce267f6a5f",
+      "report": "reports/art-pilot/skin-skin_avocado-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_avocado_2",
+      "charId": "avocado",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 160,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "frames": 20,
+      "sourceAtlasSha256": "076a407797b925d0f69940c5dd3dd69b0943d0a21a0ea768ac406800e1eb406f",
+      "report": "reports/art-pilot/skin-skin_avocado_2-animation-native.json",
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_avocado_3",
+      "charId": "avocado",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "5aff2f57480c075c0b9cfd3d661cbc15627938fb8a92dd8872d901399c07f544",
+      "report": "reports/art-pilot/skin-skin_avocado_3-animation-native.json",
+      "locomotionKeyframesReviewed": true
+    },
+    {
+      "id": "skin_avocado_4",
+      "charId": "avocado",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "ded09846178f9e13ff254cdcfb5576e95bfc19c1d3c369c597d94d7798a5001f",
+      "report": "reports/art-pilot/skin-skin_avocado_4-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "cast"
+        ],
+        "report": "reports/art-pilot/skin_avocado_4-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      }
+    },
+    {
+      "id": "skin_onion",
+      "charId": "onion",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "a7c680e24b350bf9d07528538ed119151f5ad866da139ec9324c8f697521743a",
+      "report": "reports/art-pilot/skin-skin_onion-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "cast"
+        ],
+        "report": "reports/art-pilot/skin_onion-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      }
+    },
+    {
+      "id": "skin_onion_2",
+      "charId": "onion",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 160,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "974a012a14211744d9137ded1cb1ecc34a7ffcaf97529f57720109bb4b882e43",
+      "report": "reports/art-pilot/skin-skin_onion_2-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "tearGas",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_onion_2-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_onion_3",
+      "charId": "onion",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "206a283ec997981a0d8513a83c5afe0b5061750dd7e795a1b6d0765bbc1d9fa8",
+      "report": "reports/art-pilot/skin-skin_onion_3-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "tearGas",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_onion_3-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_onion_4",
+      "charId": "onion",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "41aa13e27ec0a52af2243f2d69b463bab748ecd4f8cfee5910d782d8353758be",
+      "report": "reports/art-pilot/skin-skin_onion_4-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "tearGas",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_onion_4-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_mushroom",
+      "charId": "mushroom",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 120,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "6999da5d0c42686b0245dd38c113ee7f8fd95a875645dcd016989f6a39757d8e",
+      "report": "reports/art-pilot/skin-skin_mushroom-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "sporeCloud",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_mushroom-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_mushroom_2",
+      "charId": "mushroom",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 160,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "41ad3b445af14993d795f369ed73156db1a93d0d3a8af8b787d7a812e72875a0",
+      "report": "reports/art-pilot/skin-skin_mushroom_2-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "sporeCloud",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_mushroom_2-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_mushroom_3",
+      "charId": "mushroom",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 200,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "8472cb7683af3b041428b0487a5cb68ac8b22a8779f328fe8ad909490b8e88fe",
+      "report": "reports/art-pilot/skin-skin_mushroom_3-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "sporeCloud",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_mushroom_3-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_mushroom_4",
+      "charId": "mushroom",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 250,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "1e3d4ffa96ff0f228e16aa6e8c4e4b3047c77c34cbc698789ebbd507319e4edb",
+      "report": "reports/art-pilot/skin-skin_mushroom_4-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "sporeCloud",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_mushroom_4-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_coconut",
+      "charId": "coconut",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 120,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "4bd1e2914233e77c16fc42ff05177c4adaa0d0eeffc7472f8080d5e4f9927e32",
+      "report": "reports/art-pilot/skin-skin_coconut-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "groundPound",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_coconut-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_coconut_2",
+      "charId": "coconut",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "5792521f165f9cba8de1b7ba4e754ba9a779675f4f5a0d6ec4b13f85a7b3ae58",
+      "report": "reports/art-pilot/skin-skin_coconut_2-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "groundPound",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_coconut_2-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_coconut_3",
+      "charId": "coconut",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "c42adbe7c714e139fbd15c5f752dc60ea22929257ac53fce7cff9ff10980ed22",
+      "report": "reports/art-pilot/skin-skin_coconut_3-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "groundPound",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_coconut_3-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_coconut_4",
+      "charId": "coconut",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "9eba28ebb0c6c9f0eae5778797e39bc8c293e896523ccdb288c16a174ed5aae9",
+      "report": "reports/art-pilot/skin-skin_coconut_4-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "groundPound",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_coconut_4-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_grape",
+      "charId": "grape",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 120,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "837349257261968e275a3656465ee7e82961ec925126dfb008f8a6575980d932",
+      "report": "reports/art-pilot/skin-skin_grape-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "grapeDecoy",
+        "states": [
+          "cast",
+          "spawn",
+          "die"
+        ],
+        "sharedSummonFrames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_grape-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_grape_2",
+      "charId": "grape",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 160,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "26312f0089a402dde52d2e580c7d2f27a173307eb42a93f096f105033d3cebc1",
+      "report": "reports/art-pilot/skin-skin_grape_2-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "grapeDecoy",
+        "states": [
+          "cast",
+          "spawn",
+          "die"
+        ],
+        "sharedSummonFrames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_grape_2-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_grape_3",
+      "charId": "grape",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "65a30dda94cc767442d27438148ab1f19cf1c3b9123ba363c4180e7ae07d2958",
+      "report": "reports/art-pilot/skin-skin_grape_3-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "grapeDecoy",
+        "states": [
+          "cast",
+          "spawn",
+          "die"
+        ],
+        "sharedSummonFrames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_grape_3-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_grape_4",
+      "charId": "grape",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "2170aa1d8c5b8c74fcc8c28b36a92471bb7f6a49ce9b00911790ac6a023c2178",
+      "report": "reports/art-pilot/skin-skin_grape_4-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "grapeDecoy",
+        "states": [
+          "cast",
+          "spawn",
+          "die"
+        ],
+        "sharedSummonFrames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_grape_4-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_cherry",
+      "charId": "cherry",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 120,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "ac87c5acd6cafe1be70d7d14041f9846f022a9d0efbd7c15d3229977ef8fda8f",
+      "report": "reports/art-pilot/skin-skin_cherry-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "dualGuns",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_cherry-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_cherry_2",
+      "charId": "cherry",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 160,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "de56e109feb73a57f810d745368a4e7fc481c32e7fbb34089b371d427178f81c",
+      "report": "reports/art-pilot/skin-skin_cherry_2-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "dualGuns",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_cherry_2-skill-motion-native.json"
+      }
+    },
+    {
+      "id": "skin_cherry_3",
+      "charId": "cherry",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 200,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "dualGuns",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_cherry_3-skill-motion-native.json"
+      },
+      "report": "reports/art-pilot/skin-skin_cherry_3-animation-native.json",
+      "sourceAtlasSha256": "75778ba46c21d964c3d62e23fb467423892dc7e8c19f46dde8f80cdd18810faf"
+    },
+    {
+      "id": "skin_cherry_4",
+      "charId": "cherry",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "dualGuns",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_cherry_4-skill-motion-native.json"
+      },
+      "report": "reports/art-pilot/skin-skin_cherry_4-animation-native.json",
+      "sourceAtlasSha256": "ddecfeb3846bad547cdfcd7556da15c398a1d351b4afab1a2953f18797652313"
+    },
+    {
+      "id": "skin_pea",
+      "charId": "pea",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "frames": 20,
+      "report": "reports/art-pilot/skin-skin_pea-animation-native.json",
+      "realSkillAnimationCoverage": {
+        "skill": "peaTurret",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_pea-skill-motion-native.json"
+      },
+      "sourceAtlasSha256": "d48db86550d7953016297c9e5b63fece7b2282d5720efde376895f691954f47e"
+    },
+    {
+      "id": "skin_pea_2",
+      "charId": "pea",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 160,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "peaTurret",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_pea_2-skill-motion-native.json"
+      },
+      "report": "reports/art-pilot/skin-skin_pea_2-animation-native.json",
+      "sourceAtlasSha256": "9494de5d02d69dcaa853f15b1b2964418dd6c6d563b6680c267c9d09022f08c8"
+    },
+    {
+      "id": "skin_pea_3",
+      "charId": "pea",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "peaTurret",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_pea_3-skill-motion-native.json"
+      },
+      "report": "reports/art-pilot/skin-skin_pea_3-animation-native.json",
+      "sourceAtlasSha256": "089b20c7ae928b81c98e65cf4ffc0184b89f3ce72949226dafbb1c56483bbd21"
+    },
+    {
+      "id": "skin_pea_4",
+      "charId": "pea",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "peaTurret",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_pea_4-skill-motion-native.json"
+      },
+      "report": "reports/art-pilot/skin-skin_pea_4-animation-native.json",
+      "sourceAtlasSha256": "6e5ac1f45d2a4e6d634ec42463a07c5c503e6ea4b54a989267c8ac1e4042db08"
+    },
+    {
+      "id": "skin_peach",
+      "charId": "peach",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 120,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "frames": 20,
+      "report": "reports/art-pilot/skin-skin_peach-animation-native.json",
+      "realSkillAnimationCoverage": {
+        "skill": "angelLight",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_peach-skill-motion-native.json"
+      },
+      "sourceAtlasSha256": "5656b720632d96c187ca8b3a319f28c0e9394c69c39f9514c4de76d79b04d3fb"
+    },
+    {
+      "id": "skin_peach_2",
+      "charId": "peach",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": {
+        "skill": "angelLight",
+        "state": "cast",
+        "frames": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "report": "reports/art-pilot/skin_peach_2-skill-motion-native.json"
+      },
+      "report": "reports/art-pilot/skin-skin_peach_2-animation-native.json",
+      "sourceAtlasSha256": "1e771b165c0ad66b5e95d28fa2a9d2b077636440ca8104274cf582a916c51f0f"
+    },
+    {
+      "id": "skin_peach_3",
+      "charId": "peach",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 200,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "c934fbcd922a9b9b2c9c6969535a88c8c8950152703c3c8523dc44f538b888c0",
+      "report": "reports/art-pilot/skin_peach_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "angelLight: cast frames 16-19; 6 tier/facing cases passed"
+    },
+    {
+      "id": "skin_peach_4",
+      "charId": "peach",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 250,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "17c6b684d36d327709d587d747e1cbb4954b916b7f69e613f88376e171700e7b",
+      "report": "reports/art-pilot/skin_peach_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "angelLight: cast frames 16-19; 6 tier/facing cases passed"
+    },
+    {
+      "id": "skin_dragonfruit",
+      "charId": "dragonfruit",
+      "name": [
+        "海军",
+        "Navy"
+      ],
+      "price": 120,
+      "look": {
+        "color": 1914199,
+        "color2": 4553629,
+        "limbColor": 725803,
+        "acc": [
+          {
+            "id": "tie",
+            "color": 15087942
+          }
+        ],
+        "pattern": "stripes"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "5b206bec9249137b500140069db7e011ec0e80dcc1ef6d885157770e01070ec7",
+      "report": "reports/art-pilot/skin-skin_dragonfruit-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_dragonfruit-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      }
+    },
+    {
+      "id": "skin_dragonfruit_2",
+      "charId": "dragonfruit",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 160,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "7385e6994398dd8a4b1f715f9e3c1c730678ddf4368fcf1f8d8c6e541c11fe89",
+      "report": "reports/art-pilot/skin-skin_dragonfruit_2-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_dragonfruit_2-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      }
+    },
+    {
+      "id": "skin_dragonfruit_3",
+      "charId": "dragonfruit",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "e18c30f967418690180d1b2a1e1691186bdc7d6a64cf6d89bf9cd03bb3b425f3",
+      "report": "reports/art-pilot/skin-skin_dragonfruit_3-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_dragonfruit_3-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      }
+    },
+    {
+      "id": "skin_dragonfruit_4",
+      "charId": "dragonfruit",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "2987a85bb6608860a2def4a40282aebe26a658bd125bb67b7f70947afc96cefc",
+      "report": "reports/art-pilot/skin-skin_dragonfruit_4-animation-native.json",
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": {
+        "status": "basicVerified",
+        "authored": [
+          "charge"
+        ],
+        "report": "reports/art-pilot/skin_dragonfruit_4-skill-motion-native.json",
+        "cases": 6,
+        "finalAccepted": false
+      }
+    },
+    {
+      "id": "skin_beet",
+      "charId": "beet",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 120,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "33e3e47cb5f9f26ace1e8518511fa90a4ebb12e339b78b88d2a9c6ef6c4ad28b",
+      "report": "reports/art-pilot/skin_beet-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "berserk: cast frames16-19, enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+    },
+    {
+      "id": "skin_beet_2",
+      "charId": "beet",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 160,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "f8ccb4dcd878240254db324d55627e9ff127a07533bbe635a3f724d4b2360924",
+      "report": "reports/art-pilot/skin_beet_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "berserk cast16-19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+    },
+    {
+      "id": "skin_beet_3",
+      "charId": "beet",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "5128948392738aede096c4f8253fd3358543ed6eeb64947eb960838c9c32411b",
+      "report": "reports/art-pilot/skin_beet_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "berserk cast16-19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+    },
+    {
+      "id": "skin_beet_4",
+      "charId": "beet",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "acc05301fa8d03f6f12834a0354e331bfbc19a7666649c7c5b1852962e8971ab",
+      "report": "reports/art-pilot/skin_beet_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "berserk cast17,18,16,19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+    },
+    {
+      "id": "skin_asparagus",
+      "charId": "asparagus",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 24,
+      "sourceAtlasSha256": "c68a2cf1ad0ffed24115c04410963ef1e64e8bc1d61ccbbda924fd86613ba9b0",
+      "report": "reports/art-pilot/skin_asparagus-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "piercingArrow: windup20-23 for400ms, cast16-19, aimed beam line hits and mark/offline exclusion;6cases passed"
+    },
+    {
+      "id": "skin_asparagus_2",
+      "charId": "asparagus",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 24,
+      "sourceAtlasSha256": "b2a824535da44e1cc0dc741349ec2145086c4ef7f69581c9192b43585470feb9",
+      "report": "reports/art-pilot/skin_asparagus_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed"
+    },
+    {
+      "id": "skin_asparagus_3",
+      "charId": "asparagus",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 200,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 24,
+      "sourceAtlasSha256": "81edb033e087c4900029c26b18b5f672e0534894c0c6e57c87fc90fc34e9b465",
+      "report": "reports/art-pilot/skin_asparagus_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed"
+    },
+    {
+      "id": "skin_asparagus_4",
+      "charId": "asparagus",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 250,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 24,
+      "sourceAtlasSha256": "f9325eefcdb44089adf1913cf65ceda6910ecb4b7d3953db8cd987c35b73b0e9",
+      "report": "reports/art-pilot/skin_asparagus_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed"
+    },
+    {
+      "id": "skin_sweetpotato",
+      "charId": "sweetpotato",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 120,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "2932894de724f31785046939ad10ab38288fdebe54c072af09e25777dcc480ab",
+      "report": "reports/art-pilot/skin_sweetpotato-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed"
+    },
+    {
+      "id": "skin_sweetpotato_2",
+      "charId": "sweetpotato",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 160,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "f11465ea69459d7ca55f3f5a560acc00a035974cfa22526e63d3c83ebd2e8e50",
+      "report": "reports/art-pilot/skin_sweetpotato_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture"
+    },
+    {
+      "id": "skin_sweetpotato_3",
+      "charId": "sweetpotato",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "02391e4b1f18f084585b69a4df1199a25d5a15a2e78ad30b5a8c4f6f77411c19",
+      "report": "reports/art-pilot/skin_sweetpotato_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture"
+    },
+    {
+      "id": "skin_sweetpotato_4",
+      "charId": "sweetpotato",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "580b0b7704fb4451ef865a70659afa24eb2137dae2e36d231b326732381959c6",
+      "report": "reports/art-pilot/skin_sweetpotato_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture"
+    },
+    {
+      "id": "skin_kiwi",
+      "charId": "kiwi",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 120,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "39bed77ea61182e70c4999f6e60a89907d97d4ec5381dadcf74ec5da79347f1e",
+      "report": "reports/art-pilot/skin_kiwi-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "detectiveScan cast16-19;screen targets once/mark/vulnerable2 offscreenexcluded lens+reticle cleanup;6casespassed"
+    },
+    {
+      "id": "skin_kiwi_2",
+      "charId": "kiwi",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "b552450745f7a4c807df3074fb6ccf306ced40d38ebf6962a49eb562c353f9b8",
+      "report": "reports/art-pilot/skin_kiwi_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "detectiveScan cast16-19;screen targets once/mark/vulnerable2 offscreenexcluded lens+reticle cleanup;6casespassed"
+    },
+    {
+      "id": "skin_kiwi_3",
+      "charId": "kiwi",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 200,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "44086201d5e21b411a868941c122d69911ba2f0f6792788920e5a33630c80f74",
+      "report": "reports/art-pilot/skin_kiwi_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual detectiveScan 6cases passed"
+    },
+    {
+      "id": "skin_kiwi_4",
+      "charId": "kiwi",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual detectiveScan 6cases passed",
+      "sourceAtlasSha256": "508036fceab11fe57eea9a5a6dfae48ab47918005935e8b5a1a153be0e8868b1",
+      "report": "reports/art-pilot/skin_kiwi_4-pipeline.json"
+    },
+    {
+      "id": "skin_lychee",
+      "charId": "lychee",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 120,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "cf168983ac3299795cd7b59d3c4b47b04d223f7fc3759bd71b63e0ef2a37b96d",
+      "report": "reports/art-pilot/skin_lychee-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+    },
+    {
+      "id": "skin_lychee_2",
+      "charId": "lychee",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 160,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "fb8e82017593956ada11ab90d8d165443c6e44ac1cd894eaa67aa31db41c169b",
+      "report": "reports/art-pilot/skin_lychee_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+    },
+    {
+      "id": "skin_lychee_3",
+      "charId": "lychee",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 200,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "bdf1f38be23b703d67116b751876ebb8597c6dc145e017741790e9fc5cea5e8b",
+      "report": "reports/art-pilot/skin_lychee_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+    },
+    {
+      "id": "skin_lychee_4",
+      "charId": "lychee",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 250,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "c2d4c4d32d5e95372c3e3410f0ca482ee4b948f2ecae3fecb5a9030114f8b83c",
+      "report": "reports/art-pilot/skin_lychee_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+    },
+    {
+      "id": "skin_durian",
+      "charId": "durian",
+      "name": [
+        "星空",
+        "Starry"
+      ],
+      "price": 120,
+      "look": {
+        "color": 1319229,
+        "color2": 5904538,
+        "limbColor": 198430,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16766474
+          }
+        ],
+        "pattern": "spots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "a28c93f8276a3cae298d517ba9e59011553ebfc5827aec8564192a38489836c2",
+      "report": "reports/art-pilot/skin_durian-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual stinkAura6cases:14clouds statuspoison/weaken/confuse and cleanup; stationary targetfixture"
+    },
+    {
+      "id": "skin_durian_2",
+      "charId": "durian",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 160,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "259c966e0e8ed3f0f5213ef1940129da7b293dcfe73ae90ca8ebb71082652202",
+      "report": "reports/art-pilot/skin_durian_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual stinkAura6cases:14clouds poison/weaken/confuse and cleanup"
+    },
+    {
+      "id": "skin_durian_3",
+      "charId": "durian",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "6184769a8188ac5169a2cae83e0406b827776fb662dbafac7c89017369bc557a",
+      "report": "reports/art-pilot/skin_durian_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual stinkAura 6 cases passed"
+    },
+    {
+      "id": "skin_durian_4",
+      "charId": "durian",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "db4005fb38b35190708fadbbbc0437104b90644f8923c9c2e680842092a6ff62",
+      "report": "reports/art-pilot/skin_durian_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual stinkAura 6 cases passed"
+    },
+    {
+      "id": "skin_bellpepper",
+      "charId": "bellpepper",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "c9e53ae1f15a0fe00641d80598f6f9bb1efcc08c601da7849e4cee85da464bf2",
+      "report": "reports/art-pilot/skin_bellpepper-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed after fixture correction"
+    },
+    {
+      "id": "skin_bellpepper_2",
+      "charId": "bellpepper",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 160,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "1db3d8e680c829242478c5e7971a2a9235eb35193eda9d0fdc789757f7c62b17",
+      "report": "reports/art-pilot/skin_bellpepper_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed"
+    },
+    {
+      "id": "skin_bellpepper_3",
+      "charId": "bellpepper",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "1fd25b964878b674a8d3add385b88360bb1c0ba607327d1efc5457a538d7ea58",
+      "report": "reports/art-pilot/skin_bellpepper_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed"
+    },
+    {
+      "id": "skin_bellpepper_4",
+      "charId": "bellpepper",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "f9bfcc4215ec4250513cb88158073eda724d921bb77b250ce9b88d257c975d0c",
+      "report": "reports/art-pilot/skin_bellpepper_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed"
+    },
+    {
+      "id": "skin_wintermelon",
+      "charId": "wintermelon",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 120,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "e9ad28253eb420c0c67a00aac45ef6a0defa80c93fca047ce72b232a4ec8b75d",
+      "report": "reports/art-pilot/skin_wintermelon-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed after real Boss fixture correction"
+    },
+    {
+      "id": "skin_wintermelon_2",
+      "charId": "wintermelon",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 160,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "c4dfa5230fa70e76d096012e42403d638732c3eb7056c5308fc0725b3e708e19",
+      "report": "reports/art-pilot/skin_wintermelon_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed"
+    },
+    {
+      "id": "skin_wintermelon_3",
+      "charId": "wintermelon",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 200,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "9cee934e97adcf183e3f51b16f15e37a8833c8a13d2395c757329aeba59e6963",
+      "report": "reports/art-pilot/skin_wintermelon_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed"
+    },
+    {
+      "id": "skin_wintermelon_4",
+      "charId": "wintermelon",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "ccfc70b08c7184386491de8e740f5cdfff183069261d8b46603d7eb431650806",
+      "report": "reports/art-pilot/skin_wintermelon_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed"
+    },
+    {
+      "id": "skin_bittermelon",
+      "charId": "bittermelon",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 120,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "d2dabac34ef25b7233bea92e06d9d1876f7961e1f2f810c250c0b130aedb6c69",
+      "report": "reports/art-pilot/skin_bittermelon-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+    },
+    {
+      "id": "skin_bittermelon_2",
+      "charId": "bittermelon",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "1f48c00193f3598ad99dfbdea03c538cf3520379a7e3ddaa774b10c7c105f3e7",
+      "report": "reports/art-pilot/skin_bittermelon_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+    },
+    {
+      "id": "skin_bittermelon_3",
+      "charId": "bittermelon",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 200,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "725712f15fcf1b321e3c5bc5f0d02955be62d9fd617a25c21c281b8f517503c4",
+      "report": "reports/art-pilot/skin_bittermelon_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+    },
+    {
+      "id": "skin_bittermelon_4",
+      "charId": "bittermelon",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "8f7be175631dd49eb2781d21c41edb08b6bf9399e19ab2c163a581fd16d2feae",
+      "report": "reports/art-pilot/skin_bittermelon_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+    },
+    {
+      "id": "skin_sprout",
+      "charId": "sprout",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 120,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "3522e8b2a5b67d43d9f676ec3f07d375a0041be41578351f0f1fb62108b88655",
+      "report": "reports/art-pilot/skin_sprout-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+    },
+    {
+      "id": "skin_sprout_2",
+      "charId": "sprout",
+      "name": [
+        "机甲",
+        "Mecha"
+      ],
+      "price": 160,
+      "look": {
+        "color": 7107965,
+        "color2": 11384253,
+        "limbColor": 3422784,
+        "acc": [
+          {
+            "id": "armor",
+            "color": 4804695,
+            "color2": 5032432
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "0eda0bd68e8644c6e5c8b1c75237b38613b2ac165bc7ad3742034d49d2613af8",
+      "report": "reports/art-pilot/skin_sprout_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+    },
+    {
+      "id": "skin_sprout_3",
+      "charId": "sprout",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "78682a7f94a2efb750f18b014893d5a0dfb94b2c0331eff6aee51dbdacb9e62e",
+      "report": "reports/art-pilot/skin_sprout_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+    },
+    {
+      "id": "skin_sprout_4",
+      "charId": "sprout",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 250,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "8eb3dddf39bcccde6d8a9d1a07de03e380c304bb1f95cd89e28c67845a2b5f70",
+      "report": "reports/art-pilot/skin_sprout_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+    },
+    {
+      "id": "skin_wasabi",
+      "charId": "wasabi",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 120,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "70c0287b4feb511e38e6a420440934d096a31b1cebb5a047555bbd423c828d2f",
+      "report": "reports/art-pilot/skin_wasabi-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+    },
+    {
+      "id": "skin_wasabi_2",
+      "charId": "wasabi",
+      "name": [
+        "暗影",
+        "Shadow"
+      ],
+      "price": 160,
+      "look": {
+        "color": 2172201,
+        "color2": 4804695,
+        "limbColor": 0,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 6947855,
+            "color2": 10289672
+          }
+        ],
+        "pattern": "cracks"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "89a5c5c81b61951dafd1669a68c00699137e11e6c2a69d81faf76f45b23b2da3",
+      "report": "reports/art-pilot/skin_wasabi_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+    },
+    {
+      "id": "skin_wasabi_3",
+      "charId": "wasabi",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 200,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "adbb39b0d619734965f5fd71967fc8feebb0d2556598be657a9c62eb4ee0eed2",
+      "report": "reports/art-pilot/skin_wasabi_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+    },
+    {
+      "id": "skin_wasabi_4",
+      "charId": "wasabi",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 250,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "d5943e0f7bbd17d0079225f048deafdac74609b8a7a32ed18a855fc7c5f0039c",
+      "report": "reports/art-pilot/skin_wasabi_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+    },
+    {
+      "id": "skin_soybean",
+      "charId": "soybean",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 120,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "e1146b04d42e456b50a5924701e116a8ecc1ccbb595d8498af7ce8bc2ac3aadd",
+      "report": "reports/art-pilot/skin_soybean-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+    },
+    {
+      "id": "skin_soybean_2",
+      "charId": "soybean",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 160,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "ddb107f5752745e523cad64154c4b6ceb75e934a96ca4180fa37faa3aec805a1",
+      "report": "reports/art-pilot/skin_soybean_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+    },
+    {
+      "id": "skin_soybean_3",
+      "charId": "soybean",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "eec44d57345c1a2bba99f87c89832d0180c9d97369b12dbdb0641dcb09d2d50a",
+      "report": "reports/art-pilot/skin_soybean_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+    },
+    {
+      "id": "skin_soybean_4",
+      "charId": "soybean",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 250,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "d3dfad783ae487eddd2c1f03272e5e05a00c0234dff5b19ba6ac6f9dbe36d53a",
+      "report": "reports/art-pilot/skin_soybean_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+    },
+    {
+      "id": "skin_jackfruit",
+      "charId": "jackfruit",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "13dd7355d80f76644121da54ddad5b85db9272145b39168595ca9d150cbdaceb",
+      "report": "reports/art-pilot/skin_jackfruit-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry and cleanup;6cases passed"
+    },
+    {
+      "id": "skin_jackfruit_2",
+      "charId": "jackfruit",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "34faf6437910882f620d9c75a0fff22b7de7a67106bc61a053fcb7cf362f1776",
+      "report": "reports/art-pilot/skin_jackfruit_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed"
+    },
+    {
+      "id": "skin_jackfruit_3",
+      "charId": "jackfruit",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 200,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "986c0ef3c181769f0aebad13fa76704fef9abb312fdf69d52db05f15228c2b00",
+      "report": "reports/art-pilot/skin_jackfruit_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed"
+    },
+    {
+      "id": "skin_jackfruit_4",
+      "charId": "jackfruit",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 250,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "53e421e81fa6bf9516010ceb73a600f69fe50f9b55cab38042f54bc2fc621409",
+      "report": "reports/art-pilot/skin_jackfruit_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed"
+    },
+    {
+      "id": "skin_pomegranate",
+      "charId": "pomegranate",
+      "name": [
+        "海军",
+        "Navy"
+      ],
+      "price": 120,
+      "look": {
+        "color": 1914199,
+        "color2": 4553629,
+        "limbColor": 725803,
+        "acc": [
+          {
+            "id": "tie",
+            "color": 15087942
+          }
+        ],
+        "pattern": "stripes"
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pomegranate_2",
+      "charId": "pomegranate",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 160,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pomegranate_3",
+      "charId": "pomegranate",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_pomegranate_4",
+      "charId": "pomegranate",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 250,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_taro",
+      "charId": "taro",
+      "name": [
+        "糖果",
+        "Candy"
+      ],
+      "price": 120,
+      "look": {
+        "color": 8454107,
+        "color2": 16756684,
+        "limbColor": 8072383,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16731501
+          }
+        ],
+        "pattern": "dots"
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_taro_2",
+      "charId": "taro",
+      "name": [
+        "霓虹",
+        "Neon"
+      ],
+      "price": 160,
+      "look": {
+        "color": 7602360,
+        "color2": 8454107,
+        "limbColor": 3804323,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 16196997,
+            "color2": 5032432
+          }
+        ],
+        "pattern": "grid"
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_taro_3",
+      "charId": "taro",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_taro_4",
+      "charId": "taro",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 250,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_cabbage",
+      "charId": "cabbage",
+      "name": [
+        "大厨",
+        "Head Chef"
+      ],
+      "price": 120,
+      "look": {
+        "color": 16316922,
+        "color2": 14607078,
+        "limbColor": 7107965,
+        "acc": [
+          {
+            "id": "apron",
+            "color": 16777215,
+            "color2": 15087942
+          }
+        ],
+        "pattern": "none"
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_cabbage_2",
+      "charId": "cabbage",
+      "name": [
+        "南瓜灯",
+        "Jack-o’-Lantern"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16219904,
+        "color2": 16564041,
+        "limbColor": 4009006,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 2829634
+          }
+        ],
+        "pattern": "segments"
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_cabbage_3",
+      "charId": "cabbage",
+      "name": [
+        "午夜",
+        "Midnight"
+      ],
+      "price": 200,
+      "look": {
+        "color": 3934572,
+        "color2": 8072383,
+        "limbColor": 2359366,
+        "acc": [
+          {
+            "id": "cape",
+            "color": 1048619,
+            "color2": 10309341
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_cabbage_4",
+      "charId": "cabbage",
+      "name": [
+        "翡翠",
+        "Jade"
+      ],
+      "price": 250,
+      "look": {
+        "color": 2976335,
+        "color2": 9819570,
+        "limbColor": 1786674,
+        "acc": [
+          {
+            "id": "bell",
+            "color": 16765286
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blackberry",
+      "charId": "blackberry",
+      "name": [
+        "冰霜",
+        "Frost"
+      ],
+      "price": 120,
+      "look": {
+        "color": 9494767,
+        "color2": 13299960,
+        "limbColor": 30646,
+        "acc": [
+          {
+            "id": "scarf",
+            "color": 4770532,
+            "color2": 16777215
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blackberry_2",
+      "charId": "blackberry",
+      "name": [
+        "樱花",
+        "Sakura"
+      ],
+      "price": 160,
+      "look": {
+        "color": 16756684,
+        "color2": 16770540,
+        "limbColor": 13178954,
+        "acc": [
+          {
+            "id": "bow",
+            "color": 16731501
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blackberry_3",
+      "charId": "blackberry",
+      "name": [
+        "黄金",
+        "Golden"
+      ],
+      "price": 200,
+      "look": {
+        "color": 16761600,
+        "color2": 16769126,
+        "limbColor": 11569408,
+        "acc": [
+          {
+            "id": "star",
+            "color": 16774064
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    },
+    {
+      "id": "skin_blackberry_4",
+      "charId": "blackberry",
+      "name": [
+        "熔岩",
+        "Magma"
+      ],
+      "price": 250,
+      "look": {
+        "color": 10289672,
+        "color2": 16743168,
+        "limbColor": 3606039,
+        "acc": [
+          {
+            "id": "spikes",
+            "color": 16759304
+          }
+        ]
+      },
+      "generated": false,
+      "integrated": false,
+      "basicVerified": false,
+      "finalAccepted": false,
+      "locomotionDirectionVerified": false
+    }
+  ]
+}

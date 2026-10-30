@@ -280,7 +280,7 @@ export class ResultScene extends Phaser.Scene {
         persist();
         if (run.challenge) run.startChallenge(run.challenge);
         else run.start(run.charId, run.chapterId, run.endless);
-        this.scene.start('Game');
+        this.scene.start('Comic', { ch: run.chapterId, next: 'Game' });
       },
       COLORS.primary,
       26,

@@ -148,7 +148,7 @@ export class CustomChallengeScene extends Phaser.Scene {
         () => {
           clearRun();
           run.startChallenge(makeFreeChallenge(o));
-          this.scene.start('Game');
+          this.scene.start('Comic', { ch: run.chapterId, next: 'Game' });
         },
         0xc1121f,
         24,

@@ -1,0 +1,80 @@
+{
+  "kind": "enemy",
+  "id": "worm",
+  "displayName": "泥蚯蚓",
+  "status": "24frames integrated;3tier native and actualcharger passed;final pending",
+  "referenceHeight": 125,
+  "gameplayBehavior": "charger;chargeSpeed480/chargeCd2.6/windup0.5;no actual burrow action",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/worm/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/worm/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/worm/base/hurt-sheet-pilot-1.png",
+      "referenceHeight": 150
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/worm/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/worm/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/worm/base/charge-sheet-pilot-1.png",
+      "referenceHeight": 97
+    }
+  ],
+  "draftReview": {
+    "idle": "four poses inspected;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "four poses inspected;partition passed",
+    "die": "four collapse poses inspected;partition passed",
+    "windup": "four coil compression poses inspected;partition passed",
+    "charge": "four extension/contraction wave poses inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 125,
+    "hurt": 160,
+    "die": 160,
+    "windup": 160,
+    "charge": 97
+  },
+  "calibrationNote": "Base125/charge97 keeps long charge head comparable without clipping;hurt150 compensates extended neck in first recoil reference. Uniform scale per action and fixed pivot;compiled keyframes inspected;continuous/final pending.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-worm-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-worm-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

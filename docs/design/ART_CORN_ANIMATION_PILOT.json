@@ -1,0 +1,74 @@
+{
+  "kind": "char",
+  "id": "corn",
+  "status": "pilot; visual gait/cross-scene/mobile acceptance pending",
+  "referenceHeight": 180,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/corn/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/corn/move-sheet-pilot-2-gait.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/corn/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/corn/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/corn/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/corn/charge-sheet-pilot-2-gait.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/corn/stun-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/corn/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/corn/spawn-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/corn/cast-sheet-pilot-1.png"
+    },
+    {
+      "name": "victory",
+      "grid": 2,
+      "referenceFrame": 2,
+      "source": "drafts/char/corn/victory-sheet-pilot-1.png"
+    }
+  ]
+}

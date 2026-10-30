@@ -1,0 +1,63 @@
+{
+  "kind": "boss",
+  "id": "popsicle_twins",
+  "status": "28 authored frames compiled/integrated; 3-tier native playback/100ms blink/freeze/GPU release and spiral/charge windup callbacks passed; final continuous motion/visual/performance acceptance pending",
+  "referenceHeight": 160,
+  "gameplayPatterns": [
+    "spiral4x10Ice6s",
+    "chargeSlow4sWindup0.7s"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/popsicle_twins/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/popsicle_twins/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/popsicle_twins/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/popsicle_twins/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/popsicle_twins/base/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/popsicle_twins/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/popsicle_twins/base/charge-sheet-pilot-1.png"
+    }
+  ]
+}

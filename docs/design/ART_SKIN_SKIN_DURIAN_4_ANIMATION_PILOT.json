@@ -1,0 +1,46 @@
+{
+  "kind": "char",
+  "id": "durian",
+  "skinId": "skin_durian_4",
+  "referenceHeight": 160,
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/durian/skins/skin_durian_4/idle-sheet-3.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/durian/skins/skin_durian_4/move-sheet-right-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/durian/skins/skin_durian_4/hurt-sheet-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/durian/skins/skin_durian_4/die-sheet-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/durian/skins/skin_durian_4/cast-sheet-2.png"
+    }
+  ],
+  "status": "gutters and shared action calibration checked; runtime verification pending"
+}

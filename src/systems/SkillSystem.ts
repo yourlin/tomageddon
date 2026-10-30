@@ -10,7 +10,8 @@ import type { StatusApply } from '../data/statuses';
 import { run } from './RunState';
 import { audio } from './Audio';
 import type { Enemy } from '../objects/Enemy';
-import { Rig } from '../objects/Rig';
+import type { EntityVisual } from '../objects/EntityVisual';
+import { createEntityVisual } from '../objects/visualFactory';
 import { weaponDamage } from './WeaponSystem';
 import { WEAPON_MAP } from '../data/weapons';
 import { castFx, drainLines } from './SkillFx';
@@ -45,7 +46,7 @@ export class SkillSystem implements SkillHost {
   effects: Lingering[] = [];
   /** 专属演出给的额外无敌时间 */
   invulnT = 0;
-  clone: { rig: Rig; t: number; shoot: number; dmg: number } | null = null;
+  clone: { rig: EntityVisual; t: number; shoot: number; dmg: number } | null = null;
   fields: Field[] = [];
 
   constructor(readonly g: GameScene) {
@@ -409,7 +410,8 @@ export class SkillSystem implements SkillHost {
         break;
       }
       case 'clone': {
-        const rig = new Rig(g, run.char.look, `char_${run.charId}`, p.radius * 0.9);
+        // 分身与本体同一外观（皮肤 / 外部美术）
+        const rig = createEntityVisual(g, g.player.ident ?? { kind: 'char', id: run.charId }, p.radius * 0.9);
         g.add.existing(rig);
         rig.setPosition(p.x + 40, p.y).setAlpha(0.7);
         rig.setStatusTint(0x9ecbff);

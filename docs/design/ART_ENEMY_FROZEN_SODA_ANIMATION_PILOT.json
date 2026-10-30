@@ -1,0 +1,54 @@
+{
+  "kind": "enemy",
+  "id": "frozen_soda",
+  "displayName": "冻爆汽水",
+  "status": "20frames integrated;3tier playback and actual bomberfuse passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "bomber blast90/freeze0.6;actual proximityfuse",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_soda/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_soda/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_soda/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_soda/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/frozen_soda/base/windup-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partitionpassed",
+    "move": "partitionpassed",
+    "hurt": "partitionpassed",
+    "move1": "REJECT frame3 mirrors stripe/can perspective;need fixedorientation redraw",
+    "move2": "Selected;orientation consistent all4;partition/compiledviewpassed"
+  }
+}

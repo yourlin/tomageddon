@@ -1,0 +1,62 @@
+{
+  "kind": "enemy",
+  "id": "splitter",
+  "displayName": "分裂霉菌",
+  "status": "16frames integrated;three-tier native and actual death/split verified;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "splitter;death spawns3mold",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/splitter/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/splitter/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/splitter/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/splitter/base/die-sheet-pilot-2.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "passed",
+    "move": "passed",
+    "hurt": "passed",
+    "rejected": {
+      "die1": "single drawing instead four"
+    },
+    "die": "four distinct collapse poses inspected; partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-splitter-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-splitter-gameplay-native.json",
+    "splitChildren": 3,
+    "typecheck": "passed",
+    "lint": "passed"
+  }
+}

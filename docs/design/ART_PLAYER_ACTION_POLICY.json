@@ -1,0 +1,134 @@
+{
+  "userDecision": "Keep existing completed art unchanged; adjust subsequent characters only. Ordinary attacks remain weapon-driven.",
+  "preservedActors": [
+    "garlic",
+    "sweetpotato",
+    "watermelon",
+    "dragonfruit",
+    "kiwi",
+    "onion",
+    "cherry",
+    "eggplant",
+    "pumpkin",
+    "pineapple",
+    "asparagus",
+    "beet",
+    "avocado",
+    "mushroom",
+    "strawberry",
+    "pea",
+    "ginger",
+    "lemon",
+    "chili",
+    "blueberry",
+    "grape",
+    "carrot",
+    "durian",
+    "lychee",
+    "peach",
+    "tomato",
+    "corn",
+    "coconut"
+  ],
+  "coreActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "idleRequirements": "Authored blink with pupils fully enclosed; fully closed frame for 0.1 second.",
+  "newActorActions": {
+    "bellpepper": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "wintermelon": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "bittermelon": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "sprout": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "wasabi": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "soybean": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "jackfruit": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "pomegranate": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "taro": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "cabbage": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ],
+    "blackberry": [
+      "idle",
+      "move",
+      "hurt",
+      "die",
+      "cast"
+    ]
+  },
+  "skillRationale": {
+    "bellpepper": "Deploy drone; cast gesture only, drone and lasers remain skill effects.",
+    "wintermelon": "Activate golden bell; cast gesture only, bell and repulsion remain skill effects.",
+    "bittermelon": "Cast activates fixed ice field; field damage/status/effects remain in gameplay.",
+    "sprout": "Cast hand/leaf gesture; existing persistent 1.3x growth buff and its restoration remain gameplay feedback, never counted as drawn frames."
+  },
+  "optionalActions": [
+    "attack",
+    "windup",
+    "charge",
+    "stun",
+    "spawn",
+    "victory"
+  ],
+  "runtimePolicy": "Do not package unused optional sheets. Preserve generated originals externally. Add extra skill actions only if gameplay actually invokes them. Existing completed actors remain unchanged."
+}

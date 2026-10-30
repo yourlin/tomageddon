@@ -1,0 +1,46 @@
+{
+  "kind": "enemy",
+  "id": "cockroach",
+  "displayName": "蟑螂",
+  "status": "Integrated16frames;3tier playback/100msblink/200sharedinstances/GPUrelease and actual AI move/hurt/death passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase;knockResist0.7",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cockroach/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cockroach/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cockroach/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/cockroach/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  }
+}

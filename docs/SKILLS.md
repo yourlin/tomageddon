@@ -520,11 +520,11 @@
 
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/soybean.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">豆兵出阵（黄豆军师）</th></tr>
-<tr><td colspan="2"><i>在自身周围 8 个方向各召唤 1 名豆兵，持续 10 秒，自动冲向附近敌人近身肉搏，每击造成 54% 伤害。</i></td></tr>
+<tr><td colspan="2"><i>在自身周围 8 个方向各召唤 1 名豆兵，持续 10 秒，自动冲向附近敌人近身肉搏，每击造成 68% 伤害。</i></td></tr>
 <tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-soybean">黄豆军师</a></td></tr>
 <tr><td nowrap>形态</td><td>召唤分身</td></tr>
-<tr><td nowrap>冷却</td><td>14s</td></tr>
-<tr><td nowrap>伤害系数</td><td>×0.6</td></tr>
+<tr><td nowrap>冷却</td><td>16s</td></tr>
+<tr><td nowrap>伤害系数</td><td>×0.75</td></tr>
 <tr><td nowrap>持续</td><td>10s</td></tr>
 </table>
 

@@ -1,0 +1,46 @@
+{
+  "kind": "enemy",
+  "id": "oil_slick",
+  "displayName": "油膜怪",
+  "status": "16frames integrated;3tier playback and actual trailAI passed;final acceptance pending",
+  "referenceHeight": 140,
+  "gameplayBehavior": "trail speed75/trailCd0.4/sticky2;groundtrailseparate",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/oil_slick/base/idle-sheet-pilot-2.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/oil_slick/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/oil_slick/base/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/oil_slick/base/die-sheet-pilot-2.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partitionpassed;floatingdrops removed",
+    "move": "partitionpassed;floatingdrops removed",
+    "hurt": "partitionpassed;floatingdrops removed",
+    "all": "Floating droplets persist from reference;remove through model edits before compile"
+  }
+}

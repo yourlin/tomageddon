@@ -1,0 +1,12 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: head droops eyes dim; curls weakly sideways eyes closed; lies on side segments slack eyes closed; fully collapsed still eyes closed. No debris.",
+    "windup": "undefinedCharge anticipation: normal; rear segments pull inward and head lowers; arches back with head low; tightly compressed ready-to-spring posture eyes narrowed. Direction right all frames, no motion lines.",
+    "charge": "undefinedCharging low crawl cycle: head forward body elongated; rear segments push while nubs tuck; front low and rear arches; extended body recovers. Clearly articulate segments, same rightward facing. No speed effects."
+  },
+  "chargeRepair": {
+    "prompt": "Sprite sheet containing exactly FOUR separate drawings, TWO rows and TWO columns. Same cream segmented grub from reference, brown eyes pink cheeks fangs amber nubs. Four-frame CHARGE cycle: TL head low body stretched RIGHT; TR rear contracts with middle arch; BL front segments pull and rear pushes; BR extends low again. All same right-facing camera. Four DISTINCT articulated poses. Each full grub SMALL inside central45% of its quadrant, huge transparent space between figures. Transparent background no lines/shadows/haze/text/effects. DO NOT output a single character: output FOUR characters in 2x2.",
+    "source": "drafts/enemy/maggot/base/charge-sheet-pilot-2.png"
+  }
+}

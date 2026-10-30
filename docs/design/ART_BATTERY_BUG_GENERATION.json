@@ -1,0 +1,27 @@
+{
+  "id": "battery_bug",
+  "tool": "built-in image_gen",
+  "repairPrompts": {"die":"undefinedFour sequential death poses reading order: alert normal full insect; recoil shell tilted legs buckle and antenna bend; collapsed low on bent legs with dim eyes and drooping antennae; inert collapsed battery on side six legs tucked and antenna bulbs dark, eyes completely dark. No gore, no separate effects/particles. Full silhouette all cells, same shell scale. CRITICAL FORMAT: SQUARE canvas, TWO ROWS and TWO COLUMNS, NOT one horizontal strip. Top-left normal, top-right recoil, bottom-left collapse, bottom-right inert. Huge blank transparent cross through center separates all four cells. Each full insect fits within 70% of own quadrant. Keep entire limbs inside.","attack":"undefinedFour sequential actual electric attack poses: first brace six feet lowering shell with antennae angled inward; second raise front legs and curl antenna tips toward front charged; third release pulse by extending front legs and both antennae outward and open shouting mouth, only compact sparks attached to bulbs no detached laser or projectile; fourth settle into ready stance antennae relax. Change joint angles meaningfully, no global scale changes. Keep all anatomy and tiny sparks fully inside individual cells. CRITICAL: no drawn grid lines at all. Make each character MUCH SMALLER, maximum 65% of quadrant width and height, centered. Leave at least 70 pixels empty margin around each quadrant's drawing including lightning. Bottom left antenna must not touch image edge or central gutter. SQUARE canvas 2 rows 2 columns."},
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case: stylized-concept. Game animation sprite sheet based exactly on reference battery bug: rusty blue cylindrical battery shell with yellow lightning emblem and plus terminal, black face yellow eyes fang mouth, six golden articulated insect legs, two long gold antennae with glowing yellow bulbs. Cute painterly outlined style matching reference. Transparent background. EXACTLY 4 complete figures in regular 2x2 equal cells, SAME camera and consistent scale, each figure small centered within own cell with generous transparent padding on all sides, wide fully empty central gutters. Entire antennae legs and sparks inside cell. No text labels borders ground shadows or new objects. Idle sequence reading order: top left eyes open; top right eyes open subtle antenna sway; bottom left eyes half open visible pupils; bottom right eyes fully shut DARK eye region no yellow eye glow or eye lines. Only fourth cell fully closed; antenna bulbs may still glow. Tiny authored leg/antenna posture changes, not scale duplicates."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case: stylized-concept. Game animation sprite sheet based exactly on reference battery bug: rusty blue cylindrical battery shell with yellow lightning emblem and plus terminal, black face yellow eyes fang mouth, six golden articulated insect legs, two long gold antennae with glowing yellow bulbs. Cute painterly outlined style matching reference. Transparent background. EXACTLY 4 complete figures in regular 2x2 equal cells, SAME camera and consistent scale, each figure small centered within own cell with generous transparent padding on all sides, wide fully empty central gutters. Entire antennae legs and sparks inside cell. No text labels borders ground shadows or new objects. Four sequential walking poses, articulated six-leg alternating tripod gait: first left-front and right-middle lifted; second those feet planted body forward; third opposite tripod lifted; fourth opposite feet planted recovering. Keep exact six limbs, change joint angles and antenna sway; no clones or global scaling."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case: stylized-concept. Game animation sprite sheet based exactly on reference battery bug: rusty blue cylindrical battery shell with yellow lightning emblem and plus terminal, black face yellow eyes fang mouth, six golden articulated insect legs, two long gold antennae with glowing yellow bulbs. Cute painterly outlined style matching reference. Transparent background. EXACTLY 4 complete figures in regular 2x2 equal cells, SAME camera and consistent scale, each figure small centered within own cell with generous transparent padding on all sides, wide fully empty central gutters. Entire antennae legs and sparks inside cell. No text labels borders ground shadows or new objects. Four sequential hit-reaction poses: normal brace, recoil tilted back with legs spread and antenna bent, crouch wincing eyes, recovering stance. Keep battery identifiable, no red flash overlay; actual body articulation."
+    },
+    {
+      "action": "die",
+      "prompt": "undefinedFour sequential death poses reading order: alert normal full insect; recoil shell tilted legs buckle and antenna bend; collapsed low on bent legs with dim eyes and drooping antennae; inert collapsed battery on side six legs tucked and antenna bulbs dark, eyes completely dark. No gore, no separate effects/particles. Full silhouette all cells, same shell scale."
+    },
+    {
+      "action": "attack"
+    }
+  ]
+}

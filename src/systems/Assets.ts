@@ -1,13 +1,29 @@
 // 美术/音频资源加载：自动扫描 src/assets 下的文件，文件名（不含扩展名）即为资源 key。
 // 缺失的图片由 Textures.ts 程序化生成占位图，因此美术资源可以逐步替换。
 import Phaser from 'phaser';
+import { RUNTIME_ART_URLS } from './RuntimeArt';
+import { isForceProcedural } from './ArtStyle';
 
-// 开场四格漫画的插画（assets/comics）只在漫画场景里按需加载，不进启动包
-const images = import.meta.glob(['../assets/**/*.{png,jpg,jpeg,webp}', '!../assets/comics/**'], {
-  eager: true,
-  query: '?url',
-  import: 'default',
-}) as Record<string, string>;
+// 开场四格漫画的插画（assets/comics）只在漫画场景里按需加载，不进启动包；
+// 实体与地图美术由 ArtRegistry 管理；战斗弹体 / 阶段形态由 CombatArt 按章加载，避免提前加载与同名覆盖。
+const images = import.meta.glob(
+  [
+    '../assets/**/*.{png,jpg,jpeg,webp}',
+    '!../assets/comics/**',
+    '!../assets/entities/**',
+    '!../assets/maps/**',
+    '!../assets/combat/**',
+    '!../assets/weapons/**',
+    '!../assets/projectiles/**',
+    '!../assets/runtime/**',
+    '!../assets/cover/**',
+  ],
+  {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  },
+) as Record<string, string>;
 
 const audios = import.meta.glob('../assets/**/*.{mp3,ogg,wav,m4a}', {
   eager: true,
@@ -23,6 +39,8 @@ function keyOf(path: string): string {
 export const AVAILABLE_AUDIO = new Set(Object.keys(audios).map(keyOf));
 
 export function queueAssets(scene: Phaser.Scene): void {
+  const cover = RUNTIME_ART_URLS['cover/cover_kitchen.png'];
+  if (cover && !isForceProcedural()) scene.load.image('cover_kitchen', cover);
   for (const [path, url] of Object.entries(images)) scene.load.image(keyOf(path), url);
   // 同名多格式时只加载一个
   const seen = new Set<string>();

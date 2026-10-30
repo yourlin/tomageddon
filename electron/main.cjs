@@ -157,7 +157,12 @@ if (steam) {
 }
 
 // ---------------- IPC ----------------
-ipcMain.on('toma:storage-load', (e) => (e.returnValue = loadAll()));
+ipcMain.on('toma:storage-load', (e) => {
+  // Settings reloads immediately after writing. Commit queued writes before the
+  // new renderer snapshots storage, otherwise its art tier can lag one reload.
+  flush();
+  e.returnValue = loadAll();
+});
 ipcMain.on('toma:storage-write', (_e, k, v) => {
   pending.set(k, v);
   if (!flushTimer) flushTimer = setTimeout(flush, 300);

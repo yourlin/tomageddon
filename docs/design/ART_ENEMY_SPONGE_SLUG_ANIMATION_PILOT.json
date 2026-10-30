@@ -1,0 +1,59 @@
+{
+  "kind": "enemy",
+  "id": "sponge_slug",
+  "displayName": "\u6d17\u7897\u6d77\u7ef5",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 150,
+  "gameplayBehavior": "trail;slime every0.5s;four actual basic actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sponge_slug/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sponge_slug/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sponge_slug/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/sponge_slug/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 150,
+    "hurt": 160,
+    "die": 160
+  },
+  "draftReview": {
+    "idle1": "four plain/eyeless antenna poses;face third halfopen/fourth fullyclosed;partition passed",
+    "move1": "four actual base/tail contraction and stretch phases,plain antenna lag/head staysRIGHT/tailLEFT;partition passed",
+    "hurt1": "four porous head compression/rebound and foot bracing poses,face eyes closed2/3;partition passed",
+    "die1": "four head/base flattening poses with antenna droop,eyes remain closed2/3/4;partition passed"
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-sponge_slug-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-sponge_slug-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

@@ -1,5 +1,5 @@
 // 章节开场四格漫画（剧本见 2026-10-18 定稿）：主角固定为番茄妹，三位初始伙伴轮流客串。
-// 画面全部用游戏里现成的东西拼：章节场地缩略图做背景，角色 / 怪物 / Boss 的 Rig 做演员，emoji 做道具。
+// 画面优先使用 src/assets/comics 的章节插画；以下 Rig、场地和道具也作为缺图时的回退分镜。
 // 坐标都是格子内的相对值（0–1）；半径 r 是相对格子高度的比例。第 1–5 章的 Boss 每局随机抽，漫画只画剪影不点名。
 import type { RigState } from '../objects/Rig';
 import type { PortraitKind } from '../ui/Portrait';

@@ -1,0 +1,81 @@
+{
+  "kind": "enemy",
+  "id": "rat",
+  "displayName": "下水道老鼠",
+  "status": "24frames integrated;3tier native and actualcharger verified;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "charger;windup0.7s/chargeSpeed520/chargeCd3",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rat/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rat/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rat/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rat/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rat/base/windup-sheet-pilot-1.png",
+      "referenceHeight": 145
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/rat/base/charge-sheet-pilot-2.png",
+      "referenceHeight": 130
+    }
+  ],
+  "draftReview": {
+    "idle": "passed",
+    "hurt": "passed",
+    "move1": "first/third lead paw contacts too similar;repair needed",
+    "move2": "opposite lead forepaw positions inspected;partition passed",
+    "die": "passed",
+    "windup": "passed",
+    "charge1": "repeated first/third extension phases;ordered four-phase bound repair requested",
+    "charge2": "four distinct bound phases inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "windup": 160,
+    "charge": 156
+  },
+  "calibrationNote": "Lower windup/charge bounding height to preserve body mass when tail/ears flatten;fixed feet pivot and one scale per action, never per-pose rescaling. Compiled keyframes reviewed;continuous visual acceptance pending.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-rat-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-rat-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed"
+  }
+}

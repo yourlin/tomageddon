@@ -1,0 +1,54 @@
+{
+  "kind": "enemy",
+  "id": "tire_roller",
+  "displayName": "滚轮胎",
+  "status": "24frames integrated;3tier playback and actual chargerAI passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "charger speed70/charge600/cd3.4/windup0.7",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/tire_roller/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/tire_roller/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/tire_roller/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/tire_roller/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/tire_roller/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/tire_roller/base/charge-sheet-pilot-1.png"
+    }
+  ]
+}

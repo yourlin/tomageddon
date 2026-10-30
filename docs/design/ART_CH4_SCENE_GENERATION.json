@@ -1,0 +1,24 @@
+{
+  "tool": "built-in image_gen",
+  "references": [
+    "maps/ch4/guides/geometry.png",
+    "maps/ch1/ground.png"
+  ],
+  "assets": [
+    {
+      "source": "maps/ch4/ground-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Production top-down2D game arena background, Chapter4 city junkyard. Image1 is the exact game collision geometry guide; preserve its cross-shaped interior footprint, all12corners, lane widths and outer220unit margins, in the SAME normalized image coordinates and canvas aspect1716:1261. Image2 is style reference only: detailed cute hand-painted storybook game illustration with rich material shading and crisp readable edges. Replace the flat schematic guide art with a richly illustrated junkyard at dusk. Inside the exact cross-shaped clearing: muted dark grey cracked asphalt, subtle old oil stains, tiny flat scraps and sparse chalk scuffs, low contrast and free of large props for bright characters/projectiles. Along the exact cross outline a narrow worn concrete curb. Outside the cross, especially all4large corner cutouts: dense mountains of tied black/green trash bags, old cardboard, crushed food tins, broken household pieces, rusted scrap and patches of weeds. Warm amber lamplight upper-left, cool violet moonlight elsewhere, charming rather than gruesome. All tall junk remains OUTSIDE the guide's playable cross. Strict orthographic directly overhead, no horizon/isometric perspective, no people/enemies/faces/text/UI/watermarks, no central objects, no holes or fluid pools baked in; dynamic hazards added separately. Opaque full canvas. Do not simplify to a rectangular field or shift the cross boundaries.",
+      "generated": true
+    },
+    {
+      "source": "maps/ch4/quicksand-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Single top-down2D game hazard sprite: compact roughly circular junkyard quicksand/sinking dust pit. A flat shallow vortex of muted taupe-grey gritty sand with a dark central depression, subtle spiral grooves, a few small embedded pebbles/tin fragments near the rim, tiny dusty highlights. Soft rugged charcoal-brown edge, subdued warm/cool shading, no bright aura. Cute detailed hand-painted storybook game style matching supplied reference. Exactly overhead orthographic. One complete isolated circular patch centered with generous transparent margins; no surrounding floor, drop shadow, characters, eyes/faces, text or other objects. True transparent outside; no deep vertical cave walls. Readable on grey asphalt, so center darker than outer rim. Game handles slow rotation, movement and suction feedback.",
+      "generated": true
+    },
+    {
+      "source": "maps/ch4/acid-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Single top-down2D game environment hazard sprite: small irregular approximately circular puddle of toxic lime/olive-green liquid in a junkyard. Glossy semi-translucent surface with a few tiny bubbles and wispy darker marbling, short glints, slightly darker olive edge so its footprint is readable; controlled saturation, soft warm highlights upper-left. Cute detailed hand-painted storybook game illustration, not photorealistic. Exactly straight overhead orthographic, flat puddle not a slime character. One isolated complete puddle centered with generous transparent margins. True transparent outside and translucent liquid interior. No splash droplets beyond footprint, no smoke/halo, eyes, face, characters, cans, ground plane, text or UI. The game adds the active bubbling/fading/rotation.",
+      "generated": true
+    }
+  ]
+}

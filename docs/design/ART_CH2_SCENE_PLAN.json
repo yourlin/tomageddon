@@ -1,0 +1,48 @@
+{
+  "chapter": 2,
+  "ground": "maps/ch2/ground-pilot-1.png",
+  "playablePixelRect": [
+    148,
+    157,
+    1365,
+    864
+  ],
+  "arenaSize": [
+    1760,
+    1100
+  ],
+  "obstacles": [
+    {
+      "kind": "circle",
+      "x": 480,
+      "y": 360,
+      "r": 42,
+      "radius": 42,
+      "source": "maps/ch2/scarecrow-pilot-1.png"
+    },
+    {
+      "kind": "circle",
+      "x": 1290,
+      "y": 760,
+      "r": 42,
+      "radius": 42,
+      "source": "maps/ch2/scarecrow-pilot-1.png"
+    },
+    {
+      "kind": "circle",
+      "x": 1240,
+      "y": 300,
+      "r": 62,
+      "radius": 62,
+      "source": "maps/ch2/mound-pilot-1.png"
+    }
+  ],
+  "objects": {
+    "hole": {
+      "source": "maps/ch2/hole-pilot-1.png"
+    },
+    "sprinkler": {
+      "source": "maps/ch2/sprinkler-pilot-1.png"
+    }
+  }
+}

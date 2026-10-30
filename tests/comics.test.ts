@@ -1,5 +1,6 @@
 // 开场漫画数据：7 章各 4 格，演员 / 背景 / 对白指向都合法
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { COMICS } from '../src/data/comics';
 import { CHAPTERS } from '../src/data/chapters';
 import { CHARACTER_MAP } from '../src/data/characters';
@@ -9,6 +10,20 @@ import { BOSS_MAP } from '../src/data/bosses';
 const MAPS = { char: CHARACTER_MAP, enemy: ENEMY_MAP, boss: BOSS_MAP } as const;
 
 describe('开场四格漫画', () => {
+  it('每章都有可分成四格的横版 PNG 插画，尺寸和比例一致', () => {
+    for (const ch of CHAPTERS) {
+      const png = readFileSync(new URL(`../src/assets/comics/ch${ch.id}.png`, import.meta.url));
+      expect(png.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
+      const w = png.readUInt32BE(16),
+        h = png.readUInt32BE(20);
+      expect(w, `第 ${ch.id} 章宽度`).toBeGreaterThanOrEqual(1536);
+      expect(h, `第 ${ch.id} 章高度`).toBeGreaterThanOrEqual(1024);
+      expect(w / h).toBeCloseTo(1.5, 1);
+      expect(w % 2).toBe(0);
+      expect(h % 2).toBe(0);
+    }
+  });
+
   it('每一章都有 4 格漫画', () => {
     for (const ch of CHAPTERS) expect(COMICS[ch.id]?.panels.length, `第 ${ch.id} 章`).toBe(4);
   });

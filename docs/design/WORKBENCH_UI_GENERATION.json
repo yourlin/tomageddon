@@ -1,0 +1,19 @@
+{
+  "asset": "public/assets/ui/workbench-kitchen.webp",
+  "original": "/Users/linyesh/playground/tomato-sister-art-source/design/workbench-kitchen.png",
+  "generatedSource": "/Users/linyesh/.codex/generated_images/01a16be1-7281-7e50-90f0-fd37e26b16e3/exec-b978eaa4-711a-47ce-89a0-5874cb168555.png",
+  "reference": "/Users/linyesh/.codex/generated_images/01a16b85-a698-70e0-aa65-55faec62e035/exec-9799294c-753d-4b58-9328-8b2d39928e04.png",
+  "tool": "built-in image_gen",
+  "date": "2026-10-24",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "webp": {
+    "quality": 86,
+    "method": 6,
+    "bytes": 204082
+  },
+  "prompt": "Use case: stylized-concept. Asset type: seamless single full-screen 16:9 background illustration for a fantasy kitchen game shop and crafting page, approximately 1672x941. Input image is style reference ONLY, not an edit target. Create ONE uninterrupted environment with NO interface. Warm painterly hand-painted fantasy kitchen at night: dark plum brown wooden cabinetry in back, amber hanging lamps near upper left and upper right corners, small candles near far sides, rustic wooden countertop along bottom 15 percent, glass jars and leafy vegetables restricted to extreme left and right edge margins. Composition: center 85 percent of image must be quiet dark open negative space, softly defocused, suitable behind opaque game cards; no central focal object. Match reference rich wood grain, gold amber light, deep dark plum shadows, cozy ornate game illustration polish. NO text, NO labels, NO panels, NO borders, NO buttons, NO currency, NO seeds, NO tomato fruit, NO weapons, NO characters, NO people, NO split-screen. Fill whole frame with one room, not two separate scenes.",
+  "visualCheck": "Single quiet kitchen room; warm corner lamps and wood counter, no text/interface/currency/characters/weapons."
+}

@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen",
+  "chapter": 2,
+  "assets": [
+    {
+      "source": "maps/ch2/ground-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Asset: production top-down 2D game arena GROUND BACKGROUND for Chapter 2 abandoned vegetable garden, matching the painterly warm cute storybook rendering/detail and clean readable arena of reference image, but garden subject instead of kitchen. Orthographic straight overhead, absolutely no horizon/isometric perspective. Landscape canvas ratio 10:7, ideally 2240x1568. Exact composition: playable soil garden bed inside rounded rectangular boundary from x=10% to90% and y=14.286% to85.714%; corner radius about7.27% canvas width. Inner area is muted dark rich brown earth with subtle horizontal furrows, tiny flat pebbles and dead leaves, very sparse moss; low contrast central 75% for readable bright characters/bullets. Boundary thin rustic wooden edging exactly around garden bed. Outside perimeter dense charming garden vegetation, tomatoes, cabbage leaves, wooden fence pieces, small watering can, aged pots, warm lantern glow at upper-left and cool moonlight upper-right. All large props remain outside playable bed. No interior obstacles, no scarecrows or dirt mounds: these will be composited separately at gameplay collision coordinates. No paths dividing arena, no walls in playable soil, no characters, enemies, animals, eyes, faces, UI, letters, grid lines, watermarks. Crisp detailed hand-painted game-ready backdrop, soft golden highlights, deep blue-green evening atmosphere, not photorealistic. Opaque full-canvas background. Preserve visual family of reference while producing new garden scene.",
+      "generated": true,
+      "integrated": false,
+      "width": 1499,
+      "height": 1049
+    },
+    {
+      "source": "maps/ch2/scarecrow-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Production game obstacle sprite, single small rustic garden scarecrow seen from exactly straight overhead, top-down orthographic. Style match the provided hand-painted garden arena reference: cute warm storybook game illustration, rich material shading, brown wood, golden straw, slightly worn orange cloth, broad straw hat, short horizontal crossbar arms with straw tufts. The silhouette should be compact and roughly round, fitting a circular obstacle footprint. One object only, centered, complete silhouette with generous transparent margins, no ground plane, no cast ground shadow, no pedestal, no backdrop, no letters, no grid, no other objects. Very important true overhead view: hat crown and shoulders dominate; do not draw a frontal standing human. No eyes or facial features. Crisp edges and detailed surfaces, readable at small screen size. Transparent background.",
+      "generated": true,
+      "integrated": false
+    }
+  ],
+  "reference": "maps/ch1/ground.png"
+}

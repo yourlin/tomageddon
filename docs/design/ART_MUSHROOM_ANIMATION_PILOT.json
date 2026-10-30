@@ -1,0 +1,74 @@
+{
+  "kind": "char",
+  "id": "mushroom",
+  "status": "rightward walk source revised; other legacy actions preserved; final continuous review pending",
+  "referenceHeight": 170,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/mushroom/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/mushroom/move-sheet-right-2.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/mushroom/attack-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/mushroom/hurt-sheet-pilot-2.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/mushroom/windup-sheet-pilot-2.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/mushroom/charge-sheet-pilot-2.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/mushroom/stun-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/mushroom/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/mushroom/spawn-sheet-pilot-2.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/mushroom/cast-sheet-pilot-2.png"
+    },
+    {
+      "name": "victory",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/mushroom/victory-sheet-pilot-1.png"
+    }
+  ]
+}

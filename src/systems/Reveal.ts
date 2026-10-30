@@ -6,6 +6,7 @@ import { TALENT_NODES } from '../data/talentTree';
 import { tx } from '../i18n';
 import { MASTERY_MAX, masteryLevel } from './Progress';
 import { CHARACTERS } from '../data/characters';
+import { skinsEnabled } from './Features';
 
 /** 通关过任意一章 */
 const clearedAny = (): boolean => save.clearedChapters >= 1;
@@ -17,8 +18,9 @@ export const reveal = {
   danger: clearedAny,
   /** 金番茄：第一次获得后（只从危机与无尽获得） */
   gold: (): boolean => save.meta.goldEarned > 0 || save.meta.gold > 0,
-  /** 皮肤：有过金番茄，或已拥有皮肤（买过 / 熟练度满级送） */
-  skins: (): boolean => reveal.gold() || save.meta.skins.length > 0 || CHARACTERS.some((c) => masteryLevel(c.id) >= MASTERY_MAX),
+  /** 皮肤：皮肤玩法开放后，有过金番茄或已拥有皮肤（买过 / 熟练度满级送） */
+  skins: (): boolean =>
+    skinsEnabled() && (reveal.gold() || save.meta.skins.length > 0 || CHARACTERS.some((c) => masteryLevel(c.id) >= MASTERY_MAX)),
   /** 每日 / 每周挑战：首次通关第 1 章后（玩过挑战的老存档照常显示） */
   challenges: (): boolean => clearedAny() || Object.keys(save.challenges).length > 0,
   /** 天赋树：第一次获得天赋点后 */
@@ -83,11 +85,16 @@ export const MILESTONES: Milestone[] = [
     icon: '🥇',
     open: reveal.gold,
     cond: ['在番茄危机 1 级以上或无尽模式中打一局', 'Play a run on Danger 1+ or in Endless'],
-    reward: ['金番茄与角色皮肤', 'Golden Tomatoes & skins'],
-    desc: [
-      '危机与无尽会奖励金番茄，可在选角界面购买每名角色的 4 套皮肤',
-      'Danger and Endless reward Golden Tomatoes — spend them on 4 skins per character',
-    ],
+    reward: skinsEnabled() ? ['金番茄与角色皮肤', 'Golden Tomatoes & skins'] : ['金番茄', 'Golden Tomatoes'],
+    desc: skinsEnabled()
+      ? [
+          '危机与无尽会奖励金番茄，可在选角界面购买每名角色的 4 套皮肤',
+          'Danger and Endless reward Golden Tomatoes — spend them on 4 skins per character',
+        ]
+      : [
+          '危机与无尽会奖励金番茄，点满天赋树后可用来购买大师天赋',
+          'Danger and Endless reward Golden Tomatoes — spend them on Master talents once the tree is maxed',
+        ],
     scene: 'CharSelect',
   },
   {
@@ -124,10 +131,15 @@ export function resultHook(): string {
     return tx(`🔓 天赋树再投入 ${n} 点就能点满，开启大师天赋`, `🔓 ${n} more talent points to max the tree and open Master talents`);
   }
   if (m.id === 'gold')
-    return tx(
-      '🔓 在选角界面把番茄危机调到 1 级再出发，就能开始获得金番茄、解锁皮肤',
-      '🔓 Set Tomato Danger to 1 on character select to start earning Golden Tomatoes and skins',
-    );
+    return skinsEnabled()
+      ? tx(
+          '🔓 在选角界面把番茄危机调到 1 级再出发，就能开始获得金番茄、解锁皮肤',
+          '🔓 Set Tomato Danger to 1 on character select to start earning Golden Tomatoes and skins',
+        )
+      : tx(
+          '🔓 在选角界面把番茄危机调到 1 级再出发，就能开始获得金番茄',
+          '🔓 Set Tomato Danger to 1 on character select to start earning Golden Tomatoes',
+        );
   return tx(`🔓 ${m.cond[0]}，即可开启：${m.reward[0]}`, `🔓 ${m.cond[1]} to open: ${m.reward[1]}`);
 }
 

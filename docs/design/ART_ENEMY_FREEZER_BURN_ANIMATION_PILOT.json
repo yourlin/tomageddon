@@ -1,0 +1,56 @@
+{
+  "kind": "enemy",
+  "id": "freezer_burn",
+  "displayName": "\u51bb\u4f24\u8089\u5757",
+  "status": "integrated;native3tiers and actualchase/hurt/death passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase;speed65/knockResist0.75;fourbasic authored actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/freezer_burn/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/freezer_burn/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/freezer_burn/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/freezer_burn/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "draftReview": "4stubfeet/noarms/crystalsandmarbling retained;idle3partial/4fullyclosed;move changingfootpositions andrigidtilt;hurtclosed2/3;dieprogressivelower/closedfrom2,intactice.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-freezer_burn-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-freezer_burn-gameplay-native.json",
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReview": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

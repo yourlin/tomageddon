@@ -2,6 +2,8 @@
 import Phaser from 'phaser';
 import { FONT } from './Textures';
 import { save } from './Save';
+import { readyJuiceArt } from './JuiceArt';
+import { currentGraphicsProfile } from './GraphicsQuality';
 
 export class Fx {
   private texts: Phaser.GameObjects.Text[] = [];
@@ -215,18 +217,32 @@ export class Fx {
       img = this.scene.add.image(0, 0, 'fx_splat0').setDepth(0.5);
       this.splats.push(img);
     }
-    this.splatIdx = (this.splatIdx + 1) % 90;
+    const low = currentGraphicsProfile().tier === 'low';
+    this.splatIdx = (this.splatIdx + 1) % (low ? 40 : 90);
     this.scene.tweens.killTweensOf(img);
+    const art = readyJuiceArt(this.scene);
+    const frame = Math.floor(Math.random() * (art ? 6 : 3));
+    const spread = 0.8 + Math.random() * 0.4;
+    const sx = ((size * 2.6) / (art ? currentGraphicsProfile().frameSize : 128)) * spread;
+    const sy = sx * (0.65 + Math.random() * 0.4);
     img
-      .setTexture(`fx_splat${Math.floor(Math.random() * 3)}`)
+      .setTexture(art ?? `fx_splat${frame}`, art ? frame : undefined)
+      .setOrigin(0.5, art ? 0.6 : 0.5)
+      .setFlip(Math.random() < 0.5, Math.random() < 0.5)
       .setPosition(x, y)
       .setTint(color)
-      .setAlpha(0.75)
+      .setAlpha(0.48 + Math.random() * 0.18)
       .setRotation(Math.random() * 6)
-      .setScale(((size * 2.6) / 128) * 0.4)
+      .setScale(sx * 0.4, sy * 0.4)
       .setVisible(true);
-    this.scene.tweens.add({ targets: img, scale: (size * 2.6) / 128, duration: 140, ease: 'Quad.easeOut' });
-    this.scene.tweens.add({ targets: img, alpha: 0, delay: 5000, duration: 2500, onComplete: () => img.setVisible(false) });
+    this.scene.tweens.add({ targets: img, scaleX: sx, scaleY: sy, duration: 140, ease: 'Quad.easeOut' });
+    this.scene.tweens.add({
+      targets: img,
+      alpha: 0,
+      delay: (low ? 2500 : 4000) + Math.random() * 1500,
+      duration: 1800 + Math.random() * 700,
+      onComplete: () => img.setVisible(false),
+    });
   }
 
   hit(x: number, y: number, rot: number, crit: boolean): void {

@@ -1,0 +1,74 @@
+{
+  "kind": "char",
+  "id": "watermelon",
+  "status": "pilot; skill/cross-scene/mobile/visual acceptance pending",
+  "referenceHeight": 160,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/watermelon/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/watermelon/move-sheet-right-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/watermelon/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/watermelon/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/watermelon/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/watermelon/charge-sheet-pilot-1.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/watermelon/stun-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/watermelon/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/watermelon/spawn-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/watermelon/cast-sheet-pilot-1.png"
+    },
+    {
+      "name": "victory",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/watermelon/victory-sheet-pilot-1.png"
+    }
+  ]
+}

@@ -1,7 +1,8 @@
-// 启动 / 贴图加载页（DOM，定义在 index.html）：番茄沿进度条蹦跳，进度只增不减
-import { tx } from '../i18n';
+// 厨房插画加载页（首屏 DOM 定义在 index.html），实时进度只增不减。
+import { tx, lang } from '../i18n';
 
 const TIPS: [string, string][] = [
+  ['小提示：武器会自动攻击，专心走位就好', 'Tip: weapons attack automatically — focus on dodging'],
   ['小提示：技能冷却好了就放，别攒着', 'Tip: use your skill whenever it is ready'],
   ['小提示：商店里锁定的商品会留到下一波', 'Tip: locked shop items stay for the next wave'],
   ['小提示：危机等级越高，奖励越多', 'Tip: higher Danger levels pay more rewards'],
@@ -13,8 +14,19 @@ const TIPS: [string, string][] = [
 
 let shown = 0;
 let tipTimer = 0;
+let hideTimer = 0;
+let visibilityEpoch = 0;
 
 const root = () => document.getElementById('boot-loader');
+
+function syncLanguage(el: HTMLElement): void {
+  el.classList.toggle('bl-en', lang === 'en');
+  el.setAttribute('aria-label', tx('加载进度', 'Loading progress'));
+  const title = el.querySelector('.bl-brand');
+  const subtitle = el.querySelector('.bl-title small');
+  if (title) title.textContent = tx('番茄酱', 'TOMAGEDDON');
+  if (subtitle) subtitle.textContent = tx('TOMAGEDDON', 'FRESH · FIERCE · FEARLESS');
+}
 
 function nextTip(el: HTMLElement): void {
   const tip = el.querySelector<HTMLElement>('.bl-tip');
@@ -33,8 +45,10 @@ function startTips(el: HTMLElement): void {
 export function setLoader(p: number, label?: string): void {
   const el = root();
   if (!el) return;
-  shown = Math.max(shown, Math.min(1, Math.max(0, p)));
+  if (Number.isFinite(p)) shown = Math.max(shown, Math.min(1, Math.max(0, p)));
   el.style.setProperty('--p', shown.toFixed(4));
+  // Completion must paint a full bar before the overlay begins fading out.
+  el.classList.toggle('bl-complete', shown === 1);
   const pct = Math.floor(shown * 100);
   el.setAttribute('aria-valuenow', String(pct));
   const pe = el.querySelector('.bl-pct');
@@ -49,36 +63,45 @@ export function setLoader(p: number, label?: string): void {
 export function initLoader(label: string): void {
   const el = root();
   if (!el) return;
-  el.setAttribute('aria-label', tx('加载进度', 'Loading progress'));
+  syncLanguage(el);
   setLoader(shown, label);
   startTips(el);
 }
 
-/** 重新显示加载页（半透明盖在当前画面上），进度从 0 开始 */
+/** 重新显示插画加载页，进度从 0 开始；无需等待任何 Phaser 贴图。 */
 export function showLoader(label: string): void {
   const el = root();
   if (!el) return;
+  const epoch = ++visibilityEpoch;
+  window.clearTimeout(hideTimer);
+  syncLanguage(el);
   shown = 0;
   el.classList.add('bl-dim');
   el.classList.remove('bl-gone');
   // 先移除 display:none 再在下一帧去掉透明，才有淡入
-  requestAnimationFrame(() => el.classList.remove('bl-hide'));
+  requestAnimationFrame(() => {
+    if (epoch === visibilityEpoch) el.classList.remove('bl-hide');
+  });
   setLoader(0, label);
   startTips(el);
 }
 
 export function hideLoader(): void {
   const el = root();
-  if (!el || el.classList.contains('bl-hide')) return;
+  if (!el) return;
+  const epoch = ++visibilityEpoch;
   window.clearInterval(tipTimer);
+  window.clearTimeout(hideTimer);
   el.classList.add('bl-hide');
-  window.setTimeout(() => {
-    if (el.classList.contains('bl-hide')) el.classList.add('bl-gone');
+  hideTimer = window.setTimeout(() => {
+    if (epoch === visibilityEpoch && el.classList.contains('bl-hide')) el.classList.add('bl-gone');
   }, 400);
 }
 
 /** 测试 / 开发用：立即移除，不做动画 */
 export function removeLoaderNow(): void {
+  visibilityEpoch++;
+  window.clearTimeout(hideTimer);
   window.clearInterval(tipTimer);
   root()?.classList.add('bl-hide', 'bl-gone');
 }

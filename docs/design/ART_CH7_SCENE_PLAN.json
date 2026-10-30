@@ -1,0 +1,49 @@
+{
+  "chapter": 7,
+  "ground": "maps/ch7/ground-pilot-1.png",
+  "playablePixelRect": [
+    115.47557003257329,
+    110.1732142857143,
+    1193.2475570032575,
+    1072.8517857142858
+  ],
+  "arenaSize": [
+    2016,
+    1800
+  ],
+  "obstacles": [
+    {
+      "kind": "circle",
+      "x": 620,
+      "y": 520,
+      "radius": 70,
+      "source": "maps/ch7/pit-pilot-1.png"
+    },
+    {
+      "kind": "circle",
+      "x": 1420,
+      "y": 560,
+      "radius": 64,
+      "source": "maps/ch7/pit-pilot-1.png"
+    },
+    {
+      "kind": "circle",
+      "x": 560,
+      "y": 1260,
+      "radius": 66,
+      "source": "maps/ch7/pit-pilot-1.png"
+    },
+    {
+      "kind": "circle",
+      "x": 1380,
+      "y": 1290,
+      "radius": 72,
+      "source": "maps/ch7/pit-pilot-1.png"
+    }
+  ],
+  "objects": {
+    "quicksand": {
+      "source": "maps/ch7/mud-pilot-1.png"
+    }
+  }
+}

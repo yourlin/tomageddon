@@ -1,0 +1,50 @@
+{
+  "kind": "enemy",
+  "id": "ketchup_slime",
+  "displayName": "番茄酱史莱姆",
+  "status": "16authoredframes integrated;3tiernative/actualsplitAI/typecheck/lint/source-review/runtimepassed;finalpending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "splitter70/death3sauce_drip;actualcallback",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ketchup_slime/base/idle-sheet-pilot-2.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ketchup_slime/base/move-sheet-pilot-3.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ketchup_slime/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ketchup_slime/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "rejectedForIntegration": {
+    "idle-sheet-pilot-1.png": "No clear x gutter near627;layoutrepair204",
+    "move-sheet-pilot-1.png": "Compiledframe6 mirroredtorso/highlights/leafcrown;targetedbottomleftrepair210running",
+    "move-sheet-pilot-2.png": "Bottomleftstillmirrored leaf/rightspecular;freshoriginalreferencegeneration214"
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-ketchup_slime-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-ketchup_slime-gameplay-native.json",
+    "scope": "native4framesperaction/100msclosedidle/shared200GPUrelease;actualdeath3saucedripchildrenthat eachplay4moveframes;notfinalvisual/mobile"
+  }
+}

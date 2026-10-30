@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen",
+  "use_case": "stylized-concept",
+  "prompt": "Use case: stylized-concept. Asset type: game achievement medal sprite sheet, exactly four equal columns by two equal rows, wide 2:1 canvas, transparent background. Reference image is style reference only: reproduce the richly sculpted metal laurel achievement medallions in its upper achievement screen. Each of eight medals centered in its own equal square cell with generous transparent padding and identical total silhouette size; no contact between cells. Top row left to right: bronze medal with embossed cute tomato face; silver medal with crossed kitchen knife and fork; gold medal with crossed fork and knife; icy diamond platinum medal with faceted blue gemstone center. Bottom row left to right: bronze medal with stylized monster skull; bronze medal with anvil; bronze medal with circular refresh arrow; gold medal with crown. Every medal has same ornate circular coin border, paired laurel branches rising along sides, and a short matching stepped pedestal below. Warm polished 3D hand-painted fantasy kitchen game art, crisp readable silhouettes, beveled sculpted relief, restrained highlights, softly shaded recessed symbols. Isolated artwork only, genuine transparent alpha around every medal and between cells. No text, no letters, no numbers, no labels, no UI panels, no currency seeds, no background scene, no outer frame. Preserve square cells in a precise 4 by 2 grid.",
+  "reference": "/Users/linyesh/.codex/generated_images/01a16b85-a698-70e0-aa65-55faec62e035/exec-825f4d99-5c63-452e-aae7-7e8abe14d89c.png",
+  "generated_source": "/Users/linyesh/.codex/generated_images/01a16c15-078d-7c71-9654-c63ff4c88a26/exec-ecc1ec08-9ea9-40f7-ba86-5da52903124e.png",
+  "archive": "/Users/linyesh/playground/tomato-sister-art-source/design/achievement-medals-sheet.png",
+  "processing": "Equal 4-column by 2-row grid crops; aspect-preserving Lanczos thumbnail into 256×256 RGBA transparent canvas; optimized PNG.",
+  "assets": [
+    "public/assets/ui/achievements/medal-bronze.png",
+    "public/assets/ui/achievements/medal-silver.png",
+    "public/assets/ui/achievements/medal-gold.png",
+    "public/assets/ui/achievements/medal-diamond.png",
+    "public/assets/ui/achievements/medal-slayer.png",
+    "public/assets/ui/achievements/medal-forge.png",
+    "public/assets/ui/achievements/medal-economy.png",
+    "public/assets/ui/achievements/medal-crown.png"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "maps/ch1/ground.png",
+  "assets": [
+    {
+      "source": "maps/ch3/ground-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Production 2D game arena ground for Chapter3 Frozen Fridge. Render a high-resolution square 2048x2048 image, the entire scene viewed from exactly straight overhead orthographic; no perspective/horizon. Match the detailed cute hand-painted storybook material rendering of the supplied kitchen/garden reference while changing to frosted refrigerator interior. A perfectly square playable refrigerator floor spans x=11.34% to88.66% and y=11.34% to88.66% of the canvas. Thin clean white enamel rim exactly around that square. Inside: quiet muted pale blue-grey enamel with subtle frost scratches and tiny ice specks, low-contrast uncluttered center for bright characters and projectiles. Outside playable rim: white fridge walls with colder blue shadows, frost-coated gasket, little cooling coils and vents, tiny snow-crystal deposits; several small food packages and jars only OUTSIDE the playable square, hints of strawberries and leafy greens in upper corners. Cold nighttime blue illumination with restrained soft warm reflections. No glass shelves, platforms, interior walls, tall objects, characters, enemies, faces, eyes, text, labels, UI or grid. Separate glass collision shelves will be added by the game. Square crisp overhead readable arena, no photorealism, no deep perspective. Opaque full canvas.",
+      "generated": true
+    },
+    {
+      "source": "maps/ch3/shelf-pilot-1.png",
+      "prompt": "Use case: stylized-concept. A production obstacle sprite for a straight overhead 2D refrigerator arena. Single long narrow horizontal frosted glass shelf strip, length-to-thickness ratio exactly about10:1, shown from directly above, no perspective or visible front wall. Flat clear pale blue glass panel with slightly worn silver end caps, translucent icy cyan rim, tiny frost crystals near both ends, subtle white reflections. Straight parallel long edges, nearly rectangular footprint. Cute detailed hand-painted storybook style matching supplied kitchen/garden art, cool restrained colors, crisp readable silhouette. One isolated complete glass strip centered in a landscape transparent canvas with generous margins. No supporting brackets extending outside rectangle, no food, no icons, letters, characters, eyes or scene background. True transparency outside the object; preserve partial glass transparency inside.",
+      "generated": true
+    }
+  ]
+}

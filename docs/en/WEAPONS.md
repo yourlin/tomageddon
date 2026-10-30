@@ -309,19 +309,19 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/dragon_lance.png" width="32" height="32" alt=""> [Dragon Lance](#weapon-dragon_lance) | Melee | Thrust | Polearm/Produce | 14 / 24 / 37 / 57 | 1.15 / 1.08 / 1 / 0.92 | 195 | 27 |
 | <img src="../images/weapon/nut_knuckles.png" width="32" height="32" alt=""> [Nut Knuckles](#weapon-nut_knuckles) | Melee | Thrust | Martial/Produce | 4 / 7 / 11 / 17 | 0.36 / 0.34 / 0.31 / 0.28 | 90 | 21 |
 | <img src="../images/weapon/melon_staff.png" width="32" height="32" alt=""> [Winter Melon Staff](#weapon-melon_staff) | Melee | Sweep | Martial/Blunt | 24 / 40 / 62 / 94 | 2 / 1.9 / 1.8 / 1.65 | 150 | 31 |
-| <img src="../images/weapon/beet_axe.png" width="32" height="32" alt=""> [Beet Berserker Axe](#weapon-beet_axe) | Melee | Sweep | Blunt/Sharp | 26 / 43 / 67 / 100 | 2 / 1.9 / 1.8 / 1.65 | 125 | 32 |
+| <img src="../images/weapon/beet_axe.png" width="32" height="32" alt=""> [Beet Berserker Axe](#weapon-beet_axe) | Melee | Sweep | Blunt/Sharp | 26 / 43 / 67 / 100 | 1.8 / 1.7 / 1.6 / 1.5 | 125 | 32 |
 | <img src="../images/weapon/bean_mine.png" width="32" height="32" alt=""> [Bean Mines](#weapon-bean_mine) | Ranged | Mine | Seed/Produce | 10 / 16 / 25 / 38 | 1.9 / 1.8 / 1.65 / 1.5 | 230 | 25 |
 | <img src="../images/weapon/pomegranate_cluster.png" width="32" height="32" alt=""> [Pomegranate Cluster](#weapon-pomegranate_cluster) | Ranged | Rocket | Produce | 9 / 15 / 23 / 35 | 1.6 / 1.5 / 1.4 / 1.3 | 360 | 29 |
 | <img src="../images/weapon/pepper_drone.png" width="32" height="32" alt=""> [Pepper Drone](#weapon-pepper_drone) | Ranged | Rocket | Mech/Produce | 11 / 18 / 28 / 43 | 1.3 / 1.22 / 1.14 / 1.04 | 420 | 30 |
-| <img src="../images/weapon/onion_tear.png" width="32" height="32" alt=""> [Tear-Gas Onion](#weapon-onion_tear) | Ranged | Boomerang | Produce | 9 / 15 / 23 / 36 | 1.35 / 1.27 / 1.18 / 1.08 | 360 | 25 |
+| <img src="../images/weapon/onion_tear.png" width="32" height="32" alt=""> [Tear-Gas Onion](#weapon-onion_tear) | Ranged | Boomerang | Produce | 11 / 19 / 29 / 45 | 1.35 / 1.27 / 1.18 / 1.08 | 360 | 25 |
 | <img src="../images/weapon/blackberry_wand.png" width="32" height="32" alt=""> [Blackberry Wand](#weapon-blackberry_wand) | Elemental | Bullet | Arcane/Produce | 9 / 15 / 24 / 36 | 0.95 / 0.9 / 0.84 / 0.76 | 420 | 26 |
 | <img src="../images/weapon/lychee_gun.png" width="32" height="32" alt=""> [Lucky Lychee Gun](#weapon-lychee_gun) | Ranged | Bullet | Firearm/Produce | 5 / 8 / 12 / 18 | 0.6 / 0.56 / 0.52 / 0.46 | 380 | 24 |
-| <img src="../images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [Cherry Pistols](#weapon-cherry_pistols) | Ranged | Bullet | Firearm/Produce/Dessert | 5 / 8 / 12 / 18 | 0.26 / 0.24 / 0.22 / 0.19 | 380 | 24 |
+| <img src="../images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [Cherry Pistols](#weapon-cherry_pistols) | Ranged | Bullet | Firearm/Produce/Dessert | 6 / 10 / 15 / 23 | 0.26 / 0.24 / 0.22 / 0.19 | 380 | 24 |
 | <img src="../images/weapon/lemon_dagger.png" width="32" height="32" alt=""> [Lemon Dagger](#weapon-lemon_dagger) | Melee | Thrust | Sharp/Sauce | 5 / 9 / 14 / 22 | 0.55 / 0.52 / 0.48 / 0.42 | 125 | 22 |
 | <img src="../images/weapon/taro_aura.png" width="32" height="32" alt=""> [Taro Aura](#weapon-taro_aura) | Elemental | Aura |  | 5 / 8 / 12 / 18 | 0.5 / 0.5 / 0.5 / 0.5 | 106 | 32 |
 | <img src="../images/weapon/stink_aura.png" width="32" height="32" alt=""> [Durian Stink Aura](#weapon-stink_aura) | Elemental | Aura |  | 3 / 5 / 8 / 11 | 0.5 / 0.5 / 0.5 / 0.5 | 149 | 31 |
 | <img src="../images/weapon/ketchup_twin.png" width="32" height="32" alt=""> [Twin Ketchup Bottles](#weapon-ketchup_twin) | Ranged | Bullet | Sauce/Produce | 4 / 7 / 11 / 17 | 0.55 / 0.52 / 0.48 / 0.43 | 360 | 23 |
-| <img src="../images/weapon/peach_syrup.png" width="32" height="32" alt=""> [Peach Syrup Gun](#weapon-peach_syrup) | Ranged | Bullet | Dessert/Sauce | 7 / 12 / 18 / 28 | 0.6 / 0.56 / 0.52 / 0.47 | 420 | 24 |
+| <img src="../images/weapon/peach_syrup.png" width="32" height="32" alt=""> [Peach Syrup Gun](#weapon-peach_syrup) | Ranged | Bullet | Dessert/Sauce | 9 / 15 / 23 / 35 | 0.6 / 0.56 / 0.52 / 0.47 | 420 | 24 |
 | <img src="../images/weapon/eggplant_staff.png" width="32" height="32" alt=""> [Eggplant Thunder Staff](#weapon-eggplant_staff) | Elemental | Chain Lightning | Produce | 8 / 13 / 20 / 31 | 1 / 0.95 / 0.88 / 0.8 | 380 | 27 |
 | <img src="../images/weapon/sprout_wand.png" width="32" height="32" alt=""> [Sprout Wand](#weapon-sprout_wand) | Elemental | Bullet | Arcane/Produce | 6 / 10 / 15 / 24 | 0.8 / 0.75 / 0.7 / 0.63 | 400 | 25 |
 | <img src="../images/weapon/candy_cane.png" width="32" height="32" alt=""> [Candy Cane Club](#weapon-candy_cane) | Melee | Sweep | Dessert/Blunt | 11 / 18 / 29 / 43 | 1.25 / 1.18 / 1.1 / 1 | 130 | 19 |
@@ -419,7 +419,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/fz_cola_zapper_mixer_storm.png" width="32" height="32" alt=""> [Chef's Cola Zapper](#weapon-fz_cola_zapper_mixer_storm) | Elemental | Chain Lightning | Firearm/Elemental/Kitchenware | 9 / 15 / 23 / 35 | 0.95 / 0.88 / 0.8 / 0.72 | 462 | 39 |
 | <img src="../images/weapon/fz_bean_bazooka_soy_bomb.png" width="32" height="32" alt=""> [Saucy Bean Bazooka](#weapon-fz_bean_bazooka_soy_bomb) | Ranged | Rocket | Firearm/Demolition/Sauce | 24 / 40 / 62 / 92 | 2.2 / 2.05 / 1.9 / 1.7 | 504 | 44 |
 | <img src="../images/weapon/fz_steam_kettle_asparagus_bow.png" width="32" height="32" alt=""> [Piercing Steam Kettle](#weapon-fz_steam_kettle_asparagus_bow) | Elemental | Flame | Kitchenware/Elemental/Produce | 15 / 26 / 41 / 62 | 0.26 / 0.24 / 0.21 / 0.18 | 546 | 36 |
-| <img src="../images/weapon/fz_onion_tear_lightning_whisk.png" width="32" height="32" alt=""> [Thunder Tear-Gas Onion](#weapon-fz_onion_tear_lightning_whisk) | Ranged | Boomerang | Produce/Kitchenware/Elemental | 10 / 17 / 25 / 40 | 0.95 / 0.9 / 0.82 / 0.74 | 399 | 39 |
+| <img src="../images/weapon/fz_onion_tear_lightning_whisk.png" width="32" height="32" alt=""> [Thunder Tear-Gas Onion](#weapon-fz_onion_tear_lightning_whisk) | Ranged | Boomerang | Produce/Kitchenware/Elemental | 12 / 21 / 32 / 50 | 0.95 / 0.9 / 0.82 / 0.74 | 399 | 39 |
 | <img src="../images/weapon/fz_pepper_grinder_choco_mine.png" width="32" height="32" alt=""> [Frost Pepper Grinder Gun](#weapon-fz_pepper_grinder_choco_mine) | Ranged | Bullet | Firearm/Sharp/Dessert | 14 / 25 / 39 / 58 | 0.5 / 0.46 / 0.42 / 0.38 | 420 | 34 |
 | <img src="../images/weapon/fz_bbq_torch_ketchup_twin.png" width="32" height="32" alt=""> [Scatter BBQ Torch](#weapon-fz_bbq_torch_ketchup_twin) | Ranged | Flame | Firearm/Sauce/Produce | 4 / 8 / 12 / 19 | 0.2 / 0.18 / 0.16 / 0.14 | 378 | 39 |
 | <img src="../images/weapon/fz_cherry_bomb_bamboo_spear.png" width="32" height="32" alt=""> [Lethal Cherry Bombs](#weapon-fz_cherry_bomb_bamboo_spear) | Ranged | Rocket | Produce/Demolition | 21 / 35 / 55 / 85 | 1.5 / 1.42 / 1.32 / 1.2 | 378 | 36 |
@@ -434,7 +434,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/fz_toaster_zap_hot_sauce_gun.png" width="32" height="32" alt=""> [Blazing Toaster Zap](#weapon-fz_toaster_zap_hot_sauce_gun) | Elemental | Chain Lightning | Kitchenware/Dessert/Sauce | 12 / 21 / 32 / 50 | 0.55 / 0.5 / 0.46 / 0.42 | 399 | 40 |
 | <img src="../images/weapon/fz_ladle_cherry_pistols.png" width="32" height="32" alt=""> [Candied Soup Ladle](#weapon-fz_ladle_cherry_pistols) | Melee | Sweep | Kitchenware/Sauce/Firearm | 11 / 19 / 30 / 45 | 0.26 / 0.24 / 0.22 / 0.19 | 399 | 31 |
 | <img src="../images/weapon/fz_watermelon_hammer_mint_frost_mine.png" width="32" height="32" alt=""> [Frost Melon Hammer](#weapon-fz_watermelon_hammer_mint_frost_mine) | Melee | Sweep | Produce/Demolition/Elemental | 33 / 55 / 88 / 132 | 2.2 / 2.1 / 2 / 1.8 | 231 | 46 |
-| <img src="../images/weapon/fz_peach_syrup_blender_aura.png" width="32" height="32" alt=""> [Lethal Peach Syrup Gun](#weapon-fz_peach_syrup_blender_aura) | Ranged | Bullet | Dessert/Sauce/Kitchenware | 8 / 13 / 20 / 31 | 0.45 / 0.43 / 0.41 / 0.38 | 441 | 36 |
+| <img src="../images/weapon/fz_peach_syrup_blender_aura.png" width="32" height="32" alt=""> [Lethal Peach Syrup Gun](#weapon-fz_peach_syrup_blender_aura) | Ranged | Bullet | Dessert/Sauce/Kitchenware | 10 / 17 / 25 / 39 | 0.45 / 0.43 / 0.41 / 0.38 | 441 | 36 |
 | <img src="../images/weapon/fz_melon_grenade_pumpkin_lantern.png" width="32" height="32" alt=""> [Piercing Melon Grenade](#weapon-fz_melon_grenade_pumpkin_lantern) | Ranged | Rocket | Produce/Elemental | 10 / 17 / 26 / 41 | 0.8 / 0.75 / 0.7 / 0.62 | 441 | 38 |
 | <img src="../images/weapon/fz_blowpipe_syrup_sprayer.png" width="32" height="32" alt=""> [Blazing Toxic Blowpipe](#weapon-fz_blowpipe_syrup_sprayer) | Ranged | Bullet | Produce/Dessert | 11 / 19 / 29 / 44 | 0.2 / 0.18 / 0.16 / 0.14 | 483 | 38 |
 | <img src="../images/weapon/fz_chopsticks_pepper_spray.png" width="32" height="32" alt=""> [Blazing Chopsticks](#weapon-fz_chopsticks_pepper_spray) | Melee | Thrust | Kitchenware/Elemental | 6 / 10 / 15 / 23 | 0.18 / 0.16 / 0.14 / 0.12 | 163 | 34 |
@@ -959,7 +959,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td nowrap>Class / attack</td><td>Melee / Sweep</td></tr>
 <tr><td nowrap>Tags</td><td>Blunt, Sharp</td></tr>
 <tr><td nowrap>Damage T1–T4</td><td>26 / 43 / 67 / 100</td></tr>
-<tr><td nowrap>Cooldown T1–T4</td><td>2s / 1.9s / 1.8s / 1.65s</td></tr>
+<tr><td nowrap>Cooldown T1–T4</td><td>1.8s / 1.7s / 1.6s / 1.5s</td></tr>
 <tr><td nowrap>Range</td><td>125</td></tr>
 <tr><td nowrap>Scaling</td><td>Melee Damage ×1.4</td></tr>
 <tr><td nowrap>Crit multiplier</td><td>×2.2</td></tr>
@@ -2118,7 +2118,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td colspan="2"><i>An eye-stinging onion boomerang that poisons everything it passes.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
 <tr><td nowrap>Tags</td><td>Produce</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 23 / 36</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>11 / 19 / 29 / 45</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>1.35s / 1.27s / 1.18s / 1.08s</td></tr>
 <tr><td nowrap>Range</td><td>360</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.9</td></tr>
@@ -2152,7 +2152,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td colspan="2"><i>A cherry pistol in each hand, firing in quick alternation.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
 <tr><td nowrap>Tags</td><td>Firearm, Produce, Dessert</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>5 / 8 / 12 / 18</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>6 / 10 / 15 / 23</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.26s / 0.24s / 0.22s / 0.19s</td></tr>
 <tr><td nowrap>Range</td><td>380</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.6</td></tr>
@@ -2186,7 +2186,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td colspan="2"><i>The angel's peach syrup gun: homing syrup shots that burst sweetly on hit.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
 <tr><td nowrap>Tags</td><td>Dessert, Sauce</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>7 / 12 / 18 / 28</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>9 / 15 / 23 / 35</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.6s / 0.56s / 0.52s / 0.47s</td></tr>
 <tr><td nowrap>Range</td><td>420</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.75, Max HP ×0.05</td></tr>
@@ -2747,7 +2747,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td colspan="2"><i>Zap Whisk forged into Tear-Gas Onion: keeps its attack style and carries both weapons' effects.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Boomerang</td></tr>
 <tr><td nowrap>Tags</td><td>Produce, Kitchenware, Elemental</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 25 / 40</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>12 / 21 / 32 / 50</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.95s / 0.9s / 0.82s / 0.74s</td></tr>
 <tr><td nowrap>Range</td><td>399</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.54, Elemental Damage ×0.48</td></tr>
@@ -2849,7 +2849,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td colspan="2"><i>Blender forged into Peach Syrup Gun: keeps its attack style and carries both weapons' effects.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Bullet</td></tr>
 <tr><td nowrap>Tags</td><td>Dessert, Sauce, Kitchenware</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>8 / 13 / 20 / 31</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>10 / 17 / 25 / 39</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>0.45s / 0.43s / 0.41s / 0.38s</td></tr>
 <tr><td nowrap>Range</td><td>441</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.45, Max HP ×0.03, Melee Damage ×0.3</td></tr>
@@ -4947,12 +4947,12 @@ Super weapons can only be crafted: two specific T4 weapons + the original cataly
 | <img src="../images/weapon/dragon_lance.png" width="32" height="32" alt=""> [Dragon Lance](#weapon-dragon_lance) | <img src="../images/item/lighter.png" width="32" height="32" alt=""> Lighter | <img src="../images/weapon/inferno_lance.png" width="32" height="32" alt=""> **Inferno Lance** | 57→**97** / 0.92s→**0.78s** / 195→**224** | A lance roaring with dragonfire that engulfs whatever it pierces. |
 | <img src="../images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [Coconut Gloves](#weapon-coconut_gloves) | <img src="../images/item/protein.png" width="32" height="32" alt=""> Protein Powder | <img src="../images/weapon/coco_fist.png" width="32" height="32" alt=""> **Coconut Overlord Fist** | 22→**37** / 0.34s→**0.27s** / 95→**109** | Rock-hard coconut punches that drive enemies back with every blow. |
 | <img src="../images/weapon/melon_staff.png" width="32" height="32" alt=""> [Winter Melon Staff](#weapon-melon_staff) | <img src="../images/item/salt_lamp.png" width="32" height="32" alt=""> Salt Lamp | <img src="../images/weapon/vajra_staff.png" width="32" height="32" alt=""> **Vajra Staff** | 94→**160** / 1.65s→**1.4s** / 150→**188** | A gilded staff swept in a full circle, stunning everything around. |
-| <img src="../images/weapon/beet_axe.png" width="32" height="32" alt=""> [Beet Berserker Axe](#weapon-beet_axe) | <img src="../images/item/bandage_roll.png" width="32" height="32" alt=""> Bandage Roll | <img src="../images/weapon/blood_axe.png" width="32" height="32" alt=""> **Bloodrage Axe** | 100→**170** / 1.65s→**1.4s** / 125→**144** | A greataxe soaked in beet juice; every cleave drinks back life. |
+| <img src="../images/weapon/beet_axe.png" width="32" height="32" alt=""> [Beet Berserker Axe](#weapon-beet_axe) | <img src="../images/item/bandage_roll.png" width="32" height="32" alt=""> Bandage Roll | <img src="../images/weapon/blood_axe.png" width="32" height="32" alt=""> **Bloodrage Axe** | 100→**170** / 1.5s→**1.27s** / 125→**144** | A greataxe soaked in beet juice; every cleave drinks back life. |
 | <img src="../images/weapon/lemon_dagger.png" width="32" height="32" alt=""> [Lemon Dagger](#weapon-lemon_dagger) | <img src="../images/item/samurai_tsuba.png" width="32" height="32" alt=""> Samurai Tsuba | <img src="../images/weapon/acid_daggers.png" width="32" height="32" alt=""> **Acid Twin Daggers** | 22→**37** / 0.42s→**0.32s** / 125→**144** | Twin daggers dipped in lemon juice: impossibly fast and brutally critical. |
 | <img src="../images/weapon/onion_boomerang.png" width="32" height="32" alt=""> [Onion Boomerang](#weapon-onion_boomerang) | <img src="../images/item/onion_layers.png" width="32" height="32" alt=""> Layered Onion | <img src="../images/weapon/onion_layers.png" width="32" height="32" alt=""> **Thousand-Layer Onion** | 40→**68** / 1.1s→**0.94s** / 360→**414** | A boomerang of onion layers that poisons and blinds everything it cuts. |
 | <img src="../images/weapon/pumpkin_lantern.png" width="32" height="32" alt=""> [Pumpkin Lantern](#weapon-pumpkin_lantern) | <img src="../images/item/firework_fuse.png" width="32" height="32" alt=""> Firework Fuse | <img src="../images/weapon/ghost_lanterns.png" width="32" height="32" alt=""> **Hundred Ghost Lanterns** | 37→**63** / 0.62s→**0.53s** / 420→**483** | A string of lanterns releasing swarms of wisps that weave through enemies. |
 | <img src="../images/weapon/grape_shotgun.png" width="32" height="32" alt=""> [Grape Shotgun](#weapon-grape_shotgun) | <img src="../images/item/clover.png" width="32" height="32" alt=""> Four-Leaf Clover | <img src="../images/weapon/grape_magic.png" width="32" height="32" alt=""> **Grape Magic Cannon** | 15→**26** / 0.8s→**0.68s** / 240→**276** | The magician's party cannon: one blast fills the air with grapes. |
-| <img src="../images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [Cherry Pistols](#weapon-cherry_pistols) | <img src="../images/item/energy_drink.png" width="32" height="32" alt=""> Energy Drink | <img src="../images/weapon/cherry_barrage.png" width="32" height="32" alt=""> **Cherry Barrage** | 18→**31** / 0.19s→**0.14s** / 380→**437** | Both pistols firing at once, cherry rounds strung into a line. |
+| <img src="../images/weapon/cherry_pistols.png" width="32" height="32" alt=""> [Cherry Pistols](#weapon-cherry_pistols) | <img src="../images/item/energy_drink.png" width="32" height="32" alt=""> Energy Drink | <img src="../images/weapon/cherry_barrage.png" width="32" height="32" alt=""> **Cherry Barrage** | 23→**39** / 0.19s→**0.14s** / 380→**437** | Both pistols firing at once, cherry rounds strung into a line. |
 | <img src="../images/weapon/asparagus_bow.png" width="32" height="32" alt=""> [Asparagus Longbow](#weapon-asparagus_bow) | <img src="../images/item/scope.png" width="32" height="32" alt=""> Scope | <img src="../images/weapon/asparagus_volley.png" width="32" height="32" alt=""> **Asparagus Arrow Storm** | 56→**95** / 0.88s→**0.75s** / 520→**598** | Each draw looses a fan of asparagus arrows that pierce whole crowds. |
 | <img src="../images/weapon/coal_tongs.png" width="32" height="32" alt=""> [Coal Tongs](#weapon-coal_tongs) | <img src="../images/item/oven_mitt.png" width="32" height="32" alt=""> Oven Mitt | <img src="../images/weapon/yam_oven.png" width="32" height="32" alt=""> **Sweet Potato Oven** | 49→**83** / 0.9s→**0.77s** / 125→**150** | Red-hot oven tongs that roast whatever they grab. |
 | <img src="../images/weapon/salt_aura.png" width="32" height="32" alt=""> [Sea Salt Ward](#weapon-salt_aura) | <img src="../images/item/glasses.png" width="32" height="32" alt=""> Reading Glasses | <img src="../images/weapon/truth_field.png" width="32" height="32" alt=""> **Field of Truth** | 18→**20** / 0.5s→**0.43s** / 109→**131** | The detective's salt-crystal field lays bare the weak points of everything inside. |

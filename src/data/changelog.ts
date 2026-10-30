@@ -12,6 +12,91 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.8.0',
+    date: '2026-10-30',
+    highlight: [
+      '全新「可爱风」插画画风：39 名角色与全部 Boss 换上逐帧动画；章节开场四格漫画；菜单界面全面重做',
+      'A new illustrated "Cute" art style: all 39 heroes and every boss get frame-by-frame animation; chapter-opening comics; every menu redesigned',
+    ],
+    items: [
+      [
+        '新增「可爱风」画风：39 名角色、18 个 Boss 及其全部阶段形态换上逐帧插画动画，地图、武器、弹体与主菜单封面同步换新；原来的程序绘制画面保留为「复古风」，可在设置里随时切换，立即生效',
+        'New "Cute" art style: all 39 heroes, 18 bosses and every boss phase now use frame-by-frame illustrated animation, with new maps, weapons, projectiles and title screen; the original procedural look stays as "Retro" and can be switched in Settings at any time, instantly',
+      ],
+      [
+        '新增画质设置（自动 / 低 / 标准 / 高）：自动档会按设备内存与是否触屏挑选，手机和低内存设备更省电、更流畅',
+        'New Graphics quality setting (Auto / Low / Standard / High): Auto picks based on device memory and touch input, so phones and low-memory devices run cooler and smoother',
+      ],
+      [
+        '新增 7 章剧情：第一次进入每一章会播放开场四格漫画，选关界面的「📖 本章故事」可以随时回看',
+        'New 7-chapter story: each chapter opens with a four-panel comic the first time you enter it; rewatch any time from "📖 Chapter story" on the chapter select screen',
+      ],
+      [
+        '选角界面改为手账风格的角色图鉴，每页可显示 24 名角色；设置、暂停、商店、合成台、图鉴、成就界面全部重做',
+        'Character select is now a journal-style hero album showing 24 heroes per page; Settings, Pause, Shop, Crafting, Codex and Achievements screens are all redesigned',
+      ],
+      [
+        '所有菜单都支持手柄操作：十字键 / 左摇杆移动焦点，A 确认，B 返回，右摇杆滚动',
+        'Every menu now supports controllers: D-pad / left stick to move focus, A to confirm, B to go back, right stick to scroll',
+      ],
+      [
+        '辣椒、玉米、洋葱、椰子、樱桃、豌豆、蜜桃、甜菜、芦笋、黄豆加强：基础属性提高，并且每完成一波永久获得成长',
+        'Chili, Corn, Onion, Coconut, Cherry, Pea, Peach, Beet, Asparagus and Soybean buffed: higher base stats, plus permanent growth for every wave cleared',
+      ],
+      [
+        '光环武器的范围与附带的灼烧、中毒随品质提升，并额外享受近战 / 元素伤害加成',
+        'Aura weapons gain radius and stronger Burn / Poison with each tier, and now also benefit from Melee / Elemental damage bonuses',
+      ],
+      [
+        '怪物会绕开障碍物，不再卡在墙后；伤害地形有了动画，冰箱章节的冰面会随机轮换',
+        'Enemies now path around obstacles instead of getting stuck; damaging terrain is animated, and the ice patches in the fridge chapter rotate at random',
+      ],
+      [
+        '修复从合成台返回商店时会重新进货、清空刷新次数、重新出现神秘商人的问题；已买空且刷新用完的商店重进后保持售罄',
+        'Fixed returning from Crafting restocking the shop, resetting rerolls and re-rolling the Mysterious Merchant; a sold-out shop with no rerolls left now stays sold out',
+      ],
+      [
+        '第 6、7 章的解锁条件与当前进度会在选关界面、点击未解锁章节时以及通关结算时显示',
+        'Chapter 6 and 7 unlock requirements and your progress now show on chapter select, when tapping a locked chapter, and on the victory screen',
+      ],
+      [
+        '皮肤玩法暂时下线，正在重新设计；已购买的皮肤和金番茄都完整保留',
+        'Skins are temporarily offline while being redesigned; skins you already bought and your Golden Tomatoes are all kept',
+      ],
+    ],
+    news: [
+      {
+        icon: '🎨',
+        title: ['可爱风画风', 'Cute art style'],
+        desc: [
+          '角色与 Boss 都有了逐帧动画；想要原来的样子，可以在设置里切回复古风',
+          'Heroes and bosses are now fully animated — switch back to Retro in Settings any time',
+        ],
+      },
+      {
+        icon: '📖',
+        title: ['章节漫画', 'Chapter comics'],
+        desc: [
+          '每章开场都有一段四格漫画，讲番茄妹和伙伴们的故事',
+          'Every chapter opens with a four-panel comic about Tomato Sis and her friends',
+        ],
+      },
+      {
+        icon: '📔',
+        title: ['全新界面', 'New menus'],
+        desc: [
+          '选角变成了角色图鉴，所有菜单都能用手柄操作',
+          'Character select is now a hero album, and every menu works with a controller',
+        ],
+      },
+      {
+        icon: '⚙️',
+        title: ['画质设置', 'Graphics quality'],
+        desc: ['手机卡顿或发烫时，可以在设置里把画质调低', 'If your phone lags or runs hot, lower the Graphics quality in Settings'],
+      },
+    ],
+  },
+  {
     version: '0.7.2',
     date: '2026-10-17',
     highlight: [

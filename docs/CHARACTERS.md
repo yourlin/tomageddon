@@ -133,8 +133,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/chili.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">辣椒姐 · 火焰专家</th></tr>
 <tr><td colspan="2"><i>脾气火爆，所到之处烈焰滚滚。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>火上浇油</b>：契合武器打中灼烧中的敌人时溅出火花，对周围造成 45% 伤害</td></tr>
-<tr><td nowrap>属性与特性</td><td>-2 最大生命；+3 元素伤害；所有命中 25% 概率灼烧；灼烧每次多叠 1 层</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>火上浇油</b>：契合武器打中灼烧中的敌人时溅出火花，对周围造成 45% 伤害；每完成一波，永久 +2 最大生命、+2% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+5 最大生命；+3 元素伤害；所有命中 25% 概率灼烧；灼烧每次多叠 1 层</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：火焰、枪械（50 把，双契合 5 把）<br>契合特效（伤害 +10%）：射程 +15%，命中多叠 1 层灼烧<br>双契合：<a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<a href="WEAPONS.md#weapon-bbq_torch">烧烤喷枪</a>、<a href="WEAPONS.md#weapon-bbq_sauce_cannon">烧烤酱炮</a>、<a href="WEAPONS.md#weapon-hot_sauce_gun">辣酱手枪</a>、<a href="WEAPONS.md#weapon-pumpkin_mortar">南瓜迫击炮</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/bbq_torch.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-bbq_torch">烧烤喷枪</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-mustard_flamer">芥末喷枪</a>、<img src="images/weapon/skewer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-skewer">烤串签</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-chili">烈焰新星</a>【周身爆发】冷却 20s — 火环由内向外扩散，被火线扫过的敌人受到伤害并叠加 3 层灼烧。</td></tr>
 <tr><td nowrap>解锁条件</td><td>默认解锁</td></tr>
@@ -145,8 +145,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/corn.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">玉米枪手 · 远程射手</th></tr>
 <tr><td colspan="2"><i>西部神枪手，用玉米粒击穿一切。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>远程压制</b>：契合子弹每飞行 100 距离，额外穿透 +1（最多 +3）</td></tr>
-<tr><td nowrap>属性与特性</td><td>+7 最大生命；+8% 全伤害；+3 远程伤害；+50 射程；+1 护甲；近战伤害 -50%；远程武器穿透 +1</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>远程压制</b>：契合子弹每飞行 100 距离，额外穿透 +1（最多 +3）；每完成一波，永久 +2 最大生命、+2% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+12 最大生命；+18% 全伤害；+3 远程伤害；+50 射程；+1 护甲；近战伤害 -50%；远程武器穿透 +1</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：枪械、暴击（61 把，双契合 5 把）<br>契合特效（伤害 +10%）：射程 +25%，穿透 +1<br>双契合：<a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<a href="WEAPONS.md#weapon-blueberry_sniper">蓝莓狙击枪</a>、<a href="WEAPONS.md#weapon-pepper_grinder">胡椒研磨枪</a>、<a href="WEAPONS.md#weapon-lychee_gun">荔枝红包枪</a>、<a href="WEAPONS.md#weapon-pea_sniper">豆荚狙击</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/fork.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-fork">番茄叉</a>、<img src="images/weapon/knife.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife">菜刀</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/cleaver.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-cleaver">剁骨刀</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-corn">爆米花弹幕</a>【环形弹幕】冷却 8s — 向四周抛出 18 颗玉米粒，落地后炸成爆米花，对落点周围敌人造成 70% 伤害。</td></tr>
 <tr><td nowrap>解锁条件</td><td>默认解锁</td></tr>
@@ -277,8 +277,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/onion.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">洋葱大叔 · 催泪硬汉</th></tr>
 <tr><td colspan="2"><i>层层叠叠的硬汉，让敌人泪流满面。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>催泪弹</b>：受击时使周围敌人致盲 2 秒（每 3 秒最多一次）；契合武器打致盲的敌人暴击率 +30%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+10 最大生命；+2 生命再生；+4 护甲；-3 移动速度；受击时反弹 15 点伤害</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>催泪弹</b>：受击时使周围敌人致盲 2 秒（每 3 秒最多一次）；契合武器打致盲的敌人暴击率 +30%；每完成一波，永久 +3 最大生命、+1% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+2 生命再生；+8% 全伤害；+4 护甲；-3 移动速度；受击时反弹 15 点伤害</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：投掷、毒气（18 把，双契合 2 把）<br>契合特效（伤害 +10%）：命中 15% 概率致盲<br>双契合：<a href="WEAPONS.md#weapon-onion_tear">洋葱催泪镖</a>、<a href="WEAPONS.md#weapon-mycelium_boomerang">菌丝回旋镖</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/onion_tear.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-onion_tear">洋葱催泪镖</a>、<img src="images/weapon/onion_boomerang.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-onion_boomerang">洋葱回旋镖</a>、<img src="images/weapon/pizza_cutter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pizza_cutter">披萨滚刀</a>、<img src="images/weapon/plate_frisbee.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-plate_frisbee">餐盘飞碟</a>、<img src="images/weapon/star_anise_shuriken.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-star_anise_shuriken">八角飞镖</a>、<img src="images/weapon/spore_sprayer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-spore_sprayer">孢子喷壶</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-onion">催泪领域</a>【禁锢领域】冷却 12s — 原地释放 5 秒催泪瓦斯，每 0.5 秒对雾中敌人造成 40% 伤害，并大幅减速、致盲（无法射击）。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-deaths">屡败屡战（银）</a>：累计阵亡 10 次</td></tr>
@@ -301,8 +301,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/coconut.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">椰子拳师 · 重拳格斗</th></tr>
 <tr><td colspan="2"><i>坚硬外壳下是一颗火热的格斗之心。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>重拳出击</b>：契合武器每第 4 拳伤害 ×2.5 并必定眩晕 0.4 秒；连续打同一个敌人每拳伤害 +6%（最多 +30%），打眩晕中的敌人伤害 +35%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+5 最大生命；+4 近战伤害；+2 护甲；命中 12% 概率眩晕 0.6 秒</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>重拳出击</b>：契合武器每第 4 拳伤害 ×2.5 并必定眩晕 0.4 秒；连续打同一个敌人每拳伤害 +6%（最多 +30%），打眩晕中的敌人伤害 +35%；每完成一波，永久 +2 最大生命、+2% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+10% 全伤害；+6 近战伤害；+2 护甲；命中 12% 概率眩晕 0.6 秒</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：格斗、蔬果（52 把，双契合 2 把）<br>契合特效（伤害 +10%）：重拳：每第 4 次攻击造成双倍伤害并大幅击退<br>双契合：<a href="WEAPONS.md#weapon-coconut_gloves">椰壳拳套</a>、<a href="WEAPONS.md#weapon-nut_knuckles">坚果指虎</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/coconut_gloves.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-coconut_gloves">椰壳拳套</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/slingshot.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-slingshot">番茄弹弓</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-garlic_aura">大蒜光环</a>、<img src="images/weapon/onion_boomerang.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-onion_boomerang">洋葱回旋镖</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-coconut">震地拳</a>【周身爆发】冷却 21s — 跃起砸地（期间无敌），对周围敌人造成 220% 伤害并震开，眩晕 1.2 秒并施加 3 层破甲。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-clear_1">厨房清扫</a>：通关第一章</td></tr>
@@ -325,8 +325,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/cherry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">樱桃双枪 · 连射枪手</th></tr>
 <tr><td colspan="2"><i>一根梗上的两颗樱桃，枪法快如闪电。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>连珠炮</b>：契合武器持续开火时每发叠 1 层热枪（攻速 +1%），叠满 20 层后过热 2 秒（攻速 −30%）并清零重叠；停火 1 秒清零</td></tr>
-<tr><td nowrap>属性与特性</td><td>+6 最大生命；+1 远程伤害；+20% 攻击速度；+1 护甲；远程武器开火时 25% 概率追加一次射击</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>连珠炮</b>：契合武器持续开火时每发叠 1 层热枪（攻速 +1%），叠满 20 层后过热 2 秒（攻速 −30%）并清零重叠；停火 1 秒清零；每完成一波，永久 +2 最大生命、+2% 攻速</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+1 远程伤害；+20% 攻击速度；+1 护甲；远程武器开火时 25% 概率追加一次射击</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：枪械、甜点（43 把，双契合 3 把）<br>契合特效（伤害 +10%）：攻速 +15%<br>双契合：<a href="WEAPONS.md#weapon-cola_zapper">可乐电击枪</a>、<a href="WEAPONS.md#weapon-cherry_pistols">樱桃双枪</a>、<a href="WEAPONS.md#weapon-macaron_gun">马卡龙连发</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/cherry_pistols.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-cherry_pistols">樱桃双枪</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/soda.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-soda">冰镇汽水</a>、<img src="images/weapon/olive_launcher.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-olive_launcher">橄榄发射器</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-cherry">双枪连射</a>【单体连发】冷却 11s — 左右手交替连射 12 发子弹，分别锁定最近的两个敌人，每发造成 90% 伤害。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-wset_garden_guard">菜园卫士（铜）</a>：单局凑出 2 件【菜园卫士】套装武器</td></tr>
@@ -337,8 +337,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/pea.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">豌豆士兵 · 军团兵</th></tr>
 <tr><td colspan="2"><i>豆荚里走出的小兵，人多力量大。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>豌豆军团</b>：每持有 1 把武器，契合子弹一分为二的概率 +11%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+7 最大生命；+2 远程伤害；+1 护甲；初始 2 把豌豆枪；每把同名武器 +6% 伤害</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>豌豆军团</b>：每持有 1 把武器，契合子弹一分为二的概率 +11%；每完成一波，永久 +3 最大生命、+3% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+2 远程伤害；+1 护甲；初始 2 把豌豆枪；每把同名武器 +6% 伤害</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：种子、枪械（27 把，双契合 4 把）<br>契合特效（伤害 +10%）：穿透 +1<br>双契合：<a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<a href="WEAPONS.md#weapon-bean_bazooka">豆子火箭筒</a>、<a href="WEAPONS.md#weapon-seed_spitter">瓜子机枪</a>、<a href="WEAPONS.md#weapon-pea_sniper">豆荚狙击</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/olive_launcher.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-olive_launcher">橄榄发射器</a>、<img src="images/weapon/popcorn_machine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-popcorn_machine">爆米花机</a>、<img src="images/weapon/grape_shotgun.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-grape_shotgun">葡萄霰弹枪</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-pea">豌豆炮台</a>【单体连发】冷却 10s — 在脚下种下一座豌豆炮台，5 秒内自动向最近的敌人连发 20 颗豌豆。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-kills">番茄酱风暴（金）</a>：累计击败 10,000 只怪物</td></tr>
@@ -349,8 +349,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/peach.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">蜜桃天使 · 治愈者</th></tr>
 <tr><td colspan="2"><i>温柔的天使，守护着每一个伙伴。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>天使庇护</b>：每 0.6 秒自动向最近的敌人发射追踪圣光弹（伤害 = 8 + 120% 远程伤害 + 50% 生命再生，有护盾时一次 2 枚）；每波首次受到致命伤害时保留 1 点生命，并获得 2 秒无敌；有护盾时契合武器穿透 +1，命中必定回血（每秒最多 3 次）</td></tr>
-<tr><td nowrap>属性与特性</td><td>+5 最大生命；+5 生命再生；+2 远程伤害；+5% 闪避；每波开始获得 25 点护盾；有护盾时伤害 +20%</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>天使庇护</b>：每 0.6 秒自动向最近的敌人发射追踪圣光弹（伤害 = 8 + 120% 远程伤害 + 50% 生命再生，有护盾时一次 2 枚）；每波首次受到致命伤害时保留 1 点生命，并获得 2 秒无敌；有护盾时契合武器穿透 +1，命中必定回血（每秒最多 3 次）；每完成一波，永久 +2 最大生命、+1 生命再生</td></tr>
+<tr><td nowrap>属性与特性</td><td>+5 最大生命；+5 生命再生；+10% 全伤害；+2 远程伤害；+5% 闪避；每波开始获得 25 点护盾；有护盾时伤害 +20%</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：甜点、酱料（39 把，双契合 3 把）<br>契合特效（伤害 +10%）：命中 3% 概率回复 1 生命<br>双契合：<a href="WEAPONS.md#weapon-honey_blaster">蜂蜜喷枪</a>、<a href="WEAPONS.md#weapon-jam_mortar">果酱迫击炮</a>、<a href="WEAPONS.md#weapon-peach_syrup">蜜桃糖浆枪</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/peach_syrup.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-peach_syrup">蜜桃糖浆枪</a>、<img src="images/weapon/ketchup.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-ketchup">番茄酱瓶</a>、<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-mustard_flamer">芥末喷枪</a>、<img src="images/weapon/soda.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-soda">冰镇汽水</a>、<img src="images/weapon/ladle.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-ladle">汤勺</a>、<img src="images/weapon/honey_blaster.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-honey_blaster">蜂蜜喷枪</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-peach">天使祝福</a>【吸取回复】冷却 21s — 降下圣光，对周围敌人造成 100% 伤害，无敌 1.5 秒，并分 3 次回复共 9% 最大生命。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-revive">凤凰涅槃</a>：在战斗中复活 1 次</td></tr>
@@ -373,8 +373,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/beet.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">甜菜狂战士 · 狂战士</th></tr>
 <tr><td colspan="2"><i>血红的甜菜，越战越勇。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>狂战之血</b>：每损失 10% 生命，契合武器攻速 +6%、范围 +3%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+3% 吸血概率；+15% 全伤害；-1 护甲；受伤时获得怒气</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>狂战之血</b>：每损失 10% 生命，契合武器攻速 +6%、范围 +3%；每完成一波，永久 +2 最大生命、+2% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+8 最大生命；+3% 吸血概率；+15% 全伤害；受伤时获得怒气</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：钝器、暴击（52 把，双契合 2 把）<br>契合特效（伤害 +10%）：吸血概率 +3%<br>双契合：<a href="WEAPONS.md#weapon-beet_axe">甜菜狂战斧</a>、<a href="WEAPONS.md#weapon-coal_tongs">炭火钳</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/beet_axe.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-beet_axe">甜菜狂战斧</a>、<img src="images/weapon/fork.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-fork">番茄叉</a>、<img src="images/weapon/rolling_pin.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-rolling_pin">擀面杖</a>、<img src="images/weapon/knife.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife">菜刀</a>、<img src="images/weapon/pan.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pan">平底锅</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-beet">狂暴</a>【自身增益】冷却 13s — 6 秒内获得暴怒（移速、伤害 +30%）与嗜血 3 层（吸血概率 +12%）。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-bosses">Boss 终结者（银）</a>：累计击败 5 名 Boss</td></tr>
@@ -385,8 +385,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/asparagus.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">芦笋弓手 · 精准射手</th></tr>
 <tr><td colspan="2"><i>修长的芦笋，百步穿杨。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>一箭穿心</b>：契合武器打满血敌人必定暴击，且这次命中不消耗穿透</td></tr>
-<tr><td nowrap>属性与特性</td><td>+4 最大生命；+1 远程伤害；+10% 暴击率；+80 射程；+1 护甲；命中 25% 概率标记敌人（下次必暴击）</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>一箭穿心</b>：契合武器打满血敌人必定暴击，且这次命中不消耗穿透；每完成一波，永久 +3 最大生命、+3% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+8 最大生命；+1 远程伤害；+10% 暴击率；+80 射程；+1 护甲；命中 25% 概率标记敌人（下次必暴击）</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：弓弩、穿透（14 把，双契合 2 把）<br>契合特效（伤害 +10%）：打被标记的敌人时暴击伤害 +50%<br>双契合：<a href="WEAPONS.md#weapon-carrot_crossbow">胡萝卜弩</a>、<a href="WEAPONS.md#weapon-asparagus_bow">芦笋长弓</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/asparagus_bow.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-asparagus_bow">芦笋长弓</a>、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/soda.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-soda">冰镇汽水</a>、<img src="images/weapon/blueberry_sniper.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-blueberry_sniper">蓝莓狙击枪</a>、<img src="images/weapon/carrot_crossbow.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-carrot_crossbow">胡萝卜弩</a>、<img src="images/weapon/pepper_grinder.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pepper_grinder">胡椒研磨枪</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-asparagus">穿心箭</a>【单体连发】冷却 12s — 蓄力 0.4 秒后朝生命最高的敌人射出贯穿直线的巨型穿心箭，造成高额伤害并标记命中敌人。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-max_hit">一击必杀（银）</a>：单次造成 5,000 点伤害</td></tr>
@@ -505,10 +505,10 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/soybean.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">黄豆军师 · 召唤统领</th></tr>
 <tr><td colspan="2"><i>运筹帷幄的小黄豆，一声令下豆兵齐出。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>撒豆成兵</b>：豆兵分身在场时，契合武器攻速 +70%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+3 最大生命；-5% 全伤害；+15% 技能冷却缩减；+40% 技能持续</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>撒豆成兵</b>：豆兵分身在场时，契合武器攻速 +70%；每完成一波，永久 +2 最大生命、+3% 技能伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+8 最大生命；+8% 全伤害；+15% 技能冷却缩减；+40% 技能持续</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：种子、爆破（29 把，双契合 2 把）<br>契合特效（伤害 +10%）：地雷爆炸后再炸开 2 颗小豆雷<br>双契合：<a href="WEAPONS.md#weapon-bean_bazooka">豆子火箭筒</a>、<a href="WEAPONS.md#weapon-bean_mine">撒豆雷</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/bean_mine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-bean_mine">撒豆雷</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/pepper_mine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pepper_mine">胡椒雷</a>、<img src="images/weapon/pineapple_mace.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pineapple_mace">菠萝流星锤</a></td></tr>
-<tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-soybean">豆兵出阵</a>【召唤分身】冷却 14s — 在自身周围 8 个方向各召唤 1 名豆兵，持续 10 秒，自动冲向附近敌人近身肉搏，每击造成 54% 伤害。</td></tr>
+<tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-soybean">豆兵出阵</a>【召唤分身】冷却 16s — 在自身周围 8 个方向各召唤 1 名豆兵，持续 10 秒，自动冲向附近敌人近身肉搏，每击造成 68% 伤害。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-chars_owned">全员集结（银）</a>：拥有 20 名角色</td></tr>
 </table>
 

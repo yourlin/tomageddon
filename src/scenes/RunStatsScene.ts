@@ -1,3 +1,4 @@
+import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // 局后数据（弹窗）：伤害来源排行 + 每波收入；从结算页或战绩页打开
 import Phaser from 'phaser';
 import { challengeKindName } from '../data/challenges';
@@ -8,6 +9,7 @@ import { CHAPTERS } from '../data/chapters';
 import type { RunRecord } from '../systems/Save';
 import { decodeBuild } from '../systems/BuildCode';
 import { startPractice } from '../systems/Practice';
+import { buildShareEnabled } from '../systems/Features';
 import { tx } from '../i18n';
 import { VW, VH } from '../systems/HiDpi';
 
@@ -34,6 +36,7 @@ export class RunStatsScene extends Phaser.Scene {
 
   create(data: { record: RunRecord }): void {
     const r = data.record;
+    requestWeaponArt(this, new Set(r.dmg.map(([id]) => id).filter((id) => !!WEAPON_MAP[id])));
     const W = VW(this),
       H = VH(this);
     this.add.rectangle(0, 0, W, H, 0x000000, 0.65).setOrigin(0).setInteractive();
@@ -106,8 +109,8 @@ export class RunStatsScene extends Phaser.Scene {
     });
     if (!r.dmg.length) text(this, lx, ly + 40, tx('没有记录到伤害', 'No damage recorded'), 16, COLORS.textDim);
 
-    // ---- J2 构筑分享码 / J3 用此构筑练习 ----
-    if (r.build) {
+    // ---- J2 构筑分享码 / J3 用此构筑练习（玩法暂未开放，构筑码照常记在存档里）----
+    if (r.build && buildShareEnabled()) {
       const code = r.build;
       const cb = text(this, lx, py + ph - 30, tx('📋 复制构筑分享码', '📋 Copy build code'), 16, '#9bf6ff').setInteractive({
         useHandCursor: true,

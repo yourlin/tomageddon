@@ -1,3 +1,6 @@
+import { preloadWorkbench, workbenchBackground, workbenchButton as button, workbenchPanel as panel } from '../ui/WorkbenchUI';
+import { queueArt, releaseArt } from '../systems/ArtRegistry';
+import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // 商店：购买武器/道具、合成、出售、刷新、锁定
 import { tip } from '../systems/Tutorial';
 import { pickOf } from '../systems/Rng';
@@ -39,21 +42,7 @@ import {
   lifeStealMaxPerSecond,
 } from '../data/balance';
 import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
-import {
-  text,
-  button,
-  panel,
-  COLORS,
-  fitImage,
-  hitArea,
-  toast,
-  autoRelayout,
-  statLines,
-  NEG_LINE,
-  NEG_COLOR,
-  tu,
-  TOUCH_UI,
-} from '../ui/UI';
+import { text, COLORS, fitImage, hitArea, toast, autoRelayout, statLines, NEG_LINE, NEG_COLOR, tu, TOUCH_UI } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { markSeen, persist } from '../systems/Save';
 import { tx, lang } from '../i18n';
@@ -87,6 +76,7 @@ import {
 import { VW, VH } from '../systems/HiDpi';
 import { setToastAnchor } from '../systems/Achievements';
 import { portraitKey } from '../ui/Portrait';
+import { activeSkin } from '../systems/Progress';
 
 /** 打造每级伤害加成（%），用于界面文字 */
 const FORGE_PCT = Math.round(FORGE.dmgPerLevel * 100);
@@ -107,7 +97,8 @@ export class ShopScene extends Phaser.Scene {
   private layer!: Phaser.GameObjects.Container;
   private popup: Phaser.GameObjects.Container | null = null;
   /** 右侧面板当前页签 */
-  private sideTab: 'stats' | 'char' = 'stats';
+  private inventoryTab: 'weapons' | 'storage' | 'items' = 'weapons';
+  private inventoryPage = 0;
   /** 当前弹窗的选项（供自动化测试读取；空 = 没有弹窗） */
   modalChoices: { label: string; enabled: boolean; pick: () => void }[] = [];
 
@@ -115,9 +106,22 @@ export class ShopScene extends Phaser.Scene {
     super('Shop');
   }
 
+  preload(): void {
+    preloadWorkbench(this);
+    queueArt(
+      this,
+      {
+        portraits: [{ kind: 'char', id: run.charId, skinId: activeSkin(run.charId)?.id }],
+        bodies: [{ kind: 'char', id: run.charId, skinId: activeSkin(run.charId)?.id }],
+      },
+      'shop:portrait',
+    );
+  }
+
   create(data?: { keep?: boolean }): void {
     // 成就提示条在商店里停到底部正中：顶部正中是持有的番茄籽，被挡住会妨碍购物
     setToastAnchor('bottom');
+    this.events.once('shutdown', () => releaseArt('shop:portrait'));
     this.events.once('shutdown', () => setToastAnchor('top'));
     setInRun(true);
     autoRelayout(this, { keep: true });
@@ -323,6 +327,10 @@ export class ShopScene extends Phaser.Scene {
   }
 
   private draw(): void {
+    requestWeaponArt(
+      this,
+      new Set([...run.allWeapons.map((w) => w.id), ...run.shop.filter((o) => o.kind === 'weapon' && !o.sold).map((o) => o.id)]),
+    );
     // 每次操作（购买、出售、刷新、锁定、合成、打造）后都会重绘：顺便写盘，
     // 保证「继续游戏」恢复的是当前货架与持有物，而不是进店时的快照
     saveRun();
@@ -334,6 +342,7 @@ export class ShopScene extends Phaser.Scene {
     this.popup?.destroy();
     this.popup = null;
 
+    workbenchBackground(this, L, W, H);
     L.add(text(this, 24, 18, tx('商店', 'Shop'), 36));
     L.add(
       text(
@@ -350,13 +359,13 @@ export class ShopScene extends Phaser.Scene {
         COLORS.textDim,
       ),
     );
-    L.add(this.add.image(W * 0.52, 40, 'ui_seed_icon').setScale(1.3));
-    L.add(text(this, W * 0.52 + 22, 40, String(run.seeds), 32, '#ffe066').setOrigin(0, 0.5));
+    L.add(this.add.image(W * 0.83, 40, 'ui_seed_icon').setScale(1.3));
+    L.add(text(this, W * 0.83 + 22, 40, tx(`番茄籽 ${run.seeds}`, `Seeds ${run.seeds}`), 26, '#ffe066').setOrigin(0, 0.5));
 
     // 商品
-    const leftW = W * 0.7 - 30;
+    const leftW = W * 0.79 - 36;
     const cw = (leftW - 3 * 14) / 4,
-      ch = 300,
+      ch = Math.min(354, H * 0.49),
       cy = 76;
     // 购买 / 锁定按钮：按实际高度（触屏放大）放在卡片底部，连同按钮阴影（4）离边框留 12
     const bh = tu(44);
@@ -364,18 +373,19 @@ export class ShopScene extends Phaser.Scene {
     run.shop.forEach((o, i) => {
       const x = 20 + i * (cw + 14);
       if (o.sold) {
-        L.add(panel(this, x, cy, cw, ch, 0x1f0d10, 0x3d1d22));
+        L.add(panel(this, x, cy, cw, ch, 0x1f0d10, 0x674938));
+        L.add(text(this, x + cw / 2, cy + ch / 2, tx('已售出', 'Sold'), 22, '#b69d82').setOrigin(0.5));
         return;
       }
       const rc = RARITY[o.tier];
-      L.add(panel(this, x, cy, cw, ch, COLORS.panel, o.locked ? COLORS.gold : rc.color));
+      L.add(panel(this, x, cy, cw, ch, COLORS.panel, o.locked ? COLORS.gold : 0xb88d58));
       let name: string, lines: string[], icon: string;
       // 卡片放不下时可以省略的行（按省略顺序）；武器的细节在点开后的弹窗里都能看到
       const optional: string[] = [];
       if (o.kind === 'weapon') {
         const d = WEAPON_MAP[o.id];
         name = `${d.name} ${TIER_NAMES[o.tier]}`;
-        icon = this.textures.exists(`icon_weapon_${d.id}`) ? `icon_weapon_${d.id}` : `weapon_${d.id}`;
+        icon = `weapon_${d.id}`;
         const s = run.stats;
         lines = [
           tx(
@@ -438,7 +448,7 @@ export class ShopScene extends Phaser.Scene {
             ),
           );
       }
-      L.add(fitImage(this.add.image(x + cw / 2, cy + 55, icon), 76));
+      L.add(fitImage(this.add.image(x + cw / 2, cy + 55, icon), o.kind === 'weapon' ? cw - 36 : 80));
       // 正好缺的合成材料：材料武器都已到位、只差道具的配方里，这件道具能补上一个空槽 → 右上角角标 + 一行说明
       const fills = o.kind === 'item' ? recipesFilledBy(o.id) : [];
       if (fills.length) {
@@ -508,7 +518,7 @@ export class ShopScene extends Phaser.Scene {
           by,
           40,
           bh,
-          o.locked ? '🔒' : '🔓',
+          '',
           () => {
             o.locked = !o.locked;
             this.draw();
@@ -517,25 +527,42 @@ export class ShopScene extends Phaser.Scene {
           18,
         ),
       );
+      const lockControl = L.list[L.list.length - 1] as ReturnType<typeof button>;
+      lockControl.label.setText(o.locked ? tx('解锁商品', 'Unlock offer') : tx('锁定商品', 'Lock offer'));
+      L.add(this.add.image(x + cw - 24, by, `workbench:${o.locked ? 'lock-fill' : 'unlock-fill'}`).setDisplaySize(20, 20));
     });
 
-    // 武器栏
+    // 工作台：装备、仓库与道具各自保留完整的分页入口。
     const wy = cy + ch + 18;
-    L.add(
-      text(
-        this,
-        20,
-        wy,
-        tx(
-          `武器（${run.weapons.length}/${run.maxWeapons}）· 点击合成/出售`,
-          `Weapons (${run.weapons.length}/${run.maxWeapons}) · click to combine/sell`,
+    // One inventory row needs a fixed amount of space; a taller viewport must
+    // not stretch this otherwise empty surface or push its actions offscreen.
+    const workbenchHeight = 172;
+    L.add(panel(this, 16, wy - 6, W - 32, workbenchHeight));
+    const tabs = [
+      ['weapons', tx(`我的武器 (${run.weapons.length}/${run.maxWeapons})`, `Weapons (${run.weapons.length}/${run.maxWeapons})`)],
+      ['storage', tx(`仓库 (${run.storage.length}/${run.storageMax})`, `Storage (${run.storage.length}/${run.storageMax})`)],
+      ['items', tx(`道具 (${Object.keys(run.items).length})`, `Items (${Object.keys(run.items).length})`)],
+    ] as const;
+    tabs.forEach(([id, label], i) =>
+      L.add(
+        button(
+          this,
+          118 + i * 202,
+          wy + 20,
+          190,
+          34,
+          label,
+          () => {
+            this.inventoryTab = id;
+            this.inventoryPage = 0;
+            this.draw();
+          },
+          this.inventoryTab === id ? COLORS.primary : 0x49302e,
+          16,
         ),
-        18,
-        '#ffb347',
       ),
     );
-    // 武器格子：触屏放大到 70（左栏纵向空间紧，再大会把道具挤出屏幕）
-    const ws = Math.min(70, tu(62));
+    const ws = Math.min(76, tu(68));
     const drawSlot = (w: OwnedWeapon, x: number, y: number) => {
       const rc = RARITY[w.tier];
       const g = this.add.graphics();
@@ -572,99 +599,186 @@ export class ShopScene extends Phaser.Scene {
         );
       L.add(hitArea(this, x, y, ws, ws, () => this.weaponPopup(w, x, y)));
     };
-    run.weapons.forEach((w, i) => drawSlot(w, 20 + i * (ws + 8), wy + 28));
+    const slotY = wy + 49;
+    const available = Math.max(1, Math.floor(Math.min(W - 250, W > 1080 ? Math.max(710, W - 450) - 42 : W - 250) / (ws + 10)));
+    if (this.inventoryTab === 'items') {
+      const entries = Object.entries(run.items);
+      const pages = Math.max(1, Math.ceil(entries.length / available));
+      this.inventoryPage = Math.min(this.inventoryPage, pages - 1);
+      entries.slice(this.inventoryPage * available, (this.inventoryPage + 1) * available).forEach(([id, n], i) => {
+        const x = 28 + i * (ws + 10),
+          it = ITEM_MAP[id];
+        L.add(panel(this, x, slotY, ws, ws, COLORS.panel, RARITY[it.rarity].color));
+        L.add(fitImage(this.add.image(x + ws / 2, slotY + ws / 2, itemIconKey(this, it)), ws - 12));
+        L.add(text(this, x + ws - 6, slotY + ws - 5, `×${n}`, 14).setOrigin(1));
+        L.add(hitArea(this, x, slotY, ws, ws, () => toast(this, `${it.name}：${describeItem(it).join('，')}`, RARITY[it.rarity].css)));
+      });
+      if (pages > 1)
+        L.add(
+          button(
+            this,
+            W - 130,
+            slotY + 34,
+            180,
+            42,
+            `${this.inventoryPage + 1}/${pages}  ›`,
+            () => {
+              this.inventoryPage = (this.inventoryPage + 1) % pages;
+              this.draw();
+            },
+            0x49302e,
+            16,
+          ),
+        );
+      if (!entries.length) L.add(text(this, 32, slotY + 20, tx('还没有道具', 'No items yet'), 18, '#c4ac91'));
+    } else {
+      const weapons = this.inventoryTab === 'weapons' ? run.weapons : run.storage;
+      const max = this.inventoryTab === 'weapons' ? run.maxWeapons : run.storageMax;
+      const pages = Math.max(1, Math.ceil(max / available));
+      this.inventoryPage = Math.min(this.inventoryPage, pages - 1);
+      for (let i = 0; i < Math.min(available, max - this.inventoryPage * available); i++) {
+        const x = 28 + i * (ws + 10),
+          w = weapons[this.inventoryPage * available + i];
+        if (w) drawSlot(w, x, slotY);
+        else L.add(panel(this, x, slotY, ws, ws, COLORS.panel, 0x674938));
+      }
 
-    // 仓库：不参与战斗，可与武器栏互换、出售，也能当合成材料
-    const stY = wy + 36 + ws;
-    L.add(
-      text(
-        this,
-        20,
-        stY,
-        tx(
-          `仓库（${run.storage.length}/${run.storageMax}）· 不参与战斗`,
-          `Storage (${run.storage.length}/${run.storageMax}) · not in combat`,
-        ),
-        15,
-        '#9d8189',
-      ),
-    );
-    for (let i = 0; i < run.storageMax; i++) {
-      const x = 20 + i * (ws + 8),
-        y = stY + 22;
-      const w = run.storage[i];
-      if (w) {
-        drawSlot(w, x, y);
-        L.add(this.add.graphics().fillStyle(0x000000, 0.35).fillRoundedRect(x, y, ws, ws, 10));
-      } else L.add(this.add.graphics().lineStyle(2, 0x5a4a4a, 1).strokeRoundedRect(x, y, ws, ws, 10));
+      if (pages > 1)
+        L.add(
+          button(
+            this,
+            W - 140,
+            wy + 20,
+            180,
+            30,
+            `${this.inventoryPage + 1}/${pages}  ›`,
+            () => {
+              this.inventoryPage = (this.inventoryPage + 1) % pages;
+              this.draw();
+            },
+            0x49302e,
+            14,
+          ),
+        );
     }
-
-    // 套装
+    const current = (this.inventoryTab === 'storage' ? run.storage : run.weapons)[0];
+    if (current && this.inventoryTab !== 'items' && W > 1080) {
+      const dx = Math.max(710, W - 450),
+        dw = W - dx - 30;
+      L.add(panel(this, dx, slotY - 4, dw, 100));
+      L.add(fitImage(this.add.image(dx + 66, slotY + 43, `weapon_${current.id}`), 110));
+      const d = WEAPON_MAP[current.id];
+      L.add(text(this, dx + 130, slotY + 6, `${d.name} ${TIER_NAMES[current.tier]}`, 20, '#fff0ce'));
+      L.add(
+        text(
+          this,
+          dx + 130,
+          slotY + 36,
+          tx(
+            `伤害 ${Math.round(weaponDamage(d, current.tier, run.stats))} · 冷却 ${weaponCooldown(d, current.tier, run.stats).toFixed(2)}s`,
+            `DMG ${Math.round(weaponDamage(d, current.tier, run.stats))} · CD ${weaponCooldown(d, current.tier, run.stats).toFixed(2)}s`,
+          ),
+          14,
+          '#e5c99b',
+        ),
+      );
+      L.add(text(this, dx + 130, slotY + 65, tx('点击管理：合成 · 打造 · 出售', 'Select: Merge · Forge · Sell'), 13, '#c4ac91'));
+      L.add(hitArea(this, dx, slotY - 4, dw, 100, () => this.weaponPopup(current, dx, slotY)));
+    }
     const sets = Object.entries(run.setCounts()).filter(([id, n]) => SET_MAP[id] && activeTier(SET_MAP[id], n));
     if (sets.length)
       L.add(
         text(
           this,
-          20,
-          stY + 32 + ws,
-          tx('套装：', 'Sets: ') +
-            sets.map(([id, n]) => `${tx(SET_MAP[id].name[0], SET_MAP[id].name[1])} ${n}/${SET_MAP[id].members.length}`).join('  '),
-          15,
-          '#9be564',
+          30,
+          wy + 137,
+          tx('套装：', 'Sets: ') + sets.map(([id, n]) => `${tx(...SET_MAP[id].name)} ${n}/${SET_MAP[id].members.length}`).join('  '),
+          13,
+          '#b9cb98',
         ),
       );
-
-    // 道具
-    const iy = stY + 50 + ws;
-    L.add(text(this, 20, iy, tx('道具', 'Items'), 18, '#ffb347'));
-    const is = tu(44);
-    Object.entries(run.items).forEach(([id, n], i) => {
-      const perRow = Math.floor(leftW / (is + 6));
-      const x = 20 + (i % perRow) * (is + 6),
-        y = iy + 26 + Math.floor(i / perRow) * (is + 6);
-      if (y + is > H - 6) return;
-      L.add(fitImage(this.add.image(x + is / 2, y + is / 2, itemIconKey(this, ITEM_MAP[id])), is));
-      if (n > 1) L.add(text(this, x + is, y + is, `x${n}`, 13).setOrigin(1, 1));
+    const sx = W * 0.79,
+      sw = W - sx - 18;
+    L.add(panel(this, sx, cy, sw, ch));
+    const portrait = portraitKey(this, 'char', run.char.id, activeSkin(run.char.id)?.id);
+    if (this.textures.exists(portrait)) L.add(fitImage(this.add.image(sx + sw / 2, cy + 72, portrait), 130));
+    L.add(text(this, sx + sw / 2, cy + 143, run.char.name, 20, '#fff0ce').setOrigin(0.5));
+    (['maxHp', 'attackSpeed', 'damage', 'armor'] as const).forEach((k, i) => {
+      const yy = cy + 174 + i * 30;
+      if (this.textures.exists(`stat_${k}`)) L.add(fitImage(this.add.image(sx + 23, yy, `stat_${k}`), 21));
+      L.add(text(this, sx + 42, yy, STAT_INFO[k].name, 15, '#e4c9ab').setOrigin(0, 0.5));
       L.add(
-        hitArea(this, x, y, is, is, () => {
-          const it = ITEM_MAP[id];
-          toast(this, `${it.name}：${describeItem(it).join('，')}`, RARITY[it.rarity].css);
-        }),
-      );
-    });
-
-    // 属性面板
-    const sx = W * 0.7,
-      sw = W - sx - 16;
-    // 右栏自下而上：「下一波」（底边离屏幕 18px）→「合成表 / 刷新」一行 → 面板（下沿在按钮行上方留间隙）
-    const B = this.bottomLayout(H);
-    L.add(panel(this, sx, 76, sw, B.panelBottom - 76));
-    // 右侧面板分两页：属性 / 角色（契合武器 + 天赋），选中的页签在本次商店内保持
-    const tabW = (sw - 40) / 2;
-    (['stats', 'char'] as const).forEach((tab, i) => {
-      const on = this.sideTab === tab;
-      L.add(
-        button(
+        text(
           this,
-          sx + 16 + tabW / 2 + i * (tabW + 8),
-          100,
-          tabW,
-          34,
-          tab === 'stats' ? tx('属性', 'Stats') : tx('角色', 'Character'),
-          () => {
-            if (this.sideTab === tab) return;
-            this.sideTab = tab;
-            this.draw();
-          },
-          on ? COLORS.primary : 0x4a2228,
-          18,
-        ),
+          sx + sw - 16,
+          yy,
+          `${run.stats[k]}${STAT_INFO[k].pct ? '%' : ''}`,
+          17,
+          run.stats[k] < 0 ? '#ef9992' : '#9be5b4',
+        ).setOrigin(1, 0.5),
       );
     });
-    if (this.sideTab === 'char') this.drawCharPanel(sx, 128, sw, B.panelBottom - 20);
-    else this.drawStatsPanel(sx, sw, H);
+    L.add(
+      button(this, sx + sw / 2, cy + ch - 28, sw - 24, 34, tx('属性 / 角色详情', 'Stats / Character'), () => this.details(), 0x49302e, 15),
+    );
+    this.drawBottomButtons(24, W - 48, Math.min(H, wy + workbenchHeight + 78));
+  }
 
-    this.drawBottomButtons(sx, sw, H);
+  private details(tab: 'stats' | 'char' = 'stats'): void {
+    this.popup?.destroy();
+    const W = VW(this),
+      H = VH(this),
+      original = this.layer;
+    const overlay = this.add.container(0, 0).setDepth(200);
+    this.popup = overlay;
+    this.layer = overlay;
+    overlay.add(this.add.rectangle(W / 2, H / 2, W, H, 0x100910, 0.85).setInteractive());
+    const x = W * 0.18,
+      w = W * 0.64;
+    overlay.add(panel(this, x, 60, w, H - 110));
+    overlay.add(
+      button(
+        this,
+        x + 100,
+        94,
+        160,
+        38,
+        tx('全部属性', 'All stats'),
+        () => this.details('stats'),
+        tab === 'stats' ? COLORS.primary : 0x49302e,
+      ),
+    );
+    overlay.add(
+      button(
+        this,
+        x + 280,
+        94,
+        160,
+        38,
+        tx('角色与契合', 'Character'),
+        () => this.details('char'),
+        tab === 'char' ? COLORS.primary : 0x49302e,
+      ),
+    );
+    overlay.add(
+      button(
+        this,
+        x + w - 65,
+        94,
+        90,
+        38,
+        tx('关闭', 'Close'),
+        () => {
+          this.popup?.destroy();
+          this.popup = null;
+        },
+        0x49302e,
+        16,
+      ),
+    );
+    if (tab === 'stats') this.drawStatsPanel(x, w, H + 70);
+    else this.drawCharPanel(x, 140, w, H - 70);
+    this.layer = original;
   }
 
   /** 角色页：契合武器（标出已持有）、契合特效、天赋与特性 */
@@ -681,7 +795,7 @@ export class ShopScene extends Phaser.Scene {
     };
     // 角色形象 + 名字 / 定位
     const ps = 76;
-    L.add(fitImage(this.add.image(sx + 16 + ps / 2, y + ps / 2, portraitKey(this, 'char', run.charId)), ps));
+    L.add(fitImage(this.add.image(sx + 16 + ps / 2, y + ps / 2, portraitKey(this, 'char', run.charId, activeSkin(run.charId)?.id)), ps));
     L.add(text(this, sx + 16 + ps + 12, y + 14, c.name, 22, '#ffd166'));
     L.add(text(this, sx + 16 + ps + 12, y + 46, c.title, 15, COLORS.textDim));
     y += ps + 10;
@@ -784,22 +898,22 @@ export class ShopScene extends Phaser.Scene {
 
   private drawBottomButtons(sx: number, sw: number, H: number): void {
     const L = this.layer;
-    const B = this.bottomLayout(H);
     // 底部按钮
     const rp = this.rerollCost();
     const left = run.maxRerolls - run.rerolls,
       canReroll = left > 0;
     // 「合成表」与「刷新」并排一行（左窄右宽），下面一行是「下一波」；原来两个按钮上下叠放会互相遮挡
     const gap = 8;
-    const craftW = Math.round(sw * 0.36),
-      rerollW = sw - craftW - gap;
+    const craftW = Math.round(sw * 0.22),
+      rerollW = Math.round(sw * 0.42);
+    const footerY = H - 46;
     L.add(
       button(
         this,
         sx + craftW + gap + rerollW / 2,
-        B.rowY,
+        footerY,
         rerollW,
-        B.rowH,
+        52,
         canReroll ? tx(`刷新 🌱${rp}（剩 ${left} 次）`, `Reroll 🌱${rp} (${left} left)`) : tx('本波刷新次数已用完', 'No rerolls left'),
         () => {
           if (run.seeds < rp || !canReroll) return;
@@ -820,10 +934,10 @@ export class ShopScene extends Phaser.Scene {
       button(
         this,
         sx + craftW / 2,
-        B.rowY,
+        footerY,
         craftW,
-        B.rowH,
-        ready ? tx(`🔨 合成 ${ready}`, `🔨 Craft ${ready}`) : tx('🔨 合成表', '🔨 Craft'),
+        52,
+        ready ? tx(`合成表 · ${ready} 可合成`, `Craft · ${ready} ready`) : tx('合成表', 'Craft'),
         () => {
           saveRun();
           this.scene.start('Craft');
@@ -832,7 +946,9 @@ export class ShopScene extends Phaser.Scene {
         18,
       ),
     );
-    L.add(button(this, sx + sw / 2, B.nextY, sw, B.nextH, tx('下一波 ▶', 'Next Wave ▶'), () => this.nextWave(), COLORS.primary, tu(24)));
+    L.add(
+      button(this, sx + sw * 0.84, footerY, sw * 0.32, 58, tx('下一波 ▶', 'Next Wave ▶'), () => this.nextWave(), COLORS.primary, tu(24)),
+    );
   }
 
   private buy(o: ShopOffer): void {

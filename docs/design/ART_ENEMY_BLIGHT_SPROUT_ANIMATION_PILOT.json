@@ -1,0 +1,43 @@
+{
+  "kind": "enemy",
+  "id": "blight_sprout",
+  "displayName": "枯萎嫩芽",
+  "status": "integrated;native3tier and actualAI basic validation passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase130/group3;no ranged attack",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/blight_sprout/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/blight_sprout/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/blight_sprout/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/blight_sprout/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "rejectedSources": {
+    "move-sheet-pilot-1.png": "frame2 crown mirrored"
+  }
+}

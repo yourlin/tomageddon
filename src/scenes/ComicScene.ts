@@ -1,8 +1,8 @@
 // 章节开场四格漫画：2×2 格子逐格出现，点击 / 按键翻下一格，右上角可跳过。
-// 剧本与分镜在 data/comics.ts；演员是游戏里现成的 Rig，背景是章节场地缩略图。
+// 剧本与分镜在 data/comics.ts；优先用章节插画，没有插画时用游戏素材拼场景。
 import Phaser from 'phaser';
-import { Rig, type RigState } from '../objects/Rig';
-import { lookOf } from '../ui/Portrait';
+import type { EntityVisual, RigState } from '../objects/EntityVisual';
+import { createEntityVisual, isForceProcedural } from '../objects/visualFactory';
 import { arenaThumb } from '../art/ArenaArt';
 import { COMICS, type ComicPanel, type ComicActor } from '../data/comics';
 import { CHARACTER_MAP } from '../data/characters';
@@ -13,6 +13,9 @@ import { save, persist } from '../systems/Save';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { VW, VH } from '../systems/HiDpi';
+import { RUNTIME_ART_URLS } from '../systems/RuntimeArt';
+import { queueArt, releaseArt, unloadUnusedArt } from '../systems/ArtRegistry';
+import { retainSceneTexture } from '../systems/SceneArtLease';
 
 export interface ComicData {
   ch: number;
@@ -28,7 +31,7 @@ interface Box {
 }
 
 interface Live {
-  rig: Rig;
+  rig: EntityVisual;
   face: number;
   anim: RigState;
   t: number;
@@ -37,18 +40,18 @@ interface Live {
 const GAP = 14;
 
 /**
- * 插画替换：把画好的格子放到 src/assets/comics/ch{章}-{格}.{png|jpg|webp}（如 ch1-1.png … ch7-4.png）。
+ * 插画：src/assets/comics/ch{章}.png 为 2×2 四格图，运行时按纹理帧分别展示。
+ * 也支持 ch{章}-{格}.{png|jpg|webp} 单格替换，优先于整章四格图。
  * 某一格有插画时，这一格只显示插画（cover 铺满），旁白 / 对白 / 拟声改成格子底部的中英文字幕条；
- * 没有插画的格子仍按 data/comics.ts 的分镜用游戏素材拼。只在进入漫画场景时加载当前章节的 4 张。
+ * 没有插画的格子仍按 data/comics.ts 的分镜用游戏素材拼。只在进入漫画场景时加载当前章节的插画。
  */
-const ART = import.meta.glob('../assets/comics/*.{png,jpg,jpeg,webp}', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-}) as Record<string, string>;
+const ART = Object.fromEntries(Object.entries(RUNTIME_ART_URLS).filter(([p]) => p.startsWith('comics/')));
 const artUrl = (ch: number, i: number): string | undefined =>
   Object.entries(ART).find(([p]) => new RegExp(`/ch${ch}-${i}\\.(png|jpe?g|webp)$`).test(p))?.[1];
 const artKey = (ch: number, i: number): string => `comic_art_${ch}_${i}`;
+const sheetUrl = (ch: number): string | undefined =>
+  Object.entries(ART).find(([p]) => new RegExp(`/ch${ch}\\.(png|jpe?g|webp)$`).test(p))?.[1];
+const sheetKey = (ch: number): string => `comic_sheet_${ch}`;
 
 export class ComicScene extends Phaser.Scene {
   private cd!: ComicData;
@@ -69,10 +72,48 @@ export class ComicScene extends Phaser.Scene {
 
   preload(): void {
     const ch = this.cd?.ch ?? 0;
-    for (let i = 1; i <= 4; i++) {
-      const url = artUrl(ch, i);
-      if (url && !this.textures.exists(artKey(ch, i))) this.load.image(artKey(ch, i), url);
+    const sheet = sheetUrl(ch);
+    const owner = `comic:${ch}`;
+    const failed = new Set<string>();
+    const queuedPanels = new Set<number>();
+    const candidates = (COMICS[ch]?.panels ?? []).map((_, i) => [
+      ...(sheet ? [sheetKey(ch)] : []),
+      ...(artUrl(ch, i + 1) ? [artKey(ch, i + 1)] : []),
+    ]);
+    const imageKeys = new Set(candidates.flat());
+    const queueFallbacks = () => {
+      if (isForceProcedural()) return;
+      candidates.forEach((keys, i) => {
+        if (queuedPanels.has(i) || keys.some((key) => !failed.has(key))) return;
+        queuedPanels.add(i);
+        queueArt(this, { bodies: (COMICS[ch].panels[i].actors ?? []).map((a) => ({ kind: a.kind, id: a.id })) }, owner);
+      });
+    };
+    const onError = (file: Phaser.Loader.File) => {
+      if (!imageKeys.has(file.key)) return;
+      failed.add(file.key);
+      queueFallbacks();
+    };
+    this.load.on('loaderror', onError);
+    this.events.once('shutdown', () => {
+      this.load.off('loaderror', onError);
+      releaseArt(owner);
+      this.game.events.once('poststep', () => unloadUnusedArt(this.textures));
+    });
+    const queueIllustration = (key: string, url: string) => {
+      retainSceneTexture(this, key, (scene, unused) => {
+        if (scene.textures.exists(unused)) scene.textures.remove(unused);
+      });
+      if (!this.textures.exists(key)) this.load.image(key, url);
+    };
+    if (!isForceProcedural()) {
+      if (sheet) queueIllustration(sheetKey(ch), sheet);
+      for (let i = 1; i <= 4; i++) {
+        const url = artUrl(ch, i);
+        if (url) queueIllustration(artKey(ch, i), url);
+      }
     }
+    queueFallbacks();
   }
 
   create(data: ComicData): void {
@@ -101,13 +142,16 @@ export class ComicScene extends Phaser.Scene {
     text(this, 24, 26, tx('番茄酱小镇的故事', 'Tales of Ketchup Town'), 15, COLORS.textDim);
     button(this, W - 80, 34, 130, 44, tx('跳过 ⏭', 'Skip ⏭'), () => this.finish(), 0x555555, 18);
 
-    // 2×2 格子，整体按 16:9 左右的比例居中
+    // 章节插画按原始单格比例排版，保留人物叶冠、帽子和画面上方的线索。
+    const sheetTexture =
+      !isForceProcedural() && this.textures.exists(sheetKey(data.ch)) ? this.textures.get(sheetKey(data.ch)).getSourceImage() : undefined;
+    const panelAspect = sheetTexture ? sheetTexture.width / sheetTexture.height : 1.9;
     const top = 66,
       bottom = 56;
     const availW = W - 48,
       availH = H - top - bottom;
-    const pw = Math.min((availW - GAP) / 2, ((availH - GAP) / 2) * 1.9);
-    const ph = Math.min((availH - GAP) / 2, pw / 1.45);
+    const pw = Math.min((availW - GAP) / 2, ((availH - GAP) / 2) * panelAspect);
+    const ph = Math.min((availH - GAP) / 2, pw / (sheetTexture ? panelAspect : 1.45));
     const x0 = (W - (pw * 2 + GAP)) / 2,
       y0 = top + (availH - (ph * 2 + GAP)) / 2;
     this.boxes = [0, 1, 2, 3].map((i) => ({ x: x0 + (i % 2) * (pw + GAP), y: y0 + Math.floor(i / 2) * (ph + GAP), w: pw, h: ph }));
@@ -124,7 +168,7 @@ export class ComicScene extends Phaser.Scene {
     });
     this.input.keyboard?.on('keydown', (e: KeyboardEvent) => (e.key === 'Escape' ? this.finish() : this.advance()));
 
-    this.events.on('update', (_t: number, dms: number) => {
+    const animate = (_t: number, dms: number) => {
       const dt = dms / 1000;
       for (const l of this.live) {
         if (!l.rig.active) continue;
@@ -135,7 +179,9 @@ export class ComicScene extends Phaser.Scene {
         }
         l.rig.tick(dt, l.anim === 'move' ? 1 : 0, l.face);
       }
-    });
+    };
+    this.events.on('update', animate);
+    this.events.once('shutdown', () => this.events.off('update', animate));
     this.time.delayedCall(250, () => this.advance());
   }
 
@@ -171,8 +217,22 @@ export class ComicScene extends Phaser.Scene {
     maskG.fillStyle(0xffffff).fillRect(b.x, b.y, b.w, b.h);
     c.setMask(maskG.createGeometryMask());
     const key = artKey(this.cd.ch, n);
-    if (this.textures.exists(key)) {
+    if (!isForceProcedural() && this.textures.exists(key)) {
       this.drawArtPanel(c, p, b, key);
+      return;
+    }
+    const sheet = sheetKey(this.cd.ch);
+    if (!isForceProcedural() && this.textures.exists(sheet)) {
+      const texture = this.textures.get(sheet);
+      if (!texture.has(String(n))) {
+        const source = texture.getSourceImage();
+        const w = Math.floor(source.width / 2),
+          h = Math.floor(source.height / 2);
+        // 去掉格线，避免 cover 缩放后边缘出现相邻格；源图保持完整。
+        const inset = Math.max(4, Math.round(source.width / 256));
+        texture.add(n, 0, ((n - 1) % 2) * w + inset, Math.floor((n - 1) / 2) * h + inset, w - inset * 2, h - inset * 2);
+      }
+      this.drawArtPanel(c, p, b, sheet, n);
       return;
     }
 
@@ -206,11 +266,11 @@ export class ComicScene extends Phaser.Scene {
         this.tweens.add({ targets: obj, x: at.x + b.w * 0.22, duration: 1600, repeat: -1, onRepeat: () => obj.setX(at.x) });
     }
 
-    const rigs: { rig: Rig; a: ComicActor; r: number }[] = [];
+    const rigs: { rig: EntityVisual; a: ComicActor; r: number }[] = [];
     for (const a of p.actors ?? []) {
       const r = (a.r ?? 0.15) * b.h;
       const at = P(a.x, a.y);
-      const rig = new Rig(this, lookOf(a.kind, a.id), `${a.kind}_${a.id}`, r);
+      const rig = createEntityVisual(this, { kind: a.kind, id: a.id }, r);
       rig.setPosition(at.x, at.y);
       if (a.shadow) {
         rig.setStatusTint(0x1a0f14);
@@ -224,8 +284,9 @@ export class ComicScene extends Phaser.Scene {
       this.live.push({ rig, face, anim, t: 0 });
       rigs.push({ rig, a, r });
       // 演员依次“跳”进格子
-      rig.setScale(0.6);
-      this.tweens.add({ targets: rig, scale: 1, duration: 260, ease: 'Back.out', delay: 60 * rigs.length });
+      const scale = rig.scaleX;
+      rig.setScale(scale * 0.6);
+      this.tweens.add({ targets: rig, scale, duration: 260, ease: 'Back.out', delay: 60 * rigs.length });
     }
 
     if (p.caption) c.add(this.caption(b, tx(p.caption[0], p.caption[1])));
@@ -259,12 +320,13 @@ export class ComicScene extends Phaser.Scene {
     else if (p.fx === 'flash') this.cameras.main.flash(160, 255, 255, 255);
   }
 
-  /** 插画格：图片 cover 铺满格子，文字统一做成底部字幕条（中英文随语言切换） */
-  private drawArtPanel(c: Phaser.GameObjects.Container, p: ComicPanel, b: Box, key: string): void {
-    const img = this.add.image(b.x + b.w / 2, b.y + b.h / 2, key);
+  /** 插画格：对白和旁白作为独立文字层，不能依赖原画里烘焙文字。 */
+  private drawArtPanel(c: Phaser.GameObjects.Container, p: ComicPanel, b: Box, key: string, frame?: number): void {
+    const img = this.add.image(b.x + b.w / 2, b.y + b.h / 2, key, frame);
     img.setScale(Math.max(b.w / img.width, b.h / img.height));
     c.add(img);
     const lines: string[] = [];
+    for (const prop of p.props ?? []) if (prop.text) lines.push(tx(prop.text[0], prop.text[1]));
     if (p.caption) lines.push(tx(p.caption[0], p.caption[1]));
     if (p.say) {
       const a = p.actors?.[p.say.who];
@@ -273,14 +335,32 @@ export class ComicScene extends Phaser.Scene {
     }
     if (p.sfx && !lines.length) lines.push(tx(p.sfx.text[0], p.sfx.text[1]));
     if (lines.length) {
-      const t = text(this, b.x + b.w / 2, b.y + b.h - 10, lines.join('\n'), Math.max(14, Math.round(b.h * 0.055)), '#fff4ea', {
-        align: 'center',
-        wordWrap: { width: b.w - 40, useAdvancedWrap: true },
-        stroke: '#000000',
-        strokeThickness: 4,
-      }).setOrigin(0.5, 1);
-      c.add(this.add.rectangle(b.x, t.y - t.height - 10, b.w, t.height + 20, 0x000000, 0.55).setOrigin(0));
-      c.add(t);
+      const panelIndex = COMICS[this.cd.ch].panels.indexOf(p) + 1;
+      const fontSize = Math.max(20, Math.min(25, Math.round(b.h * 0.078)));
+      const t = text(this, b.x + b.w / 2, b.y + b.h - 17, lines.join('\n'), fontSize, '#302018', {
+        align: 'left',
+        wordWrap: { width: b.w - 56, useAdvancedWrap: true },
+        strokeThickness: 0,
+        lineSpacing: 3,
+        fontStyle: p.say ? 'bold' : 'normal',
+      })
+        .setOrigin(0.5, 1)
+        .setName(`comic-copy-${this.cd.ch}-${panelIndex}`);
+      // Long translated copy must remain inside its own panel.
+      while (t.height > b.h * 0.48 && Number.parseInt(String(t.style.fontSize)) > 16)
+        t.setFontSize(Number.parseInt(String(t.style.fontSize)) - 1);
+      const left = b.x + 12,
+        top = t.y - t.height - 10;
+      const box = this.add.graphics();
+      box.fillStyle(p.say ? 0xfff6df : 0xffe8a3, 0.97).lineStyle(2, 0x553626, 1);
+      box.fillRoundedRect(left, top, b.w - 24, t.height + 20, 10);
+      box.strokeRoundedRect(left, top, b.w - 24, t.height + 20, 10);
+      if (p.say) {
+        const tailX = b.x + b.w * 0.27;
+        box.fillTriangle(tailX, top + 1, tailX + 18, top + 1, tailX + 5, top - 12);
+        box.lineBetween(tailX, top, tailX + 5, top - 12).lineBetween(tailX + 5, top - 12, tailX + 18, top);
+      }
+      c.add([box, t]);
     }
     c.add(this.add.rectangle(b.x, b.y, b.w, b.h).setOrigin(0).setStrokeStyle(5, 0xfff4ea));
     c.setAlpha(0);

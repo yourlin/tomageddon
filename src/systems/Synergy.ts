@@ -1,3 +1,4 @@
+import { createSaucePool } from './JuiceArt';
 // 双契合武器的契合技（docs/design/DOUBLE_SYNERGY.md；说明文字与武器对照表见 data/synergy.ts）。
 // 标签特性强化是常驻属性，放在 Talents.affMods 里；这里只实现按次数 / 时间 / 命中触发的武器机制。
 // 契合技自己打出的伤害（气刃、碎片、余震、地带……）都带 echo 标记，不会再触发天赋与契合技。
@@ -32,7 +33,7 @@ interface Zone {
   t: number;
   tick: number;
   info: HitInfo;
-  img: Phaser.GameObjects.Image;
+  img: Phaser.GameObjects.Image | Phaser.GameObjects.Container;
   /** 每次结算时额外做的事（西兰花放电） */
   zap?: boolean;
 }
@@ -98,15 +99,17 @@ export class Synergy {
   }
 
   /** 地面效果：每 0.5 秒对范围内敌人结算一次 info（伤害 + 状态） */
-  private zone(x: number, y: number, r: number, dur: number, info: HitInfo, color: number, zap = false): void {
+  private zone(x: number, y: number, r: number, dur: number, info: HitInfo, color: number, zap = false, sauce = false): void {
     const g = this.g;
     if (this.zones.length >= 16) this.zones.shift()?.img.destroy();
-    const img = g.add
-      .image(x, y, 'fx_pool')
-      .setTint(color)
-      .setAlpha(0.5)
-      .setDepth(1.4)
-      .setScale((r * 2) / 256);
+    const img = sauce
+      ? createSaucePool(g, x, y, r, color, 0.5)
+      : g.add
+          .image(x, y, 'fx_pool')
+          .setTint(color)
+          .setAlpha(0.5)
+          .setDepth(1.4)
+          .setScale((r * 2) / 256);
     this.zones.push({ x, y, r, t: dur, tick: 0, info, img, zap });
   }
 
@@ -210,7 +213,7 @@ export class Synergy {
         if (n % 3 === 0) this.zone(t.x, t.y, 60, 2, this.echo(info, 0.2, { status: [S('burn', 2)] }), 0xff7b00);
         break;
       case 'sauceZone':
-        if (n % 3 === 0) this.zone(t.x, t.y, 70, 3, this.echo(info, 0.15, { status: [S('slow', 2), S('burn', 2)] }), 0xc1121f);
+        if (n % 3 === 0) this.zone(t.x, t.y, 70, 3, this.echo(info, 0.15, { status: [S('slow', 2), S('burn', 2)] }), 0xc1121f, false, true);
         break;
       case 'sporeCloud':
         if (n % 4 === 0) this.zone(t.x, t.y, 80, 3, this.echo(info, 0.1, { status: [S('poison', 4)] }), 0x9d4edd);

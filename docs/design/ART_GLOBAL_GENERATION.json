@@ -1,0 +1,24 @@
+{
+  "tool": "built-in image_gen",
+  "styleReference": "src/assets/comics/ch1.png",
+  "entityStylePrompt": "Use case: stylized-concept. Asset type: production 2D game battle sprite for Tomageddon. Reference image is STYLE reference ONLY: cute chibi manga, clean dark outlines, big readable expressive eyes, polished warm cel shading, vivid colors. Create exactly ONE isolated creature full body centered, square canvas, true transparent background. Slightly elevated three-quarter FRONT view facing slightly RIGHT, suitable for top-down arena game. Entire silhouette including feet antennae wings within center 80% of canvas, ground contact around y=87%, centered x=50%. No floor, pedestal, cast ground shadow, environment, glow background, text, labels, border, reference panels. Thick readable silhouette, restrained texture readable at 35-110px. Light upper left. Cute comical mischievous food/insect monster, never realistic disgusting or gory. Not a sheet, not multiple poses. ",
+  "subjects": {
+    "snail": "SNOT SNAIL: chubby sage-green snail with a glossy caramel spiral shell, two stalk eyes with sleepy mischievous eyelids, pearly pale green soft foot and tiny grin. Single snail, no slime trail or ground puddle.",
+    "spider": "POISON SPIDER: adorable round plump lavender-purple spider, three large ruby eyes, eight short charcoal-purple legs, a few violet shell spots, tiny ivory fangs. Symmetrical readable silhouette, no web background.",
+    "mushroom": "POISON MUSHROOM HEALER: cute plump cream mushroom stem creature with oversized red spotted mushroom cap, sleepy large eyes and cheeky smile, two tiny mauve feet. Small magical green medicinal bead pendant, no external effects.",
+    "brood": "FLY BROODMOTHER: cute plump pear-shaped mauve insect queen, segmented light purple belly, six tiny stubby legs, two droopy short antennae, two jewel-green compound eyes, two small pale translucent wings. No separate offspring, no crown.",
+    "bee": "POISON BEE: cute round fuzzy golden yellow bumblebee with two charcoal stripes, large amber eyes, two translucent ivory wings and six short legs, tiny tail stinger, mischievous expression.",
+    "worm": "EARTHWORM: cute chubby rosy-tan earthworm, several soft rounded segments, curved low horizontal body, two large shiny black eyes and tiny toothy grin, warm brown shading, no legs or earth.",
+    "aphid": "APHID: one tiny adorable round pear-shaped mint green aphid with lime segmented belly, six short jade legs, short curved antennae, big shiny brown bead eyes and tiny leaf-sucking snout. One insect.",
+    "garden_slug": "GARDEN SLUG: cute plump long low beige-tan slug, caramel spots on smooth skin, two stalk eyes with shiny brown pupils, sleepy mischievous smile, softly curved tail. No shell, no trail. Exactly TWO eyes total, both at the tips of its upper eye stalks; no eyes or eyebrows on the lower face.",
+    "weevil": "WEEVIL: cute squat olive-brown armored beetle with long rounded elephant-like snout, glossy textured wing covers, six stubby dark legs, large expressive eyes, short elbowed antennae. No tusks.",
+    "thorn_weed": "THORN WEED: cute round star-shaped dark green plant monster with fleshy leaf arms, a few pale yellow thorns, tiny sprout crown, large fierce amber eyes and tiny fangs. No pot, no dirt.",
+    "caterpillar": "CABBAGE CATERPILLAR: adorable chubby vivid leaf-green segmented caterpillar, lime belly, six tiny dark green feet, short antennae, huge shiny brown eyes and cute tiny mandibles. Curved low compact body.",
+    "ladybug_bomb": "BOMB LADYBUG: cute round shiny crimson ladybug with charcoal spots, six small black legs, short black antennae, amber determined eyes. Tiny brass fuse cap at top of shell with ONE small warm spark, no explosion.",
+    "rotten_potato": "ROTTEN POTATO: cute lumpy rounded warm tan potato monster, small soft brown rot spots, one wilted olive sprout, sleepy amber eyes and tiny cheeky grin. No insects outside, no gore.",
+    "locust": "LOCUST: cute chibi olive and ochre grasshopper locust, short compact segmented body, clear folded striped wings, two large brown compound eyes, folded jumping back legs and tiny mandibles. Antennae within frame.",
+    "mantis": "BLADE MANTIS: cute chibi upright pale jade mantis with triangular head, huge amber expressive eyes, two curved leaf-blade forearms and four short supporting legs, light green belly. Compact silhouette, no weapons.",
+    "pollen_bloom": "POISON FLOWER BUD: cute round coral-pink bulb-shaped flower monster, golden pollen speckles, green leaf collar and two short leaf feet, large sleepy amber eyes, one small cream five-petal blossom on crown. No pollen clouds."
+  },
+  "outputs": {}
+}

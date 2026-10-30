@@ -1,0 +1,66 @@
+{
+  "kind": "enemy",
+  "id": "thorn_weed",
+  "displayName": "\u8346\u68d8\u6742\u8349",
+  "status": "integrated;native3tiers and actual3projectilevolleyAI passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "shooter;shootCd2.8/shots3/spread30/keepDist260;fourbasic plus actualvolleyaction",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/thorn_weed/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/thorn_weed/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/thorn_weed/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/thorn_weed/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/thorn_weed/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160
+  },
+  "draftReview": "Two arms/twofeet/2sproutleaves retained;idle third half-lids/fourth fullyclosed;move opposite leadingfoot;hurt recoil;die eyesclosed from2;volley armsdraw-in/release and recover with allthornsattached,no baked projectiles. Hidden background RGB is excluded by alpha and actualgutter checks.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-thorn_weed-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-thorn_weed-gameplay-native.json",
+    "actualVolleys": 2,
+    "projectilesPerVolley": 3,
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReview": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

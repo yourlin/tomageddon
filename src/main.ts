@@ -18,6 +18,8 @@ import { installErrorLog } from './systems/ErrorLog';
 import { onShouldPause, IS_DESKTOP_APP, IS_STEAM } from './platform';
 import { syncPlatformAchievements } from './systems/Achievements';
 import { portraitKey } from './ui/Portrait';
+import { artDiagnostics, artDebugInfo, retryFailedArt } from './systems/ArtRegistry';
+import { setForceProcedural } from './objects/visualFactory';
 import { run } from './systems/RunState';
 import { controls } from './systems/Controls';
 import { CHARACTERS, CHARACTER_MAP } from './data/characters';
@@ -39,7 +41,9 @@ import { pointsEarned, achValue, setInRun } from './systems/Achievements';
 import { ACHIEVEMENTS } from './data/achievements';
 import { DEV_MODE, DEV_DISABLED } from './dev/flag';
 import { RES, initRes, installHiDpi } from './systems/HiDpi';
+import { currentGraphicsProfile } from './systems/GraphicsQuality';
 import { setCharPortraitProvider } from './systems/Achievements';
+import { installPadNav, padNavTargets } from './systems/PadNav';
 
 // 开发者界面：整页生命周期内不写存档（必须在任何场景运行前生效）
 if (DEV_MODE) disablePersist();
@@ -54,7 +58,7 @@ export const HEADLESS = !DEV_DISABLED && new URLSearchParams(location.search).ha
 
 // 高清渲染：画布按屏幕物理像素分配（逻辑仍是 720p），设置里可关闭；必须在创建 Game 之前确定
 // 手机低内存模式（iOS / 微信）：限制高清倍率，见 systems/Device.ts
-initRes(!HEADLESS && save.settings.hiDpi !== false, 720, LOW_MEM ? LOW_MEM_MAX_RES : undefined);
+initRes(!HEADLESS && save.settings.hiDpi !== false, 720, Math.min(currentGraphicsProfile().maxRenderScale, LOW_MEM ? LOW_MEM_MAX_RES : 2));
 installHiDpi();
 
 const game = new Phaser.Game({
@@ -65,6 +69,7 @@ const game = new Phaser.Game({
     mode: Phaser.Scale.EXPAND,
     width: 1280 * RES,
     height: 720 * RES,
+    max: { width: 2560, height: 1440 },
     // EXPAND 模式画布始终铺满容器，无需居中（居中计算会被强制横屏的旋转干扰）
     autoCenter: Phaser.Scale.NO_CENTER,
     // 全屏外层容器，内部 #game 可在竖屏时旋转为横屏
@@ -105,6 +110,8 @@ const game = new Phaser.Game({
     ChallengeScene,
   ],
 });
+
+if (!HEADLESS) installPadNav(game);
 
 if (HEADLESS) {
   // 测试模式不渲染：主循环只更新不绘制（loop.start 绑定的是 this.step，启动前覆盖即可）
@@ -168,7 +175,11 @@ installErrorLog(() =>
 // 测试机器人 / 宣传片录制 / 控制台调试用的全局入口。关闭开发者模式的构建（Steam 桌面版）里不暴露，
 // 否则玩家可以在控制台直接改存档和数值
 if (!DEV_DISABLED) {
-  Object.assign(window, { portraitKey });
+  Object.assign(window, { portraitKey, __padNavTargets: padNavTargets });
+  // 外部美术调试：__art.diag() 诊断、__art.textures() 纹理状态 / 持有者、__art.retry() 重试失败、__art.procedural(true) 强制程序化对比
+  Object.assign(window, {
+    __art: { diag: artDiagnostics, textures: artDebugInfo, retry: retryFailedArt, procedural: setForceProcedural },
+  });
   Object.assign(window, {
     game,
     run,

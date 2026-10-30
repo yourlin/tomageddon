@@ -1,0 +1,16 @@
+{
+  "asset": "public/assets/ui/codex-journal.webp",
+  "original": "/Users/linyesh/playground/tomato-sister-art-source/design/codex-journal.png",
+  "generatedSource": "/Users/linyesh/.codex/generated_images/01a16c15-4d46-7a13-94a0-ff007bf05348/exec-3a66ef5e-26d0-4e63-acb5-cb3e2aa2d42e.png",
+  "reference": "/Users/linyesh/.codex/generated_images/01a16b85-a698-70e0-aa65-55faec62e035/exec-825f4d99-5c63-452e-aae7-7e8abe14d89c.png",
+  "tool": "built-in image_gen",
+  "date": "2026-10-24",
+  "prompt": "Use case: stylized-concept\nAsset type: game codex journal backdrop under live interface\nInput image: reference image for style only; inspect only the open book in the lower half.\nPrimary request: ONE empty open leather-bound dark plum journal, flat front-facing view, no perspective. Two generous empty dark plum pages, center seam, aged brown leather binding and thin brass frame with elegant brass corner fittings. Wide 2:1 natural composition, isolated on transparent background. Keep the central 90 percent of both pages almost uniformly quiet and dark so real text, cards, and weapon icons can be drawn over them. Subtly illustrated tiny culinary line doodles only along outer page edges. Warm painterly polished fantasy kitchen game illustration matching reference. Crisp silhouette, gently curved page corners, understated material texture. Book fills canvas with tiny outer transparent margin. No kitchen backdrop, no text, no letters, no UI, no cards, no weapons, no character, no objects on pages, no tomato fruit or currency, no symbols in page centers, no bright lighting patches. Output approx1600x850.",
+  "webp": {
+    "quality": 88,
+    "method": 6,
+    "width": 1600,
+    "alpha": "preserved"
+  },
+  "visualCheck": "Empty two-page dark plum leather book, brass corners, center seam; quiet page interiors with culinary line illustrations at outer edges only. No text, UI, cards, weapons, or characters."
+}

@@ -28,7 +28,11 @@ export interface SaveData {
     fpsLimit: number;
     /** 高清渲染（按屏幕物理像素渲染，更清晰但更耗 GPU）；改动后重启生效 */
     hiDpi: boolean;
+    /** 画质分档，切换后重载；未设置的旧存档按设备自动选择。 */
+    graphicsQuality?: 'auto' | 'low' | 'standard' | 'high';
     lang?: 'zh' | 'en';
+    /** 画风：可爱风（插画）/ 复古风（程序绘制）；未设置视为可爱风 */
+    artStyle?: 'cute' | 'retro';
     autoSkill: boolean;
   };
   /** 图鉴发现记录 */

@@ -1,0 +1,59 @@
+{
+  "kind": "enemy",
+  "id": "jelly_cube",
+  "displayName": "果冻方块",
+  "status": "24frames integrated;3tier playback and actual chargerAI passed;final acceptance pending",
+  "referenceHeight": 147,
+  "gameplayBehavior": "charger speed80/charge500/cd2.6/windup0.6",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/jelly_cube/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/jelly_cube/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/jelly_cube/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/jelly_cube/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/jelly_cube/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/jelly_cube/base/charge-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partitionpassed",
+    "move": "partitionpassed",
+    "hurt": "partitionpassed"
+  }
+}

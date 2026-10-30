@@ -1,0 +1,73 @@
+{
+  "kind": "boss",
+  "id": "pumpkin_brute",
+  "displayName": "\u5357\u74dc\u86ee\u6c49",
+  "status": "Integrated; three-tier native playback/100ms blink/freeze/GPU release and actual charge/slam callbacks passed. Final continuous visual/performance acceptance pending.",
+  "referenceHeight": 160,
+  "gameplayPatterns": [
+    "charge4Windup0.8",
+    "slam3cd5Windup1Stun"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/pumpkin_brute/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/pumpkin_brute/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/pumpkin_brute/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/pumpkin_brute/base/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/pumpkin_brute/base/attack-sheet-pilot-2.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/pumpkin_brute/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/pumpkin_brute/base/charge-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160,
+    "windup": 160,
+    "charge": 160
+  }
+}

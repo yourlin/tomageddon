@@ -1,0 +1,64 @@
+{
+  "kind": "char",
+  "id": "tomato",
+  "status": "Rightward independent gait replacement; other source actions untouched; build verification pending",
+  "actions": [
+    {
+      "name": "idle",
+      "source": "drafts/char/tomato/idle-sheet-pilot-3-clean.png",
+      "grid": 3
+    },
+    {
+      "name": "move",
+      "source": "drafts/char/tomato/move-sheet-right-1.png",
+      "grid": 2,
+      "referenceFrame": 0,
+      "referenceHeight": 201
+    },
+    {
+      "name": "attack",
+      "source": "drafts/char/tomato/attack-sheet-pilot-2.png",
+      "grid": 2
+    },
+    {
+      "name": "hurt",
+      "source": "drafts/char/tomato/hurt-sheet-pilot-1.png",
+      "grid": 2
+    },
+    {
+      "name": "windup",
+      "source": "drafts/char/tomato/windup-sheet-pilot-1.png",
+      "grid": 2
+    },
+    {
+      "name": "charge",
+      "source": "drafts/char/tomato/charge-sheet-pilot-2-gait.png",
+      "grid": 2
+    },
+    {
+      "name": "stun",
+      "source": "drafts/char/tomato/stun-sheet-pilot-1.png",
+      "grid": 2
+    },
+    {
+      "name": "die",
+      "source": "drafts/char/tomato/die-sheet-pilot-2.png",
+      "grid": 2
+    },
+    {
+      "name": "spawn",
+      "source": "drafts/char/tomato/spawn-sheet-pilot-1.png",
+      "grid": 2
+    },
+    {
+      "name": "cast",
+      "source": "drafts/char/tomato/cast-sheet-pilot-1.png",
+      "grid": 2
+    },
+    {
+      "name": "victory",
+      "source": "drafts/char/tomato/victory-sheet-pilot-1.png",
+      "grid": 2
+    }
+  ]
+}

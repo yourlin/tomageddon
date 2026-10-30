@@ -1,0 +1,74 @@
+{
+  "kind": "char",
+  "id": "pumpkin",
+  "status": "pilot; playback and visual acceptance pending",
+  "referenceHeight": 160,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pumpkin/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/pumpkin/move-sheet-pilot-3.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/pumpkin/attack-sheet-pilot-3.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/pumpkin/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pumpkin/windup-sheet-pilot-2.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/char/pumpkin/charge-sheet-pilot-1.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/pumpkin/stun-sheet-pilot-2.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/char/pumpkin/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/pumpkin/spawn-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/pumpkin/cast-sheet-pilot-1.png"
+    },
+    {
+      "name": "victory",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/char/pumpkin/victory-sheet-pilot-1.png"
+    }
+  ]
+}

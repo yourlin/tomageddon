@@ -37,7 +37,7 @@ Each character has 3 personal quests; completing all of them unlocks an Awakenin
 | 5 | Starting item slot: start with a random Common item |
 | 7 | Signature talent: +3% damage |
 | 8 | Starting item slot upgrade: a random Rare item instead |
-| 10 | Signature talent: another +3% damage, and unlock this character’s skin |
+| 10 | Signature talent: another +3% damage |
 
 <a id="chars"></a>
 

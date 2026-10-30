@@ -1,0 +1,68 @@
+{
+  "kind": "enemy",
+  "id": "stink_egg",
+  "displayName": "\u81ed\u9e21\u86cb",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "bomber;actual proximity fuse windup then runtime explosion;five actual actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/stink_egg/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/stink_egg/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/stink_egg/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/stink_egg/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/stink_egg/base/windup-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle1": "third lime eyes visibly half-open;fourth olive lids fullycover both;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "four poses inspected;partition passed",
+    "die1": "four attached shell/boot collapse poses;eyes closed2/3/4;partition passed",
+    "windup1": "four planted boot/inward mitten bracing/shell compression anticipation poses,all lime light inside eye band/cracks;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "windup": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-stink_egg-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-stink_egg-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

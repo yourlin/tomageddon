@@ -1,0 +1,70 @@
+{
+  "kind": "enemy",
+  "id": "ice_cube",
+  "displayName": "冰块怪",
+  "status": "20frames integrated;3tier native and actual6radialiceprojectiles verified;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "shooter;6radial ice projectiles spread360/shootCd3.2/slow30",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ice_cube/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ice_cube/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ice_cube/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ice_cube/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/ice_cube/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "attack": 160
+  },
+  "draftReview": {
+    "idle": "four poses inspected;partition passed;no detached shards",
+    "move": "four poses inspected;partition passed;no detached shards",
+    "hurt": "four poses inspected;partition passed;no detached shards",
+    "die": "four poses inspected;partition passed;no detached shards",
+    "attack": "four poses inspected;partition passed;no detached shards"
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-ice_cube-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-ice_cube-gameplay-native.json",
+    "shots": 6,
+    "spread": 360,
+    "slow": 30,
+    "typecheck": "passed",
+    "lint": "passed"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "kind": "enemy",
+  "id": "caterpillar",
+  "displayName": "\u83dc\u9752\u866b",
+  "status": "integrated;native3tiers and actualchase/hurt/death passed;final acceptance pending",
+  "referenceHeight": 131,
+  "gameplayBehavior": "chase;speed90;four basic authored actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/caterpillar/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/caterpillar/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/caterpillar/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/caterpillar/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partiallids3/fullyclosed4;fourleafwrappedbacklobes",
+    "hurt": "recoil and headtilt,eyesclosed2/3",
+    "die": "droop and flattenedbody,eyesclosedfrom2",
+    "move1": "REJECT extendedposesaddfifthbacksegment;matchfourbacksegmentsplushead",
+    "move2": "extra extendedbacksegment removed;4backlobes with neckocclusion preserved;actual arch/pullrear/extend/contract authored"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 131,
+    "hurt": 160,
+    "die": 147
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-caterpillar-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-caterpillar-gameplay-native.json",
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReview": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

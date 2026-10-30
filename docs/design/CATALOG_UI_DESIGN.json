@@ -1,0 +1,33 @@
+{
+  "selected_design": "/Users/linyesh/.codex/generated_images/01a16b85-a698-70e0-aa65-55faec62e035/exec-825f4d99-5c63-452e-aae7-7e8abe14d89c.png",
+  "composition": "Achievement option 3 + Codex option 2, with real weapon-tag facets and full catalog browsing.",
+  "user_revisions": [
+    "Remove solid weapon cards: illustrations and captions sit directly on journal pages; only selected entry has a fine outline.",
+    "Move discovery counts out of brass corners and inset all page furniture.",
+    "Use quiet brass page/scroll arrows instead of menu lacquer buttons inside the book.",
+    "Keep large portraits and leaf crowns inside their allocated page region, with thumbnail top padding.",
+    "Use a serif title font for character names."
+  ],
+  "art_metadata": [
+    "docs/design/ACHIEVEMENT_ART_GENERATION.json",
+    "docs/design/CODEX_ART_GENERATION.json",
+    "docs/design/WORKBENCH_UI_GENERATION.json"
+  ],
+  "font": {
+    "family": "Noto Serif SC",
+    "local_family": "Journal Serif",
+    "weight": 600,
+    "subset": "Character names from src/data/characters.ts, question marks and Latin letters",
+    "file": "public/assets/ui/fonts/journal-names.ttf",
+    "bytes": 59384,
+    "source": "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600",
+    "license": "public/assets/ui/fonts/OFL.txt",
+    "license_source": "https://github.com/notofonts/noto-cjk/blob/main/Serif/LICENSE"
+  },
+  "behavior": {
+    "tags": "All selected tags must match; search intersects tag results.",
+    "catalog": "Render visible rows; wheel, swipe and page arrows browse the complete list; selection retains scroll and filter state.",
+    "rewards": "Existing automatic achievement awards; no claim action.",
+    "save": "Production uses existing persistence. Local QA fixture disables writes."
+  }
+}

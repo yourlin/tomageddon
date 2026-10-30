@@ -1,22 +1,24 @@
+import { preloadWorkbench, workbenchBackground, workbenchButton as button, workbenchPanel as panel } from '../ui/WorkbenchUI';
+import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // 合成表：按配方合成 T4 与超武（参考王者荣耀的装备合成树）。
 // 布局：顶部是分类（配方类型 + 伤害类型 + 只看能合成）与「我的武器」条；左侧是配方列表；
 // 右侧是横向升级树——从左到右是「材料 → 产物 → 可继续合成」，底部列出还缺的材料与「合成」按钮。
 // 点「我的武器」里的一把，列表就只剩和它相关的配方，并自动选中最接近完成的那条。
 import Phaser from 'phaser';
-import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, tu } from '../ui/UI';
+import { text, COLORS, fitImage, hitArea, autoRelayout, toast, tu } from '../ui/UI';
 import { run, saveRun, type OwnedWeapon } from '../systems/RunState';
 import { WEAPON_MAP, TIER_NAMES, type WeaponDef } from '../data/weapons';
 import { ITEM_MAP } from '../data/items';
 import { RARITY } from '../data/balance';
+import { weaponDmgType } from '../data/describe';
+import { weaponTags } from '../data/weaponTags';
 import { itemIconKey } from '../art/ItemArt';
 import { RECIPES, RECIPE_BY_TO, missingItems, slotLabel, type Recipe, type RecipeKind } from '../data/recipes';
-import { weaponTags, TAG_MAP } from '../data/weaponTags';
-import { weaponDmgType } from '../data/describe';
 import { superBuffText } from '../systems/SuperBuffs';
 import { tx, lang } from '../i18n';
-import { tagName } from '../i18n/apply';
 import { audio } from '../systems/Audio';
 import { isFavoredWeapon, isDoubleFavored } from '../data/affinity';
+import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
 import { VW, VH } from '../systems/HiDpi';
 
 const KIND_NAME: Record<RecipeKind, [string, string]> = {
@@ -28,7 +30,10 @@ type KindFilter = 'recommend' | 'all' | RecipeKind;
 type TypeFilter = 'all' | 'melee' | 'ranged' | 'elemental' | 'aura';
 const typeOf = (d: WeaponDef): Exclude<TypeFilter, 'all'> => (d.kind === 'aura' ? 'aura' : d.cls);
 const kname = (k: RecipeKind) => KIND_NAME[k][lang === 'en' ? 1 : 0];
-const iconKey = (s: Phaser.Scene, id: string) => (s.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`);
+const iconKey = (s: Phaser.Scene, id: string) => {
+  requestWeaponArt(s, new Set([id]));
+  return s.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`;
+};
 
 /** 树上的一个武器节点：材料在左边（children），产物在右边 */
 interface TreeNode {
@@ -56,6 +61,7 @@ export class CraftScene extends Phaser.Scene {
   /** 「我的武器」里点中的武器：列表只显示和它相关的配方 */
   private focusId: string | null = null;
   private scroll = 0;
+  private weaponPage = 0;
 
   constructor() {
     super('Craft');
@@ -78,6 +84,10 @@ export class CraftScene extends Phaser.Scene {
     this.type = 'all';
     this.readyOnly = false;
     this.selected = this.relatedRecipes(id)[0] ?? this.selected;
+  }
+
+  preload(): void {
+    preloadWorkbench(this);
   }
 
   create(): void {
@@ -136,7 +146,13 @@ export class CraftScene extends Phaser.Scene {
     // 契合武器优先；其次能合成 / 缺得少的；同等时超武在前
     const order: Record<RecipeKind, number> = { super: 0, t4: 1 };
     const fav = (r: Recipe) => (this.favored(r) ? 0 : 1);
-    return [...rows].sort((a, b) => fav(a) - fav(b) || this.closeness(a) - this.closeness(b) || order[a.kind] - order[b.kind]);
+    return [...rows].sort(
+      (a, b) =>
+        Number(run.canCraft(b)) - Number(run.canCraft(a)) ||
+        fav(a) - fav(b) ||
+        this.closeness(a) - this.closeness(b) ||
+        order[a.kind] - order[b.kind],
+    );
   }
 
   /**
@@ -181,115 +197,115 @@ export class CraftScene extends Phaser.Scene {
       H = VH(this);
     const L = this.layer;
     L.removeAll(true);
-    L.add(text(this, 24, 14, tx('合成表', 'Crafting'), 32));
-    L.add(
-      text(
-        this,
-        160,
-        28,
-        tx(
-          'T4 与超武只能按配方合成：两把武器 + 道具（道具会被消耗），仓库里的武器也能当材料',
-          'T4s and supers come only from recipes: two weapons + items (consumed). Storage counts as materials.',
+    workbenchBackground(this, L, W, H);
+    L.add(text(this, W / 2, 24, tx('武器合成', 'Weapon crafting'), 34, '#fff0ce', { fontStyle: 'bold' }).setOrigin(0.5, 0));
+    L.add(button(this, 112, 43, 184, 42, tx('返回商店', 'Back to shop'), () => this.scene.start('Shop', { keep: true }), 0x49302e, 18));
+    if (!this.selected) this.selected = this.list().find((r) => run.canCraft(r)) ?? this.list()[0] ?? null;
+    this.drawMyWeapons(W);
+    const top = 184;
+    const listW = Math.min(284, W * 0.23);
+    this.listRight = 144 + listW;
+    L.add(panel(this, 16, top - 12, this.listRight - 8, H - top - 6));
+    const kinds = [
+      ['recommend', tx('推荐', 'Picks')],
+      ['t4', tx('T4 合成', 'T4')],
+      ['super', tx('超武合成', 'Super')],
+      ['all', tx('全部配方', 'All')],
+    ] as const;
+    kinds.forEach(([id, label], i) =>
+      L.add(
+        button(
+          this,
+          77,
+          top + 24 + i * 66,
+          104,
+          54,
+          label,
+          () => {
+            this.kind = id;
+            this.scroll = 0;
+            this.selected = this.list().find((r) => run.canCraft(r)) ?? this.list()[0] ?? null;
+            this.draw();
+          },
+          this.kind === id ? COLORS.primary : 0x49302e,
+          16,
         ),
-        14,
-        COLORS.textDim,
       ),
     );
-    // 返回时沿用本波货架、刷新次数和商人结果（不带 keep 会被当成新一波：重新进货、刷新价格清零）
-    L.add(button(this, W - 80, 34, 130, 44, tx('返回', 'Back'), () => this.scene.start('Shop', { keep: true }), 0x555555, 18));
-
-    // 没选中配方时默认选列表第一条（推荐视图下就是最值得合成的契合武器），右侧树不空着
-    if (!this.selected) this.selected = this.list()[0] ?? null;
-    this.drawFilters(W);
-    this.drawMyWeapons(W);
-
-    const top = 186;
-    const listW = Math.min(360, W * 0.27);
-    this.listRight = 20 + listW;
-    this.drawList(20, top, listW, H - top - 16);
-    this.drawTree(this.listRight + 14, top, W - this.listRight - 34, H - top - 16);
-  }
-
-  /** 分类：配方类型 + 伤害类型 + 只看能合成 */
-  private drawFilters(W: number): void {
-    const L = this.layer;
-    const y = 82;
-    const chip = (x: number, w0: number, label: string, on: boolean, onClick: () => void, color = COLORS.primary) => {
-      // 宽度至少容纳文字（触屏放大字号后，写死的宽度会放不下）
-      const probe = text(this, 0, 0, label, tu(15));
-      const w = Math.max(w0, probe.width + 22);
-      probe.destroy();
-      L.add(button(this, x + w / 2, y, w, tu(34), label, onClick, on ? color : 0x3d2f2f, tu(15)));
-      return x + w + 8;
-    };
-    const set = (fn: () => void) => () => {
-      fn();
-      this.scroll = 0;
-      this.draw();
-    };
-    let x = 20;
-    for (const k of ['recommend', 'all', 'super', 't4'] as KindFilter[])
-      x = chip(
-        x,
-        k === 'recommend' ? 96 : 66,
-        k === 'recommend' ? tx('★ 推荐', '★ For you') : k === 'all' ? tx('全部', 'All') : kname(k),
-        this.kind === k,
-        set(() => (this.kind = k)),
-        k === 'recommend' ? 0xb07d2b : COLORS.primary,
-      );
-    x += 14;
-    const TYPES: [TypeFilter, string][] = [
-      ['all', tx('全部类型', 'Any')],
-      ['melee', tx('近战', 'Melee')],
-      ['ranged', tx('远程', 'Ranged')],
-      ['elemental', tx('元素', 'Elemental')],
-      ['aura', tx('光环', 'Aura')],
-    ];
-    for (const [t, name] of TYPES) {
-      // 类型按钮左侧留出图标位置（标签前补空格），宽度按文字算，英文「Elemental」也放得下
-      const label = t === 'all' ? name : `    ${name}`;
-      const probe = text(this, 0, 0, label, tu(15));
-      const cw = t === 'all' ? 70 : Math.max(76, probe.width + 22);
-      probe.destroy();
-      const nx = chip(
-        x,
-        cw,
-        label,
-        this.type === t,
-        set(() => (this.type = t)),
-        0x2d6a8a,
-      );
-      // 伤害类型用图标标出（与商店一致）
-      if (t !== 'all') {
-        const key = `dmgtype_${t}`;
-        if (this.textures.exists(key)) L.add(fitImage(this.add.image(x + 14, y - 1, key), 18));
-      }
-      x = nx;
-    }
-    x += 14;
-    const ready = RECIPES.filter((r) => run.canCraft(r)).length;
-    chip(
-      x,
-      150,
-      tx(`✔ 只看能合成（${ready}）`, `✔ Ready only (${ready})`),
-      this.readyOnly,
-      set(() => (this.readyOnly = !this.readyOnly)),
-      COLORS.green,
+    L.add(
+      button(
+        this,
+        77,
+        top + 298,
+        104,
+        40,
+        this.readyOnly ? tx('只看可合成', 'Ready only') : tx('所有材料', 'Any status'),
+        () => {
+          this.readyOnly = !this.readyOnly;
+          this.scroll = 0;
+          this.selected = this.list().find((r) => run.canCraft(r)) ?? this.list()[0] ?? null;
+          this.draw();
+        },
+        this.readyOnly ? COLORS.green : 0x49302e,
+        13,
+      ),
     );
-    void W;
+    const types: TypeFilter[] = ['all', 'melee', 'ranged', 'elemental', 'aura'];
+    const names = [tx('全部类型', 'All types'), tx('近战', 'Melee'), tx('远程', 'Ranged'), tx('元素', 'Elemental'), tx('光环', 'Aura')];
+    L.add(
+      button(
+        this,
+        77,
+        top + 348,
+        104,
+        40,
+        names[types.indexOf(this.type)],
+        () => {
+          this.type = types[(types.indexOf(this.type) + 1) % types.length];
+          this.scroll = 0;
+          this.selected = this.list().find((r) => run.canCraft(r)) ?? this.list()[0] ?? null;
+          this.draw();
+        },
+        0x49302e,
+        13,
+      ),
+    );
+    this.drawList(144, top, listW - 8, H - top - 26);
+    this.drawTree(this.listRight + 16, top - 12, W - this.listRight - 32, H - top - 6);
   }
 
   /** 「我的武器」：武器栏 + 仓库。点一把看它的合成可能 */
   private drawMyWeapons(W: number): void {
     const L = this.layer;
-    const y = 112,
+    const y = 98,
       s = Math.min(62, tu(54));
-    const lbl = text(this, 20, y + s / 2, tx('我的武器', 'My weapons'), 15, '#ffb347').setOrigin(0, 0.5);
+    L.add(panel(this, 16, 86, W - 32, 82));
+    const lbl = text(this, 28, y + s / 2, tx('我的武器', 'My weapons'), 15, '#ffb347').setOrigin(0, 0.5);
     L.add(lbl);
     const all = run.allWeapons;
     let x = lbl.x + lbl.width + 14;
     if (!all.length) L.add(text(this, x, y + s / 2, tx('还没有武器', 'No weapons yet'), 14, COLORS.textDim).setOrigin(0, 0.5));
-    for (const w of all) {
+    const perPage = Math.max(1, Math.floor((W - 420) / (s + 8)));
+    const pages = Math.max(1, Math.ceil(all.length / perPage));
+    this.weaponPage = Math.min(this.weaponPage, pages - 1);
+    if (pages > 1)
+      L.add(
+        button(
+          this,
+          W - 250,
+          y + s / 2,
+          72,
+          36,
+          `${this.weaponPage + 1}/${pages} ›`,
+          () => {
+            this.weaponPage = (this.weaponPage + 1) % pages;
+            this.draw();
+          },
+          0x49302e,
+          14,
+        ),
+      );
+    for (const w of all.slice(this.weaponPage * perPage, (this.weaponPage + 1) * perPage)) {
       if (x + s > W - 200) break;
       const on = this.focusId === w.id;
       const n = this.relatedRecipes(w.id).length;
@@ -339,15 +355,8 @@ export class CraftScene extends Phaser.Scene {
     const head = 26;
     const perPage = Math.max(1, Math.floor((h - head - 40) / rowH));
     this.scroll = Phaser.Math.Clamp(this.scroll, 0, Math.max(0, rows.length - perPage));
-    const title = this.focusId
-      ? tx(
-          `与「${WEAPON_MAP[this.focusId].name}」相关的配方 · ${rows.length} 条`,
-          `Recipes with ${WEAPON_MAP[this.focusId].name} · ${rows.length}`,
-        )
-      : this.kind === 'recommend'
-        ? tx(`推荐 ${rows.length} 条 · ★ = 契合「${run.char.name}」`, `${rows.length} picks · ★ = synergy`)
-        : tx(`共 ${rows.length} 条配方`, `${rows.length} recipes`);
-    L.add(text(this, x, y, title, 14, this.focusId ? '#ffd166' : COLORS.textDim));
+    const title = tx(`${rows.length} 条配方 · 点击查看`, `${rows.length} recipes · select one`);
+    L.add(text(this, x, y, title, 14, '#c4ac91'));
     rows.slice(this.scroll, this.scroll + perPage).forEach((r, i) => {
       const ry = y + head + i * rowH;
       const d = WEAPON_MAP[r.to];
@@ -362,7 +371,7 @@ export class CraftScene extends Phaser.Scene {
           x + 52,
           ry + 6,
           (this.favored(r) ? '★ ' : '') + d.name,
-          tu(16),
+          tu(15),
           ready ? '#52ff8a' : this.favored(r) ? '#ffd166' : '#fff4ea',
         ),
       );
@@ -412,135 +421,153 @@ export class CraftScene extends Phaser.Scene {
   /** 横向升级树：左边是材料，往右是产物，再往右是「可继续合成」 */
   private drawTree(x: number, y: number, w: number, h: number): void {
     const L = this.layer;
-    L.add(panel(this, x, y, w, h, COLORS.panel, COLORS.border));
+    L.add(panel(this, x, y, w, h));
     const r = this.selected;
     if (!r) {
       L.add(
-        text(
-          this,
-          x + w / 2,
-          y + h / 2,
-          tx('从左侧选一条配方，或点上面「我的武器」看它能合成什么', 'Pick a recipe, or tap one of your weapons above'),
-          16,
-          COLORS.textDim,
-        ).setOrigin(0.5),
+        text(this, x + w / 2, y + h / 2, tx('选择配方，查看合成材料', 'Select a recipe to see its materials'), 20, '#c4ac91').setOrigin(
+          0.5,
+        ),
       );
       return;
     }
-    const root = this.buildTree(r);
-    const next = RECIPES.filter((n) => n.kind === 'super' && n.from[0][0] === r.to && n.from[0][1] === 3);
-
-    // 布局：叶子从上到下依次占行，父节点取子节点的竖向中点；列 = 深度（根在最右，可继续合成再往右一列）
-    const NODE_W = 210,
-      NODE_H = 58,
-      ROW = 104;
-    let depth = 0;
-    let leaves = 0;
-    const walk = (n: TreeNode, d: number): number => {
-      depth = Math.max(depth, d);
-      if (!n.children.length) return (n.y = leaves++);
-      const ys = n.children.map((c) => walk(c, d + 1));
-      return (n.y = (ys[0] + ys[ys.length - 1]) / 2);
-    };
-    walk(root, 0);
-    const cols = depth + 1 + (next.length ? 1 : 0);
-    const treeTop = y + 46;
-    const treeH = h - 46 - 150; // 底部留给「缺少的材料」与合成按钮
-    const rows = Math.max(leaves, next.length, 1);
-    const rowH = Math.min(ROW, treeH / rows);
-    const colW = Math.min(290, (w - 40) / cols);
-    const left = x + (w - colW * cols) / 2 + (colW - NODE_W) / 2;
-    // 整棵树在可用区域里竖向居中（最后一行下面还有一排道具图标，要算进去）
-    const top0 = treeTop + Math.max(0, (treeH - (rows - 1) * rowH - NODE_H - 34) / 2);
-    const place = (n: TreeNode, d: number) => {
-      n.x = left + (depth - d) * colW;
-      n.y = top0 + n.y * rowH;
-      n.children.forEach((c) => place(c, d + 1));
-    };
-    place(root, 0);
-
-    // 标题：产物 + 类型 + 标签
-    const d = WEAPON_MAP[r.to];
+    const root = this.buildTree(r),
+      d = WEAPON_MAP[r.to];
+    const ready = run.canCraft(r);
+    iconKey(this, d.id);
     L.add(
       text(
         this,
-        x + 16,
-        y + 12,
-        `${this.favored(r) ? '★ ' : ''}${d.name} ${TIER_NAMES[3]} · ${kname(r.kind)} · ${weaponDmgType(d).name} · ${weaponTags(d)
-          .map((t) => `${TAG_MAP[t]?.icon ?? ''}${tagName(t)}`)
-          .join(' ')}`,
-        16,
-        KIND_COLOR[r.kind],
+        x + 24,
+        y + 18,
+        `${d.name} ${r.kind === 'super' ? kname(r.kind) : TIER_NAMES[3]} · ${weaponDmgType(d).name}`,
+        23,
+        '#fff0ce',
+        { fontStyle: 'bold' },
       ),
     );
-
-    const g = this.add.graphics();
-    L.add(g);
-    // 连线：子节点右边 → 父节点左边（直角折线）；已持有的材料用绿色
-    const link = (a: TreeNode, b: TreeNode) => {
-      const x1 = a.x + NODE_W,
-        y1 = a.y + NODE_H / 2,
-        x2 = b.x,
-        y2 = b.y + NODE_H / 2;
-      const mx = (x1 + x2) / 2;
-      g.lineStyle(3, a.owned || this.complete(a) ? 0x52ff8a : 0x6c5a5a, 1);
-      g.beginPath();
-      g.moveTo(x1, y1);
-      g.lineTo(mx, y1);
-      g.lineTo(mx, y2);
-      g.lineTo(x2, y2);
-      g.strokePath();
-    };
-    const all: TreeNode[] = [];
-    const collect = (n: TreeNode) => {
-      all.push(n);
-      n.children.forEach((c) => {
-        link(c, n);
-        collect(c);
-      });
-    };
-    collect(root);
-    for (const n of all) this.drawNode(n, n === root, NODE_W, NODE_H);
-
-    // 可继续合成（根是 T4 时：用它当主材料的超武）——虚线，点击切换过去
-    if (next.length) {
-      const nx = root.x + colW;
-      next.forEach((nr, i) => {
-        const ny = root.y + (i - (next.length - 1) / 2) * Math.min(rowH, 74);
-        const x1 = root.x + NODE_W,
-          y1 = root.y + NODE_H / 2;
-        g.lineStyle(2, 0xffd166, 0.7);
-        for (let t = 0; t < 1; t += 0.12) {
-          const a = Phaser.Math.Linear(x1, nx, t),
-            b = Phaser.Math.Linear(y1, ny + NODE_H / 2, t);
-          const a2 = Phaser.Math.Linear(x1, nx, t + 0.06),
-            b2 = Phaser.Math.Linear(y1, ny + NODE_H / 2, t + 0.06);
-          g.lineBetween(a, b, a2, b2);
-        }
-        const nd = WEAPON_MAP[nr.to];
-        L.add(panel(this, nx, ny, NODE_W, NODE_H, COLORS.panelLight, 0xffd166));
-        L.add(fitImage(this.add.image(nx + 26, ny + NODE_H / 2, iconKey(this, nd.id)), 38));
-        L.add(text(this, nx + 50, ny + 8, nd.name, 14, '#ffd166'));
-        L.add(text(this, nx + 50, ny + 28, tx('可继续合成 ▶', 'Crafts into ▶'), 12, COLORS.textDim));
+    L.add(
+      text(
+        this,
+        x + 24,
+        y + 51,
+        tx('材料武器与指定道具 · 点击材料查看前置配方', 'Weapons & required items · select a material for prerequisites'),
+        13,
+        '#c4ac91',
+      ),
+    );
+    const rows = root.children.length + r.items.length;
+    const diagramH = h - 252;
+    const rowH = Math.min(74, diagramH / Math.max(1, rows));
+    const nw = Math.min(220, w * 0.38),
+      nh = Math.min(58, rowH - 10);
+    const startY = y + 82;
+    const resultX = x + w * 0.69,
+      resultY = startY + diagramH / 2;
+    const links = this.add.graphics().lineStyle(3, 0xb88d58, 0.8);
+    L.add(links);
+    root.children.forEach((node, i) => {
+      node.x = x + 20;
+      node.y = startY + i * rowH;
+      links.lineBetween(node.x + nw, node.y + nh / 2, x + w * 0.47, node.y + nh / 2);
+      links.lineBetween(x + w * 0.47, node.y + nh / 2, x + w * 0.47, resultY);
+      // Only the selected step is expanded; material cards navigate to their own recipe.
+      const recipe = node.recipe;
+      this.drawNode(node, false, nw, nh, false);
+      if (recipe)
         L.add(
-          hitArea(this, nx, ny, NODE_W, NODE_H, () => {
-            this.selected = nr;
+          hitArea(this, node.x, node.y, nw, nh, () => {
+            this.selected = recipe;
             this.draw();
           }),
         );
-      });
+    });
+    r.items.forEach((slot, i) => {
+      const id = root.items[i] ?? slot[0],
+        item = ITEM_MAP[id],
+        have = !!root.items[i];
+      const yy = startY + (root.children.length + i) * rowH;
+      links.lineBetween(x + 20 + nw, yy + nh / 2, x + w * 0.47, yy + nh / 2);
+      links.lineBetween(x + w * 0.47, yy + nh / 2, x + w * 0.47, resultY);
+      L.add(panel(this, x + 20, yy, nw, nh, COLORS.panel, have ? 0x8cbb67 : 0x8b5677));
+      L.add(fitImage(this.add.image(x + 46, yy + nh / 2, itemIconKey(this, item)), 36).setAlpha(have ? 1 : 0.55));
+      const label = text(this, x + 72, yy + 8, item.name, 14, '#fff0ce');
+      if (label.width > nw - 60) label.setScale((nw - 60) / label.width);
+      L.add(label);
       L.add(
         text(
           this,
-          nx + NODE_W / 2,
-          root.y - ((next.length - 1) / 2) * Math.min(rowH, 74) - 24,
-          tx('可继续合成', 'Next'),
-          13,
-          '#ffd166',
-        ).setOrigin(0.5, 0),
+          x + 72,
+          yy + 30,
+          have ? tx('已持有 · 消耗 1 件', 'Owned · consumes 1') : tx('缺少指定道具', 'Required item missing'),
+          12,
+          have ? '#9be564' : '#dc9e9e',
+        ),
       );
-    }
-
+      L.add(hitArea(this, x + 20, yy, nw, nh, () => toast(this, slotLabel(slot), '#fff0ce')));
+    });
+    links.lineBetween(x + w * 0.47, resultY, resultX - 64, resultY);
+    L.add(fitImage(this.add.image(resultX, resultY - 22, `weapon_${d.id}`), Math.min(244, w * 0.4)));
+    L.add(
+      text(
+        this,
+        resultX,
+        resultY + 62,
+        ready ? tx('材料齐全', 'Ready to craft') : tx('等待材料', 'Materials needed'),
+        21,
+        ready ? '#9be564' : '#e3c08a',
+      ).setOrigin(0.5),
+    );
+    L.add(
+      hitArea(this, resultX - 125, resultY - 100, 250, 150, () =>
+        toast(this, `${d.name}：${d.desc} [${weaponTags(d).join(' / ')}]`, '#fff0ce'),
+      ),
+    );
+    const next = RECIPES.filter((n) => n.from.some(([id, tier]) => id === r.to && tier === 3));
+    if (next.length)
+      L.add(
+        button(
+          this,
+          resultX,
+          startY + diagramH + 20,
+          Math.min(246, w * 0.43),
+          36,
+          tx(`后续：${WEAPON_MAP[next[0].to].name} ›`, `Next: ${WEAPON_MAP[next[0].to].name} ›`),
+          () => {
+            this.selected = next[0];
+            this.draw();
+          },
+          0x49302e,
+          14,
+        ),
+      );
+    const statY = y + h - 188;
+    L.add(
+      text(
+        this,
+        x + 24,
+        statY,
+        tx(
+          `伤害 ${Math.round(weaponDamage(d, 3, run.stats))}   冷却 ${weaponCooldown(d, 3, run.stats).toFixed(2)}s   射程 ${Math.round(weaponRange(d, run.stats, undefined, 0, 3))}`,
+          `DMG ${Math.round(weaponDamage(d, 3, run.stats))}   CD ${weaponCooldown(d, 3, run.stats).toFixed(2)}s   Range ${Math.round(weaponRange(d, run.stats, undefined, 0, 3))}`,
+        ),
+        16,
+        '#f1d69e',
+      ),
+    );
+    L.add(
+      text(
+        this,
+        x + 24,
+        statY + 27,
+        tx(
+          `将消耗 ${r.from.length} 把材料武器与 ${r.items.length} 件配方道具`,
+          `Consumes ${r.from.length} weapons and ${r.items.length} required items`,
+        ),
+        13,
+        '#ef9992',
+      ),
+    );
     this.drawMissing(r, root, x, y + h - 144, w);
   }
 
@@ -551,7 +578,7 @@ export class CraftScene extends Phaser.Scene {
     return n.children.every((c) => this.complete(c)) && n.items.every(Boolean);
   }
 
-  private drawNode(n: TreeNode, isRoot: boolean, NW: number, NH: number): void {
+  private drawNode(n: TreeNode, isRoot: boolean, NW: number, NH: number, showItems = true): void {
     const L = this.layer;
     const d = WEAPON_MAP[n.id];
     const ok = this.complete(n);
@@ -560,7 +587,9 @@ export class CraftScene extends Phaser.Scene {
     const icon = fitImage(this.add.image(n.x + 28, n.y + NH / 2, iconKey(this, n.id)), 42);
     if (!n.owned && !ok) icon.setAlpha(0.55);
     L.add(icon);
-    L.add(text(this, n.x + 56, n.y + 8, d.name, 15, RARITY[n.tier].css));
+    const nodeName = text(this, n.x + 56, n.y + 8, d.name, 15, RARITY[n.tier].css);
+    if (nodeName.width > NW - 64) nodeName.setScale((NW - 64) / nodeName.width);
+    L.add(nodeName);
     const where = n.owned ? (run.inStorage(n.owned.uid) ? tx('仓库', 'storage') : tx('武器栏', 'equipped')) : '';
     const status = n.owned
       ? tx(`✓ ${TIER_NAMES[n.tier]} · ${where}`, `✓ ${TIER_NAMES[n.tier]} · ${where}`)
@@ -573,7 +602,7 @@ export class CraftScene extends Phaser.Scene {
           : tx(`✗ 缺 ${TIER_NAMES[n.tier]}`, `✗ need ${TIER_NAMES[n.tier]}`);
     L.add(text(this, n.x + 56, n.y + 31, status, 12, n.owned ? '#52ff8a' : ok ? '#ffd166' : '#ff9f9f'));
     // 这个节点的配方道具：每件一行「图标 + 名字 + ✓/✗」（都是指定的 T3 道具，名字要看得到）
-    if (n.recipe) {
+    if (n.recipe && showItems) {
       n.recipe.items.forEach((slot, i) => {
         const id = n.items[i] ?? slot[0];
         const have = !!n.items[i];
@@ -618,30 +647,25 @@ export class CraftScene extends Phaser.Scene {
     g.lineStyle(1, 0x5a4a4a, 1).lineBetween(x + 16, y, x + w - 16, y);
     L.add(g);
     const d = WEAPON_MAP[r.to];
-    let ty = y + 10;
-    if (d.superBuff) {
-      L.add(
-        text(this, x + 16, ty, `⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`, 12, '#ffd166', {
-          wordWrap: { width: w - 32, useAdvancedWrap: true },
-        }),
-      );
-      ty += 32;
-    }
+    let ty = y + 12;
+    // Keep the summary bounded even for deep super-weapon recipes. Tap any row for the full text.
+    const summary = (label: string, color: string, size = 14) => {
+      const t = text(this, x + 16, ty, label, size, color);
+      let shown = label;
+      while (shown.length > 1 && t.width > w - 32) {
+        shown = shown.slice(0, -1);
+        t.setText(shown + '…');
+      }
+      L.add(t);
+      L.add(hitArea(this, x + 16, ty - 2, w - 32, 24, () => toast(this, label, color)));
+      ty += 25;
+    };
+    if (d.superBuff) summary(superBuffText(d.superBuff)[lang === 'en' ? 1 : 0], '#ffd166', 12);
     const sep = tx('、', ', ');
-    if (!missW.length && !missI.length) L.add(text(this, x + 16, ty, tx('✓ 材料齐全', '✓ All materials ready'), 15, '#52ff8a'));
+    if (!missW.length && !missI.length) summary(tx('材料齐全', 'All materials ready'), '#9be564');
     else {
-      if (missW.length)
-        L.add(
-          text(this, x + 16, ty, tx('缺武器：', 'Missing weapons: ') + missW.join(sep), 14, '#ff9f9f', {
-            wordWrap: { width: w - 32, useAdvancedWrap: true },
-          }),
-        );
-      if (missI.length)
-        L.add(
-          text(this, x + 16, ty + 22, tx('缺道具：', 'Missing items: ') + missI.join(sep), 14, '#ff9f9f', {
-            wordWrap: { width: w - 32, useAdvancedWrap: true },
-          }),
-        );
+      if (missW.length) summary(tx('缺武器：', 'Missing weapons: ') + missW.join(sep), '#ff9f9f');
+      if (missI.length) summary(tx('缺道具：', 'Missing items: ') + missI.join(sep), '#ff9f9f');
     }
     // 合成按钮只合成选中的这一步（下层的 T4 需要先选中对应配方合成）
     const ok = run.canCraft(r);

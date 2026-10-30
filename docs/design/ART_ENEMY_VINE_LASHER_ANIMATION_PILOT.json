@@ -1,0 +1,58 @@
+{
+  "kind": "enemy",
+  "id": "vine_lasher",
+  "displayName": "腐藤鞭",
+  "status": "integrated;native3tier and actualAI basic validation passed;final pending",
+  "referenceHeight": 116,
+  "gameplayBehavior": "charger75/charge600/cd3.8/windup.7/bleed",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/vine_lasher/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/vine_lasher/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/vine_lasher/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/vine_lasher/base/die-sheet-pilot-2.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/vine_lasher/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/vine_lasher/base/charge-sheet-pilot-1.png"
+    }
+  ],
+  "rejectedSources": {
+    "move-sheet-pilot-1.png": "missing x gutter",
+    "die-sheet-pilot-1.png": "missing x gutter"
+  }
+}

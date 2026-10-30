@@ -1,0 +1,69 @@
+{
+  "kind": "enemy",
+  "id": "mushroom",
+  "displayName": "毒蘑菇",
+  "status": "20frames integrated;3tier playback and actual healer cast/20HP recovery passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "healer;cast heals nearby monsters every3s",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mushroom/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mushroom/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mushroom/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mushroom/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/mushroom/base/cast-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "cast": 160
+  },
+  "draftReview": {
+    "idle": "four authored poses inspected; partition passed",
+    "move": "four authored poses inspected; partition passed",
+    "hurt": "four authored poses inspected; partition passed",
+    "die": "four authored poses inspected; partition passed",
+    "cast": "four authored poses inspected; partition passed"
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-mushroom-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-mushroom-gameplay-native.json",
+    "healCalls": 1,
+    "healedAmount": 20,
+    "typecheck": "passed",
+    "lint": "passed"
+  }
+}

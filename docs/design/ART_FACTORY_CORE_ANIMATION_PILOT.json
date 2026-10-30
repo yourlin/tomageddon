@@ -1,0 +1,56 @@
+{
+  "kind": "boss",
+  "id": "factory_core",
+  "status": "generating;notintegrated",
+  "referenceHeight": 170,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/factory_core/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/factory_core/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/boss/factory_core/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/factory_core/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 2,
+      "source": "drafts/boss/factory_core/base/spawn-sheet-pilot-1.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/factory_core/base/stun-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/factory_core/base/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/factory_core/base/cast-sheet-pilot-1.png"
+    }
+  ]
+}

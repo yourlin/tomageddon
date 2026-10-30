@@ -1,0 +1,10 @@
+{
+  "tool": "builtin image_gen",
+  "prompts": {
+    "die": "undefinedDeath: stalks droop eyes dim; head lowers eyes closed; body slumps beneath shell stalks short; lies slack on side eyes closed shell intact. No fragments or puddle effects."
+  },
+  "deathRepair": {
+    "prompt": "Sprite SHEET with exactly FOUR SEPARATE snail drawings in TWO rows TWO columns, NOT one large snail. Death sequence TL upright drooping eye stalks; TR head lowers stalks bend eyes close; BL body slumps low beneath shell stalks short; BR lies slack sideways eyes closed. Same olive green snail and orange spiral shell LEFT from reference; ONLY eyes at stalk tips, no face eyes, no arms/legs. Small complete figures in central45% of each quadrant with HUGE transparent gutters and margins. Transparent background only no shadows/lines/text/effects. Same shell size all frames, actual body articulation.",
+    "source": "drafts/enemy/snail/base/die-sheet-pilot-2.png"
+  }
+}

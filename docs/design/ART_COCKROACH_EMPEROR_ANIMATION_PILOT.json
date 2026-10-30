@@ -1,0 +1,62 @@
+{
+  "kind": "boss",
+  "id": "cockroach_emperor",
+  "status": "pilot; native and visual acceptance pending",
+  "referenceHeight": 170,
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/cockroach_emperor/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/boss/cockroach_emperor/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/boss/cockroach_emperor/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/cockroach_emperor/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "spawn",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/boss/cockroach_emperor/base/spawn-sheet-pilot-1.png"
+    },
+    {
+      "name": "stun",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/cockroach_emperor/base/stun-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 3,
+      "source": "drafts/boss/cockroach_emperor/base/cast-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/cockroach_emperor/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 1,
+      "source": "drafts/boss/cockroach_emperor/base/charge-sheet-pilot-1.png"
+    }
+  ]
+}

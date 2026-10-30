@@ -1,0 +1,59 @@
+{
+  "kind": "enemy",
+  "id": "can_crab",
+  "displayName": "易拉罐蟹",
+  "status": "16frames integrated;3tier native and actualchase/hurt/death passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase;contact armorBreak;no separate reflect/attack action in actual definition",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/can_crab/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/can_crab/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/can_crab/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/can_crab/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "four poses inspected;partition passed",
+    "move": "four poses inspected;partition passed",
+    "hurt": "four poses inspected;partition passed",
+    "die": "four foldedleg/collapse poses inspected;partition passed"
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-can_crab-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-can_crab-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

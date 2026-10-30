@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "maps/ch2/ground-pilot-1.png",
+  "assets": [
+    {
+      "source": "maps/ch2/hole-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Production sprite for a top-down 2D game garden arena, matching the warm detailed hand-painted storybook style of the reference. Exactly straight overhead orthographic, single centered isolated object, generous transparent margins. Crisp painted materials and clear silhouette at small screen size. No characters, face, eyes, lettering, UI, grid, watermark, backdrop or ground plane; true transparent background. A small dark burrow entrance in soil. Compact irregular circular nearly-black hole surrounded by a narrow rugged ring of brown earth, a few tiny pebbles and short dry root strands. Circular overhead aperture, not a frontal cave. Warm upper-left highlights, muted low-saturation brown rim. No metallic rim, no water, no huge pit, no animals, no stone masonry. The opening itself stays dark and the outer silhouette is compact.",
+      "compiled": "maps/ch2/objects/hole.png",
+      "generated": true
+    },
+    {
+      "source": "maps/ch2/sprinkler-pilot-1.png",
+      "prompt": "Use case: stylized-concept. Production sprite for a top-down 2D game garden arena, matching the warm detailed hand-painted storybook style of the reference. Exactly straight overhead orthographic, single centered isolated object, generous transparent margins. Crisp painted materials and clear silhouette at small screen size. No characters, face, eyes, lettering, UI, grid, watermark, backdrop or ground plane; true transparent background. A small pop-up garden sprinkler head, round low green enamel base with weathered brass rim, short central blue-green rotating nozzle and two tiny copper outlet tips. Compact approximately circular silhouette. Warm light upper-left, cool highlights right, restrained gold and teal accent colors; garden equipment, not a sci-fi portal. No water streams or spray, no circular aura, no long pipes extending outside base; water will be animated by the game.",
+      "compiled": "maps/ch2/objects/sprinkler.png",
+      "generated": true
+    }
+  ]
+}

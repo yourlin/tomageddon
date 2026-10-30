@@ -1,0 +1,49 @@
+{
+  "id": "chef_minion",
+  "tool": "built-in image_gen",
+  "originalsRoot": "/Users/linyesh/playground/tomato-sister-art-source",
+  "prompts": [
+    {
+      "action": "idle",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR complete small tomato sous-chef characters in TWO ROWS TWO COLUMNS. Reference identity: round red tomato with dark spots green leaves, stained white tall chef hat, dirty white apron with tomato emblem olive straps/bow, two red boot feet and mitt hands; image-LEFT hand holds slotted metal spatula, image-RIGHT hand holds dirty frying pan. Keep prop sides all frames, same camera and body size. Cute painterly outlined style. Full hat pan spatula feet inside central60% quadrant with huge empty transparent margins and cross gutters. No text gridlines floor shadows backdrop particles or extra characters. True authored joint articulation not global scaling. Idle blink reading order: top-left OPEN eyes; top-right OPEN eyes subtle breath; bottom-left HALF open pupils still visible; bottom-right FULLY CLOSED eyelids no pupils or whites. Only fourth closed. Subtle hat/apron folds change props steady."
+    },
+    {
+      "action": "move",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR complete small tomato sous-chef characters in TWO ROWS TWO COLUMNS. Reference identity: round red tomato with dark spots green leaves, stained white tall chef hat, dirty white apron with tomato emblem olive straps/bow, two red boot feet and mitt hands; image-LEFT hand holds slotted metal spatula, image-RIGHT hand holds dirty frying pan. Keep prop sides all frames, same camera and body size. Cute painterly outlined style. Full hat pan spatula feet inside central60% quadrant with huge empty transparent margins and cross gutters. No text gridlines floor shadows backdrop particles or extra characters. True authored joint articulation not global scaling. Four walking poses in IMAGE coordinates: top-left image-left foot raised forward image-right planted; top-right both feet passing weight shift; bottom-left image-RIGHT foot raised forward image-LEFT planted; bottom-right recover. Arms counter-sway but always spatula on image-left pan image-right. No same-foot double step."
+    },
+    {
+      "action": "hurt",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR complete small tomato sous-chef characters in TWO ROWS TWO COLUMNS. Reference identity: round red tomato with dark spots green leaves, stained white tall chef hat, dirty white apron with tomato emblem olive straps/bow, two red boot feet and mitt hands; image-LEFT hand holds slotted metal spatula, image-RIGHT hand holds dirty frying pan. Keep prop sides all frames, same camera and body size. Cute painterly outlined style. Full hat pan spatula feet inside central60% quadrant with huge empty transparent margins and cross gutters. No text gridlines floor shadows backdrop particles or extra characters. True authored joint articulation not global scaling. Four hurt poses: brace; recoil torso back pan/spatula lift; crouch wince apron bunches hat droops; recover ready. Two held props remain full and on correct sides; no flash tint or dropped objects."
+    },
+    {
+      "action": "die",
+      "prompt": "undefinedFour DEATH poses: ready; stumble backward knees buckle hat tilts; seated slumped eyes shut pan/spatula lowered; inert lying sideways eyes shut hat still on head and both tools held close. No gore, keep full tools and hat all frames. Tiny figures generous transparent padding."
+    },
+    {
+      "action": "attack",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR complete small tomato sous-chef characters in TWO ROWS TWO COLUMNS. Reference identity: round red tomato with dark spots green leaves, stained white tall chef hat, dirty white apron with tomato emblem olive straps/bow, two red boot feet and mitt hands; image-LEFT hand holds slotted metal spatula, image-RIGHT hand holds dirty frying pan. Keep prop sides all frames, same camera and body size. Cute painterly outlined style. Full hat pan spatula feet inside central60% quadrant with huge empty transparent margins and cross gutters. No text gridlines floor shadows backdrop particles or extra characters. True authored joint articulation not global scaling. Four POISON VOLLEY attack poses: ready; image-right pan draws back while image-left spatula guards; pan tilts forward as if flicking sauce with calling mouth; recover. Poison bullets rendered separately do not draw any. Keep pan image-right and spatula image-left in all frames, full tools."
+    },
+    {
+      "action": "cast",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR complete small tomato sous-chef characters in TWO ROWS TWO COLUMNS. Reference identity: round red tomato with dark spots green leaves, stained white tall chef hat, dirty white apron with tomato emblem olive straps/bow, two red boot feet and mitt hands; image-LEFT hand holds slotted metal spatula, image-RIGHT hand holds dirty frying pan. Keep prop sides all frames, same camera and body size. Cute painterly outlined style. Full hat pan spatula feet inside central60% quadrant with huge empty transparent margins and cross gutters. No text gridlines floor shadows backdrop particles or extra characters. True authored joint articulation not global scaling. Four SUMMON command poses: ready; raise image-left spatula to chest; point spatula upward commanding with mouth calling while pan image-right remains held; recover. Do not draw summoned robots. Keep all tools and hat complete inside own quadrant. Tiny figures huge empty padding."
+    },
+    {
+      "action": "spawn",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR complete small tomato sous-chef characters in TWO ROWS TWO COLUMNS. Reference identity: round red tomato with dark spots green leaves, stained white tall chef hat, dirty white apron with tomato emblem olive straps/bow, two red boot feet and mitt hands; image-LEFT hand holds slotted metal spatula, image-RIGHT hand holds dirty frying pan. Keep prop sides all frames, same camera and body size. Cute painterly outlined style. Full hat pan spatula feet inside central60% quadrant with huge empty transparent margins and cross gutters. No text gridlines floor shadows backdrop particles or extra characters. True authored joint articulation not global scaling. Four TELEPORT APPEARANCE poses: crouched tucked with tools held close; body straightening hat settles; arms briefly spread pan right spatula left; ready stance. Character remains fully opaque no transparency fade or portal because game supplies effect. Keep same body size (not grow from tiny), full hat/props/feet in all frames, huge margins."
+    }
+  ],
+  "repairs": [
+    {
+      "action": "die2",
+      "prompt": "Transparent SQUARE 2x2 sprite sheet FOUR SMALL full tomato sous-chefs matching reference. Red round tomato, green leaves, stained white hat/apron tomato emblem, image-left slotted spatula image-right dirty pan. Four DEATH poses: ready; stumble knees buckle; slumped seated eyes shut; inert sideways eyes shut tools held close hat stays attached. Each figure centered within middle HALF quadrant, HUGE transparent gaps on ALL sides. Full hat pan spatula boots, no overlap between cells. No floor shadows backdrop glow text or effects."
+    },
+    {
+      "action": "attack2",
+      "prompt": "Transparent SQUARE 2x2 sprite sheet FOUR SMALL complete tomato sous-chefs matching reference: red spotted tomato green leaves tall stained white hat/apron, image-left hand holds spatula image-right hand holds frying pan. Four POISON VOLLEY attack poses: ready; pan draws back close beside shoulder; pan flicks forward close beside chest; recover. All props kept CLOSE to body, not stretched sideways. Every figure fits inside central HALF of quadrant, HUGE blank transparent gaps and outer margins. Full tools hat feet no overlaps. No bullets effects symbols floor shadows lines text."
+    },
+    {
+      "action": "cast2",
+      "prompt": "Use case stylized-concept. Transparent SQUARE game sprite sheet exactly FOUR complete small tomato sous-chef characters in TWO ROWS TWO COLUMNS. Reference identity: round red tomato with dark spots green leaves, stained white tall chef hat, dirty white apron with tomato emblem olive straps/bow, two red boot feet and mitt hands; image-LEFT hand holds slotted metal spatula, image-RIGHT hand holds dirty frying pan. Keep prop sides all frames, same camera and body size. Cute painterly outlined style. Full hat pan spatula feet inside central60% quadrant with huge empty transparent margins and cross gutters. No text gridlines floor shadows backdrop particles or extra characters. True authored joint articulation not global scaling. Four SUMMON command poses: ready; raise image-left spatula to chest; point spatula upward commanding with mouth calling while pan image-right remains held; recover. Do not draw summoned robots. Keep all tools and hat complete inside own quadrant. Tiny figures huge empty padding. Correction: NO exclamation marks, NO symbols, NO motion strokes, NO punctuation, NO extra graphical marks anywhere. Only four full characters and their held tools. Keep summoning command poses."
+    }
+  ]
+}

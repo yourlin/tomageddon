@@ -1,0 +1,75 @@
+{
+  "kind": "enemy",
+  "id": "weevil",
+  "displayName": "\u8c61\u9f3b\u866b",
+  "status": "integrated;native3tiers/actualchargerAI passed;final acceptance pending",
+  "referenceHeight": 135,
+  "gameplayBehavior": "charger;speed85/charge540/cd2.8/windup0.55;four basic plus actual windup/charge",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/weevil/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/weevil/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/weevil/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/weevil/base/die-sheet-pilot-1.png",
+      "referenceHeight": 110
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/weevil/base/windup-sheet-pilot-1.png",
+      "referenceHeight": 115
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/weevil/base/charge-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 157,
+    "windup": 135,
+    "charge": 160
+  },
+  "draftReview": "Sixlegs articulate,rigidshell retained;idle half lids3/fullyclosed4;dieclosedfromframe2;windup crouches and snout lowers;charge actual alternating legbounds. Apparent warm background in windup/charge alpha0 at center separator;partition checks passed;compiled alpha review next.",
+  "calibrationNote": "Compiled visual review found lowered antennae inflated rigid shell mass when normalizing whole silhouette. Die110/windup115 action overrides retain shell mass relative to idle135;one constant scale per action and fixed feet pivot. No perframe normalization.",
+  "verification": {
+    "native": "reports/art-pilot/enemy-weevil-animation-native.json",
+    "gameplay": "reports/art-pilot/enemy-weevil-gameplay-native.json",
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "sourceReview": "passed",
+    "runtimeArt": "passed",
+    "finalAccepted": false
+  }
+}

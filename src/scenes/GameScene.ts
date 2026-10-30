@@ -1,3 +1,6 @@
+import { queueJuiceArt } from '../systems/JuiceArt';
+import { motionFacing } from '../objects/MotionFacing';
+import { queueWeaponArt } from '../systems/WeaponArtRegistry';
 // 核心战斗场景：固定竞技场，玩家移动躲避，武器自动攻击
 import { tip, seenTip } from '../systems/Tutorial';
 import { treeTotals } from '../systems/TalentTree';
@@ -7,6 +10,9 @@ import { run } from '../systems/RunState';
 import { Arena } from '../systems/Arena';
 import { ArenaFx } from '../systems/ArenaFx';
 import { BossPhaseDirector } from '../systems/BossPhases';
+import { queueCombatArt, applyEnemyProjectileArt } from '../systems/CombatArt';
+import { queueProjectileArt } from '../systems/ProjectileArtRegistry';
+import { projectileArtDeps } from '../systems/ProjectileArtDeps';
 import { arenaDefFor } from '../data/arenas';
 import {
   BALANCE,
@@ -34,16 +40,19 @@ import { WEAPON_MAP, bulletArchetype, type WeaponEffect, type WeaponClass } from
 import { STATUSES, dotColor, type StatusApply, type StatusId } from '../data/statuses';
 import { Enemy, shooterRange } from '../objects/Enemy';
 import { Bullet } from '../objects/Bullet';
-import { Rig } from '../objects/Rig';
+import type { EntityVisual } from '../objects/EntityVisual';
+import { createEntityVisual } from '../objects/visualFactory';
 import { SpatialGrid } from '../systems/Grid';
 import { WeaponSystem } from '../systems/WeaponSystem';
 import { Synergy } from '../systems/Synergy';
 import { SkillSystem } from '../systems/SkillSystem';
 import { SuperBuffs, SUPER_BUFF_NAME, type SuperBuffKind } from '../systems/SuperBuffs';
 import { StatusSet } from '../systems/Status';
-import { RigPool } from '../systems/RigPool';
+import { VisualPool } from '../systems/RigPool';
+import { queueArt, releaseArt, retryFailedArt, unloadUnusedArt, readyMap, readyMapObject } from '../systems/ArtRegistry';
+import { chapterArtDeps, mapArtFor } from '../systems/ArtResolve';
 import { Fx } from '../systems/Fx';
-import { controls, readPad } from '../systems/Controls';
+import { controls, readPad, rumble } from '../systems/Controls';
 import { addDangerPatterns } from '../systems/Danger';
 import { audio } from '../systems/Audio';
 import { save, persist, markSeen } from '../systems/Save';
@@ -57,7 +66,6 @@ import { minionStats, bossStats } from '../systems/EnemyScaling';
 import { applyWaveRules, describeEvent, isSuperBossWave, mutations, reviveCost, type RunEventDef } from '../systems/RunEvents';
 import { button, text as uiText } from '../ui/UI';
 import { activeSkin } from '../systems/Progress';
-import { applySkin } from '../data/skins';
 import { BARKS, EASTER_EGGS, BARK_CHANCE, BARK_COOLDOWN, type BarkKind } from '../data/barks';
 import { stageMusic, bossMusic } from '../systems/Music';
 import { WaveQuestTracker } from '../systems/WaveQuests';
@@ -174,7 +182,7 @@ export class GameScene extends Phaser.Scene {
   /** 玩家被推开的冲量（逐帧衰减，叠加到移动速度上） */
   private pushVX = 0;
   private pushVY = 0;
-  player!: Rig;
+  player!: EntityVisual;
   pstatus = new StatusSet();
   enemies: Enemy[] = [];
   bullets: Bullet[] = [];
@@ -188,9 +196,9 @@ export class GameScene extends Phaser.Scene {
   grid = new SpatialGrid<Enemy>(80);
   tmp: Enemy[] = [];
   tmp2: Enemy[] = [];
-  dying: Rig[] = [];
+  dying: EntityVisual[] = [];
   fx!: Fx;
-  rigs!: RigPool;
+  rigs!: VisualPool;
   weapons!: WeaponSystem;
   /** 双契合武器的契合技 */
   synergy!: Synergy;
@@ -293,7 +301,7 @@ export class GameScene extends Phaser.Scene {
   /** 挡子弹的区域（芋头结界、蓝莓分身）：敌弹进入圆内即被抵消，block 收到被挡子弹的伤害 */
   bulletShields: BulletShield[] = [];
   /** 拿着本体武器一起攻击的分身位置（蓝莓双子），见 WeaponSystem.echo */
-  weaponClones: { x: number; y: number }[] = [];
+  weaponClones: { x: number; y: number; onAttack?: () => void }[] = [];
   /** H5：本波小任务 */
   readonly waveQuests = new WaveQuestTracker();
   /** F7：上次说台词的时间（秒，场景时钟） */
@@ -302,12 +310,59 @@ export class GameScene extends Phaser.Scene {
   finalSpawned = false;
   /** B6：正在等待玩家决定是否花钱复活 */
   reviveOffer = false;
+  /** 在加载前确定本波Boss，生成时复用，避免为所有潜在Boss加载整套图。 */
+  private waveBossIds: string[] = [];
+  private waveEliteId: string | undefined;
 
   constructor() {
     super('Game');
   }
 
+  /** 进入章节前加载本局要用的外部美术（角色与皮肤、章节怪物 / 召唤物 / 精英 / Boss、地图）；失败只会回退程序化外观 */
+  preload(): void {
+    queueJuiceArt(this);
+    this.waveBossIds = [];
+    this.waveEliteId = undefined;
+    if (!GameScene.sandbox) {
+      if (run.isBossWave()) {
+        const first = run.bossForWave();
+        this.waveBossIds.push(first);
+        if (isSuperBossWave(run.wave)) {
+          let second = run.bossForWave();
+          for (let i = 0; i < 6 && second === first; i++) second = run.bossForWave();
+          this.waveBossIds.push(second);
+        }
+      }
+      if (run.isEliteWave()) this.waveEliteId = run.eliteForWave();
+    }
+    releaseArt('Game');
+    retryFailedArt(); // 之前下载失败的素材在每次进章节时重试一次
+    const skin = activeSkin(run.charId);
+    const plannedBosses = [...this.waveBossIds, ...(this.waveEliteId ? [this.waveEliteId] : [])];
+    if (run.chapterId === 7 && !run.endless && run.isBossWave()) plannedBosses.push(TRUE_FINAL_BOSS_ID);
+    const bodies = chapterArtDeps(
+      run.chapterId,
+      run.charId,
+      skin?.id,
+      GameScene.sandbox ? undefined : { wave: run.wave, bossIds: plannedBosses },
+    );
+    queueCombatArt(this, run.chapterId, GameScene.sandbox ? undefined : new Set(bodies.filter((b) => b.kind === 'boss').map((b) => b.id)));
+    queueProjectileArt(
+      this,
+      GameScene.sandbox
+        ? undefined
+        : projectileArtDeps(
+            run.weapons.map((w) => w.id),
+            bodies.map((b) => b.id),
+          ),
+    );
+    queueWeaponArt(this, new Set(run.weapons.map((w) => w.id)));
+    queueArt(this, { bodies, maps: [{ ch: run.chapterId, parts: ['ground', 'foreground'], wave: run.wave }] }, 'Game');
+  }
+
   create(): void {
+    // 上一章用过、这一章不再需要的外部纹理在这里卸载（不在任何场景 / 存活外观里使用的才会卸）
+    unloadUnusedArt(this.textures);
     this.arena = new Arena(arenaDefFor(run.chapterId));
     const A = this.arena;
     this.dying = [];
@@ -384,19 +439,30 @@ export class GameScene extends Phaser.Scene {
     const ch = run.chapter;
     this.cameras.main.setBackgroundColor(ch.bgColor);
     // 地图：每章是一件放大的物件（平底锅、菜畦……），形状与场地一致；没有专属地图的场地（沙盒等）画简单地板
-    const mp = mapPlacement(A);
+    // 外部地图（地面 + 前景两层）只替换画面，通行区域仍由 arenas.ts / Arena 决定；未加载时用程序地图
+    const mart = mapArtFor(ch.id);
+    const ground = readyMap(this, ch.id, 'ground');
+    const mp = (ground && mart?.world) || mapPlacement(A);
     this.add
-      .image(mp.x, mp.y, paintArenaMap(this, ch.id, A))
+      .image(mp.x, mp.y, ground ?? paintArenaMap(this, ch.id, A))
       .setDisplaySize(mp.w, mp.h)
       .setDepth(-10);
+    const fg = ground && readyMap(this, ch.id, 'foreground');
+    if (fg && mart?.foreground)
+      this.add
+        .image(mp.x, mp.y, fg)
+        .setDisplaySize(mp.w, mp.h)
+        .setDepth(mart.foreground.depth ?? -5)
+        .setAlpha(mart.foreground.alpha ?? 1);
+    if (new URLSearchParams(location.search).has('arenaDebug')) this.arenaDebug();
 
-    this.rigs = new RigPool(this);
+    this.rigs = new VisualPool(this);
     this.fx = new Fx(this);
 
     const c = run.char;
-    // F6：装备皮肤时用换色后的外观（独立缓存键）
+    // F6：装备皮肤时用对应皮肤的外观（外部素材 / 换色后的 Rig）
     const skin = activeSkin(c.id);
-    this.player = new Rig(this, applySkin(c.look, skin), `char_${c.id}${skin ? `_${skin.id}` : ''}`, BALANCE.player.radius * 1.25);
+    this.player = createEntityVisual(this, { kind: 'char', id: c.id, skinId: skin?.id }, BALANCE.player.radius * 1.25);
     this.add.existing(this.player);
     this.player.setPosition(A.spawn.x, A.spawn.y);
     this.player.play('spawn', true);
@@ -439,7 +505,7 @@ export class GameScene extends Phaser.Scene {
     }
     for (const p of ch.pool.filter((q) => q.from <= run.wave + 2)) {
       const d = ENEMY_MAP[p.enemy];
-      this.rigs.warm(`enemy_${d.id}`, d.look, d.radius * 1.12, 6);
+      this.rigs.warm({ kind: 'enemy', id: d.id }, d.radius * 1.12, 6);
     }
 
     const cam = this.cameras.main;
@@ -453,12 +519,11 @@ export class GameScene extends Phaser.Scene {
     run.wlog.limit = sandbox ? 0 : this.timeLeft;
     this.spawnT = 0.5;
     if (!sandbox && run.isBossWave()) {
-      const bossId = run.bossForWave();
+      const bossId = this.waveBossIds[0] ?? run.bossForWave();
       this.time.delayedCall(800, () => this.queueSpawn(bossId, true));
       // B2：无尽第 30 / 45 / 60…波是超级 Boss 波，再来一只不同的 Boss
       if (isSuperBossWave(run.wave)) {
-        let second = run.bossForWave();
-        for (let i = 0; i < 6 && second === bossId; i++) second = run.bossForWave();
+        const second = this.waveBossIds[1] ?? run.bossForWave();
         this.time.delayedCall(2600, () => this.queueSpawn(second, true));
         this.time.delayedCall(900, () =>
           this.terrainNotice(tx('超级 Boss 波：两只 Boss 同时来袭！', 'Super Boss wave: two bosses at once!')),
@@ -493,17 +558,45 @@ export class GameScene extends Phaser.Scene {
     if (!sandbox && run.wave === 1) this.time.delayedCall(500, () => tip('move', this, true));
     if (!sandbox && !seenTip('skill'))
       this.time.addEvent({ delay: 1000, loop: true, callback: () => this.skill?.ready && tip('skill', this, true) });
-    this.events.on('bossSpawn', (e: Enemy) => {
+    const onBossSpawn = (e: Enemy) => {
       if (e.boss && !GameScene.sandbox) tip(e.boss.elite ? 'elite' : 'boss', this, true);
       if (e.boss && !e.boss.elite) this.bark('boss');
-    });
+    };
+    this.events.on('bossSpawn', onBossSpawn);
     this.barkAt = -999;
     if (!sandbox) this.time.delayedCall(900, () => this.bark('start'));
     audio.play(this, 'wave');
     this.events.once('shutdown', () => {
+      this.events.off('bossSpawn', onBossSpawn);
       this.weapons.destroy();
       this.skill.destroy();
+      releaseArt('Game');
+      this.game.events.once('poststep', () => unloadUnusedArt(this.textures));
     });
+  }
+
+  /** 碰撞调试叠层（?arenaDebug）：红色 = 不可站立（场外 / 障碍物），随缩场、临时障碍物等动态变化重绘，用来核对地图美术与碰撞是否对齐 */
+  private arenaDebug(): void {
+    const gfx = this.add.graphics().setDepth(19500);
+    let ver = -1;
+    const STEP = 16;
+    const draw = () => {
+      if (this.arena.version === ver && this.arena.scale === 1) return;
+      ver = this.arena.version;
+      const A = this.arena;
+      gfx.clear();
+      gfx.fillStyle(0xff0040, 0.28);
+      for (let y = A.top - 40; y < A.top + A.height + 40; y += STEP)
+        for (let x = A.left - 40; x < A.left + A.width + 40; x += STEP)
+          if (!A.contains(x + STEP / 2, y + STEP / 2)) gfx.fillRect(x, y, STEP, STEP);
+      gfx.lineStyle(2, 0x00e5ff, 0.9);
+      for (const o of A.obstacles) {
+        if (o.kind === 'circle') gfx.strokeCircle(o.x, o.y, o.r);
+        else gfx.strokeRect(o.x, o.y, o.w, o.h);
+      }
+    };
+    this.events.on('postupdate', draw);
+    this.events.once('shutdown', () => this.events.off('postupdate', draw));
   }
 
   recalcStats(): void {
@@ -728,8 +821,8 @@ export class GameScene extends Phaser.Scene {
     const canCast = !this.waveOver && !tot.disable && !this.pstatus.has('silence');
     if (Phaser.Input.Keyboard.JustDown(k.SPACE) || controls.skillPressed) {
       controls.skillPressed = false;
-      if (canCast) this.skill.use();
-    } else if (canCast && save.settings.autoSkill && this.skill.ready && this.skill.autoWants()) this.skill.use();
+      if (canCast) this.castSkill();
+    } else if (canCast && save.settings.autoSkill && this.skill.ready && this.skill.autoWants()) this.castSkill();
 
     const p = this.player;
     if (!this.skill.dash) {
@@ -750,14 +843,18 @@ export class GameScene extends Phaser.Scene {
       p.x = np.x;
       p.y = np.y;
     }
-    if (mx < -0.1) this.facing = -1;
-    else if (mx > 0.1) this.facing = 1;
+    // Dash velocity is locked by the skill and may differ from current input.
+    // Ice inertia also follows actual voluntary travel rather than the stick.
+    const travelX = this.skill.dash?.vx ?? this.velX;
+    const travelY = this.skill.dash?.vy ?? this.velY;
+    const travelFacing = motionFacing(travelX, travelY);
+    if (travelFacing) this.facing = travelFacing;
     const t = this.weapons.list[0]?.target;
     const lx = t ? Math.sign(t.x - p.x) * 0.8 : 0,
       ly = t ? Phaser.Math.Clamp((t.y - p.y) / 300, -1, 1) : 0;
     if (tot.disable) p.play(this.pstatus.has('freeze') ? 'frozen' : 'stun');
     else if (p.state === 'frozen' || p.state === 'stun') p.play('idle', true);
-    p.tick(dt, Math.hypot(mx, my), this.facing, lx, ly);
+    p.tick(dt, Math.min(1, Math.hypot(travelX, travelY) / Math.max(1, moveSpeed(this.stats))), this.facing, lx, ly);
     p.setDepth(11000); // 玩家始终绘制在怪物之上，保证可读性
 
     if (this.iframes > 0) {
@@ -996,6 +1093,7 @@ export class GameScene extends Phaser.Scene {
   private finalDeath(): void {
     run.hp = 0;
     this.dead = true;
+    this.pulse(0.025, 700);
     audio.play(this, 'die');
     audio.stopMusic();
     this.fx.burst(this.player.x, this.player.y, run.char.color, 40);
@@ -1023,6 +1121,8 @@ export class GameScene extends Phaser.Scene {
     t.setBackgroundColor('#1a0a0ccc').setPadding(8, 4, 8, 4);
     const follow = () => t.setPosition(this.player.x, t.y);
     this.events.on('postupdate', follow);
+    const stopFollowing = () => this.events.off('postupdate', follow);
+    this.events.once('shutdown', stopFollowing);
     this.tweens.add({
       targets: t,
       y: t.y - 24,
@@ -1030,7 +1130,8 @@ export class GameScene extends Phaser.Scene {
       delay: 1300,
       duration: 500,
       onComplete: () => {
-        this.events.off('postupdate', follow);
+        stopFollowing();
+        this.events.off('shutdown', stopFollowing);
         t.destroy();
       },
     });
@@ -1088,8 +1189,22 @@ export class GameScene extends Phaser.Scene {
     persist();
   }
 
+  /** 只震手柄、不抖镜头的反馈（技能释放、过波等）；和屏幕震动共用开关与强度 */
+  pulse(intensity: number, dur: number): void {
+    if (save.settings.shake) rumble(intensity * (save.settings.shakeScale ?? 1), dur);
+  }
+
+  private castSkill(): void {
+    const was = this.skill.ready;
+    this.skill.use();
+    if (was && !this.skill.ready) this.pulse(0.01, 150);
+  }
+
   shake(intensity: number, dur: number): void {
-    if (save.settings.shake) this.cameras.main.shake(dur, intensity * (save.settings.shakeScale ?? 1));
+    if (!save.settings.shake) return;
+    const k = intensity * (save.settings.shakeScale ?? 1);
+    this.cameras.main.shake(dur, k);
+    rumble(k, dur);
   }
 
   // ---------------- 波次与刷怪 ----------------
@@ -1127,7 +1242,7 @@ export class GameScene extends Phaser.Scene {
     const dur = waveDuration(run.wave, run.isBossWave());
     if (run.isEliteWave() && !this.eliteSpawned && this.timeLeft < dur * 0.75) {
       this.eliteSpawned = true;
-      this.queueSpawn(run.eliteForWave(), true);
+      this.queueSpawn(this.waveEliteId ?? run.eliteForWave(), true);
     }
     if (this.timeLeft <= 0) this.endWave();
   }
@@ -1285,6 +1400,7 @@ export class GameScene extends Phaser.Scene {
   private endWave(): void {
     if (this.waveOver || GameScene.sandbox) return;
     this.waveOver = true;
+    this.pulse(0.012, 250);
     audio.play(this, 'wave');
     for (const e of this.enemies)
       if (e.alive) {
@@ -1417,7 +1533,8 @@ export class GameScene extends Phaser.Scene {
     for (const e of near) {
       if (e.contactCd > 0 || e.status.totals.disable || e.def?.critter) continue;
       e.contactCd = 0.5;
-      e.rig?.play('attack');
+      // Contact still deals damage during a charge; its pose must not replace it.
+      e.rig?.tryAttackAnimation(true);
       this.damagePlayer(
         e.dmg * e.dealtMult * BALANCE.enemyHit.contact,
         e,
@@ -1665,7 +1782,9 @@ export class GameScene extends Phaser.Scene {
       b.life -= dt;
       b.x += b.vx * dt;
       b.y += b.vy * dt;
-      b.rotation += dt * 6;
+      b.rotation += dt * b.enemyVisualSpin;
+      b.enemyVisualAge += dt;
+      if (b.enemyVisualPulse) b.setScale(b.enemyVisualScale * (1 + Math.sin(b.enemyVisualAge * 9) * b.enemyVisualPulse));
       if (b.life <= 0 || b.x < a.x - 20 || b.x > a.right + 20 || b.y < a.y - 20 || b.y > a.bottom + 20) {
         b.kill();
         continue;
@@ -1679,7 +1798,7 @@ export class GameScene extends Phaser.Scene {
           ? [...(b.debuffs ?? []), { id: 'slow' as const, dur: 1.5, stacks: Math.max(1, Math.round(b.slow / 15)) }]
           : b.debuffs;
         this.damagePlayer(b.dmg, b.owner ?? undefined, deb);
-        this.fx.burst(b.x, b.y, 0xff4d6d, 5);
+        this.fx.burst(b.x, b.y, b.impactColor, 5);
         b.kill();
       }
     }
@@ -2105,6 +2224,7 @@ export class GameScene extends Phaser.Scene {
     b.owner = owner;
     const deb = debuffs?.[0];
     if (deb && !slow && key === 'proj_enemy') b.setTint(STATUSES[deb.id].color);
+    applyEnemyProjectileArt(b, run.chapterId, owner.boss?.id ?? owner.def?.id ?? '', owner.phaseIdx + (owner.phaseTrans > 0 ? 1 : 0), key);
   }
 
   enemyShoot(
@@ -2181,16 +2301,26 @@ export class GameScene extends Phaser.Scene {
   }
 
   /** 地形危险区（油池、孢子、酸液等）：涌出放大，持续缓慢旋转、起伏并冒泡，结束前淡出（见 updateHazards） */
-  addHazard(x: number, y: number, r: number, t: number, dps: number, debuff: StatusApply[] | undefined, color: number): void {
+  addHazard(
+    x: number,
+    y: number,
+    r: number,
+    t: number,
+    dps: number,
+    debuff: StatusApply[] | undefined,
+    color: number,
+    mapObject?: string,
+  ): void {
     if (this.waveOver) return;
-    const scale = (r * 2) / 256;
+    const art = mapObject ? readyMapObject(this, run.chapterId, mapObject) : null;
     const img = this.add
-      .image(x, y, 'fx_pool')
-      .setTint(color)
+      .image(x, y, art?.key ?? 'fx_pool')
       .setAlpha(0.6)
       .setDepth(1)
-      .setRotation(Math.random() * Math.PI * 2)
-      .setScale(scale * 0.35);
+      .setRotation(Math.random() * Math.PI * 2);
+    if (!art) img.setTint(color);
+    const scale = (r * 2) / img.width;
+    img.setScale(scale * 0.35);
     // 涌出：从小摊开到全尺寸
     this.tweens.add({ targets: img, scale, duration: 260, ease: 'Back.easeOut' });
     const anim = { scale, spin: (Math.random() < 0.5 ? -1 : 1) * 0.35, bubbleT: Math.random() * 0.3, color };

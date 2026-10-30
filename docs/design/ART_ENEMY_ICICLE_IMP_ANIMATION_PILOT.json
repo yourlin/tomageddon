@@ -1,0 +1,52 @@
+{
+  "kind": "enemy",
+  "id": "icicle_imp",
+  "displayName": "冰锥小鬼",
+  "status": "20frames integrated;3tier playback and actual3shot shooterAI passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "shooter shots3/spread36/slow25/cd3;actual callback",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/icicle_imp/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/icicle_imp/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/icicle_imp/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/icicle_imp/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/icicle_imp/base/attack-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle": "partitionpassed",
+    "move": "partitionpassed",
+    "hurt": "partitionpassed"
+  }
+}

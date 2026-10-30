@@ -1,0 +1,83 @@
+{
+  "kind": "boss",
+  "id": "rat_captain",
+  "status": "32frames8actions compiled/integrated;3tier playback/blink/freeze/GPUrelease passed; combat report separate; final visual/performance acceptance pending",
+  "referenceHeight": 136,
+  "gameplayPatterns": [
+    "charge:3s cooldown,0.6s windup",
+    "aimed5bullets3.5s",
+    "summon3rats8s"
+  ],
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die",
+    "windup",
+    "charge",
+    "attack",
+    "cast"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "windup",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/windup-sheet-pilot-1.png"
+    },
+    {
+      "name": "charge",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/charge-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/attack-sheet-pilot-1.png"
+    },
+    {
+      "name": "cast",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/boss/rat_captain/base/cast-sheet-pilot-2.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160,
+    "windup": 160,
+    "charge": 136,
+    "attack": 143,
+    "cast": 160
+  },
+  "runtimeReport": "reports/art-pilot/elite-rat_captain-animation-native.json",
+  "combatReport": "reports/art-pilot/elite-rat_captain-combat-motion-native.json"
+}

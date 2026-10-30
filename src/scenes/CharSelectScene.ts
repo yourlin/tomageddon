@@ -1,3 +1,5 @@
+import { CharacterJournal, queueJournalArt } from '../ui/CharacterJournal';
+import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // 角色与关卡选择
 import { bump, counter } from '../systems/Counters';
 import { tip } from '../systems/Tutorial';
@@ -46,6 +48,8 @@ import { titleBadge } from '../ui/TitleBadge';
 const LOCKED_TINT = 0x5c5c66;
 
 export class CharSelectScene extends Phaser.Scene {
+  private journal: CharacterJournal | null = null;
+  private weaponFocus = 0;
   private selected: CharacterDef = CHARACTERS[0];
   private chapter = 1;
   private detail!: Phaser.GameObjects.Container;
@@ -54,7 +58,6 @@ export class CharSelectScene extends Phaser.Scene {
   private chThumbs: { n: number; frame: Phaser.GameObjects.Graphics; w: number; h: number; name: string }[] = [];
   private chapterDesc!: Phaser.GameObjects.Text;
   private startBtn!: ReturnType<typeof button>;
-  private storyBtn!: ReturnType<typeof button>;
   private endlessBtn!: ReturnType<typeof button>;
   private dangerBtn!: ReturnType<typeof button>;
   /** 番茄危机等级（A4）：跨场景记住上次的选择 */
@@ -82,7 +85,76 @@ export class CharSelectScene extends Phaser.Scene {
     super('CharSelect');
   }
 
-  create(data?: { chapter?: number }): void {
+  preload(): void {
+    queueJournalArt(this);
+  }
+
+  create(data?: { chapter?: number; selectedId?: string; details?: boolean }): void {
+    this.journal = null;
+    this.showcase = null;
+    this.weaponPanel = this.dangerPanel = null;
+    if (data?.selectedId) this.selected = CHARACTERS.find((c) => c.id === data.selectedId) ?? CHARACTERS[0];
+    if (data?.details) {
+      this.createLegacy(data);
+      const back = () => this.scene.restart({ chapter: this.chapter, selectedId: this.selected.id });
+      this.input.keyboard?.on('keydown-ESC', back);
+      this.events.once('shutdown', () => this.input.keyboard?.off('keydown-ESC', back));
+      return;
+    }
+    autoRelayout(this, data);
+    this.cameras.main.setBackgroundColor(0x21120d);
+    this.chapter = data?.chapter ?? Math.min(save.clearedChapters + 1, CHAPTERS.length);
+    this.danger = Math.min(dangerUnlocked(this.chapter), CharSelectScene.lastDanger[this.chapter] ?? this.danger);
+    if (!chapterCleared(this.chapter)) this.endless = false;
+    this.journal = new CharacterJournal(this, {
+      character: () => this.selected,
+      select: (c) => {
+        this.selected = c;
+        this.journal?.selectedChanged();
+      },
+      chapter: () => this.chapter,
+      selectChapter: (n) => {
+        this.chapter = n;
+        this.danger = Math.min(dangerUnlocked(n), CharSelectScene.lastDanger[n] ?? 0);
+        if (!chapterCleared(n)) this.endless = false;
+        this.refresh();
+      },
+      endless: () => this.endless,
+      toggleEndless: () => {
+        this.endless = !this.endless;
+        this.refresh();
+      },
+      danger: () => this.danger,
+      showDanger: () => this.showDangerRules(),
+      setDanger: (n) => this.setDanger(n),
+      details: () => this.scene.restart({ details: true, chapter: this.chapter, selectedId: this.selected.id }),
+      start: () => this.start(),
+      back: () => this.scene.start('Menu'),
+      modalInput: (key) => {
+        if (this.dangerPanel) {
+          if (key === 'b' || key === 'a') {
+            this.dangerPanel.destroy();
+            this.dangerPanel = null;
+          } else if (key === 'left' || key === 'right') this.changeDangerInPanel(key === 'left' ? -1 : 1);
+          return true;
+        }
+        if (!this.weaponPanel) return false;
+        if (key === 'b') {
+          this.weaponPanel.destroy();
+          this.weaponPanel = null;
+          return true;
+        }
+        const choices = this.weaponPanel.list.filter((o) => o.name?.startsWith('journal-weapon:')) as ReturnType<typeof button>[];
+        if (key === 'left' || key === 'right')
+          this.weaponFocus = (this.weaponFocus + (key === 'left' ? -1 : 1) + choices.length) % choices.length;
+        if (key === 'a' || key === 'start') choices[this.weaponFocus]?.emit('pointerup');
+        else choices.forEach((b, i) => b.setAlpha(i === this.weaponFocus ? 1 : 0.55));
+        return true;
+      },
+    });
+  }
+
+  private createLegacy(data?: { chapter?: number }): void {
     autoRelayout(this);
     const W = VW(this),
       H = VH(this);
@@ -102,7 +174,17 @@ export class CharSelectScene extends Phaser.Scene {
         b.setInteractive({ useHandCursor: true }).on('pointerup', () => this.scene.start('Title', { from: 'CharSelect' }));
       }
     }
-    button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
+    button(
+      this,
+      W - 90,
+      44,
+      140,
+      52,
+      tx('返回手册', 'Back'),
+      () => this.scene.restart({ chapter: this.chapter, selectedId: this.selected.id }),
+      0x555555,
+      22,
+    );
     {
       const owned = CHARACTERS.filter(isUnlocked).length;
       text(
@@ -241,24 +323,6 @@ export class CharSelectScene extends Phaser.Scene {
     this.endlessBtn.setVisible(reveal.endless());
     for (const b of [dPrev, this.dangerBtn, dNext]) b.setVisible(reveal.danger());
     this.startBtn = button(this, W - 150, cy + 35, 220, 76, tx('出发！', 'Go!'), () => this.start(), COLORS.primary, 32);
-    // 回看本章开场漫画（未解锁的章节不给看，免得剧透）
-    this.storyBtn = button(
-      this,
-      W - 150,
-      cy + 96,
-      170,
-      32,
-      tx('📖 本章故事', '📖 Chapter Story'),
-      () => {
-        if (!chapterAvailable(this.chapter)) {
-          toast(this, chapterUnlockHint(this.chapter) ?? '', '#ffd166');
-          return;
-        }
-        this.scene.start('Comic', { ch: this.chapter, next: 'CharSelect' });
-      },
-      0x6b4f3a,
-      15,
-    );
     this.refresh();
   }
 
@@ -296,6 +360,10 @@ export class CharSelectScene extends Phaser.Scene {
   }
 
   private refresh(): void {
+    if (this.journal) {
+      this.journal.refresh();
+      return;
+    }
     for (const k of this.cards) {
       k.g.clear();
       const sel = k.c === this.selected;
@@ -340,7 +408,10 @@ export class CharSelectScene extends Phaser.Scene {
         }).setOrigin(0.5),
       );
     } else {
-      this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62, activeSkin(c.id));
+      // 外部美术按需加载：加载完成时若仍选着这名角色，重新排版详情（新外观的外框尺寸不同）
+      this.showcase = showcaseRig(this, 'char', c.id, this.detailX + 90, 90 + 110, 62, activeSkin(c.id), () => {
+        if (this.selected === c && this.scene.isActive()) this.refresh();
+      });
       this.showcase.setDepth(10);
       // 体型大 / 配件多的角色：按实际外框等比缩小，再居中到左上角的头像区（宽 160 × 高 160，
       // 面板内 x 10~170、y 6~166），不压到右侧名字与下方天赋
@@ -627,7 +698,6 @@ export class CharSelectScene extends Phaser.Scene {
       this.startBtn.setLabel(tx('🔒 未解锁', '🔒 Locked'));
       this.startBtn.setEnabled(false);
     }
-    this.storyBtn?.setAlpha(chUnlocked ? 1 : 0.5);
   }
 
   private setDanger(v: number): void {
@@ -647,6 +717,13 @@ export class CharSelectScene extends Phaser.Scene {
     this.refresh();
   }
 
+  private changeDangerInPanel(delta: number): void {
+    this.setDanger(Math.max(0, this.danger + delta));
+    this.dangerPanel?.destroy();
+    this.dangerPanel = null;
+    this.showDangerRules();
+  }
+
   /** 叠加规则一览（点危机等级按钮打开，再点关闭） */
   private showDangerRules(): void {
     if (this.dangerPanel) {
@@ -660,7 +737,7 @@ export class CharSelectScene extends Phaser.Scene {
     const bg = this.add.rectangle(W / 2, H / 2, W, H, 0x000000, 0.6).setInteractive();
     bg.on('pointerup', () => this.showDangerRules());
     c.add(bg);
-    const lv = Math.max(this.danger, 1);
+    const lv = this.danger;
     const pw = 560,
       ph = 70 + MAX_DANGER * 26;
     const g = this.add.graphics();
@@ -677,6 +754,8 @@ export class CharSelectScene extends Phaser.Scene {
         '#ff9f1c',
       ).setOrigin(0.5),
     );
+    c.add(button(this, W / 2 - 230, H / 2 - ph / 2 + 25, 42, 32, '−', () => this.changeDangerInPanel(-1), 0x654734, 22));
+    c.add(button(this, W / 2 + 230, H / 2 - ph / 2 + 25, 42, 32, '+', () => this.changeDangerInPanel(1), 0x654734, 22));
     const max = dangerUnlocked(this.chapter);
     // 只列已解锁的等级，下一级显示为「？？？」（不提前剧透后面的规则）
     DANGER_LEVELS.filter((d) => d.level <= max + 1).forEach((d, i) => {
@@ -704,7 +783,7 @@ export class CharSelectScene extends Phaser.Scene {
         this,
         W / 2,
         H / 2 + ph / 2 - 16,
-        tx(`奖励倍率 ×${dangerReward(lv)} · 点击任意处关闭`, `Reward ×${dangerReward(lv)} · click to close`),
+        tx(`奖励倍率 ×${dangerReward(lv)} · 左右调整 · A/B 关闭`, `Reward ×${dangerReward(lv)} · Left/Right adjust · A/B close`),
         14,
         COLORS.textDim,
       ).setOrigin(0.5),
@@ -729,6 +808,7 @@ export class CharSelectScene extends Phaser.Scene {
       H = VH(this);
     const c = this.add.container(0, 0).setDepth(100);
     this.weaponPanel = c;
+    this.weaponFocus = 0;
     const close = () => {
       c.destroy();
       if (this.weaponPanel === c) this.weaponPanel = null;
@@ -755,6 +835,7 @@ export class CharSelectScene extends Phaser.Scene {
     const prev = pool.some((w) => w.id === run.startWeaponId) ? run.startWeaponId : defaultStartWeapon(ch);
     const rest = Phaser.Utils.Array.Shuffle(pool.filter((w) => w.id !== prev).map((w) => w.id));
     const picks = [prev, ...rest].slice(0, 3);
+    requestWeaponArt(this, new Set(picks));
     picks.forEach((id, i) => {
       const d = WEAPON_MAP[id];
       const x = W / 2 + (i - 1) * (cw + gap) - cw / 2,
@@ -784,7 +865,11 @@ export class CharSelectScene extends Phaser.Scene {
           { wordWrap: { width: cw - 28, useAdvancedWrap: true }, lineSpacing: 3 },
         ),
       );
-      c.add(button(this, x + cw / 2, y + chh - 32, cw - 40, 44, tx('选择', 'Pick'), () => this.begin(id), COLORS.green, 20));
+      c.add(
+        button(this, x + cw / 2, y + chh - 32, cw - 40, 44, tx('选择', 'Pick'), () => this.begin(id), COLORS.green, 20).setName(
+          `journal-weapon:${id}`,
+        ),
+      );
     });
   }
 
@@ -797,8 +882,7 @@ export class CharSelectScene extends Phaser.Scene {
     checkAchievements();
     run.start(this.selected.id, this.chapter, this.endless, this.danger, startWeapon);
     if (this.endless) bump('endlessRuns');
-    // 第一次进入某章先播开场四格漫画（之后可在选关界面「📖 本章故事」回看）
-    if (!(save.meta.comicsSeen ?? []).includes(this.chapter)) this.scene.start('Comic', { ch: this.chapter, next: 'Game' });
-    else this.scene.start('Game');
+    // 每次新开一局都展示本章开场；看过记录只作收藏标记，玩家可在漫画页主动跳过。
+    this.scene.start('Comic', { ch: this.chapter, next: 'Game' });
   }
 }

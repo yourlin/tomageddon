@@ -1,0 +1,61 @@
+{
+  "kind": "enemy",
+  "id": "dust_bunny",
+  "displayName": "\u7070\u5c18\u56e2",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "wander;group2;four basic actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/dust_bunny/base/idle-sheet-pilot-2.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/dust_bunny/base/move-sheet-pilot-2.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/dust_bunny/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/dust_bunny/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "draftReview": {
+    "idle1": "REJECT compiled third pose already fully conceals eye whites/pupils, causing2closedslots=0.2s;repair third pose to truly half-open",
+    "move1": "REJECT same lead foot repeated;targeted move2 edits distinct feet and tuft poses",
+    "hurt1": "four fur compress/rebound and socket/eyelid changes inspected;partition checked",
+    "move2": "Opposite screen-left then screen-right lead feet/soles,distinct passing feet and tuft positions inspected;paper scrap and eye sockets retain sides;partition passed",
+    "die1": "Four furry sag/collapse poses with both closed lids and tucked feet;partition passed",
+    "idle2": "third pose cream eye whites and brown pupils clearly visible in BOTH sockets;fourth completely closed. Only one fully closed100ms slot. Targeted edit inspected."
+  },
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-dust_bunny-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-dust_bunny-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

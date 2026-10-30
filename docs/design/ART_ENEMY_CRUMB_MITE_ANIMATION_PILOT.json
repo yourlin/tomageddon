@@ -1,0 +1,59 @@
+{
+  "kind": "enemy",
+  "id": "crumb_mite",
+  "displayName": "\u9762\u5305\u5c51\u87a8",
+  "status": "integrated;native and actualAI basic verification passed;final acceptance pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "chase;group5;four actual basic actions",
+  "requiredActions": [
+    "idle",
+    "move",
+    "hurt",
+    "die"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/crumb_mite/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "move",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/crumb_mite/base/move-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/crumb_mite/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/crumb_mite/base/die-sheet-pilot-1.png"
+    }
+  ],
+  "calibrationLimits": {
+    "idle": 160,
+    "move": 160,
+    "hurt": 160,
+    "die": 160
+  },
+  "draftReview": {
+    "idle1": "two open/half-open then opaque gold lids cover both eyes;partition passed",
+    "move1": "four jointed leg extension/passing/reversed contact poses;crumb sides remain consistent;partition passed",
+    "hurt1": "brace/tuck/rebound/recovery with eyes in sockets;partition passed",
+    "die1": "four leg/mandible collapse poses,eyes stayclosed in2/3/4;partition passed"
+  },
+  "verification": {
+    "native": "reports/art-pilot/enemy-crumb_mite-animation-native.json",
+    "actualGameplay": "reports/art-pilot/enemy-crumb_mite-gameplay-native.json",
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeOnlyAssets": "passed"
+  }
+}

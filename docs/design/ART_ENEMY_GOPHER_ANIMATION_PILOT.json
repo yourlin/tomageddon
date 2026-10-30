@@ -1,0 +1,40 @@
+{
+  "kind": "enemy",
+  "id": "gopher",
+  "displayName": "土拨鼠",
+  "status": "integrated;native3tier and actualAI basic validation passed;final pending",
+  "referenceHeight": 160,
+  "gameplayBehavior": "stationary shooter speed0/life5/cd1.4/one proj_rock;no locomotion action",
+  "requiredActions": [
+    "idle",
+    "hurt",
+    "die",
+    "attack"
+  ],
+  "actions": [
+    {
+      "name": "idle",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/gopher/base/idle-sheet-pilot-1.png"
+    },
+    {
+      "name": "hurt",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/gopher/base/hurt-sheet-pilot-1.png"
+    },
+    {
+      "name": "die",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/gopher/base/die-sheet-pilot-1.png"
+    },
+    {
+      "name": "attack",
+      "grid": 2,
+      "referenceFrame": 0,
+      "source": "drafts/enemy/gopher/base/attack-sheet-pilot-1.png"
+    }
+  ]
+}
