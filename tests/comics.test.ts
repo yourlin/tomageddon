@@ -6,16 +6,21 @@ import { CHAPTERS } from '../src/data/chapters';
 import { CHARACTER_MAP } from '../src/data/characters';
 import { ENEMY_MAP } from '../src/data/enemies';
 import { BOSS_MAP } from '../src/data/bosses';
+import runtimeIndex from '../src/data/artRuntime.generated.json';
 
 const MAPS = { char: CHARACTER_MAP, enemy: ENEMY_MAP, boss: BOSS_MAP } as const;
 
 describe('开场四格漫画', () => {
-  it('每章都有可分成四格的横版 PNG 插画，尺寸和比例一致', () => {
+  // 原画 src/assets/comics 不进仓库，这里检查游戏实际下载的编译副本
+  it('每章都有可分成四格的横版插画（编译后的 WebP），尺寸和比例一致', () => {
+    const rows = runtimeIndex.files as Record<string, { file: string; width: number; height: number }>;
     for (const ch of CHAPTERS) {
-      const png = readFileSync(new URL(`../src/assets/comics/ch${ch.id}.png`, import.meta.url));
-      expect(png.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
-      const w = png.readUInt32BE(16),
-        h = png.readUInt32BE(20);
+      const row = rows[`comics/ch${ch.id}.png`];
+      expect(row, `第 ${ch.id} 章插画清单`).toBeDefined();
+      const webp = readFileSync(new URL(`../src/assets/runtime/${row.file}`, import.meta.url));
+      expect(webp.subarray(0, 4).toString('ascii')).toBe('RIFF');
+      expect(webp.subarray(8, 12).toString('ascii')).toBe('WEBP');
+      const { width: w, height: h } = row;
       expect(w, `第 ${ch.id} 章宽度`).toBeGreaterThanOrEqual(1536);
       expect(h, `第 ${ch.id} 章高度`).toBeGreaterThanOrEqual(1024);
       expect(w / h).toBeCloseTo(1.5, 1);
