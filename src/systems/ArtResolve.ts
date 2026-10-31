@@ -45,7 +45,7 @@ const sameIdent = (e: EntityArtEntry, v: VisualIdent): boolean =>
 /**
  * 外观选择（part = body 战斗形象 / portrait 头像）：
  * 1. 精确匹配实体 + 皮肤 + 变体的条目；
- * 2. 基础条目显式声明可复用到该皮肤 / 变体（调色或金色光环）；
+ * 2. 基础条目显式声明可复用到该皮肤（可调色）；怪物的词缀精英默认复用基础外观并加金色光环；
  * 3. 返回 null → 调用方使用对应皮肤 / 变体的程序化 Rig。
  */
 export function chooseArt(
@@ -59,14 +59,15 @@ export function chooseArt(
   if (exact) return { entry: exact, via: 'exact' };
   if (!v.skinId && !v.variant) return null;
   const base = entries.find((e) => e.kind === v.kind && e.id === v.id && !e.skinId && !e.variant && has(e));
-  if (!base?.reuse) return null;
+  if (!base) return null;
   if (v.skinId) {
-    const s = base.reuse.skins;
+    const s = base.reuse?.skins;
     if (s === 'all') return { entry: base, via: 'reuse' };
     const r = s?.[v.skinId];
     return r ? { entry: base, via: 'reuse', tint: r.tint } : null;
   }
-  if (v.variant === 'champ' && base.reuse.champ === 'goldAura') return { entry: base, via: 'reuse', aura: 'gold' };
+  // 词缀精英：没有专门的精英素材时复用基础插画并加金色光环，不能退回另一种画风的 Rig
+  if (v.variant === 'champ' && base.kind === 'enemy') return { entry: base, via: 'reuse', aura: 'gold' };
   return null;
 }
 
