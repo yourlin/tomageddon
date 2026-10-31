@@ -42,7 +42,7 @@ import {
   lifeStealMaxPerSecond,
 } from '../data/balance';
 import { weaponDamage, weaponCooldown, weaponRange } from '../systems/WeaponSystem';
-import { text, COLORS, fitImage, hitArea, toast, autoRelayout, statLines, NEG_LINE, NEG_COLOR, tu, TOUCH_UI } from '../ui/UI';
+import { text, COLORS, fitImage, hitArea, toast, autoRelayout, statLines, NEG_LINE, NEG_COLOR, tu, TOUCH_UI, fs, PHONE } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { markSeen, persist } from '../systems/Save';
 import { tx, lang } from '../i18n';
@@ -212,7 +212,9 @@ export class ShopScene extends Phaser.Scene {
       y = (H - ph) / 2;
     c.add(panel(this, x, y, pw, ph, COLORS.panelLight, COLORS.gold));
     c.add(text(this, W / 2, y + 36, title, 28, '#ffd166').setOrigin(0.5));
-    c.add(text(this, W / 2, y + 70, lines.join('\n'), 18, '#fff4ea', { align: 'center', wordWrap: { width: pw - 40 } }).setOrigin(0.5, 0));
+    c.add(
+      text(this, W / 2, y + 70, lines.join('\n'), fs(18), '#fff4ea', { align: 'center', wordWrap: { width: pw - 40 } }).setOrigin(0.5, 0),
+    );
     const bw = Math.min(220, (pw - 40) / btns.length - 16);
     this.modalChoices = [];
     btns.forEach((b, i) => {
@@ -324,6 +326,25 @@ export class ShopScene extends Phaser.Scene {
     run.shopWave = run.wave;
     for (const o of offers) markSeen(o.kind === 'weapon' ? 'weapons' : 'items', o.id);
     persist();
+  }
+
+  /** 手机上商店卡片说明放不下时的完整说明（点任意处关闭） */
+  private showCardDetail(title: string, color: string, lines: string[]): void {
+    const W = VW(this),
+      H = VH(this),
+      pw = Math.min(W - 80, 760);
+    const root = this.add.container(0, 0).setDepth(200);
+    const dim = this.add.rectangle(0, 0, W, H, 0x000000, 0.6).setOrigin(0).setInteractive();
+    const head = text(this, W / 2, 0, title, fs(26), color).setOrigin(0.5, 0);
+    const body = statLines(this, 0, 0, lines, fs(17), '#fff4ea', pw - 48);
+    const hint = text(this, W / 2, 0, tx('点任意处关闭', 'Tap anywhere to close'), fs(15), COLORS.textDim).setOrigin(0.5, 0);
+    const ph = Math.min(H - 40, 28 + head.height + 14 + body.height + 18 + hint.height + 22);
+    const top = (H - ph) / 2;
+    head.setY(top + 26);
+    body.box.setPosition((W - pw) / 2 + 24, head.y + head.height + 14);
+    hint.setY(top + ph - 22 - hint.height);
+    root.add([dim, panel(this, (W - pw) / 2, top, pw, ph), head, body.box, hint]);
+    dim.once('pointerup', () => root.destroy());
   }
 
   private draw(): void {
@@ -448,7 +469,11 @@ export class ShopScene extends Phaser.Scene {
             ),
           );
       }
-      L.add(fitImage(this.add.image(x + cw / 2, cy + 55, icon), o.kind === 'weapon' ? cw - 36 : 80));
+      // 手机上压缩图片区，把空间留给说明文字（字号放大后行数更多）
+      const lay = PHONE
+        ? { icon: cy + 42, fit: o.kind === 'weapon' ? Math.min(cw - 70, 120) : 60, name: cy + 84, type: cy + 106, desc: cy + 122 }
+        : { icon: cy + 55, fit: o.kind === 'weapon' ? cw - 36 : 80, name: cy + 106, type: cy + 126, desc: cy + 142 };
+      L.add(fitImage(this.add.image(x + cw / 2, lay.icon, icon), lay.fit));
       // 正好缺的合成材料：材料武器都已到位、只差道具的配方里，这件道具能补上一个空槽 → 右上角角标 + 一行说明
       const fills = o.kind === 'item' ? recipesFilledBy(o.id) : [];
       if (fills.length) {
@@ -463,38 +488,40 @@ export class ShopScene extends Phaser.Scene {
         const bg = this.add.graphics();
         bg.fillStyle(0xff9f1c, 1).fillCircle(bx, byy, 17).lineStyle(3, 0x1b0a0a, 1).strokeCircle(bx, byy, 17);
         L.add(bg);
-        L.add(text(this, bx, byy, '🔨', 16).setOrigin(0.5));
+        L.add(text(this, bx, byy, '🔨', fs(16)).setOrigin(0.5));
         this.tweens.add({ targets: bg, alpha: 0.55, duration: 600, yoyo: true, repeat: -1 });
       }
-      L.add(text(this, x + cw / 2, cy + 106, name, 20, rc.css).setOrigin(0.5));
+      L.add(text(this, x + cw / 2, lay.name, name, 20, rc.css).setOrigin(0.5));
       // 武器卡左上角：伤害类型图标（近战 / 远程 / 元素 / 光环）
       if (o.kind === 'weapon') L.add(fitImage(this.add.image(x + 26, cy + 26, weaponDmgType(WEAPON_MAP[o.id]).icon), 38));
       L.add(
         text(
           this,
           x + cw / 2,
-          cy + 126,
+          lay.type,
           o.kind === 'weapon'
             ? tx(`${weaponDmgType(WEAPON_MAP[o.id]).name}武器`, `${weaponDmgType(WEAPON_MAP[o.id]).name} Weapon`)
             : tx('道具', 'Item'),
-          13,
+          fs(13),
           o.kind === 'weapon' ? weaponDmgType(WEAPON_MAP[o.id]).color : COLORS.textDim,
         ).setOrigin(0.5),
       );
       // 负向属性（道具代价，如「−1 护甲」）用红色
       // 说明文字放不下时：先按顺序省略次要的行（超武增益长说明 → 套装 → 武器说明），
       // 还放不下就只显示放得下的行、末行加「…」。字号不缩小（缩小后太难读）
-      const room = by - bh / 2 - 8 - (cy + 142);
+      const room = by - bh / 2 - 8 - lay.desc;
+      const descSize = fs(tu(13));
       let shown = [...lines];
-      let desc = statLines(this, x + 10, cy + 142, shown, tu(13), '#fff4ea', cw - 20);
+      let desc = statLines(this, x + 10, lay.desc, shown, descSize, '#fff4ea', cw - 20);
       for (const drop of optional) {
         if (desc.height <= room) break;
         if (!shown.includes(drop)) continue;
         desc.box.destroy();
         shown = shown.filter((l) => l !== drop);
-        desc = statLines(this, x + 10, cy + 142, shown, tu(13), '#fff4ea', cw - 20);
+        desc = statLines(this, x + 10, lay.desc, shown, descSize, '#fff4ea', cw - 20);
       }
-      if (desc.height > room) {
+      const clipped = shown.length < lines.length || desc.height > room;
+      if (desc.height > room || (PHONE && clipped)) {
         const kids = desc.box.list as Phaser.GameObjects.Text[];
         let last: Phaser.GameObjects.Text | null = null;
         for (const t of kids) {
@@ -509,6 +536,11 @@ export class ShopScene extends Phaser.Scene {
         }
       }
       L.add(desc.box);
+      // 手机上说明被省略时：点卡片空白处看完整说明
+      if (PHONE && clipped) {
+        const body = by - bh / 2 - 6 - cy;
+        L.add(hitArea(this, x + cw / 2, cy + body / 2, cw, body, () => this.showCardDetail(name, rc.css, lines)));
+      }
       const can = run.seeds >= o.price && (o.kind === 'item' || run.canAddWeapon(o.id, o.tier));
       L.add(button(this, x + cw / 2 - 22, by, cw - 64, bh, `🌱 ${o.price}`, () => this.buy(o), COLORS.green, tu(20)).setEnabled(can));
       L.add(
@@ -575,7 +607,7 @@ export class ShopScene extends Phaser.Scene {
           ws - 12,
         ),
       );
-      L.add(text(this, x + ws - 6, y + ws - 4, TIER_NAMES[w.tier], 13, rc.css).setOrigin(1, 1));
+      L.add(text(this, x + ws - 6, y + ws - 4, TIER_NAMES[w.tier], fs(13), rc.css).setOrigin(1, 1));
       // 伤害类型角标图标（近战 / 远程 / 元素 / 光环）
       L.add(
         this.add
@@ -584,7 +616,7 @@ export class ShopScene extends Phaser.Scene {
           .fillCircle(x + 14, y + ws - 14, 13),
       );
       L.add(fitImage(this.add.image(x + 14, y + ws - 14, weaponDmgType(d).icon), 24));
-      if (w.forge) L.add(text(this, x + 6, y + 4, `+${w.forge}`, 14, '#ffd166', { stroke: '#000000', strokeThickness: 3 }));
+      if (w.forge) L.add(text(this, x + 6, y + 4, `+${w.forge}`, fs(14), '#ffd166', { stroke: '#000000', strokeThickness: 3 }));
       // 可进化：闪烁的 ✨ 角标；已是超武：金色描边
       if (run.canEvolve(w)) {
         const sp = text(this, x + ws - 4, y - 6, '✨', 20).setOrigin(0.5);
@@ -610,7 +642,7 @@ export class ShopScene extends Phaser.Scene {
           it = ITEM_MAP[id];
         L.add(panel(this, x, slotY, ws, ws, COLORS.panel, RARITY[it.rarity].color));
         L.add(fitImage(this.add.image(x + ws / 2, slotY + ws / 2, itemIconKey(this, it)), ws - 12));
-        L.add(text(this, x + ws - 6, slotY + ws - 5, `×${n}`, 14).setOrigin(1));
+        L.add(text(this, x + ws - 6, slotY + ws - 5, `×${n}`, fs(14)).setOrigin(1));
         L.add(hitArea(this, x, slotY, ws, ws, () => toast(this, `${it.name}：${describeItem(it).join('，')}`, RARITY[it.rarity].css)));
       });
       if (pages > 1)
@@ -630,7 +662,7 @@ export class ShopScene extends Phaser.Scene {
             16,
           ),
         );
-      if (!entries.length) L.add(text(this, 32, slotY + 20, tx('还没有道具', 'No items yet'), 18, '#c4ac91'));
+      if (!entries.length) L.add(text(this, 32, slotY + 20, tx('还没有道具', 'No items yet'), fs(18), '#c4ac91'));
     } else {
       const weapons = this.inventoryTab === 'weapons' ? run.weapons : run.storage;
       const max = this.inventoryTab === 'weapons' ? run.maxWeapons : run.storageMax;
@@ -678,11 +710,11 @@ export class ShopScene extends Phaser.Scene {
             `伤害 ${Math.round(weaponDamage(d, current.tier, run.stats))} · 冷却 ${weaponCooldown(d, current.tier, run.stats).toFixed(2)}s`,
             `DMG ${Math.round(weaponDamage(d, current.tier, run.stats))} · CD ${weaponCooldown(d, current.tier, run.stats).toFixed(2)}s`,
           ),
-          14,
+          fs(14),
           '#e5c99b',
         ),
       );
-      L.add(text(this, dx + 130, slotY + 65, tx('点击管理：合成 · 打造 · 出售', 'Select: Merge · Forge · Sell'), 13, '#c4ac91'));
+      L.add(text(this, dx + 130, slotY + 65, tx('点击管理：合成 · 打造 · 出售', 'Select: Merge · Forge · Sell'), fs(13), '#c4ac91'));
       L.add(hitArea(this, dx, slotY - 4, dw, 100, () => this.weaponPopup(current, dx, slotY)));
     }
     const sets = Object.entries(run.setCounts()).filter(([id, n]) => SET_MAP[id] && activeTier(SET_MAP[id], n));
@@ -693,7 +725,7 @@ export class ShopScene extends Phaser.Scene {
           30,
           wy + 137,
           tx('套装：', 'Sets: ') + sets.map(([id, n]) => `${tx(...SET_MAP[id].name)} ${n}/${SET_MAP[id].members.length}`).join('  '),
-          13,
+          fs(13),
           '#b9cb98',
         ),
       );
@@ -706,14 +738,14 @@ export class ShopScene extends Phaser.Scene {
     (['maxHp', 'attackSpeed', 'damage', 'armor'] as const).forEach((k, i) => {
       const yy = cy + 174 + i * 30;
       if (this.textures.exists(`stat_${k}`)) L.add(fitImage(this.add.image(sx + 23, yy, `stat_${k}`), 21));
-      L.add(text(this, sx + 42, yy, STAT_INFO[k].name, 15, '#e4c9ab').setOrigin(0, 0.5));
+      L.add(text(this, sx + 42, yy, STAT_INFO[k].name, fs(15), '#e4c9ab').setOrigin(0, 0.5));
       L.add(
         text(
           this,
           sx + sw - 16,
           yy,
           `${run.stats[k]}${STAT_INFO[k].pct ? '%' : ''}`,
-          17,
+          fs(17),
           run.stats[k] < 0 ? '#ef9992' : '#9be5b4',
         ).setOrigin(1, 0.5),
       );
@@ -797,18 +829,18 @@ export class ShopScene extends Phaser.Scene {
     const ps = 76;
     L.add(fitImage(this.add.image(sx + 16 + ps / 2, y + ps / 2, portraitKey(this, 'char', run.charId, activeSkin(run.charId)?.id)), ps));
     L.add(text(this, sx + 16 + ps + 12, y + 14, c.name, 22, '#ffd166'));
-    L.add(text(this, sx + 16 + ps + 12, y + 46, c.title, 15, COLORS.textDim));
+    L.add(text(this, sx + 16 + ps + 12, y + 46, c.title, fs(15), COLORS.textDim));
     y += ps + 10;
     add(tx('★ 契合标签（带任意一个：伤害 +10% 并触发契合特效）', '★ Synergy tags (any one: +10% dmg & synergy effect)'), 16, '#ffb347', 6);
     const favRow = (label: string, total: number, owned: number, color: string) => {
-      L.add(text(this, sx + 16, y, label, 16, color));
+      L.add(text(this, sx + 16, y, label, fs(16), color));
       L.add(
         text(
           this,
           sx + sw - 16,
           y + 2,
           tx(`共 ${total} 把 · 已持有 ${owned}`, `${total} weapons · owned ${owned}`),
-          13,
+          fs(13),
           owned ? '#52ff8a' : COLORS.textDim,
         ).setOrigin(1, 0),
       );
@@ -854,7 +886,7 @@ export class ShopScene extends Phaser.Scene {
     const rows = Math.ceil(STAT_ORDER.length / cols);
     const top = 126;
     const lineH = Math.min(tu(32), (this.bottomLayout(H).panelBottom - 16 - top - 6) / rows);
-    const fs = Math.max(tu(12), Math.min(tu(15), Math.floor(lineH * 0.6)));
+    const fsz = Math.max(tu(12), Math.min(tu(15), Math.floor(lineH * 0.6)));
     const iconS = Math.min(22, lineH - 6);
     STAT_ORDER.forEach((k, i) => {
       const cap = run.statCap(k);
@@ -864,14 +896,14 @@ export class ShopScene extends Phaser.Scene {
       const cy = top + Math.floor(i / cols) * lineH + lineH / 2;
       const icon = `stat_${k}`;
       if (this.textures.exists(icon)) L.add(fitImage(this.add.image(cx + iconS / 2, cy, icon), iconS));
-      const name = text(this, cx + iconS + 5, cy, info.name, fs, info.color).setOrigin(0, 0.5);
+      const name = text(this, cx + iconS + 5, cy, info.name, fsz, info.color).setOrigin(0, 0.5);
       const col = v > 0 ? '#52ff8a' : v < 0 ? '#ff6b6b' : '#fff4ea';
       const val = text(
         this,
         cx + colW,
         cy,
         `${Math.round(v * 10) / 10}${info.pct ? '%' : ''}${k === 'regen' ? tx(`(${regenPerSecond(v).toFixed(2)}/秒)`, ` (${regenPerSecond(v).toFixed(2)}/s)`) : ''}${k === 'lifeSteal' && v > 0 ? tx(`(≤${lifeStealMaxPerSecond(s.maxHp)}/秒)`, ` (≤${lifeStealMaxPerSecond(s.maxHp)}/s)`) : ''}${k === 'armor' && v > 0 ? armorText(v) : ''}${k === 'speed' && v !== 0 ? speedText(v) : ''}${s[k] >= cap ? tx('(上限)', ' cap') : ''}`,
-        fs,
+        fsz,
         col,
       ).setOrigin(1, 0.5);
       // 一列放不下（英文名称长、或带括号说明的数值）时，名称与数值一起等比缩小
@@ -1032,7 +1064,7 @@ export class ShopScene extends Phaser.Scene {
         ...(d.superBuff ? [`⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`] : []),
         ...(isDoubleFavored(run.char.favored, d) ? synergyLines(d, run.char.favored, tagName) : []),
       ].join('\n'),
-      13,
+      fs(13),
       COLORS.textDim,
       {
         wordWrap: { width: 312, useAdvancedWrap: true },
@@ -1046,7 +1078,7 @@ export class ShopScene extends Phaser.Scene {
       run.setCounts(),
       false,
       run.weapons.map((x) => x.id),
-    ).map((r) => text(this, 14, 0, r.text, 13, SET_ROW_COLOR[r.kind], { wordWrap: { width: 312, useAdvancedWrap: true } }));
+    ).map((r) => text(this, 14, 0, r.text, fs(13), SET_ROW_COLOR[r.kind], { wordWrap: { width: 312, useAdvancedWrap: true } }));
     const setH = setRows.reduce((a, t) => a + t.height + 1, setRows.length ? 4 : 0);
     let ty = 62 + desc.height + setH + 8;
     const affixY = ty;
@@ -1090,7 +1122,7 @@ export class ShopScene extends Phaser.Scene {
     };
     c.add(text(this, 14, 10, `${d.name} ${TIER_NAMES[w.tier]}${forgeLv ? ` +${forgeLv}` : ''}`, 20, RARITY[w.tier].css));
     const dt = weaponDmgType(d);
-    const dtLabel = text(this, PW - 14, 14, tx(`${dt.name}武器`, `${dt.name} weapon`), 15, dt.color).setOrigin(1, 0);
+    const dtLabel = text(this, PW - 14, 14, tx(`${dt.name}武器`, `${dt.name} weapon`), fs(15), dt.color).setOrigin(1, 0);
     c.add(dtLabel);
     c.add(fitImage(this.add.image(PW - 26 - dtLabel.width, 24, dt.icon), 24));
     c.add(
@@ -1102,7 +1134,7 @@ export class ShopScene extends Phaser.Scene {
           `伤害 ${Math.round(weaponDamage(d, w.tier, s, w))} · 冷却 ${weaponCooldown(d, w.tier, s, w).toFixed(2)}s · 射程 ${Math.round(weaponRange(d, s, w))}`,
           `DMG ${Math.round(weaponDamage(d, w.tier, s, w))} · CD ${weaponCooldown(d, w.tier, s, w).toFixed(2)}s · Range ${Math.round(weaponRange(d, s, w))}`,
         ),
-        14,
+        fs(14),
         '#fff4ea',
       ),
     );
@@ -1118,7 +1150,7 @@ export class ShopScene extends Phaser.Scene {
     const one = rerollOneCost(run.wave);
     affixes.forEach((a, i) => {
       const ay = affixY + i * 34;
-      c.add(text(this, 14, ay + 6, affixText(a), 16, AFFIX_TIER_COLOR[a.tier - 1]));
+      c.add(text(this, 14, ay + 6, affixText(a), fs(16), AFFIX_TIER_COLOR[a.tier - 1]));
       c.add(
         button(
           this,
@@ -1154,7 +1186,7 @@ export class ShopScene extends Phaser.Scene {
                 `Forge +${forgeLv} → +${forgeLv + 1}: +${FORGE_PCT}% damage · ${Math.round(forgeChance(w) * 100)}% success`,
               )
             : tx('已打造至满级 +10', 'Fully forged (+10)'),
-          14,
+          fs(14),
           '#ffd166',
         ),
       );

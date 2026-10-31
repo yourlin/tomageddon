@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.8.1 · 2026-11-01](#v0-8-1)
 - [v0.8.0 · 2026-10-30](#v0-8-0)
 - [v0.7.2 · 2026-10-17](#v0-7-2)
 - [v0.7.1 · 2026-10-16](#v0-7-1)
@@ -28,6 +29,22 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-8-1"></a>
+
+## v0.8.1 · 2026-11-01
+
+**Sharper, bigger text and faster loading on phones; enemy bullets get a red outline; boss phase changes no longer shake the screen hard**
+
+
+- Phones now default to High graphics quality (iPhones are no longer forced to Low); the battle camera zooms in a little on phones so heroes look bigger (screen-wide skills keep the same reach)
+- Text on every screen is bigger on phones; when a shop card’s description is cut short, tap the card to read all of it
+- About 30–46% less art to download, a faster first screen, and no more black screen when opening Settings
+- Enemy bullets now have a red outline so they are easier to see and dodge
+- Boss phase changes shake the screen and zoom in far less, so the battlefield stays readable
+- Lightning weapons have about 12% less range, and bolts no longer jump to enemies off screen
+- Heroes no longer play an attack pose (weapons do the attacking); affixed elites now use their illustrations with a gold aura; switching heroes in Cute style no longer flashes the Retro look
+- Character select layout fixed so talent and skill text is no longer shrunk; tutorial tips can be turned off in Settings; controller button hints only show when you use a controller
 
 <a id="v0-8-0"></a>
 

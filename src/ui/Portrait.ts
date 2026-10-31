@@ -95,7 +95,8 @@ export function showcaseRig(
     if (t > next) {
       t = 0;
       next = 3 + Math.random() * 4;
-      vis.play(Math.random() < 0.5 ? 'victory' : 'attack', true);
+      // 角色不做攻击动作（攻击由武器发出），展示时只偶尔庆祝
+      vis.play('victory', true);
       const cur = vis;
       scene.time.delayedCall(900, () => cur.active && cur.play('idle', true));
     }

@@ -58,9 +58,14 @@ describe('外观选择与回退', () => {
     const all = { ...tomato, reuse: { skins: 'all' as const } };
     expect(chooseArt({ kind: 'char', id: 'tomato', skinId: 'skin_tomato_3' }, 'body', [all])).toMatchObject({ via: 'reuse' });
   });
-  it('词缀精英：声明金色光环才复用，否则回退金色 Rig（不会显示成普通怪）', () => {
+  it('词缀精英：没有专门素材时都复用基础插画并加金色光环（不退回另一种画风，也不会显示成普通怪）', () => {
     expect(chooseArt({ kind: 'enemy', id: 'maggot', variant: 'champ' }, 'body', E)).toMatchObject({ via: 'reuse', aura: 'gold' });
-    expect(chooseArt({ kind: 'enemy', id: 'mold', variant: 'champ' }, 'body', E)).toBeNull();
+    expect(chooseArt({ kind: 'enemy', id: 'mold', variant: 'champ' }, 'body', E)).toMatchObject({
+      entry: mold,
+      via: 'reuse',
+      aura: 'gold',
+    });
+    expect(chooseArt({ kind: 'enemy', id: 'nobody', variant: 'champ' }, 'body', E)).toBeNull();
   });
   it('没有素材的实体回退 Rig', () => {
     expect(chooseArt({ kind: 'boss', id: 'mold_king' }, 'body', E)).toBeNull();

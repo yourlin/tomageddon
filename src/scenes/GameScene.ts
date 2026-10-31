@@ -1,4 +1,5 @@
 import { queueJuiceArt } from '../systems/JuiceArt';
+import { outlineBullet } from '../systems/BulletOutline';
 import { BATTLE_ZOOM } from '../systems/BattleCamera';
 import { motionFacing } from '../objects/MotionFacing';
 import { queueWeaponArt } from '../systems/WeaponArtRegistry';
@@ -2227,6 +2228,8 @@ export class GameScene extends Phaser.Scene {
     const deb = debuffs?.[0];
     if (deb && !slow && key === 'proj_enemy') b.setTint(STATUSES[deb.id].color);
     applyEnemyProjectileArt(b, run.chapterId, owner.boss?.id ?? owner.def?.id ?? '', owner.phaseIdx + (owner.phaseTrans > 0 ? 1 : 0), key);
+    // 红色描边凸显轮廓，方便躲避
+    outlineBullet(b);
   }
 
   enemyShoot(

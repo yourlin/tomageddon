@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 import { CHANGELOG } from '../data/changelog';
 import { save, persist } from '../systems/Save';
 import { tx, lang } from '../i18n';
-import { text, button, panel, COLORS } from './UI';
+import { text, button, panel, COLORS, fs } from './UI';
 import { VW, VH } from '../systems/HiDpi';
 
 /** 是否需要弹：当前版本有 news、玩家玩过旧版本（有开局记录或看过旧版更新日志）、还没看过本版本 */
@@ -31,7 +31,7 @@ export function showWhatsNew(scene: Phaser.Scene, version: string, onLog: () => 
   root.add([mask, panel(scene, px, py, pw, ph)]);
   root.add(text(scene, W / 2, py + 26, tx(`v${version} 新功能`, `New in v${version}`), 34, '#ffd166').setOrigin(0.5, 0));
   root.add(
-    text(scene, W / 2, py + 74, pick(e.highlight), 16, COLORS.textDim, {
+    text(scene, W / 2, py + 74, pick(e.highlight), fs(16), COLORS.textDim, {
       wordWrap: { width: pw - 60, useAdvancedWrap: true },
       align: 'center',
     }).setOrigin(0.5, 0),
@@ -42,7 +42,7 @@ export function showWhatsNew(scene: Phaser.Scene, version: string, onLog: () => 
       y = py + 140 + Math.floor(i / 2) * 96;
     root.add(text(scene, x, y, n.icon, 34).setOrigin(0, 0));
     root.add(text(scene, x + 52, y, pick(n.title), 20, '#ffffff'));
-    root.add(text(scene, x + 52, y + 28, pick(n.desc), 15, COLORS.textDim, { wordWrap: { width: colW - 70, useAdvancedWrap: true } }));
+    root.add(text(scene, x + 52, y + 28, pick(n.desc), fs(15), COLORS.textDim, { wordWrap: { width: colW - 70, useAdvancedWrap: true } }));
   });
   const close = () => {
     save.seenVersion = version;

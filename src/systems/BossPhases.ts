@@ -40,6 +40,21 @@ interface Transition {
   ctx: AnimCtx;
 }
 
+/**
+ * 转阶段运镜的强度上限：保留冲击感但不影响看清战场（震屏强度是屏幕尺寸的比例，0.018 约等于抖动 23 像素）。
+ * 阶段数据里写的推近倍数、震屏强度都会被这里收住。
+ */
+const CAM = {
+  startShake: 0.004,
+  burstShake: 0.007,
+  stepShakeScale: 0.4,
+  maxShake: 0.006,
+  /** 推近最多放大 4% */
+  maxPush: 1.04,
+  /** 镜头最多偏离玩家 25% 屏幕宽 */
+  maxOffset: 0.25,
+};
+
 export class BossPhaseDirector {
   private trans: Transition[] = [];
   /** 「坚韧」「无敌」跳字的节流 */
@@ -113,7 +128,7 @@ export class BossPhaseDirector {
     if (fx) g.hitStop(0.3, 0.25);
     e.rig?.play('hurt', true);
     g.fx.ring(e.x, e.y, e.radius * 2.2, 0xffffff, 300, true);
-    g.shake(0.01, 300);
+    g.shake(CAM.startShake, 200);
     g.events.emit('bossPhase', e, next, ph);
     // 场地变化在开始时下令：自带 1.5 秒预警，正好在爆发段生效
     for (const c of changes) g.arenaFx.change(c);
@@ -156,7 +171,7 @@ export class BossPhaseDirector {
         const p = g.player;
         const d = Math.hypot(p.x - e.x, p.y - e.y) || 1;
         if (d < 360) g.pushPlayer(((p.x - e.x) / d) * 260, ((p.y - e.y) / d) * 260);
-        g.shake(0.018, 450);
+        g.shake(CAM.burstShake, 300);
         const dx = p.x - e.x,
           dy = p.y - e.y;
         for (const pat of ph.transition ?? []) e.firePattern(g, pat, dx / d, dy / d);
@@ -199,8 +214,8 @@ export class BossPhaseDirector {
     if (!this.camBase) this.camBase = { zoom: cam.zoom };
     const base = this.camBase.zoom;
     const p = this.g.player;
-    // 镜头最多偏离玩家 40% 屏幕宽，保证玩家不出画
-    const maxOff = (cam.width / cam.zoom) * 0.4;
+    // 镜头偏离玩家有上限，玩家始终在画面中部附近
+    const maxOff = (cam.width / cam.zoom) * CAM.maxOffset;
     const clampTo = (x: number, y: number): [number, number] => {
       const dx = x - p.x,
         dy = y - p.y,
@@ -214,7 +229,7 @@ export class BossPhaseDirector {
         if (!e.alive) return;
         switch (s.kind) {
           case 'push':
-            cam.zoomTo(base * (s.zoom ?? 1.08), dur, 'Sine.easeInOut', true);
+            cam.zoomTo(base * Math.min(s.zoom ?? 1.08, CAM.maxPush), dur, 'Sine.easeInOut', true);
             if (s.focus !== false) {
               cam.stopFollow();
               const [x, y] = clampTo((e.x + p.x) / 2, (e.y + p.y) / 2);
@@ -235,7 +250,7 @@ export class BossPhaseDirector {
             break;
           }
           case 'shake':
-            this.g.shake(s.intensity ?? 0.015, dur);
+            this.g.shake(Math.min((s.intensity ?? 0.015) * CAM.stepShakeScale, CAM.maxShake), Math.min(dur, 300));
             break;
         }
       });

@@ -3,7 +3,7 @@ import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // 左边的番茄酱大瓶是总完成度和收藏等级。点罐子拉开抽屉，看到已收集的实物和还没见过的剪影。
 import { storage } from '../platform';
 import Phaser from 'phaser';
-import { text, button, COLORS, fitImage, autoRelayout } from '../ui/UI';
+import { text, button, COLORS, fitImage, autoRelayout, fs, PHONE } from '../ui/UI';
 import { tx, lang } from '../i18n';
 import { save, unlockedCount, isUnlocked } from '../systems/Save';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
@@ -140,7 +140,14 @@ export class CollectionScene extends Phaser.Scene {
 
     this.drawWall(W, H);
     text(this, 32, 22, tx('储藏柜', 'The Pantry'), 38);
-    text(this, 34, 70, tx('每找到一样新东西，对应的罐子就装满一点。', 'Every new find fills its jar a little more.'), 17, COLORS.textDim);
+    text(
+      this,
+      34,
+      70,
+      tx('每找到一样新东西，对应的罐子就装满一点。', 'Every new find fills its jar a little more.'),
+      fs(17),
+      COLORS.textDim,
+    );
     button(this, W - 90, 44, 140, 52, tx('返回', 'Back'), () => this.scene.start('Menu'), 0x555555, 22);
 
     this.drawBottle(40, 112, 270, H - 150, pct);
@@ -174,14 +181,14 @@ export class CollectionScene extends Phaser.Scene {
           `Closest to full: ${near.name[1]}, ${near.total - near.have} to go`,
         )
       : tx('挑一只罐子点开，看看还缺哪些。', 'Open any jar to see what is still missing.');
-    const ticket = text(this, sx, H - 46, tip, 18, '#ffd166');
+    const ticket = text(this, sx, H - 46, tip, fs(18), '#ffd166');
     if (gainedAll > 0)
       text(
         this,
         ticket.x + ticket.width + 24,
         H - 46,
         tx(`上次来过之后新收集 ${gainedAll} 样`, `${gainedAll} new since last visit`),
-        18,
+        fs(18),
         '#9be564',
       );
 
@@ -218,7 +225,8 @@ export class CollectionScene extends Phaser.Scene {
   private drawBottle(x: number, y: number, w: number, h: number, pct: number): void {
     const { level, next } = collectionRank(pct);
     const cx = x + w / 2;
-    const bh = Math.min(h - 120, 420);
+    // 手机上字号更大，下方的等级与「再收集」两行需要更多空间
+    const bh = Math.min(h - (PHONE ? 210 : 120), 420);
     const bw = Math.min(w - 40, 190);
     const top = y + 70;
     const neckW = bw * 0.36;
@@ -254,7 +262,7 @@ export class CollectionScene extends Phaser.Scene {
     label.fillStyle(PAPER, 1).fillRoundedRect(cx - bw / 2 + 10, ly, bw - 20, 86, 10);
     label.lineStyle(2, 0xc1121f, 1).strokeRoundedRect(cx - bw / 2 + 16, ly + 6, bw - 32, 74, 7);
     const num = text(this, cx, ly + 36, '0%', 40, '#c1121f', { stroke: '#f3e2c0', strokeThickness: 2, fontStyle: 'bold' }).setOrigin(0.5);
-    text(this, cx, ly + 68, tx('总完成度', 'Complete'), 15, INK, { stroke: '#f3e2c0', strokeThickness: 1 }).setOrigin(0.5);
+    text(this, cx, ly + 68, tx('总完成度', 'Complete'), fs(15), INK, { stroke: '#f3e2c0', strokeThickness: 1 }).setOrigin(0.5);
     // 入场：酱从瓶底灌上来（全场唯一的编排动效）
     const v = { p: 0 };
     this.tweens.add({
@@ -281,10 +289,18 @@ export class CollectionScene extends Phaser.Scene {
     }
     if (next) {
       const gap = Math.max(0.1, Math.round((next.at - pct) * 10) / 10);
-      text(this, cx, ry + 60, tx(`再收集 ${gap}% 晋升「${next.name[0]}」`, `${gap}% more to become ${next.name[1]}`), 15, COLORS.textDim, {
-        align: 'center',
-        wordWrap: { width: w },
-      }).setOrigin(0.5, 0);
+      text(
+        this,
+        cx,
+        ry + 60,
+        tx(`再收集 ${gap}% 晋升「${next.name[0]}」`, `${gap}% more to become ${next.name[1]}`),
+        fs(15),
+        COLORS.textDim,
+        {
+          align: 'center',
+          wordWrap: { width: w },
+        },
+      ).setOrigin(0.5, 0);
     }
   }
 
@@ -316,13 +332,15 @@ export class CollectionScene extends Phaser.Scene {
     const paperY = bodyTop + h * 0.42;
     g.fillStyle(PAPER, 1).fillRoundedRect(-w / 2 + 8, paperY, w - 16, 52, 6);
     g.lineStyle(2, color, 1).strokeRoundedRect(-w / 2 + 12, paperY + 4, w - 24, 44, 4);
-    const name = text(this, 0, paperY + 15, r.name[lang === 'zh' ? 0 : 1], 16, INK, {
+    const name = text(this, 0, paperY + 15, r.name[lang === 'zh' ? 0 : 1], fs(16), INK, {
       stroke: '#f3e2c0',
       strokeThickness: 1,
       fontStyle: 'bold',
     }).setOrigin(0.5);
     if (name.width > w - 30) name.setScale((w - 30) / name.width);
-    const count = text(this, 0, paperY + 36, `${r.have} / ${r.total}`, 15, INK, { stroke: '#f3e2c0', strokeThickness: 1 }).setOrigin(0.5);
+    const count = text(this, 0, paperY + 36, `${r.have} / ${r.total}`, fs(15), INK, { stroke: '#f3e2c0', strokeThickness: 1 }).setOrigin(
+      0.5,
+    );
     c.add([sauce, g, name, count]);
     if (full) {
       const star = text(this, w / 2 - 6, bodyTop + 4, '★', 26, '#ffd166').setOrigin(0.5);
@@ -332,7 +350,7 @@ export class CollectionScene extends Phaser.Scene {
     if (gained > 0) {
       const badge = this.add.container(w / 2 - 4, bodyTop - 2);
       const bg = this.add.graphics().fillStyle(0x2b9348, 1).fillRoundedRect(-22, -12, 44, 24, 12);
-      badge.add([bg, text(this, 0, 0, `+${gained}`, 15).setOrigin(0.5)]);
+      badge.add([bg, text(this, 0, 0, `+${gained}`, fs(15)).setOrigin(0.5)]);
       badge.setScale(0);
       c.add(badge);
       this.tweens.add({ targets: badge, scale: 1, delay: 700 + i * 60, duration: 260, ease: 'Back.easeOut' });
@@ -457,7 +475,7 @@ export class CollectionScene extends Phaser.Scene {
     d.add(title);
     d.add(text(this, title.x + title.width + 18, y + 18, `${r.have} / ${r.total} · ${pct}%`, 20, '#fff4ea'));
     d.add(button(this, x + pw - 70, y + 29, 100, 40, tx('关上', 'Close'), () => this.closeDrawer(), 0x3a2418, 18));
-    const tip = text(this, x + 22, y + ph - 40, '', 17, COLORS.textDim, { wordWrap: { width: pw - 44 } });
+    const tip = text(this, x + 22, y + ph - 40, '', fs(17), COLORS.textDim, { wordWrap: { width: pw - 44 } });
     d.add(tip);
 
     const cells = this.cells(r.id);
@@ -554,7 +572,7 @@ export class CollectionScene extends Phaser.Scene {
       });
       if (pages > 1) {
         const py = y + ph - 32;
-        grid.add(text(this, x + pw - 150, py, `${page + 1} / ${pages}`, 18).setOrigin(0.5));
+        grid.add(text(this, x + pw - 150, py, `${page + 1} / ${pages}`, fs(18)).setOrigin(0.5));
         grid.add(button(this, x + pw - 210, py, 56, 36, '◀', () => ((page = (page - 1 + pages) % pages), draw()), 0x3a2418, 18));
         grid.add(button(this, x + pw - 90, py, 56, 36, '▶', () => ((page = (page + 1) % pages), draw()), 0x3a2418, 18));
       }

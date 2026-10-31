@@ -6,7 +6,7 @@ import { bump, bumpMax, counter } from '../systems/Counters';
 import { WEAPON_MAP } from '../data/weapons';
 import Phaser from 'phaser';
 import { showcaseRig } from '../ui/Portrait';
-import { text, button, panel, COLORS, autoRelayout, fitImage } from '../ui/UI';
+import { text, button, panel, COLORS, autoRelayout, fitImage, fs } from '../ui/UI';
 import { portraitKey } from '../ui/Portrait';
 import { run, clearRun, recordHistory } from '../systems/RunState';
 import { save, persist, isUnlocked, type RunRecord } from '../systems/Save';
@@ -167,7 +167,7 @@ export class ResultScene extends Phaser.Scene {
     if (data.win && !run.challenge && run.chapterId <= BASE_CHAPTERS) {
       const hint = run.chapterId === BASE_CHAPTERS || run.danger >= CH6_DANGER_REQ ? chapterUnlockHint(6) : null;
       if (hint) {
-        text(this, W / 2, y, `🔒 ${CHAPTERS[5].name} · ${hint}`, 18, '#ffd166', {
+        text(this, W / 2, y, `🔒 ${CHAPTERS[5].name} · ${hint}`, fs(18), '#ffd166', {
           wordWrap: { width: 740, useAdvancedWrap: true },
           align: 'center',
         }).setOrigin(0.5);
@@ -206,7 +206,7 @@ export class ResultScene extends Phaser.Scene {
           ? tx(`熟练度升到 ${pr.masteryAfter} 级`, `Mastery up to Lv ${pr.masteryAfter}`)
           : tx(`熟练度经验 +${pr.masteryXp}`, `Mastery XP +${pr.masteryXp}`),
       );
-      text(this, W / 2, y, parts.join(' · '), 18, '#9bf6ff', {
+      text(this, W / 2, y, parts.join(' · '), fs(18), '#9bf6ff', {
         wordWrap: { width: 740, useAdvancedWrap: true },
         align: 'center',
       }).setOrigin(0.5, 0);
@@ -233,7 +233,7 @@ export class ResultScene extends Phaser.Scene {
       );
     const hookText = hooks.filter(Boolean).join('\n');
     if (hookText)
-      text(this, W / 2, y + 36, hookText, 16, '#9bf6ff', {
+      text(this, W / 2, y + 36, hookText, fs(16), '#9bf6ff', {
         wordWrap: { width: 740, useAdvancedWrap: true },
         align: 'center',
         lineSpacing: 6,
@@ -252,7 +252,7 @@ export class ResultScene extends Phaser.Scene {
         top - 30,
         tx('🎉 新角色解锁', '🎉 New characters') +
           (newChars.length > shown.length ? tx(`（共 ${newChars.length} 名）`, ` (${newChars.length})`) : ''),
-        18,
+        fs(18),
         '#52ff8a',
       ).setOrigin(0.5, 0);
       shown.forEach((c, i) => {
@@ -264,7 +264,7 @@ export class ResultScene extends Phaser.Scene {
         const k = img.scaleX;
         img.setScale(0);
         this.tweens.add({ targets: img, scale: k, duration: 380, delay: 200 + i * 120, ease: 'Back.Out' });
-        text(this, cx, cy + size / 2 + 2, c.name, 16, '#fff4ea').setOrigin(0.5, 0);
+        text(this, cx, cy + size / 2 + 2, c.name, fs(16), '#fff4ea').setOrigin(0.5, 0);
       });
     }
 

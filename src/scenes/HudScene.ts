@@ -3,7 +3,7 @@ import { WEATHER_MAP } from '../systems/Weather';
 import Phaser from 'phaser';
 import { run } from '../systems/RunState';
 import { controls, padConnected } from '../systems/Controls';
-import { text } from '../ui/UI';
+import { text, fs, PHONE } from '../ui/UI';
 import { xpToNext } from '../data/balance';
 import type { GameScene } from './GameScene';
 import type { Enemy } from '../objects/Enemy';
@@ -95,7 +95,7 @@ export class HudScene extends Phaser.Scene {
         const lines = [r.name[zh ? 0 : 1], ...describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id)];
         const sl = describeRelicSet(r, r.set ? setN[r.set] : 0);
         if (sl) lines.push(sl);
-        const t = text(this, 0, 0, lines.join('\n'), 15, '#ffffff', { wordWrap: { width: 260 } }).setOrigin(1, 0);
+        const t = text(this, 0, 0, lines.join('\n'), fs(15), '#ffffff', { wordWrap: { width: PHONE ? 360 : 260 } }).setOrigin(1, 0);
         const bg = this.add.graphics();
         bg.fillStyle(0x1a0a0c, 0.92)
           .fillRoundedRect(-t.width - 10, -6, t.width + 20, t.height + 12, 8)
@@ -115,7 +115,7 @@ export class HudScene extends Phaser.Scene {
         W - 30,
         100 + Math.ceil(owned.length / perRow) * 38 - 10,
         sets.map((s) => `✦ ${RELIC_SET_MAP[s].name[zh ? 0 : 1]}`).join('  '),
-        13,
+        fs(13),
         '#ffd166',
       ).setOrigin(1, 0);
   }
@@ -173,13 +173,13 @@ export class HudScene extends Phaser.Scene {
     this.weatherAcc = 0;
     this.markers = this.add.graphics().setDepth(-5);
     // H5：小任务进度
-    this.questText = text(this, 20, 136, '', 15, '#9bf6ff');
+    this.questText = text(this, 20, 136, '', fs(15), '#9bf6ff');
     this.bars = this.add.graphics();
     this.hpText = text(this, 30 + 150, 34, '', 20).setOrigin(0.5);
-    this.lvText = text(this, 30 + 150, 66, '', 16).setOrigin(0.5);
+    this.lvText = text(this, 30 + 150, 66, '', fs(16)).setOrigin(0.5);
     this.add.image(40, 104, 'ui_seed_icon');
     this.seedText = text(this, 60, 104, '0', 24, '#ffe066').setOrigin(0, 0.5);
-    this.bonusText = text(this, 60, 104, '', 15, '#52ff8a').setOrigin(0, 0.5);
+    this.bonusText = text(this, 60, 104, '', fs(15), '#52ff8a').setOrigin(0, 0.5);
     this.waveText = text(this, W / 2, 24, '', 26).setOrigin(0.5, 0);
     this.timeText = text(this, W / 2, 58, '', 40).setOrigin(0.5, 0);
     this.bossName = text(this, W / 2, H - 70, '', 20, '#ffb4a2')
@@ -208,7 +208,10 @@ export class HudScene extends Phaser.Scene {
       this.statusIcons.push({ c, bg, t, n, arc, nbg, id: null });
     }
     this.statusTipBg = this.add.graphics();
-    this.statusTipText = text(this, 0, 0, '', 14, '#ffffff', { wordWrap: { width: 250, useAdvancedWrap: true }, lineSpacing: 3 });
+    this.statusTipText = text(this, 0, 0, '', fs(14), '#ffffff', {
+      wordWrap: { width: PHONE ? 340 : 250, useAdvancedWrap: true },
+      lineSpacing: 3,
+    });
     this.statusTip = this.add.container(0, 0, [this.statusTipBg, this.statusTipText]).setDepth(60).setVisible(false);
     this.statusTipIdx = -1;
 
@@ -236,13 +239,13 @@ export class HudScene extends Phaser.Scene {
     this.skillBtn.setScale(bs);
     this.skillGfx = this.add.graphics();
     // 徽章图标本身就是按钮（不再外套圆圈）；技能名与按键提示放在图标下方
-    const skName = text(this, 0, 68, sk.name, 15).setOrigin(0.5);
+    const skName = text(this, 0, 68, sk.name, fs(15)).setOrigin(0.5);
     const icon = this.textures.exists(`skill_${run.charId}`)
       ? this.add.image(0, -6, `skill_${run.charId}`).setDisplaySize(SKILL_ICON, SKILL_ICON)
       : text(this, 0, -6, '★', 40, '#ffffff').setOrigin(0.5);
     this.skillIcon = icon;
     this.skillCdText = text(this, 0, -6, '', 34).setOrigin(0.5);
-    const keyHint = text(this, 0, 86, '', 14).setOrigin(0.5);
+    const keyHint = text(this, 0, PHONE ? 90 : 86, '', fs(14)).setOrigin(0.5);
     // 自动释放：图标外圈一圈绿色弧段持续旋转
     const autoRing = this.add.graphics().setPosition(0, -6);
     const rr = SKILL_ICON / 2 + 7;
@@ -266,7 +269,7 @@ export class HudScene extends Phaser.Scene {
       .setName('skill-mode-toggle')
       .setScale(bs);
     const ag = this.add.graphics();
-    const aLabel = text(this, -17, 0, '', 15, '#ffffff').setOrigin(0.5);
+    const aLabel = text(this, -17, 0, '', fs(15), '#ffffff').setOrigin(0.5);
     auto.add([ag, aLabel]).setSize(116, 44).setInteractive({ useHandCursor: true });
     const paintAuto = () => {
       const on = !!save.settings.autoSkill;
@@ -345,7 +348,7 @@ export class HudScene extends Phaser.Scene {
     this.input.on('pointerupoutside', release);
 
     if (this.isTouch) {
-      const tip = text(this, W * 0.2, H - 60, tx('按住左侧拖动移动', 'Drag on the left side to move'), 18, '#ffffff')
+      const tip = text(this, W * 0.2, H - 60, tx('按住左侧拖动移动', 'Drag on the left side to move'), fs(18), '#ffffff')
         .setOrigin(0.5)
         .setAlpha(0.6);
       this.tweens.add({ targets: tip, alpha: 0, delay: 3000, duration: 800 });
@@ -357,7 +360,7 @@ export class HudScene extends Phaser.Scene {
         padConnected()
           ? tx('左摇杆移动 · A / X / RB 释放技能 · Start 暂停', 'Left stick to move · A / X / RB for skill · Start to pause')
           : tx('WASD / 方向键移动 · 空格释放技能 · ESC 暂停', 'WASD / Arrows to move · Space for skill · ESC to pause'),
-        18,
+        fs(18),
         '#ffffff',
       )
         .setOrigin(0.5)

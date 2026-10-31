@@ -2,7 +2,7 @@
 // 中心是起点，每个方向占一个 60° 扇区，扇区用该方向颜色的淡色背景区分；核心天赋靠近中心，道路向外延伸。
 // 操作：点天赋选中，再点一次加点；右键或长按退点；拖动平移，滚轮 / 双指 / 右下角按钮缩放。
 import Phaser from 'phaser';
-import { text, button, panel, COLORS, autoRelayout, toast } from '../ui/UI';
+import { text, button, panel, COLORS, autoRelayout, toast, fs, PHONE } from '../ui/UI';
 import {
   BRANCHES,
   BRANCH_MAP,
@@ -208,7 +208,7 @@ export class TalentTreeScene extends Phaser.Scene {
       py = this.vp.y + 14;
     button(this, px + 20, py + 20, 40, 40, '◀', () => this.switchProfile(-1), 0x3d1d22, 20);
     button(this, px + 66, py + 20, 40, 40, '▶', () => this.switchProfile(1), 0x3d1d22, 20);
-    this.profText = text(this, px + 96, py + 2, '', 16, '#fff4ea', { stroke: '#000000', strokeThickness: 3 });
+    this.profText = text(this, px + 96, py + 2, '', fs(16), '#fff4ea', { stroke: '#000000', strokeThickness: 3 });
     this.inheritBtn = button(this, px + 85, py + 68, 150, 36, tx('恢复继承默认', 'Use default'), () => this.useDefault(), 0x5a3a20, 15);
     // 缩放按钮（叠在视口右下角）
     const zx = this.vp.x + this.vp.w - 30,
@@ -697,27 +697,27 @@ export class TalentTreeScene extends Phaser.Scene {
       add(text(this, x + 18, y + 14, tx('六大方向', 'Six branches'), 22, COLORS.text, { fontStyle: 'bold' }));
       let ty = y + 50;
       for (const b of BRANCHES) {
-        add(text(this, x + 18, ty, pick(b.name), 17, b.css, { fontStyle: 'bold' }));
-        add(text(this, x + w - 18, ty, `${branchSpent(b.id)} / ${branchCost(b.id)}`, 15, COLORS.textDim).setOrigin(1, 0));
-        add(text(this, x + 18, ty + 23, pick(b.desc), 12, COLORS.textDim));
-        bar(ty + 42, b.id);
-        ty += 58;
+        add(text(this, x + 18, ty, pick(b.name), fs(17), b.css, { fontStyle: 'bold' }));
+        add(text(this, x + w - 18, ty, `${branchSpent(b.id)} / ${branchCost(b.id)}`, fs(15), COLORS.textDim).setOrigin(1, 0));
+        add(text(this, x + 18, ty + 23, pick(b.desc), fs(12), COLORS.textDim));
+        // 手机上说明字号更大，进度条和行高跟着下移
+        bar(ty + (PHONE ? 48 : 42), b.id);
+        ty += PHONE ? 64 : 58;
       }
-      add(
-        text(
-          this,
-          x + 18,
-          ty + 8,
-          hint +
-            tx(
-              '\n· 从靠近中心的核心天赋开始，沿道路向外解锁\n· 终极天赋需要在本方向投入足够点数\n· 「全部重置」免费，随时可用',
-              '\n· Start from a core near the center and follow the roads outward\n· Keystones need enough points spent in their branch\n· "Reset all" is free and always available',
-            ),
-          14,
-          COLORS.text,
-          wrap,
-        ),
+      // 操作说明按剩余空间显示：全部 → 只留基础操作 → 不显示
+      const more = tx(
+        '\n· 从靠近中心的核心天赋开始，沿道路向外解锁\n· 终极天赋需要在本方向投入足够点数\n· 「全部重置」免费，随时可用',
+        '\n· Start from a core near the center and follow the roads outward\n· Keystones need enough points spent in their branch\n· "Reset all" is free and always available',
       );
+      const room = y + h - 12 - (ty + 8);
+      for (const copy of [hint + more, hint]) {
+        const t = text(this, x + 18, ty + 8, copy, fs(14), COLORS.text, wrap);
+        if (t.height <= room) {
+          add(t);
+          break;
+        }
+        t.destroy();
+      }
       return;
     }
     const b = BRANCH_MAP[n.branch];
@@ -729,7 +729,7 @@ export class TalentTreeScene extends Phaser.Scene {
     let ty = y + 70;
     add(text(this, x + 18, ty, `${n.icon} ${nodeText(n, 'name')}`, 24, '#fff4ea', { fontStyle: 'bold' }));
     ty += 36;
-    add(text(this, x + 18, ty, `${pick(KIND_NAME[n.kind])} · ${tx('等级', 'Rank')} ${rank} / ${n.max}`, 15, b.css));
+    add(text(this, x + 18, ty, `${pick(KIND_NAME[n.kind])} · ${tx('等级', 'Rank')} ${rank} / ${n.max}`, fs(15), b.css));
     ty += 30;
     // 二选一的关键天赋：标出另一个选项
     const rival = n.exclusive ? TALENT_NODES.find((o) => o.id !== n.id && o.exclusive === n.exclusive) : undefined;
@@ -740,14 +740,14 @@ export class TalentTreeScene extends Phaser.Scene {
           x + 18,
           ty,
           tx(`二选一：与「${nodeText(rival, 'name')}」互斥`, `Pick one: exclusive with "${nodeText(rival, 'name')}"`),
-          15,
+          fs(15),
           '#ffd166',
         ),
       );
       ty += 26;
     }
     if (rank) {
-      const t = add(text(this, x + 18, ty, `${tx('当前', 'Now')}：${nodeText(n, 'desc', rank)}`, 17, COLORS.text, wrap));
+      const t = add(text(this, x + 18, ty, `${tx('当前', 'Now')}：${nodeText(n, 'desc', rank)}`, fs(17), COLORS.text, wrap));
       ty += t.height + 10;
     }
     if (rank < n.max) {
@@ -757,7 +757,7 @@ export class TalentTreeScene extends Phaser.Scene {
           x + 18,
           ty,
           `${rank ? tx('下一级', 'Next') : tx('效果', 'Effect')}：${nodeText(n, 'desc', rank + 1)}`,
-          17,
+          fs(17),
           '#9be564',
           wrap,
         ),
@@ -771,7 +771,7 @@ export class TalentTreeScene extends Phaser.Scene {
         : block === 'max'
           ? { s: tx('已点满', 'Maxed'), c: '#ffd166' }
           : { s: tx('▶ 再点一次这个天赋即可加点', '▶ Tap this talent again to learn it'), c: '#52ff8a' };
-    const st = add(text(this, x + 18, ty + 4, status.s, 15, status.c, wrap));
+    const st = add(text(this, x + 18, ty + 4, status.s, fs(15), status.c, wrap));
     ty += st.height + 14;
     if (rank > 0 && !canLower(n))
       add(
@@ -780,11 +780,11 @@ export class TalentTreeScene extends Phaser.Scene {
           x + 18,
           ty,
           tx('有后续天赋依赖它，暂时不能退点', 'Later talents depend on this — cannot refund yet'),
-          14,
+          fs(14),
           COLORS.textDim,
           wrap,
         ),
       );
-    add(text(this, x + 18, y + h - 16, hint, 13, COLORS.textDim, wrap).setOrigin(0, 1));
+    add(text(this, x + 18, y + h - 16, hint, fs(13), COLORS.textDim, wrap).setOrigin(0, 1));
   }
 }

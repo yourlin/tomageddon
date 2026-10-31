@@ -61,10 +61,11 @@ export function weaponRange(def: WeaponDef, s: Stats, ow?: OwnedWeapon, extraAur
     return Math.max(60, def.range * (1 + BALANCE.auraTierRadius * t) * (1 + size / 100) + affixTotals(ow).range);
   }
   const bonus = def.cls === 'melee' ? s.range * 0.5 : s.range;
+  const base = def.kind === 'chain' ? def.range * BALANCE.chainRangeMult : def.range;
   // 射程下限：负射程最多把近战武器削到基础射程的 rangeFloor.melee、远程削到 rangeFloor.ranged
   const fl = BALANCE.rangeFloor;
-  const floor = def.cls === 'melee' ? Math.max(fl.meleeMin, def.range * fl.melee) : Math.max(fl.rangedMin, def.range * fl.ranged);
-  return Math.max(floor, def.range + bonus + affixTotals(ow).range);
+  const floor = def.cls === 'melee' ? Math.max(fl.meleeMin, base * fl.melee) : Math.max(fl.rangedMin, base * fl.ranged);
+  return Math.max(floor, base + bonus + affixTotals(ow).range);
 }
 
 /** extraSpeed：契合特效 / 天赋带来的攻速 %，与攻速属性相加后按同一条曲线换算 */
@@ -327,7 +328,6 @@ export class WeaponSystem {
       if (def.kind === 'mine') {
         if (g.enemies.some((e) => e.alive)) {
           w.cd = weaponCooldown(def, tier, s, w.owned, spd);
-          g.player.tryAttackAnimation();
           w.shot = talent.onFire(def);
           const k = (def.count?.[tier] ?? 1) + convert(def, m, w.shot).count;
           for (let j = 0; j < k; j++) this.placeMine(w, range, k - 1);
@@ -360,10 +360,9 @@ export class WeaponSystem {
     g.tweens.add({ targets: img, alpha: 0, duration: 130, onComplete: () => img.destroy() });
   }
 
-  /** 开火一次；契合武器按连击概率在 0.11 秒后追加一次（追加攻击不再连击） */
+  /** 开火一次；契合武器按连击概率在 0.11 秒后追加一次（追加攻击不再连击）。攻击由武器发出，角色本身不播攻击动作 */
   private attack(w: WRun, hx: number, hy: number, t: Enemy, range: number, combo: boolean): void {
     const g = this.g;
-    g.player.tryAttackAnimation();
     w.shot = g.talent.onFire(w.def);
     g.synergy.preAttack(w.syn, w.shot);
     if (combo) w.dmgMul = w.mods?.comboMult ?? 0.6;
@@ -602,6 +601,7 @@ export class WeaponSystem {
           if (j > 0) g.talent.onChainJump(def, cur);
           dmg *= BALANCE.chainDecay;
           cur = g.grid.nearest(cur.x, cur.y, 200, hitSet);
+          if (cur && Math.hypot(cur.x - g.player.x, cur.y - g.player.y) > range * BALANCE.chainReach) cur = null;
         }
         g.fxLightning(pts, chainColor(def.id));
         const cst = CHAIN_STYLE[def.id];

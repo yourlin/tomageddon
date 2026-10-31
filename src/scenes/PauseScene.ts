@@ -1,7 +1,7 @@
 import { queueWeaponArt } from '../systems/WeaponArtRegistry';
 // 暂停菜单（覆盖在战斗之上）
 import Phaser from 'phaser';
-import { text, panel, COLORS, autoRelayout, fitImage, statLines, tu, NEG_COLOR } from '../ui/UI';
+import { text, panel, COLORS, autoRelayout, fitImage, statLines, tu, NEG_COLOR, fs } from '../ui/UI';
 import { charTraitLines, describeWeaponSets, weaponDmgType, armorText, speedText, archetypeText, SET_ROW_COLOR } from '../data/describe';
 import { run, clearRun, restoreFreeSnapshot, type OwnedWeapon } from '../systems/RunState';
 import { inPractice, exitPractice } from '../systems/Practice';
@@ -68,7 +68,7 @@ export class PauseScene extends Phaser.Scene {
           '手柄：左摇杆移动 · A / X / RB 释放技能 · Start 暂停 · 方向键选择 · A 确认 · B 返回',
           'Gamepad: left stick move · A / X / RB skill · Start pause · D-pad select · A confirm · B back',
         ),
-        14,
+        fs(14),
         MENU.dim,
       ).setOrigin(0.5);
     fitImage(this.add.image(px + 86, 126, portraitKey(this, 'char', run.charId, activeSkin(run.charId)?.id)), 108);
@@ -79,7 +79,7 @@ export class PauseScene extends Phaser.Scene {
       px + 38,
       190,
       tx(`${run.chapter.name} · 等级 ${run.level} · 击杀 ${run.kills}`, `${run.chapter.name} · Lv ${run.level} · ${run.kills} kills`),
-      14,
+      fs(14),
       MENU.dim,
     );
     menuButton(this, px + PW - 42, 88, 44, 42, '', () => toggleFullscreen(this), false, 18, 'fullscreen').setName('pause:fullscreen');
@@ -145,7 +145,9 @@ export class PauseScene extends Phaser.Scene {
       quit.list.forEach((o) => {
         if (o instanceof Phaser.GameObjects.Text) o.setColor('#f59b86');
       });
-      text(this, px + PW * 0.61, fy + 34, tx('保存后从本波开始继续', 'Resume from the start of this wave'), 13, MENU.dim).setOrigin(0.5);
+      text(this, px + PW * 0.61, fy + 34, tx('保存后从本波开始继续', 'Resume from the start of this wave'), fs(13), MENU.dim).setOrigin(
+        0.5,
+      );
     }
     const escape = () => {
       if (this.abandonDialog) {
@@ -218,10 +220,18 @@ export class PauseScene extends Phaser.Scene {
     this.add.zone(W / 2, H / 2, 580, 270).setInteractive();
     menuPanel(this, W / 2 - 290, H / 2 - 135, 580, 270);
     menuHeading(this, W / 2, H / 2 - 83, tx('放弃本局？', 'Abandon this run?'), 30).setOrigin(0.5);
-    text(this, W / 2, H / 2 - 18, tx('将结束当前对局，无法继续本局。', 'This ends your current run. You cannot resume it.'), 18, MENU.dim, {
-      wordWrap: { width: 510 },
-      align: 'center',
-    }).setOrigin(0.5);
+    text(
+      this,
+      W / 2,
+      H / 2 - 18,
+      tx('将结束当前对局，无法继续本局。', 'This ends your current run. You cannot resume it.'),
+      fs(18),
+      MENU.dim,
+      {
+        wordWrap: { width: 510 },
+        align: 'center',
+      },
+    ).setOrigin(0.5);
     menuButton(this, W / 2 - 132, H / 2 + 72, 220, 48, tx('返回游戏', 'Keep playing'), close, false, 20);
     menuButton(
       this,
@@ -312,16 +322,16 @@ export class PauseScene extends Phaser.Scene {
       const rc = wpn && RARITY[wpn.tier];
       panel(this, sx, sy, ws, ws, MENU.panel, d?.evolvedFrom ? COLORS.gold : (rc?.color ?? 0x705347));
       if (!wpn || !d || !rc) {
-        text(this, sx + ws / 2, sy + ws / 2, tx('空槽', 'Empty'), 16, '#947d6b').setOrigin(0.5);
+        text(this, sx + ws / 2, sy + ws / 2, tx('空槽', 'Empty'), fs(16), '#947d6b').setOrigin(0.5);
         continue;
       }
       fitImage(
         this.add.image(sx + ws / 2, sy + ws * 0.39, this.textures.exists(`icon_weapon_${d.id}`) ? `icon_weapon_${d.id}` : `weapon_${d.id}`),
         ws * 0.66,
       );
-      const title = text(this, sx + ws / 2, sy + ws - 28, d.name, 17, MENU.cream).setOrigin(0.5);
+      const title = text(this, sx + ws / 2, sy + ws - 28, d.name, fs(17), MENU.cream).setOrigin(0.5);
       if (title.width > ws - 12) title.setScale((ws - 12) / title.width);
-      text(this, sx + ws - 8, sy + 9, TIER_NAMES[wpn.tier], 12, rc.css).setOrigin(1, 0);
+      text(this, sx + ws - 8, sy + 9, TIER_NAMES[wpn.tier], fs(12), rc.css).setOrigin(1, 0);
       fitImage(this.add.image(sx + 13, sy + 14, weaponDmgType(d).icon), 18);
       const zone = this.add.zone(sx, sy, ws, ws).setOrigin(0).setInteractive({ useHandCursor: true });
       const show = () => this.showWeaponTip(wpn, sx, sy, ws);
@@ -331,8 +341,8 @@ export class PauseScene extends Phaser.Scene {
     }
     const ty = y + rows * (ws + gap) + 6;
     const talent = run.char.talent;
-    text(this, x + 10, ty, tx(`天赋 · ${talent.name}`, `Talent · ${talent.name}`), 19, '#f4d48f');
-    const lines = statLines(this, x + 10, ty + 30, [talent.desc, ...charTraitLines(run.char)], 15, MENU.dim, w - 20, 3);
+    text(this, x + 10, ty, tx(`天赋 · ${talent.name}`, `Talent · ${talent.name}`), fs(19), '#f4d48f');
+    const lines = statLines(this, x + 10, ty + 30, [talent.desc, ...charTraitLines(run.char)], fs(15), MENU.dim, w - 20, 3);
     const room = bottom - ty - 30;
     // Long character descriptions stay readable: scroll the text inside its own
     // clipped region without moving the fixed footer or weapon slots.
@@ -365,7 +375,7 @@ export class PauseScene extends Phaser.Scene {
         mask.destroy();
         maskShape.destroy();
       });
-      text(this, x + w, ty, tx('滚动查看特性', 'Scroll for traits'), 12, MENU.dim).setOrigin(1, 0);
+      text(this, x + w, ty, tx('滚动查看特性', 'Scroll for traits'), fs(12), MENU.dim).setOrigin(1, 0);
     }
   }
 
@@ -447,7 +457,7 @@ export class PauseScene extends Phaser.Scene {
         scroll(p, null, 0, (lastY - p.y) / 0.4);
         lastY = p.y;
       });
-      c.add(text(this, TW / 2, visibleH - 14, tx('滚动查看详情', 'Scroll for details'), 12, MENU.dim).setOrigin(0.5));
+      c.add(text(this, TW / 2, visibleH - 14, tx('滚动查看详情', 'Scroll for details'), fs(12), MENU.dim).setOrigin(0.5));
       c.once('destroy', () => {
         this.input.off('wheel', scroll);
         mask.destroy();

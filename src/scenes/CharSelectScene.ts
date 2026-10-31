@@ -21,7 +21,7 @@ import { charTraitLines, weaponDmgType } from '../data/describe';
 import { favoredWeapons, doubleFavoredWeapons } from '../data/affinity';
 import { TAG_MAP } from '../data/weaponTags';
 import { tagName } from '../i18n/apply';
-import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, statLines, tu } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, statLines, tu, fs } from '../ui/UI';
 import { tx, lang } from '../i18n';
 import { DANGER_LEVELS, MAX_DANGER } from '../data/danger';
 import { dangerReward, chapterWaves } from '../data/balance';
@@ -213,14 +213,14 @@ export class CharSelectScene extends Phaser.Scene {
       const img = fitImage(this.add.image(x + s / 2, y + s / 2, portraitKey(this, 'char', c.id)), s * 0.95);
       // 角色成就角标：左上为开局次数奖章（铜/银/金），右上为通关奖杯
       const runsAch = ACH_MAP[`char_runs_${c.id}`];
-      if (runsAch && achTier(runsAch.id) > 0) text(this, x + 3, y + 1, medalOf(runsAch), 17).setOrigin(0, 0);
-      if (achTier(`char_wins_${c.id}`) > 0) text(this, x + s - 3, y + 1, '🏆', 15).setOrigin(1, 0);
+      if (runsAch && achTier(runsAch.id) > 0) text(this, x + 3, y + 1, medalOf(runsAch), fs(17)).setOrigin(0, 0);
+      if (achTier(`char_wins_${c.id}`) > 0) text(this, x + s - 3, y + 1, '🏆', fs(15)).setOrigin(1, 0);
       if (!unlocked) {
         // 未拥有：只显示灰色轮廓，角标为锁和解锁成就的完成进度
         img.setTintFill(LOCKED_TINT).setAlpha(0.85);
         const p = unlockProgress(c);
         const pct = Math.floor((p.value / p.goal) * 100);
-        text(this, x + s - 4, y + s - 2, `🔒${pct}%`, 13, '#ffd166', { stroke: '#000000', strokeThickness: 4 }).setOrigin(1, 1);
+        text(this, x + s - 4, y + s - 2, `🔒${pct}%`, fs(13), '#ffd166', { stroke: '#000000', strokeThickness: 4 }).setOrigin(1, 1);
       }
       hitArea(this, x, y, s, s, () => {
         this.selected = c;
@@ -273,7 +273,7 @@ export class CharSelectScene extends Phaser.Scene {
       const frame = this.add.graphics();
       const img = this.add.image(0, 0, arenaThumb(this, n, TW, TH, !chapterAvailable(n))).setDisplaySize(TW, TH);
       const hidden = !chapterVisible(n);
-      const badge = text(this, -TW / 2 + 4, -TH / 2 + 2, String(n), 13, '#ffffff', { stroke: '#000000', strokeThickness: 3 });
+      const badge = text(this, -TW / 2 + 4, -TH / 2 + 2, String(n), fs(13), '#ffffff', { stroke: '#000000', strokeThickness: 3 });
       const mark = text(this, 0, 2, hidden ? '？' : chapterAvailable(n) ? '' : '🔒', hidden ? 22 : 16, '#ffffff', {
         stroke: '#000000',
         strokeThickness: 3,
@@ -293,7 +293,7 @@ export class CharSelectScene extends Phaser.Scene {
       return { n, frame, w: TW, h: TH, name: chDef.name };
     });
     this.chapterText = text(this, 46 + CHAPTERS.length * (TW + TG) + 6, cy - 6, '', 22, '#ffd166');
-    this.chapterDesc = text(this, 46, cy + 34, '', 16, COLORS.textDim, { wordWrap: { width: W * 0.62 - 10 - 46 } });
+    this.chapterDesc = text(this, 46, cy + 34, '', fs(16), COLORS.textDim, { wordWrap: { width: W * 0.62 - 10 - 46 } });
     this.endlessBtn = button(
       this,
       W * 0.62 + 130,
@@ -394,7 +394,7 @@ export class CharSelectScene extends Phaser.Scene {
       d.add(text(this, 90, 110, '🔒', 40).setOrigin(0.5));
       d.add(text(this, 180, 24, c.name, 34, '#9a9aa6'));
       d.add(text(this, 180, 76, tx('解锁条件', 'How to unlock'), 21, '#ffd166'));
-      d.add(text(this, 180, 108, unlockHint(c), 18, '#fff4ea', { wordWrap: { width: pw - 210, useAdvancedWrap: true } }));
+      d.add(text(this, 180, 108, unlockHint(c), fs(18), '#fff4ea', { wordWrap: { width: pw - 210, useAdvancedWrap: true } }));
       const p = unlockProgress(c);
       const ratio = Math.min(1, p.goal > 0 ? p.value / p.goal : 0);
       const bw = pw - 210,
@@ -404,7 +404,7 @@ export class CharSelectScene extends Phaser.Scene {
       if (ratio > 0) bar.fillStyle(0xffd166, 1).fillRoundedRect(180, by, Math.max(18, bw * ratio), 18, 9);
       d.add(bar);
       d.add(
-        text(this, 180 + bw / 2, by + 9, `${Math.min(p.value, p.goal)} / ${p.goal}（${Math.floor(ratio * 100)}%）`, 14, '#ffffff', {
+        text(this, 180 + bw / 2, by + 9, `${Math.min(p.value, p.goal)} / ${p.goal}（${Math.floor(ratio * 100)}%）`, fs(14), '#ffffff', {
           stroke: '#000000',
           strokeThickness: 3,
         }).setOrigin(0.5),
@@ -429,24 +429,24 @@ export class CharSelectScene extends Phaser.Scene {
     if (unlocked) {
       const hint = c.desc;
       d.add(
-        text(this, 180, 104, hint, 17, COLORS.textDim, {
+        text(this, 180, 104, hint, fs(17), COLORS.textDim, {
           wordWrap: { width: pw - 200, useAdvancedWrap: true },
         }),
       );
       // 各段按实际文字高度依次排列，特性分两列，避免长文本溢出面板
       const add = (x: number, yy: number, str: string, size: number, color: string, wrap = 0) => {
-        const t = text(this, x, yy, str, size, color, wrap ? { wordWrap: { width: wrap, useAdvancedWrap: true } } : {});
+        const t = text(this, x, yy, str, fs(size), color, wrap ? { wordWrap: { width: wrap, useAdvancedWrap: true } } : {});
         d.add(t);
         return t.height;
       };
       // 多行逐行上色（负向属性红色），返回总高度
       const addLines = (x: number, yy: number, lines: string[], size: number, color: string, wrap: number) => {
-        const r = statLines(this, x, yy, lines, size, color, wrap);
+        const r = statLines(this, x, yy, lines, fs(size), color, wrap);
         d.add(r.box);
         return r.height;
       };
       // 详情分两页：基本（天赋/特性/技能/武器）与成长（战绩/熟练度/任务/觉醒/皮肤），内容多时不会溢出面板
-      const pageBtn = text(this, pw - 20, 24, this.page === 0 ? tx('成长 ▸', 'Progress ▸') : tx('◂ 基本', '◂ Basics'), 18, '#9bf6ff')
+      const pageBtn = text(this, pw - 20, 24, this.page === 0 ? tx('成长 ▸', 'Progress ▸') : tx('◂ 基本', '◂ Basics'), fs(18), '#9bf6ff')
         .setOrigin(1, 0)
         .setInteractive({ useHandCursor: true });
       pageBtn.on('pointerup', () => {
@@ -564,7 +564,7 @@ export class CharSelectScene extends Phaser.Scene {
               (unlockedAw
                 ? tx(on ? '（已开启，点击关闭）' : '（已关闭，点击开启）', on ? ' (on — click to turn off)' : ' (off — click to turn on)')
                 : tx('（完成 3 个任务解锁）', ' (complete 3 quests)')),
-            14,
+            fs(14),
             unlockedAw ? (on ? '#ffd166' : COLORS.textDim) : '#888888',
             { wordWrap: { width: pw - 40, useAdvancedWrap: true } },
           );
@@ -583,7 +583,14 @@ export class CharSelectScene extends Phaser.Scene {
         if (skins.length && unlocked && reveal.skins()) {
           const cur = activeSkin(c.id);
           d.add(
-            text(this, 20, y, tx(`🎨 皮肤（拥有 🥇${save.meta.gold} 金番茄）`, `🎨 Skins (you have 🥇${save.meta.gold})`), 14, '#ffb347'),
+            text(
+              this,
+              20,
+              y,
+              tx(`🎨 皮肤（拥有 🥇${save.meta.gold} 金番茄）`, `🎨 Skins (you have 🥇${save.meta.gold})`),
+              fs(14),
+              '#ffb347',
+            ),
           );
           y += 20;
           const rows: { id: string; label: string; color: string }[] = [
@@ -601,7 +608,7 @@ export class CharSelectScene extends Phaser.Scene {
           ];
           for (const r of rows) {
             const on = (cur?.id ?? '') === r.id;
-            const st = text(this, 30, y, `${on ? '▶ ' : '· '}${r.label}${on ? tx('（使用中）', ' (equipped)') : ''}`, 14, r.color, {
+            const st = text(this, 30, y, `${on ? '▶ ' : '· '}${r.label}${on ? tx('（使用中）', ' (equipped)') : ''}`, fs(14), r.color, {
               wordWrap: { width: pw - 50, useAdvancedWrap: true },
             }).setInteractive({ useHandCursor: true });
             st.on('pointerup', () => {
@@ -636,7 +643,7 @@ export class CharSelectScene extends Phaser.Scene {
           .fillRect(this.detailX, d.y + top, pw, bottom - top);
         body.setMask(this.scrollMaskG.createGeometryMask());
         this.scrollBar = this.add.graphics();
-        this.scrollHint = text(this, pw - 18, bottom - 2, tx('▼ 拖动查看更多', '▼ Drag for more'), tu(14), '#9bf6ff', {
+        this.scrollHint = text(this, pw - 18, bottom - 2, tx('▼ 拖动查看更多', '▼ Drag for more'), fs(tu(14)), '#9bf6ff', {
           backgroundColor: '#2b1418',
           padding: { x: 6, y: 2 },
         }).setOrigin(1, 1);
@@ -775,7 +782,7 @@ export class CharSelectScene extends Phaser.Scene {
                 `${d.level}. ??? — clear Danger ${max} to reveal${DANGER_LEVELS.length - max - 1 > 0 ? ` (${DANGER_LEVELS.length - max - 1} more after)` : ''}`,
               )
             : `${d.level}. ${d.icon} ${d.name[lang === 'en' ? 1 : 0]} — ${d.desc[lang === 'en' ? 1 : 0]}`,
-          16,
+          fs(16),
           color,
         ),
       );
@@ -786,7 +793,7 @@ export class CharSelectScene extends Phaser.Scene {
         W / 2,
         H / 2 + ph / 2 - 16,
         tx(`奖励倍率 ×${dangerReward(lv)} · 左右调整 · A/B 关闭`, `Reward ×${dangerReward(lv)} · Left/Right adjust · A/B close`),
-        14,
+        fs(14),
         COLORS.textDim,
       ).setOrigin(0.5),
     );
@@ -825,7 +832,7 @@ export class CharSelectScene extends Phaser.Scene {
         W / 2,
         H / 2 - 192,
         tx('从契合标签的武器里随机 3 把，三选一（契合武器伤害 +10%）', 'Pick one of 3 random synergy-tag weapons (+10% damage)'),
-        16,
+        fs(16),
         COLORS.textDim,
       ).setOrigin(0.5),
     );
@@ -849,7 +856,7 @@ export class CharSelectScene extends Phaser.Scene {
         fitImage(this.add.image(x + cw / 2, y + 70, this.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`), 84),
       );
       c.add(text(this, x + cw / 2, y + 128, d.name, 22, '#fff4ea').setOrigin(0.5));
-      c.add(text(this, x + cw / 2, y + 152, tx(`${dt.name}武器`, `${dt.name} Weapon`), 14, dt.color).setOrigin(0.5));
+      c.add(text(this, x + cw / 2, y + 152, tx(`${dt.name}武器`, `${dt.name} Weapon`), fs(14), dt.color).setOrigin(0.5));
       c.add(
         text(
           this,
@@ -862,7 +869,7 @@ export class CharSelectScene extends Phaser.Scene {
             ),
             d.desc,
           ].join('\n'),
-          14,
+          fs(14),
           '#fff4ea',
           { wordWrap: { width: cw - 28, useAdvancedWrap: true }, lineSpacing: 3 },
         ),

@@ -14,6 +14,15 @@ export const TOUCH_UI = TOUCH ? 1.25 : 1;
 /** 触屏时放大的尺寸（字号、按钮高度等） */
 export const tu = (n: number): number => Math.round(n * TOUCH_UI);
 
+/** 手机（触屏且短边 < 500 CSS 像素，地址带 ?phoneui 可在电脑上调试）：720p 界面约缩到 0.54 倍 */
+export const PHONE =
+  (TOUCH && typeof window !== 'undefined' && Math.min(window.innerWidth, window.innerHeight) < 500) ||
+  (typeof location !== 'undefined' && new URLSearchParams(location.search).has('phoneui'));
+/** 手机上正文最小字号（逻辑像素）：约等于 11 CSS 像素 */
+export const PHONE_MIN_FONT = 20;
+/** 字号：手机上不小于 PHONE_MIN_FONT，更大的字号不变 */
+export const fs = (n: number): number => (PHONE ? Math.max(n, PHONE_MIN_FONT) : n);
+
 /** 触屏时把可点击区域扩大到约 44pt（每边最多 14 个逻辑像素，避免和相邻按钮的点击范围抢位）；返回每边扩出的量 */
 function touchPad(scene: Phaser.Scene, w: number, h: number): { x: number; y: number } {
   if (!TOUCH) return { x: 0, y: 0 };
@@ -92,6 +101,9 @@ export function button(
   color = COLORS.primary,
   size = 24,
 ): Button {
+  const base = size;
+  // 手机上按钮文字不小于正文下限；放不下时再缩回按钮宽度，但不小于原字号
+  size = fs(size);
   const c = scene.add.container(x, y) as Button;
   const bg = scene.add.graphics();
   let enabled = true;
@@ -125,7 +137,21 @@ export function button(
     if (t.text) items.push([t, t.width]);
     if (seed) items.push([icon, iw]);
     if (t2.text) items.push([t2, t2.width]);
-    const total = items.reduce((a, [, wd]) => a + wd, 0) + gap * Math.max(0, items.length - 1);
+    let total = items.reduce((a, [, wd]) => a + wd, 0) + gap * Math.max(0, items.length - 1);
+    if (size > base && total > w - 16) {
+      const k = Math.max(base / size, (w - 16) / total);
+      for (const pair of items) {
+        const [o] = pair;
+        if (o instanceof Phaser.GameObjects.Text) {
+          o.setFontSize(Math.floor(size * k));
+          pair[1] = o.width;
+        } else {
+          o.setDisplaySize(pair[1] * k, pair[1] * k);
+          pair[1] *= k;
+        }
+      }
+      total = items.reduce((a, [, wd]) => a + wd, 0) + gap * Math.max(0, items.length - 1);
+    } else for (const [o] of items) if (o instanceof Phaser.GameObjects.Text) o.setFontSize(size);
     let x = -total / 2;
     for (const [o, wd] of items) {
       o.x = o === icon ? x + wd / 2 : x;

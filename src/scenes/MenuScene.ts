@@ -7,7 +7,7 @@ import { paintArena } from '../art/ArenaArt';
 import { isForceProcedural } from '../systems/ArtStyle';
 import { loadArt } from '../systems/ArtRegistry';
 import { CHAPTERS } from '../data/chapters';
-import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, autoRelayout, fs, PHONE } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
 import { run, hasSavedRun, loadRun } from '../systems/RunState';
@@ -139,7 +139,7 @@ export class MenuScene extends Phaser.Scene {
         `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''}${__APP_VERSION__.startsWith('0.') ? ' 测试版' : ''} · 更新日志`,
         `v${__APP_VERSION__}${import.meta.env.DEV ? '-dev' : ''}${__APP_VERSION__.startsWith('0.') ? ' Beta' : ''} · What's New`,
       ),
-      cover ? 12 : fits ? 16 : 18,
+      fs(cover ? 12 : fits ? 16 : 18),
       COLORS.textDim,
     )
       .setOrigin(fits ? 0.5 : 0, 0.5)
@@ -227,7 +227,7 @@ export class MenuScene extends Phaser.Scene {
         cover ? menuX : menuX + 175,
         cover ? by - 46 : by - 90,
         tx(`${c.name} · 第${saved.chapterId}章 第${saved.wave}波`, `${c.name} · Chapter ${saved.chapterId} wave ${saved.wave}`),
-        16,
+        fs(16),
         COLORS.textDim,
       ).setOrigin(cover ? 0.5 : 0, 0.5);
     }
@@ -264,7 +264,7 @@ export class MenuScene extends Phaser.Scene {
         cover ? menuX : menuX + 175,
         cover ? by + 119 : by + 80,
         `${st}${cover ? ' · ' : '\n'}${tx(`${h} 小时 ${m} 分后刷新`, `resets in ${h}h ${m}m`)}`,
-        cover ? 11 : 14,
+        fs(cover ? 11 : 14),
         rec?.won ? '#ffd166' : COLORS.textDim,
       ).setOrigin(cover ? 0.5 : 0, 0.5);
     }
@@ -275,8 +275,8 @@ export class MenuScene extends Phaser.Scene {
     // 下一个解锁：只说条件和玩法名字，给玩家一个前进方向
     const nextLine = nextUnlockLine();
     if (nextLine)
-      text(this, menuX, by + 282 - up, nextLine, cover ? 13 : 15, cover ? '#e8d4b0' : '#9bf6ff', {
-        wordWrap: { width: cover ? Math.min(400, W * 0.4) : W - 40, useAdvancedWrap: true },
+      text(this, menuX, by + 282 - up, nextLine, fs(cover ? 13 : 15), cover ? '#e8d4b0' : '#9bf6ff', {
+        wordWrap: { width: cover ? Math.min(PHONE ? 520 : 400, W * (PHONE ? 0.5 : 0.4)) : W - 40, useAdvancedWrap: true },
         align: 'center',
       }).setOrigin(0.5, 0);
     // 设置 / 全屏：右上角圆形图标，与 GitHub 图标排成一列
@@ -291,7 +291,7 @@ export class MenuScene extends Phaser.Scene {
         `成就点 🏅${pointsEarned()}${reveal.gold() ? ` · 金番茄 🥇${save.meta.gold}` : ''} · 已拥有角色 ${unlockedCount()}/${CHARACTERS.length} · 通关章节 ${save.clearedChapters}/5 · 击杀 ${save.totalKills}`,
         `Points 🏅${pointsEarned()}${reveal.gold() ? ` · Golden 🥇${save.meta.gold}` : ''} · Characters ${unlockedCount()}/${CHARACTERS.length} · Chapters cleared ${save.clearedChapters}/5 · Kills ${save.totalKills}`,
       ),
-      16,
+      fs(16),
       COLORS.textDim,
     ).setOrigin(1, 1);
     this.input.once('pointerdown', () => audio.unlock());
@@ -482,7 +482,7 @@ export class MenuScene extends Phaser.Scene {
     tray.lineStyle(2, 0xb38454, 0.65).strokeRoundedRect(left - 10, cy - TH / 2 - 8, total + 20, TH + 16, 18);
     const sepX = left + TW + GAP / 2 + SEP / 2;
     if (talents) tray.lineStyle(2, 0x7a2e35, 0.9).lineBetween(sepX, cy - TH / 2 + 8, sepX, cy + TH / 2 - 8);
-    const hint = text(this, cx, cy + TH / 2 + 22, '', 15, COLORS.textDim)
+    const hint = text(this, cx, cy + TH / 2 + 22, '', fs(15), COLORS.textDim)
       .setOrigin(0.5)
       .setAlpha(0);
     items.forEach(([kind, label, scene, desc], i) => {
@@ -490,7 +490,7 @@ export class MenuScene extends Phaser.Scene {
       const c = this.add.container(x, cy).setName(`dock:${scene}`);
       const bg = this.add.graphics();
       const ic = this.add.image(0, -10, this.icon(kind)).setDisplaySize(36, 36);
-      const lb = text(this, 0, 22, label, 15, '#e2c5a0').setOrigin(0.5);
+      const lb = text(this, 0, 22, label, fs(15), '#e2c5a0').setOrigin(0.5);
       c.add([bg, ic, lb]);
       c.setSize(TW, TH).setInteractive({ useHandCursor: true });
       const hl = (on: boolean) => {
@@ -510,7 +510,7 @@ export class MenuScene extends Phaser.Scene {
       // 有未分配的天赋点：格子右上角红点 + 数字
       if (kind === 'talent' && talentPointsFree() > 0) {
         const dot = this.add.circle(TW / 2 - 12, -TH / 2 + 10, 10, 0xff4b3e).setStrokeStyle(2, 0xffffff);
-        const n = text(this, TW / 2 - 12, -TH / 2 + 10, String(talentPointsFree()), 12).setOrigin(0.5);
+        const n = text(this, TW / 2 - 12, -TH / 2 + 10, String(talentPointsFree()), fs(12)).setOrigin(0.5);
         c.add([dot, n]);
         this.tweens.add({ targets: dot, scale: 1.2, duration: 600, yoyo: true, repeat: -1 });
       }
@@ -521,7 +521,7 @@ export class MenuScene extends Phaser.Scene {
   private roundIcon(x: number, y: number, kind: string, label: string, onClick: () => void): void {
     const bg = this.add.circle(x, y, 24, 0x302028, 0.9).setStrokeStyle(1.5, 0xc59b64);
     const ic = this.add.image(x, y, this.icon(kind)).setDisplaySize(30, 30).setAlpha(0.85);
-    const tip = text(this, x - 38, y, label, 16, COLORS.text)
+    const tip = text(this, x - 38, y, label, fs(16), COLORS.text)
       .setOrigin(1, 0.5)
       .setAlpha(0);
     bg.setInteractive({ useHandCursor: true }).setName(`icon:${kind}`);
@@ -551,7 +551,7 @@ export class MenuScene extends Phaser.Scene {
     c.add(text(this, W / 2, y + 92, m.icon, 52).setOrigin(0.5));
     c.add(text(this, W / 2, y + 150, tx(m.reward[0], m.reward[1]), 26, '#ffffff').setOrigin(0.5));
     c.add(
-      text(this, W / 2, y + 190, tx(m.desc[0], m.desc[1]), 16, COLORS.textDim, {
+      text(this, W / 2, y + 190, tx(m.desc[0], m.desc[1]), fs(16), COLORS.textDim, {
         wordWrap: { width: pw - 60, useAdvancedWrap: true },
         align: 'center',
       }).setOrigin(0.5, 0),
@@ -577,7 +577,7 @@ export class MenuScene extends Phaser.Scene {
       badge.setInteractive({ useHandCursor: true }).on('pointerup', open);
       return;
     }
-    text(this, W / 2, y, n ? tx(`🎖️ 选择称号（已解锁 ${n}）`, `🎖️ Pick a title (${n})`) : tx('🎖️ 称号', '🎖️ Titles'), 17, '#ffd166')
+    text(this, W / 2, y, n ? tx(`🎖️ 选择称号（已解锁 ${n}）`, `🎖️ Pick a title (${n})`) : tx('🎖️ 称号', '🎖️ Titles'), fs(17), '#ffd166')
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerup', open);

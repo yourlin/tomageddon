@@ -12,7 +12,7 @@ import { ALL_ITEMS, type ItemDef } from '../data/items';
 import { WEAPON_MAP } from '../data/weapons';
 import { formatMod, type StatKey } from '../data/stats';
 import { BALANCE, RARITY, pickRarity, pickUpgradeRarity, rerollPrice, shopPrice, sellPrice } from '../data/balance';
-import { text, button, panel, COLORS, fitImage, autoRelayout, NEG_LINE, NEG_COLOR } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, autoRelayout, NEG_LINE, NEG_COLOR, fs } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { tx, lang } from '../i18n';
 import { rollRelics, grantRelic } from '../systems/Relics';
@@ -83,9 +83,11 @@ export class LevelUpScene extends Phaser.Scene {
       L.add(panel(this, x, y, cw, ch, COLORS.panel, b.color));
       L.add(text(this, x + cw / 2, y + 56, n.icon, 54).setOrigin(0.5));
       L.add(text(this, x + cw / 2, y + 112, nodeText(n, 'name'), 22, '#ffffff').setOrigin(0.5));
-      L.add(text(this, x + cw / 2, y + 138, `${b.name[lang === 'en' ? 1 : 0]} · ${cur} → ${cur + 1} / ${n.max}`, 15, b.css).setOrigin(0.5));
       L.add(
-        text(this, x + cw / 2, y + 190, nodeText(n, 'desc', cur + 1), 16, '#fff4ea', {
+        text(this, x + cw / 2, y + 138, `${b.name[lang === 'en' ? 1 : 0]} · ${cur} → ${cur + 1} / ${n.max}`, fs(15), b.css).setOrigin(0.5),
+      );
+      L.add(
+        text(this, x + cw / 2, y + 190, nodeText(n, 'desc', cur + 1), fs(16), '#fff4ea', {
           align: 'center',
           wordWrap: { width: cw - 24 },
         }).setOrigin(0.5),
@@ -151,7 +153,7 @@ export class LevelUpScene extends Phaser.Scene {
       const iconKey = `stat_${o.key}`;
       if (this.textures.exists(iconKey)) L.add(fitImage(this.add.image(x + cw / 2, y + 70, iconKey), 90));
       else L.add(text(this, x + cw / 2, y + 70, '▲', 60, RARITY[rar].css).setOrigin(0.5));
-      L.add(text(this, x + cw / 2, y + 140, RARITY[rar].name, 18, RARITY[rar].css).setOrigin(0.5));
+      L.add(text(this, x + cw / 2, y + 140, RARITY[rar].name, fs(18), RARITY[rar].css).setOrigin(0.5));
       L.add(
         text(this, x + cw / 2, y + 180, formatMod(o.key as StatKey, v), 22, '#ffffff', {
           align: 'center',
@@ -229,7 +231,7 @@ export class LevelUpScene extends Phaser.Scene {
     // 逐行居中；负向属性（道具代价）用红色
     let ly = y + 200;
     for (const line of lines) {
-      const t = text(this, W / 2, ly, line, 19, NEG_LINE.test(line) ? NEG_COLOR : '#ffffff', {
+      const t = text(this, W / 2, ly, line, fs(19), NEG_LINE.test(line) ? NEG_COLOR : '#ffffff', {
         align: 'center',
         wordWrap: { width: cw - 40 },
       }).setOrigin(0.5, 0);
@@ -321,9 +323,9 @@ export class LevelUpScene extends Phaser.Scene {
         const sd = RELIC_SET_MAP[r.set];
         sub += `  ·  ${tx('套装', 'Set')} ${sd.name[zh ? 0 : 1]}`;
       }
-      L.add(text(this, x + cw / 2, y + 138, sub, 16, COLORS.textDim).setOrigin(0.5));
+      L.add(text(this, x + cw / 2, y + 138, sub, fs(16), COLORS.textDim).setOrigin(0.5));
       const lines = describeRelic(r, (id) => WEAPON_MAP[id]?.name ?? id);
-      const body = text(this, x + cw / 2, y + 162, lines.join('\n'), 18, '#ffffff', {
+      const body = text(this, x + cw / 2, y + 162, lines.join('\n'), fs(18), '#ffffff', {
         align: 'center',
         wordWrap: { width: cw - 24 },
       }).setOrigin(0.5, 0);
@@ -332,10 +334,10 @@ export class LevelUpScene extends Phaser.Scene {
       const sl = r.set ? describeRelicSet(r, (sets[r.set] ?? 0) + 1) : null;
       if (sl)
         L.add(
-          text(this, x + cw / 2, body.y + body.height + 10, sl, 15, '#9be564', { align: 'center', wordWrap: { width: cw - 24 } }).setOrigin(
-            0.5,
-            0,
-          ),
+          text(this, x + cw / 2, body.y + body.height + 10, sl, fs(15), '#9be564', {
+            align: 'center',
+            wordWrap: { width: cw - 24 },
+          }).setOrigin(0.5, 0),
         );
       const pick = () => {
         grantRelic(r.id);
