@@ -69,6 +69,10 @@ export const BALANCE = {
   dotElemScale: 0.15,
   /** 连锁闪电每跳伤害衰减（下一跳 = 上一跳 × chainDecay） */
   chainDecay: 0.75,
+  /** 连锁闪电（kind = chain）的瞄准射程倍率：原数值比同类元素武器远 20%~40%，闪电又能继续往外跳 */
+  chainRangeMult: 0.88,
+  /** 闪电只跳向离玩家不超过「射程 × chainReach」的敌人，不会跳出画面 */
+  chainReach: 1.35,
   enemyRanged: { rangeMult: 1.3, hover: 0.75, bulletReach: 1.2, minGapDeg: 15, sideSafe: 0.5, projSpeed: 0.9 },
   /** 远程小怪越多，每只开火越慢（精英 / Boss 不受影响）：场上普通远程小怪超过 free 只时，射击间隔 × (数量 / free)^exp，最多 × max。
    *  总弹幕量随数量按平方根增长，而不是线性叠加 */
