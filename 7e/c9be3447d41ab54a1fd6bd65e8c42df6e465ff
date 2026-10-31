@@ -1,0 +1,25 @@
+src/scenes/GameScene.ts
+  s_64d94abe5d6f85::t_56d6667848ec2b 2,515
+src/systems/BattleCamera.ts
+  s_64d94abe5d6f85::t_faf510454d472e 1-19
+src/systems/SkillStyles.ts
+  s_64d94abe5d6f85::t_64a7620f37170f 2,689-690,692
+src/systems/SkillSystem.ts
+  s_64d94abe5d6f85::t_1e14f2c6acdee5 4,221
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7ec9be3447d41ab54a1fd6bd65e8c42df6e465ff",
+  "prompts": {},
+  "sessions": {
+    "s_64d94abe5d6f85": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f1791561-c850-419b-b623-4436191a1514",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
