@@ -24,6 +24,7 @@ import { titleBadge } from '../ui/TitleBadge';
 import { shouldShowWhatsNew, showWhatsNew } from '../ui/WhatsNew';
 import { gateSceneStart, MENU_PORTRAITS } from './BootScene';
 import { coverTitle, coverButton } from '../ui/CoverUI';
+import { preloadSettingsArt } from '../ui/GameMenuUI';
 import { VW, VH } from '../systems/HiDpi';
 
 export class MenuScene extends Phaser.Scene {
@@ -34,8 +35,11 @@ export class MenuScene extends Phaser.Scene {
   create(): void {
     // 启动贴图还在后台生成时，离开主菜单要先等它们就绪（期间显示加载页）
     gateSceneStart(this);
-    // 选关缩略图不进首屏：主菜单出现后在后台预取，进选角时通常已在缓存里（中途离开会在选角页重新排队）
+    // 主菜单出现后在后台预取：设置 / 暂停菜单的背景与图标、选关缩略图，第一次打开时不用先黑屏下载
+    // （中途离开主菜单会在各自场景的 preload 里重新排队）
+    preloadSettingsArt(this);
     void loadArt(this, { maps: CHAPTERS.map((c) => ({ ch: c.id, parts: ['thumb'] })) });
+    this.load.start();
     setInRun(false);
     checkAchievements();
     autoRelayout(this);
