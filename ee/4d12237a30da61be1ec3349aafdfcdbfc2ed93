@@ -1,0 +1,33 @@
+src/data/balance.ts
+  s_64d94abe5d6f85::t_4c2ba9cb5ba556 72,74
+  s_64d94abe5d6f85::t_8f43141dd0bcdd 73,75
+src/systems/BossPhases.ts
+  s_64d94abe5d6f85::t_b27a307bf5084d 43-57,131,174,217-218,232,253
+src/systems/BulletOutline.ts
+  s_64d94abe5d6f85::t_75567195ad6bfc 13-18,21-23,26
+  s_64d94abe5d6f85::t_545d17ca02c259 1-10,24-25,27-28,30-74,76-88
+  s_64d94abe5d6f85::t_2a8b4b56636b5e 11-12,19-20,29,75
+src/systems/WeaponSystem.ts
+  s_64d94abe5d6f85::t_4c2ba9cb5ba556 64,67-68,604
+  s_64d94abe5d6f85::t_9ef0d9879147fc 363
+src/scenes/GameScene.ts
+  s_64d94abe5d6f85::t_75567195ad6bfc 2,2231-2232
+src/ui/Portrait.ts
+  s_64d94abe5d6f85::t_9ef0d9879147fc 98-99
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ee4d12237a30da61be1ec3349aafdfcdbfc2ed93",
+  "prompts": {},
+  "sessions": {
+    "s_64d94abe5d6f85": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f1791561-c850-419b-b623-4436191a1514",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
