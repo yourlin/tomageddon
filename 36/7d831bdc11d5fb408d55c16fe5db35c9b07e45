@@ -1,0 +1,33 @@
+index.html
+  s_64d94abe5d6f85::t_0d0790b256e369 334-335
+src/scenes/ComicScene.ts
+  s_64d94abe5d6f85::t_49fcc3b3b715b6 17
+  s_64d94abe5d6f85::t_7f6f9c326c170a 89-91
+src/scenes/MenuScene.ts
+  s_64d94abe5d6f85::t_1295616476ee9e 37-38
+  s_64d94abe5d6f85::t_be3a1dd48ac8d9 8-9
+src/scenes/CharSelectScene.ts
+  s_64d94abe5d6f85::t_16b5f7ed1427df 9
+  s_64d94abe5d6f85::t_26cf0b73966474 91
+tests/bootArt.test.ts
+  s_64d94abe5d6f85::t_7c10f9bdf9e7ec 1-38
+src/systems/ArtRegistry.ts
+  s_64d94abe5d6f85::t_ebc2f9a05ae2ca 172-175,181
+  s_64d94abe5d6f85::t_00d03260cb5afa 188-195
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "367d831bdc11d5fb408d55c16fe5db35c9b07e45",
+  "prompts": {},
+  "sessions": {
+    "s_64d94abe5d6f85": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f1791561-c850-419b-b623-4436191a1514",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
