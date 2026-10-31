@@ -6,6 +6,7 @@ src/ui/GameMenuUI.ts
 src/scenes/MenuScene.ts
   s_64d94abe5d6f85::t_e25a02beeaa2a1 27
   s_64d94abe5d6f85::t_e5585b2b5d4399 40,42
+  s_64d94abe5d6f85::t_4a7edaf02e3f1c 38
 ---
 {
   "schema_version": "authorship/3.0.0",
