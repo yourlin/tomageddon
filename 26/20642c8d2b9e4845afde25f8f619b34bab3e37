@@ -1,0 +1,26 @@
+src/main.ts
+  s_64d94abe5d6f85::t_274bb192636418 61-65
+  s_64d94abe5d6f85::t_4bec561b6b5a1d 31,60
+tests/graphicsQuality.test.ts
+  s_64d94abe5d6f85::t_c546569e98c306 5-9,12-14
+src/systems/Device.ts
+  s_64d94abe5d6f85::t_4bec561b6b5a1d 12-13
+src/systems/GraphicsQuality.ts
+  s_64d94abe5d6f85::t_4bec561b6b5a1d 2,12-13,15,19,21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2620642c8d2b9e4845afde25f8f619b34bab3e37",
+  "prompts": {},
+  "sessions": {
+    "s_64d94abe5d6f85": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f1791561-c850-419b-b623-4436191a1514",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
