@@ -27,7 +27,7 @@ export class AchievementScene extends Phaser.Scene {
     preloadWorkbench(this);
     for (const name of MEDALS)
       if (!this.textures.exists(`medal:${name}`))
-        this.load.image(`medal:${name}`, `${import.meta.env.BASE_URL}assets/ui/achievements/medal-${name}.png`);
+        this.load.image(`medal:${name}`, `${import.meta.env.BASE_URL}assets/ui/achievements/medal-${name}.webp`);
   }
   create(): void {
     autoRelayout(this);
