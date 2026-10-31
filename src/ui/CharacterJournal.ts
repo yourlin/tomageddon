@@ -18,6 +18,7 @@ import { charTraitLines } from '../data/describe';
 import { WEAPON_MAP } from '../data/weapons';
 import { defaultStartWeapon } from '../systems/RunState';
 import { arenaThumb } from '../art/ArenaArt';
+import { inputMode, onInputMode } from '../systems/InputMode';
 
 export function queueJournalArt(scene: Phaser.Scene): void {
   const tier = currentGraphicsProfile().tier;
@@ -62,6 +63,12 @@ interface Target {
   act: () => void;
 }
 const INK = '#542a20';
+/** 左页可排版区域（避开左侧合页与中缝） */
+const PAGE_L = 100,
+  PAGE_R = 612;
+/** 展示背景图底边（下面是天赋一栏）与原图宽高比 */
+const STAGE_BOTTOM = 432,
+  STAGE_ASPECT = 530 / 345;
 
 /** The journal owns presentation and navigation; progression and run setup stay in the existing scene. */
 export class CharacterJournal {
@@ -121,7 +128,9 @@ export class CharacterJournal {
     scene.input.keyboard?.on('keydown', this.keyListener);
     const update = () => this.pollPad();
     scene.events.on('update', update);
+    const offMode = onInputMode(() => this.root?.active && this.refresh());
     scene.events.once('shutdown', () => {
+      offMode();
       scene.input.keyboard?.off('keydown', this.keyListener);
       scene.events.off('update', update);
       this.hero?.destroy();
@@ -185,41 +194,52 @@ export class CharacterJournal {
       .setScale(scale)
       .setName('character-journal');
     this.root = root;
+    const pad = inputMode() === 'pad';
     const tier = currentGraphicsProfile().tier;
     if (this.scene.textures.exists(`journal:background:${tier}`))
       root.add(this.scene.add.image(640, 360, `journal:background:${tier}`).setDisplaySize(1280, 720));
-    const stage = `journal:stage:${tier}`;
-    if (this.scene.textures.exists(stage)) root.add(this.scene.add.image(330, 266, stage).setDisplaySize(530, 345));
     const c = this.actions.character(),
       unlocked = isUnlocked(c);
-    this.label(72, 54, c.name, 38, '#5b211b').setFontStyle('bold');
-    this.label(74, 101, c.title, 22, '#9d5a20');
-    if (!this.compact) this.label(74, 137, unlocked ? c.desc : unlockHint(c), 16, INK, 165);
+    const name = this.label(PAGE_L, 44, c.name, 36, '#5b211b').setFontStyle('bold');
+    const title = this.label(PAGE_L + name.width + 14, 0, c.title, 20, '#7a3412');
+    title.setY(name.y + name.height - title.height - 3);
+    let top = name.y + name.height + 4;
+    if (!this.compact) {
+      const desc = this.label(PAGE_L, top, unlocked ? c.desc : unlockHint(c), 15, INK, PAGE_R - PAGE_L);
+      top = desc.y + desc.height + 8;
+    }
+    // 展示背景图：限制在书页内侧（左边避开合页），底边留给天赋一栏
+    const stageH = Math.min(326, STAGE_BOTTOM - top),
+      stageW = stageH * STAGE_ASPECT,
+      stageX = (PAGE_L + PAGE_R) / 2,
+      stageY = top + stageH / 2;
+    const stage = `journal:stage:${tier}`;
+    if (this.scene.textures.exists(stage)) root.add(this.scene.add.image(stageX, stageY, stage).setDisplaySize(stageW, stageH));
     const preview = this.previewSkin;
-    const hero = showcaseRig(this.scene, 'char', c.id, 380, 335, 142, preview, () => {
+    const hero = showcaseRig(this.scene, 'char', c.id, stageX, stageY, 142, preview, () => {
       if (this.scene.scene.isActive() && this.actions.character() === c && this.previewSkin === preview) this.refresh();
     });
     const bounds = hero.getBounds(),
-      fit = Math.min(1, 328 / Math.max(1, bounds.width), 316 / Math.max(1, bounds.height));
+      fit = Math.min(1, (stageW * 0.62) / Math.max(1, bounds.width), (stageH * 0.92) / Math.max(1, bounds.height));
     hero.setScale(hero.scaleX * fit);
     const fitted = hero.getBounds();
-    hero.setPosition(hero.x + 366 - fitted.centerX, hero.y + 288 - fitted.centerY);
+    hero.setPosition(hero.x + stageX - fitted.centerX, hero.y + stageY + stageH * 0.03 - fitted.centerY);
     if (!unlocked) hero.setAlpha(0.28);
     root.add(hero);
     this.hero = hero;
     if (!unlocked) {
       const p = unlockProgress(c);
       this.label(
-        130,
-        397,
+        stageX - stageW / 2 + 16,
+        stageY + stageH / 2 - 36,
         tx(`未解锁 · ${Math.min(p.value, p.goal)}/${p.goal}`, `Locked · ${Math.min(p.value, p.goal)}/${p.goal}`),
         20,
         '#783d2a',
       );
     } else if (this.previewing) {
       this.label(
-        74,
-        398,
+        stageX - stageW / 2 + 16,
+        stageY + stageH / 2 - 36,
         tx(
           `试穿预览：${preview ? skinName(preview, false) : '原皮'}（尚未装备）`,
           `Preview: ${preview ? skinName(preview, true) : 'Original'} (not equipped)`,
@@ -230,17 +250,27 @@ export class CharacterJournal {
       );
     }
     if (unlocked) {
-      this.label(74, 447, tx(`天赋  ${c.talent.name}`, `Talent  ${c.talent.name}`), 20, '#7a271c').setFontStyle('bold');
-      if (!this.compact) this.label(74, 476, c.talent.desc, 15, INK, 350);
-      else this.label(74, 481, tx('Y 详情：查看天赋与技能说明', 'Y Details: talent and skill'), 21, INK, 350);
-      this.label(74, 524, tx(`技能  ${c.skill.name}`, `Skill  ${c.skill.name}`), 20, '#1e5261').setFontStyle('bold');
+      this.label(PAGE_L, 447, tx(`天赋  ${c.talent.name}`, `Talent  ${c.talent.name}`), 20, '#7a271c').setFontStyle('bold');
+      if (!this.compact) this.label(PAGE_L, 476, c.talent.desc, 15, INK, 340);
+      else
+        this.label(
+          PAGE_L,
+          481,
+          pad
+            ? tx('Y 详情：查看天赋与技能说明', 'Y Details: talent and skill')
+            : tx('点「详情」查看天赋与技能说明', 'Tap Details for talent and skill'),
+          21,
+          INK,
+          340,
+        );
+      this.label(PAGE_L, 524, tx(`技能  ${c.skill.name}`, `Skill  ${c.skill.name}`), 20, '#1e5261').setFontStyle('bold');
       const skillCopy = this.label(
-        74,
+        PAGE_L,
         548,
         this.compact ? tx('普通攻击由武器自动施放', 'Weapons attack automatically') : c.skill.desc,
         14,
         INK,
-        350,
+        340,
       );
       if (skillCopy.height > 36) skillCopy.setScale(Math.min(1, 36 / skillCopy.height));
       this.label(455, 447, tx('基础属性', 'Stats'), 18, INK).setFontStyle('bold');
@@ -251,26 +281,19 @@ export class CharacterJournal {
     this.drawRoster();
     this.drawSkins();
     this.drawChapters();
-    this.control(1085, 568, 130, 35, tx('Y 详情', 'Y Details'), this.actions.details, 0x926b47, 'journal-details');
-    this.control(1180, 33, 110, 34, tx('B 返回', 'B Back'), this.actions.back, 0x78452d, 'journal-back');
-    const skinHint = this.skins ? tx('   LT/RT 皮肤', '   LT/RT Skins') : '';
-    this.label(
-      640,
-      704,
-      this.compact
-        ? tx(
-            `方向键 导航   A 选择   B 返回   LB/RB 翻页${skinHint}   Start 出发`,
-            `Navigate   A Select   B Back   LB/RB Pages${skinHint}   Start Go`,
-          )
-        : tx(
-            `方向键 / 左摇杆 导航    A 选择    B 返回    LB/RB 角色页${skinHint}    Start 出发`,
-            `D-pad / Stick Navigate    A Select    B Back    LB/RB Roster${skinHint}    Start Go`,
-          ),
-      15,
-      '#ffe3ad',
-    )
-      .setFontSize(15)
-      .setOrigin(0.5);
+    this.control(
+      1085,
+      568,
+      130,
+      35,
+      pad ? tx('Y 详情', 'Y Details') : tx('详情', 'Details'),
+      this.actions.details,
+      0x926b47,
+      'journal-details',
+    );
+    this.control(1180, 33, 110, 34, pad ? tx('B 返回', 'B Back') : tx('返回', 'Back'), this.actions.back, 0x78452d, 'journal-back');
+    const hint = this.controlsHint();
+    if (hint) this.label(640, 704, hint, 15, '#ffe3ad').setFontSize(15).setOrigin(0.5);
     this.focusGfx = this.scene.add.graphics().setDepth(20);
     root.add(this.focusGfx);
     this.paintFocus();
@@ -286,8 +309,9 @@ export class CharacterJournal {
     ).setFontStyle('bold');
     const rows = Math.ceil(this.perPage / 6),
       midY = 117 + (rows - 1) * 44;
-    this.control(680, midY, 38, 58, 'LB', () => this.turnPage(-1), 0x914b34, 'journal-roster-prev');
-    this.control(1200, midY, 38, 58, 'RB', () => this.turnPage(1), 0x914b34, 'journal-roster-next');
+    const pad = inputMode() === 'pad';
+    this.control(680, midY, 38, 58, pad ? 'LB' : '‹', () => this.turnPage(-1), 0x914b34, 'journal-roster-prev');
+    this.control(1200, midY, 38, 58, pad ? 'RB' : '›', () => this.turnPage(1), 0x914b34, 'journal-roster-next');
     CHARACTERS.slice(this.page * this.perPage, this.page * this.perPage + this.perPage).forEach((c, i) => {
       const x = 742 + (i % 6) * 78,
         y = 117 + Math.floor(i / 6) * 88,
@@ -322,8 +346,9 @@ export class CharacterJournal {
     const c = this.actions.character(),
       skins: (SkinDef | undefined)[] = [undefined, ...(SKINS_OF[c.id] ?? [])];
     this.label(708, 384, tx('切换皮肤', 'Choose skin'), 25, '#5b211b').setFontStyle('bold');
-    this.control(681, 482, 38, 70, 'LT', () => this.preview(this.skinIndex - 1), 0x914b34, 'journal-skin-prev');
-    this.control(1200, 482, 38, 70, 'RT', () => this.preview(this.skinIndex + 1), 0x914b34, 'journal-skin-next');
+    const pad = inputMode() === 'pad';
+    this.control(681, 482, 38, 70, pad ? 'LT' : '‹', () => this.preview(this.skinIndex - 1), 0x914b34, 'journal-skin-prev');
+    this.control(1200, 482, 38, 70, pad ? 'RT' : '›', () => this.preview(this.skinIndex + 1), 0x914b34, 'journal-skin-next');
     const active = activeSkin(c.id)?.id ?? '';
     skins.slice(this.skinOffset, this.skinOffset + 4).forEach((skin, i) => {
       const index = this.skinOffset + i,
@@ -429,20 +454,24 @@ export class CharacterJournal {
         y = 655,
         available = chapterAvailable(ch.id),
         selected = chapter === ch.id;
-      const frame = this.scene.add
-        .graphics()
-        .fillStyle(selected ? 0x9d542d : 0x2f221e, 0.9)
-        .fillRoundedRect(x - 57, y - 29, 114, 58, 8)
-        .lineStyle(selected ? 3 : 1, selected ? 0xffc75e : 0x775342, 1)
-        .strokeRoundedRect(x - 57, y - 29, 114, 58, 8);
-      this.root!.add(frame);
-      const thumb = this.scene.add.image(x - 32, y - 4, arenaThumb(this.scene, ch.id, 48, 42)).setDisplaySize(44, 39);
-      if (!available) thumb.setTint(0x4a4444);
-      this.root!.add(thumb);
+      const W = 114,
+        H = 58,
+        R = 8;
+      // 2 倍分辨率绘制，高清屏上不糊；圆角直接裁进贴图
+      this.root!.add(this.scene.add.image(x, y, arenaThumb(this.scene, ch.id, W * 2, H * 2, !available, R * 2)).setDisplaySize(W, H));
+      const band = this.compact ? 26 : 21,
+        badge = this.compact ? 14 : 10;
+      const deco = this.scene.add.graphics();
+      deco.fillStyle(0x1c100c, 0.72).fillRoundedRect(x - W / 2, y + H / 2 - band, W, band, { tl: 0, tr: 0, bl: R, br: R });
+      deco.fillStyle(selected ? 0xe0442e : 0x3a2620, 0.92).fillCircle(x - W / 2 + badge + 3, y - H / 2 + badge + 3, badge);
+      deco.lineStyle(selected ? 3 : 1.5, selected ? 0xffc75e : 0x8a6247, 1).strokeRoundedRect(x - W / 2, y - H / 2, W, H, R);
+      this.root!.add(deco);
+      this.label(x - W / 2 + badge + 3, y - H / 2 + badge + 3, `${i + 1}`, 13, '#fff2d6')
+        .setFontStyle('bold')
+        .setOrigin(0.5);
       const name = chapterVisible(ch.id) ? ch.name.replace(/^第.+?章[ ·：:]*/, '') : tx('未解锁', 'Locked');
-      this.label(x - 5, y - 15, `${i + 1}`, 16, '#ffe0a2');
-      if (this.compact) this.label(x - 45, y + 4, name.slice(0, 4), 16, '#f5dfbb');
-      else this.label(x - 5, y + 4, name, 12, '#f5dfbb', 55);
+      const nameText = this.label(x, y + H / 2 - band / 2, name, 13, available ? '#fff2d6' : '#c9b8a6').setOrigin(0.5);
+      if (nameText.width > W - 10) nameText.setScale((W - 10) / nameText.width);
       this.target({ group: 'chapters', index: i, x, y, w: 114, h: 58, act: () => this.actions.selectChapter(ch.id) });
     });
     const allowed = isUnlocked(this.actions.character()) && chapterAvailable(chapter);
@@ -500,8 +529,33 @@ export class CharacterJournal {
     this.focus = { group: 'roster', index: this.page * this.perPage };
     this.refresh();
   }
+  /** 底部操作说明：手柄、键盘各自的按键；触屏不显示 */
+  private controlsHint(): string {
+    const mode = inputMode();
+    if (mode === 'pad') {
+      const skin = this.skins ? tx('   LT/RT 皮肤', '   LT/RT Skins') : '';
+      return this.compact
+        ? tx(
+            `方向键 导航   A 选择   B 返回   LB/RB 翻页${skin}   Start 出发`,
+            `Navigate   A Select   B Back   LB/RB Pages${skin}   Start Go`,
+          )
+        : tx(
+            `方向键 / 左摇杆 导航    A 选择    B 返回    LB/RB 角色页${skin}    Start 出发`,
+            `D-pad / Stick Navigate    A Select    B Back    LB/RB Roster${skin}    Start Go`,
+          );
+    }
+    if (mode === 'keys') {
+      const skin = this.skins ? tx('    [ / ] 皮肤', '    [ / ] Skins') : '';
+      return tx(
+        `方向键 导航    Enter 选择    Esc 返回    PageUp / PageDown 翻页${skin}    空格 出发`,
+        `Arrows Navigate    Enter Select    Esc Back    PageUp / PageDown Pages${skin}    Space Go`,
+      );
+    }
+    return '';
+  }
   private paintFocus(): void {
     this.focusGfx?.clear();
+    if (inputMode() === 'pointer') return;
     const t = this.targets.find((t) => t.group === this.focus.group && t.index === this.focus.index);
     if (!t) return;
     this.focusGfx!.lineStyle(3, 0xfff1b2, 1).strokeRoundedRect(t.x - t.w / 2 - 4, t.y - t.h / 2 - 4, t.w + 8, t.h + 8, 9);
