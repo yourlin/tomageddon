@@ -16,6 +16,20 @@ ASSETS = ROOT / 'src/assets'
 SOURCE = Path(os.environ.get('TOMATO_ART_SOURCE', str(ROOT.parent / 'tomato-sister-art-source')))
 INDEX = ROOT / 'src/data/artRuntime.generated.json'
 GROUPS = ('entities', 'maps', 'combat', 'weapons', 'projectiles', 'comics', 'cover')
+QUALITY = 80
+POLICY = f'webp-q{QUALITY}-owner-layout-v2'
+
+
+def delivery_limit(relative, width, height):
+    """高画质下载图的最长边：按游戏里最终绘制的尺寸定，超出部分不会被用到"""
+    group = relative.parts[0]
+    if group == 'weapons':
+        return 320  # 武器图会被重绘进 256 宽的画布
+    if group == 'projectiles':
+        return 128  # 弹体画布最大 64×64
+    if group == 'combat' and 'forms' not in relative.parts:
+        return 160  # 战斗弹体在屏幕上只有几十像素
+    return max(width, height)
 
 
 def delivery_path(relative):
@@ -64,8 +78,8 @@ def compile_one(path):
     source_hash = hashlib.sha256(data).hexdigest()
     compiled = delivery_path(relative)
     target = ASSETS / 'runtime' / compiled
-    policy = 'webp-q92-owner-layout-v2'
-    limit = 512 if relative.parts[0] == 'weapons' else 256 if relative.parts[0] == 'projectiles' else max(width, height)
+    policy = POLICY
+    limit = delivery_limit(relative, width, height)
     ratio = min(1, limit / max(width, height))
     out_width, out_height = max(1, round(width * ratio)), max(1, round(height * ratio))
     with open('/tmp/tomato-sister-art-runtime.lock', 'w') as lock:
@@ -76,7 +90,7 @@ def compile_one(path):
         return old['sourceBytes'], old['bytes']
     target.parent.mkdir(parents=True, exist_ok=True)
     temp = target.with_name(f'.{target.stem}-{uuid.uuid4().hex}.webp')
-    command = ['cwebp', '-quiet', '-q', '92', '-m', '4', '-alpha_q', '100', '-exact']
+    command = ['cwebp', '-quiet', '-q', str(QUALITY), '-m', '4', '-alpha_q', '100', '-exact']
     if ratio < 1:
         command += ['-resize', str(out_width), str(out_height)]
     command += [str(path), '-o', str(temp)]

@@ -5,6 +5,8 @@ import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { paintArena } from '../art/ArenaArt';
 import { isForceProcedural } from '../systems/ArtStyle';
+import { loadArt } from '../systems/ArtRegistry';
+import { CHAPTERS } from '../data/chapters';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
@@ -22,6 +24,7 @@ import { titleBadge } from '../ui/TitleBadge';
 import { shouldShowWhatsNew, showWhatsNew } from '../ui/WhatsNew';
 import { gateSceneStart, MENU_PORTRAITS } from './BootScene';
 import { coverTitle, coverButton } from '../ui/CoverUI';
+import { preloadSettingsArt } from '../ui/GameMenuUI';
 import { VW, VH } from '../systems/HiDpi';
 
 export class MenuScene extends Phaser.Scene {
@@ -32,6 +35,11 @@ export class MenuScene extends Phaser.Scene {
   create(): void {
     // 启动贴图还在后台生成时，离开主菜单要先等它们就绪（期间显示加载页）
     gateSceneStart(this);
+    // 主菜单出现后在后台预取：设置 / 暂停菜单的背景与图标、选关缩略图，第一次打开时不用先黑屏下载
+    // （中途离开主菜单会在各自场景的 preload 里重新排队）
+    preloadSettingsArt(this);
+    void loadArt(this, { maps: CHAPTERS.map((c) => ({ ch: c.id, parts: ['thumb'] })) });
+    this.load.start();
     setInRun(false);
     checkAchievements();
     autoRelayout(this);

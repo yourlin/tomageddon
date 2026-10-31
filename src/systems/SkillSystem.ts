@@ -1,6 +1,7 @@
 // 角色主动技能（大招）
 // 伤害 = 当前武器平均单次伤害 × 系数 ×（1+技能伤害%）；范围受射程与技能范围影响；持续时间受技能持续影响
 import { treeTotals } from './TalentTree';
+import { gameplayView } from './BattleCamera';
 import { bump } from './Counters';
 import Phaser from 'phaser';
 import type { BulletShield, GameScene, HitInfo } from '../scenes/GameScene';
@@ -217,7 +218,7 @@ export class SkillSystem implements SkillHost {
       }
       case 'screen': {
         // 全屏攻击：镜头内所有敌人
-        const v = g.cameras.main.worldView;
+        const v = gameplayView(g.cameras.main);
         g.cameras.main.flash(180, 255, 255, 255, false);
         for (const e of [...g.enemies]) {
           if (!e.alive || !v.contains(e.x, e.y)) continue;

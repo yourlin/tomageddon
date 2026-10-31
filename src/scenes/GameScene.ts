@@ -1,4 +1,5 @@
 import { queueJuiceArt } from '../systems/JuiceArt';
+import { BATTLE_ZOOM } from '../systems/BattleCamera';
 import { motionFacing } from '../objects/MotionFacing';
 import { queueWeaponArt } from '../systems/WeaponArtRegistry';
 // 核心战斗场景：固定竞技场，玩家移动躲避，武器自动攻击
@@ -511,6 +512,7 @@ export class GameScene extends Phaser.Scene {
     const cam = this.cameras.main;
     if (HEADLESS_MODE) cam.setVisible(false); // 测试模式不绘制战斗画面
     cam.setBounds(A.left - 60, A.top - 60, A.width + 120, A.height + 120);
+    cam.setZoom(cam.zoom * BATTLE_ZOOM);
     cam.startFollow(this.player, true, 0.12, 0.12);
 
     this.keys = this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,ESC,P') as Record<string, Phaser.Input.Keyboard.Key>;

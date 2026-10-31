@@ -355,10 +355,10 @@ export function paintArena(scene: Phaser.Scene, ch: number): string {
  * 章节缩略图（选关用）：画完整场地再缩小到 w×h；gray = 灰度 + 压暗（未解锁）。
  * 只为缩略图临时画的大场地贴图画完就删掉（7 张 1300×850 常驻太占显存）
  */
-export function arenaThumb(scene: Phaser.Scene, ch: number, w: number, h: number, gray = false): string {
+export function arenaThumb(scene: Phaser.Scene, ch: number, w: number, h: number, gray = false, radius = 0): string {
   // 外部地图美术：优先专门的缩略图，其次已加载的地面层；缓存键带上来源，素材加载后不会命中旧的程序缩略图
   const art = readyMap(scene, ch, 'thumb') ?? readyMap(scene, ch, 'ground');
-  const key = `arena_thumb_${ch}_${w}x${h}${gray ? '_g' : ''}${art ? `@${art}` : ''}`;
+  const key = `arena_thumb_${ch}_${w}x${h}${gray ? '_g' : ''}${radius ? `_r${radius}` : ''}${art ? `@${art}` : ''}`;
   if (scene.textures.exists(key)) return key;
   // 用章节地图（平底锅、菜畦……）做缩略图：以场地为中心、按缩略图比例裁一块（cover）
   const arena = new Arena(arenaDefFor(ch));
@@ -374,6 +374,10 @@ export function arenaThumb(scene: Phaser.Scene, ch: number, w: number, h: number
   const k = Math.max(w / sw, h / sh) * (art && art === readyMap(scene, ch, 'thumb') ? 1 : 1.12); // 稍微放大，裁掉一些场外区域（专门的缩略图原样 cover）
   const cw = w / k,
     chh = h / k;
+  if (radius) {
+    roundRectPath(ctx, 0, 0, w, h, radius);
+    ctx.clip();
+  }
   ctx.drawImage(src, (sw - cw) / 2, (sh - chh) / 2, cw, chh, 0, 0, w, h);
   if (gray) {
     const img = ctx.getImageData(0, 0, w, h);

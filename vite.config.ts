@@ -1,5 +1,5 @@
 import { defineConfig, type Plugin, type Connect } from 'vite';
-import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
 const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8'));
@@ -63,9 +63,27 @@ const balanceReports = (): Plugin => {
   };
 };
 
+/** 构建产物里去掉 macOS 访达生成的 .DS_Store（public 目录原样复制时会带进来） */
+const stripDsStore = (): Plugin => {
+  let outDir = 'dist';
+  const sweep = (dir: string): void => {
+    for (const name of readdirSync(dir)) {
+      const path = join(dir, name);
+      if (name === '.DS_Store') rmSync(path);
+      else if (statSync(path).isDirectory()) sweep(path);
+    }
+  };
+  return {
+    name: 'strip-ds-store',
+    apply: 'build',
+    configResolved: (config) => void (outDir = config.build.outDir),
+    closeBundle: () => void (existsSync(outDir) && sweep(outDir)),
+  };
+};
+
 export default defineConfig({
   base: './',
-  plugins: [siteUrl(), balanceReports()],
+  plugins: [siteUrl(), balanceReports(), stripDsStore()],
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
     __REPO_URL__: JSON.stringify(REPO_URL),

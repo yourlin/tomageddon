@@ -9,5 +9,5 @@ export const IS_IOS =
 /** 手机低内存模式：iOS（Safari / 微信 / 其他内核相同的浏览器）与任意平台的微信内置浏览器 */
 export const LOW_MEM = IS_IOS || IS_WECHAT;
 
-/** 低内存模式下的高清倍率上限：微信 1（不放大），其他 iOS 浏览器 1.25 */
-export const LOW_MEM_MAX_RES = IS_WECHAT ? 1 : 1.25;
+/** 微信内置浏览器的高清倍率上限（不放大）；其他设备按画质档位 */
+export const LOW_MEM_MAX_RES = 1;

@@ -6,6 +6,7 @@ import { tip } from '../systems/Tutorial';
 import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { arenaThumb } from '../art/ArenaArt';
+import { queueThumbArt } from '../systems/ArtRegistry';
 import { CHARACTERS, type CharacterDef } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
 import { WEAPON_MAP } from '../data/weapons';
@@ -87,6 +88,7 @@ export class CharSelectScene extends Phaser.Scene {
 
   preload(): void {
     queueJournalArt(this);
+    queueThumbArt(this);
   }
 
   create(data?: { chapter?: number; selectedId?: string; details?: boolean }): void {

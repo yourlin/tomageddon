@@ -28,7 +28,7 @@ import { ITEM_MAP, LEVELUP_OPTIONS } from './data/items';
 import { BALANCE, rerollPrice, sellPrice, priceInflation } from './data/balance';
 import { isFavoredWeapon, isDoubleFavored } from './data/affinity';
 import { RECIPES, missingItems } from './data/recipes';
-import { LOW_MEM, LOW_MEM_MAX_RES } from './systems/Device';
+import { IS_WECHAT, LOW_MEM, LOW_MEM_MAX_RES } from './systems/Device';
 import { weaponCalc } from './systems/WeaponCalc';
 import { weaponFingerprints } from './systems/weaponFingerprint';
 import { save, disablePersist } from './systems/Save';
@@ -57,8 +57,12 @@ document.title = tx('番茄酱 Tomageddon｜肉鸽割草，一局就上头', 'To
 export const HEADLESS = !DEV_DISABLED && new URLSearchParams(location.search).has('headless');
 
 // 高清渲染：画布按屏幕物理像素分配（逻辑仍是 720p），设置里可关闭；必须在创建 Game 之前确定
-// 手机低内存模式（iOS / 微信）：限制高清倍率，见 systems/Device.ts
-initRes(!HEADLESS && save.settings.hiDpi !== false, 720, Math.min(currentGraphicsProfile().maxRenderScale, LOW_MEM ? LOW_MEM_MAX_RES : 2));
+// 倍率上限由画质档位决定；微信内置浏览器另有更低的上限，见 systems/Device.ts
+initRes(
+  !HEADLESS && save.settings.hiDpi !== false,
+  720,
+  Math.min(currentGraphicsProfile().maxRenderScale, IS_WECHAT ? LOW_MEM_MAX_RES : 2),
+);
 installHiDpi();
 
 const game = new Phaser.Game({

@@ -169,18 +169,28 @@ export function queueArt(scene: Phaser.Scene, req: ArtRequest, owner?: string, p
   return any;
 }
 
-/** 首屏：全部清单头像、选关缩略图与主菜单的番茄妹（动画大图不在启动时下载，进章节前再按需加载） */
+/**
+ * 首屏：全部清单头像；没有封面时再加上主菜单的番茄妹（有封面时主角已画在封面里）。
+ * 选关缩略图由用到它的场景加载（queueThumbArt），动画大图进章节前再按需加载。
+ */
 export function queueBootArt(scene: Phaser.Scene): void {
   if (isForceProcedural()) return;
   let any = false;
   for (const e of ENTITY_ART) any = queueEntryPortrait(scene, e) || any;
-  for (const m of MAP_ART) any = queueMap(scene, m, ['thumb']) || any;
   if (any) watchLoader(scene);
-  queueArt(scene, { bodies: [{ kind: 'char', id: 'tomato' }] }, 'boot');
+  if (!RUNTIME_ART_URLS['cover/cover_kitchen.png']) queueArt(scene, { bodies: [{ kind: 'char', id: 'tomato' }] }, 'boot');
   scene.events.once('shutdown', () => {
     releaseArt('boot');
     scene.game.events.once('poststep', () => unloadUnusedArt(scene.textures));
   });
+}
+
+/** 选关缩略图（在场景 preload 里调用）；加载过的常驻缓存，不随场景卸载。不传章节时排全部章节 */
+export function queueThumbArt(scene: Phaser.Scene, chapters?: number[]): void {
+  if (isForceProcedural()) return;
+  let any = false;
+  for (const m of MAP_ART) if (!chapters || chapters.includes(m.ch)) any = queueMap(scene, m, ['thumb']) || any;
+  if (any) watchLoader(scene);
 }
 
 const watched = new WeakSet<Phaser.Loader.LoaderPlugin>();

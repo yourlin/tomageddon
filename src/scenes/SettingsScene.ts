@@ -3,7 +3,7 @@ import { settingSlider, type SettingRange } from '../ui/SettingSlider';
 import { resetTutorial } from '../systems/Tutorial';
 import Phaser from 'phaser';
 import { text, button, panel, COLORS, autoRelayout, tu } from '../ui/UI';
-import { MENU, menuButton, menuPanel, menuHeading, menuRule, menuToggle, preloadGameMenu } from '../ui/GameMenuUI';
+import { MENU, menuButton, menuPanel, menuHeading, menuRule, menuToggle, preloadSettingsArt } from '../ui/GameMenuUI';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { save, persist, resetSave, exportSave, importSave } from '../systems/Save';
 import { audio } from '../systems/Audio';
@@ -43,9 +43,7 @@ export class SettingsScene extends Phaser.Scene {
   private frame = { x: 0, y: 0, w: 0, h: 0 };
 
   preload(): void {
-    preloadGameMenu(this);
-    if (!this.textures.exists('settings:kitchen'))
-      this.load.image('settings:kitchen', `${import.meta.env.BASE_URL}assets/ui/settings-kitchen.png`);
+    preloadSettingsArt(this);
   }
 
   create(data?: { from?: string; tab?: SettingsTab }): void {

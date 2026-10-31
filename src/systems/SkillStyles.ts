@@ -1,4 +1,5 @@
 import { createSaucePool } from './JuiceArt';
+import { gameplayView } from './BattleCamera';
 // 角色专属技能演出与机制（1.4.0）：同一类技能按角色给出不同的动画形式与玩法差异，
 // 让玩家不看说明也能看出技能的作用范围与效果。未在 STYLES 中的角色走 SkillSystem 的通用实现。
 import Phaser from 'phaser';
@@ -685,9 +686,10 @@ function detectiveScan(c: StyleCtx): void {
   lens.setPosition(v.x - 100, v.centerY);
   g.tweens.add({ targets: lens, x: v.right + 160, duration: 800, ease: 'Sine.easeInOut', onComplete: () => lens.destroy() });
   const dur = Math.max(...(status ?? []).map((s) => s.dur), 4);
-  const targets = g.enemies.filter((e) => e.alive && v.contains(e.x, e.y));
+  const area = gameplayView(cam);
+  const targets = g.enemies.filter((e) => e.alive && area.contains(e.x, e.y));
   targets.forEach((e, i) => {
-    g.time.delayedCall(Math.max(0, ((e.x - v.x) / v.width) * 800), () => {
+    g.time.delayedCall(Phaser.Math.Clamp(((e.x - v.x) / v.width) * 800, 0, 800), () => {
       if (!e.alive) return;
       g.weaponHit(e, { ...info, knockback: 0 }, e.x, e.y);
       const ret = g.add.graphics().setDepth(12200);

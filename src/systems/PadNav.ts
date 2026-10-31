@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { tx } from '../i18n';
+import { setInputMode } from './InputMode';
 
 /** 手柄菜单导航：十字键 / 左摇杆移动焦点，A 确认，B 返回（ESC / 关闭类按钮 / 点遮罩），右摇杆竖向滚动。
  *  不依赖各场景的实现：直接扫描场景里可交互的对象，按位置做方向导航，确认时发出 pointerup（按钮 / hitArea 都认）。
@@ -222,6 +223,7 @@ export function installPadNav(game: Phaser.Game): void {
     const pads = (typeof navigator !== 'undefined' && navigator.getGamepads ? navigator.getGamepads() : []) as (Gamepad | null)[];
     const p = pads.find((x) => x && x.connected);
     if (!p) return;
+    if (p.buttons.some((x) => x.pressed) || p.axes.some((a) => Math.abs(a) > DEAD)) setInputMode('pad');
     const b = (i: number) => !!p.buttons[i]?.pressed;
     const ax = p.axes[0] ?? 0;
     const ay = p.axes[1] ?? 0;

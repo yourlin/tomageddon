@@ -62,8 +62,9 @@ export function portraitPending(kind: PortraitKind, id: string, skinId?: string)
 
 /**
  * 可动的展示外观（自动播放待机 / 偶尔庆祝）。
- * 清单里有该外观但还没加载时先显示 Rig 并按需加载：传了 onArt 就交给调用方重建（需要重新排版的界面），
- * 否则加载完成后原地换成新外观。
+ * 可爱风下清单里有该外观但还没加载时，先隐藏占位的 Rig（不能露出复古风画面）并按需加载：
+ * 传了 onArt 就交给调用方重建（需要重新排版的界面），否则加载完成后原地换成新外观；
+ * 加载失败时改为显示可爱风的静态头像。
  */
 let showcaseSerial = 0;
 
@@ -111,12 +112,13 @@ export function showcaseRig(
     });
   bind(vis);
   if (vis.mode === 'procedural' && !isForceProcedural() && chooseArt(v, 'body')) {
+    vis.setVisible(false);
     void loadArt(scene, { bodies: [v] }, owner).then(() => {
       if (!vis.active || !vis.scene) {
         collect();
         return;
       }
-      if (!readyArt(scene, v)) return;
+      if (!readyArt(scene, v)) return void showPortraitInstead(scene, vis, kind, id, skin?.id, radius);
       if (onArt) return onArt();
       const old = vis;
       vis = createEntityVisual(scene, v, radius);
@@ -134,4 +136,23 @@ export function showcaseRig(
     });
   }
   return vis;
+}
+
+/** 展示外观加载失败：在同一位置放静态头像（与原对象同层、随它一起销毁），原对象保持隐藏，画风不变 */
+function showPortraitInstead(
+  scene: Phaser.Scene,
+  vis: EntityVisual,
+  kind: PortraitKind,
+  id: string,
+  skinId: string | undefined,
+  radius: number,
+): void {
+  if (!readyPortrait(scene, identOf(kind, id, skinId))) return;
+  const img = scene.add
+    .image(vis.x, vis.y, portraitKey(scene, kind, id, skinId))
+    .setDepth(vis.depth)
+    .setAlpha(vis.alpha);
+  img.setScale((radius * 2.4 * (vis.scaleX || 1)) / Math.max(img.width, img.height));
+  vis.parentContainer?.addAt(img, vis.parentContainer.getIndex(vis));
+  vis.once(Phaser.GameObjects.Events.DESTROY, () => img.destroy());
 }

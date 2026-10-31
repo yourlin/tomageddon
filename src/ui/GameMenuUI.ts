@@ -26,7 +26,14 @@ export function preloadGameMenu(scene: Phaser.Scene): void {
   for (const icon of ICONS)
     if (!scene.textures.exists(`menu:${icon}`))
       scene.load.svg(`menu:${icon}`, `${import.meta.env.BASE_URL}assets/ui/icons/${icon}.svg`, { width: 48, height: 48 });
-  if (!scene.textures.exists('menu:corner')) scene.load.image('menu:corner', `${import.meta.env.BASE_URL}assets/ui/menu-corner.png`);
+  if (!scene.textures.exists('menu:corner')) scene.load.image('menu:corner', `${import.meta.env.BASE_URL}assets/ui/menu-corner.webp`);
+}
+
+/** 设置页背景 */
+export function preloadSettingsArt(scene: Phaser.Scene): void {
+  preloadGameMenu(scene);
+  if (!scene.textures.exists('settings:kitchen'))
+    scene.load.image('settings:kitchen', `${import.meta.env.BASE_URL}assets/ui/settings-kitchen.webp`);
 }
 
 export function menuPanel(scene: Phaser.Scene, x: number, y: number, w: number, h: number): void {

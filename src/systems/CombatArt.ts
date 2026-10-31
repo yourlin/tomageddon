@@ -8,7 +8,7 @@ import type { VisualForm } from '../objects/visualTypes';
 import type { Bullet } from '../objects/Bullet';
 import { enemyProjectileEntry, isIllustratedProjectile } from './ProjectileArtRegistry';
 import { isForceProcedural } from '../objects/visualFactory';
-import { RUNTIME_ART_URLS } from './RuntimeArt';
+import { RUNTIME_ART_URLS, runtimeArtScale } from './RuntimeArt';
 import { retainSceneTexture } from './SceneArtLease';
 import { BOSS_MOTION_FORMS, type BossMotionForm } from '../data/bossMotionForms';
 import { entryFile } from './ArtResolve';
@@ -114,7 +114,8 @@ export function applyEnemyProjectileArt(b: Bullet, chapter: number, id: string, 
     key = combatArtKey(art.file);
   if (!b.scene.textures.exists(key)) return false;
   b.setTexture(key).clearTint().setOrigin(art.anchor.x, art.anchor.y);
-  b.setScale(b.radius / art.refRadius);
+  // refRadius 按原画像素标定；下载图按画质缩小过
+  b.setScale(b.radius / (art.refRadius * runtimeArtScale(`combat/ch1/${art.file}`)));
   b.enemyVisualSpin = art.spin;
   b.enemyVisualPulse = art.pulse;
   b.enemyVisualScale = b.scaleX;
