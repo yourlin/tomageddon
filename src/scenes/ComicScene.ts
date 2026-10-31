@@ -14,7 +14,7 @@ import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
 import { VW, VH } from '../systems/HiDpi';
 import { RUNTIME_ART_URLS } from '../systems/RuntimeArt';
-import { queueArt, releaseArt, unloadUnusedArt } from '../systems/ArtRegistry';
+import { queueArt, queueThumbArt, releaseArt, unloadUnusedArt } from '../systems/ArtRegistry';
 import { retainSceneTexture } from '../systems/SceneArtLease';
 
 export interface ComicData {
@@ -86,7 +86,9 @@ export class ComicScene extends Phaser.Scene {
       candidates.forEach((keys, i) => {
         if (queuedPanels.has(i) || keys.some((key) => !failed.has(key))) return;
         queuedPanels.add(i);
-        queueArt(this, { bodies: (COMICS[ch].panels[i].actors ?? []).map((a) => ({ kind: a.kind, id: a.id })) }, owner);
+        const panel = COMICS[ch].panels[i];
+        queueArt(this, { bodies: (panel.actors ?? []).map((a) => ({ kind: a.kind, id: a.id })) }, owner);
+        queueThumbArt(this, [panel.bg]);
       });
     };
     const onError = (file: Phaser.Loader.File) => {

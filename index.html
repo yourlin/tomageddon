@@ -331,7 +331,8 @@
     <img src="./icons/share-thumb.jpg" alt="番茄酱 Tomageddon" width="300" height="300" style="position: absolute; left: -9999px; top: 0" />
     <div id="stage"><div id="game"></div></div>
     <div id="boot-loader" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="加载进度 Loading">
-      <img class="bl-art" src="./assets/ui/loading-kitchen.webp" alt="" fetchpriority="high" decoding="async" />
+      <!-- 低优先级：慢网络下先让游戏脚本拿到带宽，背景图晚一点出现不影响进主菜单 -->
+      <img class="bl-art" src="./assets/ui/loading-kitchen.webp" alt="" fetchpriority="low" decoding="async" />
       <div class="bl-title"><span class="bl-brand">番茄酱</span><small>TOMAGEDDON</small></div>
       <div class="bl-box">
         <div class="bl-info">

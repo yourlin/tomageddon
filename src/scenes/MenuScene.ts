@@ -5,6 +5,8 @@ import Phaser from 'phaser';
 import { portraitKey, showcaseRig } from '../ui/Portrait';
 import { paintArena } from '../art/ArenaArt';
 import { isForceProcedural } from '../systems/ArtStyle';
+import { loadArt } from '../systems/ArtRegistry';
+import { CHAPTERS } from '../data/chapters';
 import { text, button, panel, COLORS, autoRelayout } from '../ui/UI';
 import { audio } from '../systems/Audio';
 import { CHARACTERS, CHARACTER_MAP } from '../data/characters';
@@ -32,6 +34,8 @@ export class MenuScene extends Phaser.Scene {
   create(): void {
     // 启动贴图还在后台生成时，离开主菜单要先等它们就绪（期间显示加载页）
     gateSceneStart(this);
+    // 选关缩略图不进首屏：主菜单出现后在后台预取，进选角时通常已在缓存里（中途离开会在选角页重新排队）
+    void loadArt(this, { maps: CHAPTERS.map((c) => ({ ch: c.id, parts: ['thumb'] })) });
     setInRun(false);
     checkAchievements();
     autoRelayout(this);
