@@ -12,6 +12,45 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.8.1',
+    date: '2026-11-01',
+    highlight: [
+      '手机上更清晰、字更大、加载更快；怪物子弹加红色描边；Boss 转阶段不再剧烈晃屏',
+      'Sharper, bigger text and faster loading on phones; enemy bullets get a red outline; boss phase changes no longer shake the screen hard',
+    ],
+    items: [
+      [
+        '手机默认使用高画质，iPhone 不再被限制为低画质；手机上战斗镜头拉近一些，角色更大（全屏技能的范围不变）',
+        'Phones now default to High graphics quality (iPhones are no longer forced to Low); the battle camera zooms in a little on phones so heroes look bigger (screen-wide skills keep the same reach)',
+      ],
+      [
+        '手机上所有界面的文字放大，正文不再小于约 11 像素；商店卡片说明放不下时，点卡片可以查看完整说明',
+        'Text on every screen is bigger on phones; when a shop card’s description is cut short, tap the card to read all of it',
+      ],
+      [
+        '素材下载量减少约 30%~46%，首屏更快，进设置页不再黑屏',
+        'About 30–46% less art to download, a faster first screen, and no more black screen when opening Settings',
+      ],
+      ['怪物子弹加上红色描边，更容易看清和躲避', 'Enemy bullets now have a red outline so they are easier to see and dodge'],
+      [
+        'Boss 转阶段的震屏和镜头推近大幅减弱，画面始终看得清',
+        'Boss phase changes shake the screen and zoom in far less, so the battlefield stays readable',
+      ],
+      [
+        '电击类武器射程缩短约 12%，闪电不再跳到画面外的敌人',
+        'Lightning weapons have about 12% less range, and bolts no longer jump to enemies off screen',
+      ],
+      [
+        '角色不再做攻击动作（攻击由武器发出）；带前缀的精英怪改用插画并加金色光环；可爱风下切换角色不再闪出复古风形象',
+        'Heroes no longer play an attack pose (weapons do the attacking); affixed elites now use their illustrations with a gold aura; switching heroes in Cute style no longer flashes the Retro look',
+      ],
+      [
+        '选角页排版修正，天赋与技能说明不再被缩小；新手引导可以在设置里关闭；用手柄时才显示手柄按键提示',
+        'Character select layout fixed so talent and skill text is no longer shrunk; tutorial tips can be turned off in Settings; controller button hints only show when you use a controller',
+      ],
+    ],
+  },
+  {
     version: '0.8.0',
     date: '2026-10-30',
     highlight: [
