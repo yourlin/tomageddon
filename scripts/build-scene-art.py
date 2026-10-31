@@ -66,7 +66,7 @@ def build(plan_path):
             base=Path(name)
             file=Path('maps')/f'ch{ch}'/base.parent/'standard'/f'{base.name}-{tier}.webp'
             target=ROOT/'src/assets/runtime'/file
-            subprocess.run(['cwebp','-quiet','-q','92','-m','4','-alpha_q','100','-exact','-resize',str(w),str(h),str(directory/f'{name}.png'),'-o',str(target)],check=True)
+            subprocess.run(['cwebp','-quiet','-q','80','-m','4','-alpha_q','100','-exact','-resize',str(w),str(h),str(directory/f'{name}.png'),'-o',str(target)],check=True)
             variants.setdefault(name,{})[tier]={'file':file.as_posix(),'width':w,'height':h,'bytes':target.stat().st_size}
     with open('/tmp/tomato-sister-art-runtime.lock','w') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)

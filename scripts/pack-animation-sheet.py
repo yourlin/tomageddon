@@ -111,7 +111,7 @@ def pack(source, output, columns=3, rows=3, name='idle', adaptive_gutters=False,
         folder.mkdir(exist_ok=True)
         target = folder / f'{name}.webp'
         sheet.save(folder / f'{name}.png')  # lossless intermediate, outside Git for source builds
-        sheet.save(target, 'WEBP', quality=92, method=6, exact=True)
+        sheet.save(target, 'WEBP', quality=80, method=6, exact=True)
         config = {'file': target.name, 'frameWidth': size, 'frameHeight': size,
                   'margin': margin, 'spacing': margin * 2, 'frames': list(range(len(frames))),
                   'anchor': {'x': 0.5, 'y': baseline / size},
