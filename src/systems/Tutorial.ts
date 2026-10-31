@@ -198,7 +198,7 @@ export const seenTip = (key: TipKey): boolean => !!save.tutorial[key];
  * pause 为 true 时显示期间暂停 owner，直到点「知道了」。
  */
 export function tip(key: TipKey, owner?: Phaser.Scene, pause = false): void {
-  if (DISABLED || save.tutorial[key] || queue.some((q) => q.key === key) || current?.item.key === key) return;
+  if (DISABLED || save.settings.tipsOff || save.tutorial[key] || queue.some((q) => q.key === key) || current?.item.key === key) return;
   if (typeof document === 'undefined') return;
   if (owner) watchOwner(owner);
   queue.push({ key, owner, pause });

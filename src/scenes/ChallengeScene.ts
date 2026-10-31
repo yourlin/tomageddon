@@ -1,6 +1,6 @@
 // 每日 / 每周挑战：由日期种子决定角色、章节与规则修饰；单机记录个人最佳
 import Phaser from 'phaser';
-import { text, button, panel, COLORS, fitImage, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, autoRelayout, fs } from '../ui/UI';
 import { portraitKey } from '../ui/Portrait';
 import { CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
@@ -54,7 +54,7 @@ export class ChallengeScene extends Phaser.Scene {
         '同一天（同一周）所有玩家抽到的角色、章节、规则和商店都一样——比一比谁打得更好。挑战会临时借用角色，不需要先解锁。',
         'Everyone gets the same character, chapter, rules and shops on the same day (week). Characters are lent for the challenge — no unlock needed.',
       ),
-      16,
+      fs(16),
       COLORS.textDim,
       { wordWrap: { width: W - 220, useAdvancedWrap: true } },
     );
@@ -85,7 +85,7 @@ export class ChallengeScene extends Phaser.Scene {
     this.card(makeChallenge('weekly'), 48 + cw, 116, cw, 440);
     // 最近 7 天每日挑战
     const y = 572;
-    text(this, 24, y, tx('最近 7 天每日挑战', 'Last 7 daily challenges'), 18, '#ffd166');
+    text(this, 24, y, tx('最近 7 天每日挑战', 'Last 7 daily challenges'), fs(18), '#ffd166');
     const streak = counter('dailyLastDay') ? counter('dailyStreak') : 0;
     text(
       this,
@@ -105,7 +105,7 @@ export class ChallengeScene extends Phaser.Scene {
               )
           : base;
       })(),
-      16,
+      fs(16),
       COLORS.textDim,
     ).setOrigin(1, 0);
     const bw = (W - 48 - 6 * 10) / 7;
@@ -116,10 +116,14 @@ export class ChallengeScene extends Phaser.Scene {
       const rec = save.challenges[`daily:${k}`];
       const x = 24 + (6 - i) * (bw + 10);
       panel(this, x, y + 30, bw, 86, rec ? COLORS.panel : 0x1f0d10, rec?.won ? COLORS.gold : rec ? 0x9d4edd : 0x3d1d22);
-      text(this, x + bw / 2, y + 44, i === 0 ? tx('今天', 'Today') : `${d.getMonth() + 1}/${d.getDate()}`, 14, COLORS.textDim).setOrigin(
-        0.5,
-        0,
-      );
+      text(
+        this,
+        x + bw / 2,
+        y + 44,
+        i === 0 ? tx('今天', 'Today') : `${d.getMonth() + 1}/${d.getDate()}`,
+        fs(14),
+        COLORS.textDim,
+      ).setOrigin(0.5, 0);
       const c = makeChallenge('daily', k);
       fitImage(this.add.image(x + 26, y + 88, portraitKey(this, 'char', c.charId)), 34).setAlpha(rec ? 1 : 0.4);
       text(
@@ -127,7 +131,7 @@ export class ChallengeScene extends Phaser.Scene {
         x + bw - 12,
         y + 88,
         rec ? `${rec.won ? '✓ ' : ''}${rec.best}` : '—',
-        17,
+        fs(17),
         rec?.won ? '#ffd166' : rec ? '#e0aaff' : COLORS.textDim,
       ).setOrigin(1, 0.5);
     }
@@ -161,10 +165,10 @@ export class ChallengeScene extends Phaser.Scene {
     text(this, x + 20, y + 16, daily ? tx('🗓️ 每日挑战', '🗓️ Daily') : tx('♾️ 每周挑战', '♾️ Weekly'), 26, daily ? '#ff6b5e' : '#e0aaff', {
       fontStyle: 'bold',
     });
-    text(this, x + w - 20, y + 24, `${c.key} · ${resetIn(c.kind)}`, 14, COLORS.textDim).setOrigin(1, 0);
+    text(this, x + w - 20, y + 24, `${c.key} · ${resetIn(c.kind)}`, fs(14), COLORS.textDim).setOrigin(1, 0);
     // D5：分享码，点击复制
     const code = challengeCode(c);
-    const ct = text(this, x + w - 20, y + 44, tx(`分享码 ${code} 📋`, `Share code ${code} 📋`), 13, '#9bf6ff')
+    const ct = text(this, x + w - 20, y + 44, tx(`分享码 ${code} 📋`, `Share code ${code} 📋`), fs(13), '#9bf6ff')
       .setOrigin(1, 0)
       .setInteractive({ useHandCursor: true });
     ct.on('pointerup', () => {
@@ -178,18 +182,18 @@ export class ChallengeScene extends Phaser.Scene {
       x + 140,
       y + 108,
       `${CHAPTERS[c.chapterId - 1].name} · ${c.endless ? tx('无尽模式（比坚持的波数）', 'Endless (how far can you go)') : tx(`${chapterWaves(c.chapterId)} 波`, `${chapterWaves(c.chapterId)} waves`)}`,
-      16,
+      fs(16),
       COLORS.text,
     );
-    text(this, x + 140, y + 134, tx(`技能：${ch.skill.name}`, `Skill: ${ch.skill.name}`), 15, COLORS.textDim);
+    text(this, x + 140, y + 134, tx(`技能：${ch.skill.name}`, `Skill: ${ch.skill.name}`), fs(15), COLORS.textDim);
     let my = y + 168;
-    text(this, x + 20, my, tx('今日规则', 'Rules'), 17, '#ffd166');
+    text(this, x + 20, my, tx('今日规则', 'Rules'), fs(17), '#ffd166');
     my += 28;
     for (const id of c.modifiers) {
       const m = MODIFIER_MAP[id];
       text(this, x + 24, my, m.icon, 26);
-      text(this, x + 64, my - 2, pick(m.name), 18, '#fff4ea', { fontStyle: 'bold' });
-      text(this, x + 64, my + 22, pick(m.desc), 14, COLORS.textDim);
+      text(this, x + 64, my - 2, pick(m.name), fs(18), '#fff4ea', { fontStyle: 'bold' });
+      text(this, x + 64, my + 22, pick(m.desc), fs(14), COLORS.textDim);
       my += 46;
     }
     const rec = save.challenges[`${c.kind}:${c.key}`];
@@ -203,7 +207,7 @@ export class ChallengeScene extends Phaser.Scene {
             `Best ${rec.best} pts · wave ${rec.bestWave} · ${rec.attempts} attempt(s)${rec.won ? ' · cleared' : ''}`,
           )
         : tx('还没有挑战过', 'Not attempted yet'),
-      16,
+      fs(16),
       rec ? '#e0aaff' : COLORS.textDim,
     );
     button(

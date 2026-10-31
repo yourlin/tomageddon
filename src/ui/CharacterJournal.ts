@@ -66,9 +66,13 @@ const INK = '#542a20';
 /** 左页可排版区域（避开左侧合页与中缝） */
 const PAGE_L = 100,
   PAGE_R = 612;
-/** 展示背景图底边（下面是天赋一栏）与原图宽高比 */
-const STAGE_BOTTOM = 432,
+/** 左页文字排到的底边；展示背景图的最小高度与原图宽高比 */
+const PAGE_BOTTOM = 574,
+  STAGE_MIN = 150,
   STAGE_ASPECT = 530 / 345;
+/** 天赋 / 技能描述的折行宽度与右侧属性栏的起点 */
+const TEXT_W = 340,
+  STATS_X = 455;
 
 /** The journal owns presentation and navigation; progression and run setup stay in the existing scene. */
 export class CharacterJournal {
@@ -208,8 +212,49 @@ export class CharacterJournal {
       const desc = this.label(PAGE_L, top, unlocked ? c.desc : unlockHint(c), 15, INK, PAGE_R - PAGE_L);
       top = desc.y + desc.height + 8;
     }
-    // 展示背景图：限制在书页内侧（左边避开合页），底边留给天赋一栏
-    const stageH = Math.min(326, STAGE_BOTTOM - top),
+    // 天赋 / 技能 / 属性：正常字号、按实际行数从书页底边往上排，剩下的空间才给展示区（不缩小文字）
+    let textTop = PAGE_BOTTOM;
+    if (unlocked) {
+      const stack: Phaser.GameObjects.Text[] = [
+        this.label(PAGE_L, 0, tx(`天赋  ${c.talent.name}`, `Talent  ${c.talent.name}`), 20, '#7a271c').setFontStyle('bold'),
+        this.compact
+          ? this.label(
+              PAGE_L,
+              0,
+              pad
+                ? tx('Y 详情：查看天赋与技能说明', 'Y Details: talent and skill')
+                : tx('点「详情」查看天赋与技能说明', 'Tap Details for talent and skill'),
+              21,
+              INK,
+              TEXT_W,
+            )
+          : this.label(PAGE_L, 0, c.talent.desc, 15, INK, TEXT_W),
+        this.label(PAGE_L, 0, tx(`技能  ${c.skill.name}`, `Skill  ${c.skill.name}`), 20, '#1e5261').setFontStyle('bold'),
+        this.label(PAGE_L, 0, this.compact ? tx('普通攻击由武器自动施放', 'Weapons attack automatically') : c.skill.desc, 15, INK, TEXT_W),
+      ];
+      const gaps = [4, 10, 4, 0];
+      const stats = [
+        this.label(STATS_X, 0, tx('基础属性', 'Stats'), 18, INK).setFontStyle('bold'),
+        this.label(STATS_X, 0, charTraitLines(c).slice(0, 2).join('\n'), 15, INK, PAGE_R - STATS_X),
+        this.label(STATS_X, 0, tx('初始武器', 'Starting weapon'), 16, INK, PAGE_R - STATS_X),
+        this.label(STATS_X, 0, WEAPON_MAP[defaultStartWeapon(c)]?.name ?? '', 17, INK, PAGE_R - STATS_X),
+      ];
+      const statGaps = [4, 12, 2, 0];
+      const height = (list: Phaser.GameObjects.Text[], g: number[]) => list.reduce((h, t, k) => h + t.height + g[k], 0);
+      // 左右两栏按较高的一栏对齐起点，都不超出书页
+      textTop = PAGE_BOTTOM - Math.max(height(stack, gaps), height(stats, statGaps));
+      const place = (list: Phaser.GameObjects.Text[], g: number[]) => {
+        let y = textTop;
+        list.forEach((t, k) => {
+          t.setY(y);
+          y += t.height + g[k];
+        });
+      };
+      place(stack, gaps);
+      place(stats, statGaps);
+    }
+    // 展示背景图：限制在书页内侧（左边避开合页），高度取文字排完后剩下的空间
+    const stageH = Math.max(STAGE_MIN, Math.min(326, textTop - 12 - top)),
       stageW = stageH * STAGE_ASPECT,
       stageX = (PAGE_L + PAGE_R) / 2,
       stageY = top + stageH / 2;
@@ -248,35 +293,6 @@ export class CharacterJournal {
         '#764125',
         500,
       );
-    }
-    if (unlocked) {
-      this.label(PAGE_L, 447, tx(`天赋  ${c.talent.name}`, `Talent  ${c.talent.name}`), 20, '#7a271c').setFontStyle('bold');
-      if (!this.compact) this.label(PAGE_L, 476, c.talent.desc, 15, INK, 340);
-      else
-        this.label(
-          PAGE_L,
-          481,
-          pad
-            ? tx('Y 详情：查看天赋与技能说明', 'Y Details: talent and skill')
-            : tx('点「详情」查看天赋与技能说明', 'Tap Details for talent and skill'),
-          21,
-          INK,
-          340,
-        );
-      this.label(PAGE_L, 524, tx(`技能  ${c.skill.name}`, `Skill  ${c.skill.name}`), 20, '#1e5261').setFontStyle('bold');
-      const skillCopy = this.label(
-        PAGE_L,
-        548,
-        this.compact ? tx('普通攻击由武器自动施放', 'Weapons attack automatically') : c.skill.desc,
-        14,
-        INK,
-        340,
-      );
-      if (skillCopy.height > 36) skillCopy.setScale(Math.min(1, 36 / skillCopy.height));
-      this.label(455, 447, tx('基础属性', 'Stats'), 18, INK).setFontStyle('bold');
-      this.label(455, 477, charTraitLines(c).slice(0, 2).join('\n'), 15, INK, 155);
-      this.label(455, 531, tx('初始武器', 'Starting weapon'), 16, INK);
-      this.label(455, 554, WEAPON_MAP[defaultStartWeapon(c)]?.name ?? '', 17, INK, 155);
     }
     this.drawRoster();
     this.drawSkins();
@@ -469,7 +485,7 @@ export class CharacterJournal {
       this.label(x - W / 2 + badge + 3, y - H / 2 + badge + 3, `${i + 1}`, 13, '#fff2d6')
         .setFontStyle('bold')
         .setOrigin(0.5);
-      const name = chapterVisible(ch.id) ? ch.name.replace(/^第.+?章[ ·：:]*/, '') : tx('未解锁', 'Locked');
+      const name = chapterVisible(ch.id) ? ch.name.replace(/^(第.+?章|Chapter \d+)[ ·：:]*/, '') : tx('未解锁', 'Locked');
       const nameText = this.label(x, y + H / 2 - band / 2, name, 13, available ? '#fff2d6' : '#c9b8a6').setOrigin(0.5);
       if (nameText.width > W - 10) nameText.setScale((W - 10) / nameText.width);
       this.target({ group: 'chapters', index: i, x, y, w: 114, h: 58, act: () => this.actions.selectChapter(ch.id) });

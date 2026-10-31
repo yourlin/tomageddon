@@ -1,7 +1,7 @@
 // 封面专用的奶油描边、番茄红漆面与黄铜装饰；文字保持可本地化。
 import Phaser from 'phaser';
 import { paint } from '../art/Painter';
-import { button, text } from './UI';
+import { button, text, fs } from './UI';
 import { lang, tx } from '../i18n';
 
 export function coverTitle(scene: Phaser.Scene, x: number, y: number): void {
@@ -9,7 +9,7 @@ export function coverTitle(scene: Phaser.Scene, x: number, y: number): void {
   g.lineStyle(1, 0xe9b86a, 0.65);
   g.lineBetween(x - 160, y - 80, x - 105, y - 80);
   g.lineBetween(x + 105, y - 80, x + 160, y - 80);
-  text(scene, x, y - 80, tx('厨房里的小小英雄', 'A LITTLE KITCHEN HERO'), 13, '#f4d59d', {
+  text(scene, x, y - 80, tx('厨房里的小小英雄', 'A LITTLE KITCHEN HERO'), fs(13), '#f4d59d', {
     letterSpacing: 2,
     strokeThickness: 0,
   }).setOrigin(0.5);
@@ -35,7 +35,7 @@ export function coverTitle(scene: Phaser.Scene, x: number, y: number): void {
   // 英文副标采用细长铭牌，压住字标底边。
   g.fillStyle(0x53242a).fillRoundedRect(x - 153, y + 55, 306, 30, 15);
   g.lineStyle(1, 0xd6a45d).strokeRoundedRect(x - 153, y + 55, 306, 30, 15);
-  text(scene, x, y + 70, lang === 'en' ? 'FRESH • FIERCE • FEARLESS' : 'T O M A G E D D O N', 14, '#f6cf85', {
+  text(scene, x, y + 70, lang === 'en' ? 'FRESH • FIERCE • FEARLESS' : 'T O M A G E D D O N', fs(14), '#f6cf85', {
     strokeThickness: 0,
   }).setOrigin(0.5);
   // 小叶冠，呼应主角的番茄身份。
@@ -83,7 +83,8 @@ export function coverButton(
     ctx.beginPath();
     ctx.roundRect(bx + 5, by + 5, w - 10, h - 10, 13);
     ctx.stroke();
-    for (const px of [bx + 15, bx + w - 15]) {
+    // 小尺寸的纯图标按钮不画两侧装饰点，否则点会挤到图标旁边
+    for (const px of w >= 80 ? [bx + 15, bx + w - 15] : []) {
       ctx.fillStyle = '#f2cc83';
       ctx.beginPath();
       ctx.arc(px, by + h / 2, 2, 0, Math.PI * 2);

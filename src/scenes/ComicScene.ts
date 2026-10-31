@@ -8,7 +8,7 @@ import { COMICS, type ComicPanel, type ComicActor } from '../data/comics';
 import { CHARACTER_MAP } from '../data/characters';
 import { ENEMY_MAP } from '../data/enemies';
 import { BOSS_MAP } from '../data/bosses';
-import { text, button, COLORS } from '../ui/UI';
+import { text, button, COLORS, fs } from '../ui/UI';
 import { save, persist } from '../systems/Save';
 import { audio } from '../systems/Audio';
 import { tx } from '../i18n';
@@ -141,7 +141,7 @@ export class ComicScene extends Phaser.Scene {
     audio.playMusic(this, 'bgm_menu');
 
     text(this, W / 2, 34, tx(comic.title[0], comic.title[1]), 30, '#ffd166').setOrigin(0.5);
-    text(this, 24, 26, tx('番茄酱小镇的故事', 'Tales of Ketchup Town'), 15, COLORS.textDim);
+    text(this, 24, 26, tx('番茄酱小镇的故事', 'Tales of Ketchup Town'), fs(15), COLORS.textDim);
     button(this, W - 80, 34, 130, 44, tx('跳过 ⏭', 'Skip ⏭'), () => this.finish(), 0x555555, 18);
 
     // 章节插画按原始单格比例排版，保留人物叶冠、帽子和画面上方的线索。
@@ -160,7 +160,7 @@ export class ComicScene extends Phaser.Scene {
     // 还没翻开的格子先画个空框
     for (const b of this.boxes) this.add.rectangle(b.x, b.y, b.w, b.h, 0x000000, 0.35).setOrigin(0).setStrokeStyle(3, 0x3a2a2a);
 
-    this.hint = text(this, W / 2, H - 26, tx('点击继续', 'Click to continue'), 16, COLORS.textDim).setOrigin(0.5);
+    this.hint = text(this, W / 2, H - 26, tx('点击继续', 'Click to continue'), fs(16), COLORS.textDim).setOrigin(0.5);
     this.tweens.add({ targets: this.hint, alpha: 0.35, duration: 700, yoyo: true, repeat: -1 });
 
     this.input.on('pointerup', (p: Phaser.Input.Pointer) => {

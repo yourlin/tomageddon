@@ -34,6 +34,8 @@ export interface SaveData {
     /** 画风：可爱风（插画）/ 复古风（程序绘制）；未设置视为可爱风 */
     artStyle?: 'cute' | 'retro';
     autoSkill: boolean;
+    /** 关闭新手引导提示；未设置视为开启 */
+    tipsOff?: boolean;
   };
   /** 图鉴发现记录 */
   seen: { items: string[]; weapons: string[]; enemies: string[]; bosses: string[] };

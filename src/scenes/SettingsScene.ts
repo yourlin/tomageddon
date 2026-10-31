@@ -2,7 +2,7 @@ import { settingSlider, type SettingRange } from '../ui/SettingSlider';
 // 分类设置：声音 / 画面 / 操作 / 存档。战斗中只开放即时生效的设置。
 import { resetTutorial } from '../systems/Tutorial';
 import Phaser from 'phaser';
-import { text, button, panel, COLORS, autoRelayout, tu } from '../ui/UI';
+import { text, button, panel, COLORS, autoRelayout, tu, fs, TOUCH } from '../ui/UI';
 import { MENU, menuButton, menuPanel, menuHeading, menuRule, menuToggle, preloadSettingsArt } from '../ui/GameMenuUI';
 import { toggleFullscreen } from '../systems/Fullscreen';
 import { save, persist, resetSave, exportSave, importSave } from '../systems/Save';
@@ -83,7 +83,7 @@ export class SettingsScene extends Phaser.Scene {
       this.fromPause
         ? tx('战斗中仅显示即时生效的设置', 'Only live settings are available during a run')
         : tx('设置自动保存 · 画质与语言更改后需重新加载', 'Auto-saved · Quality and language changes require a reload'),
-      14,
+      fs(14),
       MENU.dim,
     ).setOrigin(0.5);
     const st = save.settings;
@@ -299,10 +299,27 @@ export class SettingsScene extends Phaser.Scene {
               },
             ),
         ],
+        // 新手引导：开 / 关；「重新显示」把已看过的提示清掉再开启
         [
           tx('新手引导', 'Tutorial tips'),
-          () => (Object.keys(save.tutorial).length ? tx('重新显示', 'Show again') : tx('会显示', 'On')),
-          () => resetTutorial(),
+          () => (st.tipsOff ? tx('关', 'Off') : tx('开', 'On')),
+          (refresh) =>
+            this.openChoice(
+              [
+                { label: tx('开', 'On'), value: 'on' },
+                { label: tx('关', 'Off'), value: 'off' },
+                ...(Object.keys(save.tutorial).length
+                  ? [{ label: tx('开，并重新显示已看过的提示', 'On, and show seen tips again'), value: 'reset' }]
+                  : []),
+              ],
+              st.tipsOff ? 'off' : 'on',
+              (v) => {
+                st.tipsOff = v === 'off';
+                if (v === 'reset') resetTutorial();
+                persist();
+                refresh();
+              },
+            ),
         ],
       );
     this.rows = rows;
@@ -425,15 +442,16 @@ export class SettingsScene extends Phaser.Scene {
     if (this.tab === 'graphics' && !this.fromPause) this.drawStylePreviews();
     if (this.tab === 'data') this.dataRow(x, w);
     if (this.tab === 'sound') {
-      text(this, x + 54, 419, tx('调整音量，即时试听。', 'Adjust the volume and hear the change.'), 16, MENU.dim);
+      text(this, x + 54, 419, tx('调整音量，即时试听。', 'Adjust the volume and hear the change.'), fs(16), MENU.dim);
     }
-    if (this.tab === 'controls') {
+    // 键盘操作说明只给有键盘的设备看
+    if (this.tab === 'controls' && !TOUCH) {
       text(
         this,
         x + w / 2,
         H - 192,
         tx('WASD / 方向键移动 · 空格释放技能 · ESC 暂停', 'WASD / Arrows to move · Space for skill · ESC to pause'),
-        13,
+        fs(13),
         MENU.dim,
       ).setOrigin(0.5);
     }
@@ -558,7 +576,7 @@ export class SettingsScene extends Phaser.Scene {
             .setDisplaySize(66, 66)
             .setName(`art-style-image:${style}`),
         );
-      else card.add(text(this, -cardW / 2 + 40, 0, tx('加载中…', 'Loading…'), 13, COLORS.textDim).setOrigin(0.5));
+      else card.add(text(this, -cardW / 2 + 40, 0, tx('加载中…', 'Loading…'), fs(13), COLORS.textDim).setOrigin(0.5));
       card.add(
         text(this, -cardW / 2 + 84, -14, `${on ? '✓ ' : ''}${this.styleName(style)}`, 20, on ? '#ffe1a5' : '#fff4ea').setOrigin(0, 0.5),
       );
@@ -568,7 +586,7 @@ export class SettingsScene extends Phaser.Scene {
           -cardW / 2 + 84,
           16,
           style === 'cute' ? tx('插画（AI 生成）', 'Illustrated (AI-generated)') : tx('经典简洁', 'Classic'),
-          15,
+          fs(15),
           '#d4b8a4',
         ).setOrigin(0, 0.5),
       );
@@ -599,7 +617,7 @@ export class SettingsScene extends Phaser.Scene {
   /** 存档导出 / 导入、错误日志、重置存档 */
   private dataRow(x: number, w: number): void {
     const y = 355;
-    const msg = text(this, x + w / 2, 495, '', 16, COLORS.textDim).setOrigin(0.5);
+    const msg = text(this, x + w / 2, 495, '', fs(16), COLORS.textDim).setOrigin(0.5);
     const say = (s: string, ok = true) => msg.setText(s).setColor(ok ? '#52ff8a' : '#ff6b6b');
     menuButton(
       this,

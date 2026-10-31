@@ -2,7 +2,7 @@ import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // 局后数据（弹窗）：伤害来源排行 + 每波收入；从结算页或战绩页打开
 import Phaser from 'phaser';
 import { challengeKindName } from '../data/challenges';
-import { text, button, panel, COLORS, fitImage } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, fs } from '../ui/UI';
 import { WEAPON_MAP, TIER_NAMES } from '../data/weapons';
 import { CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
@@ -61,7 +61,7 @@ export class RunStatsScene extends Phaser.Scene {
       px + 190,
       py + 28,
       `${c?.name ?? r.charId} · ${CHAPTERS[r.chapterId - 1]?.name ?? ''} · ${mode} · ${tx(`第 ${r.wave} 波`, `wave ${r.wave}`)} · Lv.${r.level} · ${tx(`击杀 ${r.kills}`, `${r.kills} kills`)} · ${min}:${String(sec).padStart(2, '0')}`,
-      17,
+      fs(17),
       COLORS.textDim,
     );
     button(this, px + pw - 70, py + 34, 110, 46, tx('关闭', 'Close'), () => this.scene.stop(), 0x555555, 20);
@@ -92,7 +92,7 @@ export class RunStatsScene extends Phaser.Scene {
         lx + 40,
         y + 2,
         lab.name + (tier ? ` ${TIER_NAMES[tier.tier]}${tier.forge ? ` +${tier.forge}` : ''}` : ''),
-        15,
+        fs(15),
         COLORS.text,
       );
       const bx = lx + 40,
@@ -105,18 +105,18 @@ export class RunStatsScene extends Phaser.Scene {
         tr: 4,
         br: 4,
       });
-      text(this, lx + lw - 100, y + 10, `${fmt(v)}  ${Math.round((v / total) * 100)}%`, 15, COLORS.textDim).setOrigin(0, 0.5);
+      text(this, lx + lw - 100, y + 10, `${fmt(v)}  ${Math.round((v / total) * 100)}%`, fs(15), COLORS.textDim).setOrigin(0, 0.5);
     });
-    if (!r.dmg.length) text(this, lx, ly + 40, tx('没有记录到伤害', 'No damage recorded'), 16, COLORS.textDim);
+    if (!r.dmg.length) text(this, lx, ly + 40, tx('没有记录到伤害', 'No damage recorded'), fs(16), COLORS.textDim);
 
     // ---- J2 构筑分享码 / J3 用此构筑练习（玩法暂未开放，构筑码照常记在存档里）----
     if (r.build && buildShareEnabled()) {
       const code = r.build;
-      const cb = text(this, lx, py + ph - 30, tx('📋 复制构筑分享码', '📋 Copy build code'), 16, '#9bf6ff').setInteractive({
+      const cb = text(this, lx, py + ph - 30, tx('📋 复制构筑分享码', '📋 Copy build code'), fs(16), '#9bf6ff').setInteractive({
         useHandCursor: true,
       });
       cb.on('pointerup', () => void navigator.clipboard?.writeText(code).then(() => cb.setText(tx('已复制 ✓', 'Copied ✓'))));
-      const pr = text(this, lx + 200, py + ph - 30, tx('🎯 用此构筑练习', '🎯 Practice this build'), 16, '#9be564').setInteractive({
+      const pr = text(this, lx + 200, py + ph - 30, tx('🎯 用此构筑练习', '🎯 Practice this build'), fs(16), '#9be564').setInteractive({
         useHandCursor: true,
       });
       pr.on('pointerup', () => {
@@ -148,9 +148,10 @@ export class RunStatsScene extends Phaser.Scene {
       const h = (chartH * v) / top;
       const x = rx + i * (rw / inc.length) + 1;
       g.fillStyle(0x52b788, 1).fillRoundedRect(x, chartY + chartH - h, bw, Math.max(1, h), { tl: 3, tr: 3, bl: 0, br: 0 });
-      if (inc.length <= 20 || i % 5 === 4) text(this, x + bw / 2, chartY + chartH + 6, String(i + 1), 12, COLORS.textDim).setOrigin(0.5, 0);
+      if (inc.length <= 20 || i % 5 === 4)
+        text(this, x + bw / 2, chartY + chartH + 6, String(i + 1), fs(12), COLORS.textDim).setOrigin(0.5, 0);
     });
-    text(this, rx, chartY - 4, fmt(top), 12, COLORS.textDim).setOrigin(0, 1);
+    text(this, rx, chartY - 4, fmt(top), fs(12), COLORS.textDim).setOrigin(0, 1);
     // J1：每波 DPS 折线（橙色，右侧刻度），1.4.0 之前的记录没有这项
     const dps = r.dps ?? [];
     if (dps.some((v) => v > 0)) {
@@ -160,8 +161,8 @@ export class RunStatsScene extends Phaser.Scene {
       );
       g.lineStyle(3, 0xff9f1c, 1).strokePoints(pts, false);
       for (const p of pts) g.fillStyle(0xff9f1c, 1).fillCircle(p.x, p.y, 3);
-      text(this, rx + rw, chartY - 4, `DPS ${fmt(dTop)}`, 12, '#ff9f1c').setOrigin(1, 1);
-      text(this, rx + rw, ry, tx('— 每波 DPS', '— DPS per wave'), 14, '#ff9f1c').setOrigin(1, 0);
+      text(this, rx + rw, chartY - 4, `DPS ${fmt(dTop)}`, fs(12), '#ff9f1c').setOrigin(1, 1);
+      text(this, rx + rw, ry, tx('— 每波 DPS', '— DPS per wave'), fs(14), '#ff9f1c').setOrigin(1, 0);
     }
     const sum = inc.reduce((a, b) => a + b, 0);
     text(
@@ -172,7 +173,7 @@ export class RunStatsScene extends Phaser.Scene {
         `合计 ${fmt(sum)} · 平均每波 ${fmt(sum / inc.length)} · 道具 ${r.items} 件`,
         `Total ${fmt(sum)} · avg ${fmt(sum / inc.length)}/wave · ${r.items} items`,
       ),
-      15,
+      fs(15),
       COLORS.text,
     );
   }

@@ -1,7 +1,7 @@
 // 战绩页：最近 30 局的记录与汇总；点击一局查看局后数据
 import Phaser from 'phaser';
 import { challengeKindName } from '../data/challenges';
-import { text, button, panel, COLORS, fitImage, autoRelayout, hitArea } from '../ui/UI';
+import { text, button, panel, COLORS, fitImage, autoRelayout, hitArea, fs } from '../ui/UI';
 import { portraitKey } from '../ui/Portrait';
 import { CHARACTER_MAP } from '../data/characters';
 import { CHAPTERS } from '../data/chapters';
@@ -93,7 +93,7 @@ export class HistoryScene extends Phaser.Scene {
     tiles.forEach(([k, v], i) => {
       const x = 24 + i * (tw + 12);
       panel(this, x, 84, tw, 70);
-      text(this, x + 14, 92, k, 14, COLORS.textDim);
+      text(this, x + 14, 92, k, fs(14), COLORS.textDim);
       text(this, x + 14, 114, v, 22, '#ffd166', { fontStyle: 'bold' });
     });
     this.layer = this.add.container(0, 0);
@@ -145,8 +145,8 @@ export class HistoryScene extends Phaser.Scene {
     const L = this.layer;
     const col = (x: number, title: string, rows: string[]): void => {
       L.add(text(this, x, 216, title, 20, '#ffd166', { fontStyle: 'bold' }));
-      if (!rows.length) L.add(text(this, x, 250, tx('暂无记录', 'No records yet'), 16, COLORS.textDim));
-      rows.slice(0, 16).forEach((r, i) => L.add(text(this, x, 250 + i * 28, r, 16, COLORS.text)));
+      if (!rows.length) L.add(text(this, x, 250, tx('暂无记录', 'No records yet'), fs(16), COLORS.textDim));
+      rows.slice(0, 16).forEach((r, i) => L.add(text(this, x, 250 + i * 28, r, fs(16), COLORS.text)));
     };
     const chName = (id: string): string => CHAPTERS[Number(id) - 1]?.name ?? id;
     col(
@@ -198,11 +198,13 @@ export class HistoryScene extends Phaser.Scene {
             ? tx('✓ 通关', '✓ Cleared')
             : tx('✗ 阵亡', '✗ Defeated');
       L.add(
-        text(this, 88, y + 8, `${c?.name ?? r.charId} · ${CHAPTERS[r.chapterId - 1]?.name ?? ''}`, 18, '#fff4ea', { fontStyle: 'bold' }),
+        text(this, 88, y + 8, `${c?.name ?? r.charId} · ${CHAPTERS[r.chapterId - 1]?.name ?? ''}`, fs(18), '#fff4ea', {
+          fontStyle: 'bold',
+        }),
       );
-      L.add(text(this, 88, y + 33, when, 13, COLORS.textDim));
+      L.add(text(this, 88, y + 33, when, fs(13), COLORS.textDim));
       L.add(
-        text(this, 420, y + rowH / 2, mode, 17, r.win ? '#ffd166' : r.challenge || r.endless ? '#e0aaff' : '#ff8f8f').setOrigin(0, 0.5),
+        text(this, 420, y + rowH / 2, mode, fs(17), r.win ? '#ffd166' : r.challenge || r.endless ? '#e0aaff' : '#ff8f8f').setOrigin(0, 0.5),
       );
       L.add(
         text(
@@ -213,13 +215,15 @@ export class HistoryScene extends Phaser.Scene {
             `第 ${r.wave} 波 · Lv.${r.level} · 击杀 ${r.kills} · ${Math.floor(r.sec / 60)} 分钟`,
             `Wave ${r.wave} · Lv.${r.level} · ${r.kills} kills · ${Math.floor(r.sec / 60)} min`,
           ),
-          15,
+          fs(15),
           COLORS.text,
         ).setOrigin(0, 0.5),
       );
       const top = r.dmg[0];
       if (top)
-        L.add(text(this, W - 60, y + rowH / 2, `${tx('主力', 'Top')}：${sourceLabel(top[0]).name}`, 14, COLORS.textDim).setOrigin(1, 0.5));
+        L.add(
+          text(this, W - 60, y + rowH / 2, `${tx('主力', 'Top')}：${sourceLabel(top[0]).name}`, fs(14), COLORS.textDim).setOrigin(1, 0.5),
+        );
       L.add(hitArea(this, 24, y, W - 48, rowH, () => this.scene.launch('RunStats', { record: r })));
     });
     if (pages > 1) {

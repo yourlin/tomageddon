@@ -1,7 +1,7 @@
 // 称号选择：按成就分类 / 稀有度筛选、搜索，点一张卡片佩戴；顶部预览当前称号。
 // 称号只是展示用（主菜单、选角、结算、分享海报），不影响数值。
 import Phaser from 'phaser';
-import { text, button, panel, COLORS, hitArea, autoRelayout } from '../ui/UI';
+import { text, button, panel, COLORS, hitArea, autoRelayout, fs } from '../ui/UI';
 import { save, persist } from '../systems/Save';
 import { ACHIEVEMENTS, type AchCategory } from '../data/achievements';
 import { RARITY } from '../data/balance';
@@ -75,20 +75,20 @@ export class TitleScene extends Phaser.Scene {
 
     const all = this.all();
     // 当前称号预览
-    L.add(text(this, 130, 36, tx('当前：', 'Wearing:'), 17, COLORS.textDim).setOrigin(0, 0.5));
+    L.add(text(this, 130, 36, tx('当前：', 'Wearing:'), fs(17), COLORS.textDim).setOrigin(0, 0.5));
     const cur = save.meta.title ? titleBadge(this, 0, 36, save.meta.title, 17) : null;
     if (cur) {
       cur.x = 200 + cur.width / 2;
       L.add(cur);
       L.add(button(this, cur.x + cur.width / 2 + 80, 36, 130, 36, tx('不显示称号', 'Hide title'), () => this.equip(''), 0x5a4a4a, 14));
-    } else L.add(text(this, 200, 36, tx('未佩戴（点下面的称号佩戴）', 'None — pick one below'), 16, COLORS.textDim).setOrigin(0, 0.5));
+    } else L.add(text(this, 200, 36, tx('未佩戴（点下面的称号佩戴）', 'None — pick one below'), fs(16), COLORS.textDim).setOrigin(0, 0.5));
     L.add(
       text(
         this,
         W - 160,
         36,
         tx(`已解锁 ${all.length} / ${ACHIEVEMENTS.length}`, `Unlocked ${all.length} / ${ACHIEVEMENTS.length}`),
-        15,
+        fs(15),
         '#ffd166',
       ).setOrigin(1, 0.5),
     );
@@ -102,7 +102,7 @@ export class TitleScene extends Phaser.Scene {
     let x = 24;
     const y1 = 82;
     const chip = (label: string, on: boolean, onClick: () => void, color = COLORS.primary, y = y1) => {
-      const probe = text(this, 0, 0, label, 14);
+      const probe = text(this, 0, 0, label, fs(14));
       const w = Math.max(64, probe.width + 22);
       probe.destroy();
       if (x + w > W - 20) return;
@@ -190,7 +190,7 @@ export class TitleScene extends Phaser.Scene {
       const r = titleRarity(id);
       const on = save.meta.title === id;
       L.add(panel(this, cx, cy, cw, ch, on ? COLORS.panelLight : COLORS.panel, on ? COLORS.gold : RARITY[r].color));
-      L.add(text(this, cx + 12, cy + 10, `${TITLE_MARK[r]} ${titleName(id)}`, 17, RARITY[r].css));
+      L.add(text(this, cx + 12, cy + 10, `${TITLE_MARK[r]} ${titleName(id)}`, fs(17), RARITY[r].css));
       const c = titleCategory(id);
       L.add(
         text(
@@ -198,11 +198,11 @@ export class TitleScene extends Phaser.Scene {
           cx + cw - 10,
           cy + 12,
           `${on ? tx('✓ 佩戴中 · ', '✓ Wearing · ') : ''}${c ? categoryName(c) : ''}`,
-          12,
+          fs(12),
           on ? '#ffd166' : COLORS.textDim,
         ).setOrigin(1, 0),
       );
-      const d = text(this, cx + 12, cy + 40, titleDesc(id), 12, COLORS.textDim);
+      const d = text(this, cx + 12, cy + 40, titleDesc(id), fs(12), COLORS.textDim);
       // 说明太长时截断到卡片宽度
       if (d.width > cw - 24) {
         let s = d.text;
@@ -223,7 +223,7 @@ export class TitleScene extends Phaser.Scene {
                 '还没有称号：把任意一项成就升到最高等级，就能获得它的名字作为称号',
                 'No titles yet — max out any achievement to earn its name as a title',
               ),
-          17,
+          fs(17),
           COLORS.textDim,
         ).setOrigin(0.5),
       );
@@ -236,7 +236,7 @@ export class TitleScene extends Phaser.Scene {
         this.draw();
       };
       L.add(button(this, W / 2 - 110, by, 120, 38, tx('上一页', 'Prev'), go(-1), 0x4a3a3a, 15).setEnabled(this.page > 0));
-      L.add(text(this, W / 2, by, `${this.page + 1} / ${pages}`, 15, COLORS.textDim).setOrigin(0.5));
+      L.add(text(this, W / 2, by, `${this.page + 1} / ${pages}`, fs(15), COLORS.textDim).setOrigin(0.5));
       L.add(button(this, W / 2 + 110, by, 120, 38, tx('下一页', 'Next'), go(1), 0x4a3a3a, 15).setEnabled(this.page < pages - 1));
     }
   }

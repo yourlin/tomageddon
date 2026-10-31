@@ -70,7 +70,8 @@ export function menuButton(
 ) {
   const b = coverButton(scene, x, y, w, h, label, click, primary, size);
   if (icon) {
-    const glyph = menuIcon(scene, -w / 2 + 26, -1, icon, Math.min(24, size + 2));
+    // 没有文字的纯图标按钮：图标居中
+    const glyph = menuIcon(scene, label ? -w / 2 + 26 : 0, -1, icon, Math.min(24, size + 2));
     b.add(glyph);
     // Reserve room for the icon while retaining UI.button's hidden full label.
     for (const o of b.list) if (o instanceof Phaser.GameObjects.Text && o.visible) o.x += 9;

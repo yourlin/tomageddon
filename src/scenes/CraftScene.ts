@@ -5,7 +5,7 @@ import { requestWeaponArt } from '../systems/WeaponArtRegistry';
 // 右侧是横向升级树——从左到右是「材料 → 产物 → 可继续合成」，底部列出还缺的材料与「合成」按钮。
 // 点「我的武器」里的一把，列表就只剩和它相关的配方，并自动选中最接近完成的那条。
 import Phaser from 'phaser';
-import { text, COLORS, fitImage, hitArea, autoRelayout, toast, tu } from '../ui/UI';
+import { text, COLORS, fitImage, hitArea, autoRelayout, toast, tu, fs, PHONE } from '../ui/UI';
 import { run, saveRun, type OwnedWeapon } from '../systems/RunState';
 import { WEAPON_MAP, TIER_NAMES, type WeaponDef } from '../data/weapons';
 import { ITEM_MAP } from '../data/items';
@@ -280,11 +280,11 @@ export class CraftScene extends Phaser.Scene {
     const y = 98,
       s = Math.min(62, tu(54));
     L.add(panel(this, 16, 86, W - 32, 82));
-    const lbl = text(this, 28, y + s / 2, tx('我的武器', 'My weapons'), 15, '#ffb347').setOrigin(0, 0.5);
+    const lbl = text(this, 28, y + s / 2, tx('我的武器', 'My weapons'), fs(15), '#ffb347').setOrigin(0, 0.5);
     L.add(lbl);
     const all = run.allWeapons;
     let x = lbl.x + lbl.width + 14;
-    if (!all.length) L.add(text(this, x, y + s / 2, tx('还没有武器', 'No weapons yet'), 14, COLORS.textDim).setOrigin(0, 0.5));
+    if (!all.length) L.add(text(this, x, y + s / 2, tx('还没有武器', 'No weapons yet'), fs(14), COLORS.textDim).setOrigin(0, 0.5));
     const perPage = Math.max(1, Math.floor((W - 420) / (s + 8)));
     const pages = Math.max(1, Math.ceil(all.length / perPage));
     this.weaponPage = Math.min(this.weaponPage, pages - 1);
@@ -311,12 +311,12 @@ export class CraftScene extends Phaser.Scene {
       const n = this.relatedRecipes(w.id).length;
       L.add(panel(this, x, y, s, s, COLORS.panel, on ? COLORS.gold : RARITY[w.tier].color));
       L.add(fitImage(this.add.image(x + s / 2, y + s / 2 - 2, iconKey(this, w.id)), s - 14));
-      L.add(text(this, x + s - 4, y + s - 3, TIER_NAMES[w.tier], 11, RARITY[w.tier].css).setOrigin(1, 1));
-      if (run.inStorage(w.uid)) L.add(text(this, x + 4, y + 2, tx('仓', 'S'), 11, COLORS.textDim));
-      if (n && !on) L.add(text(this, x + s - 3, y + 2, String(n), 11, '#ffd166').setOrigin(1, 0));
+      L.add(text(this, x + s - 4, y + s - 3, TIER_NAMES[w.tier], fs(11), RARITY[w.tier].css).setOrigin(1, 1));
+      if (run.inStorage(w.uid)) L.add(text(this, x + 4, y + 2, tx('仓', 'S'), fs(11), COLORS.textDim));
+      if (n && !on) L.add(text(this, x + s - 3, y + 2, String(n), fs(11), '#ffd166').setOrigin(1, 0));
       if (isFavoredWeapon(run.char.favored, WEAPON_MAP[w.id]))
         L.add(
-          text(this, x + 3, y + s - 3, isDoubleFavored(run.char.favored, WEAPON_MAP[w.id]) ? '★★' : '★', 12, '#ffd166').setOrigin(0, 1),
+          text(this, x + 3, y + s - 3, isDoubleFavored(run.char.favored, WEAPON_MAP[w.id]) ? '★★' : '★', fs(12), '#ffd166').setOrigin(0, 1),
         );
       L.add(
         hitArea(this, x, y, s, s, () => {
@@ -356,7 +356,7 @@ export class CraftScene extends Phaser.Scene {
     const perPage = Math.max(1, Math.floor((h - head - 40) / rowH));
     this.scroll = Phaser.Math.Clamp(this.scroll, 0, Math.max(0, rows.length - perPage));
     const title = tx(`${rows.length} 条配方 · 点击查看`, `${rows.length} recipes · select one`);
-    L.add(text(this, x, y, title, 14, '#c4ac91'));
+    L.add(text(this, x, y, title, fs(14), '#c4ac91'));
     rows.slice(this.scroll, this.scroll + perPage).forEach((r, i) => {
       const ry = y + head + i * rowH;
       const d = WEAPON_MAP[r.to];
@@ -371,7 +371,7 @@ export class CraftScene extends Phaser.Scene {
           x + 52,
           ry + 6,
           (this.favored(r) ? '★ ' : '') + d.name,
-          tu(15),
+          fs(tu(15)),
           ready ? '#52ff8a' : this.favored(r) ? '#ffd166' : '#fff4ea',
         ),
       );
@@ -383,11 +383,11 @@ export class CraftScene extends Phaser.Scene {
           ready
             ? tx('材料齐全，可以合成', 'Ready to craft')
             : tx(`缺 ${l.weapons} 把武器 · ${l.items} 个道具`, `need ${l.weapons} weapons · ${l.items} items`),
-          tu(12),
+          fs(tu(12)),
           ready ? '#9be564' : COLORS.textDim,
         ),
       );
-      L.add(text(this, x + w - 10, ry + 8, kname(r.kind), tu(13), KIND_COLOR[r.kind]).setOrigin(1, 0));
+      L.add(text(this, x + w - 10, ry + 8, kname(r.kind), fs(tu(13)), KIND_COLOR[r.kind]).setOrigin(1, 0));
       L.add(
         hitArea(this, x, ry, w, rowH - 6, () => {
           this.selected = r;
@@ -395,7 +395,7 @@ export class CraftScene extends Phaser.Scene {
         }),
       );
     });
-    if (!rows.length) L.add(text(this, x, y + head + 10, tx('没有符合条件的配方', 'No recipes match'), 15, COLORS.textDim));
+    if (!rows.length) L.add(text(this, x, y + head + 10, tx('没有符合条件的配方', 'No recipes match'), fs(15), COLORS.textDim));
     // 翻页（触屏没有滚轮）
     if (rows.length > perPage) {
       const by = y + h - 18;
@@ -403,15 +403,17 @@ export class CraftScene extends Phaser.Scene {
         this.scroll = Phaser.Math.Clamp(this.scroll + d * perPage, 0, rows.length - perPage);
         this.draw();
       };
-      L.add(button(this, x + 50, by, 90, 32, '▲', step(-1), 0x4a3a3a, 14).setEnabled(this.scroll > 0));
-      L.add(button(this, x + 150, by, 90, 32, '▼', step(1), 0x4a3a3a, 14).setEnabled(this.scroll + perPage < rows.length));
+      // 手机上页码字号更大：翻页按钮收窄，给右下角的页码留位置
+      const [bw, b1, b2] = PHONE ? [70, 40, 118] : [90, 50, 150];
+      L.add(button(this, x + b1, by, bw, 32, '▲', step(-1), 0x4a3a3a, 14).setEnabled(this.scroll > 0));
+      L.add(button(this, x + b2, by, bw, 32, '▼', step(1), 0x4a3a3a, 14).setEnabled(this.scroll + perPage < rows.length));
       L.add(
         text(
           this,
           x + w - 6,
           by,
           `${this.scroll + 1}-${Math.min(rows.length, this.scroll + perPage)} / ${rows.length}`,
-          12,
+          fs(12),
           COLORS.textDim,
         ).setOrigin(1, 0.5),
       );
@@ -452,7 +454,7 @@ export class CraftScene extends Phaser.Scene {
         x + 24,
         y + 51,
         tx('材料武器与指定道具 · 点击材料查看前置配方', 'Weapons & required items · select a material for prerequisites'),
-        13,
+        fs(13),
         '#c4ac91',
       ),
     );
@@ -491,7 +493,7 @@ export class CraftScene extends Phaser.Scene {
       links.lineBetween(x + w * 0.47, yy + nh / 2, x + w * 0.47, resultY);
       L.add(panel(this, x + 20, yy, nw, nh, COLORS.panel, have ? 0x8cbb67 : 0x8b5677));
       L.add(fitImage(this.add.image(x + 46, yy + nh / 2, itemIconKey(this, item)), 36).setAlpha(have ? 1 : 0.55));
-      const label = text(this, x + 72, yy + 8, item.name, 14, '#fff0ce');
+      const label = text(this, x + 72, yy + 8, item.name, fs(14), '#fff0ce');
       if (label.width > nw - 60) label.setScale((nw - 60) / label.width);
       L.add(label);
       L.add(
@@ -500,7 +502,7 @@ export class CraftScene extends Phaser.Scene {
           x + 72,
           yy + 30,
           have ? tx('已持有 · 消耗 1 件', 'Owned · consumes 1') : tx('缺少指定道具', 'Required item missing'),
-          12,
+          fs(12),
           have ? '#9be564' : '#dc9e9e',
         ),
       );
@@ -551,7 +553,7 @@ export class CraftScene extends Phaser.Scene {
           `伤害 ${Math.round(weaponDamage(d, 3, run.stats))}   冷却 ${weaponCooldown(d, 3, run.stats).toFixed(2)}s   射程 ${Math.round(weaponRange(d, run.stats, undefined, 0, 3))}`,
           `DMG ${Math.round(weaponDamage(d, 3, run.stats))}   CD ${weaponCooldown(d, 3, run.stats).toFixed(2)}s   Range ${Math.round(weaponRange(d, run.stats, undefined, 0, 3))}`,
         ),
-        16,
+        fs(16),
         '#f1d69e',
       ),
     );
@@ -564,7 +566,7 @@ export class CraftScene extends Phaser.Scene {
           `将消耗 ${r.from.length} 把材料武器与 ${r.items.length} 件配方道具`,
           `Consumes ${r.from.length} weapons and ${r.items.length} required items`,
         ),
-        13,
+        fs(13),
         '#ef9992',
       ),
     );
@@ -587,7 +589,7 @@ export class CraftScene extends Phaser.Scene {
     const icon = fitImage(this.add.image(n.x + 28, n.y + NH / 2, iconKey(this, n.id)), 42);
     if (!n.owned && !ok) icon.setAlpha(0.55);
     L.add(icon);
-    const nodeName = text(this, n.x + 56, n.y + 8, d.name, 15, RARITY[n.tier].css);
+    const nodeName = text(this, n.x + 56, n.y + 8, d.name, fs(15), RARITY[n.tier].css);
     if (nodeName.width > NW - 64) nodeName.setScale((NW - 64) / nodeName.width);
     L.add(nodeName);
     const where = n.owned ? (run.inStorage(n.owned.uid) ? tx('仓库', 'storage') : tx('武器栏', 'equipped')) : '';
@@ -600,7 +602,7 @@ export class CraftScene extends Phaser.Scene {
         : n.tier === 2
           ? tx('✗ 缺 III · 同名 II×2 合成', '✗ need III · merge 2× II')
           : tx(`✗ 缺 ${TIER_NAMES[n.tier]}`, `✗ need ${TIER_NAMES[n.tier]}`);
-    L.add(text(this, n.x + 56, n.y + 31, status, 12, n.owned ? '#52ff8a' : ok ? '#ffd166' : '#ff9f9f'));
+    L.add(text(this, n.x + 56, n.y + 31, status, fs(12), n.owned ? '#52ff8a' : ok ? '#ffd166' : '#ff9f9f'));
     // 这个节点的配方道具：每件一行「图标 + 名字 + ✓/✗」（都是指定的 T3 道具，名字要看得到）
     if (n.recipe && showItems) {
       n.recipe.items.forEach((slot, i) => {
@@ -611,8 +613,8 @@ export class CraftScene extends Phaser.Scene {
         const im = fitImage(this.add.image(n.x + 16, iy, itemIconKey(this, it)), 22);
         if (!have) im.setAlpha(0.45);
         L.add(im);
-        L.add(text(this, n.x + 32, iy, `${it.name}`, 13, have ? RARITY[it.rarity].css : '#c9a9a6').setOrigin(0, 0.5));
-        L.add(text(this, n.x + NW - 6, iy, have ? '✓' : '✗', 14, have ? '#52ff8a' : '#ff6b6b').setOrigin(1, 0.5));
+        L.add(text(this, n.x + 32, iy, `${it.name}`, fs(13), have ? RARITY[it.rarity].css : '#c9a9a6').setOrigin(0, 0.5));
+        L.add(text(this, n.x + NW - 6, iy, have ? '✓' : '✗', fs(14), have ? '#52ff8a' : '#ff6b6b').setOrigin(1, 0.5));
       });
     }
     // 点节点：有配方就切到这条配方；T3 材料则聚焦这把武器，看它相关的配方
@@ -650,15 +652,15 @@ export class CraftScene extends Phaser.Scene {
     let ty = y + 12;
     // Keep the summary bounded even for deep super-weapon recipes. Tap any row for the full text.
     const summary = (label: string, color: string, size = 14) => {
-      const t = text(this, x + 16, ty, label, size, color);
+      const t = text(this, x + 16, ty, label, fs(size), color);
       let shown = label;
       while (shown.length > 1 && t.width > w - 32) {
         shown = shown.slice(0, -1);
         t.setText(shown + '…');
       }
       L.add(t);
-      L.add(hitArea(this, x + 16, ty - 2, w - 32, 24, () => toast(this, label, color)));
-      ty += 25;
+      L.add(hitArea(this, x + 16, ty - 2, w - 32, PHONE ? 30 : 24, () => toast(this, label, color)));
+      ty += PHONE ? 30 : 25;
     };
     if (d.superBuff) summary(superBuffText(d.superBuff)[lang === 'en' ? 1 : 0], '#ffd166', 12);
     const sep = tx('、', ', ');
