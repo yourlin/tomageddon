@@ -1,0 +1,21 @@
+src/scenes/AchievementScene.ts
+  s_64d94abe5d6f85::t_56af20d51b91d0 30
+vite.config.ts
+  s_64d94abe5d6f85::t_07345a7d9a88d9 2,66-83,86
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "59850f2680f0ce015a5e138dfe25be30b3ec92a8",
+  "prompts": {},
+  "sessions": {
+    "s_64d94abe5d6f85": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f1791561-c850-419b-b623-4436191a1514",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
