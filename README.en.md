@@ -6,9 +6,9 @@
 
 [![Tomageddon trailer (click to play)](docs/images/promo-poster-en.jpg)](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-en.webm)
 
-<sub>▶ Click the cover to watch the 30-second trailer</sub>
+<sub>▶ Click the cover to watch the 50-second trailer</sub>
 
-A top-down 2D arena survival roguelite for the browser. Phaser 3 (WebGL) + TypeScript + Vite, PC and landscape mobile, **Chinese and English**. **All art and background music are generated procedurally** — no image or audio assets are needed to run it.
+A top-down 2D arena survival roguelite for the browser. Phaser 3 (WebGL) + TypeScript + Vite, PC and landscape mobile, **Chinese and English**. The default **Cute** style uses illustrated art (AI-generated, see the [AI disclosure](docs/AI_DISCLOSURE.md)); the **Retro** style's art and all background music are generated procedurally, with no image or audio assets.
 
 ## Contents
 
@@ -114,7 +114,7 @@ Procedural music: electronic loops synthesized live with WebAudio. The main menu
 | [Data Tables](docs/en/DATA_TABLES.md)   | All numbers in one place                                                         |
 | [Changelog](docs/en/CHANGELOG.md)       | Player-facing release notes (also in the game's main menu)                       |
 
-Everything except the design doc is generated from `src/data/` by `npm run docs`, in both languages, with cross-links between docs. Characters, weapons, items, monsters, elites and bosses come with images exported by `npm run docs:images`, which runs the game's own procedural drawing code; re-export after changing any look.
+Everything except the design doc is generated from `src/data/` by `npm run docs`, in both languages, with cross-links between docs. Characters, weapons, items, monsters, elites, bosses and chapter maps come with images exported by running the game in headless Chrome in the Cute style at high quality (matching the in-game illustrations; anything without an illustration falls back to procedural drawing): `npm run docs:images` (icons), `npm run docs:anim` (animations), `npm run docs:maps` (maps). Re-export after changing any look.
 
 ## Development
 
@@ -130,7 +130,7 @@ npm run typecheck  # TypeScript type check
 npm run lint       # ESLint (lint:fix to auto-fix)
 npm run format     # Prettier (format:check to only check)
 npm run docs       # regenerate the bilingual docs (docs/ and docs/en/)
-npm run docs:images # export doc images from the game's procedural art into docs/images/ (needs Chrome)
+npm run docs:images # export doc images into docs/images/ (docs:anim for animations, docs:maps for maps; needs Chrome)
 npm run balance    # build and run the headless balance test (options below)
 ```
 
@@ -188,7 +188,8 @@ node scripts/weapon-eff.mjs [--half-life 14] [--max-age 60] [--archive <results 
 ```bash
 npm run promo:overlays   # QR code, title, captions and end card overlays (Chinese and English)
 npm run promo:record     # headless Chrome plays the game from a script and records each clip (both UIs) plus the music
-npm run promo:edit       # beat-synced ffmpeg edit → promo/tomageddon-promo.mp4 and -en.mp4
+npm run promo:edit       # (legacy) beat-synced ffmpeg edit → promo/tomageddon-promo.mp4 and -en.mp4
+python scripts/promo/jianying_draft.py zh|en   # build a JianYing (CapCut) draft (needs the jianying-pro skill); export it to promo/tomageddon-promo.mp4 / -en.mp4
 npm run promo:publish    # transcode to public/promo/*.webm and grab the README poster from the title frame
 ```
 
