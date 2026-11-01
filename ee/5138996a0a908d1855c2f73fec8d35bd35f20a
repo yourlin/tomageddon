@@ -1,0 +1,35 @@
+README.en.md
+  s_64d94abe5d6f85::t_83b4bbbb838e00 9,11,117,133,191-192
+README.md
+  s_64d94abe5d6f85::t_39fe4ef9da1a4b 9,11,117,133,191-192
+scripts/docs/common.ts
+  s_64d94abe5d6f85::t_ad62f6b8ede79f 93
+scripts/export-anim.mjs
+  s_64d94abe5d6f85::t_5cd5375711f13d 1-2,15,51,74-77,85,90,95-96,98-100,116,137,139-140,144,146-149,156,160
+scripts/export-combat-anim.mjs
+  s_64d94abe5d6f85::t_df5d224807d163 13,54
+scripts/export-images.mjs
+  s_64d94abe5d6f85::t_aa2ebc1f500f22 1-2,8,34,46-47,49-68,79-109,111-113
+scripts/export-maps.mjs
+  s_64d94abe5d6f85::t_145d077502fa78 1,7,31,38-40,44-47,49-50,58-65,70-71
+scripts/art-browser.mjs
+  s_64d94abe5d6f85::t_861df85085d77e 29-39
+src/dev/docArt.ts
+  s_64d94abe5d6f85::t_ab8c76d4d866b5 1-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ee5138996a0a908d1855c2f73fec8d35bd35f20a",
+  "prompts": {},
+  "sessions": {
+    "s_64d94abe5d6f85": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f1791561-c850-419b-b623-4436191a1514",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
