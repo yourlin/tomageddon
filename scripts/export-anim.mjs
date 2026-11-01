@@ -1,4 +1,5 @@
-// 导出文档用动图：在无头 Chrome 中逐帧渲染游戏的程序化美术，用 img2webp 合成循环播放的动态 WebP
+// 导出文档用动图：在无头 Chrome 中逐帧渲染游戏里的外观（可爱风 + 高画质的高清插画；没有插画的退回程序化 Rig），
+// 用 img2webp 合成循环播放的动态 WebP
 //   char   角色：待机 → 庆祝 → 待机            → docs/images/char/<id>.webp（CHARACTERS.md）
 //   skill  技能：角色待机 → 施法 → 待机        → docs/images/skill/<角色 id>.webp（SKILLS.md）
 //   enemy  怪物：待机 → 攻击 → 待机            → docs/images/enemy/<id>.webp（MONSTERS.md）
@@ -11,6 +12,7 @@ import { mkdirSync, writeFileSync, rmSync, mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { useDocArtSettings } from './art-browser.mjs';
 
 const PORT = 4177;
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -46,6 +48,7 @@ const tmp = mkdtempSync(join(tmpdir(), 'anim-'));
 try {
   const page = await browser.newPage();
   page.on('pageerror', (e) => console.error('[页面错误]', e.message));
+  await useDocArtSettings(page);
   await page.goto(URL_);
   await page.waitForFunction(() => window.game?.scene.isActive('Menu'), { timeout: 120000 });
   const jobs = await page.evaluate(async (ONLY) => {
@@ -68,8 +71,10 @@ try {
     const frames = await page.evaluate(
       async (kind, id, FPS, FRAMES, SIZE) => {
         const scene = window.game.scene.getScene('Menu');
-        // 先画在 256 的大画布上（高个子、跳起、挥动都不会被裁掉），最后按所有帧的内容框统一裁成正方形
-        const rt = scene.make.renderTexture({ width: 256, height: 256 }, false);
+        // 先画在 C×C 的大画布上（高个子、跳起、挥动都不会被裁掉），最后按所有帧的内容框统一裁成正方形。
+        // 插画按约 2 倍于成品的尺寸绘制，再用 2D 画布缩小，边缘更干净
+        const C = 512;
+        const rt = scene.make.renderTexture({ width: C, height: C }, false);
         const snap = () => new Promise((r) => rt.snapshot((el) => r(el.src)));
         const out = [];
         const dt = 1 / FPS;
@@ -77,20 +82,22 @@ try {
           // 没有专门图标的武器（如刀具箱）与游戏内一样退回武器本体贴图
           const key = scene.textures.exists(`icon_weapon_${id}`) ? `icon_weapon_${id}` : `weapon_${id}`;
           const img = scene.make.image({ key }, false);
-          const s = 96 / Math.max(img.width, img.height);
+          const s = 192 / Math.max(img.width, img.height);
           for (let f = 0; f < FRAMES; f++) {
             const p = (f / FRAMES) * Math.PI * 2;
             img.setRotation(Math.sin(p) * 0.22).setScale(s * (1 + Math.sin(p * 2) * 0.04));
             rt.clear();
-            rt.draw(img, 128, 128 + Math.sin(p) * 6);
+            rt.draw(img, C / 2, C / 2 + Math.sin(p) * 12);
             out.push(await snap());
           }
           img.destroy();
         } else {
-          const { Rig } = await import('/src/objects/Rig.ts');
-          const { lookOf } = await import('/src/ui/Portrait.ts');
+          const { createEntityVisual } = await import('/src/objects/visualFactory.ts');
+          const { loadDocArt } = await import('/src/dev/docArt.ts');
           const look = kind === 'skill' ? 'char' : kind;
-          const rig = new Rig(scene, lookOf(look, id), `${look}_${id}`, 44);
+          // 逐个加载：一次加载全部会超出贴图内存预算，先加载的会被自动卸载
+          await loadDocArt(scene, { bodies: [{ kind: look, id }] });
+          const rig = createEntityVisual(scene, { kind: look, id }, 88);
           // 中段做一次动作（计时状态结束后自动回到待机）
           const act = {
             char: [['victory', 0.4]],
@@ -106,7 +113,7 @@ try {
             // 眼睛左右看一圈，首尾衔接
             rig.tick(dt, 0, 1, Math.sin((f / FRAMES) * Math.PI * 2) * 0.6, 0);
             rt.clear();
-            rt.draw(rig, 128, 140);
+            rt.draw(rig, C / 2, C / 2 + 24);
             out.push(await snap());
           }
           rig.destroy();
@@ -127,29 +134,30 @@ try {
           ),
         );
         const cv = document.createElement('canvas');
-        cv.width = cv.height = 256;
+        cv.width = cv.height = C;
         const cx = cv.getContext('2d', { willReadFrequently: true });
-        let x0 = 256,
-          y0 = 256,
+        let x0 = C,
+          y0 = C,
           x1 = 0,
           y1 = 0;
         for (const im of imgs) {
-          cx.clearRect(0, 0, 256, 256);
+          cx.clearRect(0, 0, C, C);
           cx.drawImage(im, 0, 0);
-          const d = cx.getImageData(0, 0, 256, 256).data;
-          for (let y = 0; y < 256; y++)
-            for (let x = 0; x < 256; x++)
-              if (d[(y * 256 + x) * 4 + 3] > 8) {
+          const d = cx.getImageData(0, 0, C, C).data;
+          for (let y = 0; y < C; y++)
+            for (let x = 0; x < C; x++)
+              if (d[(y * C + x) * 4 + 3] > 8) {
                 if (x < x0) x0 = x;
                 if (x > x1) x1 = x;
                 if (y < y0) y0 = y;
                 if (y > y1) y1 = y;
               }
         }
-        const side = Math.max(x1 - x0, y1 - y0) + 8;
+        const side = Math.max(x1 - x0, y1 - y0) + 16;
         const sx = (x0 + x1) / 2 - side / 2,
           sy = (y0 + y1) / 2 - side / 2;
         cv.width = cv.height = SIZE;
+        cx.imageSmoothingQuality = 'high';
         return imgs.map((im) => {
           cx.clearRect(0, 0, SIZE, SIZE);
           cx.drawImage(im, sx, sy, side, side, 0, 0, SIZE, SIZE);

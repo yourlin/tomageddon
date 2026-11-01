@@ -90,7 +90,7 @@ export class Doc {
   }
 }
 
-/** 文档图片（由 npm run docs:images 从游戏程序化绘制导出；角色动图 webp 由 npm run docs:anim 导出） */
+/** 文档图片（由 npm run docs:images 按游戏可爱风高画质导出；动图 webp 由 npm run docs:anim 导出） */
 export type ImgKind = 'char' | 'weapon' | 'item' | 'enemy' | 'boss';
 export const img = (kind: ImgKind, id: string, size = 32, ext: 'png' | 'webp' = 'png') =>
   `<img src="${lang === 'en' ? '../' : ''}images/${kind}/${id}.${ext}" width="${size}" height="${size}" alt="">`;

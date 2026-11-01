@@ -26,6 +26,17 @@ export async function freezeArtHmr(page) {
   });
 }
 
+/** 文档导图：固定可爱风、高画质（无头 Chrome 不报告内存，但仍显式指定，免得默认值变化后导出低清图） */
+export async function useDocArtSettings(page) {
+  await freezeArtHmr(page);
+  await page.evaluateOnNewDocument(() =>
+    window.localStorage.setItem(
+      'tomato_sister_save_v1',
+      JSON.stringify({ settings: { artStyle: 'cute', graphicsQuality: 'high', tipsOff: true } }),
+    ),
+  );
+}
+
 /** Bound teardown of the verifier's own browser when Chrome has already exited. */
 export async function closeArtBrowser(browser) {
   let timer;

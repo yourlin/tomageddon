@@ -23,22 +23,26 @@ def font(size):
 # 分段字幕：(文件名, 主标题, 副标题, 强调色)
 CAPTIONS = {
     "zh": [
+        ("cap_journal", "39 名蔬果英雄", "每人都有专属天赋与大招 · 39 heroes", "#ff8fa3"),
         ("cap_combat", "大招一开，满屏清场", "Ultimates that clear the screen", "#ff4b3e"),
-        ("cap_boss", "89 种小怪 · 52 精英与 Boss", "89 monsters · 52 elites & bosses", "#b5179e"),
+        ("cap_arenas", "7 章专属场地", "平底锅 · 菜园 · 冰箱 · 垃圾场 · 工厂…", "#06d6a0"),
+        ("cap_boss", "Boss 分阶段变身", "34 种精英 · 18 位章节 Boss", "#b5179e"),
         ("cap_levelup", "升级构筑，每局都不一样", "A new build every run", "#52b788"),
-        ("cap_shop", "603 件道具 · 200 种武器", "603 items · 200 weapons", "#ffb703"),
-        ("cap_craft", "仓库囤货 · 配方合成超武", "Stash & craft super weapons", "#9d4edd"),
-        ("cap_talent", "天赋专精 · 19 种武器标签", "Talent trees · 19 weapon tags", "#4cc9f0"),
-        ("cap_unlock", "39 名角色 · 成就解锁", "39 heroes to unlock", "#3a86ff"),
+        ("cap_shop", "209 把武器 · 83 种道具", "Buy, combine, stack up", "#ffb703"),
+        ("cap_craft", "253 条配方 · 合成 45 把超武", "Stash & craft super weapons", "#9d4edd"),
+        ("cap_talent", "天赋专精 · 26 种武器标签", "Talent trees · 26 weapon tags", "#4cc9f0"),
+        ("cap_extras", "每日挑战 · 图鉴 · 386 个成就", "Daily challenges · Codex · 386 achievements", "#3a86ff"),
     ],
     "en": [
+        ("cap_journal", "39 Veggie Heroes", "Each with a signature talent & ultimate", "#ff8fa3"),
         ("cap_combat", "Ultimates That Clear The Screen", "Mow down endless hordes", "#ff4b3e"),
-        ("cap_boss", "89 Monsters · 52 Elites & Bosses", "New foes every run", "#b5179e"),
+        ("cap_arenas", "7 Chapters, 7 Arenas", "Frying pan · garden · fridge · junkyard…", "#06d6a0"),
+        ("cap_boss", "Bosses Transform Mid-Fight", "34 elites · 18 chapter bosses", "#b5179e"),
         ("cap_levelup", "Build As You Fight", "A new combo every run", "#52b788"),
-        ("cap_shop", "603 Items · 200 Weapons", "Buy, combine, stack up", "#ffb703"),
-        ("cap_craft", "Stash & Craft Super Weapons", "155 recipes to chase", "#9d4edd"),
-        ("cap_talent", "Talent Trees · 19 Weapon Tags", "Specialize your damage", "#4cc9f0"),
-        ("cap_unlock", "39 Heroes to Unlock", "Earned through achievements", "#3a86ff"),
+        ("cap_shop", "209 Weapons · 83 Items", "Buy, combine, stack up", "#ffb703"),
+        ("cap_craft", "Craft 45 Super Weapons", "253 recipes to chase", "#9d4edd"),
+        ("cap_talent", "Talent Trees · 26 Weapon Tags", "Specialize your damage", "#4cc9f0"),
+        ("cap_extras", "Daily Challenges · 386 Achievements", "Plus a codex and collection to fill", "#3a86ff"),
     ],
 }
 
@@ -88,8 +92,12 @@ def title():
 def end():
     im = Image.new("RGBA", (W, H), (15, 4, 6, 150))
     d = ImageDraw.Draw(im)
-    tomato = Image.open(os.path.join(ROOT, "docs", "images", "char", "tomato.png")).convert("RGBA").resize((360, 360), Image.LANCZOS)
-    im.alpha_composite(tomato, (170, 300))
+    # 可爱风全身立绘：裁掉透明边后按高度缩放
+    art = Image.open(os.path.join(ROOT, "src", "assets", "runtime", "entities", "char", "tomato", "base", "standard", "body.webp")).convert("RGBA")
+    art = art.crop(art.getchannel("A").getbbox())
+    k = 420 / art.height
+    tomato = art.resize((round(art.width * k), 420), Image.LANCZOS)
+    im.alpha_composite(tomato, (350 - tomato.width // 2, 290))
     if LANG == "zh":
         d.text((600, 250), "番茄酱", font=font(200), fill=(255, 75, 62), stroke_width=12, stroke_fill=(20, 6, 8))
         d.text((610, 480), "TOMAGEDDON", font=font(80), fill=(255, 209, 102), stroke_width=5, stroke_fill=(20, 6, 8))

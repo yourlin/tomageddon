@@ -6,9 +6,9 @@
 
 [![番茄酱宣传片（点击播放）](docs/images/promo-poster-zh.jpg)](https://yourlin.github.io/tomageddon/promo/tomageddon-promo-zh.webm)
 
-<sub>▶ 点击封面观看 30 秒宣传片</sub>
+<sub>▶ 点击封面观看 50 秒宣传片</sub>
 
-俯视角 2D 割草生存 Roguelite 浏览器游戏。Phaser 3（WebGL）+ TypeScript + Vite，支持 PC 与移动端横屏，**中英双语**。**美术与背景音乐全部程序生成**，无需任何图片或音频资源即可运行。
+俯视角 2D 割草生存 Roguelite 浏览器游戏。Phaser 3（WebGL）+ TypeScript + Vite，支持 PC 与移动端横屏，**中英双语**。默认的**可爱风**使用高清插画（AI 生成，见 [AI 生成内容声明](docs/AI_DISCLOSURE.md)）；**复古风**的美术与全部背景音乐由程序生成，不依赖任何图片或音频资源。
 
 ## 目录
 
@@ -114,7 +114,7 @@
 | [数值表](docs/DATA_TABLES.md) | 全部数值总表                                            |
 | [更新日志](docs/CHANGELOG.md) | 面向玩家的版本变化（游戏内主菜单也可查看）              |
 
-以上除设计文档外均由 `npm run docs` 从 `src/data/` 自动生成，文档之间相互链接。角色、武器、道具、怪物、精英与 Boss 均配有图片，由 `npm run docs:images` 直接调用游戏的程序化绘制代码导出；修改外观后需重新导出。
+以上除设计文档外均由 `npm run docs` 从 `src/data/` 自动生成，文档之间相互链接。角色、武器、道具、怪物、精英、Boss 与章节地图均配有图片，在无头 Chrome 里运行游戏、按可爱风高画质导出（与游戏内看到的插画一致；没有插画的退回程序绘制）：`npm run docs:images`（图标）、`npm run docs:anim`（动图）、`npm run docs:maps`（地图）。修改外观后需重新导出。
 
 ## 开发
 
@@ -130,7 +130,7 @@ npm run typecheck  # TypeScript 类型检查
 npm run lint       # ESLint 检查（lint:fix 自动修复）
 npm run format     # Prettier 格式化（format:check 仅检查）
 npm run docs       # 从数据重新生成中英双语文档（docs/ 与 docs/en/）
-npm run docs:images # 从游戏程序化绘制导出文档配图到 docs/images/（需要 Chrome）
+npm run docs:images # 导出文档配图到 docs/images/（docs:anim 动图、docs:maps 地图；需要 Chrome）
 npm run balance    # 构建并跑无头平衡测试（参数见下文）
 ```
 
@@ -188,7 +188,8 @@ node scripts/weapon-eff.mjs [--half-life 14] [--max-age 60] [--archive <结果�
 ```bash
 npm run promo:overlays   # 生成二维码、标题、字幕与片尾叠加层（中英两套）
 npm run promo:record     # 无头 Chrome 按脚本操作游戏并录制各段素材（中英界面各一套）与配乐
-npm run promo:edit       # ffmpeg 卡点剪辑，输出 promo/tomageddon-promo.mp4 与 -en.mp4
+npm run promo:edit       # （旧流程）ffmpeg 卡点剪辑，输出 promo/tomageddon-promo.mp4 与 -en.mp4
+python scripts/promo/jianying_draft.py zh|en   # 生成剪映草稿（需要剪映 skill），在剪映里导出成 promo/tomageddon-promo.mp4 与 -en.mp4
 npm run promo:publish    # 转码为 public/promo/*.webm，并从标题帧截取 README 封面图
 ```
 

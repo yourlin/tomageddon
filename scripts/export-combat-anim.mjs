@@ -10,6 +10,7 @@ import { mkdirSync, rmSync, mkdtempSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { useDocArtSettings } from './art-browser.mjs';
 
 const PORT = 4178;
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -50,6 +51,7 @@ async function openPage() {
   p.on('pageerror', (e) => console.error('[页面错误]', e.message));
   // 干净存档：不弹教程 / 成就
   await p.evaluateOnNewDocument(() => localStorage.clear());
+  await useDocArtSettings(p);
   await p.goto(URL_);
   await p.waitForFunction(() => window.game?.scene.isActive('Menu'), { timeout: 120000 });
   // 贴图在后台分帧生成：等队列清空，否则图标会是缺失贴图
