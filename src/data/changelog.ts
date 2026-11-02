@@ -12,6 +12,25 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.8.2',
+    date: '2026-11-02',
+    highlight: [
+      'Boss 和精英更耐打，随机出现的词缀精英变少',
+      'Bosses and elites are much tougher, and random affixed elites show up less often',
+    ],
+    items: [
+      ['Boss 生命提高到原来的 3 倍', 'Bosses now have 3× their previous HP'],
+      [
+        '精英（第 5、10、15… 波出场的那只）生命提高到原来的 2 倍',
+        'Wave elites (the one on waves 5, 10, 15…) now have 2× their previous HP',
+      ],
+      [
+        '普通波次里随机刷出的金色词缀精英，出现概率减半',
+        'Golden affixed elites that spawn randomly during normal waves appear half as often',
+      ],
+    ],
+  },
+  {
     version: '0.8.1',
     date: '2026-11-01',
     highlight: [

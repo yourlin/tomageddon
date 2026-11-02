@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.8.2 · 2026-11-02](#v0-8-2)
 - [v0.8.1 · 2026-11-01](#v0-8-1)
 - [v0.8.0 · 2026-10-30](#v0-8-0)
 - [v0.7.2 · 2026-10-17](#v0-7-2)
@@ -29,6 +30,17 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-8-2"></a>
+
+## v0.8.2 · 2026-11-02
+
+**Bosses and elites are much tougher, and random affixed elites show up less often**
+
+
+- Bosses now have 3× their previous HP
+- Wave elites (the one on waves 5, 10, 15…) now have 2× their previous HP
+- Golden affixed elites that spawn randomly during normal waves appear half as often
 
 <a id="v0-8-1"></a>
 
