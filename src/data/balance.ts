@@ -215,10 +215,14 @@ export const BALANCE = {
    *  chapterDmg 按各章典型构筑（tests/bossDamage.test.ts 的 TYPICAL）反推：Boss 碰撞打死玩家的次数
    *  第 1 章 8 下、第 2 章 7、第 3–4 章 6、第 5 章 5、第 6 章 4、第 7 章 3 下 */
   /** firstDmgMult：第 firstFrom 章起，每章第一只精英（首个精英波）的伤害倍率——缓和第 5 波的难度断崖 */
-  elite: { base: 0.8, perWave: 0.12, dmgBase: 1.0, dmgGrow: 0.4, dmgMult: 1.2, firstDmgMult: 0.8, firstFrom: 4 },
+  /** hpMult：精英生命整体倍率（v0.8.2 起 ×2，与 Boss ×3 一起拉长精英 / Boss 战） */
+  elite: { base: 0.8, perWave: 0.12, hpMult: 2, dmgBase: 1.0, dmgGrow: 0.4, dmgMult: 1.2, firstDmgMult: 0.8, firstFrom: 4 },
   /** Boss 阶段：每阶段最短时长、转阶段时长（秒），见 systems/BossPhases.ts */
   bossPhase: { minTime: 6, transTime: 3 },
-  boss: { hpMult: 3, dmgMult: 1.9, chapterDmg: [1, 0.8, 0.74, 0.85, 1, 1.78, 2.62] },
+  /** 词缀精英（随机刷出的金色怪）每批刷怪的出现概率系数：概率 = perWave × (波次 - 5) × 章节系数，原为 0.015 */
+  champ: { perWave: 0.0075 },
+  /** hpMult：Boss 生命倍率，原为 3，v0.8.2 起 ×3 = 9 */
+  boss: { hpMult: 9, dmgMult: 1.9, chapterDmg: [1, 0.8, 0.74, 0.85, 1, 1.78, 2.62] },
 };
 
 /** 每 15 波一轮：第 5 / 10 波精英，第 15 波 Boss（无尽循环的节奏；与章节无关的旧接口） */
@@ -438,7 +442,7 @@ export function enemyDamage(base: number, growth: number, wave: number, chapterM
 
 /** 精英随波次的血量 / 伤害缩放系数（取代 GameScene 中散落的 0.8+(wave-5)·0.12 等 magic number） */
 export function eliteHpScale(wave: number): number {
-  return Math.max(BALANCE.elite.base, BALANCE.elite.base + (wave - 5) * BALANCE.elite.perWave);
+  return Math.max(BALANCE.elite.base, BALANCE.elite.base + (wave - 5) * BALANCE.elite.perWave) * BALANCE.elite.hpMult;
 }
 export function eliteDmgScale(wave: number, chapterLen: number = BALANCE.waves.count): number {
   // 按章节内进度成长、到本章最后一只精英封顶（+dmgGrow），不随章节变长无限放大，保证始终低于本章 Boss

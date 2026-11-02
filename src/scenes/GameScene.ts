@@ -1294,7 +1294,9 @@ export class GameScene extends Phaser.Scene {
       const [cx, cy] = this.randomSpawnPos();
       const champ = (run.mod('champions') ? 3 : 1) * run.rules.champ;
       const affixed =
-        w >= 7 && affixedAlive < (2 + run.chapterId / 2) * champ && Math.random() < 0.015 * (w - 5) * (0.8 + run.chapterId * 0.2) * champ;
+        w >= 7 &&
+        affixedAlive < (2 + run.chapterId / 2) * champ &&
+        Math.random() < BALANCE.champ.perWave * (w - 5) * (0.8 + run.chapterId * 0.2) * champ;
       if (affixed) {
         this.queueSpawn(def.id, false, cx, cy, this.rollAffixes(w >= 12 ? 2 : 1, def.behavior === 'bomber'));
         batch -= 3;
