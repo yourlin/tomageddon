@@ -17,6 +17,7 @@ import { currentArtStyle, type ArtStyle } from '../systems/ArtStyle';
 import { applyArtStyle } from '../systems/ArtStyleSwitch';
 import { loadArt, readyArt, releaseArt, unloadUnusedArt } from '../systems/ArtRegistry';
 import { createEntityVisual } from '../objects/visualFactory';
+import { showLoader, hideLoader } from '../ui/BootLoader';
 
 const pct = (v: number) => `${Math.round(v * 100)}%`;
 
@@ -594,7 +595,8 @@ export class SettingsScene extends Phaser.Scene {
       card.on('pointerup', () => {
         if (style === currentArtStyle()) return;
         audio.play(this, 'click');
-        if (style === 'cute' && !readyArt(this, TOMATO, true)) return;
+        // 缩略图生成后就是独立贴图：离开或重启设置页时番茄妹插画本体可能已被回收，不能再用它判断能否切换
+        if (style === 'cute' && !this.textures.exists('style_thumb_cute')) return;
         this.switchStyle(style);
       });
       c.add(card);
@@ -609,7 +611,19 @@ export class SettingsScene extends Phaser.Scene {
   }
 
   private switchStyle(style: ArtStyle): void {
+    // 切到可爱风要先下载整套插画（武器、弹体、启动插画），网速慢时要好几秒：显示加载页并暂停输入，免得看起来卡住、被反复点击
+    let waiting = false;
+    const timer = this.time.delayedCall(150, () => {
+      waiting = true;
+      this.input.enabled = false;
+      showLoader(tx('切换画风…', 'Switching art style…'));
+    });
     applyArtStyle(this, style, () => {
+      timer.remove();
+      if (waiting) {
+        hideLoader();
+        this.input.enabled = true;
+      }
       if (this.scene.isActive()) this.scene.restart({ from: this.fromPause ? 'pause' : undefined, tab: this.tab });
     });
   }

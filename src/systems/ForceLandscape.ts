@@ -11,7 +11,7 @@ export const isRotated = (): boolean => rotated;
 
 export { overlayRoot } from './OverlayRoot';
 
-type ScaleInternals = Phaser.Scale.ScaleManager & { parentSize: Phaser.Structs.Size; parent: HTMLElement };
+type ScaleInternals = Phaser.Scale.ScaleManager & { parentSize: Phaser.Structs.Size; parent: HTMLElement; getParentBounds(): boolean };
 type InputInternals = Phaser.Input.InputManager & {
   transformPointer(pointer: Phaser.Input.Pointer, pageX: number, pageY: number, wasMove: boolean): void;
 };
@@ -22,14 +22,22 @@ export function installForceLandscape(game: Phaser.Game): void {
   if (!stage || !root) return;
   const sm = game.scale as ScaleInternals;
 
+  let lastKey = '';
   const apply = () => {
     const W = stage.clientWidth,
       H = stage.clientHeight;
-    rotated = IS_TOUCH && H > W;
-    // 顺时针旋转 90°：容器宽高互换，左上角移到屏幕右上角
-    root.style.cssText = rotated
-      ? `position:absolute;left:${W}px;top:0;width:${H}px;height:${W}px;transform-origin:0 0;transform:rotate(90deg);`
-      : 'position:absolute;left:0;top:0;width:100%;height:100%;';
+    const key = `${W}x${H}`;
+    if (key !== lastKey) {
+      lastKey = key;
+      rotated = IS_TOUCH && H > W;
+      // 顺时针旋转 90°：容器宽高互换，左上角移到屏幕右上角
+      root.style.cssText = rotated
+        ? `position:absolute;left:${W}px;top:0;width:${H}px;height:${W}px;transform-origin:0 0;transform:rotate(90deg);`
+        : 'position:absolute;left:0;top:0;width:100%;height:100%;';
+    } else if (Math.abs(game.canvas.clientWidth - root.clientWidth) <= 1 && Math.abs(game.canvas.clientHeight - root.clientHeight) <= 1)
+      return;
+    // 每次 refresh 都会让当前界面重新布局：舞台尺寸变了、或画布与容器对不上时才刷新
+    sm.getParentBounds();
     sm.refresh();
   };
 
@@ -61,9 +69,17 @@ export function installForceLandscape(game: Phaser.Game): void {
     p0.y = !wasMove || a === 0 ? y : y * a + p1.y * (1 - a);
   };
 
-  const later = () => setTimeout(apply, 60);
+  // 微信（X5 / XWeb 内核）等浏览器退出全屏、旋转屏幕后，页面尺寸要过一阵才更新，之后也不一定再发 resize：
+  // 只量一次会按全屏时的旧尺寸摆放，画面超出屏幕（右上角的全屏按钮点不到）。分几次复查，尺寸变了才重排
+  let timers: number[] = [];
+  const later = () => {
+    for (const t of timers) clearTimeout(t);
+    timers = [60, 350, 1000].map((ms) => window.setTimeout(apply, ms));
+  };
   window.addEventListener('resize', later);
   window.addEventListener('orientationchange', later);
   document.addEventListener('fullscreenchange', later);
+  document.addEventListener('webkitfullscreenchange', later);
+  window.visualViewport?.addEventListener('resize', later);
   apply();
 }
