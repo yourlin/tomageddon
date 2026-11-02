@@ -12,6 +12,24 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.8.3',
+    date: '2026-11-02',
+    highlight: [
+      '修复切换画风偶尔点不动、微信里退出全屏后画面超出屏幕',
+      'Fixes art-style switching sometimes not responding, and the screen overflowing after leaving fullscreen in WeChat',
+    ],
+    items: [
+      [
+        '设置里从复古风切回可爱风，偶尔点了没反应：现在每次都能切换，下载插画期间会显示加载提示',
+        'Switching from Retro back to Cute in Settings sometimes did nothing: it now always works, with a loading screen while the art downloads',
+      ],
+      [
+        '微信内置浏览器退出全屏后，画面比屏幕大、右上角的全屏按钮点不到：现在会等页面尺寸稳定后重新铺满屏幕',
+        'After leaving fullscreen in the WeChat browser, the game could be larger than the screen and the fullscreen button out of reach: it now re-fits once the page size settles',
+      ],
+    ],
+  },
+  {
     version: '0.8.2',
     date: '2026-11-02',
     highlight: [

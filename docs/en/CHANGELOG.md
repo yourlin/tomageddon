@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.8.3 · 2026-11-02](#v0-8-3)
 - [v0.8.2 · 2026-11-02](#v0-8-2)
 - [v0.8.1 · 2026-11-01](#v0-8-1)
 - [v0.8.0 · 2026-10-30](#v0-8-0)
@@ -30,6 +31,16 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-8-3"></a>
+
+## v0.8.3 · 2026-11-02
+
+**Fixes art-style switching sometimes not responding, and the screen overflowing after leaving fullscreen in WeChat**
+
+
+- Switching from Retro back to Cute in Settings sometimes did nothing: it now always works, with a loading screen while the art downloads
+- After leaving fullscreen in the WeChat browser, the game could be larger than the screen and the fullscreen button out of reach: it now re-fits once the page size settles
 
 <a id="v0-8-2"></a>
 
