@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.8.4 · 2026-11-06](#v0-8-4)
 - [v0.8.3 · 2026-11-02](#v0-8-3)
 - [v0.8.2 · 2026-11-02](#v0-8-2)
 - [v0.8.1 · 2026-11-01](#v0-8-1)
@@ -31,6 +32,19 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-8-4"></a>
+
+## v0.8.4 · 2026-11-06
+
+**15 underpowered heroes buffed so every hero can reliably clear the first three chapters**
+
+
+- Monk Gourd, Cabbage Veteran, Carrot Knight, Wasabi Bomber, Chef Yam and Chubby Melon: better base stats plus a new permanent per-wave growth (HP and Damage), so boss fights no longer drag into enrage for lack of damage
+- Kiwi Detective, Grape Magician, Sprout Apprentice, Blackberry Witch, Eggplant Mage, Captain Pineapple, Pumpkin Ghost and Coconut Boxer: more HP, Armor or Damage so they no longer crumble early
+- Beet Berserker’s per-wave Damage growth raised from +2% to +4%
+- Chubby Melon’s −10% attack speed is replaced with +8% Damage
+- Carrot Lance deals about 25% more damage
 
 <a id="v0-8-3"></a>
 

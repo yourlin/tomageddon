@@ -11,7 +11,7 @@ export const CHAR_WEAPONS: WeaponDef[] = [
     cls: 'melee',
     kind: 'thrust',
     tags: ['长柄', '蔬果'],
-    damage: [17, 29, 45, 69],
+    damage: [21, 36, 56, 86],
     cooldown: [1.35, 1.28, 1.2, 1.08],
     range: 210,
     scaling: { melee: 1.15, armor: 0.3 },

@@ -214,12 +214,12 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
       limbColor: 0x2d6a4f,
       acc: [{ id: 'bandage' }, { id: 'headband', color: 0xffd166 }],
     },
-    mods: { maxHp: 8, armor: 2, regen: 2, melee: 3 },
+    mods: { maxHp: 8, armor: 2, regen: 2, melee: 5, damage: 10 },
     startWeapons: ['pan'],
     favored: ['厨具', '钝器'],
     talent: {
       name: '层层不倒',
-      desc: '每局可复活 1 次；每 6 秒净化自身减益；每次净化或复活后 5 秒内契合武器攻速 +30%；每层坚韧使契合武器伤害 +5%',
+      desc: '每局可复活 1 次；每 6 秒净化自身减益；每次净化或复活后 5 秒内契合武器攻速 +30%；每层坚韧使契合武器伤害 +5%；每完成一波，永久 +2 最大生命、+3% 伤害',
     },
     traits: ['受伤时获得 2 层坚韧'],
     special: { revive: 1, cleanseEvery: 6, onHurtSelf: [S('fortify', 3, 2)] },
@@ -259,7 +259,7 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
         { id: 'cape', color: 0x240046, color2: 0x7b2cbf },
       ],
     },
-    mods: { elemental: 3, luck: 2, maxHp: -2 },
+    mods: { elemental: 3, luck: 2, maxHp: 8, armor: 2, damage: 10 },
     startWeapons: ['dragonfruit_orb'],
     favored: ['持续伤害', '魔法'],
     talent: { name: '黑暗契约', desc: '命中 20% 概率腐烂、8% 概率诅咒；契合武器打中被诅咒的敌人时，把诅咒传给附近 1 个敌人' },
@@ -351,7 +351,7 @@ export const EXTRA_CHARACTERS_EN: CharactersEn = {
     desc: 'Peel one layer and there is another. This veteran never stays down.',
     talent: {
       name: 'Layer upon Layer',
-      desc: 'Revive once per run; cleanse your debuffs every 6s; after each cleanse or revive, favored weapons gain +30% attack speed for 5s; each Fortify stack gives favored weapons +5% damage',
+      desc: 'Revive once per run; cleanse your debuffs every 6s; after each cleanse or revive, favored weapons gain +30% attack speed for 5s; each Fortify stack gives favored weapons +5% damage; each wave cleared permanently grants +2 Max HP and +3% Damage',
     },
     traits: ['Gain 2 stacks of Fortify when hurt'],
     skill: {

@@ -12,6 +12,27 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.8.4',
+    date: '2026-11-06',
+    highlight: [
+      '加强 15 个偏弱的角色：每个角色都能稳定打通前三章',
+      '15 underpowered heroes buffed so every hero can reliably clear the first three chapters',
+    ],
+    items: [
+      [
+        '冬瓜和尚、卷心菜老兵、胡萝卜骑士、山葵爆破手、红薯厨神、西瓜胖墩：基础属性提高，并新增每完成一波的永久成长（生命与伤害），Boss 战不再因为输出不够被拖进狂暴',
+        'Monk Gourd, Cabbage Veteran, Carrot Knight, Wasabi Bomber, Chef Yam and Chubby Melon: better base stats plus a new permanent per-wave growth (HP and Damage), so boss fights no longer drag into enrage for lack of damage',
+      ],
+      [
+        '猕猴桃侦探、葡萄魔术师、豆芽学徒、黑莓女巫、茄子法师、菠萝船长、南瓜幽灵、椰子拳师：生命、护甲或伤害提高，前期不再一碰就倒',
+        'Kiwi Detective, Grape Magician, Sprout Apprentice, Blackberry Witch, Eggplant Mage, Captain Pineapple, Pumpkin Ghost and Coconut Boxer: more HP, Armor or Damage so they no longer crumble early',
+      ],
+      ['甜菜狂战士每波成长的伤害从 +2% 提高到 +4%', 'Beet Berserker’s per-wave Damage growth raised from +2% to +4%'],
+      ['西瓜胖墩原来的攻速 -10% 改为伤害 +8%', 'Chubby Melon’s −10% attack speed is replaced with +8% Damage'],
+      ['胡萝卜骑枪伤害约 +25%', 'Carrot Lance deals about 25% more damage'],
+    ],
+  },
+  {
     version: '0.8.3',
     date: '2026-11-02',
     highlight: [

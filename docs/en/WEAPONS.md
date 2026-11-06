@@ -305,7 +305,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/spore_sprayer.png" width="32" height="32" alt=""> [Spore Sprayer](#weapon-spore_sprayer) | Elemental | Bullet | Produce/Elemental | 5 / 8 / 13 / 20 | 0.7 / 0.65 / 0.6 / 0.54 | 330 | 22 |
 | <img src="../images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [Coconut Gloves](#weapon-coconut_gloves) | Melee | Thrust | Produce | 5 / 9 / 14 / 22 | 0.42 / 0.4 / 0.37 / 0.34 | 95 | 20 |
 | <img src="../images/weapon/asparagus_bow.png" width="32" height="32" alt=""> [Asparagus Longbow](#weapon-asparagus_bow) | Ranged | Bullet | Produce | 14 / 24 / 37 / 56 | 1.1 / 1.04 / 0.97 / 0.88 | 520 | 26 |
-| <img src="../images/weapon/carrot_lance.png" width="32" height="32" alt=""> [Carrot Lance](#weapon-carrot_lance) | Melee | Thrust | Polearm/Produce | 17 / 29 / 45 / 69 | 1.35 / 1.28 / 1.2 / 1.08 | 210 | 27 |
+| <img src="../images/weapon/carrot_lance.png" width="32" height="32" alt=""> [Carrot Lance](#weapon-carrot_lance) | Melee | Thrust | Polearm/Produce | 21 / 36 / 56 / 86 | 1.35 / 1.28 / 1.2 / 1.08 | 210 | 27 |
 | <img src="../images/weapon/dragon_lance.png" width="32" height="32" alt=""> [Dragon Lance](#weapon-dragon_lance) | Melee | Thrust | Polearm/Produce | 14 / 24 / 37 / 57 | 1.15 / 1.08 / 1 / 0.92 | 195 | 27 |
 | <img src="../images/weapon/nut_knuckles.png" width="32" height="32" alt=""> [Nut Knuckles](#weapon-nut_knuckles) | Melee | Thrust | Martial/Produce | 4 / 7 / 11 / 17 | 0.36 / 0.34 / 0.31 / 0.28 | 90 | 21 |
 | <img src="../images/weapon/melon_staff.png" width="32" height="32" alt=""> [Winter Melon Staff](#weapon-melon_staff) | Melee | Sweep | Martial/Blunt | 24 / 40 / 62 / 94 | 2 / 1.9 / 1.8 / 1.65 | 150 | 31 |
@@ -412,7 +412,7 @@ Price: T1 base price × [1, 2.1, 4, 7.5], rising with waves. Damage = (base + Σ
 | <img src="../images/weapon/fz_taro_aura_charcoal_aura.png" width="32" height="32" alt=""> [Saucy Taro Aura](#weapon-fz_taro_aura_charcoal_aura) | Elemental | Aura | Sauce | 6 / 9 / 13 / 20 | 0.5 / 0.5 / 0.5 / 0.5 | 121 | 46 |
 | <img src="../images/weapon/fz_teapot_storm_honey_blaster.png" width="32" height="32" alt=""> [Candied Teapot Storm](#weapon-fz_teapot_storm_honey_blaster) | Elemental | Chain Lightning | Kitchenware/Sauce | 8 / 14 / 21 / 32 | 0.7 / 0.66 / 0.6 / 0.54 | 462 | 38 |
 | <img src="../images/weapon/fz_pumpkin_mortar_eggplant_staff.png" width="32" height="32" alt=""> [Thunder Pumpkin Mortar](#weapon-fz_pumpkin_mortar_eggplant_staff) | Ranged | Rocket | Produce/Firearm | 17 / 29 / 44 / 67 | 1 / 0.95 / 0.88 / 0.8 | 483 | 43 |
-| <img src="../images/weapon/fz_popcorn_machine_carrot_lance.png" width="32" height="32" alt=""> [Piercing Popcorn Popper](#weapon-fz_popcorn_machine_carrot_lance) | Ranged | Mine | Firearm/Demolition/Polearm | 19 / 32 / 50 / 76 | 1.35 / 1.28 / 1.2 / 1.08 | 231 | 35 |
+| <img src="../images/weapon/fz_popcorn_machine_carrot_lance.png" width="32" height="32" alt=""> [Piercing Popcorn Popper](#weapon-fz_popcorn_machine_carrot_lance) | Ranged | Mine | Firearm/Demolition/Polearm | 23 / 40 / 62 / 95 | 1.35 / 1.28 / 1.2 / 1.08 | 231 | 35 |
 | <img src="../images/weapon/fz_donut_ring_rot_aura.png" width="32" height="32" alt=""> [Toxic Donut Ring](#weapon-fz_donut_ring_rot_aura) | Ranged | Boomerang | Dessert/Produce | 12 / 20 / 31 / 46 | 0.5 / 0.5 / 0.5 / 0.5 | 347 | 40 |
 | <img src="../images/weapon/fz_dynamite_drumstick_blackberry_wand.png" width="32" height="32" alt=""> [Toxic Dynamite Drumstick](#weapon-fz_dynamite_drumstick_blackberry_wand) | Melee | Sweep | Demolition/Arcane/Produce | 19 / 32 / 50 / 75 | 0.95 / 0.9 / 0.84 / 0.76 | 441 | 39 |
 | <img src="../images/weapon/fz_spatula_slingshot.png" width="32" height="32" alt=""> [Chain Spatula](#weapon-fz_spatula_slingshot) | Melee | Sweep | Kitchenware/Produce | 10 / 18 / 28 / 42 | 0.95 / 0.9 / 0.83 / 0.75 | 399 | 21 |
@@ -890,7 +890,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td colspan="2"><i>A knight's carrot lance: long thrusts that pierce a whole row and shove enemies back.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Melee / Thrust</td></tr>
 <tr><td nowrap>Tags</td><td>Polearm, Produce</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>17 / 29 / 45 / 69</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>21 / 36 / 56 / 86</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>1.35s / 1.28s / 1.2s / 1.08s</td></tr>
 <tr><td nowrap>Range</td><td>210</td></tr>
 <tr><td nowrap>Scaling</td><td>Melee Damage ×1.15, Armor ×0.3</td></tr>
@@ -2696,7 +2696,7 @@ A set is a group of specific weapons: the more different members you hold in you
 <tr><td colspan="2"><i>Carrot Lance forged into Popcorn Popper: keeps its attack style and carries both weapons' effects.</i></td></tr>
 <tr><td nowrap>Class / attack</td><td>Ranged / Mine</td></tr>
 <tr><td nowrap>Tags</td><td>Firearm, Demolition, Polearm</td></tr>
-<tr><td nowrap>Damage T1–T4</td><td>19 / 32 / 50 / 76</td></tr>
+<tr><td nowrap>Damage T1–T4</td><td>23 / 40 / 62 / 95</td></tr>
 <tr><td nowrap>Cooldown T1–T4</td><td>1.35s / 1.28s / 1.2s / 1.08s</td></tr>
 <tr><td nowrap>Range</td><td>231</td></tr>
 <tr><td nowrap>Scaling</td><td>Ranged Damage ×0.54, Melee Damage ×0.69, Armor ×0.18</td></tr>
@@ -4943,7 +4943,7 @@ Super weapons can only be crafted: two specific T4 weapons + the original cataly
 | <img src="../images/weapon/macaron_gun.png" width="32" height="32" alt=""> [Macaron Repeater](#weapon-macaron_gun) | <img src="../images/item/bubble.png" width="32" height="32" alt=""> Bubble Gum | <img src="../images/weapon/macaron_tempest.png" width="32" height="32" alt=""> **Macaron Tempest** | 8→**13** / 0.22s→**0.15s** / 400→**460** | Fires a whole box of macarons at once, painting the field in pastel. |
 | <img src="../images/weapon/honey_blaster.png" width="32" height="32" alt=""> [Honey Blaster](#weapon-honey_blaster) | <img src="../images/item/lemonade.png" width="32" height="32" alt=""> Lemonade | <img src="../images/weapon/honey_flood.png" width="32" height="32" alt=""> **Honey Flood** | 22→**35** / 0.54s→**0.41s** / 360→**414** | A gush of sticky iced honey that glues down a whole crowd — the stickier, the slower. |
 | <img src="../images/weapon/spore_sprayer.png" width="32" height="32" alt=""> [Spore Sprayer](#weapon-spore_sprayer) | <img src="../images/item/mosquito.png" width="32" height="32" alt=""> Pinned Mosquito | <img src="../images/weapon/plague_sprayer.png" width="32" height="32" alt=""> **Plague Sprayer** | 20→**32** / 0.54s→**0.46s** / 330→**379** | A sprayer brimming with plague spores: stacks thick poison and pierces a whole line of foes. |
-| <img src="../images/weapon/carrot_lance.png" width="32" height="32" alt=""> [Carrot Lance](#weapon-carrot_lance) | <img src="../images/item/sharpening_rod.png" width="32" height="32" alt=""> Honing Rod | <img src="../images/weapon/carrot_holy_lance.png" width="32" height="32" alt=""> **Holy Carrot Lance** | 69→**117** / 1.08s→**0.92s** / 210→**252** | The knight's holy lance: pierces a whole row and sends enemies flying. |
+| <img src="../images/weapon/carrot_lance.png" width="32" height="32" alt=""> [Carrot Lance](#weapon-carrot_lance) | <img src="../images/item/sharpening_rod.png" width="32" height="32" alt=""> Honing Rod | <img src="../images/weapon/carrot_holy_lance.png" width="32" height="32" alt=""> **Holy Carrot Lance** | 86→**146** / 1.08s→**0.92s** / 210→**252** | The knight's holy lance: pierces a whole row and sends enemies flying. |
 | <img src="../images/weapon/dragon_lance.png" width="32" height="32" alt=""> [Dragon Lance](#weapon-dragon_lance) | <img src="../images/item/lighter.png" width="32" height="32" alt=""> Lighter | <img src="../images/weapon/inferno_lance.png" width="32" height="32" alt=""> **Inferno Lance** | 57→**97** / 0.92s→**0.78s** / 195→**224** | A lance roaring with dragonfire that engulfs whatever it pierces. |
 | <img src="../images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [Coconut Gloves](#weapon-coconut_gloves) | <img src="../images/item/protein.png" width="32" height="32" alt=""> Protein Powder | <img src="../images/weapon/coco_fist.png" width="32" height="32" alt=""> **Coconut Overlord Fist** | 22→**37** / 0.34s→**0.27s** / 95→**109** | Rock-hard coconut punches that drive enemies back with every blow. |
 | <img src="../images/weapon/melon_staff.png" width="32" height="32" alt=""> [Winter Melon Staff](#weapon-melon_staff) | <img src="../images/item/salt_lamp.png" width="32" height="32" alt=""> Salt Lamp | <img src="../images/weapon/vajra_staff.png" width="32" height="32" alt=""> **Vajra Staff** | 94→**160** / 1.65s→**1.4s** / 150→**188** | A gilded staff swept in a full circle, stunning everything around. |

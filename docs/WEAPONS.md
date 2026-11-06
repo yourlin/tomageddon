@@ -305,7 +305,7 @@
 | <img src="images/weapon/spore_sprayer.png" width="32" height="32" alt=""> [孢子喷壶](#weapon-spore_sprayer) | 元素 | 子弹 | 蔬果/元素 | 5 / 8 / 13 / 20 | 0.7 / 0.65 / 0.6 / 0.54 | 330 | 22 |
 | <img src="images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [椰壳拳套](#weapon-coconut_gloves) | 近战 | 直刺 | 蔬果 | 5 / 9 / 14 / 22 | 0.42 / 0.4 / 0.37 / 0.34 | 95 | 20 |
 | <img src="images/weapon/asparagus_bow.png" width="32" height="32" alt=""> [芦笋长弓](#weapon-asparagus_bow) | 远程 | 子弹 | 蔬果 | 14 / 24 / 37 / 56 | 1.1 / 1.04 / 0.97 / 0.88 | 520 | 26 |
-| <img src="images/weapon/carrot_lance.png" width="32" height="32" alt=""> [胡萝卜骑枪](#weapon-carrot_lance) | 近战 | 直刺 | 长柄/蔬果 | 17 / 29 / 45 / 69 | 1.35 / 1.28 / 1.2 / 1.08 | 210 | 27 |
+| <img src="images/weapon/carrot_lance.png" width="32" height="32" alt=""> [胡萝卜骑枪](#weapon-carrot_lance) | 近战 | 直刺 | 长柄/蔬果 | 21 / 36 / 56 / 86 | 1.35 / 1.28 / 1.2 / 1.08 | 210 | 27 |
 | <img src="images/weapon/dragon_lance.png" width="32" height="32" alt=""> [火龙骑枪](#weapon-dragon_lance) | 近战 | 直刺 | 长柄/蔬果 | 14 / 24 / 37 / 57 | 1.15 / 1.08 / 1 / 0.92 | 195 | 27 |
 | <img src="images/weapon/nut_knuckles.png" width="32" height="32" alt=""> [坚果指虎](#weapon-nut_knuckles) | 近战 | 直刺 | 格斗/蔬果 | 4 / 7 / 11 / 17 | 0.36 / 0.34 / 0.31 / 0.28 | 90 | 21 |
 | <img src="images/weapon/melon_staff.png" width="32" height="32" alt=""> [冬瓜禅杖](#weapon-melon_staff) | 近战 | 横扫 | 格斗/钝器 | 24 / 40 / 62 / 94 | 2 / 1.9 / 1.8 / 1.65 | 150 | 31 |
@@ -412,7 +412,7 @@
 | <img src="images/weapon/fz_taro_aura_charcoal_aura.png" width="32" height="32" alt=""> [酱爆芋泥光环](#weapon-fz_taro_aura_charcoal_aura) | 元素 | 光环 | 酱料 | 6 / 9 / 13 / 20 | 0.5 / 0.5 / 0.5 / 0.5 | 121 | 46 |
 | <img src="images/weapon/fz_teapot_storm_honey_blaster.png" width="32" height="32" alt=""> [糖霜茶壶雷暴](#weapon-fz_teapot_storm_honey_blaster) | 元素 | 连锁闪电 | 厨具/酱料 | 8 / 14 / 21 / 32 | 0.7 / 0.66 / 0.6 / 0.54 | 462 | 38 |
 | <img src="images/weapon/fz_pumpkin_mortar_eggplant_staff.png" width="32" height="32" alt=""> [雷霆南瓜迫击炮](#weapon-fz_pumpkin_mortar_eggplant_staff) | 远程 | 爆炸弹 | 蔬果/枪械 | 17 / 29 / 44 / 67 | 1 / 0.95 / 0.88 / 0.8 | 483 | 43 |
-| <img src="images/weapon/fz_popcorn_machine_carrot_lance.png" width="32" height="32" alt=""> [贯穿爆米花机](#weapon-fz_popcorn_machine_carrot_lance) | 远程 | 地雷 | 枪械/爆破/长柄 | 19 / 32 / 50 / 76 | 1.35 / 1.28 / 1.2 / 1.08 | 231 | 35 |
+| <img src="images/weapon/fz_popcorn_machine_carrot_lance.png" width="32" height="32" alt=""> [贯穿爆米花机](#weapon-fz_popcorn_machine_carrot_lance) | 远程 | 地雷 | 枪械/爆破/长柄 | 23 / 40 / 62 / 95 | 1.35 / 1.28 / 1.2 / 1.08 | 231 | 35 |
 | <img src="images/weapon/fz_donut_ring_rot_aura.png" width="32" height="32" alt=""> [剧毒甜甜圈飞环](#weapon-fz_donut_ring_rot_aura) | 远程 | 回旋镖 | 甜点/蔬果 | 12 / 20 / 31 / 46 | 0.5 / 0.5 / 0.5 / 0.5 | 347 | 40 |
 | <img src="images/weapon/fz_dynamite_drumstick_blackberry_wand.png" width="32" height="32" alt=""> [剧毒炸药鸡腿](#weapon-fz_dynamite_drumstick_blackberry_wand) | 近战 | 横扫 | 爆破/魔法/蔬果 | 19 / 32 / 50 / 75 | 0.95 / 0.9 / 0.84 / 0.76 | 441 | 39 |
 | <img src="images/weapon/fz_spatula_slingshot.png" width="32" height="32" alt=""> [连环锅铲](#weapon-fz_spatula_slingshot) | 近战 | 横扫 | 厨具/蔬果 | 10 / 18 / 28 / 42 | 0.95 / 0.9 / 0.83 / 0.75 | 399 | 21 |
@@ -890,7 +890,7 @@
 <tr><td colspan="2"><i>骑士的胡萝卜长枪，远距离突刺，能连穿一排敌人并把它们顶开。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>近战 / 直刺</td></tr>
 <tr><td nowrap>标签</td><td>长柄、蔬果</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>17 / 29 / 45 / 69</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>21 / 36 / 56 / 86</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>1.35s / 1.28s / 1.2s / 1.08s</td></tr>
 <tr><td nowrap>射程</td><td>210</td></tr>
 <tr><td nowrap>属性加成</td><td>近战伤害 ×1.15，护甲 ×0.3</td></tr>
@@ -2696,7 +2696,7 @@
 <tr><td colspan="2"><i>把胡萝卜骑枪熔进爆米花机：保留爆米花机的攻击方式，同时带上两把武器的特效。</i></td></tr>
 <tr><td nowrap>类别 / 方式</td><td>远程 / 地雷</td></tr>
 <tr><td nowrap>标签</td><td>枪械、爆破、长柄</td></tr>
-<tr><td nowrap>伤害 T1~T4</td><td>19 / 32 / 50 / 76</td></tr>
+<tr><td nowrap>伤害 T1~T4</td><td>23 / 40 / 62 / 95</td></tr>
 <tr><td nowrap>冷却 T1~T4</td><td>1.35s / 1.28s / 1.2s / 1.08s</td></tr>
 <tr><td nowrap>射程</td><td>231</td></tr>
 <tr><td nowrap>属性加成</td><td>远程伤害 ×0.54，近战伤害 ×0.69，护甲 ×0.18</td></tr>
@@ -4943,7 +4943,7 @@ flowchart LR
 | <img src="images/weapon/macaron_gun.png" width="32" height="32" alt=""> [马卡龙连发](#weapon-macaron_gun) | <img src="images/item/bubble.png" width="32" height="32" alt=""> 泡泡糖 | <img src="images/weapon/macaron_tempest.png" width="32" height="32" alt=""> **马卡龙风暴** | 8→**13** / 0.22s→**0.15s** / 400→**460** | 一口气喷出整盒马卡龙，五颜六色铺满前方。 |
 | <img src="images/weapon/honey_blaster.png" width="32" height="32" alt=""> [蜂蜜喷枪](#weapon-honey_blaster) | <img src="images/item/lemonade.png" width="32" height="32" alt=""> 柠檬水 | <img src="images/weapon/honey_flood.png" width="32" height="32" alt=""> **蜂蜜洪流** | 22→**35** / 0.54s→**0.41s** / 360→**414** | 黏稠的冰镇蜂蜜喷涌而出，粘住一大片敌人，越粘越慢。 |
 | <img src="images/weapon/spore_sprayer.png" width="32" height="32" alt=""> [孢子喷壶](#weapon-spore_sprayer) | <img src="images/item/mosquito.png" width="32" height="32" alt=""> 蚊子标本 | <img src="images/weapon/plague_sprayer.png" width="32" height="32" alt=""> **瘟疫孢子喷壶** | 20→**32** / 0.54s→**0.46s** / 330→**379** | 灌满瘟疫孢子的喷壶，命中叠起厚厚的毒，还能穿透一整排敌人。 |
-| <img src="images/weapon/carrot_lance.png" width="32" height="32" alt=""> [胡萝卜骑枪](#weapon-carrot_lance) | <img src="images/item/sharpening_rod.png" width="32" height="32" alt=""> 磨刀棒 | <img src="images/weapon/carrot_holy_lance.png" width="32" height="32" alt=""> **胡萝卜圣枪** | 69→**117** / 1.08s→**0.92s** / 210→**252** | 骑士的圣枪，突刺穿透整排敌人并把它们远远顶开。 |
+| <img src="images/weapon/carrot_lance.png" width="32" height="32" alt=""> [胡萝卜骑枪](#weapon-carrot_lance) | <img src="images/item/sharpening_rod.png" width="32" height="32" alt=""> 磨刀棒 | <img src="images/weapon/carrot_holy_lance.png" width="32" height="32" alt=""> **胡萝卜圣枪** | 86→**146** / 1.08s→**0.92s** / 210→**252** | 骑士的圣枪，突刺穿透整排敌人并把它们远远顶开。 |
 | <img src="images/weapon/dragon_lance.png" width="32" height="32" alt=""> [火龙骑枪](#weapon-dragon_lance) | <img src="images/item/lighter.png" width="32" height="32" alt=""> 打火机 | <img src="images/weapon/inferno_lance.png" width="32" height="32" alt=""> **炎龙骑枪** | 57→**97** / 0.92s→**0.78s** / 195→**224** | 龙焰熊熊的骑枪，刺中的敌人被烈焰吞没。 |
 | <img src="images/weapon/coconut_gloves.png" width="32" height="32" alt=""> [椰壳拳套](#weapon-coconut_gloves) | <img src="images/item/protein.png" width="32" height="32" alt=""> 蛋白粉 | <img src="images/weapon/coco_fist.png" width="32" height="32" alt=""> **椰子霸王拳** | 22→**37** / 0.34s→**0.27s** / 95→**109** | 坚硬的椰壳重拳，拳拳到肉，打得敌人连连后退。 |
 | <img src="images/weapon/melon_staff.png" width="32" height="32" alt=""> [冬瓜禅杖](#weapon-melon_staff) | <img src="images/item/salt_lamp.png" width="32" height="32" alt=""> 盐灯 | <img src="images/weapon/vajra_staff.png" width="32" height="32" alt=""> **金刚禅杖** | 94→**160** / 1.65s→**1.4s** / 150→**188** | 金光护体的禅杖，横扫一整圈，震住四周的敌人。 |
