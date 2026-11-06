@@ -121,8 +121,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/carrot.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">胡萝卜骑士 · 近战坦克</th></tr>
 <tr><td colspan="2"><i>身披银甲的骑士，擅长近身肉搏。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>骑士之盾</b>：每 1 点护甲让契合武器横扫与爆炸范围 +2%（最多 +40%）；打破甲 3 层以上的敌人时眩晕 0.3 秒</td></tr>
-<tr><td nowrap>属性与特性</td><td>+5 最大生命；+3 近战伤害；+3 护甲；远程伤害 -50%</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>骑士之盾</b>：每 1 点护甲让契合武器横扫与爆炸范围 +2%（最多 +40%）；打破甲 3 层以上的敌人时眩晕 0.3 秒；每完成一波，永久 +2 最大生命、+2% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+10% 全伤害；+5 近战伤害；+3 护甲；远程伤害 -50%</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：长柄、蔬果（55 把，双契合 3 把）<br>契合特效（伤害 +10%）：破防：命中叠 1 层破甲<br>双契合：<a href="WEAPONS.md#weapon-bamboo_spear">竹笋长矛</a>、<a href="WEAPONS.md#weapon-carrot_lance">胡萝卜骑枪</a>、<a href="WEAPONS.md#weapon-dragon_lance">火龙骑枪</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/carrot_lance.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-carrot_lance">胡萝卜骑枪</a>、<img src="images/weapon/fork.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-fork">番茄叉</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/slingshot.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-slingshot">番茄弹弓</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-garlic_aura">大蒜光环</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-carrot">骑士冲锋</a>【突进冲撞】冷却 11s — 蓄力后无敌冲锋，撞飞并眩晕沿途敌人，终点再震出冲击波造成二次伤害。</td></tr>
 <tr><td nowrap>解锁条件</td><td>默认解锁</td></tr>
@@ -157,8 +157,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/watermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">西瓜胖墩 · 重装坦克</th></tr>
 <tr><td colspan="2"><i>圆滚滚的大块头，皮糙肉厚。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>皮糙肉厚</b>：受到的伤害 -5%；每 20 最大生命让契合武器范围 +4%（最多 +50%）</td></tr>
-<tr><td nowrap>属性与特性</td><td>+25 最大生命；-10% 攻击速度；+2 护甲；-6 移动速度</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>皮糙肉厚</b>：受到的伤害 -5%；每 20 最大生命让契合武器范围 +4%（最多 +50%）；每完成一波，永久 +2 最大生命、+3% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+25 最大生命；+8% 全伤害；+2 护甲；-6 移动速度</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：钝器、爆破（37 把，双契合 3 把）<br>契合特效（伤害 +10%）：爆炸与横扫范围 +25%，击退更强<br>双契合：<a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<a href="WEAPONS.md#weapon-pineapple_mace">菠萝流星锤</a>、<a href="WEAPONS.md#weapon-dynamite_drumstick">炸药鸡腿</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/rolling_pin.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-rolling_pin">擀面杖</a>、<img src="images/weapon/pan.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pan">平底锅</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/pepper_mine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pepper_mine">胡椒雷</a>、<img src="images/weapon/meat_tenderizer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-meat_tenderizer">松肉锤</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-watermelon">西瓜翻滚</a>【突进冲撞】冷却 13s — 化身大西瓜翻滚 0.9 秒，撞墙反弹，反复碾压并撞飞敌人，回复 4.5% 最大生命。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-fruits">水果补给（金）</a>：累计吃到 500 个果实</td></tr>
@@ -182,7 +182,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/eggplant.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">茄子法师 · 雷电法师</th></tr>
 <tr><td colspan="2"><i>紫袍法师，召唤天雷惩戒害虫。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>雷霆之力</b>：契合连锁每跳到一个敌人，15% 概率引下落雷</td></tr>
-<tr><td nowrap>属性与特性</td><td>+3 最大生命；+4 元素伤害；+4 幸运；近战伤害 -70%；命中 10% 概率落雷</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+4 元素伤害；+2 护甲；+4 幸运；近战伤害 -70%；命中 10% 概率落雷</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：蔬果、雷电（58 把，双契合 3 把）<br>契合特效（伤害 +10%）：连锁 +1 跳<br>双契合：<a href="WEAPONS.md#weapon-broccoli_staff">西兰花法杖</a>、<a href="WEAPONS.md#weapon-lemon_battery">柠檬电池</a>、<a href="WEAPONS.md#weapon-eggplant_staff">紫茄雷杖</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/broccoli_staff.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-broccoli_staff">西兰花法杖</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/slingshot.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-slingshot">番茄弹弓</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-garlic_aura">大蒜光环</a>、<img src="images/weapon/onion_boomerang.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-onion_boomerang">洋葱回旋镖</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-eggplant">紫雷天罚</a>【全屏攻击】冷却 14s — 天雷劈中屏幕内所有敌人，造成 90% 伤害并眩晕 0.4 秒。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-casts">大招成瘾（银）</a>：累计释放 100 次技能</td></tr>
@@ -218,7 +218,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/pineapple.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">菠萝船长 · 商人海盗</th></tr>
 <tr><td colspan="2"><i>精明的海盗船长，擅长讨价还价。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>海盗分赃</b>：每波结束获得当前番茄籽 8% 的利息（上限随波次提高）；每持有 100 番茄籽，契合武器弹射再 +1（最多 +3）</td></tr>
-<tr><td nowrap>属性与特性</td><td>-3 最大生命；+8 幸运；+10 收获；商店价格 -15%</td></tr>
+<tr><td nowrap>属性与特性</td><td>+6 最大生命；+2 护甲；+8 幸运；+10 收获；商店价格 -15%</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：酱料、爆破（44 把，双契合 4 把）<br>契合特效（伤害 +10%）：弹射 +1<br>双契合：<a href="WEAPONS.md#weapon-soy_bomb">酱油炸弹</a>、<a href="WEAPONS.md#weapon-jam_mortar">果酱迫击炮</a>、<a href="WEAPONS.md#weapon-bbq_sauce_cannon">烧烤酱炮</a>、<a href="WEAPONS.md#weapon-ember_mine">火炭雷</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/bbq_sauce_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-bbq_sauce_cannon">烧烤酱炮</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/ketchup.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-ketchup">番茄酱瓶</a>、<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-mustard_flamer">芥末喷枪</a>、<img src="images/weapon/pepper_mine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pepper_mine">胡椒雷</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-pineapple">黄金炮击</a>【发射 AOE】冷却 16s — 连发 3 枚黄金炮弹，依次砸向附近随机 3 个敌人并范围爆炸，炸死的敌人必掉番茄籽。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-rich">小有积蓄（钻石）</a>：同时持有 3,000 番茄籽</td></tr>
@@ -230,7 +230,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/pumpkin.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">南瓜幽灵 · 闪避大师</th></tr>
 <tr><td colspan="2"><i>万圣节的小幽灵，总是飘来飘去。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>幽灵突袭</b>：闪避成功后 1.5 秒内契合武器攻速 +40%</td></tr>
-<tr><td nowrap>属性与特性</td><td>-4 最大生命；+25% 闪避；+4 移动速度；闪避上限 75%</td></tr>
+<tr><td nowrap>属性与特性</td><td>+6 最大生命；+25% 闪避；+4 移动速度；闪避上限 75%</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：元素、穿透（57 把，双契合 3 把）<br>契合特效（伤害 +10%）：闪避后接下来 3 次攻击变成幽灵弹：必定暴击、无限穿透<br>双契合：<a href="WEAPONS.md#weapon-soda">冰镇汽水</a>、<a href="WEAPONS.md#weapon-pumpkin_lantern">南瓜鬼火灯</a>、<a href="WEAPONS.md#weapon-icicle_volley">冰锥连射</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/pumpkin_lantern.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pumpkin_lantern">南瓜鬼火灯</a>、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-mustard_flamer">芥末喷枪</a>、<img src="images/weapon/soda.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-soda">冰镇汽水</a>、<img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-garlic_aura">大蒜光环</a>、<img src="images/weapon/pepper_mine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pepper_mine">胡椒雷</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-pumpkin">灵体化</a>【无敌潜行】冷却 11s — 灵体化 2.5 秒（无敌），移速 +30%，周围敌人短暂失去目标，穿过敌人时对其造成伤害。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-clear_2">菜园守护者</a>：通关第二章</td></tr>
@@ -302,7 +302,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/coconut.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">椰子拳师 · 重拳格斗</th></tr>
 <tr><td colspan="2"><i>坚硬外壳下是一颗火热的格斗之心。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>重拳出击</b>：契合武器每第 4 拳伤害 ×2.5 并必定眩晕 0.4 秒；连续打同一个敌人每拳伤害 +6%（最多 +30%），打眩晕中的敌人伤害 +35%；每完成一波，永久 +2 最大生命、+2% 伤害</td></tr>
-<tr><td nowrap>属性与特性</td><td>+10 最大生命；+10% 全伤害；+6 近战伤害；+2 护甲；命中 12% 概率眩晕 0.6 秒</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+18% 全伤害；+6 近战伤害；+2 护甲；命中 12% 概率眩晕 0.6 秒</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：格斗、蔬果（52 把，双契合 2 把）<br>契合特效（伤害 +10%）：重拳：每第 4 次攻击造成双倍伤害并大幅击退<br>双契合：<a href="WEAPONS.md#weapon-coconut_gloves">椰壳拳套</a>、<a href="WEAPONS.md#weapon-nut_knuckles">坚果指虎</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/coconut_gloves.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-coconut_gloves">椰壳拳套</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/slingshot.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-slingshot">番茄弹弓</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-garlic_aura">大蒜光环</a>、<img src="images/weapon/onion_boomerang.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-onion_boomerang">洋葱回旋镖</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-coconut">震地拳</a>【周身爆发】冷却 21s — 跃起砸地（期间无敌），对周围敌人造成 220% 伤害并震开，眩晕 1.2 秒并施加 3 层破甲。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-clear_1">厨房清扫</a>：通关第一章</td></tr>
@@ -314,7 +314,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/grape.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">葡萄魔术师 · 幻术大师</th></tr>
 <tr><td colspan="2"><i>一串葡萄组成的魔术师，真真假假难以分辨。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>障眼法</b>：每 8 秒获得 1 秒无敌；契合武器命中 15% 概率变出幻影弹打向另一个敌人（60% 伤害），无敌期间必定触发</td></tr>
-<tr><td nowrap>属性与特性</td><td>+3 最大生命；+1 远程伤害；+1 元素伤害；+4 幸运；受到攻击 20% 概率使敌人混乱</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+10% 全伤害；+1 远程伤害；+1 元素伤害；+4 幸运；受到攻击 20% 概率使敌人混乱</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：枪械、多重射击（38 把，双契合 5 把）<br>契合特效（伤害 +10%）：分裂：每次多 1 发弹丸（近战武器改为连击）<br>双契合：<a href="WEAPONS.md#weapon-grape_shotgun">葡萄霰弹枪</a>、<a href="WEAPONS.md#weapon-lychee_gun">荔枝红包枪</a>、<a href="WEAPONS.md#weapon-macaron_gun">马卡龙连发</a>、<a href="WEAPONS.md#weapon-spore_cannon">孢子炮</a>、<a href="WEAPONS.md#weapon-corn_scatter">玉米散弹</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/grape_shotgun.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-grape_shotgun">葡萄霰弹枪</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/ketchup.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-ketchup">番茄酱瓶</a>、<img src="images/weapon/olive_launcher.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-olive_launcher">橄榄发射器</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-grape">葡萄分身</a>【召唤分身】冷却 9s — 原地留下戴礼帽的幻象 6 秒，吸引敌人追过去，结束时幻象炸开伤害周围敌人。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-crates">开箱达人（金）</a>：累计打开 300 个宝箱</td></tr>
@@ -373,7 +373,7 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/beet.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">甜菜狂战士 · 狂战士</th></tr>
 <tr><td colspan="2"><i>血红的甜菜，越战越勇。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>狂战之血</b>：每损失 10% 生命，契合武器攻速 +6%、范围 +3%；每完成一波，永久 +2 最大生命、+2% 伤害</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>狂战之血</b>：每损失 10% 生命，契合武器攻速 +6%、范围 +3%；每完成一波，永久 +2 最大生命、+4% 伤害</td></tr>
 <tr><td nowrap>属性与特性</td><td>+8 最大生命；+3% 吸血概率；+15% 全伤害；受伤时获得怒气</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：钝器、暴击（52 把，双契合 2 把）<br>契合特效（伤害 +10%）：吸血概率 +3%<br>双契合：<a href="WEAPONS.md#weapon-beet_axe">甜菜狂战斧</a>、<a href="WEAPONS.md#weapon-coal_tongs">炭火钳</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/beet_axe.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-beet_axe">甜菜狂战斧</a>、<img src="images/weapon/fork.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-fork">番茄叉</a>、<img src="images/weapon/rolling_pin.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-rolling_pin">擀面杖</a>、<img src="images/weapon/knife.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife">菜刀</a>、<img src="images/weapon/pan.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pan">平底锅</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-beet">狂暴</a>【自身增益】冷却 13s — 6 秒内获得暴怒（移速、伤害 +30%）与嗜血 3 层（吸血概率 +12%）。</td></tr>
@@ -397,8 +397,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/sweetpotato.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">红薯厨神 · 美食家</th></tr>
 <tr><td colspan="2"><i>烤红薯的香味让人精神百倍。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>美食家</b>：拾取果实时额外获得番茄籽（随波次增加），并在 5 秒内让契合武器攻速 +25%、范围 +20%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+5 最大生命；-5% 全伤害；+20 收获；果实回血翻倍</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>美食家</b>：拾取果实时额外获得番茄籽（随波次增加），并在 5 秒内让契合武器攻速 +25%、范围 +20%；每完成一波，永久 +2 最大生命、+3% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+5% 全伤害；+20 收获；果实回血翻倍</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：厨具、火焰（56 把，双契合 5 把）<br>契合特效（伤害 +10%）：命中 3% 概率掉落果实（每波最多 4 个）<br>双契合：<a href="WEAPONS.md#weapon-skewer">烤串签</a>、<a href="WEAPONS.md#weapon-steam_kettle">蒸汽水壶</a>、<a href="WEAPONS.md#weapon-grill_arc">电烤架</a>、<a href="WEAPONS.md#weapon-coal_tongs">炭火钳</a>、<a href="WEAPONS.md#weapon-pepper_storm_aura">胡椒风暴</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/coal_tongs.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-coal_tongs">炭火钳</a>、<img src="images/weapon/fork.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-fork">番茄叉</a>、<img src="images/weapon/rolling_pin.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-rolling_pin">擀面杖</a>、<img src="images/weapon/knife.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife">菜刀</a>、<img src="images/weapon/pan.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pan">平底锅</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-sweetpotato">烤红薯盛宴</a>【吸取回复】冷却 24s — 震击周围敌人，抛出 3 个烤红薯，8 秒内拾取共回复 10.8% 最大生命，并获得 5 层再生。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-wset_home_kitchen">家常厨具（铜）</a>：单局凑出 2 件【家常厨具】套装武器</td></tr>
@@ -410,7 +410,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/kiwi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">猕猴桃侦探 · 弱点洞察</th></tr>
 <tr><td colspan="2"><i>毛茸茸的侦探，一眼看穿敌人弱点。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>弱点洞察</b>：目标身上每有一种减益，契合武器对它的暴击率 +5%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+3 最大生命；+2 元素伤害；+8% 暴击率；+4 幸运；命中 20% 概率易伤；暴击伤害 +30%</td></tr>
+<tr><td nowrap>属性与特性</td><td>+12 最大生命；+20% 全伤害；+5 元素伤害；+8% 暴击率；+3 护甲；+4 幸运；命中 20% 概率易伤；暴击伤害 +30%</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：锋利、元素（68 把，双契合 3 把）<br>契合特效（伤害 +10%）：打带减益的敌人时施加易伤<br>双契合：<a href="WEAPONS.md#weapon-star_anise_shuriken">八角飞镖</a>、<a href="WEAPONS.md#weapon-salt_aura">海盐结界</a>、<a href="WEAPONS.md#weapon-cumin_star">孜然飞镖</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-mustard_flamer">芥末喷枪</a>、<img src="images/weapon/knife.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife">菜刀</a>、<img src="images/weapon/soda.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-soda">冰镇汽水</a>、<img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-garlic_aura">大蒜光环</a>、<img src="images/weapon/pepper_mine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pepper_mine">胡椒雷</a>、<img src="images/weapon/broccoli_staff.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-broccoli_staff">西兰花法杖</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-kiwi">真相只有一个</a>【群体减益】冷却 15s — 放大镜扫过全屏，对屏内所有敌人造成少量伤害，施加标记与 2 层易伤 6 秒。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-codex_weapons">军火库（银）</a>：在图鉴中发现 25 把武器</td></tr>
@@ -457,8 +457,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/wintermelon.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">冬瓜和尚 · 禅修武僧</th></tr>
 <tr><td colspan="2"><i>心如止水的武僧，以静制动。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>禅定</b>：契合武器 25% 概率连击（60% 伤害）；静止不动时连击率升到 50%，受到的伤害 -25%、每秒回复 2% 最大生命</td></tr>
-<tr><td nowrap>属性与特性</td><td>+5 最大生命；+3 生命再生；+20% 光环伤害；+2 近战伤害；+2 护甲；+15% 闪避；+3 移动速度；闪避成功时获得专注</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>禅定</b>：契合武器 25% 概率连击（60% 伤害）；静止不动时连击率升到 50%，受到的伤害 -25%、每秒回复 2% 最大生命；每完成一波，永久 +3 最大生命、+5% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+3 生命再生；+12% 全伤害；+20% 光环伤害；+2 近战伤害；+2 护甲；+15% 闪避；+3 移动速度；闪避成功时获得专注</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：格斗、钝器（15 把，双契合 2 把）<br>契合特效（伤害 +10%）：连击 25%（站着不动时 50%），站着不动时射程 +20%<br>双契合：<a href="WEAPONS.md#weapon-coconut_gloves">椰壳拳套</a>、<a href="WEAPONS.md#weapon-melon_staff">冬瓜禅杖</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/melon_staff.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-melon_staff">冬瓜禅杖</a>、<img src="images/weapon/rolling_pin.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-rolling_pin">擀面杖</a>、<img src="images/weapon/pan.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pan">平底锅</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/meat_tenderizer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-meat_tenderizer">松肉锤</a>、<img src="images/weapon/baguette_sword.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-baguette_sword">法棍剑</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-wintermelon">金钟罩</a>【无敌潜行】冷却 16s — 罩下金钟 2 秒无敌，持续震开靠近的敌人（首领除外），并获得 5 层坚韧。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-overtime">绝地反击（铜）</a>：在 Boss 狂暴后将其击败 1 次</td></tr>
@@ -482,7 +482,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/sprout.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">豆芽学徒 · 潜力新星</th></tr>
 <tr><td colspan="2"><i>小小的豆芽，却有无限可能。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>厚积薄发</b>：每升 1 级契合武器攻速 +1%（最多 +40%）；每 5 级穿透 +1（最多 +3）</td></tr>
-<tr><td nowrap>属性与特性</td><td>+3 最大生命；+1 护甲；+80% 经验获取；升级时 4 个选项</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+10% 全伤害；+2 护甲；+80% 经验获取；升级时 4 个选项</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：魔法、蔬果（51 把，双契合 5 把）<br>契合特效（伤害 +10%）：每级射程 +1%（最多 +30%）<br>双契合：<a href="WEAPONS.md#weapon-broccoli_staff">西兰花法杖</a>、<a href="WEAPONS.md#weapon-dragonfruit_orb">火龙果法球</a>、<a href="WEAPONS.md#weapon-pumpkin_lantern">南瓜鬼火灯</a>、<a href="WEAPONS.md#weapon-blackberry_wand">黑莓魔杖</a>、<a href="WEAPONS.md#weapon-sprout_wand">新芽魔杖</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/sprout_wand.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-sprout_wand">新芽魔杖</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/slingshot.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-slingshot">番茄弹弓</a>、<img src="images/weapon/pea_shooter.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pea_shooter">豌豆枪</a>、<img src="images/weapon/garlic_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-garlic_aura">大蒜光环</a>、<img src="images/weapon/onion_boomerang.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-onion_boomerang">洋葱回旋镖</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-sprout">拔苗助长</a>【自身增益】冷却 10s — 身体猛地长高，5 秒内打怪经验 +30%，并获得 5 秒 2 层急速。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-levelups">步步高升（银）</a>：累计升级选择 200 次属性</td></tr>
@@ -493,8 +493,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/wasabi.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">山葵爆破手 · 爆破狂人</th></tr>
 <tr><td colspan="2"><i>一点就炸的山葵，冲鼻又致命。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>呛鼻冲击</b>：契合武器的爆炸把范围内的敌人向外呛开（击退 + 减速 45% 2 秒）；范围内敌人越多，余波伤害越高（每只 +6%，最多 60%）</td></tr>
-<tr><td nowrap>属性与特性</td><td>-5 最大生命；+8% 全伤害；+2 元素伤害；击杀 25% 概率爆炸；爆炸施加灼烧；灼烧中的敌人死亡时引燃周围敌人</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>呛鼻冲击</b>：契合武器的爆炸把范围内的敌人向外呛开（击退 + 减速 45% 2 秒）；范围内敌人越多，余波伤害越高（每只 +6%，最多 60%）；每完成一波，永久 +3 最大生命、+4% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+10 最大生命；+15% 全伤害；+2 元素伤害；+2 护甲；击杀 25% 概率爆炸；爆炸施加灼烧；灼烧中的敌人死亡时引燃周围敌人</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：火焰、爆破（51 把，双契合 4 把）<br>契合特效（伤害 +10%）：爆炸范围 +15%，命中附带灼烧<br>双契合：<a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<a href="WEAPONS.md#weapon-bbq_sauce_cannon">烧烤酱炮</a>、<a href="WEAPONS.md#weapon-ember_mine">火炭雷</a>、<a href="WEAPONS.md#weapon-pumpkin_mortar">南瓜迫击炮</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-mustard_flamer">芥末喷枪</a>、<img src="images/weapon/pepper_mine.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pepper_mine">胡椒雷</a>、<img src="images/weapon/skewer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-skewer">烤串签</a>、<img src="images/weapon/pineapple_mace.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pineapple_mace">菠萝流星锤</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-wasabi">冲鼻核弹</a>【发射 AOE】冷却 23s — 向敌群最密处投下山葵核弹，短暂倒数后大爆炸，留下 3 秒毒地持续伤害并灼烧。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-wset_demolition">爆破专家（铜）</a>：单局凑出 2 件【爆破专家】套装武器</td></tr>
@@ -553,8 +553,8 @@
 <table>
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/cabbage.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">卷心菜老兵 · 不屈老兵</th></tr>
 <tr><td colspan="2"><i>剥掉一层还有一层，怎么也打不倒的老兵。</i></td></tr>
-<tr><td nowrap>专属天赋</td><td><b>层层不倒</b>：每局可复活 1 次；每 6 秒净化自身减益；每次净化或复活后 5 秒内契合武器攻速 +30%；每层坚韧使契合武器伤害 +5%</td></tr>
-<tr><td nowrap>属性与特性</td><td>+8 最大生命；+2 生命再生；+3 近战伤害；+2 护甲；受伤时获得 2 层坚韧</td></tr>
+<tr><td nowrap>专属天赋</td><td><b>层层不倒</b>：每局可复活 1 次；每 6 秒净化自身减益；每次净化或复活后 5 秒内契合武器攻速 +30%；每层坚韧使契合武器伤害 +5%；每完成一波，永久 +2 最大生命、+3% 伤害</td></tr>
+<tr><td nowrap>属性与特性</td><td>+8 最大生命；+2 生命再生；+10% 全伤害；+5 近战伤害；+2 护甲；受伤时获得 2 层坚韧</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：厨具、钝器（41 把，双契合 5 把）<br>契合特效（伤害 +10%）：每层坚韧让范围 +4%<br>双契合：<a href="WEAPONS.md#weapon-rolling_pin">擀面杖</a>、<a href="WEAPONS.md#weapon-pan">平底锅</a>、<a href="WEAPONS.md#weapon-meat_tenderizer">松肉锤</a>、<a href="WEAPONS.md#weapon-shock_wok">电磁炒锅</a>、<a href="WEAPONS.md#weapon-coal_tongs">炭火钳</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/pan.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-pan">平底锅</a>、<img src="images/weapon/fork.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-fork">番茄叉</a>、<img src="images/weapon/rolling_pin.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-rolling_pin">擀面杖</a>、<img src="images/weapon/knife.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife">菜刀</a>、<img src="images/weapon/watermelon_hammer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-watermelon_hammer">西瓜锤</a>、<img src="images/weapon/cleaver.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-cleaver">剁骨刀</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-cabbage">不倒金身</a>【自身增益】冷却 15s — 层层菜叶包身 5 秒，获得屏障（受到伤害 -40%）、5 层坚韧与 3 层再生。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-wins">常胜将军（银）</a>：累计通关 10 次</td></tr>
@@ -566,7 +566,7 @@
 <tr><td rowspan="7" align="center" valign="middle"><img src="images/char/blackberry.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">黑莓女巫 · 诅咒术士</th></tr>
 <tr><td colspan="2"><i>林间的黑莓女巫，低声念咒便让敌人枯萎。</i></td></tr>
 <tr><td nowrap>专属天赋</td><td><b>黑暗契约</b>：命中 20% 概率腐烂、8% 概率诅咒；契合武器打中被诅咒的敌人时，把诅咒传给附近 1 个敌人</td></tr>
-<tr><td nowrap>属性与特性</td><td>-2 最大生命；+3 元素伤害；+2 幸运；命中附带腐烂与诅咒；持续伤害可以暴击（按暴击率，×2）</td></tr>
+<tr><td nowrap>属性与特性</td><td>+8 最大生命；+10% 全伤害；+3 元素伤害；+2 护甲；+2 幸运；命中附带腐烂与诅咒；持续伤害可以暴击（按暴击率，×2）</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：持续伤害、魔法（39 把，双契合 2 把）<br>契合特效（伤害 +10%）：打被诅咒的敌人时额外叠 1 层腐烂<br>双契合：<a href="WEAPONS.md#weapon-dragonfruit_orb">火龙果法球</a>、<a href="WEAPONS.md#weapon-blackberry_wand">黑莓魔杖</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/dragonfruit_orb.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-dragonfruit_orb">火龙果法球</a>、<img src="images/weapon/chili_rocket.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-chili_rocket">辣椒火箭</a>、<img src="images/weapon/mustard_flamer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-mustard_flamer">芥末喷枪</a>、<img src="images/weapon/broccoli_staff.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-broccoli_staff">西兰花法杖</a>、<img src="images/weapon/skewer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-skewer">烤串签</a>、<img src="images/weapon/curry_aura.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-curry_aura">咖喱光环</a></td></tr>
 <tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-blackberry">枯萎咒</a>【群体减益】冷却 16s — 在周围展开 6 秒瘴气法阵，区域内敌人每秒被施加诅咒、3 层腐烂与沉默。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-clear_5">腐烂终结</a>：通关第五章，击败腐烂之源</td></tr>

@@ -19,7 +19,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A knight in silver armor who loves getting up close and personal.',
     talent: {
       name: "Knight's Shield",
-      desc: 'Each point of Armor gives favored weapons +2% sweep & blast area (max +40%); hits on enemies with 3+ Armor Break stun for 0.3s',
+      desc: 'Each point of Armor gives favored weapons +2% sweep & blast area (max +40%); hits on enemies with 3+ Armor Break stun for 0.3s; each wave cleared permanently grants +2 Max HP and +2% Damage',
     },
     traits: ['Ranged Damage -50%'],
     skill: {
@@ -59,7 +59,10 @@ export const EN_CHARACTERS: CharactersEn = {
     name: 'Chubby Melon',
     title: 'Heavy Tank',
     desc: 'A big, round bruiser with a seriously thick rind.',
-    talent: { name: 'Thick Rind', desc: 'Take 5% less damage; every 20 Max HP gives favored weapons +4% area (max +50%)' },
+    talent: {
+      name: 'Thick Rind',
+      desc: 'Take 5% less damage; every 20 Max HP gives favored weapons +4% area (max +50%); each wave cleared permanently grants +2 Max HP and +3% Damage',
+    },
     traits: [],
     skill: {
       name: 'Melon Roll',
@@ -289,7 +292,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A blood-red beet who gets stronger the longer the fight goes.',
     talent: {
       name: 'Berserker Blood',
-      desc: 'Every 10% HP lost gives favored weapons +6% attack speed and +3% area; each wave cleared permanently grants +2 Max HP and +2% damage',
+      desc: 'Every 10% HP lost gives favored weapons +6% attack speed and +3% area; each wave cleared permanently grants +2 Max HP and +4% damage',
     },
     traits: ['Gain Rage when damaged'],
     skill: { name: 'Frenzy', desc: 'Gain Enrage (+30% Move Speed and damage) and 3 stacks of Bloodlust (+12% Life Steal Chance) for 6s.' },
@@ -314,7 +317,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'The smell of roasted sweet potato perks everyone right up.',
     talent: {
       name: 'Gourmet',
-      desc: 'Picking up fruit grants bonus seeds (scales with wave) and gives favored weapons +25% attack speed and +20% area for 5s',
+      desc: 'Picking up fruit grants bonus seeds (scales with wave) and gives favored weapons +25% attack speed and +20% area for 5s; each wave cleared permanently grants +2 Max HP and +3% Damage',
     },
     traits: ['Fruit healing doubled'],
     skill: {
@@ -382,7 +385,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A monk with a mind like still water, mastering stillness over motion.',
     talent: {
       name: 'Zen Stillness',
-      desc: 'Favored weapons have a 25% combo chance (60% damage); while standing still it rises to 50%, and you take 25% less damage and regenerate 2% Max HP per second',
+      desc: 'Favored weapons have a 25% combo chance (60% damage); while standing still it rises to 50%, and you take 25% less damage and regenerate 2% Max HP per second; each wave cleared permanently grants +3 Max HP and +5% Damage',
     },
     traits: ['Gain Focus on successful dodge'],
     skill: {
@@ -418,7 +421,7 @@ export const EN_CHARACTERS: CharactersEn = {
     desc: 'A hair-trigger wasabi — it goes right up your nose, and it’s deadly.',
     talent: {
       name: 'Wasabi Blast',
-      desc: 'Favored weapon explosions blast enemies outward (knockback + 45% Slow for 2s); the more enemies caught, the stronger the aftershock (+6% each, up to 60%)',
+      desc: 'Favored weapon explosions blast enemies outward (knockback + 45% Slow for 2s); the more enemies caught, the stronger the aftershock (+6% each, up to 60%); each wave cleared permanently grants +3 Max HP and +4% Damage',
     },
     traits: ['Kills have a 25% chance to explode', 'Explosions inflict Burn', 'Burning enemies ignite nearby foes on death'],
     skill: {
