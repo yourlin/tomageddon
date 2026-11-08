@@ -44,10 +44,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "832800326693df26e45e5c5fbf23162c23237fc3112226babaff19cebeecdeea",
+      "sourceAtlasSha256": "6ffde8efabf5c0eb0f45c1d23551e7ca44a8ef0bd308f3a73c66f397ddc3a3cc",
       "report": "reports/art-pilot/skin-skin_tomato-animation-native.json",
       "locomotionDirectionVerified": false,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": "Actual ketchupBurst cast4frames/damage/10saucepools/delayedentrant slow/4secondzone andslowexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_tomato-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewReviewSourceSha256": "6ffde8efabf5c0eb0f45c1d23551e7ca44a8ef0bd308f3a73c66f397ddc3a3cc",
+      "highPreviewReviewedAt": "2026-11-02T10:56:22.234863+00:00"
     },
     {
       "id": "skin_tomato_2",
@@ -73,10 +80,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "dbedc17abcb0d92da3331b544e799ded9e20accf9e881e1d4ebb341e74bd5267",
+      "sourceAtlasSha256": "b90d5bea4fda2105330cd21ad0c5d4b54f4fbe0a641230c765680ce517758976",
       "report": "reports/art-pilot/skin-skin_tomato_2-animation-native.json",
       "locomotionDirectionVerified": false,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": "Actual ketchupBurst cast4frames/damage/10saucepools/delayedentrant slow/4secondzone andslowexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_tomato_2-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewReviewSourceSha256": "b90d5bea4fda2105330cd21ad0c5d4b54f4fbe0a641230c765680ce517758976",
+      "highPreviewReviewedAt": "2026-11-02T11:13:28.252186+00:00"
     },
     {
       "id": "skin_tomato_3",
@@ -103,10 +117,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "1efd0bd2d33baa6f2414175284f21ce9a43ff4d10b575e700d6af6498c10abe8",
+      "sourceAtlasSha256": "af7a6e4bacdb175a3872e608b472d635e919e9a6f20ed50f31c33da9afd1a429",
       "report": "reports/art-pilot/skin-skin_tomato_3-animation-native.json",
       "locomotionDirectionVerified": false,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": "Actual ketchupBurst cast4frames/damage/10saucepools/delayedentrant slow/4secondzone andslowexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_tomato_3-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewReviewSourceSha256": "af7a6e4bacdb175a3872e608b472d635e919e9a6f20ed50f31c33da9afd1a429",
+      "highPreviewReviewedAt": "2026-11-02T11:30:59.997732+00:00"
     },
     {
       "id": "skin_tomato_4",
@@ -134,10 +155,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "8e2edcab9f3651edc62042fe8063f412df52e0d1c82609de915603e098cd21d5",
+      "sourceAtlasSha256": "36e2f0b07a4cbad56071e0d88acf82cd8d192166a8016424194338f265046181",
       "report": "reports/art-pilot/skin-skin_tomato_4-animation-native.json",
       "locomotionDirectionVerified": false,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": "Actual ketchupBurst cast4frames/damage/10saucepools/delayedentrant slow/4secondzone andslowexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_tomato_4-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewReviewSourceSha256": "36e2f0b07a4cbad56071e0d88acf82cd8d192166a8016424194338f265046181",
+      "highPreviewReviewedAt": "2026-11-02T11:51:42.676873+00:00"
     },
     {
       "id": "skin_carrot",
@@ -164,7 +192,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 28,
-      "sourceAtlasSha256": "b0d3982d5538b9dabeed312615cc5ac7fc5f065f2785734ad7280e8789c86a92",
+      "sourceAtlasSha256": "d5708510f22a37a2a2cf2ba493c7f3328aba4135f59e8895f72a60fd79afe4a7",
       "report": "reports/art-pilot/skin-skin_carrot-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -177,7 +205,12 @@
         "cases": 6,
         "finalAccepted": false
       },
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "d5708510f22a37a2a2cf2ba493c7f3328aba4135f59e8895f72a60fd79afe4a7",
+      "highPreviewReviewedAt": "2026-11-02T13:07:17.101917+00:00"
     },
     {
       "id": "skin_carrot_2",
@@ -203,7 +236,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 28,
-      "sourceAtlasSha256": "3559e58ed9ab0981675e51af7de1c94f6e94fdceb139f8c94d402c074dbd49fc",
+      "sourceAtlasSha256": "39ea875c471de264b8ce03ae1bb559a68450896229d37ceaee9c6ac735ebb8e7",
       "report": "reports/art-pilot/skin-skin_carrot_2-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -216,7 +249,12 @@
         "cases": 6,
         "finalAccepted": false
       },
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "39ea875c471de264b8ce03ae1bb559a68450896229d37ceaee9c6ac735ebb8e7",
+      "highPreviewReviewedAt": "2026-11-02T13:42:42.663543+00:00"
     },
     {
       "id": "skin_carrot_3",
@@ -244,7 +282,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 28,
-      "sourceAtlasSha256": "3b129153771cf10142cbcf892056234720749c6d19a96cc0f4ae309551ec4710",
+      "sourceAtlasSha256": "0f2a8c8fcc3142d98764607c811bc2e87d308990fd2a1d5cf868035ee6b046df",
       "report": "reports/art-pilot/skin-skin_carrot_3-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -257,7 +295,12 @@
         "cases": 6,
         "finalAccepted": false
       },
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "0f2a8c8fcc3142d98764607c811bc2e87d308990fd2a1d5cf868035ee6b046df",
+      "highPreviewReviewedAt": "2026-11-02T14:23:40.543760+00:00"
     },
     {
       "id": "skin_carrot_4",
@@ -284,7 +327,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 28,
-      "sourceAtlasSha256": "174c49bf19c0066edf17d70cd24cfe69b4962229b33766e2117b58038d21b92c",
+      "sourceAtlasSha256": "1f685f659bb5f3ecd2314ff5ba8a96f0bb58d93dd984b223ebe8598515da987d",
       "report": "reports/art-pilot/skin-skin_carrot_4-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -297,7 +340,12 @@
         "cases": 6,
         "finalAccepted": false
       },
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "1f685f659bb5f3ecd2314ff5ba8a96f0bb58d93dd984b223ebe8598515da987d",
+      "highPreviewReviewedAt": "2026-11-02T15:16:05.693778+00:00"
     },
     {
       "id": "skin_chili",
@@ -324,9 +372,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "41d990102206ab6810b2fc93bb5fac15f3e7909deb81497a42dcbad48245d06f",
-      "report": "reports/art-pilot/skin-skin_chili-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "358099d8000163d5fba8953183559989bcb2bbf0fac68742f07814826017fca4",
+      "report": "reports/art-pilot/skin_chili-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual flameWave expandingring/ordered single90and180distancehits/outside600unaffected/burn3stacks/expiry cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_chili-skill-motion-native.json",
+      "gaitCorrection": "Authored independent opposite-contact replaces frontal kick;move-sheet6 compiled andfresh3tier playback/facing/6actualskill passed;continuousvisual finalpending",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "358099d8000163d5fba8953183559989bcb2bbf0fac68742f07814826017fca4",
+      "highPreviewReviewedAt": "2026-11-02T16:01:12.576635+00:00"
     },
     {
       "id": "skin_chili_2",
@@ -352,9 +407,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "6d9dc1989aeded6c6cc171b9a3f9eede1b5e7b1f023943f837bbfcb0628e2326",
-      "report": "reports/art-pilot/skin-skin_chili_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "260efdf6a8cdbf07f3cb7c6624c2ce173698bb25bec9190c363bd23c7d044785",
+      "report": "reports/art-pilot/skin_chili_2-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual flameWave expandingring/ordered single90and180distancehits/outside600unaffected/burn3stacks/expiry cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_chili_2-skill-motion-native.json",
+      "gaitCorrection": "Independent opposite-contact replaces camera-facing kick;fresh3tier playback/facing/actualskill6 passed;continuousvisual pending",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "260efdf6a8cdbf07f3cb7c6624c2ce173698bb25bec9190c363bd23c7d044785",
+      "highPreviewReviewedAt": "2026-11-02T16:15:56.449322+00:00"
     },
     {
       "id": "skin_chili_3",
@@ -382,9 +444,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "f330fc71266ac36028cbfe9682c122ccfe5546d03e81d2e7d724d5ed042e2e22",
-      "report": "reports/art-pilot/skin-skin_chili_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "aa2eb1d1653747ed820fa5abf9b47dab4ebd04774224a18197fa3a5ce28cde89",
+      "report": "reports/art-pilot/skin_chili_3-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual flameWave expandingring/ordered single90and180distancehits/outside600unaffected/burn3stacks/expiry cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_chili_3-skill-motion-native.json",
+      "gaitCorrection": "Independent opposite-contact replaces camera-facing kick;fresh3tier playback/facing/actualskill6 passed;continuousvisual pending",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "aa2eb1d1653747ed820fa5abf9b47dab4ebd04774224a18197fa3a5ce28cde89",
+      "highPreviewReviewedAt": "2026-11-02T16:27:12.241240+00:00"
     },
     {
       "id": "skin_chili_4",
@@ -410,9 +480,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "c98f1bce4755802cd0a8ffed6afc4ebc97e456093d7d64b1f1d087a3281cc341",
-      "report": "reports/art-pilot/skin-skin_chili_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "a327676a12fa5ee147f0dfebd931db91f3fc5d4927d35b971fec7900f25b7a77",
+      "report": "reports/art-pilot/skin_chili_4-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual flameWave expandingring/ordered single90and180distancehits/outside600unaffected/burn3stacks/expiry cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_chili_4-skill-motion-native.json",
+      "gaitCorrection": "Independent oppositecontact replaces camera-facing kick;fresh3tier playback/facing/actualskill6 passed;continuousvisual pending",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "a327676a12fa5ee147f0dfebd931db91f3fc5d4927d35b971fec7900f25b7a77",
+      "highPreviewReviewedAt": "2026-11-02T16:45:31.071070+00:00"
     },
     {
       "id": "skin_corn",
@@ -438,9 +516,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "f3b32c87ee19f5f31c8dfd576df1cdc1ffd8c7bcb41cc0ab9fe065b41a8a02ee",
+      "sourceAtlasSha256": "1491637e713688fb61f77d464cd31711052271d855fa24b6e649b8cc45465d20",
       "report": "reports/art-pilot/skin-skin_corn-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual popcorn18kernels/ballisticflight/18delayed52radius explosions/damage/90puffs/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_corn-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "1491637e713688fb61f77d464cd31711052271d855fa24b6e649b8cc45465d20",
+      "highPreviewReviewedAt": "2026-11-02T17:12:26.860962+00:00"
     },
     {
       "id": "skin_corn_2",
@@ -467,9 +552,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "c7b33c573721ec057e02036f46fd314df4757cb64297e69f3115503a282c9e3c",
+      "sourceAtlasSha256": "56fa8673065c1eb3143510020d57f9689386bffd1e6286ab1c195e8831112c11",
       "report": "reports/art-pilot/skin-skin_corn_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual popcorn18kernels/ballisticflight/18delayed52radius explosions/damage/90puffs/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_corn_2-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "56fa8673065c1eb3143510020d57f9689386bffd1e6286ab1c195e8831112c11",
+      "highPreviewReviewedAt": "2026-11-02T18:05:25.255366+00:00"
     },
     {
       "id": "skin_corn_3",
@@ -497,9 +589,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "73c87be382e83400f97e9ea023cd59faa6710d68760363d3a762fd1010d10162",
+      "sourceAtlasSha256": "3b29f53ceda5e0ece8dca49d308a03d9ffc0bd020c03f785d99b4b1b4ef67fc5",
       "report": "reports/art-pilot/skin-skin_corn_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual popcorn18kernels/ballisticflight/18delayed52radius explosions/damage/90puffs/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_corn_3-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "3b29f53ceda5e0ece8dca49d308a03d9ffc0bd020c03f785d99b4b1b4ef67fc5",
+      "highPreviewReviewedAt": "2026-11-02T18:39:08.060582+00:00"
     },
     {
       "id": "skin_corn_4",
@@ -526,9 +625,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "470652fa82cbc9bf58df007c220927c9c25139b525a15cce8e5e59e5ba4010cf",
+      "sourceAtlasSha256": "a817dabc5b559ab23ff28b69e150b9156071225fa724d71edbf5927d8289984e",
       "report": "reports/art-pilot/skin-skin_corn_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual popcorn18kernels/ballisticflight/18delayed52radius explosions/damage/90puffs/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_corn_4-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "a817dabc5b559ab23ff28b69e150b9156071225fa724d71edbf5927d8289984e",
+      "highPreviewReviewedAt": "2026-11-02T18:47:39.664570+00:00"
     },
     {
       "id": "skin_watermelon",
@@ -555,7 +661,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 24,
-      "sourceAtlasSha256": "8f09117c3d88f15f02c6b66b68b9796d3b195b49d597bb07785315470226619e",
+      "sourceAtlasSha256": "79138f83017714dc658e10bb74a8f6a2d519e3652ffdf5d7c6a64c6cced6cb09",
       "report": "reports/art-pilot/skin-skin_watermelon-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -568,7 +674,12 @@
         "finalAccepted": false
       },
       "rollKeyframesReviewed": true,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "79138f83017714dc658e10bb74a8f6a2d519e3652ffdf5d7c6a64c6cced6cb09",
+      "highPreviewReviewedAt": "2026-11-02T18:58:10.872833+00:00"
     },
     {
       "id": "skin_watermelon_2",
@@ -594,7 +705,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 24,
-      "sourceAtlasSha256": "f93349954926d2a8c98a7f9f49b3b9c9bf254d5013962191fd652f164b9ebd44",
+      "sourceAtlasSha256": "4141f9aad542ddb42ea036a795fe9261397c6d697ca2f67d2cdbbd741d6aa9a0",
       "report": "reports/art-pilot/skin-skin_watermelon_2-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -607,7 +718,12 @@
         "finalAccepted": false
       },
       "rollKeyframesReviewed": true,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "4141f9aad542ddb42ea036a795fe9261397c6d697ca2f67d2cdbbd741d6aa9a0",
+      "highPreviewReviewedAt": "2026-11-02T19:11:42.899369+00:00"
     },
     {
       "id": "skin_watermelon_3",
@@ -635,7 +751,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 24,
-      "sourceAtlasSha256": "9b020961273d56f1878c3e9b2b2cb4d294277fe7906c6e83219818ca40842727",
+      "sourceAtlasSha256": "cff31651ffc1abb999a6afe83b33f98befbfd1f3e70da41679da45a595525c6a",
       "report": "reports/art-pilot/skin-skin_watermelon_3-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -648,7 +764,12 @@
         "finalAccepted": false
       },
       "rollKeyframesReviewed": true,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "cff31651ffc1abb999a6afe83b33f98befbfd1f3e70da41679da45a595525c6a",
+      "highPreviewReviewedAt": "2026-11-02T19:25:56.573680+00:00"
     },
     {
       "id": "skin_watermelon_4",
@@ -674,7 +795,7 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 24,
-      "sourceAtlasSha256": "9f4098910fdf2f7347ee5282d16b15b9c292d0fca2628736a4e9208841742510",
+      "sourceAtlasSha256": "202d0fd7ba97265201ccbda8c69d56630da6ea61be8dee6ce170e2adac4475eb",
       "report": "reports/art-pilot/skin-skin_watermelon_4-animation-native.json",
       "locomotionDirectionVerified": false,
       "realSkillAnimationCoverage": {
@@ -687,7 +808,12 @@
         "finalAccepted": false
       },
       "rollKeyframesReviewed": true,
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "202d0fd7ba97265201ccbda8c69d56630da6ea61be8dee6ce170e2adac4475eb",
+      "highPreviewReviewedAt": "2026-11-02T19:54:57.358357+00:00"
     },
     {
       "id": "skin_lemon",
@@ -713,9 +839,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "ce9871b9c8709e48a177fba824ea28ac194cb3c1f1e86eb486f46a97b59cca5d",
+      "sourceAtlasSha256": "19b6914cd0d360ab42020b04fc6e38d997621ca4a9df94c4b4e1987946530713",
       "report": "reports/art-pilot/skin-skin_lemon-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual lemonVanish cast4/visibletranslucentstealth/2.5sinvulnerability anddecoy/criticalrevealambush/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_lemon-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "19b6914cd0d360ab42020b04fc6e38d997621ca4a9df94c4b4e1987946530713",
+      "highPreviewReviewedAt": "2026-11-02T20:22:49.627360+00:00"
     },
     {
       "id": "skin_lemon_2",
@@ -742,9 +875,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "afdabdbf1d1fd429d14a1fd692ea9f07ea933a1292073e55ef7e931abd28a872",
+      "sourceAtlasSha256": "63fabf0c4e576893b021197a2878b84578300d8cc15a31175fcc69bb00dabe5d",
       "report": "reports/art-pilot/skin-skin_lemon_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual lemonVanish cast4/visibletranslucentstealth/2.5sinvulnerability/decoy/criticalambush hits actual nearestliving enemy/damage/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_lemon_2-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "63fabf0c4e576893b021197a2878b84578300d8cc15a31175fcc69bb00dabe5d",
+      "highPreviewReviewedAt": "2026-11-02T20:38:00.415736+00:00"
     },
     {
       "id": "skin_lemon_3",
@@ -772,9 +912,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "48312f71d4e62a593a432559fa89a8204384afd819962086f3f378beb81fdafa",
+      "sourceAtlasSha256": "030de05f2b925d95ed68edc7d0807a7534bd15af9f805b538c5fd61dd56e315f",
       "report": "reports/art-pilot/skin-skin_lemon_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual lemonVanish cast4/visibletranslucentstealth/2.5sinvulnerability/decoy/criticalambush hits actual nearestliving enemy/damage/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_lemon_3-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "030de05f2b925d95ed68edc7d0807a7534bd15af9f805b538c5fd61dd56e315f",
+      "highPreviewReviewedAt": "2026-11-02T20:53:51.444396+00:00"
     },
     {
       "id": "skin_lemon_4",
@@ -800,9 +947,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "9e9fedf658d35c807f87abb84fba9cf59e270f94e18997d9ca9d022ee9d95e67",
+      "sourceAtlasSha256": "28be9a87da2360f6d4ee171e72ed96121fe73509a5bce674336f32b09f146123",
       "report": "reports/art-pilot/skin-skin_lemon_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual lemonVanish cast4/visibletranslucentstealth/2.5sinvulnerability/decoy/criticalambush hits actual nearestliving enemy/damage/cleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_lemon_4-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "28be9a87da2360f6d4ee171e72ed96121fe73509a5bce674336f32b09f146123",
+      "highPreviewReviewedAt": "2026-11-02T21:11:40.027941+00:00"
     },
     {
       "id": "skin_eggplant",
@@ -830,9 +984,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "02944d1169f41c9dcbda934fed7114555e6d775dba06a63f479dd805d2e84220",
+      "sourceAtlasSha256": "460a028660fa20e667c14f466109a6e535ce22db57ee48897c4097fbd099c827",
       "report": "reports/art-pilot/skin-skin_eggplant-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual screenlightning cast4frames/two viewporttargets damageandstun/outsideviewportuntouched/boltendpoints/stunexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_eggplant-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "460a028660fa20e667c14f466109a6e535ce22db57ee48897c4097fbd099c827",
+      "highPreviewReviewedAt": "2026-11-02T21:30:36.502255+00:00"
     },
     {
       "id": "skin_eggplant_2",
@@ -859,9 +1020,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "b7d815863d027bca71490fabf11066e330e856173bf09d04ccb3c27eb800cca0",
+      "sourceAtlasSha256": "05e3a4b2a9b50744b0a7aea05ce27cb14ed1a3a07613ef4eb3af46e954985623",
       "report": "reports/art-pilot/skin-skin_eggplant_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual screenlightning cast4frames/two viewporttargets damageandstun/outsideviewportuntouched/boltendpoints/stunexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_eggplant_2-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "05e3a4b2a9b50744b0a7aea05ce27cb14ed1a3a07613ef4eb3af46e954985623",
+      "highPreviewReviewedAt": "2026-11-02T21:52:38.289558+00:00"
     },
     {
       "id": "skin_eggplant_3",
@@ -887,9 +1055,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "32f52f222ffb3802eecee0f62d12101b70566a131a07655498241728d22d88b5",
+      "sourceAtlasSha256": "cec8cb384f6a04d74d0a3cc9dc057abd8a15c1bfbb6668f0d128699ac53a21ef",
       "report": "reports/art-pilot/skin-skin_eggplant_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual screenlightning cast4frames/two viewporttargets damageandstun/outsideviewportuntouched/boltendpoints/stunexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_eggplant_3-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "cec8cb384f6a04d74d0a3cc9dc057abd8a15c1bfbb6668f0d128699ac53a21ef",
+      "highPreviewReviewedAt": "2026-11-02T22:12:44.553273+00:00"
     },
     {
       "id": "skin_eggplant_4",
@@ -917,9 +1092,16 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "4e7cb486e2f19973e7b3dee8a796e085202e0e1d42425092fdc52e4943ff4ebd",
+      "sourceAtlasSha256": "24dbee82e9a87340392f9ac1cc6ca61f2d47be1dd1877c2bbf61d52769c89f08",
       "report": "reports/art-pilot/skin-skin_eggplant_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual screenlightning cast4frames/two viewporttargets damageandstun/outsideviewportuntouched/boltendpoints/stunexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_eggplant_4-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "24dbee82e9a87340392f9ac1cc6ca61f2d47be1dd1877c2bbf61d52769c89f08",
+      "highPreviewReviewedAt": "2026-11-02T22:26:13.631533+00:00"
     },
     {
       "id": "skin_garlic",
@@ -946,9 +1128,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "b4d5e22e43f394e389f33d53098813a950c8c158bd42b86ac04e3baf05e754a9",
-      "report": "reports/art-pilot/skin-skin_garlic-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "a6f827cb1219ffda67e58644bec0f1a1cd297ba60cc9419a7cc911495d55438f",
+      "report": "reports/art-pilot/skin_garlic-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual drain cast4/12targetsdamaged bleed3/outsideuntouched/skillheal10percent cap separatefromlifesteal/bleedexpiry;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_garlic-skill-motion-native.json",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "a6f827cb1219ffda67e58644bec0f1a1cd297ba60cc9419a7cc911495d55438f",
+      "highPreviewReviewedAt": "2026-11-02T22:43:58.972701+00:00"
     },
     {
       "id": "skin_garlic_2",
@@ -975,9 +1165,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "6b836db670653172df315f7340d907138d593501df5ff89dbd350777d878618c",
-      "report": "reports/art-pilot/skin-skin_garlic_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "3f1451c9157076b455bb04bb19073424ff61ec19a3d47634f2541386edd0f136",
+      "report": "reports/art-pilot/skin_garlic_2-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_garlic_2-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "3f1451c9157076b455bb04bb19073424ff61ec19a3d47634f2541386edd0f136",
+      "highPreviewReviewedAt": "2026-11-02T23:10:18.698244+00:00"
     },
     {
       "id": "skin_garlic_3",
@@ -1005,9 +1203,17 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "ea94cbd09fc34f09916714472479b8aea9460b60f104f03e5660cef233c0447c",
-      "report": "reports/art-pilot/skin-skin_garlic_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "22a5825314725c6a5341e87bf5f96d0806aa92a972e1ccf7c8a10cd500ca3168",
+      "report": "reports/art-pilot/skin_garlic_3-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_garlic_3-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": true,
+      "highPreviewSourceAtlasSha256": "22a5825314725c6a5341e87bf5f96d0806aa92a972e1ccf7c8a10cd500ca3168",
+      "highPreviewReviewedAt": "2026-11-02T23:34:22.771324+00:00"
     },
     {
       "id": "skin_garlic_4",
@@ -1033,9 +1239,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "9231654ae0c27147883580598ae9c6e27b738de799764c6e37a4ee5e99a976e8",
-      "report": "reports/art-pilot/skin-skin_garlic_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "8a6df6cdbe7318a90f3516ab6bba2988c3354f5b9bca222715293642ce9a52fc",
+      "report": "reports/art-pilot/skin_garlic_4-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_garlic_4-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_blueberry",
@@ -1061,10 +1273,18 @@
       "integrated": true,
       "basicVerified": true,
       "finalAccepted": false,
-      "frames": 20,
-      "sourceAtlasSha256": "710f8cf677f98e206fed11f2a9aba1b8060a244c7df89498b05321f426789284",
-      "report": "reports/art-pilot/skin-skin_blueberry-animation-native.json",
-      "locomotionDirectionVerified": false
+      "frames": 24,
+      "sourceAtlasSha256": "d3d43039561bc69e6f96cb523f6fc0774fc8632d9f28b20804a6bc4355309509",
+      "report": "reports/art-pilot/skin_blueberry-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "knownIncompleteSkillActions": [],
+      "skillSpawnIntegration": "24authoredframes including spawn20..23;freshpipelinepassed;finalvisualpending",
+      "realSkillAnimationCoverage": "Actual twinclones matching equippedskin/sharedtexture,playercast4,clone spawn4/death4,shieldblockeddeath/naturalexpiry/explosions/weaponclonereferencecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_blueberry-skill-motion-native.json",
+      "gaitCorrection": "Fourindependentrightwardposes compiled;freshpipeline/capturedGame左右4frames passed;source andgamekeyframes inspected;normal/slowcontinuousfinalpending",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_blueberry_2",
@@ -1089,10 +1309,18 @@
       "integrated": true,
       "basicVerified": true,
       "finalAccepted": false,
-      "frames": 20,
-      "sourceAtlasSha256": "997e23e46be60b01ec09d37be6ebb69fea43aed6cf3ed654a267c71472f6d038",
-      "report": "reports/art-pilot/skin-skin_blueberry_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "frames": 24,
+      "sourceAtlasSha256": "9c03714bc6ac95b97c51c4852863f6afc68c66d2b6ee8c38448a5fa07bb84cea",
+      "report": "reports/art-pilot/skin_blueberry_2-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "knownIncompleteSkillActions": [],
+      "skillSpawnIntegration": "24authoredframes including spawn20..23;freshpipelinepassed;finalvisualpending",
+      "realSkillAnimationCoverage": "Actual twinclones matchingequippedskin/sharedtexture/playercast4/clone spawn4 death4/shieldblockeddeath/naturalexpiry/explosions/referencecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_blueberry_2-skill-motion-native.json",
+      "gaitCorrection": "Fourindependentrightwardposes compiled;fresh3tierplayback/facing/6twinskillcasespassed;continuousvisualpending",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_blueberry_3",
@@ -1117,10 +1345,18 @@
       "integrated": true,
       "basicVerified": true,
       "finalAccepted": false,
-      "frames": 20,
-      "sourceAtlasSha256": "43f77b1f2fc6822bf044ba78de46310c384903cdb50338c020b58a6e40d4439b",
-      "report": "reports/art-pilot/skin-skin_blueberry_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "frames": 24,
+      "sourceAtlasSha256": "0829b6d6afc9dd9ee530eca2d2d926ca028d67d281e5b12fa67e50503b8b003d",
+      "report": "reports/art-pilot/skin_blueberry_3-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "knownIncompleteSkillActions": [],
+      "skillSpawnIntegration": "24authoredframes including spawn20..23;freshpipelinepassed;finalvisualpending",
+      "realSkillAnimationCoverage": "Actual twinclones matching equippedskin/sharedtexture,playercast4,clone spawn4/death4,shieldblockeddeath/naturalexpiry/explosions/weaponclonereferencecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_blueberry_3-skill-motion-native.json",
+      "gaitCorrection": "Fourindependentrightwardkeyframescompiled;freshpipelinepassed;normal/slowfinalvisualpending",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_blueberry_4",
@@ -1147,10 +1383,18 @@
       "integrated": true,
       "basicVerified": true,
       "finalAccepted": false,
-      "frames": 20,
-      "sourceAtlasSha256": "2d0dfb601ed9d815e348812bc8d3eeb5a58a91fca686d67e25f5f002aaddb449",
-      "report": "reports/art-pilot/skin-skin_blueberry_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "frames": 24,
+      "sourceAtlasSha256": "cc2117d407ec9837738f2fa665a84f09d25777ecda99e539d88370921b4a4e4d",
+      "report": "reports/art-pilot/skin_blueberry_4-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "knownIncompleteSkillActions": [],
+      "skillSpawnIntegration": "24authoredframes including spawn20..23;freshpipelinepassed;finalvisualpending",
+      "realSkillAnimationCoverage": "Actual twinclones matchingequippedskin/sharedtexture/playercast4/clone spawn4 death4/shieldblockeddeath/naturalexpiry/explosions/referencecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_blueberry_4-skill-motion-native.json",
+      "gaitCorrection": "Fourindependentrightwardposes compiled;fresh3tierplayback/facing/6twinskillcasespassed;normal/slowcontinuousvisualpending",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pineapple",
@@ -1178,9 +1422,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "98400fb4743599439f0691df4b48c271cc8c3ac23f52ca2474dbcc821bd52cf1",
-      "report": "reports/art-pilot/skin-skin_pineapple-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "b5135742e384acf40119164441b24b6507b5f85eeded15e8f996a7ea32f772d7",
+      "report": "reports/art-pilot/skin_pineapple-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual cannonVolley cast4/3cannonballs220ms spacing/3positiveexplosions guaranteedDrop/projectilecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pineapple-skill-motion-native.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pineapple_2",
@@ -1207,9 +1457,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "a2a7fd315188e6efed510f603b2bc02b206068be4577661f79ceb7567b08ba16",
-      "report": "reports/art-pilot/skin-skin_pineapple_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "d5d9b58de7e0f0b4ff2a7e601c89fab2adc5647d3d4f421263f875d41991f5f9",
+      "report": "reports/art-pilot/skin_pineapple_2-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual cannonVolley cast4/3cannonballs220ms spacing/3positiveexplosions guaranteedDrop/projectilecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pineapple_2-skill-motion-native.json",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pineapple_3",
@@ -1235,9 +1491,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "7e1b34af32dca1ef2d2f5c76505a0bb93c7278aad600002cfd0bbc333d505a1a",
-      "report": "reports/art-pilot/skin-skin_pineapple_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "f069ae1a664e7ddf2c5bcd158882c92ad2cca0d651047fc149b4d898f615a5dc",
+      "report": "reports/art-pilot/skin_pineapple_3-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual cannonVolley cast4/3cannonballs220ms spacing/3positiveexplosions guaranteedDrop/projectilecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pineapple_3-skill-motion-native.json",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pineapple_4",
@@ -1265,9 +1527,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "608531b9a3399b3d8828318a20b3925de3ac121dd8a3b61e200d3415dbe51f13",
-      "report": "reports/art-pilot/skin-skin_pineapple_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "f169a3eff5e53049acada7e84217d35102c80928e6826230f0f68af714887346",
+      "report": "reports/art-pilot/skin_pineapple_4-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual cannonVolley cast4/3cannonballs220ms spacing/3positiveexplosions guaranteedDrop/projectilecleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pineapple_4-skill-motion-native.json",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pumpkin",
@@ -1297,7 +1565,10 @@
       "frames": 20,
       "sourceAtlasSha256": "31b4c2f620b89a50ec7b18c21ec2e09a5bcc8d5602dcdecd8d239686dbd9941f",
       "report": "reports/art-pilot/skin-skin_pumpkin-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual pumpkinPhase cast4frames/2.5svisibletranslucentinvulnerability/1.5sdecoy/contactdamage600mscadence/ghostfireexpirycleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pumpkin-skill-motion-native.json",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_pumpkin_2",
@@ -1326,7 +1597,10 @@
       "frames": 20,
       "sourceAtlasSha256": "9efab465758d53203cc5b55b353c677e13c43524674bc5d09b0be536e0712f2b",
       "report": "reports/art-pilot/skin-skin_pumpkin_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual pumpkinPhase cast4frames/2.5svisibletranslucentinvulnerability/1.5sdecoy/contactdamage600mscadence/ghostfireexpirycleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pumpkin_2-skill-motion-native.json",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_pumpkin_3",
@@ -1354,7 +1628,10 @@
       "frames": 20,
       "sourceAtlasSha256": "f72dfd0fe237c5119e0a284419d51c7b4eca46299b85beecf1e969997c547eb5",
       "report": "reports/art-pilot/skin-skin_pumpkin_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual pumpkinPhase cast4frames/2.5svisibletranslucentinvulnerability/1.5sdecoy/contactdamage600mscadence/ghostfireexpirycleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pumpkin_3-skill-motion-native.json",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_pumpkin_4",
@@ -1384,7 +1661,10 @@
       "frames": 20,
       "sourceAtlasSha256": "05acaeac4d5ca5211103f0d86ca00daf5c54777fea2642eb2045bd93a4c343d8",
       "report": "reports/art-pilot/skin-skin_pumpkin_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual pumpkinPhase cast4frames/2.5svisibletranslucentinvulnerability/1.5sdecoy/contactdamage600mscadence/ghostfireexpirycleanup;6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_pumpkin_4-skill-motion-native.json",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_strawberry",
@@ -1412,9 +1692,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "34ba52bae6cbde150797a52cc7bccdcbb6d19dd26a7c84d72b6ec0c83b8d5c03",
-      "report": "reports/art-pilot/skin-skin_strawberry-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "900b652355abf86cd8674b6a00f86535bf2431e497e1872bdaee2b995434256d",
+      "report": "reports/art-pilot/skin_strawberry-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_strawberry-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_strawberry_2",
@@ -1440,9 +1726,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "93e4d22ac8c878e55af780d9abe6d806f0341f86e1a1878415d24fe5a8686446",
-      "report": "reports/art-pilot/skin-skin_strawberry_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "75182a3b1e7311220c53c8a01b7270af7d656e575051863e752bea0012f70d9c",
+      "report": "reports/art-pilot/skin_strawberry_2-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_strawberry_2-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_strawberry_3",
@@ -1468,9 +1760,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "7febc1e91a261d1ca083045091a00165e6c914305b4ac7e79a3a53bcc5be2481",
-      "report": "reports/art-pilot/skin-skin_strawberry_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "e08b263c2306d80dae1312967ff1965e992985052b4dab38051c6de981cc9090",
+      "report": "reports/art-pilot/skin_strawberry_3-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_strawberry_3-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual idolStage cast4/6s haste rage buffs/spotlights notes/effect cleanup;6 tier-direction cases passed",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_strawberry_4",
@@ -1497,9 +1795,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "29c1414f46efd5b2010e041ce6c32de21330a570aee1b5c2c8e275c92f8ceb91",
-      "report": "reports/art-pilot/skin-skin_strawberry_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "612bdf6b775399079c244d7bc78b2f53137df7fd486ab3bbfa5a2bbf297ef072",
+      "report": "reports/art-pilot/skin_strawberry_4-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_strawberry_4-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual idolStage cast4/6s haste rage buffs/spotlights notes/effect cleanup;6 tier-direction cases passed",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_ginger",
@@ -1526,9 +1830,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "03ded3137c2d6d087a69253bdfa773c920b8856c602de3322600371a7c6dc293",
-      "report": "reports/art-pilot/skin-skin_ginger-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "9ea31175150f8c971dcbdffaafaa48644e7029f92ee17eefaaeac50659c8effd",
+      "report": "reports/art-pilot/skin_ginger-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_ginger-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_ginger_2",
@@ -1555,9 +1865,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "9ca7b86b1c4ad3ccdda92ccdfdef658fd6daf2e6b80ef84c88076995b2ad63c5",
-      "report": "reports/art-pilot/skin-skin_ginger_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "bfb906447e2f1b9608a42a724c8cfb81cb40bc82cf09ea4e100a29a7933387d8",
+      "report": "reports/art-pilot/skin_ginger_2-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_ginger_2-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_ginger_3",
@@ -1583,9 +1899,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "74090afd71bf137c5568ef0915db11f7b248a1c02c4a13502670181b8adf7bc3",
-      "report": "reports/art-pilot/skin-skin_ginger_3-animation-native.json",
-      "locomotionDirectionVerified": false
+      "sourceAtlasSha256": "d2ac730a3f969da997e9c42d99e62b8262abc4f4a4a5df4833c5fcdc38851f68",
+      "report": "reports/art-pilot/skin_ginger_3-pipeline.json",
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_ginger_3-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_ginger_4",
@@ -1613,9 +1935,15 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "5032dc7b9dc6bb3eb6aaf905b676f18c293da2a181859cbb96f1546eae0d3a4c",
+      "sourceAtlasSha256": "3aaa7acecd9824e103b75d1c0fa45c981b675b8f409be4cb2ccc3ab7375276ce",
       "report": "reports/art-pilot/skin-skin_ginger_4-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillReport": "reports/art-pilot/skin_ginger_4-skill-motion-native.json",
+      "realSkillAnimationCoverage": "Actual skill route, authored cast and tier/direction cases passed; see realSkillReport",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_avocado",
@@ -1642,9 +1970,14 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "60df5df5c2aa6e19698c6c840007cfdee211142535480a5ad97199ce267f6a5f",
+      "sourceAtlasSha256": "f335898b78328310c754c14b2d45d38c0a68f824dc1b8419b2c663da132d6326",
       "report": "reports/art-pilot/skin-skin_avocado-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual CoreOverload cast4frames/fivepositive-radius damageexplosions;three tiers/bothdirections6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_avocado-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_avocado_2",
@@ -1671,9 +2004,14 @@
       "basicVerified": true,
       "finalAccepted": false,
       "frames": 20,
-      "sourceAtlasSha256": "076a407797b925d0f69940c5dd3dd69b0943d0a21a0ea768ac406800e1eb406f",
+      "sourceAtlasSha256": "0f757ecfdbb504f714e7a2fc918cff5c92db4dc6075dbc0f72a70d56e4fc06dc",
       "report": "reports/art-pilot/skin-skin_avocado_2-animation-native.json",
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "realSkillAnimationCoverage": "Actual CoreOverload cast4frames/fivepositive-radius damageexplosions;three tiers/bothdirections6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_avocado_2-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_avocado_3",
@@ -1700,9 +2038,14 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "5aff2f57480c075c0b9cfd3d661cbc15627938fb8a92dd8872d901399c07f544",
+      "sourceAtlasSha256": "1a72d990a70ce752b31d9bae2c026f69a4da9ae27013633307d090bb0a34e512",
       "report": "reports/art-pilot/skin-skin_avocado_3-animation-native.json",
-      "locomotionKeyframesReviewed": true
+      "locomotionKeyframesReviewed": true,
+      "realSkillAnimationCoverage": "Actual CoreOverload cast4frames/fivepositive-radius damageexplosions;three tiers/bothdirections6cases passed",
+      "realSkillReport": "reports/art-pilot/skin_avocado_3-skill-motion-native.json",
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_avocado_4",
@@ -1731,7 +2074,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "ded09846178f9e13ff254cdcfb5576e95bfc19c1d3c369c597d94d7798a5001f",
+      "sourceAtlasSha256": "976df11b6251391c0cd1f1b624379dc1444560b8dcca100118eff02152cf3dc7",
       "report": "reports/art-pilot/skin-skin_avocado_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "realSkillAnimationCoverage": {
@@ -1742,7 +2085,10 @@
         "report": "reports/art-pilot/skin_avocado_4-skill-motion-native.json",
         "cases": 6,
         "finalAccepted": false
-      }
+      },
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_onion",
@@ -1769,7 +2115,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "a7c680e24b350bf9d07528538ed119151f5ad866da139ec9324c8f697521743a",
+      "sourceAtlasSha256": "9f8dc99d64321968ccbb8eb0b64be6fd3d5416b1f8d6103f597504a2df12a97d",
       "report": "reports/art-pilot/skin-skin_onion-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "realSkillAnimationCoverage": {
@@ -1780,7 +2126,10 @@
         "report": "reports/art-pilot/skin_onion-skill-motion-native.json",
         "cases": 6,
         "finalAccepted": false
-      }
+      },
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_onion_2",
@@ -1807,7 +2156,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "974a012a14211744d9137ded1cb1ecc34a7ffcaf97529f57720109bb4b882e43",
+      "sourceAtlasSha256": "c88611819096b37ff8d80a75ec51d99b1921b69fbc6371eacb34a22c3b5d2e19",
       "report": "reports/art-pilot/skin-skin_onion_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -1821,7 +2170,9 @@
           19
         ],
         "report": "reports/art-pilot/skin_onion_2-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_onion_3",
@@ -1849,7 +2200,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "206a283ec997981a0d8513a83c5afe0b5061750dd7e795a1b6d0765bbc1d9fa8",
+      "sourceAtlasSha256": "2527318a5a2ad19b5ea8d6ec3350adb13fd24efbf2ea4db86a3cea84c4bbbe76",
       "report": "reports/art-pilot/skin-skin_onion_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -1863,7 +2214,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_onion_3-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_onion_4",
@@ -1891,7 +2243,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "41aa13e27ec0a52af2243f2d69b463bab748ecd4f8cfee5910d782d8353758be",
+      "sourceAtlasSha256": "56709d2b349726be6560b45c63ade55e7be089e0e6039570afe0c3bd0b57e959",
       "report": "reports/art-pilot/skin-skin_onion_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -1905,7 +2257,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_onion_4-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_mushroom",
@@ -1933,7 +2286,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "6999da5d0c42686b0245dd38c113ee7f8fd95a875645dcd016989f6a39757d8e",
+      "sourceAtlasSha256": "9746af337896f2b981649784407104573e18ee16e92b640feb7a8911f32afb17",
       "report": "reports/art-pilot/skin-skin_mushroom-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -1947,7 +2300,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_mushroom-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_mushroom_2",
@@ -1974,7 +2328,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "41ad3b445af14993d795f369ed73156db1a93d0d3a8af8b787d7a812e72875a0",
+      "sourceAtlasSha256": "3b5f22fba79e0d41e3f6850b915bbf1ba54e9e77b8ccd363b79522ce9eb557ab",
       "report": "reports/art-pilot/skin-skin_mushroom_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -1988,7 +2342,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_mushroom_2-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_mushroom_3",
@@ -2017,7 +2372,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "8472cb7683af3b041428b0487a5cb68ac8b22a8779f328fe8ad909490b8e88fe",
+      "sourceAtlasSha256": "ca91beb714f49630154c7827e192024745a5054ae3c28429873b8c69108bfce7",
       "report": "reports/art-pilot/skin-skin_mushroom_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2031,7 +2386,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_mushroom_3-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_mushroom_4",
@@ -2059,7 +2415,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "1e3d4ffa96ff0f228e16aa6e8c4e4b3047c77c34cbc698789ebbd507319e4edb",
+      "sourceAtlasSha256": "1810683bfb964f454514bf282ba821089b14881a9194c1ef779638c3971e2a8c",
       "report": "reports/art-pilot/skin-skin_mushroom_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2073,7 +2429,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_mushroom_4-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_coconut",
@@ -2101,7 +2458,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "4bd1e2914233e77c16fc42ff05177c4adaa0d0eeffc7472f8080d5e4f9927e32",
+      "sourceAtlasSha256": "53a748944563e4bff4d7f1889b368ecec45fae84f51fb4135c158ffce439b528",
       "report": "reports/art-pilot/skin-skin_coconut-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2115,7 +2472,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_coconut-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_coconut_2",
@@ -2142,7 +2500,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "5792521f165f9cba8de1b7ba4e754ba9a779675f4f5a0d6ec4b13f85a7b3ae58",
+      "sourceAtlasSha256": "5dba85f6baebe0bf8a2e6e3b28c354721a9b28440d560865b9fb6b1c977408a5",
       "report": "reports/art-pilot/skin-skin_coconut_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2156,7 +2514,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_coconut_2-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_coconut_3",
@@ -2185,7 +2544,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "c42adbe7c714e139fbd15c5f752dc60ea22929257ac53fce7cff9ff10980ed22",
+      "sourceAtlasSha256": "c09aa413f3d01df8b13797ec5b7e2ffb9637c51a3d27ab28a7950c7d35dfb186",
       "report": "reports/art-pilot/skin-skin_coconut_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2199,7 +2558,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_coconut_3-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_coconut_4",
@@ -2226,7 +2586,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "9eba28ebb0c6c9f0eae5778797e39bc8c293e896523ccdb288c16a174ed5aae9",
+      "sourceAtlasSha256": "93246a3f87453e953fc00151bf6ca7b34aebdf08f3ddb11d27f8aba2081d3229",
       "report": "reports/art-pilot/skin-skin_coconut_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2240,7 +2600,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_coconut_4-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_grape",
@@ -2267,7 +2628,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "837349257261968e275a3656465ee7e82961ec925126dfb008f8a6575980d932",
+      "sourceAtlasSha256": "7345b297322a44c8d9138bfc342c4649287ca7a2fdc670d17b954e2e93015113",
       "report": "reports/art-pilot/skin-skin_grape-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2285,7 +2646,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_grape-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_grape_2",
@@ -2313,7 +2675,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "26312f0089a402dde52d2e580c7d2f27a173307eb42a93f096f105033d3cebc1",
+      "sourceAtlasSha256": "b6a43757094dea25c602492223ad2252efdaaa14ef8ec9faa739e18ba66f247c",
       "report": "reports/art-pilot/skin-skin_grape_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2331,7 +2693,8 @@
           19
         ],
         "report": "reports/art-pilot/skin_grape_2-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_grape_3",
@@ -2360,7 +2723,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "65a30dda94cc767442d27438148ab1f19cf1c3b9123ba363c4180e7ae07d2958",
+      "sourceAtlasSha256": "39cdf927b5fc3197dd268f106f3b00e0b8ddfe82ebac567c28e86d87dcbaab72",
       "report": "reports/art-pilot/skin-skin_grape_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2378,7 +2741,9 @@
           19
         ],
         "report": "reports/art-pilot/skin_grape_3-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_grape_4",
@@ -2406,7 +2771,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "2170aa1d8c5b8c74fcc8c28b36a92471bb7f6a49ce9b00911790ac6a023c2178",
+      "sourceAtlasSha256": "f4c7275bdcfc13aa0bd33d4b9be21bebf1aed10547434edd3594cd532995afbf",
       "report": "reports/art-pilot/skin-skin_grape_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2424,7 +2789,9 @@
           19
         ],
         "report": "reports/art-pilot/skin_grape_4-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_cherry",
@@ -2451,7 +2818,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "ac87c5acd6cafe1be70d7d14041f9846f022a9d0efbd7c15d3229977ef8fda8f",
+      "sourceAtlasSha256": "df77444252f91eb2d2e0280fdce9127d2ef8c38f3d61bc95e9c66be655ff2150",
       "report": "reports/art-pilot/skin-skin_cherry-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2465,7 +2832,9 @@
           19
         ],
         "report": "reports/art-pilot/skin_cherry-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_cherry_2",
@@ -2494,7 +2863,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "de56e109feb73a57f810d745368a4e7fc481c32e7fbb34089b371d427178f81c",
+      "sourceAtlasSha256": "d98364d88e611352ea85fd9e982d7765623476aadafbe06a71278bc950aeb781",
       "report": "reports/art-pilot/skin-skin_cherry_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2508,7 +2877,9 @@
           19
         ],
         "report": "reports/art-pilot/skin_cherry_2-skill-motion-native.json"
-      }
+      },
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_cherry_3",
@@ -2550,7 +2921,9 @@
         "report": "reports/art-pilot/skin_cherry_3-skill-motion-native.json"
       },
       "report": "reports/art-pilot/skin-skin_cherry_3-animation-native.json",
-      "sourceAtlasSha256": "75778ba46c21d964c3d62e23fb467423892dc7e8c19f46dde8f80cdd18810faf"
+      "sourceAtlasSha256": "93442215e3ceb9ebb3b3ff5e94fd1f86d8e53b916379f8ed58196f2ade0cf788",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_cherry_4",
@@ -2591,7 +2964,9 @@
         "report": "reports/art-pilot/skin_cherry_4-skill-motion-native.json"
       },
       "report": "reports/art-pilot/skin-skin_cherry_4-animation-native.json",
-      "sourceAtlasSha256": "ddecfeb3846bad547cdfcd7556da15c398a1d351b4afab1a2953f18797652313"
+      "sourceAtlasSha256": "39f5a4ebbc9896568d1e31b75d91d367787f62302d372f2fea3b5412b1cbaeb1",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pea",
@@ -2632,7 +3007,9 @@
         ],
         "report": "reports/art-pilot/skin_pea-skill-motion-native.json"
       },
-      "sourceAtlasSha256": "d48db86550d7953016297c9e5b63fece7b2282d5720efde376895f691954f47e"
+      "sourceAtlasSha256": "65bafb03caf3392076e1d62a52526a5313b3688d0183df124b62e74eaba737f1",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pea_2",
@@ -2674,7 +3051,9 @@
         "report": "reports/art-pilot/skin_pea_2-skill-motion-native.json"
       },
       "report": "reports/art-pilot/skin-skin_pea_2-animation-native.json",
-      "sourceAtlasSha256": "9494de5d02d69dcaa853f15b1b2964418dd6c6d563b6680c267c9d09022f08c8"
+      "sourceAtlasSha256": "e868cb07614e61ee902912dfe43ba45b3b8ccdbf871a7f90a8991b44f2c19f87",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pea_3",
@@ -2717,7 +3096,9 @@
         "report": "reports/art-pilot/skin_pea_3-skill-motion-native.json"
       },
       "report": "reports/art-pilot/skin-skin_pea_3-animation-native.json",
-      "sourceAtlasSha256": "089b20c7ae928b81c98e65cf4ffc0184b89f3ce72949226dafbb1c56483bbd21"
+      "sourceAtlasSha256": "effb5df79056b0f9ce17f94660230143159eff4730cbf3b9dbe8d9bcb7fb75a3",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pea_4",
@@ -2758,7 +3139,9 @@
         "report": "reports/art-pilot/skin_pea_4-skill-motion-native.json"
       },
       "report": "reports/art-pilot/skin-skin_pea_4-animation-native.json",
-      "sourceAtlasSha256": "6e5ac1f45d2a4e6d634ec42463a07c5c503e6ea4b54a989267c8ac1e4042db08"
+      "sourceAtlasSha256": "9f7c13dd8529952a1ade180df09627d34ddb278560163b6ed7e6002adfb1b06c",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_peach",
@@ -2800,7 +3183,9 @@
         ],
         "report": "reports/art-pilot/skin_peach-skill-motion-native.json"
       },
-      "sourceAtlasSha256": "5656b720632d96c187ca8b3a319f28c0e9394c69c39f9514c4de76d79b04d3fb"
+      "sourceAtlasSha256": "01d0c7aa3b0b8cac11d827ee2c1e0b59a23201b3cf0614e91ec3ede8e4ba7083",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_peach_2",
@@ -2842,7 +3227,9 @@
         "report": "reports/art-pilot/skin_peach_2-skill-motion-native.json"
       },
       "report": "reports/art-pilot/skin-skin_peach_2-animation-native.json",
-      "sourceAtlasSha256": "1e771b165c0ad66b5e95d28fa2a9d2b077636440ca8104274cf582a916c51f0f"
+      "sourceAtlasSha256": "c04113ee101396a875f1e1827d5e1dba8ca23c4153f0c010788e0cc15c5e1169",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_peach_3",
@@ -2870,11 +3257,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "c934fbcd922a9b9b2c9c6969535a88c8c8950152703c3c8523dc44f538b888c0",
+      "sourceAtlasSha256": "ca40d1d3c0a02a85213a6a5a9f51f1f5bc2b79f7b81c47a13af76678b716c6e1",
       "report": "reports/art-pilot/skin_peach_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "angelLight: cast frames 16-19; 6 tier/facing cases passed"
+      "realSkillAnimationCoverage": "angelLight: cast frames 16-19; 6 tier/facing cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_peach_4",
@@ -2901,11 +3290,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "17c6b684d36d327709d587d747e1cbb4954b916b7f69e613f88376e171700e7b",
+      "sourceAtlasSha256": "149920a63f08f9b68f3859a449d10c9d4f805d54b0f6c7dce441a4c6efbdeee2",
       "report": "reports/art-pilot/skin_peach_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "angelLight: cast frames 16-19; 6 tier/facing cases passed"
+      "realSkillAnimationCoverage": "angelLight: cast frames 16-19; 6 tier/facing cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_dragonfruit",
@@ -2933,7 +3324,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "5b206bec9249137b500140069db7e011ec0e80dcc1ef6d885157770e01070ec7",
+      "sourceAtlasSha256": "37a401e02def87abf455ff5f6cf42189ced810a82c69b4d4acca054533fc8a67",
       "report": "reports/art-pilot/skin-skin_dragonfruit-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "realSkillAnimationCoverage": {
@@ -2944,7 +3335,10 @@
         "report": "reports/art-pilot/skin_dragonfruit-skill-motion-native.json",
         "cases": 6,
         "finalAccepted": false
-      }
+      },
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_dragonfruit_2",
@@ -2972,7 +3366,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "7385e6994398dd8a4b1f715f9e3c1c730678ddf4368fcf1f8d8c6e541c11fe89",
+      "sourceAtlasSha256": "fa799344409eee1ba3acfbc7225df0d77a440df32c796afd6992dce5a1980285",
       "report": "reports/art-pilot/skin-skin_dragonfruit_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "realSkillAnimationCoverage": {
@@ -2983,7 +3377,10 @@
         "report": "reports/art-pilot/skin_dragonfruit_2-skill-motion-native.json",
         "cases": 6,
         "finalAccepted": false
-      }
+      },
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_dragonfruit_3",
@@ -3010,7 +3407,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "e18c30f967418690180d1b2a1e1691186bdc7d6a64cf6d89bf9cd03bb3b425f3",
+      "sourceAtlasSha256": "da622b3714ac18f3d95d161265fd48c44482c4493047bda2d6508f7c668f902d",
       "report": "reports/art-pilot/skin-skin_dragonfruit_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "realSkillAnimationCoverage": {
@@ -3021,7 +3418,10 @@
         "report": "reports/art-pilot/skin_dragonfruit_3-skill-motion-native.json",
         "cases": 6,
         "finalAccepted": false
-      }
+      },
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_dragonfruit_4",
@@ -3050,7 +3450,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "2987a85bb6608860a2def4a40282aebe26a658bd125bb67b7f70947afc96cefc",
+      "sourceAtlasSha256": "e14e07fec20aaacb494539e1e3f1730226c02000bd1c5d67654533301dba027f",
       "report": "reports/art-pilot/skin-skin_dragonfruit_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "realSkillAnimationCoverage": {
@@ -3061,7 +3461,10 @@
         "report": "reports/art-pilot/skin_dragonfruit_4-skill-motion-native.json",
         "cases": 6,
         "finalAccepted": false
-      }
+      },
+      "limbOcclusionVerified": false,
+      "continuousGameVisualVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_beet",
@@ -3089,11 +3492,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "33e3e47cb5f9f26ace1e8518511fa90a4ebb12e339b78b88d2a9c6ef6c4ad28b",
+      "sourceAtlasSha256": "08a1a4e4e8ee9850a9f77089aa1a70f683304041be7f2a8685b81be496901f22",
       "report": "reports/art-pilot/skin_beet-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "berserk: cast frames16-19, enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+      "realSkillAnimationCoverage": "berserk: cast frames16-19, enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_beet_2",
@@ -3122,11 +3527,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "f8ccb4dcd878240254db324d55627e9ff127a07533bbe635a3f724d4b2360924",
+      "sourceAtlasSha256": "e1f7b2b59b03e27a1562ab26922bfcff12457a86c0648c2a4278579b384705fc",
       "report": "reports/art-pilot/skin_beet_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "berserk cast16-19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+      "realSkillAnimationCoverage": "berserk cast16-19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_beet_3",
@@ -3153,11 +3560,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "5128948392738aede096c4f8253fd3358543ed6eeb64947eb960838c9c32411b",
+      "sourceAtlasSha256": "d90ec972cc1656e2b0442581848bd41b5ce33b5123aeba2df822345f3fd01c0c",
       "report": "reports/art-pilot/skin_beet_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "berserk cast16-19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+      "realSkillAnimationCoverage": "berserk cast16-19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_beet_4",
@@ -3185,11 +3594,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "acc05301fa8d03f6f12834a0354e331bfbc19a7666649c7c5b1852962e8971ab",
+      "sourceAtlasSha256": "2705eded3f86946f4f0315f55ef45e47246f67024fb29180b4d55664d55e83f5",
       "report": "reports/art-pilot/skin_beet_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "berserk cast17,18,16,19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed"
+      "realSkillAnimationCoverage": "berserk cast17,18,16,19; enrage/vampiric activation/expiry, aura cleanup, no generic scale; 6 cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_asparagus",
@@ -3218,11 +3629,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 24,
-      "sourceAtlasSha256": "c68a2cf1ad0ffed24115c04410963ef1e64e8bc1d61ccbbda924fd86613ba9b0",
+      "sourceAtlasSha256": "542e79e70c3fb9e527a6ced64ca33d4a7eecc0d59a46c13eea52f95ee43a8caf",
       "report": "reports/art-pilot/skin_asparagus-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "piercingArrow: windup20-23 for400ms, cast16-19, aimed beam line hits and mark/offline exclusion;6cases passed"
+      "realSkillAnimationCoverage": "piercingArrow: windup20-23 for400ms, cast16-19, aimed beam line hits and mark/offline exclusion;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_asparagus_2",
@@ -3250,11 +3663,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 24,
-      "sourceAtlasSha256": "b2a824535da44e1cc0dc741349ec2145086c4ef7f69581c9192b43585470feb9",
+      "sourceAtlasSha256": "0aea385ac670ca33a6d828c54b5b070bceefad04bfaba1491c3182ff6a68b426",
       "report": "reports/art-pilot/skin_asparagus_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed"
+      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_asparagus_3",
@@ -3282,11 +3697,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 24,
-      "sourceAtlasSha256": "81edb033e087c4900029c26b18b5f672e0534894c0c6e57c87fc90fc34e9b465",
+      "sourceAtlasSha256": "bcbc41e75a4e570218393d7cdbdd19c0510137dbf4f1014b56390ae0708b56d3",
       "report": "reports/art-pilot/skin_asparagus_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed"
+      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_asparagus_4",
@@ -3313,11 +3730,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 24,
-      "sourceAtlasSha256": "f9325eefcdb44089adf1913cf65ceda6910ecb4b7d3953db8cd987c35b73b0e9",
+      "sourceAtlasSha256": "722958937ef1a8128953da8d81d5821a85d0a20bac0b430af938b6aeeaf051cb",
       "report": "reports/art-pilot/skin_asparagus_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed"
+      "realSkillAnimationCoverage": "piercingArrow:windup20-23 for400ms cast16-19 aimedbeam linehits mark/offlineexclusion;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_sweetpotato",
@@ -3346,11 +3765,15 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "2932894de724f31785046939ad10ab38288fdebe54c072af09e25777dcc480ab",
+      "sourceAtlasSha256": "f2ad069e5553f1309eb4b5e0399b1c408966847ffa6b88616698dbcd6fa1b6ef",
       "report": "reports/art-pilot/skin_sweetpotato-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed"
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false,
+      "highPreviewReviewSourceSha256": "68dd79a82d902b762672b5f5f8a6d917513fe19a19a6e6a4789b047656f83760",
+      "highPreviewReviewedAt": "2026-11-02T08:48:28.411935+00:00"
     },
     {
       "id": "skin_sweetpotato_2",
@@ -3378,11 +3801,15 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "f11465ea69459d7ca55f3f5a560acc00a035974cfa22526e63d3c83ebd2e8e50",
+      "sourceAtlasSha256": "e634eea15c4d9cee1ba41fd823aeae28ae41de29c71cbed159d957f454d8d5f2",
       "report": "reports/art-pilot/skin_sweetpotato_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture"
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false,
+      "highPreviewReviewSourceSha256": "57796d6b062eeaba97b5b564925f03a11ce297f684ae0904bbf582dd28015962",
+      "highPreviewReviewedAt": "2026-11-02T08:41:56.047066+00:00"
     },
     {
       "id": "skin_sweetpotato_3",
@@ -3409,11 +3836,15 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "02391e4b1f18f084585b69a4df1199a25d5a15a2e78ad30b5a8c4f6f77411c19",
+      "sourceAtlasSha256": "b5ef92cc48d47c2239dcf14aa6a6f3bc492f8b511c0714cf2165376cf41041ea",
       "report": "reports/art-pilot/skin_sweetpotato_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture"
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false,
+      "highPreviewReviewSourceSha256": "717f2c82c66b4faa038808d445c0471f3a52dafe1c0f49c35df416c321169ff9",
+      "highPreviewReviewedAt": "2026-11-02T08:53:48.744919+00:00"
     },
     {
       "id": "skin_sweetpotato_4",
@@ -3442,11 +3873,15 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "580b0b7704fb4451ef865a70659afa24eb2137dae2e36d231b326732381959c6",
+      "sourceAtlasSha256": "1e3f50a75e29835b96089799f2944fa4e82ee524afc94c080ac0054334612af7",
       "report": "reports/art-pilot/skin_sweetpotato_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture"
+      "realSkillAnimationCoverage": "yamFeast cast16-19;three actual pickups heal or8s expiry;regen5;6cases passed on clear-ground fixture",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false,
+      "highPreviewReviewSourceSha256": "fb1b4ef627c8b5497e626a5da2361d015ba7f2966c11234d711fa8de09b3f7eb",
+      "highPreviewReviewedAt": "2026-11-02T09:14:55.044607+00:00"
     },
     {
       "id": "skin_kiwi",
@@ -3475,11 +3910,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "39bed77ea61182e70c4999f6e60a89907d97d4ec5381dadcf74ec5da79347f1e",
+      "sourceAtlasSha256": "d8d911f7b8bb14051dfb6dbbcd19e67a557c392636c2ef4e45e142e7009ab105",
       "report": "reports/art-pilot/skin_kiwi-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "detectiveScan cast16-19;screen targets once/mark/vulnerable2 offscreenexcluded lens+reticle cleanup;6casespassed"
+      "realSkillAnimationCoverage": "detectiveScan cast16-19;screen targets once/mark/vulnerable2 offscreenexcluded lens+reticle cleanup;6casespassed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_kiwi_2",
@@ -3506,11 +3943,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "b552450745f7a4c807df3074fb6ccf306ced40d38ebf6962a49eb562c353f9b8",
+      "sourceAtlasSha256": "ab3610053dde27b9a9d0bd3c6937af178127c091a3fbd97d3f1581ce1351e52b",
       "report": "reports/art-pilot/skin_kiwi_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "detectiveScan cast16-19;screen targets once/mark/vulnerable2 offscreenexcluded lens+reticle cleanup;6casespassed"
+      "realSkillAnimationCoverage": "detectiveScan cast16-19;screen targets once/mark/vulnerable2 offscreenexcluded lens+reticle cleanup;6casespassed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_kiwi_3",
@@ -3537,11 +3976,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "44086201d5e21b411a868941c122d69911ba2f0f6792788920e5a33630c80f74",
+      "sourceAtlasSha256": "6fb07910ca91e276e157fcc3d3f1f0348d2e0c1e034500e6e40003a9e72913f2",
       "report": "reports/art-pilot/skin_kiwi_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual detectiveScan 6cases passed"
+      "realSkillAnimationCoverage": "actual detectiveScan 6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_kiwi_4",
@@ -3573,8 +4014,10 @@
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
       "realSkillAnimationCoverage": "actual detectiveScan 6cases passed",
-      "sourceAtlasSha256": "508036fceab11fe57eea9a5a6dfae48ab47918005935e8b5a1a153be0e8868b1",
-      "report": "reports/art-pilot/skin_kiwi_4-pipeline.json"
+      "sourceAtlasSha256": "d7c0e3b2d2bb4e587c9119cbcd33da20b867bdeb539fad6e75333363304ac523",
+      "report": "reports/art-pilot/skin_kiwi_4-pipeline.json",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_lychee",
@@ -3602,11 +4045,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "cf168983ac3299795cd7b59d3c4b47b04d223f7fc3759bd71b63e0ef2a37b96d",
+      "sourceAtlasSha256": "72eb04624770a24592ae06e3e5bf15af691b6a7637d247c5874f2874e6c01a0f",
       "report": "reports/art-pilot/skin_lychee-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_lychee_2",
@@ -3633,11 +4078,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "fb8e82017593956ada11ab90d8d165443c6e44ac1cd894eaa67aa31db41c169b",
+      "sourceAtlasSha256": "dd161c909e9d501ed7673b65cce90ef767c48c6011e68418da9ce83764a128ff",
       "report": "reports/art-pilot/skin_lychee_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_lychee_3",
@@ -3666,11 +4113,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "bdf1f38be23b703d67116b751876ebb8597c6dc145e017741790e9fc5cea5e8b",
+      "sourceAtlasSha256": "2a0082bd707ba915e8e99c539148ea790a9cea60ec067d0b380b00148dab491f",
       "report": "reports/art-pilot/skin_lychee_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_lychee_4",
@@ -3698,11 +4147,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "c2d4c4d32d5e95372c3e3410f0ca482ee4b948f2ecae3fecb5a9030114f8b83c",
+      "sourceAtlasSha256": "9ec3f73f4444b3a0937c3fe1296dba441f2a68b65e7aac3cc992ecb28e67c52c",
       "report": "reports/art-pilot/skin_lychee_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup"
+      "realSkillAnimationCoverage": "actual luckyClovers6cases passed: lucky5/focus3,4orbitglyphs and cleanup",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_durian",
@@ -3730,11 +4181,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "a28c93f8276a3cae298d517ba9e59011553ebfc5827aec8564192a38489836c2",
+      "sourceAtlasSha256": "ea1159b255bc18a13fe01491ff8dc81a4184a174017f10b4d156d3eb9718e0c2",
       "report": "reports/art-pilot/skin_durian-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual stinkAura6cases:14clouds statuspoison/weaken/confuse and cleanup; stationary targetfixture"
+      "realSkillAnimationCoverage": "actual stinkAura6cases:14clouds statuspoison/weaken/confuse and cleanup; stationary targetfixture",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_durian_2",
@@ -3762,11 +4215,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "259c966e0e8ed3f0f5213ef1940129da7b293dcfe73ae90ca8ebb71082652202",
+      "sourceAtlasSha256": "e107754061af87e31d36d0641be74454458976f1b1c3440dccf835407f09e713",
       "report": "reports/art-pilot/skin_durian_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual stinkAura6cases:14clouds poison/weaken/confuse and cleanup"
+      "realSkillAnimationCoverage": "actual stinkAura6cases:14clouds poison/weaken/confuse and cleanup",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_durian_3",
@@ -3793,11 +4248,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "6184769a8188ac5169a2cae83e0406b827776fb662dbafac7c89017369bc557a",
+      "sourceAtlasSha256": "fcd3c8fac4f1511052c25d29ca67fc8bc41a0fcb707260daf2d4293a7a799398",
       "report": "reports/art-pilot/skin_durian_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual stinkAura 6 cases passed"
+      "realSkillAnimationCoverage": "actual stinkAura 6 cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_durian_4",
@@ -3826,11 +4283,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "db4005fb38b35190708fadbbbc0437104b90644f8923c9c2e680842092a6ff62",
+      "sourceAtlasSha256": "5acc0c6f80753eaac8a17b936b0a4a99c62e348c270e668ea1c3754beaae64c9",
       "report": "reports/art-pilot/skin_durian_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual stinkAura 6 cases passed"
+      "realSkillAnimationCoverage": "actual stinkAura 6 cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_bellpepper",
@@ -3857,11 +4316,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "c9e53ae1f15a0fe00641d80598f6f9bb1efcc08c601da7849e4cee85da464bf2",
+      "sourceAtlasSha256": "bd0179678e56eb867bad551d5c327f3f29568d3f702fe70fd59bcdd7e084b523",
       "report": "reports/art-pilot/skin_bellpepper-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed after fixture correction"
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed after fixture correction",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_bellpepper_2",
@@ -3888,11 +4348,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "1db3d8e680c829242478c5e7971a2a9235eb35193eda9d0fdc789757f7c62b17",
+      "sourceAtlasSha256": "df9bc777e3c6f91ec80863b8637645af7fbf517f72f49a628278284d0a9aba01",
       "report": "reports/art-pilot/skin_bellpepper_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed"
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_bellpepper_3",
@@ -3924,7 +4385,8 @@
       "report": "reports/art-pilot/skin_bellpepper_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed"
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_bellpepper_4",
@@ -3953,11 +4415,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "f9bfcc4215ec4250513cb88158073eda724d921bb77b250ce9b88d257c975d0c",
+      "sourceAtlasSha256": "45fc5aa57852413286063e4db854733e5d4a635fe9b2dc8dae07fe65b8473899",
       "report": "reports/art-pilot/skin_bellpepper_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed"
+      "realSkillAnimationCoverage": "actual droneSupport 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wintermelon",
@@ -3985,11 +4448,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "e9ad28253eb420c0c67a00aac45ef6a0defa80c93fca047ce72b232a4ec8b75d",
+      "sourceAtlasSha256": "41e1fa8c46f3c053135725c2493b63e8ae180d82add15cc0ba4b6977bdfe395b",
       "report": "reports/art-pilot/skin_wintermelon-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed after real Boss fixture correction"
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed after real Boss fixture correction",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wintermelon_2",
@@ -4016,11 +4480,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "c4dfa5230fa70e76d096012e42403d638732c3eb7056c5308fc0725b3e708e19",
+      "sourceAtlasSha256": "d166ec23f8f523fd1d586cf39ccf1ff4c55761a0bcdf1a75a65caf481e97195f",
       "report": "reports/art-pilot/skin_wintermelon_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed"
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wintermelon_3",
@@ -4049,11 +4514,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "9cee934e97adcf183e3f51b16f15e37a8833c8a13d2395c757329aeba59e6963",
+      "sourceAtlasSha256": "87c7598b9c22040ec606bb6116b98dc3672717ce2fbba39de56ac689ef292f81",
       "report": "reports/art-pilot/skin_wintermelon_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed"
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wintermelon_4",
@@ -4080,11 +4546,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "ccfc70b08c7184386491de8e740f5cdfff183069261d8b46603d7eb431650806",
+      "sourceAtlasSha256": "28dfee5db4074ba82560f0dca1aca695d5f6006b30fcd30bfccbab344f06caba",
       "report": "reports/art-pilot/skin_wintermelon_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed"
+      "realSkillAnimationCoverage": "actual goldenBell 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_bittermelon",
@@ -4112,11 +4579,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "d2dabac34ef25b7233bea92e06d9d1876f7961e1f2f810c250c0b130aedb6c69",
+      "sourceAtlasSha256": "21f4acdf26659368ff3a99c54d604e43e2b4a154c4cb3f245cf2e8bbfa45bc43",
       "report": "reports/art-pilot/skin_bittermelon-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_bittermelon_2",
@@ -4143,11 +4611,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "1f48c00193f3598ad99dfbdea03c538cf3520379a7e3ddaa774b10c7c105f3e7",
+      "sourceAtlasSha256": "bf65715807b54b6f774964301f1eeeb06f169b888741ef861e1853ac7ab6acf4",
       "report": "reports/art-pilot/skin_bittermelon_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_bittermelon_3",
@@ -4176,11 +4645,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "725712f15fcf1b321e3c5bc5f0d02955be62d9fd617a25c21c281b8f517503c4",
+      "sourceAtlasSha256": "f96ed2c699c959821436654fc76612f5cd8fa27271a7a9e44adf6d587af6917c",
       "report": "reports/art-pilot/skin_bittermelon_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_bittermelon_4",
@@ -4207,11 +4677,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "8f7be175631dd49eb2781d21c41edb08b6bf9399e19ab2c163a581fd16d2feae",
+      "sourceAtlasSha256": "dfe0575c0e6767faeeee2199ce7ef1c5901f7b659a0ee9dbea43a2c5e8a4f813",
       "report": "reports/art-pilot/skin_bittermelon_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual iceField 6 cases passed"
+      "realSkillAnimationCoverage": "actual iceField 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_sprout",
@@ -4238,11 +4709,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "3522e8b2a5b67d43d9f676ec3f07d375a0041be41578351f0f1fb62108b88655",
+      "sourceAtlasSha256": "7a6eddc797de188fd858961a1ea35f0059639b73b8459436271aee4a8aa0c14c",
       "report": "reports/art-pilot/skin_sprout-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_sprout_2",
@@ -4270,11 +4742,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "0eda0bd68e8644c6e5c8b1c75237b38613b2ac165bc7ad3742034d49d2613af8",
+      "sourceAtlasSha256": "3b114984238c5be32a38fcf4b96eaf2baadc474cb5dee66804f09f081ca7d0d9",
       "report": "reports/art-pilot/skin_sprout_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_sprout_3",
@@ -4302,11 +4775,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "78682a7f94a2efb750f18b014893d5a0dfb94b2c0331eff6aee51dbdacb9e62e",
+      "sourceAtlasSha256": "49a11bfec78fdc86b81df6235772cbd7589b948d3a92154395221795f4b48b4e",
       "report": "reports/art-pilot/skin_sprout_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_sprout_4",
@@ -4334,11 +4808,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "8eb3dddf39bcccde6d8a9d1a07de03e380c304bb1f95cd89e28c67845a2b5f70",
+      "sourceAtlasSha256": "7ba7d6ebf51ea250a1355131144a429f60eb3f4a2ffda4a1ce5db90eb9ff8944",
       "report": "reports/art-pilot/skin_sprout_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed"
+      "realSkillAnimationCoverage": "actual sproutGrow 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wasabi",
@@ -4365,11 +4840,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "70c0287b4feb511e38e6a420440934d096a31b1cebb5a047555bbd423c828d2f",
+      "sourceAtlasSha256": "beccc989440fc370717d5b52d59f19043b4a5e6f0f1a54722af9ebe59074c34d",
       "report": "reports/art-pilot/skin_wasabi-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wasabi_2",
@@ -4398,11 +4874,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "89a5c5c81b61951dafd1669a68c00699137e11e6c2a69d81faf76f45b23b2da3",
+      "sourceAtlasSha256": "96f525b1a5d654163b20b760dd2431dfa6dfa9bafab91fe982d17d432aef2895",
       "report": "reports/art-pilot/skin_wasabi_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wasabi_3",
@@ -4430,11 +4907,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "adbb39b0d619734965f5fd71967fc8feebb0d2556598be657a9c62eb4ee0eed2",
+      "sourceAtlasSha256": "e1ea696366a82281efc18e09e249e2467df82991cbf82fa80a71dec438c4f9e7",
       "report": "reports/art-pilot/skin_wasabi_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_wasabi_4",
@@ -4461,11 +4939,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "d5943e0f7bbd17d0079225f048deafdac74609b8a7a32ed18a855fc7c5f0039c",
+      "sourceAtlasSha256": "02cf6dc244dd3ab58007ccb0aec92c3e6e8a43ac34507c3f9c2f5a48604cda0f",
       "report": "reports/art-pilot/skin_wasabi_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed"
+      "realSkillAnimationCoverage": "actual wasabiNuke 6 cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_soybean",
@@ -4493,11 +4972,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "e1146b04d42e456b50a5924701e116a8ecc1ccbb595d8498af7ce8bc2ac3aadd",
+      "sourceAtlasSha256": "2221cfa3526b49b7c15f623c9ef50320a2b82e6e0e745e25aecf5e4a91d0ad80",
       "report": "reports/art-pilot/skin_soybean-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_soybean_2",
@@ -4526,11 +5006,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "ddb107f5752745e523cad64154c4b6ceb75e934a96ca4180fa37faa3aec805a1",
+      "sourceAtlasSha256": "75de9b76e2f387e85e0b0ce38f7fdf0775ffa4558ba97f26a865f802947bac6d",
       "report": "reports/art-pilot/skin_soybean_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_soybean_3",
@@ -4557,11 +5038,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "eec44d57345c1a2bba99f87c89832d0180c9d97369b12dbdb0641dcb09d2d50a",
+      "sourceAtlasSha256": "32f306aea288de232fe0e038b6ea67ff89280b5f054408f4a5c609937e2330e7",
       "report": "reports/art-pilot/skin_soybean_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_soybean_4",
@@ -4588,11 +5070,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "d3dfad783ae487eddd2c1f03272e5e05a00c0234dff5b19ba6ac6f9dbe36d53a",
+      "sourceAtlasSha256": "d7056c455e8d7c9dcd2ae4e15989cce3a9e351ca6d2467d738ef49d7a3859ad9",
       "report": "reports/art-pilot/skin_soybean_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed"
+      "realSkillAnimationCoverage": "actual beanSoldiers8troops pursuing relocated target;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_jackfruit",
@@ -4621,11 +5104,12 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "13dd7355d80f76644121da54ddad5b85db9272145b39168595ca9d150cbdaceb",
+      "sourceAtlasSha256": "d1e91954259ed0aa0f9bcbc4ee10c550be0ec337fb2d695466753b5b22b58481",
       "report": "reports/art-pilot/skin_jackfruit-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry and cleanup;6cases passed"
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry and cleanup;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_jackfruit_2",
@@ -4653,11 +5137,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "34faf6437910882f620d9c75a0fff22b7de7a67106bc61a053fcb7cf362f1776",
+      "sourceAtlasSha256": "d254a7ad927a1b19eb859bfe4e626fce849e7d8289dfae6cb93d02ee458f09d9",
       "report": "reports/art-pilot/skin_jackfruit_2-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed"
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_jackfruit_3",
@@ -4685,11 +5171,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "986c0ef3c181769f0aebad13fa76704fef9abb312fdf69d52db05f15228c2b00",
+      "sourceAtlasSha256": "82c03ab3fd1c1e1e8d82a69562581ab4d3353e822686fb25ccec1d1f1bd357f7",
       "report": "reports/art-pilot/skin_jackfruit_3-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed"
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_jackfruit_4",
@@ -4716,11 +5204,13 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "53e421e81fa6bf9516010ceb73a600f69fe50f9b55cab38042f54bc2fc621409",
+      "sourceAtlasSha256": "144b78cbb11a60efe21c5609c8701320a21624c2fbc0c8abbc05d7805ae3468e",
       "report": "reports/art-pilot/skin_jackfruit_4-pipeline.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
-      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed"
+      "realSkillAnimationCoverage": "Actual spikeArmor12rotating spikes/repeated close damage/thorns5fortify3/expiry cleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pomegranate",
@@ -4742,11 +5232,19 @@
         ],
         "pattern": "stripes"
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "e96596e65bdae2e4714c6b4e9a79e1b74f5c2ccb16f5a206cc72b8dcfbf5b896",
+      "report": "reports/art-pilot/skin_pomegranate-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual seedSpiral30bullets15oppositepairs66mswaves/initialdamage/pierce/tint/cleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_pomegranate_2",
@@ -4768,11 +5266,18 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "a1d5d9a5a7d98353f8488cc1bb05bcf269a631d9419f3faf3513bda84ed539ca",
+      "report": "reports/art-pilot/skin_pomegranate_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual seedSpiral30bullets15oppositepairs66mswaves/initialdamage/pierce/tint/cleanup;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_pomegranate_3",
@@ -4793,11 +5298,18 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "2e0a3c0e252a8431514354651ea725fc40dceee6cbb4b4a49039d8d2dc4e971f",
+      "report": "reports/art-pilot/skin_pomegranate_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual seedSpiral30bullets15oppositepairs66mswaves/initialdamage/pierce/tint/cleanup;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_pomegranate_4",
@@ -4820,11 +5332,19 @@
         ],
         "pattern": "grid"
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "236808a54b20d3c1e568d2135aa39ecd579a47d4ce3fc9f202488d8b09b98064",
+      "report": "reports/art-pilot/skin_pomegranate_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual seedSpiral30bullets15oppositepairs66mswaves/initialdamage/pierce/tint/cleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_taro",
@@ -4846,11 +5366,18 @@
         ],
         "pattern": "dots"
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "1e8ce48404dcf054457e75bb977ff79f1deaae41d6c1bb11b44916febfc76492",
+      "report": "reports/art-pilot/skin_taro-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual taroField damage/burn/slow, bullet shield blocking and expiry cleanup;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_taro_2",
@@ -4873,11 +5400,18 @@
         ],
         "pattern": "grid"
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "0db6dfe002dd443b9ee449abcc08fa0c6bbd8f7345fca0aeb5e912ee51feb93c",
+      "report": "reports/art-pilot/skin_taro_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual taroField damage/burn/slow, bullet shield blocking and expiry cleanup;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_taro_3",
@@ -4898,11 +5432,19 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "eaa56c0514e1e835e9b6b7a6b52bb343e7d0d3cdfdabfac4155bef0313020dd4",
+      "report": "reports/art-pilot/skin_taro_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual taroField damage/burn/slow, bullet shield blocking and expiry cleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_taro_4",
@@ -4923,11 +5465,18 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "93b674bd07764968b1f1ac5ec9f00b597fa046e33f7171ea7fee26a53adf54b3",
+      "report": "reports/art-pilot/skin_taro_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual taroField damage/burn/slow, bullet shield blocking and expiry cleanup;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_cabbage",
@@ -4950,11 +5499,19 @@
         ],
         "pattern": "none"
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "26bca202d6abe6db4233ece2f13157433a1c084d5e62e3065e10bf36211809ea",
+      "report": "reports/art-pilot/skin_cabbage-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual leafLayers3leafarcs/bubble/barrier40percent/fortify5/regen3/expirycleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_cabbage_2",
@@ -4976,11 +5533,18 @@
         ],
         "pattern": "segments"
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "994d4f832f6615f2b1898c980eee5f0e49eb9df13a749aa878fad7bfba876ea5",
+      "report": "reports/art-pilot/skin_cabbage_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual leafLayers3leafarcs/bubble/barrier40percent/fortify5/regen3/expirycleanup;6cases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_cabbage_3",
@@ -5002,11 +5566,19 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "49afb7a02147efc0b7cb6fa6436bd37e8a04e19e757136c69ee2268e7b6a802f",
+      "report": "reports/art-pilot/skin_cabbage_3-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual leafLayers3leafarcs/bubble/barrier40percent/fortify5/regen3/expirycleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_cabbage_4",
@@ -5027,11 +5599,19 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "51753155c5e0fa5554cee71a7f6847b2b8914f0f307ae2041eb2ad2c57167b45",
+      "report": "reports/art-pilot/skin_cabbage_4-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual leafLayers3leafarcs/bubble/barrier40percent/fortify5/regen3/expirycleanup;6cases passed",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_blackberry",
@@ -5053,11 +5633,18 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "d2764046456b6794469cb72da7384560b911526a5540c664c02be746d492db49",
+      "report": "reports/art-pilot/skin_blackberry-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual witherHex16clouds/fixedzone/newentrantcurse rot silence/damage/glyphandzonecleanup;6isolatedcases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_blackberry_2",
@@ -5078,11 +5665,18 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "sourceAtlasSha256": "fdb2011c96b1a74d513ba0b36bd7fc2df521a81105d825e3aa48891be123eadc",
+      "report": "reports/art-pilot/skin_blackberry_2-pipeline.json",
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual witherHex16clouds/fixedzone/newentrantcurse rot silence/damage/glyphandzonecleanup;6isolatedcases passed",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_blackberry_3",
@@ -5103,11 +5697,18 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual witherHex16clouds/fixedzone/newentrantcurse rot silence/damage/glyphandzonecleanup;6isolatedcases passed",
+      "sourceAtlasSha256": "3ee4c5cf0c01ff5b464e50ee9a1b8fa8dcd6490173ef54e88d577076e0c6ceba",
+      "report": "reports/art-pilot/skin_blackberry_3-pipeline.json",
+      "limbOcclusionVerified": false
     },
     {
       "id": "skin_blackberry_4",
@@ -5128,11 +5729,19 @@
           }
         ]
       },
-      "generated": false,
-      "integrated": false,
-      "basicVerified": false,
+      "generated": true,
+      "integrated": true,
+      "basicVerified": true,
       "finalAccepted": false,
-      "locomotionDirectionVerified": false
+      "locomotionDirectionVerified": false,
+      "frames": 20,
+      "locomotionKeyframesReviewed": true,
+      "continuousGameVisualVerified": false,
+      "realSkillAnimationCoverage": "Actual witherHex16clouds/fixedzone/newentrantcurse rot silence/damage/glyphandzonecleanup;6isolatedcases passed",
+      "sourceAtlasSha256": "b1e4205f644127b3b2327fd3a96bcf06dbb839e9f38a974f1af192e1a22bcfd9",
+      "report": "reports/art-pilot/skin_blackberry_4-pipeline.json",
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     }
   ]
 }

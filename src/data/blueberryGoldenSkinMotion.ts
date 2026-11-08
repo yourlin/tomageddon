@@ -24,7 +24,8 @@ export const BLUEBERRY_GOLDEN_SKIN_MOTION_ART: EntityArtEntry = {
     hurt: { frames: [8, 9, 10, 11] },
     die: { frames: [12, 13, 14, 15] },
     cast: { frames: [16, 17, 18, 19] },
+    spawn: { frames: [20, 21, 22, 23] },
   },
   credit:
-    'Built-in image_gen;20 authored skin frames;external originals;ART_SKIN_SKIN_BLUEBERRY_2_ANIMATION_PILOT.json;final visual acceptance pending.',
+    'Built-in image_gen;24 authored skin frames;external originals;ART_SKIN_SKIN_BLUEBERRY_2_ANIMATION_PILOT.json;final visual acceptance pending.',
 };

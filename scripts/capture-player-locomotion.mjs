@@ -7,10 +7,12 @@ import { freezeArtHmr, closeArtBrowser } from './art-browser.mjs';
 const actor = process.argv[2];
 if (!/^[a-z]+$/.test(actor ?? '')) throw Error('Pass a default player id');
 const skinId = process.argv[3];
+const readable = process.argv.includes('--readable');
 if (skinId && !/^skin_[a-z0-9_]+$/.test(skinId)) throw Error('Invalid skin id');
-const output = skinId
+const captureRoot = skinId
   ? resolve('../tomato-sister-art-source/qa/locomotion', actor, 'skins', skinId, 'game-capture')
   : resolve('../tomato-sister-art-source/qa/locomotion', actor, 'game-capture');
+const output = readable ? resolve(captureRoot, 'readable') : captureRoot;
 mkdirSync(output, { recursive: true });
 const report = {
   actor,
@@ -20,7 +22,9 @@ const report = {
     'Actual GameScene continuous movement using real keyboard input, high tier; captured frames support manual visual review, not final mobile/performance acceptance.',
   directions: [],
   errors: [],
+  readableFixture: readable,
 };
+if (readable) report.scope += ' Readable fixture hides higher-depth non-player objects; production-effects capture is separate.';
 const browser = await puppeteer.launch({
   executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   headless: true,
@@ -56,15 +60,25 @@ try {
     },
     { timeout: 60000 },
   );
-  await page.evaluate((skinId) => {
+  await page.evaluate(({ skinId, readable }) => {
     const g = window.game.scene.getScene('Game');
     if (skinId && g.player.art?.choice.entry.skinId !== skinId) throw Error('Equipped skin fell back');
-    g.iframes = 100;
+    // Keep damage from interrupting capture without invoking the hurt-flash shader.
+    // Production movement, animation clock and mirror behavior remain active.
+    g.iframes = 0;
+    g.damagePlayer = () => {};
     g.skill.cd = 1000;
     for (const w of g.weapons.list) w.cd = 1000;
     // A close camera makes the actual runtime sprite readable without changing its scale.
     g.cameras.main.setZoom(2);
-  }, skinId);
+    if (readable) g.events.on('postupdate', () => {
+      const keep = new Set();
+      for (let object = g.player.img; object; object = object.parentContainer) keep.add(object);
+      for (const child of g.children.list) {
+        if (!keep.has(child) && child.depth >= g.player.img.depth) child.setVisible(false);
+      }
+    });
+  }, { skinId, readable });
   for (const direction of [1, -1]) {
     const name = direction === 1 ? 'right' : 'left';
     const folder = resolve(output, name);
@@ -119,6 +133,6 @@ try {
   process.exitCode = 1;
 } finally {
   writeFileSync(resolve(output, 'capture.json'), JSON.stringify(report, null, 2) + '\n');
-  writeFileSync(`reports/art-pilot/direction-audit/${skinId ?? actor}-continuous-game.json`, JSON.stringify(report, null, 2) + '\n');
+  writeFileSync(`reports/art-pilot/direction-audit/${skinId ?? actor}-continuous-game${readable ? '-readable' : ''}.json`, JSON.stringify(report, null, 2) + '\n');
   await closeArtBrowser(browser);
 }

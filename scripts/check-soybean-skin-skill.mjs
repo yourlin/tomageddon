@@ -35,7 +35,7 @@ try {
         ),
       { skinId, tier },
     );
-    await page.goto('http://127.0.0.1:4183/?art=1&skins=1');
+    await page.goto('http://127.0.0.1:4183/?art=1&skins=1', { waitUntil: 'domcontentloaded', timeout: 60000 });
     await page.waitForFunction(() => window.game?.scene.isActive('Menu') && !window.game.scene.isActive('Boot'), { timeout: 60000 });
     await page.evaluate(() => {
       window.run.start('soybean', 1, false, 0);
