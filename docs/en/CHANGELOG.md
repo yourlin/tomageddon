@@ -10,6 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
+- [v0.8.5 · 2026-11-08](#v0-8-5)
 - [v0.8.4 · 2026-11-06](#v0-8-4)
 - [v0.8.3 · 2026-11-02](#v0-8-3)
 - [v0.8.2 · 2026-11-02](#v0-8-2)
@@ -32,6 +33,18 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - [v0.3.0 · 2026-10-01](#v0-3-0)
 - [v0.2.0 · 2026-09-30](#v0-2-0)
 - [v0.1.0 · 2026-09-29](#v0-1-0)
+
+<a id="v0-8-5"></a>
+
+## v0.8.5 · 2026-11-08
+
+**Quicksand now hurts monsters and moves around; the Darkness light circle follows you again; Jackfruit Guard’s skill reaches much farther**
+
+
+- Fixed the Darkness wave light circle: it no longer drifts to the other side of the screen when you move up or down, and always stays on your hero
+- Chapter 4 quicksand (and Chapter 7 rot bogs) now damage monsters caught in the center; rot bogs also inflict Rot on them
+- Quicksand pits no longer stay put: each one fills in after a dozen seconds or so and reopens somewhere else, away from you
+- Jackfruit Guard’s Thousand Spikes now reaches about 2.2× as far and scales with skill area bonuses
 
 <a id="v0-8-4"></a>
 

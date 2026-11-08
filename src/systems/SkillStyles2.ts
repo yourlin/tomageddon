@@ -989,17 +989,20 @@ function sproutGrow(c: StyleCtx): void {
 function spikeArmor(c: StyleCtx): void {
   const { g, info } = c;
   let acc = 0;
+  // 扎伤半径取技能的 radius（原来写死 64，几乎只扎到贴身的怪），并吃范围加成；尖刺画面按同一半径放大
+  const r = c.host.radius(c.sk.radius ?? 64);
+  const k = r / 64;
   auraLoop(c, 0x9c6644, (gr, t, f) => {
     const p = g.player;
-    for (let i = 0; i < 12; i++) {
-      const a = (i / 12) * Math.PI * 2 + t * 1.5;
+    for (let i = 0; i < 16; i++) {
+      const a = (i / 16) * Math.PI * 2 + t * 1.5;
       gr.fillStyle(0x7f5539, f).fillTriangle(
-        p.x + Math.cos(a - 0.12) * 34,
-        p.y + Math.sin(a - 0.12) * 28,
-        p.x + Math.cos(a + 0.12) * 34,
-        p.y + Math.sin(a + 0.12) * 28,
-        p.x + Math.cos(a) * 62,
-        p.y + Math.sin(a) * 50,
+        p.x + Math.cos(a - 0.1) * 34 * k,
+        p.y + Math.sin(a - 0.1) * 28 * k,
+        p.x + Math.cos(a + 0.1) * 34 * k,
+        p.y + Math.sin(a + 0.1) * 28 * k,
+        p.x + Math.cos(a) * 62 * k,
+        p.y + Math.sin(a) * 50 * k,
       );
     }
   });
@@ -1009,7 +1012,7 @@ function spikeArmor(c: StyleCtx): void {
       acc += dt;
       if (acc < 0.4) return;
       acc = 0;
-      for (const e of g.grid.query(g.player.x, g.player.y, 64, g.tmp))
+      for (const e of g.grid.query(g.player.x, g.player.y, r, g.tmp))
         g.weaponHit(e, { ...info, dmg: info.dmg * 0.25, knockback: 50 }, g.player.x, g.player.y);
     },
   });

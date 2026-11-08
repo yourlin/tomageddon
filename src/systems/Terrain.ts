@@ -31,6 +31,9 @@ interface Zone {
 
 /** 第 3 章冰面：场上同时保持 count 块，每块存在 life 秒（淡入 fadeIn、淡出 fadeOut），消失后在离其他冰面最远的地方重新结冰 */
 export const ICE_TUNING = { count: 6, life: [14, 22], fadeIn: 1.5, fadeOut: 3, radius: 110, scale: [0.85, 1.3] } as const;
+/** 第 4 章流沙坑 / 第 7 章腐泥沼：场上同时保持 count 个，每个存在 life 秒（慢慢陷开 fadeIn、慢慢填平 fadeOut），
+ *  消失后在离其他坑和玩家都远的地方重新出现。原来固定 3 个、每 20 秒才换掉最老的一个，一个坑能在原地待一分钟 */
+export const QUICKSAND_TUNING = { count: 3, life: [12, 18], fadeIn: 1.5, fadeOut: 2, radius: [95, 130], awayFromPlayer: 260 } as const;
 
 /** 1.4.0 新地形机关的数值（测试与文档共用） */
 export const TERRAIN_TUNING = {
@@ -159,8 +162,9 @@ export class Terrain {
         this.timers = { gust: 12 };
         break;
       case 4:
-        for (let i = 0; i < 3; i++) this.addQuicksand();
-        this.timers = { debris: 9, move: 20, acid: 10 };
+        // 错开寿命：开局的几个坑消失时间不同，之后轮流在新位置陷开
+        for (let i = 0; i < QUICKSAND_TUNING.count; i++) this.addQuicksand((i / QUICKSAND_TUNING.count) * 0.7);
+        this.timers = { debris: 9, acid: 10 };
         break;
       case 5: {
         for (const [y, dir] of [
@@ -204,8 +208,7 @@ export class Terrain {
         break;
       // 隐藏第 7 章「腐烂菜园」：腐泥沼（复用流沙，附带腐烂）+ 烂果坠落（复用垃圾坠落）+ 荆棘藤
       case 7:
-        for (let i = 0; i < 3; i++) this.addQuicksand();
-        if (!readyMapObject(g, this.ch, 'quicksand')) for (const z of this.zones) z.img.setTint(0x7f5539);
+        for (let i = 0; i < QUICKSAND_TUNING.count; i++) this.addQuicksand((i / QUICKSAND_TUNING.count) * 0.7);
         this.timers = { debris: 8, bramble: 6 };
         break;
     }
@@ -224,19 +227,42 @@ export class Terrain {
     this.zones.push({ kind, x, y, w: 0, h: 0, r, dir: 0, img, t: 0 });
   }
 
-  private addQuicksand(): void {
+  /** 流沙坑：取 24 个候选点，避开玩家，选离现有流沙坑最远的一个。
+   *  ageFrac：开局放置时让坑已经存在一段时间（占寿命的比例），错开各个坑消失的时间 */
+  private addQuicksand(ageFrac = 0): void {
     const A = this.g.arena,
-      p = this.g.player;
-    const { x, y } = A.randomPoint(200, (px, py) => Phaser.Math.Distance.Between(px, py, p.x, p.y) > 260, 20);
+      p = this.g.player,
+      T = QUICKSAND_TUNING;
+    const r = Phaser.Math.Between(T.radius[0], T.radius[1]);
+    const others = this.zones.filter((z) => z.kind === 'quicksand');
+    let best = A.randomPoint(r + 40),
+      bestScore = -Infinity;
+    for (let i = 0; i < 24; i++) {
+      const c = A.randomPoint(r + 40);
+      // 离玩家太近的点直接扣成负分：不会在玩家脚下突然陷出流沙
+      let score = Phaser.Math.Distance.Between(c.x, c.y, p.x, p.y) - r - T.awayFromPlayer;
+      score = score < 0 ? score - 10000 : 9999;
+      for (const z of others) score = Math.min(score, Phaser.Math.Distance.Between(c.x, c.y, z.x, z.y) - z.r - r);
+      if (score > bestScore) {
+        bestScore = score;
+        best = c;
+      }
+    }
     const art = readyMapObject(this.g, this.ch, 'quicksand');
     const img = this.g.add
-      .image(x, y, art?.key ?? 'terrain_quicksand')
+      .image(best.x, best.y, art?.key ?? 'terrain_quicksand')
       .setDepth(0.55)
-      .setAlpha(0);
-    const r = Phaser.Math.Between(95, 130);
-    img.setDisplaySize(r * 2.2, r * 2.2);
-    this.g.tweens.add({ targets: img, alpha: 1, duration: 800 });
-    this.zones.push({ kind: 'quicksand', x, y, w: 0, h: 0, r, dir: 0, img, t: 0 });
+      .setAlpha(0)
+      .setDisplaySize(r * 2.2, r * 2.2);
+    if (this.ch === 7 && !art) img.setTint(0x7f5539);
+    const life = Phaser.Math.FloatBetween(T.life[0], T.life[1]);
+    this.zones.push({ kind: 'quicksand', x: best.x, y: best.y, w: 0, h: 0, r, dir: 0, img, t: life * ageFrac, life });
+  }
+
+  /** 流沙坑当前的「成形程度」0–1：慢慢陷开、持续、慢慢填平（决定透明度、大小和吸力范围） */
+  private quicksandK(z: Zone): number {
+    const T = QUICKSAND_TUNING;
+    return Phaser.Math.Clamp(Math.min(z.t / T.fadeIn, ((z.life ?? 0) - z.t) / T.fadeOut), 0, 1);
   }
 
   /** 第 3 章冰面：取 24 个候选点，选离现有冰面（和出生点）最远的一个，冰面就会铺开、不扎堆。
@@ -313,12 +339,17 @@ export class Terrain {
         if (k > 0.4 && Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r * rk) g.slippery = true;
       } else if (z.kind === 'quicksand') {
         z.img.rotation += dt * 0.8;
+        // 成形程度决定大小、透明度和作用范围：刚陷开 / 快填平时又小又淡，吸力范围也跟着缩小
+        const qk = this.quicksandK(z);
+        const zr = z.r * (0.5 + 0.5 * qk);
+        z.img.setAlpha(qk).setDisplaySize(zr * 2.2, zr * 2.2);
+        if (qk < 0.2) continue;
         const pull = (tx: number, ty: number, strength: number): [number, number] => {
           const dx = z.x - tx,
             dy = z.y - ty,
             d = Math.hypot(dx, dy) || 1;
-          if (d > z.r) return [0, 0];
-          const k = strength * (0.4 + 0.6 * (1 - d / z.r));
+          if (d > zr) return [0, 0];
+          const k = strength * (0.4 + 0.6 * (1 - d / zr));
           return [(dx / d) * k, (dy / d) * k];
         };
         const [vx, vy] = pull(p.x, p.y, 95);
@@ -326,14 +357,20 @@ export class Terrain {
           g.envVX += vx;
           g.envVY += vy;
           g.applyPlayerStatus([{ id: 'sticky', dur: 0.3 }]);
-          if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < z.r * 0.3 && this.tick(`qs_dmg_${z.x}`, dt, 0.6))
+          if (Phaser.Math.Distance.Between(p.x, p.y, z.x, z.y) < zr * 0.3 && this.tick(`qs_dmg_${z.x}`, dt, 0.6))
             g.damagePlayer(this.dmg(this.ch === 7 ? 1.2 : 2), undefined, this.ch === 7 ? [{ id: 'rot', dur: 2 }] : undefined);
         }
-        for (const e of g.grid.query(z.x, z.y, z.r, g.tmp2)) {
+        // 怪物：同样被吸向中心；陷进中心区（半径 40% 以内）的每 0.6 秒受一次伤害（原来只吸不伤，说明里写的伤害对怪不生效）
+        const hurtEnemies = this.tick(`qs_edmg_${z.x}`, dt, 0.6);
+        for (const e of g.grid.query(z.x, z.y, zr, g.tmp2)) {
           if (e.isBoss) continue;
           const [ex, ey] = pull(e.x, e.y, 70);
           e.x += ex * dt;
           e.y += ey * dt;
+          if (hurtEnemies && Phaser.Math.Distance.Between(e.x, e.y, z.x, z.y) < zr * 0.4) {
+            if (this.ch === 7) g.applyDot(e, { id: 'rot', dur: 2 });
+            g.damageEnemy(e, 6 + run.wave * 2);
+          }
         }
       } else if (z.kind === 'conveyor') {
         (z.img as Phaser.GameObjects.TileSprite).tilePositionX -= dt * 110 * z.dir;
@@ -368,6 +405,17 @@ export class Terrain {
       for (const z of melted) {
         z.img.destroy();
         this.addIce();
+      }
+    }
+    // 填平的流沙坑同理：移除后换个地方重新陷开（场上流沙坑数保持不变）。开发者面板关掉「流沙移动」时不轮换
+    const filled = Terrain.off.has('move') ? [] : this.zones.filter((z) => z.kind === 'quicksand' && z.t >= (z.life ?? Infinity));
+    if (filled.length) {
+      this.zones = this.zones.filter((z) => !filled.includes(z));
+      for (const z of filled) {
+        z.img.destroy();
+        delete this.timers[`qs_dmg_${z.x}`];
+        delete this.timers[`qs_edmg_${z.x}`];
+        this.addQuicksand();
       }
     }
 
@@ -497,11 +545,6 @@ export class Terrain {
             });
           }
           g.terrainNotice(this.ch === 7 ? tx('烂果坠落！', 'Rotten fruit falling!') : tx('垃圾坠落！', 'Falling junk!'));
-        }
-        if (this.ch === 4 && this.tick('move', dt, 20)) {
-          const old = this.zones.shift();
-          if (old) g.tweens.add({ targets: old.img, alpha: 0, duration: 800, onComplete: () => old.img.destroy() });
-          this.addQuicksand();
         }
         if (this.ch === 4) {
           const T = TERRAIN_TUNING.acid;

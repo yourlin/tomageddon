@@ -89,10 +89,11 @@ export const EXTRA_CHARACTERS: CharacterDef[] = [
     special: { thorns: 25, onHurtSelf: [S('thorns', 4, 1)] },
     skill: {
       name: '千刺甲',
-      desc: '一圈尖刺绕身旋转 6 秒，持续扎伤贴身敌人；同时获得 5 层荆棘与 3 层坚韧。',
+      desc: '一大圈尖刺绕身旋转 6 秒，持续扎伤周围的敌人；同时获得 5 层荆棘与 3 层坚韧。',
       type: 'buff',
       cd: 0,
       duration: 6,
+      radius: 140,
       selfStatus: [S('thorns', 6, 5), S('fortify', 6, 3)],
       color: 0x6a994e,
     },
@@ -309,7 +310,7 @@ export const EXTRA_CHARACTERS_EN: CharactersEn = {
     traits: ['Reflect 25 damage when hurt'],
     skill: {
       name: 'Thousand Spikes',
-      desc: 'A ring of spikes spins around you for 6s, repeatedly stabbing enemies up close. Gain 5 stacks of Thorns and 3 stacks of Fortify.',
+      desc: 'A wide ring of spikes spins around you for 6s, repeatedly stabbing nearby enemies. Gain 5 stacks of Thorns and 3 stacks of Fortify.',
     },
   },
   pomegranate: {
