@@ -531,11 +531,12 @@
 <a id="skill-jackfruit"></a>
 
 <table>
-<tr><td rowspan="7" align="center" valign="middle"><img src="images/skill/jackfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">千刺甲（菠萝蜜卫士）</th></tr>
-<tr><td colspan="2"><i>一圈尖刺绕身旋转 6 秒，持续扎伤贴身敌人；同时获得 5 层荆棘与 3 层坚韧。</i></td></tr>
+<tr><td rowspan="8" align="center" valign="middle"><img src="images/skill/jackfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">千刺甲（菠萝蜜卫士）</th></tr>
+<tr><td colspan="2"><i>一大圈尖刺绕身旋转 6 秒，持续扎伤周围的敌人；同时获得 5 层荆棘与 3 层坚韧。</i></td></tr>
 <tr><td nowrap>角色</td><td><a href="CHARACTERS.md#char-jackfruit">菠萝蜜卫士</a></td></tr>
 <tr><td nowrap>形态</td><td>自身增益</td></tr>
 <tr><td nowrap>冷却</td><td>12s</td></tr>
+<tr><td nowrap>半径</td><td>140</td></tr>
 <tr><td nowrap>持续</td><td>6s</td></tr>
 <tr><td nowrap>自身获得</td><td>5层<a href="#status-thorns">荆棘</a> 6s、3层<a href="#status-fortify">坚韧</a> 6s</td></tr>
 </table>

@@ -1156,25 +1156,42 @@ export class GameScene extends Phaser.Scene {
         },
       });
     if (ev.id === 'darkness' && !HEADLESS_MODE) {
-      const W = VW(this),
-        H = VH(this);
-      const dark = this.add
-        .rectangle(0, 0, W * 3, H * 3, 0x000000, 0.78)
-        .setOrigin(0.5)
-        .setScrollFactor(0)
-        .setDepth(19000);
-      dark.setPosition(W / 2, H / 2);
-      const hole = this.make.graphics({}, false);
-      const mask = hole.createGeometryMask();
-      mask.setInvertAlpha(true);
-      dark.setMask(mask);
+      // 原来用 GeometryMask 挖洞，洞的位置按 player - scroll 算，实测镜头竖向滚动时洞会以屏幕中心为轴
+      // 上下对称地偏开（角色在上半场时洞在下半场）。改成直接画一圈「中间留空」的黑幕：内圈半径 R 跟着角色
+      const R = 260,
+        SEG = 72;
+      // 黑幕固定在屏幕上（scrollFactor 0），角色位置按镜头视野 worldView 换算成屏幕坐标
+      const dark = this.add.graphics().setScrollFactor(0).setDepth(19000);
       const upd = () => {
-        const cam = this.cameras.main;
-        hole
-          .clear()
-          .fillStyle(0xffffff)
-          .fillCircle(this.player.x - cam.scrollX, this.player.y - cam.scrollY, 260);
+        const cam = this.cameras.main,
+          v = cam.worldView,
+          W = VW(this),
+          H = VH(this);
+        const k = W / Math.max(1, v.width);
+        const cx = (this.player.x - v.x) * k,
+          cy = (this.player.y - v.y) * (H / Math.max(1, v.height));
+        const r = R * k,
+          far = r + W + H;
+        dark.clear().fillStyle(0x000000, 0.78);
+        for (let i = 0; i < SEG; i++) {
+          const a0 = (i / SEG) * Math.PI * 2,
+            a1 = ((i + 1) / SEG) * Math.PI * 2;
+          const c0 = Math.cos(a0),
+            s0 = Math.sin(a0),
+            c1 = Math.cos(a1),
+            s1 = Math.sin(a1);
+          dark.fillPoints(
+            [
+              { x: cx + c0 * r, y: cy + s0 * r },
+              { x: cx + c0 * far, y: cy + s0 * far },
+              { x: cx + c1 * far, y: cy + s1 * far },
+              { x: cx + c1 * r, y: cy + s1 * r },
+            ],
+            true,
+          );
+        }
       };
+      upd();
       this.events.on('postupdate', upd);
       this.events.once('waveEnd', () => {
         this.events.off('postupdate', upd);

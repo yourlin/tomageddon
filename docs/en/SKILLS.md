@@ -531,11 +531,12 @@ Buffs and debuffs from monsters, items and weapons share the same [status effect
 <a id="skill-jackfruit"></a>
 
 <table>
-<tr><td rowspan="7" align="center" valign="middle"><img src="../images/skill/jackfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Thousand Spikes (Jackfruit Guard)</th></tr>
-<tr><td colspan="2"><i>A ring of spikes spins around you for 6s, repeatedly stabbing enemies up close. Gain 5 stacks of Thorns and 3 stacks of Fortify.</i></td></tr>
+<tr><td rowspan="8" align="center" valign="middle"><img src="../images/skill/jackfruit.webp" width="128" height="128" alt=""></td><th colspan="2" align="left">Thousand Spikes (Jackfruit Guard)</th></tr>
+<tr><td colspan="2"><i>A wide ring of spikes spins around you for 6s, repeatedly stabbing nearby enemies. Gain 5 stacks of Thorns and 3 stacks of Fortify.</i></td></tr>
 <tr><td nowrap>Character</td><td><a href="CHARACTERS.md#char-jackfruit">Jackfruit Guard</a></td></tr>
 <tr><td nowrap>Form</td><td>Self Buff</td></tr>
 <tr><td nowrap>Cooldown</td><td>12s</td></tr>
+<tr><td nowrap>Radius</td><td>140</td></tr>
 <tr><td nowrap>Duration</td><td>6s</td></tr>
 <tr><td nowrap>Self gains</td><td>5× <a href="#status-thorns">Thorns</a> 6s, 3× <a href="#status-fortify">Fortify</a> 6s</td></tr>
 </table>

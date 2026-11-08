@@ -520,7 +520,7 @@
 <tr><td nowrap>专属天赋</td><td><b>以刺还刺</b>：每 1.2 秒自动向最近的敌人射出 3 根穿透刺针（伤害 = 5 + 护甲 + 5% 最大生命）；受伤时获得 1 层荆棘 4 秒（每层反弹 5 伤害，最多 5 层）；契合飞刺穿透 +1</td></tr>
 <tr><td nowrap>属性与特性</td><td>+12 最大生命；-5% 全伤害；+4 护甲；-3 移动速度；受伤反弹 25 伤害</td></tr>
 <tr><td nowrap>契合武器</td><td>契合标签：锋利、穿透（36 把，双契合 3 把）<br>契合特效（伤害 +10%）：命中时射出飞刺：1 根 + 每层荆棘 1 根<br>双契合：<a href="WEAPONS.md#weapon-pepper_grinder">胡椒研磨枪</a>、<a href="WEAPONS.md#weapon-knife_case">飞刀匣</a>、<a href="WEAPONS.md#weapon-mandoline">切片器</a>（获得契合技与两条标签强化，见武器页）<br>代表：<img src="images/weapon/knife_case.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife_case">飞刀匣</a>、<img src="images/weapon/knife.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-knife">菜刀</a>、<img src="images/weapon/corn_cannon.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-corn_cannon">玉米加农</a>、<img src="images/weapon/soda.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-soda">冰镇汽水</a>、<img src="images/weapon/cleaver.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-cleaver">剁骨刀</a>、<img src="images/weapon/skewer.png" width="24" height="24" alt=""> <a href="WEAPONS.md#weapon-skewer">烤串签</a></td></tr>
-<tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-jackfruit">千刺甲</a>【自身增益】冷却 12s — 一圈尖刺绕身旋转 6 秒，持续扎伤贴身敌人；同时获得 5 层荆棘与 3 层坚韧。</td></tr>
+<tr><td nowrap>主动技能</td><td><a href="SKILLS.md#skill-jackfruit">千刺甲</a>【自身增益】冷却 12s — 一大圈尖刺绕身旋转 6 秒，持续扎伤周围的敌人；同时获得 5 层荆棘与 3 层坚韧。</td></tr>
 <tr><td nowrap>解锁条件</td><td>达成成就 <a href="ACHIEVEMENTS.md#ach-champions">精英怪克星（金）</a>：累计击败 500 只词缀精英怪</td></tr>
 </table>
 

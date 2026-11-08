@@ -12,6 +12,32 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.8.5',
+    date: '2026-11-08',
+    highlight: [
+      '流沙坑会伤怪、会定时换位置；修复黑暗波亮圈不跟着角色；菠萝蜜卫士技能范围加大',
+      'Quicksand now hurts monsters and moves around; the Darkness light circle follows you again; Jackfruit Guard’s skill reaches much farther',
+    ],
+    items: [
+      [
+        '修复黑暗波的照亮圈：角色上下移动时，亮圈不再跑到画面另一侧，始终罩在角色身上',
+        'Fixed the Darkness wave light circle: it no longer drifts to the other side of the screen when you move up or down, and always stays on your hero',
+      ],
+      [
+        '第四章流沙坑（以及第七章腐泥沼）现在也会伤害陷进中心的怪物，腐泥沼还会让怪物腐烂',
+        'Chapter 4 quicksand (and Chapter 7 rot bogs) now damage monsters caught in the center; rot bogs also inflict Rot on them',
+      ],
+      [
+        '流沙坑不再固定在原地：每个坑存在十几秒后慢慢填平，再在远离你的其他地方陷开',
+        'Quicksand pits no longer stay put: each one fills in after a dozen seconds or so and reopens somewhere else, away from you',
+      ],
+      [
+        '菠萝蜜卫士「千刺甲」的扎伤范围扩大到原来的约 2.2 倍，并受技能范围加成影响',
+        'Jackfruit Guard’s Thousand Spikes now reaches about 2.2× as far and scales with skill area bonuses',
+      ],
+    ],
+  },
+  {
     version: '0.8.4',
     date: '2026-11-06',
     highlight: [
