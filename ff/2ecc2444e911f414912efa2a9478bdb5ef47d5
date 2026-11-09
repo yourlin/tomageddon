@@ -1,0 +1,29 @@
+docs/design/ART_SKIN_SKIN_ONION_4_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_646173ec04af17 24,36
+docs/design/ART_SKIN_SKIN_MUSHROOM_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_c3e9a5e24cb1cf 24,36
+docs/design/ART_SKIN_SKIN_ONION_3_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_243f616bcb3571 24,36
+docs/design/ART_SKIN_PRODUCTION_PLAN.json
+  s_611bfc067cea41::t_43be413c4361a1 2291,2306-2307
+  s_611bfc067cea41::t_9342f4fc81e066 2203,2218-2219
+  s_611bfc067cea41::t_85708b2ba2d18c 2247,2262-2263
+src/data/artRuntime.generated.json
+  s_611bfc067cea41::t_5e057557a1b96b 9192,9197-9198,9203,9208-9209,9214,9219-9220,9423,9428-9429,9434,9439-9440,9445,9450-9451,9456,9461-9462,9467,9472-9473,9478,9483-9484
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ff2ecc2444e911f414912efa2a9478bdb5ef47d5",
+  "prompts": {},
+  "sessions": {
+    "s_611bfc067cea41": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14d8f-e4d4-7f52-925c-b8e6345af2bf",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
