@@ -1,0 +1,35 @@
+docs/design/ART_SKIN_PRODUCTION_PLAN.json
+  s_611bfc067cea41::t_b361bd71450ac1 2738
+  s_611bfc067cea41::t_3d93d76b508b1d 2786
+  s_611bfc067cea41::t_564757b6a91c8d 2689,2708-2709
+  s_611bfc067cea41::t_0542f2304f2e89 2833
+  s_611bfc067cea41::t_af0163b78840a2 2878
+docs/design/ART_SKIN_SKIN_GRAPE_3_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_f524a4b4a73554 17,29
+docs/design/ART_SKIN_SKIN_CHERRY_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_f5575039a72e62 17,29
+docs/design/ART_SKIN_SKIN_CHERRY_2_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_1b1a96c12fb429 17,29,35
+docs/design/ART_SKIN_SKIN_GRAPE_4_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_4b5c504a276798 17,29
+docs/design/ART_SKIN_SKIN_GRAPE_2_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_f05a3bd00d5e8b 17,29
+src/data/artRuntime.generated.json
+  s_611bfc067cea41::t_5e77b6af9df9f2 6882,6887-6888,6893,6898-6899,6904,6909-6910,6915,6920-6921,6926,6931-6932,6937,6942-6943,8400,8405-8406,8411,8416-8417,8422,8427-8428,8433,8438-8439,8444,8449-8450,8455,8460-8461,8466,8471-8472,8477,8482-8483,8488,8493-8494
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "aa9c32cf6d5a49c64b3ef18456aa7e9b88b981de",
+  "prompts": {},
+  "sessions": {
+    "s_611bfc067cea41": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14d8f-e4d4-7f52-925c-b8e6345af2bf",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
