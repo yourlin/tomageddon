@@ -2331,7 +2331,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "3b5f22fba79e0d41e3f6850b915bbf1ba54e9e77b8ccd363b79522ce9eb557ab",
+      "sourceAtlasSha256": "bb6821d93b4b4a76622519233a8dba86ffd2692e3a4e1471fee0ea1bb164ed0f",
       "report": "reports/art-pilot/skin-skin_mushroom_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2346,7 +2346,8 @@
         ],
         "report": "reports/art-pilot/skin_mushroom_2-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_mushroom_3",
@@ -2375,7 +2376,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "ca91beb714f49630154c7827e192024745a5054ae3c28429873b8c69108bfce7",
+      "sourceAtlasSha256": "9b80cf62756edfb3ba86b895b4d03305321b384f208782ba0778d08ce7932b51",
       "report": "reports/art-pilot/skin-skin_mushroom_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2390,7 +2391,8 @@
         ],
         "report": "reports/art-pilot/skin_mushroom_3-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_mushroom_4",
@@ -2418,7 +2420,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "1810683bfb964f454514bf282ba821089b14881a9194c1ef779638c3971e2a8c",
+      "sourceAtlasSha256": "def118b89bba60e2a0e2b65d54c1691767c0e1a2b6c87baefdb452fcfe923998",
       "report": "reports/art-pilot/skin-skin_mushroom_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2433,7 +2435,8 @@
         ],
         "report": "reports/art-pilot/skin_mushroom_4-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_coconut",
@@ -2461,7 +2464,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "53a748944563e4bff4d7f1889b368ecec45fae84f51fb4135c158ffce439b528",
+      "sourceAtlasSha256": "6ccfe423980258411c5c3d71cc10e1514bb13c17dc704f8e096e8bcbb5512630",
       "report": "reports/art-pilot/skin-skin_coconut-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2476,7 +2479,8 @@
         ],
         "report": "reports/art-pilot/skin_coconut-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_coconut_2",
@@ -2503,7 +2507,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "5dba85f6baebe0bf8a2e6e3b28c354721a9b28440d560865b9fb6b1c977408a5",
+      "sourceAtlasSha256": "6eab72e36a28c61bb9db32486affc96d9078701519510f280ef655aa59827e4b",
       "report": "reports/art-pilot/skin-skin_coconut_2-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2518,7 +2522,8 @@
         ],
         "report": "reports/art-pilot/skin_coconut_2-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_coconut_3",
@@ -2547,7 +2552,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "c09aa413f3d01df8b13797ec5b7e2ffb9637c51a3d27ab28a7950c7d35dfb186",
+      "sourceAtlasSha256": "b4b080dea81ca836a36af891d174c6a2e8d0d6d4712ac726669458daf590af71",
       "report": "reports/art-pilot/skin-skin_coconut_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2562,7 +2567,8 @@
         ],
         "report": "reports/art-pilot/skin_coconut_3-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_coconut_4",
@@ -2589,7 +2595,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "93246a3f87453e953fc00151bf6ca7b34aebdf08f3ddb11d27f8aba2081d3229",
+      "sourceAtlasSha256": "8a147efa1df140eb50cee7dabffe8137e77ac63d1f737fbf927027c8afe1d135",
       "report": "reports/art-pilot/skin-skin_coconut_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2604,7 +2610,8 @@
         ],
         "report": "reports/art-pilot/skin_coconut_4-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_grape",
@@ -2631,7 +2638,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "7345b297322a44c8d9138bfc342c4649287ca7a2fdc670d17b954e2e93015113",
+      "sourceAtlasSha256": "c304b77afbb61e215d8acd4c3d542a1eefcab09574cbee4a27e0be9f5ffabe54",
       "report": "reports/art-pilot/skin-skin_grape-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2650,7 +2657,8 @@
         ],
         "report": "reports/art-pilot/skin_grape-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_grape_2",
