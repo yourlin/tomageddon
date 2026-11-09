@@ -2200,7 +2200,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "2527318a5a2ad19b5ea8d6ec3350adb13fd24efbf2ea4db86a3cea84c4bbbe76",
+      "sourceAtlasSha256": "4d383968d26e644fde7e08b2b255dc8d3cc7db3eff88fb2a77c884e9cb37e2b7",
       "report": "reports/art-pilot/skin-skin_onion_3-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2215,7 +2215,8 @@
         ],
         "report": "reports/art-pilot/skin_onion_3-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_onion_4",
@@ -2243,7 +2244,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "56709d2b349726be6560b45c63ade55e7be089e0e6039570afe0c3bd0b57e959",
+      "sourceAtlasSha256": "d186c905a73cd9051d79a8a629fbf489abdf8a7c976754fe78dacbcb79767936",
       "report": "reports/art-pilot/skin-skin_onion_4-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2258,7 +2259,8 @@
         ],
         "report": "reports/art-pilot/skin_onion_4-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_mushroom",
@@ -2286,7 +2288,7 @@
       "finalAccepted": false,
       "locomotionDirectionVerified": false,
       "frames": 20,
-      "sourceAtlasSha256": "9746af337896f2b981649784407104573e18ee16e92b640feb7a8911f32afb17",
+      "sourceAtlasSha256": "e33b3d808d69fafab44e4206e8bbc1a0a77c280f1d948d84700591f80c6724b8",
       "report": "reports/art-pilot/skin-skin_mushroom-animation-native.json",
       "locomotionKeyframesReviewed": true,
       "continuousGameVisualVerified": false,
@@ -2301,7 +2303,8 @@
         ],
         "report": "reports/art-pilot/skin_mushroom-skill-motion-native.json"
       },
-      "limbOcclusionVerified": false
+      "limbOcclusionVerified": false,
+      "highPreviewContinuousReviewed": false
     },
     {
       "id": "skin_mushroom_2",
