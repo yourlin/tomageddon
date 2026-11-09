@@ -21,7 +21,7 @@
       "name": "move",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/mushroom/skins/skin_mushroom/limb-depth-revisions/move-sheet-corrected-1.png"
+      "source": "drafts/char/mushroom/skins/skin_mushroom/limb-depth-revisions/move-sheet-depth-20261109.png"
     },
     {
       "name": "hurt",
@@ -33,7 +33,7 @@
       "name": "die",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/mushroom/skins/skin_mushroom/die-sheet-1.png"
+      "source": "drafts/char/mushroom/skins/skin_mushroom/limb-depth-revisions/die-sheet-depth-20261109.png"
     },
     {
       "name": "cast",
