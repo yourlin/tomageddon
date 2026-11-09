@@ -1,0 +1,44 @@
+docs/design/ART_SKIN_SKIN_COCONUT_3_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_70798b39bbdf35 24,36
+docs/design/ART_SKIN_SKIN_COCONUT_4_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_db4b49d93b8231 24,36
+docs/design/ART_SKIN_SKIN_GRAPE_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_b6133abc621ca2 17,29
+docs/design/ART_SKIN_SKIN_COCONUT_2_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_be7689397e09e1 24,36
+docs/design/ART_SKIN_PRODUCTION_PLAN.json
+  s_611bfc067cea41::t_dcfa119c9ea532 2423,2438-2439
+  s_611bfc067cea41::t_cdb4091793ca5d 2467,2482-2483
+  s_611bfc067cea41::t_a3d581d794ec96 2641,2660-2661
+  s_611bfc067cea41::t_292633b979e58f 2510,2525-2526
+  s_611bfc067cea41::t_d4005489e89cb7 2334,2349-2350
+  s_611bfc067cea41::t_2282149a174b23 2379,2394-2395
+  s_611bfc067cea41::t_490d0042bca54b 2598,2613-2614
+  s_611bfc067cea41::t_a5224aaff854e5 2555,2570-2571
+docs/design/ART_SKIN_SKIN_MUSHROOM_4_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_b0ec059793f60e 24,36
+docs/design/ART_SKIN_SKIN_COCONUT_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_ef0ec2db442d4c 24,36,42
+docs/design/ART_SKIN_SKIN_MUSHROOM_3_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_9704615dc9fc77 24,36
+docs/design/ART_SKIN_SKIN_MUSHROOM_2_ANIMATION_PILOT.json
+  s_611bfc067cea41::t_38c881870bf82a 24,36
+src/data/artRuntime.generated.json
+  s_611bfc067cea41::t_57dcd423f8ec59 7212,7217-7218,7223,7228-7229,7234,7239-7240,7245,7250-7251,7256,7261-7262,7267,7272-7273,7278,7283-7284,7289,7294-7295,7300,7305-7306,7311,7316-7317,7322,7327-7328,7333,7338-7339,8367,8372-8373,8378,8383-8384,8389,8394-8395,9225,9230-9231,9236,9241-9242,9247,9252-9253,9258,9263-9264,9269,9274-9275,9280,9285-9286,9291,9296-9297,9302,9307-9308,9313,9318-9319
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1dbef5676f426d7bd07d3652492235ce4724ca4d",
+  "prompts": {},
+  "sessions": {
+    "s_611bfc067cea41": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14d8f-e4d4-7f52-925c-b8e6345af2bf",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "yourlin <6930286+yourlin@users.noreply.github.com>"
+    }
+  }
+}
