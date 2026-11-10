@@ -31,6 +31,7 @@ import { RECIPES, missingItems } from './data/recipes';
 import { IS_WECHAT, LOW_MEM, LOW_MEM_MAX_RES } from './systems/Device';
 import { weaponCalc } from './systems/WeaponCalc';
 import { weaponFingerprints } from './systems/weaponFingerprint';
+import { setFavorOverride } from './systems/Mastery';
 import { save, disablePersist } from './systems/Save';
 import { applyPerfSettings } from './systems/Perf';
 import { applyLanguage } from './i18n/apply';
@@ -214,6 +215,7 @@ if (!DEV_DISABLED) {
       setInRun,
       weaponCalc,
       weaponFingerprints,
+      setFavorOverride,
     },
   });
 }

@@ -65,8 +65,8 @@ export function weaponCalc(def: WeaponDef, tier: number): WeaponCalc {
   if (e?.lifeSteal) effects.push(`吸血概率 +${e.lifeSteal}%`);
   if (def.knockback) effects.push(`击退 ${def.knockback}`);
   if (def.critBonus) effects.push(`暴击率 +${def.critBonus}%`);
-  if (isDoubleFavored(run.char.favored, def)) effects.push('★★双契合 +10%');
-  else if (isFavoredWeapon(run.char.favored, def)) effects.push('★契合 +10%');
+  if (isDoubleFavored(run.favored, def)) effects.push('★★双契合 +10%');
+  else if (isFavoredWeapon(run.favored, def)) effects.push(run.favorBonus ? '★契合 +10%' : '★契合（熟练度 3 级解锁加成）');
   return { dmg, cd, range, count, critChance, critMult, hit, dps: perAttack / cd, explode, multi, effects };
 }
 

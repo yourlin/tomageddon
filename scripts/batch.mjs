@@ -17,6 +17,8 @@
 //   结果另存 .batch-focus-*.json，不出 HTML 报告（强制给武器的对局不能代表平衡）。
 // --no-archive：诊断 / 复现用，不出报告、不存档转换率、不改 weapon-eff.json，进度文件另存 .batch(-focus)-diag-*.json
 // --bot-style：默认契合远程 / 元素武器的角色风筝走位；kite = 所有非近战起手角色都风筝；classic = 都不风筝（旧行为）
+// --favor：契合阶段。double（默认）= 双契合满解锁；single = 单契合；tag = 熟练度 1–2 级（只认标签、没有加成）。
+//   非 double 的对局不存档武器转换率，报告标题里会注明阶段
 import puppeteer from 'puppeteer-core';
 import { spawn } from 'node:child_process';
 import { availableParallelism, cpus, setPriority } from 'node:os';
@@ -53,6 +55,14 @@ const ENDLESS = process.argv.includes('--endless');
 const NO_TALENTS = arg('no-talents', '');
 // --bot-style kite：远程角色按武器射程放风筝（保持在射程边缘、更早避开近身怪），用来区分「角色弱」还是「bot 不会玩远程」
 const BOT_STYLE = arg('bot-style', '');
+// --favor：契合阶段（契合按熟练度解锁，见 src/systems/Mastery.ts）。double = 双契合满解锁（默认，平衡基准）；
+// single = 只有第一个标签的单契合；tag = 只认第一个标签、没有契合加成（熟练度 1–2 级的新角色）
+const FAVOR = arg('favor', 'double');
+const FAVOR_STAGE = { tag: 0, single: 1, double: 2 }[FAVOR];
+if (FAVOR_STAGE === undefined) {
+  console.error(`--favor 只能是 double / single / tag，收到 ${FAVOR}`);
+  process.exit(1);
+}
 const TALENT_BUDGET = { none: 0, mid: 40, full: 79 }[TALENTS] ?? (TALENTS.endsWith('%') ? TALENTS : Number(TALENTS));
 const PORT = 4174;
 const CHROME =
@@ -65,7 +75,7 @@ const FOCUS_RUNS = Number(arg('focus-runs', '4'));
 const FOCUS_MIN = Number(arg('focus-min', '20'));
 // --no-archive：诊断 / 复现用，跑完不存档转换率、不改 weapon-eff.json，进度文件也与正式测试分开
 const NO_ARCHIVE = process.argv.includes('--no-archive');
-const FILE_TAG = (FOCUS_SPEC ? 'batch-focus' : 'batch') + (NO_ARCHIVE ? '-diag' : '');
+const FILE_TAG = (FOCUS_SPEC ? 'batch-focus' : 'batch') + (NO_ARCHIVE ? '-diag' : '') + (FAVOR !== 'double' ? `-${FAVOR}` : '');
 const PROGRESS = new URL(`./.${FILE_TAG}-progress.json`, import.meta.url);
 const PROGRESS_TMP = new URL(`./.${FILE_TAG}-progress.json.tmp`, import.meta.url);
 const RESULTS = new URL(`./.${FILE_TAG}-results.json`, import.meta.url);
@@ -205,7 +215,16 @@ if (!FOCUS_SPEC) {
 // ---------- 进度：相同参数自动续跑 ----------
 // 检测项配置（报告逐项判定，见 scripts/balance-checks.json）
 const CHECKS = arg('checks', '');
-const config = { chapters: CHAPTERS, runs: RUNS, speed: SPEED, chars, talents: TALENTS, endless: ENDLESS, noTalents: NO_TALENTS };
+const config = {
+  chapters: CHAPTERS,
+  runs: RUNS,
+  speed: SPEED,
+  chars,
+  talents: TALENTS,
+  endless: ENDLESS,
+  noTalents: NO_TALENTS,
+  favor: FAVOR,
+};
 if (FOCUS_SPEC) Object.assign(config, { focus: FOCUS_SPEC, focusRuns: FOCUS_RUNS, focusMin: FOCUS_MIN });
 let state = {
   meta: {
@@ -231,6 +250,7 @@ if (existsSync(PROGRESS) && !FRESH) {
       speed: prev.meta.speed,
       chars: prev.meta.chars,
       talents: prev.meta.talents ?? 'none',
+      favor: prev.meta.favor ?? 'double',
       ...(FOCUS_SPEC ? { focus: prev.meta.focus, focusRuns: prev.meta.focusRuns, focusMin: prev.meta.focusMin } : {}),
     }) ===
       JSON.stringify({
@@ -239,6 +259,7 @@ if (existsSync(PROGRESS) && !FRESH) {
         speed: config.speed,
         chars: config.chars,
         talents: config.talents,
+        favor: config.favor,
         ...(FOCUS_SPEC ? { focus: config.focus, focusRuns: config.focusRuns, focusMin: config.focusMin } : {}),
       }) &&
     // 数值改过（指纹不同）就不续跑：前后两半数据不可比
@@ -274,6 +295,8 @@ function report(complete) {
   }
   // 只有完整跑完才存档转换率（中断的半份数据等续跑完再存，避免同一批样本存两次）
   if (complete && NO_ARCHIVE) console.log('--no-archive：不存档转换率');
+  // 武器转换率样本只收双契合满解锁的对局：单契合 / 没有加成时契合武器打得弱，混进去会拉低数据
+  else if (complete && FAVOR !== 'double') console.log(`--favor ${FAVOR}：不存档转换率（只收双契合对局的样本）`);
   else if (complete) {
     const { file, merged } = archiveAndMerge({ ...state.meta, complete, finishedAt: Date.now() }, state.results);
     console.log(`转换率存档：${file}\n${describeMerged(merged)}`);
@@ -323,9 +346,10 @@ async function playJob(page, job) {
 }
 async function playJobInPage(page, job) {
   return page.evaluate(
-    async ({ id, ch, speed, budget, limit, talents, endless, noTalents, botStyle, focus }) => {
+    async ({ id, ch, speed, budget, limit, talents, endless, noTalents, botStyle, focus, favorStage }) => {
       window.__dmg = [];
       window.__botStyle = botStyle;
+      window.__favorStage = favorStage;
       window.__focus = focus ?? null;
       window.botTalents(id, talents, noTalents ? noTalents.split(',') : []);
       window.startBot2(id, ch, speed, budget);
@@ -367,6 +391,7 @@ async function playJobInPage(page, job) {
       endless: ENDLESS,
       noTalents: NO_TALENTS,
       botStyle: BOT_STYLE,
+      favorStage: FAVOR_STAGE,
     },
   );
 }

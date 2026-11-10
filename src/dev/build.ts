@@ -309,7 +309,7 @@ export function rollShelf(b: DevBuild, prev?: Shelf): Shelf {
   const hasT4 = run.allWeapons.some((w) => w.tier === 3);
   const need = hasT4
     ? []
-    : wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.char.favored, WEAPON_MAP[to])).filter(
+    : wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.favored, WEAPON_MAP[to])).filter(
         (id) => run.canTakeItem(id) && rw[ITEM_MAP[id].rarity] > 0,
       );
   if (need.length && R() < 0.1) {

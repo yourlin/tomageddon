@@ -403,7 +403,7 @@ export class PauseScene extends Phaser.Scene {
     const at = archetypeText(d, w.tier);
     if (at) lines.push([at, 12, '#8ecae6']);
     if (d.superBuff) lines.push([`⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`, 12, '#ffd166']);
-    if (isDoubleFavored(run.char.favored, d)) for (const l of synergyLines(d, run.char.favored, tagName)) lines.push([l, 12, '#ffd166']);
+    if (isDoubleFavored(run.favored, d)) for (const l of synergyLines(d, run.favored, tagName)) lines.push([l, 12, '#ffd166']);
     for (const r of describeWeaponSets(
       d,
       run.setCounts(),

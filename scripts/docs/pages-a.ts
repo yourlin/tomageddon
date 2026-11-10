@@ -10,6 +10,7 @@ import { tagName } from '../../src/i18n/apply';
 import { Doc, lnk, stApply, mods, sep, img, unlockText, CLS_NAME, KIND_NAME } from './common';
 import { charTraitLines, archetypeText } from '../../src/data/describe';
 import { favoredWeapons, doubleFavoredWeapons, affinityText } from '../../src/data/affinity';
+import { FAVOR_UNLOCK } from '../../src/systems/Mastery';
 import { WEAPON_AFFIXES, FORGE } from '../../src/data/weaponAffixes';
 import { pick } from '../../src/systems/Achievements';
 import { EVOLUTIONS } from '../../src/data/evolutions';
@@ -26,6 +27,10 @@ function favLine(c: (typeof CHARACTERS)[number]): string {
   const ids = [...new Set([...c.startWeapons, ...all.map((w) => w.id)])].slice(0, 6);
   return [
     `${tx('契合标签', 'Tags')}：${favTags(c)}`,
+    tx(
+      `契合按熟练度解锁：1–${FAVOR_UNLOCK.single - 1} 级只认第一个标签（${tagName(c.favored[0])}），没有契合加成；${FAVOR_UNLOCK.single} 级起单契合生效；${FAVOR_UNLOCK.double} 级解锁第二个标签（${tagName(c.favored[1])}）和双契合。挑战模式一律双契合`,
+      `Synergy unlocks with Mastery: Lv 1–${FAVOR_UNLOCK.single - 1} only recognizes the first tag (${tagName(c.favored[0])}) with no bonus; single synergy from Lv ${FAVOR_UNLOCK.single}; the second tag (${tagName(c.favored[1])}) and double synergy at Lv ${FAVOR_UNLOCK.double}. Challenges always use double synergy`,
+    ),
     `${tx('契合特效（伤害 +10%）', 'Synergy effect (+10% dmg)')}：${affinityText(c.id)}`,
     `${tx('双契合', 'Double synergy')}：${doubleFavoredWeapons(c)
       .filter(isShopWeapon)

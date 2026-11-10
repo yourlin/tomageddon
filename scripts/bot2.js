@@ -19,6 +19,7 @@ const {
   achValue,
   setInRun,
   weaponCalc,
+  setFavorOverride,
 } = window.__dev;
 
 /** 所有成就的当前进度值（对局类指标要在对局状态下读） */
@@ -105,14 +106,14 @@ function weaponValue(o, P) {
   // 契合武器即使不是主流派也按主流派计价：优先选天赋契合的武器
   let v = (d.cls === P.main || fav ? 10 : 4) * [1, 2.1, 4, 8][o.tier]; // 高品质按实际战力估值，不因单价高而被忽略
   if (run.allWeapons.some((w) => w.id === o.id && w.tier === o.tier)) v *= o.tier >= 2 ? 3 : 2; // 能凑成对（T3 配对后可按配方合成 T4）
-  if (isDoubleFavored(run.char.favored, WEAPON_MAP[o.id]))
+  if (isDoubleFavored(run.favored, WEAPON_MAP[o.id]))
     v *= 3; // 双契合武器
   else if (fav) v *= 2; // 契合武器
   return v;
 }
 
 /** 契合武器：武器标签里有角色契合的标签 */
-const isFav = (id) => isFavoredWeapon(run.char.favored, WEAPON_MAP[id]);
+const isFav = (id) => isFavoredWeapon(run.favored, WEAPON_MAP[id]);
 
 /** 配方价值：超武 > T4；契合武器翻倍 */
 function craftScore(r) {
@@ -173,8 +174,12 @@ export function startBot2(charId, ch, speed = 16, budget = 30) {
   // 开局武器：同选角界面，从契合武器里三选一（第一个是默认开局武器）；优先挑双契合的。
   // 一定要显式传入：否则 run.start 会沿用上一局（上一个角色）留下的开局武器
   const c0 = CHARACTER_MAP[charId];
-  const pool = Object.values(WEAPON_MAP).filter((w) => !w.evolvedFrom && !w.minTier && isFavoredWeapon(c0.favored, w));
-  const first = c0.startWeapons.find((id) => isFavoredWeapon(c0.favored, WEAPON_MAP[id])) ?? pool[0].id;
+  // 契合阶段：平衡测试默认按双契合满解锁（batch.mjs --favor 可改成 single / tag），不看本机存档里的熟练度
+  const stage = window.__favorStage ?? 2;
+  setFavorOverride(stage);
+  const fav0 = stage >= 2 ? c0.favored : c0.favored.slice(0, 1);
+  const pool = Object.values(WEAPON_MAP).filter((w) => !w.evolvedFrom && !w.minTier && isFavoredWeapon(fav0, w));
+  const first = c0.startWeapons.find((id) => isFavoredWeapon(fav0, WEAPON_MAP[id])) ?? pool[0].id;
   const picks = [
     first,
     ...pool
@@ -182,7 +187,7 @@ export function startBot2(charId, ch, speed = 16, budget = 30) {
       .filter((id) => id !== first)
       .sort(() => Math.random() - 0.5),
   ].slice(0, 3);
-  const sw = picks.find((id) => isDoubleFavored(c0.favored, WEAPON_MAP[id])) ?? picks[0];
+  const sw = picks.find((id) => isDoubleFavored(fav0, WEAPON_MAP[id])) ?? picks[0];
   run.start(charId, ch, !!run.endless, run.danger, sw);
   // 专项补测（batch.mjs --focus）：开局直接给一把指定武器与品质，整局不卖、不合成、不再买同名武器，
   // 好让冷门武器、T4 和超武也有实测转换率样本（scripts/weapon-eff.mjs）

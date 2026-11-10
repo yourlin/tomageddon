@@ -20,6 +20,7 @@ import { showSharePoster } from '../systems/SharePoster';
 import { settleDanger, chapterUnlockHint, type DangerResult } from '../systems/Danger';
 import { CH6_DANGER_REQ } from '../data/chaptersExtra';
 import { settleProgress, type ProgressResult } from '../systems/Progress';
+import { favorUnlockNote } from '../systems/Mastery';
 import { VW, VH } from '../systems/HiDpi';
 import { titleBadge } from '../ui/TitleBadge';
 
@@ -203,7 +204,8 @@ export class ResultScene extends Phaser.Scene {
       if (pr.awakened) parts.push(tx(`✨ ${run.char.name} 觉醒了！`, `✨ ${run.char.name} awakened!`));
       parts.push(
         pr.masteryAfter > pr.masteryBefore
-          ? tx(`熟练度升到 ${pr.masteryAfter} 级`, `Mastery up to Lv ${pr.masteryAfter}`)
+          ? tx(`熟练度升到 ${pr.masteryAfter} 级`, `Mastery up to Lv ${pr.masteryAfter}`) +
+              favorUnlockNote(pr.masteryBefore, pr.masteryAfter)
           : tx(`熟练度经验 +${pr.masteryXp}`, `Mastery XP +${pr.masteryXp}`),
       );
       text(this, W / 2, y, parts.join(' · '), fs(18), '#9bf6ff', {

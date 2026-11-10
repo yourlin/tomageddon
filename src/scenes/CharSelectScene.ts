@@ -15,10 +15,11 @@ import { SKILL_TYPE_NAME } from '../data/skills';
 import { save, persist, isUnlocked } from '../systems/Save';
 import { unlockHint, unlockProgress, checkAchievements, achTier, medalOf } from '../systems/Achievements';
 import { ACH_MAP } from '../data/achievements';
-import { run, clearRun, defaultStartWeapon } from '../systems/RunState';
+import { run, clearRun, defaultStartWeapon, charFavored } from '../systems/RunState';
 import { hasCustomTalents } from '../systems/TalentTree';
 import { charTraitLines, weaponDmgType } from '../data/describe';
 import { favoredWeapons, doubleFavoredWeapons } from '../data/affinity';
+import { favorStage, favorTagNote, doubleFavorNote } from '../systems/Mastery';
 import { TAG_MAP } from '../data/weaponTags';
 import { tagName } from '../i18n/apply';
 import { text, button, panel, COLORS, fitImage, hitArea, autoRelayout, toast, statLines, tu, fs } from '../ui/UI';
@@ -511,16 +512,24 @@ export class CharSelectScene extends Phaser.Scene {
             20,
             y,
             tx('契合标签（伤害 +10%）：', 'Synergy tags (+10% dmg): ') +
-              c.favored.map((t) => `${TAG_MAP[t]?.icon ?? ''}${tagName(t)}`).join(tx('、', ', ')) +
+              c.favored.map((t, i) => `${TAG_MAP[t]?.icon ?? ''}${tagName(t)}${favorTagNote(i, favorStage(c.id))}`).join(tx('、', ', ')) +
               tx(
-                `（契合 ${favoredWeapons(c).length} 把 · 双契合 ${doubleFavoredWeapons(c).length} 把）`,
-                ` (${favoredWeapons(c).length} weapons · ${doubleFavoredWeapons(c).length} double)`,
+                `（契合 ${favoredWeapons(c).length} 把 · 双契合 ${doubleFavoredWeapons(c).length} 把${doubleFavorNote(favorStage(c.id))}）`,
+                ` (${favoredWeapons(c).length} weapons · ${doubleFavoredWeapons(c).length} double${doubleFavorNote(favorStage(c.id))})`,
               ),
             16,
             '#ffd166',
             pw - 40,
           ) + 2;
-        y += add(30, y, tx('契合特效：', 'Synergy effect: ') + affinityText(c.id), 15, '#ffe8a3', pw - 60) + 4;
+        y +=
+          add(
+            30,
+            y,
+            tx('契合特效：', 'Synergy effect: ') + affinityText(c.id) + favorTagNote(0, favorStage(c.id)),
+            15,
+            '#ffe8a3',
+            pw - 60,
+          ) + 4;
       }
       if (this.page === 1) {
         const best = save.bestWave[`${c.id}_${this.chapter}`];
@@ -839,8 +848,8 @@ export class CharSelectScene extends Phaser.Scene {
     const cw = 250,
       chh = 330,
       gap = 24;
-    // 从契合标签的全部武器里随机 3 把（上一局选过的那把保留在第一个）
-    const pool = favoredWeapons(ch).filter((w) => !w.minTier);
+    // 从已解锁契合标签的全部武器里随机 3 把（上一局选过的那把保留在第一个）
+    const pool = favoredWeapons({ favored: charFavored(ch) }).filter((w) => !w.minTier);
     const prev = pool.some((w) => w.id === run.startWeaponId) ? run.startWeaponId : defaultStartWeapon(ch);
     const rest = Phaser.Utils.Array.Shuffle(pool.filter((w) => w.id !== prev).map((w) => w.id));
     const picks = [prev, ...rest].slice(0, 3);
