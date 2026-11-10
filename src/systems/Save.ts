@@ -115,7 +115,11 @@ export interface MetaSave {
   fastest: Record<string, number>;
 }
 
-export const SAVE_VERSION = 2;
+export const SAVE_VERSION = 3;
+
+/** 熟练度 7 级的累计经验（= Mastery.ts 的 masteryNeed(FAVOR_UNLOCK.double)，tests/save.test.ts 校验两边一致）。
+ *  这里不直接引用 Mastery.ts：Mastery 依赖 save，反过来引用会循环 */
+export const LEGACY_FAVOR_XP = 2250;
 
 export function defaultMeta(): MetaSave {
   return {
@@ -148,6 +152,17 @@ export const MIGRATIONS: ((d: Raw) => void)[] = [
     const m = defaultMeta();
     for (const [k, w] of Object.entries((d.bestWave as Record<string, number>) ?? {})) if (w > 15) m.endlessBest[k] = w;
     d.meta = m;
+  },
+  // 2 → 3（契合按熟练度解锁）：改版前所有角色都是双契合满解锁。玩过的角色熟练度补到 7 级，老玩家手上的角色不变弱；
+  // 没玩过的角色不补，从头解锁
+  (d) => {
+    const m = (d.meta ?? {}) as Partial<MetaSave>;
+    const mastery = { ...(m.mastery ?? {}) };
+    const played = new Set<string>();
+    for (const rec of [d.charRuns, d.charWins, mastery] as (Record<string, number> | undefined)[])
+      for (const [id, n] of Object.entries(rec ?? {})) if (n > 0) played.add(id);
+    for (const id of played) mastery[id] = Math.max(mastery[id] ?? 0, LEGACY_FAVOR_XP);
+    d.meta = { ...m, mastery };
   },
 ];
 
