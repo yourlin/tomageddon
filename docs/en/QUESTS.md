@@ -33,8 +33,10 @@ Each character has 3 personal quests; completing all of them unlocks an Awakenin
 | Level | Reward |
 | --- | --- |
 | 2 | Start with +15 Seeds |
+| 3 | Single synergy unlocked: weapons with the first synergy tag gain +10% damage, the synergy effect and talent boosts |
 | 4 | Start with +30 Seeds (replaces Lv 2) |
 | 5 | Starting item slot: start with a random Common item |
+| 7 | Double synergy unlocked: the second synergy tag takes effect, and weapons with both tags gain a synergy skill and tag boosts |
 | 7 | Signature talent: +3% damage |
 | 8 | Starting item slot upgrade: a random Rare item instead |
 | 10 | Signature talent: another +3% damage |

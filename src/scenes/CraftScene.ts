@@ -119,7 +119,7 @@ export class CraftScene extends Phaser.Scene {
   }
 
   /** 产物契合当前角色（触发角色天赋与 +10% 伤害） */
-  private favored = (r: Recipe) => isFavoredWeapon(run.char.favored, WEAPON_MAP[r.to]);
+  private favored = (r: Recipe) => isFavoredWeapon(run.favored, WEAPON_MAP[r.to]);
 
   private closeness = (r: Recipe) => {
     const l = this.lack(r);
@@ -314,10 +314,8 @@ export class CraftScene extends Phaser.Scene {
       L.add(text(this, x + s - 4, y + s - 3, TIER_NAMES[w.tier], fs(11), RARITY[w.tier].css).setOrigin(1, 1));
       if (run.inStorage(w.uid)) L.add(text(this, x + 4, y + 2, tx('仓', 'S'), fs(11), COLORS.textDim));
       if (n && !on) L.add(text(this, x + s - 3, y + 2, String(n), fs(11), '#ffd166').setOrigin(1, 0));
-      if (isFavoredWeapon(run.char.favored, WEAPON_MAP[w.id]))
-        L.add(
-          text(this, x + 3, y + s - 3, isDoubleFavored(run.char.favored, WEAPON_MAP[w.id]) ? '★★' : '★', fs(12), '#ffd166').setOrigin(0, 1),
-        );
+      if (isFavoredWeapon(run.favored, WEAPON_MAP[w.id]))
+        L.add(text(this, x + 3, y + s - 3, isDoubleFavored(run.favored, WEAPON_MAP[w.id]) ? '★★' : '★', fs(12), '#ffd166').setOrigin(0, 1));
       L.add(
         hitArea(this, x, y, s, s, () => {
           this.focus(on ? null : w.id);

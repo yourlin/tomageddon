@@ -25,6 +25,7 @@ import { WEAPONS, WEAPON_MAP, TIER_PRICE_MULT, TIER_NAMES, isShopWeapon, SHOP_MA
 import { SET_MAP, activeTier } from '../data/weaponSets';
 import { synergyLines } from '../data/synergy';
 import { isFavoredWeapon, isDoubleFavored, affinityText, favoredWeapons, doubleFavoredWeapons } from '../data/affinity';
+import { FAVOR_UNLOCK, favorTagNote, doubleFavorNote } from '../systems/Mastery';
 import { ALL_ITEMS, ITEM_MAP } from '../data/items';
 import { STAT_ORDER, STAT_INFO } from '../data/stats';
 import {
@@ -261,7 +262,7 @@ export class ShopScene extends Phaser.Scene {
     const hasT4 = run.allWeapons.some((w) => w.tier === 3);
     const need = hasT4
       ? []
-      : wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.char.favored, WEAPON_MAP[to])).filter(
+      : wantedRecipeItems(run.allWeapons, run.items, (to) => isFavoredWeapon(run.favored, WEAPON_MAP[to])).filter(
           (id) => run.canTakeItem(id) && !offers.some((o) => o.id === id) && rw[ITEM_MAP[id].rarity] > 0,
         );
     if (need.length && offers.length < BALANCE.shopSlots && R() < 0.1) {
@@ -430,11 +431,16 @@ export class ShopScene extends Phaser.Scene {
         lines.push(...sets);
         optional.splice(optional.length - 1, 0, ...sets);
         // 契合：卡片上只写一句，具体特效看右侧「角色」页签
-        if (isDoubleFavored(run.char.favored, d)) {
-          const syn = synergyLines(d, run.char.favored, tagName);
+        if (isDoubleFavored(run.favored, d)) {
+          const syn = synergyLines(d, run.favored, tagName);
           lines.unshift(tx(`★★ 双契合 · 伤害 +10%`, `★★ Double synergy · +10% dmg`), ...syn);
           optional.unshift(...syn.slice(1).reverse());
-        } else if (isFavoredWeapon(run.char.favored, d)) lines.unshift(tx('★ 契合武器 · 伤害 +10%', '★ Synergy weapon · +10% damage'));
+        } else if (isFavoredWeapon(run.favored, d))
+          lines.unshift(
+            run.favorBonus
+              ? tx('★ 契合武器 · 伤害 +10%', '★ Synergy weapon · +10% damage')
+              : tx(`★ 契合武器 · 熟练度 ${FAVOR_UNLOCK.single} 级解锁加成`, `★ Synergy weapon · bonus at Mastery ${FAVOR_UNLOCK.single}`),
+          );
         const ev = EVOLUTION_OF[d.id];
         if (ev) lines.push(tx(`✨ 可合成超武「${ev.to.name}」`, `✨ Crafts into ${ev.to.name}`));
         if (affixSlots(o.tier))
@@ -846,16 +852,20 @@ export class ShopScene extends Phaser.Scene {
       );
       y += 24;
     };
-    for (const t of c.favored) {
+    // 契合按熟练度解锁：还没生效的标签照样列出来，灰色并注明几级解锁
+    const stage = run.favorStage;
+    c.favored.forEach((t, i) => {
       const td = TAG_MAP[t];
       const owned = run.weapons.filter((w) => weaponTags(WEAPON_MAP[w.id]).includes(t)).length;
-      favRow(`${td?.icon ?? '◆'} ${tagName(t)}`, favoredWeapons({ favored: [t] }).length, owned, td?.color ?? '#fff4ea');
-    }
+      const note = favorTagNote(i, stage);
+      const color = i >= 1 && stage < 2 ? COLORS.textDim : (td?.color ?? '#fff4ea');
+      favRow(`${td?.icon ?? '◆'} ${tagName(t)}${note}`, favoredWeapons({ favored: [t] }).length, owned, color);
+    });
     favRow(
-      tx(`★★ 双契合（${c.favored.map(tagName).join('＋')}）`, `★★ Double (${c.favored.map(tagName).join('+')})`),
+      tx(`★★ 双契合（${c.favored.map(tagName).join('＋')}）`, `★★ Double (${c.favored.map(tagName).join('+')})`) + doubleFavorNote(stage),
       doubleFavoredWeapons(c).length,
       run.weapons.filter((w) => isDoubleFavored(c.favored, WEAPON_MAP[w.id])).length,
-      '#ffd166',
+      stage >= 2 ? '#ffd166' : COLORS.textDim,
     );
     add(
       tx('双契合：武器获得契合技，并按两个标签各强化一项特性', 'Double: the weapon gains a synergy skill plus one boost per tag'),
@@ -865,7 +875,7 @@ export class ShopScene extends Phaser.Scene {
     );
 
     y += 4;
-    add(tx('契合特效（伤害 +10%）', 'Synergy effect (+10% dmg)'), 15, '#ffb347', 2);
+    add(tx('契合特效（伤害 +10%）', 'Synergy effect (+10% dmg)') + favorTagNote(0, stage), 15, stage >= 1 ? '#ffb347' : COLORS.textDim, 2);
     add(affinityText(c.id), 14, '#ffe8a3', 10);
     add(tx(`天赋 · ${c.talent.name}`, `Talent · ${c.talent.name}`), 15, '#ffb347', 2);
     add(c.talent.desc, 14, '#fff4ea', 10);
@@ -1062,7 +1072,7 @@ export class ShopScene extends Phaser.Scene {
         d.desc,
         ...((t) => (t ? [t] : []))(archetypeText(d, w.tier)),
         ...(d.superBuff ? [`⚡ ${superBuffText(d.superBuff)[lang === 'en' ? 1 : 0]}`] : []),
-        ...(isDoubleFavored(run.char.favored, d) ? synergyLines(d, run.char.favored, tagName) : []),
+        ...(isDoubleFavored(run.favored, d) ? synergyLines(d, run.favored, tagName) : []),
       ].join('\n'),
       fs(13),
       COLORS.textDim,

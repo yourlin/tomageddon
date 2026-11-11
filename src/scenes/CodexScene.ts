@@ -15,6 +15,7 @@ import { CHARACTERS } from '../data/characters';
 import { WEAPONS, WEAPON_MAP, TIER_NAMES, type WeaponDef } from '../data/weapons';
 import { RECIPES, RECIPE_BY_TO, slotLabel, type Recipe } from '../data/recipes';
 import { affinityText } from '../data/affinity';
+import { favorStage, favorTagNote } from '../systems/Mastery';
 import { ALL_ITEMS, ITEM_MAP, baseItemCap } from '../data/items';
 import { charTraitLines, describeItem, weaponDmgType } from '../data/describe';
 import { itemIconKey } from '../art/ItemArt';
@@ -392,8 +393,9 @@ export class CodexScene extends Phaser.Scene {
                   c.title,
                   c.desc,
                   tx(`天赋【${c.talent.name}】${c.talent.desc}`, `Talent [${c.talent.name}] ${c.talent.desc}`),
-                  tx('契合标签：', 'Synergy tags: ') + c.favored.map(tagName).join(tx('、', ', ')),
-                  tx('契合特效（伤害 +10%）：', 'Synergy effect (+10% dmg): ') + affinityText(c.id),
+                  tx('契合标签：', 'Synergy tags: ') +
+                    c.favored.map((t, i) => tagName(t) + favorTagNote(i, favorStage(c.id))).join(tx('、', ', ')),
+                  tx('契合特效（伤害 +10%）：', 'Synergy effect (+10% dmg): ') + affinityText(c.id) + favorTagNote(0, favorStage(c.id)),
                   ...charTraitLines(c),
                   tx(`技能【${c.skill.name}】${c.skill.desc}`, `Skill [${c.skill.name}] ${c.skill.desc}`),
                 ],

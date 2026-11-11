@@ -12,6 +12,37 @@ export interface ChangeEntry {
 
 export const CHANGELOG: ChangeEntry[] = [
   {
+    version: '0.8.6',
+    date: '2026-11-10',
+    highlight: [
+      '契合改为随熟练度逐步解锁：3 级获得契合加成，7 级解锁双契合',
+      'Synergy now unlocks with Mastery: the synergy bonus at Lv 3, double synergy at Lv 7',
+    ],
+    items: [
+      [
+        '新角色熟练度 1–2 级只认第一个契合标签：武器照样标出契合，开局三选一照常，但还没有伤害 +10%、契合特效和天赋强化',
+        'At Mastery 1–2 a new hero only recognizes their first synergy tag: weapons are still marked and the starting pick works as usual, but there is no +10% damage, synergy effect or talent boost yet',
+      ],
+      [
+        '熟练度 3 级（约通关 2 局）解锁单契合；7 级（约 10 局）解锁第二个标签和双契合（契合技与标签特性强化）',
+        'Mastery 3 (about 2 clears) unlocks single synergy; Mastery 7 (about 10 runs) unlocks the second tag and double synergy (synergy skill and tag boosts)',
+      ],
+      [
+        '选角、商店、图鉴里未解锁的标签显示为灰色并注明几级解锁；升到 3 级、7 级时结算界面会提示',
+        'Locked tags show greyed out with their unlock level in character select, the shop and the codex; the results screen tells you when you reach Lv 3 and Lv 7',
+      ],
+      [
+        '老玩家：更新前玩过的角色熟练度自动补到 7 级，手上的角色和以前一样强',
+        'Returning players: heroes you played before this update are raised to Mastery 7, so they stay as strong as before',
+      ],
+      ['挑战模式不受影响，所有人一律双契合', 'Challenges are unaffected: everyone has double synergy'],
+      [
+        '猕猴桃侦探的契合标签顺序改为「元素、锋利」，开局武器芥末喷火器从 1 级就算契合',
+        'Kiwi Detective’s synergy tags are reordered to Elemental then Sharp, so the Mustard Flamer counts from Lv 1',
+      ],
+    ],
+  },
+  {
     version: '0.8.5',
     date: '2026-11-08',
     highlight: [

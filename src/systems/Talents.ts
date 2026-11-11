@@ -213,7 +213,10 @@ export const CHERRY_HEAT = { max: 20, overheat: 2, overheatSlow: 30 };
 
 export class TalentSystem {
   private readonly id: string;
+  /** 当前认得的契合标签（按熟练度解锁，见 Mastery.ts） */
   private readonly fav: readonly string[];
+  /** 契合加成是否已解锁：熟练度 1–2 级只认标签，契合特效与天赋对契合武器的强化都不生效 */
+  private readonly bonus: boolean;
   private dodgeT = 0; // 南瓜幽灵：闪避后的攻速窗口
   private ghost = 0; // 南瓜幽灵：剩余幽灵弹
   private blindCd = 0; // 洋葱大叔：催泪弹冷却
@@ -243,7 +246,8 @@ export class TalentSystem {
 
   constructor(private g: GameScene) {
     this.id = run.charId;
-    this.fav = run.char.favored;
+    this.fav = run.favored;
+    this.bonus = run.favorBonus;
   }
 
   private get still(): boolean {
@@ -256,8 +260,9 @@ export class TalentSystem {
     return true;
   }
 
+  /** 这把武器能不能拿到契合加成（契合特效、天赋强化）：带已认得的契合标签，且加成已解锁 */
   isFavored(def: WeaponDef | undefined): boolean {
-    return isFavoredWeapon(this.fav, def);
+    return this.bonus && isFavoredWeapon(this.fav, def);
   }
   isFavoredId(id: string | undefined): boolean {
     return !!id && this.isFavored(WEAPON_MAP[id]);
@@ -762,7 +767,7 @@ export class TalentSystem {
 
   /** 大蒜伯爵「血之盛宴」：契合武器的吸血冷却缩短、同一次群体命中可连续触发数次（见 BALANCE.lifeSteal） */
   lifeStealRule(weaponId: string | undefined): { cdMult: number; burst: number } {
-    if (this.id === 'garlic' && weaponId && isFavoredWeapon(this.fav, WEAPON_MAP[weaponId]))
+    if (this.id === 'garlic' && weaponId && this.isFavored(WEAPON_MAP[weaponId]))
       return { cdMult: BALANCE.lifeSteal.favoredCdMult, burst: BALANCE.lifeSteal.favoredBurst };
     return { cdMult: 1, burst: 1 };
   }

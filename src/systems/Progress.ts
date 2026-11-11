@@ -9,6 +9,10 @@ import { bump, bumpMax, counter } from './Counters';
 import { tx } from '../i18n';
 import { SKIN_OF, SKIN_MAP, type SkinDef } from '../data/skins';
 import { skinsEnabled } from './Features';
+import { MASTERY_MAX, masteryNeed, masteryLevel, FAVOR_UNLOCK } from './Mastery';
+
+// 熟练度等级的计算挪到 Mastery.ts（RunState 也要用，放这里会循环引用），这里继续导出，旧的引用不用改
+export { MASTERY_MAX, masteryNeed, masteryLevel };
 
 // ---------------- 任务与觉醒 ----------------
 export const questDone = (q: QuestDef): boolean => !!save.meta.quests[q.id];
@@ -69,21 +73,25 @@ export function settleProgress(win: boolean): ProgressResult {
 }
 
 // ---------------- 熟练度 ----------------
-export const MASTERY_MAX = 10;
-/** 升到第 n 级累计需要的经验（1 级 0 经验；10 级约 30 局通关） */
-export const masteryNeed = (lv: number): number => Math.round(150 * (lv - 1) * (1 + 0.25 * (lv - 1)));
-export function masteryLevel(charId: string): number {
-  const xp = save.meta.mastery[charId] ?? 0;
-  let lv = 1;
-  while (lv < MASTERY_MAX && xp >= masteryNeed(lv + 1)) lv++;
-  return lv;
-}
-
-/** 熟练度奖励（F3）：开局番茄籽、开局道具槽、专属天赋（全伤害） */
+/** 熟练度奖励（F3）：开局番茄籽、契合解锁、开局道具槽、专属天赋（全伤害） */
 export const MASTERY_REWARDS: { lv: number; desc: [string, string] }[] = [
   { lv: 2, desc: ['开局 +15 番茄籽', 'Start with +15 Seeds'] },
+  {
+    lv: FAVOR_UNLOCK.single,
+    desc: [
+      '解锁单契合：第一个契合标签的武器获得伤害 +10%、契合特效与天赋强化',
+      'Single synergy unlocked: weapons with the first synergy tag gain +10% damage, the synergy effect and talent boosts',
+    ],
+  },
   { lv: 4, desc: ['开局 +30 番茄籽（替代 2 级）', 'Start with +30 Seeds (replaces Lv 2)'] },
   { lv: 5, desc: ['开局道具槽：开局获得 1 个随机普通道具', 'Starting item slot: start with a random Common item'] },
+  {
+    lv: FAVOR_UNLOCK.double,
+    desc: [
+      '解锁双契合：第二个契合标签生效，两个标签都带的武器获得契合技与标签特性强化',
+      'Double synergy unlocked: the second synergy tag takes effect, and weapons with both tags gain a synergy skill and tag boosts',
+    ],
+  },
   { lv: 7, desc: ['专属天赋：全伤害 +3%', 'Signature talent: +3% damage'] },
   { lv: 8, desc: ['开局道具槽升级：改为随机稀有道具', 'Starting item slot upgrade: a random Rare item instead'] },
   {

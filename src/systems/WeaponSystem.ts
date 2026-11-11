@@ -45,7 +45,7 @@ export function weaponDamage(def: WeaponDef, tier: number, s: Stats, ow?: OwnedW
   const pct = def.kind === 'aura' ? s.auraPct + clsPct : clsPct;
   d *= (1 + (s.damage + pct) / 100) * classMult;
   d *= 1 + affixTotals(ow).dmg / 100;
-  if (isFavoredWeapon(run.char.favored, def)) d *= FAVORED_DMG; // 契合武器（带任意一个契合标签）
+  if (run.favorBonus && isFavoredWeapon(run.favored, def)) d *= FAVORED_DMG; // 契合武器（带已解锁的契合标签，熟练度 3 级起）
   // 近战直刺只打一条线，实战效率最低（约为纸面的 94%，横扫 156%），整体加伤
   if (def.kind === 'thrust') d *= BALANCE.thrustDmgMult;
   return Math.max(1, d);

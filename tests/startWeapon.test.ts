@@ -2,7 +2,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { run, defaultStartWeapon, mergeTier } from '../src/systems/RunState';
 import { BALANCE } from '../src/data/balance';
 import { CHARACTERS, CHARACTER_MAP } from '../src/data/characters';
-import { favoredWeapons } from '../src/data/affinity';
+import { favoredWeapons, isFavoredWeapon } from '../src/data/affinity';
+import { setFavorOverride } from '../src/systems/Mastery';
 import { RECIPE_BY_TO } from '../src/data/recipes';
 
 describe('开局武器：契合武器三选一', () => {
@@ -14,6 +15,7 @@ describe('开局武器：契合武器三选一', () => {
     }
   });
   it('开局只拿选中的那 1 把；「再来一局」沿用上次选择', () => {
+    setFavorOverride(2); // 双契合满解锁：两个标签的武器都能选
     const pick = favoredWeapons(CHARACTER_MAP.blueberry)[2].id;
     run.start('blueberry', 1, false, 0, pick);
     expect(run.weapons.map((w) => w.id)).toEqual([pick]);
@@ -22,6 +24,16 @@ describe('开局武器：契合武器三选一', () => {
     // 换角色：上次的选择不在契合武器里，回到默认
     run.start('tomato', 1);
     expect(run.weapons.map((w) => w.id)).toEqual([defaultStartWeapon(CHARACTER_MAP.tomato)]);
+    setFavorOverride(null);
+  });
+  it('第二个契合标签还没解锁时，上次选的第二标签武器不再沿用，回到默认', () => {
+    setFavorOverride(0);
+    const c = CHARACTER_MAP.blueberry;
+    const second = favoredWeapons({ favored: c.favored.slice(1) }).find((w) => !w.minTier && !isFavoredWeapon(c.favored.slice(0, 1), w))!;
+    run.startWeaponId = second.id;
+    run.start('blueberry', 1);
+    expect(run.weapons.map((w) => w.id)).toEqual([defaultStartWeapon(c)]);
+    setFavorOverride(null);
   });
 });
 

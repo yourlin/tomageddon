@@ -9,6 +9,8 @@ const OUT = new URL('../reports/', import.meta.url);
 // 与 src/data/balance.ts 的 chapterWaves 一致（第 7 章覆盖为 25 波）
 const chapterWaves = (ch) => (ch <= 4 ? 15 : ch === 7 ? 25 : Math.min(50, 20 + (ch - 5) * 5));
 const TALENT_NAME = { none: '不点', mid: '中期 40 点', full: '全部 79 点', '20%': '20%（约 16 点，基准）' };
+/** 契合阶段（batch.mjs --favor） */
+const FAVOR_NAME = { double: '双契合（满解锁，基准）', single: '单契合', tag: '只认标签、无加成（熟练度 1–2 级）' };
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const avg = (l, k) => (l.length ? l.reduce((a, r) => a + (r[k] ?? 0), 0) / l.length : 0);
@@ -657,7 +659,7 @@ export function renderMarkdown(meta, results) {
   const lines = [
     '# 平衡测试报告（自动生成）',
     '',
-    `> ${stamp(new Date(meta.finishedAt))}${meta.version ? ` · v${meta.version}` : ''} · 每角色每章 ${meta.runs} 局 · 天赋 ${TALENT_NAME[meta.talents ?? 'none'] ?? meta.talents} · ${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · ${meta.complete ? '完整' : `**未完成 ${results.length}/${meta.total}**`} · 机器人：按流派评估购买/升级，采样躲避`,
+    `> ${stamp(new Date(meta.finishedAt))}${meta.version ? ` · v${meta.version}` : ''} · 每角色每章 ${meta.runs} 局 · 天赋 ${TALENT_NAME[meta.talents ?? 'none'] ?? meta.talents} · 契合 ${FAVOR_NAME[meta.favor ?? 'double'] ?? meta.favor} · ${meta.speed === 'max' ? '极速' : meta.speed + ' 倍速'} · ${meta.complete ? '完整' : `**未完成 ${results.length}/${meta.total}**`} · 机器人：按流派评估购买/升级，采样躲避`,
     '',
   ];
   for (const c of S) {
@@ -853,6 +855,7 @@ export function renderHtml(meta, results) {
     ['章节', meta.chapters.join('、')],
     ['每角色每章', `${meta.runs} 局`],
     ['天赋', esc(TALENT_NAME[meta.talents ?? 'none'] ?? meta.talents)],
+    ['契合阶段', esc(FAVOR_NAME[meta.favor ?? 'double'] ?? meta.favor)],
     ['速度', meta.speed === 'max' ? '极速' : `${esc(meta.speed)} 倍速`],
     ['并行', `${esc(meta.workers)} 个`],
     ['用时', dur(meta.elapsedMs)],

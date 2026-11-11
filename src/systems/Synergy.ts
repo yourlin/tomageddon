@@ -54,7 +54,7 @@ export class Synergy {
 
   /** 武器的契合技状态（WeaponSystem 建武器时调用） */
   init(def: WeaponDef): SynRun {
-    const key = isDoubleFavored(run.char.favored, def) ? synergySkill(def).key : null;
+    const key = isDoubleFavored(run.favored, def) ? synergySkill(def).key : null;
     return { key, n: 0, t: 0, ramp: 0, rampT: 0 };
   }
 
@@ -413,9 +413,9 @@ export class Synergy {
   afterHit(e: Enemy, info: HitInfo, frozen: boolean): void {
     if (info.echo || !info.weaponId) return;
     const def = WEAPON_MAP[info.weaponId];
-    if (!def || !isDoubleFavored(run.char.favored, def)) return;
+    if (!def || !isDoubleFavored(run.favored, def)) return;
     const g = this.g;
-    const fav = run.char.favored;
+    const fav = run.favored;
     this.resetWave();
     if (fav.includes('蔬果') && this.fruits < 3 && Math.random() < 0.03) {
       this.fruits++;

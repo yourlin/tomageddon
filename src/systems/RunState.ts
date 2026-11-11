@@ -9,6 +9,7 @@ import { CHARACTER_MAP, type CharacterDef } from '../data/characters';
 import { WEAPON_MAP, TIER_PRICE_MULT, type WeaponDef } from '../data/weapons';
 import { SET_MAP, activeTier, countSets } from '../data/weaponSets';
 import { isFavoredWeapon, favoredWeapons } from '../data/affinity';
+import { favorStage, favoredTagsAt, type FavorStage } from './Mastery';
 import { missingItems, itemPicks, RECIPE_BY_TO, type Recipe } from '../data/recipes';
 
 import { ITEM_MAP, itemCapFor, LEVELUP_OPTIONS, type ItemSpecial, type DotPerk } from '../data/items';
@@ -157,9 +158,16 @@ export function mergeTier(tier: number, rnd: () => number = Math.random): number
   return Math.min(2, tier + (rnd() < BALANCE.mergeBonus ? 2 : 1));
 }
 
-/** 默认开局武器：角色原初始武器里的契合武器，没有则取第一把契合武器 */
-export function defaultStartWeapon(c: CharacterDef): string {
-  return c.startWeapons.find((w) => isFavoredWeapon(c.favored, WEAPON_MAP[w])) ?? favoredWeapons(c).filter((w) => !w.minTier)[0].id;
+/** 角色在选角界面时认得的契合标签（还没开局，挑战模式另算：挑战开局按双契合） */
+export const charFavored = (c: CharacterDef, challenge = false): readonly string[] =>
+  favoredTagsAt(c.favored, challenge ? 2 : favorStage(c.id));
+
+/** 默认开局武器：角色原初始武器里的契合武器，没有则取第一把契合武器（按当前解锁的契合标签） */
+export function defaultStartWeapon(c: CharacterDef, challenge = false): string {
+  const fav = charFavored(c, challenge);
+  return (
+    c.startWeapons.find((w) => isFavoredWeapon(fav, WEAPON_MAP[w])) ?? favoredWeapons({ favored: fav }).filter((w) => !w.minTier)[0].id
+  );
 }
 
 export class RunState {
@@ -406,6 +414,18 @@ export class RunState {
   get char(): CharacterDef {
     return CHARACTER_MAP[this.charId];
   }
+  /** 契合阶段（Mastery.ts）：挑战模式一律按双契合，其余按熟练度 */
+  get favorStage(): FavorStage {
+    return this.challenge ? 2 : favorStage(this.charId);
+  }
+  /** 当前认得的契合标签：用来判断「是不是契合武器」（标星、三选一、商店推荐、只能用契合武器的限制） */
+  get favored(): readonly string[] {
+    return favoredTagsAt(this.char.favored, this.favorStage);
+  }
+  /** 契合加成是否生效：伤害 +10%、契合特效、天赋对契合武器的强化。熟练度 1–2 级只认标签、没有加成 */
+  get favorBonus(): boolean {
+    return this.favorStage >= 1;
+  }
   get chapter(): ChapterDef {
     return CHAPTERS[this.chapterId - 1];
   }
@@ -464,8 +484,7 @@ export class RunState {
     const bp = bossPool(chapterId);
     this.bossId = bp[Math.floor(Math.random() * bp.length)].id;
     const sw =
-      startWeapon ??
-      (isFavoredWeapon(this.char.favored, WEAPON_MAP[this.startWeaponId]) ? this.startWeaponId : defaultStartWeapon(this.char));
+      startWeapon ?? (isFavoredWeapon(this.favored, WEAPON_MAP[this.startWeaponId]) ? this.startWeaponId : defaultStartWeapon(this.char));
     this.startWeaponId = sw;
     this.weapons = [{ uid: uidSeq++, id: sw, tier: 0 }];
     this.storage = [];

@@ -1100,7 +1100,8 @@ export const CHARACTERS: CharacterDef[] = [
     // 换成同样契合的芥末喷火器后 6/18 通关、早亡 3 局；八角飞镖仍在开局三选一的候选里
     mods: { crit: 8, luck: 4, maxHp: 12, elemental: 5, damage: 20, armor: 3 },
     startWeapons: ['mustard_flamer'],
-    favored: ['锋利', '元素'],
+    // 契合按熟练度先解锁第一个标签：开局武器芥末喷火器是元素武器，所以元素排在前面
+    favored: ['元素', '锋利'],
     talent: { name: '弱点洞察', desc: '目标身上每有一种减益，契合武器对它的暴击率 +5%' },
     traits: ['命中 20% 概率易伤', '暴击伤害 +30%'],
     special: { onHit: [S('vulnerable', 4, 1, 20)], critDmg: 30 },
