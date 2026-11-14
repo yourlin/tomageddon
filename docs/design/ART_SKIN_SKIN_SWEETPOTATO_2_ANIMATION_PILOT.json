@@ -2,7 +2,7 @@
   "kind": "char",
   "id": "sweetpotato",
   "skinId": "skin_sweetpotato_2",
-  "referenceHeight": 160,
+  "referenceHeight": 125,
   "requiredActions": [
     "idle",
     "move",
@@ -21,7 +21,7 @@
       "name": "move",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_2/move-sheet-right-2.png"
+      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_2/limb-depth-revisions/move-sheet-corrected-1.png"
     },
     {
       "name": "hurt",
@@ -33,7 +33,7 @@
       "name": "die",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_2/die-sheet-2.png"
+      "source": "drafts/char/sweetpotato/skins/skin_sweetpotato_2/limb-depth-revisions/die-sheet-corrected-1.png"
     },
     {
       "name": "cast",

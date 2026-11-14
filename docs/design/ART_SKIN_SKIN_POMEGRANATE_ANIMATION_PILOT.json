@@ -2,37 +2,37 @@
   "kind": "char",
   "id": "pomegranate",
   "skinId": "skin_pomegranate",
-  "referenceHeight": 160,
+  "referenceHeight": 136,
   "actions": [
     {
       "name": "idle",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/pomegranate/skins/skin_pomegranate/idle-sheet-1.png"
+      "source": "drafts/char/pomegranate/skins/skin_pomegranate/limb-depth-revisions/idle-sheet-corrected-1.png"
     },
     {
       "name": "move",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/pomegranate/skins/skin_pomegranate/move-sheet-right-1.png"
+      "source": "drafts/char/pomegranate/skins/skin_pomegranate/limb-depth-revisions/move-sheet-corrected-1.png"
     },
     {
       "name": "hurt",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/pomegranate/skins/skin_pomegranate/hurt-sheet-1.png"
+      "source": "drafts/char/pomegranate/skins/skin_pomegranate/limb-depth-revisions/hurt-sheet-corrected-1.png"
     },
     {
       "name": "die",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/pomegranate/skins/skin_pomegranate/die-sheet-1.png"
+      "source": "drafts/char/pomegranate/skins/skin_pomegranate/limb-depth-revisions/die-sheet-corrected-1.png"
     },
     {
       "name": "cast",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/pomegranate/skins/skin_pomegranate/cast-sheet-1.png"
+      "source": "drafts/char/pomegranate/skins/skin_pomegranate/limb-depth-revisions/cast-sheet-corrected-1.png"
     }
   ],
   "status": "gutters and shared action calibration checked; runtime verification pending",

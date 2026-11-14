@@ -21,19 +21,19 @@
       "name": "move",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/kiwi/skins/skin_kiwi/move-sheet-right-1.png"
+      "source": "drafts/char/kiwi/skins/skin_kiwi/limb-depth-revisions/move-sheet-corrected-1.png"
     },
     {
       "name": "hurt",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/kiwi/skins/skin_kiwi/hurt-sheet-1.png"
+      "source": "drafts/char/kiwi/skins/skin_kiwi/limb-depth-revisions/hurt-sheet-corrected-1.png"
     },
     {
       "name": "die",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/kiwi/skins/skin_kiwi/die-sheet-2.png"
+      "source": "drafts/char/kiwi/skins/skin_kiwi/limb-depth-revisions/die-sheet-corrected-1.png"
     },
     {
       "name": "cast",

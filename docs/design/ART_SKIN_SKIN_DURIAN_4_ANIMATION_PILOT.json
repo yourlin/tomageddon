@@ -15,31 +15,31 @@
       "name": "idle",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/durian/skins/skin_durian_4/idle-sheet-3.png"
+      "source": "drafts/char/durian/skins/skin_durian_4/limb-depth-revisions/idle-sheet-corrected-1.png"
     },
     {
       "name": "move",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/durian/skins/skin_durian_4/move-sheet-right-1.png"
+      "source": "drafts/char/durian/skins/skin_durian_4/limb-depth-revisions/move-sheet-corrected-1.png"
     },
     {
       "name": "hurt",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/durian/skins/skin_durian_4/hurt-sheet-1.png"
+      "source": "drafts/char/durian/skins/skin_durian_4/limb-depth-revisions/hurt-sheet-corrected-1.png"
     },
     {
       "name": "die",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/durian/skins/skin_durian_4/die-sheet-1.png"
+      "source": "drafts/char/durian/skins/skin_durian_4/limb-depth-revisions/die-sheet-corrected-1.png"
     },
     {
       "name": "cast",
       "grid": 2,
       "referenceFrame": 0,
-      "source": "drafts/char/durian/skins/skin_durian_4/cast-sheet-2.png"
+      "source": "drafts/char/durian/skins/skin_durian_4/limb-depth-revisions/cast-sheet-corrected-1.png"
     }
   ],
   "status": "gutters and shared action calibration checked; runtime verification pending"
