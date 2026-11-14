@@ -16,6 +16,7 @@
 //   每个武器×品质跑 --focus-runs 局（默认 4），一半用契合这把武器的角色、一半用不契合的，章节在 --chapters 里轮换（补测默认第 1–7 章）。
 //   结果另存 .batch-focus-*.json，不出 HTML 报告（强制给武器的对局不能代表平衡）。
 // --no-archive：诊断 / 复现用，不出报告、不存档转换率、不改 weapon-eff.json，进度文件另存 .batch(-focus)-diag-*.json
+// --recycle：每个页面跑满 N 局后重建（默认 8，0 = 不重建），防止渲染进程内存一直上涨
 // --bot-style：默认契合远程 / 元素武器的角色风筝走位；kite = 所有非近战起手角色都风筝；classic = 都不风筝（旧行为）
 // --favor：契合阶段。double（默认）= 双契合满解锁；single = 单契合；tag = 熟练度 1–2 级（只认标签、没有加成）。
 //   非 double 的对局不存档武器转换率，报告标题里会注明阶段
@@ -80,6 +81,8 @@ const PROGRESS = new URL(`./.${FILE_TAG}-progress.json`, import.meta.url);
 const PROGRESS_TMP = new URL(`./.${FILE_TAG}-progress.json.tmp`, import.meta.url);
 const RESULTS = new URL(`./.${FILE_TAG}-results.json`, import.meta.url);
 const JOB_TIMEOUT = Number(arg('timeout', '240')) * 1000; // 单局超时（秒）
+// --recycle：每个页面跑满这么多局后关掉重建，回收渲染进程上涨的内存（0 = 不重建）
+const RECYCLE = Number(arg('recycle', '8'));
 /** 章节波数（与 balance.chapterWaves 一致）：第 1–4 章 15 波，第 5 章 20 波，之后每章 +5，最多 50 */
 // 与 src/data/balance.ts 的 chapterWaves 一致（第 7 章覆盖为 25 波）
 const chapterWaves = (ch) => (ch <= 4 ? 15 : ch === 7 ? 25 : Math.min(50, 20 + (ch - 5) * 5));
@@ -115,6 +118,9 @@ const browser = await puppeteer.launch({
   executablePath: CHROME,
   headless: true,
   protocolTimeout: JOB_TIMEOUT * 4 + 120000, // 覆盖最长的单局（无尽 ×4、长章节 ×2）
+  // 关掉 CDP 网络事件跟踪：开着时浏览器主进程会为 DevTools 留住每个请求的数据，每局重新加载约 60MB 美术资源，
+  // 主进程内存只涨不降，15 个页面并发约 230 局后整个浏览器卡死。脚本本身不用请求 / 响应事件
+  networkEnabled: false,
   handleSIGINT: false,
   handleSIGTERM: false,
   handleSIGHUP: false,
@@ -438,10 +444,19 @@ const ticker = setInterval(progress, 1000);
 
 /** 并发槽位：序号 ≥ 当前并发上限时暂停（进行中的局会跑完）；页面按需创建 */
 async function worker(slot, page) {
+  let played = 0; // 当前页面已跑的局数
   while (queue.length && !stopping) {
     if (slot >= limit) {
       await sleep(500);
       continue;
+    }
+    // 渲染进程的内存随对局慢慢上涨（每局新加载的纹理没全部卸载），每跑 RECYCLE 局换一个新页面
+    if (page && RECYCLE > 0 && played >= RECYCLE) {
+      await page
+        .browserContext()
+        .close()
+        .catch(() => {});
+      page = null;
     }
     if (!page) {
       page = await newWorker().catch(() => null);
@@ -449,6 +464,7 @@ async function worker(slot, page) {
         await sleep(2000);
         continue;
       }
+      played = 0;
     }
     const job = queue.shift();
     if (!job) break;
@@ -456,6 +472,7 @@ async function worker(slot, page) {
       pageJob.set(page, job);
       const r = await playJob(page, job);
       if (stopping) return;
+      played++;
       state.results.push({ ...r, ch: job.ch, run: job.run, key: job.key });
       saveProgress();
     } catch (e) {
@@ -475,6 +492,7 @@ async function worker(slot, page) {
           console.error(`\n重建页面失败：${err.message.split('\n')[0]}`);
           return null;
         });
+      played = 0;
       if (!page) {
         console.error('\n该并发槽位退出，剩余任务由其他槽位完成');
         return;
