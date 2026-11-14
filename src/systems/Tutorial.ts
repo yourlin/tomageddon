@@ -79,8 +79,8 @@ const TIPS: Record<TipKey, () => [string, string]> = {
   affix: () => [
     tx('词条与打造', 'Affixes & forging'),
     tx(
-      'III / IV 级武器会带随机词条，点开武器可以花番茄籽洗练；IV 级武器还能打造升级到 +10，等级越高越贵、成功率越低。',
-      'Tier III / IV weapons roll random affixes you can reroll for Seeds; tier IV weapons can also be forged up to +10 — pricier and riskier each level.',
+      'III / IV 级武器会带随机词条；IV 级武器可以花番茄籽把全部词条重洗一遍（不能只洗一条），还能打造升级到 +10，等级越高越贵、成功率越低。',
+      'Tier III / IV weapons roll random affixes. On tier IV you can spend Seeds to reroll all of its affixes at once (not one at a time) and forge it up to +10 — pricier and riskier each level.',
     ),
   ],
   evolve: () => [

@@ -290,8 +290,8 @@ export function weaponsDoc(): void {
       '- T3 weapons roll 1 random affix and T4 weapons roll 2; affixes have tiers I–IV (I common, IV rare; higher Luck favours higher tiers)',
     ),
     tx(
-      `- 商店中可花番茄籽洗练：全部重洗 \`8 + 2×波次\`，单条重洗为其 2.5 倍`,
-      `- Reroll affixes in the shop: all at once costs \`8 + 2×wave\`, a single affix costs 2.5× that`,
+      `- 只有 T4 武器能在商店里花番茄籽洗练，而且只能全部重洗，价格 \`16 + 3×波次\`；T3 武器的词条不能洗`,
+      `- Only T4 weapons can reroll affixes in the shop, and only all at once, for \`16 + 3×wave\`; T3 affixes cannot be rerolled`,
     ),
     tx(
       `- T4 武器可打造，每级伤害 +${FORGE.dmgPerLevel * 100}%，最高 +${FORGE.maxLevel}；费用随等级 ×1.45 递增，失败只扣费用不降级`,

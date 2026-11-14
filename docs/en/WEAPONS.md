@@ -486,7 +486,7 @@ A set is a group of specific weapons: the more different members you hold in you
 ## Affixes & Forging
 
 - T3 weapons roll 1 random affix and T4 weapons roll 2; affixes have tiers I–IV (I common, IV rare; higher Luck favours higher tiers)
-- Reroll affixes in the shop: all at once costs `8 + 2×wave`, a single affix costs 2.5× that
+- Only T4 weapons can reroll affixes in the shop, and only all at once, for `16 + 3×wave`; T3 affixes cannot be rerolled
 - T4 weapons can be forged for +5% damage per level, up to +10; each level costs 1.45× more, and a failed forge only costs the fee
 
 | Affix | I | II | III | IV |

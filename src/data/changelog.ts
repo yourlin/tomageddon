@@ -13,7 +13,7 @@ export interface ChangeEntry {
 export const CHANGELOG: ChangeEntry[] = [
   {
     version: '0.8.6',
-    date: '2026-11-10',
+    date: '2026-11-14',
     highlight: [
       '契合改为随熟练度逐步解锁：3 级获得契合加成，7 级解锁双契合',
       'Synergy now unlocks with Mastery: the synergy bonus at Lv 3, double synergy at Lv 7',
@@ -36,6 +36,10 @@ export const CHANGELOG: ChangeEntry[] = [
         'Returning players: heroes you played before this update are raised to Mastery 7, so they stay as strong as before',
       ],
       ['挑战模式不受影响，所有人一律双契合', 'Challenges are unaffected: everyone has double synergy'],
+      [
+        '词条洗练收紧：只有 IV 级武器能洗，而且只能整组重洗、不能只洗一条；价格从 8 + 2×波次 涨到 16 + 3×波次。III 级武器的词条买到什么就是什么',
+        'Affix rerolls are stricter: only tier IV weapons can reroll, and only all affixes at once rather than one at a time; the price rises from 8 + 2×wave to 16 + 3×wave. Tier III affixes are kept as rolled',
+      ],
       [
         '猕猴桃侦探的契合标签顺序改为「元素、锋利」，开局武器芥末喷火器从 1 级就算契合',
         'Kiwi Detective’s synergy tags are reordered to Elemental then Sharp, so the Mustard Flamer counts from Lv 1',
