@@ -10,7 +10,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 ## Contents
 
-- [v0.8.6 · 2026-11-10](#v0-8-6)
+- [v0.8.6 · 2026-11-14](#v0-8-6)
 - [v0.8.5 · 2026-11-08](#v0-8-5)
 - [v0.8.4 · 2026-11-06](#v0-8-4)
 - [v0.8.3 · 2026-11-02](#v0-8-3)
@@ -37,7 +37,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 
 <a id="v0-8-6"></a>
 
-## v0.8.6 · 2026-11-10
+## v0.8.6 · 2026-11-14
 
 **Synergy now unlocks with Mastery: the synergy bonus at Lv 3, double synergy at Lv 7**
 
@@ -47,6 +47,7 @@ Player-facing release notes, from the same data as the in-game "What's New" scre
 - Locked tags show greyed out with their unlock level in character select, the shop and the codex; the results screen tells you when you reach Lv 3 and Lv 7
 - Returning players: heroes you played before this update are raised to Mastery 7, so they stay as strong as before
 - Challenges are unaffected: everyone has double synergy
+- Affix rerolls are stricter: only tier IV weapons can reroll, and only all affixes at once rather than one at a time; the price rises from 8 + 2×wave to 16 + 3×wave. Tier III affixes are kept as rolled
 - Kiwi Detective’s synergy tags are reordered to Elemental then Sharp, so the Mustard Flamer counts from Lv 1
 
 <a id="v0-8-5"></a>

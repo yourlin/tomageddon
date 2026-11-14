@@ -66,9 +66,8 @@ import {
   affixText,
   AFFIX_TIER_COLOR,
   rerollAll,
-  rerollOne,
   rerollAllCost,
-  rerollOneCost,
+  canRerollAffixes,
   forge,
   forgeCost,
   forgeChance,
@@ -1096,7 +1095,7 @@ export class ShopScene extends Phaser.Scene {
     const forgeTipY = ty;
     if (canForgeRow) ty += 26;
     const toolsY = ty;
-    if (affixes.length || canForgeRow) ty += 52;
+    if (canRerollAffixes(w) || canForgeRow) ty += 52;
     const actY = ty;
     ty += 52;
     const storeY = ty;
@@ -1156,32 +1155,10 @@ export class ShopScene extends Phaser.Scene {
       sy += t.height + 1;
     }
     c.add(desc);
-    // 词条（T3 / T4 才有）：逐条显示，可单独洗练
-    const one = rerollOneCost(run.wave);
+    // 词条（T3 / T4 才有）：逐条显示；只有 T4 能洗练，而且只能整组重洗（按钮在下面一行）
     affixes.forEach((a, i) => {
       const ay = affixY + i * 34;
       c.add(text(this, 14, ay + 6, affixText(a), fs(16), AFFIX_TIER_COLOR[a.tier - 1]));
-      c.add(
-        button(
-          this,
-          PW - 58,
-          ay + 16,
-          92,
-          30,
-          tx(`洗 🌱${one}`, `Reroll 🌱${one}`),
-          () => {
-            if (run.seeds < one) return;
-            run.seeds -= one;
-            rerollOne(w, i, s.luck);
-            bump('affixRerolls');
-            run.dirty();
-            audio.play(this, 'buy');
-            redraw();
-          },
-          0x6d597a,
-          13,
-        ).setEnabled(run.seeds >= one),
-      );
     });
     // 打造（T4）：成功率随等级下降，失败只扣费用
     if (canForgeRow)
@@ -1200,11 +1177,12 @@ export class ShopScene extends Phaser.Scene {
           '#ffd166',
         ),
       );
-    // 洗全部 / 打造：只有能用的那个才出现（T1/T2 两个都不出现）
+    // 洗全部 / 打造：都只在 T4 出现（T1–T3 都没有）
     const all = rerollAllCost(run.wave),
       fc = forgeCost(w);
-    const both = affixes.length > 0 && canForgeRow;
-    if (affixes.length)
+    const canReroll = canRerollAffixes(w);
+    const both = canReroll && canForgeRow;
+    if (canReroll)
       c.add(
         button(
           this,

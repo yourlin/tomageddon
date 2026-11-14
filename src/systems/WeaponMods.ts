@@ -45,18 +45,11 @@ export function rerollAll(w: OwnedWeapon, luck = 0): void {
   ensureAffixes(w, luck);
 }
 
-export function rerollOne(w: OwnedWeapon, idx: number, luck = 0): void {
-  const list = w.affixes ?? [];
-  if (!list[idx]) return;
-  list[idx] = rollOne(
-    list.filter((_, i) => i !== idx).map((a) => a.id),
-    luck,
-  );
-}
+/** 只有 T4（tier 3）能洗练，而且只能整组重洗；T3 的词条买到什么就是什么 */
+export const canRerollAffixes = (w: OwnedWeapon): boolean => w.tier >= 3 && (w.affixes?.length ?? 0) > 0;
 
-/** 洗练价格：全部洗练便宜，单条洗练约 2.5 倍 */
-export const rerollAllCost = (wave: number): number => Math.round(8 + wave * 2);
-export const rerollOneCost = (wave: number): number => Math.round(rerollAllCost(wave) * 2.5);
+/** 洗练价格（全部重洗） */
+export const rerollAllCost = (wave: number): number => Math.round(16 + wave * 3);
 
 /** 打造价格随等级指数上涨；与武器基础价挂钩 */
 export function forgeCost(w: OwnedWeapon): number {
