@@ -78,11 +78,20 @@ try {
             originalDelayed = g.time.delayedCall;
           let requestedDelay = null;
           g.time.delayedCall = function (delay, callback, args, scope) {
-            return originalDelayed.call(this, delay, function (...values) {
-              requestedDelay = delay;
-              try { return callback.apply(this, values); }
-              finally { requestedDelay = null; }
-            }, args, scope);
+            return originalDelayed.call(
+              this,
+              delay,
+              function (...values) {
+                requestedDelay = delay;
+                try {
+                  return callback.apply(this, values);
+                } finally {
+                  requestedDelay = null;
+                }
+              },
+              args,
+              scope,
+            );
           };
           const shots = [],
             spawned = [];
@@ -90,7 +99,14 @@ try {
           g.spawnPlayerBullet = function (...args) {
             const bullet = originalSpawn.apply(this, args);
             if (args[0] === 'proj_player' && args[4] === 560 && args[6] === 10) {
-              const shot = { at: g.time.now - start, wallAt: performance.now() - wallStart, requestedDelay, angle: args[3], speed: args[4], life: args[5] };
+              const shot = {
+                at: g.time.now - start,
+                wallAt: performance.now() - wallStart,
+                requestedDelay,
+                angle: args[3],
+                speed: args[4],
+                life: args[5],
+              };
               shots.push(shot);
               spawned.push(bullet);
               // Capture skill assignment before same-frame collision consumes piercing.
@@ -122,7 +138,8 @@ try {
                 expectedDamage: g.skill.damage(g.stats),
               });
               controls.joyX = 0;
-              g.spawnPlayerBullet = originalSpawn; g.time.delayedCall = originalDelayed;
+              g.spawnPlayerBullet = originalSpawn;
+              g.time.delayedCall = originalDelayed;
               target.alive = false;
               g.events.off('postupdate', sample);
             }

@@ -96,9 +96,10 @@ try {
           };
           g.add.graphics = function (...args) {
             const gr = originalGraphics.apply(this, args),
-              arc = gr.arc, circle = gr.strokeCircle;
+              arc = gr.arc,
+              circle = gr.strokeCircle;
             gr.arc = function (...coords) {
-              if (this.depth === 11800 && [40,49,58].includes(coords[2])) probe.leafArcs++;
+              if (this.depth === 11800 && [40, 49, 58].includes(coords[2])) probe.leafArcs++;
               return arc.apply(this, coords);
             };
             gr.strokeCircle = function (...coords) {

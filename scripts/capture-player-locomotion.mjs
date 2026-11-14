@@ -60,25 +60,29 @@ try {
     },
     { timeout: 60000 },
   );
-  await page.evaluate(({ skinId, readable }) => {
-    const g = window.game.scene.getScene('Game');
-    if (skinId && g.player.art?.choice.entry.skinId !== skinId) throw Error('Equipped skin fell back');
-    // Keep damage from interrupting capture without invoking the hurt-flash shader.
-    // Production movement, animation clock and mirror behavior remain active.
-    g.iframes = 0;
-    g.damagePlayer = () => {};
-    g.skill.cd = 1000;
-    for (const w of g.weapons.list) w.cd = 1000;
-    // A close camera makes the actual runtime sprite readable without changing its scale.
-    g.cameras.main.setZoom(2);
-    if (readable) g.events.on('postupdate', () => {
-      const keep = new Set();
-      for (let object = g.player.img; object; object = object.parentContainer) keep.add(object);
-      for (const child of g.children.list) {
-        if (!keep.has(child) && child.depth >= g.player.img.depth) child.setVisible(false);
-      }
-    });
-  }, { skinId, readable });
+  await page.evaluate(
+    ({ skinId, readable }) => {
+      const g = window.game.scene.getScene('Game');
+      if (skinId && g.player.art?.choice.entry.skinId !== skinId) throw Error('Equipped skin fell back');
+      // Keep damage from interrupting capture without invoking the hurt-flash shader.
+      // Production movement, animation clock and mirror behavior remain active.
+      g.iframes = 0;
+      g.damagePlayer = () => {};
+      g.skill.cd = 1000;
+      for (const w of g.weapons.list) w.cd = 1000;
+      // A close camera makes the actual runtime sprite readable without changing its scale.
+      g.cameras.main.setZoom(2);
+      if (readable)
+        g.events.on('postupdate', () => {
+          const keep = new Set();
+          for (let object = g.player.img; object; object = object.parentContainer) keep.add(object);
+          for (const child of g.children.list) {
+            if (!keep.has(child) && child.depth >= g.player.img.depth) child.setVisible(false);
+          }
+        });
+    },
+    { skinId, readable },
+  );
   for (const direction of [1, -1]) {
     const name = direction === 1 ? 'right' : 'left';
     const folder = resolve(output, name);
@@ -133,6 +137,9 @@ try {
   process.exitCode = 1;
 } finally {
   writeFileSync(resolve(output, 'capture.json'), JSON.stringify(report, null, 2) + '\n');
-  writeFileSync(`reports/art-pilot/direction-audit/${skinId ?? actor}-continuous-game${readable ? '-readable' : ''}.json`, JSON.stringify(report, null, 2) + '\n');
+  writeFileSync(
+    `reports/art-pilot/direction-audit/${skinId ?? actor}-continuous-game${readable ? '-readable' : ''}.json`,
+    JSON.stringify(report, null, 2) + '\n',
+  );
   await closeArtBrowser(browser);
 }

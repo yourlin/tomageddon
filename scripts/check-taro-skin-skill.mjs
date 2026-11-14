@@ -70,33 +70,61 @@ try {
           controls.joyX = 0;
           g.moveX = 0;
           g.facing = direction;
-          await new Promise(resolve => g.time.delayedCall(600, resolve));
-          const start = g.time.now, originalHit = g.weaponHit;
-          const probe = { frames: new Set(), requiredFrames: p.art.choice.entry.anims.cast.frames, hits: [], wrongFlip: false, sawBurnSlow: false, blockedBeforeExpiry: false, done: false };
+          await new Promise((resolve) => g.time.delayedCall(600, resolve));
+          const start = g.time.now,
+            originalHit = g.weaponHit;
+          const probe = {
+            frames: new Set(),
+            requiredFrames: p.art.choice.entry.anims.cast.frames,
+            hits: [],
+            wrongFlip: false,
+            sawBurnSlow: false,
+            blockedBeforeExpiry: false,
+            done: false,
+          };
           g.weaponHit = function (e, info, ...args) {
             if (e === target && info.weaponId === 'skill') {
               probe.hits.push(g.time.now - start);
-              probe.sawBurnSlow ||= info.status?.some(s => s.id === 'burn' && s.stacks >= 2) && info.status?.some(s => s.id === 'slow' && s.stacks >= 2);
+              probe.sawBurnSlow ||=
+                info.status?.some((s) => s.id === 'burn' && s.stacks >= 2) && info.status?.some((s) => s.id === 'slow' && s.stacks >= 2);
             }
             return originalHit.call(this, e, info, ...args);
           };
           const sample = () => {
-            if (p.state === 'cast') { probe.frames.add(Number(p.img.frame.name)); probe.wrongFlip ||= p.img.flipX !== (direction < 0); }
-            p.x = originX; p.y = originY; target.x = originX + 30; target.y = originY; target.kvx = target.kvy = 0;
+            if (p.state === 'cast') {
+              probe.frames.add(Number(p.img.frame.name));
+              probe.wrongFlip ||= p.img.flipX !== direction < 0;
+            }
+            p.x = originX;
+            p.y = originY;
+            target.x = originX + 30;
+            target.y = originY;
+            target.kvx = target.kvy = 0;
             if (incoming && !incoming.alive && incoming.life > 1 && field && g.bulletShields.includes(field.shield)) {
               probe.blockedBeforeExpiry ||= Math.hypot(incoming.x - field.x, incoming.y - field.y) > 180;
             }
             if (field && !g.skill.fields.includes(field)) {
-              Object.assign(probe, { done: true, fieldRadius: field.r, expectedRadius: g.skill.radius(230), visualsDestroyed: !field.img.scene && !field.ring.scene, shieldRemoved: !g.bulletShields.includes(field.shield), damaged: target.hp < 1e8 });
-              controls.joyX = 0; g.weaponHit = originalHit; target.alive = false; g.events.off('postupdate', sample);
+              Object.assign(probe, {
+                done: true,
+                fieldRadius: field.r,
+                expectedRadius: g.skill.radius(230),
+                visualsDestroyed: !field.img.scene && !field.ring.scene,
+                shieldRemoved: !g.bulletShields.includes(field.shield),
+                damaged: target.hp < 1e8,
+              });
+              controls.joyX = 0;
+              g.weaponHit = originalHit;
+              target.alive = false;
+              g.events.off('postupdate', sample);
             }
           };
-          window.__taroSkinProbe = probe; g.events.on('postupdate', sample);
+          window.__taroSkinProbe = probe;
+          g.events.on('postupdate', sample);
           g.skill.cd = 0;
           g.skill.use();
           const field = g.skill.fields.at(-1);
           if (!field || !field.shield || !g.bulletShields.includes(field.shield)) throw Error('Missing actual Taro field shield');
-          const incoming = g.enemyBullets.find(b => !b.alive);
+          const incoming = g.enemyBullets.find((b) => !b.alive);
           if (!incoming) throw Error('No free enemy bullet fixture');
           g.enemyBullet('proj_enemy', field.x + field.r + 70, field.y, Math.PI, 1000, 1, 0, 1, undefined, target);
           sample();
@@ -105,7 +133,19 @@ try {
       );
       await page.waitForFunction(() => window.__taroSkinProbe.done, { timeout: 30000 });
       const result = await page.evaluate(() => ({ ...window.__taroSkinProbe, frames: [...window.__taroSkinProbe.frames] }));
-      if (result.requiredFrames.length !== 4 || result.requiredFrames.some(f => !result.frames.includes(f)) || result.wrongFlip || result.fieldRadius !== result.expectedRadius || !result.visualsDestroyed || !result.shieldRemoved || !result.damaged || !result.sawBurnSlow || !result.blockedBeforeExpiry || result.hits.length < 10) throw Error(JSON.stringify({ tier, direction, ...result }));
+      if (
+        result.requiredFrames.length !== 4 ||
+        result.requiredFrames.some((f) => !result.frames.includes(f)) ||
+        result.wrongFlip ||
+        result.fieldRadius !== result.expectedRadius ||
+        !result.visualsDestroyed ||
+        !result.shieldRemoved ||
+        !result.damaged ||
+        !result.sawBurnSlow ||
+        !result.blockedBeforeExpiry ||
+        result.hits.length < 10
+      )
+        throw Error(JSON.stringify({ tier, direction, ...result }));
       report.cases.push({ tier, direction, ...result });
     }
     await page.close();
