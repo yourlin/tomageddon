@@ -62,7 +62,10 @@ try {
           const target = g.spawnEnemyNow('mold', p.x + 30, p.y);
           target.speed = 0;
           target.hp = target.maxHp = 1e8;
-          // Normal combat enemies are indexed before skill input; this fixture was just spawned.
+          // Isolate the fixed target for skill input: Wasabi chooses the densest
+          // indexed cluster, so ambient wave enemies would randomize the landing point.
+          // Normal scene updates rebuild the index for explosion/residue damage.
+          g.grid.clear();
           g.grid.insert(target);
           const originX = p.x,
             originY = p.y;

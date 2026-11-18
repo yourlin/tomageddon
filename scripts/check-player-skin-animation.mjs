@@ -31,7 +31,7 @@ try {
         ),
       { id, skinId, tier },
     );
-    await p.goto('http://127.0.0.1:4183/?art=1&skins=1');
+    await p.goto('http://127.0.0.1:4183/?art=1&skins=1', { timeout: 90000 });
     await p.waitForFunction(() => window.game?.scene.isActive('Menu') && !window.game.scene.isActive('Boot'), { timeout: 60000 });
     const playback = await p.evaluate(
       async ({ id, skinId, tier }) => {
@@ -106,7 +106,14 @@ try {
     const clock = await p.evaluate(() => window.game.scene.getScene('Game').player.t);
     await new Promise((r) => setTimeout(r, 120));
     if ((await p.evaluate(() => window.game.scene.getScene('Game').player.t)) !== clock) throw Error('Skin advances during pause');
-    await p.evaluate(() => window.game.scene.resume('Game'));
+    // Capture the normal skin appearance, not the artificial long-iframe blink
+    // used to isolate the playback fixture from incoming damage.
+    await p.evaluate(() => {
+      const scene = window.game.scene.getScene('Game');
+      scene.iframes = 0;
+      scene.player.setAlpha(1);
+      window.game.scene.resume('Game');
+    });
     await p.screenshot({ path: `reports/art-pilot/skin-${skinId}-${tier}.png` });
     await p.evaluate(() => {
       window.game.scene.getScenes(true).forEach((s) => window.game.scene.stop(s.scene.key));

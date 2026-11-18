@@ -35,7 +35,8 @@ try {
         ),
       { skinId, tier },
     );
-    await page.goto('http://127.0.0.1:4183/?art=1&skins=1');
+    // Wait explicitly for Phaser Boot below rather than the document load event.
+    await page.goto('http://127.0.0.1:4183/?art=1&skins=1', { waitUntil: 'domcontentloaded', timeout: 90000 });
     await page.waitForFunction(() => window.game?.scene.isActive('Menu') && !window.game.scene.isActive('Boot'), { timeout: 60000 });
     await page.evaluate(() => {
       window.run.start('durian', 1, false, 0);

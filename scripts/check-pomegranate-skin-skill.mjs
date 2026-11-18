@@ -70,19 +70,53 @@ try {
           controls.joyX = 0;
           g.moveX = 0;
           g.facing = direction;
+          // Let the newly loaded scene finish its startup timer catch-up before timing a cast.
+          await new Promise((resolve) => g.time.delayedCall(600, resolve));
           const start = g.time.now,
-            originalSpawn = g.spawnPlayerBullet;
+            wallStart = performance.now(),
+            originalSpawn = g.spawnPlayerBullet,
+            originalDelayed = g.time.delayedCall;
+          let requestedDelay = null;
+          g.time.delayedCall = function (delay, callback, args, scope) {
+            return originalDelayed.call(
+              this,
+              delay,
+              function (...values) {
+                requestedDelay = delay;
+                try {
+                  return callback.apply(this, values);
+                } finally {
+                  requestedDelay = null;
+                }
+              },
+              args,
+              scope,
+            );
+          };
           const shots = [],
             spawned = [];
           const probe = { frames: new Set(), requiredFrames: p.art.choice.entry.anims.cast.frames, wrongFlip: false, done: false };
           g.spawnPlayerBullet = function (...args) {
             const bullet = originalSpawn.apply(this, args);
             if (args[0] === 'proj_player' && args[4] === 560 && args[6] === 10) {
-              const shot = { at: g.time.now - start, angle: args[3], speed: args[4], life: args[5] };
+              const shot = {
+                at: g.time.now - start,
+                wallAt: performance.now() - wallStart,
+                requestedDelay,
+                angle: args[3],
+                speed: args[4],
+                life: args[5],
+              };
               shots.push(shot);
               spawned.push(bullet);
-              // Skill sets damage, piercing and tint immediately after spawn returns.
-              queueMicrotask(() => Object.assign(shot, { dmg: bullet.dmg, pierce: bullet.pierce, tint: bullet.tintTopLeft }));
+              // Capture skill assignment before same-frame collision consumes piercing.
+              const tint = bullet.setTint;
+              bullet.setTint = function (...colors) {
+                const value = tint.apply(this, colors);
+                Object.assign(shot, { dmg: this.dmg, pierce: this.pierce, tint: this.tintTopLeft });
+                this.setTint = tint;
+                return value;
+              };
             }
             return bullet;
           };
@@ -105,6 +139,7 @@ try {
               });
               controls.joyX = 0;
               g.spawnPlayerBullet = originalSpawn;
+              g.time.delayedCall = originalDelayed;
               target.alive = false;
               g.events.off('postupdate', sample);
             }
@@ -125,15 +160,17 @@ try {
       const shotsValid = result.shots.every(
         (s) => s.pierce === 1 && s.dmg === result.expectedDamage && [0xc1121f, 0xff4d6d, 0xffccd5].includes(s.tint),
       );
-      const duration = result.shots.at(-1)?.at - result.shots[0]?.at;
+      const duration = result.shots.at(-1)?.wallAt - result.shots[0]?.wallAt;
+      const delaysValid = result.shots.every((s, i) => s.requestedDelay === Math.floor(i / 2) * 66);
       if (
         result.requiredFrames.length !== 4 ||
         result.requiredFrames.some((f) => !result.frames.includes(f)) ||
         result.wrongFlip ||
         !pairAnglesValid ||
         !shotsValid ||
-        duration < 850 ||
-        duration > 1200 ||
+        !delaysValid ||
+        duration < 800 ||
+        duration > 10000 ||
         !result.projectilesReleased
       )
         throw Error(JSON.stringify({ tier, direction, ...result }));

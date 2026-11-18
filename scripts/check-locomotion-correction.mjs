@@ -29,7 +29,8 @@ try {
       (tier) => localStorage.setItem('tomato_sister_save_v1', JSON.stringify({ saveVersion: 2, settings: { graphicsQuality: tier } })),
       tier,
     );
-    await page.goto('http://127.0.0.1:4183/?art=1');
+    // Boot readiness below is the application gate; unrelated load-event requests must not block it.
+    await page.goto('http://127.0.0.1:4183/?art=1', { waitUntil: 'domcontentloaded', timeout: 90000 });
     await page.waitForFunction(() => window.game?.scene.isActive('Menu') && !window.game.scene.isActive('Boot'), { timeout: 60000 });
     const result = await page.evaluate(
       async ({ id, skinId, tier }) => {
